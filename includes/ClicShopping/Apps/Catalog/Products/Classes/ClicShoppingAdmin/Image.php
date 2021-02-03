@@ -42,7 +42,7 @@
     public function getGenerateRandomString(int $length = 10): string
     {
       $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      $charactersLength = strlen($characters);
+      $charactersLength = \strlen($characters);
       $randomString = '';
 
       for ($i = 0; $i < $length; $i++) {

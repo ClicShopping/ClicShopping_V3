@@ -105,11 +105,11 @@
               ?>
               <tr>
                 <th
-                  scope="row"><?php echo substr($file['name'], strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))); ?></th>
+                  scope="row"><?php echo substr($file['name'], \strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))); ?></th>
                 <td
                   class="text-center"><?php echo $file['writable'] === true ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'; ?></td>
                 <td
-                  class="text-center"><?php echo(in_array(substr($file['name'], strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))), $whitelist_array) ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'); ?></td>
+                  class="text-center"><?php echo(in_array(substr($file['name'], \strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))), $whitelist_array) ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'); ?></td>
               </tr>
               <?php
             }

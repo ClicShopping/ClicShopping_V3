@@ -80,11 +80,11 @@
 
           $schema .= '  ' . $Qfields->value('Field') . ' ' . $Qfields->value('Type');
 
-          if (strlen($Qfields->value('Default')) > 0) $schema .= ' default \'' . $Qfields->value('Default') . '\'';
+          if (\strlen($Qfields->value('Default')) > 0) $schema .= ' default \'' . $Qfields->value('Default') . '\'';
 
           if ($Qfields->value('Null') != 'YES') $schema .= ' not null';
 
-          if (strlen($Qfields->value('Extra')) > 0) $schema .= ' ' . $Qfields->value('Extra');
+          if (\strlen($Qfields->value('Extra')) > 0) $schema .= ' ' . $Qfields->value('Extra');
 
           $schema .= ',' . "\n";
         }

@@ -52,7 +52,7 @@
               foreach ($manufacturers as $m) {
                 $manufacturer_url = $CLICSHOPPING_Manufacturers->getManufacturerUrlRewrited()->getManufacturerUrl((int)$m['id']);
 
-                $manufacturers_name = ((strlen($m['name']) > MODULE_BOXES_MANUFACTURERS_MAX_DISPLAY_MANUFACTURER_NAME_LEN) ? substr($m['name'], 0, MAX_DISPLAY_MANUFACTURER_NAME_LEN) . '..' : $m['name']);
+                $manufacturers_name = ((\strlen($m['name']) > MODULE_BOXES_MANUFACTURERS_MAX_DISPLAY_MANUFACTURER_NAME_LEN) ? substr($m['name'], 0, MAX_DISPLAY_MANUFACTURER_NAME_LEN) . '..' : $m['name']);
                 if (isset($_GET['manufacturersId']) && ($_GET['manufacturersId'] == $m['id'])) {
                  $manufacturers_name = '<strong>' . $manufacturers_name .'</strong>';
                 }
@@ -75,7 +75,7 @@
           }
 
           foreach ($manufacturers as $m) {
-            $manufacturers_name = ((strlen($m['name']) > MODULE_BOXES_MANUFACTURERS_MAX_DISPLAY_MANUFACTURER_NAME_LEN) ? substr($m['name'], 0, MAX_DISPLAY_MANUFACTURER_NAME_LEN) . '..' : $m['name']);
+            $manufacturers_name = ((\strlen($m['name']) > MODULE_BOXES_MANUFACTURERS_MAX_DISPLAY_MANUFACTURER_NAME_LEN) ? substr($m['name'], 0, MAX_DISPLAY_MANUFACTURER_NAME_LEN) . '..' : $m['name']);
 
             $manufacturers_array[] = ['id' => $m['id'],
                                       'text' => $manufacturers_name

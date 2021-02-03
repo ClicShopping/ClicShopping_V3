@@ -80,13 +80,13 @@
         }
 
 // Clients B2C : Controle entree du prenom
-        if (strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
+        if (\strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]), 'error');
         }
 
 // Clients B2C : Controle entree du nom de famille
-        if (strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
+        if (\strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]), 'error');
@@ -96,7 +96,7 @@
         if (ACCOUNT_DOB == 'true') {
           $dobDateTime = new DateTime($dob);
 
-          if ((strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
+          if ((\strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_date_of_birth_error'), 'error');
@@ -129,7 +129,7 @@
           }
         }
 
-        if (strlen($password) < ENTRY_PASSWORD_MIN_LENGTH) {
+        if (\strlen($password) < ENTRY_PASSWORD_MIN_LENGTH) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error', ['min_length' => ENTRY_PASSWORD_MIN_LENGTH]), 'error');

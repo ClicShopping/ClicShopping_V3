@@ -112,7 +112,7 @@
      */
     public function setSavePath($path)
     {
-      if ((strlen($path) > 1) && (substr($path, -1) == '/')) {
+      if ((\strlen($path) > 1) && (substr($path, -1) == '/')) {
         $path = substr($path, 0, -1);
       }
 

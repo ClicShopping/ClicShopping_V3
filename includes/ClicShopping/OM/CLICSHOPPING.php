@@ -229,7 +229,7 @@
         $CLICSHOPPING_Session = Registry::get('Session');
 
         if ($CLICSHOPPING_Session->hasStarted() && ($CLICSHOPPING_Session->isForceCookies() === false)) {
-          if ((strlen(SID) > 0) || (((HTTP::getRequestType() == 'NONSSL') && (parse_url(static::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'https')) || ((HTTP::getRequestType() == 'SSL') && (parse_url(static::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'http')))) {
+          if ((\strlen(SID) > 0) || (((HTTP::getRequestType() == 'NONSSL') && (parse_url(static::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'https')) || ((HTTP::getRequestType() == 'SSL') && (parse_url(static::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'http')))) {
             $link .= $separator . HTML::sanitize(session_name() . '=' . session_id());
           }
         }
@@ -457,7 +457,7 @@
     {
       $prefix = 'ClicShopping\\';
 
-      if (strncmp($prefix, $class, strlen($prefix)) !== 0) {
+      if (strncmp($prefix, $class, \strlen($prefix)) !== 0) {
         $class_path = str_replace('\\', '/', $class);
 
         $file = CLICSHOPPING_BASE_DIR . '/' . 'External' . '/' . $class_path . '.php';
@@ -492,7 +492,7 @@
         return false;
       }
 
-      if (strncmp($prefix . 'OM\Module\\', $class, strlen($prefix . 'OM\Module\\')) === 0) {
+      if (strncmp($prefix . 'OM\Module\\', $class, \strlen($prefix . 'OM\Module\\')) === 0) {
         $file = dirname(CLICSHOPPING_BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['', '/'], $class) . '.php';
         $custom = dirname(CLICSHOPPING_BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['ClicShopping\Custom\OM\\', '/'], $class) . '.php';
       } else {
@@ -616,7 +616,7 @@
     public static function getIndex(): string
     {
       $req = parse_url($_SERVER['SCRIPT_NAME']);
-      $result = substr($req['path'], strlen(static::getConfig('http_path', 'Shop')));
+      $result = substr($req['path'], \strlen(static::getConfig('http_path', 'Shop')));
 
       return $result;
     }
@@ -654,7 +654,7 @@
           }
         }
 
-        $remove_chars = strlen($separator);
+        $remove_chars = \strlen($separator);
         $get_string = substr($get_string, 0, -$remove_chars);
       }
 

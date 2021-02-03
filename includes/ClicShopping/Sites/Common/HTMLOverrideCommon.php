@@ -74,7 +74,7 @@
       $clean = preg_replace("[<(.*'?)>]", '', $clean);
 
       if (!empty ($length)) {
-        if (strlen($clean) > $length) {
+        if (\strlen($clean) > $length) {
           $clean = substr($clean, 0, $length - 3) . "...";
         }
       }

@@ -125,7 +125,7 @@
               $products_reviews_content .= '</div>';
               $products_reviews_content .= '<div class="col-md-12">';
               $products_reviews_content .= '<div class="moduleProductsInfoReviewText" itemprop="description">';
-              $products_reviews_content .= HTML::breakString(HTML::outputProtected($Qreviews->value('reviews_text')), 60, '-<br />') . ((strlen($Qreviews->value('reviews_text')) >= MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS) ? '..' : '') . '<br />';
+              $products_reviews_content .= HTML::breakString(HTML::outputProtected($Qreviews->value('reviews_text')), 60, '-<br />') . ((\strlen($Qreviews->value('reviews_text')) >= MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS) ? '..' : '') . '<br />';
               $products_reviews_content .= '</div>';
               $products_reviews_content .= '</div>';
               $products_reviews_content .= '<hr>';

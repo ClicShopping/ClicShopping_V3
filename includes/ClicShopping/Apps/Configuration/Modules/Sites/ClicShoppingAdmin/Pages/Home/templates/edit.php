@@ -218,7 +218,7 @@
             foreach ($mInfo->keys as $key => $value) {
               $keys .= '<strong>' . $value['title'] . '</strong><br />' . $value['description'] . '<br />';
 
-              if (strlen($value['set_function']) > 0) {
+              if (\strlen($value['set_function']) > 0) {
                 $keys .= CallUserFuncModule::execute($value['set_function'], $value['value'], $key);
               } else {
                 $keys .= HTML::inputField('configuration[' . $key . ']', $value['value']);

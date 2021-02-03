@@ -87,7 +87,7 @@
             $delete_reviews .= '</form>';
           }
 
-          $review_text = HTML::breakString(HTML::outputProtected($Qreviews->value('reviews_text')), 60, '-<br />') . ((strlen($Qreviews->value('reviews_text')) >= 100) ? '..' : '');
+          $review_text = HTML::breakString(HTML::outputProtected($Qreviews->value('reviews_text')), 60, '-<br />') . ((\strlen($Qreviews->value('reviews_text')) >= 100) ? '..' : '');
           $review_star = HTML::stars($Qreviews->valueInt('reviews_rating'));
 
           ob_start();

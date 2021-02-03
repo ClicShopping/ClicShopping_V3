@@ -41,13 +41,13 @@
       if (isset($restore_query)) {
         $sql_array = [];
         $drop_table_names = [];
-        $sql_length = strlen($restore_query);
+        $sql_length = \strlen($restore_query);
         $pos = strpos($restore_query, ';');
 
         for ($i = $pos; $i < $sql_length; $i++) {
           if ($restore_query[0] == '#') {
             $restore_query = ltrim(substr($restore_query, strpos($restore_query, "\n")));
-            $sql_length = strlen($restore_query);
+            $sql_length = \strlen($restore_query);
             $i = strpos($restore_query, ';') - 1;
             continue;
           }
@@ -66,7 +66,7 @@
                   $restore_query = substr($restore_query, $k);
 // join the query before the comment appeared, with the rest of the dump
                   $restore_query = $query . $restore_query;
-                  $sql_length = strlen($restore_query);
+                  $sql_length = \strlen($restore_query);
                   $i = strpos($restore_query, ';') - 1;
                   continue 2;
                 }
@@ -84,7 +84,7 @@
               $next = '';
               $sql_array[] = $query;
               $restore_query = ltrim(substr($restore_query, $i + 1));
-              $sql_length = strlen($restore_query);
+              $sql_length = \strlen($restore_query);
               $i = strpos($restore_query, ';') - 1;
 
               if (preg_match('/^create*/i', $query)) {

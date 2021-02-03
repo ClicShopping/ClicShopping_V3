@@ -15,7 +15,7 @@
   {
     public static function execute($value, bool $check_dns = false): bool
     {
-      if (empty($value) || (strlen($value) > 191)) {
+      if (empty($value) || (\strlen($value) > 191)) {
         return false;
       }
 

@@ -143,7 +143,7 @@
               if (empty($this->_check_extension) || in_array(strtolower(substr($entry, strrpos($entry, '.') + 1)), $this->_check_extension)) {
                 if ($this->_add_directory_to_filename === true) {
                   if ($dir->path !== $this->_directory) {
-                    $entry = substr($dir->path, strlen($this->_directory) + 1) . '/' . $entry;
+                    $entry = substr($dir->path, \strlen($this->_directory) + 1) . '/' . $entry;
                   }
                 }
 
@@ -167,7 +167,7 @@
 
                 if ($this->_add_directory_to_filename === true) {
                   if ($dir->path !== $this->_directory) {
-                    $entry_name = substr($dir->path, strlen($this->_directory) + 1) . '/' . $entry;
+                    $entry_name = substr($dir->path, \strlen($this->_directory) + 1) . '/' . $entry;
                   }
                 }
 

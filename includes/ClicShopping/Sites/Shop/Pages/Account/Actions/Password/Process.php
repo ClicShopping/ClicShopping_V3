@@ -34,7 +34,7 @@
         $password_new = HTML::sanitize($_POST['password_new']);
         $password_confirmation = HTML::sanitize($_POST['password_confirmation']);
 
-        if (strlen($password_new) < ENTRY_PASSWORD_MIN_LENGTH) {
+        if (\strlen($password_new) < ENTRY_PASSWORD_MIN_LENGTH) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_new_error', ['min_length' => ENTRY_PASSWORD_MIN_LENGTH]), 'error');

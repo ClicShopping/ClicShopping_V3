@@ -17,7 +17,7 @@
     {
       $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (isset($_SERVER['ORIG_PATH_INFO']) ? $_SERVER['ORIG_PATH_INFO'] : '');
 
-      if (isset($path_info) && (strlen($path_info) > 1)) {
+      if (isset($path_info) && (\strlen($path_info) > 1)) {
         $parameters = explode('/', substr($path_info, 1));
 
         $_GET = [];
@@ -60,7 +60,7 @@
       $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (isset($_SERVER['ORIG_PATH_INFO']) ? $_SERVER['ORIG_PATH_INFO'] : '');
       $value_language = null;
 
-      if (isset($path_info) && (strlen($path_info) > 1)) {
+      if (isset($path_info) && (\strlen($path_info) > 1)) {
         $parameters = explode('/', substr($path_info, 1));
 
         foreach ($parameters as $parameter) {

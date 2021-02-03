@@ -44,7 +44,7 @@
       }
 
 // Supprimer (|| $customers_group_discount ==  0) dans la condition IF pour pouvoir cree un groupe a 0% par defaut
-      if (strlen($customers_groups_name) == '') {
+      if (\strlen($customers_groups_name) == '') {
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Groups->getDef('entry_groups_name_error'), 'warning');
         $CLICSHOPPING_Groups->redirect('Groups&error=name');
       } else {
@@ -70,7 +70,7 @@
             }
           }
 
-          $group_payment_unallowed = substr($group_payment_unallowed, 0, strlen($group_payment_unallowed) - 1);
+          $group_payment_unallowed = substr($group_payment_unallowed, 0, \strlen($group_payment_unallowed) - 1);
         }
 
 // Module de livraison autorise
@@ -83,7 +83,7 @@
             }
           }
 
-          $group_shipping_unallowed = substr($group_shipping_unallowed, 0, strlen($group_shipping_unallowed) - 1);
+          $group_shipping_unallowed = substr($group_shipping_unallowed, 0, \strlen($group_shipping_unallowed) - 1);
         }
 
         $CLICSHOPPING_Groups->db->save('customers_groups', ['customers_group_name' => $customers_groups_name,

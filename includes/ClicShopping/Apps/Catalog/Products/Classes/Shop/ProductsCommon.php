@@ -642,7 +642,7 @@
 
       if ($products_short_description_number > 0) {
         $short_description = substr($description_summary, (int)$delete_word, (int)$products_short_description_number);
-        $description_summary = HTML::breakString(HTML::outputProtected($short_description), $products_short_description_number, '-<br />') . ((strlen($description_summary) >= $products_short_description_number - 1) ? ' ...' : '');
+        $description_summary = HTML::breakString(HTML::outputProtected($short_description), $products_short_description_number, '-<br />') . ((\strlen($description_summary) >= $products_short_description_number - 1) ? ' ...' : '');
       } else {
         $description_summary = '';
       }

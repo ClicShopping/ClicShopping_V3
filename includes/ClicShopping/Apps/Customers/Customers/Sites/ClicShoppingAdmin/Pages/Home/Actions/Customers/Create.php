@@ -147,7 +147,7 @@
       } // end while
 
 // Controle des saisies faites sur les champs TVA Intracom
-      if ((strlen($customers_tva_intracom_code_iso) > 0) || (strlen($customers_tva_intracom) > 0)) {
+      if ((\strlen($customers_tva_intracom_code_iso) > 0) || (\strlen($customers_tva_intracom) > 0)) {
         $QcustomersTva = $CLICSHOPPING_Customers->db->prepare('select countries_iso_code_2
                                                                  from :table_countries
                                                                  where countries_iso_code_2 = :countries_iso_code_2
@@ -165,12 +165,12 @@
         }
       }
 
-      if (strlen($customers_firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
+      if (\strlen($customers_firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_firstname'), 'error');
       }
 
-      if (strlen($customers_lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
+      if (\strlen($customers_lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_lastname'), 'error');
       }
@@ -180,17 +180,17 @@
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_email'), 'error');
       }
 
-      if (strlen($customers_street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
+      if (\strlen($customers_street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_address'), 'error');
       }
 
-      if (strlen($customers_postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
+      if (\strlen($customers_postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_postcode'), 'error');
       }
 
-      if (strlen($customers_city) < ENTRY_CITY_MIN_LENGTH) {
+      if (\strlen($customers_city) < ENTRY_CITY_MIN_LENGTH) {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_city'), 'error');
       }
@@ -245,7 +245,7 @@
         }
 
         if (ACCOUNT_STATE == 'true') {
-          if (strlen($customers_state) < ENTRY_STATE_MIN_LENGTH) {
+          if (\strlen($customers_state) < ENTRY_STATE_MIN_LENGTH) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_pro', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error');
@@ -261,7 +261,7 @@
         }
       }
 
-      if (strlen($customers_telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
+      if (\strlen($customers_telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_telephone'), 'error');
       }

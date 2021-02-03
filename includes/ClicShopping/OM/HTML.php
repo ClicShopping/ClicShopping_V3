@@ -157,15 +157,15 @@
         $image = '<img src="' . static::output($src) . '" alt="' . static::output($alt) . '"';
       }
 
-      if (isset($alt) && (strlen($alt) > 0)) {
+      if (isset($alt) && (\strlen($alt) > 0)) {
         $image .= ' title="' . static::output($alt) . '"';
       }
 
-      if (isset($width) && (strlen($width) > 0)) {
+      if (isset($width) && (\strlen($width) > 0)) {
         $image .= ' width="' . static::output($width) . '"';
       }
 
-      if (isset($height) && (strlen($height) > 0)) {
+      if (isset($height) && (\strlen($height) > 0)) {
         $image .= ' height="' . static::output($height) . '"';
       }
 
@@ -228,7 +228,7 @@
         $form .= static::hiddenField('action', $flags['action']);
       }
 
-      if (($flags['session_id'] === true) && Registry::get('Session')->hasStarted() && (strlen(SID) > 0) && !Registry::get('Session')->isForceCookies()) {
+      if (($flags['session_id'] === true) && Registry::get('Session')->hasStarted() && (\strlen(SID) > 0) && !Registry::get('Session')->isForceCookies()) {
         $form .= static::hiddenField(session_name(), session_id());
       }
 
@@ -263,7 +263,7 @@
         }
       }
 
-      if (strlen($value) > 0) {
+      if (\strlen($value) > 0) {
         $field .= ' value="' . static::output($value) . '"';
       }
 
@@ -377,7 +377,7 @@
       }
 
       if (!empty($field)) {
-        $field = substr($field, 0, strlen($field) - strlen($separator));
+        $field = substr($field, 0, \strlen($field) - \strlen($separator));
       }
 
       return $field;
@@ -649,7 +649,7 @@
       $l = 0;
       $output = '';
 
-      for ($i = 0, $n = strlen($string); $i < $n; $i++) {
+      for ($i = 0, $n = \strlen($string); $i < $n; $i++) {
         $char = substr($string, $i, 1);
         if ($char != ' ') {
           $l++;
@@ -781,7 +781,7 @@
     {
       $field = '<input type="hidden" name="' . static::output($name) . '"';
 
-      if (strlen($value) > 0) {
+      if (\strlen($value) > 0) {
         $field .= ' value="' . static::output($value) . '"';
       } elseif ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name]))) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {

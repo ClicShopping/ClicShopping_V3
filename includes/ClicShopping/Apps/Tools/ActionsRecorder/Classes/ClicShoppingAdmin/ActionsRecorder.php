@@ -196,7 +196,7 @@
 
       $calculated_category_path_string = substr($calculated_category_path_string, 0, -6);
 
-      if (strlen($calculated_category_path_string) < 1) {
+      if (\strlen($calculated_category_path_string) < 1) {
         $calculated_category_path_string = $CLICSHOPPING_ActionsRecorder->getDef('text_top');
       }
 

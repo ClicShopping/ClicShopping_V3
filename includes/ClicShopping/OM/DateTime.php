@@ -355,7 +355,7 @@
 
       $format_string = strtolower($format_string);
 
-      if (strlen($date_to_check) != strlen($format_string)) {
+      if (\strlen($date_to_check) != \strlen($format_string)) {
         return false;
       }
 
@@ -404,7 +404,7 @@
           if (($format_string_array[$i] == 'yyyy') || ($format_string_array[$i] == 'aaaa')) $year = $date_to_check_array[$i];
         }
       } else {
-        if (strlen($format_string) == 8 || strlen($format_string) == 9) {
+        if (\strlen($format_string) == 8 || \strlen($format_string) == 9) {
           $pos_month = strpos($format_string, 'mmm');
 
           if ($pos_month !== false) {
@@ -428,7 +428,7 @@
         $year = substr($date_to_check, strpos($format_string, 'yyyy'), 4);
       }
 
-      if (strlen($year) != 4) {
+      if (\strlen($year) != 4) {
         return false;
       }
 

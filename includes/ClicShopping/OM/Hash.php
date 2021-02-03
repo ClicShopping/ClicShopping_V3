@@ -74,7 +74,7 @@
     {
       $result = false;
 
-      if ((strlen($plain) > 0) && (strlen($hash) > 0)) {
+      if ((\strlen($plain) > 0) && (\strlen($hash) > 0)) {
         switch (static::getType($hash)) {
           case 'phpass':
             if (!class_exists('PasswordHash', false)) {
@@ -222,16 +222,16 @@
       do {
         $random = base64_encode(static::getRandomBytes($length));
 
-        for ($i = 0, $n = strlen($random); $i < $n; $i++) {
+        for ($i = 0, $n = \strlen($random); $i < $n; $i++) {
           $char = substr($random, $i, 1);
 
           if (str_contains($base, $char)) {
             $rand_value .= $char;
           }
         }
-      } while (strlen($rand_value) < $length);
+      } while (\strlen($rand_value) < $length);
 
-      if (strlen($rand_value) > $length) {
+      if (\strlen($rand_value) > $length) {
         $rand_value = substr($rand_value, 0, $length);
       }
 

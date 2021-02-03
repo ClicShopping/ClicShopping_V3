@@ -67,7 +67,7 @@
             }
           }
 
-          $group_payment_unallowed = substr($group_payment_unallowed, 0, strlen($group_payment_unallowed) - 1);
+          $group_payment_unallowed = substr($group_payment_unallowed, 0, \strlen($group_payment_unallowed) - 1);
         }
 
 // Module de livraison autorise
@@ -80,7 +80,7 @@
             }
           }
 
-          $group_shipping_unallowed = substr($group_shipping_unallowed, 0, strlen($group_shipping_unallowed) - 1);
+          $group_shipping_unallowed = substr($group_shipping_unallowed, 0, \strlen($group_shipping_unallowed) - 1);
         }
 
 // Assujetti ou non a la TVA

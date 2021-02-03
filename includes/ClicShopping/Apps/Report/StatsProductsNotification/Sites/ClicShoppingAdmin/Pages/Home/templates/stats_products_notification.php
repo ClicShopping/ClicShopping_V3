@@ -89,7 +89,7 @@
     while ($customers = $Qcustomers->fetch()) {
       $rows++;
 
-      if (strlen($rows) < 2) {
+      if (\strlen($rows) < 2) {
         $rows = '0' . $rows;
       }
     ?>
@@ -200,7 +200,7 @@
           while ($products = $Qproducts->fetch()) {
             $rows++;
 
-            if (strlen($rows) < 2) {
+            if (\strlen($rows) < 2) {
               $rows = '0' . $rows;
             }
             ?>

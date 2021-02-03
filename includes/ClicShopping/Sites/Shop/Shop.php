@@ -36,7 +36,7 @@
       Registry::set('Cookies', $CLICSHOPPING_Cookies);
 
 //check configuration
-      if (!CLICSHOPPING::configExists('db_server') || (strlen(CLICSHOPPING::getConfig('db_server')) < 1)) {
+      if (!CLICSHOPPING::configExists('db_server') || (\strlen(CLICSHOPPING::getConfig('db_server')) < 1)) {
         if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/install')) {
           header('Location: /install/index.php');
           exit;

@@ -120,7 +120,7 @@
         while ($Qproducts->fetch()) {
           $rows++;
 
-          if (strlen($rows) < 2) {
+          if (\strlen($rows) < 2) {
             $rows = '0' . $rows;
           }
           ?>

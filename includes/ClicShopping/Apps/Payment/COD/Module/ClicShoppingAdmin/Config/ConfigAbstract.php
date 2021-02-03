@@ -42,7 +42,7 @@
 
     public function install()
     {
-      $cut_length = strlen('CLICSHOPPING_APP_COD_' . $this->code . '_');
+      $cut_length = \strlen('CLICSHOPPING_APP_COD_' . $this->code . '_');
 
       foreach ($this->getParameters() as $key) {
         $p = strtolower(substr($key, $cut_length));
@@ -96,7 +96,7 @@
 
       $cut = 'CLICSHOPPING_APP_COD_' . $this->code . '_';
 
-      $cut_length = strlen($cut);
+      $cut_length = \strlen($cut);
 
       foreach ($this->getParameters() as $key) {
         $p = strtolower(substr($key, $cut_length));

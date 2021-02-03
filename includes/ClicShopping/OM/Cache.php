@@ -145,12 +145,12 @@
       }
 
       if ($strict === false) {
-        $key_length = strlen($key);
+        $key_length = \strlen($key);
 
         $d = dir(static::getPath());
 
         while (($entry = $d->read()) !== false) {
-          if ((strlen($entry) >= $key_length) && (substr($entry, 0, $key_length) == $key)) {
+          if ((\strlen($entry) >= $key_length) && (substr($entry, 0, $key_length) == $key)) {
             $d->close();
 
             return true;
@@ -197,13 +197,13 @@
       }
 
       if (FileSystem::isWritable(static::getPath())) {
-        $key_length = strlen($key);
+        $key_length = \strlen($key);
 
         $DLcache = new DirectoryListing(static::getPath());
         $DLcache->setIncludeDirectories(false);
 
         foreach ($DLcache->getFiles() as $file) {
-          if ((strlen($file['name']) >= $key_length) && (substr($file['name'], 0, $key_length) == $key)) {
+          if ((\strlen($file['name']) >= $key_length) && (substr($file['name'], 0, $key_length) == $key)) {
             unlink(static::getPath() . $file['name']);
           }
         }

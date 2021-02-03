@@ -85,7 +85,7 @@
 
 // Clients B2B : Controle de la selection du pays pour le code ISO
         if ((ACCOUNT_COMPANY_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
-          if (strlen($company) < ENTRY_COMPANY_PRO_MIN_LENGTH) {
+          if (\strlen($company) < ENTRY_COMPANY_PRO_MIN_LENGTH) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_company_error_pro', ['min_length' => ENTRY_COMPANY_PRO_MIN_LENGTH]), 'error');
@@ -93,7 +93,7 @@
         }
 
         if ((ACCOUNT_SIRET_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
-          if (strlen($siret) < ENTRY_SIRET_MIN_LENGTH) {
+          if (\strlen($siret) < ENTRY_SIRET_MIN_LENGTH) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_siret_error', ['min_length' => ENTRY_SIRET_MIN_LENGTH]), 'error');
@@ -101,7 +101,7 @@
         }
 
         if ((ACCOUNT_APE_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
-          if (strlen($ape) < ENTRY_CODE_APE_MIN_LENGTH) {
+          if (\strlen($ape) < ENTRY_CODE_APE_MIN_LENGTH) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_code_ape_error', ['min_length' => ENTRY_CODE_APE_MIN_LENGTH]), 'error');
@@ -109,28 +109,28 @@
         }
 
         if ((ACCOUNT_TVA_INTRACOM_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
-          if (strlen($tva_intracom) < ENTRY_TVA_INTRACOM_MIN_LENGTH) {
+          if (\strlen($tva_intracom) < ENTRY_TVA_INTRACOM_MIN_LENGTH) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_tva_intracom_error', ['min_length' => ENTRY_TVA_INTRACOM_MIN_LENGTH]), 'error');
           }
         }
 
-        if ((strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
+        if ((\strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(ENTRY_FIRST_NAME_ERROR, 'danger', 'account_edit');
-        } else if ((strlen($firstname) < ENTRY_FIRST_NAME_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
+        } else if ((\strlen($firstname) < ENTRY_FIRST_NAME_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error_pro', ['min_length' => ENTRY_FIRST_NAME_PRO_MIN_LENGTH]), 'error');
         }
 
-        if ((strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
+        if ((\strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(ENTRY_LAST_NAME_ERROR, 'danger', 'account_edit');
-        } else if ((strlen($lastname) < ENTRY_LAST_NAME_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
+        } else if ((\strlen($lastname) < ENTRY_LAST_NAME_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error_pro', ['min_length' => ENTRY_LAST_NAME_PRO_MIN_LENGTH]), 'error');
@@ -140,7 +140,7 @@
 
           $dobDateTime = new DateTime($dob, false);
 
-          if ((strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
+          if ((\strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_date_of_birth_error'), 'error');
@@ -149,7 +149,7 @@
 
           $dobDateTime = new DateTime($dob, false);
 
-          if ((strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
+          if ((\strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_date_of_birth_error_pro', ['min_length' => ENTRY_DOB_MIN_LENGTH]), 'error');
@@ -184,11 +184,11 @@
         }
 
 // Clients B2C et B2B : Controle entree telephone
-        if ((strlen($telephone) < ENTRY_TELEPHONE_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
+        if ((\strlen($telephone) < ENTRY_TELEPHONE_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(ENTRY_TELEPHONE_NUMBER_ERROR, 'danger', 'account_edit');
-        } else if ((strlen($telephone) < ENTRY_TELEPHONE_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
+        } else if ((\strlen($telephone) < ENTRY_TELEPHONE_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_telephone_number_error_pro', ['min_length' => ENTRY_TELEPHONE_PRO_MIN_LENGTH]), 'error');

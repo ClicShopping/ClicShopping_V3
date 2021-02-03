@@ -167,7 +167,7 @@
 
       if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
         array_walk($table, function (&$v) {
-          if ((strlen($v) < 7) || (substr($v, 0, 7) != ':table_')) {
+          if ((\strlen($v) < 7) || (substr($v, 0, 7) != ':table_')) {
             $v = ':table_' . $v;
           }
         }
@@ -301,7 +301,7 @@
       }
 
       if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
-        if ((strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
+        if ((\strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
           $table = ':table_' . $table;
         }
       }
@@ -394,7 +394,7 @@
     public function delete(string $table, array $where_condition = [], ?array $options = null) :int
     {
       if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
-        if ((strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
+        if ((\strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
           $table = ':table_' . $table;
         }
       }
@@ -450,14 +450,14 @@
       set_time_limit(0);
 
       $sql_queries = [];
-      $sql_length = strlen($import_queries);
+      $sql_length = \strlen($import_queries);
       $pos = strpos($import_queries, ';');
 
       for ($i = $pos; $i < $sql_length; $i++) {
 // remove comments
         if ((substr($import_queries, 0, 1) == '#') || (substr($import_queries, 0, 2) == '--')) {
           $import_queries = ltrim(substr($import_queries, strpos($import_queries, "\n")));
-          $sql_length = strlen($import_queries);
+          $sql_length = \strlen($import_queries);
           $i = strpos($import_queries, ';') - 1;
           continue;
         }
@@ -483,7 +483,7 @@
 
 // join the query before the comment appeared, with the rest of the dump
                 $import_queries = $query . $import_queries;
-                $sql_length = strlen($import_queries);
+                $sql_length = \strlen($import_queries);
                 $i = strpos($import_queries, ';') - 1;
                 continue 2;
               }
@@ -523,7 +523,7 @@
             $sql_queries[] = trim($sql_query);
 
             $import_queries = ltrim(substr($import_queries, $i + 1));
-            $sql_length = strlen($import_queries);
+            $sql_length = \strlen($import_queries);
             $i = strpos($import_queries, ';') - 1;
           }
         }

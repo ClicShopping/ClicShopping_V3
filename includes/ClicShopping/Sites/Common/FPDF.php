@@ -422,7 +422,7 @@
       $s = (string)$s;
       $cw =& $this->CurrentFont['cw'];
       $w = 0;
-      $l = strlen($s);
+      $l = \strlen($s);
       for ($i = 0; $i < $l; $i++)
         $w += $cw[$s[$i]];
       return $w * $this->FontSize / 1000;
@@ -684,7 +684,7 @@
         $w = $this->w - $this->rMargin - $this->x;
       $wmax = ($w - 2 * $this->cMargin) * 1000 / $this->FontSize;
       $s = str_replace("\r", '', $txt);
-      $nb = strlen($s);
+      $nb = \strlen($s);
       if ($nb > 0 && $s[$nb - 1] == "\n")
         $nb--;
       $b = 0;
@@ -780,7 +780,7 @@
       $w = $this->w - $this->rMargin - $this->x;
       $wmax = ($w - 2 * $this->cMargin) * 1000 / $this->FontSize;
       $s = str_replace("\r", '', $txt);
-      $nb = strlen($s);
+      $nb = \strlen($s);
       $sep = -1;
       $i = 0;
       $j = 0;
@@ -964,7 +964,7 @@
             header('Content-Type: application/pdf');
             if (headers_sent())
               $this->Error('Some data has already been output, can\'t send PDF file');
-            header('Content-Length: ' . strlen($this->buffer));
+            header('Content-Length: ' . \strlen($this->buffer));
             header('Content-Disposition: inline; filename="' . $name . '"');
             header('Cache-Control: private, max-age=0, must-revalidate');
             header('Pragma: public');
@@ -979,7 +979,7 @@
           header('Content-Type: application/x-download');
           if (headers_sent())
             $this->Error('Some data has already been output, can\'t send PDF file');
-          header('Content-Length: ' . strlen($this->buffer));
+          header('Content-Length: ' . \strlen($this->buffer));
           header('Content-Disposition: attachment; filename="' . $name . '"');
           header('Cache-Control: private, max-age=0, must-revalidate');
           header('Pragma: public');
@@ -991,7 +991,7 @@
           $f = fopen($name, 'wb');
           if (!$f)
             $this->Error('Unable to create output file: ' . $name);
-          fwrite($f, $this->buffer, strlen($this->buffer));
+          fwrite($f, $this->buffer, \strlen($this->buffer));
           fclose($f);
           break;
         case 'S':
@@ -1097,7 +1097,7 @@
     {
       //Convert UTF-8 to UTF-16BE with BOM
       $res = "\xFE\xFF";
-      $nb = strlen($s);
+      $nb = \strlen($s);
       $i = 0;
       while ($i < $nb) {
         $c1 = ord($s[$i++]);
@@ -1235,7 +1235,7 @@
         $s = fread($f, $n);
         if ($s === false)
           $this->Error('Error while reading stream');
-        $n -= strlen($s);
+        $n -= \strlen($s);
         $res .= $s;
       }
       if ($n > 0)
@@ -1276,7 +1276,7 @@
     {
       //Begin a new object
       $this->n++;
-      $this->offsets[$this->n] = strlen($this->buffer);
+      $this->offsets[$this->n] = \strlen($this->buffer);
       $this->_out($this->n . ' 0 obj');
     }
 
@@ -1341,12 +1341,12 @@
         //Page content
         $p = ($this->compress) ? gzcompress($this->pages[$n]) : $this->pages[$n];
         $this->_newobj();
-        $this->_out('<<' . $filter . '/Length ' . strlen($p) . '>>');
+        $this->_out('<<' . $filter . '/Length ' . \strlen($p) . '>>');
         $this->_putstream($p);
         $this->_out('endobj');
       }
       //Pages root
-      $this->offsets[1] = strlen($this->buffer);
+      $this->offsets[1] = \strlen($this->buffer);
       $this->_out('1 0 obj');
       $this->_out('<</Type /Pages');
       $kids = '/Kids [';
@@ -1391,7 +1391,7 @@
             $font = substr($font, 0, $info['length1']) . substr($font, $info['length1'] + 6);
           }
         }
-        $this->_out('<</Length ' . strlen($font));
+        $this->_out('<</Length ' . \strlen($font));
         if ($compressed)
           $this->_out('/Filter /FlateDecode');
         $this->_out('/Length1 ' . $info['length1']);
@@ -1474,7 +1474,7 @@
         $this->_out('/Width ' . $info['w']);
         $this->_out('/Height ' . $info['h']);
         if ($info['cs'] == 'Indexed')
-          $this->_out('/ColorSpace [/Indexed /DeviceRGB ' . (strlen($info['pal']) / 3 - 1) . ' ' . ($this->n + 1) . ' 0 R]');
+          $this->_out('/ColorSpace [/Indexed /DeviceRGB ' . (\strlen($info['pal']) / 3 - 1) . ' ' . ($this->n + 1) . ' 0 R]');
         else {
           $this->_out('/ColorSpace /' . $info['cs']);
           if ($info['cs'] == 'DeviceCMYK')
@@ -1491,7 +1491,7 @@
             $trns .= $info['trns'][$i] . ' ' . $info['trns'][$i] . ' ';
           $this->_out('/Mask [' . $trns . ']');
         }
-        $this->_out('/Length ' . strlen($info['data']) . '>>');
+        $this->_out('/Length ' . \strlen($info['data']) . '>>');
         $this->_putstream($info['data']);
         unset($this->images[$file]['data']);
         $this->_out('endobj');
@@ -1499,7 +1499,7 @@
         if ($info['cs'] == 'Indexed') {
           $this->_newobj();
           $pal = ($this->compress) ? gzcompress($info['pal']) : $info['pal'];
-          $this->_out('<<' . $filter . '/Length ' . strlen($pal) . '>>');
+          $this->_out('<<' . $filter . '/Length ' . \strlen($pal) . '>>');
           $this->_putstream($pal);
           $this->_out('endobj');
         }
@@ -1529,7 +1529,7 @@
       $this->_putfonts();
       $this->_putimages();
       //Resource dictionary
-      $this->offsets[2] = strlen($this->buffer);
+      $this->offsets[2] = \strlen($this->buffer);
       $this->_out('2 0 obj');
       $this->_out('<<');
       $this->_putresourcedict();
@@ -1603,7 +1603,7 @@
       $this->_out('>>');
       $this->_out('endobj');
       //Cross-ref
-      $o = strlen($this->buffer);
+      $o = \strlen($this->buffer);
       $this->_out('xref');
       $this->_out('0 ' . ($this->n + 1));
       $this->_out('0000000000 65535 f ');

@@ -291,7 +291,7 @@
 
       $base = CLICSHOPPING::getSite('Shop');
     
-      if ($base[0] === $separator && substr($base, 0, strlen($systemroot)) !== $systemroot) {
+      if ($base[0] === $separator && substr($base, 0, \strlen($systemroot)) !== $systemroot) {
         $base = $systemroot . substr($base, 1);
       }
       if ($base !== $systemroot) {

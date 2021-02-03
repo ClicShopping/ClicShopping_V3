@@ -316,10 +316,10 @@
 // Nom du produit
     $pdf->SetY($Y_Table_Position);
     $pdf->SetX(40);
-    if (strlen($product_name_attrib_contact) > 40 && strlen($product_name_attrib_contact) < 95) {
+    if (\strlen($product_name_attrib_contact) > 40 && \strlen($product_name_attrib_contact) < 95) {
       $pdf->SetFont('Arial', '', 6);
       $pdf->MultiCell(103, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
-    } else if (strlen($product_name_attrib_contact) > 95) {
+    } else if (\strlen($product_name_attrib_contact) > 95) {
       $pdf->SetFont('Arial', '', 6);
       $pdf->MultiCell(103, 6, utf8_decode(substr($product_name_attrib_contact, 0, 95)) . " .. ", 1, 'L');
     } else {
@@ -388,7 +388,7 @@
     if ($temp == '<strong>') {
       $pdf->SetFont('Arial', 'B', 7);
       $temp2 = substr($order->totals[$i]['text'], 3);
-      $order->totals[$i]['text'] = substr($temp2, 0, strlen($temp2) - 4);
+      $order->totals[$i]['text'] = substr($temp2, 0, \strlen($temp2) - 4);
     }
 
     $pdf->MultiCell(94, 6, substr(utf8_decode(html_entity_decode($order->totals[$i]['title'])), 0, 30) . ' : ' . utf8_decode(html_entity_decode($order->totals[$i]['text'])), 0, 'R');

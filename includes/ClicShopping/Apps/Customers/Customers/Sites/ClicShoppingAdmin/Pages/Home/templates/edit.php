@@ -883,7 +883,7 @@
                 </div>
                 <div class="adminformTitle">
 <?php
-      if ((strlen($QaddressesBook->value('company')) > '0')) {
+      if ((\strlen($QaddressesBook->value('company')) > '0')) {
 ?>
 
                       <div class="row">
