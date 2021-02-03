@@ -33,11 +33,15 @@
   $error = false;
   $processed = false;
 
-  $newsletter_array = array(array('id' => '1', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_yes')),
-    array('id' => '0', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_no')));
+  $newsletter_array = [
+    array('id' => '1', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_yes')),
+    array('id' => '0', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_no'))
+  ];
 
-  $customers_email_array = array(array('id' => '1', 'text' => $CLICSHOPPING_Customers->getDef('entry_customers_yes')),
-    array('id' => '0', 'text' => $CLICSHOPPING_Customers->getDef('entry_customers_no')));
+  $customers_email_array = [
+    array('id' => '1', 'text' => $CLICSHOPPING_Customers->getDef('entry_customers_yes')),
+    array('id' => '0', 'text' => $CLICSHOPPING_Customers->getDef('entry_customers_no'))
+  ];
 
 
   $languages = $CLICSHOPPING_Language->getLanguages();
@@ -55,7 +59,7 @@
                                                       where a.customers_id = c.customers_id
                                                       and c.customers_id = :customers_id
                                                     ');
-  $Qcustomers->bindInt(':customers_id', (int)$_GET['cID']);
+  $Qcustomers->bindInt(':customers_id', $_GET['cID']);
   $Qcustomers->execute();
 
   $cInfo = new ObjectInfo($Qcustomers->toArray());
@@ -325,7 +329,7 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?></label>
-                  <div class="col-md-5 input-group">
+                  <div class="col-md-5">
 <?php
   if (!empty($cInfo->customers_dob)) {
     $date_dob = DateTime::toShortWithoutFormat($cInfo->customers_dob);
