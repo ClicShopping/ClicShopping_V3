@@ -1270,7 +1270,7 @@
       $Qchildren = $this->db->prepare->get('products', 'products_id', ['parent_id' => $products_id]);
 
       while ($Qchildren->fetch() !== false) {
-        $products_count += call_user_func(__METHOD__, $Qchildren->valueInt('products_id'), $include_deactivated);
+        $products_count += \call_user_func(__METHOD__, $Qchildren->valueInt('products_id'), $include_deactivated);
       }
 
       return $products_count;

@@ -340,7 +340,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      return call_user_func_array([$CLICSHOPPING_Language, 'getDef'], func_get_args());
+      return \call_user_func_array([$CLICSHOPPING_Language, 'getDef'], func_get_args());
     }
 
     /**

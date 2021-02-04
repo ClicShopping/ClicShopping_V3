@@ -134,7 +134,7 @@
       $args = func_get_args();
 
       if (\count($args) > 1) {
-        $DbStatement = call_user_func_array(array($this, 'parent::query'), $args);
+        $DbStatement = \call_user_func_array(array($this, 'parent::query'), $args);
       } else {
         $DbStatement = parent::query($statement);
       }
@@ -279,7 +279,7 @@
           $cache = [$cache];
         }
 
-        call_user_func_array([$Q, 'setCache'], $cache);
+        \call_user_func_array([$Q, 'setCache'], $cache);
       }
 
       $Q->execute();

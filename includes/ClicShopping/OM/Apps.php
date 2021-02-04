@@ -262,7 +262,7 @@
         }
       }
 
-      return call_user_func(['ClicShopping\Sites\\' . CLICSHOPPING::getSite() . '\\' . CLICSHOPPING::getSite(),
+      return \call_user_func(['ClicShopping\Sites\\' . CLICSHOPPING::getSite() . '\\' . CLICSHOPPING::getSite(),
         'resolveRoute'
       ],
         $route, $routes

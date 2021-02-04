@@ -84,7 +84,7 @@
     {
       if (CLICSHOPPING::getSite() === 'Shop') {
         if (class_exists('ClicShopping\\Service\\Shop\\' . $service)) {
-          if (call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'start'))) {
+          if (\call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'start'))) {
             $this->_started_services[] = $service;
           }
         } else {
@@ -92,7 +92,7 @@
         }
       } else {
         if (class_exists('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service)) {
-          if (call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'start'))) {
+          if (\call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'start'))) {
             $this->_started_services[] = $service;
           }
         } else {
@@ -108,11 +108,11 @@
     {
       if (CLICSHOPPING::getSite() === 'Shop') {
         if ($this->isStarted($service)) {
-          call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'stop'));
+          \call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'stop'));
         }
       } else {
         if ($this->isStarted($service)) {
-          call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'stop'));
+          \call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'stop'));
         }
       }
     }

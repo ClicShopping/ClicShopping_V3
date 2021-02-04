@@ -397,7 +397,7 @@
       while ($Qcategories->fetch() !== false) {
         $categories_count++;
 
-        $categories_count += call_user_func(__METHOD__, $Qcategories->valueInt('id'));
+        $categories_count += \call_user_func(__METHOD__, $Qcategories->valueInt('id'));
       }
 
       return $categories_count;

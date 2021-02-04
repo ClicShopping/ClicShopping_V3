@@ -32,7 +32,7 @@
             ];
 
             if (is_callable($callable)) {
-                return call_user_func_array($callable, $arguments);
+                return \call_user_func_array($callable, $arguments);
             }
         } catch (\Exception $e) {
             trigger_error($e->getMessage());

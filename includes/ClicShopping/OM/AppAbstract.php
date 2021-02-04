@@ -176,7 +176,7 @@
         $args[2] = $this->vendor . '-' . $this->code;
       }
 
-      return call_user_func_array([$this->lang, 'getDef'], $args);
+      return \call_user_func_array([$this->lang, 'getDef'], $args);
     }
 
     /**
@@ -195,7 +195,7 @@
       }
 
       if ($language_code != DEFAULT_LANGUAGE) {
-        return call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
+        return \call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
       }
 
       return false;

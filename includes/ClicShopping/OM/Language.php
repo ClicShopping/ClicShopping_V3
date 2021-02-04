@@ -340,7 +340,7 @@
       }
 
       if ($language_code != DEFAULT_LANGUAGE) {
-        return call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
+        return \call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
       }
 
       return false;
@@ -380,7 +380,7 @@
       $pathname .= '.txt';
 
       if ($language_code != DEFAULT_LANGUAGE) {
-        call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE, $scope);
+        \call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE, $scope);
       }
 
       $defs = $this->getDefinitions($site . '/' . $group, $language_code, $pathname);

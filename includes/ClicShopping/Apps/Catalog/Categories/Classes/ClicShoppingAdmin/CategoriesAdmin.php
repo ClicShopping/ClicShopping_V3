@@ -185,7 +185,7 @@
       while ($Qcategories->fetch() !== false) {
         $categories_count++;
 
-        $categories_count += call_user_func(__METHOD__, $Qcategories->valueInt('categories_id'));
+        $categories_count += \call_user_func(__METHOD__, $Qcategories->valueInt('categories_id'));
       }
 
       return $categories_count;
@@ -235,7 +235,7 @@
 
 
       while ($Qchildren->fetch() !== false) {
-        $products_count += call_user_func(__METHOD__, $Qchildren->valueInt('categories_id'), $include_deactivated);
+        $products_count += \call_user_func(__METHOD__, $Qchildren->valueInt('categories_id'), $include_deactivated);
       }
 
       return $products_count;
@@ -538,7 +538,7 @@
 
             /*
                         if ($Qcategory->valueInt('parent_id') > 0) {
-                          $categories_array = call_user_func(__FUNCTION__, $Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
+                          $categories_array = \call_user_func(__FUNCTION__, $Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
                         }
             */
             $categories_array[$index] = array_reverse($categories_array[$index]);
@@ -567,7 +567,7 @@
         ];
 
         if ($Qcategory->valueInt('parent_id') > 0) {
-          $categories_array = call_user_func(__FUNCTION__, $Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
+          $categories_array = \call_user_func(__FUNCTION__, $Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
         }
       }
 
