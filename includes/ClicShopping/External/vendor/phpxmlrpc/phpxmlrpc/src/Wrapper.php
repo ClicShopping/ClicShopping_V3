@@ -17,6 +17,7 @@ use PhpXmlRpc\Helper\Logger;
  * @todo implement method wrapping with preservation of php objs in calls
  * @todo when wrapping methods without obj rebuilding, use return_type = 'phpvals' (faster)
  * @todo add support for 'epivals' mode
+ * @todo allow setting custom namespace for generated wrapping code
  */
 class Wrapper
 {
@@ -343,7 +344,7 @@ class Wrapper
         $i = 0;
         $parsVariations = array();
         $pars = array();
-        $pNum = \count($funcDesc['params']);
+        $pNum = count($funcDesc['params']);
         foreach ($funcDesc['params'] as $param) {
             /* // match by name real param and documented params
             $name = strtolower($param['name']);
@@ -423,7 +424,7 @@ class Wrapper
 
             // validate number of parameters received
             // this should be optional really, as we assume the server does the validation
-            $minPars = \count($funcDesc['params']);
+            $minPars = count($funcDesc['params']);
             $maxPars = $minPars;
             foreach ($funcDesc['params'] as $i => $param) {
                 if ($param['isoptional']) {
@@ -526,7 +527,7 @@ class Wrapper
         $i = 0;
         $parsVariations = array();
         $pars = array();
-        $pNum = \count($funcDesc['params']);
+        $pNum = count($funcDesc['params']);
         foreach ($funcDesc['params'] as $param) {
 
             if ($param['isoptional']) {
@@ -548,8 +549,8 @@ class Wrapper
             $minPars = 0;
             $maxPars = 0;
         } else {
-            $minPars = \count($parsVariations[0]);
-            $maxPars = \count($parsVariations[count($parsVariations)-1]);
+            $minPars = count($parsVariations[0]);
+            $maxPars = count($parsVariations[count($parsVariations)-1]);
         }
 
         // build body of new function
@@ -838,7 +839,7 @@ class Wrapper
             /// @todo check for insufficient nr. of args besides excess ones? note that 'source' version does not...
 
             // support one extra parameter: debug
-            $maxArgs = \count($mSig)-1; // 1st element is the return type
+            $maxArgs = count($mSig)-1; // 1st element is the return type
             $currentArgs = func_get_args();
             if (func_num_args() == ($maxArgs+1)) {
                 $debug = array_pop($currentArgs);
@@ -936,7 +937,7 @@ class Wrapper
         // param parsing
         $innerCode .= "\$encoder = new {$namespace}Encoder();\n";
         $plist = array();
-        $pCount = \count($mSig);
+        $pCount = count($mSig);
         for ($i = 1; $i < $pCount; $i++) {
             $plist[] = "\$p$i";
             $pType = $mSig[$i];
@@ -960,7 +961,7 @@ class Wrapper
             $mDesc .= "* @param int \$debug when 1 (or 2) will enable debugging of the underlying {$prefix} call (defaults to 0)\n";
         }
         $plist = implode(', ', $plist);
-        $mDesc .= '* @return ' . $this->xmlrpc2PhpType($mSig[0]) . " (or an {$namespace}Response obj instance if call fails)\n*/\n";
+        $mDesc .= '* @return {$namespace}Response|' . $this->xmlrpc2PhpType($mSig[0]) . " (an {$namespace}Response obj instance if call fails)\n*/\n";
 
         $innerCode .= "\$res = \${$this_}client->send(\$req, $timeout, '$protocol');\n";
         if ($decodeFault) {

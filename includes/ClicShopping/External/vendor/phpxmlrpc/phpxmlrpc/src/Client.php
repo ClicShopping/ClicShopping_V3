@@ -91,7 +91,7 @@ class Client
      * It defaults to NULL, which means using US-ASCII and encoding all characters outside of the ASCII range using
      * their xml character entity representation (this has the benefit that line end characters will not be mangled in
      * the transfer, a CR-LF will be preserved as well as a singe LF).
-     *  Valid values are 'US-ASCII', 'UTF-8' and 'ISO-8859-1'
+     * Valid values are 'US-ASCII', 'UTF-8' and 'ISO-8859-1'
      */
     public $request_charset_encoding = '';
 
@@ -168,7 +168,7 @@ class Client
 
         // if ZLIB is enabled, let the client by default accept compressed responses
         if (function_exists('gzinflate') || (
-                function_exists('curl_init') && (($info = curl_version()) &&
+                function_exists('curl_version') && (($info = curl_version()) &&
                     ((is_string($info) && strpos($info, 'zlib') !== null) || isset($info['libz_version'])))
             )
         ) {
@@ -463,6 +463,7 @@ class Client
      *                       chosen during creation of the object will be used.
      *
      * @return Response|Response[] Note that the client will always return a Response object, even if the call fails
+     * @todo allow throwing exceptions instead of returning responses in case of failed calls and/or Fault responses
      */
     public function send($req, $timeout = 0, $method = '')
     {
@@ -1198,8 +1199,8 @@ class Client
             if (!is_array($rets)) {
                 return false;       // bad return type from system.multicall
             }
-            $numRets = \count($rets);
-            if ($numRets != \count($reqs)) {
+            $numRets = count($rets);
+            if ($numRets != count($reqs)) {
                 return false;       // wrong number of return values.
             }
 
@@ -1243,7 +1244,7 @@ class Client
                 return false;       // bad return type from system.multicall
             }
             $numRets = $rets->count();
-            if ($numRets != \count($reqs)) {
+            if ($numRets != count($reqs)) {
                 return false;       // wrong number of return values.
             }
 

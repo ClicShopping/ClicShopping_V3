@@ -268,6 +268,7 @@ class Request
                 if ($respEncoding == 'ISO-8859-1') {
                     $data = utf8_encode($data);
                 } else {
+
                     if (extension_loaded('mbstring')) {
                         $data = mb_convert_encoding($data, 'UTF-8', $respEncoding);
                     } else {
@@ -282,6 +283,7 @@ class Request
         // This allows to send data which is native in various charset, by extending xmlrpc_encode_entities() and
         // setting xmlrpc_internalencoding
         if (!in_array(PhpXmlRpc::$xmlrpc_internalencoding, array('UTF-8', 'ISO-8859-1', 'US-ASCII'))) {
+            /// @todo emit a warning
             $options = array(XML_OPTION_TARGET_ENCODING => 'UTF-8');
         } else {
             $options = array(XML_OPTION_TARGET_ENCODING => PhpXmlRpc::$xmlrpc_internalencoding);
@@ -304,15 +306,15 @@ class Request
         }
         // second error check: xml well formed but not xml-rpc compliant
         elseif ($xmlRpcParser->_xh['isf'] == 2) {
+            $r = new Response(0, PhpXmlRpc::$xmlrpcerr['invalid_return'],
+                PhpXmlRpc::$xmlrpcstr['invalid_return'] . ' ' . $xmlRpcParser->_xh['isf_reason']);
+
             if ($this->debug) {
                 /// @todo echo something for user?
             }
-
-            $r = new Response(0, PhpXmlRpc::$xmlrpcerr['invalid_return'],
-                PhpXmlRpc::$xmlrpcstr['invalid_return'] . ' ' . $xmlRpcParser->_xh['isf_reason']);
         }
         // third error check: parsing of the response has somehow gone boink.
-        // NB: shall we omit this check, since we trust the parsing code?
+        /// @todo shall we omit this check, since we trust the parsing code?
         elseif ($returnType == 'xmlrpcvals' && !is_object($xmlRpcParser->_xh['value'])) {
             // something odd has happened
             // and it's time to generate a client side error

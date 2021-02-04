@@ -15,6 +15,9 @@ Note : This version works only with php > 8.0
 - remove htaccess (see tip and trips on the forum)
 - remove customer fax 
 -- add varchar to 255 for sku
+- remove sensiolabs/security-checker
+
+
 ---
 Version 3.2204
 
