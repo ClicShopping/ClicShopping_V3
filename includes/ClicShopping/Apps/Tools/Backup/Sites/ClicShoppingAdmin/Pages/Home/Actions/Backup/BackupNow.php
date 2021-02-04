@@ -138,7 +138,7 @@
             foreach ($table_list as $i) {
               if (!$Qrows->hasValue($i)) {
                 $schema .= 'NULL, ';
-              } elseif (!is_null($Qrows->value($i))) {
+              } elseif (!\is_null($Qrows->value($i))) {
                 $row = addslashes($Qrows->value($i));
                 $row = preg_replace("/\n#/", "\n" . '\#', $row);
 

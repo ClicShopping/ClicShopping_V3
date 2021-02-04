@@ -39,7 +39,7 @@
       <div class="alert alert-danger" role="alert">
         <div>
 <?php
-      if (!is_null($error)) {
+      if (!\is_null($error)) {
         echo '<strong>' . HTML::outputProtected($error['title']) . '</strong> ';
         echo HTML::outputProtected($error['error']);
       } else {

@@ -44,7 +44,7 @@
         $current_category_id = HTML::sanitize($_GET['cPath']);
       }
 
-      if (!is_null($keywords)) {
+      if (!\is_null($keywords)) {
         $search = HTML::sanitize($keywords);
 
         $Qcategories = $this->db->prepare('select SQL_CALC_FOUND_ROWS c.categories_id,

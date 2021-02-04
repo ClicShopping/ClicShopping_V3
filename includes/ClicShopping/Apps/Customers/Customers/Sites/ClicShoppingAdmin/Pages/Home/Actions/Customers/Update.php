@@ -193,7 +193,7 @@
         $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
       }
 
-      if (!is_null($customers_dob)) {
+      if (!\is_null($customers_dob)) {
         $dobDateTime = new DateTime($customers_dob, false);
       } else {
         $dobDateTime = null;
@@ -335,7 +335,7 @@
         ];
 
 //       $customers_dob = str_replace('/', '-', $customers_dob);
-        if (!is_null($customers_dob)) {
+        if (!\is_null($customers_dob)) {
           $sql_data_array['customers_dob'] = $dobDateTime->getRaw($customers_dob);
         } else {
           $sql_data_array['customers_dob'] = null;

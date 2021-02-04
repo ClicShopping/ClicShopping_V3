@@ -65,7 +65,7 @@
      */
     public static function checkLibrayInstalled($libray = null): bool
     {
-      if (!is_null($libray) && self::checkExecute() === true) {
+      if (!\is_null($libray) && self::checkExecute() === true) {
         $cmd = 'cd ' . self::$root . ' && composer show' . $libray;
         exec($cmd, $output, $return); // update dependencies
 
@@ -112,7 +112,7 @@
     public static function checkOnlineVersion($library = null)
     {
       if (self::checkExecute() === true) {
-          if (!is_null($library)) {
+          if (!\is_null($library)) {
           $result = '';
 
           $cmd = 'cd ' . self::$root . ' && composer show ' . $library;
@@ -158,7 +158,7 @@
       $result = '';
 
       if (self::checkExecute() === true) {
-        if (is_null($library)) {
+        if (\is_null($library)) {
           $cmd = 'cd ' . self::$root . ' && composer update 2>&1';
           exec($cmd, $output, $return); // update dependencies
 
@@ -187,7 +187,7 @@
       $result = '';
 
       if (self::checkExecute() === true) {
-        if (is_null($library)) {
+        if (\is_null($library)) {
           $result = false;
         } else {
           $cmd = 'cd ' . self::$root . ' && composer require  ' . $library . ' 2>&1';

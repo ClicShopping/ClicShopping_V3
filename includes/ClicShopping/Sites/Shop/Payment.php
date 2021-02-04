@@ -28,12 +28,12 @@
       $this->template = Registry::get('Template');
       $this->lang = Registry::get('Language');
 
-      if (defined('MODULE_PAYMENT_INSTALLED') && !is_null(MODULE_PAYMENT_INSTALLED)) {
+      if (defined('MODULE_PAYMENT_INSTALLED') && !\is_null(MODULE_PAYMENT_INSTALLED)) {
         $this->modules = explode(';', MODULE_PAYMENT_INSTALLED);
 
         $include_modules = [];
 
-        if ((!is_null($module)) && (in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($module, $this->modules))) {
+        if ((!\is_null($module)) && (in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($module, $this->modules))) {
 
           $this->selected_module = $module;
 
@@ -69,7 +69,7 @@
           $_SESSION['payment'] = $include_modules[0]['class'];
         }
 
-        if ((!is_null($module)) && (in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($module, $this->modules))) {
+        if ((!\is_null($module)) && (in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($module, $this->modules))) {
           if (str_contains($module, '\\')) {
             $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $module));
 

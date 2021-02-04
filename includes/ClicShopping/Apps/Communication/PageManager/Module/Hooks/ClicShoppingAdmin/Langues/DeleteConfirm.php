@@ -31,7 +31,7 @@
 
     private function delete($id)
     {
-      if (!is_null($id)) {
+      if (!\is_null($id)) {
         $this->app->db->delete('pages_manager_description', ['language_id' => $id]);
       }
     }

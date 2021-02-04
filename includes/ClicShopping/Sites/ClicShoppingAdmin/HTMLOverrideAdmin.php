@@ -75,7 +75,7 @@
 
       $field = '<textarea name="' . HTML::output($name) . '"';
 
-      if (!is_null($parameters)) $field .= ' ' . $parameters;
+      if (!\is_null($parameters)) $field .= ' ' . $parameters;
       $field .= ' />';
       
       if (($override === true) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
@@ -84,7 +84,7 @@
         } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
           $field .= HTML::outputProtected($_POST[$name]);
         }
-      } elseif (!is_null($text)) {
+      } elseif (!\is_null($text)) {
         $field .= HTML::outputProtected($text);
       }
 
@@ -114,11 +114,11 @@
 
     public static function fileFieldImageCkEditor(string $name, ?string $value = null, ?int $width = null, ?int $height = null): string
     {
-      if (is_null($height)) {
+      if (\is_null($height)) {
         $height = '250';
       }
 
-      if (is_null($width)) {
+      if (\is_null($width)) {
         $width = '250';
       }
 

@@ -29,7 +29,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      if (is_null($customers_id)) {
+      if (\is_null($customers_id)) {
         $customers_id = $CLICSHOPPING_Customer->getID();
       }
 

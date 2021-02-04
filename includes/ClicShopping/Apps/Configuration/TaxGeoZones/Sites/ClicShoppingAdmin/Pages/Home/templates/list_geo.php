@@ -99,11 +99,11 @@
 
           if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ((int)$_GET['sID'] === $Qzones->valueInt('association_id')))) && !isset($sInfo)) {
             $sInfo = new ObjectInfo($Qzones->toArray());
-            if (is_null($sInfo->countries_name)) {
+            if (\is_null($sInfo->countries_name)) {
               $sInfo->countries_name = $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries');
             }
 
-            if (is_null($sInfo->zone_name)) {
+            if (\is_null($sInfo->zone_name)) {
               $sInfo->zone_name = $CLICSHOPPING_TaxGeoZones->getDef('text_selected');
             }
           }

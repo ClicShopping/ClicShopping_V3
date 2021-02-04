@@ -164,7 +164,7 @@
               class="text-center"><?php echo(($Qactions->value('success') === 1) ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'); ?></th>
           <td><?php echo $module_title; ?></td>
           <td><?php echo $Qactions->valueProtected('user_name') . ' [' . (int)$Qactions->valueInt('user_id') . ']'; ?></td>
-          <td><?php echo(!is_null($Qactions->value('identifier')) ? '<a href="' . $CLICSHOPPING_ActionsRecorder->link('ActionsRecorder&search=' . $Qactions->value('identifier')) . '"><u>' . $Qactions->valueProtected('identifier') . '</u></a>' : '(empty)'); ?></td>
+          <td><?php echo(!\is_null($Qactions->value('identifier')) ? '<a href="' . $CLICSHOPPING_ActionsRecorder->link('ActionsRecorder&search=' . $Qactions->value('identifier')) . '"><u>' . $Qactions->valueProtected('identifier') . '</u></a>' : '(empty)'); ?></td>
           <td class="text-center"><?php echo DateTime::toShort($Qactions->value('date_added'), true); ?></td>
         </tr>
         <?php

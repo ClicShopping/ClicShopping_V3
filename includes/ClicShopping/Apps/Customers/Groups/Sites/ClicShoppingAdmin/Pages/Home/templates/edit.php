@@ -496,7 +496,7 @@
                 $Qparents->bindInt(':categories_id', $QgroupToCategories->valueInt('parent_id'));
                 $Qparents->execute();
 
-                if (!is_null($Qparents->value('categories_name'))) {
+                if (!\is_null($Qparents->value('categories_name'))) {
                   $add = $Qparents->value('categories_name') . " - ";
                 } else {
                   $add = '';

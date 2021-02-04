@@ -34,7 +34,7 @@
     {
       $condition = '';
 
-      if (!is_null($groups)) {
+      if (!\is_null($groups)) {
         if ($groups == 'B2C') {
           $condition = 'where customers_group_id = 0';
         } else {
@@ -65,13 +65,13 @@
 
       $QstatAnalyseCustomersMan->execute();
 
-      if (!is_null($QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent'))) {
+      if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent'))) {
         $numberByGenderPerCent = $QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent');
       } else {
         $numberByGenderPerCent = '-- ';
       }
 
-      if (!is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
+      if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
         $avgage = $QstatAnalyseCustomersMan->valueDecimal('avgage');
         $stat_analyse_customers_man = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
       } else {
@@ -99,7 +99,7 @@
         $numberByGenderPerCent = '-- ';
       }
 
-      if (!is_null($stat_analyse_customers_woman['avgage'])) {
+      if (!\is_null($stat_analyse_customers_woman['avgage'])) {
         $avgage = $stat_analyse_customers_woman['avgage'];
         $stat_analyse_customers_woman = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
       } else {

@@ -35,7 +35,7 @@
   $Qaccess->execute();
 
 
-  if (is_null($Qaccess->valueInt('access'))) {
+  if (\is_null($Qaccess->valueInt('access'))) {
     $CLICSHOPPING_MessageStack->add($CLICSHOPPING_AdministratorMenu->getDef('error_no_access'), 'error');
     CLICSHOPPING::redirect();
   }
@@ -98,7 +98,7 @@
     }
   }
 
-  $cPath_back = (!is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
+  $cPath_back = (!\is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
 
   if (isset($_GET['search']) || isset($_POST['cPath'])) {
     echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_reset'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $cPath_back . 'cID=' . $current_category_id), 'warning') . '&nbsp;';

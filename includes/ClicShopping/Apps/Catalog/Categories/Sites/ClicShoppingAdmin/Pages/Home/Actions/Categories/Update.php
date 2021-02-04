@@ -84,10 +84,10 @@
       if (isset($_POST['delete_image'])) {
         $sql_data_array = ['categories_image' => ''];
         $this->app->db->save('categories', $sql_data_array, ['categories_id' => (int)$categories_id]);
-      } elseif (isset($_POST['categories_image']) && !is_null($_POST['categories_image']) && ($_POST['categories_image'] != 'none') && !empty($_POST['categories_image'])) {
+      } elseif (isset($_POST['categories_image']) && !\is_null($_POST['categories_image']) && ($_POST['categories_image'] != 'none') && !empty($_POST['categories_image'])) {
         $categories_image = $_POST['categories_image'];
 
-        if (!empty($categories_image) && !is_null($categories_image)) {
+        if (!empty($categories_image) && !\is_null($categories_image)) {
           $categories_image = HTMLOverrideAdmin::getCkeditorImageAlone($categories_image);
         }
 

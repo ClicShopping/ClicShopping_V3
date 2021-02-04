@@ -314,7 +314,7 @@
         'search&Q',
       ];
 
-      if (!is_null($catalog_files)) {
+      if (!\is_null($catalog_files)) {
         $file_array = [$catalog_files];
       }
 
@@ -330,7 +330,7 @@
     public static function getListCatalogFilesNotIncluded(string $boostrap_file = null): array
     {
 
-      if (is_null($boostrap_file)) $boostrap_file = CLICSHOPPING::getConfig('bootstrap_file');
+      if (\is_null($boostrap_file)) $boostrap_file = CLICSHOPPING::getConfig('bootstrap_file');
 
       $file = static::getCatalogFiles();
 

@@ -45,7 +45,7 @@
 
       $QstatAnalyseCustomersMan->execute();
 
-      if (!is_null($QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent'))) {
+      if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent'))) {
         $numberByPerCentMen = $QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent');
       }
 
@@ -67,7 +67,7 @@
 
       $QstatAnalyseCustomersWomen->execute();
 
-      if (!is_null($QstatAnalyseCustomersWomen->valueDecimal('numberByGenderPerCent'))) {
+      if (!\is_null($QstatAnalyseCustomersWomen->valueDecimal('numberByGenderPerCent'))) {
         $numberByPerCentWomen = $QstatAnalyseCustomersWomen->valueDecimal('numberByGenderPerCent');
       }
 

@@ -73,7 +73,7 @@
       }
 
       foreach ($currencies as $code => $value) {
-        if (!is_null($value)) {
+        if (!\is_null($value)) {
           try {
             $this->db->save('currencies', [
               'value' => $value,

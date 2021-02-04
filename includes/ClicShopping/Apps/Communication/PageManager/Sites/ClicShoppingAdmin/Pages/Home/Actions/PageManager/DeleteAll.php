@@ -23,7 +23,7 @@
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-      if (!is_null($_POST['selected'])) {
+      if (!\is_null($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
           if ($id != 3) {
             if ($id != 4) {

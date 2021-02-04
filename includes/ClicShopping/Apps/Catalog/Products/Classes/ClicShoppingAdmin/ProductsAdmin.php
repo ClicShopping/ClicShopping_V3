@@ -201,7 +201,7 @@
      */
     public function getproductPackaging(int $id): string
     {
-      if (!is_null($_SESSION['ProductAdminId'])) {
+      if (!\is_null($_SESSION['ProductAdminId'])) {
         $id = $_SESSION['ProductAdminId'];
 
         $QproductAdmin = $this->db->prepare('select products_packaging
@@ -290,7 +290,7 @@
      */
     public function getProductsShippingDelay(string|int|null $id = null, int $language_id) :string|bool
     {
-      if (!is_null($id)) {
+      if (!\is_null($id)) {
         $Qproduct = $this->db->prepare('select products_shipping_delay
                                        from :table_products_description
                                        where products_id = :products_id
@@ -316,7 +316,7 @@
      */
     public function getProductsDescriptionSummary(string|int|null $product_id, int $language_id)
     {
-      if (!is_null($product_id)) {
+      if (!\is_null($product_id)) {
         if (!$language_id) $language_id = $this->lang->getId();
   
         $Qproduct = $this->db->prepare('select products_description_summary
@@ -407,7 +407,7 @@
      */
     public function getProductsDescription(string|int|null $product_id, int $language_id): string|bool
     {
-      if (!is_null($product_id)) {
+      if (!\is_null($product_id)) {
       
       if ($language_id == 0) $language_id = $this->lang->getId();
       
@@ -676,7 +676,7 @@
      */
     public function getProductsUrl(int|string $product_id, int $language_id): string|bool
     {
-      if (((is_null($language_id)) || $language_id == 0) && !is_null($product_id)) {
+      if (((\is_null($language_id)) || $language_id == 0) && !\is_null($product_id)) {
         $language_id = $this->lang->getId();
 
         $Qproduct = Registry::get('Db')->get('products_description', 'products_url', ['products_id' => (int)$product_id, 'language_id' => (int)$language_id]);
@@ -696,7 +696,7 @@
      */
     public function getManufacturerUrl(string|int|null $manufacturer_id, int $language_id): string|bool
     {
-      if (!is_null($manufacturer_id)) {
+      if (!\is_null($manufacturer_id)) {
         if ($language_id == 0) $language_id = $this->lang->getId();
         $Qmanufacturer = Registry::get('Db')->get('manufacturers_info', 'manufacturers_url', ['manufacturers_id' => (int)$manufacturer_id, 'languages_id' => (int)$language_id]);
   
@@ -1199,7 +1199,7 @@
 //  Save Data
 //---------------------------------------------------------------------------------------------
 //update
-      if (is_numeric($id) && !is_null($id) && $action == 'Update') {
+      if (is_numeric($id) && !\is_null($id) && $action == 'Update') {
         $update_sql_data = ['products_last_modified' => 'now()'];
         $sql_data_array = array_merge($sql_data_array, $update_sql_data);
 

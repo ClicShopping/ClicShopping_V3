@@ -51,7 +51,7 @@
           $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice();
           $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), '', CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'info', null, 'sm');
 
-          if (!is_null($CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()))) {
+          if (!\is_null($CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()))) {
             $products_image = '<h1>' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()), $CLICSHOPPING_ProductsCommon->getProductsName($CLICSHOPPING_ProductsCommon->getID()), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"') . '</h1>';
           }
 

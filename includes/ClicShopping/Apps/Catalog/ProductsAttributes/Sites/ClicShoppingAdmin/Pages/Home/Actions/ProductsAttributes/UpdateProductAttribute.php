@@ -49,7 +49,7 @@
 
       $products_attributes_image = $CLICSHOPPING_ProductsAttributesAdmin->uploadImage();
 
-      if (is_null($products_attributes_image)) {
+      if (\is_null($products_attributes_image)) {
         $products_attributes_image = HTML::sanitize($_POST['products_attributes_image']);
       }
 

@@ -47,7 +47,7 @@
             </form>
           </span>
 <?php
-  if (isset($_POST['search']) && !is_null($_POST['search'])) {
+  if (isset($_POST['search']) && !\is_null($_POST['search'])) {
     ?>
           <span class="col-md-1"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_reset'), null, $CLICSHOPPING_BannerManager->link('BannerManager'), 'warning'); ?></span>
     <?php
@@ -97,7 +97,7 @@
     <?php
       $search = '';
 
-      if (isset($_POST['search']) && !is_null($_POST['search'])) {
+      if (isset($_POST['search']) && !\is_null($_POST['search'])) {
         $keywords = HTML::sanitize($_POST['search']);
 
         $search = " (banners_title like '%" . $keywords . "%'
@@ -202,8 +202,8 @@
             $bInfo = new ObjectInfo($bInfo_array);
           }
 
-          $banners_shown = (!is_null($Qinfo->valueInt('banners_shown'))) ? $Qinfo->valueInt('banners_shown') : '0';
-          $banners_clicked = (!is_null($Qinfo->valueInt('banners_clicked'))) ? $Qinfo->valueInt('banners_clicked') : '0';
+          $banners_shown = (!\is_null($Qinfo->valueInt('banners_shown'))) ? $Qinfo->valueInt('banners_shown') : '0';
+          $banners_clicked = (!\is_null($Qinfo->valueInt('banners_clicked'))) ? $Qinfo->valueInt('banners_clicked') : '0';
           ?>
           <tr>
             <td scope="row"><?php echo $Qbanner->value('banners_title_admin'); ?></td>

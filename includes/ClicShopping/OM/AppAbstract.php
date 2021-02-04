@@ -236,7 +236,7 @@
      */
     final public function saveCfgParam($key, $value, $title = null, $description = null, $set_func = null)
     {
-      if (is_null($value)) {
+      if (\is_null($value)) {
         $value = '';
       }
 

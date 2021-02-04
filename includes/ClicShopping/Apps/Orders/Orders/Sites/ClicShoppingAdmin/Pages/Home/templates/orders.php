@@ -473,7 +473,7 @@
           ?>
           <td class="text-end"><?php echo strip_tags($Qorders->value('order_total')); ?></td>
           <?php
-          if (!is_null($Qorders->value('date_purchased'))) {
+          if (!\is_null($Qorders->value('date_purchased'))) {
             echo '<td class="text-center">' . DateTime::toShort($Qorders->value('date_purchased')) . '</td>';
           } else {
             echo '<td class="text-center"></td>';

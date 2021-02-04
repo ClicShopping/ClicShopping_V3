@@ -57,7 +57,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (is_null($language_id)) {
+      if (\is_null($language_id)) {
         $Qproducts_length = $CLICSHOPPING_Db->prepare('select products_length_class_title
                                                         from :table_products_length_classes
                                                         where products_length_class_id = :products_length_class_id
@@ -90,7 +90,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (is_null($language_id)) {
+      if (\is_null($language_id)) {
         $Qproducts_length = $CLICSHOPPING_Db->prepare('select products_length_class_key
                                                         from :table_products_length_classes
                                                         where products_length_class_id = :products_length_class_id

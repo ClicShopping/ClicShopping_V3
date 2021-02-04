@@ -98,7 +98,7 @@
         $filter_id = null;
       }
 
-      if (!is_null($CLICSHOPPING_Manufacturers->getID())) {
+      if (!\is_null($CLICSHOPPING_Manufacturers->getID())) {
         $manufacturers_id = HTML::sanitize($CLICSHOPPING_Manufacturers->getID());
       } else {
         $manufacturers_id = false;
@@ -106,7 +106,7 @@
 
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
         if (isset($manufacturers_id) && is_numeric($manufacturers_id) && !empty($manufacturers_id)) {
-          if (isset($filter_id) && !is_null($filter_id)) {
+          if (isset($filter_id) && !\is_null($filter_id)) {
 // Affichage des produits en mode B2B sur la selection d'une marque depuis la boxe manufacturer avec filtrage de la categorie
             $search_query .= ' p.products_id,
                              p.products_sort_order
@@ -154,7 +154,7 @@
                            ';
           }
         } else {
-          if (isset($filter_id) && !is_null($filter_id)) {
+          if (isset($filter_id) && !\is_null($filter_id)) {
 // Affichage general en mode B2B de la liste des produits d'une categorie avec un filtrage des Marques
 
             $search_query .= ' p.products_id,
@@ -207,7 +207,7 @@
 // ***************************
       } else {
         if (isset($manufacturers_id) && is_numeric($manufacturers_id) && !empty($manufacturers_id)) {
-          if (isset($filter_id) && !is_null($filter_id)) {
+          if (isset($filter_id) && !\is_null($filter_id)) {
 
 // Affichage des produits sur la selection d'une marque depuis la boxe manufacturer avec filtrage de la categorie
             $search_query .= ' p.products_id,
@@ -253,7 +253,7 @@
                            ';
           }
         } else {
-          if (isset($filter_id) && !is_null($filter_id)) {
+          if (isset($filter_id) && !\is_null($filter_id)) {
 // Affichage general de la liste des produits d'une categorie avec un filtrage des Marques
 
             $search_query .= ' p.products_id,
@@ -353,7 +353,7 @@
 
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
         if (isset($manufacturers_id) && is_numeric($manufacturers_id) && !empty($manufacturers_id)) {
-          if (isset($filter_id) && !is_null($filter_id)) {
+          if (isset($filter_id) && !\is_null($filter_id)) {
 // Affichage des produits en mode B2B sur la selection d'une marque depuis la boxe manufacturer avec filtrage de la categorie
             $Qlisting->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
             $Qlisting->bindInt(':manufacturers_id', $manufacturers_id);
@@ -366,7 +366,7 @@
             $Qlisting->bindInt(':manufacturers_id', $manufacturers_id);
           }
         } else {
-          if (isset($filter_id) && !is_null($filter_id)) {
+          if (isset($filter_id) && !\is_null($filter_id)) {
 // Affichage general en mode B2B de la liste des produits d'une categorie avec un filtrage des Marques
             $Qlisting->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
             $Qlisting->bindInt(':manufacturers_id', $filter_id);
@@ -393,7 +393,7 @@
       } else {
         if (isset($manufacturers_id) && !empty($filter_id)) {
 
-          if (isset($filter_id) && !is_null($filter_id)) {
+          if (isset($filter_id) && !\is_null($filter_id)) {
 // Affichage des produits sur la selection d'une marque depuis la boxe manufacturer avec filtrage de la categorie
             $Qlisting->bindInt(':manufacturers_id', $manufacturers_id);
             $Qlisting->bindInt(':language_id', $CLICSHOPPING_Language->getId());
@@ -404,7 +404,7 @@
             $Qlisting->bindInt(':language_id', $CLICSHOPPING_Language->getId());
           }
         } else {
-          if (isset($filter_id) && !is_null($filter_id)) {
+          if (isset($filter_id) && !\is_null($filter_id)) {
 // Affichage general de la liste des produits d'une categorie avec un filtrage des Marques
             $Qlisting->bindInt(':manufacturers_id', $filter_id);
             $Qlisting->bindInt(':language_id', $CLICSHOPPING_Language->getId());

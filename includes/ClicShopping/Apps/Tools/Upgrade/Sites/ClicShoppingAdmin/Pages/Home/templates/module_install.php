@@ -137,7 +137,7 @@
         $temp_check = false;
         $installed_check = false;
 
-        if ($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true || !is_null($CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json'))) {
+        if ($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true || !\is_null($CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json'))) {
           if ($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true) {
             $result_module_real_name = $CLICSHOPPING_Github->getCacheFile($module_real_name . '.json');
             $file_cache_information = '<span class="badge bg-primary"> - File Installed Cached</span>';
@@ -166,7 +166,7 @@
           }
 
           if (!empty($module_real_name)) {
-            if (!is_null($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json')) || $CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true) {
+            if (!\is_null($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json')) || $CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true) {
               $result_module_real_name = $CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json');
 
               if ($item !== false && is_object($item->version)) {

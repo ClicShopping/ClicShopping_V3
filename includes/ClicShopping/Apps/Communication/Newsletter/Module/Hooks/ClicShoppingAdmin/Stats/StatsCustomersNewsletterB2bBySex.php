@@ -44,7 +44,7 @@
 
       $QstatAnalyseCustomersMan->execute();
 
-      if (!is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
+      if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
         $statAnalyseCustomersMan = $QstatAnalyseCustomersMan->valueDecimal('avgage');
         return $statAnalyseCustomersMan;
       }
@@ -65,7 +65,7 @@
 
       $QstatAnalyseCustomersWomen->execute();
 
-      if (!is_null($QstatAnalyseCustomersWomen->valueDecimal('avgage'))) {
+      if (!\is_null($QstatAnalyseCustomersWomen->valueDecimal('avgage'))) {
         $statAnalyseCustomersWomen = $QstatAnalyseCustomersWomen->valueDecimal('avgage');
         return $statAnalyseCustomersWomen;
       }

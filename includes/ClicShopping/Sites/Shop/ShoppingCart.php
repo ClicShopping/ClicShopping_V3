@@ -1215,7 +1215,7 @@
       if (is_numeric($prid)) {
         $uprid = (int)$prid;
 
-        if (is_array($params) && (!is_null($params) || !empty($params))) {
+        if (is_array($params) && (!\is_null($params) || !empty($params))) {
           $attributes_check = true;
           $attributes_ids = '';
 

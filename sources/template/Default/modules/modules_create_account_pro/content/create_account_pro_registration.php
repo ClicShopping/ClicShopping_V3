@@ -50,7 +50,7 @@
 <?php
   echo HTML::inputField('company', null, 'required aria-required="true" id="InputCompany" autocomplete="company" aria-describedby="' . CLICSHOPPING::getDef('entry_company') . '" placeholder="' . CLICSHOPPING::getDef('entry_company') . '" minlength="'. ENTRY_COMPANY_PRO_MIN_LENGTH .'"');
   if (ENTRY_COMPANY_PRO_MIN_LENGTH > 0) {
-    echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_company_text_pro')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_company_text_pro'). '</span>': '');
+    echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_company_text_pro')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_company_text_pro'). '</span>': '');
   }
 ?>
             </div>
@@ -65,7 +65,7 @@
             <div class="col-md-8">
 <?php
   echo HTML::inputField('customer_website_company', null, 'id="InputCompanyWebsite" autocomplete="website" aria-describedby="' . CLICSHOPPING::getDef('entry_company_website') . '" placeholder="' . CLICSHOPPING::getDef('entry_company_website') . '" minlength="'. ENTRY_COMPANY_PRO_MIN_LENGTH .'"');
-  echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_company_text_pro')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_website_text_pro'). '</span>': '');
+  echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_company_text_pro')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_website_text_pro'). '</span>': '');
 ?>
             </div>
           </div>
@@ -84,9 +84,9 @@
 <?php
   echo HTML::inputField('siret', null, 'required aria-required="true" id="InputSiret" aria-describedby="' . CLICSHOPPING::getDef('entry_siret') . '" placeholder="' . CLICSHOPPING::getDef('entry_siret') . '" minlength="' . ENTRY_SIRET_MIN_LENGTH . '" maxlength="14"');
   if (ENTRY_SIRET_MIN_LENGTH > 0) {
-    echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_siret_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_siret_text') . '</span>': '');
+    echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_siret_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_siret_text') . '</span>': '');
   }
-  echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_siret_exemple')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_siret_exemple') . '</span>': '');
+  echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_siret_exemple')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_siret_exemple') . '</span>': '');
 ?>
             </div>
           </div>
@@ -106,9 +106,9 @@
   echo HTML::inputField('ape', null, 'required aria-required="true" id="InputCodeApe" aria-describedby="' . CLICSHOPPING::getDef('entry_code_ape') . '" placeholder="' . CLICSHOPPING::getDef('entry_code_ape') . '" minlength="' . ENTRY_CODE_APE_MAX_LENGTH . '" maxlength="4"');
 
   if (ENTRY_CODE_APE_MAX_LENGTH > 0) {
-    echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_code_ape_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_code_ape_text') . '</span>': '');
+    echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_code_ape_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_code_ape_text') . '</span>': '');
   }
-  echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_code_ape_exemple')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_code_ape_exemple') . '</span>': '');
+  echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_code_ape_exemple')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_code_ape_exemple') . '</span>': '');
 ?>
             </div>
           </div>
@@ -124,7 +124,7 @@
           <div class="form-group row">
             <label for="InputCountry" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_country'); ?></label>
             <div class="col-md-8">
-              <?php echo HTML::selectMenuIsoList('country', $default_country_pro, 'onchange="ISO_change();"') . '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
+              <?php echo HTML::selectMenuIsoList('country', $default_country_pro, 'onchange="ISO_change();"') . '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
             </div>
           </div>
         </div>
@@ -172,7 +172,7 @@
 <?php
   echo HTML::inputField('street_address', null, 'required aria-required="true" id="InputStreetAddress" aria-describedby="' . CLICSHOPPING::getDef('entry_street_address') . '" placeholder="' . CLICSHOPPING::getDef('entry_street_address') . '" minlength="'. ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH .'"');
   if (ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH > 0) {
-    echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_street_address_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_street_address_text') . '</span>': '');
+    echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_street_address_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_street_address_text') . '</span>': '');
   }
 ?>
                 </div>
@@ -227,7 +227,7 @@
                 <label for="InputCountry" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_country'); ?></label>
                 <div class="col-md-8">
                   <?php echo HTML::selectMenuCountryList('country', null, 'onchange="update_zone(this.form);" aria-required="true"'); ?>
-                  <?php echo (!is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
+                  <?php echo (!\is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
                 </div>
               </div>
             </div>
@@ -240,7 +240,7 @@
               <div class="form-group row">
                 <label for="InputCountry" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_country'); ?></label>
                 <div class="col-md-8">
-                  <?php echo HTML::selectMenuIsoList('country', $default_country_pro, 'onchange="update_zone(this.form);" aria-required="true"') . '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
+                  <?php echo HTML::selectMenuIsoList('country', $default_country_pro, 'onchange="update_zone(this.form);" aria-required="true"') . '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
                 </div>
               </div>
             </div>
@@ -258,7 +258,7 @@
                 <label for="InputState" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_state'); ?></label>
                 <div class="col-md-8">
                   <?php echo HTML::selectField('state', $CLICSHOPPING_Address->getPrepareCountryZonesPullDown(), null, 'aria-required="true"'); ?>
-                  <?php echo(!is_null(CLICSHOPPING::getDef('entry_state_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_state_text') . '</span>' : ''); ?>
+                  <?php echo(!\is_null(CLICSHOPPING::getDef('entry_state_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_state_text') . '</span>' : ''); ?>
                 </div>
               </div>
             </div>
@@ -317,7 +317,7 @@
       echo HTML::inputField('state', $country_id, 'id="atState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '" aria-required="true" aria-describedby="atState"');
     }
 
-    if ((!is_null(CLICSHOPPING::getDef('entry_state_text'))) && (ENTRY_STATE_PRO_MIN_LENGTH > 0)) echo '&nbsp;<span class="text-warning">' . CLICSHOPPING::getDef('entry_state_text') . '</span>';
+    if ((!\is_null(CLICSHOPPING::getDef('entry_state_text'))) && (ENTRY_STATE_PRO_MIN_LENGTH > 0)) echo '&nbsp;<span class="text-warning">' . CLICSHOPPING::getDef('entry_state_text') . '</span>';
 ?>
                 </div>
               </div>
@@ -405,7 +405,7 @@
                     <?php echo HTML::radioField('gender', 'f', null, 'class="custom-control-input" id="female" name="female"'); ?>
                     <label class="custom-control-label" for="female"><?php echo CLICSHOPPING::getDef('female'); ?></label>
                   </div>
-                  <?php echo (!is_null(CLICSHOPPING::getDef('entry_gender_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_gender_text') . '</span>': ''); ?>
+                  <?php echo (!\is_null(CLICSHOPPING::getDef('entry_gender_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_gender_text') . '</span>': ''); ?>
                 </div>
               </div>
             </div>

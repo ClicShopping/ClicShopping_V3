@@ -85,7 +85,7 @@
       }
 
       if ($calculate_currency_value === true) {
-        $rate = (!is_null($currency_value)) ? $currency_value : $this->currencies[$currency_type]['value'];
+        $rate = (!\is_null($currency_value)) ? $currency_value : $this->currencies[$currency_type]['value'];
 
         if ($this->currencies[$currency_type]['surcharge'] > 0) {
           $rate += ($rate * $this->currencies[$currency_type]['surcharge']);
@@ -116,7 +116,7 @@
      */
     public function isSet(string $code) :bool
     {
-      if (isset($this->currencies[$code]) && !is_null($this->currencies[$code])) {
+      if (isset($this->currencies[$code]) && !\is_null($this->currencies[$code])) {
         return true;
       } else {
         return false;

@@ -114,7 +114,7 @@
 
           $check = $this->getCheckStatus();
 // verify and update the status if changed
-          if (($check['orders_status'] != $this->status) || ($check['orders_status_invoice'] != $this->statusInvoice) || !is_null($this->comments)) {
+          if (($check['orders_status'] != $this->status) || ($check['orders_status_invoice'] != $this->statusInvoice) || !\is_null($this->comments)) {
             $data_array = [
               'orders_status' => (int)$this->status,
               'orders_status_invoice' => (int)$this->statusInvoice,

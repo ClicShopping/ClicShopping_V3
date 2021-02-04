@@ -243,7 +243,7 @@
     {
       $this->_category_depth = 'top';
 
-      if (isset($_GET['cPath']) && !is_null($_GET['cPath'])) {
+      if (isset($_GET['cPath']) && !\is_null($_GET['cPath'])) {
         $Qcheck = $this->db->prepare('select products_id
                                       from :table_products_to_categories
                                       where categories_id = :categories_id
@@ -449,7 +449,7 @@
 
         $cPath = implode('_', $categories);
 
-        if (!is_null($cPath)) {
+        if (!\is_null($cPath)) {
           $cPath .= '_';
         }
 

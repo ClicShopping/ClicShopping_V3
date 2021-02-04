@@ -19,7 +19,7 @@
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-    $name = ((!is_null($key)) ? 'configuration[' . $key . '][]' : 'configuration_value');
+    $name = ((!\is_null($key)) ? 'configuration[' . $key . '][]' : 'configuration_value');
     $select_array = $CLICSHOPPING_Template->getListCatalogFilesNotIncluded();
     sort($select_array);
 

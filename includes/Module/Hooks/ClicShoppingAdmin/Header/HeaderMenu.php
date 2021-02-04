@@ -41,10 +41,10 @@
           if ($menus['parent_id'] == 0) {
             $menu_parent[$menus['id']] = $menus;
           } else {
-            if (isset($menu_parent[$menus['parent_id']]) && !is_null($menu_parent[$menus['parent_id']])) {
+            if (isset($menu_parent[$menus['parent_id']]) && !\is_null($menu_parent[$menus['parent_id']])) {
               $menu_parent[$menus['parent_id']]['sub_menu'][$menus['id']] = $menus['id'];
               $menu_sub[$menus['id']] = $menus;
-            } elseif (isset($menu_sub[$menus['parent_id']]) && !is_null($menu_sub[$menus['parent_id']])) {
+            } elseif (isset($menu_sub[$menus['parent_id']]) && !\is_null($menu_sub[$menus['parent_id']])) {
               $menu_sub[$menus['parent_id']]['sub_menu'][$menus['id']] = $menus['id'];
               $menu_sub[$menus['id']] = $menus;
             }
@@ -113,7 +113,7 @@
                 foreach ($menu_sub[$second_level]['sub_menu'] as $third_level) {
                   $image = '';
             
-                  if (!is_null($menu_sub[$third_level]['link'])) {
+                  if (!\is_null($menu_sub[$third_level]['link'])) {
                     $output .= '<li>' . HTML::link(CLICSHOPPING::link($menu_sub[$third_level]['link']), $image . ' ' . $menu_sub[$third_level]['label']) . '</li>';
                   } else {
                     $output .= '<li><a class="nav-link">' . $image . ' ' . $menu_sub[$third_level]['label'] . '</a>';
@@ -127,7 +127,7 @@
                     foreach ($menu_sub[$third_level]['sub_menu'] as $fourth_level) {
                       $image = '';
                 
-                      if (!is_null($menu_sub[$fourth_level]['link'])) {
+                      if (!\is_null($menu_sub[$fourth_level]['link'])) {
                         $output .= '<li>' . HTML::link(CLICSHOPPING::link($menu_sub[$fourth_level]['link']), $image . ' ' . $menu_sub[$fourth_level]['label']) . '</li>';
                       } else {
                   
@@ -135,14 +135,14 @@
                       }
                     }
               
-                    if (is_null($menu_sub[$fourth_level]['link'])) {
+                    if (\is_null($menu_sub[$fourth_level]['link'])) {
                       $output .= '</li>';
                     }
                     //              $output .= '</ul>';
                   }
             
                   //--------------------------------------------------------------
-                  if (is_null($menu_sub[$third_level]['link'])) {
+                  if (\is_null($menu_sub[$third_level]['link'])) {
                     $output .= '</li>';
                   }
                 }
@@ -150,7 +150,7 @@
                 $output .= '</ul>'; //énd menu
               }
         
-              if (is_null($menu_sub[$second_level]['link'])) {
+              if (\is_null($menu_sub[$second_level]['link'])) {
                 $output .= '</li>';
               }
             }

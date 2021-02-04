@@ -280,7 +280,7 @@
                 <span class="col-md-5"><strong><?php echo $order->info['payment_method']; ?></strong></span>
               </div>
               <?php
-                if (!is_null($order->info['cc_type']) || !is_null($order->info['cc_owner']) || !is_null($order->info['cc_number'])) {
+                if (!\is_null($order->info['cc_type']) || !\is_null($order->info['cc_owner']) || !\is_null($order->info['cc_number'])) {
                   ?>
                   <div class="col-md-12">
                     <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_credit_card_type'); ?></span>
@@ -487,7 +487,7 @@
 
                     echo $content;
 
-                    if (!is_null($QordersHistory->value('evidence'))) {
+                    if (!\is_null($QordersHistory->value('evidence'))) {
                       echo $CLICSHOPPING_Orders->getDef('entry_status_evidence') . '<br />' . HTML::link(CLICSHOPPING::link('../sources/Download/Evidence/' . $QordersHistory->value('evidence')), $QordersHistory->value('evidence')) . '<br />';
                     }
 

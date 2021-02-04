@@ -40,7 +40,7 @@
       $suppliers_id = 0;
 
 // Insertion images des fabricants via l'éditeur FCKeditor (fonctionne sur les nouvelles et éditions des fabricants)
-      if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
+      if (isset($_POST['manufacturers_image']) && !\is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
         $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($manufacturers_image);
       } else {
         $manufacturers_image = null;
@@ -50,7 +50,7 @@
         'suppliers_id' => $suppliers_id
       ];
 
-      if (is_null($manufacturers_image)) {
+      if (\is_null($manufacturers_image)) {
         $sql_data_array = ['manufacturers_image' => $manufacturers_image];
       }
 

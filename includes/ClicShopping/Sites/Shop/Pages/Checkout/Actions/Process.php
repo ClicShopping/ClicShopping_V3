@@ -48,7 +48,7 @@
         CLICSHOPPING::redirect(null, 'Checkout&Shipping');
       }
 
-      if ((!is_null(MODULE_PAYMENT_INSTALLED)) && (!isset($_SESSION['payment']))) {
+      if ((!\is_null(MODULE_PAYMENT_INSTALLED)) && (!isset($_SESSION['payment']))) {
         CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
 

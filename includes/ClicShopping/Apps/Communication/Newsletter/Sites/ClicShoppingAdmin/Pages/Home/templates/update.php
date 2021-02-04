@@ -72,7 +72,7 @@
 
     $nInfo = new ObjectInfo($parameters);
 
-    if (isset($_GET['Update']) && !is_null($nID)) {
+    if (isset($_GET['Update']) && !\is_null($nID)) {
       $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', ['title',
         'content',
         'module',

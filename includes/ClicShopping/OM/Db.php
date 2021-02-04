@@ -310,7 +310,7 @@
         $statement = 'update ' . $table . ' set ';
 
         foreach ($data as $c => $v) {
-          if (is_null($v)) {
+          if (\is_null($v)) {
             $v = 'null';
           }
 
@@ -332,7 +332,7 @@
         $Q = $this->prepare($statement);
 
         foreach ($data as $c => $v) {
-          if ($v != 'now()' && $v !== 'null' && !is_null($v)) {
+          if ($v != 'now()' && $v !== 'null' && !\is_null($v)) {
             $Q->bindValue(':new_' . $c, $v);
           }
         }
@@ -350,7 +350,7 @@
         $statement = 'insert into ' . $table . ' (' . implode(', ', array_keys($data)) . ') values (';
 
         foreach ($data as $c => $v) {
-          if (is_null($v)) {
+          if (\is_null($v)) {
             $v = 'null';
           }
 
@@ -371,7 +371,7 @@
           $Q = $this->prepare($statement);
 
           foreach ($data as $c => $v) {
-            if ($v != 'now()' && $v !== 'null' && !is_null($v)) {
+            if ($v != 'now()' && $v !== 'null' && !\is_null($v)) {
               $Q->bindValue(':' . $c, $v);
             }
           }

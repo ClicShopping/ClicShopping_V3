@@ -168,7 +168,7 @@
      */
     public static function link(string $page = null, string $parameters = null, bool $add_session_id = true, bool $search_engine_safe = true): string
     {
-      if (is_null($page)) {
+      if (\is_null($page)) {
         $page = static::getConfig('bootstrap_file');
       }
 

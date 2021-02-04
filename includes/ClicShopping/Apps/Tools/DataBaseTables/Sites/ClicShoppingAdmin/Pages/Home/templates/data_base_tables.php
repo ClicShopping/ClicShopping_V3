@@ -143,7 +143,7 @@
         $Qcols = $CLICSHOPPING_DataBaseTables->db->query('SHOW FULL COLUMNS FROM ' . $table);
 
         while ($Qcols->fetch()) {
-          if ($Qcols->hasValue('Collation') && !is_null($Qcols->value('Collation'))) {
+          if ($Qcols->hasValue('Collation') && !\is_null($Qcols->value('Collation'))) {
             if ($_POST['from_charset'] == 'auto') {
               $old_charset = substr($Qcols->value('Collation'), 0, strpos($Qcols->value('Collation'), '_'));
             } else {

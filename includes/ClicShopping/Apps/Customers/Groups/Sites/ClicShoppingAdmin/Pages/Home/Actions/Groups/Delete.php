@@ -27,7 +27,7 @@
         $group_id = null;
       }
 
-      if (!is_null($group_id)) {
+      if (!\is_null($group_id)) {
         $Qdelete = $CLICSHOPPING_Groups->db->prepare('delete
                                                       from :table_groups_to_categories
                                                       where customers_group_id = :customers_group_id

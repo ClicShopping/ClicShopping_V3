@@ -96,7 +96,7 @@
           $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_products_new'), 'ModulesProductsInfoBootstrapTickerNewImageGallery', $CLICSHOPPING_ProductsCommon->getProductsTickerProductsNew());
         }
 
-        if (MODULE_PRODUCTS_INFO_GALLERY_POURCENTAGE == 'True' && !is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($CLICSHOPPING_ProductsCommon->getID()))) {
+        if (MODULE_PRODUCTS_INFO_GALLERY_POURCENTAGE == 'True' && !\is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($CLICSHOPPING_ProductsCommon->getID()))) {
           $ticker_pourcentage_discount = HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($CLICSHOPPING_ProductsCommon->getID()), 'ModulesProductsInfoBootstrapTickerPourcentageImageGallery', true);
         } else {
           $ticker_pourcentage_discount = '';

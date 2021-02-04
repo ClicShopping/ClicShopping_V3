@@ -69,7 +69,7 @@
               <?php echo HTML::radioField('gender', 'f', $female, 'class="custom-control-input" id="female" name="female"'); ?>
               <label class="custom-control-label" for="female"><?php echo CLICSHOPPING::getDef('female'); ?></label>
             </div>
-            <?php echo (!is_null(CLICSHOPPING::getDef('entry_gender_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_gender_text') . '</span>': ''); ?>
+            <?php echo (!\is_null(CLICSHOPPING::getDef('entry_gender_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_gender_text') . '</span>': ''); ?>
           </div>
         </div>
       </div>
@@ -85,7 +85,7 @@
 <?php
   echo HTML::inputField('firstname', $customers_firstname, 'id="InputFirstName" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '"');
   if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ENTRY_FIRST_NAME_MIN_LENGTH > 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ENTRY_FIRST_NAME_PRO_MIN_LENGTH > 0))) {
-    echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_first_name_text')) ? '<span class="text">' . CLICSHOPPING::getDef('entry_first_name_text') . '</span>': '');
+    echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_first_name_text')) ? '<span class="text">' . CLICSHOPPING::getDef('entry_first_name_text') . '</span>': '');
   }
 ?>
         </div>
@@ -101,7 +101,7 @@
 <?php
   echo HTML::inputField('lastname', $customers_lastname, 'id="InputLastName" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_last_name') . '"');
   if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ENTRY_LAST_NAME_MIN_LENGTH > 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ENTRY_LAST_NAME_MIN_LENGTH > 0))) {
-    echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_last_name_text')) ? '<span class="text">' . CLICSHOPPING::getDef('entry_last_name_text') . '</span>': '');
+    echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_last_name_text')) ? '<span class="text">' . CLICSHOPPING::getDef('entry_last_name_text') . '</span>': '');
   }
 ?>
         </div>
@@ -136,7 +136,7 @@
         <div class="form-group row">
           <label for="inputEmail" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_email_address'); ?></label>
           <div class="col-md-8">
-            <?php echo HTML::inputField('email_address', $customers_email_address, 'id="inputEmail" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', 'email') . (!is_null(CLICSHOPPING::getDef('entry_email_address_text')) ? '&nbsp;<span class="text-warning">' . CLICSHOPPING::getDef('entry_email_address_text') . '</span>': ''); ?>
+            <?php echo HTML::inputField('email_address', $customers_email_address, 'id="inputEmail" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', 'email') . (!\is_null(CLICSHOPPING::getDef('entry_email_address_text')) ? '&nbsp;<span class="text-warning">' . CLICSHOPPING::getDef('entry_email_address_text') . '</span>': ''); ?>
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@
 <?php
   echo HTML::inputField('customers_telephone', $customers_telephone, 'id="inputTelephone" required aria-required="true" id="inputTelephone" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"', 'tel');
   if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ENTRY_TELEPHONE_MIN_LENGTH > 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ENTRY_TELEPHONE_PRO_MIN_LENGTH > 0))) {
-    echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_telephone_number_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_telephone_number_text') . '</span>': '');
+    echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_telephone_number_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_telephone_number_text') . '</span>': '');
   }
 ?>
           </div>
@@ -165,7 +165,7 @@
         <div class="form-group row">
           <label for="inputCellularPhone" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_cellular_phone_number'); ?></label>
           <div class="col-md-8">
-            <?php echo HTML::inputField('cellular_phone', $customers_cellular_phone, 'id="inputCellularPhone" placeholder="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '"', 'tel') . '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_cellular_phone_number_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_cellular_phone_number_text') . '</span>': ''); ?>
+            <?php echo HTML::inputField('cellular_phone', $customers_cellular_phone, 'id="inputCellularPhone" placeholder="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '"', 'tel') . '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_cellular_phone_number_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_cellular_phone_number_text') . '</span>': ''); ?>
           </div>
         </div>
       </div>
@@ -200,7 +200,7 @@
 <?php
   echo HTML::inputField('company', $customers_company, $input_field_option);
   if ((AddressBook::countCustomersModifyCompany() == 1) && (ENTRY_COMPANY_PRO_MIN_LENGTH > 0)) {
-    echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_company_text_pro')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_company_text_pro') . '</span>': '');
+    echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_company_text_pro')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_company_text_pro') . '</span>': '');
   }
 ?>
           </div>
@@ -225,9 +225,9 @@
 <?php
   echo HTML::inputField('siret', $customers_siret, $input_field_option);
   if ((AddressBook::countCustomersModifyCompany() == 1) && (ENTRY_SIRET_MIN_LENGTH > 0)) {
-    echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_siret_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_siret_text') . '</span>': '');
+    echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_siret_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_siret_text') . '</span>': '');
   }
-  echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_siret_exemple')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_siret_exemple') . '</span>': '');
+  echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_siret_exemple')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_siret_exemple') . '</span>': '');
   ?>
             </div>
           </div>
@@ -251,9 +251,9 @@
 <?php
   echo HTML::inputField('ape', $customers_ape, $input_field_option);
   if ((AddressBook::countCustomersModifyCompany() == 1) && (ENTRY_CODE_APE_MIN_LENGTH > 0)) {
-    echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_code_ape_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_code_ape_text') . '</span>': '');
+    echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_code_ape_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_code_ape_text') . '</span>': '');
   }
-  echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_code_exemple')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_code_exemple') . '</span>': '');
+  echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_code_exemple')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_code_exemple') . '</span>': '');
 ?>
           </div>
         </div>
@@ -276,7 +276,7 @@
           <div class="form-group row">
             <label for="inputTvaIntracom" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_country'); ?></label>
             <div class="col-md-8">
-              <?php echo HTML::selectMenuIsoList('country', $customers_tva_intracom_code_iso, 'onchange="ISO_account_edit();"') . '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
+              <?php echo HTML::selectMenuIsoList('country', $customers_tva_intracom_code_iso, 'onchange="ISO_account_edit();"') . '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
             </div>
           </div>
         </div>
@@ -293,7 +293,7 @@
 <?php
   echo HTML::inputField('tva_intracom', $customers_tva_intracom, $input_field_option);
   if (AddressBook::countCustomersModifyCompany() == 1) {
-    echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_tva_intracom_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_tva_intracom_text') . '</span>': '');
+    echo '&nbsp;' . (!\is_null(CLICSHOPPING::getDef('entry_tva_intracom_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_tva_intracom_text') . '</span>': '');
   }
 ?>
             </div>

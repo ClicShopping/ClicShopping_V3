@@ -34,7 +34,7 @@
      */
     private function removeReviews(?int $id)
     {
-      if(!is_null($id)) {
+      if(!\is_null($id)) {
         $Qreviews = $this->app->db->get('reviews', 'reviews_id', ['products_id' => $id]);
   
         if ($Qreviews->fetch()) {

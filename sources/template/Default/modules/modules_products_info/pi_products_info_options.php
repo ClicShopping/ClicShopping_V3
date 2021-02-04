@@ -188,7 +188,7 @@
                 $products_options_content_display .='<label class="ModuleProductsInfoOptionsName">' . $QproductsOptionsName->value('products_options_name') . ': </label>';
 
                 foreach ($products_options_array as $value) {
-                  if (!is_null($value['image'])) {
+                  if (!\is_null($value['image'])) {
                     if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $value['image'])) {
                     $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $value['image'], $value['text']) . '   ';
                     } else {

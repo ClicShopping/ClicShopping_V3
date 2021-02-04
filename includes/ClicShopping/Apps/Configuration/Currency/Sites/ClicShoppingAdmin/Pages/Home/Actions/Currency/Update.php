@@ -34,7 +34,7 @@
         $currencies_id = null;
       }
 
-      if (!is_null($currencies_id)) {
+      if (!\is_null($currencies_id)) {
         $title = HTML::sanitize($_POST['title']);
         $code = HTML::sanitize($_POST['code']);
         $symbol_left = HTML::sanitize($_POST['symbol_left']);

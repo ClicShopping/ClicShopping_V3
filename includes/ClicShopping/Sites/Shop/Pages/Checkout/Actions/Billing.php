@@ -89,7 +89,7 @@
         }
       }
 
-      if (isset($_POST['comments']) && !is_null($_POST['comments'])) {
+      if (isset($_POST['comments']) && !\is_null($_POST['comments'])) {
         $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
       }
 

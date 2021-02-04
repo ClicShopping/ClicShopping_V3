@@ -26,7 +26,7 @@
         <div class="col-md-8">
 <?php
   echo HTML::inputField('password_current', null, 'required aria-required="true" autofocus="autofocus" id="CurrentPassword" aria-describedby="' . CLICSHOPPING::getDef('entry_password_current') . '" placeholder="' . CLICSHOPPING::getDef('entry_password_current') . '"', 'password');
-  if (!is_null(CLICSHOPPING::getDef('entry_password_current_text'))) echo '<span class="form-text">' . CLICSHOPPING::getDef('entry_password_current_text') . '</span>';
+  if (!\is_null(CLICSHOPPING::getDef('entry_password_current_text'))) echo '<span class="form-text">' . CLICSHOPPING::getDef('entry_password_current_text') . '</span>';
 ?>
         </div>
       </div>
@@ -40,7 +40,7 @@
         <div class="col-md-8">
           <?php
             echo HTML::inputField('password_new', null, 'required aria-required="true" id="inputPasswordNew" aria-describedby="' . CLICSHOPPING::getDef('entry_password_new') . '" placeholder="' . CLICSHOPPING::getDef('entry_password_new') . '"  minlength="' . ENTRY_PASSWORD_MIN_LENGTH . '"', 'password');
-            if (!is_null(CLICSHOPPING::getDef('entry_password_current_text'))) echo '<span class="form-text">' . CLICSHOPPING::getDef('entry_password_current_text') . '</span>';
+            if (!\is_null(CLICSHOPPING::getDef('entry_password_current_text'))) echo '<span class="form-text">' . CLICSHOPPING::getDef('entry_password_current_text') . '</span>';
           ?>
         </div>
       </div>
@@ -55,7 +55,7 @@
         <div class="col-md-8">
 <?php
   echo HTML::inputField('password_confirmation', null, 'required aria-required="true" id="inputPasswordConfirmation" aria-describedby="' . CLICSHOPPING::getDef('entry_password_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_password_confirmation') . '"  minlength="' . ENTRY_PASSWORD_MIN_LENGTH . '"', 'password');
-  if (!is_null(CLICSHOPPING::getDef('entry_password_current_text'))) echo '<span class="form-text">' . CLICSHOPPING::getDef('entry_password_current_text') . '</span>';
+  if (!\is_null(CLICSHOPPING::getDef('entry_password_current_text'))) echo '<span class="form-text">' . CLICSHOPPING::getDef('entry_password_current_text') . '</span>';
 ?>
         </div>
       </div>

@@ -213,7 +213,7 @@
     {
       $reviews_id = HTML::sanitize($id);
 
-      if (!is_null($reviews_id) &&  is_numeric($reviews_id)) {
+      if (!\is_null($reviews_id) &&  is_numeric($reviews_id)) {
         if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
           $Qreviews = $this->db->prepare('select r.reviews_id,
                                                 rd.reviews_text,

@@ -110,7 +110,7 @@
         }
       }
 
-      if (!is_null($permissions)) {
+      if (!\is_null($permissions)) {
         chmod($filename, $permissions);
       }
     }

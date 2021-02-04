@@ -37,7 +37,7 @@
   );
 
   while ($Qconfiguration->fetch()) {
-    if ($Qconfiguration->hasValue('use_function') && !is_null($Qconfiguration->value('use_function'))) {
+    if ($Qconfiguration->hasValue('use_function') && !\is_null($Qconfiguration->value('use_function'))) {
       $use_function = $Qconfiguration->value('use_function');
 
       if (preg_match('/->/', $use_function)) {

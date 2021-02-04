@@ -140,7 +140,7 @@
         $this->icon = '';
       }
 
-      if (!is_null($this->icon)) $this->quotes['icon'] = '&nbsp;&nbsp;&nbsp;' . $this->icon;
+      if (!\is_null($this->icon)) $this->quotes['icon'] = '&nbsp;&nbsp;&nbsp;' . $this->icon;
 
       return $this->quotes;
     }

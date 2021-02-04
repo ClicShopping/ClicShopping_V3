@@ -42,10 +42,10 @@
           if ($menus['parent_id'] == 0) {
             $menu_parent[$menus['id']] = $menus;
           } else {
-            if (isset($menu_parent[$menus['parent_id']]) && !is_null($menu_parent[$menus['parent_id']])) {
+            if (isset($menu_parent[$menus['parent_id']]) && !\is_null($menu_parent[$menus['parent_id']])) {
               $menu_parent[$menus['parent_id']]['sub_menu'][$menus['id']] = $menus['id'];
               $menu_sub[$menus['id']] = $menus;
-            } elseif (isset($menu_sub[$menus['parent_id']]) && !is_null($menu_sub[$menus['parent_id']])) {
+            } elseif (isset($menu_sub[$menus['parent_id']]) && !\is_null($menu_sub[$menus['parent_id']])) {
               $menu_sub[$menus['parent_id']]['sub_menu'][$menus['id']] = $menus['id'];
               $menu_sub[$menus['id']] = $menus;
             }
@@ -143,7 +143,7 @@
                   $z = $z+1;
                   $image = '';
 
-                  if (!is_null($menu_sub[$third_level]['link'])) {
+                  if (!\is_null($menu_sub[$third_level]['link'])) {
                     $output .= '<li class="nav-item p-1 small m-1">' . HTML::link(CLICSHOPPING::link($menu_sub[$third_level]['link']), $image . ' ' . $menu_sub[$third_level]['label'], ' class="nav-link"') . '</li>';
                   } else {
                     $output .= '<li class="nav-item p-2 m-1"><a href="#submenu3sub' . $z .'" data-bs-target="#submenu3sub' . $z .'" data-bs-toggle="collapse" class="nav-link collapsed text-uppercase">--- ' . $image . ' ' . $menu_sub[$third_level]['label'] . '</a>
@@ -161,7 +161,7 @@
                       $x = $x+1;
                       $image = '';
 
-                      if (!is_null($menu_sub[$fourth_level]['link'])) {
+                      if (!\is_null($menu_sub[$fourth_level]['link'])) {
                         $output .= '<li class="nav-item p-1 small m-1">' . HTML::link(CLICSHOPPING::link($menu_sub[$fourth_level]['link']), $image . ' ' . $menu_sub[$fourth_level]['label'], 'nav-link') . '</li>';
                       } else {
                         $output .= '<li class="nav-item p-2 m-1"><a href="#submenu4sub' . $x .'"  data-bs-target="#submenu4sub' . $x .'" data-bs-toggle="collapse" class="nav-link collapsed text-uppercase">---- ' . $image . ' ' . $menu_sub[$fourth_level]['label'] . '</a>
@@ -170,7 +170,7 @@
                       }
                     }
 
-                    if (is_null($menu_sub[$fourth_level]['link'])) {
+                    if (\is_null($menu_sub[$fourth_level]['link'])) {
                       $output .= '</div>
                                   </li>';
                     }
@@ -181,7 +181,7 @@
 //--------------------------------------------------------------
 // 3eme
 
-                  if (is_null($menu_sub[$third_level]['link'])) {
+                  if (\is_null($menu_sub[$third_level]['link'])) {
                     $output .= '</div>
                                 </li>';
                   }
@@ -192,7 +192,7 @@
 
 //------------------------------------------------------------
 // 2eme
-              if (is_null($menu_sub[$second_level]['link'])) {
+              if (\is_null($menu_sub[$second_level]['link'])) {
                 $output .= '</div>
                             </li>';
               }

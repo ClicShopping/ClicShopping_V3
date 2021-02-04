@@ -238,7 +238,7 @@
         ]
       );
 /*
-      if ((!is_null($Qcategory->valueInt['parent_id'])) && ($Qcategory->valueInt('parent_id') != '0')) {
+      if ((!\is_null($Qcategory->valueInt['parent_id'])) && ($Qcategory->valueInt('parent_id') != '0')) {
         $categories_array = static::getGenerateBlogCategoryPath($Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
       }
 */
@@ -410,7 +410,7 @@
     public function getClass(string $file) {
       $class = substr($file, 0, strrpos($file, '.'));
 
-      if (class_exists($class) && !is_null($class)) {
+      if (class_exists($class) && !\is_null($class)) {
         $GLOBALS[$class] = new $class;
 
         return $GLOBALS[$class];

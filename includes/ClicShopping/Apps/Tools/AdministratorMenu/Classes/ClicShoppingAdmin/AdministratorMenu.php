@@ -236,7 +236,7 @@
         'text' => $Qcategory->value('label')
       ];
 
-      if ((!is_null($Qcategory->valueInt('parent_id'))) && ($Qcategory->valueInt('parent_id') != '0')) {
+      if ((!\is_null($Qcategory->valueInt('parent_id'))) && ($Qcategory->valueInt('parent_id') != '0')) {
         $categories_array = static::getGenerateCategoryPath($Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
       }
 

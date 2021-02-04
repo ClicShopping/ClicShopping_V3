@@ -160,7 +160,7 @@
                   $products_attributes_reference = $products[$i][$option]['products_attributes_reference'];
                   $products_attributes_image = $products[$i][$option]['products_attributes_image'];
 
-                  if (!is_null($products[$i][$option]['products_attributes_image'])) {
+                  if (!\is_null($products[$i][$option]['products_attributes_image'])) {
                     if (is_file(CLICSHOPPING::getConfig('Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_attributes_image)) {
                       $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_attributes_image, $products_attributes_values_name . '   ', 30, 30);
                     } else {
@@ -183,7 +183,7 @@
 
           $ticker = HTML::link($products_name_url, HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id), 'ModulesShoppingCartBootstrapTickerPourcentage', true )) .'</a>';
 
-          if (is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
+          if (\is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
             $ticker = '' ;
            }
 

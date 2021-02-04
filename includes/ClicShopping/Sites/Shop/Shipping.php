@@ -26,7 +26,7 @@
     {
       $this->lang = Registry::get('Language');
 
-      if (defined('MODULE_SHIPPING_INSTALLED') && !is_null(MODULE_SHIPPING_INSTALLED)) {
+      if (defined('MODULE_SHIPPING_INSTALLED') && !\is_null(MODULE_SHIPPING_INSTALLED)) {
         $this->modules = explode(';', MODULE_SHIPPING_INSTALLED);
 
         $include_modules = [];
@@ -116,7 +116,7 @@
           if (str_contains($value, '\\')) {
             $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
 
-            if (!is_null($module)) {
+            if (!\is_null($module)) {
               if (($module == $value) && ($obj->enabled)) {
                 $include_quotes[] = $value;
               }
@@ -152,7 +152,7 @@
         }
         if ($obj->enabled) {
           foreach ($obj->quotes['methods'] as $method) {
-            if (isset($method['cost']) && !is_null($method['cost'])) {
+            if (isset($method['cost']) && !\is_null($method['cost'])) {
               return [
                 'id' => $obj->quotes['id'] . '_' . $method['id'],
                 'title' => $obj->quotes['module'] . (isset($method['title']) && !empty($method['title']) ? ' (' . $method['title'] . ')' : ''),
@@ -185,7 +185,7 @@
               $quotes = $obj->quotes;
 
               for ($i = 0, $n = \count($quotes['methods'] ?: []); $i < $n; $i++) {
-                if (isset($quotes['methods'][$i]['cost']) && !is_null($quotes['methods'][$i]['cost'])) {
+                if (isset($quotes['methods'][$i]['cost']) && !\is_null($quotes['methods'][$i]['cost'])) {
                   $rates[] = [ 
                     'id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
                     'title' => $quotes['module'] . (isset($quotes['methods'][$i]['title']) && !empty($quotes['methods'][$i]['title']) ? ' (' . $quotes['methods'][$i]['title'] . ')' : ''),

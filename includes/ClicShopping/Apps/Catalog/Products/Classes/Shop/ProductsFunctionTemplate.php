@@ -178,7 +178,7 @@
       $button = '';
 
       if ($constant == 'False') {
-        if (is_null($icon)) {
+        if (\is_null($icon)) {
           $button = HTML::button(CLICSHOPPING::getDef('button_details'), '', $this->rewriteUrl->getProductNameUrl($products_id), $button_color, $params, $button_size);
         } else {
           $button = HTML::button(null, $icon, $this->rewriteUrl->getProductNameUrl($products_id), $button_color, $params, $button_size);
@@ -245,7 +245,7 @@
      */
     public function getTickerPourcentage(string $constant, $products_id, string $cssPourcentage) :string
     {
-      if ($constant == 'True' && !is_null($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
+      if ($constant == 'True' && !\is_null($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
         $ticker = HTML::link($this->rewriteUrl->getProductNameUrl($products_id), HTML::tickerImage($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id), $cssPourcentage, true));
       } else {
         $ticker = '';
@@ -441,7 +441,7 @@
      */
     public function getManufacturerName($products_id) :string
     {
-      if (isset($_GET['manufacturersId']) && !is_null($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId'])) {
+      if (isset($_GET['manufacturersId']) && !\is_null($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId'])) {
         $manufacturer_id = HTML::sanitize($_GET['manufacturersId']);
         $name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&manufacturersId=' . $manufacturer_id . '&products_id=' . $products_id), '<span itemprop="name">' . $this->productsCommon->getProductsName($products_id) . '</span>', 'itemprop="url"');
       } else {

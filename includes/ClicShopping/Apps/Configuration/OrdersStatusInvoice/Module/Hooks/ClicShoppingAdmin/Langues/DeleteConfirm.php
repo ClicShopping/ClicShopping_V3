@@ -31,7 +31,7 @@
 
     private function delete($id)
     {
-      if (!is_null($id)) {
+      if (!\is_null($id)) {
         $this->app->db->delete('orders_status_invoice', ['language_id' => $id]);
       }
     }

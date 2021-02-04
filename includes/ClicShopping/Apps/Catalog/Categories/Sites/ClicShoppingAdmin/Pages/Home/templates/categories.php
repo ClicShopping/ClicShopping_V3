@@ -78,7 +78,7 @@
     }
   }
 
-  $cPath_back = (!is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
+  $cPath_back = (!\is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
 
   if (isset($_GET['search']) || isset($_POST['cPath'])) {
     echo HTML::button($CLICSHOPPING_Categories->getDef('button_back'), null, $CLICSHOPPING_Categories->link('Categories&' . $cPath_back . 'cID=' . $current_category_id), 'primary') . '&nbsp;';
@@ -195,7 +195,7 @@
         </td>
         <td>
           <?php
-          if (!is_null($Qcategories->value('last_modified'))) {
+          if (!\is_null($Qcategories->value('last_modified'))) {
             echo  DateTime::toShort($Qcategories->value('last_modified'));
           }
           ?>

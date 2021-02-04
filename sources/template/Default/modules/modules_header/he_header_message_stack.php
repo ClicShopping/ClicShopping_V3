@@ -40,7 +40,7 @@
 
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if( (isset($_GET['error_message']) && !is_null($_GET['error_message'])) || (isset($_GET['info_message']) && !is_null($_GET['info_message']))) {
+      if( (isset($_GET['error_message']) && !\is_null($_GET['error_message'])) || (isset($_GET['info_message']) && !\is_null($_GET['info_message']))) {
 
         $content_width = (int)MODULE_HEADER_MESSAGE_STACK_CONTENT_WIDTH;
 

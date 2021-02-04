@@ -324,7 +324,7 @@
               }
             }
 
-            if (!empty($Qzone->valueInt('zone_id')) || !is_null($Qzone->valueInt('zone_id'))) {
+            if (!empty($Qzone->valueInt('zone_id')) || !\is_null($Qzone->valueInt('zone_id'))) {
               $zone_id = (int)$Qzone->valueInt('zone_id');
             } else {
               $error = true;

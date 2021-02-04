@@ -93,7 +93,7 @@
      */
     public function get(string $separator = null): string
     {
-      if (is_null($separator)) {
+      if (\is_null($separator)) {
         $separator = $this->_separator;
       }
 
@@ -240,7 +240,7 @@
         }
       }
 
-      if (is_null($result)) {
+      if (\is_null($result)) {
         return false;
       } else {
         return $result;

@@ -99,7 +99,7 @@
         <div class="separator"></div>
         <div class="col-md-12 text-center">
 <?php
-  if (!is_null($products['products_image'])) {
+  if (!\is_null($products['products_image'])) {
     echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $products['products_image'], $products['products_name']) . '<br />';
   }
 ?>

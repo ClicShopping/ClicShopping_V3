@@ -27,7 +27,7 @@
 
     public static function output(?string $string, array $translate = null): string
     {
-      if (is_null($string) || empty($string)) {
+      if (\is_null($string) || empty($string)) {
         return '';
       }
 
@@ -48,7 +48,7 @@
      */
     public static function outputProtected(?string $string): string
     {
-      if (is_null($string) || empty($string)) {
+      if (\is_null($string) || empty($string)) {
         return '';
       }
 
@@ -62,7 +62,7 @@
      */
     public static function sanitize($string)
     {
-      if (is_null($string) || empty($string)) {
+      if (\is_null($string) || empty($string)) {
         return '';
       }
     $patterns = [
@@ -136,7 +136,7 @@
       if (CLICSHOPPING::getSite() === 'Shop') {
         $CLICSHOPPING_Template = Registry::get('Template');
 
-        if ((empty($src) || is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
+        if ((empty($src) || \is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
           $image = CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . 'icons/nophoto.png';
 
           if (!is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . $image)) {
@@ -146,7 +146,7 @@
           }
         }
       } else {
-        if ((empty($src) || is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
+        if ((empty($src) || \is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
           $src = CLICSHOPPING::getConfig('http_path', 'Shop') . 'images/nophoto.png';
         }
       }
@@ -455,7 +455,7 @@
         $field .= ' class="form-control" id="' . static::output($name) . '"';
       }
 
-      if (!is_null($parameters)) {
+      if (!\is_null($parameters)) {
         $field .= ' ' . $parameters;
       }
 
@@ -503,7 +503,7 @@
         $field .= '<option value="">' . CLICSHOPPING::getDef('text_select') . '</option>';
       }
 
-      if (empty($default) && ((isset($_GET[$name]) && is_string($_GET[$name]) && !is_null($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name] && !is_null($_POST[$name]))))) {
+      if (empty($default) && ((isset($_GET[$name]) && is_string($_GET[$name]) && !\is_null($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name] && !\is_null($_POST[$name]))))) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
           $default = static::output($_GET[$name]);
         } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
@@ -585,7 +585,7 @@
      */
     public static function hideSessionId(string $session_started, string $SID)
     {
-      if (($session_started === true) && (!empty($SID) || !is_null($SID))) {
+      if (($session_started === true) && (!empty($SID) || !\is_null($SID))) {
         return static::hiddenField(session_name(), session_name());
       } else {
         return false;

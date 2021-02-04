@@ -369,7 +369,7 @@
         $group = $matches[2];
       }
 
-      if (!is_null($force_directory_language)) $site = $force_directory_language;
+      if (!\is_null($force_directory_language)) $site = $force_directory_language;
 
       If ($site == 'ClicShoppingAdmin') {
         $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'includes/languages/' . $this->get('directory', $language_code) . '/' . $group;
@@ -538,7 +538,7 @@
      */
     public function getLanguageCode()
     {
-      if (!is_null($this->getUrlValueLanguage())) {
+      if (!\is_null($this->getUrlValueLanguage())) {
         $_GET['language'] = $this->getUrlValueLanguage();
       }
 

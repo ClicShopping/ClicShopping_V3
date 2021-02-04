@@ -130,7 +130,7 @@
             if ($email_number !== 0) {
               $email_address_department = $email_address_department[$email_number];
 
-              if (!is_null($customer_id)) {
+              if (!\is_null($customer_id)) {
                 $num_customer_id = $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id;
               } else {
                 $num_customer_id = '';

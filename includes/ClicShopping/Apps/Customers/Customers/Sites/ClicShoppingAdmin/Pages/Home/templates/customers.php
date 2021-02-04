@@ -48,7 +48,7 @@
           </div>
           <div class="col-md-2 text-end">
 <?php
-  if (isset($_POST['search']) && !is_null($_POST['search'])) {
+  if (isset($_POST['search']) && !\is_null($_POST['search'])) {
     echo HTML::button($CLICSHOPPING_Customers->getDef('button_reset'), null, $CLICSHOPPING_Customers->link('Customers&page=' . $page), 'warning');
   }
 ?>
@@ -130,7 +130,7 @@
       // Recherche
       $search = '';
 
-      if (isset($_POST['search']) && !is_null($_POST['search'])) {
+      if (isset($_POST['search']) && !\is_null($_POST['search'])) {
 
         $keywords = HTML::sanitize($_POST['search']);
         $search = " (c.customers_id like '" . $keywords . "' or
@@ -322,7 +322,7 @@
         ?>
         <td class="text-center"><?php echo $Qreviews->valueInt('number_of_reviews'); ?></td>
         <?php
-        if (!is_null($Qinfo->value('date_account_created'))) {
+        if (!\is_null($Qinfo->value('date_account_created'))) {
           echo '<td class="text-end">' . DateTime::toShort($Qinfo->value('date_account_created')) . '</td>';
         } else {
           echo '<td class="text-end"></td>';

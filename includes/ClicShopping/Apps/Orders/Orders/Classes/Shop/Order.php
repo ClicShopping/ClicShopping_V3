@@ -57,7 +57,7 @@
       if (isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
         $this->_id = HTML::sanitize($_GET['order_id']);
         $this->query($this->_id);
-      } elseif (!is_null($order_id)) {
+      } elseif (!\is_null($order_id)) {
         $this->query((int) $order_id);
       } else {
         $this->cart();
@@ -552,7 +552,7 @@
           'suburb' => $customer_address['entry_suburb'],
           'city' => $customer_address['entry_city'],
           'postcode' => $customer_address['entry_postcode'],
-          'state' => ((!is_null($customer_address['entry_state'])) ? $customer_address['entry_state'] : $customer_address['zone_name']),
+          'state' => ((!\is_null($customer_address['entry_state'])) ? $customer_address['entry_state'] : $customer_address['zone_name']),
           'zone_id' => $customer_address['entry_zone_id'],
           'country' => [
             'id' => $customer_address['countries_id'],
@@ -583,7 +583,7 @@
           'suburb' => $shipping_address['entry_suburb'],
           'city' => $shipping_address['entry_city'],
           'postcode' => $shipping_address['entry_postcode'],
-          'state' => ((!is_null($shipping_address['entry_state'])) ? $shipping_address['entry_state'] : $shipping_address['zone_name']),
+          'state' => ((!\is_null($shipping_address['entry_state'])) ? $shipping_address['entry_state'] : $shipping_address['zone_name']),
           'zone_id' => $shipping_address['entry_zone_id'],
           'country' => array('id' => $shipping_address['countries_id'], 'title' => $shipping_address['countries_name'], 'iso_code_2' => $shipping_address['countries_iso_code_2'], 'iso_code_3' => $shipping_address['countries_iso_code_3']),
           'country_id' => $shipping_address['entry_country_id'],
@@ -600,7 +600,7 @@
           'suburb' => $billing_address['entry_suburb'],
           'city' => $billing_address['entry_city'],
           'postcode' => $billing_address['entry_postcode'],
-          'state' => (!is_null($billing_address['entry_state']) ? $billing_address['entry_state'] : $billing_address['zone_name']),
+          'state' => (!\is_null($billing_address['entry_state']) ? $billing_address['entry_state'] : $billing_address['zone_name']),
           'zone_id' => $billing_address['entry_zone_id'],
           'country' => array('id' => $billing_address['countries_id'], 'title' => $billing_address['countries_name'], 'iso_code_2' => $billing_address['countries_iso_code_2'], 'iso_code_3' => $billing_address['countries_iso_code_3']),
           'country_id' => $billing_address['entry_country_id'],
@@ -959,7 +959,7 @@
 
             $this->db->save('orders_products_attributes', $sql_data_array);
 
-            if ((DOWNLOAD_ENABLED == 'true') && $Qattributes->hasValue('products_attributes_filename') && !is_null($Qattributes->value('products_attributes_filename'))) {
+            if ((DOWNLOAD_ENABLED == 'true') && $Qattributes->hasValue('products_attributes_filename') && !\is_null($Qattributes->value('products_attributes_filename'))) {
               $sql_data_array = [
                 'orders_id' => (int)$this->insertID,
                 'orders_products_id' => (int)$order_products_id,
@@ -1085,7 +1085,7 @@
 
           if ($Qstock->fetch() !== false) {
 // do not decrement quantities if products_attributes_filename exists
-            if ((DOWNLOAD_ENABLED != 'true') || !is_null($Qstock->value('products_attributes_filename'))) {
+            if ((DOWNLOAD_ENABLED != 'true') || !\is_null($Qstock->value('products_attributes_filename'))) {
 // select the good qty in B2B ti decrease the stock. See shopping_cart top display out stock or not
               if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
                 $QproductsQuantityCustomersGroup = $this->db->prepare('select products_quantity_fixed_group

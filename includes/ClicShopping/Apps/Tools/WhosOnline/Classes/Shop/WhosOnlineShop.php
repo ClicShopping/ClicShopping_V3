@@ -58,7 +58,7 @@
       $wo_session_id = session_id();
       $wo_ip_address = HTTP::getIpAddress();
 
-      if (is_null($wo_ip_address)) { // database table field (ip_address) is not_null
+      if (\is_null($wo_ip_address)) { // database table field (ip_address) is not_null
         $wo_ip_address = '';
       }
 

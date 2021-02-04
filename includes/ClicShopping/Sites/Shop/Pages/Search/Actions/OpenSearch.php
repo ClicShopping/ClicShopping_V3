@@ -33,15 +33,15 @@
       <ShortName>' . HTML::output(MODULE_HEADER_TAGS_OPENSEARCH_SITE_SHORT_NAME) . '</ShortName>
       <Description>' . HTML::output(MODULE_HEADER_TAGS_OPENSEARCH_SITE_DESCRIPTION) . '</Description>
       ';
-      if (!is_null(MODULE_HEADER_TAGS_OPENSEARCH_SITE_CONTACT)) {
+      if (!\is_null(MODULE_HEADER_TAGS_OPENSEARCH_SITE_CONTACT)) {
         $output .= '<Contact>' . HTML::output(MODULE_HEADER_TAGS_OPENSEARCH_SITE_CONTACT) . '</Contact>' . "\n";
       }
 
-      if (!is_null(MODULE_HEADER_TAGS_OPENSEARCH_SITE_TAGS)) {
+      if (!\is_null(MODULE_HEADER_TAGS_OPENSEARCH_SITE_TAGS)) {
         $output .= ' <Tags>' . HTML::output(MODULE_HEADER_TAGS_OPENSEARCH_SITE_TAGS) . '</Tags>' . "\n";
       }
 
-      if (!is_null(MODULE_HEADER_TAGS_OPENSEARCH_SITE_ATTRIBUTION)) {
+      if (!\is_null(MODULE_HEADER_TAGS_OPENSEARCH_SITE_ATTRIBUTION)) {
         $output .= ' <Attribution>' . HTML::output(MODULE_HEADER_TAGS_OPENSEARCH_SITE_ATTRIBUTION) . '</Attribution>' . "\n";
       }
 
@@ -49,11 +49,11 @@
         $output .= ' <AdultContent>True</AdultContent>' . "\n";
       }
 
-      if (!is_null(MODULE_HEADER_TAGS_OPENSEARCH_SITE_ICON)) {
+      if (!\is_null(MODULE_HEADER_TAGS_OPENSEARCH_SITE_ICON)) {
         $output .= '<Image height="16" width="16" type="image/x-icon">' . HTML::output(MODULE_HEADER_TAGS_OPENSEARCH_SITE_ICON) . '</Image>' . "\n";
       }
 
-      if (!is_null(MODULE_HEADER_TAGS_OPENSEARCH_SITE_IMAGE)) {
+      if (!\is_null(MODULE_HEADER_TAGS_OPENSEARCH_SITE_IMAGE)) {
         $output .= '<Image height="64" width="64" type="image/png">' . HTML::output(MODULE_HEADER_TAGS_OPENSEARCH_SITE_IMAGE) . '</Image>' . "\n";
       }
 

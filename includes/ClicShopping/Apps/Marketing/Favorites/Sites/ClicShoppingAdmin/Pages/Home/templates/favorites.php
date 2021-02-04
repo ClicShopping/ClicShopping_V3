@@ -233,7 +233,7 @@
       <td
         class="text-start"><?php echo $CLICSHOPPING_Currencies->format($Qfavorites->value('products_price')); ?></td>
         <?php
-        if (!is_null($Qfavorites->value('scheduled_date'))) {
+        if (!\is_null($Qfavorites->value('scheduled_date'))) {
           ?>
           <td class="text-center"><?php echo DateTime::toShort($Qfavorites->value('scheduled_date')); ?></td>
           <?php
@@ -243,7 +243,7 @@
           <?php
         }
 
-        if (!is_null($Qfavorites->value('expires_date'))) {
+        if (!\is_null($Qfavorites->value('expires_date'))) {
           ?>
           <td class="text-center"><?php echo DateTime::toShort($Qfavorites->value('expires_date')); ?></td>
           <?php

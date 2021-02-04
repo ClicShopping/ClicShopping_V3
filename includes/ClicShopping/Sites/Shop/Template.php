@@ -239,7 +239,7 @@
      */
     public function getAppsHeaderTags()
     {
-      if (defined('MODULE_HEADER_TAGS_INSTALLED') && !is_null(MODULE_HEADER_TAGS_INSTALLED)) {
+      if (defined('MODULE_HEADER_TAGS_INSTALLED') && !\is_null(MODULE_HEADER_TAGS_INSTALLED)) {
         $header_tags_array = explode(';', MODULE_HEADER_TAGS_INSTALLED);
 
         foreach ($header_tags_array as $header) {
@@ -331,7 +331,7 @@
      */
     public function setSiteThema(?string $thema_directory = null): string
     {
-      if (is_null($thema_directory)) {
+      if (\is_null($thema_directory)) {
         $thema_directory = $this->_directoryTemplateSources . $this->_directoryTemplate . $this->_dynamicTemplate; //sources/template/SITE_THEMA
       } else {
 // Use for multi template demonstration
@@ -387,7 +387,7 @@
     public function getPathDownloadShopDirectory($directory = null) :string
     {
 
-      if (!is_null($directory)) {
+      if (!\is_null($directory)) {
         $path_shop_public_download_directory = $this->getTemplateSource() . '/' . $this->_directoryTemplateDownload . $directory . '/';
       } else {
         $path_shop_public_download_directory = $this->getTemplateSource() . '/' . $this->_directoryTemplateDownload . 'public/';
@@ -486,13 +486,13 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Category = Registry::get('Category');
 
-      if (defined('TEMPLATE_BLOCK_GROUPS') && !is_null(TEMPLATE_BLOCK_GROUPS)) {
+      if (defined('TEMPLATE_BLOCK_GROUPS') && !\is_null(TEMPLATE_BLOCK_GROUPS)) {
         $tbgroups_array = explode(';', TEMPLATE_BLOCK_GROUPS);
 
         foreach ($tbgroups_array as $group) {
           $module_key = 'MODULE_' . strtoupper($group) . '_INSTALLED';
 
-          if (defined($module_key) && !is_null(constant($module_key))) {
+          if (defined($module_key) && !\is_null(constant($module_key))) {
             $modules_array = explode(';', constant($module_key));
 
             foreach ($modules_array as $module) {
@@ -537,7 +537,7 @@
                 if (is_numeric(array_search($group, $this->getReadModulesDefaultDirectories())) && $group != $modules_boxes) {
                   $result = array_search($group, $this->getReadModulesDefaultDirectories());
 
-                  if (!is_null($result)) {
+                  if (!\is_null($result)) {
                     if (is_file($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php')) {
                       include($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php');
                     } elseif (is_file($this->getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php')) {

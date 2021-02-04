@@ -608,7 +608,7 @@
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_newsletter_language'); ?></label>
                   <div class="col-md-5">
 <?php
-  if (is_null($values_languages_id)) {
+  if (\is_null($values_languages_id)) {
     $values_languages_id = DEFAULT_LANGUAGES;
   }
 

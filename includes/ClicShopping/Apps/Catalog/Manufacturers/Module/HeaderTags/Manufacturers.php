@@ -69,7 +69,7 @@
 
         $id = $this->manufacturers_shop->getID();
 
-        if (is_numeric($id) && !is_null($id)) {
+        if (is_numeric($id) && !\is_null($id)) {
           $manufacturers_title = $this->manufacturers_shop->getTitle($id);
 
           $QmetaInfo = $CLICSHOPPING_Db->prepare('select manufacturer_seo_title,

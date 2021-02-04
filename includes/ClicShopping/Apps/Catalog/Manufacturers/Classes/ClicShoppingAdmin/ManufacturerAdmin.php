@@ -47,7 +47,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (!is_null($id)) {
+      if (!\is_null($id)) {
         $Qproducts = $CLICSHOPPING_Db->prepare('select manufacturers_id
                                                 from :table_products
                                                 where products_id = :products_id
@@ -80,7 +80,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       
-      if (!is_null($manufacturer_name)) {
+      if (!\is_null($manufacturer_name)) {
         $Qmanufacturers = $CLICSHOPPING_Db->prepare('select manufacturers_id
                                                     from :table_manufacturers
                                                     where manufacturers_name = :manufacturers_name

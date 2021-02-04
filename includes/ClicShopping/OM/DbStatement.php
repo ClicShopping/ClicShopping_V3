@@ -469,7 +469,7 @@
       $output = '<nav aria-label="pagination">';
       $output .= '<ul class="pagination pagination-sm">';
 
-      if (is_null($site)) {
+      if (\is_null($site)) {
 //admin
         if ($number_of_pages > 1) {
           $output .= '<li class="page-item">' . HTML::selectField('pageset' . $this->page_set_keyword, $pages, $this->page_set, 'style="vertical-align: top; display: inline-block; float-start;" data-pageseturl="' . HTML::output(CLICSHOPPING::link(null, 'A&' . $parameters . $this->page_set_keyword . '=PAGESETGOTO')) . '"') . '</li>';

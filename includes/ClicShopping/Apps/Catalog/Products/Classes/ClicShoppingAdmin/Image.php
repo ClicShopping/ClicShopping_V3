@@ -304,7 +304,7 @@
         $this->products_image_small = $sql_data_array['products_image_small'];
 
       } else {
-        if ((isset($_POST['products_image']) && !is_null($_POST['products_image'])) || !empty($small_image_resized) || !empty($small_image_admin_resized)) {
+        if ((isset($_POST['products_image']) && !\is_null($_POST['products_image'])) || !empty($small_image_resized) || !empty($small_image_admin_resized)) {
           $products_image_name = $this->cleanImageName($_POST['products_image']);
 //
 // small image catalog
@@ -432,7 +432,7 @@
         $separator = '/';
       }
 
-      if (isset($_POST['directory']) && !is_null($_POST['directory'])) {
+      if (isset($_POST['directory']) && !\is_null($_POST['directory'])) {
         $separator = '/';
       }
 

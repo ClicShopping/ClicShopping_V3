@@ -743,7 +743,7 @@
     {
       $general_condition = '';
 
-      if (!is_null( $this->customer->getCustomersGroupID())) {
+      if (!\is_null( $this->customer->getCustomersGroupID())) {
         $QpageManagerGeneralGroup = $this->db->prepare('select pages_id,
                                                                 customers_group_id
                                                          from :table_pages_manager

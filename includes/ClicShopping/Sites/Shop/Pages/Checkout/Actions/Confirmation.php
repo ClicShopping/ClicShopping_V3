@@ -76,7 +76,7 @@
       if (isset($_POST['comments'])) {
         $_SESSION['comments'] = null;
 
-        if (!is_null($_POST['comments'])) {
+        if (!\is_null($_POST['comments'])) {
           $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
         }
       }
@@ -96,7 +96,7 @@
 
 //this needs to be set before the order object is created, but we must process it after
       if (isset($_SESSION['coupon'])) {
-        if (!is_null($_SESSION['coupon'])) {
+        if (!\is_null($_SESSION['coupon'])) {
           $_SESSION['coupon'] = HTML::sanitize($_SESSION['coupon']);
         }
       }

@@ -264,7 +264,7 @@
               class="specialPrice"><?php echo $CLICSHOPPING_Currencies->format($Qspecials->valueDecimal('specials_new_products_price')); ?></span>
           </td>
           <?php
-          if (!is_null($Qspecials->value('scheduled_date'))) {
+          if (!\is_null($Qspecials->value('scheduled_date'))) {
             ?>
             <td class="text-center"><?php echo DateTime::toShort($Qspecials->value('scheduled_date')); ?></td>
             <?php
@@ -274,7 +274,7 @@
             <?php
           }
 
-          if (!is_null($Qspecials->value('expires_date'))) {
+          if (!\is_null($Qspecials->value('expires_date'))) {
             ?>
             <td class="text-center"><?php echo DateTime::toShort($Qspecials->value('expires_date')); ?></td>
             <?php

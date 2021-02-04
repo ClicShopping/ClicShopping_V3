@@ -37,7 +37,7 @@
 
       if (empty($access)) {
         $CLICSHOPPING_MessageStack->add($this->app->getDef('error_administrator_select'), 'error');
-        if (is_null($_GET['aID'])) {
+        if (\is_null($_GET['aID'])) {
           $this->app->redirect('Edit&aID=' . $_GET['aID']);
         }
       }

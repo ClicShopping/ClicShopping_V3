@@ -21,7 +21,7 @@
 // class constructor
     public function __construct()
     {
-      if (defined('MODULE_ORDER_TOTAL_INSTALLED') && !is_null(MODULE_ORDER_TOTAL_INSTALLED)) {
+      if (defined('MODULE_ORDER_TOTAL_INSTALLED') && !\is_null(MODULE_ORDER_TOTAL_INSTALLED)) {
         $this->modules = explode(';', MODULE_ORDER_TOTAL_INSTALLED);
 
         foreach ($this->modules as $value) {
@@ -49,7 +49,7 @@
             $CLICSHOPPING_OTM->process();
 
             for ($i = 0, $n = \count($CLICSHOPPING_OTM->output); $i < $n; $i++) {
-              if (!is_null($CLICSHOPPING_OTM->output[$i]['title']) && !is_null($CLICSHOPPING_OTM->output[$i]['text'])) {
+              if (!\is_null($CLICSHOPPING_OTM->output[$i]['title']) && !\is_null($CLICSHOPPING_OTM->output[$i]['text'])) {
                 $order_total_array[] = [
                   'code' => $CLICSHOPPING_OTM->code,
                   'title' => $CLICSHOPPING_OTM->output[$i]['title'],

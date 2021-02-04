@@ -47,7 +47,7 @@
 
           $order_id = $QLastorder->valueInt('orders_id');
 
-          if (!is_null($order_id)) {
+          if (!\is_null($order_id)) {
             $Qcheck = $CLICSHOPPING_Db->prepare('select 1 from orders
                                                  where orders_id = :orders_id
                                                  and date_purchased < date_sub(now() ),

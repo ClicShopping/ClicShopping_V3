@@ -336,7 +336,7 @@
      */
     private function setProductsName(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -378,7 +378,7 @@
      */
     private function setProductsImage(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -401,7 +401,7 @@
      */
     public function getProductsImage(?int $id = null)
     {
-      if (is_null($this->setProductsImage($id))) {
+      if (\is_null($this->setProductsImage($id))) {
         return false;
       } else {
         return $this->setProductsImage($id);
@@ -416,7 +416,7 @@
      */
     private function setProductsImageMedium(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -438,7 +438,7 @@
      */
     public function getProductsImageMedium(?int $id = null)
     {
-      if (is_null($this->setProductsImageMedium($id))) {
+      if (\is_null($this->setProductsImageMedium($id))) {
         return false;
       } else {
         return $this->setProductsImageMedium($id);
@@ -453,7 +453,7 @@
      */
     private function setProductsDateAvailable(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -525,7 +525,7 @@
      */
     private function setProductsSKU(?int $id): string
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -577,7 +577,7 @@
      */
     private function setProductsDescription(?int $id): string
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -620,7 +620,7 @@
      */
     private function setProductsShortDescription(?int $id = null, $delete_word, $products_short_description_number)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -676,7 +676,7 @@
     {
       $CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
 
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -731,7 +731,7 @@
     {
       $manufacturer_search = '';
 
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -793,7 +793,7 @@
 
     private function setProductsNewArrival(?int $id = null, $size_button = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -842,7 +842,7 @@
      */
     private function setProductsOnlyTheShop(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -874,7 +874,7 @@
      */
     public function setProductsOnlyOnTheWebSite(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -907,7 +907,7 @@
      */
     private function setProductsPackaging(?int $id)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -940,7 +940,7 @@
      */
     private function setProductsDateAdded(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -977,7 +977,7 @@
 
     private function setProductQuantityUnitType(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1138,7 +1138,7 @@
      */
     private function sepProductsWebAndShop(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1205,7 +1205,7 @@
     {
       $CLICSHOPPING_Weight = Registry::get('Weight');
 
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1246,7 +1246,7 @@
      */
     private function setProductsPriceByWeight(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1310,7 +1310,7 @@
      */
     private function setProductsQuantityByUnit(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1353,7 +1353,7 @@
 
     private function setProductsModel(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1383,10 +1383,10 @@
       }
 
 // display the good producs_model
-      if ($this->customer->getCustomersGroupID() != 0 && !is_null($Qproducts->value('products_model_group'))) {
+      if ($this->customer->getCustomersGroupID() != 0 && !\is_null($Qproducts->value('products_model_group'))) {
         $products_model = HTML::outputProtected($Qproducts->value('products_model_group'));
 
-        if (is_null($Qproducts->value('products_model_group'))) {
+        if (\is_null($Qproducts->value('products_model_group'))) {
           $products_model = HTML::outputProtected($Qproducts->value('products_model'));
         }
       } else {
@@ -1414,7 +1414,7 @@
      */
     private function setProductsFlashDiscount(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1504,7 +1504,7 @@
 
     private function setProductQuantityUnitTypeCustomersGroup(?int $id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1580,7 +1580,7 @@
      */
     private function setProductsMinimumQuantity($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1638,7 +1638,7 @@
     */
     private function setProductsMinimumQuantityToTakeAnOrder($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1679,7 +1679,7 @@
 
     public function setProductsAllowingToInsertQuantity($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1818,7 +1818,7 @@
      */
     private function getProductButtonExhausted($button_type = null)
     {
-      if (is_null($button_type)) {
+      if (\is_null($button_type)) {
         $button_type = 'btn-warning btn-sm';
       }
 
@@ -1838,7 +1838,7 @@
 
     private function setProductsExhausted($id, $button_type = null): string
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
       $product_exhausted = '';
@@ -1927,7 +1927,7 @@
     private function setSpecialPriceGroup($id = null)
     {
 
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -1966,7 +1966,7 @@
     private function setPrice($id = null)
     {
 
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2018,7 +2018,7 @@
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Tax = Registry::get('Tax');
 
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2036,7 +2036,7 @@
 
     public function getDisplayPriceGroupWithoutCurrencies($id = null): float
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2053,7 +2053,7 @@
 
     private function setCalculPrice($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2126,7 +2126,7 @@
     {
       $CLICSHOPPING_Prod = Registry::get('Prod');
 
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $CLICSHOPPING_Prod::getProductID($this->getID());
       } else {
         $id = $CLICSHOPPING_Prod::getProductID($id);
@@ -2191,7 +2191,7 @@
      */
     private function setCountProductsAttributes($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2227,7 +2227,7 @@
      */
     public function getHasProductAttributes($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2251,7 +2251,7 @@
      */
     private function setProductsSpecialPrice($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2424,7 +2424,7 @@
      */
     private function setProductsTickerProductsNew($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2471,7 +2471,7 @@
      */
     private function setProductsTickerSpecials($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2554,7 +2554,7 @@
      */
     private function setProductsTickerFavorites($id = null)
     {
-     if (is_null($id)) {
+     if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2597,7 +2597,7 @@
      */
     private function setProductsTickerFeatured($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2703,7 +2703,7 @@
         }
       }
 
-      if (!is_null($new_discount_price) || !empty($new_discount_price)) {
+      if (!\is_null($new_discount_price) || !empty($new_discount_price)) {
         return $new_discount_price;
       } else {
         return false;

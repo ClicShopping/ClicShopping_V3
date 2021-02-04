@@ -40,7 +40,7 @@
     }
   }
 
-  $cPath_back = (!is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
+  $cPath_back = (!\is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -239,7 +239,7 @@
               <td class="text-center"><?php echo $Qproducts->value('products_price'); ?></td>
               <td class="text-center"><?php echo $Qproducts->valueInt('products_quantity'); ?></td>
               <?php
-                if (!is_null($Qproducts->value('products_last_modified'))) {
+                if (!\is_null($Qproducts->value('products_last_modified'))) {
                   echo '<td class="text-center">' . DateTime::toShort($Qproducts->value('products_last_modified')) . '</td>';
                 } else {
                   echo '<td class="text-center"></td>';

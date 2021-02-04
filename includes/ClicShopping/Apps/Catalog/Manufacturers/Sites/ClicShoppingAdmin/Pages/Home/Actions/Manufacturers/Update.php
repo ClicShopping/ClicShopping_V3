@@ -48,10 +48,10 @@
       if (isset($_POST['delete_image'])) {
         $sql_data_array = ['manufacturers_image' => ''];
         $this->app->db->save('manufacturers', $sql_data_array, ['manufacturers_id' => (int)$manufacturers_id]);
-      } elseif (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && !empty($_POST['manufacturers_image'])) {
+      } elseif (isset($_POST['manufacturers_image']) && !\is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && !empty($_POST['manufacturers_image'])) {
         $manufacturers_image = $_POST['manufacturers_image'];
 
-        if (!empty($manufacturers_image) && !is_null($manufacturers_image)) {
+        if (!empty($manufacturers_image) && !\is_null($manufacturers_image)) {
           $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($manufacturers_image);
         }
 

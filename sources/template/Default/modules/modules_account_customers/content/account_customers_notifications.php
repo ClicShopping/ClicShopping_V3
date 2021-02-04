@@ -49,7 +49,7 @@ use ClicShopping\OM\HTML;
       <div class="separator"></div>
       <h3><?php echo CLICSHOPPING::getDef('notifications_title'); ?></h3>
 <?php
-  if ($row_count > 0 && !is_null($Qproducts)) {
+  if ($row_count > 0 && !\is_null($Qproducts)) {
 ?>
   <div><?php echo CLICSHOPPING::getDef('notifications_description'); ?></div>
   <div class="clearfix"></div>

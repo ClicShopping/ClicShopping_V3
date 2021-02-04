@@ -90,9 +90,9 @@
                   <div class="col-md-5">
                     <?php
                       if ($error == "name") {
-                        echo HTML::inputField('customers_group_name', '', 'required aria-required="true" id="customers_group_name" placeholder="' . $CLICSHOPPING_Groups->getDef('entry_groups_name') . '" maxlength="32" style="border: 2px solid #FF0000"', true) . '&nbsp;' . (!is_null($CLICSHOPPING_Groups->getDef('entry_groups_name')) ? '<span class="inputRequirement"></span>' : '');
+                        echo HTML::inputField('customers_group_name', '', 'required aria-required="true" id="customers_group_name" placeholder="' . $CLICSHOPPING_Groups->getDef('entry_groups_name') . '" maxlength="32" style="border: 2px solid #FF0000"', true) . '&nbsp;' . (!\is_null($CLICSHOPPING_Groups->getDef('entry_groups_name')) ? '<span class="inputRequirement"></span>' : '');
                       } else {
-                        echo HTML::inputField('customers_group_name', '', 'required aria-required="true" id="customers_group_name" placeholder="' . $CLICSHOPPING_Groups->getDef('entry_groups_name') . '" maxlength="32"', true) . '&nbsp;' . (!is_null($CLICSHOPPING_Groups->getDef('entry_groups_name')) ? '<span class="inputRequirement"></span>' : '');
+                        echo HTML::inputField('customers_group_name', '', 'required aria-required="true" id="customers_group_name" placeholder="' . $CLICSHOPPING_Groups->getDef('entry_groups_name') . '" maxlength="32"', true) . '&nbsp;' . (!\is_null($CLICSHOPPING_Groups->getDef('entry_groups_name')) ? '<span class="inputRequirement"></span>' : '');
                       }
                     ?>
                   </div>
