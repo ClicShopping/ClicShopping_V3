@@ -87,11 +87,11 @@
                 foreach ($result as $key => $value) {
                   $text = '';
 
-                  if (!is_array($value)) $text = $value;
+                  if (!\is_array($value)) $text = $value;
 
                   echo '<li>' . $key . ' :' . $text . '</li>';
 
-                  if (is_array($value)) {
+                  if (\is_array($value)) {
                     echo '<div class="separator"></div>';
 
                     foreach ($value as $item) {

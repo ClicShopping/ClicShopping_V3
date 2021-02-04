@@ -192,7 +192,7 @@
           }
         }
       } elseif ($action == 'static') {
-        if (is_array($identifier)) {
+        if (\is_array($identifier)) {
           $banner = $identifier;
         } else {
           if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
@@ -241,7 +241,7 @@
 
       $output = '';
 
-      if (is_array($banner)) {
+      if (\is_array($banner)) {
         if (!empty($banner['banners_html_text'])) {
           $output = $banner['banners_html_text'];
         } else {

@@ -71,7 +71,7 @@
 
         for ($i=0, $n=\count($products); $i<$n; $i++) {
 // Push all attributes information in an array
-          if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
+          if (isset($products[$i]['attributes']) && \is_array($products[$i]['attributes'])) {
             foreach($products[$i]['attributes'] as $option => $value) {
               $shopping_cart .= HTML::hiddenField('id[' . $products[$i]['id'] . '][' . $option . ']', $value);
 
@@ -153,9 +153,9 @@
           $products_attributes = '';
 
           if (isset($products[$i]['attributes'])) {
-            if  (is_array($products[$i]['attributes'])) {
+            if  (\is_array($products[$i]['attributes'])) {
               foreach($products[$i]['attributes'] as $option => $value) {
-                if (is_array($products[$i][$option]) && isset($products[$i][$option])) {
+                if (\is_array($products[$i][$option]) && isset($products[$i][$option])) {
                   $products_attributes_values_name = $products[$i][$option]['products_attributes_values_name'];
                   $products_attributes_reference = $products[$i][$option]['products_attributes_reference'];
                   $products_attributes_image = $products[$i][$option]['products_attributes_image'];

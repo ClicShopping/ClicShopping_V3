@@ -44,7 +44,7 @@
         $QglobalNotifications->execute();
 
         if ($QglobalNotifications->valueInt('global_product_notifications') != 1) {
-          if (isset($_POST['notify']) && is_array($_POST['notify']) && !empty($_POST['notify'])) {
+          if (isset($_POST['notify']) && \is_array($_POST['notify']) && !empty($_POST['notify'])) {
             $notify = array_unique($_POST['notify']);
 
             foreach ($notify as $n) {

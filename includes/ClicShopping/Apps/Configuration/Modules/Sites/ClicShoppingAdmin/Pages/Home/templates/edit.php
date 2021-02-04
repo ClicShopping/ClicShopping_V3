@@ -214,7 +214,7 @@
         <div class="mainTitle"><?php echo CLICSHOPPING::getDef('text_box_heading_module'); ?></div>
         <div class="adminformTitle">
           <?php
-          if (is_array($mInfo->keys)) {
+          if (\is_array($mInfo->keys)) {
             foreach ($mInfo->keys as $key => $value) {
               $keys .= '<strong>' . $value['title'] . '</strong><br />' . $value['description'] . '<br />';
 

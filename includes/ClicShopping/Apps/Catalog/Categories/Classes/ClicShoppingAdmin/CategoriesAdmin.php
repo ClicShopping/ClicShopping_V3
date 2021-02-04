@@ -408,7 +408,7 @@
     public function getCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false)
     {
 
-      if (!is_array($category_tree_array)) $category_tree_array = [];
+      if (!\is_array($category_tree_array)) $category_tree_array = [];
       if ((\count($category_tree_array) < 1) && ($exclude != '0')) $category_tree_array[] = ['id' => '0', 'text' => CLICSHOPPING::getDef('text_top')];
 
       if ($include_itself) {
@@ -502,7 +502,7 @@
      */
     public function getGenerateCategoryPath($id, $from = 'category', $categories_array = '', $index = 0)
     {
-      if (!is_array($categories_array)) {
+      if (!\is_array($categories_array)) {
         $categories_array = [];
       }
 

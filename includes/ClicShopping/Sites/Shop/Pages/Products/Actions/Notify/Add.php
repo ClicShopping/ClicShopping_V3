@@ -36,7 +36,7 @@
           CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID());
         }
 
-        if (!is_array($notify)) $notify = array($notify);
+        if (!\is_array($notify)) $notify = array($notify);
 
         for ($i = 0, $n = \count($notify); $i < $n; $i++) {
 

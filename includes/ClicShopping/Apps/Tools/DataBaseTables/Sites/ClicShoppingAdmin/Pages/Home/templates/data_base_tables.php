@@ -53,7 +53,7 @@
 
   if (isset($_POST['action'])) {
     if (in_array($_POST['action'], array('check', 'analyze', 'optimize', 'repair', 'utf8'))) {
-      if (isset($_POST['id']) && is_array($_POST['id']) && !empty($_POST['id'])) {
+      if (isset($_POST['id']) && \is_array($_POST['id']) && !empty($_POST['id'])) {
         $tables = Database::getDtTables();
 
         foreach ($_POST['id'] as $key => $value) {

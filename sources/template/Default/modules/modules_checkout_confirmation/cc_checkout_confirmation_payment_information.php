@@ -51,7 +51,7 @@
 
         $data = '';
 
-        if (is_array($CLICSHOPPING_Payment->modules)) {
+        if (\is_array($CLICSHOPPING_Payment->modules)) {
           $confirmation = $CLICSHOPPING_Payment->confirmation();
 
           if ($confirmation) {

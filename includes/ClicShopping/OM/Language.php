@@ -283,7 +283,7 @@
       if (isset($this->definitions[$scope][$key])) {
         $def = $this->definitions[$scope][$key];
 
-        if (is_array($values) && !empty($values)) {
+        if (\is_array($values) && !empty($values)) {
           $def = $this->parseDefinition($def, $values);
         }
 
@@ -301,7 +301,7 @@
      */
     public static function parseDefinition($string, $values)
     {
-      if (is_array($values) && !empty($values)) {
+      if (\is_array($values) && !empty($values)) {
         $string = preg_replace_callback('/\{\{([A-Za-z0-9-_]+)\}\}/', function ($matches) use ($values) {
           return isset($values[$matches[1]]) ? $values[$matches[1]] : $matches[1];
         }, $string);
@@ -585,7 +585,7 @@
       if (!isset($_GET['Checkout'])) {
         $languages_string = '';
 
-        if (is_array($_GET)) {
+        if (\is_array($_GET)) {
           foreach ($_GET as $key => $value) {
             if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
               $get_params[] = ($value) ? "$key=$value" : $key;
@@ -637,7 +637,7 @@
           $languages = $this->getAll();
         }
 
-        if (is_array($_GET)) {
+        if (\is_array($_GET)) {
           foreach ($_GET as $key => $value) {
             if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
               $get_params[] = ($value) ? "$key=$value" : $key;
@@ -652,7 +652,7 @@
         $get_params .= '&';
       }
 
-      if (is_array($languages)) {
+      if (\is_array($languages)) {
         foreach ($languages as $value) {
           $content .= HTML::link(CLICSHOPPING::link(null, $get_params . 'language=' . $value['code']), $this->getImage($value['code'])) . '&nbsp;&nbsp;';
         }

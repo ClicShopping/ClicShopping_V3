@@ -623,7 +623,7 @@
       $column_list = $this->sortListSearch();
 
       if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > \count($column_list))) {
-        if (is_array($column_list)) {
+        if (\is_array($column_list)) {
           for ($i = 0, $n = \count($column_list); $i < $n; $i++) {
             if ($column_list[$i] == 'MODULE_PRODUCTS_SEARCH_LIST_DATE_ADDED') {
               $_GET['sort'] = $i + 1 . 'a';

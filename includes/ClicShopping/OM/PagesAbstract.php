@@ -113,7 +113,7 @@
      */
     public function runAction($actions)
     {
-      if (!is_array($actions)) {
+      if (!\is_array($actions)) {
         $actions = [
           $actions
         ];
@@ -186,7 +186,7 @@
      */
     public function actionExists($action)
     {
-      if (!is_array($action)) {
+      if (!\is_array($action)) {
         $action = [
           $action
         ];
@@ -228,7 +228,7 @@
      */
     protected function getActionClassName($action)
     {
-      if (!is_array($action)) {
+      if (!\is_array($action)) {
         $action = [
           $action
         ];

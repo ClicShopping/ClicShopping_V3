@@ -33,7 +33,7 @@
 
         $code = null;
 
-        if (isset($module) && is_array($module) && isset($module['id'])) {
+        if (isset($module) && \is_array($module) && isset($module['id'])) {
           if (str_contains($module['id'], '\\')) {
             list($vendor, $app, $module) = explode('\\', $module['id']);
 
@@ -81,7 +81,7 @@
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $shipping_weight = 1;
 
-      if (is_array($this->modules)) {
+      if (\is_array($this->modules)) {
         $shipping_weight = $CLICSHOPPING_ShoppingCart->getWeight();
 
         if (SHIPPING_BOX_WEIGHT >= ($shipping_weight * (SHIPPING_BOX_PADDING / 100))) {
@@ -109,7 +109,7 @@
     {
       $quotes_array = [];
 
-      if (is_array($this->modules)) {
+      if (\is_array($this->modules)) {
         $include_quotes = [];
 
         foreach ($this->modules as $value) {
@@ -133,7 +133,7 @@
             $quotes = Registry::get('Shipping_' . str_replace('\\', '_', $include_quotes[$i]))->quote($method);
           }
 
-          if (is_array($quotes)) {
+          if (\is_array($quotes)) {
             $quotes_array[] = $quotes;
           }
         }
@@ -171,7 +171,7 @@
      */
     public function getCheapest()
     {
-      if (is_array($this->modules)) {
+      if (\is_array($this->modules)) {
         $rates = [];
         $obj = [];
 
@@ -201,7 +201,7 @@
         $cheapest = false;
 
         for ($i = 0, $n = \count($rates); $i < $n; $i++) {
-          if (is_array($cheapest)) {
+          if (\is_array($cheapest)) {
             if ($rates[$i]['cost'] < $cheapest['cost']) {
               $cheapest = $rates[$i];
             }

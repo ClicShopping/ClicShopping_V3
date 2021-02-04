@@ -35,7 +35,7 @@
     {
       $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
-      if (isset($this->ID) && isset($this->productCategoriesId) && is_array($this->productCategoriesId)) {
+      if (isset($this->ID) && isset($this->productCategoriesId) && \is_array($this->productCategoriesId)) {
 
         $products_categories_id = \count($this->productCategoriesId);
 

@@ -108,7 +108,7 @@
      *
      *
      * @return void
-     * @uses is_array()
+     * @uses \is_array()
      */
     public function cleanseGetRecursive(&$get)
     {
@@ -118,7 +118,7 @@
           unset ($get[$key]);
           continue;
         }
-        if (is_array($value)) {
+        if (\is_array($value)) {
           // We have an array so well run it through again
           $this->cleanseGetRecursive($value);
           // We have a string value so we'll cleanse it

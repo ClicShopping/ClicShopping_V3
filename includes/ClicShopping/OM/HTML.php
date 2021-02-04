@@ -308,7 +308,7 @@
 
     protected static function selectionField($name, $type, $values = null, $default = null, $parameters = null, $separator = '&nbsp;&nbsp;')
     {
-      if (!is_array($values)) {
+      if (!\is_array($values)) {
         $values = array($values);
       }
 
@@ -335,7 +335,7 @@
       foreach ($values as $key => $value) {
         $counter++;
 
-        if (is_array($value)) {
+        if (\is_array($value)) {
           $selection_value = $value['id'];
           $selection_text = $value['text'];
         } else {
@@ -359,7 +359,7 @@
 
         $field .= ' value="' . static::output($selection_value) . '"';
 
-        if (isset($default) && (($default === true) || (!is_array($default) && ((string)$default == (string)$selection_value)) || (is_array($default) && in_array($selection_value, $default)))) {
+        if (isset($default) && (($default === true) || (!\is_array($default) && ((string)$default == (string)$selection_value)) || (\is_array($default) && in_array($selection_value, $default)))) {
           $field .= ' checked="checked"';
         }
 

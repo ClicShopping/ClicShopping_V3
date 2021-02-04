@@ -257,7 +257,7 @@ ENDCFG;
   $modules = ''; // must be under array
 
 if (!isset($_POST['DB_SKIP_IMPORT'])) {
-  if (is_array($modules)) {
+  if (\is_array($modules)) {
     foreach ($modules as $m) {
       $m_installed = [];
 

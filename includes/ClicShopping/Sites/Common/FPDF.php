@@ -1485,7 +1485,7 @@
           $this->_out('/Filter /' . $info['f']);
         if (isset($info['parms']))
           $this->_out($info['parms']);
-        if (isset($info['trns']) && is_array($info['trns'])) {
+        if (isset($info['trns']) && \is_array($info['trns'])) {
           $trns = '';
           for ($i = 0, $iMax = \count($info['trns']); $i < $iMax; $i++)
             $trns .= $info['trns'][$i] . ' ' . $info['trns'][$i] . ' ';

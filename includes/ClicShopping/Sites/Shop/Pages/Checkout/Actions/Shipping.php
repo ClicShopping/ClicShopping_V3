@@ -68,7 +68,7 @@
         $_SESSION['sendto'] = $CLICSHOPPING_Customer->getDefaultAddressID();
       } else {
 // verify the selected shipping address
-        if ((is_array($_SESSION['sendto']) && empty($_SESSION['sendto'])) || is_numeric($_SESSION['sendto'])) {
+        if ((\is_array($_SESSION['sendto']) && empty($_SESSION['sendto'])) || is_numeric($_SESSION['sendto'])) {
           $QcheckAddress = $CLICSHOPPING_Db->prepare('select address_book_id
                                                       from :table_address_book
                                                       where customers_id = :customers_id

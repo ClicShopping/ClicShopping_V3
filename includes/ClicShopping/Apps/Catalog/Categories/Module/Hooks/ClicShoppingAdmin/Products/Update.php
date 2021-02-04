@@ -87,7 +87,7 @@
           $this->moveCategory($move_new_category, $id);
         } elseif ($this->productsLink != 'move') {
 //link the category
-          if (is_array($new_category) && isset($new_category)) {
+          if (\is_array($new_category) && isset($new_category)) {
             foreach ($new_category as $value_id) {
               $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', ['products_id' => (int)$id,
                   'categories_id' => (int)$value_id

@@ -53,7 +53,7 @@
 
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_CONTENT_WIDTH;
 
-        if (is_array($CLICSHOPPING_Payment->modules)) {
+        if (\is_array($CLICSHOPPING_Payment->modules)) {
            if ($CLICSHOPPING_Payment->process_button() !== false) {
              $process_button = $CLICSHOPPING_Payment->process_button();
           } else {

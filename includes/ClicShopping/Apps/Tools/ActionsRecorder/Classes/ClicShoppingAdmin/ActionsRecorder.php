@@ -121,7 +121,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
 
-      if (!is_array($category_tree_array)) {
+      if (!\is_array($category_tree_array)) {
         $category_tree_array = [];
       }
 
@@ -214,7 +214,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (!is_array($categories_array)) {
+      if (!\is_array($categories_array)) {
         $categories_array = [];
       }
 
@@ -317,7 +317,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
 
-      if (!is_array($category_tree_array)) {
+      if (!\is_array($category_tree_array)) {
         $category_tree_array = [];
       }
 

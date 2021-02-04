@@ -27,7 +27,7 @@ use ClicShopping\OM\HTML;
       <div id="gdpr">
 <?php
   if (is_dir($source_folder)) {
-    if (is_array($files_get)) {
+    if (\is_array($files_get)) {
       foreach ($files_get as $value) {
         if (!empty($value['name'])) {
          echo $CLICSHOPPING_Hooks->output('Account', $value['name'], null, 'display');

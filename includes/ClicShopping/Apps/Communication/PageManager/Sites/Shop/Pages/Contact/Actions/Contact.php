@@ -28,7 +28,7 @@
         $send_to_array = [];
         $contact_department_list = explode(",", CONTACT_DEPARTMENT_LIST);
 
-        if(is_array($contact_department_list)) {
+        if(\is_array($contact_department_list)) {
           foreach (explode(",", CONTACT_DEPARTMENT_LIST) as $k => $v) {
             $send_to_array[] = [
               'id' => $k,

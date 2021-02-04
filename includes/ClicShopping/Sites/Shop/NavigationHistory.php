@@ -23,11 +23,11 @@
 
     public function __construct(bool $add_current_page = false)
     {
-      if (isset($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data']) && is_array($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data']) && !empty($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data'])) {
+      if (isset($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data']) && \is_array($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data']) && !empty($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data'])) {
         $this->path =& $_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data'];
       }
 
-      if (isset($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['snapshot']) && is_array($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['snapshot']) && !empty($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['snapshot'])) {
+      if (isset($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['snapshot']) && \is_array($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['snapshot']) && !empty($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['snapshot'])) {
         $this->snapshot =& $_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['snapshot'];
       }
 
@@ -67,7 +67,7 @@
 
       $action_get = http_build_query($action);
 
-      if (is_array($this->path)) {
+      if (\is_array($this->path)) {
         for ($i = 0, $n = \count($this->path); $i < $n; $i++) {
           if (($this->path[$i]['application'] == CLICSHOPPING::getSiteApplication()) && ($this->path[$i]['action'] == $action_get)) {
             array_splice($this->path, $i);
@@ -131,7 +131,7 @@
 
     public function setSnapshot($page = null)
     {
-      if (isset($page) && is_array($page)) {
+      if (isset($page) && \is_array($page)) {
         $this->snapshot = ['application' => $page['application'],
           'action' => $page['action'],
           'mode' => $page['mode'],
@@ -230,13 +230,13 @@
     {
       $exclude = array('x', 'y', Registry::get('Session')->getName());
 
-      if (is_array($additional_exclude) && !empty($additional_exclude)) {
+      if (\is_array($additional_exclude) && !empty($additional_exclude)) {
         $exclude = array_merge($exclude, $additional_exclude);
       }
 
       $string = '';
 
-      if (is_array($array) && !empty($array)) {
+      if (\is_array($array) && !empty($array)) {
         foreach ($array as $key => $value) {
           if (!in_array($key, $exclude)) {
             $string .= $key . '=' . $value . '&';

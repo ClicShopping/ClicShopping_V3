@@ -735,7 +735,7 @@
     {
       $new_category = $categories_id;
 
-      if (is_array($new_category) && isset($new_category)) {
+      if (\is_array($new_category) && isset($new_category)) {
         foreach ($new_category as $value_id) {
           $this->cloneProductsInOtherCategory($id, $value_id);
         }

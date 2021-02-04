@@ -170,7 +170,7 @@
      */
     public function addExtensions($extensions)
     {
-      if (!is_array($extensions)) {
+      if (!\is_array($extensions)) {
         $extensions = [$extensions];
       }
 

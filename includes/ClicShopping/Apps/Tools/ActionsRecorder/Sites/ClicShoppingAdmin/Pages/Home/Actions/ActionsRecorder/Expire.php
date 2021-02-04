@@ -76,7 +76,7 @@
           $expired_entries = $this->app->db->delete('action_recorder', ['module' => $_GET['module']]);
         }
       } else {
-        if (is_array($modules_array)) {
+        if (\is_array($modules_array)) {
           foreach ($modules_array as $module) {
             $get_module_class = $CLICSHOPPING_ActionsRecorderClass->getClassModule($module);
             if (isset($get_module_class) && is_object($get_module_class)) {

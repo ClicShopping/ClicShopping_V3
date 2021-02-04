@@ -37,7 +37,7 @@
       if (is_dir($source_folder)) {
         $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutConfirmation*');
 
-        if (is_array($files_get)) {
+        if (\is_array($files_get)) {
           foreach ($files_get as $value) {
             if (!empty($value['name'])) {
               $CLICSHOPPING_Hooks->call('Checkout', $value['name']);
@@ -122,7 +122,7 @@
         CLICSHOPPING::redirect(null, 'Checkout&Billing&error_message=' . urlencode(CLICSHOPPING::getDef('error_no_payment_module_selected')));
       }
 
-      if (is_array($CLICSHOPPING_Payment->modules)) {
+      if (\is_array($CLICSHOPPING_Payment->modules)) {
         $CLICSHOPPING_Payment->pre_confirmation_check();
       }
 
@@ -153,7 +153,7 @@
         $form_action_url = CLICSHOPPING::link(null, 'Checkout&Process');
       }
 
-      if (is_array($CLICSHOPPING_Payment->modules)) {
+      if (\is_array($CLICSHOPPING_Payment->modules)) {
         $CLICSHOPPING_Payment->confirmation();
       }
 

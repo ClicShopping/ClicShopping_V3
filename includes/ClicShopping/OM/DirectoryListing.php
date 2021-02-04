@@ -66,7 +66,7 @@
      */
     public function setExcludeEntries(?array $entries)
     {
-      if (is_array($entries)) {
+      if (\is_array($entries)) {
         foreach ($entries as $value) {
           if (!in_array($value, $this->_exclude_entries)) {
             $this->_exclude_entries[] = $value;
@@ -132,7 +132,7 @@
         $directory = $this->_directory;
       }
 
-      if (!is_array($this->_listing)) {
+      if (!\is_array($this->_listing)) {
         $this->_listing = array();
       }
 
@@ -203,11 +203,11 @@
      */
     public function getFiles(bool $sort_by_directories = true): array
     {
-      if (!is_array($this->_listing)) {
+      if (!\is_array($this->_listing)) {
         $this->read();
       }
 
-      if (is_array($this->_listing) && (\count($this->_listing) > 0)) {
+      if (\is_array($this->_listing) && (\count($this->_listing) > 0)) {
         if ($sort_by_directories === true) {
           usort($this->_listing, array($this, '_sortListing'));
         }
@@ -223,7 +223,7 @@
      */
     public function getSize(): int
     {
-      if (!is_array($this->_listing)) {
+      if (!\is_array($this->_listing)) {
         $this->read();
       }
 

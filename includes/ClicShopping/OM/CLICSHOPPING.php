@@ -575,7 +575,7 @@
      */
     public static function getAllGET($exclude = null)
     {
-      if (!is_array($exclude)) {
+      if (!\is_array($exclude)) {
         if (!empty($exclude)) {
           $exclude = [$exclude];
         } else {
@@ -595,7 +595,7 @@
 
       $exclude = array_merge($exclude, $array);
 
-      if (is_array($_GET)) {
+      if (\is_array($_GET)) {
         foreach ($_GET as $key => $value) {
           if (!\in_array($key, $exclude, true)) {
             $params .= $key . (!empty($value) ? '=' . $value : '') . '&';
@@ -641,13 +641,13 @@
      */
     public static function arrayToString(array $array, string $exclude = '', $equals = '=', string $separator = '&'): ?string
     {
-      if (!is_array($exclude)) {
+      if (!\is_array($exclude)) {
         $exclude = [];
       }
 
       $get_string = '';
 
-      if (is_array($array)) {
+      if (\is_array($array)) {
         foreach ($array as $key => $value) {
           if ((!\in_array($key, $exclude, true)) && ($key != 'x') && ($key != 'y')) {
             $get_string .= $key . $equals . $value . $separator;

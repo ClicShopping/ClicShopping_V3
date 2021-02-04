@@ -53,7 +53,7 @@
           if (!empty($response)) {
             $response = json_decode($response, true);
 
-            if (is_array($response) && isset($response['status']) && ($response['status'] == '1')) {
+            if (\is_array($response) && isset($response['status']) && ($response['status'] == '1')) {
               $result['status'] = '1';
               $result['message'] = 'success';
             }

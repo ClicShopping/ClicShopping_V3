@@ -120,7 +120,7 @@
 
       $valid_files = [];
 
-      if (is_array($files)) {
+      if (\is_array($files)) {
         foreach ($files as $file) {
           if (file_exists($file)) {
             $valid_files[] = $file;

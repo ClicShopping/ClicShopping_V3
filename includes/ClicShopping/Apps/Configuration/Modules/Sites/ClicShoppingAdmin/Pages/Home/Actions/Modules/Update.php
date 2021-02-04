@@ -32,7 +32,7 @@
         $set = $_GET['set'] ?? '';
 
         foreach ($_POST['configuration'] as $key => $value) {
-          if ((is_array($value)) && (!empty($value))) {
+          if ((\is_array($value)) && (!empty($value))) {
             $key = HTML::sanitize($key);
             $value = HTML::sanitize($value);
 

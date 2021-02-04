@@ -56,7 +56,7 @@
 
       $suppliers_array = $this->SupplierAdmin->getSupplier();
 
-      if (is_array($suppliers_array) && \count($suppliers_array) > 0) {
+      if (\is_array($suppliers_array) && \count($suppliers_array) > 0) {
         $suppliers_name = $suppliers_array[0]['suppliers_name'];
       } else {
         $suppliers_name = null;

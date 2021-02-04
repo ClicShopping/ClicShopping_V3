@@ -629,7 +629,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (!is_array($category_tree_array)) $category_tree_array = [];
+      if (!\is_array($category_tree_array)) $category_tree_array = [];
       if ((\count($category_tree_array) < 1) && ($exclude != '0')) $category_tree_array[] = ['id' => '0', 'text' => CLICSHOPPING::getDef('text_selected')];
 
       if ($include_itself) {

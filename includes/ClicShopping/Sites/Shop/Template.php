@@ -805,7 +805,7 @@
         $FILES = glob($source_folder . $filename . '.' . $ext);
         $FILE_LIST[] = [];
 
-        if (is_array($FILES)) {
+        if (\is_array($FILES)) {
           foreach ($FILES as $key => $file) {
             $result = str_replace($source_folder, '', $file);
             $name = str_replace('.' . $ext, '', $result);
@@ -817,7 +817,7 @@
           }
         }
 
-        if (is_array($FILE_LIST)) {
+        if (\is_array($FILE_LIST)) {
           return $FILE_LIST;
         }
       }

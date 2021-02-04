@@ -235,15 +235,15 @@
             $reviews = $Qreviews->fetch();
 
             // recover from bad records
-            if (!is_array($Qcountry->fetch())) {
+            if (!\is_array($Qcountry->fetch())) {
               $country = array('Country is NULL');
             }
 
-            if (!is_array($Qinfo->fetch())) {
+            if (!\is_array($Qinfo->fetch())) {
               $info = ['Info is NULL'];
             }
 
-            if (!is_array($Qreviews->fetch())) {
+            if (!\is_array($Qreviews->fetch())) {
               $reviews = ['Customers is NULL'];
             }
 

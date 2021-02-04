@@ -71,7 +71,7 @@
         $_SESSION['billto'] = $CLICSHOPPING_Customer->getDefaultAddressID();
       } else {
 // verify the selected billing address
-        if ((is_array($_SESSION['billto']) && empty($_SESSION['billto'])) || is_numeric($_SESSION['billto'])) {
+        if ((\is_array($_SESSION['billto']) && empty($_SESSION['billto'])) || is_numeric($_SESSION['billto'])) {
 
           $QcheckAddress = $CLICSHOPPING_Db->prepare('select count(*) as total
                                                       from :table_address_book

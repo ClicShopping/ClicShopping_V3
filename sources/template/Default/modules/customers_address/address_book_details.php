@@ -354,7 +354,7 @@
           }
         }
 
-        if (is_array($zones_array) && \count($zones_array) > 0) {
+        if (\is_array($zones_array) && \count($zones_array) > 0) {
           echo HTML::selectMenu('state', $zones_array, 'id="inputState" aria-describedby="atState"');
         } else {
 

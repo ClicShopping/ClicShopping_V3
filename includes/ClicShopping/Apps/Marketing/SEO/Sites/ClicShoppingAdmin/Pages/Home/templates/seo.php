@@ -55,7 +55,7 @@
 
   $seoBject = $Qseo->toArray();
   
-  if (is_array($seoBject)){
+  if (\is_array($seoBject)){
     $seo = new ObjectInfo($Qseo->toArray());
   
     $languages = $CLICSHOPPING_Language->getLanguages();

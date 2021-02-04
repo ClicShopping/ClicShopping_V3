@@ -74,7 +74,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Address = Registry::get('Address');
 
-      if (is_array($address_id) && !empty($address_id)) {
+      if (\is_array($address_id) && !empty($address_id)) {
         return $CLICSHOPPING_Address->addressFormat($address_id['address_format_id'], $address_id, $html, $boln, $eoln);
       }
 

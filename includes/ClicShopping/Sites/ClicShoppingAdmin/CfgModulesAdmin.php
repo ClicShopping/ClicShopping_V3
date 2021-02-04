@@ -68,7 +68,7 @@
      */
     public function get(string $code, string $key)
     {
-      if (is_array($this->_modules)) {
+      if (\is_array($this->_modules)) {
         foreach ($this->_modules as $m) {
           if ($m['code'] == $code) {
             return $m[$key];
@@ -83,7 +83,7 @@
      */
     public function exists($code): bool
     {
-      if (is_array($this->_modules)) {
+      if (\is_array($this->_modules)) {
         foreach ($this->_modules as $m) {
           if ($m['code'] == $code) {
             return true;

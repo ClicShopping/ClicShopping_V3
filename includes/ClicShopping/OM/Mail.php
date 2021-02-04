@@ -326,7 +326,7 @@
         $domain = array_pop($array_domain);
         $exlude_domain = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
 
-        if (is_array($exlude_domain)) {
+        if (\is_array($exlude_domain)) {
           foreach ($exlude_domain as $value) {
             if ($value === $domain) {
               return false;

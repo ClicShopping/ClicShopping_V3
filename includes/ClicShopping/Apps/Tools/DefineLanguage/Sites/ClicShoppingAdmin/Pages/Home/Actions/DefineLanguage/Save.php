@@ -59,7 +59,7 @@
 
       if (isset($search)) {
 // delete
-        if (isset($_POST['delete']) && is_array($_POST['delete'])) {
+        if (isset($_POST['delete']) && \is_array($_POST['delete'])) {
           foreach ($_POST['delete'] as $key => $value) {
             $sql_array = [
               'definition_key' => HTML::sanitize($key),
@@ -71,9 +71,9 @@
         }
 
 // update only
-        if (is_array($definition_values)) {
+        if (\is_array($definition_values)) {
           foreach ($definition_values as $definition_key => $language_definition) {
-            if (is_array($language_definition)) {
+            if (\is_array($language_definition)) {
               foreach ($language_definition as $language_id => $definition_value) {
                 $sql_data_array = [
                   'content_group' => $content_group,
@@ -101,7 +101,7 @@
         }
 
   // add new_definition_key
-        if (isset($new_definition_key) && is_array($_POST['new_definition_value'])) {
+        if (isset($new_definition_key) && \is_array($_POST['new_definition_value'])) {
           foreach ($_POST['new_definition_value'] as $key => $value) {
             $sql_data_array = [
               'content_group' => $content_group,
@@ -131,7 +131,7 @@
 // reset all
         $new_definition_key_error = false;
 
-        if (isset($new_definition_key) && is_array($_POST['new_definition_value'])) {
+        if (isset($new_definition_key) && \is_array($_POST['new_definition_value'])) {
           foreach ($_POST['new_definition_value'] as $key => $value) {
             if (!isset($definition_values[$new_definition_key][$key])) {
               $new_definition_values[$new_definition_key][$key] = $value;
@@ -150,7 +150,7 @@
 
         $this->app->db->delete(':table_languages_definitions', $where_array);
 
-        if (is_array($definition_values)) {
+        if (\is_array($definition_values)) {
           foreach ($definition_values as $definition_key => $language_definition) {
             foreach ($language_definition as $language_id => $definition_value) {
               $sql_data_array = [

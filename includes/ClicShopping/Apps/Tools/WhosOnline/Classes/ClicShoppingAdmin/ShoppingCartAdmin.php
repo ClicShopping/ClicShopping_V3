@@ -40,7 +40,7 @@
 
         $this->contents[$products_id] = ['qty' => $qty];
 
-        if (is_array($attributes)) {
+        if (\is_array($attributes)) {
           foreach ($attributes as $option => $value) {
             $this->contents[$products_id]['attributes'][$option] = $value;
           }
@@ -56,7 +56,7 @@
 
       $this->contents[$products_id] = ['qty' => $quantity];
 
-      if (is_array($attributes)) {
+      if (\is_array($attributes)) {
         foreach ($attributes as $option => $value) {
           $this->contents[$products_id]['attributes'][$option] = $value;
         }
@@ -85,7 +85,7 @@
     {
       $this->total = 0;
       $this->weight = 0;
-      if (!is_array($this->contents)) return 0;
+      if (!\is_array($this->contents)) return 0;
 
       foreach (array_keys($this->contents) as $products_id) {
         $qty = $this->contents[$products_id]['qty'];
@@ -158,7 +158,7 @@
     public function getUprid($prid, $params)
     {
       $uprid = $prid;
-      if ((is_array($params)) && (!strstr($prid, '{'))) {
+      if ((\is_array($params)) && (!strstr($prid, '{'))) {
         foreach ($params as $option => $value) {
           $uprid = $uprid . '{' . $option . '}' . $value;
         }

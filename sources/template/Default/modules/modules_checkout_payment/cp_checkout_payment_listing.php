@@ -88,7 +88,7 @@
           if (isset($selection[$i]['error'])) {
             $data .= '<div class="form-text">' .$selection[$i]['error'] . '</div>';
 
-          } elseif (isset($selection[$i]['fields']) && is_array($selection[$i]['fields'])) {
+          } elseif (isset($selection[$i]['fields']) && \is_array($selection[$i]['fields'])) {
             $data .= '<tr>';
             $data .= '<td colspan="2"><table border="0" cellspacing="0" cellpadding="2">';
 

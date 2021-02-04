@@ -359,7 +359,7 @@
         }
       }
 
-      if (is_array($_SESSION['sendto']) && !empty($_SESSION['sendto'])) {
+      if (\is_array($_SESSION['sendto']) && !empty($_SESSION['sendto'])) {
         $shipping_address = [
           'entry_firstname' => $_SESSION['sendto']['firstname'],
           'entry_lastname' => $_SESSION['sendto']['lastname'],
@@ -426,7 +426,7 @@
         ];
       }
 
-      if (isset($_SESSION['billto']) && is_array($_SESSION['billto']) && !empty($_SESSION['billto'])) {
+      if (isset($_SESSION['billto']) && \is_array($_SESSION['billto']) && !empty($_SESSION['billto'])) {
         $billing_address = [
           'entry_firstname' => $_SESSION['billto']['firstname'],
           'entry_lastname' => $_SESSION['billto']['lastname'],
@@ -486,7 +486,7 @@
         ];
       }
 
-      if ((isset($_SESSION['payment']) && is_array($_SESSION['payment'])) || (isset($_SESSION['shipping']) && is_array($_SESSION['shipping']))) {
+      if ((isset($_SESSION['payment']) && \is_array($_SESSION['payment'])) || (isset($_SESSION['shipping']) && \is_array($_SESSION['shipping']))) {
         $this->info = [
           'order_status' => (int)DEFAULT_ORDERS_STATUS_ID,
           'order_status_invoice' => (int)DEFAULT_ORDERS_STATUS_INVOICE_ID,
@@ -542,7 +542,7 @@
         $company_name = $customer_address['entry_company'];
       }
 
-      if (is_array($customer_address)) {
+      if (\is_array($customer_address)) {
         $this->customer = [
           'firstname' => $customer_address['customers_firstname'],
           'customers_group_id' => $customer_address['customers_group_id'],
@@ -574,7 +574,7 @@
         }
       }
 
-      if(is_array($shipping_address)) {
+      if(\is_array($shipping_address)) {
         $this->delivery = [
           'firstname' => $shipping_address['entry_firstname'],
           'lastname' => $shipping_address['entry_lastname'],
@@ -591,7 +591,7 @@
         ];
       }
 
-      if (is_array($billing_address)) {
+      if (\is_array($billing_address)) {
         $this->billing = [
           'firstname' => $billing_address['entry_firstname'],
           'lastname' => $billing_address['entry_lastname'],
@@ -621,7 +621,7 @@
 
       $products = $CLICSHOPPING_ShoppingCart->get_products();
       
-      if (is_array($products)) {
+      if (\is_array($products)) {
 // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           $QgroupTax = $this->db->prepare('select group_order_taxe,
@@ -1056,7 +1056,7 @@
 
             $products_attributes = $this->products['attributes'] ?? '';
 
-            if (is_array($products_attributes)) {
+            if (\is_array($products_attributes)) {
               $stock_query_sql .= ' and pa.options_id = :options_id
                                    and pa.options_values_id = :options_values_id
                                 ';
@@ -1066,7 +1066,7 @@
 
             $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id')));
 
-            if (is_array($products_attributes)) {
+            if (\is_array($products_attributes)) {
               $Qstock->bindInt(':options_id', $products_attributes['option_id']);
               $Qstock->bindInt(':options_values_id', $products_attributes['value_id']);
             }
@@ -1314,7 +1314,7 @@
           if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
             $email[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
 
-            if (is_array($email)) {
+            if (\is_array($email)) {
               foreach ($email as $key => $value) {
                 $this->mail->clicMail(null, $value[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
               }

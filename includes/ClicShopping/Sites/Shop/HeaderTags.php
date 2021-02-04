@@ -73,7 +73,7 @@
       $chars = preg_split('/&/', $str, -1);
       $newstring = '';
 
-      if (is_array($chars)) {
+      if (\is_array($chars)) {
         foreach ($chars as $value) {
           $newstring = '?' .  ($value[1] ?? 'NULL') . '&' . ($value[2]?? 'NULL');
         }

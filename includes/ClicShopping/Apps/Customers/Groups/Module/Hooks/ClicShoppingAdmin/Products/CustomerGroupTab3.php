@@ -73,7 +73,7 @@
 
           $products_array = $this->getProducts();
 
-          if (is_array($products_array) && $products_array !== false) {
+          if (\is_array($products_array) && $products_array !== false) {
             $products_id = $products_array[0]['products_id'];
             $products_percentage = $products_array[0]['products_percentage'];
           }

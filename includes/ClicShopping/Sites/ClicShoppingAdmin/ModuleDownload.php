@@ -32,7 +32,7 @@
       $directories = array_diff(scandir($template_directory), $weeds);
       $filename_array = [];
 
-      if (is_array($directories)) {
+      if (\is_array($directories)) {
         foreach ($directories as $value) {
           if (is_dir($template_directory . $value)) {
             $filename_array[] = ['id' => $value,

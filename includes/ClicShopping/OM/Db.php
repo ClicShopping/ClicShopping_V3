@@ -50,7 +50,7 @@
         $database = CLICSHOPPING::getConfig('db_database');
       }
 
-      if (!is_array($driver_options)) {
+      if (!\is_array($driver_options)) {
         $driver_options = [];
       }
 
@@ -72,7 +72,7 @@
         $driver_options[\PDO::ATTR_STATEMENT_CLASS] = array('ClicShopping\OM\DbStatement');
       }
 
-      if (!is_array($options)) {
+      if (!\is_array($options)) {
         $options = [];
       }
 
@@ -115,7 +115,7 @@
     {
       $statement = $this->autoPrefixTables($statement);
 
-      $DbStatement = parent::prepare($statement, is_array($driver_options) ? $driver_options : []);
+      $DbStatement = parent::prepare($statement, \is_array($driver_options) ? $driver_options : []);
       $DbStatement->setQueryCall('prepare');
       $DbStatement->setPDO($this);
 
@@ -159,7 +159,7 @@
      */
     public function get($table, $fields, ?array $where = null, $order = null, $limit = null, $cache = null, ?array $options = null)
     {
-      if (!is_array($table)) {
+      if (!\is_array($table)) {
         $table = [
             $table
         ];
@@ -174,20 +174,20 @@
         );
       }
 
-      if (!is_array($fields)) {
+      if (!\is_array($fields)) {
         $fields = [
             $fields
         ];
       }
 
-      if (isset($order) && !is_array($order)) {
+      if (isset($order) && !\is_array($order)) {
         $order = [
             $order
         ];
       }
 
       if (isset($limit)) {
-        if (is_array($limit) && (\count($limit) === 2) && is_numeric($limit[0]) && is_numeric($limit[1])) {
+        if (\is_array($limit) && (\count($limit) === 2) && is_numeric($limit[0]) && is_numeric($limit[1])) {
           $limit = implode(', ', $limit);
         } elseif (!is_numeric($limit)) {
           $limit = null;
@@ -212,7 +212,7 @@
         $it_where = new \CachingIterator(new \ArrayIterator($where), \CachingIterator::TOSTRING_USE_CURRENT);
 
         foreach ($it_where as $key => $value) {
-          if (is_array($value)) {
+          if (\is_array($value)) {
             if (isset($value['val'])) {
               $statement .= $key . ' ' . ($value['op'] ?? '=') . ' :cond_' . $counter;
             }
@@ -222,7 +222,7 @@
                 $statement .= ' and ';
               }
 
-              if (is_array($value['rel'])) {
+              if (\is_array($value['rel'])) {
                 $it_rel = new \CachingIterator(new \ArrayIterator($value['rel']), \CachingIterator::TOSTRING_USE_CURRENT);
 
                 foreach ($it_rel as $rel) {
@@ -262,7 +262,7 @@
         $counter = 0;
 
         foreach ($it_where as $value) {
-          if (is_array($value)) {
+          if (\is_array($value)) {
             if (isset($value['val'])) {
               $Q->bindValue(':cond_' . $counter, $value['val']);
             }
@@ -275,7 +275,7 @@
       }
 
       if (isset($cache)) {
-        if (!is_array($cache)) {
+        if (!\is_array($cache)) {
           $cache = [$cache];
         }
 
@@ -782,7 +782,7 @@
     {
       if (is_string($string)) {
         return HTML::sanitize($string);
-      } elseif (is_array($string)) {
+      } elseif (\is_array($string)) {
         foreach ($string as $k => $v) {
           $string[$k] = static::prepareInput($v);
         }

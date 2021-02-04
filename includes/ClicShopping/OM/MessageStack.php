@@ -32,7 +32,7 @@
         }
       });
 
-      if (isset($_SESSION['MessageStack_Data']) && is_array($_SESSION['MessageStack_Data'])) {
+      if (isset($_SESSION['MessageStack_Data']) && \is_array($_SESSION['MessageStack_Data'])) {
         foreach ($_SESSION['MessageStack_Data'] as $group => $messages) {
           foreach ($messages as $message) {
             $this->add($message['text'], $message['type'], $group);
@@ -123,7 +123,7 @@
       if ($this->exists($group)) {
         $data = [];
 
-        if (is_array($this->data[$group])) {
+        if (\is_array($this->data[$group])) {
           foreach ($this->data[$group] as $message) {
             $data['alert-' . $message['type']][] = $message['text'];
           }

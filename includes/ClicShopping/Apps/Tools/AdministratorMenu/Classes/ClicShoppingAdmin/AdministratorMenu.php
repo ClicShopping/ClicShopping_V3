@@ -116,7 +116,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
 
-      if (!is_array($category_tree_array)) {
+      if (!\is_array($category_tree_array)) {
         $category_tree_array = [];
       }
 
@@ -212,7 +212,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (!is_array($categories_array)) {
+      if (!\is_array($categories_array)) {
         $categories_array = [];
       }
 
@@ -310,7 +310,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
 
-      if (!is_array($category_tree_array)) {
+      if (!\is_array($category_tree_array)) {
         $category_tree_array = [];
       }
 

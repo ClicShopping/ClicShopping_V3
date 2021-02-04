@@ -38,7 +38,7 @@
     {
       $order_total_array = [];
 
-      if (is_array($this->modules)) {
+      if (\is_array($this->modules)) {
         foreach ($this->modules as $value) {
 
           if (str_contains($value, '\\')) {
@@ -69,7 +69,7 @@
     public function output()
     {
       $output_string = '';
-      if (is_array($this->modules)) {
+      if (\is_array($this->modules)) {
         foreach ($this->modules as $value) {
           if (str_contains($value, '\\')) {
             $CLICSHOPPING_OTM = Registry::get('OrderTotal_' . str_replace('\\', '_', $value));

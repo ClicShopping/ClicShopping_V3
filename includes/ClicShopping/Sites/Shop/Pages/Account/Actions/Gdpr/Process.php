@@ -31,7 +31,7 @@
           if (is_dir($source_folder)) {
             $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'AccountGdprCall*');
 
-            if (is_array($files_get)) {
+            if (\is_array($files_get)) {
               foreach ($files_get as $value) {
                 if (!empty($value['name'])) {
                   $CLICSHOPPING_Hooks->call('Account', $value['name']);

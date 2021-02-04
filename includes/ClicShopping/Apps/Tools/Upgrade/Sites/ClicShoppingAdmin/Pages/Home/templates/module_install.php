@@ -81,7 +81,7 @@
       if (!empty($file_cache_temp_array[0])) {
         $count_file = \count($file_cache_temp_array);
 
-        if (is_array($file_cache_temp_array)) {
+        if (\is_array($file_cache_temp_array)) {
           foreach ($file_cache_temp_array as $value) {
             if (is_file($CLICSHOPPING_Github->cacheGithubTemp . $value['name'] . '.json')) {
               $result[] = $CLICSHOPPING_Github->getSearchInsideRepo($CLICSHOPPING_Github->cacheGithubTemp . $value['name'] . '.json');
@@ -341,7 +341,7 @@
 <?php
         $result_module_real_name = $CLICSHOPPING_Github->getJsonRepoContentInformationModule($module_real_name);
 
-        if (is_array($result_module_real_name)) {
+        if (\is_array($result_module_real_name)) {
           foreach ($result_module_real_name as $content) {
             $content_module_name = $content->name;
             $content_module_sha = $content->sha;
