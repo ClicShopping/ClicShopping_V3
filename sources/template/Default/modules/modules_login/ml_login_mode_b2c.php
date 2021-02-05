@@ -26,7 +26,7 @@
       $this->title = CLICSHOPPING::getDef('module_login_mode_b2c');
       $this->description = CLICSHOPPING::getDef('module_login_mode_b2c_description');
 
-      if (defined('MODULE_LOGIN_MODE_B2C_STATUS')) {
+      if (\defined('MODULE_LOGIN_MODE_B2C_STATUS')) {
         $this->sort_order = MODULE_LOGIN_MODE_B2C_SORT_ORDER;
         $this->enabled = (MODULE_LOGIN_MODE_B2C_STATUS == 'True');
       }
@@ -60,7 +60,7 @@
     }
 
     public function check() {
-      return defined('MODULE_LOGIN_MODE_B2C_STATUS');
+      return \defined('MODULE_LOGIN_MODE_B2C_STATUS');
     }
 
     public function install() {

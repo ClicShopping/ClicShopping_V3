@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_listing_title');
       $this->description = CLICSHOPPING::getDef('module_products_listing_description');
 
-      if (defined('MODULE_PRODUCTS_LISTING_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_LISTING_STATUS')) {
         $this->sort_order = (int)MODULE_PRODUCTS_LISTING_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_LISTING_STATUS == 'True');
       }
@@ -324,7 +324,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_LISTING_STATUS');
+      return \defined('MODULE_PRODUCTS_LISTING_STATUS');
     }
 
     public function install() {

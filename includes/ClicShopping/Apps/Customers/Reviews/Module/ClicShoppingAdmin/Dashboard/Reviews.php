@@ -37,7 +37,7 @@
       $this->title = $this->app->getDef('module_admin_dashboard_reviews_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_reviews_app_description');
 
-      if (defined('MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS')) {
+      if (\defined('MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_REVIEWS_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS == 'True');
       }

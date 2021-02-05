@@ -37,7 +37,7 @@
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
-      if (!defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
         return false;
       }
 

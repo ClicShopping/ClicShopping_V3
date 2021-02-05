@@ -34,7 +34,7 @@
       $this->description = CLICSHOPPING::getDef('module_action_recorder_create_account_description');
 
       if ($this->check()) {
-        if (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES')) {
+        if (\defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES')) {
           $this->minutes = (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES;
         }
       }
@@ -100,7 +100,7 @@
 
     public function check()
     {
-      return defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES');
+      return \defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES');
     }
 
     public function install()

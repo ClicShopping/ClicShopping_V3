@@ -102,7 +102,7 @@
      * @param int|null $id
      * @return array
      */
-    public function getPathArray(int $id = null): array
+    public function getPathArray(?int $id = null): array
     {
       $CLICSHOPPING_CategoryCommon = Registry::get('CategoryCommon');
 
@@ -130,9 +130,9 @@
     /**
      * the category name
      *
-     * @param string $category_id , $language_id
+     * @param int $category_id , $language_id
+     * @param int $language_id
      * @return string $category['categories_name'],  name of the categorie
-     *
      */
     public function getCategoryName(int $category_id, int $language_id): string
     {
@@ -147,9 +147,9 @@
     /**
      * the category description
      *
-     * @param string $category_id , $language_id
+     * @param int $category_id , $language_id
+     * @param int $language_id
      * @return string $category['blog_categories_name'],  description of the blog categorie
-     *
      */
     public function getCategoryDescription(int $category_id, int $language_id) :string
     {

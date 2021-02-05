@@ -71,7 +71,7 @@
         <div class="col-md-12">
           <div class="d-flex flex-wrap">
 <?php
-  if (defined('MODULE_ADMIN_DASHBOARD_INSTALLED') && !\is_null(MODULE_ADMIN_DASHBOARD_INSTALLED)) {
+  if (\defined('MODULE_ADMIN_DASHBOARD_INSTALLED') && !\is_null(MODULE_ADMIN_DASHBOARD_INSTALLED)) {
     $adm_array = explode(';', MODULE_ADMIN_DASHBOARD_INSTALLED);
 
     if (!empty(MODULE_ADMIN_DASHBOARD_INSTALLED)) {

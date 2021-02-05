@@ -420,7 +420,7 @@
 
     public function sortListSearch(): array
     {
-      if (defined('MODULE_PRODUCTS_SEARCH_LIST_NAME')) {
+      if (\defined('MODULE_PRODUCTS_SEARCH_LIST_NAME')) {
         $define_list = ['MODULE_PRODUCTS_SEARCH_LIST_NAME' => MODULE_PRODUCTS_SEARCH_LIST_NAME,
           'MODULE_PRODUCTS_SEARCH_LIST_MODEL' => MODULE_PRODUCTS_SEARCH_LIST_MODEL,
           'MODULE_PRODUCTS_SEARCH_LIST_MANUFACTURER' => MODULE_PRODUCTS_SEARCH_LIST_MANUFACTURER,
@@ -461,7 +461,7 @@
       $dtoDateTime1 = $this->getDateTo();
       $dfromDateTime1 = $this->getDateFrom();
 
-      if (defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
+      if (\defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
         $max_display = MODULE_PRODUCTS_SEARCH_MAX_DISPLAY;
       } else {
         $max_display = 1;

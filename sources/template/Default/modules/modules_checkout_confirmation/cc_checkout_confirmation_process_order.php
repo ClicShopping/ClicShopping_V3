@@ -31,7 +31,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_confirmation_process_order_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_process_order_description');
 
-      if (defined('MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_STATUS == 'True');
       }
@@ -80,7 +80,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_STATUS');
+      return \defined('MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_STATUS');
     }
 
     public function install() {

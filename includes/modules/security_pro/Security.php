@@ -27,12 +27,12 @@
      * Constructor
      *
      * @param bool $cleanse_keys
-     * @uses defined()
+     * @uses \defined()
      */
     public function __construct($cleanse_keys = false)
     {
       if ($cleanse_keys) $this->_cleanse_keys = true;
-      $this->addExclusions(array(defined('FILENAME_PROTX_PROCESS') ? FILENAME_PROTX_PROCESS : 'protx_process.php'));
+      $this->addExclusions(array(\defined('FILENAME_PROTX_PROCESS') ? FILENAME_PROTX_PROCESS : 'protx_process.php'));
     } // end constructor
 
     /**

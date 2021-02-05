@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_shipping_address_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_shipping_address_description');
 
-      if (defined('MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_SHIPPING_ADDRESS_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS == 'True');
       }
@@ -72,7 +72,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS');
+      return \defined('MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS');
     }
 
     public function install() {

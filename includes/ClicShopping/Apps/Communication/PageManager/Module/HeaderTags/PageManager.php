@@ -38,7 +38,7 @@
       $this->title = $this->app->getDef('module_header_tags_page_manager_title');
       $this->description = $this->app->getDef('module_header_tags_page_manager_description');
 
-      if (defined('MODULE_HEADER_TAGS_PAGE_MANAGER_STATUS')) {
+      if (\defined('MODULE_HEADER_TAGS_PAGE_MANAGER_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_PAGE_MANAGER_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_PAGE_MANAGER_STATUS == 'True');
       }
@@ -51,7 +51,7 @@
 
     public function getOutput()
     {
-      if (!defined('CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS') || CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS') || CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS == 'False') {
         return false;
       }
 

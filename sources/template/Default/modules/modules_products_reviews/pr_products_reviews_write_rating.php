@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('modules_products_reviews_write_rating_title');
       $this->description = CLICSHOPPING::getDef('modules_products_reviews_write_rating_description');
 
-      if (defined('MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS')) {
+      if (\defined('MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS')) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_WRITE_RATING_SORT_ORDER;
         $this->enabled = (MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS == 'True');
       }
@@ -58,7 +58,7 @@
     }
 
     public function check() {
-      return defined('MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS');
+      return \defined('MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS');
     }
 
     public function install() {

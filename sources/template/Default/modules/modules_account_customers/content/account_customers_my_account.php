@@ -37,7 +37,7 @@ use ClicShopping\OM\CLICSHOPPING;
             <div class="hr"></div>
             <div class="separator"></div>
 <?php
-  if (defined('MODULE_ACCOUNT_CUSTOMERS_MY_FEEDBACK_TITLE_STATUS')) {
+  if (\defined('MODULE_ACCOUNT_CUSTOMERS_MY_FEEDBACK_TITLE_STATUS')) {
     if (MODULE_ACCOUNT_CUSTOMERS_MY_FEEDBACK_TITLE_STATUS == 'True') {
 ?>
             <div><i class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&MyFeedBack'), CLICSHOPPING::getDef('module_account_customers_my_account_my_feed_back')); ?></div>
@@ -48,7 +48,7 @@ use ClicShopping\OM\CLICSHOPPING;
 ?>
             <div class="separator"></div>
 <?php
-  if (defined('MODULE_ACCOUNT_CUSTOMERS_PASSWORD_TITLE_STATUS') && MODULE_ACCOUNT_CUSTOMERS_PASSWORD_TITLE_STATUS == 'True') {
+  if (\defined('MODULE_ACCOUNT_CUSTOMERS_PASSWORD_TITLE_STATUS') && MODULE_ACCOUNT_CUSTOMERS_PASSWORD_TITLE_STATUS == 'True') {
 ?>
             <div class="separator"></div>
             <div><i class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Password'), CLICSHOPPING::getDef('module_account_customers_my_account_password')); ?></div>

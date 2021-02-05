@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_front_page_new_products_title');
       $this->description = CLICSHOPPING::getDef('module_front_page_new_products_description');
 
-      if (defined('MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS')) {
+      if (\defined('MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS')) {
         $this->sort_order = (int)MODULE_FRONT_PAGE_NEW_PRODUCTS_SORT_ORDER;
         $this->enabled = (MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS == 'True');
       }
@@ -329,7 +329,7 @@
     }
 
     public function check() {
-      return defined('MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS');
+      return \defined('MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS');
     }
 
     public function install() {

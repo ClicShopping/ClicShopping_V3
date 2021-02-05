@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_products_favorites_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_products_favorites_description');
 
-      if (defined('MODULE_BOXES_PRODUCTS_FAVORITES_STATUS')) {
+      if (\defined('MODULE_BOXES_PRODUCTS_FAVORITES_STATUS')) {
         $this->sort_order = MODULE_BOXES_PRODUCTS_FAVORITES_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_PRODUCTS_FAVORITES_STATUS == 'True');
         $this->pages = MODULE_BOXES_PRODUCTS_FAVORITES_DISPLAY_PAGES;
@@ -204,7 +204,7 @@
     }
 
     public function  check() {
-      return defined('MODULE_BOXES_PRODUCTS_FAVORITES_STATUS');
+      return \defined('MODULE_BOXES_PRODUCTS_FAVORITES_STATUS');
     }
 
     public function  install() {

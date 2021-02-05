@@ -1029,9 +1029,9 @@
 
     public function _getfontpath()
     {
-      if (!defined('FPDF_FONTPATH') && is_dir(__DIR__ . '/font'))
+      if (!\defined('FPDF_FONTPATH') && is_dir(__DIR__ . '/font'))
         define('FPDF_FONTPATH', __DIR__ . '/font/');
-      return defined('FPDF_FONTPATH') ? FPDF_FONTPATH : '';
+      return \defined('FPDF_FONTPATH') ? FPDF_FONTPATH : '';
     }
 
     public function _beginpage($orientation, $format)

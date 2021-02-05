@@ -25,7 +25,7 @@
 
     public function pass()
     {
-      return defined('DEFAULT_LANGUAGE');
+      return \defined('DEFAULT_LANGUAGE');
     }
 
     public function getMessage()

@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_login_connexion');
       $this->description = CLICSHOPPING::getDef('module_login_connexion_description');
 
-      if (defined('MODULE_LOGIN_CONNEXION_STATUS')) {
+      if (\defined('MODULE_LOGIN_CONNEXION_STATUS')) {
         $this->sort_order = MODULE_LOGIN_CONNEXION_SORT_ORDER;
         $this->enabled = (MODULE_LOGIN_CONNEXION_STATUS == 'True');
       }
@@ -63,7 +63,7 @@
     }
 
     public function check() {
-      return defined('MODULE_LOGIN_CONNEXION_STATUS');
+      return \defined('MODULE_LOGIN_CONNEXION_STATUS');
     }
 
     public function install() {

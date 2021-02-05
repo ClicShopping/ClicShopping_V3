@@ -35,7 +35,7 @@
       $this->description = CLICSHOPPING::getDef('module_action_recorder_admin_login_description');
 
       if ($this->check()) {
-        if (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES')) {
+        if (\defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES')) {
           $this->minutes = (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES;
           $this->attempts = (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS;
         }
@@ -104,7 +104,7 @@
 
     public function check()
     {
-      return defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES');
+      return \defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES');
     }
 
     public function install()

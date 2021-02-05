@@ -44,7 +44,7 @@
     {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-      if (!defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {
         return false;
       }
 

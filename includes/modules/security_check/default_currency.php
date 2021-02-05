@@ -25,7 +25,7 @@
 
     public function pass()
     {
-      return defined('DEFAULT_CURRENCY');
+      return \defined('DEFAULT_CURRENCY');
     }
 
     public function getMessage()

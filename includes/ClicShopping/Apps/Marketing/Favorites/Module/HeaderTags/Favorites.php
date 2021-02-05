@@ -37,7 +37,7 @@
       $this->title = $this->app->getDef('module_header_tags_products_favorites_title');
       $this->description = $this->app->getDef('module_header_tags_products_favorites_description');
 
-      if (defined('MODULE_HEADER_TAGS_PRODUCT_FAVORITES_STATUS')) {
+      if (\defined('MODULE_HEADER_TAGS_PRODUCT_FAVORITES_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_PRODUCT_FAVORITES_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_PRODUCT_FAVORITES_STATUS == 'True');
       }

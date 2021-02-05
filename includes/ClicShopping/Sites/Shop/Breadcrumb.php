@@ -223,7 +223,7 @@
           );
 
           if ($Qcategories->fetch() !== false) {
-            $categories_url = $this->rewriteUrl->getCategoryTreeUrl(implode('_', array_slice($cPath_array, 0, ($i + 1))));
+            $categories_url = $this->rewriteUrl->getCategoryTreeUrl(implode('_', \array_slice($cPath_array, 0, ($i + 1))));
 
             $result = $CLICSHOPPING_Breadcrumb->add($Qcategories->value('categories_name'), $categories_url);
           } else {

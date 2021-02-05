@@ -131,7 +131,7 @@
     {
       $statement = $this->autoPrefixTables($statement);
 
-      $args = func_get_args();
+      $args = \func_get_args();
 
       if (\count($args) > 1) {
         $DbStatement = \call_user_func_array(array($this, 'parent::query'), $args);

@@ -26,7 +26,7 @@
     {
       $this->lang = Registry::get('Language');
 
-      if (defined('MODULE_SHIPPING_INSTALLED') && !\is_null(MODULE_SHIPPING_INSTALLED)) {
+      if (\defined('MODULE_SHIPPING_INSTALLED') && !\is_null(MODULE_SHIPPING_INSTALLED)) {
         $this->modules = explode(';', MODULE_SHIPPING_INSTALLED);
 
         $include_modules = [];

@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_confirmation_payment_information_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_payment_information_description');
 
-      if (defined('MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_STATUS == 'True');
       }
@@ -56,6 +56,7 @@
 
           if ($confirmation) {
             $display = '  <!-- checkout_confirmation_payment_information -->' . "\n";
+            $display .= '<div class="clearfix"></div>' . "\n";
 
             if (isset($confirmation['content'])) {
               $display .= '<div class="col-sm-12">';
@@ -116,7 +117,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_STATUS');
+      return \defined('MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_STATUS');
     }
 
     public function install() {

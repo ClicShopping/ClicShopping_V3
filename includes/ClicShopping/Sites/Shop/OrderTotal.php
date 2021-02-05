@@ -21,7 +21,7 @@
 // class constructor
     public function __construct()
     {
-      if (defined('MODULE_ORDER_TOTAL_INSTALLED') && !\is_null(MODULE_ORDER_TOTAL_INSTALLED)) {
+      if (\defined('MODULE_ORDER_TOTAL_INSTALLED') && !\is_null(MODULE_ORDER_TOTAL_INSTALLED)) {
         $this->modules = explode(';', MODULE_ORDER_TOTAL_INSTALLED);
 
         foreach ($this->modules as $value) {

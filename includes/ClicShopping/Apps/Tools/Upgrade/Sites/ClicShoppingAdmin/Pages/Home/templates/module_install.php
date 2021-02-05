@@ -34,7 +34,7 @@
         <div class="row col-md-12">
           <?php echo HTML::form('upgrade', $CLICSHOPPING_Upgrade->link('ModuleInstall'), 'post', null, ['session_id' => true]); ?>
           <div class="col-md-12 form-group row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <span
                 class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/apps.png', $CLICSHOPPING_Upgrade->getDef('heading_title'), '40', '40'); ?></span>
               <span
@@ -47,7 +47,7 @@
               class="col-md-2"><?php echo HTML::selectMenu('install_module_template_directory', $CLICSHOPPING_Github->getModuleTemplateDirectory()); ?></div>
             <div
               class="col-md-2"><?php echo HTML::inputField('module_search', '', 'id="search" placeholder="' . $CLICSHOPPING_Upgrade->getDef('text_search') . '"'); ?></div>
-            <div class="col-md-3 text-end">
+            <div class="col-md-4 text-end">
               <?php
                 echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCache'), 'danger', null, 'sm') . '&nbsp;';
                 echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset_temp'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCacheTemp'), 'warning', null, 'sm') . '&nbsp;';
@@ -328,7 +328,7 @@
       <div class="col-md-4" style="padding-bottom:1rem;">
         <div class="card">
           <div class="card-header">
-            <span  class="col-md-1">
+            <span class="col-md-1">
               <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'header/logo_clicshopping.webp', '50', '50'); ?>
             </span>
             <span class="col-md-11">

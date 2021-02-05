@@ -46,7 +46,7 @@
 
     public function display()
     {
-      if (!defined('CLICSHOPPING_APP_ARCHIVE_AR_STATUS') || CLICSHOPPING_APP_ARCHIVE_AR_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_ARCHIVE_AR_STATUS') || CLICSHOPPING_APP_ARCHIVE_AR_STATUS == 'False') {
         return false;
       }
 

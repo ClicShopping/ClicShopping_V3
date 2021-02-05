@@ -31,7 +31,7 @@
       $this->title = CLICSHOPPING::getDef('module_account_customers_newsletter_title');
       $this->description = CLICSHOPPING::getDef('module_account_customers_newsletter_description');
 
-      if (defined('MODULE_ACCOUNT_CUSTOMERS_NEWSLETTER_TITLE_STATUS')) {
+      if (\defined('MODULE_ACCOUNT_CUSTOMERS_NEWSLETTER_TITLE_STATUS')) {
         $this->sort_order = MODULE_ACCOUNT_CUSTOMERS_NEWSLETTER_TITLE_SORT_ORDER;
         $this->enabled = (MODULE_ACCOUNT_CUSTOMERS_NEWSLETTER_TITLE_STATUS == 'True');
       }
@@ -70,7 +70,7 @@
     }
 
     public function check() {
-      return defined('MODULE_ACCOUNT_CUSTOMERS_NEWSLETTER_TITLE_STATUS');
+      return \defined('MODULE_ACCOUNT_CUSTOMERS_NEWSLETTER_TITLE_STATUS');
     }
 
     public function install() {

@@ -864,8 +864,8 @@
     {
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-      if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-        if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
+      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
+        if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
           $products_name = $this->replaceString($products_name);
           $products_url_rewrited = 'Products&Description&' . $products_name . '&Id=' . $products_id;
@@ -891,8 +891,8 @@
     {
       $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
 
-      if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-        if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
+      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
+        if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $page_title = $CLICSHOPPING_PageManagerShop->pageManagerDisplayTitle($page_id);
           $page_title = $this->replaceString($page_title);
           $content_url_rewrited = 'Info&Content&' . $page_title . '&pagesId=' . $page_id;
@@ -929,8 +929,8 @@
 
     public function getCategoryTreeUrl(string $categories_id, string $parameters = ''): string
     {
-      if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-        if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
+      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
+        if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $link_title = $this->title;
           $link_title = $this->replaceString($link_title);
           $categories_url_rewrited = $link_title . '&cPath=' . $categories_id;
@@ -954,8 +954,8 @@
 
     public function getCategoryImageUrl(string $categories_id, string $parameters = ''): string
     {
-      if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-        if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
+      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
+        if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $link_title = $this->title;
           $link_title = $this->replaceString($link_title);
           $categories_url_rewrited = $link_title . '&' . $categories_id;
@@ -984,8 +984,8 @@
     {
       $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
 
-      if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-        if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
+      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
+        if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $manufacturer_title = $CLICSHOPPING_Manufacturers->getTitle($manufacturer_id);
           $manufacturer_title = $this->replaceString($manufacturer_title);
 

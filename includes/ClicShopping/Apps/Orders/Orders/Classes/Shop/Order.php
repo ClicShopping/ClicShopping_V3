@@ -826,7 +826,7 @@
 
 // Manage the atos module and the  Atos situation report in database.
 // Do not modify
-      if (defined('MODULE_PAYMENT_ATOS_STATUS') && MODULE_PAYMENT_ATOS_STATUS == 'True') {
+      if (\defined('MODULE_PAYMENT_ATOS_STATUS') && MODULE_PAYMENT_ATOS_STATUS == 'True') {
         $cc_owner = $this->info['transaction_id'];
       } else {
         $cc_owner = $this->info['cc_owner'];

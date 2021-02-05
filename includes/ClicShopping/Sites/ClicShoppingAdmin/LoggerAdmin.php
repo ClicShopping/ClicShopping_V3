@@ -25,7 +25,7 @@
 
     public function timerStart()
     {
-      if (defined("PAGE_PARSE_START_TIME")) {
+      if (\defined("PAGE_PARSE_START_TIME")) {
         $this->timerStart = PAGE_PARSE_START_TIME;
       } else {
         $this->timerStart = microtime();

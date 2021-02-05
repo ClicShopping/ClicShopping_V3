@@ -31,7 +31,7 @@
 
       $this->lang = Registry::get('Language');
 
-      if (defined('MODULE_PRODUCTS_INFO_GALLERY_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_GALLERY_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_GALLERY_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_INFO_GALLERY_STATUS == 'True');
       }
@@ -117,7 +117,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_INFO_GALLERY_STATUS');
+      return \defined('MODULE_PRODUCTS_INFO_GALLERY_STATUS');
     }
 
     public function install() {

@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('modules_contact_us_form_title');
       $this->description = CLICSHOPPING::getDef('modules_contact_us_form_description');
 
-      if (defined('MODULES_CONTACT_US_FORM_STATUS')) {
+      if (\defined('MODULES_CONTACT_US_FORM_STATUS')) {
         $this->sort_order = (int)MODULES_CONTACT_US_FORM_SORT_ORDER;
         $this->enabled = (MODULES_CONTACT_US_FORM_STATUS == 'True');
       }
@@ -272,7 +272,7 @@
     }
 
     public function check() {
-      return defined('MODULES_CONTACT_US_FORM_STATUS');
+      return \defined('MODULES_CONTACT_US_FORM_STATUS');
     }
 
     public function install() {

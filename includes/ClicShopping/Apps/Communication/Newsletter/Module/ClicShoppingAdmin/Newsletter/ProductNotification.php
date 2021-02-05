@@ -250,7 +250,7 @@ function selectAll(FormName, SelectBox) {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Mail = Registry::get('Mail');
 
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 
@@ -392,7 +392,7 @@ function selectAll(FormName, SelectBox) {
 // Envoie du mail avec gestion des images pour Fckeditor et Imanager.
     public function sendCkeditor($newsletter_id)
     {
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 

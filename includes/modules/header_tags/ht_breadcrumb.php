@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_header_tags_breadcrumb_title');
       $this->description = CLICSHOPPING::getDef('module_header_tags_breadcrump_description');
 
-      if (defined('MODULE_HEADER_TAGS_BREADCRUMB_STATUS')) {
+      if (\defined('MODULE_HEADER_TAGS_BREADCRUMB_STATUS')) {
         $this->sort_order = MODULE_HEADER_TAGS_BREADCRUMB_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_BREADCRUMB_STATUS == 'True');
       }
@@ -55,7 +55,7 @@
 
     public function check()
     {
-      return defined('MODULE_HEADER_TAGS_BREADCRUMB_STATUS');
+      return \defined('MODULE_HEADER_TAGS_BREADCRUMB_STATUS');
     }
 
     public function install()

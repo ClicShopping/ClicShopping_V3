@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_description');
 
-      if (defined('MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_STATUS == 'True');
       }
@@ -71,7 +71,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_STATUS');
+      return \defined('MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_STATUS');
     }
 
     public function install() {

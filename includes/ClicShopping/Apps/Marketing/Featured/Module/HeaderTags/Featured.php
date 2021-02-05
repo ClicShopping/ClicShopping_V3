@@ -38,7 +38,7 @@
       $this->title = $this->app->getDef('module_header_tags_products_featured_title');
       $this->description = $this->app->getDef('module_header_tags_products_featured_description');
 
-      if (defined('MODULE_HEADER_TAGS_PRODUCT_FEATURED_STATUS')) {
+      if (\defined('MODULE_HEADER_TAGS_PRODUCT_FEATURED_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_PRODUCT_FEATURED_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_PRODUCT_FEATURED_STATUS == 'True');
       }

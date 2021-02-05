@@ -196,7 +196,7 @@
           $path_array = explode('&', $path);
 
           if (\count($path_array) <= \count($route)) {
-            if ($path_array == array_slice($route, 0, \count($path_array))) {
+            if ($path_array == \array_slice($route, 0, \count($path_array))) {
               $result[] = [
                 'path' => $path,
                 'destination' => $vendor_app . '/' . $page,

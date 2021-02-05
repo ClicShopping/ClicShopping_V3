@@ -31,13 +31,13 @@
       $this->lang = Registry::get('Language');
       $this->customer = Registry::get('Customer');
 
-      if (defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS')) {
         $this->reviews_number_word = (int)MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS;
       } else {
         $this->reviews_number_word = 0;
       }
 
-      if (defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS')) {
         $this->reviews_number_comments = (int)MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS;
       } else {
         $this->reviews_number_comments = 0;

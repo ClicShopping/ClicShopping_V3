@@ -24,14 +24,14 @@
       $this->title = $this->app->getDef('module_cr_title');
       $this->short_title = $this->app->getDef('module_cr_short_title');
       $this->introduction = $this->app->getDef('module_cr_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_DEFINE_LANGUAGE_DL_STATUS') && (trim(CLICSHOPPING_APP_DEFINE_LANGUAGE_DL_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_DEFINE_LANGUAGE_DL_STATUS') && (trim(CLICSHOPPING_APP_DEFINE_LANGUAGE_DL_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_DEFINE_LANGUAGE_INSTALLED')) {
+      if (\defined('MODULE_MODULES_DEFINE_LANGUAGE_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_DEFINE_LANGUAGE_INSTALLED);
       }
 

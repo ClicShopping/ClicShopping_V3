@@ -404,7 +404,7 @@
           $error = true;
           $CLICSHOPPING_ActionRecorder->record(false);
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES : 15)]), 'error');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (\defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES : 15)]), 'error');
         }
 
         if ($error === false) {
@@ -504,7 +504,7 @@
             $template_email_welcome_catalog = CLICSHOPPING::getDef('email_welcome', ['store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]);
           }
 
-          if (defined('COUPON_CUSTOMER_B2B') && !empty(COUPON_CUSTOMER_B2B)) {
+          if (\defined('COUPON_CUSTOMER_B2B') && !empty(COUPON_CUSTOMER_B2B)) {
             $email_coupon = CLICSHOPPING::getDef('email_text_coupon') . ' ' . COUPON_CUSTOMER_B2B;
           } else {
             $email_coupon = '';

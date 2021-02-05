@@ -117,7 +117,7 @@
             }
           }
         } else {
-          if (defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False')) {
+          if (\defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False')) {
             unset($_SESSION['shipping']);
           } else {
             $_SESSION['shipping'] = false;

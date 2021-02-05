@@ -37,7 +37,7 @@
     protected function getInputValue()
     {
       $key = strtoupper($this->key);
-      $value = defined($key) ? constant($key) : null;
+      $value = \defined($key) ? constant($key) : null;
 
       if (!isset($value) && isset($this->default)) {
         $value = $this->default;

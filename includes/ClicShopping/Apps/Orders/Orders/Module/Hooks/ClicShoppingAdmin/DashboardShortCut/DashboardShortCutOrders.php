@@ -34,7 +34,7 @@
 
     public function display(): string
     {
-      if (!defined('CLICSHOPPING_APP_ORDERS_OD_STATUS') || CLICSHOPPING_APP_ORDERS_OD_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS') || CLICSHOPPING_APP_ORDERS_OD_STATUS == 'False') {
         return false;
       }
 

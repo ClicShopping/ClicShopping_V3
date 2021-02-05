@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_new_title');
       $this->description = CLICSHOPPING::getDef('module_products_new_description');
 
-      if (defined('MODULE_PRODUCTS_NEW_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_NEW_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_NEW_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_NEW_STATUS == 'True');
       }
@@ -106,7 +106,7 @@
             $new_prods_content .= '</div>';
 
 /*
-            if ((defined('MODULE_HEADER_TAGS_GRID_LIST_VIEW_STATUS') && MODULE_HEADER_TAGS_GRID_LIST_VIEW_STATUS == 'True') && (strpos(MODULE_HEADER_TAGS_GRID_LIST_VIEW_PAGES, CLICSHOPPING::getBaseNameIndex() !== false))) {
+            if ((\defined('MODULE_HEADER_TAGS_GRID_LIST_VIEW_STATUS') && MODULE_HEADER_TAGS_GRID_LIST_VIEW_STATUS == 'True') && (strpos(MODULE_HEADER_TAGS_GRID_LIST_VIEW_PAGES, CLICSHOPPING::getBaseNameIndex() !== false))) {
               $link = CLICSHOPPING::link(CLICSHOPPING::getIndex(), CLICSHOPPING::getAllGET(array('page', 'info', 'sort')));
               $new_prods_content .= '<strong>' . CLICSHOPPING::getDef('text_view') . '</strong>';
               $new_prods_content .= '<div class="btn-group">';
@@ -344,7 +344,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_NEW_STATUS');
+      return \defined('MODULE_PRODUCTS_NEW_STATUS');
     }
 
     public function install() {

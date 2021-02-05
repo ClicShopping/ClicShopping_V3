@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_favorites_title');
       $this->description = CLICSHOPPING::getDef('module_products_favorites_description');
 
-      if (defined('MODULE_PRODUCTS_FAVORITES_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_FAVORITES_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_FAVORITES_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_FAVORITES_STATUS == 'True');
       }
@@ -332,7 +332,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_FAVORITES_STATUS');
+      return \defined('MODULE_PRODUCTS_FAVORITES_STATUS');
     }
 
     public function install() {

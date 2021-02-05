@@ -31,14 +31,14 @@
       $this->title = $this->app->getDef('module_wo_title');
       $this->short_title = $this->app->getDef('module_wo_short_title');
       $this->introduction = $this->app->getDef('module_wo_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_WHOS_ONLINE_WO_STATUS') && (trim(CLICSHOPPING_APP_WHOS_ONLINE_WO_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_WHOS_ONLINE_WO_STATUS') && (trim(CLICSHOPPING_APP_WHOS_ONLINE_WO_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_WHOS_ONLINE_INSTALLED')) {
+      if (\defined('MODULE_MODULES_WHOS_ONLINE_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_WHOS_ONLINE_INSTALLED);
       }
 

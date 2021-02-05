@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_search_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_search_description');
 
-      if (defined('MODULE_BOXES_SEARCH_STATUS')) {
+      if (\defined('MODULE_BOXES_SEARCH_STATUS')) {
         $this->sort_order = MODULE_BOXES_SEARCH_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_SEARCH_STATUS == 'True');
         $this->pages = MODULE_BOXES_SEARCH_DISPLAY_PAGES;
@@ -79,7 +79,7 @@
     }
 
     public function  check() {
-      return defined('MODULE_BOXES_SEARCH_STATUS');
+      return \defined('MODULE_BOXES_SEARCH_STATUS');
     }
 
     public function  install() {

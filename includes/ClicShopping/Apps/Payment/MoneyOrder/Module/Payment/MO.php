@@ -55,7 +55,7 @@
       $this->public_title = $this->app->getDef('module_moneyorder_public_title');
 
 // Activation module du paiement selon les groupes B2B
-      if (defined('CLICSHOPPING_APP_MONEYORDER_MO_STATUS')) {
+      if (\defined('CLICSHOPPING_APP_MONEYORDER_MO_STATUS')) {
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           if (B2BCommon::getPaymentUnallowed($this->code)) {
             if (CLICSHOPPING_APP_MONEYORDER_MO_STATUS == 'True') {
@@ -86,7 +86,7 @@
           }
         }
 
-        $this->sort_order = defined('CLICSHOPPING_APP_MONEYORDER_MO_SORT_ORDER') ? CLICSHOPPING_APP_MONEYORDER_MO_SORT_ORDER : 0;
+        $this->sort_order = \defined('CLICSHOPPING_APP_MONEYORDER_MO_SORT_ORDER') ? CLICSHOPPING_APP_MONEYORDER_MO_SORT_ORDER : 0;
       }
     }
 
@@ -149,7 +149,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $this->title_selection = '';
 
-      if (defined('CLICSHOPPING_APP_MONEYORDER_MO_LOGO') && !empty(CLICSHOPPING_APP_MONEYORDER_MO_LOGO)) {
+      if (\defined('CLICSHOPPING_APP_MONEYORDER_MO_LOGO') && !empty(CLICSHOPPING_APP_MONEYORDER_MO_LOGO)) {
         $this->title_selection .= HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'logos/payment/' . CLICSHOPPING_APP_MONEYORDER_MO_LOGO);
       }
 
@@ -184,7 +184,7 @@
 
     public function check()
     {
-      return defined('CLICSHOPPING_APP_MONEYORDER_MO_STATUS') && (trim(CLICSHOPPING_APP_MONEYORDER_MO_STATUS) != '');
+      return \defined('CLICSHOPPING_APP_MONEYORDER_MO_STATUS') && (trim(CLICSHOPPING_APP_MONEYORDER_MO_STATUS) != '');
     }
 
     public function install()

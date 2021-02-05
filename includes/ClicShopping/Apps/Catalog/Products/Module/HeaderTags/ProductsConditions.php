@@ -38,7 +38,7 @@
       $this->title = $this->app->getDef('module_header_tags_product_condition_title');
       $this->description = $this->app->getDef('module_header_tags_product_condition_description');
 
-      if (defined('MODULE_HEADER_TAGS_PRODUCT_CONDITION_STATUS')) {
+      if (\defined('MODULE_HEADER_TAGS_PRODUCT_CONDITION_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_PRODUCT_CONDITION_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_PRODUCT_CONDITION_STATUS == 'True');
       }
@@ -55,7 +55,7 @@
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
-      if (!defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
         return false;
       }
 

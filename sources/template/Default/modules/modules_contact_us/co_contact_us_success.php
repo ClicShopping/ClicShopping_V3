@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('modules_contact_us_success_title');
       $this->description = CLICSHOPPING::getDef('modules_contact_us_success_description');
 
-      if (defined('MODULES_CONTACT_US_SUCCESS_STATUS')) {
+      if (\defined('MODULES_CONTACT_US_SUCCESS_STATUS')) {
         $this->sort_order = (int)MODULES_CONTACT_US_SUCCESS_SORT_ORDER;
         $this->enabled = (MODULES_CONTACT_US_SUCCESS_STATUS == 'True');
       }
@@ -62,7 +62,7 @@
     }
 
     public function check() {
-      return defined('MODULES_CONTACT_US_SUCCESS_STATUS');
+      return \defined('MODULES_CONTACT_US_SUCCESS_STATUS');
     }
 
     public function install() {

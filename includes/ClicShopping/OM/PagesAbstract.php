@@ -94,7 +94,7 @@
       $furious_pete = [];
 
       if (\count($_GET) > $this->site->actions_index) {
-        $furious_pete = array_keys(array_slice($_GET, $this->site->actions_index, null, true));
+        $furious_pete = array_keys(\array_slice($_GET, $this->site->actions_index, null, true));
       }
 
       if (!empty($furious_pete)) {
@@ -133,8 +133,8 @@
 
           if ((\count($ns) > 2) && ($ns[0] == 'ClicShopping') && ($ns[1] == 'Apps')) {
             if (isset($this->app) && is_subclass_of($this->app, 'ClicShopping\OM\AppAbstract')) {
-              if ($this->app->definitionsExist(implode('/', array_slice($ns, 4)))) {
-                $this->app->loadDefinitions(implode('/', array_slice($ns, 4)));
+              if ($this->app->definitionsExist(implode('/', \array_slice($ns, 4)))) {
+                $this->app->loadDefinitions(implode('/', \array_slice($ns, 4)));
               }
             }
           }
@@ -160,7 +160,7 @@
       $actions = $furious_pete = [];
 
       if (\count($_GET) > $this->site->actions_index) {
-        $furious_pete = array_keys(array_slice($_GET, $this->site->actions_index, null, true));
+        $furious_pete = array_keys(\array_slice($_GET, $this->site->actions_index, null, true));
       }
 
       foreach ($furious_pete as $action) {

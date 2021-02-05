@@ -28,7 +28,7 @@
       $this->template = Registry::get('Template');
       $this->lang = Registry::get('Language');
 
-      if (defined('MODULE_PAYMENT_INSTALLED') && !\is_null(MODULE_PAYMENT_INSTALLED)) {
+      if (\defined('MODULE_PAYMENT_INSTALLED') && !\is_null(MODULE_PAYMENT_INSTALLED)) {
         $this->modules = explode(';', MODULE_PAYMENT_INSTALLED);
 
         $include_modules = [];

@@ -207,7 +207,7 @@
       $CLICSHOPPING_Mail = Registry::get('Mail');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 
@@ -337,7 +337,7 @@
       $CLICSHOPPING_Mail = Registry::get('Mail');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 // ----------------------
@@ -439,7 +439,7 @@
     {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 

@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('modules_tell_a_friend_message_title');
       $this->description = CLICSHOPPING::getDef('modules_tell_a_friend_message_description');
 
-      if (defined('MODULES_TELL_A_FRIEND_MESSAGE_STATUS')) {
+      if (\defined('MODULES_TELL_A_FRIEND_MESSAGE_STATUS')) {
         $this->sort_order = MODULES_TELL_A_FRIEND_MESSAGE_SORT_ORDER;
         $this->enabled = (MODULES_TELL_A_FRIEND_MESSAGE_STATUS == 'True');
       }
@@ -66,7 +66,7 @@
     }
 
     public function check() {
-      return defined('MODULES_TELL_A_FRIEND_MESSAGE_STATUS');
+      return \defined('MODULES_TELL_A_FRIEND_MESSAGE_STATUS');
     }
 
     public function install() {

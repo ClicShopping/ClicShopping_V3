@@ -62,7 +62,7 @@
       $this->public_title = $this->app->getDef('module_stripe_public_title');
 
 // Activation module du paiement selon les groupes B2B
-      if (defined('CLICSHOPPING_APP_STRIPE_ST_STATUS')) {
+      if (\defined('CLICSHOPPING_APP_STRIPE_ST_STATUS')) {
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           if (B2BCommon::getPaymentUnallowed($this->code)) {
             if (CLICSHOPPING_APP_STRIPE_ST_STATUS == 'True') {
@@ -93,7 +93,7 @@
           }
         }
         
-        if (defined('CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD')) {
+        if (\defined('CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD')) {
           if (CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD == 'True') {
             $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY;
             $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY;
@@ -105,7 +105,7 @@
           $this->enabled = false;
         }
 
-        $this->sort_order = defined('CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER') ? CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER : 0;
+        $this->sort_order = \defined('CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER') ? CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER : 0;
       }
     }
 
@@ -359,7 +359,7 @@ pre_confirmation_check()
 
     public function check() 
     {
-      return defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && (trim(CLICSHOPPING_APP_STRIPE_ST_STATUS) != '');
+      return \defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && (trim(CLICSHOPPING_APP_STRIPE_ST_STATUS) != '');
     }
 
     public function install() 

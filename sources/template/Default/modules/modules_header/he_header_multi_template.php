@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('modules_header_multi_template_title');
       $this->description = CLICSHOPPING::getDef('modules_header_multi_template_description');
 
-      if (defined('MODULES_HEADER_MULTI_TEMPLATE_STATUS')) {
+      if (\defined('MODULES_HEADER_MULTI_TEMPLATE_STATUS')) {
         $this->sort_order = MODULES_HEADER_MULTI_TEMPLATE_SORT_ORDER;
         $this->enabled = (MODULES_HEADER_MULTI_TEMPLATE_STATUS == 'True');
         $this->pages = MODULES_HEADER_MULTI_TEMPLATE_TEMPLATE_DISPLAY_PAGES;
@@ -119,7 +119,7 @@
     }
 
     public function check() {
-      return defined('MODULES_HEADER_MULTI_TEMPLATE_STATUS');
+      return \defined('MODULES_HEADER_MULTI_TEMPLATE_STATUS');
     }
 
     public function install()  {

@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_index_categories_name_title');
       $this->description = CLICSHOPPING::getDef('module_index_categories_name_description');
 
-      if (defined('MODULE_INDEX_CATEGORIES_NAME_STATUS')) {
+      if (\defined('MODULE_INDEX_CATEGORIES_NAME_STATUS')) {
         $this->sort_order = MODULE_INDEX_CATEGORIES_NAME_SORT_ORDER;
         $this->enabled = (MODULE_INDEX_CATEGORIES_NAME_STATUS == 'True');
       }
@@ -67,7 +67,7 @@
     }
 
     public function check() {
-      return defined('MODULE_INDEX_CATEGORIES_NAME_STATUS');
+      return \defined('MODULE_INDEX_CATEGORIES_NAME_STATUS');
     }
 
     public function install() {

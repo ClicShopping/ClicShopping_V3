@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('module_create_account_introduction_description');
 
 
-      if (defined('MODULE_CREATE_ACCOUNT_INTRODUCTION_STATUS')) {
+      if (\defined('MODULE_CREATE_ACCOUNT_INTRODUCTION_STATUS')) {
         $this->sort_order = MODULE_CREATE_ACCOUNT_INTRODUCTION_SORT_ORDER;
         $this->enabled = (MODULE_CREATE_ACCOUNT_INTRODUCTION_STATUS == 'True');
       }
@@ -58,7 +58,7 @@
   }
 
   public function check() {
-    return defined('MODULE_CREATE_ACCOUNT_INTRODUCTION_STATUS');
+    return \defined('MODULE_CREATE_ACCOUNT_INTRODUCTION_STATUS');
   }
 
   public function install() {

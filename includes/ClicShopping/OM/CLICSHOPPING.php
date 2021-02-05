@@ -239,7 +239,7 @@
         $link = str_replace('&&', '&', $link);
       }
 
-      if ($search_engine_safe === true && defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start() && static::getSite() != 'ClicShoppingAdmin') {
+      if ($search_engine_safe === true && \defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start() && static::getSite() != 'ClicShoppingAdmin') {
         $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
       }
 
@@ -251,7 +251,7 @@
      */
     public static function linkImage(): string
     {
-      $args = func_get_args();
+      $args = \func_get_args();
 
       if (!isset($args[0])) {
         $args[0] = null;
@@ -283,7 +283,7 @@
      */
     public static function linkPublic(): string
     {
-      $args = func_get_args();
+      $args = \func_get_args();
 
       if (!isset($args[0])) {
         $args[0] = null;
@@ -318,7 +318,7 @@
      */
     public static function redirect(): string
     {
-      $args = func_get_args();
+      $args = \func_get_args();
 
       $url = forward_static_call_array('static::link', $args);
 
@@ -340,7 +340,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      return \call_user_func_array([$CLICSHOPPING_Language, 'getDef'], func_get_args());
+      return \call_user_func_array([$CLICSHOPPING_Language, 'getDef'], \func_get_args());
     }
 
     /**
@@ -349,7 +349,7 @@
      */
     public static function hasRoute(array $path): bool
     {
-      return array_slice(array_keys($_GET), 0, \count($path)) == $path;
+      return \array_slice(array_keys($_GET), 0, \count($path)) == $path;
     }
 
     /**
@@ -535,13 +535,13 @@
         }
       } else {
         if (!empty($_GET)) {
-          $key = key(array_slice($_GET, 0, 1, true));
+          $key = key(\array_slice($_GET, 0, 1, true));
 
           if (isset($key)) {
             $requested_application = HTML::sanitize(basename($key));
 
             if ($requested_application == static::getSite()) {
-              $key = key(array_slice($_GET, 1, 1, true));
+              $key = key(\array_slice($_GET, 1, 1, true));
 
               if (isset($key)) {
 
@@ -705,7 +705,7 @@
         'version' => PHP_VERSION,
         'zend' => zend_version(),
         'sapi' => PHP_SAPI,
-        'int_size' => defined('PHP_INT_SIZE') ? PHP_INT_SIZE : '',
+        'int_size' => \defined('PHP_INT_SIZE') ? PHP_INT_SIZE : '',
         'open_basedir' => (int)@ini_get('open_basedir'),
         'memory_limit' => @ini_get('memory_limit'),
         'error_reporting' => error_reporting(),

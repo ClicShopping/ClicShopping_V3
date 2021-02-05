@@ -37,7 +37,7 @@
       $this->title = $this->app->getDef('module_header_tags_rss_title');
       $this->description = $this->app->getDef('module_header_tags_rss_description');
 
-      if (defined('MODULE_HEADER_TAGS_RSS_STATUS')) {
+      if (\defined('MODULE_HEADER_TAGS_RSS_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_RSS_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_RSS_STATUS == 'True');
       }
@@ -52,7 +52,7 @@
     {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (!defined('CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS') || CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS') || CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS == 'False') {
         return false;
       }
 

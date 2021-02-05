@@ -30,7 +30,7 @@
       $this->description = CLICSHOPPING::getDef('module_create_account_pro_success_description');
 
 
-      if (defined('MODULE_CREATE_ACCOUNT_PRO_SUCCESS_STATUS')) {
+      if (\defined('MODULE_CREATE_ACCOUNT_PRO_SUCCESS_STATUS')) {
         $this->sort_order = MODULE_CREATE_ACCOUNT_PRO_SUCCESS_SORT_ORDER;
         $this->enabled = (MODULE_CREATE_ACCOUNT_PRO_SUCCESS_STATUS == 'True');
       }
@@ -62,7 +62,7 @@
   }
 
   public function check() {
-    return defined('MODULE_CREATE_ACCOUNT_PRO_SUCCESS_STATUS');
+    return \defined('MODULE_CREATE_ACCOUNT_PRO_SUCCESS_STATUS');
   }
 
   public function install() {

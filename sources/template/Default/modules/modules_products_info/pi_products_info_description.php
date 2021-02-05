@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_info_description');
       $this->description = CLICSHOPPING::getDef('module_products_info_description_description');
 
-      if (defined('MODULE_PRODUCTS_INFO_DESCRIPTION_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_DESCRIPTION_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_DESCRIPTION_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_INFO_DESCRIPTION_STATUS == 'True');
       }
@@ -63,7 +63,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_INFO_DESCRIPTION_STATUS');
+      return \defined('MODULE_PRODUCTS_INFO_DESCRIPTION_STATUS');
     }
 
     public function install() {

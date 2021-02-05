@@ -28,7 +28,7 @@ class pr_products_reviews_listing_button_process {
     $this->title = CLICSHOPPING::getDef('modules_products_reviews_listing_button_process_title');
     $this->description = CLICSHOPPING::getDef('modules_products_reviews_lisitng_button_process_description');
 
-    if (defined('MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS')) {
+    if (\defined('MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS')) {
       $this->sort_order = MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_SORT_ORDER;
       $this->enabled = (MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS == 'True');
     }
@@ -69,7 +69,7 @@ class pr_products_reviews_listing_button_process {
   }
 
   public function check() {
-    return defined('MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS');
+    return \defined('MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS');
   }
 
   public function install() {

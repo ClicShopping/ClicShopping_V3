@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_advanced_search_criteria_title');
       $this->description = CLICSHOPPING::getDef('module_advanced_search_criteria_description');
 
-      if (defined('MODULE_ADVANCED_SEARCH_CRITERIA_STATUS')) {
+      if (\defined('MODULE_ADVANCED_SEARCH_CRITERIA_STATUS')) {
         $this->sort_order = MODULE_ADVANCED_SEARCH_CRITERIA_SORT_ORDER;
         $this->enabled = (MODULE_ADVANCED_SEARCH_CRITERIA_STATUS == 'True');
       }
@@ -59,7 +59,7 @@
     }
 
     public function check() {
-      return defined('MODULE_ADVANCED_SEARCH_CRITERIA_STATUS');
+      return \defined('MODULE_ADVANCED_SEARCH_CRITERIA_STATUS');
     }
 
     public function install() {

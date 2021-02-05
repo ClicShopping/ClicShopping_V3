@@ -31,7 +31,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (isset($_GET['SecurityCheck'])) {
-        if (defined('MODULE_SECURITY_CHECK_EXTENDED_LAST_RUN_DATETIME')) {
+        if (\defined('MODULE_SECURITY_CHECK_EXTENDED_LAST_RUN_DATETIME')) {
           $CLICSHOPPING_Db->save('configuration', [
             'configuration_value' => time(),
           ], [
@@ -56,7 +56,7 @@
         return true;
       }
 
-      return defined('MODULE_SECURITY_CHECK_EXTENDED_LAST_RUN_DATETIME') && (MODULE_SECURITY_CHECK_EXTENDED_LAST_RUN_DATETIME > strtotime('-30 days'));
+      return \defined('MODULE_SECURITY_CHECK_EXTENDED_LAST_RUN_DATETIME') && (MODULE_SECURITY_CHECK_EXTENDED_LAST_RUN_DATETIME > strtotime('-30 days'));
     }
 
     public function getMessage()

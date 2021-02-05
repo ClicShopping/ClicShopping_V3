@@ -562,7 +562,7 @@
      */
     public function getUrlValueLanguage()
     {
-      if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && (SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start())) {
+      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && (SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start())) {
         $value_language = SEFU::getUrlValue();
       } else {
         $value_language = null;

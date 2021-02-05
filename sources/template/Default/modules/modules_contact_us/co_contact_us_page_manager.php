@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('modules_contact_us_page_manager_title');
       $this->description = CLICSHOPPING::getDef('modules_contact_us_page_manager_description');
 
-      if (defined('MODULES_CONTACT_US_PAGE_MANAGER_STATUS')) {
+      if (\defined('MODULES_CONTACT_US_PAGE_MANAGER_STATUS')) {
         $this->sort_order = (int)MODULES_CONTACT_US_PAGE_MANAGER_SORT_ORDER;
         $this->enabled = (MODULES_CONTACT_US_PAGE_MANAGER_STATUS == 'True');
       }
@@ -68,7 +68,7 @@
     }
 
     public function check() {
-      return defined('MODULES_CONTACT_US_PAGE_MANAGER_STATUS');
+      return \defined('MODULES_CONTACT_US_PAGE_MANAGER_STATUS');
     }
 
     public function install() {

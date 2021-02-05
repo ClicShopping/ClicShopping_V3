@@ -24,14 +24,14 @@
       $this->title = $this->app->getDef('module_te_title');
       $this->short_title = $this->app->getDef('module_te_short_title');
       $this->introduction = $this->app->getDef('module_te_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_TEMPLATE_EMAIL_TE_STATUS') && (trim(CLICSHOPPING_APP_TEMPLATE_EMAIL_TE_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_TEMPLATE_EMAIL_TE_STATUS') && (trim(CLICSHOPPING_APP_TEMPLATE_EMAIL_TE_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_TEMPLATE_EMAIL_INSTALLED')) {
+      if (\defined('MODULE_MODULES_TEMPLATE_EMAIL_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_TEMPLATE_EMAIL_INSTALLED);
       }
 

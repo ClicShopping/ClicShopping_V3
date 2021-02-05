@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('module_login_mode_b2b');
       $this->description = CLICSHOPPING::getDef('module_login_mode_b2b_description');
 
-      if (defined('MODULE_LOGIN_MODE_B2B_STATUS')) {
+      if (\defined('MODULE_LOGIN_MODE_B2B_STATUS')) {
         $this->sort_order = MODULE_LOGIN_MODE_B2B_SORT_ORDER;
         $this->enabled = (MODULE_LOGIN_MODE_B2B_STATUS == 'True');
       }
@@ -62,7 +62,7 @@
     }
 
     public function check() {
-      return defined('MODULE_LOGIN_MODE_B2B_STATUS');
+      return \defined('MODULE_LOGIN_MODE_B2B_STATUS');
     }
 
     public function install() {

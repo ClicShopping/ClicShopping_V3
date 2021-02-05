@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_search_title');
       $this->description = CLICSHOPPING::getDef('module_products_search_description');
 
-      if (defined('MODULE_PRODUCTS_SEARCH_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_SEARCH_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_SEARCH_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_SEARCH_STATUS == 'True');
       }
@@ -47,7 +47,7 @@
        if (isset($_GET['Q'])) {
         $Qlisting = $CLICSHOPPING_Search->getListing();
 
-        if (defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
+        if (\defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
           $max_display = (int)MODULE_PRODUCTS_SEARCH_MAX_DISPLAY;
         }
 
@@ -337,7 +337,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_SEARCH_STATUS');
+      return \defined('MODULE_PRODUCTS_SEARCH_STATUS');
     }
 
     public function install() {

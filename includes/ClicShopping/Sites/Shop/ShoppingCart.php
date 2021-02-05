@@ -580,13 +580,13 @@
       $products_id = $this->getPrid($products_id_string);
 
 // Maximum to take an order
-      if (defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$quantity > MAX_QTY_IN_CART)) {
+      if (\defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$quantity > MAX_QTY_IN_CART)) {
         $quantity = (int)MAX_QTY_IN_CART;
       }
 
 // Define the minimum in basket if the qty min order is not define in product
       if ($this->getProductsMinOrderQtyShoppingCart($products_id) == 0) {
-        if (defined('MAX_MIN_IN_CART') && (MAX_MIN_IN_CART > 0) && ((int)$quantity < MAX_MIN_IN_CART)) {
+        if (\defined('MAX_MIN_IN_CART') && (MAX_MIN_IN_CART > 0) && ((int)$quantity < MAX_MIN_IN_CART)) {
           $quantity = (int)MAX_MIN_IN_CART;
         }
       }
@@ -1288,7 +1288,7 @@
      */
     public function getCheckGoodQty(string $products_id, int $qty) :int
     {
-      if (defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$qty > MAX_QTY_IN_CART)) {
+      if (\defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$qty > MAX_QTY_IN_CART)) {
         $qty = (int)MAX_QTY_IN_CART;
       }
 
@@ -1297,7 +1297,7 @@
       }
 
       if ($this->getProductsMinOrderQtyShoppingCart($products_id) == 0) {
-        if (defined('MAX_MIN_IN_CART') && (MAX_MIN_IN_CART > 0) && ((int)$qty < MAX_MIN_IN_CART)) {
+        if (\defined('MAX_MIN_IN_CART') && (MAX_MIN_IN_CART > 0) && ((int)$qty < MAX_MIN_IN_CART)) {
           $qty = (int)MAX_MIN_IN_CART;
         }
       }

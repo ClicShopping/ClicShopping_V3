@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_info_also_purchased_title');
       $this->description = CLICSHOPPING::getDef('module_products_info_also_purchased_description');
 
-      if (defined('MODULE_PRODUCTS_INFO_ALSO_PURCHASED_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_ALSO_PURCHASED_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_ALSO_PURCHASED_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_INFO_ALSO_PURCHASED_STATUS == 'True');
       }
@@ -300,7 +300,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_INFO_ALSO_PURCHASED_STATUS');
+      return \defined('MODULE_PRODUCTS_INFO_ALSO_PURCHASED_STATUS');
     }
 
     public function install() {

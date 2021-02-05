@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_shopping_cart_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_shopping_cart_description');
 
-      if (defined('MODULE_BOXES_SHOPPING_CART_STATUS')) {
+      if (\defined('MODULE_BOXES_SHOPPING_CART_STATUS')) {
         $this->sort_order = MODULE_BOXES_SHOPPING_CART_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_SHOPPING_CART_STATUS == 'True');
         $this->pages = MODULE_BOXES_SHOPPING_CART_DISPLAY_PAGES;
@@ -123,7 +123,7 @@
     }
 
     public function  check() {
-      return defined('MODULE_BOXES_SHOPPING_CART_STATUS');
+      return \defined('MODULE_BOXES_SHOPPING_CART_STATUS');
     }
 
     public function  install() {

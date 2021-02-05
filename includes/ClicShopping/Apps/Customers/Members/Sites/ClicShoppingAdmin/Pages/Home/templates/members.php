@@ -21,7 +21,7 @@
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
   // Permettre l'utilisation de l'approbation des comptes en mode B2B
-  if (defined('B2C') && B2C == 'true') {
+  if (\defined('B2C') && B2C == 'true') {
     CLICSHOPPING::redirect();
   }
 ?>

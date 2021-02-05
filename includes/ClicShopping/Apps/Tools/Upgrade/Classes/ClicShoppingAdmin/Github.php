@@ -147,7 +147,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (defined('STORE_OFFLINE')) {
+      if (\defined('STORE_OFFLINE')) {
         $Qupdate = $CLICSHOPPING_Db->prepare('update :table_configuration
                                               set configuration_value = :configuration_value,
                                               last_modified = now()

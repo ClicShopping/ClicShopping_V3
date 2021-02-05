@@ -21,7 +21,7 @@
   <div class="contentContainer">
     <div class="contentText">
 <?php
-  if (defined('MODULE_HEADER_BREADCRUMP_STATUS')) {
+  if (\defined('MODULE_HEADER_BREADCRUMP_STATUS')) {
     if (MODULE_HEADER_BREADCRUMP_STATUS == 'False' || empty(ClicShopping::getDef('module_header_breadcrump_title'))) {
 ?>
       <div class="separator"></div>

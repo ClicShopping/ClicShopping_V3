@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_payment_listing_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_payment_listing_description');
 
-      if (defined('MODULE_CHECKOUT_PAYMENT_LISTING_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_PAYMENT_LISTING_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_PAYMENT_LISTING_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_PAYMENT_LISTING_STATUS == 'True');
       }
@@ -125,7 +125,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_PAYMENT_LISTING_STATUS');
+      return \defined('MODULE_CHECKOUT_PAYMENT_LISTING_STATUS');
     }
 
     public function install() {

@@ -79,7 +79,7 @@
       $this->path[] = ['application' => CLICSHOPPING::getSiteApplication(),
         'action' => $action_get,
         'mode' => HTTP::getRequestType(),
-        'get' => array_slice($_GET, $action_counter),
+        'get' => \array_slice($_GET, $action_counter),
         'post' => $_POST
       ];
 

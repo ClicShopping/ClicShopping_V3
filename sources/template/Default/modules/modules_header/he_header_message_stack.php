@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_header_message_stack_title');
       $this->description = CLICSHOPPING::getDef('module_header_message_stack_description');
 
-      if (defined('MODULE_HEADER_MESSAGE_STACK_STATUS')) {
+      if (\defined('MODULE_HEADER_MESSAGE_STACK_STATUS')) {
         $this->sort_order = MODULE_HEADER_MESSAGE_STACK_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_MESSAGE_STACK_STATUS == 'True');
       }
@@ -76,7 +76,7 @@
     }
 
     public function check() {
-      return defined('MODULE_HEADER_MESSAGE_STACK_STATUS');
+      return \defined('MODULE_HEADER_MESSAGE_STACK_STATUS');
     }
 
     public function install() {

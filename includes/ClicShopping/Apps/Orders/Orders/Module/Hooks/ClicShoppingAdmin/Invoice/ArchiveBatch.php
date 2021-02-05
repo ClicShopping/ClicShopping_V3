@@ -40,7 +40,7 @@
 
     public function execute()
     {
-      if (!defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
+      if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
         return false;
       }
 

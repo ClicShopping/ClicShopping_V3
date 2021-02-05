@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_footer_multi_template_title');
       $this->description = CLICSHOPPING::getDef('module_footer_multi_template_description');
 
-      if (defined('MODULE_FOOTER_MULTI_TEMPLATE_STATUS')) {
+      if (\defined('MODULE_FOOTER_MULTI_TEMPLATE_STATUS')) {
         $this->sort_order = MODULE_FOOTER_MULTI_TEMPLATE_SORT_ORDER;
         $this->enabled = (MODULE_FOOTER_MULTI_TEMPLATE_STATUS == 'True');
         $this->pages = MODULE_FOOTER_MULTI_TEMPLATE_DISPLAY_PAGES;
@@ -115,7 +115,7 @@
           $pinterest_url = '#';
         }
 
-        if (defined('MODULES_HEADER_TAGS_MAILCHIMP_LIST_ANONYMOUS')) {
+        if (\defined('MODULES_HEADER_TAGS_MAILCHIMP_LIST_ANONYMOUS')) {
           if (!empty(MODULES_HEADER_TAGS_MAILCHIMP_LIST_ANONYMOUS)) {
             $mailchimp_list_anonymous = MODULES_HEADER_TAGS_MAILCHIMP_LIST_ANONYMOUS;
           }
@@ -143,7 +143,7 @@
 
     public function check()
     {
-      return defined('MODULE_FOOTER_MULTI_TEMPLATE_STATUS');
+      return \defined('MODULE_FOOTER_MULTI_TEMPLATE_STATUS');
     }
 
     public function install()

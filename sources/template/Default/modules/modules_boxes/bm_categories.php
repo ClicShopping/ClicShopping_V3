@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_categories_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_categories_description');
 
-      if (defined('MODULE_BOXES_CATEGORIES_STATUS')) {
+      if (\defined('MODULE_BOXES_CATEGORIES_STATUS')) {
         $this->sort_order = MODULE_BOXES_CATEGORIES_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_CATEGORIES_STATUS == 'True');
         $this->pages = MODULE_BOXES_CATEGORIES_DISPLAY_PAGES;
@@ -74,7 +74,7 @@
     }
 
     public function check() {
-      return defined('MODULE_BOXES_CATEGORIES_STATUS');
+      return \defined('MODULE_BOXES_CATEGORIES_STATUS');
     }
 
     public function install() {

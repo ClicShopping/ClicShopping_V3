@@ -31,7 +31,7 @@
       $this->title = CLICSHOPPING::getDef('module_account_customers_edit_title');
       $this->description = CLICSHOPPING::getDef('module_account_customers_edit_description');
 
-      if (defined('MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_STATUS')) {
+      if (\defined('MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_STATUS')) {
         $this->sort_order = (int)MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_SORT_ORDER;
         $this->enabled = (MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_STATUS == 'True');
       }
@@ -89,7 +89,7 @@
     }
 
     public function check() {
-      return defined('MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_STATUS');
+      return \defined('MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_STATUS');
     }
 
     public function install() {

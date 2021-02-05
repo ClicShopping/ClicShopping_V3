@@ -24,14 +24,14 @@
       $this->title = $this->app->getDef('module_bm_title');
       $this->short_title = $this->app->getDef('module_bm_short_title');
       $this->introduction = $this->app->getDef('module_bm_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_BANNER_MANAGER_BM_STATUS') && (trim(CLICSHOPPING_APP_BANNER_MANAGER_BM_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_BANNER_MANAGER_BM_STATUS') && (trim(CLICSHOPPING_APP_BANNER_MANAGER_BM_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_BANNER_MANAGER_INSTALLED')) {
+      if (\defined('MODULE_MODULES_BANNER_MANAGER_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_BANNER_MANAGER_INSTALLED);
       }
 

@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_info_options');
       $this->description = CLICSHOPPING::getDef('module_products_info_options_description');
 
-      if (defined('MODULE_PRODUCTS_INFO_OPTIONS_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_OPTIONS_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_INFO_OPTIONS_STATUS == 'True');
       }
@@ -97,7 +97,7 @@
 //*****************************
 // Strong relations with pi_products_info price.php Don't delete
 //*****************************
-            if (defined('MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER')) {
+            if (\defined('MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER')) {
                 if (MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER > MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER) {
                  $products_options_content_display .= HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add&cPath=' . $CLICSHOPPING_Category->getPath(), ' SSL'), 'post', '', ['tokenize' => true]);
                }
@@ -237,7 +237,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_INFO_OPTIONS_STATUS');
+      return \defined('MODULE_PRODUCTS_INFO_OPTIONS_STATUS');
     }
 
     public function install() {

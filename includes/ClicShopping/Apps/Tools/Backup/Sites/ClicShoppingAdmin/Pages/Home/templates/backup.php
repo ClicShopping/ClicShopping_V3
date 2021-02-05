@@ -148,7 +148,7 @@
     </td>
   </table>
   <?php
-    if (defined('DB_LAST_RESTORE')) {
+    if (\defined('DB_LAST_RESTORE')) {
       ?>
       <div><?php echo $CLICSHOPPING_Backup->getDef('text_last_restoration') . ' ' . DB_LAST_RESTORE . ' <a href="' . $CLICSHOPPING_Backup->link('Backup.php&Forget') . '">' . $CLICSHOPPING_Backup->getDef('text_forget') . '</a>'; ?></div>
       <?php

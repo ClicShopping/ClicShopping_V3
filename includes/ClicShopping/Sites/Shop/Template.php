@@ -218,7 +218,7 @@
      */
     public function addBlock(string $block, string $group)
     {
-      if (defined('CONFIGURATION_TEMPLATE_MINIFY_HTML') && CONFIGURATION_TEMPLATE_MINIFY_HTML == 'true') {
+      if (\defined('CONFIGURATION_TEMPLATE_MINIFY_HTML') && CONFIGURATION_TEMPLATE_MINIFY_HTML == 'true') {
         $block = HTMLOverrideCommon::getMinifyHtml($block);
       }
 
@@ -239,7 +239,7 @@
      */
     public function getAppsHeaderTags()
     {
-      if (defined('MODULE_HEADER_TAGS_INSTALLED') && !\is_null(MODULE_HEADER_TAGS_INSTALLED)) {
+      if (\defined('MODULE_HEADER_TAGS_INSTALLED') && !\is_null(MODULE_HEADER_TAGS_INSTALLED)) {
         $header_tags_array = explode(';', MODULE_HEADER_TAGS_INSTALLED);
 
         foreach ($header_tags_array as $header) {
@@ -336,7 +336,7 @@
       } else {
 // Use for multi template demonstration
 
-        if (defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
+        if (\defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
           if (MODULE_HEADER_SELECT_TEMPLATE_STATUS == 'True') {
             if ((isset($_POST['TemplateCustomerSelected']))) {
               $thema_directory = $this->_directoryTemplateSources . $this->_directoryTemplate . HTML::sanitize($_POST['TemplateCustomerSelected']);
@@ -429,7 +429,7 @@
       }
 
 // Use for multi template demonstration
-      if (defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
+      if (\defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
         if (MODULE_HEADER_SELECT_TEMPLATE_STATUS == 'True') {
           if ((isset($_POST['TemplateCustomerSelected']))) {
             $thema = $this->_directoryTemplateSources . $this->_directoryTemplate . HTML::sanitize($_POST['TemplateCustomerSelected']) . '/';
@@ -486,13 +486,13 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Category = Registry::get('Category');
 
-      if (defined('TEMPLATE_BLOCK_GROUPS') && !\is_null(TEMPLATE_BLOCK_GROUPS)) {
+      if (\defined('TEMPLATE_BLOCK_GROUPS') && !\is_null(TEMPLATE_BLOCK_GROUPS)) {
         $tbgroups_array = explode(';', TEMPLATE_BLOCK_GROUPS);
 
         foreach ($tbgroups_array as $group) {
           $module_key = 'MODULE_' . strtoupper($group) . '_INSTALLED';
 
-          if (defined($module_key) && !\is_null(constant($module_key))) {
+          if (\defined($module_key) && !\is_null(constant($module_key))) {
             $modules_array = explode(';', constant($module_key));
 
             foreach ($modules_array as $module) {

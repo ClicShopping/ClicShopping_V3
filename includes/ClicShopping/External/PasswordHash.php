@@ -71,7 +71,7 @@
         fclose($fh);
       }
 
-      if (strlen($output) < $count) {
+      if (\strlen($output) < $count) {
         $output = '';
         for ($i = 0; $i < $count; $i += 16) {
           $this->random_state =
@@ -135,7 +135,7 @@
       $count = 1 << $count_log2;
 
       $salt = substr($setting, 4, 8);
-      if (strlen($salt) !== 8)
+      if (\strlen($salt) !== 8)
         return $output;
 
       # We were kind of forced to use MD5 here since it's the only
@@ -204,16 +204,16 @@
         $random = $this->get_random_bytes(16);
         $hash =
           crypt($password, $this->gensalt_blowfish($random));
-        if (strlen($hash) === 60)
+        if (\strlen($hash) === 60)
           return $hash;
       }
 
-      if (strlen($random) < 6)
+      if (\strlen($random) < 6)
         $random = $this->get_random_bytes(6);
       $hash =
         $this->crypt_private($password,
           $this->gensalt_private($random));
-      if (strlen($hash) === 34)
+      if (\strlen($hash) === 34)
         return $hash;
 
       # Returning '*' on error is safe here, but would _not_ be safe
