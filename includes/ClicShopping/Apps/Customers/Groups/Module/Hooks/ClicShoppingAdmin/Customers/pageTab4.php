@@ -199,7 +199,7 @@
               Registry::set('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
               $module = Registry::get('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']));
 
-              if (($cInfo->customers_group_id != 0) && (in_array($module->code, $payments_unallowed))) {
+              if (($cInfo->customers_group_id != 0) && (\in_array($module->code, $payments_unallowed))) {
                 $content .= '<div class="row">';
                 $content .= '<div class="col-md-5">';
                 $content .= '<div class="form-group row">';
@@ -210,7 +210,7 @@
                 $content .= '</div>';
                 $content .= '</div>';
                 $content .= '</div>';
-              } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $payments_unallowed))) {
+              } elseif (($cInfo->customers_group_id != 0) && (!\in_array($module->code, $payments_unallowed))) {
                 $content .= '<div class="row">';
                 $content .= '<div class="col-md-5">';
                 $content .= '<div class="form-group row">';

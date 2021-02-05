@@ -100,7 +100,7 @@
       if (!empty($furious_pete)) {
         $action = HTML::sanitize(basename($furious_pete[0]));
 
-        if (!in_array($action, $this->ignored_actions) && $this->actionExists($action)) {
+        if (!\in_array($action, $this->ignored_actions) && $this->actionExists($action)) {
           return true;
         }
       }
@@ -168,7 +168,7 @@
 
         $actions[] = $action;
 
-        if (in_array($action, $this->ignored_actions) || !$this->actionExists($actions)) {
+        if (\in_array($action, $this->ignored_actions) || !$this->actionExists($actions)) {
           array_pop($actions);
 
           break;

@@ -67,7 +67,7 @@
 
       $expired_entries = 0;
 
-      if (isset($_GET['module']) && in_array($_GET['module'], $modules_array)) {
+      if (isset($_GET['module']) && \in_array($_GET['module'], $modules_array)) {
         $get_module_class = $CLICSHOPPING_ActionsRecorderClass->getClassModule($_GET['module']);
 
         if (is_object($get_module_class)) {

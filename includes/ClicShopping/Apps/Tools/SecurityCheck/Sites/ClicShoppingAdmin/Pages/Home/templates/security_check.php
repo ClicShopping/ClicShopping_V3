@@ -106,7 +106,7 @@
           foreach ($modules as $module) {
             $secCheck = $GLOBALS[$module['class']];
 
-            if (!in_array($secCheck->type, $types)) {
+            if (!\in_array($secCheck->type, $types)) {
               $secCheck->type = 'info';
             }
 

@@ -56,12 +56,12 @@
       $path = $root_dir.'/'.$content;
       if(is_file($path) && is_readable($path)) {
 // skip ignored files
-        if(!in_array($content, $ignore_files)) {
+        if(!\in_array($content, $ignore_files)) {
           if (preg_match($ignore_regex,$content) == 0) {
             $content_chunks = explode(".",$content);
             $ext = $content_chunks[\count($content_chunks) - 1];
 // only include files with desired extensions
-            if (in_array($ext, $allow_extensions)) {
+            if (\in_array($ext, $allow_extensions)) {
 // save file name with path
               $all_data[] = $path;
             }
@@ -71,7 +71,7 @@
 // if content is a directory and readable, add path and name
       elseif(is_dir($path) && is_readable($path)) {
  // skip any ignored dirs
-        if(!in_array($content, $ignore_dirs)) {
+        if(!\in_array($content, $ignore_dirs)) {
 // recursive callback to open new directory
           $all_data = get_files($path, $all_data);
         }

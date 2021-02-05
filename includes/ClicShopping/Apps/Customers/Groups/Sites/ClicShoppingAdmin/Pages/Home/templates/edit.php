@@ -311,7 +311,7 @@
                           <ul class="list-group-slider list-group-flush">
                             <li class="list-group-item-slider">
                               <label class="switch">
-                                <?php echo HTML::checkboxField('payment_unallowed[' . $i . ']', $module->code, (in_array($module->code, $payments_unallowed)) ? true : false, 'class="success"'); ?>
+                                <?php echo HTML::checkboxField('payment_unallowed[' . $i . ']', $module->code, (\in_array($module->code, $payments_unallowed)) ? true : false, 'class="success"'); ?>
                                 <span class="slider"></span>
                               </label>
                             </li>
@@ -381,7 +381,7 @@
                           <ul class="list-group-slider list-group-flush">
                             <li class="list-group-item-slider">
                               <label class="switch">
-                                <?php echo HTML::checkboxField('shipping_unallowed[' . $i . ']', $module->code, (in_array($module->code, $shipping_unallowed)) ? true : false, 'class="success"'); ?>
+                                <?php echo HTML::checkboxField('shipping_unallowed[' . $i . ']', $module->code, (\in_array($module->code, $shipping_unallowed)) ? true : false, 'class="success"'); ?>
                                 <span class="slider"></span>
                               </label>
                             </li>

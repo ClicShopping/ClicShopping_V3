@@ -32,7 +32,7 @@
       $n = \count($cPath_array);
 
       for ($i = 0; $i < $n; $i++) {
-        if (!in_array($cPath_array[$i], $tmp_array)) {
+        if (!\in_array($cPath_array[$i], $tmp_array)) {
           $tmp_array[] = $cPath_array[$i];
         }
       }

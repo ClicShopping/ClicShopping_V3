@@ -238,7 +238,7 @@
 
       if (\is_array($array) && !empty($array)) {
         foreach ($array as $key => $value) {
-          if (!in_array($key, $exclude)) {
+          if (!\in_array($key, $exclude)) {
             $string .= $key . '=' . $value . '&';
           }
         }

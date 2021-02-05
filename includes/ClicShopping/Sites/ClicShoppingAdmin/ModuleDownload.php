@@ -88,7 +88,7 @@
         $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($source), \RecursiveIteratorIterator::CHILD_FIRST);
 
         foreach ($files as $file) {
-          if (in_array($file->getBasename(), array('.', '..')) !== true) {
+          if (\in_array($file->getBasename(), array('.', '..')) !== true) {
             if ($file->isDir() === true) {
               rmdir($file->getPathName());
             } else if (($file->isFile() === true) || ($file->isLink() === true)) {

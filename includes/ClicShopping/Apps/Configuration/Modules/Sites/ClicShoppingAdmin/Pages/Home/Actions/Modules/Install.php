@@ -78,7 +78,7 @@
 
         $modules_installed = explode(';', constant($module_key));
 
-        if (!in_array($class . $file_extension, $modules_installed)) {
+        if (!\in_array($class . $file_extension, $modules_installed)) {
           $modules_installed[] = $class . $file_extension;
         }
 

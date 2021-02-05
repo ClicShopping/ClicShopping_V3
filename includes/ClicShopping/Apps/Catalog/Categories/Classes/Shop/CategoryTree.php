@@ -207,7 +207,7 @@
           $category_name = $this->getCategoryTreeTitle($category['name']);
           $categories_url = $this->getCategoryTreeUrl($category_link);
 
-          if (($this->follow_cpath === true) && in_array($category_id, $this->cpath_array)) {
+          if (($this->follow_cpath === true) && \in_array($category_id, $this->cpath_array)) {
             $link_title = $this->cpath_start_string . $category_name . $this->cpath_end_string;
           } else {
             $link_title = $category_name;
@@ -230,7 +230,7 @@
 
           if (isset($this->_data[$category_id]) && (($this->max_level == '0') || ($this->max_level > $level + 1))) {
             if ($this->follow_cpath === true) {
-              if (in_array($category_id, $this->cpath_array)) {
+              if (\in_array($category_id, $this->cpath_array)) {
                 $result .= $this->_buildBranch($category_id, $level + 1);
               }
             } else {
@@ -268,7 +268,7 @@
 
           if (isset($this->_data[$category_id]) && (($this->max_level == '0') || ($this->max_level > $level + 1))) {
             if ($this->follow_cpath === true) {
-              if (in_array($category_id, $this->cpath_array)) {
+              if (\in_array($category_id, $this->cpath_array)) {
                 $result = $this->buildBranchArray($category_id, $level + 1, $result);
               }
             } else {

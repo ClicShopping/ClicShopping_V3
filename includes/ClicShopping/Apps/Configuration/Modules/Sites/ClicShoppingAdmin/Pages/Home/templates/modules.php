@@ -107,11 +107,11 @@
         if (!is_dir($module_directory . $file)) {
           if (substr($file, strrpos($file, '.')) === $file_extension) {
             if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
-              if (!in_array($file, $modules_installed)) {
+              if (!\in_array($file, $modules_installed)) {
                 $directory_array[] = $file;
               }
             } else {
-              if (in_array($file, $modules_installed)) {
+              if (\in_array($file, $modules_installed)) {
                 $directory_array[] = $file;
               } else {
                 $new_modules_counter++;
@@ -126,11 +126,11 @@
     if (isset($appModuleType)) {
       foreach (Apps::getModules($appModuleType) as $k => $v) {
         if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
-          if (!in_array($k, $modules_installed)) {
+          if (!\in_array($k, $modules_installed)) {
             $directory_array[] = $k;
           }
         } else {
-          if (in_array($k, $modules_installed)) {
+          if (\in_array($k, $modules_installed)) {
             $directory_array[] = $k;
           } else {
             $new_modules_counter++;
@@ -253,7 +253,7 @@
         <td><?php echo $module->title; ?></td>
         <td class="text-start"><?php echo $module->group; ?></td>
         <td
-          class="text-end"><?php if (in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
+          class="text-end"><?php if (\in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
         <td class="text-center">
           <?php
             if ($module->enabled == 'True') {
@@ -313,7 +313,7 @@
         if ($Qcheck->fetch() !== false) {
           $tbgroups_array = explode(';', $Qcheck->value('configuration_value'));
 
-          if (!in_array($module_type, $tbgroups_array)) {
+          if (!\in_array($module_type, $tbgroups_array)) {
             $tbgroups_array[] = $module_type;
             sort($tbgroups_array);
 

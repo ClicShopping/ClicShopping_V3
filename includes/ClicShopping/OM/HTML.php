@@ -359,7 +359,7 @@
 
         $field .= ' value="' . static::output($selection_value) . '"';
 
-        if (isset($default) && (($default === true) || (!\is_array($default) && ((string)$default == (string)$selection_value)) || (\is_array($default) && in_array($selection_value, $default)))) {
+        if (isset($default) && (($default === true) || (!\is_array($default) && ((string)$default == (string)$selection_value)) || (\is_array($default) && \in_array($selection_value, $default)))) {
           $field .= ' checked="checked"';
         }
 
@@ -822,7 +822,7 @@
         $params['type'] = 'submit';
       }
 
-      if (!in_array($params['type'], $types)) {
+      if (!\in_array($params['type'], $types)) {
         $params['type'] = 'submit';
       }
 
@@ -830,11 +830,11 @@
         $params['type'] = 'button';
       }
 
-      if (isset($style) && !in_array($style, $styles)) {
+      if (isset($style) && !\in_array($style, $styles)) {
         unset($style);
       }
 
-      if (isset($size) && !in_array($size, $size_button)) {
+      if (isset($size) && !\in_array($size, $size_button)) {
         unset($size);
       }
 

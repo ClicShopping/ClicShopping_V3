@@ -42,11 +42,11 @@
      *
      *
      * @return object _Security_Pro - allows chaining
-     * @uses in_array()
+     * @uses \in_array()
      */
     public function addExclusion($file_to_exclude = '')
     {
-      if (!in_array($file_to_exclude, $this->_excluded_from_cleansing)) {
+      if (!\in_array($file_to_exclude, $this->_excluded_from_cleansing)) {
         $this->_excluded_from_cleansing[] = (string)$file_to_exclude;
       }
       return $this;
@@ -78,7 +78,7 @@
      * @return void
      * @uses ini_get()
      * @see  _Security_Pro::cleanGlobals()
-     * @uses in_array()
+     * @uses \in_array()
      * @uses function_exists()
      */
 
@@ -91,7 +91,7 @@
         return;
       }
       $this->_basename = $data;
-      if (in_array($this->_basename, $this->_excluded_from_cleansing)) {
+      if (\in_array($this->_basename, $this->_excluded_from_cleansing)) {
         return;
       }
       $this->cleanseGetRecursive($_GET);

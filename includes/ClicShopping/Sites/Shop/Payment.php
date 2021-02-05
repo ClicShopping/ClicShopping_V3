@@ -33,7 +33,7 @@
 
         $include_modules = [];
 
-        if ((!\is_null($module)) && (in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($module, $this->modules))) {
+        if ((!\is_null($module)) && (\in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || \in_array($module, $this->modules))) {
 
           $this->selected_module = $module;
 
@@ -69,7 +69,7 @@
           $_SESSION['payment'] = $include_modules[0]['class'];
         }
 
-        if ((!\is_null($module)) && (in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($module, $this->modules))) {
+        if ((!\is_null($module)) && (\in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || \in_array($module, $this->modules))) {
           if (str_contains($module, '\\')) {
             $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $module));
 

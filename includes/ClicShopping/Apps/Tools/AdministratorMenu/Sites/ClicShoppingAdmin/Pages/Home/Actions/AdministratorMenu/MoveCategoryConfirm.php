@@ -43,7 +43,7 @@
 
         $path = explode('_', AdministratorMenu::getGeneratedAdministratorMenuPathIds($new_parent_id));
 
-        if (in_array($this->Id, $path)) {
+        if (\in_array($this->Id, $path)) {
           $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_move_directory_to_parent'), 'error');
 
           $this->app->redirect('AdministratorMenu&cPath=' . (int)$this->cPath . '&cID=' . (int)$this->Id);

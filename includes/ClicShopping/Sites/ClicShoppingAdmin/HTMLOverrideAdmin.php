@@ -224,7 +224,7 @@
 
       while ($Qproducts->fetch()) {
         if (MODE_B2B_B2C == 'true') {
-          if (!in_array($Qproducts->valueInt('products_id'), $exclude)) {
+          if (!\in_array($Qproducts->valueInt('products_id'), $exclude)) {
 
             $Qprice = $CLICSHOPPING_Db->prepare('select customers_group_price,
                                                   customers_group_id
@@ -244,7 +244,7 @@
             $sde = 0;
 //while(list($sdek,$sdev)=each($all_groups)){
             foreach ($all_groups as $sdek => $sdev) {
-              if (!in_array($Qproducts->valueInt('products_id') . ":" . (int)$sdek, $exclude)) {
+              if (!\in_array($Qproducts->valueInt('products_id') . ":" . (int)$sdek, $exclude)) {
                 if ($sde)
                   $price_string .= ' - ';
                 $price_string .= $sdev . ' : ' . $CLICSHOPPING_Currencies->format(isset($product_prices[$sdek]) ? $product_prices[$sdek] : $Qproducts->valueDecimal('products_price'));
@@ -256,7 +256,7 @@
             $select_string .= '<option value="' . $Qproducts->valueInt('products_id') . '">' . HTML::outputProtected($Qproducts->value('products_name')) . ' (' . CLICSHOPPING::getDef('visitor_name') . ': ' . $CLICSHOPPING_Currencies->format($Qproducts->valueDecimal('products_price')) . ' - ' . $price_string . ')</option>';
           }
         } else {
-          if (!in_array($Qproducts->valueInt('products_id'), $exclude)) {
+          if (!\in_array($Qproducts->valueInt('products_id'), $exclude)) {
             $select_string .= '<option value="' . $Qproducts->valueInt('products_id') . '">' . HTML::outputProtected($Qproducts->value('products_name')) . ' (' . $CLICSHOPPING_Currencies->format($Qproducts->valueDecimal('products_price')) . ')</option>';
           }
         }

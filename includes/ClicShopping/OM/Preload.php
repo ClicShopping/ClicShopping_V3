@@ -179,7 +179,7 @@
         }
 
         if(is_file($dir.DIRECTORY_SEPARATOR.$value)){
-          if(!self::$ext_filter || in_array(strtolower(pathinfo($dir . DIRECTORY_SEPARATOR . $value, PATHINFO_EXTENSION)), self::$ext_filter)){
+          if(!self::$ext_filter || \in_array(strtolower(pathinfo($dir . DIRECTORY_SEPARATOR . $value, PATHINFO_EXTENSION)), self::$ext_filter)){
             self::$files[] = $result[] = $dir . DIRECTORY_SEPARATOR . $value;
           }
           continue;

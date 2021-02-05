@@ -83,7 +83,7 @@
           $contents = [];
 
           while ($file = $dir->read()) {
-            if (!is_dir($backup_directory . $file) && in_array(substr($file, -3), array('zip', 'sql', '.gz'))) {
+            if (!is_dir($backup_directory . $file) && \in_array(substr($file, -3), array('zip', 'sql', '.gz'))) {
               $contents[] = $file;
             }
           }

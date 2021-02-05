@@ -116,12 +116,12 @@
             Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
             $module = Registry::get('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']));
 
-            if (($cInfo->customers_group_id != 0) && (in_array($module->code, $shipping_unallowed))) {
+            if (($cInfo->customers_group_id != 0) && (\in_array($module->code, $shipping_unallowed))) {
               $content .= '<div class="col-md-12">';
               $content .= '<span class="col-md-1"><i class="bi-check text-success"></i></span>';
               $content .= '<span class="col-md-3">' . $module->title . '</span>';
               $content .= '</div>';
-            } elseif ($cInfo->customers_group_id != 0 && !in_array($module->code, $shipping_unallowed)) {
+            } elseif ($cInfo->customers_group_id != 0 && !\in_array($module->code, $shipping_unallowed)) {
               $content .= '<div class="col-md-12">';
               $content .= '<span class="col-md-1"><i class="bi-check text-danger"></i></span>';
               $content .= '<span class="col-md-3">' . $module->title . '</span>';

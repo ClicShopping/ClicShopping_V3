@@ -88,7 +88,7 @@
         $data['cafile'] = CLICSHOPPING::BASE_DIR . 'External/cacert.pem';
       }
 
-      if (isset($data['format']) && !in_array($data['format'], ['json'])) {
+      if (isset($data['format']) && !\in_array($data['format'], ['json'])) {
         trigger_error('HttpRequest::getResponse(): Unknown "format": ' . $data['format']);
 
         unset($data['format']);

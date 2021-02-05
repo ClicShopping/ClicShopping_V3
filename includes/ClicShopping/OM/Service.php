@@ -123,7 +123,7 @@
      */
     public function isStarted(string $service): bool
     {
-      return in_array($service, $this->_started_services);
+      return \in_array($service, $this->_started_services);
     }
 
     /**

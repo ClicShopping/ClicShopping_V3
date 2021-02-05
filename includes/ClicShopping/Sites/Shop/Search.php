@@ -275,7 +275,7 @@
         if ($counter > 5) {
           break;
         } elseif (!empty($word)) {
-          if (!in_array($word, $terms_array)) {
+          if (!\in_array($word, $terms_array)) {
             $terms_array[] = $word;
           }
         }

@@ -194,7 +194,7 @@
      */
     public static function getRandomString(int $length, string  $type = 'mixed') :string
     {
-      if (!in_array($type, [
+      if (!\in_array($type, [
         'mixed',
         'chars',
         'digits'

@@ -73,7 +73,7 @@
           $secCheck = new $secclass;
 
           if (!$secCheck->pass()) {
-            if (!in_array($secCheck->type, $secCheck_types)) {
+            if (!\in_array($secCheck->type, $secCheck_types)) {
               $secCheck->type = 'info';
             }
 

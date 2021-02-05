@@ -87,7 +87,7 @@
             </div>
           </span>
           <span class="col-md-1 text-end">
-            <?php echo HTML::button($CLICSHOPPING_ActionsRecorder->getDef('button_reset'), null, $CLICSHOPPING_ActionsRecorder->link('ActionsRecorder&Expire' . (isset($_POST['module']) && in_array($_POST['module'], $modules_array) ? '&module=' . $_POST['module'] : '')), 'danger'); ?>
+            <?php echo HTML::button($CLICSHOPPING_ActionsRecorder->getDef('button_reset'), null, $CLICSHOPPING_ActionsRecorder->link('ActionsRecorder&Expire' . (isset($_POST['module']) && \in_array($_POST['module'], $modules_array) ? '&module=' . $_POST['module'] : '')), 'danger'); ?>
           </span>
         </div>
         </form>
@@ -119,7 +119,7 @@
     <?php
       $filter = [];
 
-      if (isset($_POST['module']) && in_array($_POST['module'], $modules_array)) {
+      if (isset($_POST['module']) && \in_array($_POST['module'], $modules_array)) {
         $filter[] = 'module = :module';
       }
 
@@ -138,7 +138,7 @@
       $Qactions = $CLICSHOPPING_ActionsRecorder->db->prepare($sql_query);
 
       if (!empty($filter)) {
-        if (isset($_POST['module']) && in_array($_POST['module'], $modules_array)) {
+        if (isset($_POST['module']) && \in_array($_POST['module'], $modules_array)) {
           $Qactions->bindValue(':module', $_POST['module']);
         }
 
@@ -178,7 +178,7 @@
       <div
         class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qactions->getPageSetLabel($CLICSHOPPING_ActionsRecorder->getDef('text_display_number_of_link')); ?></div>
       <div
-        class="float-end text-end"> <?php echo $Qactions->getPageSetLinks((isset($_POST['module']) && in_array($_POST['module'], $modules_array) && is_object($GLOBALS[$_POST['module']]) ? 'module=' . $_POST['module'] : null) . '&' . (isset($_POST['search']) && !empty($_POST['search']) ? 'search=' . $_POST['search'] : null)); ?></div>
+        class="float-end text-end"> <?php echo $Qactions->getPageSetLinks((isset($_POST['module']) && \in_array($_POST['module'], $modules_array) && is_object($GLOBALS[$_POST['module']]) ? 'module=' . $_POST['module'] : null) . '&' . (isset($_POST['search']) && !empty($_POST['search']) ? 'search=' . $_POST['search'] : null)); ?></div>
     </div>
   </div>
 </div>

@@ -86,11 +86,11 @@
         if (!is_dir($module_directory . $file)) {
           if (substr($file, strrpos($file, '.')) == $file_extension) {
             if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
-              if (!in_array($file, $modules_installed)) {
+              if (!\in_array($file, $modules_installed)) {
                 $directory_array[] = $file;
               }
             } else {
-              if (in_array($file, $modules_installed)) {
+              if (\in_array($file, $modules_installed)) {
                 $directory_array[] = $file;
               } else {
                 $new_modules_counter++;
@@ -105,11 +105,11 @@
     if (isset($appModuleType)) {
       foreach (Apps::getModules($appModuleType) as $k => $v) {
         if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
-          if (!in_array($k, $modules_installed)) {
+          if (!\in_array($k, $modules_installed)) {
             $directory_array[] = $k;
           }
         } else {
-          if (in_array($k, $modules_installed)) {
+          if (\in_array($k, $modules_installed)) {
             $directory_array[] = $k;
           } else {
             $new_modules_counter++;

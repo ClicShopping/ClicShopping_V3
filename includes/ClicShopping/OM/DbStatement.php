@@ -191,7 +191,7 @@
       } else {
 // fetchAll() fails if second argument is passed in a fetch style that does not
 // use the optional argument
-        if (in_array($fetch_style, array(\PDO::FETCH_COLUMN, \PDO::FETCH_CLASS, \PDO::FETCH_FUNC))) {
+        if (\in_array($fetch_style, array(\PDO::FETCH_COLUMN, \PDO::FETCH_CLASS, \PDO::FETCH_FUNC))) {
           $this->result = parent::fetchAll($fetch_style, $fetch_argument, $ctor_args);
         } else {
           $this->result = parent::fetchAll($fetch_style);

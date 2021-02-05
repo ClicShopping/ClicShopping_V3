@@ -96,7 +96,7 @@
 
       if (!empty($this->_upload)) {
         if (!empty($this->_extensions)) {
-          if (!in_array(strtolower(substr($this->_upload['name'], strrpos($this->_upload['name'], '.') + 1)), $this->_extensions)) {
+          if (!\in_array(strtolower(substr($this->_upload['name'], strrpos($this->_upload['name'], '.') + 1)), $this->_extensions)) {
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_filetype_not_allowed') . implode(', ', $this->_extensions), 'warning');
 
             return false;

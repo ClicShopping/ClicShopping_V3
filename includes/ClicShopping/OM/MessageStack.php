@@ -67,7 +67,7 @@
         'type' => $type
       ];
 
-      if (!$this->exists($group) || !in_array($stack, $this->data[$group])) {
+      if (!$this->exists($group) || !\in_array($stack, $this->data[$group])) {
         $this->data[$group][] = $stack;
       }
     }

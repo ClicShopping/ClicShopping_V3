@@ -52,12 +52,12 @@
       'text' => $CLICSHOPPING_DataBaseTables->getDef('action_utf8_conversion')));
 
   if (isset($_POST['action'])) {
-    if (in_array($_POST['action'], array('check', 'analyze', 'optimize', 'repair', 'utf8'))) {
+    if (\in_array($_POST['action'], array('check', 'analyze', 'optimize', 'repair', 'utf8'))) {
       if (isset($_POST['id']) && \is_array($_POST['id']) && !empty($_POST['id'])) {
         $tables = Database::getDtTables();
 
         foreach ($_POST['id'] as $key => $value) {
-          if (!in_array($value, $tables)) {
+          if (!\in_array($value, $tables)) {
             unset($_POST['id'][$key]);
           }
         }
@@ -93,7 +93,7 @@
             ($table != $current_table) ? HTML::outputProtected($table) : '',
             $Qaction->valueProtected('Msg_type'),
             $Qaction->valueProtected('Msg_text'),
-            ($table != $current_table) ? HTML::checkboxField('id[]', $table, isset($_POST['id']) && in_array($table, $_POST['id'])) : ''
+            ($table != $current_table) ? HTML::checkboxField('id[]', $table, isset($_POST['id']) && \in_array($table, $_POST['id'])) : ''
           ];
 
           $current_table = $table;

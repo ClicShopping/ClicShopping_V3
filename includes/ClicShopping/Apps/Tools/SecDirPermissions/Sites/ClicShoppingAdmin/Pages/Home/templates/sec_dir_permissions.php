@@ -32,7 +32,7 @@
 
       while (false !== ($filename = readdir($handle))) {
 
-        if (!in_array($filename, $exclude_array)) {
+        if (!\in_array($filename, $exclude_array)) {
           $file = ['name' => $path . $filename,
             'is_dir' => is_dir($path . $filename),
             'writable' => FileSystem::isWritable($path . $filename)
@@ -109,7 +109,7 @@
                 <td
                   class="text-center"><?php echo $file['writable'] === true ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'; ?></td>
                 <td
-                  class="text-center"><?php echo(in_array(substr($file['name'], \strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))), $whitelist_array) ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'); ?></td>
+                  class="text-center"><?php echo(\in_array(substr($file['name'], \strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))), $whitelist_array) ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'); ?></td>
               </tr>
               <?php
             }

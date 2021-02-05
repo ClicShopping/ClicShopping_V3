@@ -160,7 +160,7 @@ function selectAll(FormName, SelectBox) {
         $chosen = [];
 
         foreach ($_POST['chosen'] as $id) {
-          if (is_numeric($id) && !in_array($id, $chosen)) {
+          if (is_numeric($id) && !\in_array($id, $chosen)) {
             $chosen[] = $id;
           }
         }
@@ -309,7 +309,7 @@ function selectAll(FormName, SelectBox) {
         $chosen = [];
 
         foreach ($_POST['chosen'] as $id) {
-          if (is_numeric($id) && !in_array($id, $chosen)) {
+          if (is_numeric($id) && !\in_array($id, $chosen)) {
             $chosen[] = $id;
           }
         }
