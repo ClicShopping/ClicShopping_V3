@@ -281,16 +281,16 @@
               echo HTML::hiddenField('module_real_name', $module_real_name);
               echo HTML::hiddenField('module_directory', $module_directory);
 
-              if (strtolower($item->is_free) == 'yes') {
+              if (isset($item->is_free) && strtolower($item->is_free) == 'yes') {
                 echo '</form>';
               }
 
-              if (strtolower($item->is_core) == 'yes') {
+              if (isset($item->is_core) && strtolower($item->is_core) == 'yes') {
                 echo '<span class="text-end"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_core'), null, null, 'danger', null, 'sm') . '</span>';
               }
             }
 
-            if (strtolower($item->type) == 'apps') {
+            if (isset($item->type) && strtolower($item->type) == 'apps') {
               $module = CLICSHOPPING::link(null, 'A&' . $item->module_directory . '\\' . $item->apps_name);
             } else {
               $module = 'index.php?A&Configuration\Modules&Modules&set=' . $item->module_directory;
@@ -430,7 +430,7 @@
                 echo '<span class="text-end"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_install'), null, null, 'warning', null, 'sm') . '</span>';
               }
 
-              if (strtolower($result_content_module->is_core) == 'yes') {
+              if (isset($item->is_core) && strtolower($result_content_module->is_core) == 'yes') {
                 echo '<span class="text-end"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_core'), null, null, 'danger', null, 'sm') . '</span>';
               }
 
@@ -438,11 +438,11 @@
               echo HTML::hiddenField('module_real_name', $module_real_name);
               echo HTML::hiddenField('module_directory', $module_directory);
 
-              if (strtolower($result_content_module->is_free) == 'yes') {
+              if (isset($item->is_free) && strtolower($result_content_module->is_free) == 'yes') {
                 echo '</form>';
               }
 
-              if (strtolower($result_content_module->type) == 'apps') {
+              if (isset($item->type) && strtolower($result_content_module->type) == 'apps') {
                 $module = CLICSHOPPING::link(null, 'A&' . $result_content_module->module_directory . '\\' . $result_content_module->apps_name);
               } else {
                 $module = 'index.php?A&Configuration\Modules&Modules&set=' . $result_content_module->module_directory;
