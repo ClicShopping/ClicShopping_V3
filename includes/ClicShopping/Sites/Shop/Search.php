@@ -19,7 +19,7 @@
   {
     protected $_period_min_year;
     protected $_period_max_year;
-    protected $_keywords;
+    protected string $_keywords;
     protected $_description;
     protected $_date_from;
     protected $_date_to;
@@ -223,7 +223,6 @@
      * @return $this->_keywords, the keywords
      *
     */
-
     public function getKeywords(): string
     {
       if (isset($_POST['keywords'])) {
@@ -259,7 +258,6 @@
     */
     public function setKeywords(string $keywords)
     {
-
       if (isset($keywords)) {
         $this->_keywords = HTML::sanitize($keywords);
       }
@@ -275,7 +273,7 @@
         if ($counter > 5) {
           break;
         } elseif (!empty($word)) {
-          if (!\in_array($word, $terms_array)) {
+          if (!\in_array($word, $terms_array, true)) {
             $terms_array[] = $word;
           }
         }
@@ -363,13 +361,10 @@
       return $this->_recursive;
     }
 
-    /*
-     * getCategoryID
-     * id of category
-     * @return $category_id, id fo category
-     *
-    */
-    private function getCategoryID(): int
+    /**
+     * @return int|null
+     */
+    private function getCategoryID(): ?int
     {
       if (isset($_POST['categories_id']) && !empty($_POST['categories_id'])) {
         $category_id = HTML::sanitize($_POST['categories_id']);
@@ -471,20 +466,19 @@
 
       if ($this->hasPriceFrom()) {
         if ($CLICSHOPPING_Currencies->getValue($_SESSION['currency'])) {
-          $this->_price_from = $this->_price_from / $CLICSHOPPING_Currencies->getValue($_SESSION['currency']);
+          $this->_price_from /= $CLICSHOPPING_Currencies->getValue($_SESSION['currency']);
         }
       }
 
       if ($this->hasPriceTo()) {
         if ($CLICSHOPPING_Currencies->getValue($_SESSION['currency'])) {
-          $this->_price_to = $this->_price_to / $CLICSHOPPING_Currencies->getValue($_SESSION['currency']);
+          $this->_price_to /= $CLICSHOPPING_Currencies->getValue($_SESSION['currency']);
         }
       }
 
       $listing_sql = 'select SQL_CALC_FOUND_ROWS ';
 
       $listing_sql .= ' p.*,
-                        p.products_quantity as in_stock,
                         pd.*,
                         m.*
                        ';
@@ -497,7 +491,6 @@
         $listing_sql .= ', g.*';
         $listing_sql .= ' from :table_products p';
         $listing_sql .= ' left join :table_products_groups g on p.products_id = g.products_id';
-// voir B2B
         $listing_sql .= ' left join :table_specials s on p.products_id = s.products_id ';
       } else {
         $listing_sql .= ' from :table_products p';
@@ -508,7 +501,6 @@
 
 
       if (($this->hasPriceFrom() || $this->hasPriceTo()) && (DISPLAY_PRICE_WITH_TAX == 'true')) {
-
         $listing_sql .= ' left join :table_tax_rates tr on p.products_tax_class_id = tr.tax_class_id';
         $listing_sql .= ' left join :table_zones_to_geo_zones gz on tr.tax_zone_id = gz.geo_zone_id
                            and (gz.zone_country_id is null
@@ -530,7 +522,6 @@
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
         $listing_sql .= ' where g.products_group_view = 1 ';
         $listing_sql .= ' and g.customers_group_id = :customers_group_id ';
-
       } else {
         $listing_sql .= ' where p.products_view = 1 ';
       }
@@ -542,7 +533,6 @@
                         and p.products_id = pd.products_id
                         and p.products_id = p2c.products_id
                         and p2c.categories_id = c.categories_id
-                        and c.status = 1
                         and pd.language_id = :language_id
                       ';
 
@@ -575,8 +565,9 @@
         foreach ($array as $this->_keywords) {
           $listing_sql .= ' and (';
           $listing_sql .= ' pd.products_name like :products_name_keywords or
-                            pd.products_head_keywords_tag like :products_head_keywords_tag_keywords or
                             p.products_model like :products_model_keywords or
+                            p.products_ean like :products_ean_keywords or
+                            p.products_sku like :products_sku_keywords or
                             m.manufacturers_name like :manufacturers_name_keywords
                           ';
 
@@ -588,16 +579,12 @@
         }
       }
 
-      if ($this->hasDateFrom() === true) {
-        if (isset($dfromDateTime) && $dfromDateTime->isValid()) {
-          $listing_sql .= ' and p.products_date_added >= :products_date_added_from';
-        }
+      if (($this->hasDateFrom() === true) && isset($dfromDateTime) && $dfromDateTime->isValid()) {
+        $listing_sql .= ' and p.products_date_added >= :products_date_added_from';
       }
 
-      if ($this->hasDateTo() === true) {
-        if (isset($dtoDateTime) && $dtoDateTime->isValid()) {
-          $listing_sql .= ' and p.products_date_added <= :products_date_added_to';
-        }
+      if (($this->hasDateTo() === true) && isset($dtoDateTime) && $dtoDateTime->isValid()) {
+        $listing_sql .= ' and p.products_date_added <= :products_date_added_to';
       }
 
       if (DISPLAY_PRICE_WITH_TAX == 'true') {
@@ -702,9 +689,10 @@
 
         foreach ($array as $keyword) {
           $Qlisting->bindValue(':products_name_keywords', '%' . $keyword . '%');
-          $Qlisting->bindValue(':products_model_keywords', '%' . $keyword . '%');
+          $Qlisting->bindValue(':products_model_keywords','%' . $keyword . '%');
+          $Qlisting->bindValue(':products_sku_keywords', '%' . $keyword . '%');
+          $Qlisting->bindValue(':products_ean_keywords', '%' . $keyword . '%');
           $Qlisting->bindValue(':manufacturers_name_keywords', '%' . $keyword . '%');
-          $Qlisting->bindValue(':products_head_keywords_tag_keywords', '%' . $keyword . '%');
 
           if ($this->hasDescription() === true) {
             $Qlisting->bindValue(':products_description_keywords', '%' . $keyword . '%');
