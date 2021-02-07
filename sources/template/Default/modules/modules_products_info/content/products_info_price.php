@@ -31,7 +31,7 @@
         </div>
         <div class="separator"></div>
         <div class="text-end ModulesProductsInfoQuantityMinOrderProductInfo">
-          <label for="Quantity Product" class="sr-only"></label>
+          <label for="Quantity Product" class="visually-hidden"></label>
           <span class="ModulesProductsInfoQuantityMinOrderProductInfo"><?php echo $input_quantity; ?></span>
         </div>
         <div class="separator"></div>

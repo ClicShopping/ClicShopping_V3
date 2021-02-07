@@ -234,7 +234,7 @@
             <div class="modal-header"> <!-- Modal Header -->
               <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
-                <span class="sr-only"><?php echo $CLICSHOPPING_DefineLanguage->getDef('text_close'); ?></span>
+                <span class="visually-hidden"><?php echo $CLICSHOPPING_DefineLanguage->getDef('text_close'); ?></span>
               </button>
               <h4
                 class="modal-title"><?php echo $CLICSHOPPING_DefineLanguage->getDef('text_language_definition_delete_title'); ?></h4>
