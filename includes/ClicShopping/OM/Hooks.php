@@ -63,7 +63,7 @@
       foreach ($calls as $code) {
         $bait = null;
 
-        if (is_string($code)) {
+        if (\is_string($code)) {
           $class = Apps::getModuleClass($code, 'Hooks');
 
           $obj = new $class();

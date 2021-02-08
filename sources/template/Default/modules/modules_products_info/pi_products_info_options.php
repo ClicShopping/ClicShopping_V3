@@ -141,7 +141,7 @@
                   }
                 } // end while $products_options
 
-                if (isset($CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')]) && is_string($CLICSHOPPING_ProductsCommon->getID()))  {
+                if (isset($CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')]) && \is_string($CLICSHOPPING_ProductsCommon->getID()))  {
                   $selected_attribute = $CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')];
                 } else {
                   $selected_attribute = false;
@@ -179,7 +179,7 @@
                   }
                 } // end while $products_options
 
-                if (isset($CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')]) && is_string($CLICSHOPPING_ProductsCommon->getID()))  {
+                if (isset($CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')]) && \is_string($CLICSHOPPING_ProductsCommon->getID()))  {
                   $selected_attribute = $CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')];
                 } else {
                   $selected_attribute = false;

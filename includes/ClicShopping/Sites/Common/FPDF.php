@@ -131,7 +131,7 @@
       //Page format
       $this->PageFormats = array('a3' => array(841.89, 1190.55), 'a4' => array(595.28, 841.89), 'a5' => array(420.94, 595.28),
         'letter' => array(612, 792), 'legal' => array(612, 1008));
-      if (is_string($format))
+      if (\is_string($format))
         $format = $this->_getpageformat($format);
       $this->DefPageFormat = $format;
       $this->CurPageFormat = $format;
@@ -208,7 +208,7 @@
     public function SetDisplayMode($zoom, $layout = 'continuous')
     {
       //Set display mode in viewer
-      if ($zoom == 'fullpage' || $zoom == 'fullwidth' || $zoom == 'real' || $zoom == 'default' || !is_string($zoom))
+      if ($zoom == 'fullpage' || $zoom == 'fullwidth' || $zoom == 'real' || $zoom == 'default' || !\is_string($zoom))
         $this->ZoomMode = $zoom;
       else
         $this->Error('Incorrect zoom display mode: ' . $zoom);
@@ -634,7 +634,7 @@
           $op = 'S';
         $s = sprintf('%.2F %.2F %.2F %.2F re %s ', $this->x * $k, ($this->h - $this->y) * $k, $w * $k, -$h * $k, $op);
       }
-      if (is_string($border)) {
+      if (\is_string($border)) {
         $x = $this->x;
         $y = $this->y;
         if (str_contains($border, 'L'))
@@ -1050,7 +1050,7 @@
       if ($format == '')
         $format = $this->DefPageFormat;
       else {
-        if (is_string($format))
+        if (\is_string($format))
           $format = $this->_getpageformat($format);
       }
       if ($orientation != $this->CurOrientation || $format[0] != $this->CurPageFormat[0] || $format[1] != $this->CurPageFormat[1]) {
@@ -1326,7 +1326,7 @@
           foreach ($this->PageLinks[$n] as $pl) {
             $rect = sprintf('%.2F %.2F %.2F %.2F', $pl[0], $pl[1], $pl[0] + $pl[2], $pl[1] - $pl[3]);
             $annots .= '<</Type /Annot /Subtype /Link /Rect [' . $rect . '] /Border [0 0 0] ';
-            if (is_string($pl[4]))
+            if (\is_string($pl[4]))
               $annots .= '/A <</S /URI /URI ' . $this->_textstring($pl[4]) . '>>>>';
             else {
               $l = $this->links[$pl[4]];
@@ -1563,7 +1563,7 @@
         $this->_out('/OpenAction [3 0 R /FitH null]');
       elseif ($this->ZoomMode == 'real')
         $this->_out('/OpenAction [3 0 R /XYZ null null 1]');
-      elseif (!is_string($this->ZoomMode))
+      elseif (!\is_string($this->ZoomMode))
         $this->_out('/OpenAction [3 0 R /XYZ null null ' . ($this->ZoomMode / 100) . ']');
       if ($this->LayoutMode == 'single')
         $this->_out('/PageLayout /SinglePage');

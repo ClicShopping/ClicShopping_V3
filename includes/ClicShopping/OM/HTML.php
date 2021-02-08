@@ -255,10 +255,10 @@
     {
       $field = '<input type="' . static::output($type) . '" name="' . static::output($name) . '"';
 
-      if (($reinsert_value === true) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
-        if (isset($_GET[$name]) && is_string($_GET[$name])) {
+      if (($reinsert_value === true) && ((isset($_GET[$name]) && \is_string($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name])))) {
+        if (isset($_GET[$name]) && \is_string($_GET[$name])) {
           $value = $_GET[$name];
-        } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
+        } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
           $value = $_POST[$name];
         }
       }
@@ -503,10 +503,10 @@
         $field .= '<option value="">' . CLICSHOPPING::getDef('text_select') . '</option>';
       }
 
-      if (empty($default) && ((isset($_GET[$name]) && is_string($_GET[$name]) && !\is_null($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name] && !\is_null($_POST[$name]))))) {
-        if (isset($_GET[$name]) && is_string($_GET[$name])) {
+      if (empty($default) && ((isset($_GET[$name]) && \is_string($_GET[$name]) && !\is_null($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name] && !\is_null($_POST[$name]))))) {
+        if (isset($_GET[$name]) && \is_string($_GET[$name])) {
           $default = static::output($_GET[$name]);
-        } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
+        } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
           $default = static::output($_GET[$name]);
         }
       }
@@ -721,10 +721,10 @@
         $field .= '<option value="">' . CLICSHOPPING::getDef('entry_text_select') . '</option>';
       }
 
-      if (empty($default) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
-        if (isset($_GET[$name]) && is_string($_GET[$name])) {
+      if (empty($default) && ((isset($_GET[$name]) && \is_string($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name])))) {
+        if (isset($_GET[$name]) && \is_string($_GET[$name])) {
           $default = $_GET[$name];
-        } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
+        } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
           $default = $_POST[$name];
         }
       }
@@ -783,10 +783,10 @@
 
       if (\strlen($value) > 0) {
         $field .= ' value="' . static::output($value) . '"';
-      } elseif ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name]))) {
-        if (isset($_GET[$name]) && is_string($_GET[$name])) {
+      } elseif ((isset($_GET[$name]) && \is_string($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name]))) {
+        if (isset($_GET[$name]) && \is_string($_GET[$name])) {
           $field .= ' value="' . static::output($_GET[$name]) . '"';
-        } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
+        } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
           $field .= ' value="' . static::output($_POST[$name]) . '"';
         }
       }

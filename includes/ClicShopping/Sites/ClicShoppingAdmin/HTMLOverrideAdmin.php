@@ -78,10 +78,10 @@
       if (!\is_null($parameters)) $field .= ' ' . $parameters;
       $field .= ' />';
       
-      if (($override === true) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
-        if (isset($_GET[$name]) && is_string($_GET[$name])) {
+      if (($override === true) && ((isset($_GET[$name]) && \is_string($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name])))) {
+        if (isset($_GET[$name]) && \is_string($_GET[$name])) {
           $field .= HTML::outputProtected($_GET[$name]);
-        } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
+        } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
           $field .= HTML::outputProtected($_POST[$name]);
         }
       } elseif (!\is_null($text)) {

@@ -299,7 +299,7 @@
         $hidden_get_variables = '';
 
         foreach ($_GET as $key => $value) {
-          if (is_string($value) && ($key != 'currency') && ($key != session_name()) && ($key != 'x') && ($key != 'y')) {
+          if (\is_string($value) && ($key != 'currency') && ($key != session_name()) && ($key != 'x') && ($key != 'y')) {
             $hidden_get_variables .= HTML::hiddenField($key, $value);
           }
         }

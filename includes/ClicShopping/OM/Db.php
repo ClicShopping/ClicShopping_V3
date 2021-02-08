@@ -780,7 +780,7 @@
      */
     public static function prepareInput(string $string): string
     {
-      if (is_string($string)) {
+      if (\is_string($string)) {
         return HTML::sanitize($string);
       } elseif (\is_array($string)) {
         foreach ($string as $k => $v) {

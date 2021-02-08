@@ -72,7 +72,7 @@
             $this->_exclude_entries[] = $value;
           }
         }
-      } elseif (is_string($entries)) {
+      } elseif (\is_string($entries)) {
         if (!\in_array($entries, $this->_exclude_entries)) {
           $this->_exclude_entries[] = $entries;
         }
