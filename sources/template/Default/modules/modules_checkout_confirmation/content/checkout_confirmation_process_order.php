@@ -21,9 +21,3 @@ use ClicShopping\OM\CLICSHOPPING;
     </div>
   </div>
 </div>
-
-<script>
-  $('form[name="checkout_confirmation"]').submit(function() {
-    $('form[name="checkout_confirmation"] button[data-button="payNow"]').html('<?php echo addslashes(CLICSHOPPING::getDef('module_checkout_confirmation_process_order_button_pay')); ?>').prop('disabled', true);
-  });
-</script>
