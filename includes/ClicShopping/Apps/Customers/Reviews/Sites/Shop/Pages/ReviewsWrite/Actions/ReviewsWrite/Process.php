@@ -41,7 +41,7 @@
           }
         }
 
-        if (strlen($review) < (int)REVIEW_TEXT_MIN_LENGTH) {
+        if (\strlen($review) < (int)REVIEW_TEXT_MIN_LENGTH) {
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('js_review_text', ['min_length' => (int)REVIEW_TEXT_MIN_LENGTH]), 'error');
         }

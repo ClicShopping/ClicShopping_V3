@@ -66,7 +66,6 @@
         $Qcheck->bindInt(':products_id', $this->productsCommon->getId());
         $Qcheck->bindInt(':languages_id', $this->lang->getId());
         $Qcheck->execute();
-
       } else {
         $Qcheck = $this->db->prepare('select count(r.reviews_id) as total
                                       from :table_reviews r,
@@ -185,7 +184,6 @@
         $Qhaspurchased->execute();
 
       } else {
-
         $Qhaspurchased = $CLICSHOPPING_Db->prepare('select count(*) as total
                                                     from :table_orders o,
                                                          :table_orders_products op,

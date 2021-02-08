@@ -71,7 +71,6 @@
 
   echo HTML::form('update', $CLICSHOPPING_Reviews->link('Reviews&Update&page=' . $page . '&rID=' . $_GET['rID']), 'post', 'enctype="multipart/form-data"');
 ?>
-
 <!-- body //-->
 <div class="contentBody">
   <div class="row">

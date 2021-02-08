@@ -25,7 +25,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
-      if (!isset($_GET['products_id']) && !is_numeric($CLICSHOPPING_ProductsCommon->getId())) {
+      if (!isset($_GET['products_id']) && $CLICSHOPPING_Reviews->getDataReviews($_GET['reviews_id']) === false) {
         CLICSHOPPING::redirect();
       }
 
