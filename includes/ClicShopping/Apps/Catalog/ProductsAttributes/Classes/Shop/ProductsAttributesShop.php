@@ -353,7 +353,7 @@
      * @param int $language_id
      * @return mixed
      */
-    public function getAttributesDownloaded(int $products_id, int $options_id, int $options_values_id, int $language_id)
+    public function getAttributesDownloaded(int|string $products_id, int $options_id, int $options_values_id, int $language_id)
     {
       if (DOWNLOAD_ENABLED == 'true') {
         if ($this->customer->getCustomersGroupID() != 0) {
