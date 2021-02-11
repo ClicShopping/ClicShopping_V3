@@ -23,7 +23,7 @@
     {
 //Note : Could be relation with a meta tag allowing to implement a new boostrap theme : Must be installed
       $output = '<!-- Start Bootstrap -->' . "\n";
-      $output .= '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">' . "\n";
+      $output .= '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">' . "\n";
       $output .= '<link rel="stylesheet" href="' . HTTP::getShopUrlDomain() . 'ext/javascript/bootstrap/css/bootstrap_icons_1.2.1.css'  . '" media="screen, print">';
       $output .= '<link rel="stylesheet" href="' . CLICSHOPPING::link('css/bootstrap_icons_customize.css')  . '" media="screen, print">';
       $output .= '<!-- Start Bootstrap -->' . "\n";
