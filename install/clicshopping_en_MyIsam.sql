@@ -1688,6 +1688,7 @@ INSERT INTO `clic_configuration` VALUES(1541, 'Do you want to convert all produc
 INSERT INTO `clic_configuration` VALUES(1542, 'Do you want to compress the HTML', 'CONFIGURATION_TEMPLATE_MINIFY_HTML', 'false', 'Compress the HTML code and JS inside the HTML (only catalog)', 43, 1, '2013-12-16 18:12:37', '2006-04-09 18:20:19', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO `clic_configuration` VALUES(1543, 'Exclude specific email domains', 'CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN', '', 'If the domain is caught, the email will not be sent. Please separate your domains with a comma "," <br> <br> <i> example: mail.ru, yandex.com', 12, 10, NULL, '2019-09-22 21:39:43', NULL, '');
 INSERT INTO `clic_configuration` VALUES(1544, 'Do you want to Display the sidebar Menu in Admin', 'VERTICAL_MENU_CONFIGURATION', 'false', 'Select a choice to display a specific menu in your admininistration horizontal or sidebar.<br />', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+INSERT INTO `clic_configuration` VALUES(1545, 'Indicate a minimum number of characters to insert in the message before the customer can send it', 'MODULE_CONTACT_US_FORM_CONTENT_CARACTER', '90', 'Messages less than this number will not be sent. A warning pop up will be displayed to the client indicating the minimum number of characters', 6, 10, NULL, '2019-09-22 21:39:43', NULL, '');
 
 -- --------------------------------------------------------
 

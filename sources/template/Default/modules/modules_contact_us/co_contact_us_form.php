@@ -40,9 +40,9 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_GET['Info']) && isset($_GET['Contact']) && !isset($_GET['Success'])) {
-
         $content_width = (int)MODULE_CONTACT_US_FORM_CONTENT_WIDTH;
-        $min_caracters_to_write = 80;
+        $min_caracters_to_write = (int)MODULE_CONTACT_US_FORM_CONTENT_CARACTER;
+
         $message_alert = CLICSHOPPING::getDef('entry_text_alert', ['textalert' => $min_caracters_to_write]);
 
         $form =  HTML::form('contact', CLICSHOPPING::link(null, 'Info&Contact&Process'), 'post', 'onsubmit="var text = document.getElementById(\'messageAlert\').value; if(text.length < ' . $min_caracters_to_write .') { alert(\'' . $message_alert . '\'); return false; } return true;"', ['tokenize' => true, 'action' => 'process']);
@@ -301,6 +301,19 @@
           'date_added' => 'now()'
         ]
       );
+
+      $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Indicate a minimum number of characters to insert in the message before the customer can send it',
+          'configuration_key' => 'MODULE_CONTACT_US_FORM_CONTENT_CARACTER',
+          'configuration_value' => '90',
+          'configuration_description' => 'Messages less than this number will not be sent. A warning pop up will be displayed to the client indicating the minimum number of characters',
+          'configuration_group_id' => '6',
+          'sort_order' => '10',
+          'set_function' => 'clic_cfg_set_content_module_width_text_down',
+          'date_added' => 'now()'
+        ]
+      );
+
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_CONTACT_US_FORM_SORT_ORDER',

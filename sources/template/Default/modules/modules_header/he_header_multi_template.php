@@ -64,14 +64,19 @@
       $form = HTML::form('loginForm',  CLICSHOPPING::link(null, 'Account&LogIn&Process'), 'post', 'id="loginForm"', ['tokenize' => true]);
       $endform = '</form>';
 
-      if(\is_array($CLICSHOPPING_Category->getCategories())) {
-        $categories_dropdown = HTML::form('categoriesDropdown', 'index.php', null, 'id="categoriesDropdown"', ['tokenize' => true]);
-        $categories_dropdown .= HTML::selectField('cPath', $CLICSHOPPING_CategoryTree->getShopCategoryTree(), $cPath, 'onchange="this.form.submit();"');
+      if (\is_array($CLICSHOPPING_Category->getCategories())) {
+        //$cPath = $CLICSHOPPING_Category->getPath();
+
+        $path = CLICSHOPPING::link(null);
+
+        $categories_dropdown = HTML::form('categoriesDropdown', $path, 'get', 'id="categoriesDropdown"', ['session_id' => true]);
+        $categories_dropdown .= HTML::selectField('cPath', $CLICSHOPPING_CategoryTree->getShopCategoryTree(), $path, 'onchange="this.form.submit();"');
+
         $categories_dropdown .= '</form>';
       } else {
         $categories_dropdown = '';
       }
-      
+
       if ($CLICSHOPPING_Service->isStarted('Banner')) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULES_HEADER_MULTI_MODULE_LOGO_BANNER_GROUP)) {
           $logo_header = $CLICSHOPPING_Banner->displayBanner('static', $banner);
