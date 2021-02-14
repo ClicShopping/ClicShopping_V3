@@ -3,19 +3,18 @@ Note : This version works only with php > 8.0
 
 - add chartjs without jquery https://www.chartjs.org/
 - fix strict mode
-- fix incompatibility with php 8  
-- fix taxes
-- fix deprecated sql access
-- fix session error (utf8)
-- fix some strict element
+- some other fix taxes
 - Remove token input script
 - Boostrap 5 implementation 
 - PHP 8 compatibility (php 7.4.x do not work now)
+- fix incompatibility with php 8
 - Add vertical menu in option
 - remove htaccess (see tip and trips on the forum)
-- remove customer fax 
--- add varchar to 255 for sku
-- remove sensiolabs/security-checker
+- remove customer fax obsolete 
+- update sql database (sere sql updapte)
+- remove sensiolabs/security-checker not maintened
+- add a secuty checker email via composer
+- reduce jquery dependency for pure javascript
 
 
 ---
