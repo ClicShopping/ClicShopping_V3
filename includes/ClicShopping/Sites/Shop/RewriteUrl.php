@@ -933,6 +933,7 @@
         if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $link_title = $this->title;
           $link_title = $this->replaceString($link_title);
+
           $categories_url_rewrited = $link_title . '&cPath=' . $categories_id;
         } else {
           $categories_url_rewrited = 'cPath=' . $categories_id;

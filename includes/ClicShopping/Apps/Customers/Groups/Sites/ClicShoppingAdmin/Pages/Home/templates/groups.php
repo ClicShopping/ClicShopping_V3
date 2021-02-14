@@ -61,7 +61,7 @@
   if (!isset($_GET['search'])) {
     ?>
     <span
-      class="col-md-6"> <?php echo HTML::button($CLICSHOPPING_Groups->getDef('button_reset'), null, $CLICSHOPPING_Groups->link('Groups'), 'warning'); ?></span>
+      class="col-md-6"> <?php echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, $CLICSHOPPING_Groups->link('Groups'), 'warning'); ?></span>
     <?php
   }
 ?>

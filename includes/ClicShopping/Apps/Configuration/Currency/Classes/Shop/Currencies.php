@@ -23,6 +23,7 @@
     protected $db;
     protected $show;
     protected string $selected;
+    protected string $default;
 
     public function __construct()
     {

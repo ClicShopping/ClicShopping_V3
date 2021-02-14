@@ -88,7 +88,7 @@
   }
 ?>
 
-<script type="text/javascript"><!--
+<script>
     function check_form() {
         var error = 0;
         var error_message = <?= json_encode($CLICSHOPPING_Customers->getDef('js_error') . "\n\n"); ?>;
@@ -181,7 +181,7 @@
         }
     }
 
-    //--></script>
+    </script>
 <?php
   echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 'post', 'onSubmit="return check_form();"') . HTML::hiddenField('default_address_id', $cInfo->customers_default_address_id);
 ?>
@@ -264,7 +264,7 @@
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_gender'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_gender'); ?></label>
-                      <div class="col-md-5">
+                      <div class="col-md-5 class="form-check"">
 <?php
     if ($error === true) {
       if ($entry_gender_error === true) {
@@ -274,7 +274,8 @@
         echo HTML::hiddenField('customers_gender');
       }
     } else {
-      echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender,  'id="gender_female"') . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;' . HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female');
+      echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender,  'id="gender_female"') . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;';
+      echo HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female');
     }
 ?>
                       </div>

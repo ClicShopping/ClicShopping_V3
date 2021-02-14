@@ -167,13 +167,13 @@
       if (empty($current_category_id)) {
         $cPath_new = $this->getPathArray($cPath_array);
       } else {
-        if (count($cPath_array) == 0) {
+        if (\count($cPath_array) == 0) {
           $cPath_new = $current_category_id;
         } else {
           $cPath_new = '';
 
           $insert_sql = [
-            'categories_id' => (int)$cPath_array[(count($cPath_array) - 1)],
+            'categories_id' => (int)$cPath_array[(\count($cPath_array) - 1)],
             'status' => 1
           ];
 
@@ -253,11 +253,8 @@
         $Qcheck->execute();
 
         if ($Qcheck->fetch() === false) {
-
           $this->_category_depth = 'products'; // display products
-
         } else {
-
           $Qcheck = $this->db->prepare('select categories_id
                                          from :table_categories
                                          where parent_id = :parent_id

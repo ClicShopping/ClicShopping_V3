@@ -1496,6 +1496,7 @@ INSERT INTO configuration VALUES(1542, 'Do you want to compress the HTML', 'CONF
 INSERT INTO configuration VALUES(1543, 'Exclude specific email domains', 'CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN', '', 'If the domain is caught, the email will not be sent. Please separate your domains with a comma "," <br> <br> <i> example: mail.ru, yandex.com', 12, 10, NULL, '2019-09-22 21:39:43', NULL, '');
 INSERT INTO configuration VALUES(1544, 'Do you want to Display the sidebar horizontal or vertical Menu in your admin', 'VERTICAL_MENU_CONFIGURATION', 'false', 'Select a choice to display a specific menu in your admininistration horizontal or sidebar.<br />', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO configuration VALUES(1545, 'Indicate a minimum number of characters to insert in the message before the customer can send it', 'MODULE_CONTACT_US_FORM_CONTENT_CARACTER', '90', 'Messages less than this number will not be sent. A warning pop up will be displayed to the client indicating the minimum number of characters', 6, 10, NULL, '2019-09-22 21:39:43', NULL, '');
+INSERT INTO configuration VALUES(1546, 'Check if the email is valid or not', 'ENTRY_EMAIL_ADDRESS_CHECKER', 'false', 'Check if the email is valid or not. More information there : https://github.com/MattKetmo/EmailChecker', 12, 4, NULL, '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 
 

@@ -133,8 +133,8 @@
     }
 
     /**
-     * @param float $price
-     * @param float $tax_rate
+     * @param float|null $price
+     * @param float|null $tax_rate
      * @return float
      */
     public static function calculate(?float $price, ?float $tax_rate): float
@@ -223,20 +223,13 @@
         $group_taxed = 'false';
       }
 
-      switch ($group_taxed) {
-        case 'true':
-          static::$tag = CLICSHOPPING::getDef('tax_included');
-          return round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + static::calculate($price, $tax);
-          break;
-        case 'false':
-          static::$tag = CLICSHOPPING::getDef('tax_excluded');
-          return round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
-          break;
-        default:
-          static::$tag = CLICSHOPPING::getDef('tax_excluded');
-          return round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
-          break;
-      }
+      static::$tag = CLICSHOPPING::getDef('tax_excluded');
+
+      return match ($group_taxed) {
+        'true' => round( (float)$price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + static::calculate((float) $price, $tax),
+        'false' => round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']),
+        default => round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']),
+      };
     }
 
     /**
