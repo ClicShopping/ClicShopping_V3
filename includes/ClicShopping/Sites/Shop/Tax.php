@@ -226,7 +226,7 @@
       static::$tag = CLICSHOPPING::getDef('tax_excluded');
 
       return match ($group_taxed) {
-        'true' => round( (float)$price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + static::calculate((float) $price, $tax),
+       'true' => round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + static::calculate($price, $tax),
         'false' => round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']),
         default => round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']),
       };

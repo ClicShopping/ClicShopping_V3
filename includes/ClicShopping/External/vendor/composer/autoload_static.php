@@ -36,6 +36,10 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
+        'E' => 
+        array (
+            'EmailChecker\\' => 13,
+        ),
         'D' => 
         array (
             'DarkGhostHunter\\Preloader\\' => 26,
@@ -82,6 +86,10 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'EmailChecker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mattketmo/email-checker/src/EmailChecker',
         ),
         'DarkGhostHunter\\Preloader\\' => 
         array (

@@ -11,7 +11,7 @@ Note : This version works only with php > 8.0
 - Add vertical menu in option
 - remove htaccess (see tip and trips on the forum)
 - remove customer fax obsolete 
-- update sql database (sere sql updapte)
+- update sql database (sere sql update)
 - remove sensiolabs/security-checker not maintened
 - add a secuty checker email via composer
 - reduce jquery dependency for pure javascript
