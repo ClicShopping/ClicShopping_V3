@@ -19,7 +19,7 @@
 ?>
 <div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
 
-  <ul class="thumbnails">
+  <ul class="thumbnails gallery">
 <?php
   if ( !empty($products_small_image)) {
     echo '<li>' . $ticker_pourcentage_discount . $ticker_image . '<a class="thumbnail" href="' . CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_image_zoom) . '" title="' . $products_name . '">' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_image_zoom, $products_name, null, null, 'title="' . $products_name . '" alt="' . $products_name . '" hspace="5" vspace="5"') . '</a>';

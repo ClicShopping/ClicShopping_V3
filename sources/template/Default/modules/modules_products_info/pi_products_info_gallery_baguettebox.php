@@ -13,7 +13,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class pi_products_info_gallery {
+  class pi_products_info_gallery_baguettebox {
     public $code;
     public $group;
     public string $title;
@@ -26,14 +26,14 @@
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
-      $this->title = CLICSHOPPING::getDef('module_products_info_gallery_title');
+      $this->title = CLICSHOPPING::getDef('module_products_info_gallery_baguettebox_title');
       $this->description = CLICSHOPPING::getDef('module_products_info_gallery_description');
 
       $this->lang = Registry::get('Language');
 
-      if (\defined('MODULE_PRODUCTS_INFO_GALLERY_STATUS')) {
-        $this->sort_order = MODULE_PRODUCTS_INFO_GALLERY_SORT_ORDER;
-        $this->enabled = (MODULE_PRODUCTS_INFO_GALLERY_STATUS == 'True');
+      if (\defined('MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_STATUS')) {
+        $this->sort_order = MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_SORT_ORDER;
+        $this->enabled = (MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_STATUS == 'True');
       }
     }
 
@@ -41,8 +41,8 @@
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
       if ($CLICSHOPPING_ProductsCommon->getID() && isset($_GET['Products'])) {
-        $content_width = (int)MODULE_PRODUCTS_INFO_GALLERY_CONTENT_WIDTH;
-        $text_position = MODULE_PRODUCTS_INFO_GALLERY_POSITION;
+        $content_width = (int)MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_CONTENT_WIDTH;
+        $text_position = MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_POSITION;
 
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
         $CLICSHOPPING_Template = Registry::get('Template');
@@ -62,23 +62,23 @@
         $products_image_zoom = $Qproducts->value('products_image_zoom');
         $products_image_medium = $Qproducts->value('products_image_medium');
 
-        $thumbail_height = MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_HEIGHT;
-        $thumbail_width = MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_WIDTH;
+        $thumbail_height = MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_THUMBAIL_HEIGHT;
+        $thumbail_width = MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_THUMBAIL_WIDTH;
 
         $id = $CLICSHOPPING_ProductsCommon->getID();
         $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($id);
 
-        $head = '<!--magnificPopup start  -->' . "\n";
-        $head .= '<link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="preload">' . "\n";
+        $head = '<!--baguettebox start  -->' . "\n";
+        $head .= '<link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css" rel="preload">' . "\n";
         $head .= '<!--magnificPopup  end  -->' . "\n";
 
         $CLICSHOPPING_Template->addBlock($head, 'header_tags');
 
         $footer_tag = '<!-- magnificPopup start  -->' . "\n";
-        $footer_tag .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>' . "\n";
-        $footer_tag .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('magnific/ClicShopping/gallery.js')) . '"></script>' . "\n";
+        $footer_tag .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>' . "\n";
+        $footer_tag .= '<script> window.addEventListener(\'load\', function() { baguetteBox.run(\'.gallery\'); });</script>' . "\n";
 
-        $footer_tag .= '<!--magnificPopup  end  -->' . "\n";
+        $footer_tag .= '<!--baguettebox  end  -->' . "\n";
 
         $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
 
@@ -86,24 +86,24 @@
 
         $ticker_image = '';
 
-        if ($CLICSHOPPING_ProductsCommon->getProductsTickerSpecials() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_TICKER == 'True') {
+        if ($CLICSHOPPING_ProductsCommon->getProductsTickerSpecials() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_TICKER == 'True') {
           $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_specials'), 'ModulesProductsInfoBootstrapTickerSpecialImageGallery', $CLICSHOPPING_ProductsCommon->getProductsTickerSpecials());
-        } elseif ($CLICSHOPPING_ProductsCommon->getProductsTickerFavorites() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_TICKER == 'True') {
+        } elseif ($CLICSHOPPING_ProductsCommon->getProductsTickerFavorites() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_TICKER == 'True') {
           $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_favorite'), 'ModulesProductsInfoBootstrapTickerFavoriteImageGallery', $CLICSHOPPING_ProductsCommon->getProductsTickerFavorites());
-        } elseif ($CLICSHOPPING_ProductsCommon->getProductsTickerFeatured() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_TICKER == 'True') {
+        } elseif ($CLICSHOPPING_ProductsCommon->getProductsTickerFeatured() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_TICKER == 'True') {
           $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_featured'), 'ModulesProductsInfoBootstrapTickerFeaturedImageGallery', $CLICSHOPPING_ProductsCommon->getProductsTickerFeatured());
-        } elseif ($CLICSHOPPING_ProductsCommon->getProductsTickerProductsNew() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_TICKER == 'True') {
+        } elseif ($CLICSHOPPING_ProductsCommon->getProductsTickerProductsNew() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_TICKER == 'True') {
           $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_products_new'), 'ModulesProductsInfoBootstrapTickerNewImageGallery', $CLICSHOPPING_ProductsCommon->getProductsTickerProductsNew());
         }
 
-        if (MODULE_PRODUCTS_INFO_GALLERY_POURCENTAGE == 'True' && !\is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($CLICSHOPPING_ProductsCommon->getID()))) {
+        if (MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_POURCENTAGE == 'True' && !\is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($CLICSHOPPING_ProductsCommon->getID()))) {
           $ticker_pourcentage_discount = HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($CLICSHOPPING_ProductsCommon->getID()), 'ModulesProductsInfoBootstrapTickerPourcentageImageGallery', true);
         } else {
           $ticker_pourcentage_discount = '';
         }
 
         ob_start();
-        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_gallery'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_gallery_baguettebox'));
         $products_image .= ob_get_clean();
 
         $products_image .= '<!-- end gallery -->' . "\n";
@@ -117,7 +117,7 @@
     }
 
     public function check() {
-      return \defined('MODULE_PRODUCTS_INFO_GALLERY_STATUS');
+      return \defined('MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_STATUS');
     }
 
     public function install() {
@@ -125,7 +125,7 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Do you want to display this module ?',
-          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_STATUS',
+          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_STATUS',
           'configuration_value' => 'True',
           'configuration_description' => 'Activate the module in your shop ?',
           'configuration_group_id' => '6',
@@ -137,7 +137,7 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Please, select the content size',
-          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_CONTENT_WIDTH',
+          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_CONTENT_WIDTH',
           'configuration_value' => '4',
           'configuration_description' => 'Please, specif a number betwen 1 ad 12',
           'configuration_group_id' => '6',
@@ -149,7 +149,7 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where do want to display the gallery position ?',
-          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_POSITION',
+          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_POSITION',
           'configuration_value' => 'float-end',
           'configuration_description' => 'select the good value',
           'configuration_group_id' => '6',
@@ -161,7 +161,7 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Please select the width of the thumbail ?',
-          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_WIDTH',
+          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_THUMBAIL_WIDTH',
           'configuration_value' => '70',
           'configuration_description' => 'Please write a number in px',
           'configuration_group_id' => '6',
@@ -173,7 +173,7 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Please select the height of the thumbail ?',
-          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_HEIGHT',
+          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_THUMBAIL_HEIGHT',
           'configuration_value' => '70',
           'configuration_description' => 'Please write a number in px',
           'configuration_group_id' => '6',
@@ -185,7 +185,7 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Do you want to display a message like new / special/ featured, favorite ?',
-          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_TICKER',
+          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_TICKER',
           'configuration_value' => 'False',
           'configuration_description' => 'Display a message like new / special/ featured, favorite on the product<br /><br />The delay can be set in Configuration / Shop / minimal, maximal values',
           'configuration_group_id' => '6',
@@ -197,7 +197,7 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Do you want to display price discount in poucentage ?',
-          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_POURCENTAGE',
+          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_POURCENTAGE',
           'configuration_value' => 'False',
           'configuration_description' => 'Display price discount in poucentage',
           'configuration_group_id' => '6',
@@ -210,7 +210,7 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort Order',
-          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_SORT_ORDER',
+          'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_SORT_ORDER',
           'configuration_value' => '5',
           'configuration_description' => 'Sort Order(Lowest is displayed in first)',
           'configuration_group_id' => '6',
@@ -227,25 +227,14 @@
 
     public function keys() {
       return array(
-        'MODULE_PRODUCTS_INFO_GALLERY_STATUS',
-        'MODULE_PRODUCTS_INFO_GALLERY_CONTENT_WIDTH',
-        'MODULE_PRODUCTS_INFO_GALLERY_POSITION',
-        'MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_WIDTH',
-        'MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_HEIGHT',
-        'MODULE_PRODUCTS_INFO_GALLERY_TICKER',
-        'MODULE_PRODUCTS_INFO_GALLERY_POURCENTAGE',
-        'MODULE_PRODUCTS_INFO_GALLERY_SORT_ORDER'
+        'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_STATUS',
+        'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_CONTENT_WIDTH',
+        'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_POSITION',
+        'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_THUMBAIL_WIDTH',
+        'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_THUMBAIL_HEIGHT',
+        'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_TICKER',
+        'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_POURCENTAGE',
+        'MODULE_PRODUCTS_INFO_GALLERY_BAGUETTEBOX_SORT_ORDER'
       );
-    }
-
-    public function getVideo($video) {
-        $item = ['youtube', 'vimeo', 'dailymotion'];
-
-        foreach ($item as $result) {
-            if (stripos($video, $result) !== false) {
-                return true;
-            }
-        }
-        return false;
     }
   }
