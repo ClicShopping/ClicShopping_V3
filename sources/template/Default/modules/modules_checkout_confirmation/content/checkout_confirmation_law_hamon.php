@@ -39,13 +39,3 @@
     </div>
   </div>
 </div>
-<script>
-  function checkCheckBox(f){
-    if (f.agree.checked === false )
-    {
-        alert('<?php echo CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_text_error_agreement'); ?>');
-        return false;
-    }else
-        return true;
-  }
-</script>

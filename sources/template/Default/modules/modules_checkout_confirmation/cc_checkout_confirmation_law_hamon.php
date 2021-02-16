@@ -45,6 +45,19 @@
         if (CONFIGURATION_LAW_HAMON == 'true') {
           $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_CONTENT_WIDTH;
 
+          $footer = '<script>' . "\n";
+          $footer .= ' function checkCheckBox(f){';
+          $footer .= ' if (f.agree.checked === false )';
+          $footer .= ' {';
+          $footer .= ' alert(\'' . CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_text_error_agreement') . '\');';
+          $footer .= ' return false;';
+          $footer .= ' } else';
+          $footer .= ' return true;';
+          $footer .= ' }';
+          $footer .= ' </script>' . "\n";
+
+          $CLICSHOPPING_Template->addBlock($footer, 'footer_scripts');
+
           $confirmation = '  <!-- checkout confirmation law Hamon start -->' . "\n";
 
           ob_start();
