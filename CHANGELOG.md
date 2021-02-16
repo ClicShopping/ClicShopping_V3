@@ -15,7 +15,7 @@ Note : This version works only with php > 8.0
 - remove sensiolabs/security-checker not maintened
 - add a secuty checker email via composer
 - reduce jquery dependency for pure javascript
-- add new ima gallery in pure js
+- add new image gallery in pure js
 
 ---
 Version 3.2204
