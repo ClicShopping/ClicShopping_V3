@@ -111,7 +111,7 @@
       }
 ?>
       <div class="d-flex flex-wrap">
-        <div class="row">
+        <div class="row col-md-12">
         
 <?php
     if ($count_file > 0) {
@@ -179,7 +179,7 @@
 
           if ($content_module_name === $module_real_name . '.json') {
 ?>
-        <div class="col-md-3 m-1" style="padding-bottom:1rem;">
+        <div class="col-md-3 col-12" style="padding-bottom:1rem;">
           <div class="card shadow">
             <div class="card-header" style="height:70px;">
               <div class="col-md-12">
@@ -189,7 +189,7 @@
             </div>
             <div class="card-block" style="height:180px;">
               <div class="separator"></div>
-              <div class="card-text">
+              <div class="card-text m-1">
                 <div class="col-md-12" style="height:100px;"><?php echo $description; ?></div>
                 <div class="separator"></div>
                 <div class="col-md-6 float-start">
@@ -325,7 +325,7 @@
 //  Github version
 //****************************************
 ?>
-      <div class="col-md-4" style="padding-bottom:1rem;">
+      <div class="col-md-4 col-12" style="padding-bottom:1rem;">
         <div class="card">
           <div class="card-header">
             <span class="col-md-1">
@@ -337,7 +337,7 @@
           </div>
           <div class="card-block" style="height:180px;">
             <div class="row col-md-12">
-              <div class="card-text">
+              <div class="card-text m-1">
 <?php
         $result_module_real_name = $CLICSHOPPING_Github->getJsonRepoContentInformationModule($module_real_name);
 
