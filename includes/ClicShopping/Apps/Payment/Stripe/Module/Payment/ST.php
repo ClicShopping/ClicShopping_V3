@@ -92,17 +92,13 @@
             $this->update_status();
           }
         }
-        
-        if (\defined('CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD')) {
-          if (CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD == 'True') {
-            $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY;
-            $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY;
-          } else {
-            $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_TEST_KEY;
-            $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_TEST_KEY;
-          }
+
+        if (CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD == 'True') {
+          $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY;
+          $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY;
         } else {
-          $this->enabled = false;
+          $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY_TEST;
+          $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY_TEST;
         }
 
         $this->sort_order = \defined('CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER') ? CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER : 0;
