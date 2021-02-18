@@ -84,7 +84,7 @@
               $radio_buttons = 0;
 
               foreach ($quotes as $n => $quote) {
-                if (\is_array($quote['methods'])) {
+                if (isset($quote['methods'])) {
                   for ($j=0, $n2=\count($quote['methods']); $j<$n2; $j++) {
                     $data .= '<tr>' . "\n";
                     $data .= '<tr>';
