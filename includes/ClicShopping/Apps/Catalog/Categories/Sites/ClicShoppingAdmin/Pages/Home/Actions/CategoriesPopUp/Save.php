@@ -31,6 +31,10 @@
       if (isset($_POST['select_category_id'])) {
         $select_category_id = HTML::sanitize($_POST['select_category_id']);
 
+        if (empty($select_category_id)) {
+          $select_category_id = 0;
+        }
+
         $sql_data_array = ['parent_id' => $select_category_id];
         $insert_sql_data = ['date_added' => 'now()'];
 
@@ -43,7 +47,7 @@
         $languages = $CLICSHOPPING_Language->getLanguages();
 
         for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-          $categories_name_array = $_POST['categories_name'];
+          $categories_name_array = HTML::sanitize($_POST['categories_name']);
           $language_id = $languages[$i]['id'];
 
           $sql_data_array = ['categories_name' => HTML::sanitize($categories_name_array[$language_id])];
