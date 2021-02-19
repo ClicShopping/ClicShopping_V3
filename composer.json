@@ -10,6 +10,7 @@
         "darkghosthunter/preloader": "^1.1",
         "stripe/stripe-php": "^7.23",
         "ext-json": "*",
-        "mattketmo/email-checker": "^2.0"
+        "mattketmo/email-checker": "^2.0",
+        "daveearley/daves-email-validation-tool": "^1.2"
     }
 }

@@ -16,6 +16,8 @@ return array(
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
+    'EmailValidation\\Tests\\' => array($vendorDir . '/daveearley/daves-email-validation-tool/tests'),
+    'EmailValidation\\' => array($vendorDir . '/daveearley/daves-email-validation-tool/src'),
     'EmailChecker\\' => array($vendorDir . '/mattketmo/email-checker/src/EmailChecker'),
     'DarkGhostHunter\\Preloader\\' => array($vendorDir . '/darkghosthunter/preloader/src'),
 );

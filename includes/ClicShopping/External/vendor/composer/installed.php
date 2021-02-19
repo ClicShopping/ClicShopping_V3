@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '116d7d9c87935987262549666695be570732e14a',
+    'reference' => '040127fcf3b380460436265c03e4edbae79b9c32',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '116d7d9c87935987262549666695be570732e14a',
+      'reference' => '040127fcf3b380460436265c03e4edbae79b9c32',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -28,6 +28,15 @@
       array (
       ),
       'reference' => '135cccf9d9df8f7d60cec8b509189028cc8ee41a',
+    ),
+    'daveearley/daves-email-validation-tool' => 
+    array (
+      'pretty_version' => '1.2.0',
+      'version' => '1.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f878d3c3c89c5d5ee6dd14633f89975d6dc2576d',
     ),
     'guzzlehttp/guzzle' => 
     array (

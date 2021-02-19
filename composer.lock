@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d1bcedbe2dfa061618dcd7b01b46b2b",
+    "content-hash": "823aa1c08039102e4994b43e9182df15",
     "packages": [
         {
             "name": "darkghosthunter/preloader",
@@ -53,6 +53,59 @@
                 "preloader"
             ],
             "time": "2020-01-16T16:21:12+00:00"
+        },
+        {
+            "name": "daveearley/daves-email-validation-tool",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/daveearley/Email-Validation-Tool.git",
+                "reference": "f878d3c3c89c5d5ee6dd14633f89975d6dc2576d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/daveearley/Email-Validation-Tool/zipball/f878d3c3c89c5d5ee6dd14633f89975d6dc2576d",
+                "reference": "f878d3c3c89c5d5ee6dd14633f89975d6dc2576d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EmailValidation\\": "src/",
+                    "EmailValidation\\Tests\\": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Earley",
+                    "email": "dave@earley.email"
+                }
+            ],
+            "description": "An easy to use, accurate-ish & extensible email validation library for PHP 7+",
+            "keywords": [
+                "disposable email check",
+                "email",
+                "email validation",
+                "email verification",
+                "validate email"
+            ],
+            "support": {
+                "issues": "https://github.com/daveearley/Email-Validation-Tool/issues",
+                "source": "https://github.com/daveearley/Email-Validation-Tool/tree/1.2.0"
+            },
+            "time": "2021-02-13T10:24:07+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

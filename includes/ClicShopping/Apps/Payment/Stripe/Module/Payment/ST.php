@@ -310,6 +310,18 @@ pre_confirmation_check()
       $CLICSHOPPING_Order = Registry::get('Order');
 
       $orders_id = $CLICSHOPPING_Order->getLastOrderId();
+
+      if (empty($orders_id) || $orders_id == 0 || \is_null($orders_id)) {
+        $Qorder = $CLICSHOPPING_Order->db->prepare('select orders_id
+                                                    from :table_orders                                                    
+                                                    order by orders_id desc
+                                                    limit 1
+                                                   ');
+        $Qorder->execute();
+
+        $orders_id = $Qorder->valueInt('orders_id');
+      }
+
       $comment = $this->app->getDef('text_reference_transaction');
 
       if (CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID == 0) {

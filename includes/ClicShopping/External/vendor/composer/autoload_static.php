@@ -38,6 +38,8 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
         ),
         'E' => 
         array (
+            'EmailValidation\\Tests\\' => 22,
+            'EmailValidation\\' => 16,
             'EmailChecker\\' => 13,
         ),
         'D' => 
@@ -86,6 +88,14 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'EmailValidation\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/daveearley/daves-email-validation-tool/tests',
+        ),
+        'EmailValidation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/daveearley/daves-email-validation-tool/src',
         ),
         'EmailChecker\\' => 
         array (
