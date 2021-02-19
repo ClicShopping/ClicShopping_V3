@@ -20,7 +20,6 @@ $(function () {
       CKEDITOR.instances[instance].updateElement();
     }
 
-    $("#simple-msg").html("<img src='../../../../images/loadingAnimation.gif' />");
     var postData = $(this).serializeArray();
     var formURL = $(this).attr("action");
 
