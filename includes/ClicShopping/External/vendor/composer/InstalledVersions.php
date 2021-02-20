@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '040127fcf3b380460436265c03e4edbae79b9c32',
+    'reference' => 'b3b8745ee838fc25d218b191c949171475fb1132',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '040127fcf3b380460436265c03e4edbae79b9c32',
+      'reference' => 'b3b8745ee838fc25d218b191c949171475fb1132',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -99,12 +99,12 @@ private static $installed = array (
     ),
     'phpmailer/phpmailer' => 
     array (
-      'pretty_version' => 'v6.2.0',
-      'version' => '6.2.0.0',
+      'pretty_version' => 'v6.3.0',
+      'version' => '6.3.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'e38888a75c070304ca5514197d4847a59a5c853f',
+      'reference' => '4a08cf4cdd2c38d12ee2b9fa69e5d235f37a6dcb',
     ),
     'phpxmlrpc/phpxmlrpc' => 
     array (
