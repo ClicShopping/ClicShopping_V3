@@ -31,6 +31,6 @@ min_qty_product = min qty
 
 button_details = Details
 button_buy_now = Acheter
-button_exhausted = Epuisé
+button_sold_out = Epuisé
 
 template_does_not_exist = Ce template n'existe pas, veuillez en sélectionner un autre

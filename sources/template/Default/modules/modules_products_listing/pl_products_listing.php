@@ -196,7 +196,7 @@
 
 
 // **************************************************
-// Button Free - Must be above getProductsExhausted
+// Button Free - Must be above getProductsSoldOut
 // **************************************************
                 if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView($products_id) != 1 && NOT_DISPLAY_PRICE_ZERO == 'false') {
                   $submit_button = HTML::button(CLICSHOPPING::getDef('text_products_free'), '', $products_name_url, 'danger');
@@ -208,10 +208,10 @@
                 }
 
 // **************************
-// Display an information if the stock is exhausted for all groups
+// Display an information if the stock is sold_out for all groups
 // **************************
-                if (!empty($CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id))) {
-                  $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id);
+                if (!empty($CLICSHOPPING_ProductsCommon->getProductsSoldOut($products_id))) {
+                  $submit_button = $CLICSHOPPING_ProductsCommon->getProductsSoldOut($products_id);
                   $min_quantity = 0;
                   $input_quantity = '';
                   $min_order_quantity_products_display = '';
@@ -430,7 +430,7 @@
           'configuration_title' => 'Do you want to display the stock ?',
           'configuration_key' => 'MODULE_PRODUCTS_LISTING_DISPLAY_STOCK',
           'configuration_value' => 'none',
-          'configuration_description' => 'Display the stock (in stock, exhaused, out of stock) ?',
+          'configuration_description' => 'Display the stock (in stock, sold out, out of stock) ?',
           'configuration_group_id' => '6',
           'sort_order' => '6',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'none\', \'image\', \'number\'))',

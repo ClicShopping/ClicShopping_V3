@@ -1126,7 +1126,7 @@
 // Alert by mail if a product is 0 or < 0
             $this->sendEmailAlertStockWarning($order_id);
 // Email alert when a product is exahuted
-            $this->sendEmailAlertProductsExhausted($order_id);
+            $this->sendEmailAlertProductsSoldOut($order_id);
           }
         }
 
@@ -1327,14 +1327,14 @@
     }
 
     /**
-     * Alert by mail product exhausted if a product is 0 or < 0
+     * Alert by mail product sold out if a product is 0 or < 0
      * @param int $insert_id
      */
-    public function sendEmailAlertProductsExhausted(int $insert_id)
+    public function sendEmailAlertProductsSoldOut(int $insert_id)
     {
       $CLICSHOPPING_Prod = Registry::get('Prod');
 
-      if (STOCK_ALERT_PRODUCT_EXHAUSTED == 'true') {
+      if (STOCK_ALERT_PRODUCT_SOLD_OUT == 'true') {
         $Qproducts = $this->db->prepare('select orders_products_id,
                                                  products_id
                                                  products_model,
@@ -1362,10 +1362,10 @@
 
             if (($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false') && (STOCK_CHECK == 'true')) {
               $email_text_subject_stock = stripslashes(CLICSHOPPING::getDef('email_text_subject_stock', ['store_name' => STORE_NAME]));
-              $email_product_exhausted_stock = stripslashes(CLICSHOPPING::getDef('email_text_stock'));
-              $email_product_exhausted_stock .= "\n" . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n" . CLICSHOPPING::getDef('email_text_model') . '  ' . $Qproducts->value('products_model') . "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name') . "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) . "\n";
+              $email_product_sold_out_stock = stripslashes(CLICSHOPPING::getDef('email_text_stock'));
+              $email_product_sold_out_stock .= "\n" . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n" . CLICSHOPPING::getDef('email_text_model') . '  ' . $Qproducts->value('products_model') . "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name') . "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) . "\n";
 
-              $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $email_product_exhausted_stock, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+              $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $email_product_sold_out_stock, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
             }
           } // end stock alert
         }  // end while

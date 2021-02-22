@@ -33,5 +33,5 @@ text_ticker_featured = Selected
 
 button_details = Details
 button_buy_now = Buy
-button_exhausted = Exhausted
+button_sold_out =  Sold Out
 

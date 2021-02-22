@@ -1812,69 +1812,69 @@
     }
 
     /**
-     * Return a products button exhausted
-     * @param string $product_button_exhausted
-     * @return $product_button_exhausted,the bootstrap item
+     * Return a products button sold out
+     * @param string $product_button_sold_out
+     * @return $product_button_sold_out,the bootstrap item
      */
-    private function getProductButtonExhausted($button_type = null)
+    private function getProductButtonSoldOut($button_type = null)
     {
       if (\is_null($button_type)) {
         $button_type = 'btn-warning btn-sm';
       }
 
       if (PRE_ORDER_AUTORISATION == 'false') {
-        $product_button_exhausted = '<button type="button" class="btn ' . $button_type . '">' . CLICSHOPPING::getDef('button_exhausted') . '</button>';
+        $product_button_sold_out = '<button type="button" class="btn ' . $button_type . '">' . CLICSHOPPING::getDef('button_sold_out') . '</button>';
       }
-      return $product_button_exhausted;
+      return $product_button_sold_out;
     }
 
     /**
-     * Products exhausted
-     * Check if the required stock is available for display a button Product exhausted
-     * If insufficent stock is available return a products exhausted image
-     * @param string $product_exhausted , the button
+     * Products sold out
+     * Check if the required stock is available for display a button Product sold_out
+     * If insufficent stock is available return a products sold_out image
+     * @param string $product_sold_out , the button
      * @param $button_type , bootstrap button bootstrap item
      */
 
-    private function setProductsExhausted($id, $button_type = null): string
+    private function setProductsSoldOut($id, $button_type = null): string
     {
       if (\is_null($id)) {
         $id = $this->getID();
       }
-      $product_exhausted = '';
+      $product_sold_out = '';
 
-      $QproductExhausted = $this->db->prepare('select products_quantity
+      $QproductSoldOut = $this->db->prepare('select products_quantity
                                                 from :table_products
                                                 where products_id = :products_id
                                                 and products_quantity < 1
                                                ');
 
-      $QproductExhausted->bindInt(':products_id', $id);
-      $QproductExhausted->execute();
+      $QproductSoldOut->bindInt(':products_id', $id);
+      $QproductSoldOut->execute();
 
-      if ($QproductExhausted->fetch()) {
+      if ($QproductSoldOut->fetch()) {
         if (STOCK_CHECK == 'true' && STOCK_ALLOW_CHECKOUT == 'false' && PRICES_LOGGED_IN == 'false') {
-          $product_exhausted = $this->getProductButtonExhausted($button_type);
+          $product_sold_out = $this->getProductButtonSoldOut($button_type);
         } elseif (PRICES_LOGGED_IN == 'true' && $this->customer->getCustomersGroupID() == 0 && !$this->customer->isLoggedOn() && STOCK_CHECK == 'true' && STOCK_ALLOW_CHECKOUT == 'false') {
-          $product_exhausted = ' ';
+          $product_sold_out = ' ';
         } elseif (PRICES_LOGGED_IN == 'true' && $this->customer->getCustomersGroupID() != 0 && STOCK_CHECK == 'true' && STOCK_ALLOW_CHECKOUT == 'false') {
-          $product_exhausted = $this->getProductButtonExhausted($button_type);
+          $product_sold_out = $this->getProductButtonSoldOut($button_type);
         } elseif (PRICES_LOGGED_IN == 'true' && $this->customer->getCustomersGroupID() == 0 && $this->customer->isLoggedOn() && STOCK_CHECK == 'true' && STOCK_ALLOW_CHECKOUT == 'false') {
-          $product_exhausted = $this->getProductButtonExhausted($button_type);
+          $product_sold_out = $this->getProductButtonSoldOut($button_type);
         }
       }
 
-      return $product_exhausted;
+      return $product_sold_out;
     }
 
     /**
-     * Display Products exhausted
-     * @param string $product_exhausted , the button
+     * Display Products sold_out
+     * @param string $product_sold_out , the button
      * @param string $button_type : bootstrap button bootstrap item
      */
-    public function getProductsExhausted($id = null, $button_type = null)
+    public function getProductsSoldOut($id = null, $button_type = null)
     {
-      return $this->setProductsExhausted($id, $button_type);
+      return $this->setProductsSoldOut($id, $button_type);
     }
 
 

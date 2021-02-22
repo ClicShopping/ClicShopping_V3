@@ -26,7 +26,7 @@ regards, <br /><strong>{{store_name}} Team</strong><br />
 email_text_subject_stock = Stock Alert on product on {{store_name}}
 
 email_reorder_level_text_stock = Hello,' . "\n\n" . 'You recieved an warning email concernng your warning stock (general configuration) for this product. This warning stock is the alrt stock where on or several procducs is reached. '. "\n" . 'There the differents caracteristics on the product : '. "\n" . '
-email_text_stock = Hello, '. "\n\n" . ' You receive an  warning about the exhausted stock on one of your products. Your product is no available on your store. However, you can reactivate it without modifying your stock. The Add button will be replaced by the following exhausted button. '. "\n" . '  There characteristics of the products out of stock :'. "\n" . '
+email_text_stock = Hello, '. "\n\n" . ' You receive an  warning about the sold_out stock on one of your products. Your product is no available on your store. However, you can reactivate it without modifying your stock. The Add button will be replaced by the following sold_out button. '. "\n" . '  There characteristics of the products out of stock :'. "\n" . '
 
 email_text_subject_alert_stock = Stock alert on specific product on {{store_name}}
 email_reorder_level_text_alert_stock = Hello,' . "\n\n" . 'You receive an  warning about the alert stock (defined in the product) concerning a product.  Your product is available on your store. '. "\n" . 'There characteristics of the products out of stock : '. "\n" . '

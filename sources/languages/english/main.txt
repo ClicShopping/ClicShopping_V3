@@ -273,7 +273,7 @@ this message as well as the documents which would be appended are addressed excl
 
 email_text_subject_stock = Stock Alert on product on {{store_name}}
 email_reorder_level_text_stock = Hello,<br /><br />You recieved an warning email concernng your warning stock (general configuration) for this product. This warning stock is the alrt stock where on or several procducs is reached. <br />There the differents caracteristics on the product : <br />
-email_text_stock = Hello, <br /><br /> You receive an  warning about the exhausted stock on one of your products. Your product is no available on your store. However, you can reactivate it without modifying your stock. The Add button will be replaced by the following exhausted button.<br />There characteristics of the products out of stock :<br />
+email_text_stock = Hello, <br /><br /> You receive an  warning about the sold_out stock on one of your products. Your product is no available on your store. However, you can reactivate it without modifying your stock. The Add button will be replaced by the following sold_out button.<br />There characteristics of the products out of stock :<br />
 email_text_subject_alert_stock = Stock alert on specific product on {{store_name}}
 email_reorder_level_text_alert_stock = Hello,<br /><br />You receive an  warning about the alert stock (defined in the product) concerning a product.  Your product is available on your store. <br />There characteristics of the products out of stock : <br />
 email_text_product_alert_stock = Stock on this product :

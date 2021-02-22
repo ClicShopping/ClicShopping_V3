@@ -193,7 +193,7 @@
 
 
 // **************************************************
-// Button Free - Must be above getProductsExhausted
+// Button Free - Must be above getProductsSoldOut
 // **************************************************
               if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView($products_id) != 1 && NOT_DISPLAY_PRICE_ZERO == 'false') {
 
@@ -206,10 +206,10 @@
               }
 
 // **************************
-// Display an information if the stock is exhausted for all groups
+// Display an information if the stock is sold out for all groups
 // **************************
-              if (!empty($CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id))) {
-                $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id);
+              if (!empty($CLICSHOPPING_ProductsCommon->getProductsSoldOut($products_id))) {
+                $submit_button = $CLICSHOPPING_ProductsCommon->getProductsSoldOut($products_id);
                 $min_quantity = 0;
                 $input_quantity = '';
                 $min_order_quantity_products_display = '';

@@ -121,9 +121,9 @@
               $products_quantity_unit = CLICSHOPPING::getDef('text_products_quantity_type') . ' ' . $CLICSHOPPING_ProductsCommon->getProductQuantityUnitTypeCustomersGroup();
             }
           }
-// Display an information if the stock is exhausted for all groups
-          if ($CLICSHOPPING_ProductsCommon->getProductsExhausted() != '') {
-             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted();
+// Display an information if the stock is sold out for all groups
+          if ($CLICSHOPPING_ProductsCommon->getProductsSoldOut() != '') {
+             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsSoldOut();
              $min_quantity = 0;
              $input_quantity ='';
              $min_order_quantity_products_display = '';
