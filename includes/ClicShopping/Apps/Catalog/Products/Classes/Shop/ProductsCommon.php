@@ -1830,8 +1830,8 @@
 
     /**
      * Products sold out
-     * Check if the required stock is available for display a button Product sold_out
-     * If insufficent stock is available return a products sold_out image
+     * Check if the required stock is available for display a button Product sold out
+     * If insufficent stock is available return a products sold out image
      * @param string $product_sold_out , the button
      * @param $button_type , bootstrap button bootstrap item
      */
@@ -1868,7 +1868,7 @@
     }
 
     /**
-     * Display Products sold_out
+     * Display Products sold out
      * @param string $product_sold_out , the button
      * @param string $button_type : bootstrap button bootstrap item
      */

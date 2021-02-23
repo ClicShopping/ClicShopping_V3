@@ -68,10 +68,12 @@
       $array = $this->_pathArray;
 
       foreach($array as $k => $v) {
-        $itemlistelement[] = array('@type' => 'ListItem',
-            'position' => $k,
-            'item' => array('@id' => $v['link'],
-            'name' => strip_tags($v['title'])));
+        $itemlistelement[] = array(
+          '@type' => 'ListItem',
+          'position' => $k,
+          'item' => array('@id' => $v['link'],
+          'name' => strip_tags($v['title']))
+        );
       }
 
       $schema_breadcrumb = ['@context' => 'https://schema.org',

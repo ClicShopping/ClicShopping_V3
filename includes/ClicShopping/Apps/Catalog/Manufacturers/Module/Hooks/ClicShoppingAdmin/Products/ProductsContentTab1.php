@@ -89,30 +89,30 @@ $('#tab1ContentRow2').append(
 
 <script>
 window.addEventListener("load", function(){
-	// Add a keyup event listener to our input element
-	document.getElementById('ajax_manufacturers_name').addEventListener("keyup", function(event){hinterManufacturer(event)});
-	// create one global XHR object
-	// so we can abort old requests when a new one is make
-	window.hinterManufacturerXHR = new XMLHttpRequest();
+  // Add a keyup event listener to our input element
+  document.getElementById('ajax_manufacturers_name').addEventListener("keyup", function(event){hinterManufacturer(event)});
+  // create one global XHR object
+  // so we can abort old requests when a new one is make
+  window.hinterManufacturerXHR = new XMLHttpRequest();
 });
 
 // Autocomplete for form
 function hinterManufacturer(event) {
-	var input = event.target;
+  var input = event.target;
 
   var ajax_manufacturers_name = document.getElementById('manufacturer_list'); //datalist id
   
-	// minimum number of characters before we start to generate suggestions
-	var min_characters = 0;
+  // minimum number of characters before we start to generate suggestions
+  var min_characters = 0;
 
-	if (!isNaN(input.value) || input.value.length < min_characters ) {
-		return;
-	} else {
-		window.hinterManufacturerXHR.abort();
-		window.hinterManufacturerXHR.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var response = JSON.parse( this.responseText );
-				
+  if (!isNaN(input.value) || input.value.length < min_characters ) {
+    return;
+  } else {
+    window.hinterManufacturerXHR.abort();
+    window.hinterManufacturerXHR.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse( this.responseText );
+        
         ajax_manufacturers_name.innerHTML = "";
           response.forEach(function(item) {
 // Create a new <option> element.
@@ -122,12 +122,12 @@ function hinterManufacturer(event) {
 
             ajax_manufacturers_name.appendChild(option);
           });
-			}
-		};
+      }
+    };
 
-		window.hinterManufacturerXHR.open("GET", "{$smanufacturers_ajax}?q=" + input.value, true);
-		window.hinterManufacturerXHR.send()
-	}
+    window.hinterManufacturerXHR.open("GET", "{$smanufacturers_ajax}?q=" + input.value, true);
+    window.hinterManufacturerXHR.send()
+  }
 }
 </script>
 <!-- ######################## -->
