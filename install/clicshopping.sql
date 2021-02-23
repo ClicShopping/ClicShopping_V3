@@ -1500,7 +1500,6 @@ INSERT INTO configuration VALUES(1545, 'Indiquer un nombre minmmal de caractére
 INSERT INTO configuration VALUES(1546, 'Vérifier la sécurité de l\'adresse email', 'ENTRY_EMAIL_ADDRESS_CHECKER', 'false', 'Vérifier si la sécurité de l\'adresse email est valide opu non.<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 12, 4, NULL, '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 
-
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
 INSERT INTO configuration_group VALUES(2, 'Gestion de la carte de crédit', 'Valeur minimum pour : fonctions / données', 2, 1);
 INSERT INTO configuration_group VALUES(3, 'Gestion des valeurs maximales et minimales', 'Valeurs pour : fonctions / données', 3, 1);
