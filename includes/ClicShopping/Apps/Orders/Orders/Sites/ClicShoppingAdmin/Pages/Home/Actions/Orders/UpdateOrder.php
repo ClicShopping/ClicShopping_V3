@@ -161,7 +161,7 @@
           'sort_order' => (int)$order_totals[$i]['sort_order']
         ];
 
-        var_dump($sql_data_array);
+
 
         $update_array = [
           'orders_total_id' => (int)$this->orders_total_id,
