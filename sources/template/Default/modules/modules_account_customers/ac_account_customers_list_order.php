@@ -17,8 +17,8 @@
 
   class ac_account_customers_list_order {
 
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

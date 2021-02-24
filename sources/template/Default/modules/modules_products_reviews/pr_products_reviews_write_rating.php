@@ -14,8 +14,8 @@
   use ClicShopping\Sites\Common\HTMLOverrideCommon;
 
   class pr_products_reviews_write_rating {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

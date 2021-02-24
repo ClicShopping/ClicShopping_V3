@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\Apps\Marketing\BannerManager\Classes\Shop\Banner;
   class cc_checkout_confirmation_order_total {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

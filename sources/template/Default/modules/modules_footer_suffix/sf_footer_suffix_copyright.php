@@ -14,8 +14,8 @@
   use ClicShopping\OM\HTTP;
 
   class sf_footer_suffix_copyright {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

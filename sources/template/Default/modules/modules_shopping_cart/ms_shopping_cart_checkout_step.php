@@ -14,8 +14,8 @@
 
 
   class ms_shopping_cart_checkout_step {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

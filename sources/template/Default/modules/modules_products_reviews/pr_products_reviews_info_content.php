@@ -16,8 +16,8 @@
   use ClicShopping\Apps\Customers\Reviews\Classes\Shop\Reviews;
 
   class pr_products_reviews_info_content {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

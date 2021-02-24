@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class he_header_page_manager_header_menu {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

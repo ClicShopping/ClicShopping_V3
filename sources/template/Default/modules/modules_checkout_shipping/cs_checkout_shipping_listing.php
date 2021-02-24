@@ -17,8 +17,8 @@
   use ClicShopping\Sites\Shop\Shipping as Delivery;
 
   class cs_checkout_shipping_listing {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

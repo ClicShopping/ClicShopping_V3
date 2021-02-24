@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class ml_login_mode_b2b {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

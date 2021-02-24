@@ -15,8 +15,8 @@
   use ClicShopping\Sites\Shop\Pages\Account\Classes\CreateAccount;
 
   class cap_create_account_pro_success {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

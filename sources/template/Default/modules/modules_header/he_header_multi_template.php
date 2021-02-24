@@ -15,8 +15,8 @@
   use ClicShopping\Apps\Catalog\Categories\Classes\Shop\CategoryTree;
 
   class he_header_multi_template {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class co_contact_us_page_manager {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

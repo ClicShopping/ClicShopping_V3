@@ -16,8 +16,8 @@
   use ClicShopping\Sites\Shop\AddressBook;
 
   class cs_checkout_shipping_address {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

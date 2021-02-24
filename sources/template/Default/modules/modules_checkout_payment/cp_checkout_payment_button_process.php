@@ -15,8 +15,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class cp_checkout_payment_button_process {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

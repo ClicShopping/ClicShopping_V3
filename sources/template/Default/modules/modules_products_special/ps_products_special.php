@@ -16,8 +16,8 @@
   use ClicShopping\Apps\Marketing\Specials\Classes\Shop\SpecialsClass;
 
   class ps_products_special {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

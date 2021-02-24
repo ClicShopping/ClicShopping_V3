@@ -16,8 +16,8 @@
   use ClicShopping\Apps\Marketing\Favorites\Classes\Shop\FavoritesClass;
 
   class ph_products_favorites {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;

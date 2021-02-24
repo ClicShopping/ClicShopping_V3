@@ -16,7 +16,7 @@
   use ClicShopping\Sites\Shop\Pages\Products\Classes\ProductsNewClass;
 
   class pn_products_new {
-    public $code;
+    public string $code;
     public string $group;
     public string $title;
     public string $description;

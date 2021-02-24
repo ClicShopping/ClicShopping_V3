@@ -15,8 +15,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class pr_products_reviews_listing_content {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
