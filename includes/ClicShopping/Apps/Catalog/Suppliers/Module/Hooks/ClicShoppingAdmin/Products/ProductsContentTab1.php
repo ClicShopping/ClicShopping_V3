@@ -17,10 +17,11 @@
 
   use ClicShopping\Apps\Catalog\Suppliers\Suppliers as SuppliersApp;
   use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
-  
+
   class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
+    protected $SupplierAdmin;
 
     public function __construct()
     {
@@ -38,7 +39,6 @@
       
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
     }
- 
 
     public function display() :string
     {
@@ -95,30 +95,30 @@ $('#tab1ContentRow2').append(
 
 <script>
 window.addEventListener("load", function(){
-	// Add a keyup event listener to our input element
+  // Add a keyup event listener to our input element
 	document.getElementById('ajax_suppliers_name').addEventListener("keyup", function(event){hinterSupplier(event)});
 	// create one global XHR object
-	// so we can abort old requests when a new one is make
+  // so we can abort old requests when a new one is make
 	window.hinterSupplierXHR = new XMLHttpRequest();
 });
 
 // Autocomplete for form
 function hinterSupplier(event) {
-	var input = event.target;
+  var input = event.target;
 
   var ajax_suppliers_name = document.getElementById('supplier_list'); //datalist id
   
-	// minimum number of characters before we start to generate suggestions
-	var min_characters = 0;
+  // minimum number of characters before we start to generate suggestions
+  var min_characters = 0;
 
-	if (!isNaN(input.value) || input.value.length < min_characters ) {
-		return;
-	} else {
+  if (!isNaN(input.value) || input.value.length < min_characters ) {
+    return;
+  } else {
 		window.hinterSupplierXHR.abort();
 		window.hinterSupplierXHR.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var response = JSON.parse( this.responseText );
-				
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse( this.responseText );
+        
         ajax_suppliers_name.innerHTML = "";
           response.forEach(function(item) {
 // Create a new <option> element.
@@ -128,8 +128,8 @@ function hinterSupplier(event) {
 
             ajax_suppliers_name.appendChild(option);
           });
-			}
-		};
+      }
+    };
 
 		window.hinterSupplierXHR.open("GET", "{$suppliers_ajax}?q=" + input.value, true);
 		window.hinterSupplierXHR.send()

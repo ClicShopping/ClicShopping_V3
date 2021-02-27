@@ -34,7 +34,7 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
     }
 
-    public function display()
+    public function display() :string
     {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
@@ -48,10 +48,10 @@
         $pId = null;
       }
 
-      $manufacturer = ManufacturerAdmin::getManufacturerName($pId);
+      $manufacturer_array = ManufacturerAdmin::getManufacturerName($pId);
 
-      if (\is_array($manufacturer) && \count($manufacturer) > 0) {
-        $manufacturers_name = $manufacturer[0]['manufacturers_name'];
+      if (\is_array($manufacturer_array) && \count($manufacturer_array) > 0) {
+        $manufacturers_name = $manufacturer_array[0]['manufacturers_name'];
       } else {
         $manufacturers_name = '';
       }

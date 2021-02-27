@@ -124,28 +124,34 @@ $('#tab1ContentRow1').append(
 </script>
 
 <script>
-  jQuery(document).ready(function() {
-    $("#myAjax").on('click', function () {
-      var selectedOptionVal = $('#move_to_category_id').val();
-      $.ajax({
-        url: '{$categories_ajax}',
-        dataType: 'json',
-        success: function (data) {
-          //data returned from php
-          var options_html = '';
-          for (var index in data) {
-            var category_id = data[index]['id'];
-            var category_name = data[index]['text'];
-            var selectedString = category_id == selectedOptionVal ? ' selected="selected"' : '';
-            options_html += '<option value="' + category_id + '"' + selectedString + '>' + category_name + '</option>';
-          }
-          $('#move_to_category_id').html(options_html);
-        }
-      });
+  window.addEventListener("DOMContentLoaded", (event) => {
+   console.log("DOM uploaded and analysed");
+   document.querySelector('#myAjax')
+   .addEventListener('click',function(e){
+     var selectedOptionVal = document.querySelector('#move_to_category_id').value
+     ,options_html="";
+    fetch("{$categories_ajax}?"+selectedOptionVal)
+      .then(function(response) {
+         return response.json();
+      })
+      .then(function(jsonResponse) {
+     // Ajax success
+     console.log("data is :",jsonResponse);
+     for(var index in jsonResponse){
+      let category_id = jsonResponse[index].id;
+      let category_name = jsonResponse[index].text;
+      let selectedString = category_id == selectedOptionVal ? ' selected="selected"' : '';
+      options_html += '<option value="' + category_id + '"' + selectedString + '>' + category_name + '</option>';
+     }
+     $('#move_to_category_id').html(options_html);
+      })
+      .catch(function(err) {
+       // error ajax 
+        alert("error :"+err);
     });
-  })
-</script>
-
+   });
+  });
+ </script>
 <!-- ######################## -->
 <!--  End Categories App      -->
 <!-- ######################## -->
