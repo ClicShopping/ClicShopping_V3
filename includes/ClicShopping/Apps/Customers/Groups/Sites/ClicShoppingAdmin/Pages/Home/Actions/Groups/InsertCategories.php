@@ -33,7 +33,7 @@
 
           $CLICSHOPPING_Groups->redirect('Edit&cID=' . $group_id);
         } else {
-          $new_category_discount = HTML::sanitize($_POST['discount']);
+          $new_category_discount = (float)$_POST['discount'];
           $new_category_id = HTML::sanitize($_POST['categories_id']);
 
           $new_category_discount = round($new_category_discount, 2);
