@@ -69,10 +69,10 @@
         $content .= '<div class="col-md-5">';
         $content .= '<label for="' . $this->app->getDef('text_products_categories') . '" class="col-5 col-form-label"></label>';
         $content .= '<div id="myAjax">';
-        $content .= HTML::selectMenu('move_to_category_id[]', $category_tree, $current_category_id);
+        $content .= HTML::selectMenu('move_to_category_id[]', $category_tree, $current_category_id, 'id="move_to_category_id"');
         $content .= '</div>';
         $content .= HTML::hiddenField('current_category_id', $current_category_id);
-        $content .= '<a href="' . $this->app->link('CategoriesPopUp') . '"  data-bs-toggle="modal" data-refresh="true" data-bs-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
+        $content .= '<a href="' . $this->app->link('CategoriesPopUp') . '"  data-bs-toggle="modal" data-bs-refresh="true" data-bs-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
         $content .= '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
         $content .= '<div class="modal-dialog">';
         $content .= '<div class="modal-content">';
@@ -123,10 +123,10 @@ $('#tab1ContentRow1').append(
 );
 </script>
 
-<script type="text/javascript">
+<script>
   jQuery(document).ready(function() {
     $("#myAjax").on('click', function () {
-      var selectedOptionVal = $('#category_id').val();
+      var selectedOptionVal = $('#move_to_category_id').val();
       $.ajax({
         url: '{$categories_ajax}',
         dataType: 'json',
@@ -139,7 +139,7 @@ $('#tab1ContentRow1').append(
             var selectedString = category_id == selectedOptionVal ? ' selected="selected"' : '';
             options_html += '<option value="' + category_id + '"' + selectedString + '>' + category_name + '</option>';
           }
-          $('#category_id').html(options_html);
+          $('#move_to_category_id').html(options_html);
         }
       });
     });
