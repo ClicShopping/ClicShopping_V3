@@ -15,7 +15,7 @@
 
   class securityCheck_session_storage
   {
-    public $type = 'warning';
+    public string $type = 'warning';
 
     public function __construct()
     {

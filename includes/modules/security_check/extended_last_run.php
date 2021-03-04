@@ -16,7 +16,7 @@
 
   class securityCheck_extended_last_run
   {
-    public $type = 'warning';
+    public string $type = 'warning';
 
     public function __construct()
     {

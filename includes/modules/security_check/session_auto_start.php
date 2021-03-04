@@ -13,7 +13,7 @@
 
   class securityCheck_session_auto_start
   {
-    public $type = 'warning';
+    public string $type = 'warning';
 
     public function __construct()
     {

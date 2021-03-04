@@ -32,7 +32,7 @@
     public function getMessage()
     {
       return CLICSHOPPING::getDef('warning_github_directory_exists', [
-        'github_pah' => CLICSHOPPING::getConfig('dir_root', 'Shop') . '.github'
+        'github_path' => CLICSHOPPING::getConfig('dir_root', 'Shop') . '.github'
       ]);
     }
   }

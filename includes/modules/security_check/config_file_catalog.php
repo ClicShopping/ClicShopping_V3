@@ -15,7 +15,7 @@
 
   class securityCheck_config_file_catalog
   {
-    public $type = 'warning';
+    public string $type = 'warning';
 
     public function __construct()
     {
