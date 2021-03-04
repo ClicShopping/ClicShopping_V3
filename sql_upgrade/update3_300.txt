@@ -1,13 +1,15 @@
-Step 1 : Update your Db by the sal below
-Step 2 : remove all template module and reinstall it
-Step 3 : remove product info gallery and replace by the new gallery
+Step 1 : Update your Db by the sql below
+Step 2 : remove all template module and re-install it
+Step 3 : remove all Dashboard module and re-install it
 
 
 #insert in your phpmyAdmin this request in function of your language
 
-
+#All language
 ALTER TABLE `clic_products` CHANGE `products_sku` `products_sku` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
 UPDATE `clic_configuration` SET `configuration_key` = 'STOCK_ALERT_PRODUCT_SOLDLD_OUT' WHERE `clic_configuration`.`configuration_key` = 'STOCK_ALERT_PRODUCT_EXHAUSTED';
+
+--
 
 #English
 INSERT INTO clic_configuration VALUES(null, 'Do you want to Display the sidebar Menu in Admin', 'VERTICAL_MENU_CONFIGURATION', 'false', 'Select a choice to display a specific menu in your admininistration horizontal or sidebar.<br />', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
