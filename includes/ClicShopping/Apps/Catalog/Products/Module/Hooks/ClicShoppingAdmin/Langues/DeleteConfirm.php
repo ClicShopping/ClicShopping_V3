@@ -31,14 +31,14 @@
 
     private function delete($id)
     {
-      if (!is_null($id)) {
+      if (!\is_null($id)) {
         $this->app->db->delete('products_description', ['language_id' => $id]);
       }
     }
 
     public function execute()
     {
-      if (!defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
         return false;
       }
 

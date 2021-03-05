@@ -14,8 +14,8 @@
   use ClicShopping\OM\DateTime;
 
   class chs_downloads {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,8 +28,8 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_success_downloads_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_success_downloads_description');
 
-      if (defined('MODULE_CHECKOUT_SUCCESS_DOWNLOADS_STATUS')) {
-        $this->sort_order = defined('MODULE_CHECKOUT_SUCCESS_DOWNLOADS_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_DOWNLOADS_SORT_ORDER : 0;
+      if (\defined('MODULE_CHECKOUT_SUCCESS_DOWNLOADS_STATUS')) {
+        $this->sort_order = \defined('MODULE_CHECKOUT_SUCCESS_DOWNLOADS_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_DOWNLOADS_SORT_ORDER : 0;
         $this->enabled = (MODULE_CHECKOUT_SUCCESS_DOWNLOADS_STATUS == 'True');
       }
     }
@@ -103,7 +103,7 @@
               }
 
               $download .=  '<td>' . CLICSHOPPING::getDef('table_heading_download_date') . ' ' . DateTime::toLong($download_expiry) . '</td>' . "\n" .
-                            '<td class="text-md-right">' . $Qdownloads->valueInt('download_count') . ' ' . CLICSHOPPING::getDef('table_heading_download_count')  . '</td>' . "\n" .
+                            '<td class="text-end">' . $Qdownloads->valueInt('download_count') . ' ' . CLICSHOPPING::getDef('table_heading_download_count')  . '</td>' . "\n" .
                             '</tr>' . "\n";
             } while ($Qdownloads->fetch());
           }
@@ -127,7 +127,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_SUCCESS_DOWNLOADS_STATUS');
+      return \defined('MODULE_CHECKOUT_SUCCESS_DOWNLOADS_STATUS');
     }
 
     public function install() {

@@ -57,11 +57,14 @@
       }
     }
 
-    public function display()
+    /**
+     * @return string
+     */
+    public function display() :string
     {
         $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-        if (!defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'False') {
+        if (!\defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'False') {
           return false;
         }
 
@@ -70,7 +73,7 @@
 
           $products_array = $this->getProducts();
 
-          if (is_array($products_array) && $products_array !== false) {
+          if (\is_array($products_array) && $products_array !== false) {
             $products_id = $products_array[0]['products_id'];
             $products_percentage = $products_array[0]['products_percentage'];
           }
@@ -120,10 +123,10 @@
               $title .= '<div class="separator"></div>';
             }
 
-            $content = '<div class="d-flex flex-wrap">';
+            $content = '<div class="row">';
 
             while ($QcustomersGroup->fetch()) {
-              $content .= '<div class="col-md-4">';
+              $content .= '<div class="col-md-4 m-1">';
               $content .= '<div class="card cardPrice">';
 
               if ($QcustomersGroup->rowCount() > 0 && $products_array !== false) {
@@ -203,7 +206,7 @@
               $content .= $this->app->getDef('text_products_quantity_fixed_group') . ' ' . HTML::inputField('products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id'), $products_quantity_fixed_group);
               $content .= '<div class="separator"></div>';
 
-              if (defined('CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS') && CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS == 'True' && !empty(CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS)) {
+              if (\defined('CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS') && CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS == 'True' && !empty(CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS)) {
                 $content .= $this->app->getDef('text_products_min_order_quantity_group') . ' ' . HTML::selectMenu('products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id'), $products_quantity_unit_drop_down, $products_quantity_unit_id_group);
               }
 

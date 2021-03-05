@@ -45,7 +45,7 @@
     }
 
     echo '        <td>' . CLICSHOPPING::getDef('module_account_customers_history_info_download_table_heading_download_date') . ' ' . DateTime::toLong($download_expiry) . '</td>' . "\n" .
-      '        <td align="text-md-right">' . $Qdownloads->valueInt('download_count') . ' ' . CLICSHOPPING::getDef('module_account_customers_history_info_download_able_heading_download_count') . '</td>' . "\n" .
+      '        <td align="text-end">' . $Qdownloads->valueInt('download_count') . ' ' . CLICSHOPPING::getDef('module_account_customers_history_info_download_able_heading_download_count') . '</td>' . "\n" .
       '      </tr>' . "\n";
   } while ($Qdownloads->fetch());
 ?>

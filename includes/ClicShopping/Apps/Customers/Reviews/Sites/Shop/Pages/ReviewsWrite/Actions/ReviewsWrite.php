@@ -63,6 +63,5 @@
       $CLICSHOPPING_Language->loadDefinitions('product_reviews_write');
 
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()));
-
     }
   }

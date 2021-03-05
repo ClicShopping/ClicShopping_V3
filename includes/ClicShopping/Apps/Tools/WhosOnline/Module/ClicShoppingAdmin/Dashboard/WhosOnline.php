@@ -36,7 +36,7 @@
       $this->title = $this->app->getDef('module_admin_dashboard_whos_online_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_whos_online_app_description');
 
-      if (defined('MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_STATUS')) {
+      if (\defined('MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_STATUS == 'True');
       }
@@ -72,6 +72,8 @@
         $output .= '<table 
             id="table"
             data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
             data-sort-name="online"
             data-sort-order="asc"
             data-toolbar="#toolbar"
@@ -82,9 +84,9 @@
         $output .= '<thead class="dataTableHeadingRow">';
         $output .= '<tr>';
         $output .= '<th data-field="online" width="10%">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_online') . '</th>';
-        $output .= '<th data-field="name" width="20%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_full_name') . '</th>';
-        $output .= '<th data-field="ip" width="10%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_ip_address') . '</th>';
-        $output .= '<th data-field="agent" width="60%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_user_agent') . '</th>';
+        $output .= '<th data-field="name" width="20%" class="text-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_full_name') . '</th>';
+        $output .= '<th data-field="ip" width="10%" class="text-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_ip_address') . '</th>';
+        $output .= '<th data-field="agent" width="60%" class="text-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_user_agent') . '</th>';
         $output .= '</tr>';
         $output .= '</thead>';
         $output .= '<tbody>';
@@ -97,12 +99,12 @@
           $output .= '<td class="dataTableContent">' . gmdate('H:i:s', $time_online) . '</td> ';
 
           if ($QwhosOnline->valueInt('customer_id') == 0) {
-            $output .= '<td class="dataTableContent text-md-left">' . $QwhosOnline->value('full_name') . '</td>';
+            $output .= '<td class="dataTableContent text-start">' . $QwhosOnline->value('full_name') . '</td>';
           } else {
             $output .= '<td class="dataTableContent"><a href="' . CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Edit&cID=' . $QwhosOnline->valueInt('customer_id')) . '" title="View Customer">' . $QwhosOnline->value('full_name') . '</a></td>';
           }
 
-          $output .= '<td class="dataTableContent text-md-center"><a href="https://ip-lookup.net/index.php?ip=' . urlencode($QwhosOnline->valueInt('ip_address')) . '" title="Lookup" target="_blank" rel="noreferrer">' . $QwhosOnline->value('ip_address') . '</a></td>';
+          $output .= '<td class="dataTableContent text-center"><a href="https://ip-lookup.net/index.php?ip=' . urlencode($QwhosOnline->valueInt('ip_address')) . '" title="Lookup" target="_blank" rel="noreferrer">' . $QwhosOnline->value('ip_address') . '</a></td>';
           $output .= '<td class="dataTableContent">' . $QwhosOnline->value('user_agent') . '</td>';
           $output .= '</tr>';
         } // end while
@@ -111,7 +113,7 @@
         $output .= '</table>';
         $output .= '</span>';
         $output .= '<div>';
-        $output .= '<p class="text-md-right" style="size:0.2rem;"><small>' . $this->app->getDef('module_admin_dashboard_whos_online_app_customers_online') . ' ' . $QwhosOnline->rowCount() . '</small></p>';
+        $output .= '<p class="text-end" style="size:0.2rem;"><small>' . $this->app->getDef('module_admin_dashboard_whos_online_app_customers_online') . ' ' . $QwhosOnline->rowCount() . '</small></p>';
         $output .= '</div>';
       }
 

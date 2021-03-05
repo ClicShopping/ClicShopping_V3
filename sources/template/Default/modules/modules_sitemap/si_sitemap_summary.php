@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class si_sitemap_summary {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('modules_sitemap_summary_title');
       $this->description = CLICSHOPPING::getDef('modules_sitemap_summary_description');
 
-      if (defined('MODULES_SITEMAP_SUMMARY_STATUS')) {
+      if (\defined('MODULES_SITEMAP_SUMMARY_STATUS')) {
         $this->sort_order = MODULES_SITEMAP_SUMMARY_SORT_ORDER;
         $this->enabled = (MODULES_SITEMAP_SUMMARY_STATUS == 'True');
       }
@@ -58,7 +58,7 @@
     }
 
     public function check() {
-      return defined('MODULES_SITEMAP_SUMMARY_STATUS');
+      return \defined('MODULES_SITEMAP_SUMMARY_STATUS');
     }
 
     public function install() {

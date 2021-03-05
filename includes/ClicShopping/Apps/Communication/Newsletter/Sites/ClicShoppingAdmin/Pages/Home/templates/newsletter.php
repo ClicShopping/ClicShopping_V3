@@ -33,7 +33,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/newsletters.gif', $CLICSHOPPING_Newsletter->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_insert'), null, $CLICSHOPPING_Newsletter->link('Update'), 'success') . '&nbsp;';
 ?>
@@ -45,8 +45,10 @@
   <div class="separator"></div>
   <div class="row">
     <div class="col-md-12">
-      <div class="card-deck">
-        <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsCustomersNewsletterBySex'); ?>
+      <div class="card card-block headerCard">
+        <div class="row">
+          <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsCustomersNewsletterBySex', null, 'display'); ?>
+        </div>
       </div>
     </div>
   </div>
@@ -58,13 +60,15 @@
     echo HTML::form('delete_all', $CLICSHOPPING_Newsletter->link('Newsletter&DeleteAll&page=' . $page));
   ?>
 
-  <div id="toolbar">
+  <div id="toolbar" class="float-end">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Newsletter->getDef('button_delete'); ?></button>
   </div>
 
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-id-field="selected"
     data-select-item-name="selected[]"
     data-click-to-select="true"
@@ -82,20 +86,20 @@
       <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Newsletter->getDef('id'); ?></th>
       <th data-switchable="false"></th>
       <th data-field="newletter"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_newsletters'); ?></th>
-      <th data-field="size" class="text-md-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_size'); ?></th>
-      <th data-field="module" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_module'); ?></th>
-      <th data-field="language" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_language'); ?></th>
+      <th data-field="size" class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_size'); ?></th>
+      <th data-field="module" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_module'); ?></th>
+      <th data-field="language" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_language'); ?></th>
       <?php
         // Permettre l'affichage des groupes en mode B2B
         if (MODE_B2B_B2C == 'true') {
           ?>
-          <th data-field="b2b" data-sortable="true"  class="text-md-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_b2b'); ?></th>
+          <th data-field="b2b" data-sortable="true"  class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_b2b'); ?></th>
           <?PHP
         }
       ?>
-      <th data-field="sent" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_sent'); ?></th>
-      <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_status'); ?></th>
-      <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_action'); ?>&nbsp;</th>
+      <th data-field="sent" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_sent'); ?></th>
+      <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_status'); ?></th>
+      <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_action'); ?>&nbsp;</th>
     </tr>
     </thead>
     <tbody>
@@ -162,29 +166,29 @@
            <td><?php echo $Qnewsletters->valueInt('newsletters_id'); ?></td>
            <td></td>
           <td scope="row"><?php echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Preview&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . $Qnewsletters->value('title') . '</a>'; ?></td>
-          <td class="text-md-center"><?php echo number_format($Qnewsletters->value('content_length')) . ' bytes'; ?></td>
-          <td class="text-md-center"><?php echo $Qnewsletters->value('module'); ?></td>
-          <td class="text-md-center"><?php echo $newsletters_language['name']; ?></td>
+          <td class="text-center"><?php echo number_format($Qnewsletters->value('content_length')) . ' bytes'; ?></td>
+          <td class="text-center"><?php echo $Qnewsletters->value('module'); ?></td>
+          <td class="text-center"><?php echo $newsletters_language['name']; ?></td>
           <?php
 // Permettre l'affichage des groupes en mode B2B
           if (MODE_B2B_B2C == 'true') {
             ?>
-            <td class="text-md-center"><?php echo $customers_group['customers_group_name']; ?></td>
+            <td class="text-center"><?php echo $customers_group['customers_group_name']; ?></td>
 
             <?PHP
           }
           ?>
-          <td class="text-md-center"><?php if ($Qnewsletters->valueInt('status') == 1) {
-              echo '<i class="fas fa-check fa-lg" aria-hidden="true"></i>';
+          <td class="text-center"><?php if ($Qnewsletters->valueInt('status') == 1) {
+              echo '<i class="bi-check text-success"></i>';
             } else {
-              echo '<i class="fas fa-times fa-lg" aria-hidden="true"></i>';
+              echo '<i class="bi bi-x text-danger"></i>';
             } ?></td>
-          <td class="text-md-center"><?php if ($Qnewsletters->valueInt('locked') > 0) {
+          <td class="text-center"><?php if ($Qnewsletters->valueInt('locked') > 0) {
               echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/locked.gif', $CLICSHOPPING_Newsletter->getDef('icon_locked'));
             } else {
               echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unlocked.gif', $CLICSHOPPING_Newsletter->getDef('icon_unlocked'));
             } ?></td>
-          <td class="text-md-right">
+          <td class="text-end">
             <?php
               if ($Qnewsletters->valueInt('locked') > 0) {
                 echo '<a href="' . $CLICSHOPPING_Newsletter->link('Update&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Newsletter->getDef('icon_edit')) . '</a>&nbsp;';
@@ -217,9 +221,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qnewsletters->getPageSetLabel($CLICSHOPPING_Newsletter->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qnewsletters->getPageSetLabel($CLICSHOPPING_Newsletter->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qnewsletters->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qnewsletters->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

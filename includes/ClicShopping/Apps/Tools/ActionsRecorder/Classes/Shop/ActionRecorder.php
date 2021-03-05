@@ -28,8 +28,8 @@
 
       $module = HTML::sanitize(str_replace(' ', '', $module));
 
-      if (defined('MODULE_ACTION_RECORDER_INSTALLED') && !is_null(MODULE_ACTION_RECORDER_INSTALLED)) {
-        if (!is_null($module) && in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), explode(';', MODULE_ACTION_RECORDER_INSTALLED))) {
+      if (\defined('MODULE_ACTION_RECORDER_INSTALLED') && !\is_null(MODULE_ACTION_RECORDER_INSTALLED)) {
+        if (!\is_null($module) && \in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), explode(';', MODULE_ACTION_RECORDER_INSTALLED))) {
           if (!class_exists($module)) {
             if (is_file($CLICSHOPPING_Template->getModuleDirectory() . '/action_recorder/' . $module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)))) {
               $CLICSHOPPING_Language->loadDefinitions('modules/action_recorder/' . $module);
@@ -73,7 +73,7 @@
      */
     public function canPerform()
     {
-      if (!is_null($this->_module)) {
+      if (!\is_null($this->_module)) {
         return $this->getModule()->canPerform($this->_user_id, $this->_user_name);
       }
 
@@ -85,7 +85,7 @@
      */
     public function getTitle()
     {
-      if (!is_null($this->_module)) {
+      if (!\is_null($this->_module)) {
         return $this->getModule()->title;
       }
     }
@@ -95,7 +95,7 @@
      */
     public function getIdentifier()
     {
-      if (!is_null($this->_module)) {
+      if (!\is_null($this->_module)) {
         return $this->getModule()->identifier;
       }
     }
@@ -107,7 +107,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (!is_null($this->_module)) {
+      if (!\is_null($this->_module)) {
         if ($success === true) {
           $success = 1;
         } else {
@@ -132,7 +132,7 @@
      */
     public function expireEntries()
     {
-      if (!is_null($this->_module)) {
+      if (!\is_null($this->_module)) {
         return $this->getModule()->expireEntries();
       }
     }

@@ -1,0 +1,53 @@
+{
+    "name": "mattketmo/email-checker",
+    "description": "Throwaway email detection library",
+    "license": "MIT",
+    "keywords": ["email", "check", "throwaway", "disposable"],
+    "authors": [
+        {
+            "name": "Matthieu Moquet",
+            "email": "matthieu@moquet.net"
+        }
+    ],
+    "require": {
+        "php": "^7.1 || ^8.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "knplabs/gaufrette": "^0.10",
+        "phpunit/phpunit": "^7.5 || ^9.5",
+        "symfony/validator": "^3.0 || ^4.0 || ^5.0"
+    },
+    "suggest": {
+        "symfony/validator": "Add validation constraints",
+        "knplabs/gaufrette": "Use filesystem abstraction layer to read data"
+    },
+    "autoload": {
+        "psr-4": {
+            "EmailChecker\\": "src/EmailChecker"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EmailChecker\\Tests\\": "tests/EmailChecker/Tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "EmailChecker\\Laravel\\EmailCheckerServiceProvider"
+            ],
+            "aliases": {
+                "EmailChecker": "EmailChecker\\Laravel\\EmailCheckerFacade"
+            }
+        }
+    },
+    "scripts": {
+        "test": [
+            "phpunit --colors=always"
+        ],
+        "lint": [
+            "php-cs-fixer fix --ansi"
+        ]
+    }
+}

@@ -84,7 +84,7 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $language_id = $languages[$i]['id'];
 
         $sql_data_array = ['label' => HTML::sanitize($label_array[$language_id])];

@@ -17,8 +17,8 @@
   use ClicShopping\Sites\Shop\Pages\Checkout\Classes\CheckoutSuccess;
 
   class chs_product_notifications {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -31,8 +31,8 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_success_product_notifications_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_success_product_notification_description');
 
-      if (defined('MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_STATUS')) {
-        $this->sort_order = defined('MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_SORT_ORDER : 0;
+      if (\defined('MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_STATUS')) {
+        $this->sort_order = \defined('MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_SORT_ORDER : 0;
         $this->enabled = (MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_STATUS == 'True');
       }
     }
@@ -101,7 +101,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_STATUS');
+      return \defined('MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_STATUS');
     }
 
     public function install() {

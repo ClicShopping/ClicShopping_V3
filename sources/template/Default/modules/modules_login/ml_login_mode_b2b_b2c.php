@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class ml_login_mode_b2b_b2c {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('module_login_mode_b2b_b2c');
       $this->description = CLICSHOPPING::getDef('module_login_mode_b2b_b2c_description');
 
-      if (defined('MODULE_LOGIN_MODE_B2B_B2C_STATUS')) {
+      if (\defined('MODULE_LOGIN_MODE_B2B_B2C_STATUS')) {
         $this->sort_order = MODULE_LOGIN_MODE_B2B_B2C_SORT_ORDER;
         $this->enabled = (MODULE_LOGIN_MODE_B2B_B2C_STATUS == 'True');
       }
@@ -63,7 +63,7 @@
     }
 
     public function check() {
-      return defined('MODULE_LOGIN_MODE_B2B_B2C_STATUS');
+      return \defined('MODULE_LOGIN_MODE_B2B_B2C_STATUS');
     }
 
     public function install() {
@@ -100,7 +100,7 @@
           'configuration_description' => 'Select where you want display the module',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-right\', \'float-left\', \'float-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

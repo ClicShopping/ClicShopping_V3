@@ -48,7 +48,7 @@
         CLICSHOPPING::redirect(null, 'Checkout&Shipping');
       }
 
-      if ((!is_null(MODULE_PAYMENT_INSTALLED)) && (!isset($_SESSION['payment']))) {
+      if ((!\is_null(MODULE_PAYMENT_INSTALLED)) && (!isset($_SESSION['payment']))) {
         CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
 
@@ -67,7 +67,7 @@
       $any_out_of_stock = false;
 
       if (STOCK_CHECK == 'true') {
-        for ($i = 0, $n = count($CLICSHOPPING_Order->products); $i < $n; $i++) {
+        for ($i = 0, $n = \count($CLICSHOPPING_Order->products); $i < $n; $i++) {
           if ($CLICSHOPPING_ProductsCommon->getCheckStock($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['qty'])) {
             $any_out_of_stock = true;
           }
@@ -80,7 +80,7 @@
 
       $CLICSHOPPING_Payment->update_status();
 
-      if (strpos($CLICSHOPPING_Payment->selected_module, '\\') !== false) {
+      if (str_contains($CLICSHOPPING_Payment->selected_module, '\\')) {
         $code = 'Payment_' . str_replace('\\', '_', $CLICSHOPPING_Payment->selected_module);
 
         if (Registry::exists($code)) {
@@ -112,7 +112,7 @@
       if (is_dir($source_folder)) {
         $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutProcess*');
 
-        if (is_array($files_get)) {
+        if (\is_array($files_get)) {
           foreach ($files_get as $value) {
             if (!empty($value['name'])) {
               $CLICSHOPPING_Hooks->call('CheckoutProcess', $value['name']);

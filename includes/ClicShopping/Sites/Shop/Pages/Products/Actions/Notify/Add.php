@@ -36,9 +36,9 @@
           CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID());
         }
 
-        if (!is_array($notify)) $notify = array($notify);
+        if (!\is_array($notify)) $notify = array($notify);
 
-        for ($i = 0, $n = count($notify); $i < $n; $i++) {
+        for ($i = 0, $n = \count($notify); $i < $n; $i++) {
 
           $Qcheck = $CLICSHOPPING_Db->get('products_notifications', 'products_id', ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
               'products_id' => (int)$notify[$i]

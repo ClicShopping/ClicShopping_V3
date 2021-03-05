@@ -32,7 +32,7 @@
       $directories = array_diff(scandir($template_directory), $weeds);
       $filename_array = [];
 
-      if (is_array($directories)) {
+      if (\is_array($directories)) {
         foreach ($directories as $value) {
           if (is_dir($template_directory . $value)) {
             $filename_array[] = ['id' => $value,
@@ -88,7 +88,7 @@
         $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($source), \RecursiveIteratorIterator::CHILD_FIRST);
 
         foreach ($files as $file) {
-          if (in_array($file->getBasename(), array('.', '..')) !== true) {
+          if (\in_array($file->getBasename(), array('.', '..')) !== true) {
             if ($file->isDir() === true) {
               rmdir($file->getPathName());
             } else if (($file->isFile() === true) || ($file->isLink() === true)) {

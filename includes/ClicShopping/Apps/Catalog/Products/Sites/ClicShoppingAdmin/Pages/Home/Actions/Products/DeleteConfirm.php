@@ -35,9 +35,9 @@
     {
       $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
-      if (isset($this->ID) && isset($this->productCategoriesId) && is_array($this->productCategoriesId)) {
+      if (isset($this->ID) && isset($this->productCategoriesId) && \is_array($this->productCategoriesId)) {
 
-        $products_categories_id = count($this->productCategoriesId);
+        $products_categories_id = \count($this->productCategoriesId);
 
         for ($i = 0, $n = $products_categories_id; $i < $n; $i++) {
 // delete product of categorie

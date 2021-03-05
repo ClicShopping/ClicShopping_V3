@@ -16,9 +16,9 @@
   class HeaderOutputJqvMap
   {
     /**
-     * @return string
+     * @return string|bool
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $params = $_SERVER['QUERY_STRING'];
 
@@ -29,10 +29,12 @@
       $output = '';
 
       if (isset($_SESSION['admin'])) {
-        $output .= '<! -- Start Jqvmap -->' . "\n";
-        $output .= '<link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css" rel="stylesheet" media="screen" rel="preload"/>' . "\n";
-        $output .= '<link type="text/css" href="' . CLICSHOPPING::link('css/jqvmap.css') . '" rel="stylesheet" rel="preload"/>' . "\n";
+        $output .= '<!-- Start Jqvmap -->' . "\n";
+        $output .= '<link href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css" rel="stylesheet" media="screen" rel="preload"/>' . "\n";
+        $output .= '<link rel="stylesheet" href="' . CLICSHOPPING::link('css/jqvmap.css') . '" rel="stylesheet" rel="preload"/>' . "\n";
         $output .= '<!-- End Jqvmap  -->' . "\n";
+      } else {
+        return false;
       }
 
       return $output;

@@ -56,7 +56,7 @@
     public static function redirect(string $url, ?string $http_response_code = null)
     {
       if ((strstr($url, "\n") === false) && (strstr($url, "\r") === false)) {
-        if (strpos($url, '&amp;') !== false) {
+        if (str_contains($url, '&amp;')) {
           $url = str_replace('&amp;', '&', $url);
         }
 
@@ -72,7 +72,7 @@
     public static function getResponse(array $data)
     {
 
-      if (!isset($data['header']) || !is_array($data['header'])) {
+      if (!isset($data['header']) || !\is_array($data['header'])) {
         $data['header'] = [];
       }
 
@@ -88,7 +88,7 @@
         $data['cafile'] = CLICSHOPPING::BASE_DIR . 'External/cacert.pem';
       }
 
-      if (isset($data['format']) && !in_array($data['format'], ['json'])) {
+      if (isset($data['format']) && !\in_array($data['format'], ['json'])) {
         trigger_error('HttpRequest::getResponse(): Unknown "format": ' . $data['format']);
 
         unset($data['format']);
@@ -228,12 +228,17 @@
       if (!empty($_SERVER["REMOTE_ADDR"]) && $_SERVER["REMOTE_ADDR"] != '::1') { //check ip from share internet
         $provider_client_ip = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
         $str = preg_split("/\./", $provider_client_ip);
-        $i = count($str);
-        $x = $i - 1;
-        $n = $i - 2;
-        $isp_provider_client = $str[$n] . '.' . $str[$x];
+        $i = \count($str);
 
-        return $isp_provider_client;
+        $x = $str[0];
+
+        if ($i > 1) {
+          $n = $str[1];
+        } else {
+          $n = '';
+        }
+
+        return $x . '.' . $n;
       } else {
         return 'Unkown or localhost';
       }
@@ -272,5 +277,52 @@
       $uri = rtrim(preg_replace('#((?<=\?)|&)openid\.[^&]+#', '', $_SERVER['REQUEST_URI']), '?');
 
       return $uri;
+    }
+  
+    /**
+     * Resolve relative / (Unix-like)absolute path
+     * @param string $path target path
+     * @param string $separator separator
+     * @return string
+     */
+    public static function getFullPath(string $path = '', string $separator = '/') :string
+    {
+      $systemroot = CLICSHOPPING::getSite('Shop');
+
+      $base = CLICSHOPPING::getSite('Shop');
+    
+      if ($base[0] === $separator && substr($base, 0, \strlen($systemroot)) !== $systemroot) {
+        $base = $systemroot . substr($base, 1);
+      }
+      if ($base !== $systemroot) {
+        $base = rtrim($base, $separator);
+      }
+    
+      if ($path === '' || $path === '.' . $separator) return $base;
+    
+      if (substr($path, 0, 3) === '..' . $separator) {
+        $path = $base . $separator . $path;
+      }
+
+      if ($path !== $systemroot) {
+        $path = rtrim($path, $separator);
+      }
+    
+      // Absolute path
+      if ($path[0] === $separator || strpos($path, $systemroot) === 0) {
+        return $path;
+      }
+      
+      // Relative path from 'Here'
+      if (substr($path, 0, 2) === '.' . $separator || $path[0] !== '.') {
+        $arrn = preg_split($preg_separator, $path, -1, PREG_SPLIT_NO_EMPTY);
+        if ($arrn[0] !== '.') {
+          array_unshift($arrn, '.');
+        }
+        $arrn[0] = rtrim($base, $separator);
+        return join($separator, $arrn);
+      }
+
+      return $path;
     }
   }

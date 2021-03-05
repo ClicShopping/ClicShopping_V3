@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class co_contact_us_form_button_process {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('modules_contact_us_form_button_process_title');
       $this->description = CLICSHOPPING::getDef('modules_contact_us_form_button_process_description');
 
-      if (defined('MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS')) {
+      if (\defined('MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS')) {
         $this->sort_order = (int)MODULES_CONTACT_US_FORM_BUTTON_PROCESS_SORT_ORDER;
         $this->enabled = (MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS == 'True');
       }
@@ -57,7 +57,7 @@
     }
 
     public function check() {
-      return defined('MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS');
+      return \defined('MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS');
     }
 
     public function install() {

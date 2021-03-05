@@ -48,6 +48,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-name="expected"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -62,8 +64,8 @@
       <th data-switchable="false" width="20"></th>
       <th data-switchable="false" width="50"></th>
       <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
-      <th data-field="expected" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_date_expected'); ?></th>
-      <th data-field="action" data-sortable="true" class="text-md-right"><?php echo $CLICSHOPPING_Products->getDef('table_heading_action'); ?></th>
+      <th data-field="expected" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_date_expected'); ?></th>
+      <th data-field="action" data-sortable="true" class="text-end"><?php echo $CLICSHOPPING_Products->getDef('table_heading_action'); ?></th>
     </tr>
     </thead>
     <tbody>
@@ -94,7 +96,7 @@
         while ($products = $Qproducts->fetch()) {
           $rows++;
 
-          if (strlen($rows) < 2) {
+          if (\strlen($rows) < 2) {
             $rows = '0' . $rows;
           }
           ?>
@@ -105,9 +107,9 @@
               class="dataTableContent"><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
             <td class="dataTableContent"><?php echo $Qproducts->value('products_name'); ?></td>
             <td
-              class="dataTableContent text-md-center"><?php echo DateTime::toShort($products['products_date_available']); ?></td>
+              class="dataTableContent text-center"><?php echo DateTime::toShort($products['products_date_available']); ?></td>
             <td
-              class="text-md-right"><?php echo $CLICSHOPPING_Products->link('Products&search=' . $Qproducts->value('products_name'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('icon_edit'))); ?></td>
+              class="text-end"><?php echo $CLICSHOPPING_Products->link('Products&search=' . $Qproducts->value('products_name'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('icon_edit'))); ?></td>
           </tr>
           <?php
         } // end $listingTotalRow
@@ -121,9 +123,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Products->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Products->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

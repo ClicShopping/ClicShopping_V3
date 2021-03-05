@@ -32,7 +32,7 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxClass->getDef('heading_title'); ?></span>
           <span
-            class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_insert'), null, $CLICSHOPPING_TaxClass->link('Insert&page=' . $page), 'success'); ?></span>
+            class="col-md-7 text-end"><?php echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_insert'), null, $CLICSHOPPING_TaxClass->link('Insert&page=' . $page), 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
         <tr class="dataTableHeadingRow">
           <th><?php echo $CLICSHOPPING_TaxClass->getDef('table_heading_tax_classes'); ?></th>
           <th><?php echo $CLICSHOPPING_TaxClass->getDef('table_heading_tax_description'); ?></th>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_TaxClass->getDef('table_heading_action'); ?>&nbsp;</th>
+          <th class="text-end"><?php echo $CLICSHOPPING_TaxClass->getDef('table_heading_action'); ?>&nbsp;</th>
         </tr>
         </thead>
         <tbody>
@@ -75,7 +75,7 @@
               ?>
               <th scope="row"><?php echo $Qclasse->value('tax_class_title'); ?></th>
               <td><?php echo $Qclasse->value('tax_class_description'); ?></td>
-              <td class="text-md-right">
+              <td class="text-end">
                 <?php
                   echo '<a href="' . $CLICSHOPPING_TaxClass->link('Edit&page=' . $page . '&tID=' . $Qclasse->valueInt('tax_class_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxClass->getDef('icon_edit')) . '</a>';
                   echo '&nbsp;';
@@ -99,9 +99,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qclasse->getPageSetLabel($CLICSHOPPING_TaxClass->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qclasse->getPageSetLabel($CLICSHOPPING_TaxClass->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"> <?php echo $Qclasse->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"> <?php echo $Qclasse->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

@@ -13,7 +13,7 @@
 
   class securityCheck_file_uploads
   {
-    public $type = 'warning';
+    public string $type = 'warning';
 
     public function __construct()
     {

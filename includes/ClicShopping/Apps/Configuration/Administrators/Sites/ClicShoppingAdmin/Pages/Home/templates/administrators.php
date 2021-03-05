@@ -40,7 +40,7 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Administrators->getDef('heading_title'); ?></span>
           <span
-            class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, $CLICSHOPPING_Administrators->link('Insert&page=' . $page), 'success'); ?></span>
+            class="col-md-7 text-end"><?php echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, $CLICSHOPPING_Administrators->link('Insert&page=' . $page), 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -49,6 +49,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-toolbar="#toolbar"
     data-buttons-class="primary"
     data-show-toggle="true"
@@ -60,7 +62,7 @@
         <th data-field="administrator"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_administrators'); ?></th>
         <th data-field="user"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_user'); ?></th>
         <th data-field="right"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_right'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_action'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_action'); ?></th>
       </tr>
     </thead>
     <tbody>
@@ -86,7 +88,7 @@
             }
           ?>
         </td>
-        <td class="text-md-right">
+        <td class="text-end">
           <?php
             echo '<a href="' . $CLICSHOPPING_Administrators->link('Edit&aID=' . $Qadmin->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Administrators->getDef('image_edit')) . '</a>';
             echo '&nbsp;';

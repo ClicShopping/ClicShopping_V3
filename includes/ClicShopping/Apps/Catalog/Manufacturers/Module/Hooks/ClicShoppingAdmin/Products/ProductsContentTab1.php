@@ -34,11 +34,11 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
     }
 
-    public function display()
+    public function display() :string
     {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-      if (!defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
         return false;
       }
 
@@ -48,13 +48,11 @@
         $pId = null;
       }
 
-      $manufacturer = ManufacturerAdmin::getManufacturerName($pId);
+      $manufacturer_array = ManufacturerAdmin::getManufacturerName($pId);
 
-      if (is_array($manufacturer) && count($manufacturer) > 0) {
-        $manufacturers_id = $manufacturer[0]['manufacturers_id'];
-        $manufacturers_name = $manufacturer[0]['manufacturers_name'];
+      if (\is_array($manufacturer_array) && \count($manufacturer_array) > 0) {
+        $manufacturers_name = $manufacturer_array[0]['manufacturers_name'];
       } else {
-        $manufacturers_id = null;
         $manufacturers_name = '';
       }
 
@@ -63,8 +61,9 @@
       $content .= '<div class="form-group row">';
       $content .= '<label for="' . $this->app->getDef('text_products_manufacturer') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_manufacturer') . '</label>';
       $content .= '<div class="col-md-5">';
-      $content .= HTML::inputField('manufacturers_id', $manufacturers_id . ' ' . $manufacturers_name, 'id="manufacturer" class="token-input form-control"', null, null, null);
-      $content .= '<a href="' . $this->app->link('ManufacturersPopUp') . '"  data-toggle="modal" data-refresh="true" data-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
+      $content .= HTML::inputField('manufacturers_name', $manufacturers_name, 'id="ajax_manufacturers_name" list="manufacturer_list" class="form-control"');
+      $content .= '<datalist id="manufacturer_list"></datalist>';
+      $content .= '<a href="' . $this->app->link('ManufacturersPopUp') . '"  data-bs-toggle="modal" data-refresh="true" data-bs-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
       $content .= '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
       $content .= '<div class="modal-dialog">';
       $content .= '<div class="modal-content">';
@@ -88,40 +87,52 @@ $('#tab1ContentRow2').append(
 );
 </script>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#manufacturer").tokenInput("{$smanufacturers_ajax}" ,
-        {
-          tokenLimit: 1,
-          resultsLimit: 5,
-          onResult: function (results) {
-            $.each(results, function (index, value) {
-              value.name = value.id + " " + value.name;
-            });
-            return results;
-          }
-        });
-  });
-</script>
+<script>
+window.addEventListener("load", function(){
+  // Add a keyup event listener to our input element
+  document.getElementById('ajax_manufacturers_name').addEventListener("keyup", function(event){hinterManufacturer(event)});
+  // create one global XHR object
+  // so we can abort old requests when a new one is make
+  window.hinterManufacturerXHR = new XMLHttpRequest();
+});
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#manufacturer").tokenInput("{$smanufacturers_ajax}", {
-      prePopulate: [
-        {
-          id: {$manufacturers_id},
-          name: "{$manufacturers_id}  {$manufacturers_name} "
-        }
-      ],
-      tokenLimit: 1
-    });
-  });
-</script>
+// Autocomplete for form
+function hinterManufacturer(event) {
+  var input = event.target;
 
+  var ajax_manufacturers_name = document.getElementById('manufacturer_list'); //datalist id
+  
+  // minimum number of characters before we start to generate suggestions
+  var min_characters = 0;
+
+  if (!isNaN(input.value) || input.value.length < min_characters ) {
+    return;
+  } else {
+    window.hinterManufacturerXHR.abort();
+    window.hinterManufacturerXHR.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse( this.responseText );
+        
+        ajax_manufacturers_name.innerHTML = "";
+          response.forEach(function(item) {
+// Create a new <option> element.
+            var option = document.createElement('option');
+            option.value = item.name;//get name
+            option.hidden = item.id; //get id
+
+            ajax_manufacturers_name.appendChild(option);
+          });
+      }
+    };
+
+    window.hinterManufacturerXHR.open("GET", "{$smanufacturers_ajax}?q=" + input.value, true);
+    window.hinterManufacturerXHR.send()
+  }
+}
+</script>
 <!-- ######################## -->
 <!--  End Manufacturer App      -->
 <!-- ######################## -->
-
 EOD;
 
       return $output;

@@ -17,8 +17,8 @@
   use ClicShopping\Sites\Shop\Payment;
 
   class cc_checkout_confirmation_process_order {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -31,7 +31,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_confirmation_process_order_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_process_order_description');
 
-      if (defined('MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_STATUS == 'True');
       }
@@ -53,13 +53,28 @@
 
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_CONTENT_WIDTH;
 
-        if (is_array($CLICSHOPPING_Payment->modules)) {
+        if (\is_array($CLICSHOPPING_Payment->modules)) {
            if ($CLICSHOPPING_Payment->process_button() !== false) {
              $process_button = $CLICSHOPPING_Payment->process_button();
           } else {
-             $process_button = HTML::button(CLICSHOPPING::getDef('module_checkout_confirmation_process_order_button_pay', ['total' => $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['total'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value'])]), null, null, 'success', ['params' => 'data-button="payNow"']);
+             $process_button = HTML::button(CLICSHOPPING::getDef('module_checkout_confirmation_process_order_button_pay', ['total' => $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['total'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value'])]), null, null, 'success', ['params' => 'id="payNow"']);
           }
         }
+
+        $footer = '<!-- button listenner Start -->' . "\n";
+        $footer .= '<script>' . "\n";
+        $footer .= 'const btn = document.getElementById("payNow"); ';
+        $footer .= 'btn.addEventListener("click", submitForm); ';
+        $footer .= 'function submitForm(){ ';
+        $footer .= 'btn.setAttribute("disabled", true); ';
+        $footer .= 'setTimeout(() => { ';
+        $footer .= 'btn.removeAttribute("disabled"); ';
+        $footer .= '}, 6000); ';
+        $footer .= '} ';
+        $footer .= '</script>' . "\n";
+        $footer .= '<!-- stop button listenner  -->' . "\n";
+
+        $CLICSHOPPING_Template->addBlock($footer, 'footer_scripts');
 
         $confirmation = '  <!-- cc_checkout_confirmation_order_total start -->' . "\n";
 
@@ -80,7 +95,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_STATUS');
+      return \defined('MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_STATUS');
     }
 
     public function install() {

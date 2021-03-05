@@ -80,11 +80,11 @@
 
           $schema .= '  ' . $Qfields->value('Field') . ' ' . $Qfields->value('Type');
 
-          if (strlen($Qfields->value('Default')) > 0) $schema .= ' default \'' . $Qfields->value('Default') . '\'';
+          if (\strlen($Qfields->value('Default')) > 0) $schema .= ' default \'' . $Qfields->value('Default') . '\'';
 
           if ($Qfields->value('Null') != 'YES') $schema .= ' not null';
 
-          if (strlen($Qfields->value('Extra')) > 0) $schema .= ' ' . $Qfields->value('Extra');
+          if (\strlen($Qfields->value('Extra')) > 0) $schema .= ' ' . $Qfields->value('Extra');
 
           $schema .= ',' . "\n";
         }
@@ -111,7 +111,7 @@
         foreach ($index as $kname => $info) {
           $schema .= ',' . "\n";
 
-          $columns = implode($info['columns'], ', ');
+          $columns = implode(', ', $info['columns']);
 
           if ($kname == 'PRIMARY') {
             $schema .= '  PRIMARY KEY (' . $columns . ')';
@@ -138,7 +138,7 @@
             foreach ($table_list as $i) {
               if (!$Qrows->hasValue($i)) {
                 $schema .= 'NULL, ';
-              } elseif (!is_null($Qrows->value($i))) {
+              } elseif (!\is_null($Qrows->value($i))) {
                 $row = addslashes($Qrows->value($i));
                 $row = preg_replace("/\n#/", "\n" . '\#', $row);
 

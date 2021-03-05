@@ -14,8 +14,8 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\CLICSHOPPING;
 
 class pr_products_reviews_listing_button_process {
-  public $code;
-  public $group;
+  public string $code;
+  public string $group;
   public string $title;
   public string $description;
   public ?int $sort_order = 0;
@@ -28,7 +28,7 @@ class pr_products_reviews_listing_button_process {
     $this->title = CLICSHOPPING::getDef('modules_products_reviews_listing_button_process_title');
     $this->description = CLICSHOPPING::getDef('modules_products_reviews_lisitng_button_process_description');
 
-    if (defined('MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS')) {
+    if (\defined('MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS')) {
       $this->sort_order = MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_SORT_ORDER;
       $this->enabled = (MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS == 'True');
     }
@@ -69,7 +69,7 @@ class pr_products_reviews_listing_button_process {
   }
 
   public function check() {
-    return defined('MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS');
+    return \defined('MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS');
   }
 
   public function install() {
@@ -102,11 +102,11 @@ class pr_products_reviews_listing_button_process {
     $CLICSHOPPING_Db->save('configuration', [
         'configuration_title' => 'Where Do you want to display the module ?',
         'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_POSITION',
-        'configuration_value' => 'float-md-none',
+        'configuration_value' => 'float-none',
         'configuration_description' => 'Select where you want display the module',
         'configuration_group_id' => '6',
         'sort_order' => '2',
-        'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+        'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
         'date_added' => 'now()'
       ]
     );

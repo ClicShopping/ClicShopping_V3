@@ -36,21 +36,21 @@
       if ($current_category_id == '') {
         $cPath_new = implode('_', $cPath_array);
       } else {
-        if (count($cPath_array) == 0) {
+        if (\count($cPath_array) == 0) {
           $cPath_new = $current_category_id;
         } else {
           $cPath_new = '';
 
-          $Qlast = $CLICSHOPPING_Db->get('administrator_menu', 'parent_id', ['id' => (int)$cPath_array[(count($cPath_array) - 1)]]);
+          $Qlast = $CLICSHOPPING_Db->get('administrator_menu', 'parent_id', ['id' => (int)$cPath_array[(\count($cPath_array) - 1)]]);
 
           $Qcurrent = $CLICSHOPPING_Db->get('administrator_menu', 'parent_id', ['id' => (int)$current_category_id]);
 
           if ($Qlast->valueInt('parent_id') === $Qcurrent->valueInt('parent_id')) {
-            for ($i = 0, $n = count($cPath_array) - 1; $i < $n; $i++) {
+            for ($i = 0, $n = \count($cPath_array) - 1; $i < $n; $i++) {
               $cPath_new .= '_' . $cPath_array[$i];
             }
           } else {
-            for ($i = 0, $n = count($cPath_array); $i < $n; $i++) {
+            for ($i = 0, $n = \count($cPath_array); $i < $n; $i++) {
               $cPath_new .= '_' . $cPath_array[$i];
             }
           }
@@ -116,12 +116,15 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
 
-      if (!is_array($category_tree_array)) {
+      if (!\is_array($category_tree_array)) {
         $category_tree_array = [];
       }
 
-      if ((count($category_tree_array) < 1) && ($exclude != '0')) {
-        $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_AdministratorMenu->getDef('text_top')];
+      if ((\count($category_tree_array) < 1) && ($exclude != '0')) {
+        $category_tree_array[] = [
+          'id' => '0',
+          'text' => $CLICSHOPPING_AdministratorMenu->getDef('text_top')
+        ];
       }
 
       if ($include_itself) {
@@ -130,13 +133,15 @@
           ]
         );
 
-        $category_tree_array[] = ['id' => $parent_id,
+        $category_tree_array[] = [
+          'id' => $parent_id,
           'text' => $Qcategory->value('label')
         ];
       }
 
 
-      $Qcategories = $CLICSHOPPING_Db->get(['administrator_menu c',
+      $Qcategories = $CLICSHOPPING_Db->get([
+        'administrator_menu c',
         'administrator_menu_description cd'
       ], [
         'c.id',
@@ -182,8 +187,8 @@
       $calculated_category_path_string = '';
       $calculated_category_path = static::getGenerateCategoryPath($id);
 
-      for ($i = 0, $n = count($calculated_category_path); $i < $n; $i++) {
-        for ($j = 0, $k = count($calculated_category_path[$i]); $j < $k; $j++) {
+      for ($i = 0, $n = \count($calculated_category_path); $i < $n; $i++) {
+        for ($j = 0, $k = \count($calculated_category_path[$i]); $j < $k; $j++) {
           $calculated_category_path_string .= $calculated_category_path[$i][$j]['id'] . '_';
         }
         $calculated_category_path_string = substr($calculated_category_path_string, 0, -1) . '<br />';
@@ -191,7 +196,7 @@
 
       $calculated_category_path_string = substr($calculated_category_path_string, 0, -6);
 
-      if (strlen($calculated_category_path_string) < 1) $calculated_category_path_string = $CLICSHOPPING_AdministratorMenu->getDef('text_top');
+      if (\strlen($calculated_category_path_string) < 1) $calculated_category_path_string = $CLICSHOPPING_AdministratorMenu->getDef('text_top');
 
       return $calculated_category_path_string;
     }
@@ -207,7 +212,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (!is_array($categories_array)) {
+      if (!\is_array($categories_array)) {
         $categories_array = [];
       }
 
@@ -231,7 +236,7 @@
         'text' => $Qcategory->value('label')
       ];
 
-      if ((!is_null($Qcategory->valueInt('parent_id'))) && ($Qcategory->valueInt('parent_id') != '0')) {
+      if ((!\is_null($Qcategory->valueInt('parent_id'))) && ($Qcategory->valueInt('parent_id') != '0')) {
         $categories_array = static::getGenerateCategoryPath($Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
       }
 
@@ -305,20 +310,20 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
 
-      if (!is_array($category_tree_array)) {
+      if (!\is_array($category_tree_array)) {
         $category_tree_array = [];
       }
 
-      if ((count($category_tree_array) < 1) && ($exclude != '0')) {
+      if ((\count($category_tree_array) < 1) && ($exclude != '0')) {
         $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_AdministratorMenu->getDef('text_top')];
       }
 
       if ($include_itself) {
         $Qcategory = $CLICSHOPPING_Db->prepare('select label
-                                                  from :table_administrator_menu_description
-                                                  where language_id = :language_id
-                                                  and id = :parent_id
-                                                 ');
+                                                from :table_administrator_menu_description
+                                                where language_id = :language_id
+                                                and id = :parent_id
+                                               ');
 
         $Qcategory->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
         $Qcategory->bindInt(':parent_id', (int)$parent_id);
@@ -328,16 +333,16 @@
       }
 
       $Qcategory = $CLICSHOPPING_Db->prepare('select c.id,
-                                               cd.label,
-                                               c.parent_id
-                                        from :table_administrator_menu c,
-                                             :table_administrator_menu_description cd
-                                        where c.id = cd.id
-                                        and cd.language_id = :language_id
-                                        and c.parent_id = :parent_id
-                                        order by c.sort_order,
-                                                 cd.label
-                                      ');
+                                                       cd.label,
+                                                       c.parent_id
+                                                from :table_administrator_menu c,
+                                                     :table_administrator_menu_description cd
+                                                where c.id = cd.id
+                                                and cd.language_id = :language_id
+                                                and c.parent_id = :parent_id
+                                                order by c.sort_order,
+                                                         cd.label
+                                              ');
 
       $Qcategory->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
       $Qcategory->bindInt(':parent_id', (int)$parent_id);
@@ -345,7 +350,10 @@
 
       while ($Qcategory->fetch()) {
         if ($exclude != $Qcategory->valueInt('id')) {
-          $category_tree_array[] = ['id' => $Qcategory->valueInt('id'), 'text' => $spacing . $Qcategory->value('label')];
+          $category_tree_array[] = [
+            'id' => $Qcategory->valueInt('id'),
+            'text' => $spacing . $Qcategory->value('label')
+          ];
         }
 
         $category_tree_array = static::getAdministratorMenuCategoryTree($Qcategory->valueInt('id'), $spacing . '&nbsp;&nbsp;&nbsp;', $exclude, $category_tree_array);
@@ -376,9 +384,100 @@
       while ($Qcategories->fetch() !== false) {
         $categories_count++;
 
-        $categories_count += call_user_func(__METHOD__, $Qcategories->valueInt('id'));
+        $categories_count += \call_user_func(__METHOD__, $Qcategories->valueInt('id'));
       }
 
       return $categories_count;
+    }
+  
+    /*
+     * Display the headermenu
+     * @return array
+     */
+    public static function getHeaderMenu() :array
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Language = Registry::get('Language');
+  
+      if (isset($_SESSION['admin']['access'])) {
+        if ($_SESSION['admin']['access'] === 1) {
+          $access_level = 0;
+        } elseif ($_SESSION['admin']['access'] === 2) {
+          $access_level = 2;
+        } elseif ($_SESSION['admin']['access'] === 3) {
+          $access_level = 2;
+        } else {
+          $access_level = 0;
+        }
+      } else {
+        $access_level = 0;
+      }
+  
+      if ($access_level == 0) {
+        $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
+                                                    am.link,
+                                                    am.parent_id,
+                                                    am.access,
+                                                    am.sort_order,
+                                                    am.image,
+                                                    am.b2b_menu,
+                                                    amd.label,
+                                                    ad.access
+                                              from :table_administrator_menu am  left join :table_administrators ad on ad.access =  am.access,
+                                                  :table_administrator_menu_description amd
+                                              where am.id = amd.id
+                                              and amd.language_id = :language_id
+                                              order by am.parent_id,
+                                                       am.sort_order
+                                            ');
+        $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    
+      } elseif ($access_level == 2) {
+        $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
+                                                  am.link,
+                                                  am.parent_id,
+                                                  am.access,
+                                                  am.sort_order,
+                                                  am.image,
+                                                  am.b2b_menu,
+                                                  amd.label,
+                                                  ad.access
+                                            from :table_administrator_menu am  left join :table_administrators ad on ad.access =  am.access,
+                                                :table_administrator_menu_description amd
+                                            where am.id = amd.id
+                                            and amd.language_id = :language_id
+                                            and (am.access = 0 or am.access > 1)
+                                            order by am.parent_id,
+                                                     am.sort_order
+                                          ');
+    
+        $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    
+      } elseif ($access_level == 3) {
+        $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
+                                                am.link,
+                                                  am.parent_id,
+                                                  am.access,
+                                                  am.sort_order,
+                                                  am.image,
+                                                  am.b2b_menu,
+                                                  amd.label,
+                                                  ad.access
+                                            from :table_administrator_menu am  left join :table_administrators ad on ad.access =  am.access,
+                                                :table_administrator_menu_description amd
+                                            where am.id = amd.id
+                                            and amd.language_id = :language_id
+                                            and (am.access = 0 and am.access > 2)
+                                            order by am.parent_id,
+                                                     am.sort_order
+                                          ');
+    
+        $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+      }
+  
+      $Qmenus->setCache('menu-administrator');
+      $Qmenus->execute();
+      
+      return $Qmenus->fetchAll();
     }
   }

@@ -23,7 +23,7 @@
 
     $output = '';
     foreach ($select_array as $file) {
-      $output .= HTML::checkboxField('ht_datepicker_jquery_file[]', $file, in_array($file, $values_array)) . '&nbsp;' . HTML::outputProtected($file) . '<br />';
+      $output .= HTML::checkboxField('ht_datepicker_jquery_file[]', $file, \in_array($file, $values_array)) . '&nbsp;' . HTML::outputProtected($file) . '<br />';
     }
 
     if (!empty($output)) {

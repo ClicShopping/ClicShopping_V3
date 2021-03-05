@@ -37,7 +37,7 @@
     <tr class="dataTableHeadingRow">
       <th><?php echo $CLICSHOPPING_Apps->getDef('table_heading_apps'); ?></th>
       <th><?php echo $CLICSHOPPING_Apps->getDef('table_heading_vendor'); ?></th>
-      <th class="text-md-right"><?php echo $CLICSHOPPING_Apps->getDef('table_heading_version'); ?></th>
+      <th class="text-end"><?php echo $CLICSHOPPING_Apps->getDef('table_heading_version'); ?></th>
       <th class="action"></th>
     </tr>
     </thead>
@@ -48,7 +48,7 @@
     <tr>
       <td>{{title}}</td>
       <td>{{vendor}}</td>
-      <td class="text-md-right">{{version}}</td>
+      <td class="text-end">{{version}}</td>
     </tr>
 
   </script>
@@ -57,8 +57,7 @@
     $(function () {
         function rpcGetInstalledApps() {
             $('#appsInstalledTable tbody').empty();
-
-            $('#appsInstalledTable tbody').append('<tr><td colspan="' + $('#appsInstalledTable thead th').length + '"><i class="fas fa-spinner fa-spin"></i></td></tr>');
+          fas$('#appsInstalledTable tbody').append('<tr><td colspan="' + $('#appsInstalledTable thead th').length + '"><i class="bi bi-arrow-repeat"></i></td></tr>');
 
             $.get('<?= addslashes($CLICSHOPPING_Apps->link('Apps&getInstalledApps&action=1')); ?>', function (response) {
                 $('#appsInstalledTable tbody').empty();

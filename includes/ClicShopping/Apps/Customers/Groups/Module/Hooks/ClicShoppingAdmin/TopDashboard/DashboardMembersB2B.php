@@ -38,9 +38,9 @@
     public function Display(): string
     {
       $Qmembes = $this->app->db->prepare('select count(customers_id) as count 
-                                            from :table_customers 
-                                            where member_level = 0
-                                            ');
+                                          from :table_customers
+                                          where member_level = 0
+                                          ');
       $Qmembes->execute();
 
       $number_members = $Qmembes->valueInt('count');
@@ -51,11 +51,11 @@
         $text_view = $this->app->getDef('text_view');
 
         $output = '
-<span style="padding-right:0.5rem; padding-top:0.5rem">
+<div class="col-md-2 col-12 m-1">
   <div class="card bg-secondary">
       <div class="card-body">
         <div class="row">
-          <h5 class="card-title text-white"><i class="fas fa fa-female"  aria-hidden="true"></i> ' . $text . '</h5>
+          <h6 class="card-title text-white"><i class="bi bi-person-fill"></i> ' . $text . '</h6>
         </div>
         <div class="col-md-12">
           <span class="text-white"><strong>' . $number_members . '</strong></span>
@@ -63,7 +63,7 @@
       </div>
     </div>
   </div>
-</span> 
+</div>
 ';
       }
 

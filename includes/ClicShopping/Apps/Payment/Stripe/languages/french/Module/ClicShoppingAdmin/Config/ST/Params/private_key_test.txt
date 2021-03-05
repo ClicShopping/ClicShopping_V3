@@ -1,0 +1,3 @@
+cfg_stripe_private_key_test_title = Clef privée test
+cfg_stripe_private_key_test_desc = Clef privée test du compte que vous utilisez <br />
+More information : https://stripeup.com/

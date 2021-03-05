@@ -123,7 +123,7 @@
                   if ($counter === 1) {
                     ?>
                     <td
-                      style="padding: 10px;" <?php if (count($data) > 1) echo 'rowspan="' . count($data) . '"'; ?>><?php echo '<span class="sitePill">' . $site . '</span> ' . $group; ?></td>
+                      style="padding: 10px;" <?php if (\count($data) > 1) echo 'rowspan="' . \count($data) . '"'; ?>><?php echo '<span class="sitePill">' . $site . '</span> ' . $group; ?></td>
                     <?php
                   }
                 ?>

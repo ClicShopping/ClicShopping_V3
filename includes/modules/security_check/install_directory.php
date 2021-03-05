@@ -14,7 +14,7 @@
 
   class securityCheck_install_directory
   {
-    public $type = 'warning';
+    public string $type = 'warning';
 
     public function __construct()
     {

@@ -31,8 +31,8 @@
 
       $multi_clone_products_id_to = HTML::sanitize($_POST['clone_products_id_to']);
 
-      if (is_array($multi_clone_products_id_to)) {
-        for ($i = 0, $iMax = count($multi_clone_products_id_to); $i < $iMax; $i++) {
+      if (\is_array($multi_clone_products_id_to)) {
+        for ($i = 0, $iMax = \count($multi_clone_products_id_to); $i < $iMax; $i++) {
           $clone_product_id_from = HTML::sanitize($_POST['clone_products_id_from']);
           $clone_product_id_to = $multi_clone_products_id_to[$i];
 

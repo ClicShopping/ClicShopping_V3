@@ -15,8 +15,8 @@
   use ClicShopping\Sites\Shop\Pages\Account\Classes\CreateAccount;
 
   class ca_create_account_success {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_create_account_success_title');
       $this->description = CLICSHOPPING::getDef('module_create_account_success_description');
 
-      if (defined('MODULE_CREATE_ACCOUNT_SUCCESS_STATUS')) {
+      if (\defined('MODULE_CREATE_ACCOUNT_SUCCESS_STATUS')) {
         $this->sort_order = MODULE_CREATE_ACCOUNT_SUCCESS_SORT_ORDER;
         $this->enabled = (MODULE_CREATE_ACCOUNT_SUCCESS_STATUS == 'True');
       }
@@ -63,7 +63,7 @@
   }
 
   public function check() {
-    return defined('MODULE_CREATE_ACCOUNT_SUCCESS_STATUS');
+    return \defined('MODULE_CREATE_ACCOUNT_SUCCESS_STATUS');
   }
 
   public function install() {

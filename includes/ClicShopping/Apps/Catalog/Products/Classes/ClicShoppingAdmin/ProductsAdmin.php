@@ -74,19 +74,19 @@
     {
       $languages = $this->lang->getLanguages();
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $language_id = $languages[$i]['id'];
 
         $sql_data_array = [
           'products_name' => HTML::sanitize($_POST['products_name'][$language_id]),
-          'products_description' => $_POST['products_description'][$language_id],
-          'products_head_title_tag' => HTML::sanitize($_POST['products_head_title_tag'][$language_id]),
-          'products_head_desc_tag' => HTML::sanitize($_POST['products_head_desc_tag'][$language_id]),
-          'products_head_keywords_tag' => HTML::sanitize($_POST['products_head_keywords_tag'][$language_id]),
-          'products_url' => HTML::sanitize($_POST['products_url'][$language_id]),
-          'products_head_tag' => HTML::sanitize($_POST['products_head_tag'][$language_id]),
-          'products_shipping_delay' => HTML::sanitize($_POST['products_shipping_delay'][$language_id]),
-          'products_description_summary' => HTML::sanitize($_POST['products_description_summary'][$language_id])
+          'products_description' => isset($_POST['products_description'][$language_id]) ? $_POST['products_description'][$language_id] : '',
+          'products_head_title_tag' => isset($_POST['products_head_title_tag'][$language_id]) ? HTML::sanitize($_POST['products_head_title_tag'][$language_id]) : '',
+          'products_head_desc_tag' => isset($_POST['products_head_desc_tag'][$language_id]) ? HTML::sanitize($_POST['products_head_desc_tag'][$language_id]) : '',
+          'products_head_keywords_tag' => isset($_POST['products_head_keywords_tag'][$language_id]) ? HTML::sanitize($_POST['products_head_keywords_tag'][$language_id]) : '',
+          'products_url' => isset($_POST['products_url'][$language_id]) ? HTML::sanitize($_POST['products_url'][$language_id]) : '',
+          'products_head_tag' => isset($_POST['products_head_tag'][$language_id]) ? HTML::sanitize($_POST['products_head_tag'][$language_id]) : '',
+          'products_shipping_delay' => isset($_POST['products_shipping_delay'][$language_id]) ? HTML::sanitize($_POST['products_shipping_delay'][$language_id]) : '',
+          'products_description_summary' => isset($_POST['products_description_summary'][$language_id]) ? HTML::sanitize($_POST['products_description_summary'][$language_id]) : '',
         ];
 
         if (is_numeric($id) && $action == 'Insert') {
@@ -201,7 +201,7 @@
      */
     public function getproductPackaging(int $id): string
     {
-      if (!is_null($_SESSION['ProductAdminId'])) {
+      if (!\is_null($_SESSION['ProductAdminId'])) {
         $id = $_SESSION['ProductAdminId'];
 
         $QproductAdmin = $this->db->prepare('select products_packaging
@@ -284,47 +284,53 @@
     /**
      * Shipping delay of the product
      *
-     * @param string $product_id , $language_id
-     * @return string $product['products_shipping_delay'], url of the product
+     * @param string|int|null $product_id , $language_id
+     * @return string|bool $product['products_shipping_delay'], url of the product
      *
      */
-    public function getProductsShippingDelay($id = '', int $language_id)
+    public function getProductsShippingDelay(string|int|null $id = null, int $language_id) :string|bool
     {
-      $Qproduct = $this->db->prepare('select products_shipping_delay
-                                     from :table_products_description
-                                     where products_id = :products_id
-                                     and language_id = :language_id
-                                   ');
-      $Qproduct->bindInt(':products_id', $id);
-      $Qproduct->bindInt(':language_id', $language_id);
-
-      $Qproduct->execute();
-
-      return $Qproduct->value('products_shipping_delay');
+      if (!\is_null($id)) {
+        $Qproduct = $this->db->prepare('select products_shipping_delay
+                                       from :table_products_description
+                                       where products_id = :products_id
+                                       and language_id = :language_id
+                                     ');
+        $Qproduct->bindInt(':products_id', $id);
+        $Qproduct->bindInt(':language_id', $language_id);
+  
+        $Qproduct->execute();
+  
+        return $Qproduct->value('products_shipping_delay');
+      } else {
+        return false;
+      }
     }
 
     /**
      * Description summary
      *
-     * @param string $product_id , $language_id
-     * @return string $product['products_description'], description name
+     * @param string|int|null $product_id , $language_id
+     * @return string|bool $product['products_description'], description name
      *
      */
-    public function getProductsDescriptionSummary($product_id = '', int $language_id): string
+    public function getProductsDescriptionSummary(string|int|null $product_id, int $language_id)
     {
-      if (!$language_id) $language_id = $this->lang->getId();
-
-      $Qproduct = $this->db->prepare('select products_description_summary
-                                     from :table_products_description
-                                     where products_id = :products_id
-                                     and language_id = :language_id
-                                  ');
-      $Qproduct->bindInt(':products_id', $product_id);
-      $Qproduct->bindInt(':language_id', $language_id);
-
-      $Qproduct->execute();
-
-      return $Qproduct->value('products_description_summary');
+      if (!\is_null($product_id)) {
+        if (!$language_id) $language_id = $this->lang->getId();
+  
+        $Qproduct = $this->db->prepare('select products_description_summary
+                                       from :table_products_description
+                                       where products_id = :products_id
+                                       and language_id = :language_id
+                                    ');
+        $Qproduct->bindInt(':products_id', $product_id);
+        $Qproduct->bindInt(':language_id', $language_id);
+  
+        $Qproduct->execute();
+  
+        return $Qproduct->value('products_description_summary');
+      }
     }
 
     /**
@@ -395,19 +401,27 @@
     /**
      * Description Name
      *
-     * @param string $product_id , $language_id
-     * @return string $product['products_description'], description name
+     * @param string|int|null $product_id , $language_id
+     * @return string|bool $product['products_description'], description name
      *
      */
-    public function getProductsDescription($product_id = '', int $language_id): string
+    public function getProductsDescription(string|int|null $product_id, int $language_id): string|bool
     {
+      if (!\is_null($product_id)) {
+      
       if ($language_id == 0) $language_id = $this->lang->getId();
-      $Qproduct = Registry::get('Db')->get('products_description', 'products_description', ['products_id' => (int)$product_id,
-          'language_id' => (int)$language_id
-        ]
-      );
+      
+      $sql_array = [
+        'products_id' => (int)$product_id,
+        'language_id' => (int)$language_id
+        ];
+      
+      $Qproduct = Registry::get('Db')->get('products_description', 'products_description', $sql_array);
 
       return $Qproduct->value('products_description');
+      } else {
+        return false;
+      }
     }
 
     /**
@@ -596,7 +610,8 @@
 
       if ($Qimages->fetch() !== false) {
         do {
-          $Qduplicate = $this->db->get('products_images', 'id', ['image' => $Qimages->value('image'),
+          $Qduplicate = $this->db->get('products_images', 'id', [
+            'image' => $Qimages->value('image'),
             'products_id' => [
               'op' => '!=',
               'val' => (int)$product_id
@@ -654,31 +669,41 @@
     /**
      * url of the product
      *
-     * @param string $product_id , $language_id
+     * @param int|string $product_id , $language_id
+     * @param int $language_id
      * @return string $Qproduct->value('products_url'), url of the product
      *
      */
-    public function getProductsUrl($product_id = '', int $language_id): string
+    public function getProductsUrl(int|string $product_id, int $language_id): string|bool
     {
-      if ($language_id == 0) $language_id = $this->lang->getId();
+      if (((\is_null($language_id)) || $language_id == 0) && !\is_null($product_id)) {
+        $language_id = $this->lang->getId();
+
         $Qproduct = Registry::get('Db')->get('products_description', 'products_url', ['products_id' => (int)$product_id, 'language_id' => (int)$language_id]);
 
-      return $Qproduct->value('products_url');
+        return $Qproduct->value('products_url');
+      } else {
+        return false;
+      }
     }
 
     /**
      * Return the manufacturers URL in the needed language
      *
-     * @param string $manufacturer_id , $language_id
+     * @param string|int|null $manufacturer_id , $language_id
      * @return string $Qmanufacturer->value('manufacturers_url'), url of manufacturers
      *
      */
-    public function getManufacturerUrl($manufacturer_id = '', int $language_id): string
+    public function getManufacturerUrl(string|int|null $manufacturer_id, int $language_id): string|bool
     {
-      if ($language_id == 0) $language_id = $this->lang->getId();
-      $Qmanufacturer = Registry::get('Db')->get('manufacturers_info', 'manufacturers_url', ['manufacturers_id' => (int)$manufacturer_id, 'languages_id' => (int)$language_id]);
-
-      return $Qmanufacturer->value('manufacturers_url');
+      if (!\is_null($manufacturer_id)) {
+        if ($language_id == 0) $language_id = $this->lang->getId();
+        $Qmanufacturer = Registry::get('Db')->get('manufacturers_info', 'manufacturers_url', ['manufacturers_id' => (int)$manufacturer_id, 'languages_id' => (int)$language_id]);
+  
+        return $Qmanufacturer->value('manufacturers_url');
+      } else {
+        return false;
+      }
     }
 
     /**
@@ -710,7 +735,7 @@
     {
       $new_category = $categories_id;
 
-      if (is_array($new_category) && isset($new_category)) {
+      if (\is_array($new_category) && isset($new_category)) {
         foreach ($new_category as $value_id) {
           $this->cloneProductsInOtherCategory($id, $value_id);
         }
@@ -737,7 +762,7 @@
 
       $Qproducts->execute();
 
-      for ($i = 0, $iMax = count($multi_clone_categories_id_to); $i < $iMax; $i++) {
+      for ($i = 0, $iMax = \count($multi_clone_categories_id_to); $i < $iMax; $i++) {
         $clone_categories_id_to = $multi_clone_categories_id_to[$i];
 
         $sql_array = [
@@ -816,7 +841,8 @@
         $Qdescription->execute();
 
         while ($Qdescription->fetch()) {
-          $sql_array = ['products_id' => (int)$dup_products_id,
+          $sql_array = [
+            'products_id' => (int)$dup_products_id,
             'language_id' => (int)$Qdescription->valueInt('language_id'),
             'products_name' => $Qdescription->value('products_name'),
             'products_description' => $Qdescription->value('products_description'),
@@ -933,11 +959,11 @@
             if (($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] <> $Qattributes->valueDecimal('customers_group_price')) && ($Qattributes->valueInt('customers_group_id') == $QcustomersGroup->valueInt('customers_group_id'))) {
 
               $Qupdate = $this->db->prepare('update :table_products_groups
-                                                set customers_group_price = :customers_group_price,
-                                                    products_price = :products_price
-                                                where customers_group_id = :customers_group_id
-                                                and products_id = :products_id
-                                              ');
+                                            set customers_group_price = :customers_group_price,
+                                                products_price = :products_price
+                                            where customers_group_id = :customers_group_id
+                                            and products_id = :products_id
+                                          ');
               $Qupdate->bindInt(':customers_group_price', $_POST['price' . $QcustomersGroup->valueInt('customers_group_id')]);
               $Qupdate->bindInt(':products_price', $_POST['products_price']);
               $Qupdate->bindInt(':customers_group_id', (int)$Qattributes->valueInt('customers_group_id'));
@@ -978,7 +1004,7 @@
      *
      */
 
-    public function getSearch($keywords = null)
+    public function getSearch($keywords = null, $current_category_id = 0)
     {
       if (isset($keywords) && !empty($keywords)) {
         $keywords = HTML::sanitize($keywords);
@@ -1012,25 +1038,14 @@
                                               or p.products_ean like :search
                                              )
                                          order by pd.products_name
-                                         limit :page_set_offset, :page_set_max_results
                                       ');
 
         $Qproducts->bindInt(':language_id', $this->lang->getId());
         $Qproducts->bindValue(':search', '%' . $keywords . '%');
-        $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+
         $Qproducts->execute();
       } else {
-        $current_category_id = 0;
-
-        if (isset($_POST['cPath'])) {
-          $current_category_id = HTML::sanitize($_POST['cPath']);
-        } else {
-          if (isset($_GET['cPath'])) {
-            $current_category_id = HTML::sanitize($_GET['cPath']);
-          }
-        }
-
-        $Qproducts = $this->db->prepare('select  SQL_CALC_FOUND_ROWS p.products_id,
+        $Qproducts = $this->db->prepare('select SQL_CALC_FOUND_ROWS p.products_id,
                                                                      pd.products_name,
                                                                      p.products_model,
                                                                      p.products_ean,
@@ -1074,7 +1089,7 @@
      *
      */
 
-    public function save($id = null, $action)
+    public function save(string|int|null $id, $action)
     {
       $products_date_available = HTML::sanitize($_POST['products_date_available']);
       $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
@@ -1138,7 +1153,7 @@
       $products_sku = $this->getProductSKU();
       $products_ean = $this->getProductEAN();
 
-      if (is_numeric($_POST['products_status'])) {
+      if (isset($_POST['products_status'])) {
         $products_status = HTML::sanitize($_POST['products_status']);
       } else {
         $products_status = 0;
@@ -1184,7 +1199,7 @@
 //  Save Data
 //---------------------------------------------------------------------------------------------
 //update
-      if (is_numeric($id) && $action == 'Update') {
+      if (is_numeric($id) && !\is_null($id) && $action == 'Update') {
         $update_sql_data = ['products_last_modified' => 'now()'];
         $sql_data_array = array_merge($sql_data_array, $update_sql_data);
 
@@ -1222,7 +1237,7 @@
     {
 
       if ($include_deactivated) {
-        $Qproducts = $this->products->db->get([
+        $Qproducts = $this->products->get([
           'products p',
           'products_to_products p2c'
         ], [
@@ -1231,7 +1246,7 @@
             'p.products_id' => [
               'rel' => 'p2c.products_id'
             ],
-            'p2c.products_id' => (int)$products_id
+            'p2c.products_id' => $products_id
           ]
         );
       } else {
@@ -1245,19 +1260,43 @@
               'rel' => 'p2c.products_id'
             ],
             'p.products_status' => '1',
-            'p2c.products_id' => (int)$products_id
+            'p2c.products_id' => $products_id
           ]
         );
       }
 
       $products_count = $Qproducts->valueInt('total');
 
-      $Qchildren = $this->products->db->get('products', 'products_id', ['parent_id' => (int)$products_id]);
+      $Qchildren = $this->db->prepare->get('products', 'products_id', ['parent_id' => $products_id]);
 
       while ($Qchildren->fetch() !== false) {
-        $products_count += call_user_func(__METHOD__, $Qchildren->valueInt('products_id'), $include_deactivated);
+        $products_count += \call_user_func(__METHOD__, $Qchildren->valueInt('products_id'), $include_deactivated);
       }
 
       return $products_count;
+    }
+
+    /**
+     * @param int $products_id
+     * @return bool
+     */
+    public function checkProductStatus(?int $products_id) :bool
+    {
+      $Qstatus = $this->db->prepare('select products_status 
+                                    from :table_products 
+                                    where products_id = :products_id
+                                   ');
+      $Qstatus->bindInt(':products_id', $products_id);
+      $Qstatus->execute();
+
+      if ($Qstatus->fetch()) {
+        if ($Qstatus->valueInt('products_status') == 0) {
+          return false;
+        } else {
+          return true;
+        }
+      } else {
+        return false;
+      }
     }
   }

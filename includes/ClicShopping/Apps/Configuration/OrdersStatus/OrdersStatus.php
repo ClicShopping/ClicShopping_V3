@@ -43,7 +43,7 @@
                 if ($sort_order > 0) {
                   $counter = $sort_order;
                 } else {
-                  $counter = count($result);
+                  $counter = \count($result);
                 }
 
                 while (true) {

@@ -32,10 +32,11 @@
     private function saveProductsFavorites($id)
     {
       if (!empty($_POST['products_favorites'])) {
-        $this->app->db->save('products_favorites', ['products_id' => (int)$id,
-            'products_favorites_date_added' => 'now()',
-            'status' => 1,
-            'customers_group_id' => 0
+        $this->app->db->save('products_favorites', [
+          'products_id' => (int)$id,
+          'products_favorites_date_added' => 'now()',
+          'status' => 1,
+          'customers_group_id' => 0
           ]
         );
       }

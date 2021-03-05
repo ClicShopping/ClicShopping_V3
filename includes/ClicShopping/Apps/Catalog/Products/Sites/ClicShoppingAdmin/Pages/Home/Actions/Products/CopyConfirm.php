@@ -43,7 +43,7 @@
       if ($this->categoriesId != $this->currentCategoryId) {
         $new_category = $this->categoriesId;
 
-        if (is_array($new_category) && isset($new_category)) {
+        if (\is_array($new_category) && isset($new_category)) {
           foreach ($new_category as $value_id) {
             $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', ['products_id' => (int)$this->ID,
                 'categories_id' => (int)$value_id
@@ -70,7 +70,7 @@
     {
       $new_category = $this->categoriesId;
 
-      if (is_array($new_category) && isset($new_category)) {
+      if (\is_array($new_category) && isset($new_category)) {
         foreach ($new_category as $value_id) {
           if ($this->copyAs == 'duplicate') {
             $this->productsAdmin->cloneProductsInOtherCategory($this->ID, $value_id);

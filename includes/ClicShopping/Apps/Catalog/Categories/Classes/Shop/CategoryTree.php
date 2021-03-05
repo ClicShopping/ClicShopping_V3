@@ -61,7 +61,8 @@
     protected $category_product_count_end_string = ')';
     protected $rewriteUrl;
     protected $db;
-
+    protected $lang;
+    
     /**
      * Constructor; load the category structure relationship data from the database
      *
@@ -73,7 +74,7 @@
       static $_category_tree_data;
 
       $this->db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
+      $this->lang = Registry::get('Language');
 
       if (isset($_category_tree_data)) {
         $this->_data = $_category_tree_data;
@@ -110,13 +111,14 @@
                                             ');
         }
 
-        $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-        $Qcategories->setCache('categories-lang' . $CLICSHOPPING_Language->getId());
+        $Qcategories->bindInt(':language_id', $this->lang->getId());
+        $Qcategories->setCache('categories-lang' . $this->lang->getId());
 
         $Qcategories->execute();
 
         while ($Qcategories->fetch()) {
-          $this->_data[$Qcategories->valueInt('parent_id')][$Qcategories->valueInt('categories_id')] = ['name' => $Qcategories->value('categories_name'),
+          $this->_data[$Qcategories->valueInt('parent_id')][$Qcategories->valueInt('categories_id')] = [
+            'name' => $Qcategories->value('categories_name'),
             'description' => $Qcategories->value('categories_description'),
             'image' => $Qcategories->value('categories_image'),
             'count' => 0
@@ -205,9 +207,10 @@
           }
 
           $category_name = $this->getCategoryTreeTitle($category['name']);
+
           $categories_url = $this->getCategoryTreeUrl($category_link);
 
-          if (($this->follow_cpath === true) && in_array($category_id, $this->cpath_array)) {
+          if (($this->follow_cpath === true) && \in_array($category_id, $this->cpath_array, true)) {
             $link_title = $this->cpath_start_string . $category_name . $this->cpath_end_string;
           } else {
             $link_title = $category_name;
@@ -230,7 +233,7 @@
 
           if (isset($this->_data[$category_id]) && (($this->max_level == '0') || ($this->max_level > $level + 1))) {
             if ($this->follow_cpath === true) {
-              if (in_array($category_id, $this->cpath_array)) {
+              if (\in_array($category_id, $this->cpath_array, true)) {
                 $result .= $this->_buildBranch($category_id, $level + 1);
               }
             } else {
@@ -268,7 +271,7 @@
 
           if (isset($this->_data[$category_id]) && (($this->max_level == '0') || ($this->max_level > $level + 1))) {
             if ($this->follow_cpath === true) {
-              if (in_array($category_id, $this->cpath_array)) {
+              if (\in_array($category_id, $this->cpath_array, true)) {
                 $result = $this->buildBranchArray($category_id, $level + 1, $result);
               }
             } else {
@@ -374,7 +377,8 @@
       foreach ($this->_data as $parent => $categories) {
         foreach ($categories as $category_id => $info) {
           if ($id == $category_id) {
-            $data = ['id' => $id,
+            $data = [
+              'id' => $id,
               'name' => $info['name'],
               'description' => $info['description'],
               'parent_id' => $parent,
@@ -614,5 +618,71 @@
       $categories_url = $this->rewriteUrl->getCategoryImageUrl($category);
 
       return $categories_url;
+    }
+
+  /**
+   * @param string $parent_id
+   * @param string $spacing
+   * @param string $exclude
+   * @param string $category_tree_array
+   * @param bool $include_itself
+   * @return array|string
+   */
+    public function getShopCategoryTree(int $parent_id = 0, string $spacing = '', $exclude = '',  $category_tree_array = '', bool $include_itself = false) :array
+    {
+      $this->lang = Registry::get('Language');
+
+      if (!\is_array($category_tree_array)) {
+        $category_tree_array = [];
+      }
+      
+      if ((\count($category_tree_array) < 1) && ($exclude != '0')) {
+        $category_tree_array[] = ['id' => '0', 'text' => CLICSHOPPING::getDef('text_selected')];
+      }
+
+      if ($include_itself) {
+        $Qcategory = $this->db->get('categories_description', 'categories_name', [
+          'language_id' => $this->lang->getId(),
+          'categories_id' => (int)$parent_id
+          ]
+        );
+
+        $category_tree_array[] = [
+          'id' => $parent_id,
+          'text' => $Qcategory->value('categories_name')
+        ];
+      }
+
+      $Qcategories = $this->db->get([
+        'categories c',
+        'categories_description cd'
+      ], [
+        'c.categories_id',
+        'cd.categories_name',
+        'c.parent_id'
+      ], [
+        'c.categories_id' => [
+          'rel' => 'cd.categories_id'
+        ],
+        'cd.language_id' => $this->lang->getId(),
+        'c.parent_id' => (int)$parent_id
+      ], [
+          'c.sort_order',
+          'cd.categories_name'
+        ]
+      );
+
+      while ($Qcategories->fetch()) {
+        if ($exclude != $Qcategories->valueInt('categories_id')) {
+          $category_tree_array[] = [
+            'id' => $Qcategories->valueInt('categories_id'),
+            'text' => $spacing . $Qcategories->value('categories_name')
+          ];
+        }
+
+        $category_tree_array = $this->getShopCategoryTree($Qcategories->valueInt('categories_id'), $spacing . '&nbsp;&nbsp;&nbsp;', $exclude, $category_tree_array);
+      }
+
+      return $category_tree_array;
     }
   }

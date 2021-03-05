@@ -57,7 +57,7 @@
 
     public function execute()
     {
-      if (!defined('CLICSHOPPING_APP_TEMPLATE_EMAIL_TE_STATUS') || CLICSHOPPING_APP_TEMPLATE_EMAIL_TE_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_TEMPLATE_EMAIL_TE_STATUS') || CLICSHOPPING_APP_TEMPLATE_EMAIL_TE_STATUS == 'False') {
        return false;
       }
 

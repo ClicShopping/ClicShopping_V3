@@ -69,12 +69,12 @@
       $clean = strip_tags($CatList);
       $clean = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $clean);
       $clean = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $clean);
-      $clean = str_replace('&', ' &amp; ', html_entity_decode((htmlspecialchars_decode($clean))));
+      $clean = str_replace(' & ', ' &amp; ', html_entity_decode((htmlspecialchars_decode($clean))));
       $clean = preg_replace('/\s&nbsp;\s/i', ' ', $clean);
       $clean = preg_replace("[<(.*'?)>]", '', $clean);
 
       if (!empty ($length)) {
-        if (strlen($clean) > $length) {
+        if (\strlen($clean) > $length) {
           $clean = substr($clean, 0, $length - 3) . "...";
         }
       }
@@ -82,66 +82,6 @@
       $clean = htmlspecialchars($clean, ENT_QUOTES | ENT_HTML5);
 
       return $clean;
-    }
-
-    /**
-     * @return mixed
-     */
-    public static function starHeaderTagRateYo()
-    {
-      $CLICSHOPPING_Template = Registry::get('Template');
-
-      $header_tag = '<!--   Rate Yo start -->' . "\n";
-      $header_tag .= '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css" rel="preload">' . "\n";
-      $header_tag .= '<!--   Rate Yo  end -->' . "\n";
-      $CLICSHOPPING_Template->addBlock($header_tag, 'header_tags');
-
-      $footer_tag = '<!--   Rate Yo start -->' . "\n";
-      $footer_tag .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.js"></script>' . "\n";
-      $footer_tag .= '<!--   Rate Yo  end -->' . "\n";
-      $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
-    }
-
-    public static function starTagRateYo(int $rating = null, string $color = null, bool $readonly = true, int $size = 20): string
-    {
-
-      $star_rating = '<!--   Rate Yo start -->' . "\n";
-      $star_rating .= '<script> ';
-      $star_rating .= '$(function () { ';
-      $star_rating .= '$("#rateYo").rateYo({ ';
-
-      if (!is_null($rating)) {
-        $star_rating .= 'rating: ' . (int)$rating . ',  ';
-      } else {
-        $star_rating .= 'rating: 0, ';
-      }
-
-      $star_rating .= 'fullStar: true, ';
-      $star_rating .= 'starWidth: "' . $size . 'px", ';
-
-      if ($readonly === true) {
-        $star_rating .= 'readOnly: ' . $readonly . ', ';
-      }
-
-      if (!is_null($color)) {
-        $star_rating .= 'normalFill: "' . $color . '" ';
-      }
-
-      $star_rating .= '}) ';
-      $star_rating .= '.on("rateyo.set", function (e, data) { ';
-      $star_rating .= 'document.getElementById("rateyoid").value=data.rating; ';
-      $star_rating .= '}); ';
-      $star_rating .= '}); ';
-      $star_rating .= '</script>';
-      $star_rating .= '<span itemprop="ratingValue"><div id="rateYo"></div></span>';
-
-      if ($readonly === false) {
-        $star_rating .= parent::hiddenField('rating', 1, 'id="rateyoid"');
-      }
-
-      $star_rating .= '<!--   Rate Yo End -->' . "\n";
-
-      return $star_rating;
     }
 
     /**
@@ -157,7 +97,7 @@
         return '<' . $matches[1] . preg_replace('#([^\s=]+)(\=([\'"]?)(.*?)\3)?(\s+|$)#s', ' $1$2', $matches[2]) . $matches[3] . '>';
       }, str_replace("\r", "", $input));
 
-      if(strpos($input, '</script>') !== false) {
+      if(str_contains($input, '</script>')) {
         $input = preg_replace_callback('#<script(.*?)>(.*?)</script>#is', function($matches) {
           return '<script' . $matches[1] .'>'. static::getMinifyJS($matches[2]) . '</script>';
         }, $input);

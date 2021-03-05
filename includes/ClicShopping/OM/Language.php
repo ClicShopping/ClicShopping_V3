@@ -94,6 +94,9 @@
       setlocale(LC_NUMERIC, $system_locale_numeric);
     }
 
+    /**
+     * @return mixed
+     */
     public function getLocale()
     {
       $code = $this->getCode();
@@ -280,7 +283,7 @@
       if (isset($this->definitions[$scope][$key])) {
         $def = $this->definitions[$scope][$key];
 
-        if (is_array($values) && !empty($values)) {
+        if (\is_array($values) && !empty($values)) {
           $def = $this->parseDefinition($def, $values);
         }
 
@@ -298,7 +301,7 @@
      */
     public static function parseDefinition($string, $values)
     {
-      if (is_array($values) && !empty($values)) {
+      if (\is_array($values) && !empty($values)) {
         $string = preg_replace_callback('/\{\{([A-Za-z0-9-_]+)\}\}/', function ($matches) use ($values) {
           return isset($values[$matches[1]]) ? $values[$matches[1]] : $matches[1];
         }, $string);
@@ -337,7 +340,7 @@
       }
 
       if ($language_code != DEFAULT_LANGUAGE) {
-        return call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
+        return \call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
       }
 
       return false;
@@ -366,7 +369,7 @@
         $group = $matches[2];
       }
 
-      if (!is_null($force_directory_language)) $site = $force_directory_language;
+      if (!\is_null($force_directory_language)) $site = $force_directory_language;
 
       If ($site == 'ClicShoppingAdmin') {
         $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'includes/languages/' . $this->get('directory', $language_code) . '/' . $group;
@@ -377,7 +380,7 @@
       $pathname .= '.txt';
 
       if ($language_code != DEFAULT_LANGUAGE) {
-        call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE, $scope);
+        \call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE, $scope);
       }
 
       $defs = $this->getDefinitions($site . '/' . $group, $language_code, $pathname);
@@ -504,13 +507,17 @@
       $response_encoding = 'UTF-8';
       $response_bom = ' without BOM';
       $handle = @fopen($filename, "r");
+
       if ((filesize($filename)) > 2) {
         $bom = fread($handle, 3);
+
         if ($bom == b"\xEF\xBB\xBF") {
           $response_bom = '-BOM';
         }
+
         $contents = fread($handle, filesize($filename));
         $response_encoding = mb_detect_encoding($contents, "UTF-8, ISO-8859-1", true);
+
         if ($response_encoding . $response_bom != 'UTF-8 without BOM') {
 // error message
           error_log('ERROR: ' . $filename . ' file is not UTF-8 without BOM encoding');
@@ -531,7 +538,7 @@
      */
     public function getLanguageCode()
     {
-      if (!is_null($this->getUrlValueLanguage())) {
+      if (!\is_null($this->getUrlValueLanguage())) {
         $_GET['language'] = $this->getUrlValueLanguage();
       }
 
@@ -555,7 +562,7 @@
      */
     public function getUrlValueLanguage()
     {
-      if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && (SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start())) {
+      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && (SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start())) {
         $value_language = SEFU::getUrlValue();
       } else {
         $value_language = null;
@@ -573,14 +580,16 @@
      */
     public function getLanguageText($tag = ' - ')
     {
+      $get_params = [];
+
       if (!isset($_GET['Checkout'])) {
         $languages_string = '';
 
-        $get_params = [];
-
-        foreach ($_GET as $key => $value) {
-          if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
-            $get_params[] = ($value) ? "$key=$value" : $key;
+        if (\is_array($_GET)) {
+          foreach ($_GET as $key => $value) {
+            if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
+              $get_params[] = ($value) ? "$key=$value" : $key;
+            }
           }
         }
 
@@ -607,6 +616,11 @@
      */
     public function getFlag()
     {
+      $get_params = [];
+      $content = '';
+
+      $languages = '';
+
       if (!isset($_GET['Checkout'])) {
 // If only one language is selected
         if (CLICSHOPPING::getSite('Shop') == 'Shop') {
@@ -623,29 +637,28 @@
           $languages = $this->getAll();
         }
 
-        $content = '';
-
-        $get_params = [];
-
-        foreach ($_GET as $key => $value) {
-          if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
-            $get_params[] = ($value) ? "$key=$value" : $key;
+        if (\is_array($_GET)) {
+          foreach ($_GET as $key => $value) {
+            if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
+              $get_params[] = ($value) ? "$key=$value" : $key;
+            }
           }
         }
+      }
 
-        $get_params = implode('&', $get_params);
-        if (!empty($get_params)) {
-          $get_params .= '&';
-        }
+      $get_params = implode('&', $get_params);
 
+      if (!empty($get_params)) {
+        $get_params .= '&';
+      }
+
+      if (\is_array($languages)) {
         foreach ($languages as $value) {
           $content .= HTML::link(CLICSHOPPING::link(null, $get_params . 'language=' . $value['code']), $this->getImage($value['code'])) . '&nbsp;&nbsp;';
         }
-
-        return $content;
-      } else {
-        return '';
       }
+
+      return $content;
     }
 
     /**
@@ -660,19 +673,18 @@
 
       $languages_array = [];
 
-      $Qlanguages = Registry::get('Db')->get('languages', ['languages_id',
+      $arraay = [
+        'languages_id',
         'name',
         'code',
         'image',
         'directory'
-      ],
-        null,
-        'sort_order'
-      );
-
+      ];
+      $Qlanguages = Registry::get('Db')->get('languages', $arraay, null, 'sort_order');
 
       while ($Qlanguages->fetch()) {
-        $languages_array[] = ['id' => $Qlanguages->valueInt('languages_id'),
+        $languages_array[] = [
+          'id' => $Qlanguages->valueInt('languages_id'),
           'name' => $Qlanguages->value('name'),
           'code' => $Qlanguages->value('code'),
           'image' => $Qlanguages->value('image'),
@@ -692,7 +704,8 @@
      */
     public function getLanguagesName($id)
     {
-      $Qlanguages = Registry::get('Db')->get('languages', ['languages_id',
+      $Qlanguages = Registry::get('Db')->get('languages', [
+        'languages_id',
         'name'
       ],
         ['languages_id' => (int)$id]
@@ -719,7 +732,7 @@
         ];
       }
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $values_languages_id[$i + 1] = [
           'id' => $languages[$i]['id'],
           'text' => $languages[$i]['name']

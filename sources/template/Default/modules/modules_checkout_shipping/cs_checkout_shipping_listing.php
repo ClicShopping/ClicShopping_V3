@@ -17,8 +17,8 @@
   use ClicShopping\Sites\Shop\Shipping as Delivery;
 
   class cs_checkout_shipping_listing {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -31,7 +31,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_shipping_listing_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_shipping_listing_description');
 
-      if (defined('MODULE_CHECKOUT_SHIPPING_LISTING_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_SHIPPING_LISTING_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_SHIPPING_LISTING_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_SHIPPING_LISTING_STATUS == 'True');
       }
@@ -59,10 +59,10 @@
             $data = '<div class="separator"></div>';
             $data .= '<span class="page-title moduleCheckoutShippingListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_shipping_table_heading_shipping_method') . '</h3></span>';
 
-            if (count($quotes) > 1 && count($quotes[0]) > 1 && is_array($quotes)) {
+            if (\count($quotes) > 1 && \count($quotes[0]) > 1 && \is_array($quotes)) {
               $data .= '<div>';
-              $data .= '<span class="col-md-8 text-md-left moduleCheckoutShippingListingMethod">' . CLICSHOPPING::getDef('module_checkout_shipping_text_choose_shipping_method') . '</span>';
-              $data .= '<span class="col-md-4 text-md-right float-md-right moduleCheckoutShippingListingSelect">' . CLICSHOPPING::getDef('module_checkout_shipping_title_please_select') . '</span>';
+              $data .= '<span class="col-md-8 text-start moduleCheckoutShippingListingMethod">' . CLICSHOPPING::getDef('module_checkout_shipping_text_choose_shipping_method') . '</span>';
+              $data .= '<span class="col-md-4 text-end float-end moduleCheckoutShippingListingSelect">' . CLICSHOPPING::getDef('module_checkout_shipping_title_please_select') . '</span>';
               $data .= '</div>';
               $data .= '<div class="separator"></div>';
             } elseif ($_SESSION['free_shipping'] === false) {
@@ -84,8 +84,8 @@
               $radio_buttons = 0;
 
               foreach ($quotes as $n => $quote) {
-                if (is_array($quote['methods'])) {
-                  for ($j=0, $n2=count($quote['methods']); $j<$n2; $j++) {
+                if (isset($quote['methods'])) {
+                  for ($j=0, $n2=\count($quote['methods']); $j<$n2; $j++) {
                     $data .= '<tr>' . "\n";
                     $data .= '<tr>';
                     $data .= '<td>';
@@ -117,7 +117,7 @@
                         $checked = true;
                       }
 
-                      $data .= '<td class="text-md-right">';
+                      $data .= '<td class="text-end">';
 
                       if (isset($quotes['error'])) {
                         $data .= '&nbsp;';
@@ -129,7 +129,7 @@
                       $data .= '</td>';
                       $data .= '</tr>';
                     } else {
-                      $data .= '<td class="text-md-right">';
+                      $data .= '<td class="text-end">';
                       $data .=  $CLICSHOPPING_Currencies->format(Tax::addTax($quote['methods'][$j]['cost'], $quote['tax'] ?? 0)) .  HTML::hiddenField('shipping', $quote['id'] . '_' . $quote['methods'][$j]['id']);
                       $data .= '</td>';
                     }
@@ -163,7 +163,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_SHIPPING_LISTING_STATUS');
+      return \defined('MODULE_CHECKOUT_SHIPPING_LISTING_STATUS');
     }
 
     public function install() {

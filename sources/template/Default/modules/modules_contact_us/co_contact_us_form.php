@@ -14,8 +14,8 @@
   use ClicShopping\OM\HTML;
 
   class co_contact_us_form {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('modules_contact_us_form_title');
       $this->description = CLICSHOPPING::getDef('modules_contact_us_form_description');
 
-      if (defined('MODULES_CONTACT_US_FORM_STATUS')) {
+      if (\defined('MODULES_CONTACT_US_FORM_STATUS')) {
         $this->sort_order = (int)MODULES_CONTACT_US_FORM_SORT_ORDER;
         $this->enabled = (MODULES_CONTACT_US_FORM_STATUS == 'True');
       }
@@ -40,10 +40,12 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_GET['Info']) && isset($_GET['Contact']) && !isset($_GET['Success'])) {
-
         $content_width = (int)MODULE_CONTACT_US_FORM_CONTENT_WIDTH;
+        $min_caracters_to_write = (int)MODULE_CONTACT_US_FORM_CONTENT_CARACTER;
 
-        $form = HTML::form('contact', CLICSHOPPING::link(null, 'Info&Contact&Process'), 'post', 'enctype="multipart/form-data"',  ['tokenize' => true, 'action' => 'process']);
+        $message_alert = CLICSHOPPING::getDef('entry_text_alert', ['textalert' => $min_caracters_to_write]);
+
+        $form =  HTML::form('contact', CLICSHOPPING::link(null, 'Info&Contact&Process'), 'post', 'onsubmit="var text = document.getElementById(\'messageAlert\').value; if(text.length < ' . $min_caracters_to_write .') { alert(\'' . $message_alert . '\'); return false; } return true;"', ['tokenize' => true, 'action' => 'process']);
 
         if ( isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
           $order_id = HTML::sanitize($_GET['order_id']);
@@ -111,7 +113,7 @@
                 <div class="form-group row">
                   <label for="email" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_email') . '</label>
                   <div class="col-sm-6 col-md-4">
-                      ' . HTML::inputField('email', null, 'rel="txtTooltipEmailAddress" autocomplete="email" title="' . CLICSHOPPING::getDef('entry_email_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email') . '" placeholder="' . CLICSHOPPING::getDef('entry_email') . '"', 'email') . '
+                      ' . HTML::inputField('email', null, 'rel="txtTooltipEmailAddress" autocomplete="email" title="' . CLICSHOPPING::getDef('entry_email_dgrp') . '" data-bs-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email') . '" placeholder="' . CLICSHOPPING::getDef('entry_email') . '"', 'email') . '
                   </div>
                 </div>
               </div>
@@ -144,7 +146,7 @@
                   <div class="form-group row">
                     <label for="inputTelephone" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_phone') . '</label>
                     <div class="col-sm-6 col-md-4">
-                      ' . HTML::inputField('customers_telephone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_customers_phone_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_customers_phone') . '" placeholder="' . CLICSHOPPING::getDef('entry_customers_phone') . '"', 'phone') . '
+                      ' . HTML::inputField('customers_telephone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_customers_phone_dgrp') . '" data-bs-toggle="tooltip" data-placement="right" required aria-required="true" id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_customers_phone') . '" placeholder="' . CLICSHOPPING::getDef('entry_customers_phone') . '"', 'phone') . '
                     </div>
                   </div>
                 </div>
@@ -247,7 +249,7 @@
                 </div>
              </div>
              <div class="col-md-10">
-                ' . HTML::textAreaField('enquiry', null, 50, 15, 'class="form-control inputContacUsFormTextArea" required aria-required="true" id="inputMessage" placeholder="' . CLICSHOPPING::getDef('entry_enquiry') . '"') . '
+                ' . HTML::textAreaField('enquiry', null, 50, 15, 'class="form-control inputContacUsFormTextArea" required aria-required="true" id="messageAlert" placeholder="' . CLICSHOPPING::getDef('entry_enquiry') . '"') . '
              </div>
            </div>
             ';
@@ -270,7 +272,7 @@
     }
 
     public function check() {
-      return defined('MODULES_CONTACT_US_FORM_STATUS');
+      return \defined('MODULES_CONTACT_US_FORM_STATUS');
     }
 
     public function install() {
@@ -299,6 +301,19 @@
           'date_added' => 'now()'
         ]
       );
+
+      $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Indicate a minimum number of characters to insert in the message before the customer can send it',
+          'configuration_key' => 'MODULE_CONTACT_US_FORM_CONTENT_CARACTER',
+          'configuration_value' => '90',
+          'configuration_description' => 'Messages less than this number will not be sent. A warning pop up will be displayed to the client indicating the minimum number of characters',
+          'configuration_group_id' => '6',
+          'sort_order' => '10',
+          'set_function' => 'clic_cfg_set_content_module_width_text_down',
+          'date_added' => 'now()'
+        ]
+      );
+
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_CONTACT_US_FORM_SORT_ORDER',

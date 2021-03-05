@@ -2,7 +2,7 @@
   <div class="separator"></div>
   <div class="row">
     <span class="col-md-8"><?php echo $date_reviews . '<br />' . $customer_review; ?></span>
-    <span class="col-md-4 text-md-right productsReviewsListingContentRating" itemprop="ratingValue"><?php echo $review_star; ?></span>
+    <span class="col-md-4 text-end productsReviewsListingContentRating" itemprop="ratingValue"><?php echo $review_star; ?></span>
   </div>
   <div class="separator"></div>
   <div class="row">
@@ -10,7 +10,7 @@
     <?php
       if ($delete_comment == 'True') {
     ?>
-    <span class="col-md-2 text-md-right"><?php echo $delete_reviews ?></span>
+    <span class="col-md-2 text-end"><?php echo $delete_reviews ?></span>
     <?php
       }
     ?>

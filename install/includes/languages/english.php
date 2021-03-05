@@ -178,25 +178,25 @@ define('TEXT_STORE_DONATION', ' If you like the work developped on this software
 define('TEXT_END_INSTALLATION','Step 4: Finish !');
 define('TEXT_END_INSTALLATION_1','
 <p> Congratulations , you have successfully configure your ClicShopping Store! </p>
-      <p> We wish you great success with your e-commerce project . </p>
+<p> We wish you great success with your e-commerce project . </p>
 <p> If you enjoy the work we do , so do not hesitate to communicate the project to your friends and your environment.
 If you want to help us to continue to  develop this project , please , subscribe to one of our subscriptions, e-commerce. You have also access at our forum to share with the community your experience.</p>
 <p> <br /> <strong>Your comments and suggestions </strong > are important for us for the futur development of this project because we want a to develop one of best tools existing on the market. </p>
 <p align="right">ClicShopping Team</p>
 ');
 
-define('TEXT_END_INSTALLATION_SUCCESS','The installation is a success, you can now access at your ClicShopping store!');
+define('TEXT_END_INSTALLATION_SUCCESS','The installation is a success, you can now access at your ClicShopping store!<br />Click the button and please wait, we will cache some files');
+
 define('TEXT_END_INSTALLATION_2','Post-Installation Notes');
 define('TEXT_END_INSTALLATION_3','<p>It is recommended to delete the install directory to secure ClicShopping</p>');
 define('TEXT_END_INSTALLATION_4','Directories  to change');
 define('TEXT_END_INSTALLATION_5','Please turn change the permissions of this file in Conf (all), Shop and ClicShoppingAdmin (conf.php)');
 define('TEXT_END_INSTALLATION_6',' to 444 (or 644 if this file is still writable)');
 
-define('TEXT_END_INSTALLATION_7','Increae the security ');
-define('TEXT_END_INSTALLATION_8','The administration should be protected by enabling htaccess / htpasswd  <br /> All systems do not accept this protection. <br /> You can also change the name of the administration directories');
+define('TEXT_END_INSTALLATION_7','Increase the security ');
+define('TEXT_END_INSTALLATION_8','The best is to change the ClicShoppingAdéin directoyrépertoire et d\'y incorper un htacces ou password (tous les serveur n\'acceptent pas forcement cette approche)');
 
 define('TEXT_END_ACCESS_CATALOG','Go to your catalog');
-define('TEXT_END_ACCESS_INFO','Click the button and please wait, we will cache some files');
 define('TEXT_END_ACCESS_ADMIN','Go to your administration');
 
 

@@ -112,12 +112,12 @@ function selectAll(FormName, SelectBox) {
         'document.write(\'<input type="button" value="' . $this->app->getDef('button_global') . '" style="width: 8em;" onclick="document.location=\\\'' . $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID'] . '&action=confirm&global=true') . '\\\'">\');' . "\n" .
         '//--></script><noscript><a href="' . $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID'] . '&action=confirm&global=true') . '">[ ' . $this->app->getDef('button_global') . ' ]</a></noscript>';
 
-      $chooseAudience_string .= '    <td class="pageHeading text-md-right"><table border="0" cellspacing="0" cellpadding="0">' .
+      $chooseAudience_string .= '    <td class="pageHeading text-end"><table border="0" cellspacing="0" cellpadding="0">' .
         '     <form name="notifications" action="' . $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID'] . '&action=confirm') . '" method="post" onSubmit="return selectAll(\'notifications\', \'chosen[]\')">' . "\n" .
         '      <tr>' .
-        '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_send'), null, null, 'primary') . '</td>' .
+        '          <td class="text-end">' . HTML::button($this->app->getDef('button_send'), null, null, 'primary') . '</td>' .
         '          <td>&nbsp;</td>' .
-        '          <td class="text-md-right"><a href="' . $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID']) . '">' . HTML::button($this->app->getDef('button_cancel'), null, null, 'danger') . '</a></td>' .
+        '          <td class="text-end"><a href="' . $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID']) . '">' . HTML::button($this->app->getDef('button_cancel'), null, null, 'danger') . '</a></td>' .
         '        </tr>' .
         '      </table></td>' .
         '    </tr>' .
@@ -129,9 +129,9 @@ function selectAll(FormName, SelectBox) {
 
       $chooseAudience_string .= '<table border="0" width="100%" cellspacing="0" cellpadding="2"><tr>' . "\n" .
         '  <tr>' . "\n" .
-        '    <td class="text-md-center"><b>' . $this->app->getDef('text_products') . '</b><br />' . HTML::selectMenu('products', $products_array, '', 'size="20" style="width: 20em;" multiple') . '</td>' . "\n" .
-        '    <td class="text-md-center">&nbsp;<br />' . $global_button . '<br /><br /><br /><input type="button" value="' . $this->app->getDef('button_select') . '" style="width: 8em;" onClick="mover(\'remove\');"><br /><br /><input type="button" value="' . $this->app->getDef('button_unselect') . '" style="width: 8em;" onClick="mover(\'add\');"></td>' . "\n" .
-        '    <td class="text-md-center"><b>' . $this->app->getDef('text_selected_products') . '</b><br />' . HTML::selectMenu('chosen[]', array(), '', 'size="20" style="width: 20em;" multiple') . '</td>' . "\n" .
+        '    <td class="text-center"><b>' . $this->app->getDef('text_products') . '</b><br />' . HTML::selectMenu('products', $products_array, '', 'size="20" style="width: 20em;" multiple') . '</td>' . "\n" .
+        '    <td class="text-center">&nbsp;<br />' . $global_button . '<br /><br /><br /><input type="button" value="' . $this->app->getDef('button_select') . '" style="width: 8em;" onClick="mover(\'remove\');"><br /><br /><input type="button" value="' . $this->app->getDef('button_unselect') . '" style="width: 8em;" onClick="mover(\'add\');"></td>' . "\n" .
+        '    <td class="text-center"><b>' . $this->app->getDef('text_selected_products') . '</b><br />' . HTML::selectMenu('chosen[]', array(), '', 'size="20" style="width: 20em;" multiple') . '</td>' . "\n" .
         '  </tr>' . "\n" .
         '</table></form>';
 
@@ -160,7 +160,7 @@ function selectAll(FormName, SelectBox) {
         $chosen = [];
 
         foreach ($_POST['chosen'] as $id) {
-          if (is_numeric($id) && !in_array($id, $chosen)) {
+          if (is_numeric($id) && !\in_array($id, $chosen)) {
             $chosen[] = $id;
           }
         }
@@ -193,24 +193,24 @@ function selectAll(FormName, SelectBox) {
         }
       }
 
-      if (count($audience) > 0) {
+      if (\count($audience) > 0) {
         if (isset($_GET['global']) && ($_GET['global'] == 'true')) {
           $confirm_button_string .= HTML::hiddenField('global', 'true');
         } else {
-          for ($i = 0, $n = count($chosen); $i < $n; $i++) {
+          for ($i = 0, $n = \count($chosen); $i < $n; $i++) {
             $confirm_button_string .= HTML::hiddenField('chosen[]', $chosen[$i]);
           }
         }
         $confirm_button_string .= HTML::button($this->app->getDef('button_submit'), null, null, 'primary') . ' ';
       }
 
-      $confirm_string = '    <td class="pageHeading text-md-right"><table border="0" cellspacing="0" cellpadding="0">' .
+      $confirm_string = '    <td class="pageHeading text-end"><table border="0" cellspacing="0" cellpadding="0">' .
         '      <tr>' . HTML::form('confirm', $this->app->link('Newsletter&ConfirmSend&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID'])) .
-        '          <td  class="text-md-right">' . $confirm_button_string . '</td>' .
+        '          <td  class="text-end">' . $confirm_button_string . '</td>' .
         '          <td>&nbsp;</td>' .
-        '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_back'), null, $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID'] . '&action=send'), 'primary') . '</a></td>' .
+        '          <td class="text-end">' . HTML::button($this->app->getDef('button_back'), null, $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID'] . '&action=send'), 'primary') . '</a></td>' .
         '          <td>&nbsp;</td>' .
-        '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_cancel'), null, $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID']), 'danger') . '</a></td>' .
+        '          <td class="text-end">' . HTML::button($this->app->getDef('button_cancel'), null, $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID']), 'danger') . '</a></td>' .
         '        </tr>' .
         '      </table></td>' .
         '    </tr>' .
@@ -222,7 +222,7 @@ function selectAll(FormName, SelectBox) {
 
       $confirm_string .= '<table border="0" cellspacing="0" cellpadding="2">' . "\n" .
         '  <tr>' . "\n" .
-        '    <td class="main"><p style="color:#ff0000;"><strong>' . $this->app->getDef('text_count_customers', ['audience' => count($audience)]) . '</strong></p></td>' . "\n" .
+        '    <td class="main"><p style="color:#ff0000;"><strong>' . $this->app->getDef('text_count_customers', ['audience' => \count($audience)]) . '</strong></p></td>' . "\n" .
         '  </tr>' . "\n" .
         '  <tr>' . "\n" .
         '    <td>&nbsp;</td>' . "\n" .
@@ -250,7 +250,7 @@ function selectAll(FormName, SelectBox) {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Mail = Registry::get('Mail');
 
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 
@@ -309,7 +309,7 @@ function selectAll(FormName, SelectBox) {
         $chosen = [];
 
         foreach ($_POST['chosen'] as $id) {
-          if (is_numeric($id) && !in_array($id, $chosen)) {
+          if (is_numeric($id) && !\in_array($id, $chosen)) {
             $chosen[] = $id;
           }
         }
@@ -372,10 +372,9 @@ function selectAll(FormName, SelectBox) {
       $text = strip_tags($this->content);
 
       $CLICSHOPPING_Mail->addText($text . $this->app->getDef('text_unsubscribe') . HTTP::getShopUrlDomain() . 'index.php?Account&Newsletters');
-      ;
 
       foreach ($audience as $key => $value) {
-        $CLICSHOPPING_Mail->send($value['firstname'] . ' ' . $value['lastname'], $value['email_address'], '', $this->app->getDef('email_from'), $this->title);
+        $CLICSHOPPING_Mail->send($value['firstname'] . ' ' . $value['lastname'], $value['email_address'], null, $this->app->getDef('email_from'), $this->title);
       }
 
       $newsletter_id = HTML::sanitize($newsletter_id);
@@ -393,7 +392,7 @@ function selectAll(FormName, SelectBox) {
 // Envoie du mail avec gestion des images pour Fckeditor et Imanager.
     public function sendCkeditor($newsletter_id)
     {
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 
@@ -507,7 +506,7 @@ function selectAll(FormName, SelectBox) {
       ;
 
       foreach ($audience as $key => $value) {
-        $CLICSHOPPING_Mail->send($value['firstname'] . ' ' . $value['lastname'], $value['email_address'], '', $this->app->getDef('email_from'), $this->title);
+        $CLICSHOPPING_Mail->send($value['firstname'] . ' ' . $value['lastname'], $value['email_address'], null, $this->app->getDef('email_from'), $this->title);
       }
 
       $CLICSHOPPING_Db->save('newsletters', [

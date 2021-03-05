@@ -59,18 +59,21 @@
 
       if (isset($search)) {
 // delete
-        if (isset($_POST['delete']) && is_array($_POST['delete'])) {
+        if (isset($_POST['delete']) && \is_array($_POST['delete'])) {
           foreach ($_POST['delete'] as $key => $value) {
-            $this->app->db->delete(':table_languages_definitions', ['definition_key' => HTML::sanitize($key),
-                'content_group' => $content_group]
-            );
+            $sql_array = [
+              'definition_key' => HTML::sanitize($key),
+              'content_group' => $content_group
+            ];
+            
+            $this->app->db->delete(':table_languages_definitions', $sql_array);
           }
         }
 
 // update only
-        if (is_array($definition_values)) {
+        if (\is_array($definition_values)) {
           foreach ($definition_values as $definition_key => $language_definition) {
-            if (is_array($language_definition)) {
+            if (\is_array($language_definition)) {
               foreach ($language_definition as $language_id => $definition_value) {
                 $sql_data_array = [
                   'content_group' => $content_group,
@@ -98,15 +101,17 @@
         }
 
   // add new_definition_key
-        if (isset($new_definition_key) && is_array($_POST['new_definition_value'])) {
+        if (isset($new_definition_key) && \is_array($_POST['new_definition_value'])) {
           foreach ($_POST['new_definition_value'] as $key => $value) {
-            $sql_data_array = ['content_group' => $content_group,
+            $sql_data_array = [
+              'content_group' => $content_group,
               'definition_key' => $new_definition_key,
               'languages_id' => $key,
               'definition_value' => $value
             ];
 
-            $where_array = ['content_group' => $content_group,
+            $where_array = [
+              'content_group' => $content_group,
               'definition_key' => $new_definition_key,
               'languages_id' => $key
             ];
@@ -126,7 +131,7 @@
 // reset all
         $new_definition_key_error = false;
 
-        if (isset($new_definition_key) && is_array($_POST['new_definition_value'])) {
+        if (isset($new_definition_key) && \is_array($_POST['new_definition_value'])) {
           foreach ($_POST['new_definition_value'] as $key => $value) {
             if (!isset($definition_values[$new_definition_key][$key])) {
               $new_definition_values[$new_definition_key][$key] = $value;
@@ -137,7 +142,6 @@
           }
         }
 
-
         if (!$new_definition_key_error && isset($new_definition_values)) {
           $definition_values = array_merge($definition_values, $new_definition_values);
         }
@@ -146,10 +150,11 @@
 
         $this->app->db->delete(':table_languages_definitions', $where_array);
 
-        if (is_array($definition_values)) {
+        if (\is_array($definition_values)) {
           foreach ($definition_values as $definition_key => $language_definition) {
             foreach ($language_definition as $language_id => $definition_value) {
-              $sql_data_array = ['content_group' => $content_group,
+              $sql_data_array = [
+                'content_group' => $content_group,
                 'definition_key' => $definition_key,
                 'languages_id' => $language_id,
                 'definition_value' => $definition_value
@@ -165,13 +170,15 @@
       $groups = explode('-', $content_group);
       $path_to_file = '/';
 
-      for (($groups[0] == 'Apps' ? $i = 3 : $i = 1), $n = count($groups) - 1; $i < $n; $i++) {
+      for (($groups[0] == 'Apps' ? $i = 3 : $i = 1), $n = \count($groups) - 1; $i < $n; $i++) {
         $path_to_file .= $groups[$i] . '/';
       }
 
-      $path_name = str_replace('-', '/', substr($content_group, ($groups[0] != 'Apps' ? strlen($groups[0]) : strlen($groups[0] . '-' . $groups[1] . '-' . $groups[2])))) . '.txt';
+//      $file_name = $groups[\count($groups) - 1] . '.txt';
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      $path_name = str_replace('-', '/', substr($content_group, ($groups[0] != 'Apps' ? \strlen($groups[0]) : \strlen($groups[0] . '-' . $groups[1] . '-' . $groups[2])))) . '.txt';
+
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $language_dir = CLICSHOPPING::getConfig('dir_root', ($groups[0] == 'Apps' ? 'Shop' : $groups[0])) . ($groups[0] == 'Apps' ? 'includes/ClicShopping/Apps/' . $groups[1] . '/' . $groups[2] . '/' : 'includes/') . 'languages/' . $languages[$i]['directory'];
 
         if (!is_file($language_dir . $path_name)) {
@@ -206,6 +213,8 @@
 
             if (is_file($language_dir . $path_name) && FileSystem::isWritable($language_dir . $path_name)) {
               file_put_contents($language_dir . $path_name, $data . PHP_EOL, FILE_APPEND | LOCK_EX);
+            } else {
+             // $CLICSHOPPING_MessageStack->add($this->app->getDef('error_file_not_writeable', ['pathname' => $language_dir . $path_name]), 'warning');
             }
           } while ($Qdefinitions->fetch());
         }

@@ -38,7 +38,7 @@
       $this->title = $this->app->getDef('module_admin_dashboard_clicshopping_latest_apps_title');
       $this->description = $this->app->getDef('module_admin_dashboard_clicshopping_latest_apps_description');
 
-      if (defined('MODULE_ADMIN_DASHBOARD_CLICSHOPPING_LASTEST_APPS_STATUS')) {
+      if (\defined('MODULE_ADMIN_DASHBOARD_CLICSHOPPING_LASTEST_APPS_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_CLICSHOPPING_LASTEST_APPS_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_CLICSHOPPING_LASTEST_APPS_STATUS == 'True');
       }
@@ -58,6 +58,8 @@
         $output .= '<table
                       id="table"
                       data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
                       data-toolbar="#toolbar"
                       data-buttons-class="primary"
                       data-show-toggle="true"
@@ -67,7 +69,7 @@
         $output .= '<tr>';
         $output .= '<th data-field="logo">' . HTML::image(CLICSHOPPING::link('Shop/images/logo_clicshopping_24.webp'), 'ClicShopping') . '</th>';
         $output .= '<th data-field="title" data-switchable="false">' . $this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_tilte') . '</th>';
-        $output .= '<th data-field="date" class="text-right">' . $this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_date') . '</th>';
+        $output .= '<th data-field="date" class="text-end">' . $this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_date') . '</th>';
         $output .= '</tr>';
         $output .= '</thead>';
         $output .= '<tbody>';

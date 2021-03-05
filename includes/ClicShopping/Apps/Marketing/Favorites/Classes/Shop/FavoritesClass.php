@@ -115,7 +115,7 @@
 
       $count_column = static::getCountColumnList();
 
-      for ($i = 0, $n = count($count_column); $i < $n; $i++) {
+      for ($i = 0, $n = \count($count_column); $i < $n; $i++) {
         switch ($count_column[$i]) {
           case 'MODULE_PRODUCTS_FAVORITES_LIST_DATE_ADDED':
             $Qlisting .= ' p.products_date_added, ';
@@ -177,9 +177,9 @@
                    ';
       }
 
-      if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($count_column))) {
+      if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > \count($count_column))) {
 
-        for ($i = 0, $n = count($count_column); $i < $n; $i++) {
+        for ($i = 0, $n = \count($count_column); $i < $n; $i++) {
           if ($count_column[$i] == 'MODULE_PRODUCTS_FAVORITES_LIST_DATE_ADDED') {
             $_GET['sort'] = $i + 1 . 'a';
             $Qlisting .= ' order by p.products_date_added DESC ';

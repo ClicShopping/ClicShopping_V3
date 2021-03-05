@@ -13,6 +13,7 @@ class Http
      * @param string $buffer the string to be decoded
      *
      * @return string
+     * @internal this function will become protected in the future
      */
     public static function decodeChunked($buffer)
     {
@@ -62,7 +63,7 @@ class Http
     /**
      * Parses HTTP an http response headers and separates them from the body.
      *
-     * @param string $data the http response,headers and body. It will be stripped of headers
+     * @param string $data the http response, headers and body. It will be stripped of headers
      * @param bool $headersProcessed when true, we assume that response inflating and dechunking has been already carried out
      *
      * @return array with keys 'headers' and 'cookies'
@@ -104,7 +105,7 @@ class Http
             // server sent a Continue header without any (valid) content following...
             // give the client a chance to know it
             if (!$pos && !is_int($pos)) {
-                // works fine in php 3, 4 and 5
+                /// @todo this construct works fine in php 3, 4 and 5 - 8; would it not be enough to have !== false now ?
 
                 break;
             }
@@ -217,7 +218,7 @@ class Http
 
             // Decode chunked encoding sent by http 1.1 servers
             if (isset($httpResponse['headers']['transfer-encoding']) && $httpResponse['headers']['transfer-encoding'] == 'chunked') {
-                if (!$data = Http::decodeChunked($data)) {
+                if (!$data = static::decodeChunked($data)) {
                     Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': errors occurred when trying to rebuild the chunked data received from server');
                     throw new \Exception(PhpXmlRpc::$xmlrpcstr['dechunk_fail'], PhpXmlRpc::$xmlrpcerr['dechunk_fail']);
                 }

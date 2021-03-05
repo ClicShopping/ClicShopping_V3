@@ -32,7 +32,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/define_language.gif', $CLICSHOPPING_Groups->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Groups->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   echo HTML::form('customers', $CLICSHOPPING_Groups->link('Groups&Insert'), 'post', 'onSubmit="return check_form();"');
   echo HTML::button($CLICSHOPPING_Groups->getDef('button_insert'), null, null, 'success') . ' ';
@@ -67,11 +67,11 @@
   <div id="CustomersGroupTab" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Groups->getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Groups->getDef('tab_general') . '</a>'; ?></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_orders'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_orders'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_shipping'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_shipping'); ?></a></li>
     </ul>
 
     <div class="tabsClicShopping">
@@ -90,9 +90,9 @@
                   <div class="col-md-5">
                     <?php
                       if ($error == "name") {
-                        echo HTML::inputField('customers_group_name', '', 'required aria-required="true" id="customers_group_name" placeholder="' . $CLICSHOPPING_Groups->getDef('entry_groups_name') . '" maxlength="32" style="border: 2px solid #FF0000"', true) . '&nbsp;' . (!is_null($CLICSHOPPING_Groups->getDef('entry_groups_name')) ? '<span class="inputRequirement"></span>' : '');
+                        echo HTML::inputField('customers_group_name', '', 'required aria-required="true" id="customers_group_name" placeholder="' . $CLICSHOPPING_Groups->getDef('entry_groups_name') . '" maxlength="32" style="border: 2px solid #FF0000"', true) . '&nbsp;' . (!\is_null($CLICSHOPPING_Groups->getDef('entry_groups_name')) ? '<span class="inputRequirement"></span>' : '');
                       } else {
-                        echo HTML::inputField('customers_group_name', '', 'required aria-required="true" id="customers_group_name" placeholder="' . $CLICSHOPPING_Groups->getDef('entry_groups_name') . '" maxlength="32"', true) . '&nbsp;' . (!is_null($CLICSHOPPING_Groups->getDef('entry_groups_name')) ? '<span class="inputRequirement"></span>' : '');
+                        echo HTML::inputField('customers_group_name', '', 'required aria-required="true" id="customers_group_name" placeholder="' . $CLICSHOPPING_Groups->getDef('entry_groups_name') . '" maxlength="32"', true) . '&nbsp;' . (!\is_null($CLICSHOPPING_Groups->getDef('entry_groups_name')) ? '<span class="inputRequirement"></span>' : '');
                       }
                     ?>
                   </div>
@@ -228,7 +228,7 @@
                 }
               }
 
-              for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
+              for ($i = 0, $n = \count($include_modules); $i < $n; $i++) {
                 if (strpos($include_modules[$i]['class'], '\\') !== false) {
                   Registry::set('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
                   $module = Registry::get('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']));
@@ -297,7 +297,7 @@
                 }
               }
 
-              for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
+              for ($i = 0, $n = \count($include_modules); $i < $n; $i++) {
                 if (strpos($include_modules[$i]['class'], '\\') !== false) {
                   Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
                   $module = Registry::get('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']));

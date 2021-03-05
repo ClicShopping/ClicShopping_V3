@@ -24,14 +24,14 @@
       $this->title = $this->app->getDef('module_tg_title');
       $this->short_title = $this->app->getDef('module_tg_short_title');
       $this->introduction = $this->app->getDef('module_tg_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_TAX_GEO_ZONES_TG_STATUS') && (trim(CLICSHOPPING_APP_TAX_GEO_ZONES_TG_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_TAX_GEO_ZONES_TG_STATUS') && (trim(CLICSHOPPING_APP_TAX_GEO_ZONES_TG_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_TAX_GEO_ZONES_INSTALLED')) {
+      if (\defined('MODULE_MODULES_TAX_GEO_ZONES_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_TAX_GEO_ZONES_INSTALLED);
       }
 

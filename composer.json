@@ -7,9 +7,10 @@
         "guzzlehttp/guzzle": "^6.3",
         "setasign/fpdf": "1.8.1",
         "phpxmlrpc/phpxmlrpc": "^4.0",
-        "sensiolabs/security-checker": "^6.0",
         "darkghosthunter/preloader": "^1.1",
         "stripe/stripe-php": "^7.23",
-        "ext-json": "*"
+        "ext-json": "*",
+        "mattketmo/email-checker": "^2.0",
+        "daveearley/daves-email-validation-tool": "^1.2"
     }
 }

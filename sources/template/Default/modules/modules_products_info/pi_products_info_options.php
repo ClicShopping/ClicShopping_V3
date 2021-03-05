@@ -15,8 +15,8 @@
   use ClicShopping\Sites\Shop\Tax;
 
   class pi_products_info_options {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_info_options');
       $this->description = CLICSHOPPING::getDef('module_products_info_options_description');
 
-      if (defined('MODULE_PRODUCTS_INFO_OPTIONS_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_OPTIONS_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_INFO_OPTIONS_STATUS == 'True');
       }
@@ -97,7 +97,7 @@
 //*****************************
 // Strong relations with pi_products_info price.php Don't delete
 //*****************************
-            if (defined('MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER')) {
+            if (\defined('MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER')) {
                 if (MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER > MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER) {
                  $products_options_content_display .= HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add&cPath=' . $CLICSHOPPING_Category->getPath(), ' SSL'), 'post', '', ['tokenize' => true]);
                }
@@ -137,11 +137,11 @@
                       $option_price_display_d = $option_price_display;
                     }
 
-                    $products_options_array[count($products_options_array)-1]['text'] .= $option_price_display_d;
+                    $products_options_array[\count($products_options_array)-1]['text'] .= $option_price_display_d;
                   }
                 } // end while $products_options
 
-                if (isset($CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')]) && is_string($CLICSHOPPING_ProductsCommon->getID()))  {
+                if (isset($CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')]) && \is_string($CLICSHOPPING_ProductsCommon->getID()))  {
                   $selected_attribute = $CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')];
                 } else {
                   $selected_attribute = false;
@@ -175,11 +175,11 @@
                       $option_price_display_d = $option_price_display;
                     }
 
-                    $products_options_array[count($products_options_array)-1]['text'] .= $option_price_display_d;
+                    $products_options_array[\count($products_options_array)-1]['text'] .= $option_price_display_d;
                   }
                 } // end while $products_options
 
-                if (isset($CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')]) && is_string($CLICSHOPPING_ProductsCommon->getID()))  {
+                if (isset($CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')]) && \is_string($CLICSHOPPING_ProductsCommon->getID()))  {
                   $selected_attribute = $CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')];
                 } else {
                   $selected_attribute = false;
@@ -188,7 +188,7 @@
                 $products_options_content_display .='<label class="ModuleProductsInfoOptionsName">' . $QproductsOptionsName->value('products_options_name') . ': </label>';
 
                 foreach ($products_options_array as $value) {
-                  if (!is_null($value['image'])) {
+                  if (!\is_null($value['image'])) {
                     if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $value['image'])) {
                     $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $value['image'], $value['text']) . '   ';
                     } else {
@@ -204,7 +204,7 @@
                   $products_options_content_display .= HTML::radioField('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $value['id'], $selected_attribute, 'required aria-required="true" id="' . $value['text'] .'" class="custom-control-input" name="' . $value['text'] .'"');
                   $products_options_content_display .= '<label class="custom-control-label" for="' . $value['text'] .'">' . $products_attributes_image . $value['text']  . '</label>';
                   $products_options_content_display .= '</div>';
-                  $products_options_content_display .= '<label for="' . $value['text'] .'" class="sr-only">' . $value['text'] . '</label>';
+                  $products_options_content_display .= '<label for="' . $value['text'] .'" class="visually-hidden"></label>';
                   $products_options_content_display .= '</div>';
                 }
               }
@@ -237,7 +237,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_INFO_OPTIONS_STATUS');
+      return \defined('MODULE_PRODUCTS_INFO_OPTIONS_STATUS');
     }
 
     public function install() {
@@ -271,11 +271,11 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where Do you want to display the module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_OPTIONS_POSITION',
-          'configuration_value' => 'float-md-none',
+          'configuration_value' => 'float-none',
           'configuration_description' => 'Affiche l\'option du produit à gauche ou à droite<br><br><i>(Valeur Left = Gauche <br>Valeur Right = Droite <br>Valeur None = Aucun)</i>',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

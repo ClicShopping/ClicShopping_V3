@@ -8,6 +8,7 @@ use PhpXmlRpc\Helper\XMLParser;
 /**
  * A helper class to easily convert between Value objects and php native values
  * @todo implement an interface
+ * @todo add class constants for the options values
  */
 class Encoder
 {
@@ -22,7 +23,7 @@ class Encoder
      * This means that the remote communication end can decide which php code will get executed on your server, leaving
      * the door possibly open to 'php-injection' style of attacks (provided you have some classes defined on your server
      * that might wreak havoc if instances are built outside an appropriate context).
-     * Make sure you trust the remote server/client before eanbling this!
+     * Make sure you trust the remote server/client before enabling this!
      *
      * @author Dan Libby (dan@libby.com)
      *
@@ -41,18 +42,29 @@ class Encoder
                     $typ = key($xmlrpcVal->me);
                     switch ($typ) {
                         case 'dateTime.iso8601':
-                            $xmlrpcVal->scalar = $val;
-                            $xmlrpcVal->type = 'datetime';
-                            $xmlrpcVal->timestamp = \PhpXmlRpc\Helper\Date::iso8601Decode($val);
-
-                            return $xmlrpcVal;
+                            $xmlrpcVal = array(
+                                'xmlrpc_type' => 'datetime',
+                                'scalar' => $val,
+                                'timestamp' => \PhpXmlRpc\Helper\Date::iso8601Decode($val)
+                            );
+                            return (object)$xmlrpcVal;
                         case 'base64':
-                            $xmlrpcVal->scalar = $val;
-                            $xmlrpcVal->type = $typ;
-
-                            return $xmlrpcVal;
+                            $xmlrpcVal = array(
+                                'xmlrpc_type' => 'base64',
+                                'scalar' => $val
+                            );
+                            return (object)$xmlrpcVal;
+                        case 'string':
+                            if (isset($options['extension_api_encoding'])) {
+                                $dval = @iconv('UTF-8', $options['extension_api_encoding'], $val);
+                                if ($dval !== false) {
+                                    return $dval;
+                                }
+                            }
+                            //return $val;
+                            // break through voluntarily
                         default:
-                            return $xmlrpcVal->scalarval();
+                            return $val;
                     }
                 }
                 if (in_array('dates_as_objects', $options) && $xmlrpcVal->scalartyp() == 'dateTime.iso8601') {
@@ -71,15 +83,15 @@ class Encoder
                         return $out;
                     }
                 }
-
                 return $xmlrpcVal->scalarval();
+
             case 'array':
                 $arr = array();
                 foreach($xmlrpcVal as $value) {
                     $arr[] = $this->decode($value, $options);
                 }
-
                 return $arr;
+
             case 'struct':
                 // If user said so, try to rebuild php objects for specific struct vals.
                 /// @todo should we raise a warning for class not found?
@@ -92,24 +104,24 @@ class Encoder
                     foreach ($xmlrpcVal as $key => $value) {
                         $obj->$key = $this->decode($value, $options);
                     }
-
                     return $obj;
                 } else {
                     $arr = array();
                     foreach ($xmlrpcVal as $key => $value) {
                         $arr[$key] = $this->decode($value, $options);
                     }
-
                     return $arr;
                 }
+
             case 'msg':
                 $paramCount = $xmlrpcVal->getNumParams();
                 $arr = array();
                 for ($i = 0; $i < $paramCount; $i++) {
                     $arr[] = $this->decode($xmlrpcVal->getParam($i), $options);
                 }
-
                 return $arr;
+
+            /// @todo throw on unsupported type
         }
     }
 
@@ -128,13 +140,14 @@ class Encoder
      * @param mixed $phpVal the value to be converted into an xmlrpc value object
      * @param array $options can include 'encode_php_objs', 'auto_dates', 'null_extension' or 'extension_api'
      *
-     * @return \PhpXmlrpc\Value
+     * @return Value
      */
     public function encode($phpVal, $options = array())
     {
         $type = gettype($phpVal);
         switch ($type) {
             case 'string':
+                /// @todo should we be stricter in the accepted dates (ie. reject more of invalid days & times)?
                 if (in_array('auto_dates', $options) && preg_match('/^[0-9]{8}T[0-9]{2}:[0-9]{2}:[0-9]{2}$/', $phpVal)) {
                     $xmlrpcVal = new Value($phpVal, Value::$xmlrpcDateTime);
                 } else {
@@ -177,7 +190,24 @@ class Encoder
                 if (is_a($phpVal, 'PhpXmlRpc\Value')) {
                     $xmlrpcVal = $phpVal;
                 } elseif (is_a($phpVal, 'DateTimeInterface')) {
-                    $xmlrpcVal = new Value($phpVal->format('Ymd\TH:i:s'), Value::$xmlrpcStruct);
+                    $xmlrpcVal = new Value($phpVal->format('Ymd\TH:i:s'), Value::$xmlrpcDateTime);
+                } elseif (in_array('extension_api', $options) && $phpVal instanceof \stdClass && isset($phpVal->xmlrpc_type)) {
+                    // Handle the 'pre-converted' base64 and datetime values
+                    if (isset($phpVal->scalar)) {
+                        switch ($phpVal->xmlrpc_type) {
+                            case 'base64':
+                                $xmlrpcVal = new Value($phpVal->scalar, Value::$xmlrpcBase64);
+                                break;
+                            case 'datetime':
+                                $xmlrpcVal = new Value($phpVal->scalar, Value::$xmlrpcDateTime);
+                                break;
+                            default:
+                                $xmlrpcVal = new Value();
+                        }
+                    } else {
+                        $xmlrpcVal = new Value();
+                    }
+
                 } else {
                     $arr = array();
                     foreach($phpVal as $k => $v) {
@@ -222,13 +252,13 @@ class Encoder
      * Convert the xml representation of a method response, method request or single
      * xmlrpc value into the appropriate object (a.k.a. deserialize).
      *
-     * Q: is this a good name for this method? It does something quite different from 'decode' after all
-     * (returning objects vs returns plain php values)...
+     * @todo is this a good name/class for this method? It does something quite different from 'decode' after all
+     *       (returning objects vs returns plain php values)... In fact it belongs rather to a Parser class
      *
      * @param string $xmlVal
      * @param array $options
      *
-     * @return mixed false on error, or an instance of either Value, Request or Response
+     * @return Value|Request|Response|false false on error, or an instance of either Value, Request or Response
      */
     public function decodeXml($xmlVal, $options = array())
     {
@@ -258,13 +288,14 @@ class Encoder
 
         // What if internal encoding is not in one of the 3 allowed? We use the broadest one, ie. utf8!
         if (!in_array(PhpXmlRpc::$xmlrpc_internalencoding, array('UTF-8', 'ISO-8859-1', 'US-ASCII'))) {
-            $options = array(XML_OPTION_TARGET_ENCODING => 'UTF-8');
+            /// @todo emit a warning
+            $parserOptions = array(XML_OPTION_TARGET_ENCODING => 'UTF-8');
         } else {
-            $options = array(XML_OPTION_TARGET_ENCODING => PhpXmlRpc::$xmlrpc_internalencoding);
+            $parserOptions = array(XML_OPTION_TARGET_ENCODING => PhpXmlRpc::$xmlrpc_internalencoding);
         }
 
-        $xmlRpcParser = new XMLParser($options);
-        $xmlRpcParser->parse($xmlVal, XMLParser::RETURN_XMLRPCVALS, XMLParser::ACCEPT_REQUEST | XMLParser::ACCEPT_RESPONSE | XMLParser::ACCEPT_VALUE);
+        $xmlRpcParser = new XMLParser($parserOptions);
+        $xmlRpcParser->parse($xmlVal, XMLParser::RETURN_XMLRPCVALS, XMLParser::ACCEPT_REQUEST | XMLParser::ACCEPT_RESPONSE | XMLParser::ACCEPT_VALUE | XMLParser::ACCEPT_FAULT);
 
         if ($xmlRpcParser->_xh['isf'] > 1) {
             // test that $xmlrpc->_xh['value'] is an obj, too???
@@ -286,20 +317,32 @@ class Encoder
                 } else {
                     $r = new Response($v);
                 }
-
                 return $r;
+
             case 'methodcall':
                 $req = new Request($xmlRpcParser->_xh['method']);
                 for ($i = 0; $i < count($xmlRpcParser->_xh['params']); $i++) {
                     $req->addParam($xmlRpcParser->_xh['params'][$i]);
                 }
-
                 return $req;
+
             case 'value':
                 return $xmlRpcParser->_xh['value'];
+
+            case 'fault':
+                // EPI api emulation
+                $v = $xmlRpcParser->_xh['value'];
+                // use a known error code
+                /** @var Value $vc */
+                $vc = isset($v['faultCode']) ? $v['faultCode']->scalarval() : PhpXmlRpc::$xmlrpcerr['invalid_return'];
+                /** @var Value $vs */
+                $vs = isset($v['faultString']) ? $v['faultString']->scalarval() : '';
+                if (!is_int($vc) || $vc == 0) {
+                    $vc = PhpXmlRpc::$xmlrpcerr['invalid_return'];
+                }
+                return new Response(0, $vc, $vs);
             default:
                 return false;
         }
     }
-
 }

@@ -57,7 +57,7 @@ function uri_for($uri)
  *   stream is read from, data from the iterator will fill a buffer and will be
  *   continuously called until the buffer is equal to the requested read size.
  *   Subsequent read calls will first read from the buffer and then call `next`
- *   on the underlying iterator until it is exhausted.
+ *   on the underlying iterator until it is sold_out.
  * - `object` with `__toString()`: If the object has the `__toString()` method,
  *   the object will be cast to a string and then a stream will be returned that
  *   uses the string value.

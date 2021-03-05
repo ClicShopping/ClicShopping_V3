@@ -76,10 +76,10 @@
         $product_categories_string = '';
         $product_categories = $CLICSHOPPING_CategoriesAdmin->getGenerateCategoryPath($pInfo->products_id, 'product');
 
-        for ($i = 0, $n = count($product_categories); $i < $n; $i++) {
+        for ($i = 0, $n = \count($product_categories); $i < $n; $i++) {
           $category_path = '';
 
-          for ($j = 0, $k = count($product_categories[$i]); $j < $k; $j++) {
+          for ($j = 0, $k = \count($product_categories[$i]); $j < $k; $j++) {
             $category_path .= $product_categories[$i][$j]['text'] . '&nbsp;&gt;&nbsp;';
           }
 
@@ -95,7 +95,7 @@
         <span class="col-sm-4"><br/><?php echo $product_categories_string; ?></span>
       </div>
       <div class="separator"></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Products->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSHOPPING_Products->link('Products&cPath=' . $cPath . '&pID=' . $pInfo->products_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

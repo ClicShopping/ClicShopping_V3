@@ -41,7 +41,7 @@
      */
     final public function link() :string
     {
-      $args = func_get_args();
+      $args = \func_get_args();
 
       $parameters = 'A&' . $this->vendor . '\\' . $this->code;
 
@@ -64,7 +64,7 @@
      */
     final public function redirect() :string
     {
-      $args = func_get_args();
+      $args = \func_get_args();
 
       $parameters = 'A&' . $this->vendor . '\\' . $this->code;
 
@@ -139,7 +139,7 @@
       $r = new \ReflectionClass($this);
 
       $this->code = $r->getShortName();
-      $this->vendor = array_slice(explode('\\', $r->getNamespaceName()), -2, 1)[0];
+      $this->vendor = \array_slice(explode('\\', $r->getNamespaceName()), -2, 1)[0];
 
       $metafile = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . '/' . $this->code . '/clicshopping.json';
 
@@ -162,7 +162,7 @@
      */
     final public function getDef() :string
     {
-      $args = func_get_args();
+      $args = \func_get_args();
 
       if (!isset($args[0])) {
         $args[0] = null;
@@ -176,7 +176,7 @@
         $args[2] = $this->vendor . '-' . $this->code;
       }
 
-      return call_user_func_array([$this->lang, 'getDef'], $args);
+      return \call_user_func_array([$this->lang, 'getDef'], $args);
     }
 
     /**
@@ -195,7 +195,7 @@
       }
 
       if ($language_code != DEFAULT_LANGUAGE) {
-        return call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
+        return \call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
       }
 
       return false;
@@ -236,11 +236,11 @@
      */
     final public function saveCfgParam($key, $value, $title = null, $description = null, $set_func = null)
     {
-      if (is_null($value)) {
+      if (\is_null($value)) {
         $value = '';
       }
 
-      if (!defined($key)) {
+      if (!\defined($key)) {
         if (!isset($title)) {
           $title = 'Parameter [' . $this->getTitle() . ']';
         }

@@ -26,7 +26,7 @@
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  echo HTML::form('checkout_payment', CLICSHOPPING::link(null, 'Checkout&Confirmation'), 'post', 'class="form-inline" role="form" id ="checkout_payment" onsubmit="return check_form();"',  ['tokenize' => true]);
+  echo HTML::form('checkout_payment', CLICSHOPPING::link(null, 'Checkout&Confirmation'), 'post', 'role="form" id ="checkout_payment" onsubmit="return check_form();"',  ['tokenize' => true]);
 ?>
 <section class="checkout_payment" id="checkout_payment">
   <div class="contentContainer">
@@ -39,7 +39,7 @@
       <div class="alert alert-danger" role="alert">
         <div>
 <?php
-      if (!is_null($error)) {
+      if (!\is_null($error)) {
         echo '<strong>' . HTML::outputProtected($error['title']) . '</strong> ';
         echo HTML::outputProtected($error['error']);
       } else {
@@ -59,7 +59,7 @@
     }
 ?>
       <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_title_Payment'); ?></h1></div>
-      <div class="form-group">
+      <div>
         <?php echo $CLICSHOPPING_Template->getBlocks('modules_checkout_payment'); ?>
       </div>
     </div>

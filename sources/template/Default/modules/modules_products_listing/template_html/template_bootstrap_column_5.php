@@ -9,18 +9,17 @@
  *
  */
 
-use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\CLICSHOPPING;
 ?>
-<div class="col-md-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?>">
-  <div style="padding-top:1rem;"></div>
-  <div class="card-deck-wrapper">
-    <div class="card-deck">
-      <div class="card">
-        <div class="card-block">
-          <div class="separator"></div>
+<div class="col-12 col-sm-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?> ModulesProductsNewBoostrapColumn5">
+  <div class="separator"></div>
+  <div class="card">
+    <div class="card-height">
+        <div class="separator"></div>
           <div class="card-img-top ModulesProductsListingBoostrapColumn5Image">
-            <?php echo $products_image . $ticker; ?>
-          </div>
+          <?php echo $products_image . $ticker; ?>
+        </div>
+        <div class="card-body">
           <div class="ModulesProductsListingBoostrapColumn5Title"><h3><?php echo $manufacturer_name; ?></h3></div>
           <div class="separator"></div>
           <div class="separator"></div>
@@ -31,7 +30,8 @@ use ClicShopping\OM\CLICSHOPPING;
 <?php
   }
 ?>
-          <div>
+        </div>
+       <div>
 <?php
    if (!empty($products_stock)) {
 ?>
@@ -45,7 +45,8 @@ use ClicShopping\OM\CLICSHOPPING;
   }
   if (!empty($products_flash_discount)) {
 ?>
-            <div class="EndDateFlashDiscount"> <?php echo $products_flash_discount; ?></div>
+        <div class="separator"></div>
+        <div class="EndDateFlashDiscount"> <?php echo $products_flash_discount; ?></div>
 <?php
   }
 ?>
@@ -60,9 +61,7 @@ use ClicShopping\OM\CLICSHOPPING;
             <span class="ModulesProductsListingBoostrapColumn5SubmitButton"><label for="ModulesProductsListingBoostrapColumn5SubmitButton"><?php echo $submit_button; ?></label></span>
           </div>
           <?php echo $endform; ?>
-        </div>
-      </div>
-     </div>
+    </div>
   </div>
 </div>
 <?php echo $jsonLtd; ?>

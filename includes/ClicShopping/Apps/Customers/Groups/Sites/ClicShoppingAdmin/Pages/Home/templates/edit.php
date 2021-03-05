@@ -89,7 +89,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/define_language.gif', $CLICSHOPPING_Groups->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Groups->getDef('heading_title_edit'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   echo HTML::form('customers_group', $CLICSHOPPING_Groups->link('Groups&Update'), 'post', 'onSubmit="return check_form();"');
   echo HTML::hiddenField('customer_group_id', $customers_groups_id);
@@ -124,13 +124,13 @@
   <div id="CustomersGroupTab" class="CustomersGroupTab">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Groups->getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Groups->getDef('tab_general') . '</a>'; ?></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_orders'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_orders'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_shipping'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_shipping'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_categorie'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_categorie'); ?></a></li>
     </ul>
 
     <div class="tabsClicShopping">
@@ -299,7 +299,7 @@
                 }
               }
 
-              for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
+              for ($i = 0, $n = \count($include_modules); $i < $n; $i++) {
                 if (strpos($include_modules[$i]['class'], '\\') !== false) {
                   Registry::set('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
                   $module = Registry::get('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']));
@@ -311,7 +311,7 @@
                           <ul class="list-group-slider list-group-flush">
                             <li class="list-group-item-slider">
                               <label class="switch">
-                                <?php echo HTML::checkboxField('payment_unallowed[' . $i . ']', $module->code, (in_array($module->code, $payments_unallowed)) ? true : false, 'class="success"'); ?>
+                                <?php echo HTML::checkboxField('payment_unallowed[' . $i . ']', $module->code, (\in_array($module->code, $payments_unallowed)) ? true : false, 'class="success"'); ?>
                                 <span class="slider"></span>
                               </label>
                             </li>
@@ -369,7 +369,7 @@
                 }
               }
 
-              for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
+              for ($i = 0, $n = \count($include_modules); $i < $n; $i++) {
                 if (strpos($include_modules[$i]['class'], '\\') !== false) {
                   Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
                   $module = Registry::get('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']));
@@ -381,7 +381,7 @@
                           <ul class="list-group-slider list-group-flush">
                             <li class="list-group-item-slider">
                               <label class="switch">
-                                <?php echo HTML::checkboxField('shipping_unallowed[' . $i . ']', $module->code, (in_array($module->code, $shipping_unallowed)) ? true : false, 'class="success"'); ?>
+                                <?php echo HTML::checkboxField('shipping_unallowed[' . $i . ']', $module->code, (\in_array($module->code, $shipping_unallowed)) ? true : false, 'class="success"'); ?>
                                 <span class="slider"></span>
                               </label>
                             </li>
@@ -451,9 +451,9 @@
               <tr>
                 <td class="formAreaTitle"><?PHP echo $CLICSHOPPING_Groups->getDef('text_categories'); ?></td>
                 <td
-                  class="formAreaTitle text-md-center"><?PHP echo $CLICSHOPPING_Groups->getDef('table_heading_discount'); ?></td>
+                  class="formAreaTitle text-center"><?PHP echo $CLICSHOPPING_Groups->getDef('table_heading_discount'); ?></td>
                 <td
-                  class="formAreaTitle text-md-right"><?PHP echo $CLICSHOPPING_Groups->getDef('table_heading_action'); ?></td>
+                  class="formAreaTitle text-end"><?PHP echo $CLICSHOPPING_Groups->getDef('table_heading_action'); ?></td>
               </tr>
               </thead>
               <tbody>
@@ -496,7 +496,7 @@
                 $Qparents->bindInt(':categories_id', $QgroupToCategories->valueInt('parent_id'));
                 $Qparents->execute();
 
-                if (!is_null($Qparents->value('categories_name'))) {
+                if (!\is_null($Qparents->value('categories_name'))) {
                   $add = $Qparents->value('categories_name') . " - ";
                 } else {
                   $add = '';
@@ -511,9 +511,9 @@
                 <?php echo HTML::hiddenField('catID', $group_to_categories['categories_id']); ?>
                 <td><?php echo $group_to_categories['categories_name']; ?></td>
                 <td
-                  class="text-md-center"><?php echo HTML::inputField('upddiscount', $group_to_categories['discount'], 'maxlength="5" size="5"', false); ?></td>
+                  class="text-center"><?php echo HTML::inputField('upddiscount', $group_to_categories['discount'], 'maxlength="5" size="5"', false); ?></td>
                 <td
-                  class="text-md-right"><?php echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'info', null, 'sm'); ?></form>
+                  class="text-end"><?php echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'info', null, 'sm'); ?></form>
                   </form>
                   <?php
                     echo HTML::form('delete_categories', $CLICSHOPPING_Groups->link('Groups&DeleteCategories'));

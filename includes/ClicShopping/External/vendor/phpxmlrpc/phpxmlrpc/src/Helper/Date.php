@@ -26,8 +26,7 @@ class Date
             $t = strftime("%Y%m%dT%H:%M:%S", $timet);
         } else {
             if (function_exists('gmstrftime')) {
-                // gmstrftime doesn't exist in some versions
-                // of PHP
+                // gmstrftime doesn't exist in some versions of PHP
                 $t = gmstrftime("%Y%m%dT%H:%M:%S", $timet);
             } else {
                 $t = strftime("%Y%m%dT%H:%M:%S", $timet - date('Z'));
@@ -48,7 +47,7 @@ class Date
     public static function iso8601Decode($idate, $utc = 0)
     {
         $t = 0;
-        if (preg_match('/([0-9]{4})([0-9]{2})([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})/', $idate, $regs)) {
+        if (preg_match('/([0-9]{4})([0-1][0-9])([0-3][0-9])T([0-2][0-9]):([0-5][0-9]):([0-5][0-9])/', $idate, $regs)) {
             if ($utc) {
                 $t = gmmktime($regs[4], $regs[5], $regs[6], $regs[2], $regs[3], $regs[1]);
             } else {

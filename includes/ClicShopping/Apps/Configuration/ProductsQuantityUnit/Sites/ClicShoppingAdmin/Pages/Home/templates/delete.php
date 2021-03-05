@@ -84,7 +84,7 @@
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $oInfo->products_quantity_unit_title . '</strong>'; ?><br/><br/>
       </div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <?php
           if ($remove_status) {
             ?>

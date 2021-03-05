@@ -23,7 +23,7 @@
     <div class="separator"></div>
     <div class="card">
       <div class="card-header">
-        <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
+        <span class="alert-warning float-end" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
         <span class="modulesCreateAccountRegistrationPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_personal'); ?></h3></span>
       </div>
       <div class="card-block">
@@ -61,7 +61,7 @@
               <div class="form-group row">
                 <label for="dob" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_date_of_birth'); ?></label>
                 <div class="col-sm-6 col-md-6">
-                  <?php echo HTML::inputField('dob', null, 'rel="txtTooltipDob" title="' . CLICSHOPPING::getDef('text_create_account_dob_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" aria-describedby="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" placeholder="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" minlength="'. ENTRY_DOB_MIN_LENGTH .'"', 'date'); ?>
+                  <?php echo HTML::inputField('dob', null, 'rel="txtTooltipDob" title="' . CLICSHOPPING::getDef('text_create_account_dob_dgrp') . '" data-bs-toggle="tooltip" data-placement="right" required aria-required="true" aria-describedby="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" placeholder="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" minlength="'. ENTRY_DOB_MIN_LENGTH .'"', 'date'); ?>
                 </div>
               </div>
             </div>
@@ -74,7 +74,7 @@
               <div class="form-group row">
                 <label for="InputEmail" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_email_address'); ?></label>
                 <div class="col-sm-6 col-md-6">
-                  <?php echo HTML::inputField('email_address', null, 'rel="txtTooltipEmailAddress" autocomplete="email" title="' . CLICSHOPPING::getDef('entry_email_address') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email_address') . '" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', 'email'); ?>
+                  <?php echo HTML::inputField('email_address', null, 'rel="txtTooltipEmailAddress" autocomplete="email" title="' . CLICSHOPPING::getDef('entry_email_address') . '" data-bs-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email_address') . '" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', 'email'); ?>
                 </div>
               </div>
             </div>
@@ -128,7 +128,7 @@
 ?>
     <div class="card">
       <div class="card-header">
-        <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
+        <span class="alert-warning float-end" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
         <span class="modulesCreateAccountRegistrationPasswordPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_password'); ?></h3></span>
       </div>
       <div class="card-block">

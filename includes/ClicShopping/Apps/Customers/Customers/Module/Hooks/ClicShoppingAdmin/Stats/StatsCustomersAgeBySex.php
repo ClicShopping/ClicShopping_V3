@@ -30,7 +30,10 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/StatsCustomersAgeBySex');
     }
 
-    private function statsAgeCustomersMen()
+    /**
+     * @return int
+     */
+    private function statsAgeCustomersMen() :int
     {
       $statAnalyseCustomersMan = '    ';
 
@@ -42,15 +45,17 @@
 
       $QstatAnalyseCustomersMan->execute();
 
-      if (!is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
+      if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
         $statAnalyseCustomersMan = $QstatAnalyseCustomersMan->valueDecimal('avgage');
       }
 
       return $statAnalyseCustomersMan;
     }
 
-
-    private function statsAgeCustomersWomen()
+    /**
+     * @return int
+     */
+    private function statsAgeCustomersWomen() :int
     {
       $statAnalyseCustomersWomen = '    ';
 
@@ -62,7 +67,7 @@
 
       $QstatAnalyseCustomersWomen->execute();
 
-      if (!is_null($QstatAnalyseCustomersWomen->valueDecimal('avgage'))) {
+      if (!\is_null($QstatAnalyseCustomersWomen->valueDecimal('avgage'))) {
         $statAnalyseCustomersWomen = $QstatAnalyseCustomersWomen->valueDecimal('avgage');
       }
 
@@ -70,19 +75,18 @@
     }
 
 
-    public function execute()
+    public function display() :string
     {
-
       $output = '
-  <div class="card col-md-2 cardStatsInfo">
-    <div class="card-block">
+  <div class="col-md-2 m-1">
+    <div class="card cardStatsInfo">
       <h4 class="card-title StatsTitle">' . $this->app->getDef('text_average_age') . '</h4>
       <div class="card-text">
         <div class="col-sm-12 StatsValue">
-          <span class="col-md-4 float-md-left">
-            <i class="fas fa-calendar fa-2x" aria-hidden="true"></i>
+          <span class="col-md-4 float-start">
+            <i class="bi bi-calendar"></i>
           </span>
-          <span class="col-md-8 float-md-right">
+          <span class="col-md-8 float-end">
             <div class="col-sm-12 StatsValue">' . $this->statsAgeCustomersMen() . ' - ' . $this->app->getDef('text_male') . '</div>
             <div class="col-sm-12 StatsValue">' . $this->statsAgeCustomersWomen() . ' - ' . $this->app->getDef('text_female') . '</div>
           </span>

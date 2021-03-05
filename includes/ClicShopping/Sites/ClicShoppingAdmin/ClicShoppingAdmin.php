@@ -8,7 +8,6 @@
    * @Info : https://www.clicshopping.org/forum/trademark/
    *
    */
-//  declare(strict_types=1);
 
   namespace ClicShopping\Sites\ClicShoppingAdmin;
 
@@ -31,8 +30,6 @@
     protected function init()
     {
       global $login_request;
-
-      error_reporting(E_ALL & ~E_NOTICE);
 
       $CLICSHOPPING_Cookies = new Cookies();
       Registry::set('Cookies', $CLICSHOPPING_Cookies);
@@ -154,16 +151,16 @@
       if (!empty($_GET)) {
         $req = basename(array_keys($_GET)[0]);
 
-        if (($req == 'A') && (count($_GET) > 1)) {
+        if (($req == 'A') && (\count($_GET) > 1)) {
           $app = array_keys($_GET)[1];
 
-          if (strpos($app, '\\') !== false) {
+          if (str_contains($app, '\\')) {
             list($vendor, $app) = explode('\\', $app);
 
             if (Apps::exists($vendor . '\\' . $app) && ($page = Apps::getRouteDestination(null, $vendor . '\\' . $app)) !== null) {
 // get controller class name from namespace
               $page_namespace = explode('\\', $page);
-              $page_code = $page_namespace[count($page_namespace) - 1];
+              $page_code = $page_namespace[\count($page_namespace) - 1];
 
               if (class_exists('ClicShopping\Apps\\' . $vendor . '\\' . $app . '\\' . $page . '\\' . $page_code)) {
                 $this->app = $vendor . '\\' . $app;

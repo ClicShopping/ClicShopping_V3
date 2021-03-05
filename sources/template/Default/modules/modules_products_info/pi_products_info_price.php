@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class pi_products_info_price {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_info_price');
       $this->description = CLICSHOPPING::getDef('module_products_info_price_description');
 
-      if (defined('MODULE_PRODUCTS_INFO_PRICE_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_PRICE_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_INFO_PRICE_STATUS == 'True');
       }
@@ -53,51 +53,63 @@
         if ($CLICSHOPPING_ProductsCommon->getProductsGroupView() == 1 ||  $CLICSHOPPING_ProductsCommon->getProductsView() == 1) {
 
 // display the price/weight
-           if (!empty($CLICSHOPPING_ProductsCommon->getProductsPriceByWeight())) {
-             $weight_symbol = $CLICSHOPPING_ProductsCommon->getSymbolbyProducts($CLICSHOPPING_ProductsCommon->getWeightClassIdByProducts($CLICSHOPPING_ProductsCommon->getID()));
-             $product_price_kilo = CLICSHOPPING::getDef('text_products_info_price_by_weight') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsPriceByWeight() . ' / ' . $weight_symbol;
-           } else {
-             $product_price_kilo = '';
-           }
+          if (!empty($CLICSHOPPING_ProductsCommon->getProductsPriceByWeight())) {
+            $weight_symbol = $CLICSHOPPING_ProductsCommon->getSymbolbyProducts($CLICSHOPPING_ProductsCommon->getWeightClassIdByProducts($CLICSHOPPING_ProductsCommon->getID()));
+            $product_price_kilo = CLICSHOPPING::getDef('text_products_info_price_by_weight') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsPriceByWeight() . ' / ' . $weight_symbol;
+          } else {
+            $product_price_kilo = '';
+          }
 // Products attributes
-           if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getId()) > 1 ) {
-             $clic_has_product_attributes = $CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getID() );
-           }
+          if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getId()) > 1) {
+            $clic_has_product_attributes = $CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getID());
+          }
 
 // Minimum quantity to take an order
-           if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder() > 1) {
-             $min_order_quantity_products_display = CLICSHOPPING::getDef('min_qty_order_product') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder();
-           } else {
-             $min_order_quantity_products_display = '';
-           }
+          if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder() > 1) {
+            $min_order_quantity_products_display = CLICSHOPPING::getDef('min_qty_order_product') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder();
+          } else {
+            $min_order_quantity_products_display = '';
+          }
 
 // display the differents prices before button
           $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice();
 
 // display a message in public function the customer group applied - before submit button
-           if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
-             $submit_button_view = $CLICSHOPPING_ProductsCommon->getProductsAllowingTakeAnOrderMessage();
-           }
+          if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
+            $submit_button_view = $CLICSHOPPING_ProductsCommon->getProductsAllowingTakeAnOrderMessage();
+          }
 
 // display the differents buttons before minorder qty
           if (STOCK_ALLOW_CHECKOUT == 'true' && PRE_ORDER_AUTORISATION == 'true' && $CLICSHOPPING_ProductsCommon->getProductsQuantity() < 1) {
             $buy_button = HTML::button(CLICSHOPPING::getDef('button_pre_order'), null, null, 'success', null, 'lg');
             $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton();
-          } elseif(STOCK_ALLOW_CHECKOUT == 'true') {
+          } elseif (STOCK_ALLOW_CHECKOUT == 'true') {
             $buy_button = HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
             $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton();
           } elseif ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
             $buy_button = HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
             $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
-            $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton() ;
+            $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton();
           } else {
             $submit_button = '';
           }
 
 // Display an input allowing for the customer to insert a quantity
-             $input_quantity = CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
+          if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
+            if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView() != 0) {
+              $input_quantity = CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
+            } else {
+              $input_quantity = '';
+            }
+          } else {
+            if ($CLICSHOPPING_ProductsCommon->getPriceGroupView() != 0) {
+              $input_quantity = CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
+            } else {
+              $input_quantity = '';
+            }
+          }
 
 // Quantity type
           if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
@@ -109,9 +121,9 @@
               $products_quantity_unit = CLICSHOPPING::getDef('text_products_quantity_type') . ' ' . $CLICSHOPPING_ProductsCommon->getProductQuantityUnitTypeCustomersGroup();
             }
           }
-// Display an information if the stock is exhausted for all groups
-          if ($CLICSHOPPING_ProductsCommon->getProductsExhausted() != '') {
-             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted();
+// Display an information if the stock is sold out for all groups
+          if ($CLICSHOPPING_ProductsCommon->getProductsSoldOut() != '') {
+             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsSoldOut();
              $min_quantity = 0;
              $input_quantity ='';
              $min_order_quantity_products_display = '';
@@ -121,7 +133,7 @@
 
               $products_price_content = '<!-- Start product price -->' . "\n";
 // Strong relations with pi_products_info_options.php = Don't delete
-              if (($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes($CLICSHOPPING_ProductsCommon->getId()) == 0) || (defined('MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER') && MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER < MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
+              if (($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes($CLICSHOPPING_ProductsCommon->getId()) == 0) || (\defined('MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER') && MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER < MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
                 $products_price_content .= HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add&cPath=' . $cPath, ' SSL'), 'post', null, ['tokenize' => true]). "\n";
                 if (isset($_GET['Description'])) $products_price_content .= HTML::hiddenField('url', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getId());
               }
@@ -136,7 +148,7 @@
                 $products_price_content .= ob_get_clean();
 
 // Strong relations with pi_products_options.php Don't delete
-                if ($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes() == 0 || (defined('MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER') && MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER >= MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
+                if ($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes() == 0 || (\defined('MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER') && MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER >= MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
                   $products_price_content .= '</form>' . "\n";
                 }
               } // end products_group_view
@@ -147,7 +159,7 @@
 // ----------------------------------------------------------------//
             $products_price_content =  '<!-- Start products_archives -->' . "\n";
             $products_price_content .= '<div class="separator"></div>';
-            $products_price_content .= '<h3 class="text-md-center">' . CLICSHOPPING::getDef('products_not_sell') . '</h3>';
+            $products_price_content .= '<h3 class="text-center">' . CLICSHOPPING::getDef('products_not_sell') . '</h3>';
             $products_price_content .= '<div class="buttonSet"><span class="buttonAction">'. HTML::button(CLICSHOPPING::getDef('button_continue'), CLICSHOPPING::link(), 'primary') . '</span></div>' . "\n";
             $products_price_content .= '<!-- products_archives end -->' . "\n";
           }
@@ -164,7 +176,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_INFO_PRICE_STATUS');
+      return \defined('MODULE_PRODUCTS_INFO_PRICE_STATUS');
     }
 
     public function install() {
@@ -197,11 +209,11 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where Do you want to display the module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_PRICE_POSITION',
-          'configuration_value' => 'float-md-none',
+          'configuration_value' => 'float-none',
           'configuration_description' => 'Select where you want display the module',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

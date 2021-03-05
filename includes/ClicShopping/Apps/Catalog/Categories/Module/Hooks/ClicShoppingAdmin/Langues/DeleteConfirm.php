@@ -31,7 +31,7 @@
 
     private function delete($id)
     {
-      if (!is_null($id)) {
+      if (!\is_null($id)) {
         $this->app->db->delete('categories_description', ['language_id' => $id]);
       }
     }
@@ -39,7 +39,7 @@
     public function execute()
     {
 
-      if (!defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
         return false;
       }
 

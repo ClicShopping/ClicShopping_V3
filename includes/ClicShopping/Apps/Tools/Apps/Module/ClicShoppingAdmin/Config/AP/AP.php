@@ -27,14 +27,14 @@
       $this->title = $this->app->getDef('module_ap_title');
       $this->short_title = $this->app->getDef('module_ap_short_title');
       $this->introduction = $this->app->getDef('module_ap_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_APPS_AP_STATUS') && (trim(CLICSHOPPING_APP_APPS_AP_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_APPS_AP_STATUS') && (trim(CLICSHOPPING_APP_APPS_AP_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_APPS_INSTALLED')) {
+      if (\defined('MODULE_MODULES_APPS_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_APPS_INSTALLED);
       }
 

@@ -14,7 +14,7 @@
 
   class securityCheck_default_language
   {
-    public $type = 'danger';
+    public string $type = 'danger';
 
     public function __construct()
     {
@@ -25,7 +25,7 @@
 
     public function pass()
     {
-      return defined('DEFAULT_LANGUAGE');
+      return \defined('DEFAULT_LANGUAGE');
     }
 
     public function getMessage()

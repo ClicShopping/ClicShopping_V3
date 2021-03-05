@@ -20,8 +20,6 @@
 
   echo HTML::form('advanced_search', CLICSHOPPING::link(null, 'Search&Q'), 'post', 'id="advanced_search" role="form"', ['session_id' => true]);
 ?>
-
-<script src="<?php echo CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/general.js')); ?>"></script>
 <section class="advanced_search" id="advanced_search">
   <div class="contentContainer">
     <div class="contentText">
@@ -29,9 +27,9 @@
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_advanced_search'); ?>
       <div class="separator"></div>
         <div class="control-group">
-          <div class="controls">
+          <div>
             <div class="buttonSet">
-              <span class="float-md-right"><label for="buttonSearch"><?php echo HTML::button(CLICSHOPPING::getDef('button_search'), null, null, 'success'); ?></label></span>
+              <span class="float-end"><label for="buttonSearch"><?php echo HTML::button(CLICSHOPPING::getDef('button_search'), null, null, 'success'); ?></label></span>
             </div>
           </div>
       </div>

@@ -32,7 +32,7 @@
         }
       });
 
-      if (isset($_SESSION['MessageStack_Data']) && is_array($_SESSION['MessageStack_Data'])) {
+      if (isset($_SESSION['MessageStack_Data']) && \is_array($_SESSION['MessageStack_Data'])) {
         foreach ($_SESSION['MessageStack_Data'] as $group => $messages) {
           foreach ($messages as $message) {
             $this->add($message['text'], $message['type'], $group);
@@ -67,11 +67,14 @@
         'type' => $type
       ];
 
-      if (!$this->exists($group) || !in_array($stack, $this->data[$group])) {
+      if (!$this->exists($group) || !\in_array($stack, $this->data[$group])) {
         $this->data[$group][] = $stack;
       }
     }
-
+  
+    /**
+     * @param string|null $group
+     */
     public function reset(?string $group = null)
     {
       if (isset($group)) {
@@ -85,9 +88,8 @@
 
     /**
      * Checks to see if a group in the stack contains messages
-     *
-     * @param string $group The name of the group to check
-     *
+     * @param string|null $group
+     * @return bool
      */
     public function exists(?string $group = null)
     {
@@ -100,9 +102,8 @@
 
     /**
      * Checks to see if the message stack contains messages
-     *
+     * @return bool
      */
-
     public function hasContent()
     {
       return !empty($this->data);
@@ -122,7 +123,7 @@
       if ($this->exists($group)) {
         $data = [];
 
-        if (is_array($this->data[$group])) {
+        if (\is_array($this->data[$group])) {
           foreach ($this->data[$group] as $message) {
             $data['alert-' . $message['type']][] = $message['text'];
           }
@@ -171,12 +172,12 @@
     {
       if (isset($group)) {
         if ($this->exists($group)) {
-          return count($this->data[$group]);
+          return \count($this->data[$group]);
         }
 
         return 0;
       }
 
-      return count($this->data);
+      return \count($this->data);
     }
   }

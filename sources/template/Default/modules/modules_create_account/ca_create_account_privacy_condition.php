@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class ca_create_account_privacy_condition {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_create_account_privacy_condition_title');
       $this->description = CLICSHOPPING::getDef('module_create_account_privacy_condition_description');
 
-      if (defined('MODULE_CREATE_ACCOUNT_PRIVACY_CONDITION_STATUS')) {
+      if (\defined('MODULE_CREATE_ACCOUNT_PRIVACY_CONDITION_STATUS')) {
         $this->sort_order = MODULE_CREATE_ACCOUNT_PRIVACY_CONDITION_SORT_ORDER;
         $this->enabled = (MODULE_CREATE_ACCOUNT_PRIVACY_CONDITION_STATUS == 'True');
       }
@@ -60,7 +60,7 @@
   }
 
   public function check() {
-    return defined('MODULE_CREATE_ACCOUNT_PRIVACY_CONDITION_STATUS');
+    return \defined('MODULE_CREATE_ACCOUNT_PRIVACY_CONDITION_STATUS');
   }
 
   public function install() {

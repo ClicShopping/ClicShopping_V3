@@ -47,9 +47,9 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/define_language.gif', $CLICSHOPPING_DefineLanguage->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-6 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_DefineLanguage->getDef('heading_title'); ?></span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
-  echo HTML::form('search_form', $CLICSHOPPING_DefineLanguage->link('DefineLanguage'), 'post', 'class="form-inline"', ['session_id' => true]) . HTML::inputField('search', null, 'placeholder="' . $CLICSHOPPING_DefineLanguage->getDef('text_search') . '"') . ' ';
+  echo HTML::form('search_form', $CLICSHOPPING_DefineLanguage->link('DefineLanguage'), 'post', '', ['session_id' => true]) . HTML::inputField('search', null, 'placeholder="' . $CLICSHOPPING_DefineLanguage->getDef('text_search') . '"') . ' ';
   echo '&nbsp;';
 
   /*
@@ -64,7 +64,7 @@
 ?>
               </form>
           </span>
-          <span class="col-md-1 text-md-right">
+          <span class="col-md-1 text-end">
 <?php
   if (isset($_POST['search'])) {
     echo HTML::button($CLICSHOPPING_DefineLanguage->getDef('button_reset'), null, $CLICSHOPPING_DefineLanguage->link('DefineLanguage'), 'warning');
@@ -114,7 +114,7 @@
           $Qcontents->execute();
           do {
             if ($Qcontents->valueInt('count') > 0) {
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 if ($languages[$i]['id'] == $Qcontents->value('languages_id')) {
                   $search_count .= ' [' . $languages[$i]['code'] . ':' . $Qcontents->valueInt('count') . ']';
                 }
@@ -125,14 +125,14 @@
         ?>
         <tr>
           <td><?php echo $Qcontent_group->value('content_group') . ($search_count > '' ? '<span class="text-info"><small><i>' . $search_count . '</i></small></span>' : ''); ?></td>
-          <td class="action text-md-right">
+          <td class="action text-end">
             <?php
               if ($search_count > '') {
                 echo HTML::link($CLICSHOPPING_DefineLanguage->link('ContentGroup=' . $Qcontent_group->value('content_group') . '&search=' . $search), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/filter.png', $CLICSHOPPING_DefineLanguage->getDef('image_filter')));
               }
               ?>
           </td>
-          <td class="action text-md-right">
+          <td class="action text-end">
             <?php
               echo HTML::link($CLICSHOPPING_DefineLanguage->link('ContentGroup=' . $Qcontent_group->value('content_group')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_DefineLanguage->getDef('image_edit')));
             ?>

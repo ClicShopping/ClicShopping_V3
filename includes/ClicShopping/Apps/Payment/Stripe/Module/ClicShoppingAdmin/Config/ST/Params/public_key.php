@@ -16,7 +16,7 @@
     public $sort_order = 45;
 
     protected function init() {
-      $this->title = $this->app->getDef('cfg_stripe_public_key_title');
-      $this->description = $this->app->getDef('cfg_stripe_public_key_desc');
+      $this->title = $this->app->getDef('cfg_stripe_public_private_key_title');
+      $this->description = $this->app->getDef('cfg_stripe_public_private_key_desc');
     }
   }

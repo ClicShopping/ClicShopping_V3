@@ -1,0 +1,8 @@
+Small release
+
+update composer library
+Add default payment selected (just for one and requirement
+fix error in setting apps
+update listing cofirmation to display all products
+new ckeditor version
+new elfinder version

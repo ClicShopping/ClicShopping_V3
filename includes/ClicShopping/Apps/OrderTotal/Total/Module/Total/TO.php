@@ -48,9 +48,9 @@
       $this->title = $this->app->getDef('module_to_title');
       $this->public_title = $this->app->getDef('module_to_public_title');
 
-      $this->enabled = defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS') && (CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS == 'True') ? true : false;
+      $this->enabled = \defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS') && (CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS == 'True') ? true : false;
 
-      $this->sort_order = defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_SORT_ORDER') && ((int)CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_SORT_ORDER > 0) ? (int)CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_SORT_ORDER : 0;
+      $this->sort_order = \defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_SORT_ORDER') && ((int)CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_SORT_ORDER > 0) ? (int)CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_SORT_ORDER : 0;
 
       $this->output = [];
     }
@@ -70,7 +70,7 @@
 
     public function check()
     {
-      return defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS) != '');
+      return \defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS) != '');
     }
 
     public function install()

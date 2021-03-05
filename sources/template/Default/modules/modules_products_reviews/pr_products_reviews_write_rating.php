@@ -14,8 +14,8 @@
   use ClicShopping\Sites\Common\HTMLOverrideCommon;
 
   class pr_products_reviews_write_rating {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,14 +28,13 @@
       $this->title = CLICSHOPPING::getDef('modules_products_reviews_write_rating_title');
       $this->description = CLICSHOPPING::getDef('modules_products_reviews_write_rating_description');
 
-      if (defined('MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS')) {
+      if (\defined('MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS')) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_WRITE_RATING_SORT_ORDER;
         $this->enabled = (MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS == 'True');
       }
     }
 
     public function execute() {
-
       if (isset($_GET['Products']) && isset($_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
         $CLICSHOPPING_Template = Registry::get('Template');
 
@@ -43,9 +42,6 @@
         $text_position = MODULES_PRODUCTS_REVIEWS_WRITE_RATING_POSITION;
 
         $data = '<!-- pr_products_reviews_write start -->' . "\n";
-
-        $data .= HTMLOverrideCommon::starHeaderTagRateYo();
-        $rating = HTMLOverrideCommon::starTagRateYo(null, null, false, '40');
 
         ob_start();
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_write_rating'));
@@ -62,7 +58,7 @@
     }
 
     public function check() {
-      return defined('MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS');
+      return \defined('MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS');
     }
 
     public function install() {
@@ -107,11 +103,11 @@
       $CLICSHOPPING_Db->save('configuration', [
               'configuration_title' => 'Where Do you want to display the module ?',
               'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_RATING_POSITION',
-              'configuration_value' => 'float-md-left',
+              'configuration_value' => 'float-start',
               'configuration_description' => 'Select where you want display the module',
               'configuration_group_id' => '6',
               'sort_order' => '2',
-              'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+              'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
               'date_added' => 'now()'
           ]
       );

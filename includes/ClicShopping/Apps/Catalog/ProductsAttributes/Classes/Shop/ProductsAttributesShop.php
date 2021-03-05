@@ -35,7 +35,7 @@
      */
     private function setCountProductsAttributes($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->productsCommon->getID();
       }
 
@@ -93,7 +93,7 @@
      */
     public function getHasProductAttributes($id = null)
     {
-      if (is_null($id)) {
+      if (\is_null($id)) {
         $id = $this->productsCommon->getID();
       }
 
@@ -120,7 +120,7 @@
      */
     public function getProductsAttributesInfo($products_id, $option_id, ?int $options_values_id = null, ?int $language_id)
     {
-      if (!is_null($options_values_id)) {
+      if (!\is_null($options_values_id)) {
         if ($this->customer->getCustomersGroupID() != 0) {
           $Qattributes = $this->db->prepare('select distinct popt.products_options_name,
                                                              poval.products_options_values_name,
@@ -353,7 +353,7 @@
      * @param int $language_id
      * @return mixed
      */
-    public function getAttributesDownloaded(int $products_id, int $options_id, int $options_values_id, int $language_id)
+    public function getAttributesDownloaded(int|string $products_id, int $options_id, int $options_values_id, int $language_id)
     {
       if (DOWNLOAD_ENABLED == 'true') {
         if ($this->customer->getCustomersGroupID() != 0) {

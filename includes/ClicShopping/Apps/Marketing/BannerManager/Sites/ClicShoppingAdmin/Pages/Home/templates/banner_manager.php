@@ -41,27 +41,20 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/banner_manager.gif', $CLICSHOPPING_BannerManager->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_BannerManager->getDef('heading_title'); ?></span>
-          <span class="col-md-4">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <div class="col-md-5 controls">
-                    <?php echo HTML::form('search', $CLICSHOPPING_BannerManager->link('BannerManager'), 'post', null, ['session_id' => true]); ?>
-                    <?php echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_BannerManager->getDef('heading_title_search') . '"'); ?>
-                    </form>
-                  </div>
-                </div>
+          <span class="col-md-2">
+            <?php echo HTML::form('search', $CLICSHOPPING_BannerManager->link('BannerManager'), 'post', null, ['session_id' => true]); ?>
+            <?php echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_BannerManager->getDef('heading_title_search') . '"'); ?>
+            </form>
+          </span>
 <?php
-  if (isset($_POST['search']) && !is_null($_POST['search'])) {
+  if (isset($_POST['search']) && !\is_null($_POST['search'])) {
     ?>
-    <div
-      class="col-md-5"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_reset'), null, $CLICSHOPPING_BannerManager->link('BannerManager'), 'danger'); ?></div>
+          <span class="col-md-1"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_reset'), null, $CLICSHOPPING_BannerManager->link('BannerManager'), 'warning'); ?></span>
     <?php
   }
 ?>
-              </div>
-            </span>
           <span
-            class="col-md-2 text-md-right"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_new_banner'), null, $CLICSHOPPING_BannerManager->link('Insert'), 'success'); ?></span>
+            class="col-md-3 text-end"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_new_banner'), null, $CLICSHOPPING_BannerManager->link('Insert'), 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -72,6 +65,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-toolbar="#toolbar"
     data-sort-name="groupe"
     data-sort-order="asc"
@@ -96,7 +91,7 @@
         }
       ?>
       <th data-field="language" data-sortable="true"><?php echo $CLICSHOPPING_BannerManager->getDef('table_heading_language'); ?></th>
-      <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_BannerManager->getDef('table_heading_action'); ?>&nbsp;
+      <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_BannerManager->getDef('table_heading_action'); ?>&nbsp;
       </th>
     </tr>
     </thead>
@@ -104,7 +99,7 @@
     <?php
       $search = '';
 
-      if (isset($_POST['search']) && !is_null($_POST['search'])) {
+      if (isset($_POST['search']) && !\is_null($_POST['search'])) {
         $keywords = HTML::sanitize($_POST['search']);
 
         $search = " (banners_title like '%" . $keywords . "%'
@@ -175,7 +170,6 @@
 
 // Permettre l'affichage des groupes en mode B2B
           if (MODE_B2B_B2C == 'true') {
-
             $QcustomersGroup = $CLICSHOPPING_BannerManager->db->prepare('select customers_group_name
                                                                           from :table_customers_groups
                                                                           where customers_group_id = :customers_group_id
@@ -193,7 +187,6 @@
           }
 
           if ($Qbanner->valueInt('languages_id') != 0) {
-
             $QbannerLanguages = $CLICSHOPPING_BannerManager->db->prepare('select name
                                                                          from :table_languages
                                                                          where languages_id = :languages_id
@@ -202,7 +195,6 @@
             $QbannerLanguages->execute();
 
             $banner_language = $QbannerLanguages->fetch();
-
           } else {
             $banner_language['name'] = $CLICSHOPPING_BannerManager->getDef('text_all_languages');
           }
@@ -212,8 +204,8 @@
             $bInfo = new ObjectInfo($bInfo_array);
           }
 
-          $banners_shown = (!is_null($Qinfo->valueInt('banners_shown'))) ? $Qinfo->valueInt('banners_shown') : '0';
-          $banners_clicked = (!is_null($Qinfo->valueInt('banners_clicked'))) ? $Qinfo->valueInt('banners_clicked') : '0';
+          $banners_shown = (!\is_null($Qinfo->valueInt('banners_shown'))) ? $Qinfo->valueInt('banners_shown') : '0';
+          $banners_clicked = (!\is_null($Qinfo->valueInt('banners_clicked'))) ? $Qinfo->valueInt('banners_clicked') : '0';
           ?>
           <tr>
             <td scope="row"><?php echo $Qbanner->value('banners_title_admin'); ?></td>
@@ -223,9 +215,9 @@
             <td>
               <?php
                 if ($Qbanner->valueInt('status') == 1) {
-                  echo '<a href="' . $CLICSHOPPING_BannerManager->link('BannerManager&SetFlag&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id') . '&flag=0') . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+                  echo '<a href="' . $CLICSHOPPING_BannerManager->link('BannerManager&SetFlag&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id') . '&flag=0') . '"><i class="bi-check text-success"></i></a>';
                 } else {
-                  echo '<a href="' . $CLICSHOPPING_BannerManager->link('BannerManager&SetFlag&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id') . '&flag=1') . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+                  echo '<a href="' . $CLICSHOPPING_BannerManager->link('BannerManager&SetFlag&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id') . '&flag=1') . '"><i class="bi bi-x text-danger"></i></a>';
                 }
               ?>
             </td>
@@ -237,7 +229,7 @@
               }
             ?>
             <td><?php echo $banner_language['name']; ?></td>
-            <td class="text-md-right">
+            <td class="text-end">
               <?php
                 echo '<a href="' . $CLICSHOPPING_BannerManager->link('Update&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_BannerManager->getDef('icon_edit')) . '</a>';
                 echo '&nbsp;';
@@ -262,9 +254,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qbanner->getPageSetLabel($CLICSHOPPING_BannerManager->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qbanner->getPageSetLabel($CLICSHOPPING_BannerManager->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qbanner->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qbanner->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php
@@ -272,100 +264,4 @@
   ?>
 </div>
 
-<!-- Modal Dialog, id="demoModal" must be same as that of launcher. -->
-<div class="modal fade" id="statsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content"> <!-- Modal Content -->
-      <div class="modal-body"> <!-- Modal Body -->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
-        <div class="statsModalContent">
-          <i class="fas fa-spinner fa-spin fa-fw"></i>
-        </div>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<script>
-    $(function () {
-        var fetchStatsUrl = '<?= addslashes($CLICSHOPPING_BannerManager->link('BannerManager&FetchStats&banners_id={{id}}', false)); ?>';
-
-        $('#statsModal').on('shown.bs.modal', function (e) {
-            var json = $.getJSON(Mustache.render(fetchStatsUrl, {id: $(e.relatedTarget).data('banner-id')}), function (data) {
-                if (typeof data.labels !== 'undefined') {
-                    $('#statsModal .statsModalContent').html('<h4 class="modal-title">' + data.title + '</h4><div id="banner_statistics"></div><div class="text-md-right"><span class="label label-info">Views</span><span class="label label-danger">Clicks</span></div>');
-
-                    var data = {
-                        labels: data.labels,
-                        series: [
-                            {
-                                name: 'shown',
-                                data: data.days
-                            },
-                            {
-                                name: 'clicked',
-                                data: data.clicks
-                            }
-                        ]
-                    };
-
-                    var options = {
-                        fullWidth: true,
-                        series: {
-                            'shown': {
-                                showPoint: false,
-                                showArea: true
-                            },
-                            'clicked': {
-                                showPoint: false,
-                                showArea: true
-                            }
-                        },
-                        height: '400px',
-                        axisY: {
-                            labelInterpolationFnc: function skipLabels(value, index) {
-                                return index % 2 === 0 ? value : null;
-                            }
-                        }
-                    }
-
-                    var chart = new Chartist.Line('#banner_statistics', data, options);
-
-                    chart.on('draw', function (context) {
-                        if ((typeof context.series !== 'undefined') && (typeof context.series.name !== 'undefined')) {
-                            if (context.series.name == 'shown') {
-                                if (context.type === 'line') {
-                                    context.element.attr({
-                                        style: 'stroke: skyblue;'
-                                    });
-                                } else if (context.type === 'area') {
-                                    context.element.attr({
-                                        style: 'fill: skyblue;'
-                                    });
-                                }
-                            } else if (context.series.name == 'clicked') {
-                                if (context.type === 'line') {
-                                    context.element.attr({
-                                        style: 'stroke: salmon;'
-                                    });
-                                } else if (context.type === 'area') {
-                                    context.element.attr({
-                                        style: 'fill: salmon;'
-                                    });
-                                }
-                            }
-                        }
-                    });
-
-//        chart.update();
-                } else {
-                    $('#statsModal .statsModalContent').html('<div class="alert alert-danger" role="alert">Could not find banner statistics.</div>');
-                }
-            }).fail(function () {
-                $('#statsModal .statsModalContent').html('<div class="alert alert-danger" role="alert">Could not fetch banner statistics.</div>');
-            });
-        });
-    });
-</script>
 

@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class bm_manufacturer_info {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_manufacturer_info_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_manufacturer_info_description');
 
-      if (defined('MODULE_BOXES_MANUFACTURER_INFO_STATUS')) {
+      if (\defined('MODULE_BOXES_MANUFACTURER_INFO_STATUS')) {
         $this->sort_order = MODULE_BOXES_MANUFACTURER_INFO_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_MANUFACTURER_INFO_STATUS == 'True');
         $this->group = ((MODULE_BOXES_MANUFACTURER_INFO_CONTENT_PLACEMENT == 'Left Column') ? 'boxes_column_left' : 'boxes_column_right');
@@ -74,7 +74,7 @@
           $manufacturer_url = $CLICSHOPPING_Manufacturers->getManufacturerUrlRewrited()->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id'));
 
           if (!empty($Qmanufacturers->value('manufacturers_image'))) {
-            $manufacturer_info_string .= '<span class="col-md-12 text-md-center">' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $Qmanufacturers->value('manufacturers_image'), HTML::outputProtected($Qmanufacturers->value('manufacturers_name'))) . '</span>';
+            $manufacturer_info_string .= '<span class="col-md-12 text-center">' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $Qmanufacturers->value('manufacturers_image'), HTML::outputProtected($Qmanufacturers->value('manufacturers_name'))) . '</span>';
           }
 
           if (!empty($Qmanufacturers->value('manufacturers_url'))) {
@@ -110,7 +110,7 @@
     }
 
     public function  check() {
-      return defined('MODULE_BOXES_MANUFACTURER_INFO_STATUS');
+      return \defined('MODULE_BOXES_MANUFACTURER_INFO_STATUS');
     }
 
     public function  install() {

@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class ta_tell_a_friend_send_friend {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('modules_tell_a_friend_send_friend_title');
       $this->description = CLICSHOPPING::getDef('modules_tell_a_friend_send_friend_description');
 
-      if (defined('MODULES_TELL_A_FRIEND_SEND_FRIEND_STATUS')) {
+      if (\defined('MODULES_TELL_A_FRIEND_SEND_FRIEND_STATUS')) {
         $this->sort_order = MODULES_TELL_A_FRIEND_SEND_FRIEND_SORT_ORDER;
         $this->enabled = (MODULES_TELL_A_FRIEND_SEND_FRIEND_STATUS == 'True');
       }
@@ -42,7 +42,7 @@
       if (isset($_GET['Products']) && isset($_GET['TellAFriend'])) {
 
         $name = HTML::inputField('to_name', NULL, 'required aria-required="true" id="inputToName" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_friend_name') . '" minlength="'. (int)ENTRY_FIRST_NAME_MIN_LENGTH .'"');
-        $customer_email = HTML::inputField('to_email_address', NULL, 'title="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_friend_email') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="inputFromEmail" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_friend_email') . '"', 'email');
+        $customer_email = HTML::inputField('to_email_address', NULL, 'title="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_friend_email') . '" data-bs-toggle="tooltip" data-placement="right" required aria-required="true" id="inputFromEmail" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_friend_email') . '"', 'email');
         
         $data = '<!-- ta_tell_a_friend_send_friend start -->' . "\n";
 
@@ -62,7 +62,7 @@
     }
 
     public function check() {
-      return defined('MODULES_TELL_A_FRIEND_SEND_FRIEND_STATUS');
+      return \defined('MODULES_TELL_A_FRIEND_SEND_FRIEND_STATUS');
     }
 
     public function install() {

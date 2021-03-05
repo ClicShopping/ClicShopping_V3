@@ -41,6 +41,6 @@ table_heading_date = Date
 
 button_details = Details
 button_buy_now = Buy
-button_exhausted = Exhausted
+button_sold_out =  Sold Out
 
 template_does_not_exist = Template does not exist, Please verify your template

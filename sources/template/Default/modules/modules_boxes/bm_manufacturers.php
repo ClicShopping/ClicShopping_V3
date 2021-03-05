@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class bm_manufacturers {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_manufacturers_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_manufacturers_description');
 
-      if (defined('MODULE_BOXES_MANUFACTURERS_STATUS')) {
+      if (\defined('MODULE_BOXES_MANUFACTURERS_STATUS')) {
         $this->sort_order = MODULE_BOXES_MANUFACTURERS_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_MANUFACTURERS_STATUS == 'True');
         $this->pages = MODULE_BOXES_MANUFACTURERS_DISPLAY_PAGES;
@@ -46,13 +46,13 @@
       if (!empty($manufacturers)) {
 // Display a list
           if (MODULE_BOXES_MANUFACTURERS_MANUFACTURERS_LIST == 'list') {
-            if (count($manufacturers) <= MODULE_BOXES_MANUFACTURERS_MAX_MANUFACTURERS_LIST) {
+            if (\count($manufacturers) <= MODULE_BOXES_MANUFACTURERS_MAX_MANUFACTURERS_LIST) {
               $manufacturers_list = '<ul style="list-style: none; margin: 0; padding: 0;">';
 
               foreach ($manufacturers as $m) {
                 $manufacturer_url = $CLICSHOPPING_Manufacturers->getManufacturerUrlRewrited()->getManufacturerUrl((int)$m['id']);
 
-                $manufacturers_name = ((strlen($m['name']) > MODULE_BOXES_MANUFACTURERS_MAX_DISPLAY_MANUFACTURER_NAME_LEN) ? substr($m['name'], 0, MAX_DISPLAY_MANUFACTURER_NAME_LEN) . '..' : $m['name']);
+                $manufacturers_name = ((\strlen($m['name']) > MODULE_BOXES_MANUFACTURERS_MAX_DISPLAY_MANUFACTURER_NAME_LEN) ? substr($m['name'], 0, MAX_DISPLAY_MANUFACTURER_NAME_LEN) . '..' : $m['name']);
                 if (isset($_GET['manufacturersId']) && ($_GET['manufacturersId'] == $m['id'])) {
                  $manufacturers_name = '<strong>' . $manufacturers_name .'</strong>';
                 }
@@ -68,14 +68,14 @@
 // Display a drop-down
           $manufacturers_array = [];
 
-          if (count($manufacturers) < 2) {
+          if (\count($manufacturers) < 2) {
             $manufacturers_array[] = ['id' => '',
                                       'text' => CLICSHOPPING::getDef('pull_down_default')
                                      ];
           }
 
           foreach ($manufacturers as $m) {
-            $manufacturers_name = ((strlen($m['name']) > MODULE_BOXES_MANUFACTURERS_MAX_DISPLAY_MANUFACTURER_NAME_LEN) ? substr($m['name'], 0, MAX_DISPLAY_MANUFACTURER_NAME_LEN) . '..' : $m['name']);
+            $manufacturers_name = ((\strlen($m['name']) > MODULE_BOXES_MANUFACTURERS_MAX_DISPLAY_MANUFACTURER_NAME_LEN) ? substr($m['name'], 0, MAX_DISPLAY_MANUFACTURER_NAME_LEN) . '..' : $m['name']);
 
             $manufacturers_array[] = ['id' => $m['id'],
                                       'text' => $manufacturers_name
@@ -83,7 +83,7 @@
           }
 
           $data = HTML::form('manufacturers', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
-          $data .= '<label for="manufacturerDropDown" class="sr-only">' . CLICSHOPPING::getDef('module_boxes_manufacturers_title') . '</label>';
+          $data .= '<label for="manufacturerDropDown" class="visually-hidden"></label>';
           $data .= HTML::selectField('manufacturersId', $manufacturers_array, ($_GET['manufacturersId'] ?? ''), 'onchange="this.form.submit();" id="manufacturerDropDown" class="boxePullDownManufacturer" size="' . MODULE_BOXES_MANUFACTURERS_MANUFACTURERS_LIST . '"');
           $data .=  '</form>';
           $data .=  '<div class="separator"></div>';
@@ -122,7 +122,7 @@
     }
 
     public function  check() {
-      return defined('MODULE_BOXES_MANUFACTURERS_STATUS');
+      return \defined('MODULE_BOXES_MANUFACTURERS_STATUS');
     }
 
     public function  install() {

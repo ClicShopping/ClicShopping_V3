@@ -24,8 +24,8 @@ use ClicShopping\OM\HTML;
         <div class="text-rmd-ight">
           <div class="control-group">
             <div class="separator"></div>
-            <div class="controls">
-              <div class="buttonSet text-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_retailers'), null, CLICSHOPPING::link(null, 'Account&CreatePro'), 'primary'); ?></div>
+            <div>
+              <div class="buttonSet text-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_retailers'), null, CLICSHOPPING::link(null, 'Account&CreatePro'), 'primary'); ?></div>
             </div>
             <div class="separator"></div>
           </div>

@@ -76,10 +76,10 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/menu.png', $CLICSHOPPING_AdministratorMenu->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title'); ?></span>
-          <span class="col-md-9 text-md-right">
+          <span class="col-md-9 text-end">
             <span
-              class="text-md-right"><?php echo HTML::hiddenField('parent_id', $cInfo->parent_id ?? null) . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_update'), null, null, 'success'); ?>&nbsp;</span>
-            <span class="text-md-right"
+              class="text-end"><?php echo HTML::hiddenField('parent_id', $cInfo->parent_id ?? null) . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_update'), null, null, 'success'); ?>&nbsp;</span>
+            <span class="text-end"
                   style="padding-left:5px;"><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath), 'warning'); ?>&nbsp;</span>
           </span>
         </div>
@@ -92,7 +92,7 @@
   <div>
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_AdministratorMenu->getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_AdministratorMenu->getDef('tab_general') . '</a>'; ?></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
@@ -107,7 +107,7 @@
           </div>
           <div class="adminformTitle">
             <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="row">
                   <div class="col-md-5">

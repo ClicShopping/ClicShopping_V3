@@ -62,7 +62,7 @@
       $this->public_title = $this->app->getDef('module_stripe_public_title');
 
 // Activation module du paiement selon les groupes B2B
-      if (defined('CLICSHOPPING_APP_STRIPE_ST_STATUS')) {
+      if (\defined('CLICSHOPPING_APP_STRIPE_ST_STATUS')) {
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           if (B2BCommon::getPaymentUnallowed($this->code)) {
             if (CLICSHOPPING_APP_STRIPE_ST_STATUS == 'True') {
@@ -93,14 +93,15 @@
           }
         }
 
-        if (defined('CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY') && defined('CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY')) {
+        if (CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD == 'True') {
           $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY;
           $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY;
         } else {
-          $this->enabled = false;
+          $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY_TEST;
+          $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY_TEST;
         }
 
-        $this->sort_order = defined('CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER') ? CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER : 0;
+        $this->sort_order = \defined('CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER') ? CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER : 0;
       }
     }
 
@@ -184,7 +185,7 @@ pre_confirmation_check()
 
       $i = 0;
 
-      if (count($CLICSHOPPING_Order->products) < 7) {
+      if (\count($CLICSHOPPING_Order->products) < 7) {
         foreach ($CLICSHOPPING_Order->products as $product) {
           $i++;
 
@@ -259,11 +260,11 @@ pre_confirmation_check()
       $content .= '<input type="hidden" id="intent_id" value="' . HTML::output($stripe_payment_intent_id) . '" />' .
                   '<input type="hidden" id="secret" value="' . HTML::output($this->intent->client_secret) . '" />';
       $content .= '<div id="stripe_table_new_card">' .
-                  '<div class="form-group"><label for="cardholder-name" class="control-label">' . $this->app->getDef('text_stripe_credit_card_owner') . '</label>' .
+                  '<div><label for="cardholder-name" class="control-label">' . $this->app->getDef('text_stripe_credit_card_owner') . '</label>' .
                   '<div><input type="text" id="cardholder-name" class="form-control" value="' . HTML::output($CLICSHOPPING_Order->billing['firstname'] . ' ' . $CLICSHOPPING_Order->billing['lastname']) . '" required></text></div>
                   </div>' .
                   '<div class="separator"></div>' .
-                  '<div class="form-group"><label for="card-element" class="control-label">' . $this->app->getDef('text_stripe_credit_card_type') . '</label>' .
+                  '<div><label for="card-element" class="control-label">' . $this->app->getDef('text_stripe_credit_card_type') . '</label>' .
                   '<div id="card-element" class="col-md-5"></div>
                   </div>';
 
@@ -309,6 +310,18 @@ pre_confirmation_check()
       $CLICSHOPPING_Order = Registry::get('Order');
 
       $orders_id = $CLICSHOPPING_Order->getLastOrderId();
+
+      if (empty($orders_id) || $orders_id == 0 || \is_null($orders_id)) {
+        $Qorder = $CLICSHOPPING_Order->db->prepare('select orders_id
+                                                    from :table_orders                                                    
+                                                    order by orders_id desc
+                                                    limit 1
+                                                   ');
+        $Qorder->execute();
+
+        $orders_id = $Qorder->valueInt('orders_id');
+      }
+
       $comment = $this->app->getDef('text_reference_transaction');
 
       if (CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID == 0) {
@@ -317,7 +330,8 @@ pre_confirmation_check()
         $new_order_status = CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID;
       }
 
-      $sql_data_array = ['orders_id' => $orders_id,
+      $sql_data_array = [
+        'orders_id' => $orders_id,
         'orders_status_id' => (int)$new_order_status,
         'date_added' => 'now()',
         'customer_notified' => '0',
@@ -353,7 +367,7 @@ pre_confirmation_check()
 
     public function check() 
     {
-      return defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && (trim(CLICSHOPPING_APP_STRIPE_ST_STATUS) != '');
+      return \defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && (trim(CLICSHOPPING_APP_STRIPE_ST_STATUS) != '');
     }
 
     public function install() 

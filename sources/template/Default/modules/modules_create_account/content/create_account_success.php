@@ -16,11 +16,11 @@
 <div class="col-md-<?php echo $content_width; ?>" id="AccountSuccess">
   <div class="page-title modulesCreateAccountSuccess"><h3><?php echo CLICSHOPPING::getDef('module_create_account_success_text_account_created'); ?></h3></div>
   <div class="separator"></div>
-  <div class="controls">
+  <div>
     <div class="control-group">
-      <div class="controls">
+      <div>
         <div class="buttonSet">
-          <span class="float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, $origin_href, 'success'); ?></span>
+          <span class="float-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, $origin_href, 'success'); ?></span>
         </div>
       </div>
     </div>

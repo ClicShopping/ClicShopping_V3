@@ -41,7 +41,7 @@
 
       $QstatAnalyseCustomersMan->execute();
 
-      if (!is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
+      if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
         $statAnalyseCustomersMan = $QstatAnalyseCustomersMan->valueDecimal('avgage');
 
         return $statAnalyseCustomersMan;
@@ -60,7 +60,7 @@
 
       $QstatAnalyseCustomersWomen->execute();
 
-      if (!is_null($QstatAnalyseCustomersWomen->valueDecimal('avgage'))) {
+      if (!\is_null($QstatAnalyseCustomersWomen->valueDecimal('avgage'))) {
         $statAnalyseCustomersWomen = $QstatAnalyseCustomersWomen->valueDecimal('avgage');
       }
 
@@ -70,16 +70,16 @@
 
     public function execute()
     {
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 
       $output = '
         <div class="col-sm-5 col-md-3">
-            <span class="col-md-4 float-md-left">
-              <i class="fas fa-transgender fa-2x alert alert-warning" aria-hidden="true"></i>
+            <span class="col-md-4 float-start">
+              <i class="bi bi-person-fill text-warning"></i>
             </span>
-            <span class="col-md-8 float-md-right">
+            <span class="col-md-8 float-end">
               <div class="col-sm-12 StatsTitle">' . $this->app->getDef('text_average_newsletter') . '</div>
               <div class="col-sm-12 StatsValue">' . $this->statsNewsletterCustomersMen() . '% ' . $this->app->getDef('text_male') . '</div>
               <div class="col-sm-12 StatsValue">' . $this->statsNewsletterCustomersWomen() . '% ' . $this->app->getDef('text_female') . '</div>

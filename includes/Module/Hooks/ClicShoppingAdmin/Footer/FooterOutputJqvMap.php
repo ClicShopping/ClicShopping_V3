@@ -14,9 +14,9 @@
   class FooterOutputJqvMap
   {
     /**
-     * @return string
+     * @return string|bool
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $params = $_SERVER['QUERY_STRING'];
 
@@ -31,6 +31,8 @@
         $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js"></script>' . "\n";
         $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/maps/jquery.vmap.world.js"></script>' . "\n";
         $output .= '<!-- End Jqvmap  -->' . "\n";
+      } else {
+        return false;
       }
 
       return $output;

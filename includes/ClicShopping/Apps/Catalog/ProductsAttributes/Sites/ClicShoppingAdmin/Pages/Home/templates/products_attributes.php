@@ -85,13 +85,13 @@
   <div id="categoriesTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_ProductsAttributes->getDef('tab_step1') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_ProductsAttributes->getDef('tab_step1') . '</a>'; ?></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_ProductsAttributes->getDef('tab_step2') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_ProductsAttributes->getDef('tab_step2') . '</a>'; ?></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_ProductsAttributes->getDef('tab_step3'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_ProductsAttributes->getDef('tab_step3'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_ProductsAttributes->getDef('tab_step4'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_ProductsAttributes->getDef('tab_step4'); ?></a></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
@@ -173,7 +173,7 @@
                         <br/><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_warning_of_delete'); ?></td>
                     </tr>
                     <tr>
-                      <td colspan="3" class="text-md-right">
+                      <td colspan="3" class="text-end">
                         <br/><?php echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&' . $page_info), 'warning', null, 'sm'); ?>
                       </td>
                     </tr>
@@ -183,7 +183,7 @@
                       <tr>
                         <td><br/>
                           <span><?php echo $CLICSHOPPING_ProductsAttributes->getDef('heading_title_opt'); ?></span>
-                          <span class="float-md-right">
+                          <span class="float-end">
 <?php
   echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_delete'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&DeleteOption&option_id=' . $_GET['option_id']), 'danger', null, 'sm') . ' ';
   echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&' . (isset($_GET['order_by']) ? 'order_by=' . $_GET['order_by'] . '&' : '') . (isset($page) ? 'page=' . $page : '')), 'warning', null, 'sm');
@@ -218,8 +218,8 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div
-                      class="col-md-6 float-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $QoptionValues->getPageSetLabel($CLICSHOPPING_ProductsAttributes->getDef('text_display_number_of_link')); ?></div>
-                    <div class="float-right text-md-right"><?php echo $QoptionValues->getPageSetLinks(); ?></div>
+                      class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $QoptionValues->getPageSetLabel($CLICSHOPPING_ProductsAttributes->getDef('text_display_number_of_link')); ?></div>
+                    <div class="float-end text-end"><?php echo $QoptionValues->getPageSetLinks(); ?></div>
                   </div>
                 </div>
                 <?php
@@ -232,7 +232,7 @@
               <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_name'); ?></td>
               <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_order'); ?></td>
               <td></td>
-              <td class="text-md-center"
+              <td class="text-center"
                   colspan="2"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_action'); ?></td>
             </tr>
             </thead>
@@ -254,7 +254,7 @@
 
                         $inputs = '';
 
-                        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
 
                           $QoptionsName = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_name
                                                                            from :table_products_options
@@ -278,7 +278,7 @@
                         <td><?php echo $inputs; ?></td>
                         <td><?php echo '<br />' . HTML::inputField('option_sort_order', $QoptionValues->valueInt('products_options_sort_order')); ?></td>
                         <td></td>
-                        <td class="text-md-right">
+                        <td class="text-end">
                           <?php
                             echo HTML::button(CLICSHOPPING::getDef('button_update'), null, null, 'primary', null, 'sm') . ' ';
                             echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&' . $page_info), 'warning', null, 'sm');
@@ -294,7 +294,7 @@
                         <td><?php echo $QoptionValues->value('products_options_name'); ?></td>
                         <td><?php echo $QoptionValues->valueInt('products_options_sort_order'); ?></td>
                         <td></td>
-                        <td class="text-md-right">
+                        <td class="text-end">
                           <?php
                             echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_edit'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&UpdateOption&option_id=' . $QoptionValues->valueInt('products_options_id') . '&' . $page_info), 'primary', null, 'sm') . ' ';
                             echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_delete'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&DeleteProductOption&option_id=' . $QoptionValues->valueInt('products_options_id') . '&' . $page_info), 'danger', null, 'sm');
@@ -322,7 +322,7 @@
                     echo HTML::form('options', $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&AddProductOptions&' . $page_info)) . HTML::hiddenField('products_options_id', $next_id);
 
                     $inputs = '';
-                    for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                       $inputs .= '<div class="row">
                     <span class="col-md-1">' . $languages[$i]['code'] . ':</span>
                     <span class="col-md-11">&nbsp;' . HTML::inputField('option_name[' . $languages[$i]['id'] . ']') . '&nbsp;</span>
@@ -336,7 +336,7 @@
                   <td><?php echo '<br />' . HTML::inputField('option_sort_order'); ?></td>
                   <td></td>
                   <td
-                    class="text-md-right"><?php echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_insert'), null, null, 'primary', null, 'sm'); ?></td>
+                    class="text-end"><?php echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_insert'), null, null, 'primary', null, 'sm'); ?></td>
 
                   <?php
                     echo '</form>';
@@ -411,7 +411,7 @@
                     <tr>
                       <td></td>
                       <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_warning_of_delete'); ?></td>
-                      <td class="text-md-right"><br/>
+                      <td class="text-end"><br/>
                         <?php echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&' . $page_info . '#tab2'), 'warning', null, 'sm'); ?>
                       </td>
                     </tr>
@@ -421,7 +421,7 @@
                     <tr>
                       <td></td>
                       <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_ok_to_delete'); ?></td>
-                      <td class="text-md-right">
+                      <td class="text-end">
                         <?php
                           echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_delete'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&DeleteValue&value_id=' . $_GET['value_id'] . '&' . $page_info . '#tab2'), 'danger', null, 'sm') . ' ';
                           echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&' . $page_info . '#tab2'), 'warning', null, 'sm');
@@ -458,8 +458,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div
-                    class="col-md-6 float-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qvalues->getPageSetLabel($CLICSHOPPING_ProductsAttributes->getDef('text_display_number_of_link')); ?></div>
-                  <div class="float-right text-md-right"> <?php echo $Qvalues->getPageSetLinks(); ?></div>
+                    class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qvalues->getPageSetLabel($CLICSHOPPING_ProductsAttributes->getDef('text_display_number_of_link')); ?></div>
+                  <div class="float-end text-end"> <?php echo $Qvalues->getPageSetLinks(); ?></div>
                 </div>
               </div>
               <?php
@@ -470,7 +470,7 @@
               <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_id'); ?></td>
               <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_name'); ?></td>
               <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_value'); ?></td>
-              <td class="text-md-center"
+              <td class="text-center"
                   colspan="2"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_action'); ?></td>
             </tr>
             </thead>
@@ -491,7 +491,7 @@
 
                   $inputs = '';
 
-                  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
 
                     $QvaluesName = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_values_name
                                                                         from :table_products_options_values
@@ -537,7 +537,7 @@
                     </select>
                   </td>
                   <td><?php echo $inputs; ?></td>
-                  <td class="text-md-right">
+                  <td class="text-end">
                     <?php
                       echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_update'), null, null, 'primary', null, 'sm') . ' ';
                       echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&' . $page_info . '#tab2'), 'warning', null, 'sm');
@@ -550,7 +550,7 @@
                   <td><?php echo $Qvalues->valueInt('products_options_id'); ?></td>
                   <td><?php echo $options_name; ?></td>
                   <td><?php echo $values_name; ?></td>
-                  <td class="text-md-right">
+                  <td class="text-end">
                     <?php
                       echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_edit'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&UpdateOptionValue&value_id=' . $Qvalues->valueInt('products_options_values_id') . '#tab2'), 'primary', null, 'sm') . ' ';
                       echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_delete'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&DeleteOptionValue&value_id=' . $Qvalues->valueInt('products_options_values_id') . '&' . $page_info . '#tab2'), 'danger', null, 'sm');
@@ -599,7 +599,7 @@
                         }
 
                         $inputs = '';
-                        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                           $inputs .= $languages[$i]['code'] . ':&nbsp;' . HTML::inputField('value_name[' . $languages[$i]['id'] . ']') . '<br />';
                         }
                       ?>
@@ -607,7 +607,7 @@
                   </td>
                   <td><?php echo HTML::hiddenField('value_id', $next_id) . $inputs; ?></td>
                   <td
-                    class="text-md-right"><?php echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_insert'), null, null, 'primary', null, 'sm'); ?></td>
+                    class="text-end"><?php echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_insert'), null, null, 'primary', null, 'sm'); ?></td>
                 </tr>
 
                 <?php
@@ -667,7 +667,7 @@
                 if (MODE_B2B_B2C == 'true') {
                   ?>
                   <td
-                    class="text-md-right"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_b2b'); ?></td>
+                    class="text-end"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_b2b'); ?></td>
                   <?php
                 } else {
                   ?>
@@ -676,14 +676,14 @@
                 }
               ?>
               <td
-                class="text-md-right"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_price'); ?></td>
+                class="text-end"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_price'); ?></td>
               <td
-                class="text-md-center"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_price_prefix'); ?></td>
+                class="text-center"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_price_prefix'); ?></td>
               <td
-                class="text-md-center"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_status'); ?></td>
+                class="text-center"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_status'); ?></td>
               <td
-                class="text-md-center"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_order'); ?></td>
-              <td class="text-md-center"
+                class="text-center"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_order'); ?></td>
+              <td class="text-center"
                   colspan="2"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_action'); ?></td>
             </tr>
             </thead>
@@ -712,7 +712,7 @@
                       ?>
                     </td>
                     <td
-                      class="text-md-center"><?php echo HTML::inputField('products_attributes_reference', $Qattributes->value('products_attributes_reference')); ?></td>
+                      class="text-center"><?php echo HTML::inputField('products_attributes_reference', $Qattributes->value('products_attributes_reference')); ?></td>
                     <td>
                       <select name="products_id">
                         <?php
@@ -795,13 +795,13 @@
                     }
                     ?>
                     <td
-                      class="text-md-right"><?php echo HTML::inputField('value_price', $Qattributes->value('options_values_price')); ?></td>
+                      class="text-end"><?php echo HTML::inputField('value_price', $Qattributes->value('options_values_price')); ?></td>
                     <td
-                      class="text-md-center"><?php echo HTML::inputField('price_prefix', $Qattributes->value('price_prefix')); ?></td>
+                      class="text-center"><?php echo HTML::inputField('price_prefix', $Qattributes->value('price_prefix')); ?></td>
                     <td></td>
                     <td
-                      class="text-md-center"><?php echo HTML::inputField('value_sort_order', $Qattributes->value('products_options_sort_order')); ?></td>
-                    <td class="text-md-right">
+                      class="text-center"><?php echo HTML::inputField('value_sort_order', $Qattributes->value('products_options_sort_order')); ?></td>
+                    <td class="text-end">
                       <?php
                         echo HTML::button(CLICSHOPPING::getDef('button_update'), null, null, 'primary', null, 'sm') . ' ';
                         echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&' . $page_info . '#tab3'), 'warning', null, 'sm');
@@ -853,7 +853,7 @@
                         echo HTML::hiddenField('products_attributes_image', $Qattributes->value('products_attributes_image'));
                       ?>
                     </td>
-                    <td class="text-md-center"><?php echo $Qattributes->value('products_attributes_reference'); ?></td>
+                    <td class="text-center"><?php echo $Qattributes->value('products_attributes_reference'); ?></td>
                     <td><strong><?php echo $products_name_only; ?></strong></td>
                     <td><strong><?php echo $options_name; ?></strong></td>
                     <?php
@@ -886,12 +886,12 @@
                       echo '<td></td>';
                     }
                     ?>
-                    <td class="text-md-right">
+                    <td class="text-end">
                       <strong><?php echo $Qattributes->valueDecimal('options_values_price'); ?></strong></td>
-                    <td class="text-md-center"><strong><?php echo $Qattributes->value('price_prefix'); ?></strong></td>
-                    <td class="text-md-center">
+                    <td class="text-center"><strong><?php echo $Qattributes->value('price_prefix'); ?></strong></td>
+                    <td class="text-center">
                       <strong><?php echo $Qattributes->valueInt('products_options_sort_order'); ?></strong></td>
-                    <td class="text-md-right" colspan="2">
+                    <td class="text-end" colspan="2">
                       <?php
                         echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_delete'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&DeleteAttribute&attribute_id=' . $_GET['attribute_id'] . '&' . $page_info . '#tab3'), 'danger', null, 'sm') . ' ';
                         echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&' . $page_info . '#tab3'), 'warning', null, 'sm');
@@ -942,20 +942,20 @@
                       echo '<td></td>';
                     }
                     ?>
-                    <td class="text-md-right"><?php echo $Qattributes->value('options_values_price'); ?></td>
-                    <td class="text-md-center"><?php echo $Qattributes->value('price_prefix'); ?></td>
-                    <td class="text-md-center">
+                    <td class="text-end"><?php echo $Qattributes->value('options_values_price'); ?></td>
+                    <td class="text-center"><?php echo $Qattributes->value('price_prefix'); ?></td>
+                    <td class="text-center">
                       <?php
                         //ProductsAttributes&ProductsAttributes&UpdateAttribute&attribute_id=1&option_page=1&value_page=1&attribute_page=1#tab3
                         if ($Qattributes->valueInt('status') == 1) {
-                          echo HTML::link($CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&SetFlag&flag=0&products_attributes_id=' . $Qattributes->valueInt('products_attributes_id')), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+                          echo HTML::link($CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&SetFlag&flag=0&products_attributes_id=' . $Qattributes->valueInt('products_attributes_id')), '<i class="bi-check text-success"></i>');
                         } else {
-                          echo HTML::link($CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&SetFlag&flag=1&products_attributes_id=' . $Qattributes->valueInt('products_attributes_id')), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+                          echo HTML::link($CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&SetFlag&flag=1&products_attributes_id=' . $Qattributes->valueInt('products_attributes_id')), '<i class="bi bi-x text-danger"></i>');
                         }
                       ?>
                     </td>
-                    <td class="text-md-center"><?php echo $Qattributes->value('products_options_sort_order'); ?></td>
-                    <td class="text-md-right" colspan="2">
+                    <td class="text-center"><?php echo $Qattributes->value('products_options_sort_order'); ?></td>
+                    <td class="text-end" colspan="2">
                       <?php
                         echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_edit'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&UpdateAttribute&attribute_id=' . $Qattributes->valueInt('products_attributes_id') . '&' . $page_info . '#tab3'), 'primary', null, 'sm') . ' ';
                         echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_delete'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&DeleteProductAttribute&attribute_id=' . $Qattributes->valueInt('products_attributes_id') . '&' . $page_info . '#tab3'), 'danger', null, 'sm');
@@ -984,7 +984,7 @@
                   <td><?php echo $next_id; ?></td>
                   <td><?php echo HTML::fileField('products_image_resize', 'id="file"'); ?></td>
                   <td
-                    class="text-md-center"><?php echo HTML::inputField('products_attributes_reference', $Qattributes->value('products_attributes_reference')); ?></td>
+                    class="text-center"><?php echo HTML::inputField('products_attributes_reference', $Qattributes->value('products_attributes_reference')); ?></td>
                   <td>
                     <select name="products_id">
                       <?php
@@ -1055,13 +1055,13 @@
                       }
                     ?>
                   </td>
-                  <td class="text-md-right"><?php echo HTML::inputField('value_price'); ?></td>
-                  <td class="text-md-right"><?php echo HTML::inputField('price_prefix'); ?></td>
+                  <td class="text-end"><?php echo HTML::inputField('value_price'); ?></td>
+                  <td class="text-end"><?php echo HTML::inputField('price_prefix'); ?></td>
                   <td></td>
-                  <td class="text-md-right"><?php echo HTML::inputField('value_sort_order'); ?></td>
+                  <td class="text-end"><?php echo HTML::inputField('value_sort_order'); ?></td>
                   <td></td>
                   <td
-                    class="text-md-right"><?php echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_insert'), null, null, 'primary', null, 'sm'); ?></td>
+                    class="text-end"><?php echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_insert'), null, null, 'primary', null, 'sm'); ?></td>
                 </tr>
                 <?php
                 if (DOWNLOAD_ENABLED == 'true') {
@@ -1093,8 +1093,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div
-                    class="col-md-6 float-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qattributes->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_link')); ?></div>
-                  <div class="float-right text-md-right"> <?php echo $Qattributes->getPageSetLinks(); ?></div>
+                    class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qattributes->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_link')); ?></div>
+                  <div class="float-end text-end"> <?php echo $Qattributes->getPageSetLinks(); ?></div>
                 </div>
               </div>
               <?php
@@ -1117,7 +1117,7 @@
             class="mainTitle"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('heading_title_clone_products_attributes'); ?></div>
           <table class="table table-sm table-hover table-striped">
             <tr valign="middle">
-              <td class="text-md-center"
+              <td class="text-center"
                   width="20%"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('clone_products_from'); ?>
                 <select name="clone_products_id_from">
                   <?php
@@ -1177,14 +1177,14 @@
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_help_clone'); ?></div>
           </div>
-          <?php
-            //***********************************
-            // extension
-            //***********************************
-            echo $CLICSHOPPING_Hooks->output('ProductsAttributes', 'PageTab', null, 'display');
-          ?>
         </div>
       </div>
+      <?php
+      //***********************************
+      // extension
+      //***********************************
+      echo $CLICSHOPPING_Hooks->output('ProductsAttributes', 'PageContent', null, 'display');
+      ?>
     </div>
   </div>
   </form><!-- end form delete all -->

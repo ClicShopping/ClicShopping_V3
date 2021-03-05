@@ -93,7 +93,7 @@
           $customer_agree_privacy = null;
         }
 
-        if (defined('DISPLAY_PRIVACY_CONDITIONS') && DISPLAY_PRIVACY_CONDITIONS == 'true') {
+        if (\defined('DISPLAY_PRIVACY_CONDITIONS') && DISPLAY_PRIVACY_CONDITIONS == 'true') {
           if ($customer_agree_privacy != 'on') {
             $error = true;
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_agreement_check_error'), 'error');
@@ -111,7 +111,7 @@
         if (!$CLICSHOPPING_ActionRecorder->canPerform()) {
           $error = true;
           $CLICSHOPPING_ActionRecorder->record(false);
-          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('error_action_recorder', ['module_action_recorder_contact_us_email_minutes' => (defined('MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES : 15)]), 'error');
+          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('error_action_recorder', ['module_action_recorder_contact_us_email_minutes' => (\defined('MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES : 15)]), 'error');
         }
 
         $template_email_footer = TemplateEmailAdmin::getTemplateEmailTextFooter();
@@ -130,7 +130,7 @@
             if ($email_number !== 0) {
               $email_address_department = $email_address_department[$email_number];
 
-              if (!is_null($customer_id)) {
+              if (!\is_null($customer_id)) {
                 $num_customer_id = $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id;
               } else {
                 $num_customer_id = '';

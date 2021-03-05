@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\Apps\Marketing\BannerManager\Classes\Shop\Banner;
   class cc_checkout_confirmation_order_total {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_confirmation_order_total_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_order_total_description');
 
-      if (defined('MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_STATUS == 'True');
       }
@@ -67,7 +67,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_STATUS');
+      return \defined('MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_STATUS');
     }
 
     public function install() {

@@ -98,7 +98,7 @@
       $CLICSHOPPING_Mail->addHtmlCkeditor($message);
 
       $from = STORE_OWNER_EMAIL_ADDRESS;
-      $CLICSHOPPING_Mail->send($check['customers_name'], $check['customers_email_address'], '', $from, $email_subject);
+      $CLICSHOPPING_Mail->send($check['customers_name'], $check['customers_email_address'], null, $from, $email_subject);
 
       $this->hooks->call('Orders', 'OrderEmail');
     }
@@ -114,7 +114,7 @@
 
           $check = $this->getCheckStatus();
 // verify and update the status if changed
-          if (($check['orders_status'] != $this->status) || ($check['orders_status_invoice'] != $this->statusInvoice) || !is_null($this->comments)) {
+          if (($check['orders_status'] != $this->status) || ($check['orders_status_invoice'] != $this->statusInvoice) || !\is_null($this->comments)) {
             $data_array = [
               'orders_status' => (int)$this->status,
               'orders_status_invoice' => (int)$this->statusInvoice,

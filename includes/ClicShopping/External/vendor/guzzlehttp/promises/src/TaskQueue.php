@@ -50,7 +50,7 @@ class TaskQueue implements TaskQueueInterface
     }
 
     /**
-     * The task queue will be run and exhausted by default when the process
+     * The task queue will be run and sold_out by default when the process
      * exits IFF the exit is not the result of a PHP E_ERROR error.
      *
      * You can disable running the automatic shutdown of the queue by calling

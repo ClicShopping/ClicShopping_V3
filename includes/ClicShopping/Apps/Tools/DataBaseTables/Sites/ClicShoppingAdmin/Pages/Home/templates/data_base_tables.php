@@ -40,24 +40,30 @@
   }
 
   $action = null;
-  $actions = array(array('id' => 'check',
-    'text' => $CLICSHOPPING_DataBaseTables->getDef('action_check_tables')),
-    array('id' => 'analyze',
-      'text' => $CLICSHOPPING_DataBaseTables->getDef('action_analyze_tables')),
-    array('id' => 'optimize',
-      'text' => $CLICSHOPPING_DataBaseTables->getDef('action_optimize_tables')),
-    array('id' => 'repair',
-      'text' => $CLICSHOPPING_DataBaseTables->getDef('action_repair_tables')),
-    array('id' => 'utf8',
-      'text' => $CLICSHOPPING_DataBaseTables->getDef('action_utf8_conversion')));
+  $actions = array([
+    'id' => 'check',
+    'text' => $CLICSHOPPING_DataBaseTables->getDef('action_check_tables')
+  ],
+  ['id' => 'analyze',
+   'text' => $CLICSHOPPING_DataBaseTables->getDef('action_analyze_tables')
+  ],
+  ['id' => 'optimize',
+   'text' => $CLICSHOPPING_DataBaseTables->getDef('action_optimize_tables')
+  ],
+  ['id' => 'repair',
+   'text' => $CLICSHOPPING_DataBaseTables->getDef('action_repair_tables')
+  ],
+  ['id' => 'utf8',
+   'text' => $CLICSHOPPING_DataBaseTables->getDef('action_utf8_conversion')
+  ]);
 
   if (isset($_POST['action'])) {
-    if (in_array($_POST['action'], array('check', 'analyze', 'optimize', 'repair', 'utf8'))) {
-      if (isset($_POST['id']) && is_array($_POST['id']) && !empty($_POST['id'])) {
+    if (\in_array($_POST['action'], array('check', 'analyze', 'optimize', 'repair', 'utf8'))) {
+      if (isset($_POST['id']) && \is_array($_POST['id']) && !empty($_POST['id'])) {
         $tables = Database::getDtTables();
 
         foreach ($_POST['id'] as $key => $value) {
-          if (!in_array($value, $tables)) {
+          if (!\in_array($value, $tables)) {
             unset($_POST['id'][$key]);
           }
         }
@@ -76,11 +82,13 @@
     case 'repair':
       set_time_limit(0);
 
-      $table_headers = array($CLICSHOPPING_DataBaseTables->getDef('table_heading_table'),
+      $table_headers = [
+        $CLICSHOPPING_DataBaseTables->getDef('table_heading_table'),
         $CLICSHOPPING_DataBaseTables->getDef('table_heading_msg_type'),
         $CLICSHOPPING_DataBaseTables->getDef('table_heading_msg'),
         HTML::checkboxField('masterblaster')
-      );
+      ];
+
       $table_data = [];
 
       foreach ($_POST['id'] as $table) {
@@ -93,7 +101,7 @@
             ($table != $current_table) ? HTML::outputProtected($table) : '',
             $Qaction->valueProtected('Msg_type'),
             $Qaction->valueProtected('Msg_text'),
-            ($table != $current_table) ? HTML::checkboxField('id[]', $table, isset($_POST['id']) && in_array($table, $_POST['id'])) : ''
+            ($table != $current_table) ? HTML::checkboxField('id[]', $table, isset($_POST['id']) && \in_array($table, $_POST['id'])) : ''
           ];
 
           $current_table = $table;
@@ -143,7 +151,7 @@
         $Qcols = $CLICSHOPPING_DataBaseTables->db->query('SHOW FULL COLUMNS FROM ' . $table);
 
         while ($Qcols->fetch()) {
-          if ($Qcols->hasValue('Collation') && !is_null($Qcols->value('Collation'))) {
+          if ($Qcols->hasValue('Collation') && !\is_null($Qcols->value('Collation'))) {
             if ($_POST['from_charset'] == 'auto') {
               $old_charset = substr($Qcols->value('Collation'), 0, strpos($Qcols->value('Collation'), '_'));
             } else {
@@ -192,7 +200,7 @@
         $CLICSHOPPING_DataBaseTables->getDef('table_heading_size'),
         $CLICSHOPPING_DataBaseTables->getDef('table_heading_engine'),
         $CLICSHOPPING_DataBaseTables->getDef('table_heading_collation'),
-        HTML::checkboxField('masterblaster')
+        HTML::checkboxField('masterblaster', null, null, 'onclick="check()"')
       ];
 
       $table_data = [];
@@ -231,15 +239,14 @@
               if (isset($action)) {
                 ?>
                 <span
-                  class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_DataBaseTables->getDef('button_back'), null, $CLICSHOPPING_DataBaseTables->link('DataBaseTables'), 'primary'); ?></span>
+                  class="col-md-6 text-end"><?php echo HTML::button($CLICSHOPPING_DataBaseTables->getDef('button_back'), null, $CLICSHOPPING_DataBaseTables->link('DataBaseTables'), 'primary'); ?></span>
                 <?php
               } else {
-
                 ?>
                 <span
-                  class="col-md-2 text-md-right runUtf8"><?php echo HTML::selectMenu('action', $actions, '', 'id="sqlActionsMenu"') . '<span class="runUtf8" style="display: none;">&nbsp;' . HTML::selectMenu('from_charset', $mysql_charsets) . '</span>'; ?></span>
+                  class="col-md-2 text-end runUtf8"><?php echo HTML::selectMenu('action', $actions, '', 'id="sqlActionsMenu"') . '<span class="runUtf8" style="display: none;">&nbsp;' . HTML::selectMenu('from_charset', $mysql_charsets) . '</span>'; ?></span>
                 <span
-                  class="col-md-4 text-md-right"><?php echo HTML::button($CLICSHOPPING_DataBaseTables->getDef('button_update'), null, null, 'success'); ?></span>
+                  class="col-md-4 text-end"><?php echo HTML::button($CLICSHOPPING_DataBaseTables->getDef('button_update'), null, null, 'success'); ?></span>
                 <?php
               }
             }
@@ -278,26 +285,13 @@
   </form>
 </div>
 
-<script type="text/javascript">
-    $(function () {
-        if ($('form[name="sql"] input[type="checkbox"][name="masterblaster"]').length > 0) {
-            $('form[name="sql"] input[type="checkbox"][name="masterblaster"]').click(function () {
-                $('form[name="sql"] input[type="checkbox"][name="id[]"]').prop('checked', $('form[name="sql"] input[type="checkbox"][name="masterblaster"]').prop('checked'));
-            });
+<script>
+    function check(){
+        var inputs = document.querySelectorAll('form[name="sql"] input[type="checkbox"]');
+        if (document.querySelectorAll('form[name="sql"] input[type="checkbox"]').length > 0) {
+          for(var i = 0; i < inputs.length; i++) {
+              inputs[i].checked = true;
+          }
         }
-
-        if ($('#sqlActionsMenu').val() == 'utf8') {
-            $('.runUtf8').show();
-        }
-
-        $('#sqlActionsMenu').change(function () {
-            var selected = $(this).val();
-
-            if (selected == 'utf8') {
-                $('.runUtf8').show();
-            } else {
-                $('.runUtf8').hide();
-            }
-        });
-    });
+    }
 </script>

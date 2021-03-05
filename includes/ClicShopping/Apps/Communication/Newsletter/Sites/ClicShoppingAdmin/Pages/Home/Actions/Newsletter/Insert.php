@@ -49,7 +49,7 @@
         return basename($v, '.php');
       }, glob(CLICSHOPPING::BASE_DIR . 'Apps/Communication/Newsletter/Module/ClicShoppingAdmin/Newsletter/*.php'));
 
-      if (!in_array($newsletter_module, $allowed)) {
+      if (!\in_array($newsletter_module, $allowed)) {
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Newsletter->getDef('error_newsletter_module_not_exists'), 'danger');
         $newsletter_error = true;
       }

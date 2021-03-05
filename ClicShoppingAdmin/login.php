@@ -37,7 +37,7 @@
     $action = 'logoff';
   }
 
-  if (!is_null($action)) {
+  if (!\is_null($action)) {
     switch ($action) {
       case 'process':
         $CLICSHOPPING_Hooks->call('PreAction', 'Process');
@@ -110,7 +110,7 @@
               $CLICSHOPPING_Hooks->call('Login', 'ErrorProcess');
             }
           } else {
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_admin_login_minutes' => (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES : 5)]));
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_admin_login_minutes' => (\defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES : 5)]));
           }
 
           if (isset($_POST['username'])) {
@@ -197,7 +197,7 @@
             $email_body .= TemplateEmailAdmin::getTemplateEmailSignature() . "\n";
             $email_body .= TemplateEmailAdmin::getTemplateEmailTextFooter();
 
-            $CLICSHOPPING_Mail->clicMail('', $username, $body_subject, sprintf($email_body, $new_password), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+            $CLICSHOPPING_Mail->clicMail(null, $username, $body_subject, sprintf($email_body, $new_password), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_sent'), 'success');
           } else {
@@ -411,7 +411,7 @@
 <?php
   $ip = HTTP::getIpAddress();
 
-  if (Is::IpAddress($ip) && (!empty($ip) || !is_null($ip))) {
+  if (Is::IpAddress($ip) && (!empty($ip) || !\is_null($ip))) {
     $details = file_get_contents("https://ipinfo.io/{$ip}/geo");
 
     if ($details !== false) {
@@ -470,7 +470,7 @@
                 <?php echo HTML::passwordField('password', '', 'placeholder="' . CLICSHOPPING::getDef('text_password') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
               </div>
               <div class="separator"></div>
-              <div class="text-md-right">
+              <div class="text-end">
                 <label for="buttonText"><?php echo HTML::button($button_text, null, null, 'primary'); ?></label>
               </div>
               <div class="separator"></div>
@@ -481,13 +481,13 @@
             <div class="row col-md-12">
               <div class="col-md-6">
                 <label for="buttononlineCatalog"><a href="../index.php">
-                  <button class="btn text-md-left" data-dismiss="modal"
+                  <button class="btn text-start" data-bs-dismiss="modal"
                           aria-hidden="true"><?php echo CLICSHOPPING::getDef('header_title_online_catalog'); ?></button>
                   </a></label>
               </div>
               <div class="col-md-6">
                 <label for="buttonNewPassword"><a href="<?php echo CLICSHOPPING::link('login.php', 'action=password'); ?>">
-                  <button class="btn text-md-right" data-dismiss="modal"
+                  <button class="btn text-end" data-bs-dismiss="modal"
                           aria-hidden="true"><?php echo CLICSHOPPING::getDef('text_new_text_password'); ?></button>
                   </a></label>
               </div>
@@ -520,11 +520,11 @@
           <div class="row col-md-12">
             <div class="col-md-6">
               <label for="buttonheaderAdministration"><a href="<?php echo CLICSHOPPING::link('login.php'); ?>">
-                <button class="btn btn-secondary text-md-left"
+                <button class="btn btn-secondary text-start"
                         type="button"><?php echo CLICSHOPPING::getDef('header_title_administration'); ?></button>
                 </a></label>
             </div>
-            <div class="col-md-6 text-md-right">
+            <div class="col-md-6 text-end">
               <label for="buttonSubmit"><?php echo HTML::button(CLICSHOPPING::getDef('button_submit'), null, null, 'primary'); ?></label>
             </div>
           </div>

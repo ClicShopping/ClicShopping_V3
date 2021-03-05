@@ -26,3 +26,5 @@ send_department_company = Contact to Department :
 
 entry_customers_phone_dgrp = We need your phone number to eventually contact you
 entry_email_dgrp = We need your email to answer you
+
+entry_text_alert = You must write more {{textalert}} words before to send this message

@@ -20,8 +20,8 @@
     protected string $database;
     protected string $table_prefix;
     protected ?int $port;
-    protected array $driver_options = [];
-    protected array $options = [];
+    protected ?array $driver_options = null;
+    protected ?array $options = null;
     protected $query_call;
 
     public static function initialize(
@@ -50,7 +50,7 @@
         $database = CLICSHOPPING::getConfig('db_database');
       }
 
-      if (!is_array($driver_options)) {
+      if (!\is_array($driver_options)) {
         $driver_options = [];
       }
 
@@ -72,7 +72,7 @@
         $driver_options[\PDO::ATTR_STATEMENT_CLASS] = array('ClicShopping\OM\DbStatement');
       }
 
-      if (!is_array($options)) {
+      if (!\is_array($options)) {
         $options = [];
       }
 
@@ -99,7 +99,7 @@
      * @param string $statement
      * @return int
      */
-    public function exec($statement)
+    public function exec(string $statement) :int
     {
       $statement = $this->autoPrefixTables($statement);
 
@@ -111,11 +111,11 @@
      * @param null $driver_options
      * @return bool|\PDOStatement
      */
-    public function prepare($statement, $driver_options = null)
+    public function prepare(string $statement, ?array $driver_options = null) //php8
     {
       $statement = $this->autoPrefixTables($statement);
 
-      $DbStatement = parent::prepare($statement, is_array($driver_options) ? $driver_options : []);
+      $DbStatement = parent::prepare($statement, \is_array($driver_options) ? $driver_options : []);
       $DbStatement->setQueryCall('prepare');
       $DbStatement->setPDO($this);
 
@@ -127,14 +127,14 @@
      * @param mixed ...$params
      * @return bool|mixed|\PDOStatement
      */
-    public function query($statement, ...$params)
+    public function query(string $statement, ...$params)
     {
       $statement = $this->autoPrefixTables($statement);
 
-      $args = func_get_args();
+      $args = \func_get_args();
 
-      if (count($args) > 1) {
-        $DbStatement = call_user_func_array(array($this, 'parent::query'), $args);
+      if (\count($args) > 1) {
+        $DbStatement = \call_user_func_array(array($this, 'parent::query'), $args);
       } else {
         $DbStatement = parent::query($statement);
       }
@@ -148,46 +148,46 @@
     }
 
     /**
-     * @param $table
-     * @param $fields
+     * @param string|array $table
+     * @param string|array $fields
      * @param array|null $where
      * @param null $order
      * @param null $limit
      * @param null $cache
      * @param array|null $options
-     * @return bool|\PDOStatement
+     * @return bool|mixed|\PDOStatement
      */
     public function get($table, $fields, ?array $where = null, $order = null, $limit = null, $cache = null, ?array $options = null)
     {
-        if (!is_array($table)) {
-          $table = [
-              $table
-          ];
-        }
+      if (!\is_array($table)) {
+        $table = [
+            $table
+        ];
+      }
 
       if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
-        array_walk($table, function (&$v, &$k) {
-          if ((strlen($v) < 7) || (substr($v, 0, 7) != ':table_')) {
+        array_walk($table, function (&$v) {
+          if ((\strlen($v) < 7) || (substr($v, 0, 7) != ':table_')) {
             $v = ':table_' . $v;
           }
         }
         );
       }
 
-        if (!is_array($fields)) {
-          $fields = [
-              $fields
-          ];
-        }
+      if (!\is_array($fields)) {
+        $fields = [
+            $fields
+        ];
+      }
 
-        if (isset($order) && !is_array($order)) {
-          $order = [
-              $order
-          ];
-        }
+      if (isset($order) && !\is_array($order)) {
+        $order = [
+            $order
+        ];
+      }
 
       if (isset($limit)) {
-        if (is_array($limit) && (count($limit) === 2) && is_numeric($limit[0]) && is_numeric($limit[1])) {
+        if (\is_array($limit) && (\count($limit) === 2) && is_numeric($limit[0]) && is_numeric($limit[1])) {
           $limit = implode(', ', $limit);
         } elseif (!is_numeric($limit)) {
           $limit = null;
@@ -212,7 +212,7 @@
         $it_where = new \CachingIterator(new \ArrayIterator($where), \CachingIterator::TOSTRING_USE_CURRENT);
 
         foreach ($it_where as $key => $value) {
-          if (is_array($value)) {
+          if (\is_array($value)) {
             if (isset($value['val'])) {
               $statement .= $key . ' ' . ($value['op'] ?? '=') . ' :cond_' . $counter;
             }
@@ -222,7 +222,7 @@
                 $statement .= ' and ';
               }
 
-              if (is_array($value['rel'])) {
+              if (\is_array($value['rel'])) {
                 $it_rel = new \CachingIterator(new \ArrayIterator($value['rel']), \CachingIterator::TOSTRING_USE_CURRENT);
 
                 foreach ($it_rel as $rel) {
@@ -262,7 +262,7 @@
         $counter = 0;
 
         foreach ($it_where as $value) {
-          if (is_array($value)) {
+          if (\is_array($value)) {
             if (isset($value['val'])) {
               $Q->bindValue(':cond_' . $counter, $value['val']);
             }
@@ -275,11 +275,11 @@
       }
 
       if (isset($cache)) {
-        if (!is_array($cache)) {
+        if (!\is_array($cache)) {
           $cache = [$cache];
         }
 
-        call_user_func_array([$Q, 'setCache'], $cache);
+        \call_user_func_array([$Q, 'setCache'], $cache);
       }
 
       $Q->execute();
@@ -301,7 +301,7 @@
       }
 
       if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
-        if ((strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
+        if ((\strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
           $table = ':table_' . $table;
         }
       }
@@ -310,7 +310,7 @@
         $statement = 'update ' . $table . ' set ';
 
         foreach ($data as $c => $v) {
-          if (is_null($v)) {
+          if (\is_null($v)) {
             $v = 'null';
           }
 
@@ -332,7 +332,7 @@
         $Q = $this->prepare($statement);
 
         foreach ($data as $c => $v) {
-          if ($v != 'now()' && $v !== 'null' && !is_null($v)) {
+          if ($v != 'now()' && $v !== 'null' && !\is_null($v)) {
             $Q->bindValue(':new_' . $c, $v);
           }
         }
@@ -350,7 +350,7 @@
         $statement = 'insert into ' . $table . ' (' . implode(', ', array_keys($data)) . ') values (';
 
         foreach ($data as $c => $v) {
-          if (is_null($v)) {
+          if (\is_null($v)) {
             $v = 'null';
           }
 
@@ -371,7 +371,7 @@
           $Q = $this->prepare($statement);
 
           foreach ($data as $c => $v) {
-            if ($v != 'now()' && $v !== 'null' && !is_null($v)) {
+            if ($v != 'now()' && $v !== 'null' && !\is_null($v)) {
               $Q->bindValue(':' . $c, $v);
             }
           }
@@ -394,7 +394,7 @@
     public function delete(string $table, array $where_condition = [], ?array $options = null) :int
     {
       if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
-        if ((strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
+        if ((\strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
           $table = ':table_' . $table;
         }
       }
@@ -429,7 +429,7 @@
      * @param string|null $table_prefix
      * @return bool
      */
-    public function importSQL(string $sql_file, ?string $table_prefix = null): bool
+    public function importSQL(string $sql_file, ?string $table_prefix = null) :bool
     {
       try {
         if (is_file($sql_file)) {
@@ -450,14 +450,14 @@
       set_time_limit(0);
 
       $sql_queries = [];
-      $sql_length = strlen($import_queries);
+      $sql_length = \strlen($import_queries);
       $pos = strpos($import_queries, ';');
 
       for ($i = $pos; $i < $sql_length; $i++) {
 // remove comments
         if ((substr($import_queries, 0, 1) == '#') || (substr($import_queries, 0, 2) == '--')) {
           $import_queries = ltrim(substr($import_queries, strpos($import_queries, "\n")));
-          $sql_length = strlen($import_queries);
+          $sql_length = \strlen($import_queries);
           $i = strpos($import_queries, ';') - 1;
           continue;
         }
@@ -483,7 +483,7 @@
 
 // join the query before the comment appeared, with the rest of the dump
                 $import_queries = $query . $import_queries;
-                $sql_length = strlen($import_queries);
+                $sql_length = \strlen($import_queries);
                 $i = strpos($import_queries, ';') - 1;
                 continue 2;
               }
@@ -523,7 +523,7 @@
             $sql_queries[] = trim($sql_query);
 
             $import_queries = ltrim(substr($import_queries, $i + 1));
-            $sql_length = strlen($import_queries);
+            $sql_length = \strlen($import_queries);
             $i = strpos($import_queries, ';') - 1;
           }
         }
@@ -587,7 +587,7 @@
             continue;
           } elseif ($is_foreign === true) {
             foreach ($details as $d) {
-              if (strpos($d, '(') === false) {
+              if (!str_contains($d, '(')) {
                 $schema['foreign'][$field_name]['col'][] = $d;
 
                 continue;
@@ -774,16 +774,15 @@
       return $sql;
     }
 
-
     /**
      * @param string $string
      * @return string
      */
     public static function prepareInput(string $string): string
     {
-      if (is_string($string)) {
+      if (\is_string($string)) {
         return HTML::sanitize($string);
-      } elseif (is_array($string)) {
+      } elseif (\is_array($string)) {
         foreach ($string as $k => $v) {
           $string[$k] = static::prepareInput($v);
         }

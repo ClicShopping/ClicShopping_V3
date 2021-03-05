@@ -40,7 +40,7 @@
       $suppliers_id = 0;
 
 // Insertion images des fabricants via l'éditeur FCKeditor (fonctionne sur les nouvelles et éditions des fabricants)
-      if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
+      if (isset($_POST['manufacturers_image']) && !\is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
         $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($manufacturers_image);
       } else {
         $manufacturers_image = null;
@@ -50,7 +50,7 @@
         'suppliers_id' => $suppliers_id
       ];
 
-      if (is_null($manufacturers_image)) {
+      if (\is_null($manufacturers_image)) {
         $sql_data_array = ['manufacturers_image' => $manufacturers_image];
       }
 
@@ -63,7 +63,7 @@
       $manufacturers_id = $this->app->db->lastInsertId();
 
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $manufacturers_url_array = HTML::sanitize($_POST['manufacturers_url']);
         $manufacturer_description_array = HTML::sanitize($_POST['manufacturer_description']);
         $manufacturer_seo_title_array = HTML::sanitize($_POST['manufacturer_seo_title']);

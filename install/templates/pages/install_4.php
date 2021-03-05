@@ -48,13 +48,14 @@
     $CLICSHOPPING_Db->save('configuration', ['configuration_value' => $_POST['CFG_STORE_OWNER_EMAIL_ADDRESS']], ['configuration_key' => 'EMAIL_FROM']);
   }
 
-  $CLICSHOPPING_Db->save('configuration', ['configuration_value' => $_POST['CFG_STORE_OWNER_EMAIL_ADDRESS']], ['configuration_key' => 'SEND_EXTRA_ORDER_EMAILS_TO']);
+  $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '"' . trim($_POST['CFG_STORE_OWNER_EMAIL_ADDRESS']) . '" <' . trim($_POST['CFG_STORE_OWNER_EMAIL_ADDRESS']) . '>'], ['configuration_key' => 'SEND_EXTRA_ORDER_EMAILS_TO']);
 
   if (!empty($_POST['CFG_ADMINISTRATOR_USERNAME'])) {
     $Qcheck = $CLICSHOPPING_Db->prepare('select user_name
                                          from :table_administrators
                                          where user_name = :user_name
                                       ');
+
     $Qcheck->bindValue(':user_name', $_POST['CFG_ADMINISTRATOR_USERNAME']);
     $Qcheck->execute();
 
@@ -256,7 +257,7 @@ ENDCFG;
   $modules = ''; // must be under array
 
 if (!isset($_POST['DB_SKIP_IMPORT'])) {
-  if (is_array($modules)) {
+  if (\is_array($modules)) {
     foreach ($modules as $m) {
       $m_installed = [];
 
@@ -332,59 +333,12 @@ if (!isset($_POST['DB_SKIP_IMPORT'])) {
     <br />
 
     <div class="row">
-      <div class="col-sm-6 text-md-left">
-        <!-- Button to Open the Modal -->
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
-          <?php echo TEXT_END_ACCESS_CATALOG; ?>
-        </button>
-        <!-- The Modal -->
-        <div class="modal" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Info</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              <!-- Modal body -->
-              <div class="modal-body">
-                <p class="text-md-left"><?php echo TEXT_END_ACCESS_INFO; ?></p>
-                <p class="text-md-right"><?php echo HTML::button(TEXT_END_ACCESS_CATALOG, 'fas fa-shopping-cart', $http_server . $http_catalog . 'index.php', 'succcess', array('newwindow' => 1)); ?></p>
-              </div>
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="col-sm-6 text-start">
+        <?php echo HTML::button(TEXT_END_ACCESS_CATALOG, 'bi bi-cart-fill', $http_server . $http_catalog . 'index.php', 'success', ['newwindow' => 1]); ?>
       </div>
-      <div class="col-sm-6 text-md-right">
+      <div class="col-sm-6 text-end">
         <!-- Button to Open the Modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
-          <?php echo TEXT_END_ACCESS_ADMIN; ?>
-        </button>
-        <!-- The Modal -->
-        <div class="modal" id="myModal1">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Info</h4>
-                <button type="button" class="close" data-dismiss="modal1">&times;</button>
-              </div>
-              <!-- Modal body -->
-              <div class="modal-body">
-                <p class="text-md-left"><?php echo TEXT_END_ACCESS_INFO; ?></p>
-                <p class="text-md-right"><?php echo HTML::button(TEXT_END_ACCESS_ADMIN, 'fas fa-lock', $http_server . $http_catalog . $admin_folder . '/index.php', 'primary', array('newwindow' => 1)); ?></p>
-              </div>
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <?php echo HTML::button(TEXT_END_ACCESS_ADMIN, 'bi bi-lock-fill', $http_server . $http_catalog . $admin_folder . '/index.php', 'primary', ['newwindow' => 1]); ?>
       </div>
     </div>
   </div>

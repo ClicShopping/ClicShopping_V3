@@ -14,7 +14,6 @@ $(function () {
     e.preventDefault(); //STOP default action do this first in case any errors thrown in code
     var form = this;
 
-    $("#simple-msg").html("<img src='../../../../images/loadingAnimation.gif' />");
     var postData = $(this).serializeArray();
     var formURL = $(this).attr("action");
 

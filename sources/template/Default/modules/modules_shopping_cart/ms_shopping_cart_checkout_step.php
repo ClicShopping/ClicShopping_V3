@@ -14,8 +14,8 @@
 
 
   class ms_shopping_cart_checkout_step {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_shopping_cart_checkout_step_title');
       $this->description = CLICSHOPPING::getDef('module_shopping_cart_checkout_step_description');
 
-      if (defined('MODULE_SHOPPING_CART_CHECKOUT_STEP_STATUS')) {
+      if (\defined('MODULE_SHOPPING_CART_CHECKOUT_STEP_STATUS')) {
         $this->sort_order = MODULE_SHOPPING_CART_CHECKOUT_STEP_SORT_ORDER;
         $this->enabled = (MODULE_SHOPPING_CART_CHECKOUT_STEP_STATUS == 'True');
       }
@@ -61,7 +61,7 @@
     }
 
     public function check() {
-      return defined('MODULE_SHOPPING_CART_CHECKOUT_STEP_STATUS');
+      return \defined('MODULE_SHOPPING_CART_CHECKOUT_STEP_STATUS');
     }
 
     public function install() {

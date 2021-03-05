@@ -111,7 +111,7 @@
 
       $address = strtr($Qformat->value('address_format'), $replace);
 
-      if ((($customer_group_id == 0) && (ACCOUNT_COMPANY == 'true') && (!empty($replace['$company']))) || (($customer_group_id != 0) && (ACCOUNT_COMPANY_PRO == 'true') && (!is_null($replace['$company'])))) {
+      if ((($customer_group_id == 0) && (ACCOUNT_COMPANY == 'true') && (!empty($replace['$company']))) || (($customer_group_id != 0) && (ACCOUNT_COMPANY_PRO == 'true') && (!\is_null($replace['$company'])))) {
         $address = $replace['$company'] . $replace['$cr'] . $address;
       }
 
@@ -180,7 +180,7 @@
     public static function getZoneName($country_id, $zone_id = null, $default_zone = null)
     {
 
-      if (!is_null($zone_id)) {
+      if (!\is_null($zone_id)) {
         $Qzone = Registry::get('Db')->get('zones', 'zone_name', ['zone_country_id' => (int)$country_id,
                 'zone_id' => (int)$zone_id,
                 'zone_status' => 0
@@ -192,7 +192,7 @@
         } else {
           return $default_zone;
         }
-      } elseif (is_null($default_zone)) {
+      } elseif (\is_null($default_zone)) {
         $Qzone = Registry::get('Db')->get('zones', 'zone_name', ['zone_country_id' => (int)$country_id,
               'zone_name' => $default_zone,
               'zone_status' => 0
@@ -222,7 +222,7 @@
 
       $countries_array = [];
 
-      if (!is_null($countries_id)) {
+      if (!\is_null($countries_id)) {
         if ($with_iso_codes === true) {
           $Qcountries = $CLICSHOPPING_Db->prepare('select countries_name,
                                                           countries_iso_code_2,
@@ -379,7 +379,7 @@
     {
       $zones = self::getCountryZones($country_id);
 
-      if (count($zones) > 0) {
+      if (\count($zones) > 0) {
         $zones_select = array(['id' => '',
             'text' => CLICSHOPPING::getDef('text_selected')
           ]
@@ -452,7 +452,7 @@
      */
     public function checkZoneCountry(int $country, $zone_id = null)
     {
-      if (is_null($zone_id)) {
+      if (\is_null($zone_id)) {
         $Qcheck = $this->db->prepare('select zone_id
                                      from :table_zones
                                      where zone_country_id = :zone_country_id
@@ -513,7 +513,7 @@
       $Qzone->fetch();
 
       $all_zone = $Qzone->fetchAll();
-      $count = count($all_zone);
+      $count = \count($all_zone);
 
       if ($count > 0 && !empty($state) && !is_numeric($state)) {
         $Qzone = $this->db->prepare('select distinct zone_id

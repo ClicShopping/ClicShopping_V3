@@ -125,8 +125,8 @@
         $sql_data_array = ['suppliers_image' => ''];
         $this->app->db->save('suppliers', $sql_data_array, ['suppliers_id' => (int)$suppliers_id]);
 
-      } elseif (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && ($_POST['suppliers_image'] != 'none') && !empty($_POST['suppliers_image'])) {
-        if (!empty($suppliers_image) && !is_null($suppliers_image)) {
+      } elseif (isset($_POST['suppliers_image']) && !\is_null($_POST['suppliers_image']) && ($_POST['suppliers_image'] != 'none') && !empty($_POST['suppliers_image'])) {
+        if (!empty($suppliers_image) && !\is_null($suppliers_image)) {
           $suppliers_image = HTMLOverrideAdmin::getCkeditorImageAlone($suppliers_image);
         }
 
@@ -136,7 +136,7 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $suppliers_url_array = $_POST['suppliers_url'];
         $language_id = $languages[$i]['id'];
 

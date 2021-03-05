@@ -271,7 +271,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/page_manager.gif', $CLICSHOPPING_PageManager->getDef('heading_title_edition'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_PageManager->getDef('heading_title_edition'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   echo HTML::hiddenField('pages_id', $bID);
   echo HTML::button($CLICSHOPPING_PageManager->getDef('button_cancel'), null, $CLICSHOPPING_PageManager->link('PageManager&' . (isset($page) ? 'page=' . $page . '&' : '') . ((!isset($bID) and $bID != '') ? 'bID=' . $bID : '')), 'warning') . '&nbsp;';
@@ -307,42 +307,42 @@
 ?>
         <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
           <li
-            class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
+            class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
           <li
-            class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_link'); ?></a></li>
+            class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_link'); ?></a></li>
           <li
-            class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_description'); ?></a></li>
+            class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_description'); ?></a></li>
           <li
-            class="nav-item"><?php echo '<a href="#tab4" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_meta_tag'); ?></a></li>
+            class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_meta_tag'); ?></a></li>
         </ul>
 <?php
   } elseif ($page_type == 3) {
 ?>
         <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
           <li
-            class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
+            class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
           <li
-            class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_description'); ?></a></li>
+            class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_description'); ?></a></li>
           <li
-            class="nav-item"><?php echo '<a href="#tab4" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_meta_tag'); ?></a></li>
+            class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_meta_tag'); ?></a></li>
         </ul>
 <?php
   } elseif ($page_type == 5 || $page_type == 6) {
 ?>
         <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
           <li
-            class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
+            class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
           <li
-            class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_link'); ?></a></li>
+            class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_link'); ?></a></li>
         </ul>
 <?php
   } else {
 ?>
         <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
           <li
-            class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
+            class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
           <li
-            class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_description'); ?></a></li>
+            class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_description'); ?></a></li>
         </ul>
 <?php
   }
@@ -356,7 +356,7 @@
           <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_name_page'); ?></div>
           <div class="adminformTitle">
 <?php
-  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
     if ($page_error === true) {
       if ($languages_title_error == $languages[$i]['id']) {
 ?>
@@ -478,7 +478,6 @@
                   <div class="col-md-5">
                     <?php echo HTML::inputField('page_date_start', $page_date_start, null, 'date'); ?>
                   </div>
-                  <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                 </div>
               </div>
             </div>
@@ -490,7 +489,6 @@
                   <div class="col-md-5">
                     <?php echo HTML::inputField('page_date_closed', $page_date_closed, null, 'date'); ?>
                   </div>
-                  <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                 </div>
               </div>
             </div>
@@ -555,7 +553,7 @@
               <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_link'); ?></div>
               <div class="adminformTitle">
 <?php
-  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
 ?>
                     <div class="row">
                       <div class="col-md-5">
@@ -595,7 +593,7 @@
             class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_information_description'); ?></div>
           <div class="adminformTitle">
 <?php
-  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
     if (isset($pages_html_text[$languages[$i]['id']])) {
       $text_description = $pages_html_text[$languages[$i]['id']];
     } else {
@@ -624,19 +622,19 @@
             <div class="row">
                <span class="col-md-12">
                  <?php echo $CLICSHOPPING_PageManager->getDef('help_options'); ?>
-                 <blockquote><i><a data-toggle="modal"
-                                   data-target="#myModalWysiwyg2"><?php echo $CLICSHOPPING_PageManager->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
+                 <blockquote><i><a data-bs-toggle="modal"
+                                   data-bs-target="#myModalWysiwyg2"><?php echo $CLICSHOPPING_PageManager->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
                  <div class="modal fade" id="myModalWysiwyg2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                       aria-hidden="true">
                    <div class="modal-dialog">
                      <div class="modal-content">
                        <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal"><span
+                         <button type="button" class="close" data-bs-dismiss="modal"><span
                              aria-hidden="true">&times;</span></button>
                          <h4 class="modal-title"
                              id="myModalLabel"><?php echo $CLICSHOPPING_PageManager->getDef('text_help_wysiwyg'); ?></h4>
                        </div>
-                       <div class="modal-body text-md-center">
+                       <div class="modal-body text-center">
                          <img class="img-fluid"
                               src="<?php echo $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png'; ?>">
                        </div>
@@ -657,53 +655,15 @@
               <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('text_products_page_seo'); ?></div>
               <div class="adminformTitle">
                 <div class="row">
-                  <div class="col-md-12 text-md-center">
-                    <span class="col-md-6 text-md-center"><a href="https://www.google.fr/trends" target="_blank"
+                  <div class="col-md-12 text-center">
+                    <span class="col-md-6 text-center"><a href="https://www.google.fr/trends" target="_blank"
                                                              rel="noreferrer"><?php echo $CLICSHOPPING_PageManager->getDef('keywords_google_trend'); ?></a></span>
                   </div>
                 </div>
               </div>
-              <!-- decompte caracteres -->
-              <script type="text/javascript">
-                  $(document).ready(function () {
-                    <?php
-                    for ($i = 0, $n = count($languages); $i < $n; $i++) {
-                    ?>
-                      //default title
-                      $("#default_title_<?php echo $i?>").charCount({
-                          allowed: 70,
-                          warning: 20,
-                          counterText: ' Max : '
-                      });
-
-                      //default_description
-                      $("#default_description_<?php echo $i?>").charCount({
-                          allowed: 150,
-                          warning: 20,
-                          counterText: 'Max : '
-                      });
-
-                      //default tag product
-                      $("#default_tag_product_<?php echo $i?>").charCount({
-                          allowed: 100,
-                          warning: 70,
-                          counterText: ' Max : '
-                      });
-
-                      //default tag
-                      $("#default_tag_blog_<?php echo $i?>").charCount({
-                          allowed: 100,
-                          warning: 70,
-                          counterText: ' Max : '
-                      });
-                    <?php
-                    }
-                    ?>
-                  });
-              </script>
               <div class="adminformTitle">
 <?php
-    for ($i = 0, $n = count($languages); $i < $n; $i++) {
+    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
       if (isset($bID)) {
         $title_tag = PageManagerAdmin::getPageManagerHeadTitleTag($bID, $languages[$i]['id']);
         $descrition_tag = PageManagerAdmin::getPageManagerHeadDescTag($bID, $languages[$i]['id']);

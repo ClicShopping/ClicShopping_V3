@@ -52,8 +52,8 @@
     $description = HTML::removeFileAccents(STORE_NAME);
   }
 
-  $scope = HTTP::getShopUrlDomain() . 'index.php';
-  $start_url = HTTP::getShopUrlDomain() . 'index.php';
+  $scope = HTTP::getFullPath();
+  $start_url = HTTP::getFullPath();
 
   $image_192 =  HTTP::getShopUrlDomain() . 'sources/images/logos/manifest/logo_192.png';
   $image_512 =  HTTP::getShopUrlDomain() . 'sources/images/logos/manifest/logo_512.png';

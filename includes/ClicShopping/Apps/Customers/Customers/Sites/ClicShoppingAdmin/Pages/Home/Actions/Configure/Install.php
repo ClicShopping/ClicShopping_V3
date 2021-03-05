@@ -64,7 +64,7 @@
 
         $languages = $CLICSHOPPING_Language->getLanguages();
 
-        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
 
           $language_id = $languages[$i]['id'];
 
@@ -102,7 +102,7 @@
 
           $languages = $CLICSHOPPING_Language->getLanguages();
 
-          for ($i = 0, $n = count($languages); $i < $n; $i++) {
+          for ($i = 0, $n = \count($languages); $i < $n; $i++) {
 
             $language_id = $languages[$i]['id'];
 
@@ -144,7 +144,6 @@ customers_dob datetime,
 customers_email_address varchar(255) NOT NULL,
 customers_default_address_id int,
 customers_telephone varchar(255),
-customers_fax varchar(255),
 customers_password varchar(255) NOT NULL,
 customers_newsletter char(1) default(0),
 languages_id int default(1)  NOT NULL,

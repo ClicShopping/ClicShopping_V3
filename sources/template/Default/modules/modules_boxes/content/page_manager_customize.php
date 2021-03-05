@@ -18,9 +18,9 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="card-header boxeHeadingPageManagerCustomize">
       <span class="card-title boxeTitlePageManagerCustomize"><?php echo CLICSHOPPING::getDef('module_boxes_page_manager_customize_box_title'); ?></span>
     </div>
-    <div class="card-block boxeContentArroundPageManagerCustomize">
+    <div class="card-body boxeContentArroundPageManagerCustomize">
       <div class="card-text boxeContentsPageManagerCustomize">
-        <ul class="list-inline">
+        <ul class="boxeListManagerPageManagerCustomize">
           <li class="list-inline-item boxeListManagerPageManagerCustomize"><?php echo $link; ?></li>
         </ul>
       </div>

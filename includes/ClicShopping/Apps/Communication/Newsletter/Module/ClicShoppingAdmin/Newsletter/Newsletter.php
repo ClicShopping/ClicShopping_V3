@@ -140,11 +140,11 @@
         }
 
         if (FileSystem::isWritable(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/public/newsletter')) {
-          $file_name = '<div class="alert alert-success text-md-center" role="alert">';
-          $file_name .= '<p class="text-md-center"><strong>' . $this->app->getDef('text_file_newsletter') . '</strong> newsletter_' . (int)$this->fileId . '.html<br /><span style="color:#ff0000;"><strong>' . $this->app->getDef('text_file_directories') . '</b></strong> ' . $directory . '</span></p>';
+          $file_name = '<div class="alert alert-success text-center" role="alert">';
+          $file_name .= '<p class="text-center"><strong>' . $this->app->getDef('text_file_newsletter') . '</strong> newsletter_' . (int)$this->fileId . '.html<br /><span style="color:#ff0000;"><strong>' . $this->app->getDef('text_file_directories') . '</b></strong> ' . $directory . '</span></p>';
           $file_name .= '</div>';
         } else {
-          $file_name = '<div class="alert alert-warning text-md-center" role="alert">';
+          $file_name = '<div class="alert alert-warning text-center" role="alert">';
           $file_name .= 'Newsletter no created : <strong>' . CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/public/newsletter -  no writable</strong>';
           $file_name .= '</div>';
         }
@@ -153,8 +153,8 @@
 // ----------------------
 // Display a button if subcription is > 0
 // ----------------------
-      if (SEND_EMAILS == 'true' && $Qmail->valueInt('count') > 0) {
-        $send_button = '<span class="float-md-right">' . HTML::button($this->app->getDef('button_send'), null, $this->app->link('ConfirmSend&page=' . (int)$_GET['page'] . '&nID=' . $this->fileId . '&nlID=' . $this->languageId . '&cgID=' . $this->customerGroupId . '&ac=' . $this->createFile . '&at=' . $this->twitter . '&ana=' . $this->newsletterNoAccount), 'success', null) . '</span>';
+      if (SEND_EMAILS == 'true' && $Qmail->valueInt('\count') > 0) {
+        $send_button = '<span class="float-end">' . HTML::button($this->app->getDef('button_send'), null, $this->app->link('ConfirmSend&page=' . (int)$_GET['page'] . '&nID=' . $this->fileId . '&nlID=' . $this->languageId . '&cgID=' . $this->customerGroupId . '&ac=' . $this->createFile . '&at=' . $this->twitter . '&ana=' . $this->newsletterNoAccount), 'success', null) . '</span>';
       } else {
         $send_button = '';
       }
@@ -170,7 +170,7 @@
                 <span class="col-md-12">
       ';
       $confirm_string .= $send_button;
-      $confirm_string .= '<span class="float-md-right">' . HTML::button($this->app->getDef('button_cancel'), null, $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . $this->fileId), 'warning') . '&nbsp;</span>';
+      $confirm_string .= '<span class="float-end">' . HTML::button($this->app->getDef('button_cancel'), null, $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . $this->fileId), 'warning') . '&nbsp;</span>';
       $confirm_string .= '
                 </span>
               </div>
@@ -182,8 +182,8 @@
       $confirm_string .= '<div class="separator"></div>';
 
       $confirm_string .= '<div id="newsletterBody">' . "\n";
-      $confirm_string .= '<div class="text-md-center alert alert-info" id="newsletterAlert">';
-      $confirm_string .= '<div id="newsletterCount"><strong>' . $this->app->getDef('text_count_customers') . ' ' . $Qmail->valueInt('count') . '<strong></div>';
+      $confirm_string .= '<div class="text-center alert alert-info" id="newsletterAlert">';
+      $confirm_string .= '<div id="newsletterCount"><strong>' . $this->app->getDef('text_count_customers') . ' ' . $Qmail->valueInt('\count') . '<strong></div>';
       $confirm_string .= '</div>' . "\n";
 
       $confirm_string .= $file_name . "\n";
@@ -207,7 +207,7 @@
       $CLICSHOPPING_Mail = Registry::get('Mail');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 
@@ -246,9 +246,9 @@
 // if the file is created
 // ----------------------
       if ($this->createFile == 1) {
-        $CLICSHOPPING_Mail->addText('<p class="text-md-center">' . $this->app->getDef('text_send_newsletter_email', ['store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]) . '</p>' . $this->content . ' ' . $this->app->getDef('text_send_newsletter', ['store_name' => STORE_NAME]) . ' ' . HTTP::getShopUrlDomain() . 'sources/public/newsletter/newsletter_' . $this->fileId . '.html<br /><br />' . TEXT_UNSUBSCRIBE . HTTP::getShopUrlDomain() . 'index.php?Account&Newsletters');
+        $CLICSHOPPING_Mail->addText('<p class="text-center">' . $this->app->getDef('text_send_newsletter_email', ['store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]) . '</p>' . $this->content . ' ' . $this->app->getDef('text_send_newsletter', ['store_name' => STORE_NAME]) . ' ' . HTTP::getShopUrlDomain() . 'sources/public/newsletter/newsletter_' . $this->fileId . '.html<br /><br />' . TEXT_UNSUBSCRIBE . HTTP::getShopUrlDomain() . 'index.php?Account&Newsletters');
       } else {
-        $CLICSHOPPING_Mail->addText('<p class="text-md-center">' . $this->app->getDef('text_send_newsletter_email', ['store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]) . '</p>' . $this->content . ' ' . $this->app->getDef('text_send_newsletter', ['store_name' => STORE_NAME]) . ' ' . HTTP::getShopUrlDomain() . 'index.php?Account&Newsletters');
+        $CLICSHOPPING_Mail->addText('<p class="text-center">' . $this->app->getDef('text_send_newsletter_email', ['store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]) . '</p>' . $this->content . ' ' . $this->app->getDef('text_send_newsletter', ['store_name' => STORE_NAME]) . ' ' . HTTP::getShopUrlDomain() . 'index.php?Account&Newsletters');
       }
 
       ;
@@ -299,7 +299,7 @@
           echo("<meta http-equiv=\"refresh\" content=\"12\">");
         }
 
-        $CLICSHOPPING_Mail->send($QmailNewsletterAccountTemp->value['customers_firstname'] . ' ' . $QmailNewsletterAccountTemp->value['customers_lastname'], $QmailNewsletterAccountTemp->value['customers_email_address'], '', $this->emailFrom, $this->title);
+        $CLICSHOPPING_Mail->send($QmailNewsletterAccountTemp->value['customers_firstname'] . ' ' . $QmailNewsletterAccountTemp->value['customers_lastname'], $QmailNewsletterAccountTemp->value['customers_email_address'], null, $this->emailFrom, $this->title);
 
 // delete all entry in the table
         $Qdelete = $this->app->db->prepare('delete
@@ -337,7 +337,7 @@
       $CLICSHOPPING_Mail = Registry::get('Mail');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 // ----------------------
@@ -408,7 +408,7 @@
         }  // end while
       } else {
         echo'<br />';
-        echo '<span class="text-warning text-md-center">There is a pb with newsletters_customers_temp Database, Click Cancel to go back and retry.</span><br />';
+        echo '<span class="text-warning text-center">There is a pb with newsletters_customers_temp Database, Click Cancel to go back and retry.</span><br />';
       }
 
       $QmailNewsletterAccountTemp = $this->app->db->prepare('select customers_firstname,
@@ -419,9 +419,9 @@
       $QmailNewsletterAccountTemp->execute();
 
       if ($this->createFile == 1) {
-        $message = html_entity_decode('<p class="text-md-center">' . $this->app->getDef('text_send_newsletter_email', ['store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]) . '</p>' . $this->content . $this->app->getDef('text_send_newsletter', ['store_name' => STORE_NAME]) . HTTP::getShopUrlDomain() . 'sources/public/newsletter/newsletter_' . $this->fileId . '.html<br /><br />' . $email_footer);
+        $message = html_entity_decode('<p class="text-center">' . $this->app->getDef('text_send_newsletter_email', ['store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]) . '</p>' . $this->content . $this->app->getDef('text_send_newsletter', ['store_name' => STORE_NAME]) . HTTP::getShopUrlDomain() . 'sources/public/newsletter/newsletter_' . $this->fileId . '.html<br /><br />' . $email_footer);
       } else {
-        $message = html_entity_decode('<p class="text-md-center">' . $this->app->getDef('text_send_newsletter_email', ['store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]) . '</p>' . $this->content . $email_footer);
+        $message = html_entity_decode('<p class="text-center">' . $this->app->getDef('text_send_newsletter_email', ['store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]) . '</p>' . $this->content . $email_footer);
       }
 
       $message = str_replace('src="/', 'src="' . HTTP::getShopUrlDomain(), $message);
@@ -439,7 +439,7 @@
     {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 
@@ -450,7 +450,7 @@
         }
       } else {
         $alert = '<div class="separator"></div>';
-        $alert .= '<div class="alert alert-warning text-md-center" role="alert">';
+        $alert .= '<div class="alert alert-warning text-center" role="alert">';
         $alert .= $this->app->getDef('error_twitter') . ' ' . CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/public/newsletter';
         $alert .= '</div>';
 

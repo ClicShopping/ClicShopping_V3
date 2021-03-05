@@ -12,10 +12,10 @@
   namespace ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
-
+  use ClicShopping\OM\Db;
+  
   class ManufacturerAdmin
   {
-
     /**
      * the manufacturer_description
      * @param int|null $manufacturers_id
@@ -47,7 +47,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (!is_null($id)) {
+      if (!\is_null($id)) {
         $Qproducts = $CLICSHOPPING_Db->prepare('select manufacturers_id
                                                 from :table_products
                                                 where products_id = :products_id
@@ -69,4 +69,30 @@
         return $result;
       }
     }
-  }
+  
+    /**
+     * the manufacturer name
+     *
+     * @param string $manufacturer_name
+     * @return int manufacturer_id
+     */
+    public static function getManufacturerId(?string $manufacturer_name = null) :int|string
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+      
+      if (!\is_null($manufacturer_name)) {
+        $Qmanufacturers = $CLICSHOPPING_Db->prepare('select manufacturers_id
+                                                    from :table_manufacturers
+                                                    where manufacturers_name = :manufacturers_name
+                                                    limit 1
+                                                   ');
+        $Qmanufacturers->bindValue(':manufacturers_name', $manufacturer_name);
+      
+        $Qmanufacturers->execute();
+      
+        return $Qmanufacturers->valueInt('manufacturers_id');
+      } else {
+        return $manufacturers_id = 0;
+      }
+    }
+ }

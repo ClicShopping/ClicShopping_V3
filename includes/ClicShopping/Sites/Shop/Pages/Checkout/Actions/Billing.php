@@ -58,7 +58,7 @@
       if ((STOCK_CHECK == 'true') && (STOCK_ALLOW_CHECKOUT != 'true')) {
         $products = $CLICSHOPPING_ShoppingCart->get_products();
 
-        for ($i = 0, $n = count($products); $i < $n; $i++) {
+        for ($i = 0, $n = \count($products); $i < $n; $i++) {
           if ($CLICSHOPPING_ProductsCommon->getCheckStock($products[$i]['id'], $products[$i]['quantity'])) {
             CLICSHOPPING::redirect(null, 'Cart');
             break;
@@ -71,7 +71,7 @@
         $_SESSION['billto'] = $CLICSHOPPING_Customer->getDefaultAddressID();
       } else {
 // verify the selected billing address
-        if ((is_array($_SESSION['billto']) && empty($_SESSION['billto'])) || is_numeric($_SESSION['billto'])) {
+        if ((\is_array($_SESSION['billto']) && empty($_SESSION['billto'])) || is_numeric($_SESSION['billto'])) {
 
           $QcheckAddress = $CLICSHOPPING_Db->prepare('select count(*) as total
                                                       from :table_address_book
@@ -89,7 +89,7 @@
         }
       }
 
-      if (isset($_POST['comments']) && !is_null($_POST['comments'])) {
+      if (isset($_POST['comments']) && !\is_null($_POST['comments'])) {
         $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
       }
 

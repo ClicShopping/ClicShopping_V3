@@ -47,7 +47,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/suppliers.gif', $CLICSHOPPING_Suppliers->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Suppliers->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
+          <span class="col-md-7 text-end">
 <?php
   echo HTML::form('suppliers', $CLICSHOPPING_Suppliers->link('Suppliers&' . $form_action . $variable));
   if ($form_action == 'Update') echo HTML::hiddenField('suppliers_id', $_GET['mID']);
@@ -82,11 +82,11 @@
   <div id="suppliersTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Suppliers->getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Suppliers->getDef('tab_general') . '</a>'; ?></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Suppliers->getDef('tab_suppliers_note'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Suppliers->getDef('tab_suppliers_note'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Suppliers->getDef('tab_visuel'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Suppliers->getDef('tab_visuel'); ?></a></li>
     </ul>
 
     <div class="tabsClicShopping">
@@ -98,7 +98,7 @@
         ?>
         <div class="tab-pane active" id="tab1">
           <div class="col-md-12 mainTitle">
-            <div class="float-md-left"><?php echo $CLICSHOPPING_Suppliers->getDef('title_suppliers_general'); ?></div>
+            <div class="float-start"><?php echo $CLICSHOPPING_Suppliers->getDef('title_suppliers_general'); ?></div>
           </div>
           <div class="adminformTitle">
 
@@ -229,7 +229,7 @@
             <?php
               $languages = $CLICSHOPPING_Language->getLanguages();
 
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="form-group row">
                   <label for="code"
@@ -248,7 +248,7 @@
         <!-- //################################################################################################################ -->
         <div class="tab-pane" id="tab2">
           <div class="col-md-12 mainTitle">
-            <div class="float-md-left"><?php echo $CLICSHOPPING_Suppliers->getDef('title_suppliers_general'); ?></div>
+            <div class="float-start"><?php echo $CLICSHOPPING_Suppliers->getDef('title_suppliers_general'); ?></div>
           </div>
           <div class="adminformTitle">
             <div class="row">
@@ -285,12 +285,12 @@
                 <div class="adminformAide">
                   <div class="row">
                     <span
-                      class="col-md-4 text-md-center float-md-left"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('suppliers_image', '212', '212', null); ?></span>
-                    <span class="col-md-8 text-md-center float-md-right">
+                      class="col-md-4 text-center float-start"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('suppliers_image', '212', '212', null); ?></span>
+                    <span class="col-md-8 text-center float-end">
                         <div class="col-md-12">
                           <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($mInfo->suppliers_image ?? '', $CLICSHOPPING_Suppliers->getDef('text_products_image_vignette')); ?>
                          </div>
-                        <div class="col-md-12 text-md-right">
+                        <div class="col-md-12 text-end">
                           <?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_delete_image') . HTML::checkboxField('delete_image', 'yes', false); ?>
                         </div>
                       </span>

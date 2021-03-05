@@ -291,7 +291,7 @@
 // Show the products information line by line
   $item_count = 0;
 
-  for ($i = 0, $n = count($order->products); $i < $n; $i++) {
+  for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
 
 // Quantity
     $pdf->SetFont('Arial', '', 7);
@@ -303,8 +303,8 @@
     $prod_attribs = '';
 
     // Get attribs and concat
-    if ((isset($order->products[$i]['attributes'])) && (count($order->products[$i]['attributes']) > 0)) {
-      for ($j = 0, $n2 = count($order->products[$i]['attributes']); $j < $n2; $j++) {
+    if ((isset($order->products[$i]['attributes'])) && (\count($order->products[$i]['attributes']) > 0)) {
+      for ($j = 0, $n2 = \count($order->products[$i]['attributes']); $j < $n2; $j++) {
         $prod_attribs .= " - " . $order->products[$i]['attributes'][$j]['option'] . ': ' . $order->products[$i]['attributes'][$j]['value'];
       }
     }
@@ -315,10 +315,10 @@
 // Nom du produit
     $pdf->SetY($Y_Table_Position);
     $pdf->SetX(60);
-    if (strlen($product_name_attrib_contact) > 40 && strlen($product_name_attrib_contact) < 70) {
+    if (\strlen($product_name_attrib_contact) > 40 && \strlen($product_name_attrib_contact) < 70) {
       $pdf->SetFont('Arial', '', 6);
       $pdf->MultiCell(138, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
-    } else if (strlen($product_name_attrib_contact) > 70) {
+    } else if (\strlen($product_name_attrib_contact) > 70) {
       $pdf->SetFont('Arial', '', 6);
       $pdf->MultiCell(138, 6, utf8_decode(substr($product_name_attrib_contact, 0, 70)) . " .. ", 1, 'L');
     } else {

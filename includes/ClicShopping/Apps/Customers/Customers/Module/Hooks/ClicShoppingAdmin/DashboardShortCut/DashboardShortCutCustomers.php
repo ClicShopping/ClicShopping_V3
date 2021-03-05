@@ -34,11 +34,11 @@
 
     public function display(): string
     {
-      if (!defined('CLICSHOPPING_APP_CUSTOMERS_CS_STATUS') || CLICSHOPPING_APP_CUSTOMERS_CS_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_CUSTOMERS_CS_STATUS') || CLICSHOPPING_APP_CUSTOMERS_CS_STATUS == 'False') {
         return false;
       }
 
-      $output = HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers'), null, 'class="btn btn-warning btn-sm" role="button"><span class="fas fa-user" title="' . $this->app->getDef('heading_short_customers') . '"') . ' ';
+      $output = HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers'), null, 'class="btn btn-warning btn-sm" role="button"><span class="bi bi-person-fill" title="' . $this->app->getDef('heading_short_customers') . '"') . ' ';
 
       return $output;
     }

@@ -12,18 +12,22 @@ use PhpXmlRpc\Helper\Charset;
 class Response
 {
     /// @todo: do these need to be public?
+    /** @internal */
     public $val = 0;
+    /** @internal */
     public $valtyp;
+    /** @internal */
     public $errno = 0;
+    /** @internal */
     public $errstr = '';
     public $payload;
+    public $content_type = 'text/xml';
     public $hdrs = array();
     public $_cookies = array();
-    public $content_type = 'text/xml';
     public $raw_data = '';
 
     /**
-     * @param mixed $val either a Value object, a php value or the xml serialization of an xmlrpc value (a string)
+     * @param Value|string|mixed $val either a Value object, a php value or the xml serialization of an xmlrpc value (a string)
      * @param integer $fCode set it to anything but 0 to create an error response. In that case, $val is discarded
      * @param string $fString the error string, in case of an error response
      * @param string $valType The type of $val passed in. Either 'xmlrpcvals', 'phpvals' or 'xml'. Leave empty to let
@@ -98,7 +102,7 @@ class Response
      * It is up to the user-defined code to decide how to use the received cookies, and whether they have to be sent back
      * with the next request to the server (using Client::setCookie) or not.
      *
-     * @return array array of cookies received from the server
+     * @return array[] array of cookies received from the server
      */
     public function cookies()
     {
@@ -140,7 +144,7 @@ class Response
                         $this->val .
                         "</param>\n</params>";
                 } else {
-                    /// @todo try to build something serializable?
+                    /// @todo try to build something serializable using the Encoder...
                     throw new \Exception('cannot serialize xmlrpc response objects whose content is native php values');
                 }
             } else {

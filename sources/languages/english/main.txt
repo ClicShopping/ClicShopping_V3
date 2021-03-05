@@ -119,8 +119,6 @@ entry_cellular_phone_number_error = Your Cellular phone Number must contain a mi
 entry_cellular_phone_number_error_pro = Your Cellular phone Number must contain a minimum of {{min_length}} characters.
 entry_phone_dgrp = Your phone number is important to contact you (payment, shipping problem ...)
 
-entry_fax_number_error =
-entry_fax_number_text =
 entry_newsletter_text =
 entry_newsletter_error =
 entry_password_error = Your Password must contain a minimum of {{min_length}} characters.
@@ -204,7 +202,6 @@ text_ccval_error_invalid_date = The expiry date entered for the credit card is i
 text_ccval_error_invalid_number = The credit card number entered is invalid.<br />Please check the number and try again.
 text_ccval_error_unknown_card = The first four digits of the number entered are: %s<br />If that number is correct, we do not accept that type of credit card.<br />If it is wrong, please try again.
 
-
 prices_logged_in_text = Please log in for prices.
 prices_logged_in_submit = Sorry you must be logged in for prices.
 prices_logged_in_buy_text = Please log in for Buy-now
@@ -276,7 +273,7 @@ this message as well as the documents which would be appended are addressed excl
 
 email_text_subject_stock = Stock Alert on product on {{store_name}}
 email_reorder_level_text_stock = Hello,<br /><br />You recieved an warning email concernng your warning stock (general configuration) for this product. This warning stock is the alrt stock where on or several procducs is reached. <br />There the differents caracteristics on the product : <br />
-email_text_stock = Hello, <br /><br /> You receive an  warning about the exhausted stock on one of your products. Your product is no available on your store. However, you can reactivate it without modifying your stock. The Add button will be replaced by the following exhausted button.<br />There characteristics of the products out of stock :<br />
+email_text_stock = Hello, <br /><br /> You receive an  warning about the sold_out stock on one of your products. Your product is no available on your store. However, you can reactivate it without modifying your stock. The Add button will be replaced by the following sold_out button.<br />There characteristics of the products out of stock :<br />
 email_text_subject_alert_stock = Stock alert on specific product on {{store_name}}
 email_reorder_level_text_alert_stock = Hello,<br /><br />You receive an  warning about the alert stock (defined in the product) concerning a product.  Your product is available on your store. <br />There characteristics of the products out of stock : <br />
 email_text_product_alert_stock = Stock on this product :

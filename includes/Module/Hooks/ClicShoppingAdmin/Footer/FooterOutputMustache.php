@@ -14,9 +14,9 @@
   class FooterOutputMustache
   {
     /**
-     * @return string
+     * @return string|bool
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $output = '';
 
@@ -24,6 +24,8 @@
         $output .= '<!-- Mustache Script start-->' . "\n";
         $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"></script>' . "\n";
         $output .= '<!--Mustache end -->' . "\n";
+      } else {
+        return false;
       }
 
       return $output;

@@ -54,7 +54,7 @@
       $this->code = 'IT';
       $this->title = $this->app->getDef('module_item_title');
       $this->public_title = $this->app->getDef('module_item_public_title');
-      $this->sort_order = defined('CLICSHOPPING_APP_ITEM_IT_SORT_ORDER') ? CLICSHOPPING_APP_ITEM_IT_SORT_ORDER : 0;
+      $this->sort_order = \defined('CLICSHOPPING_APP_ITEM_IT_SORT_ORDER') ? CLICSHOPPING_APP_ITEM_IT_SORT_ORDER : 0;
 
 // Activation module du paiement selon les groupes B2B
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
@@ -66,7 +66,7 @@
           }
         }
       } else {
-        if (defined('CLICSHOPPING_APP_ITEM_IT_NO_AUTHORIZE') && CLICSHOPPING_APP_ITEM_IT_NO_AUTHORIZE == 'True' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
+        if (\defined('CLICSHOPPING_APP_ITEM_IT_NO_AUTHORIZE') && CLICSHOPPING_APP_ITEM_IT_NO_AUTHORIZE == 'True' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
           if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
             if (CLICSHOPPING_APP_ITEM_IT_STATUS == 'True') {
               $this->enabled = true;
@@ -77,15 +77,15 @@
         }
       }
 
-      if (defined('CLICSHOPPING_APP_ITEM_IT_TAX_CLASS')) {
+      if (\defined('CLICSHOPPING_APP_ITEM_IT_TAX_CLASS')) {
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           if (B2BCommon::getTaxUnallowed($this->code) || !$CLICSHOPPING_Customer->isLoggedOn()) {
-            $this->tax_class = defined('CLICSHOPPING_APP_ITEM_IT_TAX_CLASS') ? CLICSHOPPING_APP_ITEM_IT_TAX_CLASS : 0;
+            $this->tax_class = \defined('CLICSHOPPING_APP_ITEM_IT_TAX_CLASS') ? CLICSHOPPING_APP_ITEM_IT_TAX_CLASS : 0;
 
           }
         } else {
           if (B2BCommon::getTaxUnallowed($this->code)) {
-            $this->tax_class = defined('CLICSHOPPING_APP_ITEM_IT_TAX_CLASS') ? CLICSHOPPING_APP_ITEM_IT_TAX_CLASS : 0;
+            $this->tax_class = \defined('CLICSHOPPING_APP_ITEM_IT_TAX_CLASS') ? CLICSHOPPING_APP_ITEM_IT_TAX_CLASS : 0;
           }
         }
       }
@@ -140,14 +140,14 @@
         $this->icon = '';
       }
 
-      if (!is_null($this->icon)) $this->quotes['icon'] = '&nbsp;&nbsp;&nbsp;' . $this->icon;
+      if (!\is_null($this->icon)) $this->quotes['icon'] = '&nbsp;&nbsp;&nbsp;' . $this->icon;
 
       return $this->quotes;
     }
 
     public function check()
     {
-      return defined('CLICSHOPPING_APP_ITEM_IT_STATUS') && (trim(CLICSHOPPING_APP_ITEM_IT_STATUS) != '');
+      return \defined('CLICSHOPPING_APP_ITEM_IT_STATUS') && (trim(CLICSHOPPING_APP_ITEM_IT_STATUS) != '');
     }
 
     public function install()
@@ -176,7 +176,7 @@
       if ($CLICSHOPPING_Order->content_type == 'mixed') {
         $number_of_items = 0;
 
-        for ($i = 0, $n = count($CLICSHOPPING_Order->products); $i < $n; $i++) {
+        for ($i = 0, $n = \count($CLICSHOPPING_Order->products); $i < $n; $i++) {
           $number_of_items += $CLICSHOPPING_Order->products[$i]['qty'];
 
           if (isset($CLICSHOPPING_Order->products[$i]['attributes'])) {

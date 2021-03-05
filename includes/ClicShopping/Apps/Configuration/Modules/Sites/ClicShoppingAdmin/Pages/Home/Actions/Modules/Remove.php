@@ -73,7 +73,7 @@
 
         $modules_installed = explode(';', constant($module_key));
 
-        if (in_array($class . $file_extension, $modules_installed)) {
+        if (\in_array($class . $file_extension, $modules_installed)) {
           unset($modules_installed[array_search($class . $file_extension, $modules_installed)]);
         }
 

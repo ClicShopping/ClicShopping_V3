@@ -51,11 +51,11 @@
           <span
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Specials->getDef('heading_title'); ?></span>
           <span class="col-md-2">
-           <div class="form-group">
-             <div class="controls">
+           <div>
+             <div>
 <?php
   if (MODE_B2B_B2C == 'true') {
-    echo HTML::form('grouped', $CLICSHOPPING_Specials->link('Specials'), 'post', 'class="form-inline"');
+    echo HTML::form('grouped', $CLICSHOPPING_Specials->link('Specials'), 'post', '');
 
     if (isset($_POST['customers_group_id'])) {
       $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
@@ -77,7 +77,7 @@
   }
 ?>
          </span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_Specials->getDef('button_new'), null, $CLICSHOPPING_Specials->link('Edit&page=' . $page . '&action=new'), 'success');
 ?>
@@ -94,13 +94,15 @@
     echo HTML::form('delete_all', $CLICSHOPPING_Specials->link('Specials&Specials&DeleteAll&page=' . $page));
   ?>
 
-  <div id="toolbar">
+  <div id="toolbar" class="float-end">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Specials->getDef('button_delete'); ?></button>
   </div>
 
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-id-field="selected"
     data-select-item-name="selected[]"
     data-click-to-select="true"
@@ -128,12 +130,12 @@
       ?>
       <th data-field="percentage" data-sortable="true"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_percentage'); ?></th>
       <th data-field="products_price" data-sortable="true"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_products_price'); ?></th>
-      <th data-field="scheduled_date'" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_scheduled_date'); ?></th>
-      <th data-field="expires_date" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_expires_date'); ?></td>
-      <th data-field="falsh_discount" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_flash_discount'); ?></td>
-      <th data-field="archive" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_archive'); ?></th>
-      <th data-field="status" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_status'); ?></th>
-      <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_action'); ?>&nbsp;</th>
+      <th data-field="scheduled_date'" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_scheduled_date'); ?></th>
+      <th data-field="expires_date" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_expires_date'); ?></td>
+      <th data-field="falsh_discount" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_flash_discount'); ?></td>
+      <th data-field="archive" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_archive'); ?></th>
+      <th data-field="status" data-sortable="true"class="text-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_status'); ?></th>
+      <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_action'); ?>&nbsp;</th>
     </tr>
     </thead>
     <tbody>
@@ -252,40 +254,40 @@
             <?php
           } // end mode b2B_B2C
           ?>
-          <td class="text-md-left">
+          <td class="text-start">
             <?php
               if ($Qspecials->valueDecimal('products_price') != 0) {
                 echo number_format(100 - (($Qspecials->valueDecimal('specials_new_products_price') / $Qspecials->valueDecimal('products_price')) * 100)) . '%';
               }
             ?>
           </td>
-          <td class="text-md-left"><span
+          <td class="text-start"><span
               class="oldPrice"><?php echo $CLICSHOPPING_Currencies->format($Qspecials->valueDecimal('products_price')); ?></span><span
               class="specialPrice"><?php echo $CLICSHOPPING_Currencies->format($Qspecials->valueDecimal('specials_new_products_price')); ?></span>
           </td>
           <?php
-          if (!is_null($Qspecials->value('scheduled_date'))) {
+          if (!\is_null($Qspecials->value('scheduled_date'))) {
             ?>
-            <td class="text-md-center"><?php echo DateTime::toShort($Qspecials->value('scheduled_date')); ?></td>
+            <td class="text-center"><?php echo DateTime::toShort($Qspecials->value('scheduled_date')); ?></td>
             <?php
           } else {
             ?>
-            <td class="text-md-center"></td>
+            <td class="text-center"></td>
             <?php
           }
 
-          if (!is_null($Qspecials->value('expires_date'))) {
+          if (!\is_null($Qspecials->value('expires_date'))) {
             ?>
-            <td class="text-md-center"><?php echo DateTime::toShort($Qspecials->value('expires_date')); ?></td>
+            <td class="text-center"><?php echo DateTime::toShort($Qspecials->value('expires_date')); ?></td>
             <?php
           } else {
             ?>
-            <td class="text-md-center"></td>
+            <td class="text-center"></td>
             <?php
           }
           if ($Qspecials->valueInt('flash_discount') == 1) {
             ?>
-            <td class="text-md-center"><i class="fas fa-check fa-lg" aria-hidden="true"></i></td>
+            <td class="text-center"><i class="bi-check text-success"></i></td>
             <?php
           } else {
             ?>
@@ -295,7 +297,7 @@
           }
           if ($Qspecials->valueInt('products_archive') == 1) {
             ?>
-            <td class="text-md-center"><i class="fas fa-check fa-lg" aria-hidden="true"></i></td>
+            <td class="text-center"><i class="bi-check text-success"></i></td>
             <?php
           } else {
             ?>
@@ -303,16 +305,16 @@
             <?php
           }
           ?>
-          <td class="text-md-center">
+          <td class="text-center">
             <?php
               if ($Qspecials->valueInt('status') == 1) {
-                echo '<a href="' . $CLICSHOPPING_Specials->link('Specials&Specials&SetFlag&page=' . (int)$page . '&flag=0&id=' . (int)$Qspecials->valueInt('specials_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+                echo '<a href="' . $CLICSHOPPING_Specials->link('Specials&Specials&SetFlag&page=' . (int)$page . '&flag=0&id=' . (int)$Qspecials->valueInt('specials_id')) . '"><i class="bi-check text-success"></i></a>';
               } else {
-                echo '<a href="' . $CLICSHOPPING_Specials->link('Specials&Specials&SetFlag&page=' . (int)$page . '&flag=1&id=' . (int)$Qspecials->valueInt('specials_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+                echo '<a href="' . $CLICSHOPPING_Specials->link('Specials&Specials&SetFlag&page=' . (int)$page . '&flag=1&id=' . (int)$Qspecials->valueInt('specials_id')) . '"><i class="bi bi-x text-danger"></i></a>';
               }
             ?>
           </td>
-          <td class="text-md-right">
+          <td class="text-end">
             <?php
               echo '<a href="' . $CLICSHOPPING_Specials->link('Edit&page=' . (int)$page . '&sID=' . (int)$Qspecials->valueInt('specials_id') . '&action=update') . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Specials->getDef('icon_edit')) . '</a>';
               echo '&nbsp;';
@@ -332,9 +334,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qspecials->getPageSetLabel($CLICSHOPPING_Specials->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qspecials->getPageSetLabel($CLICSHOPPING_Specials->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qspecials->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qspecials->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

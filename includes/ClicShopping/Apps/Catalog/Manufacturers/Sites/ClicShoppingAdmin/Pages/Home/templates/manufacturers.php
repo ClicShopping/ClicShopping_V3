@@ -33,7 +33,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/manufacturers.gif', $CLICSHOPPING_Manufacturers->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Manufacturers->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
+          <span class="col-md-7 text-end">
             <?php echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_new'), null, $CLICSHOPPING_Manufacturers->link('Edit'), 'success'); ?>
            </span>
         </div>
@@ -46,8 +46,10 @@
   <!-- ################# -->
   <div class="row">
     <div class="col-md-12">
-      <div class="card-deck">
+      <div class="card card-block headerCard">
+        <div class="row">
           <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsManufacturers', null, 'display'); ?>
+        </div>
       </div>
     </div>
   </div>
@@ -57,13 +59,15 @@
   <!-- //################################################################################################################ -->
   <?php  echo HTML::form('delete_all', $CLICSHOPPING_Manufacturers->link('Manufacturers&DeleteAll&page=' . $page)); ?>
 
-  <div id="toolbar">
+  <div id="toolbar" class="float-end">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Manufacturers->getDef('button_delete'); ?></button>
   </div>
 
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-id-field="selected"
     data-select-item-name="selected[]"
     data-click-to-select="true"
@@ -81,8 +85,8 @@
         <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Manufacturers->getDef('id'); ?></th>
         <th data-switchable="false"></th>
         <th data-field="manufacturer" data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_manufacturers'); ?></th>
-        <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_status'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_status'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -126,16 +130,16 @@
             ?>
           </td>
           <td scope="row"><?php echo $Qmanufacturers->value('manufacturers_name'); ?></td>
-          <td class="text-md-center">
+          <td class="text-center">
             <?php
               if ($Qmanufacturers->value('manufacturers_status') == '0') {
-                echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Manufacturers&SetFlag&page=' . $page . '&flag=1&id=' . $Qmanufacturers->valueInt('manufacturers_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+                echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Manufacturers&SetFlag&page=' . $page . '&flag=1&id=' . $Qmanufacturers->valueInt('manufacturers_id')) . '"><i class="bi-check text-success"></i></a>';
               } else {
-                echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Manufacturers&SetFlag&page=' . $page . '&flag=0&id=' . $Qmanufacturers->valueInt('manufacturers_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+                echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Manufacturers&SetFlag&page=' . $page . '&flag=0&id=' . $Qmanufacturers->valueInt('manufacturers_id')) . '"><i class="bi bi-x text-danger"></i></a>';
               }
             ?>
           </td>
-          <td class="text-md-right">
+          <td class="text-end">
             <?php
               echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Edit&page=' . $page . '&mID=' . $Qmanufacturers->valueInt('manufacturers_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Manufacturers->getDef('icon_edit')) . '</a>';
               echo '&nbsp;';
@@ -155,9 +159,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qmanufacturers->getPageSetLabel($CLICSHOPPING_Manufacturers->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qmanufacturers->getPageSetLabel($CLICSHOPPING_Manufacturers->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qmanufacturers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qmanufacturers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

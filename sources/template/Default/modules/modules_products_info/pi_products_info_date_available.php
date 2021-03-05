@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class pi_products_info_date_available {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_info_date_available');
       $this->description = CLICSHOPPING::getDef('module_products_info_date_available_description');
 
-      if (defined('MODULE_PRODUCTS_INFO_DATE_AVAILABLE_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_DATE_AVAILABLE_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_DATE_AVAILABLE_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_INFO_DATE_AVAILABLE_STATUS == 'True');
       }
@@ -66,7 +66,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_INFO_DATE_AVAILABLE_STATUS');
+      return \defined('MODULE_PRODUCTS_INFO_DATE_AVAILABLE_STATUS');
     }
 
     public function install() {
@@ -99,11 +99,11 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where do you want to display this module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_DATE_AVAILABLE_POSITION',
-          'configuration_value' => 'float-md-none',
+          'configuration_value' => 'float-none',
           'configuration_description' => 'Display the module in function your choice.',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

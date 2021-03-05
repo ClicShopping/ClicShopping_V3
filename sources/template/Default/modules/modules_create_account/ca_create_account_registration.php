@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class ca_create_account_registration {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_create_account_registration_title');
       $this->description = CLICSHOPPING::getDef('module_create_account_registration_description');
 
-      if (defined('MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS')) {
+      if (\defined('MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS')) {
         $this->sort_order = MODULE_CREATE_ACCOUNT_REGISTRATION_SORT_ORDER;
         $this->enabled = (MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS == 'True');
       }
@@ -64,7 +64,7 @@
   }
 
   public function check() {
-    return defined('MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS');
+    return \defined('MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS');
   }
 
   public function install() {

@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class cap_create_account_pro_introduction {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('module_create_account_pro_introduction_title');
       $this->description = CLICSHOPPING::getDef('module_create_account_pro_introduction_description');
 
-      if (defined('MODULE_CREATE_ACCOUNT_PRO_INTRODUCTION_STATUS')) {
+      if (\defined('MODULE_CREATE_ACCOUNT_PRO_INTRODUCTION_STATUS')) {
         $this->sort_order = MODULE_CREATE_ACCOUNT_PRO_INTRODUCTION_SORT_ORDER;
         $this->enabled = (MODULE_CREATE_ACCOUNT_PRO_INTRODUCTION_STATUS == 'True');
       }
@@ -59,7 +59,7 @@
   }
 
   public function check() {
-    return defined('MODULE_CREATE_ACCOUNT_PRO_INTRODUCTION_STATUS');
+    return \defined('MODULE_CREATE_ACCOUNT_PRO_INTRODUCTION_STATUS');
   }
 
   public function install() {

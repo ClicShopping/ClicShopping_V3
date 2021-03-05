@@ -62,7 +62,7 @@
 
                 $reset_key_url = CLICSHOPPING::link(null, 'Account&PasswordReset&account=' . urlencode($email_address) . '&key=' . $reset_key);
 
-                if (strpos($reset_key_url, '&amp;') !== false) {
+                if (str_contains($reset_key_url, '&amp;')) {
                   $reset_key_url = str_replace('&amp;', '&', $reset_key_url);
                 }
 
@@ -87,7 +87,7 @@
 
                 $CLICSHOPPING_ActionRecorder->record(false);
 
-                $message_array = ['module_action_recorder_reset_password_minutes' => (defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES') ? (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES : 5)];
+                $message_array = ['module_action_recorder_reset_password_minutes' => (\defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES') ? (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES : 5)];
 
                 $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', $message_array), 'error');
               }

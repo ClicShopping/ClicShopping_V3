@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class ta_tell_a_friend_customer {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('modules_tell_a_friend_customer_title');
       $this->description = CLICSHOPPING::getDef('modules_tell_a_friend_customer_description');
 
-      if (defined('MODULES_TELL_A_FRIEND_STATUS')) {
+      if (\defined('MODULES_TELL_A_FRIEND_STATUS')) {
         $this->sort_order = MODULES_TELL_A_FRIEND_SORT_ORDER;
         $this->enabled = (MODULES_TELL_A_FRIEND_STATUS == 'True');
       }
@@ -48,7 +48,7 @@
         }
 
         $first_name = HTML::inputField('from_name', $customer_name, 'required aria-required="true" id="inputFromName" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_customer_name') . '" minlength="' . ENTRY_FIRST_NAME_MIN_LENGTH . '"');
-        $customer_email = HTML::inputField('from_email_address', $customer_email, 'rel="txtTooltipEmailAddress" title="' . CLICSHOPPING::getDef('modules_tell_a_friend_email_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="inputFromEmail" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_customer_email') . '"', 'email');
+        $customer_email = HTML::inputField('from_email_address', $customer_email, 'rel="txtTooltipEmailAddress" title="' . CLICSHOPPING::getDef('modules_tell_a_friend_email_dgrp') . '" data-bs-toggle="tooltip" data-placement="right" required aria-required="true" id="inputFromEmail" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_customer_email') . '"', 'email');
 
         $data = '<!-- ta_tell_a_friend_customer start -->' . "\n";
 
@@ -68,7 +68,7 @@
     }
 
     public function check() {
-      return defined('MODULES_TELL_A_FRIEND_STATUS');
+      return \defined('MODULES_TELL_A_FRIEND_STATUS');
     }
 
     public function install() {

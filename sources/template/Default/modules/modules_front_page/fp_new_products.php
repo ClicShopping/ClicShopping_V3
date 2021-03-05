@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class fp_new_products {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_front_page_new_products_title');
       $this->description = CLICSHOPPING::getDef('module_front_page_new_products_description');
 
-      if (defined('MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS')) {
+      if (\defined('MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS')) {
         $this->sort_order = (int)MODULE_FRONT_PAGE_NEW_PRODUCTS_SORT_ORDER;
         $this->enabled = (MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS == 'True');
       }
@@ -161,12 +161,12 @@
             $filename = $CLICSHOPPING_Template->getTemplateModulesFilename($this->group .'/template_html/' . MODULE_FRONT_PAGE_NEW_PRODUCTS_TEMPLATE);
 
             $new_prods_content = '<!-- New Products start -->' . "\n";
+            $new_prods_content .= '<div>';
 
             if (MODULE_FRONT_PAGE_NEW_PRODUCTS_FRONT_TITLE == 'True') {
               $new_prods_content .= '<div class="ModuleFrontPageProductsNewHeading"><h2>' . CLICSHOPPING::getDef('module_front_page_new_products_heading_title') . '</h2></div>';
             }
 
-//            $new_prods_content .= '<div class="row">';
             $new_prods_content .= '<div class="d-flex flex-wrap ModuleFrontPageboxContainerNewProducts">';
 
             while ($Qproduct->fetch()) {
@@ -184,7 +184,6 @@
               $min_order_quantity_products_display = $CLICSHOPPING_ProductsFunctionTemplate->getMinOrderQuantityProductDisplay($products_id);
 // display a message in public function the customer group applied - before submit button
               $submit_button_view = $CLICSHOPPING_ProductsFunctionTemplate->getButtonView($products_id);
-
 // button buy
               $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary', null, 'sm');
               $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
@@ -193,13 +192,15 @@
               if ($CLICSHOPPING_ProductsCommon->getProductsQuantity() > 0) {
                 $input_quantity = $CLICSHOPPING_ProductsFunctionTemplate->getDisplayInputQuantity(MODULE_FRONT_PAGE_NEW_PRODUCTS_DELETE_BUY_BUTTON, $products_id);
               } else {
-                $input_quantity = '';
+                $input_quantity ='';
               }
 
 // display the differents prices before button
               $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice($products_id);
 //Short description
               $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription($products_id, $delete_word, $products_short_description_number);
+// Reviews
+                $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
 
 // **************************
 // display the differents buttons before minorder qty
@@ -223,20 +224,24 @@
               $products_quantity_unit = $CLICSHOPPING_ProductsFunctionTemplate->getProductQuantityUnitType($products_id);
 
 // **************************************************
-// Button Free - Must be above getProductsExhausted
+// Button Free - Must be above getProductsSoldOut
 // **************************************************
               if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView($products_id) != 1 && NOT_DISPLAY_PRICE_ZERO == 'false') {
                 $submit_button = HTML::button(CLICSHOPPING::getDef('text_products_free'), '', $products_name_url, 'danger');
                 $min_quantity = 0;
+                $form = '';
+                $endform = '';
                 $input_quantity ='';
                 $min_order_quantity_products_display = '';
               }
 
 // **************************
-// Display an information if the stock is exhausted for all groups
+// Display an information if the stock is sold_out for all groups
 // **************************
-              if (!empty($CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id))) {
-                $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id);
+              if (!empty($CLICSHOPPING_ProductsCommon->getProductsSoldOut($products_id))) {
+                $submit_button = $CLICSHOPPING_ProductsCommon->getProductsSoldOut($products_id);
+                $form = '';
+                $endform = '';
                 $min_quantity = 0;
                 $input_quantity = '';
                 $min_order_quantity_products_display = '';
@@ -244,8 +249,10 @@
 
 // See the button more view details
                $button_small_view_details = $CLICSHOPPING_ProductsFunctionTemplate->getButtonViewDetails(MODULE_FRONT_PAGE_NEW_PRODUCTS_DELETE_BUY_BUTTON, $products_id);
+
 // Display the image
               $products_image = $CLICSHOPPING_ProductsFunctionTemplate->getImage(MODULE_FRONT_PAGE_NEW_PRODUCTS_IMAGE_MEDIUM, $products_id);
+
 // Ticker Image
               $products_image .= $CLICSHOPPING_ProductsFunctionTemplate->getTicker(MODULE_FRONT_PAGE_NEW_PRODUCTS_TICKER, $products_id, 'ModulesFrontPageTickerBootstrapTickerSpecial', 'ModulesFrontPageTickerBootstrapTickerFavorite', 'ModulesFrontPageTickerBootstrapTickerFeatured', 'ModulesFrontPageTickerBootstrapTickerNew');
 
@@ -275,7 +282,7 @@
                 $tag = $CLICSHOPPING_ProductsFunctionTemplate->getProductsHeadTag($products_id);
 
                 $products_tag = '';
-                if (isset($tag) && is_array($tag)) {
+                if (isset($tag) && \is_array($tag)) {
                   foreach ($tag as $value) {
                     $products_tag .= '#<span class="productTag">' . HTML::link(CLICSHOPPING::link(null, 'Search&keywords='. HTML::outputProtected(utf8_decode($value) .'&search_in_description=1&categories_id=&inc_subcat=1'), 'rel="nofollow"'), $value) . '</span> ';
                   }
@@ -307,6 +314,7 @@
             } //while
 
             $new_prods_content .= '</div>' . "\n";
+            $new_prods_content .= '</div>' . "\n";
 
             $new_prods_content .= '<!-- New Products End -->' . "\n";
 
@@ -321,7 +329,7 @@
     }
 
     public function check() {
-      return defined('MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS');
+      return \defined('MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS');
     }
 
     public function install() {
@@ -439,7 +447,7 @@
           'configuration_title' => 'Do you want to display the stock ?',
           'configuration_key' => 'MODULE_FRONT_PAGE_NEW_PRODUCTS_DISPLAY_STOCK',
           'configuration_value' => 'none',
-          'configuration_description' => 'Display the stock (in stock, exhaused, out of stock) ?',
+          'configuration_description' => 'Display the stock (in stock, sold out, out of stock) ?',
           'configuration_group_id' => '6',
           'sort_order' => '10',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'none\', \'image\', \'number\'))',

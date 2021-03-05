@@ -34,7 +34,7 @@
 
 // process the selected shipping method
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
-        if (!is_null($_POST['comments'])) {
+        if (!\is_null($_POST['comments'])) {
           $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
         }
 
@@ -51,7 +51,7 @@
 
             $CLICSHOPPING_SM = null;
 
-            if (strpos($_SESSION['shipping'], '\\') !== false) {
+            if (str_contains($_SESSION['shipping'], '\\')) {
 
               list($vendor, $app, $module) = explode('\\', $_SESSION['shipping']);
               list($module, $method) = explode('_', $module);
@@ -84,7 +84,7 @@
               if (isset($quote['error'])) {
                 unset($_SESSION['shipping']);
               } else {
-                for ($i = 0, $n = count($quote[0]['methods']); $i < $n; $i++) {
+                for ($i = 0, $n = \count($quote[0]['methods']); $i < $n; $i++) {
                   if ((isset($quote[0]['methods'][$i]['title'])) && (isset($quote[0]['methods'][$i]['cost'])) && ($quote[0]['methods'][$i]['id'] == $method || $_SESSION['shipping'] == 'free_free')) {
                     $_SESSION['shipping'] = [
                       'id' => $_SESSION['shipping'],
@@ -99,7 +99,7 @@
                     if (is_dir($source_folder)) {
                       $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutShipping*');
 
-                      if (is_array($files_get)) {
+                      if (\is_array($files_get)) {
                         foreach ($files_get as $value) {
                           if (!empty($value['name'])) {
                             $CLICSHOPPING_Hooks->call('CheckoutShippingProcess', $value['name']);
@@ -117,7 +117,7 @@
             }
           }
         } else {
-          if (defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False')) {
+          if (\defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False')) {
             unset($_SESSION['shipping']);
           } else {
             $_SESSION['shipping'] = false;
@@ -127,7 +127,7 @@
             if (is_dir($source_folder)) {
               $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutShipping*');
 
-              if (is_array($files_get)) {
+              if (\is_array($files_get)) {
                 foreach ($files_get as $value) {
                   if (!empty($value['name'])) {
                     $CLICSHOPPING_Hooks->call('CheckoutShippingProcess', $value['name']);

@@ -16,9 +16,9 @@
   class FooterOutputBootstrapTab
   {
     /**
-     * @return string
+     * @return string|bool
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $params = $_SERVER['QUERY_STRING'];
 
@@ -32,6 +32,8 @@
         $output .= '<!-- Bootstrap tab Script start-->' . "\n";
         $output .= '<script src="' . CLICSHOPPING::link('Shop/ext/javascript/bootstrap/tab/bootstrap_tab.js') . '"></script>' . "\n";
         $output .= '<!--Bootstrap tab end -->' . "\n";
+      } else {
+        return false;
       }
 
       return $output;

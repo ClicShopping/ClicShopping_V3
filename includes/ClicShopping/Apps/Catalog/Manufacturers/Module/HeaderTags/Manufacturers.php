@@ -42,7 +42,7 @@
         $this->description = $this->app->getDef('module_header_tags_manufacturers_description');
       }
 
-      if (defined('MODULE_HEADER_TAGS_MANUFACTURERS_STATUS')) {
+      if (\defined('MODULE_HEADER_TAGS_MANUFACTURERS_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_MANUFACTURERS_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_MANUFACTURERS_STATUS == 'True');
       }
@@ -58,7 +58,7 @@
       $this->template = Registry::get('Template');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (!defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
         return false;
       }
 
@@ -69,7 +69,7 @@
 
         $id = $this->manufacturers_shop->getID();
 
-        if (is_numeric($id) && !is_null($id)) {
+        if (is_numeric($id) && !\is_null($id)) {
           $manufacturers_title = $this->manufacturers_shop->getTitle($id);
 
           $QmetaInfo = $CLICSHOPPING_Db->prepare('select manufacturer_seo_title,

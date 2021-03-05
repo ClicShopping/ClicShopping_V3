@@ -1,0 +1,8 @@
+Allow to use pre order and add button pre order
+best stock management
+update template in function the stock
+let user to install shipping (sql update)
+fix order template
+add text in shopping cart for out of stock and pre-order
+update language
+fix delete image in products admin fille

@@ -16,8 +16,8 @@
   use ClicShopping\Sites\Shop\Payment;
 
   class cc_checkout_confirmation_payment_information {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_confirmation_payment_information_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_payment_information_description');
 
-      if (defined('MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_STATUS == 'True');
       }
@@ -51,11 +51,12 @@
 
         $data = '';
 
-        if (is_array($CLICSHOPPING_Payment->modules)) {
+        if (\is_array($CLICSHOPPING_Payment->modules)) {
           $confirmation = $CLICSHOPPING_Payment->confirmation();
 
           if ($confirmation) {
             $display = '  <!-- checkout_confirmation_payment_information -->' . "\n";
+            $display .= '<div class="clearfix"></div>' . "\n";
 
             if (isset($confirmation['content'])) {
               $display .= '<div class="col-sm-12">';
@@ -80,7 +81,7 @@
                 $display .=  '<div class="card-block moduleCheckoutConfirmationPaymentInformationCardBlock">';
                 $display .=  '<div class="separator"></div>';
 
-                for ($i=0, $n=count($confirmation['fields']); $i<$n; $i++) {
+                for ($i=0, $n=\count($confirmation['fields']); $i<$n; $i++) {
 
                   $field = '<span class="col-md-3">' . $confirmation['fields'][$i]['title'] . '</span>';
                   $field .= '<span class="col-md-3">' . $confirmation['fields'][$i]['field'] . '</span>';
@@ -116,7 +117,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_STATUS');
+      return \defined('MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_STATUS');
     }
 
     public function install() {

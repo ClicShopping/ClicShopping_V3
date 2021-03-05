@@ -17,9 +17,9 @@ use ClicShopping\OM\CLICSHOPPING;
   </div>
   <div class="separator"></div>
   <div class="control-group">
-    <div class="controls">
+    <div>
       <div class="buttonSet">
-        <span class="float-md-right"><?php echo $button_process; ?></span>
+        <span class="float-end"><?php echo $button_process; ?></span>
       </div>
     </div>
   </div>

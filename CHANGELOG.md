@@ -1,17 +1,28 @@
+Version 3.3 beta
+Note : This version works only with php > 8.0
 
+- fix strict mode php 8
+- fix incompatibility with php 8  (php 7.4.x do not work now)
+- Bug fix
+- Boostrap 5 implementation 
+- Add vertical menu in option
+- remove htaccess (see tip and trips on the forum)
+- remove customer fax obsolete 
+- update sql database (seee sql update and update version)
+- remove sensiolabs/security-checker not maintened
+- add a security checker email via composer
+- reduce jquery dependency for pure javascript
+- add new image gallery in pure js (the other will be push on github)
+- add chartjs without jquery https://www.chartjs.org/
+
+---
 Version 3.2204
-- Fix rss files request sql errors
-- fix taxes
-- fix qty shopping cart
 
+Fix rss files request sql errors
+fix taxes
+fix qty shopping cart
 ---
-
 Version 3.2201
-- Change ClicShopping version
-- little quickly fix
-
----
-Version 3.22
 
 See SQL upgrade directory to update your database from v3.2145
 

@@ -14,8 +14,8 @@
   use ClicShopping\OM\HTML;
 
   class bm_best_sellers {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_best_sellers_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_best_sellers_description');
 
-      if (defined('MODULE_BOXES_BEST_SELLERS_STATUS')) {
+      if (\defined('MODULE_BOXES_BEST_SELLERS_STATUS')) {
         $this->sort_order = MODULE_BOXES_BEST_SELLERS_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_BEST_SELLERS_STATUS == 'True');
         $this->pages = MODULE_BOXES_BEST_SELLERS_DISPLAY_PAGES;
@@ -161,14 +161,14 @@
 
       $best_sellers = $QBestSellers->fetchAll();
 
-      if (count($best_sellers) >= MODULE_BOXES_BEST_SELLERS_MIN_DISPLAY && count($best_sellers) <= MODULE_BOXES_BEST_SELLERS_MAX_DISPLAY) {
+      if (\count($best_sellers) >= MODULE_BOXES_BEST_SELLERS_MIN_DISPLAY && \count($best_sellers) <= MODULE_BOXES_BEST_SELLERS_MAX_DISPLAY) {
         $position = 1;
 
         $bestsellers_list = '<ol class="olBestSellers">';
 
         foreach ($best_sellers as $b) {
           $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($b['products_id']);
-          $bestsellers_list .= '<li class="BestSellerLi">' . HTML::link($products_name_url, $position . '. <span itemprop="itemListElement">' . $b['products_name'] .'</span>') . '</li>';
+          $bestsellers_list .= '<li class="BestSellerLi">' . HTML::link($products_name_url, null .'  <span itemprop="itemListElement">' . $b['products_name'] .'</span>') . '</li>';
 
           $position++;
         }
@@ -201,7 +201,7 @@
     }
 
     public function  check() {
-      return defined('MODULE_BOXES_BEST_SELLERS_STATUS');
+      return \defined('MODULE_BOXES_BEST_SELLERS_STATUS');
     }
 
     public function  install() {

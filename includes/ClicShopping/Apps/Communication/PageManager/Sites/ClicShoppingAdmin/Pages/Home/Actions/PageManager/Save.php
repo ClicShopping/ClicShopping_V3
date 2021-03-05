@@ -91,7 +91,7 @@
         $customers_group_id = 0;
       }
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $title_field_name = $_POST['pages_title_' . $languages[$i]['id']];
 
         if (empty($title_field_name)) {
@@ -144,7 +144,7 @@
           $CLICSHOPPING_PageManager->db->save('pages_manager', $sql_array, ['pages_id' => (int)$pages_id]);
         }
 
-        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
           $language_id = $languages[$i]['id'];
 
           if (isset($_POST['pages_title_' . $languages[$i]['id']])) {

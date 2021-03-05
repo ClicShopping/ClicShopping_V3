@@ -261,7 +261,7 @@
       $item_count = 0;
 // Boucle sur les produits
 // Show the products information line by line
-      for ($i = 0, $n = count($CLICSHOPPING_Order->products); $i < $n; $i++) {
+      for ($i = 0, $n = \count($CLICSHOPPING_Order->products); $i < $n; $i++) {
 
 // Quantity
         $pdf->SetFont('Arial', '', 7);
@@ -273,8 +273,8 @@
         $prod_attribs = '';
 
         // Get attribs and concat
-        if ((isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
-          for ($j = 0, $n2 = count($CLICSHOPPING_Order->products[$i]['attributes']); $j < $n2; $j++) {
+        if ((isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (\count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
+          for ($j = 0, $n2 = \count($CLICSHOPPING_Order->products[$i]['attributes']); $j < $n2; $j++) {
 
             if (!empty($CLICSHOPPING_Order->products[$i]['attributes'][$j]['reference'])) {
               $reference = $CLICSHOPPING_Order->products[$i]['attributes'][$j]['reference'] . ' / ';
@@ -290,10 +290,10 @@
 // Nom du produit
         $pdf->SetY($Y_Table_Position);
         $pdf->SetX(40);
-        if (strlen($product_name_attrib_contact) > 40 && strlen($product_name_attrib_contact) < 95) {
+        if (\strlen($product_name_attrib_contact) > 40 && \strlen($product_name_attrib_contact) < 95) {
           $pdf->SetFont('Arial', '', 6);
           $pdf->MultiCell(103, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
-        } else if (strlen($product_name_attrib_contact) > 95) {
+        } else if (\strlen($product_name_attrib_contact) > 95) {
           $pdf->SetFont('Arial', '', 6);
           $pdf->MultiCell(103, 6, utf8_decode(substr($product_name_attrib_contact, 0, 95)) . " .. ", 1, 'L');
         } else {
@@ -343,7 +343,7 @@
         if ((is_long($item_count / 32) && $i >= 20) || ($i == 20)) {
           $pdf->AddPage();
 // Fields Name position
-          $Y_Fields_Name_position = 125;
+//          $Y_Fields_Name_position = 125;
 // Table position, under Fields Name
           $Y_Table_Position = 70;
           Common::outputTableHeadingPdf($Y_Table_Position - 6);
@@ -351,7 +351,7 @@
         }
       }
 
-      for ($i = 0, $n = count($CLICSHOPPING_Order->totals); $i < $n; $i++) {
+      for ($i = 0, $n = \count($CLICSHOPPING_Order->totals); $i < $n; $i++) {
         $pdf->SetY($Y_Table_Position + 5);
         $pdf->SetX(102);
 
@@ -360,7 +360,7 @@
         if ($temp == '<strong>') {
           $pdf->SetFont('Arial', 'B', 7);
           $temp2 = substr($CLICSHOPPING_Order->totals[$i]['text'], 3);
-          $CLICSHOPPING_Order->totals[$i]['text'] = substr($temp2, 0, strlen($temp2) - 4);
+          $CLICSHOPPING_Order->totals[$i]['text'] = substr($temp2, 0, \strlen($temp2) - 4);
         }
 
         $pdf->MultiCell(94, 6, substr(utf8_decode(html_entity_decode($CLICSHOPPING_Order->totals[$i]['title'])), 0, 30) . ' : ' . utf8_decode(html_entity_decode($CLICSHOPPING_Order->totals[$i]['text'])), 0, 'R');

@@ -31,7 +31,7 @@
 
       $this->pm = new PaymentStripeST();
 
-      if (!defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && CLICSHOPPING_APP_STRIPE_ST_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && CLICSHOPPING_APP_STRIPE_ST_STATUS == 'False') {
         return false;
       }
 

@@ -24,14 +24,14 @@
       $this->title = $this->app->getDef('module_we_title');
       $this->short_title = $this->app->getDef('module_we_short_title');
       $this->introduction = $this->app->getDef('module_we_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_WEIGHT_WE_STATUS') && (trim(CLICSHOPPING_APP_WEIGHT_WE_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_WEIGHT_WE_STATUS') && (trim(CLICSHOPPING_APP_WEIGHT_WE_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_WEIGHT_INSTALLED')) {
+      if (\defined('MODULE_MODULES_WEIGHT_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_WEIGHT_INSTALLED);
       }
 

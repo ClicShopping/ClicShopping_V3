@@ -289,7 +289,7 @@
   $item_count = 0;
 // Boucle sur les produits
 // Show the products information line by line
-  for ($i = 0, $n = count($order->products); $i < $n; $i++) {
+  for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
 
 // Quantity
     $pdf->SetFont('Arial', '', 7);
@@ -301,8 +301,8 @@
     $prod_attribs = '';
 
     // Get attribs and concat
-    if ((isset($order->products[$i]['attributes'])) && (count($order->products[$i]['attributes']) > 0)) {
-      for ($j = 0, $n2 = count($order->products[$i]['attributes']); $j < $n2; $j++) {
+    if ((isset($order->products[$i]['attributes'])) && (\count($order->products[$i]['attributes']) > 0)) {
+      for ($j = 0, $n2 = \count($order->products[$i]['attributes']); $j < $n2; $j++) {
         if (!empty($order->products[$i]['attributes'][$j]['reference'])) {
           $reference = $order->products[$i]['attributes'][$j]['reference'] . ' / ';
         }
@@ -316,10 +316,10 @@
 // Nom du produit
     $pdf->SetY($Y_Table_Position);
     $pdf->SetX(40);
-    if (strlen($product_name_attrib_contact) > 40 && strlen($product_name_attrib_contact) < 95) {
+    if (\strlen($product_name_attrib_contact) > 40 && \strlen($product_name_attrib_contact) < 95) {
       $pdf->SetFont('Arial', '', 6);
       $pdf->MultiCell(103, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
-    } else if (strlen($product_name_attrib_contact) > 95) {
+    } else if (\strlen($product_name_attrib_contact) > 95) {
       $pdf->SetFont('Arial', '', 6);
       $pdf->MultiCell(103, 6, utf8_decode(substr($product_name_attrib_contact, 0, 95)) . " .. ", 1, 'L');
     } else {
@@ -379,7 +379,7 @@
     }
   }
 
-  for ($i = 0, $n = count($order->totals); $i < $n; $i++) {
+  for ($i = 0, $n = \count($order->totals); $i < $n; $i++) {
     $pdf->SetY($Y_Table_Position + 5);
     $pdf->SetX(102);
 
@@ -388,7 +388,7 @@
     if ($temp == '<strong>') {
       $pdf->SetFont('Arial', 'B', 7);
       $temp2 = substr($order->totals[$i]['text'], 3);
-      $order->totals[$i]['text'] = substr($temp2, 0, strlen($temp2) - 4);
+      $order->totals[$i]['text'] = substr($temp2, 0, \strlen($temp2) - 4);
     }
 
     $pdf->MultiCell(94, 6, substr(utf8_decode(html_entity_decode($order->totals[$i]['title'])), 0, 30) . ' : ' . utf8_decode(html_entity_decode($order->totals[$i]['text'])), 0, 'R');

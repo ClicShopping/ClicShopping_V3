@@ -54,28 +54,28 @@
 
     public function display()
     {
-      if (!defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
         return false;
       }
 
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_products_out_of_stock');
 
       $output = '
-  <div class="card col-md-2 cardStatsDanger">
-    <div class="card-block">
-      <h4 class="card-title StatsTitle">' . $this->app->getDef('text_products_stock') . '</h4>
-      <div class="card-text">
-        <div class="col-sm-12 StatsValue">
-          <span class="float-md-left">
-            <i class="fas fa-fire  fa-2x" aria-hidden="true"></i>
-          </span>
-          <span class="float-md-right">
-            <div class="col-sm-12 StatsValue">' . $this->getOutOfStock() . ' - ' . $this->app->getDef('text_products_out_of_stock') . '</div>
-            <div class="col-sm-12 StatsValue">' . $this->getProductsOffLine() . ' - ' . $this->app->getDef('text_products_offline') . '</div>
-          </span>
+  <div class="col-md-2 m-1">
+    <div class="card cardStatsDanger">
+        <h4 class="card-title StatsTitle">' . $this->app->getDef('text_products_stock') . '</h4>
+        <div class="card-text">
+          <div class="col-sm-12 StatsValue">
+            <span class="float-start">
+              <i class="bi bi-cone-striped"></i>
+            </span>
+            <span class="float-end">
+              <div class="col-sm-12 StatsValue">' . $this->getOutOfStock() . ' - ' . $this->app->getDef('text_products_out_of_stock') . '</div>
+              <div class="col-sm-12 StatsValue">' . $this->getProductsOffLine() . ' - ' . $this->app->getDef('text_products_offline') . '</div>
+            </span>
+          </div>
         </div>
-      </div>
-    </div>
+     </div>
   </div>
       ';
 

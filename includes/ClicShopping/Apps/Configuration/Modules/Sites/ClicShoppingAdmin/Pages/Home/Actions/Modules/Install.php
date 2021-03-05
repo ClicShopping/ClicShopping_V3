@@ -51,7 +51,7 @@
 
       $appModuleType = $CLICSHOPPING_ModulesAdmin->getSwitchModules($module_type);
 
-      if (strpos($_GET['module'], '\\') !== false) {
+      if (str_contains($_GET['module'], '\\')) {
         $class = Apps::getModuleClass($_GET['module'], $appModuleType);
 
         if (class_exists($class)) {
@@ -78,7 +78,7 @@
 
         $modules_installed = explode(';', constant($module_key));
 
-        if (!in_array($class . $file_extension, $modules_installed)) {
+        if (!\in_array($class . $file_extension, $modules_installed)) {
           $modules_installed[] = $class . $file_extension;
         }
 

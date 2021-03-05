@@ -28,24 +28,26 @@
         $error = false;
 
         $CLICSHOPPING_Hooks->call('ReviewsWrite', 'PreAction');
+
         $rating = HTML::sanitize((int)$_POST['rating']);
         $review = HTML::sanitize($_POST['review']);
-        $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
 
-        if ($customer_agree_privacy != 'on' && defined('MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS') && MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS == 'True') {
-          $error = true;
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error'), 'error', 'rewiews_write');
+        if (isset($_POST['customer_agree_privacy'])) {
+          $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
+
+          if ($customer_agree_privacy != 'on' && \defined('MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS') && MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS == 'True') {
+            $error = true;
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error'), 'error', 'reviews_write');
+          }
         }
 
-        if (strlen($review) < (int)REVIEW_TEXT_MIN_LENGTH) {
+        if (\strlen($review) < (int)REVIEW_TEXT_MIN_LENGTH) {
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('js_review_text', ['min_length' => (int)REVIEW_TEXT_MIN_LENGTH]), 'error');
         }
 
         if (($rating < 1) || ($rating > 5)) {
           $error = true;
-
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('js_review_rating'), 'error', 'rewiews_write');
         }
 
         if ($error === false) {

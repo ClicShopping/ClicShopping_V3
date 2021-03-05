@@ -51,7 +51,7 @@
       <span class="col-md-2"><strong><?php echo $order_type; ?></strong><?php echo HTML::outputProtected($order_name); ?></span>
       <span class="col-md-2"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_order_cost'); ?></strong><?php echo strip_tags($order['order_total']); ?></span>
       <span class="col-md-2">
-        <p class="float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_view'), null, CLICSHOPPING::link(null, (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'Account&HistoryInfo&order_id=' . (int)$order['orders_id']), 'info', null,'sm'); ?></p>
+        <p class="float-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_view'), null, CLICSHOPPING::link(null, (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'Account&HistoryInfo&order_id=' . (int)$order['orders_id']), 'info', null,'sm'); ?></p>
       </span>
     </div>
     <div class="separator"></div>
@@ -72,12 +72,12 @@
     <div class="col-md-12">
       <div class="col-md-6 pagenumber hidden-xs"><?php echo $Qorders->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items')); ?></div>
       <div class="col-md-12">
-        <div class="float-md-right text-md-right pagenav">
+        <div class="float-end text-end pagenav">
           <ul class="pagination">
             <?php echo $Qorders->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop'); ?>
           </ul>
         </div>
-        <div class="float-md-right"><?php echo CLICSHOPPING::getDef('text_result_page'); ?></div>
+        <div class="float-end"><?php echo CLICSHOPPING::getDef('text_result_page'); ?></div>
       </div>
     </div>
 <?php
@@ -88,7 +88,7 @@
     <div class="clearfix"></div>
     <div class="separator"></div>
     <div class="control-group">
-      <div class="controls">
+      <div>
         <div class="buttonSet"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&Main'), 'primary'); ?></div>
       </div>
     </div>

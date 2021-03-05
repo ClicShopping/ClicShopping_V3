@@ -16,7 +16,6 @@ div.ModulesProductsInfoBackground {
 }
 
 div.ModulesProductsInfoPrice, span.ModulesProductsInfoPrice h2 {
-  font-size: 1.5625rem;
   color: #edac27;
   text-align:right;
   float:none;
@@ -36,7 +35,6 @@ div.modulesProductsInfoModulesProductsInfosubmitButton, span.modulesProductsInfo
 
 
 div.ModulesProductsInfoQuantityOrder, span.ModulesProductsInfoQuantityOrder h3 {
-  font-size: 13px;
   color: #A39993;
   font-weight: bold;
   padding-left: 0.3125rem;
@@ -44,7 +42,6 @@ div.ModulesProductsInfoQuantityOrder, span.ModulesProductsInfoQuantityOrder h3 {
 }
 
 div.ModulesProductsInfokiloPrice, span.ModulesProductsInfokiloPrice h3 {
-  font-size: 1rem;
   color: #A39993;
   height: 0rem;
 }

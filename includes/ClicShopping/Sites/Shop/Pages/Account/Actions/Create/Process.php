@@ -37,7 +37,6 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
-
 // error checking when updating or adding an entry
         $error = false;
 
@@ -51,12 +50,17 @@
         $email_address = HTML::sanitize($_POST['email_address']);
         $email_address_confirm = HTML::sanitize($_POST['email_address_confirm']);
 
-        if (isset($_POST['telephone'])) {
-          $telephone = HTML::sanitize($_POST['telephone']);
+        if (isset($_POST['customers_telephone'])) {
+          $telephone = HTML::sanitize($_POST['customers_telephone']);
         } else {
           $telephone = null;
         }
-
+  
+        if (isset($_POST['customers_cellular_phone'])) {
+          $cellular_phone = HTML::sanitize($_POST['customers_cellular_phone']);
+        } else {
+          $cellular_phone = null;
+        }
         if (isset($_POST['newsletter'])) {
           $newsletter = HTML::sanitize($_POST['newsletter']);
         } else {
@@ -76,13 +80,13 @@
         }
 
 // Clients B2C : Controle entree du prenom
-        if (strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
+        if (\strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]), 'error');
         }
 
 // Clients B2C : Controle entree du nom de famille
-        if (strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
+        if (\strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]), 'error');
@@ -92,7 +96,7 @@
         if (ACCOUNT_DOB == 'true') {
           $dobDateTime = new DateTime($dob);
 
-          if ((strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
+          if ((\strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_date_of_birth_error'), 'error');
@@ -125,7 +129,7 @@
           }
         }
 
-        if (strlen($password) < ENTRY_PASSWORD_MIN_LENGTH) {
+        if (\strlen($password) < ENTRY_PASSWORD_MIN_LENGTH) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error', ['min_length' => ENTRY_PASSWORD_MIN_LENGTH]), 'error');
@@ -143,20 +147,22 @@
           $error = true;
           $CLICSHOPPING_ActionRecorder->record(false);
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES : 15)]), 'error');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (\defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES : 15)]), 'error');
         }
 
         if ($error === false) {
-          $sql_data_array = ['customers_firstname' => $firstname,
+          $sql_data_array = [
+            'customers_firstname' => $firstname,
             'customers_lastname' => $lastname,
             'customers_email_address' => $email_address,
             'customers_newsletter' => (int)$newsletter,
             'languages_id' => (int)$CLICSHOPPING_Language->getId(),
             'customers_password' => Hash::encrypt($password),
+            'customers_telephone' => $telephone,
+            'customers_cellular_phone' => $cellular_phone,
             'member_level' => 1,
             'client_computer_ip' => HTTP::getIPAddress(),
             'provider_name_client' => HTTP::getProviderNameCustomer(),
-            'customers_telephone' => $telephone
           ];
 
           if (ACCOUNT_DOB == 'true') $sql_data_array['customers_dob'] = $dobDateTime->getRaw(false);
@@ -166,22 +172,25 @@
           $customer_id = $CLICSHOPPING_Db->lastInsertId();
 
 // save element in address book
-          $sql_data_array = ['customers_id' => (int)$customer_id,
+          $sql_data_array_book = [
+            'customers_id' => (int)$customer_id,
             'entry_firstname' => $firstname,
             'entry_lastname' => $lastname,
             'entry_telephone' => $telephone
           ];
 
-          $CLICSHOPPING_Db->save('address_book', $sql_data_array);
+          $CLICSHOPPING_Db->save('address_book', $sql_data_array_book);
 
           $address_id = $CLICSHOPPING_Db->lastInsertId();
 
           $sql_data_array = ['customers_default_address_id' => (int)$address_id];
+          
           $insert_array = ['customers_id' => (int)$customer_id];
-
+          
           $CLICSHOPPING_Db->save('customers',$sql_data_array, $insert_array);
-
-          $sql_array = ['customers_info_id' => (int)$customer_id,
+          
+          $sql_array = [
+            'customers_info_id' => (int)$customer_id,
             'customers_info_number_of_logons' => 0,
             'customers_info_date_account_created' => 'now()'
           ];
@@ -202,7 +211,7 @@
 
           if (!empty(COUPON_CUSTOMER)) {
             $email_coupon_catalog = TemplateEmail::getTemplateEmailCouponCatalog();
-            $email_coupon = $email_coupon_catalog . COUPON_CUSTOMER;
+            $email_coupon = $email_coupon_catalog . HTML::sanitize(COUPON_CUSTOMER);
           } else {
             $email_coupon = '';
           }
@@ -220,14 +229,15 @@
           $CLICSHOPPING_Mail->addHtmlCkeditor($message);
           ;
           $from = STORE_OWNER_EMAIL_ADDRESS;
-          $CLICSHOPPING_Mail->send($name, $email_address, '', $from, $email_subject);
+          $CLICSHOPPING_Mail->send($name, $email_address, null, $from, $email_subject);
 
 // Administrator email
           if (EMAIL_INFORMA_ACCOUNT_ADMIN == 'true') {
             $email_subject_admin = CLICSHOPPING::getDef('admin_email_subject', ['store_name' => STORE_NAME]);
             $admin_email_welcome = CLICSHOPPING::getDef('admin_email_welcome');
 
-            $data_array = ['customer_name' => $lastname,
+            $data_array = [
+              'customer_name' => $lastname,
               'customer_firstame' => $firstname,
               'customer_mail' => $email_address
             ];
@@ -239,7 +249,7 @@
             $admin_email_text_admin .= $admin_email_welcome . $admin_email_text_admin;
             $CLICSHOPPING_Mail->addHtmlCkeditor($admin_email_text_admin);
             ;
-            $CLICSHOPPING_Mail->send(STORE_NAME, $email_address, '', $from, $email_subject_admin);
+            $CLICSHOPPING_Mail->send(STORE_NAME, $email_address, null, $from, $email_subject_admin);
           }
 
           $CLICSHOPPING_ActionRecorder->record();

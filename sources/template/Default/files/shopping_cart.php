@@ -34,8 +34,8 @@
           <div class="clearfix"></div>
           <div class="separator"></div>
           <div class="col-md-12">
-            <div class="alert alert-warning text-md-center" role="alert"><h3><?php echo CLICSHOPPING::getDef('text_cart_empty'); ?></h3></div>
-            <div class="buttonSet float-md-right"><label for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), '', CLICSHOPPING::link(), 'success'); ?></label></div>
+            <div class="alert alert-warning text-center" role="alert"><h3><?php echo CLICSHOPPING::getDef('text_cart_empty'); ?></h3></div>
+            <div class="buttonSet float-end"><label for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), '', CLICSHOPPING::link(), 'success'); ?></label></div>
           </div>
 <?php
   }

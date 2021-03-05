@@ -85,7 +85,7 @@
       self::$ext_filter = false;
 
 // Check we have minimum parameters
-      if(!$args = func_get_args()){
+      if(!$args = \func_get_args()){
         die('Must provide a path string or array of path strings');
       }
 
@@ -179,7 +179,7 @@
         }
 
         if(is_file($dir.DIRECTORY_SEPARATOR.$value)){
-          if(!self::$ext_filter || in_array(strtolower(pathinfo($dir . DIRECTORY_SEPARATOR . $value, PATHINFO_EXTENSION)), self::$ext_filter)){
+          if(!self::$ext_filter || \in_array(strtolower(pathinfo($dir . DIRECTORY_SEPARATOR . $value, PATHINFO_EXTENSION)), self::$ext_filter)){
             self::$files[] = $result[] = $dir . DIRECTORY_SEPARATOR . $value;
           }
           continue;

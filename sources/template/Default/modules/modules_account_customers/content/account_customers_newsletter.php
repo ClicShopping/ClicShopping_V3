@@ -15,9 +15,10 @@ use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
-  <div class="form-group">
+  <div>
     <h3><?php echo CLICSHOPPING::getDef('my_newsletter_title'); ?></h3>
     <div class="contentText">
+      <div class="separator"></div>
       <div class="checkbox">
         <label>
           <?php echo $newsletter_checkbox; ?>
@@ -30,10 +31,10 @@ use ClicShopping\OM\CLICSHOPPING;
   <div class="col-md-12">
     <div class="separator"></div>
     <div class="control-group">
-      <div class="controls">
+      <div>
         <div class="buttonSet">
           <span class="col-md-2"><?php echo $button_back; ?></span>
-          <span class="col-md-2 float-md-right text-md-right"><?php echo $button_process; ?></span>
+          <span class="col-md-2 float-end text-end"><?php echo $button_process; ?></span>
         </div>
       </div>
     </div>

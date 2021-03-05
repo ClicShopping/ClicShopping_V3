@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class ms_shopping_cart_delay_save_cart_message {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('module_shopping_cart_delay_save_cart_message_title');
       $this->description = CLICSHOPPING::getDef('module_shopping_cart_delay_save_cart_message_description');
 
-      if (defined('MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_STATUS')) {
+      if (\defined('MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_STATUS')) {
         $this->sort_order = MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_SORT_ORDER;
         $this->enabled = (MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_STATUS == 'True');
       }
@@ -60,7 +60,7 @@
     }
 
     public function check() {
-      return defined('MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_STATUS');
+      return \defined('MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_STATUS');
     }
 
     public function install() {
@@ -93,11 +93,11 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where do you want to display the module?',
           'configuration_key' => 'MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_POSITION',
-          'configuration_value' => 'float-md-none',
+          'configuration_value' => 'float-none',
           'configuration_description' => 'Displays the module to the left or to the right ',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

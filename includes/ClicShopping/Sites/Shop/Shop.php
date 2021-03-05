@@ -9,8 +9,6 @@
    *
    */
 
-//    declare(strict_types=1);
-
   namespace ClicShopping\Sites\Shop;
 
   use ClicShopping\OM\Apps;
@@ -38,7 +36,7 @@
       Registry::set('Cookies', $CLICSHOPPING_Cookies);
 
 //check configuration
-      if (!CLICSHOPPING::configExists('db_server') || (strlen(CLICSHOPPING::getConfig('db_server')) < 1)) {
+      if (!CLICSHOPPING::configExists('db_server') || (\strlen(CLICSHOPPING::getConfig('db_server')) < 1)) {
         if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/install')) {
           header('Location: /install/index.php');
           exit;
@@ -158,7 +156,7 @@
 
 // get controller class name from namespace
           $page_namespace = explode('\\', $page);
-          $page_code = $page_namespace[count($page_namespace) - 1];
+          $page_code = $page_namespace[\count($page_namespace) - 1];
 
           if (class_exists('ClicShopping\Apps\\' . $vendor_app . '\\' . $page . '\\' . $page_code)) {
             $class = 'ClicShopping\Apps\\' . $vendor_app . '\\' . $page . '\\' . $page_code;
@@ -197,12 +195,12 @@
         foreach ($paths as $path => $page) {
           $path_array = explode('&', $path);
 
-          if (count($path_array) <= count($route)) {
-            if ($path_array == array_slice($route, 0, count($path_array))) {
+          if (\count($path_array) <= \count($route)) {
+            if ($path_array == \array_slice($route, 0, \count($path_array))) {
               $result[] = [
                 'path' => $path,
                 'destination' => $vendor_app . '/' . $page,
-                'score' => count($path_array)
+                'score' => \count($path_array)
               ];
             }
           }

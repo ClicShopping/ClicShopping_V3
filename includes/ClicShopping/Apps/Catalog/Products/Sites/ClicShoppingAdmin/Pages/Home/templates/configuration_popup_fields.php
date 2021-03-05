@@ -37,7 +37,7 @@
   );
 
   while ($Qconfiguration->fetch()) {
-    if ($Qconfiguration->hasValue('use_function') && !is_null($Qconfiguration->value('use_function'))) {
+    if ($Qconfiguration->hasValue('use_function') && !\is_null($Qconfiguration->value('use_function'))) {
       $use_function = $Qconfiguration->value('use_function');
 
       if (preg_match('/->/', $use_function)) {
@@ -94,8 +94,8 @@
           class="col-md-8 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
         <span class="col-md-3">
             <div
-              class="text-md-right">&nbsp;<?php echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, null, 'success', null, 'md', null, 'simple-post'); ?></div>
-            <div id="simple-msg" class="text-md-right"></div>
+              class="text-end">&nbsp;<?php echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, null, 'success', null, 'md', null, 'simple-post'); ?></div>
+            <div id="simple-msg" class="text-end"></div>
           </span>
       </div>
     </div>

@@ -10,13 +10,14 @@
  */
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
 ?>
 
 <div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
     <div class="separator"></div>
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
+        <div>
           <label for="inputName" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('modules_products_reviews_write_comment_sub_title_from'); ?></label>
           <div class="col-md-8">
             <?php echo $customer_name; ?>
@@ -27,10 +28,12 @@ use ClicShopping\OM\CLICSHOPPING;
 
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
+        <div>
           <label for="inputReview" class="col-3 col-form-label"><?php echo CLICSHOPPING::getDef('modules_products_reviews_write_comment_sub_title_from_sub_title_review'); ?></label>
           <div class="col-md-10">
-            <?php echo $comment; ?>
+            <div class="form-group">
+              <?php echo $comment; ?>
+            </div>
           </div>
         </div>
       </div>

@@ -58,7 +58,7 @@
       $wo_session_id = session_id();
       $wo_ip_address = HTTP::getIpAddress();
 
-      if (is_null($wo_ip_address)) { // database table field (ip_address) is not_null
+      if (\is_null($wo_ip_address)) { // database table field (ip_address) is not_null
         $wo_ip_address = '';
       }
 
@@ -96,7 +96,7 @@
       if (isset($_SERVER['HTTP_USER_AGENT'])) {
         $user_agent = HTML::sanitize($_SERVER['HTTP_USER_AGENT']);
       } else {
-        $user_agent = 'user aget or not defined';
+        $user_agent = 'user agent or not defined';
       }
 
       if ($Qsession->fetch() !== false) {

@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Gaetano Giunta
- * @copyright (C) 2005-2019 G. Giunta
+ * @copyright (C) 2005-2021 G. Giunta
  * @license code licensed under the BSD License: see file license.txt
  *
  * @todo switch params for http compression from 0,1,2 to values to be used directly
@@ -14,9 +14,10 @@ header('Content-Type: text/html; charset=utf-8');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-    <title>XMLRPC Debugger</title>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+    <title><?php if (defined('DEFAULT_WSTYPE') && DEFAULT_WSTYPE == 1) echo 'JSONRPC'; else echo 'XMLRPC'; ?> Debugger</title>
     <meta name="robots" content="index,nofollow"/>
     <style type="text/css">
         <!--
@@ -92,10 +93,8 @@ header('Content-Type: text/html; charset=utf-8');
 <?php
 
 include __DIR__ . '/common.php';
-if ($action) {
 
-    include_once __DIR__ . "/../src/Autoloader.php";
-    PhpXmlRpc\Autoloader::register();
+if ($action) {
 
     // make sure the script waits long enough for the call to complete...
     if ($timeout) {
@@ -103,16 +102,16 @@ if ($action) {
     }
 
     if ($wstype == 1) {
-        @include 'jsonrpc.inc';
-        if (!class_exists('jsonrpc_client')) {
-            die('Error: to debug the jsonrpc protocol the jsonrpc.inc file is needed');
+        //@include 'jsonrpc.inc';
+        if (!class_exists('\PhpXmlRpc\JsonRpc\Client')) {
+            die('Error: to debug the jsonrpc protocol the phpxmlrpc/jsonrpc package is needed');
         }
-        $clientClass = 'PhpJsRpc\Client';
-        $requestClass = 'PhpJsRpc\Request';
+        $clientClass = '\PhpXmlRpc\JsonRpc\Client';
+        $requestClass = '\PhpXmlRpc\JsonRpc\Request';
         $protoName = 'JSONRPC';
     } else {
-        $clientClass = 'PhpXmlRpc\Client';
-        $requestClass = 'PhpXmlRpc\Request';
+        $clientClass = '\PhpXmlRpc\Client';
+        $requestClass = '\PhpXmlRpc\Request';
         $protoName = 'XMLRPC';
     }
 
@@ -199,7 +198,7 @@ if ($action) {
         case 'wrap':
             $msg[0] = new $requestClass('system.methodHelp', array(), $id);
             $msg[0]->addparam(new PhpXmlRpc\Value($method));
-            $msg[1] = new $requestClass('system.methodSignature', array(), $id + 1);
+            $msg[1] = new $requestClass('system.methodSignature', array(), (int)$id + 1);
             $msg[1]->addparam(new PhpXmlRpc\Value($method));
             $actionname = 'Description of method "' . $method . '"';
             break;
@@ -475,7 +474,7 @@ if ($action) {
                         $encoder = new PhpXmlRpc\Encoder();
                         $msig = $encoder->decode($r2);
                         $msig = $msig[$methodsig];
-                        $proto = $protocol == 2 ? 'https' : $protocol == 1 ? 'http11' : '';
+                        $proto = $protocol == 2 ? 'https' : ( $protocol == 1 ? 'http11' : '' );
                         if ($proxy == '' && $username == '' && !$requestcompression && !$responsecompression &&
                             $clientcookies == ''
                         ) {
@@ -541,6 +540,7 @@ if ($action) {
 
     <h3>Changelog</h3>
     <ul>
+        <li>2020-12-11: fix problems with running the debugger on php 8</li>
         <li>2015-05-30: fix problems with generating method payloads for NIL and Undefined parameters</li>
         <li>2015-04-19: fix problems with LATIN-1 characters in payload</li>
         <li>2007-02-20: add visual editor for method payload; allow strings, bools as jsonrpc msg id</li>

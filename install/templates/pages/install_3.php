@@ -69,20 +69,20 @@
           <div class="col-md-12">
             <label for="storeName" class="col-md-6"><strong><?php echo TEXT_STORE_NAME; ?></strong></label>
             <span class="col-md-6"><?php echo HTML::inputField('CFG_STORE_NAME', NULL, 'required aria-required="true" id="storeName" placeholder="' . TEXT_STORE_NAME . '"'); ?></span>
-            <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i> <small><?php echo TEXT_STORE_HELP; ?></small></span>
+            <span class="text-primary"><i class="bi bi-asterisk" aria-hidden="true"></i> <small><?php echo TEXT_STORE_HELP; ?></small></span>
           </div>
           <div class="p-md-3"></div>
           <div class="col-md-12">
             <label for="StoreOwnerEmail" class=col-md-6"><strong><?php echo TEXT_STORE_OWNER; ?></strong></label>
             <span class="col-md-6"><?php echo HTML::inputField('CFG_STORE_OWNER_NAME', null, 'required aria-required="true" id="StoreOwnerEmail" placeholder="'. TEXT_STORE_OWNER . '"'); ?></span>
-            <span class="text-danger"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_OWNER_HELP; ?></small></span>
+            <span class="text-danger"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_OWNER_HELP; ?></small></span>
           </div>
 
           <div class="p-md-3"></div>
           <div class="col-md-12">
             <label for="ownerEmail" class="col-md-6"><strong><?php echo TEXT_STORE_OWNER_EMAIL; ?></strong></label>
             <span class="col-md-6"><?php echo HTML::inputField('CFG_STORE_OWNER_EMAIL_ADDRESS', null, 'required aria-required="true" id="ownerEmail" placeholder="' . TEXT_STORE_OWNER_EMAIL . '"', 'email'); ?></span>
-            <span class="text-danger"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_OWNER_EMAIL_HELP; ?></small></span>
+            <span class="text-danger"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_OWNER_EMAIL_HELP; ?></small></span>
           </div>
         </div>
         <div class="p-md-1"></div>
@@ -101,27 +101,27 @@
           <div class="col-md-12">
             <label for="StoreNameAdmin" class="col-md-6"><strong><?php echo TEXT_STORE_NAME_ADMIN; ?></strong></label>
             <span class="col-md-6"><?php echo HTML::inputField('CFG_ADMINISTRATOR_NAME', null, 'required aria-required="true" id="StoreNameAdmin" placeholder="' . TEXT_STORE_NAME_ADMIN . '"'); ?></span>
-            <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_NAME_ADMIN_HELP; ?></small></span>
+            <span class="text-primary"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_NAME_ADMIN_HELP; ?></small></span>
           </div>
           <div class="p-md-1"></div>
           <div class="col-md-12">
             <label for="adminFirstName" class="col-md-6"><strong><?php echo TEXT_STORE_FIRST_NAME; ?></strong></label>
             <span class="col-md-6"><?php echo HTML::inputField('CFG_ADMINISTRATOR_FIRSTNAME', null, 'required aria-required="true" id="adminFirstName" placeholder="' . TEXT_STORE_FIRST_NAME . '"'); ?></span>
-              <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_FIRST_NAME_HELP; ?></small></span>
+              <span class="text-primary"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_FIRST_NAME_HELP; ?></small></span>
             </span>
           </div>
           <div class="p-md-1"></div>
           <div class="col-md-12">
             <label for="adminUsername" class="col-md-6"><strong><?php echo TEXT_STORE_EMAIL_ADMIN; ?></strong></label>
             <span class="col-md-6"><?php echo HTML::inputField('CFG_ADMINISTRATOR_USERNAME', NULL, 'required aria-required="true" id="adminUsername" placeholder="' . TEXT_STORE_EMAIL_ADMIN . '"', 'email'); ?></span>
-              <span class="text-danger"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_EMAIL_ADMIN_HELP; ?></small></span>
+              <span class="text-danger"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_EMAIL_ADMIN_HELP; ?></small></span>
             </span>
           </div>
           <div class="p-md-1"></div>
           <div class="col-md-12">
             <label for="adminPassword" class="col-md-6"><strong><?php echo TEXT_STORE_PASSWORD; ?></strong></label>
             <span class="col-md-6"><?php echo HTML::inputField('CFG_ADMINISTRATOR_PASSWORD', NULL, 'required aria-required="true" id="adminPassword" placeholder="' . TEXT_STORE_PASSWORD . '"'); ?></span>
-            <span class="text-danger"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_PASSWORD_HELP; ?></small></span>
+            <span class="text-danger"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_PASSWORD_HELP; ?></small></span>
           </div>
         </div>
         <div class="p-md-1"></div>
@@ -141,7 +141,7 @@
           <div class="col-md-12">
             <label for="smtp_host" class="col-md-6"><strong><?php echo TEXT_SMTP_HOST; ?></strong></label>
             <span class="col-md-6"><?php echo HTML::inputField('CFG_SMTP_HOST', NULL, 'id="smtp_host" placeholder="ex: smtp.gmail.com"'); ?></span>
-            <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_HOST; ?></small></span>
+            <span class="text-primary"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_HOST; ?></small></span>
           </div>
 
           <div class="p-md-1"></div>
@@ -155,7 +155,7 @@
 
               echo HTML::selectField('CFG_SMTP_EMAIL_TRANSORT', $smtp_transport_array);
               ?>
-              <span class="col-md-12 text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_PORT_INFO; ?></small></span>
+              <span class="col-md-12 text-primary"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_PORT_INFO; ?></small></span>
             </span>
           </div>
 
@@ -171,7 +171,7 @@
 
               echo HTML::selectField('CFG_SMTP_PORT', $smtp_port_array);
               ?>
-              <span class="col-md-12 text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_PORT_INFO; ?></small></span>
+              <span class="col-md-12 text-primary"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_PORT_INFO; ?></small></span>
             </span>
           </div>
 
@@ -179,7 +179,7 @@
           <div class="col-md-12">
             <label for="smtp_host" class="control-label col-md-6"><strong><?php echo TEXT_SMTP_USERNAME; ?></strong></label>
             <span class="col-md-6"><?php echo HTML::inputField('CFG_SMTP_USER_NAME', NULL, 'id="smtp_host" placeholder="' . TEXT_SMTP_USERNAME . '"'); ?></span>
-            <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo 'Veuillez indiquer votre user name concernant votre email. Celuyi-ci n\'est pas forcément en relation avec votre compte d\'administration'; ?></small></span><br /><br />
+            <span class="text-primary"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo 'Veuillez indiquer votre user name concernant votre email. Celuyi-ci n\'est pas forcément en relation avec votre compte d\'administration'; ?></small></span><br /><br />
           </div>
 
           <div class="p-md-1"></div>
@@ -187,7 +187,7 @@
             <div class="form-group has-feedback">
               <label for="smtp_password" class="control-label col-md-6"><strong><?php echo TEXT_SMTP_PASSWORD; ?></strong></label>
               <span class="col-md-6"><?php echo HTML::inputField('CFG_SMTP_PASSWORD', NULL, 'id="smtp_password" placeholder="' . TEXT_SMTP_PASSWORD . '"'); ?></span>
-                <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_PASSWORD_INFO; ?></small></span><br />
+                <span class="text-primary"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_PASSWORD_INFO; ?></small></span><br />
               </span>
             </div>
           </div>
@@ -204,7 +204,7 @@
           <div class="col-md-12">
             <label for="Zulu" class="control-label col-md-6"></label>
             <span class="col-md-6"><?php echo HTML::selectMenu('TIME_ZONE', DateTime::getTimeZones(), date_default_timezone_get(), 'id="Zulu"'); ?></span>
-            <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_TIME_ZONE_HELP; ?></small></span>
+            <span class="text-primary"><i class="bi bi-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_TIME_ZONE_HELP; ?></small></span>
           </div>
         </div>
       </div>
@@ -235,8 +235,8 @@ foreach ($_POST as $key => $value) {
   </div>
 </div>
   <div class="separator"></div>
-  <div class="text-md-right">
-    <p><?php echo HTML::button('Continue to Step 4', 'triangle-1-e', null, 'success'); ?></p>
+  <div class="text-end">
+    <p><?php echo HTML::button('Continue to Step 4', 'bi bi-caret-right', null, 'success'); ?></p>
   </div>
 </div>
 </form>

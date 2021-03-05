@@ -67,7 +67,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/menu.png', $CLICSHOPPING_AdministratorMenu->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title'); ?></span>
-          <span class="col-md-9 text-md-right">
+          <span class="col-md-9 text-end">
 
           </span>
         </div>
@@ -91,7 +91,7 @@
           class="col-md-3"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_move', ['move_label' => $cInfo->label]) . '<br />' . HTML::selectMenu('move_to_category_id', AdministratorMenu::getLabelTree(), $current_category_id); ?></span>
       </div>
       <div class="separator"></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_move'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath . '&cID=' . $cInfo->id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

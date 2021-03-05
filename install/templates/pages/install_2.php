@@ -78,7 +78,7 @@ $dir_fs_www_root = dirname(dirname(CLICSHOPPING::BASE_DIR)) . '/';
         <span class="help-block">The directory where the online store is installed on the server.</span>
       </div>
 
-      <p><?php echo HTML::button('Continue to Step 3', 'triangle-1-e', null, 'success'); ?></p>
+      <p><?php echo HTML::button('Continue to Step 3', 'bi bi-caret-right', null, 'success'); ?></p>
 
 <?php
 foreach ($_POST as $key => $value) {

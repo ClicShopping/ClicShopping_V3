@@ -34,7 +34,7 @@
       $this->description = CLICSHOPPING::getDef('module_action_recorder_tell_a_friend_description');
 
       if ($this->check()) {
-        if (defined('MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES')) {
+        if (\defined('MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES')) {
           $this->minutes = (int)MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES;
           $this->attempts = 3; // nbr de possiblite d'envoi d'email
         }
@@ -102,7 +102,7 @@
 
     public function check()
     {
-      return defined('MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES');
+      return \defined('MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES');
     }
 
     public function install()

@@ -14,16 +14,10 @@ use ClicShopping\OM\CLICSHOPPING;
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="col-md-12">
     <div class="separator"></div>
-    <div class="text-md-right" id="process_button" class="procesButton">
+    <div class="text-end" id="process_button" class="processButton">
 <?php
   echo $process_button;
 ?>
     </div>
   </div>
 </div>
-
-<script>
-  $('form[name="checkout_confirmation"]').submit(function() {
-    $('form[name="checkout_confirmation"] button[data-button="payNow"]').html('<?php echo addslashes(CLICSHOPPING::getDef('module_checkout_confirmation_process_order_button_pay')); ?>').prop('disabled', true);
-  });
-</script>

@@ -15,8 +15,8 @@
 
   class ac_account_customers_gdpr {
 
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_account_customers_gdpr_title');
       $this->description = CLICSHOPPING::getDef('module_account_customers_gdpr_description');
 
-      if (defined('MODULE_ACCOUNT_CUSTOMERS_GDPR_TITLE_STATUS')) {
+      if (\defined('MODULE_ACCOUNT_CUSTOMERS_GDPR_TITLE_STATUS')) {
         $this->sort_order = MODULE_ACCOUNT_CUSTOMERS_GDPR_TITLE_SORT_ORDER;
         $this->enabled = (MODULE_ACCOUNT_CUSTOMERS_GDPR_TITLE_STATUS == 'True');
       }
@@ -67,7 +67,7 @@
     }
 
     public function check() {
-        return defined('MODULE_ACCOUNT_CUSTOMERS_GDPR_TITLE_STATUS');
+        return \defined('MODULE_ACCOUNT_CUSTOMERS_GDPR_TITLE_STATUS');
       }
 
     public function install() {

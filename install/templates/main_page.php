@@ -30,12 +30,10 @@
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
   <meta name="generator" content="ClicShopping, Social E-Commerce B2B/B2C Open Source Solutions /">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet preload" as="style" href="../ext/javascript/bootstrap/css/bootstrap_icons_1.2.1.css" media="screen, print">
 
-  <script src="https://kit.fontawesome.com/89fdf54890.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <meta name="robots" content="noindex,nofollow">
 
   <link rel="stylesheet" href="templates/main_page/stylesheet.css">
@@ -48,7 +46,7 @@
         <a href="index.php"><img src="../images/logo_clicshopping_1.png" border="0" width="200" height="90" title="ClicShopping" alt="ClicShopping" style="margin: 10px 10px 0px 10px;" /></a>
       </div>
 
-      <div id="headerShortcuts" class="col-sm-6 text-md-right">
+      <div id="headerShortcuts" class="col-sm-6 text-end">
         <ul class="list-unstyled list-inline">
           <li><a href="https://www.clicshopping.org" target="_blank">ClicShopping Website</a></li>
           <li><a href="https://www.clicshopping.org" target="_blank">Support</a></li>
@@ -65,7 +63,7 @@
           <div  style="padding-top:1rem;">
             <div class="card">
               <div class="card-footer">
-                <div class="text-md-center">
+                <div class="text-center">
                   <small>Copyright &copy; 2008-<?php echo date('Y'); ?> <a href="http://www.clicshopping.org" target="_blank" rel="noreferrer">ClicShopping(TM)</a> - Brand deposed at INPI</small>
                 </div>
               </div>
@@ -75,7 +73,6 @@
       </div>
     </div>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>
 </html>

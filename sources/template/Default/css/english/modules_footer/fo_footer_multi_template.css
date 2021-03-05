@@ -27,10 +27,10 @@
   color: silver;
 }
 
-.footerTemplate h2 {
+.footerTemplate h4 {
   padding: 0;
   margin: 0;
-  font-size: 1em;
+  font-size: 1rem;
   letter-spacing: 0.1em;
   color: rgb(142,11,0);
   text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
@@ -46,13 +46,10 @@
 }
 
 .footerTemplateInformation {
-
 }
 
 .footerTemplateAccount {
-
 }
-
 
 .footerTemplateSocial li {
   background: none repeat scroll 0 0 #000;
@@ -92,8 +89,7 @@
 }
 
 .footerTemplateSocial li a i {
-  font-size: 16px;
-  margin: 0 0 0 5px;
+   margin: 0 0 0 5px;
   color: #EDEFF1 !important;
 }
 

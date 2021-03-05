@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class ml_login_password_forgotten {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_login_password_forgotten_title');
       $this->description = CLICSHOPPING::getDef('module_login_password_forgotten_description');
 
-      if (defined('MODULE_LOGIN_PASSWORD_FORGOTTEN_STATUS')) {
+      if (\defined('MODULE_LOGIN_PASSWORD_FORGOTTEN_STATUS')) {
         $this->sort_order = MODULE_LOGIN_PASSWORD_FORGOTTEN_SORT_ORDER;
         $this->enabled = (MODULE_LOGIN_PASSWORD_FORGOTTEN_STATUS == 'True');
       }
@@ -61,7 +61,7 @@
     }
 
     public function check() {
-      return defined('MODULE_LOGIN_PASSWORD_FORGOTTEN_STATUS');
+      return \defined('MODULE_LOGIN_PASSWORD_FORGOTTEN_STATUS');
     }
 
     public function install() {

@@ -29,7 +29,7 @@
 // 0 = off (for production use)
 // 1 = client messages
 // 2 = client and server messages
-    protected string $debugFileOutput = 'Work/Log/phpmail_error.log';
+    protected string $debugFileOutput = CLICSHOPPING::BASE_DIR . 'Work/Log/phpmail_error.log';
     protected PHPMailer $phpMail;
 
     public function __construct()
@@ -40,26 +40,18 @@
       $this->phpMail->SMTPDebug = $this->debug;
 // test with exit
 //      $this->phpMail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";};
-      $this->phpMail->debugOutput = CLICSHOPPING::BASE_DIR . $this->debugFileOutput;
-      $this->phpMail->CharSet = CLICSHOPPING::getDef('charset');
+      $this->phpMail->debugOutput = $this->debugFileOutput;
+      $this->phpMail->CharSet = PHPMailer::CHARSET_UTF8;
       $this->phpMail->WordWrap = 998;
       $this->phpMail->Encoding = 'quoted-printable';
 
-      /*
-      //Configure message signing (the actual signing does not occur until sending)
-            $phpMail->sign('/path/to/cert.crt', //The location of your certificate file
-                          '/path/to/cert.key', //The location of your private key file
-                          'yourSecretPrivateKeyPassword', //The password you protected your private key with (not the Import Password! may be empty but parameter must not be omitted!)
-                          '/path/to/certchain.pem' //The location of your chain file
-                          );
-      */
 
       if (EMAIL_TRANSPORT == 'smtp' || EMAIL_TRANSPORT == 'gmail') {
         $this->phpMail->IsSMTP();
 
         $this->phpMail->Port = EMAIL_SMTP_PORT;
 
-        if (EMAIL_SMTP_SECURE !== 'no') {
+        if (EMAIL_SMTP_SECURE != 'no') {
           $this->phpMail->SMTPSecure = EMAIL_SMTP_SECURE;
         }
 
@@ -164,7 +156,7 @@
      * @return bool
      * @throws Exception
      */
-    public function addBCC($email_address, $name = null)
+    public function addBCC(string $email_address, $name = null)
     {
       return $this->phpMail->addBCC($email_address, $name);
     }
@@ -225,16 +217,16 @@
     }
 
     /**
-     * @param string $to_name
-     * @param string $to_addr
-     * @param string $from_name
-     * @param string $from_addr
+     * @param ?string $to_name
+     * @param ?string $to_addr
+     * @param ?string $from_name
+     * @param ?string $from_addr
      * @param string $subject
      * @param bool $reply_to
      * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public function send(string $to_name = '', ?string $to_addr, ?string $from_name, ?string $from_addr, string $subject = '', bool $reply_to = false): bool
+    public function send(?string $to_name = null, ?string $to_addr = null, ?string $from_name = null, string $from_addr, string $subject = '', bool $reply_to = false): bool
     {
       if ((strstr($to_name, "\n") !== false) || (strstr($to_name, "\r") !== false)) {
         return false;
@@ -324,17 +316,17 @@
 
     /**
      * Do not send en email if it'excluded by the admin
-     * @param string|null $email
+     * @param string $email
      * @return bool
      */
-    public static function excludeEmailDomain(?string $email = '')
+    public static function excludeEmailDomain(string $email = '')
     {
       if( filter_var( $email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
         $array_domain = explode('@', $email);
         $domain = array_pop($array_domain);
         $exlude_domain = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
 
-        if (is_array($exlude_domain)) {
+        if (\is_array($exlude_domain)) {
           foreach ($exlude_domain as $value) {
             if ($value === $domain) {
               return false;
@@ -347,20 +339,29 @@
         return true;
       }
     }
+  
+    /**
+     * @param string $file
+     * @return bool
+     * @throws Exception
+     */
+    public function addImage(string $file)
+    {
+        return $this->phpMail->addAttachment($file, '', PHPMailer::ENCODING_BASE64, '', 'inline');
+    }
 
     /**
      * Send email (text/html) using MIME
      * This is the central mail function. The SMTP Server should be configured
-     * @param string $to_name The name of the recipient
+     * @param string|null $to_name The name of the recipient
      * @param string|null $to_email_address The email address of the recipient
      * @param string $email_subject
      * @param string $email_text
-     * @param string|null $from_email_name
-     * @param string|null $from_email_address The email address of the sender
-     * @return false
+     * @param string $from_email_name
+     * @param string $from_email_address The email address of the sender
      * @throws Exception
      */
-    public function clicMail(string $to_name = '', ?string $to_email_address, string $email_subject = '', string $email_text = '', ?string$from_email_name, ?string $from_email_address)
+    public function clicMail(?string $to_name = null, string|null $to_email_address = null, string $email_subject = '', string $email_text = '', string $from_email_name = '', string $from_email_address = '')
     {
       if (SEND_EMAILS != 'true') {
         return false;

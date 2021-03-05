@@ -16,8 +16,8 @@
   use ClicShopping\Apps\Marketing\Favorites\Classes\Shop\FavoritesClass;
 
   class ph_products_favorites {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_favorites_title');
       $this->description = CLICSHOPPING::getDef('module_products_favorites_description');
 
-      if (defined('MODULE_PRODUCTS_FAVORITES_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_FAVORITES_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_FAVORITES_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_FAVORITES_STATUS == 'True');
       }
@@ -57,24 +57,25 @@
 
           $new_prods_content = '  <!-- Product favorites start -->' . "\n";
           $new_prods_content .= '<div class="clearfix"></div>';
+          $new_prods_content .= '<div class="separator"></div>';
           $new_prods_content .= '<div class="contentText">';
           $new_prods_content .= '<div class="ModulesProductsFavoritesContainer">';
 
           if ($listingTotalRow > 0) {
 
-            $new_prods_content .= '<div class="col-md-5 float-md-right">';
+            $new_prods_content .= '<div class="col-md-5 float-end">';
             $new_prods_content .= '<div style="padding-right:2em; padding-top:0.5rem;">';
             $new_prods_content .= '<div class="dropdown">';
-            $new_prods_content .= '<div class="btn-group btn-group-sm float-md-right">';
-            $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
+            $new_prods_content .= '<div class="btn-group btn-group-sm float-end">';
+            $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
             $new_prods_content .= CLICSHOPPING::getDef('text_sort_by');
             $new_prods_content .= '</button>';
-            $new_prods_content .= '<ul class="dropdown-menu text-md-left" aria-labelledby="dropdownMenu2">';
+            $new_prods_content .= '<ul class="dropdown-menu text-start" aria-labelledby="dropdownMenu2">';
 
 // number of sort criterias
             $column_list = FavoritesClass::getCountColumnList();
 
-            for ($col = 0, $n = count($column_list); $col < $n; $col++) {
+            for ($col = 0, $n = \count($column_list); $col < $n; $col++) {
               switch ($column_list[$col]) {
                 case 'MODULE_PRODUCTS_FAVORITES_LIST_DATE_ADDED':
                   $lc_text = CLICSHOPPING::getDef('table_heading_date');
@@ -115,9 +116,9 @@
               $new_prods_content .= '<div class="col-md-6 pagenumber hidden-xs">';
               $new_prods_content .=  $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
               $new_prods_content .= '</div>';
-              $new_prods_content .= '<div class="col-md-6 float-md-right">';
-              $new_prods_content .= '<div class="float-md-right pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</div>';
-              $new_prods_content .= '<div class="text-md-right">' . CLICSHOPPING::getDef('text_result_page') . '</div>';
+              $new_prods_content .= '<div class="col-md-6 float-end">';
+              $new_prods_content .= '<div class="float-end pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</div>';
+              $new_prods_content .= '<div class="text-end">' . CLICSHOPPING::getDef('text_result_page') . '</div>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '<div style="padding-top:10px;"></div>';
@@ -174,6 +175,8 @@
               $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice($products_id);
 //Short description
               $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription($products_id, $delete_word, $products_short_description_number);
+// Reviews
+                $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
 
 // **************************
 // display the differents buttons before minorder qty
@@ -198,7 +201,7 @@
               $products_quantity_unit = $CLICSHOPPING_ProductsFunctionTemplate->getProductQuantityUnitType($products_id);
 
 // **************************************************
-// Button Free - Must be above getProductsExhausted
+// Button Free - Must be above getProductsSoldOut
 // **************************************************
               if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView($products_id) != 1 && NOT_DISPLAY_PRICE_ZERO == 'false') {
                 $submit_button = HTML::button(CLICSHOPPING::getDef('text_products_free'), '', $products_name_url, 'danger');
@@ -210,10 +213,10 @@
               }
 
 // **************************
-// Display an information if the stock is exhausted for all groups
+// Display an information if the stock is sold out for all groups
 // **************************
-              if (!empty($CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id))) {
-                $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id);
+              if (!empty($CLICSHOPPING_ProductsCommon->getProductsSoldOut($products_id))) {
+                $submit_button = $CLICSHOPPING_ProductsCommon->getProductsSoldOut($products_id);
                 $form = '';
                 $endform = '';
                 $min_quantity = 0;
@@ -223,8 +226,10 @@
 
 // See the button more view details
                $button_small_view_details = $CLICSHOPPING_ProductsFunctionTemplate->getButtonViewDetails(MODULE_PRODUCTS_FAVORITES_DELETE_BUY_BUTTON, $products_id);
+
 // Display the image
              $products_image = $CLICSHOPPING_ProductsFunctionTemplate->getImage(MODULE_PRODUCTS_FAVORITES_IMAGE_MEDIUM, $products_id);
+
 // Ticker Image
               $products_image .= $CLICSHOPPING_ProductsFunctionTemplate->getTicker(MODULE_PRODUCTS_FAVORITES_TICKER, $products_id, 'ModulesProductsFavoritesBootstrapTickerSpecial', 'ModulesProductsFavoritesBootstrapTickerFavorite', 'ModulesProductsFavoritesBootstrapTickerFeatured', 'ModulesProductsFavoritesBootstrapTickerNew');
 
@@ -254,7 +259,7 @@
                 $tag = $CLICSHOPPING_ProductsFunctionTemplate->getProductsHeadTag($products_id);
 
                 $products_tag = '';
-                if (isset($tag) && is_array($tag)) {
+                if (isset($tag) && \is_array($tag)) {
                   foreach ($tag as $value) {
                     $products_tag .= '#<span class="productTag">' . HTML::link(CLICSHOPPING::link(null, 'Search&keywords='. HTML::outputProtected(utf8_decode($value) .'&search_in_description=1&categories_id=&inc_subcat=1'), 'rel="nofollow"'), $value) . '</span> ';
                   }
@@ -287,20 +292,21 @@
 
             $new_prods_content .= '</div>' . "\n";
           } else {
-            $new_prods_content .= '<div class="text-md-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
+            $new_prods_content .= '<div class="separator"></div>';
+            $new_prods_content .= '<div class="text-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
           }
 
           if (($listingTotalRow > 0) && ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3'))) {
             if ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3')) {
               $new_prods_content .= '<div class="clearfix"></div>';
-              $new_prods_content .= '<div style="padding-top:10px;"></div>';
+              $new_prods_content .= '<div class="separator"></div>';
               $new_prods_content .= '<div>';
               $new_prods_content .= '<div class="col-md-6 pagenumber hidden-xs">';
               $new_prods_content .=  $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
               $new_prods_content .= '</div>';
-              $new_prods_content .= '<div class="col-md-6 float-md-right">';
-              $new_prods_content .= '<span class="float-md-right pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</span>';
-              $new_prods_content .= '<span class="text-md-right">' . CLICSHOPPING::getDef('text_result_page') . '</span>';
+              $new_prods_content .= '<div class="col-md-6 float-end">';
+              $new_prods_content .= '<span class="float-end pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</span>';
+              $new_prods_content .= '<span class="text-end">' . CLICSHOPPING::getDef('text_result_page') . '</span>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '<div class="clearfix"></div>';
@@ -309,7 +315,7 @@
 
           $new_prods_content .= '</div>';
         } else {
-          $new_prods_content .= '<div class="text-md-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
+          $new_prods_content .= '<div class="text-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
         } // max display product
 
         $new_prods_content .= '</div>' . "\n";
@@ -326,7 +332,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_FAVORITES_STATUS');
+      return \defined('MODULE_PRODUCTS_FAVORITES_STATUS');
     }
 
     public function install() {
@@ -456,7 +462,7 @@
           'configuration_title' => 'Veuillez indiquer une ordre tri selon les tarifs',
           'configuration_key' => 'MODULE_PRODUCTS_FAVORITES_LIST_PRICE',
           'configuration_value' => '0',
-          'configuration_description' => 'Cette option permet au client de choisir un ordre d\'affichage de ses produits.<br/ ><br /><strong>Note :</strong><br /><br />- 0 pour aucun Affichage<br />- Le plus petit nombre est montré en premier)',
+          'configuration_description' => 'This option allow to choose an order to display the product. Lowest is displayed in first; 0 for nothing',
           'configuration_group_id' => '6',
           'sort_order' => '6',
           'set_function' => '',

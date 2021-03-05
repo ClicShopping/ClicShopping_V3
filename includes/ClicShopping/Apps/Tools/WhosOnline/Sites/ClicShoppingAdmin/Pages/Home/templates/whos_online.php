@@ -53,9 +53,9 @@
         <th id="tableHeadingOnline"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_online'); ?></th>
         <th id="tableHeadingCutomerId"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_customer_id'); ?></th>
         <th id="tableHeadingFullName"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_full_name'); ?></th>
-        <th id="tableHeadingIpAddress" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_ip_address'); ?></th>
+        <th id="tableHeadingIpAddress" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_ip_address'); ?></th>
         <th id="tableHeadingEntryTime"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_entry_time'); ?></th>
-        <th id="tableHeadingLastClick" class="text-md-center"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_last_click'); ?></th>
+        <th id="tableHeadingLastClick" class="text-center"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_last_click'); ?></th>
         <th id="tableHeadingUserAccount"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_user_agent'); ?>&nbsp;</th>
         <th id="tableHeadingHttpReferrer"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_http_referer'); ?>&nbsp;</th>
         <th id="tableHeadingLastPageUrl" style="width:150px;"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_last_page_url'); ?></th>
@@ -94,7 +94,7 @@
             <td><?php echo $QwhosOnline->value('full_name'); ?></td>
             <td><?php echo '<a href="https://ip-lookup.net/index.php?ip=' . urlencode($ip_address) . '" title="Lookup" target="_blank" rel="noreferrer">' . $ip_address . '</a>'; ?></td>
             <td><?php echo date('H:i:s', $QwhosOnline->value('time_entry')); ?></td>
-            <td class="text-md-center;"><?php echo date('H:i:s', $QwhosOnline->value('time_last_click')); ?></td>
+            <td class="text-center;"><?php echo date('H:i:s', $QwhosOnline->value('time_last_click')); ?></td>
             <td><?php echo $QwhosOnline->value('user_agent'); ?></td>
             <td><?php echo $QwhosOnline->value('http_referer'); ?></td>
             <td>
@@ -170,9 +170,9 @@
   <div class="row">
     <div class="col-md-12">
       <div
-        class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $QwhosOnline->getPageSetLabel($CLICSHOPPING_WhosOnline->getDef('text_display_number_of_link')); ?></div>
+        class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $QwhosOnline->getPageSetLabel($CLICSHOPPING_WhosOnline->getDef('text_display_number_of_link')); ?></div>
       <div
-        class="float-md-right text-md-right"><?php echo $QwhosOnline->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+        class="float-end text-end"><?php echo $QwhosOnline->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
     </div>
   </div>
 </div>

@@ -41,7 +41,7 @@
       $option_sort_order = HTML::sanitize($_POST['option_sort_order']);
       $products_options_type = HTML::sanitize($_POST['products_options_type']);
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $option_name = HTML::sanitize($option_name_array[$languages[$i]['id']]);
 
         $this->app->db->save('products_options', [

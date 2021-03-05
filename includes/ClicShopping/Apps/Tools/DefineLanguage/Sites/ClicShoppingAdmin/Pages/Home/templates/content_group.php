@@ -39,7 +39,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/define_language.gif', $CLICSHOPPING_DefineLanguage->getDef('heading_title_2'), '40', '40'); ?></span>
           <span
             class="col-md-6 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_DefineLanguage->getDef('heading_title'); ?></span>
-          <span class="col-md-5 text-md-right">
+          <span class="col-md-5 text-end">
 <?php
   echo '&nbsp;';
   echo HTML::button($CLICSHOPPING_DefineLanguage->getDef('button_back'), null, $CLICSHOPPING_DefineLanguage->link('DefineLanguage'), 'primary') . ' ' . HTML::button($CLICSHOPPING_DefineLanguage->getDef('button_save'), null, null, 'success') . ' ';
@@ -55,18 +55,18 @@
     </div>
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
     <?php
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
-        echo '<li class="nav-item " ' . ($i === 0 ? 'active"' : '') . '><a href="#tab' . $i . '" data-target="#section_general_content_' . $languages[$i]['directory'] . '" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Language->getImage($languages[$i]['code']) . '&nbsp;' . $languages[$i]['name'] . '</a></li>';
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+        echo '<li class="nav-item " ' . ($i === 0 ? 'active"' : '') . '><a href="#tab' . $i . '" data-bs-target="#section_general_content_' . $languages[$i]['directory'] . '" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Language->getImage($languages[$i]['code']) . '&nbsp;' . $languages[$i]['name'] . '</a></li>';
       }
 
-       echo '<li class="nav-item"><a data-target="#section_general_content_translation_tab" role="tab" data-toggle="tab" class="nav-link">' . HTML::button($CLICSHOPPING_DefineLanguage->getDef('section_heading_translations'), null, null, 'primary', null, 'sm') . '</a></li>';
+       echo '<li class="nav-item"><a data-bs-target="#section_general_content_translation_tab" role="tab" data-bs-toggle="tab" class="nav-link">' . HTML::button($CLICSHOPPING_DefineLanguage->getDef('section_heading_translations'), null, null, 'primary', null, 'sm') . '</a></li>';
     ?>
     </ul>
 
   <div class="tabsClicShopping">
     <div class="tab-content">
       <?php
-        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
           ?>
         <div class="adminformTitle tab-pane <?php echo($i === 0 ? 'active' : ''); ?>" id="section_general_content_<?php echo $languages[$i]['directory']; ?>">
             <table class="table table-hover">
@@ -162,7 +162,7 @@
                 </td>
                 <td>
                   <?php
-                    for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                       $Tdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select definition_key,
                                                                                         definition_value
                                                                                 from :table_languages_definitions
@@ -187,8 +187,7 @@
                       } else {
                         ?>
                         <span style="cursor:pointer"
-                              onclick="NewDef('definition_value[<?php echo $Qdefinitions->value('definition_key') . '][' . $languages[$i]['id'] . ']\', this)'; ?>"><i
-                            class="fas fa-plus"
+                              onclick="NewDef('definition_value[<?php echo $Qdefinitions->value('definition_key') . '][' . $languages[$i]['id'] . ']\', this)'; ?>"><i class="bi bi-plus-circle-fill"
                             title="<?php echo $CLICSHOPPING_DefineLanguage->getDef('icon_add_new'); ?>"></i></span>
                         <?php
                       }
@@ -201,9 +200,9 @@
           ?>
           <tr class="new_definition_row">
             <td>
-              <div class="form-group">
+              <div>
                 <div class="input-group">
-                  <div class="input-group-addon"><i class="fas fa-plus-square" aria-hidden="true"></i></div>
+                  <div class="input-group-addon"><i class="bi bi-plus-circle-fill" aria-hidden="true"></i>&nbsp;&nbsp;</div>
                   <?php echo HTML::inputField('new_definition_key', '', 'size="50" placeholder="' . $CLICSHOPPING_DefineLanguage->getDef('placeholder_new_definition_value') . '" maxlength="255" pattern="^[a-z0-9_]{1,255}$"'); ?>
                 </div>
               </div>
@@ -211,7 +210,7 @@
             </td>
             <td>
               <?php
-                for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                   ?>
                   <br/>
                   <p class="text-info"><strong><i>
@@ -233,9 +232,9 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content"> <!-- Modal Content -->
             <div class="modal-header"> <!-- Modal Header -->
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
-                <span class="sr-only"><?php echo $CLICSHOPPING_DefineLanguage->getDef('text_close'); ?></span>
+                <span class="visually-hidden"><?php echo $CLICSHOPPING_DefineLanguage->getDef('text_close'); ?></span>
               </button>
               <h4
                 class="modal-title"><?php echo $CLICSHOPPING_DefineLanguage->getDef('text_language_definition_delete_title'); ?></h4>
@@ -250,7 +249,7 @@
               <button type="button" class="btn btn-danger"
                       id="rowDelConfirmButtonDelete"><?php echo $CLICSHOPPING_DefineLanguage->getDef('button_delete'); ?></button>
               <button type="button" class="btn btn-link"
-                      data-dismiss="modal"><?php echo $CLICSHOPPING_DefineLanguage->getDef('button_cancel'); ?></button>
+                      data-bs-dismiss="modal"><?php echo $CLICSHOPPING_DefineLanguage->getDef('button_cancel'); ?></button>
             </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

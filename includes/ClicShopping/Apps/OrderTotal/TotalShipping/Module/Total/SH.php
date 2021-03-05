@@ -50,9 +50,9 @@
       $this->title = $this->app->getDef('module_sh_title');
       $this->public_title = $this->app->getDef('module_sh_public_title');
 
-      $this->enabled = defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS') && (CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS == 'True') ? true : false;
+      $this->enabled = \defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS') && (CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS == 'True') ? true : false;
 
-      $this->sort_order = defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER') && ((int)CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER > 0) ? (int)CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER : 0;
+      $this->sort_order = \defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER') && ((int)CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER > 0) ? (int)CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER : 0;
 
       $this->output = [];
     }
@@ -64,7 +64,7 @@
       $CLICSHOPPING_Order = Registry::get('Order');
       $CLICSHOPPING_Tax = Registry::get('Tax');
 
-      if (defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_OVER')) {
+      if (\defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_OVER')) {
         if (CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_OVER == 'True') {
           $pass = false;
           switch (CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_DESTINATION) {
@@ -90,7 +90,7 @@
         }
       }
 
-      if (isset($_SESSION['shipping']) && strpos($_SESSION['shipping']['id'], '\\') !== false) {
+      if (isset($_SESSION['shipping']) && str_contains($_SESSION['shipping']['id'], '\\')) {
         [$vendor, $app, $module] = explode('\\', $_SESSION['shipping']['id']);
         [$module, $method] = explode('_', $module);
 
@@ -103,7 +103,7 @@
         }
       }
 
-      if (!is_null($CLICSHOPPING_Order->info['shipping_method'])) {
+      if (!\is_null($CLICSHOPPING_Order->info['shipping_method'])) {
         if (isset($CLICSHOPPING_SM->tax_class) && $CLICSHOPPING_SM->tax_class > 0) {
           $shipping_tax = $CLICSHOPPING_Tax->getTaxRate($CLICSHOPPING_SM->tax_class, $CLICSHOPPING_Order->delivery['country']['id'], $CLICSHOPPING_Order->delivery['zone_id']);
           $shipping_tax_description = $CLICSHOPPING_Tax->getTaxRateDescription($CLICSHOPPING_SM->tax_class, $CLICSHOPPING_Order->delivery['country']['id'], $CLICSHOPPING_Order->delivery['zone_id']);
@@ -130,7 +130,7 @@
 
     public function check()
     {
-      return defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS) != '');
+      return \defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS) != '');
     }
 
     public function install()

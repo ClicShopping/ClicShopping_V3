@@ -28,3 +28,5 @@ send_department_company = Contacter un département
 
 entry_customers_phone_dgrp = Nous avons besoin de votre numéro de téléphone pour vous contacter éventuellement
 entry_email_dgrp = Nous avons besoin de votre courriel pour vous répondre
+
+entry_text_alert = Vous devez écrire plus de {{textalert}} mots avant d envoyer ce message

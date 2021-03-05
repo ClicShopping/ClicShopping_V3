@@ -21,7 +21,7 @@ use ClicShopping\OM\HTML;
 <?php
   while ($Qstatuse->fetch()) {
     echo '<div class="col-md-12">';
-    echo '<span class="text-muted"><i class="fas fa-time"></i> ' . DateTime::toShort($Qstatuse->value('date_added')) . '</span>';
+    echo '<span class="text-muted"><i class="bi bi-clock-fill"></i> ' . DateTime::toShort($Qstatuse->value('date_added')) . '</span>';
     echo '<span style="padding-left:20px;">' . $Qstatuse->value('orders_status_name') . '</span>';
     echo '<div>';
     echo '<p>' . (empty($Qstatuse->value('comments')) ? '&nbsp;' : '<blockquote>' . nl2br(HTML::outputProtected($Qstatuse->value('comments'))) . '</blockquote>') . '</p>';

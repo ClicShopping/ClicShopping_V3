@@ -28,7 +28,7 @@ use ClicShopping\OM\HTML;
   <div>
     <div class="col-md-7">
       <div class="form-group row">
-        <label for="PriceTo" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('modules_advanced_search_price_entry_price_from'); ?></label>
+        <label for="PriceTo" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('modules_advanced_search_price_entry_price_to'); ?></label>
         <div class="col-md-8">
           <?php echo HTML::inputField('pto', null, 'style="width: 150px;" id="PriceTo" aria-describedby="' . CLICSHOPPING::getDef('modules_advanced_search_price_entry_price_to') . '" placeholder="' . CLICSHOPPING::getDef('modules_advanced_search_price_entry_price_to') . '"'); ?>
         </div>

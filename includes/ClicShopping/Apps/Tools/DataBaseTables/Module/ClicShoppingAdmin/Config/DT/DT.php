@@ -27,14 +27,14 @@
       $this->title = $this->app->getDef('module_dt_title');
       $this->short_title = $this->app->getDef('module_dt_short_title');
       $this->introduction = $this->app->getDef('module_dt_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_DATA_BASE_TABLES_DT_STATUS') && (trim(CLICSHOPPING_APP_DATA_BASE_TABLES_DT_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_DATA_BASE_TABLES_DT_STATUS') && (trim(CLICSHOPPING_APP_DATA_BASE_TABLES_DT_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_DATA_BASE_TABLES_INSTALLED')) {
+      if (\defined('MODULE_MODULES_DATA_BASE_TABLES_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_DATA_BASE_TABLES_INSTALLED);
       }
 

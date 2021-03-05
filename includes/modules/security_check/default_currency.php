@@ -14,7 +14,7 @@
 
   class securityCheck_default_currency
   {
-    public $type = 'danger';
+    public string $type = 'danger';
 
     public function __construct()
     {
@@ -25,7 +25,7 @@
 
     public function pass()
     {
-      return defined('DEFAULT_CURRENCY');
+      return \defined('DEFAULT_CURRENCY');
     }
 
     public function getMessage()

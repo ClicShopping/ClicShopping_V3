@@ -33,7 +33,7 @@
           <div
             class="col-md-3 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('heading_title'); ?></div>
           <div
-            class="col-md-8 text-md-right"><?php echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_back'), null, $CLICSHOPPING_Upgrade->link('Upgrade'), 'primary') . '&nbsp;'; ?></div>
+            class="col-md-8 text-end"><?php echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_back'), null, $CLICSHOPPING_Upgrade->link('Upgrade'), 'primary') . '&nbsp;'; ?></div>
         </div>
       </div>
     </div>

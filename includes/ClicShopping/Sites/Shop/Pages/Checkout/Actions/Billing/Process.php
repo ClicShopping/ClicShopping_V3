@@ -33,11 +33,11 @@
           CLICSHOPPING::redirect(null, 'Account&LogIn');
         }
 
-        if (isset($_POST['coupon']) && !is_null($_POST['coupon'])) {
+        if (isset($_POST['coupon']) && !\is_null($_POST['coupon'])) {
           $_SESSION['coupon'] = HTML::sanitize($_POST['coupon']);
         }
 
-        if (isset($_POST['comments']) && !is_null($_POST['comments'])) {
+        if (isset($_POST['comments']) && !\is_null($_POST['comments'])) {
           $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
         }
 
@@ -55,7 +55,7 @@
         if (is_dir($source_folder)) {
           $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutPayment*');
 
-          if (is_array($files_get)) {
+          if (\is_array($files_get)) {
             foreach ($files_get as $value) {
               if (!empty($value['name'])) {
                 $CLICSHOPPING_Hooks->call('CheckoutPayment', $value['name']);

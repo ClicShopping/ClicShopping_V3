@@ -41,7 +41,7 @@
           if (!is_dir($backup_directory . $file)) {
             $ext = substr($file, strrpos($file, '.') + 1);
 
-            if (in_array($ext, array('zip', 'sql', 'gz')) && !isset($contents[$ext])) {
+            if (\in_array($ext, array('zip', 'sql', 'gz')) && !isset($contents[$ext])) {
               $contents[$ext] = $file;
 
               if ($ext != 'sql') { // zip and gz (binaries) are prioritized over sql (plain text)

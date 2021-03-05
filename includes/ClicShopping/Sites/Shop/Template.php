@@ -23,7 +23,7 @@
     protected string $_template = 'template/';
     protected string $_directoryTemplate = 'template/';
 
-    protected string $_dynamicTemplate = SITE_THEMA;
+    protected $_dynamicTemplate = SITE_THEMA;
     protected string $_directoryTemplateDefault = 'Default';
 
     protected string $_directoryIncludes = 'includes/';
@@ -218,7 +218,7 @@
      */
     public function addBlock(string $block, string $group)
     {
-      if (defined('CONFIGURATION_TEMPLATE_MINIFY_HTML') && CONFIGURATION_TEMPLATE_MINIFY_HTML == 'true') {
+      if (\defined('CONFIGURATION_TEMPLATE_MINIFY_HTML') && CONFIGURATION_TEMPLATE_MINIFY_HTML == 'true') {
         $block = HTMLOverrideCommon::getMinifyHtml($block);
       }
 
@@ -239,11 +239,11 @@
      */
     public function getAppsHeaderTags()
     {
-      if (defined('MODULE_HEADER_TAGS_INSTALLED') && !is_null(MODULE_HEADER_TAGS_INSTALLED)) {
+      if (\defined('MODULE_HEADER_TAGS_INSTALLED') && !\is_null(MODULE_HEADER_TAGS_INSTALLED)) {
         $header_tags_array = explode(';', MODULE_HEADER_TAGS_INSTALLED);
 
         foreach ($header_tags_array as $header) {
-          if (strpos($header, '\\') !== false) {
+          if (str_contains($header, '\\')) {
             $class = Apps::getModuleClass($header, 'HeaderTags');
             $ad = new $class();
 
@@ -331,12 +331,12 @@
      */
     public function setSiteThema(?string $thema_directory = null): string
     {
-      if (is_null($thema_directory)) {
+      if (\is_null($thema_directory)) {
         $thema_directory = $this->_directoryTemplateSources . $this->_directoryTemplate . $this->_dynamicTemplate; //sources/template/SITE_THEMA
       } else {
 // Use for multi template demonstration
 
-        if (defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
+        if (\defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
           if (MODULE_HEADER_SELECT_TEMPLATE_STATUS == 'True') {
             if ((isset($_POST['TemplateCustomerSelected']))) {
               $thema_directory = $this->_directoryTemplateSources . $this->_directoryTemplate . HTML::sanitize($_POST['TemplateCustomerSelected']);
@@ -387,7 +387,7 @@
     public function getPathDownloadShopDirectory($directory = null) :string
     {
 
-      if (!is_null($directory)) {
+      if (!\is_null($directory)) {
         $path_shop_public_download_directory = $this->getTemplateSource() . '/' . $this->_directoryTemplateDownload . $directory . '/';
       } else {
         $path_shop_public_download_directory = $this->getTemplateSource() . '/' . $this->_directoryTemplateDownload . 'public/';
@@ -429,7 +429,7 @@
       }
 
 // Use for multi template demonstration
-      if (defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
+      if (\defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
         if (MODULE_HEADER_SELECT_TEMPLATE_STATUS == 'True') {
           if ((isset($_POST['TemplateCustomerSelected']))) {
             $thema = $this->_directoryTemplateSources . $this->_directoryTemplate . HTML::sanitize($_POST['TemplateCustomerSelected']) . '/';
@@ -450,7 +450,7 @@
     public static function match(array $needles, string $haystack): bool
     {
       foreach ($needles as $needle) {
-        if (!empty($needle) && strpos($haystack, $needle) !== false) {
+        if (!empty($needle) && str_contains($haystack, $needle)) {
           return true;
         }
       }
@@ -486,13 +486,13 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Category = Registry::get('Category');
 
-      if (defined('TEMPLATE_BLOCK_GROUPS') && !is_null(TEMPLATE_BLOCK_GROUPS)) {
+      if (\defined('TEMPLATE_BLOCK_GROUPS') && !\is_null(TEMPLATE_BLOCK_GROUPS)) {
         $tbgroups_array = explode(';', TEMPLATE_BLOCK_GROUPS);
 
         foreach ($tbgroups_array as $group) {
           $module_key = 'MODULE_' . strtoupper($group) . '_INSTALLED';
 
-          if (defined($module_key) && !is_null(constant($module_key))) {
+          if (\defined($module_key) && !\is_null(constant($module_key))) {
             $modules_array = explode(';', constant($module_key));
 
             foreach ($modules_array as $module) {
@@ -537,7 +537,7 @@
                 if (is_numeric(array_search($group, $this->getReadModulesDefaultDirectories())) && $group != $modules_boxes) {
                   $result = array_search($group, $this->getReadModulesDefaultDirectories());
 
-                  if (!is_null($result)) {
+                  if (!\is_null($result)) {
                     if (is_file($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php')) {
                       include($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php');
                     } elseif (is_file($this->getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php')) {
@@ -622,11 +622,11 @@
 
         $search = $replace;
 
-        if (strpos($search, 'language') !== false) {
+        if (str_contains($search, 'language')) {
           $replace = substr($replace, 0, strpos($replace, 'language'));
         }
 
-        if (strpos($search, 'currency') !== false) {
+        if (str_contains($search, 'currency')) {
           $replace = substr($replace, 0, strpos($replace, 'currency'));
         }
 
@@ -805,7 +805,7 @@
         $FILES = glob($source_folder . $filename . '.' . $ext);
         $FILE_LIST[] = [];
 
-        if (is_array($FILES)) {
+        if (\is_array($FILES)) {
           foreach ($FILES as $key => $file) {
             $result = str_replace($source_folder, '', $file);
             $name = str_replace('.' . $ext, '', $result);
@@ -817,7 +817,7 @@
           }
         }
 
-        if (is_array($FILE_LIST)) {
+        if (\is_array($FILE_LIST)) {
           return $FILE_LIST;
         }
       }

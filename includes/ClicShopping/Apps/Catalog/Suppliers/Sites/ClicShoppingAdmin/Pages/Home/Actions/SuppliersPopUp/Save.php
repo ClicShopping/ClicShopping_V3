@@ -97,7 +97,7 @@
           $suppliers_notes = '';
         }
 
-        if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && ($_POST['suppliers_image'] != 'none') && (!isset($_POST['delete_image']))) {
+        if (isset($_POST['suppliers_image']) && !\is_null($_POST['suppliers_image']) && ($_POST['suppliers_image'] != 'none') && (!isset($_POST['delete_image']))) {
           $suppliers_image = HTMLOverrideAdmin::getCkeditorImageAlone($suppliers_image);
         } else {
           $suppliers_image = 'null';
@@ -118,7 +118,7 @@
           'suppliers_notes' => $suppliers_notes
         ];
 
-        if (!is_null($suppliers_image)) {
+        if (!\is_null($suppliers_image)) {
           $insert_image_sql_data = ['suppliers_image' => $suppliers_image];
           $sql_data_array = array_merge($sql_data_array, $insert_image_sql_data);
         }
@@ -133,7 +133,7 @@
 
         $languages = $CLICSHOPPING_Language->getLanguages();
 
-        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
           $suppliers_url_array = $_POST['suppliers_url'];
           $language_id = $languages[$i]['id'];
 

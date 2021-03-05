@@ -34,7 +34,7 @@
 
       $customers = $Qcustomers->fetch();
 
-      $head = '"customers_id", "customers_company", "customers_siret", "customers_ape", "customers_tva_intracom", "customers_tva_intracom_code_iso", "customers_gender", "customers_firstname", "customers_lastname", "customers_dob", "customers_email_address", "customers_telephone", "customers_fax", "customers_newsletter",  "entry_company", "entry_street_address", "entry_suburb", "entry_postcode", "entry_city", "entry_state", "entry_country_id", "entry_zone_id", "customers_default_address_id"' . "\r\n";
+      $head = '"customers_id", "customers_company", "customers_siret", "customers_ape", "customers_tva_intracom", "customers_tva_intracom_code_iso", "customers_gender", "customers_firstname", "customers_lastname", "customers_dob", "customers_email_address", "customers_telephone", "customers_newsletter",  "entry_company", "entry_street_address", "entry_suburb", "entry_postcode", "entry_city", "entry_state", "entry_country_id", "entry_zone_id", "customers_default_address_id"' . "\r\n";
 
       $output = '"' . $customers['customers_id'] . '",';
       $output .= '"' . $customers['customers_company'] . '",';
@@ -48,7 +48,6 @@
       $output .= '"' . $customers['customers_dob'] . '",';
       $output .= '"' . $customers['customers_email_address'] . '",';
       $output .= '"' . $customers['customers_telephone'] . '",';
-      $output .= '"' . $customers['customers_fax'] . '",';
       $output .= '"' . $customers['customers_newsletter'] . '",';
 
       $output .= '"' . $customers['entry_company'] . '",';

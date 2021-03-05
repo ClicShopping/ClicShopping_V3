@@ -69,7 +69,7 @@
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $Qcountries->value('countries_name') . '</strong>'; ?><br/><br/>
       </div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <?php echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_delete'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('ListGeo&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] : '')), 'warning', null, 'sm'); ?>
       </div>
     </div>

@@ -49,7 +49,7 @@
     {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (!is_null($this->ID)) {
+      if (!\is_null($this->ID)) {
         $QCheck = $this->app->db->prepare('select count(*)
                                             from :table_products_to_categories
                                             where products_id = :products_id

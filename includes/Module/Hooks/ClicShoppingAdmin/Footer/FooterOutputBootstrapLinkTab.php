@@ -14,9 +14,9 @@
   class FooterOutputBootstrapLinkTab
   {
     /**
-     * @return string
+     * @return string|bool
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $params = $_SERVER['QUERY_STRING'];
 
@@ -35,16 +35,18 @@
           var url = document.location.toString();
   
           if (url.match(\'#\')) {
-              if ($(\'.nav-tabs a[data-target="#\' + url.split(\'#\')[1] + \'"]\').length === 1) {
-                  $(\'.nav-tabs a[data-target="#\' + url.split(\'#\')[1] + \'"]\').tab(\'show\');
+              if ($(\'.nav-tabs a[data-bs-target="#\' + url.split(\'#\')[1] + \'"]\').length === 1) {
+                  $(\'.nav-tabs a[data-bs-target="#\' + url.split(\'#\')[1] + \'"]\').tab(\'show\');
               }
           }
       });
   </script>
           ' . "\n";
         $output .= '<!--Bootstrap Link tab end -->' . "\n";
+      } else {
+        return false;
       }
+      
       return $output;
-
     }
   }

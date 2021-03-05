@@ -33,16 +33,20 @@
   $error = false;
   $processed = false;
 
-  $newsletter_array = array(array('id' => '1', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_yes')),
-    array('id' => '0', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_no')));
+  $newsletter_array = [
+    array('id' => '1', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_yes')),
+    array('id' => '0', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_no'))
+  ];
 
-  $customers_email_array = array(array('id' => '1', 'text' => $CLICSHOPPING_Customers->getDef('entry_customers_yes')),
-    array('id' => '0', 'text' => $CLICSHOPPING_Customers->getDef('entry_customers_no')));
+  $customers_email_array = [
+    array('id' => '1', 'text' => $CLICSHOPPING_Customers->getDef('entry_customers_yes')),
+    array('id' => '0', 'text' => $CLICSHOPPING_Customers->getDef('entry_customers_no'))
+  ];
 
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
-  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
     $values_languages_id[$i] = [
       'id' => $languages[$i]['id'],
       'text' => $languages[$i]['name']
@@ -55,7 +59,7 @@
                                                       where a.customers_id = c.customers_id
                                                       and c.customers_id = :customers_id
                                                     ');
-  $Qcustomers->bindInt(':customers_id', (int)$_GET['cID']);
+  $Qcustomers->bindInt(':customers_id', $_GET['cID']);
   $Qcustomers->execute();
 
   $cInfo = new ObjectInfo($Qcustomers->toArray());
@@ -78,13 +82,13 @@
   if ($cInfo->entry_country_id == 0) {
     echo '<div class="row alert alert-warning ">';
     echo '<span class="col-md-10">' . $CLICSHOPPING_Customers->getDef('text_customer_no_registred_completly') . '</span>';
-    echo '<span class="col-md-2 text-md-right">'  . HTML::button($CLICSHOPPING_Customers->getDef('button_back'), null, $CLICSHOPPING_Customers->link('Customers'), 'success', null, 'sm') . '</span>';
+    echo '<span class="col-md-2 text-end">'  . HTML::button($CLICSHOPPING_Customers->getDef('button_back'), null, $CLICSHOPPING_Customers->link('Customers'), 'success', null, 'sm') . '</span>';
     echo '</div>';
     exit;
   }
 ?>
 
-<script type="text/javascript"><!--
+<script>
     function check_form() {
         var error = 0;
         var error_message = <?= json_encode($CLICSHOPPING_Customers->getDef('js_error') . "\n\n"); ?>;
@@ -144,7 +148,7 @@
       $Qzones = $CLICSHOPPING_Customers->db->get('zones', 'zone_name', ['zone_country_id' => $cInfo->entry_country_id], 'zone_name');
       $check = $Qzones->fetchAll();
 
-      if (count($check) > 0) {
+      if (\count($check) > 0) {
 ?>
         if (document.customers.elements['entry_state'].type != "hidden") {
             if (document.customers.entry_state.value.length < <?php echo ENTRY_STATE_MIN_LENGTH; ?>) {
@@ -177,7 +181,7 @@
         }
     }
 
-    //--></script>
+    </script>
 <?php
   echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 'post', 'onSubmit="return check_form();"') . HTML::hiddenField('default_address_id', $cInfo->customers_default_address_id);
 ?>
@@ -190,7 +194,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/client_editer.gif', $CLICSHOPPING_Customers->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title_edit') . (int)$_GET['cID'] . '&nbsp;-&nbsp;' . $cInfo->customers_lastname . '&nbsp;' . $cInfo->customers_firstname; ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_Customers->getDef('button_export_customer_info'), null, $CLICSHOPPING_Customers->link('Customers&ExportCustomerInfo&customers_id='. (int)$_GET['cID']), 'info') . ' ';
   echo HTML::hiddenField('customers_id', (int)$_GET['cID']);
@@ -235,13 +239,13 @@
   <div id="customersTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Customers->getDef('tab_general'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Customers->getDef('tab_general'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_societe'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_societe'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_adresse_book'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_adresse_book'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab6" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_notes'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab6" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_notes'); ?></a></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
@@ -260,7 +264,7 @@
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_gender'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_gender'); ?></label>
-                      <div class="col-md-5">
+                      <div class="col-md-5 class="form-check"">
 <?php
     if ($error === true) {
       if ($entry_gender_error === true) {
@@ -270,7 +274,8 @@
         echo HTML::hiddenField('customers_gender');
       }
     } else {
-      echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender,  'id="gender_female"') . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;' . HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female');
+      echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender,  'id="gender_female"') . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;';
+      echo HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female');
     }
 ?>
                       </div>
@@ -325,7 +330,7 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?></label>
-                  <div class="col-md-5 input-group">
+                  <div class="col-md-5">
 <?php
   if (!empty($cInfo->customers_dob)) {
     $date_dob = DateTime::toShortWithoutFormat($cInfo->customers_dob);
@@ -345,7 +350,6 @@
      echo HTML::inputField('customers_dob', $date_dob, null, 'date');
   }
 ?>
-                    <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                   </div>
                 </div>
               </div>
@@ -406,24 +410,6 @@
                         echo $cInfo->customers_cellular_phone . HTML::hiddenField('customers_cellular_phone');
                       } else {
                         echo HTML::inputField('customers_cellular_phone', $cInfo->customers_cellular_phone, 'maxlength="32"', true);
-                      }
-                    ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_fax_number'); ?>"
-                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_fax_number'); ?></label>
-                  <div class="col-md-2">
-                    <?php
-                      if ($processed === true) {
-                        echo $cInfo->customers_fax . HTML::hiddenField('customers_fax');
-                      } else {
-                        echo HTML::inputField('customers_fax', $cInfo->customers_fax, 'maxlength="32"');
                       }
                     ?>
                   </div>
@@ -623,7 +609,7 @@
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_newsletter_language'); ?></label>
                   <div class="col-md-5">
 <?php
-  if (is_null($values_languages_id)) {
+  if (\is_null($values_languages_id)) {
     $values_languages_id = DEFAULT_LANGUAGES;
   }
 
@@ -672,13 +658,13 @@
             <div class="tab-pane" id="tab2">
               <div class="mainTitle">
                 <span class="col-md-2"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></span>
-                <span class="float-md-right col-md-10">
+                <span class="float-end col-md-10">
                 <span
-                  class="col-md-11 text-md-right"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_modify_company'); ?></span>
+                  class="col-md-11 text-end"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_modify_company'); ?></span>
 <?php
     if ($error === true) {
 ?>
-    <span class="col-md-5 text-md-right">
+    <span class="col-md-5 text-end">
 <?php
       if ($cInfo->customers_modify_company != '1') echo ':&nbsp;' . $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_no');
       if ($cInfo->customers_modify_company == '1') echo ':&nbsp;' . $CLICSHOPPING_Customers->getDef('error_entry_customers_modifiy_yes');
@@ -866,8 +852,8 @@
 <?php
         if ($error === true) {
 ?>
-                  <span class="float-md-right col-md-9">
-                  <span class="col-md-11 text-md-right">
+                  <span class="float-end col-md-9">
+                  <span class="col-md-11 text-end">
 <?php
           echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('category_company') . ' ' . $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default') . '&nbsp;:&nbsp;';
           if ($cInfo->customers_modify_address_default != '1') echo $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_no');
@@ -879,8 +865,8 @@
           echo HTML::hiddenField('customers_modify_address_default');
         } else {
 ?>
-                  <span class="float-md-right col-md-9">
-                  <span class="col-md-11 text-md-right">
+                  <span class="float-end col-md-9">
+                  <span class="col-md-11 text-end">
 <?php
           echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default') . '&nbsp;:&nbsp;';
           echo HTML::checkboxField('customers_modify_address_default', '1', $cInfo->customers_modify_address_default);
@@ -898,7 +884,7 @@
                 </div>
                 <div class="adminformTitle">
 <?php
-      if ((strlen($QaddressesBook->value('company')) > '0')) {
+      if ((\strlen($QaddressesBook->value('company')) > '0')) {
 ?>
 
                       <div class="row">

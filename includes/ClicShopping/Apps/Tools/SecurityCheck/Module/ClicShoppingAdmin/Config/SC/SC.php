@@ -27,14 +27,14 @@
       $this->title = $this->app->getDef('module_sc_title');
       $this->short_title = $this->app->getDef('module_sc_short_title');
       $this->introduction = $this->app->getDef('module_sc_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_SECURITY_CHECK_SC_STATUS') && (trim(CLICSHOPPING_APP_SECURITY_CHECK_SC_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_SECURITY_CHECK_SC_STATUS') && (trim(CLICSHOPPING_APP_SECURITY_CHECK_SC_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_SECURITY_CHECK_INSTALLED')) {
+      if (\defined('MODULE_MODULES_SECURITY_CHECK_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_SECURITY_CHECK_INSTALLED);
       }
 

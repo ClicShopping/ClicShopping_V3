@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class pr_products_reviews_listing_description {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('modules_products_reviews_listing_description_title');
       $this->description = CLICSHOPPING::getDef('modules_products_reviews_listing_description_description');
 
-      if (defined('MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_STATUS')) {
+      if (\defined('MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_STATUS')) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_SORT_ORDER;
         $this->enabled = (MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_STATUS == 'True');
       }
@@ -66,7 +66,7 @@
     }
 
     public function check() {
-      return defined('MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_STATUS');
+      return \defined('MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_STATUS');
     }
 
     public function install() {
@@ -98,11 +98,11 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where Do you want to display the module ?',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_POSITION',
-          'configuration_value' => 'float-md-left',
+          'configuration_value' => 'float-start',
           'configuration_description' => 'Select where you want display the module',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

@@ -14,14 +14,18 @@
   class HeaderOutputBootstrapTable
   {
     /**
-     * @return bool|string
+     * @return string
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $output = '';
 
       if (isset($_SESSION['admin'])) {
-        $output = '<link rel="stylesheet preload" as="style" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">';
+        $output = '<!-- Start Bootstrap table -->' . "\n";
+        $output .= '<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">' . "\n";
+        $output .= '<!-- Start Bootstrap table -->' . "\n";
+      } else {
+        return false;
       }
 
       return $output;

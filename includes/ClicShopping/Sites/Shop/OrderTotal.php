@@ -21,11 +21,11 @@
 // class constructor
     public function __construct()
     {
-      if (defined('MODULE_ORDER_TOTAL_INSTALLED') && !is_null(MODULE_ORDER_TOTAL_INSTALLED)) {
+      if (\defined('MODULE_ORDER_TOTAL_INSTALLED') && !\is_null(MODULE_ORDER_TOTAL_INSTALLED)) {
         $this->modules = explode(';', MODULE_ORDER_TOTAL_INSTALLED);
 
         foreach ($this->modules as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $class = Apps::getModuleClass($value, 'OrderTotal');
 
             Registry::set('OrderTotal_' . str_replace('\\', '_', $value), new $class);
@@ -38,18 +38,18 @@
     {
       $order_total_array = [];
 
-      if (is_array($this->modules)) {
+      if (\is_array($this->modules)) {
         foreach ($this->modules as $value) {
 
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $CLICSHOPPING_OTM = Registry::get('OrderTotal_' . str_replace('\\', '_', $value));
           }
           if ($CLICSHOPPING_OTM->enabled) {
             $CLICSHOPPING_OTM->output = [];
             $CLICSHOPPING_OTM->process();
 
-            for ($i = 0, $n = count($CLICSHOPPING_OTM->output); $i < $n; $i++) {
-              if (!is_null($CLICSHOPPING_OTM->output[$i]['title']) && !is_null($CLICSHOPPING_OTM->output[$i]['text'])) {
+            for ($i = 0, $n = \count($CLICSHOPPING_OTM->output); $i < $n; $i++) {
+              if (!\is_null($CLICSHOPPING_OTM->output[$i]['title']) && !\is_null($CLICSHOPPING_OTM->output[$i]['text'])) {
                 $order_total_array[] = [
                   'code' => $CLICSHOPPING_OTM->code,
                   'title' => $CLICSHOPPING_OTM->output[$i]['title'],
@@ -69,14 +69,14 @@
     public function output()
     {
       $output_string = '';
-      if (is_array($this->modules)) {
+      if (\is_array($this->modules)) {
         foreach ($this->modules as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $CLICSHOPPING_OTM = Registry::get('OrderTotal_' . str_replace('\\', '_', $value));
           }
 
           if ($CLICSHOPPING_OTM->enabled) {
-            $size = count($CLICSHOPPING_OTM->output);
+            $size = \count($CLICSHOPPING_OTM->output);
             for ($i = 0; $i < $size; $i++) {
               $output_string .= '              <tr>' . "\n" .
                 '                <td class="OrderTotalTitle">' . $CLICSHOPPING_OTM->output[$i]['title'] . '</td>' . "\n" .

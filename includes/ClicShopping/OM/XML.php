@@ -32,8 +32,8 @@
         $xml = get_object_vars($xml);
       }
 
-      if (is_array($xml)) {
-        if (count($xml) == 0) {
+      if (\is_array($xml)) {
+        if (\count($xml) == 0) {
           return (string)$x->__toString(); // for CDATA
         }
 
@@ -78,7 +78,7 @@
     protected static function _write(\XMLWriter $xml, $data, $parent = null, bool $add_to_parent_element = false)
     {
       foreach ($data as $key => $value) {
-        if (is_array($value)) {
+        if (\is_array($value)) {
           if (is_int($key)) {
             if ($add_to_parent_element === false) {
               $add_to_parent_element = true;

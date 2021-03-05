@@ -11,6 +11,7 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 ?>
+<div class="clearfix"></div>
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="col-md-12">
     <div class="separator"></div>

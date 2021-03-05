@@ -15,8 +15,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class cc_checkout_confirmation_law_hamon {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_description');
 
-      if (defined('MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_STATUS == 'True');
       }
@@ -44,6 +44,19 @@
 
         if (CONFIGURATION_LAW_HAMON == 'true') {
           $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_CONTENT_WIDTH;
+
+          $footer = '<script>' . "\n";
+          $footer .= ' function checkCheckBox(f){';
+          $footer .= ' if (f.agree.checked === false )';
+          $footer .= ' {';
+          $footer .= ' alert(\'' . CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_text_error_agreement') . '\');';
+          $footer .= ' return false;';
+          $footer .= ' } else';
+          $footer .= ' return true;';
+          $footer .= ' }';
+          $footer .= ' </script>' . "\n";
+
+          $CLICSHOPPING_Template->addBlock($footer, 'footer_scripts');
 
           $confirmation = '  <!-- checkout confirmation law Hamon start -->' . "\n";
 
@@ -64,7 +77,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_STATUS');
+      return \defined('MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_STATUS');
     }
 
     public function install() {

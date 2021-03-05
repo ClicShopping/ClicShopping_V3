@@ -68,7 +68,7 @@
         <br/><br/></div>
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<br />' . HTML::fileField('sql_file'); ?><br/><br/></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Backup->getDef('button_restore'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Backup->getDef('button_cancel'), null, $CLICSHOPPING_Backup->link('Backup'), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

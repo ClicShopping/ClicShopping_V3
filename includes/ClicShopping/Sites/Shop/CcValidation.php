@@ -13,7 +13,6 @@
 
   class CcValidation
   {
-
     public string $cc_type;
     public string $cc_number;
     public string $cc_expiry_month;
@@ -72,7 +71,7 @@
       $cardNumber = strrev($this->cc_number);
       $numSum = 0;
 
-      for ($i = 0; $i < strlen($cardNumber); $i++) {
+      for ($i = 0; $i < \strlen($cardNumber); $i++) {
         $currentNum = substr($cardNumber, $i, 1);
 
 // Double every second digit

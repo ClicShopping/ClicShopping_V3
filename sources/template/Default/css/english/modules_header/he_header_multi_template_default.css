@@ -34,6 +34,7 @@ i.headerMultiTemplateDefaultShoppingCart {
   font-weight: bold;
   padding-right: 0.5rem;
   padding-top: 0rem;
+  font-size: 2rem;
 }
 
 a.headerMultiTemplateDefaultShoppingCart {
@@ -94,9 +95,13 @@ li.headerMultiTemplateDefaultLanguage{
 }
 
 a.headerMultiTemplateDefaultCartLink h2 {
-  font-size: 1rem!important;
 }
 
 .headerMultiTemplateDefaultCurrencies {
   height: 30px;
+}
+
+.headerManufacturer{
+  padding-top: 15px;
+  padding-bottom: 10px;
 }

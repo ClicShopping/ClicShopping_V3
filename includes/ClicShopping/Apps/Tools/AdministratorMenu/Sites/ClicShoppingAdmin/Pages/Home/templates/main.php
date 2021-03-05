@@ -16,6 +16,7 @@
 
   $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_Template = Registry::get('Template');
 
   if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
@@ -42,7 +43,7 @@
       <div class="separator"></div>
 
       <div class="col-md-12">
-        <div class="form-group">
+        <div>
           <div class="col-md-12">
             <?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_intro'); ?>
           </div>
@@ -50,8 +51,8 @@
         <div class="separator"></div>
         <div class="separator"></div
         <div class="col-md-12">
-          <div class="form-group">
-            <div class="col-md-12 text-md-center">
+          <div>
+            <div class="col-md-12 text-center">
               <?php
                 echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Tools\AdministratorMenu&Configure'));
                 echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_configure'), null, null, 'primary');

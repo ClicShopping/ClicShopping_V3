@@ -1,0 +1,7 @@
+Small release
+
+update js state dropdown
+Check xml is correct for dashboard app markeplace
+Increase size icon svg for mobile
+Improve SEO on index page
+fix error function category image seo

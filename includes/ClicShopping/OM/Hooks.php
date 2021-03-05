@@ -63,7 +63,7 @@
       foreach ($calls as $code) {
         $bait = null;
 
-        if (is_string($code)) {
+        if (\is_string($code)) {
           $class = Apps::getModuleClass($code, 'Hooks');
 
           $obj = new $class();
@@ -90,7 +90,7 @@
      */
     public function output(): string
     {
-      return implode('', call_user_func_array([$this, 'call'], func_get_args()));
+      return implode('', \call_user_func_array([$this, 'call'], \func_get_args()));
     }
 
     public function watch(string $group, string $hook, string $action, $code)

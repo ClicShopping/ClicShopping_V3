@@ -99,7 +99,7 @@
             } // end $pricek
 
 // Mise a jour de la base produits sur les groupes
-            if (is_null($Qattributes->valueInt('customers_group_id'))) {
+            if (\is_null($Qattributes->valueInt('customers_group_id'))) {
               if ($groups_id != 0) {
                 $CLICSHOPPING_Groups->db->save('products_groups', [
                     'customers_group_id' => (int)$groups_id,

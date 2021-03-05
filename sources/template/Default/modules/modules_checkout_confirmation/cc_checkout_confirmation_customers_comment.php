@@ -15,8 +15,8 @@
   use ClicShopping\OM\HTML;
 
   class cc_checkout_confirmation_customers_comment {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,21 +29,19 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_confirmation_customers_comment_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_customers_comment_description');
 
-      if (defined('MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_STATUS == 'True');
       }
      }
 
     public function execute() {
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Order = Registry::get('Order');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn()) {
-
-         if (!is_null($CLICSHOPPING_Order->info['comments'])) {
+         if (!empty($CLICSHOPPING_Order->info['comments'])) {
           $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_CONTENT_WIDTH;
 
           $edit_comment = HTML::link(CLICSHOPPING::link(null, 'Checkout&Billing'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_customers_comment_text_edit') . ')</span>');
@@ -68,7 +66,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_STATUS');
+      return \defined('MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_STATUS');
     }
 
     public function install() {

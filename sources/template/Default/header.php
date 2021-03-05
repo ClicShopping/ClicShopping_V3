@@ -11,6 +11,7 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTTP;
 
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Template = Registry::get('Template');
@@ -29,17 +30,16 @@
 
      $CLICSHOPPING_Template->useRecursiveModulesHooksForTemplate($source_folder,  $output,  $call, $hook_call);
 ?>
-  <br />
-  </head>
-  <body>
+   </head>
+  <body id="body">
     <div class="<?php echo BOOTSTRAP_CONTAINER;?>" id="<?php echo BOOTSTRAP_CONTAINER;?>">
       <div class="bodyWrapper" id="bodyWrapper">
-        <header class="page-header" id="page_header">
+        <header class="page-header" id="pageHeader">
 <?php
   if  ( MODE_VENTE_PRIVEE == 'false' || (MODE_VENTE_PRIVEE == 'true' && $CLICSHOPPING_Customer->isLoggedOn())) {
     echo $CLICSHOPPING_Template->getBlocks('modules_header');
   }
 ?>
         </header>
-        <div class="d-flex flex-wrap frameWork" id="frameWork">
-          <div id="bodyContent" class="col-lg-<?php echo $CLICSHOPPING_Template->getGridContentWidth(); ?> order-xs-1 order-lg-2">
+          <div class="d-flex flex-wrap frameWork" id="frameWork">
+            <div id="bodyContent" class="col-12 col-lg-<?php echo $CLICSHOPPING_Template->getGridContentWidth(); ?> order-xs-1 order-lg-2 m-3">

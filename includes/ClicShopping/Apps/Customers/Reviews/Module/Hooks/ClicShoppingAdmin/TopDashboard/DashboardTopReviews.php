@@ -53,11 +53,11 @@
 
       if ($number_of_reviews > 0) {
         $output = '
-<span style="padding-right:0.5rem; padding-top:0.5rem">
+<div class="col-md-2 col-12 m-1">
     <div class="card bg-success">
       <div class="card-body">
         <div class="row">
-          <h5 class="card-title text-white"><i class="far fa-comment"  aria-hidden="true"></i> ' . $text . '</h5>
+          <h6 class="card-title text-white"><i class="bi bi-info-circle-fill"></i> ' . $text . '</h6>
         </div>
         <div class="col-md-12">
           <span class="text-white"><strong>' . $number_of_reviews . '</strong></span>
@@ -65,7 +65,7 @@
         </div>
       </div>
     </div>
-</span>
+</div>
 ';
       }
 

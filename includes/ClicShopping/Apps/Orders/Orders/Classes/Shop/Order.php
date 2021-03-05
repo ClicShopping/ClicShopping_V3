@@ -57,7 +57,7 @@
       if (isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
         $this->_id = HTML::sanitize($_GET['order_id']);
         $this->query($this->_id);
-      } elseif (!is_null($order_id)) {
+      } elseif (!\is_null($order_id)) {
         $this->query((int) $order_id);
       } else {
         $this->cart();
@@ -359,7 +359,7 @@
         }
       }
 
-      if (is_array($_SESSION['sendto']) && !empty($_SESSION['sendto'])) {
+      if (\is_array($_SESSION['sendto']) && !empty($_SESSION['sendto'])) {
         $shipping_address = [
           'entry_firstname' => $_SESSION['sendto']['firstname'],
           'entry_lastname' => $_SESSION['sendto']['lastname'],
@@ -426,7 +426,7 @@
         ];
       }
 
-      if (isset($_SESSION['billto']) && is_array($_SESSION['billto']) && !empty($_SESSION['billto'])) {
+      if (isset($_SESSION['billto']) && \is_array($_SESSION['billto']) && !empty($_SESSION['billto'])) {
         $billing_address = [
           'entry_firstname' => $_SESSION['billto']['firstname'],
           'entry_lastname' => $_SESSION['billto']['lastname'],
@@ -486,7 +486,7 @@
         ];
       }
 
-      if ((isset($_SESSION['payment']) && is_array($_SESSION['payment'])) || (isset($_SESSION['shipping']) && is_array($_SESSION['shipping']))) {
+      if ((isset($_SESSION['payment']) && \is_array($_SESSION['payment'])) || (isset($_SESSION['shipping']) && \is_array($_SESSION['shipping']))) {
         $this->info = [
           'order_status' => (int)DEFAULT_ORDERS_STATUS_ID,
           'order_status_invoice' => (int)DEFAULT_ORDERS_STATUS_INVOICE_ID,
@@ -514,7 +514,7 @@
       }
 
       if (isset($_SESSION['payment'])) {
-        if (strpos($_SESSION['payment'], '\\') !== false) {
+        if (str_contains($_SESSION['payment'], '\\')) {
           $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
 
           if (Registry::exists($code)) {
@@ -542,7 +542,7 @@
         $company_name = $customer_address['entry_company'];
       }
 
-      if (is_array($customer_address)) {
+      if (\is_array($customer_address)) {
         $this->customer = [
           'firstname' => $customer_address['customers_firstname'],
           'customers_group_id' => $customer_address['customers_group_id'],
@@ -552,7 +552,7 @@
           'suburb' => $customer_address['entry_suburb'],
           'city' => $customer_address['entry_city'],
           'postcode' => $customer_address['entry_postcode'],
-          'state' => ((!is_null($customer_address['entry_state'])) ? $customer_address['entry_state'] : $customer_address['zone_name']),
+          'state' => ((!\is_null($customer_address['entry_state'])) ? $customer_address['entry_state'] : $customer_address['zone_name']),
           'zone_id' => $customer_address['entry_zone_id'],
           'country' => [
             'id' => $customer_address['countries_id'],
@@ -574,7 +574,7 @@
         }
       }
 
-      if(is_array($shipping_address)) {
+      if(\is_array($shipping_address)) {
         $this->delivery = [
           'firstname' => $shipping_address['entry_firstname'],
           'lastname' => $shipping_address['entry_lastname'],
@@ -583,7 +583,7 @@
           'suburb' => $shipping_address['entry_suburb'],
           'city' => $shipping_address['entry_city'],
           'postcode' => $shipping_address['entry_postcode'],
-          'state' => ((!is_null($shipping_address['entry_state'])) ? $shipping_address['entry_state'] : $shipping_address['zone_name']),
+          'state' => ((!\is_null($shipping_address['entry_state'])) ? $shipping_address['entry_state'] : $shipping_address['zone_name']),
           'zone_id' => $shipping_address['entry_zone_id'],
           'country' => array('id' => $shipping_address['countries_id'], 'title' => $shipping_address['countries_name'], 'iso_code_2' => $shipping_address['countries_iso_code_2'], 'iso_code_3' => $shipping_address['countries_iso_code_3']),
           'country_id' => $shipping_address['entry_country_id'],
@@ -591,7 +591,7 @@
         ];
       }
 
-      if (is_array($billing_address)) {
+      if (\is_array($billing_address)) {
         $this->billing = [
           'firstname' => $billing_address['entry_firstname'],
           'lastname' => $billing_address['entry_lastname'],
@@ -600,7 +600,7 @@
           'suburb' => $billing_address['entry_suburb'],
           'city' => $billing_address['entry_city'],
           'postcode' => $billing_address['entry_postcode'],
-          'state' => (!is_null($billing_address['entry_state']) ? $billing_address['entry_state'] : $billing_address['zone_name']),
+          'state' => (!\is_null($billing_address['entry_state']) ? $billing_address['entry_state'] : $billing_address['zone_name']),
           'zone_id' => $billing_address['entry_zone_id'],
           'country' => array('id' => $billing_address['countries_id'], 'title' => $billing_address['countries_name'], 'iso_code_2' => $billing_address['countries_iso_code_2'], 'iso_code_3' => $billing_address['countries_iso_code_3']),
           'country_id' => $billing_address['entry_country_id'],
@@ -621,7 +621,7 @@
 
       $products = $CLICSHOPPING_ShoppingCart->get_products();
       
-      if (is_array($products)) {
+      if (\is_array($products)) {
 // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           $QgroupTax = $this->db->prepare('select group_order_taxe,
@@ -637,7 +637,7 @@
           $group_tax = false;
         }
 
-        for ($i = 0, $n = count($products); $i < $n; $i++) {
+        for ($i = 0, $n = \count($products); $i < $n; $i++) {
   // Display an indicator to identify if the product belongs at a customer group or not.
           $QproductsQuantityUnitId = $this->db->prepare('select products_quantity_unit_id_group
                                                          from :table_products_groups
@@ -802,7 +802,7 @@
       $CLICSHOPPING_OrderTotal = Registry::get('OrderTotal');
 
       if (isset($_SESSION['payment'])) {
-        if (strpos($_SESSION['payment'], '\\') !== false) {
+        if (str_contains($_SESSION['payment'], '\\')) {
           $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
 
           if (Registry::exists($code)) {
@@ -826,7 +826,7 @@
 
 // Manage the atos module and the  Atos situation report in database.
 // Do not modify
-      if (defined('MODULE_PAYMENT_ATOS_STATUS') && MODULE_PAYMENT_ATOS_STATUS == 'True') {
+      if (\defined('MODULE_PAYMENT_ATOS_STATUS') && MODULE_PAYMENT_ATOS_STATUS == 'True') {
         $cc_owner = $this->info['transaction_id'];
       } else {
         $cc_owner = $this->info['cc_owner'];
@@ -891,7 +891,7 @@
 // orders total
       $order_totals = $CLICSHOPPING_OrderTotal->process();
 
-      for ($i = 0, $n = count($order_totals); $i < $n; $i++) {
+      for ($i = 0, $n = \count($order_totals); $i < $n; $i++) {
         $sql_data_array = [
           'orders_id' => (int)$this->insertID,
           'title' => $order_totals[$i]['title'],
@@ -905,7 +905,7 @@
       }
 
 // initialized for the email confirmation
-      for ($i = 0, $n = count($this->products); $i < $n; $i++) {
+      for ($i = 0, $n = \count($this->products); $i < $n; $i++) {
 // search the good model
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
@@ -944,7 +944,7 @@
         $order_products_id = $this->db->lastInsertId();
 
         if (isset($this->products[$i]['attributes'])) {
-          for ($j = 0, $n2 = count($this->products[$i]['attributes']); $j < $n2; $j++) {
+          for ($j = 0, $n2 = \count($this->products[$i]['attributes']); $j < $n2; $j++) {
             $Qattributes = $CLICSHOPPING_ProductsAttributes->getAttributesDownloaded($this->products[$i]['id'], $this->products[$i]['attributes'][$j]['option_id'], $this->products[$i]['attributes'][$j]['value_id'], $this->lang->getId());
 
             $sql_data_array = [
@@ -959,7 +959,7 @@
 
             $this->db->save('orders_products_attributes', $sql_data_array);
 
-            if ((DOWNLOAD_ENABLED == 'true') && $Qattributes->hasValue('products_attributes_filename') && !is_null($Qattributes->value('products_attributes_filename'))) {
+            if ((DOWNLOAD_ENABLED == 'true') && $Qattributes->hasValue('products_attributes_filename') && !\is_null($Qattributes->value('products_attributes_filename'))) {
               $sql_data_array = [
                 'orders_id' => (int)$this->insertID,
                 'orders_products_id' => (int)$order_products_id,
@@ -1056,7 +1056,7 @@
 
             $products_attributes = $this->products['attributes'] ?? '';
 
-            if (is_array($products_attributes)) {
+            if (\is_array($products_attributes)) {
               $stock_query_sql .= ' and pa.options_id = :options_id
                                    and pa.options_values_id = :options_values_id
                                 ';
@@ -1066,7 +1066,7 @@
 
             $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id')));
 
-            if (is_array($products_attributes)) {
+            if (\is_array($products_attributes)) {
               $Qstock->bindInt(':options_id', $products_attributes['option_id']);
               $Qstock->bindInt(':options_values_id', $products_attributes['value_id']);
             }
@@ -1085,7 +1085,7 @@
 
           if ($Qstock->fetch() !== false) {
 // do not decrement quantities if products_attributes_filename exists
-            if ((DOWNLOAD_ENABLED != 'true') || !is_null($Qstock->value('products_attributes_filename'))) {
+            if ((DOWNLOAD_ENABLED != 'true') || !\is_null($Qstock->value('products_attributes_filename'))) {
 // select the good qty in B2B ti decrease the stock. See shopping_cart top display out stock or not
               if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
                 $QproductsQuantityCustomersGroup = $this->db->prepare('select products_quantity_fixed_group
@@ -1126,7 +1126,7 @@
 // Alert by mail if a product is 0 or < 0
             $this->sendEmailAlertStockWarning($order_id);
 // Email alert when a product is exahuted
-            $this->sendEmailAlertProductsExhausted($order_id);
+            $this->sendEmailAlertProductsSoldOut($order_id);
           }
         }
 
@@ -1176,7 +1176,7 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
-      if (strpos($_SESSION['payment'], '\\') !== false) {
+      if (str_contains($_SESSION['payment'], '\\')) {
         $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
 
         if (Registry::exists($code)) {
@@ -1280,7 +1280,7 @@
         }
 
         if (isset($_SESSION['payment'])) {
-          if (strpos($_SESSION['payment'], '\\') !== false) {
+          if (str_contains($_SESSION['payment'], '\\')) {
             $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
 
             if (Registry::exists($code)) {
@@ -1314,12 +1314,12 @@
           if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
             $email[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
 
-            if (is_array($email)) {
+            if (\is_array($email)) {
               foreach ($email as $key => $value) {
-                $this->mail->clicMail('', $value[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+                $this->mail->clicMail(null, $value[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
               }
             } else {
-              $this->mail->clicMail('', $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+              $this->mail->clicMail(null, $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
             }
           }
         }
@@ -1327,14 +1327,14 @@
     }
 
     /**
-     * Alert by mail product exhausted if a product is 0 or < 0
+     * Alert by mail product sold_out if a product is 0 or < 0
      * @param int $insert_id
      */
-    public function sendEmailAlertProductsExhausted(int $insert_id)
+    public function sendEmailAlertProductsSoldOut(int $insert_id)
     {
       $CLICSHOPPING_Prod = Registry::get('Prod');
 
-      if (STOCK_ALERT_PRODUCT_EXHAUSTED == 'true') {
+      if (STOCK_ALERT_PRODUCT_SOLD_OUT == 'true') {
         $Qproducts = $this->db->prepare('select orders_products_id,
                                                  products_id
                                                  products_model,
@@ -1362,10 +1362,10 @@
 
             if (($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false') && (STOCK_CHECK == 'true')) {
               $email_text_subject_stock = stripslashes(CLICSHOPPING::getDef('email_text_subject_stock', ['store_name' => STORE_NAME]));
-              $email_product_exhausted_stock = stripslashes(CLICSHOPPING::getDef('email_text_stock'));
-              $email_product_exhausted_stock .= "\n" . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n" . CLICSHOPPING::getDef('email_text_model') . '  ' . $Qproducts->value('products_model') . "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name') . "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) . "\n";
+              $email_product_sold_out_stock = stripslashes(CLICSHOPPING::getDef('email_text_stock'));
+              $email_product_sold_out_stock .= "\n" . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n" . CLICSHOPPING::getDef('email_text_model') . '  ' . $Qproducts->value('products_model') . "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name') . "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) . "\n";
 
-              $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $email_product_exhausted_stock, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+              $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $email_product_sold_out_stock, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
             }
           } // end stock alert
         }  // end while

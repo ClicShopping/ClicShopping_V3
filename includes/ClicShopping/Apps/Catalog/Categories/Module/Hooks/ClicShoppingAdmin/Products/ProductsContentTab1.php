@@ -37,7 +37,7 @@
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
-      if (!defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
         return false;
       }
 
@@ -69,10 +69,10 @@
         $content .= '<div class="col-md-5">';
         $content .= '<label for="' . $this->app->getDef('text_products_categories') . '" class="col-5 col-form-label"></label>';
         $content .= '<div id="myAjax">';
-        $content .= HTML::selectMenu('move_to_category_id[]', $category_tree, $current_category_id);
+        $content .= HTML::selectMenu('move_to_category_id[]', $category_tree, $current_category_id, 'id="move_to_category_id"');
         $content .= '</div>';
         $content .= HTML::hiddenField('current_category_id', $current_category_id);
-        $content .= '<a href="' . $this->app->link('CategoriesPopUp') . '"  data-toggle="modal" data-refresh="true" data-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
+        $content .= '<a href="' . $this->app->link('CategoriesPopUp') . '"  data-bs-toggle="modal" data-bs-refresh="true" data-bs-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
         $content .= '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
         $content .= '<div class="modal-dialog">';
         $content .= '<div class="modal-content">';
@@ -123,29 +123,35 @@ $('#tab1ContentRow1').append(
 );
 </script>
 
-<script type="text/javascript">
-  jQuery(document).ready(function() {
-    $("#myAjax").on('click', function () {
-      var selectedOptionVal = $('#category_id').val();
-      $.ajax({
-        url: '{$categories_ajax}',
-        dataType: 'json',
-        success: function (data) {
-          //data returned from php
-          var options_html = '';
-          for (var index in data) {
-            var category_id = data[index]['id'];
-            var category_name = data[index]['text'];
-            var selectedString = category_id == selectedOptionVal ? ' selected="selected"' : '';
-            options_html += '<option value="' + category_id + '"' + selectedString + '>' + category_name + '</option>';
-          }
-          $('#category_id').html(options_html);
-        }
-      });
+<script>
+  window.addEventListener("DOMContentLoaded", (event) => {
+   console.log("DOM uploaded and analysed");
+   document.querySelector('#myAjax')
+   .addEventListener('click',function(e){
+     var selectedOptionVal = document.querySelector('#move_to_category_id').value
+     ,options_html="";
+    fetch("{$categories_ajax}?"+selectedOptionVal)
+      .then(function(response) {
+         return response.json();
+      })
+      .then(function(jsonResponse) {
+     // Ajax success
+     console.log("data is :",jsonResponse);
+     for(var index in jsonResponse){
+      let category_id = jsonResponse[index].id;
+      let category_name = jsonResponse[index].text;
+      let selectedString = category_id == selectedOptionVal ? ' selected="selected"' : '';
+      options_html += '<option value="' + category_id + '"' + selectedString + '>' + category_name + '</option>';
+     }
+     $('#move_to_category_id').html(options_html);
+      })
+      .catch(function(err) {
+       // error ajax 
+        alert("error :"+err);
     });
-  })
-</script>
-
+   });
+  });
+ </script>
 <!-- ######################## -->
 <!--  End Categories App      -->
 <!-- ######################## -->

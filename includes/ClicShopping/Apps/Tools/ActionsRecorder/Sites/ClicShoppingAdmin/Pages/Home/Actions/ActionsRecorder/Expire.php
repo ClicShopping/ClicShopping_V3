@@ -49,7 +49,7 @@
         $dir->close();
       }
 
-      for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
+      for ($i = 0, $n = \count($directory_array); $i < $n; $i++) {
         $file = $directory_array[$i];
 
         include($CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/action_recorder/' . $file);
@@ -67,7 +67,7 @@
 
       $expired_entries = 0;
 
-      if (isset($_GET['module']) && in_array($_GET['module'], $modules_array)) {
+      if (isset($_GET['module']) && \in_array($_GET['module'], $modules_array)) {
         $get_module_class = $CLICSHOPPING_ActionsRecorderClass->getClassModule($_GET['module']);
 
         if (is_object($get_module_class)) {
@@ -76,7 +76,7 @@
           $expired_entries = $this->app->db->delete('action_recorder', ['module' => $_GET['module']]);
         }
       } else {
-        if (is_array($modules_array)) {
+        if (\is_array($modules_array)) {
           foreach ($modules_array as $module) {
             $get_module_class = $CLICSHOPPING_ActionsRecorderClass->getClassModule($module);
             if (isset($get_module_class) && is_object($get_module_class)) {

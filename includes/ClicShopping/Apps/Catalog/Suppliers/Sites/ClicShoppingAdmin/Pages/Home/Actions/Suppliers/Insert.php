@@ -97,13 +97,14 @@
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-      if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && !empty($_POST['suppliers_image']) && (!isset($_POST['delete_image']))) {
+      if (isset($_POST['suppliers_image']) && !\is_null($_POST['suppliers_image']) && !empty($_POST['suppliers_image']) && (!isset($_POST['delete_image']))) {
         $suppliers_image = HTMLOverrideAdmin::getCkeditorImageAlone($suppliers_image);
       } else {
         $suppliers_image = null;
       }
 
-      $sql_data_array = ['suppliers_name' => $suppliers_name,
+      $sql_data_array = [
+        'suppliers_name' => $suppliers_name,
         'suppliers_manager' => $suppliers_manager,
         'suppliers_phone' => $suppliers_phone,
         'suppliers_email_address' => $suppliers_email_address,
@@ -132,13 +133,14 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $suppliers_url_array = $_POST['suppliers_url'];
         $language_id = $languages[$i]['id'];
 
         $sql_data_array = ['suppliers_url' => HTML::sanitize($suppliers_url_array[$language_id])];
 
-        $insert_sql_data = ['suppliers_id' => (int)$suppliers_id,
+        $insert_sql_data = [
+          'suppliers_id' => (int)$suppliers_id,
           'languages_id' => (int)$language_id
         ];
 

@@ -51,18 +51,18 @@
           <span
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Favorites->getDef('heading_title'); ?></span>
           <span class="col-md-2">
-           <div class="form-group">
-             <div class="controls">
+           <div>
+             <div>
 <?php
   if (MODE_B2B_B2C == 'true') {
 
     if (isset($_POST['customers_group_id'])) {
-      $customers_group_id = $_POST['customers_group_id'];
+      $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
     } else {
       $customers_group_id = null;
     }
 
-    echo HTML::form('grouped', $CLICSHOPPING_Favorites->link('Favorites'), 'post', 'class="form-inline"');
+    echo HTML::form('grouped', $CLICSHOPPING_Favorites->link('Favorites'));
     echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $customers_group_id, 'onchange="this.form.submit();"');
     echo '</form>';
   }
@@ -77,7 +77,7 @@
   }
 ?>
          </span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_Favorites->getDef('button_new'), null, $CLICSHOPPING_Favorites->link('Edit&page=' . $page . '&action=new'), 'success');
 ?>
@@ -94,13 +94,15 @@
     echo HTML::form('delete_all', $CLICSHOPPING_Favorites->link('Favorites&Favorites&DeleteAll&page=' . $page));
   ?>
 
-  <div id="toolbar">
+  <div id="toolbar" class="float-end">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Favorites->getDef('button_delete'); ?></button>
   </div>
 
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-id-field="selected"
     data-select-item-name="selected[]"
     data-click-to-select="true"
@@ -128,18 +130,16 @@
             }
           ?>
         <th data-field="price" data-sortable="true"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_products_price'); ?></th>
-        <th data-field="scheduled_date" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_scheduled_date'); ?></th>
-        <th data-field="expires_date" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_expires_date'); ?></td>
-        <th data-field="archive" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_archive'); ?></th>
-        <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_status'); ?></th>
-        <th data-field="action"  data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="scheduled_date" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_scheduled_date'); ?></th>
+        <th data-field="expires_date" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_expires_date'); ?></td>
+        <th data-field="archive" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_archive'); ?></th>
+        <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_status'); ?></th>
+        <th data-field="action"  data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
 <?php
   if (isset($_POST['customers_group_id'])) {
-    $customers_group_id = (int)$_POST['customers_group_id'];
-
     $Qfavorites = $CLICSHOPPING_Favorites->db->prepare('select  SQL_CALC_FOUND_ROWS p.products_id,
                                                                                     p.products_model,
                                                                                     p.products_image,
@@ -233,31 +233,31 @@
       } // end mode b2B_B2C
       ?>
       <td
-        class="text-md-left"><?php echo $CLICSHOPPING_Currencies->format($Qfavorites->value('products_price')); ?></td>
+        class="text-start"><?php echo $CLICSHOPPING_Currencies->format($Qfavorites->value('products_price')); ?></td>
         <?php
-        if (!is_null($Qfavorites->value('scheduled_date'))) {
+        if (!\is_null($Qfavorites->value('scheduled_date'))) {
           ?>
-          <td class="text-md-center"><?php echo DateTime::toShort($Qfavorites->value('scheduled_date')); ?></td>
+          <td class="text-center"><?php echo DateTime::toShort($Qfavorites->value('scheduled_date')); ?></td>
           <?php
         } else {
           ?>
-          <td class="text-md-center"></td>
+          <td class="text-center"></td>
           <?php
         }
 
-        if (!is_null($Qfavorites->value('expires_date'))) {
+        if (!\is_null($Qfavorites->value('expires_date'))) {
           ?>
-          <td class="text-md-center"><?php echo DateTime::toShort($Qfavorites->value('expires_date')); ?></td>
+          <td class="text-center"><?php echo DateTime::toShort($Qfavorites->value('expires_date')); ?></td>
           <?php
         } else {
           ?>
-          <td class="text-md-center"></td>
+          <td class="text-center"></td>
           <?php
         }
 
         if ($Qfavorites->valueInt('products_archive') == 1) {
           ?>
-          <td class="text-md-center"><i class="fas fa-check fa-lg" aria-hidden="true"></i></td>
+          <td class="text-center"><i class="bi-check text-success"></i></td>
           <?php
         } else {
           ?>
@@ -265,16 +265,16 @@
           <?php
         }
         ?>
-        <td class="text-md-center">
+        <td class="text-center">
           <?php
             if ($Qfavorites->valueInt('status') == 1) {
-              echo '<a href="' . $CLICSHOPPING_Favorites->link('Favorites&Favorites&SetFlag&page=' . (int)$page . '&flag=0&id=' . (int)$Qfavorites->valueInt('products_favorites_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+              echo '<a href="' . $CLICSHOPPING_Favorites->link('Favorites&Favorites&SetFlag&page=' . (int)$page . '&flag=0&id=' . (int)$Qfavorites->valueInt('products_favorites_id')) . '"><i class="bi-check text-success"></i></a>';
             } else {
-              echo '<a href="' . $CLICSHOPPING_Favorites->link('Favorites&Favorites&SetFlag&page=' . (int)$page . '&flag=1&id=' . (int)$Qfavorites->valueInt('products_favorites_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+              echo '<a href="' . $CLICSHOPPING_Favorites->link('Favorites&Favorites&SetFlag&page=' . (int)$page . '&flag=1&id=' . (int)$Qfavorites->valueInt('products_favorites_id')) . '"><i class="bi bi-x text-danger"></i></a>';
             }
           ?>
         </td>
-        <td class="text-md-right">
+        <td class="text-end">
           <?php
             echo '<a href="' . $CLICSHOPPING_Favorites->link('Edit&page=' . (int)$page . '&sID=' . (int)$Qfavorites->valueInt('products_favorites_id') . '&action=update') . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Favorites->getDef('icon_edit')) . '</a>';
             echo '&nbsp;';
@@ -295,9 +295,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qfavorites->getPageSetLabel($CLICSHOPPING_Favorites->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qfavorites->getPageSetLabel($CLICSHOPPING_Favorites->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"> <?php echo $Qfavorites->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"> <?php echo $Qfavorites->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

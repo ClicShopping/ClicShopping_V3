@@ -55,7 +55,7 @@
             if (!empty($user_agent)) {
               $file_array = file(CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Assets/spiders.txt');
 
-              if (is_array($file_array)) {
+              if (\is_array($file_array)) {
                 foreach ($file_array as $spider) {
                   if (!empty($spider)) {
                     if (str_contains($user_agent, $spider)) {

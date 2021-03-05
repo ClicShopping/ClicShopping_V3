@@ -34,7 +34,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/weight.png', $CLICSHOPPING_Weight->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
+          <span class="col-md-7 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_weight'), null, $CLICSHOPPING_Weight->link('WeightInsert&page=' . $page), 'primary') . ' ';
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_class'), null, $CLICSHOPPING_Weight->link('ClassInsert&page=' . $page), 'success');
@@ -52,6 +52,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-name="symbol"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -67,7 +69,7 @@
         <th data-field="type" data-sortable="true"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_type'); ?></th>
         <th data-field="class_to_id"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_to_id'); ?></th>
         <th data-field="rule"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_rule'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -106,7 +108,7 @@
             <td><?php echo $Qweight->value('weight_class_title'); ?></td>
             <td><?php echo $weight_class_title; ?></td>
             <td><?php echo $Qweight->value('weight_class_rule'); ?></td>
-            <td class="text-md-right">
+            <td class="text-end">
               <?php
                 echo HTML::link($CLICSHOPPING_Weight->link('ClassEdit&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id') . '&tID=' . $Qweight->valueInt('weight_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Weight->getDef('icon_edit')));
                 echo '&nbsp;';
@@ -130,9 +132,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qweight->getPageSetLabel($CLICSHOPPING_Weight->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qweight->getPageSetLabel($CLICSHOPPING_Weight->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qweight->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qweight->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

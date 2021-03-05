@@ -68,7 +68,7 @@
      */
     public function get(string $code, string $key)
     {
-      if (is_array($this->_modules)) {
+      if (\is_array($this->_modules)) {
         foreach ($this->_modules as $m) {
           if ($m['code'] == $code) {
             return $m[$key];
@@ -83,7 +83,7 @@
      */
     public function exists($code): bool
     {
-      if (is_array($this->_modules)) {
+      if (\is_array($this->_modules)) {
         foreach ($this->_modules as $m) {
           if ($m['code'] == $code) {
             return true;
@@ -106,7 +106,7 @@
 
       $modules_array = explode(';', $modules);
 
-      for ($i = 0, $n = count($modules_array); $i < $n; $i++) {
+      for ($i = 0, $n = \count($modules_array); $i < $n; $i++) {
         $class = substr($modules_array[$i], 0, strrpos($modules_array[$i], '.'));
 
         if (isset($GLOBALS[$class]) && is_object($GLOBALS[$class])) {

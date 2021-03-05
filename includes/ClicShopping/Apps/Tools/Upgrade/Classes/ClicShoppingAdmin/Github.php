@@ -147,7 +147,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (defined('STORE_OFFLINE')) {
+      if (\defined('STORE_OFFLINE')) {
         $Qupdate = $CLICSHOPPING_Db->prepare('update :table_configuration
                                               set configuration_value = :configuration_value,
                                               last_modified = now()
@@ -317,8 +317,8 @@
         } else {
           $file_name = $module_name;
           $file_array = explode('.', $file_name);
-          $extension = count($file_array) - 1;
-          $filename = substr($file_name, 0, strlen($file_name) - strlen($file_array[$extension]) - 1);
+          $extension = \count($file_array) - 1;
+          $filename = substr($file_name, 0, \strlen($file_name) - \strlen($file_array[$extension]) - 1);
 
           $content_json_file = @file_get_contents($this->getGithubRepo() . $filename . '/contents/' . $this->ModuleInfosJson . '/' . $module_name . '?ref=master', true, $this->context);
           $content_download_file = json_decode($content_json_file);
@@ -412,7 +412,7 @@
      */
     public function getSearchInsideRepo($name = null)
     {
-      if (is_null($name)) {
+      if (\is_null($name)) {
         $search = $this->githubApi . '/search/repositories?q=org%3A' . $this->githubRepoName . '+' . $this->getSearchModule();
         $search_url = @file_get_contents($search, true, $this->setContext()); //content of readme.
       } else {
@@ -512,7 +512,7 @@
      */
     public function getModuleMasterArchive(string $module_name)
     {
-      if (!empty($module_name) || !is_null($module_name)) {
+      if (!empty($module_name) || !\is_null($module_name)) {
         $url = HTML::sanitize($_POST['githubLink']);
 
         if (!empty($url)) {

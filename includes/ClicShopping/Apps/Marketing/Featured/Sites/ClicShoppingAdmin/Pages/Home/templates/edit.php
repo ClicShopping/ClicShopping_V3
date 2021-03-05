@@ -44,7 +44,7 @@
               $form_action = 'Update';
             }
           ?>
-          <span class="col-md-9 text-md-right">
+          <span class="col-md-9 text-end">
 <?php
   echo HTML::form('products_featured', $CLICSHOPPING_Featured->link('Featured&' . $form_action));
   if ($form_action == 'Update') echo HTML::hiddenField('products_featured_id', $_GET['sID']) . HTML::hiddenField('page', $page);
@@ -148,7 +148,7 @@
   <div id="productsFeaturedTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Featured->getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Featured->getDef('tab_general') . '</a>'; ?></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
@@ -199,7 +199,6 @@
                 <div class="col-md-5">
                   <?php echo HTML::inputField('schdate', $scheduled_date, 'placeholder="' . $CLICSHOPPING_Featured->getDef('text_products_featured_scheduled_date') . '"', 'date'); ?>
                 </div>
-                <div class="input-group-addon"><span class="fas fa-calendar"></span></div>
               </div>
             </div>
           </div>
@@ -212,7 +211,6 @@
                 <div class="col-md-5">
                   <?php echo HTML::inputField('expdate', $expires_date, 'placeholder="' . $CLICSHOPPING_Featured->getDef('text_products_featured_expires_date') . '"', 'date'); ?>
                 </div>
-                <div class="input-group-addon"><span class="fas fa-calendar"></span></div>
               </div>
             </div>
           </div>

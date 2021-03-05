@@ -17,8 +17,8 @@
 
   class ac_account_customers_list_order {
 
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -32,7 +32,7 @@
       $this->description = CLICSHOPPING::getDef('module_account_customers_list_order_description');
 
 
-      if (defined('MODULE_ACCOUNT_CUSTOMERS_LIST_ORDER_TITLE_STATUS')) {
+      if (\defined('MODULE_ACCOUNT_CUSTOMERS_LIST_ORDER_TITLE_STATUS')) {
         $this->sort_order = MODULE_ACCOUNT_CUSTOMERS_LIST_ORDER_TITLE_SORT_ORDER;
         $this->enabled = (MODULE_ACCOUNT_CUSTOMERS_LIST_ORDER_TITLE_STATUS == 'True');
       }
@@ -83,8 +83,8 @@
                                                 <div class="card-header">
                                                   <div class="row">
                                                     <div class="col-md-11 ModuleAccountCustomersListOrderTitle"><h3>' . CLICSHOPPING::getDef('module_account_customers_list_order_order') . '</h3></div>
-                                                      <div class="col-md-1 text-md-right">
-                                                        <i class="fas fa-history fa-4x moduleAccountCustomersNotificationsIcon"></i>
+                                                      <div class="col-md-1 text-end">
+                                                        <i class="bi bi-clock-history moduleAccountCustomersNotificationsIcon"></i>
                                                       </div>
                                                     </div>
                                                   </div>
@@ -121,13 +121,13 @@
 
                $account_customers_title_content .= '<div class="col-md-12">';
                $account_customers_title_content .= '<span class="col-md-3">' . DateTime::toShort($Qorders->value('date_purchased')) . '</span>';
-               $account_customers_title_content .= '<span class="col-md-1">#' . $Qorders->valueInt('orders_id') . '</span>';
-               $account_customers_title_content .= '<span class="col-md-3">' . HTML::outputProtected($order_name) . ', ' .  HTML::outputProtected($order_country) . '</span>';
-               $account_customers_title_content .= '<span class="col-md-2">' . $Qorders->value('orders_status_name') . '</span>';
-               $account_customers_title_content .= '<span class="col-md-1 float-md-right">';
-               $account_customers_title_content .= '<p class="float-md-right">'. HTML::button(CLICSHOPPING::getDef('button_view'), null, CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . (int)$Qorders->valueInt('orders_id')),'info', null, 'sm').'</p>';
+               $account_customers_title_content .= '<span class="col-md-1 m-2"> #' . $Qorders->valueInt('orders_id') . '</span>';
+               $account_customers_title_content .= '<span class="col-md-3 m-2"> ' . HTML::outputProtected($order_name) . ', ' .  HTML::outputProtected($order_country) . '</span>';
+               $account_customers_title_content .= '<span class="col-md-2 m-2"> ' . $Qorders->value('orders_status_name') . '</span>';
+               $account_customers_title_content .= '<span class="col-md-1 float-end">';
+               $account_customers_title_content .= '<p class="float-end">'. HTML::button(CLICSHOPPING::getDef('button_view'), null, CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . (int)$Qorders->valueInt('orders_id')),'info', null, 'sm').'</p>';
                $account_customers_title_content .= '</span>';
-               $account_customers_title_content .= '<span class="col-md-2 float-md-right">' . $Qorders->value('order_total'). '</span>';
+               $account_customers_title_content .= '<span class="col-md-2 float-end">' . $Qorders->value('order_total'). '</span>';
                $account_customers_title_content .= '</div>';
             } // end while
 
@@ -156,7 +156,7 @@
     }
 
     public function check() {
-      return defined('MODULE_ACCOUNT_CUSTOMERS_LIST_ORDER_TITLE_STATUS');
+      return \defined('MODULE_ACCOUNT_CUSTOMERS_LIST_ORDER_TITLE_STATUS');
     }
 
     public function install() {

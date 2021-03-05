@@ -32,7 +32,7 @@
 
       while (false !== ($filename = readdir($handle))) {
 
-        if (!in_array($filename, $exclude_array)) {
+        if (!\in_array($filename, $exclude_array)) {
           $file = ['name' => $path . $filename,
             'is_dir' => is_dir($path . $filename),
             'writable' => FileSystem::isWritable($path . $filename)
@@ -63,7 +63,7 @@
   $admin_dir = basename(CLICSHOPPING::getConfig('dir_root'));
 
   if ($admin_dir != 'ClicShoppingAdmin') {
-    for ($i = 0, $n = count($whitelist_array); $i < $n; $i++) {
+    for ($i = 0, $n = \count($whitelist_array); $i < $n; $i++) {
       if (substr($whitelist_array[$i], 0, 6) == 'ClicShoppingAdmin/') {
         $whitelist_array[$i] = $admin_dir . substr($whitelist_array[$i], 5);
       }
@@ -93,9 +93,9 @@
         <tr class="dataTableHeadingRow">
           <th><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_directories'); ?></th>
           <th
-            class="text-md-center"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_writable'); ?></th>
+            class="text-center"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_writable'); ?></th>
           <th
-            class="text-md-center"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_recommended'); ?></th>
+            class="text-center"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_recommended'); ?></th>
         </tr>
         <thead>
         <tbody>
@@ -105,11 +105,11 @@
               ?>
               <tr>
                 <th
-                  scope="row"><?php echo substr($file['name'], strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))); ?></th>
+                  scope="row"><?php echo substr($file['name'], \strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))); ?></th>
                 <td
-                  class="text-md-center"><?php echo $file['writable'] === true ? '<i class="fas fa-check fa-lg" aria-hidden="true"></i>' : '<i class="fas fa-times fa-lg" aria-hidden="true"></i>'; ?></td>
+                  class="text-center"><?php echo $file['writable'] === true ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'; ?></td>
                 <td
-                  class="text-md-center"><?php echo(in_array(substr($file['name'], strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))), $whitelist_array) ? '<i class="fas fa-check fa-lg" aria-hidden="true"></i>' : '<i class="fas fa-times fa-lg" aria-hidden="true"></i>'); ?></td>
+                  class="text-center"><?php echo(\in_array(substr($file['name'], \strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))), $whitelist_array) ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'); ?></td>
               </tr>
               <?php
             }

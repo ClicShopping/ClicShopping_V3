@@ -19,10 +19,10 @@
 
     $name = (!empty($key) ? 'configuration[' . $key . ']' : 'configuration_value');
 
-    for ($i = 0, $n = count($select_array); $i < $n; $i++) {
+    for ($i = 0, $n = \count($select_array); $i < $n; $i++) {
       $value = trim($select_array[$i]);
 
-      if (strpos($value, '\'') !== false) {
+      if (str_contains($value, '\'')) {
         $value = substr($value, 1, -1);
       } else {
         $value = (int)$value;

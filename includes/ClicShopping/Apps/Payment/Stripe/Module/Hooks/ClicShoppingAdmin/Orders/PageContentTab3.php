@@ -31,7 +31,7 @@
     public function display()
     {
 
-      if (!defined('CLICSHOPPING_APP_STRIPE_ST_STATUS')) {
+      if (!\defined('CLICSHOPPING_APP_STRIPE_ST_STATUS')) {
         return false;
       }
 

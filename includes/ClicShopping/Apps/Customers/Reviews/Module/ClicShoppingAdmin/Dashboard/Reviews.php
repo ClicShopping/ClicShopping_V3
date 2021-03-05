@@ -19,13 +19,12 @@
 
   class Reviews extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
-
     protected $lang;
     protected $app;
+    public $group;
 
     protected function init()
     {
-
       if (!Registry::exists('Reviews')) {
         Registry::set('Reviews', new ReviewsApp());
       }
@@ -38,7 +37,7 @@
       $this->title = $this->app->getDef('module_admin_dashboard_reviews_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_reviews_app_description');
 
-      if (defined('MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS')) {
+      if (\defined('MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_REVIEWS_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS == 'True');
       }
@@ -56,6 +55,8 @@
       $content .= '<table 
         id="table"
         data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
         data-sort-name="added"
         data-sort-order="asc"
         data-toolbar="#toolbar"
@@ -72,7 +73,7 @@
           <th data-field="author" scope="col"> ' . $this->app->getDef('table_heading_review_author') . '</th>
           <th data-field="rating" scope="col">' . $this->app->getDef('table_heading_rating') . '</th>                    
           <th data-field="approved" scope="col"> ' . $this->app->getDef('table_heading_approved') . '</th>
-          <th data-field="action" data-switchable="false" class="text-md-right">' . $this->app->getDef('table_heading_action') . '&nbsp;</th>
+          <th data-field="action" data-switchable="false" class="text-end">' . $this->app->getDef('table_heading_action') . '&nbsp;</th>
         </tr>
       ';
 
@@ -99,9 +100,9 @@
 
       while ($Qreviews->fetch()) {
         if ($Qreviews->valueInt('status') == 1) {
-          $status_icon = HTML::link($this->app->link('Reviews&SetFlag&flag=0&id=' . $Qreviews->valueInt('reviews_id')), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+          $status_icon = HTML::link($this->app->link('Reviews&SetFlag&flag=0&id=' . $Qreviews->valueInt('reviews_id')), '<i class="bi-check text-success"></i>');
         } else {
-          $status_icon = HTML::link($this->app->link('Reviews&SetFlag&flag=1&id=' . $Qreviews->valueInt('reviews_id')), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+          $status_icon = HTML::link($this->app->link('Reviews&SetFlag&flag=1&id=' . $Qreviews->valueInt('reviews_id')), '<i class="bi bi-x text-danger"></i>');
         }
 
         $content .= '<tr class="dataTableRow backgroundBlank">' .
@@ -109,8 +110,8 @@
           '    <td class="dataTableContent">' . DateTime::toShort($Qreviews->value('date_added')) . '</td>' .
           '    <td class="dataTableContent">' . HTML::outputProtected($Qreviews->value('customers_name')) . '</td>' .
           '    <td class="dataTableContent"><i>' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i></td>' .
-          '    <td class="dataTableContent text-md-center">' . $status_icon . '</td>' .
-          '   <td class="dataTableContent text-md-right">' . HTML::link($this->app->link('&Edit&page=' . (int)$_GET['page'] . '&rID=' . $Qreviews->valueInt('reviews_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('icon_edit'))) . '</td>' .
+          '    <td class="dataTableContent text-center">' . $status_icon . '</td>' .
+          '   <td class="dataTableContent text-end">' . HTML::link($this->app->link('&Edit&page=' . (int)$_GET['page'] . '&rID=' . $Qreviews->valueInt('reviews_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('icon_edit'))) . '</td>' .
           '  </tr>';
 
         $content .= ' </tbody>';

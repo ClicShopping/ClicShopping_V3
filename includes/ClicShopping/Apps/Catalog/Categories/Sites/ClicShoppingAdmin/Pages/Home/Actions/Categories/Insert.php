@@ -53,7 +53,7 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $categories_name_array = $_POST['categories_name'];
 
         $language_id = $languages[$i]['id'];
@@ -85,12 +85,12 @@
         );
 
 
-      } elseif (isset($_POST['categories_image']) && !is_null($_POST['categories_image']) && ($_POST['categories_image'] != 'none')) {
+      } elseif (isset($_POST['categories_image']) && !\is_null($_POST['categories_image']) && ($_POST['categories_image'] != 'none')) {
         $categories_image = $_POST['categories_image'];
 
 
 // Insertion images des produits via l'editeur FCKeditor (fonctionne sur les nouveaux produits et editions produits)
-        if (isset($_POST['categories_image']) && !is_null($_POST['categories_image']) && ($_POST['categories_image'] != 'none')) {
+        if (isset($_POST['categories_image']) && !\is_null($_POST['categories_image']) && ($_POST['categories_image'] != 'none')) {
           $categories_image = HTMLOverrideAdmin::getCkeditorImageAlone($categories_image);
         } else {
           $categories_image = (isset($_POST['categories_previous_image']) ? $_POST['categories_previous_image'] : '');

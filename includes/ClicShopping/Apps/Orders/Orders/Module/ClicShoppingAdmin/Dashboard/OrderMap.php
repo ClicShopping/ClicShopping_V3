@@ -36,7 +36,7 @@
       $this->title = $this->app->getDef('module_admin_dashboard_order_map_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_order_map_app_description');
 
-      if (defined('MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_STATUS')) {
+      if (\defined('MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_STATUS == 'True');
       }
@@ -44,59 +44,59 @@
 
     public function getOutput()
     {
-      $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_CONTENT_WIDTH;
-
       $link = CLICSHOPPING::link('ajax/map.php');
       $text_sale_total_ht = $this->app->getDef('text_sale_total_ht');
       $text_order_number = $this->app->getDef('text_order_number');
       $text_orders_status = $this->app->getDef('text_orders_status');
       $text_order_delivery = $this->app->getDef('text_order_delivery');
+  
+      $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_CONTENT_WIDTH;
 
-      $output = '<div class="' . $content_width . '">';
-      $output .= '<div class="card">';
+      $output = '<div class="col-12 ' . $content_width . ' d-flex" style="padding-right:0.5rem; padding-top:0.5rem">';
+      $output .= '<div class="card flex-fill w-100">';
       $output .= '<div id="vmap"></div>';
       $output .= '<div class="separator"></div>';
       $output .= '</div>';
       $output .= '</div>';
-
+      
       $output .= '
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$.ajax({
-		url:  \'' . $link . '\',
-		dataType: \'json\',
-		success: function(json) {
-			data = [];
+  $.ajax({
+    url:  \'' . $link . '\',
+    dataType: \'json\',
+    success: function(json) {
+      data = [];
 
-			for (i in json) {
-				data[i] = json[i][\'total\'];
-			}
+      for (i in json) {
+        data[i] = json[i][\'total\'];
+      }
 
-			$(\'#vmap\').vectorMap({
-				map: \'world_en\',
-				backgroundColor: \'#FFFFFF\',
-				borderColor: \'#FFFFFF\',
-				color: \'#9FD5F1\',
-				hoverOpacity: 0.7,
-				selectedColor: \'#666666\',
-				enableZoom: true,
-				showTooltip: true,
-				values: data,
-				normalizeFunction: \'polynomial\',
-				onLabelShow: function(event, label, code) {
-					if (json[code]) {
-						label.html(\'<strong>\' + label.text() + \'</strong><br />\' + \'' . $text_order_number . ' \' + json[code][\'total\'] + \'<br />\' + \'' . $text_sale_total_ht . ' \' + json[code][\'amount\'] + \'<br />\' + \'' . $text_orders_status . ' \' + \'' . $text_order_delivery . '\');
-					}
-				},
-				onResize: function (element, width, height) {
+      $(\'#vmap\').vectorMap({
+        map: \'world_en\',
+        backgroundColor: \'#FFFFFF\',
+        borderColor: \'#FFFFFF\',
+        color: \'#9FD5F1\',
+        hoverOpacity: 0.7,
+        selectedColor: \'#666666\',
+        enableZoom: true,
+        showTooltip: true,
+        values: data,
+        normalizeFunction: \'polynomial\',
+        onLabelShow: function(event, label, code) {
+          if (json[code]) {
+            label.html(\'<strong>\' + label.text() + \'</strong><br />\' + \'' . $text_order_number . ' \' + json[code][\'total\'] + \'<br />\' + \'' . $text_sale_total_ht . ' \' + json[code][\'amount\'] + \'<br />\' + \'' . $text_orders_status . ' \' + \'' . $text_order_delivery . '\');
+          }
+        },
+        onResize: function (element, width, height) {
             console.log(\'Map Size: \' +  width + \'x\' +  height);
           }
-			});
-		},
+      });
+    },
         error: function(xhr, ajaxOptions, thrownError) {
             alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
-	});
+  });
 });
 //--></script>
       ';

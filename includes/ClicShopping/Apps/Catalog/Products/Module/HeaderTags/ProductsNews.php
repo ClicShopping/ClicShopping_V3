@@ -36,7 +36,7 @@
       $this->title = $this->app->getDef('module_header_tags_products_news_title');
       $this->description = $this->app->getDef('module_header_tags_products_news_description');
 
-      if (defined('MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_NEWS_STATUS')) {
+      if (\defined('MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_NEWS_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_NEWS_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_NEWS_STATUS == 'True');
       }
@@ -52,7 +52,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (!defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
         return false;
       }
 

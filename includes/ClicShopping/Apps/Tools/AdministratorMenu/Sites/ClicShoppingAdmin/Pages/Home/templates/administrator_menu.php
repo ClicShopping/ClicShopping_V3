@@ -35,7 +35,7 @@
   $Qaccess->execute();
 
 
-  if (is_null($Qaccess->valueInt('access'))) {
+  if (\is_null($Qaccess->valueInt('access'))) {
     $CLICSHOPPING_MessageStack->add($CLICSHOPPING_AdministratorMenu->getDef('error_no_access'), 'error');
     CLICSHOPPING::redirect();
   }
@@ -58,11 +58,11 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/menu.png', $CLICSHOPPING_AdministratorMenu->getDef($CLICSHOPPING_AdministratorMenu->getDef('heading_title')), '40', '40'); ?></span>
           <span
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title'); ?></span>
-          <span class="col-md-3 text-md-right">
-           <div class="form-group">
-             <div class="controls">
+          <span class="col-md-3 text-end">
+           <div>
+             <div>
 <?php
-  echo HTML::form('search', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'post', 'class="form-inline"', ['session_id' => true]);
+  echo HTML::form('search', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'post', '', ['session_id' => true]);
   echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title_search') . '"');
   echo '&nbsp;&nbsp;&nbsp;';
 ?>
@@ -71,10 +71,10 @@
          </div>
         </span>
           <span class="col-md-3">
-           <div class="form-group">
-             <div class="controls">
+           <div>
+             <div>
 <?php
-  echo HTML::form('goto', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'post', 'class="form-inline"', ['session_id' => true]);
+  echo HTML::form('goto', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'post', '', ['session_id' => true]);
   echo HTML::selectMenu('cPath', AdministratorMenu::getLabelTree(), $current_category_id, 'onchange="this.form.submit();"');
   echo '</form>';
 ?>
@@ -82,14 +82,14 @@
              </div>
            </div>
          </span>
-          <span class="col-md-3 text-md-right">
+          <span class="col-md-3 text-end">
 <?php
   $cPath_back = '';
 
   $cPath_array = $CLICSHOPPING_CategoriesAdmin->getPathArray();
 
-  if (isset($cPath_array) && count($cPath_array) > 0) {
-    for ($i = 0, $n = count($cPath_array) - 1; $i < $n; $i++) {
+  if (isset($cPath_array) && \count($cPath_array) > 0) {
+    for ($i = 0, $n = \count($cPath_array) - 1; $i < $n; $i++) {
       if (empty($cPath_back)) {
         $cPath_back .= $cPath_array[$i];
       } else {
@@ -98,7 +98,7 @@
     }
   }
 
-  $cPath_back = (!is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
+  $cPath_back = (!\is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
 
   if (isset($_GET['search']) || isset($_POST['cPath'])) {
     echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_reset'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $cPath_back . 'cID=' . $current_category_id), 'warning') . '&nbsp;';
@@ -122,6 +122,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-name="id"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -136,9 +138,9 @@
         <th data-field="id" data-sortable="true"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_id'); ?></th>
         <th data-field="menu"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_categories_products'); ?></th>
         <th data-field="access"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_rights_access'); ?></th>
-        <th data-field="app" class="text-md-center"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_app'); ?></th>
-        <th data-field="sort_order" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_sort_order'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_action'); ?></th>
+        <th data-field="app" class="text-center"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_app'); ?></th>
+        <th data-field="sort_order" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_sort_order'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_action'); ?></th>
       </tr>
     </thead>
     </tbody>
@@ -209,7 +211,7 @@
         }
         ?>
         <tr>
-          <td><?php echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . AdministratorMenu::getPath($Qcategories->valueInt('id'))) . '"'; ?>><span class="text-primary"><i class="fas fa-folder fa-1x primary"></i></span></td>
+          <td><?php echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . AdministratorMenu::getPath($Qcategories->valueInt('id'))) . '"'; ?>><i class="bi bi-folder-fill text-primary"></i></td>
           <td><?php echo '<strong>' . $Qcategories->value('id') . '</strong>'; ?></td>
           <td><?php echo '<strong>' . $Qcategories->value('label') . '</strong>'; ?></td>
 
@@ -225,8 +227,8 @@
           }
           ?>
           <td><?php echo $Qcategories->value('app_code'); ?></td>
-          <td class="text-md-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
-          <td class="text-md-right">
+          <td class="text-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
+          <td class="text-end">
             <?php
               echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_AdministratorMenu->getDef('image_edit')) . '</a>';
               echo '&nbsp;';

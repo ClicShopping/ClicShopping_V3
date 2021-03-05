@@ -15,8 +15,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class pi_products_info_also_purchased {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_info_also_purchased_title');
       $this->description = CLICSHOPPING::getDef('module_products_info_also_purchased_description');
 
-      if (defined('MODULE_PRODUCTS_INFO_ALSO_PURCHASED_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_ALSO_PURCHASED_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_ALSO_PURCHASED_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_INFO_ALSO_PURCHASED_STATUS == 'True');
       }
@@ -193,7 +193,7 @@
 
 
 // **************************************************
-// Button Free - Must be above getProductsExhausted
+// Button Free - Must be above getProductsSoldOut
 // **************************************************
               if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView($products_id) != 1 && NOT_DISPLAY_PRICE_ZERO == 'false') {
 
@@ -206,10 +206,10 @@
               }
 
 // **************************
-// Display an information if the stock is exhausted for all groups
+// Display an information if the stock is sold out for all groups
 // **************************
-              if (!empty($CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id))) {
-                $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id);
+              if (!empty($CLICSHOPPING_ProductsCommon->getProductsSoldOut($products_id))) {
+                $submit_button = $CLICSHOPPING_ProductsCommon->getProductsSoldOut($products_id);
                 $min_quantity = 0;
                 $input_quantity = '';
                 $min_order_quantity_products_display = '';
@@ -250,7 +250,7 @@
                 $tag = $CLICSHOPPING_ProductsFunctionTemplate->getProductsHeadTag($products_id);
 
                 $products_tag = '';
-                if (isset($tag) && is_array($tag)) {
+                if (isset($tag) && \is_array($tag)) {
                   foreach ($tag as $value) {
                     $products_tag .= '#<span class="productTag">' . HTML::link(CLICSHOPPING::link(null, 'Search&keywords='. HTML::outputProtected(utf8_decode($value) .'&search_in_description=1&categories_id=&inc_subcat=1'), 'rel="nofollow"'), $value) . '</span> ';
                   }
@@ -300,7 +300,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_INFO_ALSO_PURCHASED_STATUS');
+      return \defined('MODULE_PRODUCTS_INFO_ALSO_PURCHASED_STATUS');
     }
 
     public function install() {
@@ -394,7 +394,7 @@
           'configuration_title' => 'Do you want to display a message New / Special / Featured / Favorites?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_ALSO_PURCHASED_TICKER',
           'configuration_value' => 'False',
-          'configuration_description' => 'Display a message New / Promotion / Selection / Favorites superimposed on the image of the product? <br /> <br /> the duration is configurable in the Configuration menu / my shop / Minimum / maximum values <br /> < br /> <i> (Value true = Yes - Value false = No) </i>',
+          'configuration_description' => 'Display a message New / Promotion / Selection / Favorites superimposed on the image of the product? <br /> <br /> the duration is configurable in the Configuration menu / my shop / Minimum / maximum values <br /> <br /> <i> (Value true = Yes - Value false = No) </i>',
           'configuration_group_id' => '6',
           'sort_order' => '9',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',

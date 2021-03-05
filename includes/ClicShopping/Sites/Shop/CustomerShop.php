@@ -173,7 +173,7 @@
      */
     public function setTelephone(?string $telephone)
     {
-      $this->_data['telephone'] = $telephone;
+      $this->_data['customers_telephone'] = $telephone;
     }
 
     /**
@@ -181,8 +181,8 @@
      */
     public function getTelephone(): ?string
     {
-      if (isset($this->_data['telephone'])) {
-        return $this->_data['telephone'];
+      if (isset($this->_data['customers_telephone'])) {
+        return $this->_data['customers_telephone'];
       }
 
       return false;
@@ -195,7 +195,7 @@
     {
       static $country_id = null;
 
-      if (is_null($country_id)) {
+      if (\is_null($country_id)) {
         if (isset($this->_data['country_id'])) {
           $country_id = $this->_data['country_id'];
         }
@@ -211,7 +211,7 @@
     {
       static $zone_id = null;
 
-      if (is_null($zone_id)) {
+      if (\is_null($zone_id)) {
         if (isset($this->_data['zone_id'])) {
           $zone_id = $this->_data['zone_id'];
         }
@@ -227,7 +227,7 @@
     {
       static $id = null;
 
-      if (is_null($id)) {
+      if (\is_null($id)) {
         if (isset($this->_data['default_address_id'])) {
           $id = $this->_data['default_address_id'];
         }

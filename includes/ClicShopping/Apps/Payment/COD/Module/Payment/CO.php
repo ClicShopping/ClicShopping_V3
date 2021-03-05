@@ -56,7 +56,7 @@
       $this->description = $this->app->getDef('module_cod_public_description');
 
 // Activation module du paiement selon les groupes B2B
-      if (defined('CLICSHOPPING_APP_COD_CO_STATUS')) {
+      if (\defined('CLICSHOPPING_APP_COD_CO_STATUS')) {
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           if (B2BCommon::getPaymentUnallowed($this->code)) {
             if (CLICSHOPPING_APP_COD_CO_STATUS == 'True') {
@@ -87,7 +87,7 @@
           }
         }
 
-        $this->sort_order = defined('CLICSHOPPING_APP_COD_CO_SORT_ORDER') ? CLICSHOPPING_APP_COD_CO_SORT_ORDER : 0;
+        $this->sort_order = \defined('CLICSHOPPING_APP_COD_CO_SORT_ORDER') ? CLICSHOPPING_APP_COD_CO_SORT_ORDER : 0;
       }
     }
 
@@ -180,7 +180,7 @@
 
     public function check()
     {
-      return defined('CLICSHOPPING_APP_COD_CO_STATUS') && (trim(CLICSHOPPING_APP_COD_CO_STATUS) != '');
+      return \defined('CLICSHOPPING_APP_COD_CO_STATUS') && (trim(CLICSHOPPING_APP_COD_CO_STATUS) != '');
     }
 
     public function install()

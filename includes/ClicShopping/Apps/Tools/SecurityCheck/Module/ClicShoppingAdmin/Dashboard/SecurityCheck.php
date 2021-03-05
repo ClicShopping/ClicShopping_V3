@@ -36,7 +36,7 @@
       $this->title = $this->app->getDef('module_admin_dashboard_security_checks_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_security_checks_app_description');
 
-      if (defined('MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_STATUS')) {
+      if (\defined('MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_STATUS == 'True');
       }
@@ -73,7 +73,7 @@
           $secCheck = new $secclass;
 
           if (!$secCheck->pass()) {
-            if (!in_array($secCheck->type, $secCheck_types)) {
+            if (!\in_array($secCheck->type, $secCheck_types)) {
               $secCheck->type = 'info';
             }
 

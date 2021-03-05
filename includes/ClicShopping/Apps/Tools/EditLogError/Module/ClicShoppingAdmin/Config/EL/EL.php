@@ -27,14 +27,14 @@
       $this->title = $this->app->getDef('module_el_title');
       $this->short_title = $this->app->getDef('module_el_short_title');
       $this->introduction = $this->app->getDef('module_el_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_EDIT_LOG_ERROR_EL_STATUS') && (trim(CLICSHOPPING_APP_EDIT_LOG_ERROR_EL_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_EDIT_LOG_ERROR_EL_STATUS') && (trim(CLICSHOPPING_APP_EDIT_LOG_ERROR_EL_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_EDIT_LOG_ERROR_INSTALLED')) {
+      if (\defined('MODULE_MODULES_EDIT_LOG_ERROR_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_EDIT_LOG_ERROR_INSTALLED);
       }
 

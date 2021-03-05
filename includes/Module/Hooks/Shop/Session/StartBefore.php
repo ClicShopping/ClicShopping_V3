@@ -27,10 +27,10 @@
         if (!empty($user_agent)) {
           $file_array = file(CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Assets/spiders.txt');
 
-          if (is_array($file_array)) {
+          if (\is_array($file_array)) {
             foreach ($file_array as $spider) {
-              if ((substr($spider, strlen($spider) - 1, 1) == ' ') || (substr($spider, strlen($spider) - 1, 1) == "\n")) {
-                $spider = substr($spider, 0, strlen($spider) - 1);
+              if ((substr($spider, \strlen($spider) - 1, 1) == ' ') || (substr($spider, \strlen($spider) - 1, 1) == "\n")) {
+                $spider = substr($spider, 0, \strlen($spider) - 1);
               }
 
               if (!empty($spider)) {

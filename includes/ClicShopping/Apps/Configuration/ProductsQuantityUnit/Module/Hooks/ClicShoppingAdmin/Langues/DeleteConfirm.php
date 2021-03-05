@@ -31,7 +31,7 @@
 
     private function delete($id)
     {
-      if (!is_null($id)) {
+      if (!\is_null($id)) {
         $this->app->db->delete('products_quantity_unit', ['language_id' => $id]);
       }
     }

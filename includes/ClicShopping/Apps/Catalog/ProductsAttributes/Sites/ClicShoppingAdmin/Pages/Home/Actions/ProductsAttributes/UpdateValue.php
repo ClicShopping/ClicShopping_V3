@@ -40,7 +40,7 @@
 
       $page_info = 'option_page=' . HTML::sanitize($option_page) . '&value_page=' . HTML::sanitize($value_page) . '&attribute_page=' . HTML::sanitize($attribute_page);
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $value_name = HTML::sanitize($value_name_array[$languages[$i]['id']]);
 
         $Qupdate = $this->app->db->prepare('update :table_products_options_values

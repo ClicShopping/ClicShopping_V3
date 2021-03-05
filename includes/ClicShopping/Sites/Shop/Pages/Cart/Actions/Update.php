@@ -26,7 +26,7 @@
         if (isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
           if (isset($_POST['products_id'])) {
 
-            for ($i = 0, $n = count($_POST['products_id']); $i < $n; $i++) {
+            for ($i = 0, $n = \count($_POST['products_id']); $i < $n; $i++) {
               $attributes = $_POST['id'][$_POST['products_id'][$i]] ?? '';
 
               $product_id = $CLICSHOPPING_ShoppingCart->getUprid($_POST['products_id'][$i], $attributes);
@@ -36,7 +36,7 @@
                   $CLICSHOPPING_ShoppingCart->addCart($_POST['products_id'][$i], $_POST['cart_quantity'][$i], $attributes, false);
                 }
               } else {
-                if (in_array($_POST['products_id'][$i], (is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array()), true)) {
+                if (\in_array($_POST['products_id'][$i], (\is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array()), true)) {
                   $CLICSHOPPING_ShoppingCart->remove($product_id);
                 }
               }

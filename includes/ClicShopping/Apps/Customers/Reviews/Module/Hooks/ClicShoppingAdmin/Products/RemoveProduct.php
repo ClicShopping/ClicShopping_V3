@@ -30,17 +30,19 @@
     }
 
     /**
-     * @param int $id
+     * @param ?int $id
      */
-    private function removeReviews(int $id)
+    private function removeReviews(?int $id)
     {
-      $Qreviews = $this->app->db->get('reviews', 'reviews_id', ['products_id' => $id]);
-
-      if ($Qreviews->fetch()) {
-        $this->app->db->delete('reviews', ['products_id' => $id]);
-
-        while ($Qreviews->fetch()) {
-          $this->app->db->delete('reviews_description', ['reviews_id' => $Qreviews->valueInt('reviews_id')]);
+      if(!\is_null($id)) {
+        $Qreviews = $this->app->db->get('reviews', 'reviews_id', ['products_id' => $id]);
+  
+        if ($Qreviews->fetch()) {
+          $this->app->db->delete('reviews', ['products_id' => $id]);
+  
+          while ($Qreviews->fetch()) {
+            $this->app->db->delete('reviews_description', ['reviews_id' => $Qreviews->valueInt('reviews_id')]);
+          }
         }
       }
     }

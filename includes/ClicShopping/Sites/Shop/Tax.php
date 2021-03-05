@@ -133,8 +133,8 @@
     }
 
     /**
-     * @param float $price
-     * @param float $tax_rate
+     * @param float|null $price
+     * @param float|null $tax_rate
      * @return float
      */
     public static function calculate(?float $price, ?float $tax_rate): float
@@ -155,7 +155,7 @@
         $padding = (int)TAX_DECIMAL_PLACES;
       }
 
-      if (strpos($value, '.') !== false) {
+      if (str_contains($value, '.')) {
         while (true) {
           if (substr($value, -1) == '0') {
             $value = substr($value, 0, -1);
@@ -171,7 +171,7 @@
 
       if ($padding > 0) {
         if (($decimal_pos = strpos($value, '.')) !== false) {
-          $decimals = strlen(substr($value, ($decimal_pos + 1)));
+          $decimals = \strlen(substr($value, ($decimal_pos + 1)));
 
           for ($i = $decimals; $i < $padding; $i++) {
             $value .= '0';
@@ -223,20 +223,13 @@
         $group_taxed = 'false';
       }
 
-      switch ($group_taxed) {
-        case 'true':
-          static::$tag = CLICSHOPPING::getDef('tax_included');
-          return round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + static::calculate($price, $tax);
-          break;
-        case 'false':
-          static::$tag = CLICSHOPPING::getDef('tax_excluded');
-          return round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
-          break;
-        default:
-          static::$tag = CLICSHOPPING::getDef('tax_excluded');
-          return round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
-          break;
-      }
+      static::$tag = CLICSHOPPING::getDef('tax_excluded');
+
+      return match ($group_taxed) {
+       'true' => round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + static::calculate($price, $tax),
+        'false' => round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']),
+        default => round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']),
+      };
     }
 
     /**

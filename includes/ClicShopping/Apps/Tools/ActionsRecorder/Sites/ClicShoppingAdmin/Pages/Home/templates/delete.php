@@ -95,7 +95,7 @@
         }
       ?>
       <div class="separator"></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_ActionsRecorder->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_ActionsRecorder->getDef('button_cancel'), null, $CLICSHOPPING_ActionsRecorder->link('ActionsRecorder&cPath=' . $cPath . '&cID=' . $cInfo->id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

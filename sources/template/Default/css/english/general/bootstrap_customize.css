@@ -8,22 +8,18 @@
  *
  */
 
-
 h1 {
   margin-bottom: 1.25rem;
   margin-top: 0rem;
   text-transform:uppercase;
-  font-size: 1.25rem;
   line-height: 1.5rem;
 }
 
 h2 {
   margin-bottom: 0.9375rem;
   text-transform:uppercase;
-  font-size: 1.25rem;
   line-height: 1.5rem;
   padding-right: 4.0625rem;
-  font-weight: normal;
 }
 
 h2.nopadding {
@@ -32,7 +28,6 @@ h2.nopadding {
 
 h3 {
   text-transform: uppercase;
-  font-size: 1.125rem;
   line-height: 1.25rem;
   font-weight:normal;
 }
@@ -40,7 +35,7 @@ h3 {
 h4 {
   margin-bottom: 0.9375rem;
   text-transform:uppercase;
-  font-size: 1.25rem;
+
   line-height: 1.25rem
 }
 
@@ -57,9 +52,7 @@ h5 {
 }
 
 .contentContainer h2 {
-  font-size: 1.3rem;
-  font-weight: normal;
-  margin-bottom: 0;
+   margin-bottom: 0;
   padding-bottom: 0.3125rem;
 }
 .contentContainer a {
@@ -82,18 +75,12 @@ h5 {
 .container {
    padding-left: 0rem;
    padding-right: 0rem;
-/*   background-color: #fff;*/
 }
 
 .container-fluid {
-  padding-left: 0rem;
-  padding-right: 0rem;
-/*  background-color: #fff;*/
 }
 
-
 .btn {
-  font-size: 0.800rem;
 }
 
 .btn-info {
@@ -177,16 +164,14 @@ a.btn-secondary, a.btn-secondary:hover {
 }
 
 blockquote {
-  font-size: 1rem!important;
 }
 
 .text-info {
-  font-size: 1rem;
 }
 
-.card {
+.card-height {
+  height: 100%;
 }
-
 .card-block {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
@@ -219,9 +204,6 @@ blockquote {
   display: inline;
   padding: 0.15rem 0.75rem;
 }
-
-
-
 
 /* Responsive Images  ------------------------------------------------------- */
 /* the inbuilt bootstrap responsive images class breaks the text-center class */
@@ -261,8 +243,6 @@ blockquote {
 }
 
 .page-header {
-  color: #000;
-  margin: 0.625rem;
 }
 
 .page-footer {
@@ -293,14 +273,18 @@ blockquote {
   text-align: center;
 }
 
-.breadcrumb {}
+.breadcrumb {
+  padding-top: 0.5rem;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  background-color: #F5F5F5;
+  border-radius:0.2rem;
+}
 
 .breadcrumb-item+.breadcrumb-item::before {
   padding-right: 0rem;
   content: "";
 }
-
-
 
 /***********************************************/
 /* Input confirmation - Checkbox to Switch */
@@ -401,9 +385,10 @@ input:checked + .slider:before {
 .text-slider {
   padding-top: 0.5rem
 }
+
 /***********************************************/
 /* Media Quey  */
 /**********************************************/
 @media only screen and (max-width : 768px) {
-  .list-group {flex-direction: column; }
+  .list-group {flex-direction: column;}
 }

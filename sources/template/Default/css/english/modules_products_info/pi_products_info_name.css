@@ -9,10 +9,13 @@
  */
 
 div.moduleProductsInfoName, span.moduleProductsInfoName h1 {
-  font-size: 1.5625rem;
 }
 
 .moduleProductsInfoName A {
     color: #682b0e;
     text-decoration: none;
+}
+
+h1.moduleProductsInfoName {
+    font-size :1.5rem
 }

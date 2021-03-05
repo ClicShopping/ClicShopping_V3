@@ -18,25 +18,20 @@
 }
 
 .card-header.boxeHeadingHistory {
-
-
   padding-left: 3px;
   overflow: hidden;
   text-transform: uppercase;
-  font-weight: normal;
+
 }
 
 .card-title.boxeTitleHistory {
   overflow: hidden;
   padding: 3px;
   text-transform: uppercase;
-  font-size: 0.6875rem;
-  font-weight: normal;
 }
 
 .card-text.boxeContentsHistory {
   overflow: hidden;
-  font-size: 0.75rem;
   padding-right:0.1rem;
 }
 
@@ -44,12 +39,11 @@
   border-top: none;
 }
 
-
 .card-block.boxeContentArroundHistory {
 }
 
 li.boxeContentsHistory {
-  font-weight: normal;
+
    list-style:none;
 }
 

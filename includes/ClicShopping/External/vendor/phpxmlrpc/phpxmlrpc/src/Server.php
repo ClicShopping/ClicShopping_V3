@@ -2,8 +2,8 @@
 
 namespace PhpXmlRpc;
 
-use PhpXmlRpc\Helper\Logger;
 use PhpXmlRpc\Helper\Charset;
+use PhpXmlRpc\Helper\Logger;
 use PhpXmlRpc\Helper\XMLParser;
 
 /**
@@ -12,14 +12,10 @@ use PhpXmlRpc\Helper\XMLParser;
 class Server
 {
     /**
-     * Array defining php functions exposed as xmlrpc methods by this server.
-     */
-    protected $dmap = array();
-
-    /**
      * Defines how functions in dmap will be invoked: either using an xmlrpc request object
      * or plain php values.
      * Valid strings are 'xmlrpcvals', 'phpvals' or 'epivals'
+     * @todo create class constants for these
      */
     public $functions_parameters_type = 'xmlrpcvals';
 
@@ -80,21 +76,34 @@ class Server
     public $response_charset_encoding = '';
 
     /**
-     * Storage for internal debug info.
-     */
-    protected $debug_info = '';
-
-    /**
      * Extra data passed at runtime to method handling functions. Used only by EPI layer
      */
     public $user_data = null;
+
+    /**
+     * Array defining php functions exposed as xmlrpc methods by this server.
+     * @var array[] $dmap
+     */
+    protected $dmap = array();
+
+    /**
+     * Storage for internal debug info.
+     */
+    protected $debug_info = '';
 
     protected static $_xmlrpc_debuginfo = '';
     protected static $_xmlrpcs_occurred_errors = '';
     protected static $_xmlrpcs_prev_ehandler = '';
 
     /**
-     * @param array $dispatchMap the dispatch map with definition of exposed services
+     * @param array[] $dispatchMap the dispatch map with definition of exposed services
+     *                             Array keys are the names of the method names.
+     *                             Each array value is an array with the following members:
+     *                             - function (callable)
+     *                             - docstring (optional)
+     *                             - signature (array, optional)
+     *                             - signature_docs (array, optional)
+     *                             - parameters_type (string, optional)
      * @param boolean $serviceNow set to false to prevent the server from running upon construction
      */
     public function __construct($dispatchMap = null, $serviceNow = true)
@@ -148,7 +157,6 @@ class Server
      * character set.
      *
      * @param string $msg
-     *
      */
     public static function xmlrpc_debugmsg($msg)
     {
@@ -156,6 +164,10 @@ class Server
     }
 
     /**
+     * Add a string to the debug info that will be later serialized by the server as part of the response message
+     * (base64 encoded, only when debug level >= 2)
+     *
+     * character set.
      * @param string $msg
      */
     public static function error_occurred($msg)
@@ -256,6 +268,7 @@ class Server
             // http compression of output: only
             // if we can do it, and we want to do it, and client asked us to,
             // and php ini settings do not force it already
+            /// @todo check separately for gzencode and gzcompress functions, in case of polyfills
             $phpNoSelfCompress = !ini_get('zlib.output_compression') && (ini_get('output_handler') != 'ob_gzhandler');
             if ($this->compress_response && function_exists('gzencode') && $respEncoding != ''
                 && $phpNoSelfCompress
@@ -271,8 +284,10 @@ class Server
                 }
             }
 
-            // do not output content-length header if php is compressing output for us:
-            // it will mess up measurements
+            // Do not output content-length header if php is compressing output for us:
+            // it will mess up measurements.
+            // Note that Apache/mod_php will add (and even alter!) the Content-Length header on its own, but only for
+            // responses up to 8000 bytes
             if ($phpNoSelfCompress) {
                 header('Content-Length: ' . (int)strlen($payload));
             }
@@ -290,10 +305,16 @@ class Server
      * Add a method to the dispatch map.
      *
      * @param string $methodName the name with which the method will be made available
-     * @param string $function the php function that will get invoked
-     * @param array $sig the array of valid method signatures
+     * @param callable $function the php function that will get invoked
+     * @param array[] $sig the array of valid method signatures.
+     *                     Each element is one signature: an array of strings with at least one element
+     *                     First element = type of returned value. Elements 2..N = types of parameters 1..N
      * @param string $doc method documentation
-     * @param array $sigDoc the array of valid method signatures docs (one string per param, one for return type)
+     * @param array[] $sigDoc the array of valid method signatures docs, following the format of $sig but with
+     *                        descriptions instead of types (one string for return type, one per param)
+     *
+     * @todo raise a warning if the user tries to register a 'system.' method
+     * @todo allow setting parameters_type
      */
     public function add_to_map($methodName, $function, $sig = null, $doc = false, $sigDoc = false)
     {
@@ -315,7 +336,7 @@ class Server
      * @param array|Request $in array of either xmlrpc value objects or xmlrpc type definitions
      * @param array $sigs array of known signatures to match against
      *
-     * @return array
+     * @return array int, string
      */
     protected function verifySignature($in, $sigs)
     {
@@ -468,6 +489,9 @@ class Server
      * @return Response
      *
      * @throws \Exception in case the executed method does throw an exception (and depending on server configuration)
+     *
+     * @internal this function will become protected in the future
+     * @todo either rename this function or move the 'execute' part out of it...
      */
     public function parseRequest($data, $reqEncoding = '')
     {
@@ -500,6 +524,7 @@ class Server
         // This allows to send data which is native in various charset,
         // by extending xmlrpc_encode_entities() and setting xmlrpc_internalencoding
         if (!in_array(PhpXmlRpc::$xmlrpc_internalencoding, array('UTF-8', 'ISO-8859-1', 'US-ASCII'))) {
+            /// @todo emit a warning
             $options = array(XML_OPTION_TARGET_ENCODING => 'UTF-8');
         } else {
             $options = array(XML_OPTION_TARGET_ENCODING => PhpXmlRpc::$xmlrpc_internalencoding);
@@ -524,7 +549,7 @@ class Server
             // registered as phpvals) that would mean a useless encode+decode pass
             if ($this->functions_parameters_type != 'xmlrpcvals' ||
                 (isset($this->dmap[$xmlRpcParser->_xh['method']]['parameters_type']) &&
-                    ($this->dmap[$xmlRpcParser->_xh['method']]['parameters_type'] == 'phpvals')
+                    ($this->dmap[$xmlRpcParser->_xh['method']]['parameters_type'] != 'xmlrpcvals')
                 )
             ) {
                 if ($this->debug > 1) {
@@ -552,9 +577,9 @@ class Server
     /**
      * Execute a method invoked by the client, checking parameters used.
      *
-     * @param mixed $req either a Request obj or a method name
-     * @param array $params array with method parameters as php types (if m is method name only)
-     * @param array $paramTypes array with xmlrpc types of method parameters (if m is method name only)
+     * @param Request|string $req either a Request obj or a method name
+     * @param mixed[] $params array with method parameters as php types (only if m is method name)
+     * @param string[] $paramTypes array with xmlrpc types of method parameters (only if m is method name)
      *
      * @return Response
      *
@@ -570,7 +595,7 @@ class Server
         } else {
             $methName = $req;
         }
-        $sysCall = $this->allow_system_funcs && (strpos($methName, "system.") === 0);
+        $sysCall = $this->isSyscall($methName);
         $dmap = $sysCall ? $this->getSystemDispatchMap() : $this->dmap;
 
         if (!isset($dmap[$methName]['function'])) {
@@ -662,7 +687,7 @@ class Server
                     if ($this->functions_parameters_type == 'epivals') {
                         $r = call_user_func_array($func, array($methName, $params, $this->user_data));
                         // mimic EPI behaviour: if we get an array that looks like an error, make it
-                        // an eror response
+                        // an error response
                         if (is_array($r) && array_key_exists('faultCode', $r) && array_key_exists('faultString', $r)) {
                             $r = new Response(0, (integer)$r['faultCode'], (string)$r['faultString']);
                         } else {
@@ -696,7 +721,6 @@ class Server
                         }
                     }
                     throw $e;
-                    break;
                 case 1:
                     $r = new Response(0, $e->getCode(), $e->getMessage());
                     break;
@@ -740,13 +764,26 @@ class Server
         }
     }
 
+    /**
+     * @param string $methName
+     * @return bool
+     */
+    protected function isSyscall($methName)
+    {
+        return (strpos($methName, "system.") === 0);
+    }
+
     /* Functions that implement system.XXX methods of xmlrpc servers */
 
     /**
-     * @return array
+     * @return array[]
      */
     public function getSystemDispatchMap()
     {
+        if (!$this->allow_system_funcs) {
+            return array();
+        }
+
         return array(
             'system.listMethods' => array(
                 'function' => 'PhpXmlRpc\Server::_xmlrpcs_listMethods',
@@ -777,14 +814,14 @@ class Server
             'system.getCapabilities' => array(
                 'function' => 'PhpXmlRpc\Server::_xmlrpcs_getCapabilities',
                 'signature' => array(array(Value::$xmlrpcStruct)),
-                'docstring' => 'This method lists all the capabilites that the XML-RPC server has: the (more or less standard) extensions to the xmlrpc spec that it adheres to',
+                'docstring' => 'This method lists all the capabilities that the XML-RPC server has: the (more or less standard) extensions to the xmlrpc spec that it adheres to',
                 'signature_docs' => array(array('list of capabilities, described as structs with a version number and url for the spec')),
             ),
         );
     }
 
     /**
-     * @return array
+     * @return array[]
      */
     public function getCapabilities()
     {
@@ -840,10 +877,8 @@ class Server
         foreach ($server->dmap as $key => $val) {
             $outAr[] = new Value($key, 'string');
         }
-        if ($server->allow_system_funcs) {
-            foreach ($server->getSystemDispatchMap() as $key => $val) {
-                $outAr[] = new Value($key, 'string');
-            }
+        foreach ($server->getSystemDispatchMap() as $key => $val) {
+            $outAr[] = new Value($key, 'string');
         }
 
         return new Response(new Value($outAr, 'array'));
@@ -863,7 +898,7 @@ class Server
         } else {
             $methName = $req;
         }
-        if (strpos($methName, "system.") === 0) {
+        if ($server->isSyscall($methName)) {
             $dmap = $server->getSystemDispatchMap();
         } else {
             $dmap = $server->dmap;
@@ -905,14 +940,14 @@ class Server
         } else {
             $methName = $req;
         }
-        if (strpos($methName, "system.") === 0) {
+        if ($server->isSyscall($methName)) {
             $dmap = $server->getSystemDispatchMap();
         } else {
             $dmap = $server->dmap;
         }
         if (isset($dmap[$methName])) {
             if (isset($dmap[$methName]['docstring'])) {
-                $r = new Response(new Value($dmap[$methName]['docstring']), 'string');
+                $r = new Response(new Value($dmap[$methName]['docstring'], 'string'));
             } else {
                 $r = new Response(new Value('', 'string'));
             }
@@ -1013,12 +1048,17 @@ class Server
             return static::_xmlrpcs_multicall_error('notarray');
         }
 
-        // this is a real dirty and simplistic hack, since we might have received a
+        // this is a simplistic hack, since we might have received
         // base64 or datetime values, but they will be listed as strings here...
         $pt = array();
         $wrapper = new Wrapper();
         foreach ($call['params'] as $val) {
-            $pt[] = $wrapper->php2XmlrpcType(gettype($val));
+            // support EPI-encoded base64 and datetime values
+            if ($val instanceof \stdClass && isset($val->xmlrpc_type)) {
+                $pt[] = $val->xmlrpc_type == 'datetime' ? Value::$xmlrpcDateTime : $val->xmlrpc_type;
+            } else {
+                $pt[] = $wrapper->php2XmlrpcType(gettype($val));
+            }
         }
 
         $result = $server->execute($call['methodName'], $call['params'], $pt);

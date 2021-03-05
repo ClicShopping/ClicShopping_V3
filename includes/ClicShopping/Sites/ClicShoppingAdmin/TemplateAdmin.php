@@ -113,7 +113,7 @@
 
     public function getDirectoryPathLanguage(): string
     {
-      return parent::getTemplateSource() . '/languages/';
+      return parent::getTemplateSource() . 'languages/';
     }
 
     /**
@@ -271,7 +271,8 @@
      */
     public static function getCatalogFiles(string $catalog_files = null): array
     {
-      $file_array = ['Account&AddressBook',
+      $file_array = [
+        'Account&AddressBook',
         'Account&Create',
         'Account&CreatePro',
         'Account&CreateProSuccess',
@@ -313,7 +314,7 @@
         'search&Q',
       ];
 
-      if (!is_null($catalog_files)) {
+      if (!\is_null($catalog_files)) {
         $file_array = [$catalog_files];
       }
 
@@ -329,7 +330,7 @@
     public static function getListCatalogFilesNotIncluded(string $boostrap_file = null): array
     {
 
-      if (is_null($boostrap_file)) $boostrap_file = CLICSHOPPING::getConfig('bootstrap_file');
+      if (\is_null($boostrap_file)) $boostrap_file = CLICSHOPPING::getConfig('bootstrap_file');
 
       $file = static::getCatalogFiles();
 
@@ -364,7 +365,7 @@
 
         foreach ($contents as $item) {
           $fileInfo = pathinfo($item);
-          if (array_key_exists('extension', $fileInfo) && in_array($fileInfo['extension'], $fileTypes)) {
+          if (array_key_exists('extension', $fileInfo) && \in_array($fileInfo['extension'], $fileTypes)) {
             $found[] = $item;
           }
         }

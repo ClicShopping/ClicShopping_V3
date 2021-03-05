@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class bm_languages {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_languages_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_languages_description');
 
-      if (defined('MODULE_BOXES_LANGUAGES_STATUS')) {
+      if (\defined('MODULE_BOXES_LANGUAGES_STATUS')) {
         $this->sort_order = MODULE_BOXES_LANGUAGES_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_LANGUAGES_STATUS == 'True');
         $this->pages = MODULE_BOXES_LANGUAGES_DISPLAY_PAGES;
@@ -70,7 +70,7 @@
     }
 
     public function  check() {
-      return defined('MODULE_BOXES_LANGUAGES_STATUS');
+      return \defined('MODULE_BOXES_LANGUAGES_STATUS');
     }
 
     public function  install() {

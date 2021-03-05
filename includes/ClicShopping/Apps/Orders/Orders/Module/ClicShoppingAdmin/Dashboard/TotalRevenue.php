@@ -37,7 +37,7 @@
       $this->title = $this->app->getDef('module_admin_dashboard_total_revenue_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_total_revenue_app_description');
 
-      if (defined('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_STATUS')) {
+      if (\defined('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_STATUS == 'True');
       }
@@ -46,81 +46,127 @@
     public function getOutput()
     {
       $month = [];
+      $days = [];
+      $plot_days = [];
+      $plot_revenue = [];
 
       for ($i = 0; $i <= 12; $i++) {
         $month[date('M')] = 0;
       }
 
-      $Qorder = $this->app->db->query('select date_format(o.date_purchased, "%M") as dateday,
-                                             sum(ot.value) as total
-                                      from :table_orders o,
-                                           :table_orders_total ot
-                                      where date_sub(now(), interval 1 year) <= o.date_purchased
-                                      and (o.orders_status > 0 and o.orders_status <> 4)
-                                      and o.orders_id = ot.orders_id
-                                      and ot.class = "ST"
-                                      group by dateday
-                                     ');
+      $Qorder = $this->app->db->prepare("select date_format(o.date_purchased, '%b-%Y') as dateday,
+                                                sum(ot.value) as total
+                                        from :table_orders o,
+                                              :table_orders_total ot
+                                        where date_sub(curdate(), interval 11 month) <= o.date_purchased
+                                        and (o.orders_status > 0 and o.orders_status <> 4)
+                                        and o.orders_id = ot.orders_id
+                                        and ot.class = 'ST'
+                                        group by dateday
+                                        order by date_purchased desc
+                                        ");
+
+
+      $Qorder->execute();
 
       while ($Qorder->fetch()) {
-        $month[$Qorder->value('dateday')] = $Qorder->value('total');
+        $days[$Qorder->value('dateday')] = $Qorder->valueDecimal('total');
       }
+      
+      $days = array_reverse($days, true);
 
-      $month = array_reverse($month, true);
-
-      $data_labels = json_encode(array_keys($month));
-      $data = json_encode(array_values($month));
-
+      foreach ($days as $d => $r) {
+        $plot_days[] = $d;
+        $plot_revenue[] = $r;
+      }
+  
+      $data_labels = json_encode($plot_days);
+      $data = json_encode($plot_revenue);
+      
       $chart_label_link = HTML::link('index.php?A&Orders\Orders&Orders', $this->app->getDef('module_admin_dashboard_total_revenue_app_chart_link'));
 
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_CONTENT_WIDTH;
 
       $output = <<<EOD
-<div class="{$content_width}">
-  <div class="card-deck mb-3">
-    <div class="card">
-      <div class="card-body">
-        <h6 class="card-title"><i class="fa fa-coins"></i>{$chart_label_link}</h6>
-        <p class="card-text"><div id="d_total_revenue" class="col-md-12" style="width:100%; height: 200px;"></div></p>
+<div class="col-12 {$content_width} d-flex" style="padding-right:0.5rem; padding-top:0.5rem">
+  <div class="card flex-fill h-215">
+      <div class="card-block">
+        <div class="card-body">
+          <h6 class="card-title"><i class="bi bi-graph-up"></i> {$chart_label_link}</h6>
+          <p class="card-text">
+            <div class="col-md-12">
+              <canvas id="TotalRevenue" class="col-md-12" style="display: block; width:100%; height: 215px;"></canvas>
+            </div>
+          </p>
+        </div>
       </div>
-    </div>
   </div>
 </div>
 
-<script type="text/javascript">
-$(function() {
-  var data = {
-    labels: $data_labels,
-    series: [ $data ]
-  };
-
-  var options = {
-    fullWidth: true,
-    height: '250px',
-    showPoint: false,
-    showArea: true,
-    axisY: {
-      labelInterpolationFnc: function skipLabels(value, index) {
-        return index % 2  === 0 ? value : null;
-      }
+<script>
+var ctx = document.getElementById('TotalRevenue');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: $data_labels,
+        datasets: [{
+            label: 'Turnover',
+            data: $data,
+            backgroundColor: [                
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',                              
+            ],
+            borderColor: [
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        maintainAspectRatio: true,
+        legend: {
+          display: false
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        xAxes: [{
+          reverse: true,
+          gridLines: {
+            color: "rgba(0,0,0,0.05)"
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            stepSize: 100
+          },
+          display: true,
+          borderDash: [5, 5],
+          gridLines: {
+            color: "rgba(0,0,0,0.050)",
+            fontColor: "#fff"
+          }
+        }]
     }
-  }
-
-  var chart = new Chartist.Bar('#d_total_revenue', data, options);
-
-  chart.on('draw', function(context) {
-    if (context.type === 'bar') {
-      context.element.attr({
-        style: 'stroke: #13bf4c; stroke-width: 40px'
-    
-      });
-    } else if (context.type === 'area') {
-      context.element.attr({
-        style: 'fill: #13bf4c;'
-      });
-    }
-  });
 });
+
+function beforePrintHandler () {
+    for (var id in Chart.instances) {
+        Chart.instances[id].resize();
+    }
+}
 </script>
 EOD;
 

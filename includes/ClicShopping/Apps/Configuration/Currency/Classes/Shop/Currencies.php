@@ -23,6 +23,7 @@
     protected $db;
     protected $show;
     protected string $selected;
+    protected string $default;
 
     public function __construct()
     {
@@ -85,7 +86,7 @@
       }
 
       if ($calculate_currency_value === true) {
-        $rate = (!is_null($currency_value)) ? $currency_value : $this->currencies[$currency_type]['value'];
+        $rate = (!\is_null($currency_value)) ? $currency_value : $this->currencies[$currency_type]['value'];
 
         if ($this->currencies[$currency_type]['surcharge'] > 0) {
           $rate += ($rate * $this->currencies[$currency_type]['surcharge']);
@@ -116,7 +117,7 @@
      */
     public function isSet(string $code) :bool
     {
-      if (isset($this->currencies[$code]) && !is_null($this->currencies[$code])) {
+      if (isset($this->currencies[$code]) && !\is_null($this->currencies[$code])) {
         return true;
       } else {
         return false;
@@ -290,7 +291,7 @@
      */
     public function getCurrenciesDropDown($class = '')
     {
-      if ((count($this->currencies) > 1)) {
+      if ((\count($this->currencies) > 1)) {
         reset($this->currencies);
         $currency_header = '';
 
@@ -299,14 +300,14 @@
         $hidden_get_variables = '';
 
         foreach ($_GET as $key => $value) {
-          if (is_string($value) && ($key != 'currency') && ($key != session_name()) && ($key != 'x') && ($key != 'y')) {
+          if (\is_string($value) && ($key != 'currency') && ($key != session_name()) && ($key != 'x') && ($key != 'y')) {
             $hidden_get_variables .= HTML::hiddenField($key, $value);
           }
         }
 
         if (!isset($_GET['Checkout'])) {
           $currency_header .= HTML::form('currencies', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
-          $currency_header .= '<label for="CurrencyDropDown" class="sr-only">Currency</label>';
+          $currency_header .= '<label for="CurrencyDropDown" class="visually-hidden"></label>';
           $currency_header .= HTML::selectField('currency', $currencies_array, HTML::sanitize($_SESSION['currency']), 'id="CurrencyDropDown" class="' . $class . '" onchange="this.form.submit();"') . $hidden_get_variables;
           $currency_header .= '</form>';
         } else {

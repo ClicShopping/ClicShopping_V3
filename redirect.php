@@ -48,7 +48,7 @@
     break;
 
     case 'url':
-      if (isset($_GET['goto']) && !is_null($_GET['goto'])) {
+      if (isset($_GET['goto']) && !\is_null($_GET['goto'])) {
 
         $Qcheck = $CLICSHOPPING_Db->get('products_description', 'products_url', ['products_url' => HTML::sanitize($_GET['goto'])],
                                                                                 null,

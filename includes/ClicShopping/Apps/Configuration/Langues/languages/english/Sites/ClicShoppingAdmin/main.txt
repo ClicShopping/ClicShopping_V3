@@ -73,3 +73,9 @@ text_note_create_language = <br /><strong>Notes :</strong><br /> The directories
 text_info_delete_info = Delete Language
 error_remove_default_language = Error: The default language can not be removed. Please set another language as default, and try again.
 error_language_directory_not_writeable = Warning: The directory languages is not writeable. Please creae a new directory or make in 777 the languages directory and these sub-directories
+
+text_help = <li> In the event that you add a language, please pay attention to these elements. A respect name can cause an application level error </li>
+<li> A default language always active </li>
+<li> Do not remove the english language which can be used in the cqs or a language definition does not contain the language files </li>
+<li> Do not be in the language that will be deleted </li>
+<li>Delete all the languages in Tools / Editor / Languages</li>

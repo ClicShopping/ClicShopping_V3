@@ -37,7 +37,7 @@
     {
       $CLICSHOPPING_Customers = Registry::get('Customers');
 
-      if (!defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'False') {
         return false;
       }
 
@@ -112,15 +112,15 @@
             $content .= '<div class="row">';
 
             if ($status_order_taxe === false) {
-              $class_option_order_taxe = 'fas fa-times fa-lg';
+              $class_option_order_taxe = 'bi bi bi-x';
             } else {
-              $class_option_order_taxe ='fas fa-check fa-lg';
+              $class_option_order_taxe ='bi bi-check';
             }
 
             if ($status_order_no_taxe === false) {
-              $class_option_no_order_taxe = 'fas fa-times fa-lg';
+              $class_option_no_order_taxe = 'bi bi bi-x';
               } else {
-              $class_option_no_order_taxe ='fas fa-check fa-lg';
+              $class_option_no_order_taxe ='bi bi-check';
             }
 
             if ($group_order_taxe == 0) {
@@ -184,7 +184,7 @@
           $include_modules = [];
 
           foreach ($modules_payment as $value) {
-            if (strpos($value, '\\') !== false) {
+            if (str_contains($value, '\\')) {
               $class = Apps::getModuleClass($value, 'Payment');
 
               $include_modules[] = [
@@ -194,28 +194,28 @@
             }
           }
 
-          for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
-            if (strpos($include_modules[$i]['class'], '\\') !== false) {
+          for ($i = 0, $n = \count($include_modules); $i < $n; $i++) {
+            if (str_contains($include_modules[$i]['class'], '\\')) {
               Registry::set('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
               $module = Registry::get('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']));
 
-              if (($cInfo->customers_group_id != 0) && (in_array($module->code, $payments_unallowed))) {
+              if (($cInfo->customers_group_id != 0) && (\in_array($module->code, $payments_unallowed))) {
                 $content .= '<div class="row">';
                 $content .= '<div class="col-md-5">';
                 $content .= '<div class="form-group row">';
                 $content .= '<div class="col-md-12">';
-                $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
+                $content .= '<span class="col-md-1"><i class="bi-check text-success"></i></span>';
                 $content .= '<span class="col-md-3">' . $module->title . '</span>';
                 $content .= '</div>';
                 $content .= '</div>';
                 $content .= '</div>';
                 $content .= '</div>';
-              } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $payments_unallowed))) {
+              } elseif (($cInfo->customers_group_id != 0) && (!\in_array($module->code, $payments_unallowed))) {
                 $content .= '<div class="row">';
                 $content .= '<div class="col-md-5">';
                 $content .= '<div class="form-group row">';
                 $content .= '<div class="col-md-12">';
-                $content .= '<span class="col-md-1"><i class="fas fa-times fa-lg" aria-hidden="true"></i></span>';
+                $content .= '<span class="col-md-1"><i class="bi bi-x text-danger"></i></span>';
                 $content .= '<span class="col-md-3">' . $module->title . '</span>';
                 $content .= '</div>';
                 $content .= '</div>';
@@ -226,7 +226,7 @@
                 $content .= '<div class="col-md-5">';
                 $content .= '<div class="form-group row">';
                 $content .= '<div class="col-md-12">';
-                $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
+                $content .= '<span class="col-md-1"><i class="bi-check text-success"></i></span>';
                 $content .= '<span class="col-md-3">' . $module->title . '</span>';
                 $content .= '</div>';
                 $content .= '</div>';
@@ -256,7 +256,7 @@
 
 <script>
 $('#section_PaymentCustomerApp_content').appendTo('#customersTabs .tab-content');
-$('#customersTabs .nav-tabs').append('    <li class="nav-item"><a data-target="#section_PaymentCustomerApp_content" role="tab" data-toggle="tab" class="nav-link">{$tab_title}</a></li>');
+$('#customersTabs .nav-tabs').append('    <li class="nav-item"><a data-bs-target="#section_PaymentCustomerApp_content" role="tab" data-bs-toggle="tab" class="nav-link">{$tab_title}</a></li>');
 </script>
 
 <!-- ######################## -->

@@ -14,8 +14,8 @@
 
   class as_advanced_search_manufacturers {
 
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_advanced_search_manufacturers_title');
       $this->description = CLICSHOPPING::getDef('module_advanced_search_manufacturers_description');
 
-      if (defined('MODULE_ADVANCED_SEARCH_MANUFACTURERS_STATUS')) {
+      if (\defined('MODULE_ADVANCED_SEARCH_MANUFACTURERS_STATUS')) {
         $this->sort_order = MODULE_ADVANCED_SEARCH_MANUFACTURERS_SORT_ORDER;
         $this->enabled = (MODULE_ADVANCED_SEARCH_MANUFACTURERS_STATUS == 'True');
       }
@@ -59,7 +59,7 @@
     }
 
     public function check() {
-      return defined('MODULE_ADVANCED_SEARCH_MANUFACTURERS_STATUS');
+      return \defined('MODULE_ADVANCED_SEARCH_MANUFACTURERS_STATUS');
     }
 
     public function install() {

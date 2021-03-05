@@ -24,14 +24,14 @@
       $this->title = $this->app->getDef('module_tr_title');
       $this->short_title = $this->app->getDef('module_tr_short_title');
       $this->introduction = $this->app->getDef('module_tr_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_TAX_RATES_TR_STATUS') && (trim(CLICSHOPPING_APP_TAX_RATES_TR_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_TAX_RATES_TR_STATUS') && (trim(CLICSHOPPING_APP_TAX_RATES_TR_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_TAX_RATES_INSTALLED')) {
+      if (\defined('MODULE_MODULES_TAX_RATES_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_TAX_RATES_INSTALLED);
       }
 

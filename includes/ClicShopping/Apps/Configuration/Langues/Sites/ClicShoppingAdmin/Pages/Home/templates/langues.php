@@ -29,7 +29,7 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Langues->getDef('heading_title'); ?></span>
           <span
-            class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_new'), null, $CLICSHOPPING_Langues->link('Insert&page=' . $page), 'success'); ?></span>
+            class="col-md-7 text-end"><?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_new'), null, $CLICSHOPPING_Langues->link('Insert&page=' . $page), 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -42,6 +42,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-name="status"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -51,12 +53,12 @@
     data-mobile-responsive="true">
 
     <thead class="dataTableHeadingRow">
-    <tr>
-      <th data-field="name"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_name'); ?></th>
-      <th data-field="code"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_code'); ?></th>
-      <th data-field="status" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_status'); ?></th>
-      <th data-field="action" data-switchable="false"  class="text-md-right"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_action'); ?>&nbsp;</th>
-    </tr>
+        <tr>
+          <th data-field="name"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_name'); ?></th>
+          <th data-field="code"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_code'); ?></th>
+          <th data-field="status" data-sortable="true"class="text-center"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_status'); ?></th>
+          <th data-field="action" data-switchable="false"  class="text-end"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_action'); ?>&nbsp;</th>
+        </tr>
     </thead>
     <tbody>
     <?php
@@ -92,19 +94,19 @@
           }
           ?>
           <th scope="row"><?php echo $Qlanguages->value('code'); ?></td>
-          <td class="text-md-center">
+          <td class="text-center">
             <?php
               //pb when the english when the status is off
               //      if ($Qlanguages->valueInt('languages_id') != 1 && DEFAULT_LANGUAGE != $Qlanguages->value('code')) {
               if ($Qlanguages->valueInt('status') == 1) {
-                echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=0&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+                echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=0&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="bi-check text-success"></i>');
               } else {
-                echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=1&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+                echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=1&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="bi bi-x text-danger"></i>');
               }
               //      }
             ?>
           </td>
-          <td class="text-md-right">
+          <td class="text-end">
             <?php
               echo HTML::link($CLICSHOPPING_Langues->link('Edit&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=edit'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Langues->getDef('icon_edit')));
               echo '&nbsp;';
@@ -129,11 +131,15 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qlanguages->getPageSetLabel($CLICSHOPPING_Langues->getDef('text_display_number_of_link')); ?></div>
-          <div class="float-md-right text-md-right"> <?php echo $Qlanguages->getPageSetLinks(); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qlanguages->getPageSetLabel($CLICSHOPPING_Langues->getDef('text_display_number_of_link')); ?></div>
+          <div class="float-end text-end"> <?php echo $Qlanguages->getPageSetLinks(); ?></div>
         </div>
       </div>
       <?php
     } // end $listingTotalRow
-  ?>
+ ?>
+    <div class="separator"></div>
+    <div class="alert alert-info">
+      <?php echo $CLICSHOPPING_Langues->getDef('text_help'); ?>
+    </div>
 </div>

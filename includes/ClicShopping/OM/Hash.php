@@ -74,7 +74,7 @@
     {
       $result = false;
 
-      if ((strlen($plain) > 0) && (strlen($hash) > 0)) {
+      if ((\strlen($plain) > 0) && (\strlen($hash) > 0)) {
         switch (static::getType($hash)) {
           case 'phpass':
             if (!class_exists('PasswordHash', false)) {
@@ -91,7 +91,7 @@
             // split apart the hash / salt
             $stack = explode(':', $hash, 2);
 
-            if (count($stack) === 2) {
+            if (\count($stack) === 2) {
               $result = (md5($stack[1] . $plain) === $stack[0]);
             } else {
               $result = false;
@@ -194,7 +194,7 @@
      */
     public static function getRandomString(int $length, string  $type = 'mixed') :string
     {
-      if (!in_array($type, [
+      if (!\in_array($type, [
         'mixed',
         'chars',
         'digits'
@@ -222,16 +222,16 @@
       do {
         $random = base64_encode(static::getRandomBytes($length));
 
-        for ($i = 0, $n = strlen($random); $i < $n; $i++) {
+        for ($i = 0, $n = \strlen($random); $i < $n; $i++) {
           $char = substr($random, $i, 1);
 
-          if (strpos($base, $char) !== false) {
+          if (str_contains($base, $char)) {
             $rand_value .= $char;
           }
         }
-      } while (strlen($rand_value) < $length);
+      } while (\strlen($rand_value) < $length);
 
-      if (strlen($rand_value) > $length) {
+      if (\strlen($rand_value) > $length) {
         $rand_value = substr($rand_value, 0, $length);
       }
 

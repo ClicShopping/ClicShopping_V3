@@ -17,8 +17,8 @@
 
   class ac_account_customers_edit {
 
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -31,7 +31,7 @@
       $this->title = CLICSHOPPING::getDef('module_account_customers_edit_title');
       $this->description = CLICSHOPPING::getDef('module_account_customers_edit_description');
 
-      if (defined('MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_STATUS')) {
+      if (\defined('MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_STATUS')) {
         $this->sort_order = (int)MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_SORT_ORDER;
         $this->enabled = (MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_STATUS == 'True');
       }
@@ -55,7 +55,6 @@
           $customers_email_address = $account['customers_email_address'];
           $customers_telephone = $account['customers_telephone'];
           $customers_cellular_phone = $account['customers_cellular_phone'];
-          $customers_fax = $account['customers_fax'];
           $customers_company = $account['customers_company'];
           $customers_siret = $account['customers_siret'];
           $customers_ape = $account['customers_ape'];
@@ -90,7 +89,7 @@
     }
 
     public function check() {
-      return defined('MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_STATUS');
+      return \defined('MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_STATUS');
     }
 
     public function install() {

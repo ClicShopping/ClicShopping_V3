@@ -27,12 +27,12 @@
      * Constructor
      *
      * @param bool $cleanse_keys
-     * @uses defined()
+     * @uses \defined()
      */
     public function __construct($cleanse_keys = false)
     {
       if ($cleanse_keys) $this->_cleanse_keys = true;
-      $this->addExclusions(array(defined('FILENAME_PROTX_PROCESS') ? FILENAME_PROTX_PROCESS : 'protx_process.php'));
+      $this->addExclusions(array(\defined('FILENAME_PROTX_PROCESS') ? FILENAME_PROTX_PROCESS : 'protx_process.php'));
     } // end constructor
 
     /**
@@ -42,11 +42,11 @@
      *
      *
      * @return object _Security_Pro - allows chaining
-     * @uses in_array()
+     * @uses \in_array()
      */
     public function addExclusion($file_to_exclude = '')
     {
-      if (!in_array($file_to_exclude, $this->_excluded_from_cleansing)) {
+      if (!\in_array($file_to_exclude, $this->_excluded_from_cleansing)) {
         $this->_excluded_from_cleansing[] = (string)$file_to_exclude;
       }
       return $this;
@@ -78,7 +78,7 @@
      * @return void
      * @uses ini_get()
      * @see  _Security_Pro::cleanGlobals()
-     * @uses in_array()
+     * @uses \in_array()
      * @uses function_exists()
      */
 
@@ -91,7 +91,7 @@
         return;
       }
       $this->_basename = $data;
-      if (in_array($this->_basename, $this->_excluded_from_cleansing)) {
+      if (\in_array($this->_basename, $this->_excluded_from_cleansing)) {
         return;
       }
       $this->cleanseGetRecursive($_GET);
@@ -108,7 +108,7 @@
      *
      *
      * @return void
-     * @uses is_array()
+     * @uses \is_array()
      */
     public function cleanseGetRecursive(&$get)
     {
@@ -118,7 +118,7 @@
           unset ($get[$key]);
           continue;
         }
-        if (is_array($value)) {
+        if (\is_array($value)) {
           // We have an array so well run it through again
           $this->cleanseGetRecursive($value);
           // We have a string value so we'll cleanse it

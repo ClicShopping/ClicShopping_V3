@@ -61,9 +61,9 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/products_unit.png', $CLICSHOPPING_Modules->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Modules->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
-  echo '<span class="cols-xs-3 float-right">';
+  echo '<span class="cols-xs-3 float-end">';
   echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set), 'warning') . '&nbsp;';
   echo HTML::button(CLICSHOPPING::getDef('button_update'), null, null, 'success');
   echo '</span>';
@@ -74,7 +74,7 @@
   </div>
   <div class="separator"></div>
   <?php
-    $modules_installed = (defined($module_key) ? explode(';', constant($module_key)) : array());
+    $modules_installed = (\defined($module_key) ? explode(';', constant($module_key)) : array());
 
     $new_modules_counter = 0;
 
@@ -86,11 +86,11 @@
         if (!is_dir($module_directory . $file)) {
           if (substr($file, strrpos($file, '.')) == $file_extension) {
             if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
-              if (!in_array($file, $modules_installed)) {
+              if (!\in_array($file, $modules_installed)) {
                 $directory_array[] = $file;
               }
             } else {
-              if (in_array($file, $modules_installed)) {
+              if (\in_array($file, $modules_installed)) {
                 $directory_array[] = $file;
               } else {
                 $new_modules_counter++;
@@ -105,11 +105,11 @@
     if (isset($appModuleType)) {
       foreach (Apps::getModules($appModuleType) as $k => $v) {
         if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
-          if (!in_array($k, $modules_installed)) {
+          if (!\in_array($k, $modules_installed)) {
             $directory_array[] = $k;
           }
         } else {
-          if (in_array($k, $modules_installed)) {
+          if (\in_array($k, $modules_installed)) {
             $directory_array[] = $k;
           } else {
             $new_modules_counter++;
@@ -122,10 +122,10 @@
 
     $installed_modules = [];
 
-    for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
+    for ($i = 0, $n = \count($directory_array); $i < $n; $i++) {
       $file = $directory_array[$i];
 
-      if (strpos($file, '\\') !== false) {
+      if (str_contains($file, '\\')) {
         $file_extension = '';
 
         $class = Apps::getModuleClass($file, $appModuleType);
@@ -169,7 +169,7 @@
 
           $keys_extra = [];
 
-          for ($j = 0, $k = count($module_keys); $j < $k; $j++) {
+          for ($j = 0, $k = \count($module_keys); $j < $k; $j++) {
 
             $Qkeys = $CLICSHOPPING_Db->get('configuration', [
               'configuration_title',
@@ -207,18 +207,18 @@
   <div id="orderTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . CLICSHOPPING::getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . CLICSHOPPING::getDef('tab_general') . '</a>'; ?></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
         <div class="mainTitle"><?php echo CLICSHOPPING::getDef('text_box_heading_module'); ?></div>
         <div class="adminformTitle">
           <?php
-          if (is_array($mInfo->keys)) {
+          if (\is_array($mInfo->keys)) {
             foreach ($mInfo->keys as $key => $value) {
               $keys .= '<strong>' . $value['title'] . '</strong><br />' . $value['description'] . '<br />';
 
-              if (strlen($value['set_function']) > 0) {
+              if (\strlen($value['set_function']) > 0) {
                 $keys .= CallUserFuncModule::execute($value['set_function'], $value['value'], $key);
               } else {
                 $keys .= HTML::inputField('configuration[' . $key . ']', $value['value']);

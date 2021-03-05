@@ -40,7 +40,7 @@
 
     public function execute()
     {
-      if (!defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
+      if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
         return false;
       }
 
@@ -48,21 +48,21 @@
         $output = '&nbsp;';
 
         $output .= '
-              <a data-toggle="modal" data-target="#myModalBatchArchive">' . HTML::button($this->app->getDef('button_archive'), null, null, 'primary') . '</a>
+              <a data-bs-toggle="modal" data-bs-target="#myModalBatchArchive">' . HTML::button($this->app->getDef('button_archive'), null, null, 'primary') . '</a>
               <div class="modal fade" id="myModalBatchArchive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title text-md-left" id="myModalLabel">' . $this->app->getDef('text_archive_batch_heading') . '</h4>
+                      <h4 class="modal-title text-start" id="myModalLabel">' . $this->app->getDef('text_archive_batch_heading') . '</h4>
                     </div>
-                    <div class="modal-body text-md-center">
+                    <div class="modal-body text-center">
                       ' . HTML::form('archive', $this->app->link('Orders')) . '
                         ' . HTML::hiddenField('aID', 1) . '
                        </form>
                       ' . HTML::form('archive', $this->app->link('Orders&ArchiveBatch')) . '
                         <div class="separator"></div>
                         <div class="col-md-12">
-                          <div class="col-md-12 text-md-left">' . $this->app->getDef('label_text_order_number') . '</div>
+                          <div class="col-md-12 text-start">' . $this->app->getDef('label_text_order_number') . '</div>
                           <span class="col-md-6">' . $this->app->getDef('label_text_start') . HTML::inputField('orders_id_start', '', 'aria-required="true" placeholder="10"') . '</span>
                           <span class="col-md-6">' . $this->app->getDef('label_text_end') . HTML::inputField('orders_id_end', '', 'aria-required="true" placeholder="50"') . '</span><br />
                         </div>

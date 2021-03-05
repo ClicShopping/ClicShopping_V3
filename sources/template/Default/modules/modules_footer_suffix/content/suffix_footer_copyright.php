@@ -13,7 +13,7 @@ use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="separator"></div>
 <div class="hr"></div>
-<div class="text-md-center footerSuffix">
+<div class="text-center footerSuffix">
   <div class="footerSuffixCopyright">
     <span class="footerSuffixCopyright"><?php echo CLICSHOPPING::getDef('modules_footer_suffix_copyright_text') . ' ' . $shop_owner_copyright; ?></span>
   </div>

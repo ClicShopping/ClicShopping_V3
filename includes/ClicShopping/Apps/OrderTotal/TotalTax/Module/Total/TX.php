@@ -51,10 +51,10 @@
 
 // Controle en B2B l'assujetti a la TVA (valeur true par defaut en mode B2C)
       if (B2BCommon::getTaxUnallowed($this->code)) {
-        $this->enabled = defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS') && (CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS == 'True') ? true : false;
+        $this->enabled = \defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS') && (CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS == 'True') ? true : false;
       }
 
-      $this->sort_order = defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER') && ((int)CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER > 0) ? (int)CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER : 0;
+      $this->sort_order = \defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER') && ((int)CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER > 0) ? (int)CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER : 0;
 
       $this->output = [];
     }
@@ -158,7 +158,7 @@
               $subtotal = $CLICSHOPPING_Order->info['subtotal'] + $CLICSHOPPING_Order->info['shipping_cost'];
 
 // Si l'ordre d'affichage du shipping < sort order on additionne les frais d'envoi au sous total
-              if (defined(CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER) && (CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER < CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER)) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
+              if (\defined(CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER) && (CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER < CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER)) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
 
               $gst_total = round($subtotal * $gst_rate, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
               $pst_total = ($subtotal + $gst_total) * $pst_rate;
@@ -193,7 +193,7 @@
               $subtotal = $CLICSHOPPING_Order->info['subtotal'];
 
 // Si l'ordre d'affichage du shipping < sort order on additionne les frais d'envoi au sous total
-              if (defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER') && (CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER < CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER)) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
+              if (\defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER') && (CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER < CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER)) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
 
               $gst_total = round($subtotal * $gst_rate, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
               $pst_total = $subtotal * $pst_rate;
@@ -222,7 +222,7 @@
               $subtotal = $CLICSHOPPING_Order->info['subtotal'];
 
 // Si l'ordre d'affichage du shipping < sort order on additionne les frais d'envoi au sous total
-              if (defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER') && CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER < CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
+              if (\defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER') && CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER < CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
 
               $hst_total = $subtotal * ($Qtax->valueDecimal('tax_rate') / 100);
 
@@ -246,6 +246,7 @@
 // **********************************
 // normal tax
 // ************************************
+
         foreach ($CLICSHOPPING_Order->info['tax_groups'] as $key => $value) {
           if ($value > 0) {
             $this->output[] = [
@@ -260,7 +261,7 @@
 
     public function check()
     {
-      return defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS) != '');
+      return \defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS) != '');
     }
 
     public function install()

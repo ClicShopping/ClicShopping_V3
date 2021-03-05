@@ -88,7 +88,7 @@
      */
     public function hasContents() :bool
     {
-      return is_array($this->contents);
+      return \is_array($this->contents);
     }
     
     /*
@@ -117,7 +117,7 @@
       $qty = 0;
 
 // insert current cart contents in database
-      if (is_array($this->contents)) {
+      if (\is_array($this->contents)) {
         foreach ($this->contents as $item_id => $data) {
           $qty = $data['qty'];
           $this->productsId = $item_id;
@@ -387,7 +387,7 @@
 
       $attributes_pass_check = true;
 
-      if (is_array($attributes) && !empty($attributes)) {
+      if (\is_array($attributes) && !empty($attributes)) {
         foreach ($attributes as $option => $value) {
           if (!is_numeric($option) || !is_numeric($value)) {
             $attributes_pass_check = false;
@@ -445,7 +445,7 @@
 
             }
 
-            if (is_array($attributes)) {
+            if (\is_array($attributes)) {
               foreach ($attributes as $option => $value) {
                 $this->contents[$products_id_string]['attributes'][$option] = $value;
 // insert into database
@@ -487,7 +487,7 @@
 
       $attributes_pass_check = true;
 
-      if (is_array($attributes) && !empty($attributes)) {
+      if (\is_array($attributes) && !empty($attributes)) {
         foreach ($attributes as $option => $value) {
           if (!is_numeric($option) || !is_numeric($value)) {
             $attributes_pass_check = false;
@@ -540,7 +540,7 @@
               );
             }
 
-            if (is_array($attributes)) {
+            if (\is_array($attributes)) {
               foreach ($attributes as $option => $value) {
                 $this->contents[$products_id_string]['attributes'][$option] = $value;
 // insert into database
@@ -580,20 +580,20 @@
       $products_id = $this->getPrid($products_id_string);
 
 // Maximum to take an order
-      if (defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$quantity > MAX_QTY_IN_CART)) {
+      if (\defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$quantity > MAX_QTY_IN_CART)) {
         $quantity = (int)MAX_QTY_IN_CART;
       }
 
 // Define the minimum in basket if the qty min order is not define in product
       if ($this->getProductsMinOrderQtyShoppingCart($products_id) == 0) {
-        if (defined('MAX_MIN_IN_CART') && (MAX_MIN_IN_CART > 0) && ((int)$quantity < MAX_MIN_IN_CART)) {
+        if (\defined('MAX_MIN_IN_CART') && (MAX_MIN_IN_CART > 0) && ((int)$quantity < MAX_MIN_IN_CART)) {
           $quantity = (int)MAX_MIN_IN_CART;
         }
       }
 
       $attributes_pass_check = true;
 
-      if (is_array($attributes)) {
+      if (\is_array($attributes)) {
         foreach ($attributes as $option => $value) {
           if (!is_numeric($option) || !is_numeric($value)) {
             $attributes_pass_check = false;
@@ -613,7 +613,7 @@
           );
         }
 
-        if (is_array($attributes)) {
+        if (\is_array($attributes)) {
           foreach ($attributes as $option => $value) {
             $this->contents[$products_id_string]['attributes'][$option] = $value;
 // update database
@@ -661,7 +661,7 @@
      */
     public function getBasketID($product_id)
     {
-      if (is_array($this->contents)) {
+      if (\is_array($this->contents)) {
         foreach ($this->contents as $item_id => $product) {
           if ($product['id'] === $product_id) {
             return $item_id;
@@ -678,7 +678,7 @@
     {
       $total_items = 0;
 
-      if (is_array($this->contents)) {
+      if (\is_array($this->contents)) {
         foreach ($this->contents as $item_id => $data) {
           $total_items += $this->getQuantity($item_id);
         }
@@ -749,7 +749,7 @@
     {
       $product_id_list = '';
 
-      if (is_array($this->contents)) {
+      if (\is_array($this->contents)) {
         foreach ($this->contents as $item_id => $data) {
           $product_id_list .= ', ' . $item_id;
         }
@@ -1215,7 +1215,7 @@
       if (is_numeric($prid)) {
         $uprid = (int)$prid;
 
-        if (is_array($params) && (!is_null($params) || !empty($params))) {
+        if (\is_array($params) && (!\is_null($params) || !empty($params))) {
           $attributes_check = true;
           $attributes_ids = '';
 
@@ -1236,14 +1236,14 @@
         $uprid = $this->getPrid($prid);
 
         if (is_numeric($uprid)) {
-          if (strpos($prid, '{') !== false) {
+          if (str_contains($prid, '{')) {
             $attributes_check = true;
             $attributes_ids = '';
 
 // strpos()+1 to remove up to and including the first { which would create an empty array element in explode()
             $attributes = explode('{', substr($prid, strpos($prid, '{') + 1));
 
-            for ($i = 0, $n = count($attributes); $i < $n; $i++) {
+            for ($i = 0, $n = \count($attributes); $i < $n; $i++) {
               $pair = explode('}', $attributes[$i]);
 
               if (is_numeric($pair[0]) && is_numeric($pair[1])) {
@@ -1288,7 +1288,7 @@
      */
     public function getCheckGoodQty(string $products_id, int $qty) :int
     {
-      if (defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$qty > MAX_QTY_IN_CART)) {
+      if (\defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$qty > MAX_QTY_IN_CART)) {
         $qty = (int)MAX_QTY_IN_CART;
       }
 
@@ -1297,7 +1297,7 @@
       }
 
       if ($this->getProductsMinOrderQtyShoppingCart($products_id) == 0) {
-        if (defined('MAX_MIN_IN_CART') && (MAX_MIN_IN_CART > 0) && ((int)$qty < MAX_MIN_IN_CART)) {
+        if (\defined('MAX_MIN_IN_CART') && (MAX_MIN_IN_CART > 0) && ((int)$qty < MAX_MIN_IN_CART)) {
           $qty = (int)MAX_MIN_IN_CART;
         }
       }
@@ -1355,7 +1355,7 @@
     {
       $attributes_price = 0;
 
-      if (isset($this->contents[$products_id]['attributes']) && is_array($this->contents[$products_id]['attributes'])) {
+      if (isset($this->contents[$products_id]['attributes']) && \is_array($this->contents[$products_id]['attributes'])) {
         foreach ($this->contents[$products_id]['attributes'] as $option => $value) {
           $Qattributes = $this->db->prepare('select options_values_price,
                                                     price_prefix

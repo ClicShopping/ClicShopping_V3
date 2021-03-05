@@ -19,9 +19,9 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="card-header boxeHeadingSearch">
       <span class="card-title boxeTitleSearch"><?php echo CLICSHOPPING::getDef('module_boxes_search_box_title'); ?></span>
     </div>
-    <div class="card-block boxeContentArroundSearch">
+    <div class="card-body boxeContentArroundSearch">
       <div class="separator"></div>
-      <div class="card-text text-md-center boxeContentsSearch">
+      <div class="card-text text-center boxeContentsSearch">
 <?php
   echo $output;
   echo '<div class="boxeContentLinkAdvancedSearch">' . HTML::link(CLICSHOPPING::link(null, 'Search&AdvancedSearch'), CLICSHOPPING::getDef('module_boxes_search_box_advanced_search')) . '</div>';

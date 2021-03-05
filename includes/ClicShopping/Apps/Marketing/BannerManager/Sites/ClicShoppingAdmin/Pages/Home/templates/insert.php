@@ -29,7 +29,7 @@
     'text' => $CLICSHOPPING_BannerManager->getDef('text_all_languages')
   ];
 
-  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
     $values_languages_id[$i + 1] = ['id' => $languages[$i]['id'],
       'text' => $languages[$i]['name']
     ];
@@ -61,7 +61,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/banner_manager.gif', $CLICSHOPPING_BannerManager->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_BannerManager->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   echo HTML::form('new_banner', $CLICSHOPPING_BannerManager->link('BannerManager&Insert', (isset($page) ? 'page=' . $page . '&' : '')), 'post', 'enctype="multipart/form-data"');
   echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_cancel'), null, $CLICSHOPPING_BannerManager->link('BannerManager&BannerManager' . (isset($page) ? 'page=' . $page . '&' : '') . (isset($_GET['bID']) ? 'bID=' . $_GET['bID'] : '')), 'warning') . ' ';
@@ -76,12 +76,12 @@
 
   <div id="BannerManagerTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
-      <li class="nav-item"><a href="#tab1" role="tab" data-toggle="tab"
+      <li class="nav-item"><a href="#tab1" role="tab" data-bs-toggle="tab"
                               class="nav-link active"><?php echo $CLICSHOPPING_BannerManager->getDef('tab_general'); ?></a>
       </li>
-      <li class="nav-item"><a href="#tab2" role="tab" data-toggle="tab"
+      <li class="nav-item"><a href="#tab2" role="tab" data-bs-toggle="tab"
                               class="nav-link"><?php echo $CLICSHOPPING_BannerManager->getDef('tab_img'); ?></a></li>
-      <li class="nav-item"><a href="#tab3" role="tab" data-toggle="tab"
+      <li class="nav-item"><a href="#tab3" role="tab" data-bs-toggle="tab"
                               class="nav-link"><?php echo $CLICSHOPPING_BannerManager->getDef('tab_code_html'); ?></a>
       </li>
     </ul>
@@ -177,7 +177,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_new_group'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_new_group'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('new_banners_group', '', '', ((count($groups_array) > 0) ? false : true)); ?>
+                    <?php echo HTML::inputField('new_banners_group', '', '', ((\count($groups_array) > 0) ? false : true)); ?>
                   </div>
                 </div>
               </div>
@@ -195,7 +195,6 @@
                   <div class="col-md-5">
                     <?php echo HTML::inputField('date_scheduled', null, null, 'date'); ?>
                   </div>
-                  <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                 </div>
               </div>
             </div>
@@ -208,7 +207,6 @@
                   <div class="col-md-5">
                     <?php echo HTML::inputField('expires_date', null, null, 'date'); ?>
                   </div>
-                  <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                 </div>
               </div>
             </div>
@@ -254,12 +252,12 @@
                 <div class="adminformAide">
                   <div class="row">
                     <span
-                      class="col-md-4 text-md-center float-md-left"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('banners_image_local', null, '300', '300'); ?></span>
-                    <span class="col-md-8 text-md-center float-md-right">
+                      class="col-md-4 text-center float-start"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('banners_image_local', null, '300', '300'); ?></span>
+                    <span class="col-md-8 text-center float-end">
                       <div class="col-md-12">
                         <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage(null, $CLICSHOPPING_BannerManager->getDef('text_banners_image')) . HTML::hiddenField('banners_image_show'); ?>
                        </div>
-                      <div class="col-md-12 text-md-right">
+                      <div class="col-md-12 text-end">
                         <?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_image_delete') . HTML::checkboxField('delete_image', 'yes', false); ?>
                       </div>
                     </span>

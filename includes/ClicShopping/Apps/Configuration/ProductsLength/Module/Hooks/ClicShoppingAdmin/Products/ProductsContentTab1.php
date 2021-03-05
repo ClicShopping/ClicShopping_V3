@@ -56,7 +56,7 @@
 
     public function display()
     {
-      if (!defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {
         return false;
       }
 
@@ -82,8 +82,8 @@
         $content .= '<div class="col-md-5">';
         $content .= '<div class="form-group row">';
         $content .= '<label for="' . $this->app->getDef('text_products_length') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_length') . '</label>';
-        $content .= '<div class="col-md-6">';
-        $content .= HTML::inputField('products_dimension_width', $products_dimension_width, 'placeholder="' . $this->app->getDef('text_products_dimension_width') . ' "id="products_dimension_width" class="form-control-sm"') . ' <br />' . HTML::inputField('products_dimension_height', $products_dimension_height, 'placeholder="' . $this->app->getDef('text_products_dimension_height') . '" id="products_dimension_height" class="form-control-sm"') . ' <br />' . HTML::inputField('products_dimension_depth', $products_dimension_depth, 'placeholder="' . $this->app->getDef('text_products_dimension_depth') . '" id="products_dimension_depth" class="form-control-sm"');
+        $content .= '<div class="col-md-6 row">';
+        $content .= HTML::inputField('products_dimension_width', $products_dimension_width, 'placeholder="' . $this->app->getDef('text_products_dimension_width') . ' size="12" "id="products_dimension_width" class="form-control"') . ' <br />' . HTML::inputField('products_dimension_height', $products_dimension_height, 'placeholder="' . $this->app->getDef('text_products_dimension_height') . '" size="12" id="products_dimension_height" class="form-control"') . ' <br />' . HTML::inputField('products_dimension_depth', $products_dimension_depth, 'placeholder="' . $this->app->getDef('text_products_dimension_depth') . '" size="12" id="products_dimension_width" class="form-control"');
         $content .= '</div>';
         $content .= '</div>';
         $content .= '</div>';
@@ -97,7 +97,7 @@
 
         $content .= '<div class="col-md-5">';
         $content .= HTML::selectField('products_length_class_id', ProductsLengthAdmin::getClassesPullDown(), $products_length_class_id);
-        $content .= HTML::inputField('products_volume', $products_volume, 'placeholder="' . $this->app->getDef('text_products_volume') . '" id="products_volume" class="form-control-sm"');
+        $content .= HTML::inputField('products_volume', $products_volume, 'placeholder="' . $this->app->getDef('text_products_volume') . '" id="products_volume" class="form-control"');
         $content .= '</div>';
         $content .= '</div>';
         $content .= '</div>';

@@ -37,7 +37,7 @@
       if (is_dir($source_folder)) {
         $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutConfirmation*');
 
-        if (is_array($files_get)) {
+        if (\is_array($files_get)) {
           foreach ($files_get as $value) {
             if (!empty($value['name'])) {
               $CLICSHOPPING_Hooks->call('Checkout', $value['name']);
@@ -76,7 +76,7 @@
       if (isset($_POST['comments'])) {
         $_SESSION['comments'] = null;
 
-        if (!is_null($_POST['comments'])) {
+        if (!\is_null($_POST['comments'])) {
           $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
         }
       }
@@ -96,7 +96,7 @@
 
 //this needs to be set before the order object is created, but we must process it after
       if (isset($_SESSION['coupon'])) {
-        if (!is_null($_SESSION['coupon'])) {
+        if (!\is_null($_SESSION['coupon'])) {
           $_SESSION['coupon'] = HTML::sanitize($_SESSION['coupon']);
         }
       }
@@ -110,7 +110,7 @@
 
       $CLICSHOPPING_Payment->update_status();
 
-      if (strpos($CLICSHOPPING_Payment->selected_module, '\\') !== false) {
+      if (str_contains($CLICSHOPPING_Payment->selected_module, '\\')) {
         $code = 'Payment_' . str_replace('\\', '_', $CLICSHOPPING_Payment->selected_module);
 
         if (Registry::exists($code)) {
@@ -122,7 +122,7 @@
         CLICSHOPPING::redirect(null, 'Checkout&Billing&error_message=' . urlencode(CLICSHOPPING::getDef('error_no_payment_module_selected')));
       }
 
-      if (is_array($CLICSHOPPING_Payment->modules)) {
+      if (\is_array($CLICSHOPPING_Payment->modules)) {
         $CLICSHOPPING_Payment->pre_confirmation_check();
       }
 
@@ -133,7 +133,7 @@
       $any_out_of_stock = false;
 
       if (STOCK_CHECK == 'true') {
-        for ($i = 0, $n = count($CLICSHOPPING_Order->products); $i < $n; $i++) {
+        for ($i = 0, $n = \count($CLICSHOPPING_Order->products); $i < $n; $i++) {
           if ($CLICSHOPPING_ProductsCommon->getCheckStock($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['qty'])) {
             $any_out_of_stock = true;
           }
@@ -153,7 +153,7 @@
         $form_action_url = CLICSHOPPING::link(null, 'Checkout&Process');
       }
 
-      if (is_array($CLICSHOPPING_Payment->modules)) {
+      if (\is_array($CLICSHOPPING_Payment->modules)) {
         $CLICSHOPPING_Payment->confirmation();
       }
 

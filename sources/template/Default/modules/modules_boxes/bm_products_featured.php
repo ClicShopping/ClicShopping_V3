@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class bm_products_featured {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_products_featured_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_products_featured_description');
 
-      if (defined('MODULE_BOXES_PRODUCTS_FEATURED_STATUS')) {
+      if (\defined('MODULE_BOXES_PRODUCTS_FEATURED_STATUS')) {
         $this->sort_order = MODULE_BOXES_PRODUCTS_FEATURED_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_PRODUCTS_FEATURED_STATUS == 'True');
         $this->pages = MODULE_BOXES_PRODUCTS_FEATURED_DISPLAY_PAGES;
@@ -122,7 +122,7 @@
         $data .= '<div class="clearfix"></div>';
         $data .= '<div class="card boxeContainerFeatured">';
         $data .= '<div class="card-header boxeHeadingFeatured"><span class="card-title boxeTitleFeatured">'. HTML::link(CLICSHOPPING::link(null,'Products&Featured'), CLICSHOPPING::getDef('module_boxes_products_featured_box_title')) . '</span></div>';
-        $data .= '<div class="card-block  text-md-center boxeContentArroundFeatured">';
+        $data .= '<div class="card-block  text-center boxeContentArroundFeatured">';
         $data .= '<div class="separator"></div>';
 
         while ($Qproducts->fetch()) {
@@ -171,7 +171,7 @@
             $products_image .= HTML::link($products_name_url, HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_products_new'), 'ModulesBoxeBootstrapTickerNew', $CLICSHOPPING_ProductsCommon->getProductsTickerProductsNew($products_id)));
           }
 
-          if (MODULE_BOXES_PRODUCTS_FEATURED_POURCENTAGE_TICKER == 'True' && !is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
+          if (MODULE_BOXES_PRODUCTS_FEATURED_POURCENTAGE_TICKER == 'True' && !\is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
             $ticker = HTML::link($products_name_url, HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id), 'ModulesBoxeBootstrapTickerSpecialPourcentage', true));
           } else {
             $ticker = '';
@@ -202,7 +202,7 @@
     }
 
     public function  check() {
-      return defined('MODULE_BOXES_PRODUCTS_FEATURED_STATUS');
+      return \defined('MODULE_BOXES_PRODUCTS_FEATURED_STATUS');
     }
 
     public function  install() {
@@ -272,7 +272,7 @@
           'configuration_title' => 'Do you want to display a message New / Special / Featured / Favorites?',
           'configuration_key' => 'MODULE_BOXES_PRODUCTS_FEATURED_TICKER',
           'configuration_value' => 'False',
-          'configuration_description' => 'Display a message New / Promotion / Selection / Favorites superimposed on the image of the product? <br /> <br /> the duration is configurable in the Configuration menu / my shop / Minimum / maximum values <br /> < br /> <i> (Value true = Yes - Value false = No) </i>',
+          'configuration_description' => 'Display a message New / Promotion / Selection / Favorites superimposed on the image of the product? <br /> <br /> the duration is configurable in the Configuration menu / my shop / Minimum / maximum values <br /> <br /> <i> (Value true = Yes - Value false = No) </i>',
           'configuration_group_id' => '6',
           'sort_order' => '9',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',

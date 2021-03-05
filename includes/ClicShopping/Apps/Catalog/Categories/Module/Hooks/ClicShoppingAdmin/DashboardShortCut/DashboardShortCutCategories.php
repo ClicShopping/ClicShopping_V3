@@ -34,11 +34,11 @@
 
     public function display(): string
     {
-      if (!defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
         return false;
       }
 
-      $output = HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Categories&Categories'), null, 'class="btn btn-primary btn-sm" role="button"><span class="fas fa-list" title="' . $this->app->getDef('heading_short_categories') . '"') . ' ';
+      $output = HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Categories&Categories'), null, 'class="btn btn-primary btn-sm" role="button"></i><span class="bi bi-list-ul" title="' . $this->app->getDef('heading_short_categories') . '"') . ' ';
 
       return $output;
     }

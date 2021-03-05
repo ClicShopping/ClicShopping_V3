@@ -17,7 +17,7 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="card-header">
       <div class="row">
         <div class="col-md-10 mdouleAccountCustomersHistoryInfoInvoicePdfText"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_pdf_text'); ?></h3></div>
-        <div class="col-md-2 text-md-right"><?php echo $print_invoice_pdf; ?></div>
+        <div class="col-md-2 text-end"><?php echo $print_invoice_pdf; ?></div>
       </div>
     </div>
   </div>

@@ -21,6 +21,7 @@ button_archive = Archive
 button_cancel = Annuler
 button_new = Nouveau
 button_unpack = Désarchiver
+button_reset = Reset
 
 dialog_uninstall_title = Désinstaller
 dialog_uninstall_body = Souhaitez-vous installer cette App ?

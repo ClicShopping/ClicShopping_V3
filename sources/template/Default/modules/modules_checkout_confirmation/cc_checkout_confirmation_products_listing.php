@@ -18,8 +18,8 @@
   use ClicShopping\Sites\Shop\Tax;
 
   class cc_checkout_confirmation_products_listing {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -32,7 +32,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_description');
 
-      if (defined('MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_STATUS == 'True');
       }
@@ -53,10 +53,11 @@
         $confirmation .= '<div class="col-md-' . $content_width . '">';
         $confirmation .= '<div class="separator"></div>';
         $confirmation .= '<div class="page-title moduleCheckoutConfirmationProductsListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_information') . '</h3></div>';
+        $confirmation .= '<div class="separator"></div>';
+        $confirmation .= '<div class="separator"></div>';
+        $confirmation .= '<div>';
 
-        $confirmation .= '<div style="padding-left:15px; padding-right:15px;">';
-
-        if (count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
+        if (\count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
           $confirmation .= '<div class="card moduleCheckoutConfirmationProductsListingCard">';
           $confirmation .= '<div class="card-header moduleCheckoutConfirmationProductsListingHeader"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_products')  . '</strong>';
           $confirmation .= HTML::link(CLICSHOPPING::link(null, 'Cart'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_text_edit') . ')</span>');
@@ -66,8 +67,8 @@
           $confirmation .= '<div class="separator"></div>';
           $confirmation .= '<table width="100%">';
           $confirmation .= '<tr>';
-          $confirmation .= '<td class="text-md-right"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_tax')  . '</strong></td>';
-          $confirmation .= '<td class="text-md-right"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_total') . '</strong></td>';
+          $confirmation .= '<td class="text-end"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_tax')  . '</strong></td>';
+          $confirmation .= '<td class="text-end"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_total') . '</strong></td>';
           $confirmation .= '</tr>';
           $confirmation .= '</table>';
           $confirmation .= '</div>';
@@ -83,24 +84,24 @@
         $confirmation .= '<div class="separator"></div>';
         $confirmation .= '<table width="100%">';
 
-        for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
+        for ($i=0, $n=\count($CLICSHOPPING_Order->products); $i<$n; $i++) {
           $data = '<tr>' . "\n";
-          $data .= '<td class="text-md-right" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x</td>' . "\n";
+          $data .= '<td class="text-end" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x</td>' . "\n";
           $data .= '<td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'] . ' (' . $CLICSHOPPING_Currencies->displayPrice($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], 1) . ')';
 
           if (STOCK_CHECK == 'True') {
             $data .=  $CLICSHOPPING_ProductsCommon->getCheckStock($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['qty']);
           }
 
-          if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
-            for ($j=0, $n2=count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
+          if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (\count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
+            for ($j=0, $n2=\count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
               $reference = '';
 
               if (!empty($CLICSHOPPING_Order->products[$i]['attributes'][$j]['reference'])) {
                 $reference = $CLICSHOPPING_Order->products[$i]['attributes'][$j]['reference'] . ' / ';
               }
 
-              if (!is_null($CLICSHOPPING_Order->products[$i]['attributes'][$j]['products_attributes_image'])) {
+              if (!\is_null($CLICSHOPPING_Order->products[$i]['attributes'][$j]['products_attributes_image'])) {
                 if (is_file(CLICSHOPPING::getConfig('Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['products_attributes_image'])) {
                   $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['products_attributes_image'], $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option'] . '   ', 30, 30);
                 } else {
@@ -116,11 +117,11 @@
 
           $data .=  '</td>' . "\n";
 
-          if (count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
-            $data .= '<td class="text-md-right" valign="top">' . Tax::displayTaxRateValue($CLICSHOPPING_Order->products[$i]['tax']) . '</td>' . "\n";
+          if (\count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
+            $data .= '<td class="text-end" valign="top">' . Tax::displayTaxRateValue($CLICSHOPPING_Order->products[$i]['tax']) . '</td>' . "\n";
           }
 
-         $data .=  '<td  class="text-md-right" valign="top">';
+         $data .=  '<td  class="text-end" valign="top">';
          $data .= $CLICSHOPPING_Currencies->displayPrice($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], $CLICSHOPPING_Order->products[$i]['qty']);
          $data .= '</td>' . "\n";
          $data .= '</tr>' . "\n";
@@ -145,7 +146,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_STATUS');
+      return \defined('MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_STATUS');
     }
 
     public function install() {

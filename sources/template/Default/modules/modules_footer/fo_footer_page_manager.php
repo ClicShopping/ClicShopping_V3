@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class fo_footer_page_manager {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('module_footer_page_manager_title');
       $this->description = CLICSHOPPING::getDef('module_footer_page_manager_description');
 
-      if (defined('MODULES_FOOTER_PAGE_MANAGER_STATUS')) {
+      if (\defined('MODULES_FOOTER_PAGE_MANAGER_STATUS')) {
         $this->sort_order = MODULES_FOOTER_PAGE_MANAGER_SORT_ORDER;
         $this->enabled = (MODULES_FOOTER_PAGE_MANAGER_STATUS == 'True');
         $this->pages = MODULE_FOOTER_PAGE_MANAGER_DISPLAY_PAGES;
@@ -79,7 +79,7 @@
     }
 
     public function check() {
-      return defined('MODULES_FOOTER_PAGE_MANAGER_STATUS');
+      return \defined('MODULES_FOOTER_PAGE_MANAGER_STATUS');
     }
 
     public function install() {

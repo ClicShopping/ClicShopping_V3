@@ -16,8 +16,8 @@
   use ClicShopping\Sites\Common\HTMLOverrideCommon;
 
   class pi_products_info_reviews {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_products_info_reviews');
       $this->description = CLICSHOPPING::getDef('module_products_info_reviews_description');
 
-      if (defined('MODULE_PRODUCTS_INFO_REVIEWS_STATUS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_REVIEWS_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_REVIEWS_SORT_ORDER;
         $this->enabled = (MODULE_PRODUCTS_INFO_REVIEWS_STATUS == 'True');
       }
@@ -40,14 +40,11 @@
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
       if ($CLICSHOPPING_ProductsCommon->getID() && isset($_GET['Description']) && isset($_GET['Products'])) {
-
         $content_width = (int)MODULE_PRODUCTS_INFO_REVIEWS_CONTENT_WIDTH;
 
         $CLICSHOPPING_Db = Registry::get('Db');
         $CLICSHOPPING_Template = Registry::get('Template');
         $CLICSHOPPING_Language = Registry::get('Language');
-
-        $products_reviews_content = HTMLOverrideCommon::starHeaderTagRateYo();
 
 //*******************************************
 // products review
@@ -100,7 +97,7 @@
           $products_reviews_content .= '<div class="moduleProductsInfoReviewsTitle">';
           $products_reviews_content .= '<span class="page-title moduleProductsInfoReviewsTitle"><h3>' . CLICSHOPPING::getDef('heading_rewiews')  . ' ' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</h3></span>';
           $products_reviews_content .= '</div>';
-          $products_reviews_content .= '<div class="float-md-right">';
+          $products_reviews_content .= '<div class="float-end">';
           $products_reviews_content .= '';
           $products_reviews_content .= '</div>';
           $products_reviews_content .= '<div class="clearfix"></div>';
@@ -118,7 +115,7 @@
               $products_reviews_content .= '<span class="moduleProductsInfoTextReviewByName" itemprop="author">';
               $products_reviews_content .= '<a href="' . CLICSHOPPING::link(null, 'Products&ReviewsInfo&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $Qreviews->valueInt('reviews_id')) . '">' . CLICSHOPPING::getDef('text_review_by', ['customer_name' => $customer_name]) . '</a>';
               $products_reviews_content .= '</span>';
-              $products_reviews_content .= '<span class="float-md-right" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">';
+              $products_reviews_content .= '<span class="float-end" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">';
               $products_reviews_content .= '<meta itemprop="worstRating" content = "1">';
               $products_reviews_content .= '<span class="col-md-12 productsInfoReviewsRating" itemprop="ratingValue">' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</span>';
               $products_reviews_content .= '</span>';
@@ -128,7 +125,7 @@
               $products_reviews_content .= '</div>';
               $products_reviews_content .= '<div class="col-md-12">';
               $products_reviews_content .= '<div class="moduleProductsInfoReviewText" itemprop="description">';
-              $products_reviews_content .= HTML::breakString(HTML::outputProtected($Qreviews->value('reviews_text')), 60, '-<br />') . ((strlen($Qreviews->value('reviews_text')) >= MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS) ? '..' : '') . '<br />';
+              $products_reviews_content .= HTML::breakString(HTML::outputProtected($Qreviews->value('reviews_text')), 60, '-<br />') . ((\strlen($Qreviews->value('reviews_text')) >= MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS) ? '..' : '') . '<br />';
               $products_reviews_content .= '</div>';
               $products_reviews_content .= '</div>';
               $products_reviews_content .= '<hr>';
@@ -145,7 +142,7 @@
              $products_reviews_content .= '<div class="clearfix"></div>';
              $products_reviews_content .= '<div class="separator"></div>';
              $products_reviews_content .= '<span class="col-md-6">' . $details_button . '</span>';
-             $products_reviews_content .= '<span class="col-md-6 text-md-right">' . $write_button . '</span>';
+             $products_reviews_content .= '<span class="col-md-6 text-end">' . $write_button . '</span>';
            }
          }
 
@@ -154,7 +151,7 @@
           $products_reviews_content .= '<div class="separator"></div>';
           $products_reviews_content .= '<div class="col-md-12">';
           $products_reviews_content .= '<div class="moduleProductsInfoNoReview">' . CLICSHOPPING::getDef('text_info_no_reviews') . '</div>';
-          $products_reviews_content .= '<div class="text-md-right">' . $write_button . '</div>';
+          $products_reviews_content .= '<div class="text-end">' . $write_button . '</div>';
           $products_reviews_content .= '<div>';
         }
 
@@ -170,7 +167,7 @@
     }
 
     public function check() {
-      return defined('MODULE_PRODUCTS_INFO_REVIEWS_STATUS');
+      return \defined('MODULE_PRODUCTS_INFO_REVIEWS_STATUS');
     }
 
     public function install() {

@@ -16,9 +16,8 @@
   use ClicShopping\Sites\Shop\Pages\Account\Classes\Notifications;
 
   class ac_account_customers_notifications {
-
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -32,7 +31,7 @@
       $this->title = CLICSHOPPING::getDef('module_account_customers_notifications_title');
       $this->description = CLICSHOPPING::getDef('module_account_customers_newsletter_notifications_description');
 
-      if (defined('MODULE_ACCOUNT_CUSTOMERS_NOTIFICATIONS_TITLE_STATUS')) {
+      if (\defined('MODULE_ACCOUNT_CUSTOMERS_NOTIFICATIONS_TITLE_STATUS')) {
         $this->sort_order = MODULE_ACCOUNT_CUSTOMERS_NOTIFICATIONS_TITLE_SORT_ORDER;
         $this->enabled = (MODULE_ACCOUNT_CUSTOMERS_NOTIFICATIONS_TITLE_STATUS == 'True');
       }
@@ -42,7 +41,6 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if (isset($_GET['Account']) &&  isset($_GET['Notifications'])) {
-
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_NOTIFICATIONS_CONTENT_WIDTH;
         $global_notification = Notifications::getGlobalNotificationCustomer();
         $checkbox_notifications = HTML::checkboxField('product_global', '1', (($global_notification == '1') ? true : false));
@@ -80,7 +78,7 @@
     }
 
     public function check() {
-      return defined('MODULE_ACCOUNT_CUSTOMERS_NOTIFICATIONS_TITLE_STATUS');
+      return \defined('MODULE_ACCOUNT_CUSTOMERS_NOTIFICATIONS_TITLE_STATUS');
     }
 
     public function install() {

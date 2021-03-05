@@ -33,7 +33,7 @@
           <span
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title') . ' #' . (int)$order_id; ?></span>
           <span
-            class="col-md-9 text-md-right"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPING_Orders->link('Orders'), 'primary'); ?></span>
+            class="col-md-9 text-end"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPING_Orders->link('Orders'), 'primary'); ?></span>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
           <br/><?php echo HTML::checkboxField('restock') . ' ' . $CLICSHOPPING_Orders->getDef('text_info_restock_product_quantity'); ?>
           <br/><br/></div>
         <div class="separator"></div>
-        <div class="col-md-12 text-md-center">
+        <div class="col-md-12 text-center">
           <span><br/><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_delete'), null, null, 'danger', null, 'sm') . '&nbsp;</span><span>' . HTML::button($CLICSHOPPING_Orders->getDef('button_cancel'), null, $CLICSHOPPING_Orders->link('Edit&oID=' . $order_id), 'warning', null, 'sm'); ?></span>
         </div>
       </div>

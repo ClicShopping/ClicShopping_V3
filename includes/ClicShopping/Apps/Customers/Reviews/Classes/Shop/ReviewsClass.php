@@ -31,13 +31,13 @@
       $this->lang = Registry::get('Language');
       $this->customer = Registry::get('Customer');
 
-      if (defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS')) {
         $this->reviews_number_word = (int)MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS;
       } else {
         $this->reviews_number_word = 0;
       }
 
-      if (defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS')) {
+      if (\defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS')) {
         $this->reviews_number_comments = (int)MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS;
       } else {
         $this->reviews_number_comments = 0;
@@ -66,7 +66,6 @@
         $Qcheck->bindInt(':products_id', $this->productsCommon->getId());
         $Qcheck->bindInt(':languages_id', $this->lang->getId());
         $Qcheck->execute();
-
       } else {
         $Qcheck = $this->db->prepare('select count(r.reviews_id) as total
                                       from :table_reviews r,
@@ -185,7 +184,6 @@
         $Qhaspurchased->execute();
 
       } else {
-
         $Qhaspurchased = $CLICSHOPPING_Db->prepare('select count(*) as total
                                                     from :table_orders o,
                                                          :table_orders_products op,
@@ -213,7 +211,7 @@
     {
       $reviews_id = HTML::sanitize($id);
 
-      if (!is_null($reviews_id) &&  is_numeric($reviews_id)) {
+      if (!\is_null($reviews_id) &&  is_numeric($reviews_id)) {
         if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
           $Qreviews = $this->db->prepare('select r.reviews_id,
                                                 rd.reviews_text,

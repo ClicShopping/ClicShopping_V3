@@ -27,14 +27,14 @@
       $this->title = $this->app->getDef('module_sp_title');
       $this->short_title = $this->app->getDef('module_sp_short_title');
       $this->introduction = $this->app->getDef('module_sp_introduction');
-      $this->is_installed = defined('CLICSHOPPING_APP_SEC_DIR_PERMISSIONS_SP_STATUS') && (trim(CLICSHOPPING_APP_SEC_DIR_PERMISSIONS_SP_STATUS) != '');
+      $this->is_installed = \defined('CLICSHOPPING_APP_SEC_DIR_PERMISSIONS_SP_STATUS') && (trim(CLICSHOPPING_APP_SEC_DIR_PERMISSIONS_SP_STATUS) != '');
     }
 
     public function install()
     {
       parent::install();
 
-      if (defined('MODULE_MODULES_SEC_DIR_PERMISSIONS_INSTALLED')) {
+      if (\defined('MODULE_MODULES_SEC_DIR_PERMISSIONS_INSTALLED')) {
         $installed = explode(';', MODULE_MODULES_SEC_DIR_PERMISSIONS_INSTALLED);
       }
 

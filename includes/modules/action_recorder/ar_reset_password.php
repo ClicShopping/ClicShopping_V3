@@ -35,7 +35,7 @@
 
 
       if ($this->check()) {
-        if (defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_ATTEMPTS')) {
+        if (\defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_ATTEMPTS')) {
           $this->minutes = (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES;
           $this->attempts = (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_ATTEMPTS;
         }
@@ -66,7 +66,7 @@
       $Qcheck->bindInt(':limit_attempts', $this->attempts);
       $Qcheck->execute();
 
-      if (count($Qcheck->fetchAll()) == $this->attempts) {
+      if (\count($Qcheck->fetchAll()) == $this->attempts) {
         return false;
       }
 
@@ -90,7 +90,7 @@
 
     public function check()
     {
-      return defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES');
+      return \defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES');
     }
 
     public function install()

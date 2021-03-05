@@ -11,16 +11,26 @@
 
   namespace ClicShopping\OM\Is;
 
+  use EmailChecker\EmailChecker;
+
   class EmailAddress implements \ClicShopping\OM\IsInterface
   {
     public static function execute($value, bool $check_dns = false): bool
     {
-      if (empty($value) || (strlen($value) > 191)) {
+      if (empty($value) || (\strlen($value) > 191)) {
         return false;
       }
 
       if (filter_var($value, \FILTER_VALIDATE_EMAIL) === false) {
         return false;
+      }
+
+     if (ENTRY_EMAIL_ADDRESS_CHECKER == 'true') {
+        $checker = new EmailChecker();
+
+        if  ($checker->isValid($value) === false) {
+          return false;
+        }
       }
 
       if ($check_dns === true || ENTRY_EMAIL_ADDRESS_CHECK == 'true') {

@@ -41,7 +41,7 @@
       $option_id = HTML::sanitize($_POST['option_id']);
 
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $value_name = HTML::sanitize($value_name_array[$languages[$i]['id']]);
 
         $this->app->db->save('products_options_values', [

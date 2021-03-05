@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class bm_search {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_search_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_search_description');
 
-      if (defined('MODULE_BOXES_SEARCH_STATUS')) {
+      if (\defined('MODULE_BOXES_SEARCH_STATUS')) {
         $this->sort_order = MODULE_BOXES_SEARCH_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_SEARCH_STATUS == 'True');
         $this->pages = MODULE_BOXES_SEARCH_DISPLAY_PAGES;
@@ -57,9 +57,9 @@
 
       $output = HTML::form('quick_find', CLICSHOPPING::link(null, 'Search&Q'), 'post', 'id="quick_find"', ['session_id' => true]);
       $output .= '<div class="input-group">';
-      $output .= '<label for="inpuBoxeSearch" class="sr-only">' . CLICSHOPPING::getDef('module_boxes_search_box_title') . '</label>';
+      $output .= '<label for="inpuBoxeSearch" class="visually-hidden">' . CLICSHOPPING::getDef('module_boxes_search_box_title') . '</label>';
       $output .= HTML::inputField('keywords', '', 'aria-required="true" placeholder="' . CLICSHOPPING::getDef('module_boxes_search_box_title') . '"', 'search');
-      $output .= '<span class="input-group-btn"><button type="submit" class="btn btn-search btn-sm"><i class="fas fa-search"></i></button></span>';
+      $output .= '<span class="input-group-btn"><button type="submit" class="btn btn-search btn-sm"><i class="bi bi-search"></i></button></span>';
       $output .= '</div>';
       $output .= HTML::hiddenField('search_in_description', '1');
       $output .= '</form>';
@@ -79,7 +79,7 @@
     }
 
     public function  check() {
-      return defined('MODULE_BOXES_SEARCH_STATUS');
+      return \defined('MODULE_BOXES_SEARCH_STATUS');
     }
 
     public function  install() {

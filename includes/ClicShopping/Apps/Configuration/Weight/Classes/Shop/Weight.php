@@ -19,7 +19,7 @@
     protected $weight_classes = [];
     protected $precision = 2;
 
-    public function __construct($precision = null)
+    public function __construct(?int $precision = null)
     {
       if (is_int($precision)) {
         $this->precision = $precision;
@@ -54,7 +54,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (is_null($language_id)) {
+      if (\is_null($language_id)) {
         $Qweight = $CLICSHOPPING_Db->prepare('select weight_class_title
                                               from :table_weight_classes
                                               where weight_class_id = :weight_class_id
@@ -121,9 +121,9 @@
      * @param $unit_to
      * @return false|string
      */
-    public function convert($value,  $unit_from, $unit_to)
+    public function convert($value, $unit_from, $unit_to) :false|string
     {
-      if (!is_null($value)) {
+      if (!\is_null($value)) {
         if ($unit_from == $unit_to) {
           $convert = number_format($value, $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
         } else {

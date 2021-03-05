@@ -34,7 +34,7 @@
       $products_length_class_key = HTML::sanitize($_POST['products_length_class_key']);
       $products_length_class_id = HTML::sanitize($_POST['products_length_class_id']);
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $products_length_class_title_array = HTML::sanitize($_POST['products_length_class_title']);
         $language_id = $languages[$i]['id'];
 

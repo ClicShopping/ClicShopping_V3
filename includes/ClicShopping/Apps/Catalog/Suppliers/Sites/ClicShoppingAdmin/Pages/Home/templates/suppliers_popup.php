@@ -38,7 +38,7 @@
         <span
           class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/suppliers.gif', $CLICSHOPPING_Suppliers->getDef('heading_title'), '40', '40'); ?></span>
         <span class="col-md-7 pageHeading"><?php echo $CLICSHOPPING_Suppliers->getDef('heading_title'); ?></span>
-        <span class="col-md-4 text-md-right">
+        <span class="col-md-4 text-end">
                    <div><?php echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_insert'), null, null, 'success', null, 'md', null, 'simple-post'); ?></div>
                    <div id="simple-msg"></div>
                  </span>
@@ -50,13 +50,13 @@
 <div>
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
     <li
-      class="nav-item"><?php echo '<a href="#tab30" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Suppliers->getDef('tab_general') . '</a>'; ?></li>
+      class="nav-item"><?php echo '<a href="#tab30" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Suppliers->getDef('tab_general') . '</a>'; ?></li>
     <li
-      class="nav-item"><?php echo '<a href="#tab31" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Suppliers->getDef('tab_suppliers_address'); ?></a></li>
+      class="nav-item"><?php echo '<a href="#tab31" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Suppliers->getDef('tab_suppliers_address'); ?></a></li>
     <li
-      class="nav-item"><?php echo '<a href="#tab32" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Suppliers->getDef('tab_suppliers_note'); ?></a></li>
+      class="nav-item"><?php echo '<a href="#tab32" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Suppliers->getDef('tab_suppliers_note'); ?></a></li>
     <li
-      class="nav-item"><?php echo '<a href="#tab33" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Suppliers->getDef('tab_visuel'); ?></a></li>
+      class="nav-item"><?php echo '<a href="#tab33" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Suppliers->getDef('tab_visuel'); ?></a></li>
   </ul>
   <div class="tabsClicShopping">
     <div class="tab-content">
@@ -67,7 +67,7 @@
       ?>
       <div class="tab-pane active" id="tab30">
         <div class="col-md-12 mainTitle">
-          <div class="float-md-left"><?php echo $CLICSHOPPING_Suppliers->getDef('title_suppliers_general'); ?></div>
+          <div class="float-start"><?php echo $CLICSHOPPING_Suppliers->getDef('title_suppliers_general'); ?></div>
         </div>
         <div class="adminformTitle">
           <div class="col-md-12">
@@ -126,7 +126,7 @@
       <!-- ------------------------------------------------------------ //-->
       <div class="tab-pane" id="tab31">
         <div class="col-md-12 mainTitle">
-          <div class="float-md-left"><?php echo $CLICSHOPPING_Suppliers->getDef('title_suppliers_address'); ?></div>
+          <div class="float-start"><?php echo $CLICSHOPPING_Suppliers->getDef('title_suppliers_address'); ?></div>
         </div>
         <div class="adminformTitle">
           <div class="col-md-12">
@@ -197,7 +197,7 @@
           </div>
 
           <?php
-            for ($i = 0, $n = count($languages); $i < $n; $i++) {
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
               ?>
               <div class="col-md-12">
                 <div class="form-group row">
@@ -220,7 +220,7 @@
       <!-- ------------------------------------------------------------ //-->
       <div class="tab-pane" id="tab32">
         <div class="col-md-12 mainTitle">
-          <div class="float-md-left"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_general'); ?></div>
+          <div class="float-start"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_general'); ?></div>
         </div>
 
         <div class="adminformTitle">
@@ -245,7 +245,7 @@
       <!-- ------------------------------------------------------------ //-->
       <div class="tab-pane" id="tab33">
         <div class="col-md-12 mainTitle">
-          <div class="float-md-left"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_image'); ?></div>
+          <div class="float-start"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_image'); ?></div>
         </div>
         <div class="adminformTitle">
           <div>&nbsp;</div>

@@ -20,7 +20,7 @@
 //                      file not found                             //
 // ----------------------------------------------------------------//
 
-  if ($CLICSHOPPING_ProductsCommon->getProductsCount() < 1 || (is_null($CLICSHOPPING_ProductsCommon->getID())) || $CLICSHOPPING_ProductsCommon->getID() === false ) {
+  if ($CLICSHOPPING_ProductsCommon->getProductsCount() < 1 || (\is_null($CLICSHOPPING_ProductsCommon->getID())) || $CLICSHOPPING_ProductsCommon->getID() === false ) {
     header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
 ?>
  <section class="product" id="product">
@@ -28,14 +28,14 @@
     <div class="contentText">
       <div class="separator"></div>
       <div class="separator"></div>
-      <div class="alert alert-warning text-md-center" role="alert">
+      <div class="alert alert-warning text-center" role="alert">
          <h3><?php echo CLICSHOPPING::getDef('text_product_not_found'); ?></h3>
       </div>
       <div class="separator"></div>
       <div class="control-group">
-        <div class="controls">
+        <div>
           <div class="buttonSet">
-            <span class="float-md-right"><label for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(),'success'); ?></label></span>
+            <span class="float-end"><label for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(),'success'); ?></label></span>
           </div>
         </div>
       </div>

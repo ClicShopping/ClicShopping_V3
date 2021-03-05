@@ -34,7 +34,7 @@
       if (!empty($_POST['manufacturers_name'])) {
         $manufacturers_name = HTML::sanitize($_POST['manufacturers_name']);
 
-        if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
+        if (isset($_POST['manufacturers_image']) && !\is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
           $manufacturers_image = $_POST['manufacturers_image'];
 
           $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($manufacturers_image);
@@ -44,7 +44,7 @@
 
         $sql_data_array = ['manufacturers_name' => $manufacturers_name];
 
-        if (!is_null($manufacturers_image)) {
+        if (!\is_null($manufacturers_image)) {
           $insert_image_sql_data = ['manufacturers_image' => $manufacturers_image];
           $sql_data_array = array_merge($sql_data_array, $insert_image_sql_data);
         }
@@ -59,7 +59,7 @@
 
         $languages = $CLICSHOPPING_Language->getLanguages();
 
-        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
           $manufacturers_url_array = $_POST['manufacturers_url'];
           $language_id = $languages[$i]['id'];
 

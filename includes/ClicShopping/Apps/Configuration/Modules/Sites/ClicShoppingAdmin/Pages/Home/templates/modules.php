@@ -72,13 +72,13 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/products_unit.png', $CLICSHOPPING_Modules->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Modules->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
             <button type="button" class="btn btn-link"><a href="https://www.clicshopping.org/forum/files/" target="_blank" rel="noreferrer"><?php echo $CLICSHOPPING_Modules->getDef('button_marketplace'); ?></a></button>
             <?php echo HTML::button($CLICSHOPPING_Modules->getDef('button_extension'), null, CLICSHOPPING::link(null, 'A&Tools\Upgrade&Upgrade'), 'primary') ?>
 <?php
 
   if (isset($_GET['action']) && $_GET['action'] == 'edit') {
-    echo '<span class="cols-xs-3 float-right">';
+    echo '<span class="cols-xs-3 float-end">';
     echo HTML::button($CLICSHOPPING_Modules->getDef('button_cancel'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set), 'warning') . '&nbsp;';
     echo HTML::form('modules', $CLICSHOPPING_Modules->link('Modules&set=' . $set . '&module=' . $_GET['module'] . '&action=save'));
     echo HTML::button($CLICSHOPPING_Modules->getDef('button_update'), null, null, 'success');
@@ -95,7 +95,7 @@
   </div>
   <div class="separator"></div>
   <?php
-    $modules_installed = (defined($module_key) ? explode(';', constant($module_key)) : array());
+    $modules_installed = (\defined($module_key) ? explode(';', constant($module_key)) : array());
 
     $new_modules_counter = 0;
 
@@ -107,11 +107,11 @@
         if (!is_dir($module_directory . $file)) {
           if (substr($file, strrpos($file, '.')) === $file_extension) {
             if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
-              if (!in_array($file, $modules_installed)) {
+              if (!\in_array($file, $modules_installed)) {
                 $directory_array[] = $file;
               }
             } else {
-              if (in_array($file, $modules_installed)) {
+              if (\in_array($file, $modules_installed)) {
                 $directory_array[] = $file;
               } else {
                 $new_modules_counter++;
@@ -126,11 +126,11 @@
     if (isset($appModuleType)) {
       foreach (Apps::getModules($appModuleType) as $k => $v) {
         if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
-          if (!in_array($k, $modules_installed)) {
+          if (!\in_array($k, $modules_installed)) {
             $directory_array[] = $k;
           }
         } else {
-          if (in_array($k, $modules_installed)) {
+          if (\in_array($k, $modules_installed)) {
             $directory_array[] = $k;
           } else {
             $new_modules_counter++;
@@ -147,6 +147,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-name="sort_order"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -158,21 +160,21 @@
     <thead class="dataTableHeadingRow">
       <tr>
         <th data-field="modules" data-sortable="true"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_modules'); ?></th>
-        <th data-field="group" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_group'); ?></th>
-        <th data-field="sort_order" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_sort_order'); ?></th>
+        <th data-field="group" data-sortable="true"class="text-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_group'); ?></th>
+        <th data-field="sort_order" data-sortable="true"class="text-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_sort_order'); ?></th>
 
-        <th data-field="status" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_status'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="status" data-sortable="true"class="text-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_status'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
     <?php
     $installed_modules = [];
 
-    for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
+    for ($i = 0, $n = \count($directory_array); $i < $n; $i++) {
     $file = $directory_array[$i];
 
-    if (strpos($file, '\\') !== false) {
+    if (str_contains($file, '\\')) {
       $file_extension = '';
 
       $class = Apps::getModuleClass($file, $appModuleType);
@@ -224,7 +226,7 @@
 
       $keys_extra = [];
 
-      for ($j = 0, $k = count($module_keys); $j < $k; $j++) {
+      for ($j = 0, $k = \count($module_keys); $j < $k; $j++) {
 
         $Qkeys = $CLICSHOPPING_Db->get('configuration', [
           'configuration_title',
@@ -251,19 +253,19 @@
     ?>
       <tr>
         <td><?php echo $module->title; ?></td>
-        <td class="text-md-left"><?php echo $module->group; ?></td>
+        <td class="text-start"><?php echo $module->group; ?></td>
         <td
-          class="text-md-right"><?php if (in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
-        <td class="text-md-center">
+          class="text-end"><?php if (\in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
+        <td class="text-center">
           <?php
             if ($module->enabled == 'True') {
-              echo '<i class="fas fa-check fa-lg" aria-hidden="true"></i>';
+              echo '<i class="bi-check text-success"></i>';
             } else {
-              echo '<i class="fas fa-times fa-lg" aria-hidden="true"></i>';
+              echo '<i class="bi bi-x text-danger"></i>';
             }
           ?>
         </td>
-        <td class="text-md-right">
+        <td class="text-end">
           <?php
           if ($module->check() > 0) {
             echo HTML::link($CLICSHOPPING_Modules->link('Edit&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Modules->getDef('icon_edit'))) . '&nbsp;';
@@ -313,7 +315,7 @@
         if ($Qcheck->fetch() !== false) {
           $tbgroups_array = explode(';', $Qcheck->value('configuration_value'));
 
-          if (!in_array($module_type, $tbgroups_array)) {
+          if (!\in_array($module_type, $tbgroups_array)) {
             $tbgroups_array[] = $module_type;
             sort($tbgroups_array);
 

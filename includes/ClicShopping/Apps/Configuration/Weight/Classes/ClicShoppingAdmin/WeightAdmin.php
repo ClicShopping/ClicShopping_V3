@@ -57,7 +57,7 @@
      * @param $unit_to
      * @return string|void
      */
-    public function convert($value, $unit_from, $unit_to)
+    public function convert($value, $unit_from, $unit_to) :false|string
     {
       parent::convert($value, $unit_from, $unit_to);
     }
@@ -102,7 +102,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (!is_null($id)) {
+      if (!\is_null($id)) {
         $Qweight = $CLICSHOPPING_Db->prepare('select weight_class_title
                                                from :table_weight_classes
                                                where weight_class_id = :weight_class_id

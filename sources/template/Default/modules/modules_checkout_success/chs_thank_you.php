@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class chs_thank_you {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -27,8 +27,8 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_success_thank_you_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_success_thank_you_description');
 
-      if (defined('MODULE_CHECKOUT_SUCCESS_THANK_YOU_STATUS')) {
-        $this->sort_order = defined('MODULE_CHECKOUT_SUCCESS_THANK_YOU_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_THANK_YOU_SORT_ORDER : 0;
+      if (\defined('MODULE_CHECKOUT_SUCCESS_THANK_YOU_STATUS')) {
+        $this->sort_order = \defined('MODULE_CHECKOUT_SUCCESS_THANK_YOU_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_THANK_YOU_SORT_ORDER : 0;
         $this->enabled = (MODULE_CHECKOUT_SUCCESS_THANK_YOU_STATUS == 'True');
       }
     }
@@ -83,7 +83,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_SUCCESS_THANK_YOU_STATUS');
+      return \defined('MODULE_CHECKOUT_SUCCESS_THANK_YOU_STATUS');
     }
 
     public function install() {

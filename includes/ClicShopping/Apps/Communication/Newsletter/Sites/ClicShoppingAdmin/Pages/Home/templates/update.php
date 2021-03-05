@@ -45,7 +45,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/newsletters.gif', $CLICSHOPPING_Newsletter->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   if (isset($_GET['Update'])) {
     echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_cancel'), null, $CLICSHOPPING_Newsletter->link('Newsletter&page=' . $page . '&nID=' . $nID), 'warning') . '&nbsp;';
@@ -72,7 +72,7 @@
 
     $nInfo = new ObjectInfo($parameters);
 
-    if (isset($_GET['Update']) && !is_null($nID)) {
+    if (isset($_GET['Update']) && !\is_null($nID)) {
       $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', ['title',
         'content',
         'module',
@@ -122,7 +122,7 @@
       $dir->close();
     }
 
-    for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
+    for ($i = 0, $n = \count($directory_array); $i < $n; $i++) {
       $modules_array[] = ['id' => substr($directory_array[$i], 0, strrpos($directory_array[$i], '.')),
         'text' => substr($directory_array[$i], 0, strrpos($directory_array[$i], '.'))
       ];
@@ -134,7 +134,7 @@
     $values_customers_group_id[0] = ['id' => '0',
       'text' => $CLICSHOPPING_Newsletter->getDef('text_all_customers')
     ];
-    for ($i = 0, $n = count($customers_group); $i < $n; $i++) {
+    for ($i = 0, $n = \count($customers_group); $i < $n; $i++) {
       $values_customers_group_id[$i + 1] = ['id' => $customers_group[$i]['id'],
         'text' => $customers_group[$i]['text']
       ];
@@ -147,7 +147,7 @@
       'text' => $CLICSHOPPING_Newsletter->getDef('text_all_languages')
     ];
 
-    for ($i = 0, $n = count($languages); $i < $n; $i++) {
+    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
       $values_languages_id[$i + 1] = ['id' => $languages[$i]['id'],
         'text' => $languages[$i]['name']
       ];
@@ -155,10 +155,10 @@
   ?>
   <div id="newsletterTab" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
-      <li class="nav-item"><a href="#tab1" role="tab" data-toggle="tab"
+      <li class="nav-item"><a href="#tab1" role="tab" data-bs-toggle="tab"
                               class="nav-link active"><?php echo $CLICSHOPPING_Newsletter->getDef('tab_general'); ?></a>
       </li>
-      <li class="nav-item"><a href="#tab2" role="tab" data-toggle="tab"
+      <li class="nav-item"><a href="#tab2" role="tab" data-bs-toggle="tab"
                               class="nav-link"><?php echo $CLICSHOPPING_Newsletter->getDef('tab_description'); ?></a>
       </li>
     </ul>
@@ -269,18 +269,18 @@
             <div class="separator"></div>
             <div class="row">
               <span class="col-md-12">
-               <blockquote><i><a data-toggle="modal"
-                                 data-target="#myModalWysiwyg2"><?php echo $CLICSHOPPING_Newsletter->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
+               <blockquote><i><a data-bs-toggle="modal"
+                                 data-bs-target="#myModalWysiwyg2"><?php echo $CLICSHOPPING_Newsletter->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
                <div class="modal fade" id="myModalWysiwyg2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                     aria-hidden="true">
                  <div class="modal-dialog">
                    <div class="modal-content">
                      <div class="modal-header">
-                       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                       <button type="button" class="close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                        <h4 class="modal-title"
                            id="myModalLabel"><?php echo $CLICSHOPPING_Newsletter->getDef('text_help_wysiwyg'); ?></h4>
                      </div>
-                     <div class="modal-body text-md-center">
+                     <div class="modal-body text-center">
                        <img class="img-fluid"
                             src="<?php echo $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png'; ?>">
                      </div>

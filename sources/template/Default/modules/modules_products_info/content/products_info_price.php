@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
   <div class="card ModulesProductsInfoBackground">
@@ -30,8 +30,8 @@ use ClicShopping\OM\CLICSHOPPING;
           <span class="ModulesProductsInfoMinOrderQuandityProductsDisplay"><h3><?php echo $min_order_quantity_products_display; ?></h3></span>
         </div>
         <div class="separator"></div>
-        <div class="text-md-right ModulesProductsInfoQuantityMinOrderProductInfo">
-          <label for="Quantity Product" class="sr-only">Quantity Product</label>
+        <div class="text-end ModulesProductsInfoQuantityMinOrderProductInfo">
+          <label for="Quantity Product" class="visually-hidden"></label>
           <span class="ModulesProductsInfoQuantityMinOrderProductInfo"><?php echo $input_quantity; ?></span>
         </div>
         <div class="separator"></div>

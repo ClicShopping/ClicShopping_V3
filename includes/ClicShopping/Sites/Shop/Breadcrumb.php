@@ -68,10 +68,12 @@
       $array = $this->_pathArray;
 
       foreach($array as $k => $v) {
-        $itemlistelement[] = array('@type' => 'ListItem',
-            'position' => $k,
-            'item' => array('@id' => $v['link'],
-            'name' => strip_tags($v['title'])));
+        $itemlistelement[] = array(
+          '@type' => 'ListItem',
+          'position' => $k,
+          'item' => array('@id' => $v['link'],
+          'name' => strip_tags($v['title']))
+        );
       }
 
       $schema_breadcrumb = ['@context' => 'https://schema.org',
@@ -93,7 +95,7 @@
      */
     public function get(string $separator = null): string
     {
-      if (is_null($separator)) {
+      if (\is_null($separator)) {
         $separator = $this->_separator;
       }
 
@@ -215,7 +217,7 @@
 
 // add category names or the manufacturer name to the breadcrumb trail
       if (isset($cPath_array)) {
-        for ($i = 0, $n = count($cPath_array); $i < $n; $i++) {
+        for ($i = 0, $n = \count($cPath_array); $i < $n; $i++) {
 
           $Qcategories = $CLICSHOPPING_Db->get('categories_description', 'categories_name', ['categories_id' => (int)$cPath_array[$i],
               'language_id' => $CLICSHOPPING_Language->getId()
@@ -223,7 +225,7 @@
           );
 
           if ($Qcategories->fetch() !== false) {
-            $categories_url = $this->rewriteUrl->getCategoryTreeUrl(implode('_', array_slice($cPath_array, 0, ($i + 1))));
+            $categories_url = $this->rewriteUrl->getCategoryTreeUrl(implode('_', \array_slice($cPath_array, 0, ($i + 1))));
 
             $result = $CLICSHOPPING_Breadcrumb->add($Qcategories->value('categories_name'), $categories_url);
           } else {
@@ -240,7 +242,7 @@
         }
       }
 
-      if (is_null($result)) {
+      if (\is_null($result)) {
         return false;
       } else {
         return $result;

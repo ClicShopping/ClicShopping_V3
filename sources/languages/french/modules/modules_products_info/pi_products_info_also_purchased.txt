@@ -27,4 +27,4 @@
 
     button_details = Détails
     button_buy_now = Acheter
-    button_exhausted = Epuisé
+    button_sold_out = Epuisé

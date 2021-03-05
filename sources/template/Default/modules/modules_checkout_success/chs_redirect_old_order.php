@@ -13,8 +13,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class chs_redirect_old_order {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -27,8 +27,8 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_success_redirect_old_order_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_success_redirect_old_order_description');
 
-      if (defined('MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_STATUS')) {
-        $this->sort_order = defined('MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_SORT_ORDER : 0;
+      if (\defined('MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_STATUS')) {
+        $this->sort_order = \defined('MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_SORT_ORDER : 0;
         $this->enabled = (MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_STATUS == 'True');
       }
     }
@@ -47,7 +47,7 @@
 
           $order_id = $QLastorder->valueInt('orders_id');
 
-          if (!is_null($order_id)) {
+          if (!\is_null($order_id)) {
             $Qcheck = $CLICSHOPPING_Db->prepare('select 1 from orders
                                                  where orders_id = :orders_id
                                                  and date_purchased < date_sub(now() ),
@@ -69,7 +69,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_STATUS');
+      return \defined('MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_STATUS');
     }
 
     public function install()  {

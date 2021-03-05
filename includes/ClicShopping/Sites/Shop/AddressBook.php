@@ -19,17 +19,17 @@
 
     /*
     * Return a pecific customer address
-    * @param : $id customer_id
-    * @param : $address_book_id , id of address book
+    * @param : int|null $id customer_id
+    * @param : int|null$address_book_id , id of address book
     * @return array $Qaddresses
     * public
     */
-    public static function getAddressCustomer($customers_id = null, int $address_book_id)
+    public static function getAddressCustomer(int|null $customers_id = null, int|null $address_book_id = null)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      if (is_null($customers_id)) {
+      if (\is_null($customers_id)) {
         $customers_id = $CLICSHOPPING_Customer->getID();
       }
 
@@ -74,7 +74,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Address = Registry::get('Address');
 
-      if (is_array($address_id) && !empty($address_id)) {
+      if (\is_array($address_id) && !empty($address_id)) {
         return $CLICSHOPPING_Address->addressFormat($address_id['address_format_id'], $address_id, $html, $boln, $eoln);
       }
 

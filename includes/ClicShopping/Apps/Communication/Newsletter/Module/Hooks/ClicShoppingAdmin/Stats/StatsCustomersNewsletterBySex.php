@@ -29,7 +29,10 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/StatsCustomersNewsletterBySex');
     }
 
-    private function statsNewsletterCustomersMen()
+    /**
+     * @return float|null
+     */
+    private function statsNewsletterCustomersMen() :?float
     {
       $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS avgage
                                                            from :table_customers
@@ -40,15 +43,17 @@
 
       $QstatAnalyseCustomersMan->execute();
 
-      if (!is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
+      if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
         $statAnalyseCustomersMan = $QstatAnalyseCustomersMan->valueDecimal('avgage');
       }
 
       return $statAnalyseCustomersMan;
     }
 
-
-    private function statsNewsletterCustomersWomen()
+    /**
+     * @return float|null
+     */
+    private function statsNewsletterCustomersWomen() :?float
     {
       $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS avgage
                                                               from :table_customers
@@ -59,30 +64,32 @@
 
       $QstatAnalyseCustomersWomen->execute();
 
-      if (!is_null($QstatAnalyseCustomersWomen->valueDecimal('avgage'))) {
+      if (!\is_null($QstatAnalyseCustomersWomen->valueDecimal('avgage'))) {
         $statAnalyseCustomersWomen = $QstatAnalyseCustomersWomen->valueDecimal('avgage');
       }
 
       return $statAnalyseCustomersWomen;
     }
 
-
-    public function execute()
+    /**
+     * @return string
+     */
+    public function display() :string
     {
-      if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 
       $output = '
-  <div class="card col-md-2 cardStatsPrimary">
-    <div class="card-block">
+  <div class="col-md-2 m-1">
+    <div class="card cardStatsPrimary">
       <h4 class="card-title StatsTitle">' . $this->app->getDef('text_average_newsletter') . '</h4>
       <div class="card-text">
         <div class="col-sm-12">
-          <span class="float-md-left">
-            <i class="fas fa-transgender fa-2x" aria-hidden="true"></i>
+          <span class="float-start">
+            <i class="bi bi-person-fill"></i>
           </span>
-          <span class="float-md-right">
+          <span class="float-end">
             <div class="StatsValue">' . $this->statsNewsletterCustomersMen() . '% ' . $this->app->getDef('text_male') . '</div>
             <div class="StatsValue">' . $this->statsNewsletterCustomersWomen() . '% ' . $this->app->getDef('text_female') . '</div>
           </span>

@@ -71,35 +71,39 @@
           <div
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title'); ?></div>
           <div class="col-md-7">
-           <span class="col-md-5 float-md-left">
+           <span class="col-md-5 float-start">
 <?php
-  echo HTML::form('orders', $CLICSHOPPING_Orders->link('Orders'), 'post', 'class="form-inline" role="form"', ['session_id' => true]);
+  echo HTML::form('orders', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"', ['session_id' => true]);
   echo HTML::inputField('orders_id', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Orders->getDef('heading_title_search') . '"');
   echo HTML::hiddenField('action', 'edit');
   echo '</form>';
 ?>
             </span>
-            <span class="col-md-4 float-md-left">
+            <span class="col-md-4 float-start">
 <?php
   // Permettre l'affichage des couleurs des groupes en mode B2B
   if (MODE_B2B_B2C == 'true') {
-    echo HTML::form('grouped', $CLICSHOPPING_Orders->link('Orders'), 'post', 'class="form-inline" role="form"');
+    echo HTML::form('grouped', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"');
     echo HTML::selectField('customers_group_id', GroupsB2BAdmin::getCustomersGroup($CLICSHOPPING_Orders->getDef('visitor_name'), null), '', 'onchange="this.form.submit();"');
     echo '</form>';
   }
 ?>
             </span>
-            <span class="col-md-3 float-md-left">
+            <span class="col-md-3 float-start">
 <?php
-  echo HTML::form('status', $CLICSHOPPING_Orders->link('Orders'), 'post', 'class="form-inline" role="form"', ['session_id' => true]);
-  echo HTML::selectMenu('status', array_merge(array(array('id' => '0', 'text' => $CLICSHOPPING_Orders->getDef('text_all_orders'))), $orders_statuses), '', 'onchange="this.form.submit();"');
+  echo HTML::form('status', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"', ['session_id' => true]);
+  echo HTML::selectField('status', array_merge(array(array('id' => '0', 'text' => $CLICSHOPPING_Orders->getDef('text_all_orders'))), $orders_statuses), '', 'onchange="this.form.submit();"');
   echo '</form>';
 ?>
             </span>
           </div>
-          <div class="cleafix"></div>
-          <div
-            class="col-md-2 text-md-right"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_reset'), null, $CLICSHOPPING_Orders->link('Orders'), 'warning'); ?></div>
+<?php
+          if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($_POST['status'])) {
+?>
+          <div class="col-md-2 text-end"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_reset'), null, $CLICSHOPPING_Orders->link('Orders'), 'warning'); ?></div>
+<?php
+  }
+?>
         </div>
       </div>
     </div>
@@ -110,8 +114,10 @@
   <!-- ################# -->
   <div class="row">
     <div class="col-md-12">
-      <div class="card-deck">
-        <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsOrdersStatus'); ?>
+      <div class="card card-block headerCard">
+        <div class="row">
+          <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsOrdersStatus', null, 'display'); ?>
+        </div>
       </div>
     </div>
   </div>
@@ -120,6 +126,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-name="orders"
     data-sort-order="desc"
     data-toolbar="#toolbar"
@@ -137,7 +145,7 @@
       <?php
         if (MODE_B2B_B2C == 'true') {
           ?>
-          <th data-field="group" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_color_group'); ?></th>
+          <th data-field="group" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_color_group'); ?></th>
           <?php
         } else {
           ?>
@@ -145,12 +153,12 @@
           <?php
         }
       ?>
-      <th data-field="order_total" class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_order_total'); ?></th>
-      <th data-field="dae_purchased" class="text-md-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_date_purchased'); ?></th>
-      <th data-field="status" data-sortable="true" class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_status'); ?>&nbsp;</th>
-      <th data-field="erp" class="text-md-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_erp'); ?>&nbsp;</th>
-      <th data-field="realised_by"class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_realised_by'); ?>&nbsp;</th>
-      <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_action'); ?>&nbsp;</th>
+      <th data-field="order_total" class="text-end"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_order_total'); ?></th>
+      <th data-field="dae_purchased" class="text-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_date_purchased'); ?></th>
+      <th data-field="status" data-sortable="true" class="text-end"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_status'); ?>&nbsp;</th>
+      <th data-field="erp" class="text-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_erp'); ?>&nbsp;</th>
+      <th data-field="realised_by"class="text-end"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_realised_by'); ?>&nbsp;</th>
+      <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_action'); ?>&nbsp;</th>
     </tr>
     </thead>
     <tbody>
@@ -203,8 +211,7 @@
         $Qorders->bindValue(':class1', 'TO'); //total order
 
       } elseif (isset($_POST['customers_group_id'])) {
-        $customers_group_id = (int)$_POST['customers_group_id'];
-
+        $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
         $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
                                                                                 o.customers_id,
                                                                                 o.customers_name,
@@ -333,7 +340,6 @@
         $Qorders->bindInt(':orders_id', $orders_id);
         $Qorders->bindValue(':class', 'ot_total');
         $Qorders->bindValue(':class1', 'TO');
-
       } else {
         $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS  o.orders_id,
                                                                                   o.customers_id,
@@ -382,7 +388,7 @@
           $Qcustomers->bindInt(':customers_id', $Qorders->valueInt('customers_id'));
           $Qcustomers->execute();
 
-          // select the last update by the admin name
+// select the last update by the admin name
           $Qhistory = $CLICSHOPPING_Orders->db->prepare('select osh.admin_user_name,
                                                                 osh.orders_id,
                                                                 o.orders_id,
@@ -436,11 +442,11 @@
 
           if ($Qcustomers->value('customer_guest_account') == 0) {
             ?>
-            <td class="text-md-center" width="15"></td>
+            <td class="text-center" width="15"></td>
             <?php
           } else {
             ?>
-            <td class="text-md-center" width="15"><i class="fas fa-check fa-lg" aria-hidden="true"></i></td>
+            <td class="text-center" width="15"><i class="bi-check text-success"></i></td>
             <?php
           }
 
@@ -448,7 +454,7 @@
           if (MODE_B2B_B2C == 'true') {
             if ($Qorders->valueInt('customers_group_id') != 0) {
               ?>
-              <td class="text-md-center">
+              <td class="text-center">
                 <table width="15" cellspacing="0" cellpadding="0" border="0">
                   <tr>
                     <td bgcolor="<?php echo $Qcolor->value('color_bar'); ?>"></td>
@@ -467,60 +473,60 @@
             <?php
           }
           ?>
-          <td class="text-md-right"><?php echo strip_tags($Qorders->value('order_total')); ?></td>
+          <td class="text-end"><?php echo strip_tags($Qorders->value('order_total')); ?></td>
           <?php
-          if (!is_null($Qorders->value('date_purchased'))) {
-            echo '<td class="text-md-center">' . DateTime::toShort($Qorders->value('date_purchased')) . '</td>';
+          if (!\is_null($Qorders->value('date_purchased'))) {
+            echo '<td class="text-center">' . DateTime::toShort($Qorders->value('date_purchased')) . '</td>';
           } else {
-            echo '<td class="text-md-center"></td>';
+            echo '<td class="text-center"></td>';
           }
 
           if ($Qorders->valueInt('orders_status_id') == 1) {
             ?>
-            <td class="text-md-right"><span
-                class="badge badge-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+            <td class="text-end"><span
+                class="badge bg-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
             <?php
           } elseif ($Qorders->valueInt('orders_status') == 2) {
             ?>
-            <td class="text-md-right"><span
-                class="badge badge-primary"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+            <td class="text-end"><span
+                class="badge bg-primary"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
             <?php
           } elseif ($Qorders->valueInt('orders_status_id') == 3) {
             ?>
-            <td class="text-md-right"><span
-                class="badge badge-success"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+            <td class="text-end"><span
+                class="badge bg-success"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
             <?php
           } elseif ($Qorders->valueInt('orders_status_id') == 4) {
             ?>
-            <td class="text-md-right"><span
-                class="badge badge-danger"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+            <td class="text-end"><span
+                class="badge bg-danger"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
             <?php
           } else {
             ?>
-            <td class="text-md-right"><span
-                class="badge badge-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+            <td class="text-end"><span
+                class="badge bg-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
             <?php
           }
 
           if ($Qorders->valueInt('erp_invoice') == 1) {
             ?>
             <td
-              class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_order.png', $CLICSHOPPING_Orders->getDef('image_orders_erp')); ?></td>
+              class="text-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_order.png', $CLICSHOPPING_Orders->getDef('image_orders_erp')); ?></td>
             <?php
           } elseif ($Qorders->valueInt('erp_invoice') == 2) {
             ?>
             <td
-              class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_manual_erp')); ?></td>
+              class="text-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_manual_erp')); ?></td>
             <?php
           } elseif ($Qorders->valueInt('erp_invoice') == 3) {
             ?>
             <td
-              class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_erp')); ?></td>
+              class="text-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_erp')); ?></td>
             <?php
           } elseif ($Qorders->valueInt('erp_invoice') == 4) {
             ?>
             <td
-              class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice_cancelled.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_cancel_erp')); ?></td>
+              class="text-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice_cancelled.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_cancel_erp')); ?></td>
             <?php
           } else {
             ?>
@@ -528,8 +534,8 @@
             <?php
           }
           ?>
-          <td class="text-md-right"><?php echo $Qhistory->value('admin_user_name'); ?></td>
-          <td class="text-md-right">
+          <td class="text-end"><?php echo $Qhistory->value('admin_user_name'); ?></td>
+          <td class="text-end">
             <?php
               echo HTML::link(ClicShopping::link('index.php?A&Customers\Customers&Edit&cID=' . $Qorders->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_Orders->getDef('icon_edit_customer')));
               echo '&nbsp;';
@@ -575,9 +581,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qorders->getPageSetLabel($CLICSHOPPING_Orders->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qorders->getPageSetLabel($CLICSHOPPING_Orders->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qorders->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qorders->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

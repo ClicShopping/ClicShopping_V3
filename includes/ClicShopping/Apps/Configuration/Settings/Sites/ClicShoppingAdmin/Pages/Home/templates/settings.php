@@ -41,6 +41,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-toolbar="#toolbar"
     data-buttons-class="primary"
     data-show-toggle="true"
@@ -51,7 +53,7 @@
       <tr>
         <th data-field="title"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_title'); ?></th>
         <th data-field="value"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_value'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -73,7 +75,7 @@
         ?>
         <tr>
           <td><?php echo $Qconfiguration->value('configuration_title'); ?></td>
-          <td><?php echo htmlspecialchars($cfgValue); ?></td>
+          <td><?php echo htmlspecialchars($cfgValue, ENT_QUOTES | ENT_HTML5); ?></td>
           <td>
             <script>
                 $(document).ready(function () {
@@ -84,9 +86,9 @@
                 });
             </script>
             <a
-              href="<?php echo $CLICSHOPPING_Settings->link('SettingsPopUp&Save&gID=' . $_GET['gID'] . '&cID=' . $Qconfiguration->valueInt('configuration_id')); ?>"
-              data-toggle="modal" data-refresh="true"
-              data-target="#myModal_<?php echo $Qconfiguration->valueInt('configuration_id'); ?>"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Settings->getDef('icon_edit')); ?></a>
+              href="<?php echo $CLICSHOPPING_Settings->link('SettingsPopUp&Save&gID=' . HTML::sanitize($_GET['gID']) . '&cID=' .  HTML::sanitize($Qconfiguration->valueInt('configuration_id'))); ?>"
+              data-bs-toggle="modal" data-refresh="true"
+              data-bs-target="#myModal_<?php echo $Qconfiguration->valueInt('configuration_id'); ?>"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Settings->getDef('icon_edit')); ?></a>
             <div class="modal fade" id="myModal_<?php echo $Qconfiguration->valueInt('configuration_id'); ?>"
                  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">

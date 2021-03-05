@@ -379,7 +379,7 @@ class TTFParser
 	{
 		if(!isset($this->glyphs[$id]['ssid']))
 		{
-			$this->glyphs[$id]['ssid'] = count($this->subsettedGlyphs);
+			$this->glyphs[$id]['ssid'] = \count($this->subsettedGlyphs);
 			$this->subsettedGlyphs[] = $id;
 			if(isset($this->glyphs[$id]['components']))
 			{
@@ -411,7 +411,7 @@ class TTFParser
 		sort($chars);
 		$segments = array();
 		$segment = array($chars[0], $chars[0]);
-		for($i=1;$i<count($chars);$i++)
+		for($i=1;$i<\count($chars);$i++)
 		{
 			if($chars[$i]>$segment[1]+1)
 			{
@@ -423,7 +423,7 @@ class TTFParser
 		}
 		$segments[] = $segment;
 		$segments[] = array(0xFFFF, 0xFFFF);
-		$segCount = count($segments);
+		$segCount = \count($segments);
 
 		// Build a Format 4 subtable
 		$startCount = array();
@@ -489,7 +489,7 @@ class TTFParser
 	function BuildHhea()
 	{
 		$this->LoadTable('hhea');
-		$numberOfHMetrics = count($this->subsettedGlyphs);
+		$numberOfHMetrics = \count($this->subsettedGlyphs);
 		$data = substr_replace($this->tables['hhea']['data'], pack('n',$numberOfHMetrics), 4+15*2, 2);
 		$this->SetTable('hhea', $data);
 	}
@@ -550,7 +550,7 @@ class TTFParser
 	function BuildMaxp()
 	{
 		$this->LoadTable('maxp');
-		$numGlyphs = count($this->subsettedGlyphs);
+		$numGlyphs = \count($this->subsettedGlyphs);
 		$data = substr_replace($this->tables['maxp']['data'], pack('n',$numGlyphs), 4, 2);
 		$this->SetTable('maxp', $data);
 	}
@@ -561,7 +561,7 @@ class TTFParser
 		if($this->glyphNames)
 		{
 			// Version 2.0
-			$numberOfGlyphs = count($this->subsettedGlyphs);
+			$numberOfGlyphs = \count($this->subsettedGlyphs);
 			$numNames = 0;
 			$names = '';
 			$data = $this->Read(2*4+2*2+5*4);
@@ -598,7 +598,7 @@ class TTFParser
 			if(isset($this->tables[$tag]))
 				$tags[] = $tag;
 		}
-		$numTables = count($tags);
+		$numTables = \count($tags);
 		$offset = 12 + 16*$numTables;
 		foreach($tags as $tag)
 		{

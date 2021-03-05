@@ -119,8 +119,6 @@ entry_cellular_phone_number_error = Votre numero de telephone portable doit cont
 entry_cellular_phone_number_error_pro = Votre numero de telephone portable doit contenir un minimum de {{min_length}} caracteres.
 entry_phone_dgrp = Votre numéro de téléphone portable est important pour que l'on puisse vous contacter ultérieurement (problème payment, expédition ...)
 
-entry_fax_number_error =
-entry_fax_number_text =
 entry_newsletter_text =
 entry_newsletter_error =
 entry_password_error = Votre mot de passe doit contenir un minimum de {{min_length}} caracteres.

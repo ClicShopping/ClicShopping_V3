@@ -66,7 +66,7 @@
         }
       }
 
-      if (!is_null($result) && is_array($result)) {
+      if (!\is_null($result) && \is_array($result)) {
         foreach ($result as $value) {
           echo $value;
         }

@@ -26,23 +26,23 @@
     {
       $this->lang = Registry::get('Language');
 
-      if (defined('MODULE_SHIPPING_INSTALLED') && !is_null(MODULE_SHIPPING_INSTALLED)) {
+      if (\defined('MODULE_SHIPPING_INSTALLED') && !\is_null(MODULE_SHIPPING_INSTALLED)) {
         $this->modules = explode(';', MODULE_SHIPPING_INSTALLED);
 
         $include_modules = [];
 
         $code = null;
 
-        if (isset($module) && is_array($module) && isset($module['id'])) {
-          if (strpos($module['id'], '\\') !== false) {
+        if (isset($module) && \is_array($module) && isset($module['id'])) {
+          if (str_contains($module['id'], '\\')) {
             list($vendor, $app, $module) = explode('\\', $module['id']);
 
             $code = $vendor . '\\' . $app . '\\' . $module;
           }
         }
 
-        if (isset($code) && (in_array($code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($code, $this->modules))) {
-          if (strpos($code, '\\') !== false) {
+        if (isset($code) && (\in_array($code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || \in_array($code, $this->modules))) {
+          if (str_contains($code, '\\')) {
             $class = Apps::getModuleClass($code, 'Shipping');
 
             $include_modules[] = [
@@ -52,7 +52,7 @@
           }
         } else {
           foreach ($this->modules as $value) {
-            if (strpos($value, '\\') !== false) {
+            if (str_contains($value, '\\')) {
               $class = Apps::getModuleClass($value, 'Shipping');
 
               $include_modules[] = [
@@ -63,8 +63,8 @@
           }
         }
 
-        for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
-          if (strpos($include_modules[$i]['class'], '\\') !== false) {
+        for ($i = 0, $n = \count($include_modules); $i < $n; $i++) {
+          if (str_contains($include_modules[$i]['class'], '\\')) {
             Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
           }
         }
@@ -81,7 +81,7 @@
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $shipping_weight = 1;
 
-      if (is_array($this->modules)) {
+      if (\is_array($this->modules)) {
         $shipping_weight = $CLICSHOPPING_ShoppingCart->getWeight();
 
         if (SHIPPING_BOX_WEIGHT >= ($shipping_weight * (SHIPPING_BOX_PADDING / 100))) {
@@ -109,14 +109,14 @@
     {
       $quotes_array = [];
 
-      if (is_array($this->modules)) {
+      if (\is_array($this->modules)) {
         $include_quotes = [];
 
         foreach ($this->modules as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
 
-            if (!is_null($module)) {
+            if (!\is_null($module)) {
               if (($module == $value) && ($obj->enabled)) {
                 $include_quotes[] = $value;
               }
@@ -126,14 +126,14 @@
           }
         }
 
-        $size = count($include_quotes);
+        $size = \count($include_quotes);
 
         for ($i = 0; $i < $size; $i++) {
-          if (strpos($include_quotes[$i], '\\') !== false) {
+          if (str_contains($include_quotes[$i], '\\')) {
             $quotes = Registry::get('Shipping_' . str_replace('\\', '_', $include_quotes[$i]))->quote($method);
           }
 
-          if (is_array($quotes)) {
+          if (\is_array($quotes)) {
             $quotes_array[] = $quotes;
           }
         }
@@ -147,12 +147,12 @@
     public function getFirst()
     {
       foreach ($this->modules as $value) {
-        if (strpos($value, '\\') !== false) {
+        if (str_contains($value, '\\')) {
           $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
         }
         if ($obj->enabled) {
           foreach ($obj->quotes['methods'] as $method) {
-            if (isset($method['cost']) && !is_null($method['cost'])) {
+            if (isset($method['cost']) && !\is_null($method['cost'])) {
               return [
                 'id' => $obj->quotes['id'] . '_' . $method['id'],
                 'title' => $obj->quotes['module'] . (isset($method['title']) && !empty($method['title']) ? ' (' . $method['title'] . ')' : ''),
@@ -171,12 +171,12 @@
      */
     public function getCheapest()
     {
-      if (is_array($this->modules)) {
+      if (\is_array($this->modules)) {
         $rates = [];
         $obj = [];
 
         foreach ($this->modules as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
           }
 
@@ -184,8 +184,8 @@
             if ($obj->enabled) {
               $quotes = $obj->quotes;
 
-              for ($i = 0, $n = count($quotes['methods'] ?: []); $i < $n; $i++) {
-                if (isset($quotes['methods'][$i]['cost']) && !is_null($quotes['methods'][$i]['cost'])) {
+              for ($i = 0, $n = \count($quotes['methods'] ?: []); $i < $n; $i++) {
+                if (isset($quotes['methods'][$i]['cost']) && !\is_null($quotes['methods'][$i]['cost'])) {
                   $rates[] = [ 
                     'id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
                     'title' => $quotes['module'] . (isset($quotes['methods'][$i]['title']) && !empty($quotes['methods'][$i]['title']) ? ' (' . $quotes['methods'][$i]['title'] . ')' : ''),
@@ -200,8 +200,8 @@
 
         $cheapest = false;
 
-        for ($i = 0, $n = count($rates); $i < $n; $i++) {
-          if (is_array($cheapest)) {
+        for ($i = 0, $n = \count($rates); $i < $n; $i++) {
+          if (\is_array($cheapest)) {
             if ($rates[$i]['cost'] < $cheapest['cost']) {
               $cheapest = $rates[$i];
             }
@@ -224,12 +224,12 @@
 
       $modules_array = explode(';', MODULE_SHIPPING_INSTALLED);
 
-      for ($i = 0, $n = count($modules_array); $i < $n; $i++) {
+      for ($i = 0, $n = \count($modules_array); $i < $n; $i++) {
         $m = $modules_array[$i];
 
         $CLICSHOPPING_SM = null;
 
-        if (strpos($m, '\\') !== false) {
+        if (str_contains($m, '\\')) {
           list($vendor, $app, $module) = explode('\\', $m);
 
           $module = $vendor . '\\' . $app . '\\' . $module;

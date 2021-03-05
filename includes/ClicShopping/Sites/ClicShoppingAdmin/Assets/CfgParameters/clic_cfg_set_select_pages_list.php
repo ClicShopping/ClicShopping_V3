@@ -19,7 +19,7 @@
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-    $name = ((!is_null($key)) ? 'configuration[' . $key . '][]' : 'configuration_value');
+    $name = ((!\is_null($key)) ? 'configuration[' . $key . '][]' : 'configuration_value');
     $select_array = $CLICSHOPPING_Template->getListCatalogFilesNotIncluded();
     sort($select_array);
 
@@ -37,7 +37,7 @@
     $string .= '<p><strong>&nbsp;&nbsp;' . CLICSHOPPING::getDef('text_one_by_one') . '</strong><br />';
     $string .= HTML::checkboxField('CheckAll', null, null, 'id="CheckAll" class="CheckAll"') . '<label id="CheckAllLabel" for="CheckAll">' . CLICSHOPPING::getDef('text_chek_all') . '</label></p>';
 
-    for ($i = 0, $n = count($select_array); $i < $n; $i++) {
+    for ($i = 0, $n = \count($select_array); $i < $n; $i++) {
       $string .= '&nbsp;&nbsp;<input type="checkbox" id="file_' . $i . '" class="ThisPage" name="' . $name . '" value="' . $select_array[$i] . ';"';
       if (isset($selected_array)) {
         foreach ($selected_array as $value) {

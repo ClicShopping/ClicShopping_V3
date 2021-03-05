@@ -163,7 +163,7 @@
 
     public function getAll($id = null)
     {
-      if (!is_null($id)) {
+      if (!\is_null($id)) {
         $Qmanufacturer = $this->db->prepare('select m.manufacturers_id as id,
                                                      m.manufacturers_name as name,
                                                      m.manufacturers_image as image,

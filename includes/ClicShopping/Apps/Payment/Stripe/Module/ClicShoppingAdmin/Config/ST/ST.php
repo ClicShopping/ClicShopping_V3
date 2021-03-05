@@ -22,13 +22,13 @@
         $this->title = $this->app->getDef('module_stripe_title');
         $this->short_title = $this->app->getDef('module_stripe_short_title');
         $this->introduction = $this->app->getDef('module_stripe_introduction');
-        $this->is_installed = defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && (trim(CLICSHOPPING_APP_STRIPE_ST_STATUS) != '');
+        $this->is_installed = \defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && (trim(CLICSHOPPING_APP_STRIPE_ST_STATUS) != '');
     }
 
     public function install() {
       parent::install();
 
-      if (defined('MODULE_PAYMENT_INSTALLED')) {
+      if (\defined('MODULE_PAYMENT_INSTALLED')) {
         $installed = explode(';', MODULE_PAYMENT_INSTALLED);
       }
 

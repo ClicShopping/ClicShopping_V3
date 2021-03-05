@@ -34,11 +34,11 @@
 
     public function display(): string
     {
-      if (!defined('CLICSHOPPING_APP_ORDERS_OD_STATUS') || CLICSHOPPING_APP_ORDERS_OD_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS') || CLICSHOPPING_APP_ORDERS_OD_STATUS == 'False') {
         return false;
       }
 
-      $output = HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders'), null, 'class="btn btn-success btn-sm" role="button"><span class="fas fa-bookmark" title="' . $this->app->getDef('heading_short_orders') . '"') . ' ';
+      $output = HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders'), null, 'class="btn btn-success btn-sm" role="button"><span class="bi bi-bag-check-fill" title="' . $this->app->getDef('heading_short_orders') . '"') . ' ';
 
       return $output;
     }

@@ -38,7 +38,7 @@
       $this->title = $this->app->getDef('module_admin_dashboard_orders_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_orders_app_description');
 
-      if (defined('MODULE_ADMIN_DASHBOARD_ORDERS_APP_STATUS')) {
+      if (\defined('MODULE_ADMIN_DASHBOARD_ORDERS_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_ORDERS_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_ORDERS_APP_STATUS == 'True');
       }
@@ -82,6 +82,8 @@
       $output .= '<table
         id="table"
         data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
         data-sort-name="date"
         data-sort-order="asc"
         data-toolbar="#toolbar"
@@ -92,12 +94,12 @@
       $output .= '<thead class="dataTableHeadingRow">';
       $output .= '<tr>';
       $output .= '<th data-field="date">' . $this->app->getDef('module_admin_dashboard_orders_app_date') . '</th>';
-      $output .= '<th data-field="order" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order') . '</th>';
-      $output .= '<th data-field="language" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_language') . '</th>';
-      $output .= '<th data-field="total" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_total') . '</th>';
-      $output .= '<th data-field="erp" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_erp_status') . '</th>';
-      $output .= '<th data-field="status" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order_status') . '</th>';
-      $output .= '<th data-field="action" data-switchable="false" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order_action') . '</th>';
+      $output .= '<th data-field="order" class="text-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order') . '</th>';
+      $output .= '<th data-field="language" class="text-center">' . $this->app->getDef('module_admin_dashboard_orders_app_language') . '</th>';
+      $output .= '<th data-field="total" class="text-center">' . $this->app->getDef('module_admin_dashboard_orders_app_total') . '</th>';
+      $output .= '<th data-field="erp" class="text-center">' . $this->app->getDef('module_admin_dashboard_orders_app_erp_status') . '</th>';
+      $output .= '<th data-field="status" class="text-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order_status') . '</th>';
+      $output .= '<th data-field="action" data-switchable="false" class="text-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order_action') . '</th>';
       $output .= '</tr>';
       $output .= '</thead>';
       $output .= '<tbody>';
@@ -110,15 +112,15 @@
           '    <td>' . strip_tags($orders['order_total']) . '</td>';
 
         if ($orders['erp_invoice'] == 1) {
-          $output .= ' <td class="text-md-center">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_order.png', $this->app->getDef('image_orders_erp')) . '</td>';
+          $output .= ' <td class="text-center">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_order.png', $this->app->getDef('image_orders_erp')) . '</td>';
         } elseif ($orders['erp_invoice'] == 2) {
-          $output .= ' <td class="text-md-center">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice.png', $this->app->getDef('image_orders_invoice_manual_erp')) . '</td>';
+          $output .= ' <td class="text-center">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice.png', $this->app->getDef('image_orders_invoice_manual_erp')) . '</td>';
         } else {
-          $output .= ' <td class="text-md-center"></td>';
+          $output .= ' <td class="text-center"></td>';
         }
         $output .=
           '    <td>' . HTML::outputProtected($orders['orders_status_name']) . '</td>' .
-          '    <td class="text-md-right">' . HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders&Edit&oID=' . (int)$orders['orders_id']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_order')));
+          '    <td class="text-end">' . HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders&Edit&oID=' . (int)$orders['orders_id']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_order')));
         HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Edit&cID=' . (int)$orders['customers_id']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_customer')));
         HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders&cID=' . $orders['customers_id']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/order.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_view_customers_all_orders')));
 

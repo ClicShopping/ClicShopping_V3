@@ -71,7 +71,7 @@
       <div class="col-md-12"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_info_delete_info'); ?><br/><br/></div>
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $oInfo->orders_status_name . '</strong>'; ?><br/><br/></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <?php
           if ($remove_status) {
             ?>

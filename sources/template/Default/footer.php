@@ -15,26 +15,28 @@
    $CLICSHOPPING_Template = Registry::get('Template');
 ?>
       </div><!-- end bodyContent -->
-
 <?php
   if ($CLICSHOPPING_Template->hasBlocks('boxes_column_left')) {
 ?>
-      <div id="columnLeft" class="col-sm-6 col-lg-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?> order-xs-2 order-lg-1">
-        <?php echo $CLICSHOPPING_Template->getBlocks('boxes_column_left'); ?>
+      <div id="columnLeft" class="row col-12 col-lg-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?> order-xs-2 order-lg-1">
+        <div class="col m-3">
+          <?php echo $CLICSHOPPING_Template->getBlocks('boxes_column_left'); ?>
+        </div>
       </div>
 <?php
   }
 
   if ($CLICSHOPPING_Template->hasBlocks('boxes_column_right')) {
 ?>
-      <div id="columnRight" class="col-sm-6 col-lg-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?> order-xs-3 order-lg-3">
-        <?php echo $CLICSHOPPING_Template->getBlocks('boxes_column_right'); ?>
+      <div id="columnRight" class="row col-12 col-lg-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?> order-xs-3 order-lg-3">
+        <div class="col m-3">
+          <?php echo $CLICSHOPPING_Template->getBlocks('boxes_column_right'); ?>
+        </div>
       </div>
 <?php
   }
 ?>
       </div><!-- end flex -->
-
       <div class="separator"></div>
 <?php //important before block ?>
       <footer class="page-footer" id="footer">

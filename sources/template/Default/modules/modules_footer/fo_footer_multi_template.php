@@ -14,8 +14,8 @@
 
   class fo_footer_multi_template
   {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_footer_multi_template_title');
       $this->description = CLICSHOPPING::getDef('module_footer_multi_template_description');
 
-      if (defined('MODULE_FOOTER_MULTI_TEMPLATE_STATUS')) {
+      if (\defined('MODULE_FOOTER_MULTI_TEMPLATE_STATUS')) {
         $this->sort_order = MODULE_FOOTER_MULTI_TEMPLATE_SORT_ORDER;
         $this->enabled = (MODULE_FOOTER_MULTI_TEMPLATE_STATUS == 'True');
         $this->pages = MODULE_FOOTER_MULTI_TEMPLATE_DISPLAY_PAGES;
@@ -115,7 +115,7 @@
           $pinterest_url = '#';
         }
 
-        if (defined('MODULES_HEADER_TAGS_MAILCHIMP_LIST_ANONYMOUS')) {
+        if (\defined('MODULES_HEADER_TAGS_MAILCHIMP_LIST_ANONYMOUS')) {
           if (!empty(MODULES_HEADER_TAGS_MAILCHIMP_LIST_ANONYMOUS)) {
             $mailchimp_list_anonymous = MODULES_HEADER_TAGS_MAILCHIMP_LIST_ANONYMOUS;
           }
@@ -126,7 +126,7 @@
           require_once($filename);
           $footer_template .= ob_get_clean();
         } else {
-          echo '<div class="alert alert-warning text-md-center" role="alert">' . CLICSHOPPING::getDef('template_does_not_exist') . '</div>';
+          echo '<div class="alert alert-warning text-center" role="alert">' . CLICSHOPPING::getDef('template_does_not_exist') . '</div>';
           exit;
         }
 
@@ -143,7 +143,7 @@
 
     public function check()
     {
-      return defined('MODULE_FOOTER_MULTI_TEMPLATE_STATUS');
+      return \defined('MODULE_FOOTER_MULTI_TEMPLATE_STATUS');
     }
 
     public function install()

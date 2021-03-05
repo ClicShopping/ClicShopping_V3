@@ -38,7 +38,7 @@
       if (isset($this->Id)) {
         $categories = AdministratorMenu::getAdministratorMenuCategoryTree($this->Id, '', '0', '', true);
 
-        for ($i = 0, $n = count($categories); $i < $n; $i++) {
+        for ($i = 0, $n = \count($categories); $i < $n; $i++) {
           AdministratorMenu::getRemoveAdministratorMenuCategory($categories[$i]['id']);
         }
       }

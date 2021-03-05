@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class bm_specials {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_specials_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_specials_description');
 
-      if (defined('MODULE_BOXES_SPECIALS_STATUS')) {
+      if (\defined('MODULE_BOXES_SPECIALS_STATUS')) {
         $this->sort_order = MODULE_BOXES_SPECIALS_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_SPECIALS_STATUS == 'True');
         $this->pages = MODULE_BOXES_SPECIALS_DISPLAY_PAGES;
@@ -123,7 +123,7 @@
           $data .= '<div class="boxeBannerContentsSpecials">' . $specials_banner . '</div>';
           $data .= '<div class="card boxeContainerSpecials">';
           $data .= '<div class="card-header boxeHeadingSpecials"><span class="card-title boxeTitleSpecials">' . HTML::link(CLICSHOPPING::link(null,'Products&Specials'), CLICSHOPPING::getDef('module_boxes_specials_box_title')) . '</span></div>';
-          $data .= '<div class="card-block text-sm-center boxeContentArroundSpecials">';
+          $data .= '<div class="card-block text-center boxeContentArroundSpecials">';
           $data .= ' <div class="separator"></div>';
 
           while ($Qproducts->fetch()) {
@@ -172,7 +172,7 @@
               $products_image .= HTML::link($products_name_url, HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_products_new'), 'ModulesBoxeBootstrapTickerNew', $CLICSHOPPING_ProductsCommon->getProductsTickerProductsNew($products_id)));
             }
 
-            if (MODULE_BOXES_SPECIALS_POURCENTAGE_TICKER == 'True' && !is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
+            if (MODULE_BOXES_SPECIALS_POURCENTAGE_TICKER == 'True' && !\is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
               $ticker = HTML::link($products_name_url, HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id), 'ModulesBoxeBootstrapTickerSpecialPourcentage', true ));
             } else {
               $ticker = '';
@@ -204,7 +204,7 @@
     }
 
     public function  check() {
-      return defined('MODULE_BOXES_SPECIALS_STATUS');
+      return \defined('MODULE_BOXES_SPECIALS_STATUS');
     }
 
     public function  install() {

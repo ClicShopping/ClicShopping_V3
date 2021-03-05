@@ -14,8 +14,8 @@
   use ClicShopping\OM\HTML;
 
   class cc_checkout_confirmation_delivery_address {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_description');
 
-      if (defined('MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_STATUS == 'True');
       }
@@ -68,7 +68,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_STATUS');
+      return \defined('MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_STATUS');
     }
 
     public function install() {

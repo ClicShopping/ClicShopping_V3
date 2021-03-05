@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class bm_shopping_cart {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_shopping_cart_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_shopping_cart_description');
 
-      if (defined('MODULE_BOXES_SHOPPING_CART_STATUS')) {
+      if (\defined('MODULE_BOXES_SHOPPING_CART_STATUS')) {
         $this->sort_order = MODULE_BOXES_SHOPPING_CART_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_SHOPPING_CART_STATUS == 'True');
         $this->pages = MODULE_BOXES_SHOPPING_CART_DISPLAY_PAGES;
@@ -49,7 +49,7 @@
 
       $products = $CLICSHOPPING_ShoppingCart->get_products();
 
-      for ($i=0, $n=count($products); $i<$n; $i++) {
+      for ($i=0, $n=\count($products); $i<$n; $i++) {
 
         $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products[$i]['id']);
 
@@ -123,7 +123,7 @@
     }
 
     public function  check() {
-      return defined('MODULE_BOXES_SHOPPING_CART_STATUS');
+      return \defined('MODULE_BOXES_SHOPPING_CART_STATUS');
     }
 
     public function  install() {

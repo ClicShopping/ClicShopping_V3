@@ -32,10 +32,10 @@ use ClicShopping\OM\HTML;
     <div class="separator"></div>
     <div class="col-md-12">
       <div class="control-group">
-        <div class="controls">
+        <div>
           <div class="buttonSet">
             <span class="col-md-2"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&LogIn'), 'primary');  ?></span>
-            <span class="col-md-2 float-md-right text-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');  ?></span>
+            <span class="col-md-2 float-end text-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');  ?></span>
           </div>
         </div>
       </div>

@@ -35,7 +35,7 @@
 
           $apps = Apps::getAll();
 
-          if (is_array($apps)) {
+          if (\is_array($apps)) {
             $result['result'] = 1;
             $result['apps'] = $apps;
           }

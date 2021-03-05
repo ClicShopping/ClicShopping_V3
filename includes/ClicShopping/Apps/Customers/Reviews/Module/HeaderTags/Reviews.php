@@ -39,7 +39,7 @@
       $this->title = $this->app->getDef('module_header_tags_products_reviews_title');
       $this->description = $this->app->getDef('module_header_tags_products_reviews_description');
 
-      if (defined('MODULE_HEADER_TAGS_PRODUCT_REVIEWS_STATUS')) {
+      if (\defined('MODULE_HEADER_TAGS_PRODUCT_REVIEWS_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_PRODUCT_REVIEWS_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_PRODUCT_REVIEWS_STATUS == 'True');
       }

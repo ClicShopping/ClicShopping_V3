@@ -16,8 +16,8 @@
   use ClicShopping\Sites\Shop\AddressBook;
 
   class cs_checkout_shipping_address {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_shipping_address_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_shipping_address_description');
 
-      if (defined('MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_SHIPPING_ADDRESS_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS == 'True');
       }
@@ -52,6 +52,8 @@
 // Autorise l'ajout dans le carnet d'adresse des clients B2B ou clients normaux
         if (AddressBook::countCustomersModifyAddressDefault() == 1) {
           $address_button = HTML::button(CLICSHOPPING::getDef('module_checkout_shipping_address_button_change_address'), null, CLICSHOPPING::link(null, 'Checkout&ShippingAddress'), 'primary');
+        } else {
+          $address_button = '';
         }
 
         ob_start();
@@ -70,7 +72,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS');
+      return \defined('MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS');
     }
 
     public function install() {

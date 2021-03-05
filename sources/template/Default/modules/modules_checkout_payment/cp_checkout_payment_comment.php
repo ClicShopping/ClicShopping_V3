@@ -15,8 +15,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class cp_checkout_payment_comment {
-    public $code;
-    public $group;
+    public string $code;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_payment_comment_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_payment_comment_description');
 
-      if (defined('MODULE_CHECKOUT_PAYMENT_COMMENT_STATUS')) {
+      if (\defined('MODULE_CHECKOUT_PAYMENT_COMMENT_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_PAYMENT_COMMENT_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_PAYMENT_COMMENT_STATUS == 'True');
       }
@@ -63,7 +63,7 @@
     }
 
     public function check() {
-      return defined('MODULE_CHECKOUT_PAYMENT_COMMENT_STATUS');
+      return \defined('MODULE_CHECKOUT_PAYMENT_COMMENT_STATUS');
     }
 
     public function install() {
