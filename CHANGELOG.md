@@ -1,4 +1,5 @@
-Version 3.3 beta
+Version 3.300 
+
 Note : This version works only with php > 8.0
 
 - fix strict mode php 8
@@ -8,6 +9,7 @@ Note : This version works only with php > 8.0
 - Boostrap 5 implementation 
 - Add vertical menu in option
 - remove htaccess (see tip and trips on the forum)
+- Replace font Awesome library by bootstrap icon  
 - remove customer fax obsolete 
 - update sql database (see sql update and update version)
 - remove sensiolabs/security-checker not maintained

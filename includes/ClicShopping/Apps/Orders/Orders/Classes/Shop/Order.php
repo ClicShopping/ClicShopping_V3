@@ -1327,7 +1327,7 @@
     }
 
     /**
-     * Alert by mail product sold_out if a product is 0 or < 0
+     * Alert by mail product sold out if a product is 0 or < 0
      * @param int $insert_id
      */
     public function sendEmailAlertProductsSoldOut(int $insert_id)

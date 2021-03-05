@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'a4d6ebe5a2736d67c84b31d307e597b655ac948a',
+    'reference' => '34ddb4a35c7adde6769ac2e02626bfd3827121db',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'a4d6ebe5a2736d67c84b31d307e597b655ac948a',
+      'reference' => '34ddb4a35c7adde6769ac2e02626bfd3827121db',
     ),
     'darkghosthunter/preloader' => 
     array (
