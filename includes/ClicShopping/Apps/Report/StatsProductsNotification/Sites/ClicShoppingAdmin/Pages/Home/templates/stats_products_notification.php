@@ -46,6 +46,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-name="number"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -146,6 +148,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-name="number"
     data-sort-order="asc"
     data-toolbar="#toolbar"

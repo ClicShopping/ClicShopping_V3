@@ -64,6 +64,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-id-field="selected"
     data-select-item-name="selected[]"
     data-click-to-select="true"

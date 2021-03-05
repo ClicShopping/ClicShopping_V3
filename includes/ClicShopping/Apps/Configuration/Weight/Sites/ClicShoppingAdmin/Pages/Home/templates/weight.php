@@ -52,6 +52,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-name="symbol"
     data-sort-order="asc"
     data-toolbar="#toolbar"

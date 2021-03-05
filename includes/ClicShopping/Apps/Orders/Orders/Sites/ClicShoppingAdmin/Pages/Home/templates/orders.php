@@ -126,6 +126,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-name="orders"
     data-sort-order="desc"
     data-toolbar="#toolbar"

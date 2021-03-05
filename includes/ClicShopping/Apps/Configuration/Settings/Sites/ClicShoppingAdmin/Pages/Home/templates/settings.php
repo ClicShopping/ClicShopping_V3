@@ -41,6 +41,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-toolbar="#toolbar"
     data-buttons-class="primary"
     data-show-toggle="true"

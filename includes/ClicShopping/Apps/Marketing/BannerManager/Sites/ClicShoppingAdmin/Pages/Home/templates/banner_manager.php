@@ -65,6 +65,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-toolbar="#toolbar"
     data-sort-name="groupe"
     data-sort-order="asc"

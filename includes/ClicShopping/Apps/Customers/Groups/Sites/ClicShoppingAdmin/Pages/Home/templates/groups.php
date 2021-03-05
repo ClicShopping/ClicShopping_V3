@@ -75,6 +75,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-order="asc"
     data-sort-name="name"
     data-toolbar="#toolbar"

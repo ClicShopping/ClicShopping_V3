@@ -46,6 +46,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
     data-sort-name="status"
     data-sort-order="asc"
     data-toolbar="#toolbar"
