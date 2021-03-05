@@ -4,20 +4,19 @@ Note : This version works only with php > 8.0
 
 - fix strict mode php 8
 - fix incompatibility with php 8  (php 7.4.x do not work now)
-- Bug fix
+- Some different bug fix
+- Code refactoring  
 - Boostrap 5 implementation 
 - Add vertical menu in option
 - remove htaccess (see tip and trips on the forum)
 - Replace font Awesome library by bootstrap icon  
 - remove customer fax obsolete 
-- update sql database (seee sql update and update version)
-- remove sensiolabs/security-checker not maintened
-- add a security checker email via composer
-- reduce jquery dependency for pure javascript
+- update sql database (see sql update and update version)
+- remove sensiolabs/security-checker not maintained
+- add a security checker email library via composer
+- reduce jquery dependency by pure javascript
 - add new image gallery in pure js (the other will be push on github)
 - add chartjs without jquery https://www.chartjs.org/
-- Code refactoring
-- Add sql update
 
 ---
 Version 3.2204
