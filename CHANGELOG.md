@@ -1,4 +1,5 @@
-Version 3.3 beta
+Version 3.300 
+
 Note : This version works only with php > 8.0
 
 - fix strict mode php 8
@@ -7,6 +8,7 @@ Note : This version works only with php > 8.0
 - Boostrap 5 implementation 
 - Add vertical menu in option
 - remove htaccess (see tip and trips on the forum)
+- Replace font Awesome library by bootstrap icon  
 - remove customer fax obsolete 
 - update sql database (seee sql update and update version)
 - remove sensiolabs/security-checker not maintened
@@ -14,6 +16,8 @@ Note : This version works only with php > 8.0
 - reduce jquery dependency for pure javascript
 - add new image gallery in pure js (the other will be push on github)
 - add chartjs without jquery https://www.chartjs.org/
+- Code refactoring
+- Add sql update
 
 ---
 Version 3.2204
