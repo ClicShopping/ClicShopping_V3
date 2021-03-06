@@ -39,7 +39,7 @@ Easy to install in just some clicks on a server or on your computer, you can use
 #Requirement (more information in the wiki)
  - Apache 2.4<br>
  - MYSQL 7 / MariaDb 10.3 - 10.4 / Postgres<br>
- - PHP > 7.4.3 and PHP < 8.0 (BETA > PHP 8.30)
+ - PHP > 8.0 
  - More information in the Wiki
 
 #Installation
