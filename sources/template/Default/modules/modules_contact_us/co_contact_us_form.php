@@ -297,7 +297,7 @@
           'configuration_description' => 'Select a number between 1 and 12',
           'configuration_group_id' => '6',
           'sort_order' => '1',
-          'set_function' => 'clic_cfg_set_content_module_width_text_down',
+          'set_function' => 'clic_cfg_set_content_module_width_pull_down',
           'date_added' => 'now()'
         ]
       );
@@ -309,7 +309,7 @@
           'configuration_description' => 'Messages less than this number will not be sent. A warning pop up will be displayed to the client indicating the minimum number of characters',
           'configuration_group_id' => '6',
           'sort_order' => '10',
-          'set_function' => 'clic_cfg_set_content_module_width_text_down',
+          'set_function' => '',
           'date_added' => 'now()'
         ]
       );
@@ -334,6 +334,7 @@
     public function keys() {
       return array('MODULES_CONTACT_US_FORM_STATUS',
                    'MODULE_CONTACT_US_FORM_CONTENT_WIDTH',
+                   'MODULE_CONTACT_US_FORM_CONTENT_CARACTER',
                    'MODULES_CONTACT_US_FORM_SORT_ORDER'
                   );
     }
