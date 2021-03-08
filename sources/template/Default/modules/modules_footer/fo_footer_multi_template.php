@@ -50,13 +50,12 @@
         $menu_footer = $CLICSHOPPING_PageManagerShop->pageManagerDisplayFooterMenu();
 
         $footer_tag = '<!-- Start footer social footer -->' . "\n";
-        $footer_tag .= '
-      <script type="application/ld+json">
-{
-  "@context" : "https://schema.org",
-  "@type" : "Organization",
-  "name" : "' . STORE_NAME . '",
-';
+        $footer_tag .= '<script type="application/ld+json">' . "\n";
+        $footer_tag .= ' {
+          "@context" : "https://schema.org",
+          "@type" : "Organization",
+          "name" : "' . STORE_NAME . '",
+        ';
 
         if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL)) {
           $footer_tag .= '"url" : "' . CLICSHOPPING::getConfig('http_server', 'Shop') . 'index.php",';
@@ -66,23 +65,22 @@
 
         if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL)) {
           $footer_tag .= '
-  "sameAs" : [
-';
+            "sameAs" : [
+          ';
           if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL)) {
-            $footer_tag .= ' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL . '", ';
+            $footer_tag .= ' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL . '" ';
           }
           if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL)) {
-            $footer_tag .= '  "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL . '", ';
+            $footer_tag .= '  ,"' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL . '" ';
           }
           if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL)) {
-            $footer_tag .= ' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL . '" ';
+            $footer_tag .= ' ,"' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL . '" ';
           }
           $footer_tag .= '
           ]';
         }
-        $footer_tag .= '      
-   }
-</script>' . "\n";
+        $footer_tag .= '}' . "\n";
+        $footer_tag .= '</script>' . "\n";
 
         $footer_tag .= '<!-- end footer social footer -->' . "\n";
 
