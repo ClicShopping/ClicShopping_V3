@@ -26,6 +26,7 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Mail = Registry::get('Mail');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_Customer = Registry::get('Customer');
 
       if (isset($_GET['action']) && ($_GET['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $error = false;
@@ -62,12 +63,10 @@
         }
 
         if ($error === false) {
-          $CLICSHOPPING_Db->save('customers', ['customers_password' => Hash::encrypt($password_new)],
-            ['customers_id' => (int)$Qcheck->valueInt('customers_id')]
-          );
+          $CLICSHOPPING_Db->save('customers', ['customers_password' => Hash::encrypt($password_new)], ['customers_id' => (int)$Qcheck->valueInt('customers_id')]);
 
-
-          $sql_array = ['customers_info_date_account_last_modified' => 'now()',
+          $sql_array = [
+            'customers_info_date_account_last_modified' => 'now()',
             'password_reset_key' => 'null',
             'password_reset_date' => 'null'
           ];
@@ -80,6 +79,8 @@
           $email_text_body .= ' <br />' . TemplateEmail::getTemplateEmailSignature();
 
           $CLICSHOPPING_Mail->clicMail($Qcheck->value('customers_firstname') . ' ' . $Qcheck->value('customers_lastname'), $email_address, CLICSHOPPING::getDef('text_email_subject', ['store_name' => STORE_NAME]), CLICSHOPPING::getDef('text_email_body', ['store_name' => STORE_NAME]) . $email_text_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+
+          $CLICSHOPPING_Customer->reset();
 
           $CLICSHOPPING_Hooks->call('PasswordReset', 'Process');
 

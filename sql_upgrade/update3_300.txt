@@ -7,7 +7,7 @@ Step 3 : remove all Dashboard module and re-install it
 
 #All language
 ALTER TABLE `clic_products` CHANGE `products_sku` `products_sku` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
-UPDATE `clic_configuration` SET `configuration_key` = 'STOCK_ALERT_PRODUCT_SOLDLD_OUT' WHERE `clic_configuration`.`configuration_key` = 'STOCK_ALERT_PRODUCT_EXHAUSTED';
+UPDATE `clic_configuration` SET `configuration_key` = 'STOCK_ALERT_PRODUCT_SOLD_OUT' WHERE `clic_configuration`.`configuration_key` = 'STOCK_ALERT_PRODUCT_EXHAUSTED';
 
 --
 
