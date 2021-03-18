@@ -803,16 +803,16 @@
     /**
      * Generate a boostrap button
      *
-     * @param string $title , title of the button
-     * @param string $$icon, ui icon of the button
-     * @param string $link , link
-     * @param string $priotiy ; primary or secondary
-     * @param string $param primary or secondaty
-     * @param string size, sm, xs, md, lg button
-     * @param return $button , the button
+     * @param null|string $title , title of the button
+     * @param null|string $$icon, ui icon of the button
+     * @param null|string $link , link
+     * @param null|string $priotiy ; primary or secondary
+     * @param null|string $param
+     * @param null|string size, sm, xs, md, lg button
+     * @param return string $button , the button
      */
 
-    public static function button($title = null, $icon = null, $link = null, $style = null, $params = null, $size = null)
+    public static function button(?string $title = null, ?string $icon = null, ?string $link = null, ?string $style = null, $params = null, ?string $size = null) :string
     {
       $types = ['submit', 'button', 'reset'];
       $styles = ['primary', 'info', 'success', 'warning', 'danger', 'inverse', 'link', 'new', 'secondary', 'dark', 'light', 'default'];

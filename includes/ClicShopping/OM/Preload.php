@@ -54,22 +54,10 @@
     public static function execute()
     {
       if (static::check() === true) {
+
         Preloader::make()
-          ->autoload(static::$base_dir_autoload)
-          ->output(static::$output_dir)
-          ->memory(32)
-          ->whenHits(200000)
-          ->overwrite(true)
-          ->useCompile()
-          ->exclude([
-              CLICSHOPPING::BASE_DIR . 'External/*'
-          ])
-          ->append(
-            CLICSHOPPING::BASE_DIR . 'Apps/*',
-            CLICSHOPPING::BASE_DIR . 'Sites/*',
-            static::getFiles()
-          )
-          ->generate();
+          ->useRequire(static::$base_dir_autoload)
+          ->writeTo(static::$output_dir);
       }
     }
 

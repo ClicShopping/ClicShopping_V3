@@ -7,21 +7,21 @@ use const PHP_EOL;
 class PreloaderCompiler
 {
     /**
-     * Preloader stub contents
+     * Preloader stub contents.
      *
      * @var false|string
      */
     public string $contents;
 
     /**
-     * Configuration array
+     * Configuration array.
      *
      * @var array
      */
     public array $preloaderConfig;
 
     /**
-     * Opcache statistics array
+     * Opcache statistics array.
      *
      * @var array
      */
@@ -32,28 +32,35 @@ class PreloaderCompiler
      *
      * @var bool
      */
-    public bool $useRequire = true;
+    public bool $useRequire;
 
     /**
-     * The file list to include
+     * The file list to include.
      *
      * @var array
      */
     public array $list;
 
     /**
-     * The Composer Autoload location
+     * The Composer Autoload location.
      *
      * @var null|string
      */
-    public ?string $autoload = null;
+    public ?string $autoloader = null;
 
     /**
-     * PHP.ini preload list input
+     * PHP.ini preload list input.
      *
      * @var string
      */
-    public string $output;
+    public string $writeTo;
+
+    /**
+     * If it should add exception for not-found files.
+     *
+     * @var bool
+     */
+    public bool $ignoreNotFound;
 
     /**
      * Returns a compiled string
@@ -63,41 +70,55 @@ class PreloaderCompiler
     public function compile() : string
     {
         $replacing = array_merge($this->preloaderConfig, $this->opcacheConfig, [
-            '@output' => $this->scriptRealPath(),
+            '@output'       => $this->scriptRealPath(),
             '@generated_at' => date('Y-m-d H:i:s e'),
-            '@autoload' => realpath($this->autoload),
-            '@list' => $this->parseList(),
-            '@mechanism' => $this->useRequire ? 'require_once $file' : 'opcache_compile_file($file)'
+            '@autoload'     => isset($this->autoloader)
+                ? 'require_once \'' . realpath($this->autoloader) . '\';': null,
+            '@list'         => $this->parseList(),
+            '@failure'      => $this->ignoreNotFound ? 'continue;' : 'throw new \Exception("{$file} does not exist or is unreadable.");',
+            '@mechanism'    => $this->useRequire
+                ? 'require_once $file' : 'opcache_compile_file($file)',
         ]);
 
         return str_replace(array_keys($replacing), $replacing, $this->contents);
     }
 
     /**
-     * Returns the output file real path
+     * Returns the output file real path.
      *
      * @return string
      */
     protected function scriptRealPath()
     {
-        if ($path = realpath($this->output)) {
-            return $path;
-        }
-
         // @codeCoverageIgnoreStart
-        // We will try to create a dummy file and just then get the real path of it.
-        // After getting the real path, we will delete it and return the path. If
-        // we can't, then we will just return the output path string as-it-is.
-        if(! touch($this->output)) {
-            return $this->output;
+        // We need to get the real path of the preloader file. To do that, we
+        // will check if the file already exists, and if not, create a dummy
+        // one. If that "touch" fails, we will return whatever path we got.
+        if (file_exists($this->writeTo)) {
+            return realpath($this->writeTo);
         }
+
+        return $this->touchAndGetRealPath();
         // @codeCoverageIgnoreEnd
+    }
 
-        $path = realpath($this->output);
+    /**
+     * Creates a dummy file and returns the real path of it, if possible.
+     *
+     * @return false|string
+     */
+    protected function touchAndGetRealPath()
+    {
+        // @codeCoverageIgnoreStart
+        $path = $this->writeTo;
 
-        unlink($this->output);
+        if (touch($this->writeTo)) {
+            $path = $this->writeTo;
+            unlink($this->writeTo);
+        }
 
-        return $path;
+        return $path ?: $this->writeTo;
+        // @codeCoverageIgnoreEnd
     }
 
     /**
