@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '9fb348fee15e6003cde81ebf90df1da52ab17a1f',
+    'reference' => '9b587238ab6ef721f5462ec430d89bf62617c657',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '9fb348fee15e6003cde81ebf90df1da52ab17a1f',
+      'reference' => '9b587238ab6ef721f5462ec430d89bf62617c657',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -58,12 +58,12 @@
     ),
     'guzzlehttp/psr7' => 
     array (
-      'pretty_version' => '1.7.0',
-      'version' => '1.7.0.0',
+      'pretty_version' => '1.8.1',
+      'version' => '1.8.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '53330f47520498c0ae1f61f7e2c90f55690c06a3',
+      'reference' => '35ea11d335fd638b5882ff1725228b3d35496ab1',
     ),
     'mattketmo/email-checker' => 
     array (
@@ -128,12 +128,12 @@
     ),
     'stripe/stripe-php' => 
     array (
-      'pretty_version' => 'v7.75.0',
-      'version' => '7.75.0.0',
+      'pretty_version' => 'v7.76.0',
+      'version' => '7.76.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd377a667cd789b99ccab768441a5a2160cc4ea80',
+      'reference' => '47e66d4186712be33c593fe820dccf270a04d5d6',
     ),
     'symfony/finder' => 
     array (

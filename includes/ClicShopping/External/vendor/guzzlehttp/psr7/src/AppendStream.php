@@ -8,6 +8,8 @@ use Psr\Http\Message\StreamInterface;
  * Reads from multiple streams, one after the other.
  *
  * This is a read-only stream decorator.
+ *
+ * @final
  */
 class AppendStream implements StreamInterface
 {
@@ -134,7 +136,7 @@ class AppendStream implements StreamInterface
     public function eof()
     {
         return !$this->streams ||
-            ($this->current >= \count($this->streams) - 1 &&
+            ($this->current >= count($this->streams) - 1 &&
              $this->streams[$this->current]->eof());
     }
 
@@ -185,7 +187,7 @@ class AppendStream implements StreamInterface
     public function read($length)
     {
         $buffer = '';
-        $total = \count($this->streams) - 1;
+        $total = count($this->streams) - 1;
         $remaining = $length;
         $progressToNext = false;
 
