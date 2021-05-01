@@ -45,7 +45,7 @@
           continue;
       }
 
-      // Directtory exists and is writable
+      // Directory exists and is writable
       unset($directory_array[$key]);
     }
 
@@ -62,6 +62,10 @@ if (!extension_loaded('pdo') || !extension_loaded('pdo_mysql')) {
 if (!extension_loaded('curl')) {
     $warning_array[] = 'The cURL extension (curl) is not installed or enabled in PHP. Please enable it in the PHP configuration to continue installation.<br />
     You can bypass this process (not recommended) but you can have error more later if you don\'t install Curl. <a href="install.php">Continue the process</a>';
+}
+
+if( ini_get('allow_url_fopen') ) {
+  $warning_array[] = 'allow_url_fopen is disabled. file_get_contents would not work';
 }
 
 if (!extension_loaded('zip')) {
