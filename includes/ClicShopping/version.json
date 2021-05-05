@@ -1,5 +1,5 @@
 {
- "version": "3.3",
- "description": "Beta version - This release is compatible with php 8.x, it introduces some fix. The next release will be focus on bootstrap 5 and php 8.",
+ "version": "3.301",
+ "description": "This release is compatible with php 8.x, it introduces some fix.",
  "date": "2021"
 }
