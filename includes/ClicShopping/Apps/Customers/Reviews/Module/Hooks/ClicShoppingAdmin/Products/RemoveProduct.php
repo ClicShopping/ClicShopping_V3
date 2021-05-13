@@ -53,7 +53,7 @@
         foreach ($_POST['selected'] as $id) {
           $this->removeReviews($id);
         }
-      } else {
+      } elseif (isset($_POST['products_id'])) {
         $id = HTML::sanitize($_POST['products_id']);
         $this->removeReviews($id);
       }
