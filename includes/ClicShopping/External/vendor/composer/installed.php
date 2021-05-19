@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'cd7200d928f4be2e58f5e5b4b3e6c464b87c2501',
+    'reference' => '5a2ff49e46f40bdc0b4078a955e23d1b327968c3',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'cd7200d928f4be2e58f5e5b4b3e6c464b87c2501',
+      'reference' => '5a2ff49e46f40bdc0b4078a955e23d1b327968c3',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -137,12 +137,12 @@
     ),
     'symfony/finder' => 
     array (
-      'pretty_version' => 'v5.2.4',
-      'version' => '5.2.4.0',
+      'pretty_version' => 'v5.2.8',
+      'version' => '5.2.8.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0d639a0943822626290d169965804f79400e6a04',
+      'reference' => 'eccb8be70d7a6a2230d05f6ecede40f3fdd9e252',
     ),
     'symfony/polyfill-intl-idn' => 
     array (
