@@ -54,7 +54,6 @@
     public static function execute()
     {
       if (static::check() === true) {
-
         Preloader::make()
           ->useRequire(static::$base_dir_autoload)
           ->writeTo(static::$output_dir);

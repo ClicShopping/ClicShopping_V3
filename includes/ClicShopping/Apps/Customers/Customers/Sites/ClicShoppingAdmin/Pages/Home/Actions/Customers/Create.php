@@ -399,7 +399,7 @@
         $message = html_entity_decode($email_text);
         $message = str_replace('src="/', 'src="' . HTTP::getShopUrlDomain(), $message);
         $CLICSHOPPING_Mail->addHtmlCkeditor($message);
-        ;
+
         $from = STORE_OWNER_EMAIL_ADDRESS;
 
         $name = $email_gender . ' ' . $customers_firstname . ' ' . $customers_lastname;

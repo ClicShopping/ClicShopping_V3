@@ -58,12 +58,8 @@
         ';
 
         if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL)) {
-          $footer_tag .= '"url" : "' . CLICSHOPPING::getConfig('http_server', 'Shop') . 'index.php",';
-        } else {
-          $footer_tag .= '"url" : "' . CLICSHOPPING::getConfig('http_server', 'Shop') . 'index.php"';
-        }
+          $footer_tag .= '"url" : "' . CLICSHOPPING::getConfig('http_server', 'Shop');
 
-        if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL)) {
           $footer_tag .= '
             "sameAs" : [
           ';
@@ -78,10 +74,11 @@
           }
           $footer_tag .= '
           ]';
+        } else {
+          $footer_tag .= '"url" : "' . CLICSHOPPING::getConfig('http_server', 'Shop');
         }
         $footer_tag .= '}' . "\n";
         $footer_tag .= '</script>' . "\n";
-
         $footer_tag .= '<!-- end footer social footer -->' . "\n";
 
         $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
@@ -211,7 +208,7 @@
       $CLICSHOPPING_Db->save('configuration', [
               'configuration_title' => 'Please indicate the Twitter URL ?',
               'configuration_key' => 'MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL',
-              'configuration_value' => 'Indicate the account url',
+              'configuration_value' => '',
               'configuration_description' => '',
               'configuration_group_id' => '6',
               'sort_order' => '6',

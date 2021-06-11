@@ -20,6 +20,7 @@ namespace Stripe;
  * @property \Stripe\StripeObject $capabilities
  * @property bool $charges_enabled Whether the account can create live charges.
  * @property \Stripe\StripeObject $company
+ * @property \Stripe\StripeObject $controller
  * @property string $country The account's country.
  * @property int $created Time at which the object was created. Measured in seconds since the Unix epoch.
  * @property string $default_currency Three-letter ISO currency code representing the default currency for the account. This must be a currency that <a href="https://stripe.com/docs/payouts">Stripe supports in the account's country</a>.
@@ -200,7 +201,7 @@ class Account extends ApiResource
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Account the rejected account
+     * @return \Stripe\Account the rejected account
      */
     public function reject($params = null, $opts = null)
     {

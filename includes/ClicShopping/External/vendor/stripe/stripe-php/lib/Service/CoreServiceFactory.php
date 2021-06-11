@@ -26,6 +26,7 @@ namespace Stripe\Service;
  * @property ExchangeRateService $exchangeRates
  * @property FileLinkService $fileLinks
  * @property FileService $files
+ * @property Identity\IdentityServiceFactory $identity
  * @property InvoiceItemService $invoiceItems
  * @property InvoiceService $invoices
  * @property Issuing\IssuingServiceFactory $issuing
@@ -52,6 +53,7 @@ namespace Stripe\Service;
  * @property SubscriptionItemService $subscriptionItems
  * @property SubscriptionService $subscriptions
  * @property SubscriptionScheduleService $subscriptionSchedules
+ * @property TaxCodeService $taxCodes
  * @property TaxRateService $taxRates
  * @property Terminal\TerminalServiceFactory $terminal
  * @property TokenService $tokens
@@ -84,6 +86,7 @@ class CoreServiceFactory extends \Stripe\Service\AbstractServiceFactory
         'exchangeRates' => ExchangeRateService::class,
         'fileLinks' => FileLinkService::class,
         'files' => FileService::class,
+        'identity' => Identity\IdentityServiceFactory::class,
         'invoiceItems' => InvoiceItemService::class,
         'invoices' => InvoiceService::class,
         'issuing' => Issuing\IssuingServiceFactory::class,
@@ -110,6 +113,7 @@ class CoreServiceFactory extends \Stripe\Service\AbstractServiceFactory
         'subscriptionItems' => SubscriptionItemService::class,
         'subscriptions' => SubscriptionService::class,
         'subscriptionSchedules' => SubscriptionScheduleService::class,
+        'taxCodes' => TaxCodeService::class,
         'taxRates' => TaxRateService::class,
         'terminal' => Terminal\TerminalServiceFactory::class,
         'tokens' => TokenService::class,

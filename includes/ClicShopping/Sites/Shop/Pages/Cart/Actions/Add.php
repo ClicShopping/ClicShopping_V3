@@ -26,7 +26,7 @@
       if (isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $parameters = '';
 
-        if (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && is_numeric($_POST['cart_quantity'])) {
+        if (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && isset($_POST['cart_quantity']) && is_numeric($_POST['cart_quantity'])) {
           if (!empty($_POST['id'])) {
             $attributes = HTML::sanitize($_POST['id']);
           } else {
