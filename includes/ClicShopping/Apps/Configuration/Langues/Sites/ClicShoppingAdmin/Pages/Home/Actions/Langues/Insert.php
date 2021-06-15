@@ -183,6 +183,6 @@
       Cache::clear('languages-system-shop');
       Cache::clear('languages-system-admin');
 
-      $this->app->redirect('Langues&page=' . $page . '&lID=' . $_GET['lID']);
+      $this->app->redirect('Langues&page=' . $page);
     }
   }

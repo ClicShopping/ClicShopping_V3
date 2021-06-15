@@ -270,7 +270,7 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends ExtDriver
     public function netunmount($netVolumes, $key)
     {
         $cache = $this->options['gdCacheDir'] . DIRECTORY_SEPARATOR . $this->options['gdCachePrefix'] . $this->netMountKey;
-        if (file_exists($cache) && is_writable($cache)) {
+        if (file_exists($cache) && is_writeable($cache)) {
             unlink($cache);
         }
         if ($tmbs = glob($this->tmbPath . DIRECTORY_SEPARATOR . $this->netMountKey . '*')) {
@@ -324,7 +324,7 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends ExtDriver
         $googleDrive = new GoogleDriveAdapter($service, $opts['path'], ['useHasDir' => true]);
 
         $opts['fscache'] = null;
-        if ($this->options['gdCacheDir'] && is_writable($this->options['gdCacheDir'])) {
+        if ($this->options['gdCacheDir'] && is_writeable($this->options['gdCacheDir'])) {
             if ($this->options['gdCacheExpire']) {
                 $opts['fscache'] = new elFinderVolumeFlysystemGoogleDriveCache(new Local($this->options['gdCacheDir']), $this->options['gdCachePrefix'] . $this->netMountKey, $this->options['gdCacheExpire']);
             }
