@@ -1,5 +1,28 @@
 # Changelog
 
+## 7.88.0 - 2021-07-09
+* [#1152](https://github.com/stripe/stripe-php/pull/1152) API Updates
+  * Add support for new resource `Quote`
+  * Add support for `quote` on `Invoice`
+  * Add support for new value `quote_accept` on enum `Invoice.billing_reason`
+* [#1155](https://github.com/stripe/stripe-php/pull/1155) Add streaming methods to Service infra
+  * Add support for `setStreamingHttpClient` and `streamingHttpClient` to `ApiRequestor`
+  * Add support for `getStreamingClient` and `requestStream` to `AbstractService`
+  * Add support for `requestStream` to `BaseStripeClient`
+  * `\Stripe\RequestOptions::parse` now clones its input if it is already a `RequestOptions` object, to prevent accidental mutation.
+* [#1151](https://github.com/stripe/stripe-php/pull/1151) Add `mode` constants into Checkout\Session
+
+## 7.87.0 - 2021-06-30
+* [#1149](https://github.com/stripe/stripe-php/pull/1149) API Updates
+  * Add support for `wechat_pay` on `PaymentMethod`
+* [#1143](https://github.com/stripe/stripe-php/pull/1143) Streaming requests
+* [#1138](https://github.com/stripe/stripe-php/pull/1138) Deprecate travis
+
+## 7.86.0 - 2021-06-25
+* [#1145](https://github.com/stripe/stripe-php/pull/1145) API Updates
+  * Add support for `boleto` on `PaymentMethod`.
+  * Add support for `il_vat` as a member of the `TaxID.Type` enum.
+
 ## 7.85.0 - 2021-06-18
 * [#1142](https://github.com/stripe/stripe-php/pull/1142) API Updates
   * Add support for new TaxId types: `ca_pst_mb`, `ca_pst_bc`, `ca_gst_hst`, and `ca_pst_sk`.

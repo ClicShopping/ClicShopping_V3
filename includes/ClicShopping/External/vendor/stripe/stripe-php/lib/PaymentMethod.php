@@ -25,6 +25,7 @@ namespace Stripe;
  * @property \Stripe\StripeObject $bacs_debit
  * @property \Stripe\StripeObject $bancontact
  * @property \Stripe\StripeObject $billing_details
+ * @property \Stripe\StripeObject $boleto
  * @property \Stripe\StripeObject $card
  * @property \Stripe\StripeObject $card_present
  * @property int $created Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -42,6 +43,7 @@ namespace Stripe;
  * @property \Stripe\StripeObject $sepa_debit
  * @property \Stripe\StripeObject $sofort
  * @property string $type The type of the PaymentMethod. An additional hash is included on the PaymentMethod with a name matching this value. It contains additional information specific to the PaymentMethod type.
+ * @property \Stripe\StripeObject $wechat_pay
  */
 class PaymentMethod extends ApiResource
 {
