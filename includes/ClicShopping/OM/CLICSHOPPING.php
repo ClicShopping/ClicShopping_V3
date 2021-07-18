@@ -414,7 +414,7 @@
 
       if (isset(static::$cfg['global'][$key])) {
         return static::$cfg['global'][$key];
-      } 
+      }
     }
 
     /**
@@ -460,7 +460,7 @@
       if (strncmp($prefix, $class, \strlen($prefix)) !== 0) {
         $class_path = str_replace('\\', '/', $class);
 
-        $file = CLICSHOPPING_BASE_DIR . '/' . 'External' . '/' . $class_path . '.php';
+        $file = static::BASE_DIR . 'External' . '/' . $class_path . '.php';
 
         if (is_file($file)) {
           require_once($file);
@@ -474,7 +474,7 @@
         ];
 
         foreach ($site_dirs as $site_dir) {
-          $dir = new \DirectoryIterator(CLICSHOPPING_BASE_DIR . $site_dir);
+          $dir = new \DirectoryIterator(static::BASE_DIR . $site_dir);
 
           foreach ($dir as $f) {
             if (!$f->isDot() && $f->isDir()) {
@@ -492,11 +492,11 @@
         return false;
       }
 
-      if (strncmp($prefix . 'OM\Module\\', $class, \strlen($prefix . 'OM\Module\\')) === 0) {
-        $file = dirname(CLICSHOPPING_BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['', '/'], $class) . '.php';
-        $custom = dirname(CLICSHOPPING_BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['ClicShopping\Custom\OM\\', '/'], $class) . '.php';
+      if (strncmp($prefix . 'OM\Module\\', $class, \strlen($prefix . 'OM\Module\\')) === 0) { // TODO remove and fix namespace
+        $file = dirname(static::BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['', '/'], $class) . '.php';
+        $custom = dirname(static::BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['ClicShopping\Custom\OM\\', '/'], $class) . '.php';
       } else {
-        $file = dirname(CLICSHOPPING_BASE_DIR) . '/' . str_replace('\\', '/', $class) . '.php';
+        $file = dirname(static::BASE_DIR) . '/' . str_replace('\\', '/', $class) . '.php';
         $custom = str_replace('ClicShopping/OM/', 'ClicShopping/Custom/OM/', $file);
       }
 
@@ -506,8 +506,8 @@
         require_once($file);
       }
 
-      if (is_file(CLICSHOPPING::BASE_DIR . 'External/vendor/autoload.php')) {
-        require_once(CLICSHOPPING::BASE_DIR . 'External/vendor/autoload.php');
+      if (is_file(static::BASE_DIR . 'External/vendor/autoload.php')) {
+        require_once(static::BASE_DIR . 'External/vendor/autoload.php');
       }
     }
 
