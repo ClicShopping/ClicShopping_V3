@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => 'df97c7190d1a5e819f786035e5f12c4c0d5d2fa7',
+    'reference' => 'dcc50c555f500fc2c83f57127ae24524e5138fb5',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => 'df97c7190d1a5e819f786035e5f12c4c0d5d2fa7',
+      'reference' => 'dcc50c555f500fc2c83f57127ae24524e5138fb5',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -100,12 +100,12 @@ class InstalledVersions
     ),
     'phpmailer/phpmailer' => 
     array (
-      'pretty_version' => 'v6.5.0',
-      'version' => '6.5.0.0',
+      'pretty_version' => 'v6.5.1',
+      'version' => '6.5.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'a5b5c43e50b7fba655f793ad27303cd74c57363c',
+      'reference' => 'dd803df5ad7492e1b40637f7ebd258fee5ca7355',
     ),
     'phpxmlrpc/phpxmlrpc' => 
     array (
