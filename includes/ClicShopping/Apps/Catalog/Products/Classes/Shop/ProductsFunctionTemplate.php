@@ -21,11 +21,11 @@
 
   class ProductsFunctionTemplate
   {
-    protected $productsCommon;
-    protected $customer;
-    protected $template;
-    protected $category;
-    protected $rewriteUrl;
+    protected mixed $productsCommon;
+    protected mixed $customer;
+    protected mixed $template;
+    protected mixed $category;
+    protected mixed $rewriteUrl;
 
     public function __construct()
     {
@@ -59,11 +59,11 @@
 
     /**
      * @param string $constant
-     * @param int $products_id
+     * @param string $products_id
      * @param string $tag
      * @return string
      */
-    public function getStock(string $constant, $products_id, string $tag = ' '): string
+    public function getStock(string $constant, string $products_id, string $tag = ' '): string
     {
       if ($constant == 'number') {
         $products_stock = CLICSHOPPING::getDef('text_stock') . $tag . $this->productsCommon->getProductsStock($products_id);
@@ -77,11 +77,11 @@
     }
 
     /**
-     * @param int $products_id
+     * @param string $products_id
      * @param string $tag
      * @return string
      */
-    public function getFlashDiscount(int $products_id, string $tag = '<br />') :string
+    public function getFlashDiscount(string $products_id, string $tag = '<br />') :string
     {
       $products_flash_discount = '';
 
@@ -94,11 +94,11 @@
 
     /**
      * Minimum quantity to take an order
-     * @param $products_id
+     * @param string $products_id
      * @param string $tag
      * @return string
      */
-    public function getMinOrderQuantityProductDisplay($products_id, string $tag = ' ') :string
+    public function getMinOrderQuantityProductDisplay(string $products_id, string $tag = ' ') :string
     {
       if ($this->productsCommon->getProductsMinimumQuantityToTakeAnOrder($products_id) > 1) {
         $min_order_quantity_products_display = CLICSHOPPING::getDef('min_qty_product') . $tag . $this->productsCommon->getProductsMinimumQuantityToTakeAnOrder($products_id);
@@ -121,11 +121,11 @@
     /**
      * Display an input allowing for the customer to insert a quantity
      * @param string $constant
-     * @param $products_id
+     * @param string $products_id
      * @param string $tag
      * @return string
      */
-    public function getDisplayInputQuantity(string $constant, $products_id, string $tag = ' ') :string
+    public function getDisplayInputQuantity(string $constant, string $products_id, string $tag = ' ') :string
     {
       $input_quantity = '';
 
@@ -143,11 +143,11 @@
     }
 
     /**
-     * @param $products_id
+     * @param string $products_id
      * @param string $tag
      * @return string
      */
-    public function getProductQuantityUnitType($products_id, string $tag = ' ') :string
+    public function getProductQuantityUnitType(string $products_id, string $tag = ' ') :string
     {
       $products_quantity_unit = '';
 
@@ -166,14 +166,14 @@
 
     /**
      * @param string $constant
-     * @param $products_id
+     * @param string $products_id
      * @param string|null $icon
      * @param string $button_color
      * @param null $params
      * @param string $button_size
      * @return string
      */
-    public function getButtonViewDetails(string $constant, $products_id, ?string $icon = null, string $button_color = 'info', $params = null, string $button_size = 'sm') :string
+    public function getButtonViewDetails(string $constant, string $products_id, ?string $icon = null, string $button_color = 'info', $params = null, string $button_size = 'sm') :string
     {
       $button = '';
 
@@ -190,13 +190,13 @@
 
     /**
      * @param string $constant
-     * @param $products_id
+     * @param string $products_id
      * @param string $parameters
      * @param bool $responsive
      * @param string $css
      * @return string
      */
-    public function getImage(string $constant, $products_id, $parameters = '', bool $responsive = true, string $css = '') :string
+    public function getImage(string $constant, string $products_id, $parameters = '', bool $responsive = true, string $css = '') :string
     {
       if ($constant == 'Medium') {
         if ($this->productsCommon->getProductsImageMedium($products_id) !== false) {
@@ -213,14 +213,14 @@
 
     /**
      * @param string $constant
-     * @param $products_id
+     * @param string $products_id
      * @param string $cssSpecial
      * @param string $cssFavorites
      * @param string $cssFeatured
      * @param string $cssProductsNew
      * @return string
      */
-    public function getTicker(string $constant, $products_id, string $cssSpecial, string $cssFavorites, string $cssFeatured, string $cssProductsNew): string
+    public function getTicker(string $constant, string $products_id, string $cssSpecial, string $cssFavorites, string $cssFeatured, string $cssProductsNew): string
     {
       $ticker = '';
 
@@ -239,11 +239,11 @@
 
     /**
      * @param string $constant
-     * @param $products_id
+     * @param string $products_id
      * @param string $cssPourcentage
      * @return string
      */
-    public function getTickerPourcentage(string $constant, $products_id, string $cssPourcentage) :string
+    public function getTickerPourcentage(string $constant, string $products_id, string $cssPourcentage) :string
     {
       if ($constant == 'True' && !\is_null($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
         $ticker = HTML::link($this->rewriteUrl->getProductNameUrl($products_id), HTML::tickerImage($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id), $cssPourcentage, true));
@@ -255,11 +255,11 @@
     }
 
     /**
-     * @param $products_id
+     * @param string $products_id
      * @param string $tag
      * @return string
      */
-    public function getProductsModel($products_id, string $tag = ' '): string
+    public function getProductsModel(string $products_id, string $tag = ' '): string
     {
       if (!empty($this->productsCommon->getProductsModel($products_id))) {
         $products_model = $tag . $this->productsCommon->getProductsModel($products_id);
@@ -271,11 +271,11 @@
     }
 
     /**
-     * @param $products_id
+     * @param string $products_id
      * @param string $tag
      * @return string
      */
-    public function getProductsManufacturer($products_id, string $tag = ' ') :string
+    public function getProductsManufacturer(string $products_id, string $tag = ' ') :string
     {
       if (!empty($this->productsCommon->getProductsManufacturer($products_id))) {
         $products_manufacturers = CLICSHOPPING::getDef('text_manufacturer') . $tag . $this->productsCommon->getProductsManufacturer($products_id);
@@ -287,11 +287,11 @@
     }
 
     /**
-     * @param $products_id
+     * @param string $products_id
      * @param string $tag
      * @return string
      */
-    public function getProductsPriceByWeight($products_id, string $tag = ' ') :string
+    public function getProductsPriceByWeight(string $products_id, string $tag = ' ') :string
     {
       if (!empty($this->productsCommon->getProductsPriceByWeight($products_id))) {
         $product_price_kilo = CLICSHOPPING::getDef('text_products_price_kilo') . $tag . $this->productsCommon->getProductsPriceByWeight($products_id);

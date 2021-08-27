@@ -1091,8 +1091,12 @@
 
     public function save(string|int|null $id, $action)
     {
-      $products_date_available = HTML::sanitize($_POST['products_date_available']);
-      $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
+      if (isset($products_date_available)) {
+        $products_date_available = HTML::sanitize($_POST['products_date_available']);
+        $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
+      } else {
+        $products_date_available = null;
+      }
 
       if (isset($_POST['products_view']) && HTML::sanitize($_POST['products_view']) == 1) {
         $products_view = 1;

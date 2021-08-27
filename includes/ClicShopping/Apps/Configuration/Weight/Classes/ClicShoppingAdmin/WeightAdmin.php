@@ -16,16 +16,16 @@
 
   class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\Weight
   {
-    protected $weight_classes = [];
-    protected $precision = 2;
+    protected array $weight_classes = [];
+    protected int $precision = 2;
 
     public function __construct($precision = null)
     {
     }
 
     /**
-     * @param $id
-     * @param null $language_id
+     * @param int $id
+     * @param int|null $language_id
      * @return mixed
      */
     public static function getTitle(int $id, ?int $language_id = null) :string

@@ -16,12 +16,12 @@
 
   class Weight
   {
-    protected $weight_classes = [];
-    protected $precision = 2;
+    protected array $weight_classes = [];
+    protected int $precision = 2;
 
     public function __construct(?int $precision = null)
     {
-      if (is_int($precision)) {
+      if (\is_int($precision)) {
         $this->precision = $precision;
       }
 
@@ -80,7 +80,7 @@
     /**
      *
      */
-    public function prepareRules()
+    public function prepareRules(): void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -123,6 +123,8 @@
      */
     public function convert($value, $unit_from, $unit_to) :false|string
     {
+      $convert = false;
+
       if (!\is_null($value)) {
         if ($unit_from == $unit_to) {
           $convert = number_format($value, $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
@@ -133,9 +135,9 @@
             $convert = false;
           }
         }
-
-        return $convert;
       }
+
+      return $convert;
     }
 
     /**
@@ -168,7 +170,8 @@
       $Qclasses->execute();
 
       while ($Qclasses->fetch()) {
-        $weight_class_array[] = ['id' => $Qclasses->valueInt('weight_class_id'),
+        $weight_class_array[] = [
+          'id' => $Qclasses->valueInt('weight_class_id'),
           'title' => $Qclasses->value('weight_class_title')
         ];
       }

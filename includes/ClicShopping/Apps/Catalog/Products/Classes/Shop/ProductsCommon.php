@@ -1209,7 +1209,8 @@
         $id = $this->getID();
       }
 
-      $Qproducts = $this->db->get('products', ['products_weight',
+      $Qproducts = $this->db->get('products', [
+        'products_weight',
         'products_weight_class_id'
       ],
         ['products_status' => 1,
@@ -1244,7 +1245,7 @@
      * @param int|null $id
      * @return string
      */
-    private function setProductsPriceByWeight(?int $id = null)
+    private function setProductsPriceByWeight(string $id = null)
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -1297,7 +1298,7 @@
      * @param int|null $id
      * @return string
      */
-    public function getProductsPriceByWeight(?int $id = null)
+    public function getProductsPriceByWeight(string $id = null)
     {
       return $this->setProductsPriceByWeight($id);
     }
