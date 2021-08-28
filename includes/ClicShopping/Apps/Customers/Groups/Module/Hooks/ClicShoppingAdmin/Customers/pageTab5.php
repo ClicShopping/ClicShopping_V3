@@ -19,7 +19,7 @@
 
   class pageTab5 implements \ClicShopping\OM\Modules\HooksInterface
   {
-    protected $app;
+    protected mixed $app;
     protected string $customers_group_name;
     protected int $customers_group_id;
 

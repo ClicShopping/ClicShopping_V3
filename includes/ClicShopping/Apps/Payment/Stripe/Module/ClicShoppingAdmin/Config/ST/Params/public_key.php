@@ -13,7 +13,7 @@
 
   class public_key extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract {
     public $default = '';
-    public $sort_order = 45;
+    public ?int $sort_order = 45;
 
     protected function init() {
       $this->title = $this->app->getDef('cfg_stripe_public_private_key_title');

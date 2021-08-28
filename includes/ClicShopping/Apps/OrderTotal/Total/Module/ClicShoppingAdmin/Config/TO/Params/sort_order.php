@@ -15,7 +15,7 @@
   {
 
     public $default = '1500';
-    public $app_configured = false;
+    public bool $app_configured = false;
 
     protected function init()
     {

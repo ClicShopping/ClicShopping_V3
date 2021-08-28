@@ -15,10 +15,10 @@
 
   class ar_tell_a_friend
   {
-    public $code;
+    public string $code;
     public $title;
     public $description;
-    public $sort_order = 0;
+    public ?int $sort_order = 0;
     public $minutes = 15;
     public $attempts = 1;
     public $identifier;

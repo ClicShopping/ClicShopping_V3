@@ -16,7 +16,7 @@
   class status extends \ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
     public $default = 'True';
-    public $sort_order = 10;
+    public ?int $sort_order = 10;
 
     protected function init()
     {

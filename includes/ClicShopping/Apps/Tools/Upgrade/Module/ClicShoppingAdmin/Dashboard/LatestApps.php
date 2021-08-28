@@ -21,7 +21,7 @@
   class LatestApps extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
     protected mixed $lang;
-    protected $app;
+    protected mixed $app;
     public $group;
 
     protected function init()

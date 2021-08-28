@@ -22,7 +22,7 @@
     /**
      * @var bool|null
      */
-    protected $app;
+    protected mixed $app;
 
     public function __construct()
     {

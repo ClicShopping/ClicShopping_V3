@@ -19,7 +19,7 @@
 
   class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $app;
+    protected mixed $app;
     protected $selected;
     protected $cPath;
 

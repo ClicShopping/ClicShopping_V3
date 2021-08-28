@@ -13,9 +13,9 @@
 
   class sort_order extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract {
 
-    public $sort_order = 1000;
+    public ?int $sort_order = 1000;
     public $default = '300';
-    public $app_configured = false;
+    public bool $app_configured = false;
 
     protected function init() {
         $this->title = $this->app->getDef('cfg_stripe_sort_order_title');

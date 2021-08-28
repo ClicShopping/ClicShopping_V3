@@ -20,7 +20,7 @@
 
   class Remove extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $app;
+    protected mixed $app;
 
     public function __construct()
     {
@@ -71,7 +71,7 @@
 
         $module->remove();
 
-        $modules_installed = explode(';', constant($module_key));
+        $modules_installed = explode(';', \constant($module_key));
 
         if (\in_array($class . $file_extension, $modules_installed)) {
           unset($modules_installed[array_search($class . $file_extension, $modules_installed)]);

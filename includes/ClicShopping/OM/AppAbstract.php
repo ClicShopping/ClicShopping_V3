@@ -17,7 +17,7 @@
   abstract class AppAbstract
   {
     public string $code;
-    public string $title;
+    public $title;
     public string $vendor;
     public string $version;
     public array $modules = [];

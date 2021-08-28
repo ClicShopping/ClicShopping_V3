@@ -27,7 +27,7 @@ class ApiResponse
     /**
      * @var int
      */
-    public $code;
+    public string $code;
 
     /**
      * @param string $body

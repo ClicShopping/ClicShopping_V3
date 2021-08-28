@@ -19,7 +19,7 @@
 
   class DashboardTopNewsletter implements \ClicShopping\OM\Modules\HooksInterface
   {
-    protected $app;
+    protected mixed $app;
 
     public function __construct()
     {

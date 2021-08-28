@@ -27,7 +27,7 @@
     /**
      * @var bool|\orders|null
      */
-    protected $app;
+    protected mixed $app;
     /**
      * @var bool|\lang|null
      */

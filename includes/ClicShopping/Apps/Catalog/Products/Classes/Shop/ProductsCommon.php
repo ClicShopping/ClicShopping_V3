@@ -52,7 +52,7 @@
     protected $infoPriceDiscountByQuantity;
     protected $saveMoney;
 
-    protected $app;
+    protected mixed $app;
     protected mixed $db;
     protected $language;
     protected $customer;

@@ -20,7 +20,7 @@
 
   class MoveCategoryConfirm extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $app;
+    protected mixed $app;
     protected $Id;
     protected $moveToCategoryID;
     protected $cPath;

@@ -27,7 +27,7 @@
     protected array $ignored_actions = [];
     protected bool $is_rpc = false;
 
-    protected $app;
+    protected mixed $app;
 
     final public function __construct(\ClicShopping\OM\SitesInterface $site)
     {

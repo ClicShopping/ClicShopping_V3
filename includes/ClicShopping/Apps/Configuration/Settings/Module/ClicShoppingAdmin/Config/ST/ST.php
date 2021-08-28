@@ -16,8 +16,8 @@
 
     protected $pm_code = 'settings';
 
-    public $is_uninstallable = false;
-    public $sort_order = 400;
+    public bool $is_uninstallable = false;
+    public ?int $sort_order = 400;
 
     protected function init()
     {

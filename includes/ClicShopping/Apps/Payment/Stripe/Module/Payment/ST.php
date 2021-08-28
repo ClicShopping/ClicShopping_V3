@@ -23,7 +23,7 @@
 
   class ST implements \ClicShopping\OM\Modules\PaymentInterface
   {
-    public $code;
+    public string $code;
     public $title;
     public $description;
     public $enabled = false;
@@ -31,7 +31,7 @@
     protected $currency;
     public $signature;
     public $public_title;
-    public $sort_order = 0;
+    public ?int $sort_order = 0;
     protected $api_version;
     public $group;
 

@@ -492,8 +492,8 @@
         foreach ($tbgroups_array as $group) {
           $module_key = 'MODULE_' . strtoupper($group) . '_INSTALLED';
 
-          if (\defined($module_key) && !\is_null(constant($module_key))) {
-            $modules_array = explode(';', constant($module_key));
+          if (\defined($module_key) && !\is_null(\constant($module_key))) {
+            $modules_array = explode(';', \constant($module_key));
 
             foreach ($modules_array as $module) {
 // bug : create <br /> at the first line on html content code. Don't find solution to resolve that. come from $module

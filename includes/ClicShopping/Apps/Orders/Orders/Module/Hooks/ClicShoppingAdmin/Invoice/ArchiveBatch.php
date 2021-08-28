@@ -18,7 +18,7 @@
 
   class ArchiveBatch implements \ClicShopping\OM\Modules\HooksInterface
   {
-    protected $app;
+    protected mixed $app;
     protected $Id;
 
     public function __construct()

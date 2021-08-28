@@ -15,8 +15,8 @@
 
     protected $pm_code = 'Stripe';
 
-    public $is_uninstallable = true;
-    public $sort_order = 400;
+    public bool $is_uninstallable = true;
+    public ?int $sort_order = 400;
 
     protected function init() {
         $this->title = $this->app->getDef('module_stripe_title');

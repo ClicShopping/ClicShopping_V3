@@ -16,7 +16,7 @@
   class tax_class extends \ClicShopping\Apps\Shipping\Item\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
     public $default = '';
-    public $sort_order = 50;
+    public ?int $sort_order = 50;
     public $set_func = 'clic_cfg_set_tax_classes_pull_down_menu';
 
 //    public $use_func = 'clic_cfg_use_get_tax_class_title';

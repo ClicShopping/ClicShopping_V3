@@ -21,7 +21,7 @@
   {
     protected mixed $lang;
     protected mixed $db;
-    protected $app;
+    protected mixed $app;
 
     public function __construct()
     {

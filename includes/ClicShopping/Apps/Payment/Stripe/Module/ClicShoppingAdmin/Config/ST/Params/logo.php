@@ -13,7 +13,7 @@
 
   class logo extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract {
     public $default = 'stripe_cards.png';
-    public $sort_order = 30;
+    public ?int $sort_order = 30;
 
     protected function init() {
       $this->title = $this->app->getDef('cfg_stripe_logo_title');

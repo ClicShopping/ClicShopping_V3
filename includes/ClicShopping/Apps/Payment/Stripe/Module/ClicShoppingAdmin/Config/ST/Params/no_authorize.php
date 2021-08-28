@@ -16,7 +16,7 @@ use ClicShopping\OM\HTML;
 class no_authorize extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
     public $default = 'True';
-    public $sort_order = 20;
+    public ?int $sort_order = 20;
 
     protected function init()
     {

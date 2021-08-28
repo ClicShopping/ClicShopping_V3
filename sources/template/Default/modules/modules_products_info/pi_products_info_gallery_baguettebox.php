@@ -16,8 +16,8 @@
   class pi_products_info_gallery_baguettebox {
     public string $code;
     public string $group;
-    public string $title;
-    public string $description;
+    public $title;
+    public $description;
     public ?int $sort_order = 0;
     public bool $enabled = false;
     protected mixed $lang;

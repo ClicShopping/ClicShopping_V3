@@ -20,7 +20,7 @@
 
   class DeleteCategoryConfirm extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $app;
+    protected mixed $app;
     protected $cPath;
     protected $Id;
 

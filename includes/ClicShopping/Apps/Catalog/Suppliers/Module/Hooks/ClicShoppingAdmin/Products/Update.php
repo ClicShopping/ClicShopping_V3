@@ -19,7 +19,7 @@
 
   class Update implements \ClicShopping\OM\Modules\HooksInterface
   {
-    protected $app;
+    protected mixed $app;
     protected $supplierAdmin;
     
     public function __construct()

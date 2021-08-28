@@ -19,11 +19,11 @@
 
     protected $pm_code = 'whos_online';
 
-    public $is_uninstallable = true;
-    public $sort_order = 400;
+    public bool $is_uninstallable = true;
+    public ?int $sort_order = 400;
     public $title;
-    public $short_title;
-    public $introduction;
+    public string $short_title;
+    public string $introduction;
     public $is_installed;
 
     protected function init()

@@ -74,7 +74,7 @@
   </div>
   <div class="separator"></div>
   <?php
-    $modules_installed = (\defined($module_key) ? explode(';', constant($module_key)) : array());
+    $modules_installed = (\defined($module_key) ? explode(';', \constant($module_key)) : array());
 
     $new_modules_counter = 0;
 

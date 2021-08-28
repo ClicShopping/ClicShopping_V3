@@ -19,7 +19,7 @@
 
   class UpdateAll extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $app;
+    protected mixed $app;
     protected mixed $db;
 
     public function __construct()

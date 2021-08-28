@@ -19,7 +19,7 @@
 
   class IT implements \ClicShopping\OM\Modules\ShippingInterface
   {
-    public $code;
+    public string $code;
     public $title;
     public $description;
     public $enabled = false;
@@ -31,7 +31,7 @@
     public $public_title;
     protected $api_version;
     public $tax_class;
-    public $sort_order = 0;
+    public ?int $sort_order = 0;
 
     public function __construct()
     {

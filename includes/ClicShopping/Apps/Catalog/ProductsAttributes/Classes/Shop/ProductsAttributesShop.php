@@ -16,7 +16,7 @@
   class ProductsAttributesShop
   {
     protected mixed $lang;
-    protected $app;
+    protected mixed $app;
     protected $productsCommon;
     protected $customer;
 

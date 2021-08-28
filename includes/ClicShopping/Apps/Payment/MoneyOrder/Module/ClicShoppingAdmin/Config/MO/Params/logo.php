@@ -14,7 +14,7 @@
   class logo extends \ClicShopping\Apps\Payment\MoneyOrder\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
     public $default = 'cheque.gif';
-    public $sort_order = 30;
+    public ?int $sort_order = 30;
 
     protected function init()
     {

@@ -18,8 +18,8 @@
   class cc_checkout_confirmation_payment_information {
     public string $code;
     public string $group;
-    public string $title;
-    public string $description;
+    public $title;
+    public $description;
     public ?int $sort_order = 0;
     public bool $enabled = false;
 

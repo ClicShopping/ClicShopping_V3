@@ -27,7 +27,7 @@
     protected $templateEmailSignature;
     protected $templateEmailFooter;
     protected $mail;
-    protected $app;
+    protected mixed $app;
 
     public function __construct()
     {

@@ -16,7 +16,7 @@
 
   class status extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract {
     public $default = 'True';
-    public $sort_order = 10;
+    public ?int $sort_order = 10;
 
     protected function init() {
         $this->title = $this->app->getDef('cfg_stripe_status_title');

@@ -16,7 +16,7 @@
   class zone extends \ClicShopping\Apps\Shipping\Item\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
     public $default = '0';
-    public $sort_order = 500;
+    public ?int $sort_order = 500;
 
     protected function init()
     {

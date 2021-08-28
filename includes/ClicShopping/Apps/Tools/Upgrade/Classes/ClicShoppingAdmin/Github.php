@@ -23,7 +23,7 @@
 
   class Github
   {
-    protected $app;
+    protected mixed $app;
     protected $github;
     protected string $githubRepo;
     protected $context;

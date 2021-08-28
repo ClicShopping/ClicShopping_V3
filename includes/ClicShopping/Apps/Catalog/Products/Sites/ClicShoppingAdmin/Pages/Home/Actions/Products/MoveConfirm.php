@@ -18,7 +18,7 @@
 
   class MoveConfirm extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $app;
+    protected mixed $app;
     protected $newParentId;
     protected $currentCategoryId;
 

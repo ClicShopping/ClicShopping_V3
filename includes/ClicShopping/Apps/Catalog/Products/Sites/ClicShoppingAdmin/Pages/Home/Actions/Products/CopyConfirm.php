@@ -19,7 +19,7 @@
 
   class CopyConfirm extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $app;
+    protected mixed $app;
     protected $ID;
     protected $categoriesId;
     protected $currentCategoryId;

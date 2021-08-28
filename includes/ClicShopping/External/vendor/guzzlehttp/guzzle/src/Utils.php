@@ -41,7 +41,7 @@ final class Utils
 
                 $errors = [];
                 foreach ($errorConstants as $errorConstant) {
-                    if ($errorBitSet & constant($errorConstant)) {
+                    if ($errorBitSet & \constant($errorConstant)) {
                         $errors[] = $errorConstant;
                     }
                 }

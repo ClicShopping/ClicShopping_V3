@@ -14,9 +14,9 @@
   class free_shipping_over extends \ClicShopping\Apps\OrderTotal\TotalShipping\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
 
-    public $sort_order = 30;
+    public ?int $sort_order = 30;
     public $default = '50';
-    public $app_configured = true;
+    public bool $app_configured = true;
 
     protected function init()
     {

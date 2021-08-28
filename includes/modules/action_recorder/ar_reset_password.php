@@ -15,10 +15,10 @@
 
   class ar_reset_password
   {
-    public $code;
+    public string $code;
     public $title;
     public $description;
-    public $sort_order = 0;
+    public ?int $sort_order = 0;
     public $minutes = 5;
     public $attempts = 1;
     public $identifier;

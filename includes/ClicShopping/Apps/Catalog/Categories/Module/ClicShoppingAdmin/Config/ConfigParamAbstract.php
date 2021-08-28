@@ -15,11 +15,11 @@
 
   abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin\ConfigParamAbstract
   {
-    protected $app;
+    protected mixed $app;
     protected $config_module;
 
-    protected $key_prefix = 'clicshopping_app_categories_';
-    public $app_configured = true;
+    protected string $key_prefix = 'clicshopping_app_categories_';
+    public bool $app_configured = true;
 
     public function __construct($config_module)
     {

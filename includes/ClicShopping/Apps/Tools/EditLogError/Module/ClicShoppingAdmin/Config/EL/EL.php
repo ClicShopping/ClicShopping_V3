@@ -19,8 +19,8 @@
 
     protected $pm_code = 'edit_log_error';
 
-    public $is_uninstallable = true;
-    public $sort_order = 400;
+    public bool $is_uninstallable = true;
+    public ?int $sort_order = 400;
 
     protected function init()
     {

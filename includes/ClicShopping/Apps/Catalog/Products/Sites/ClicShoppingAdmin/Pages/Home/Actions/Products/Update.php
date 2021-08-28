@@ -16,7 +16,7 @@
 
   class Update extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $app;
+    protected mixed $app;
     protected $ID;
     protected $currentCategoryId;
 

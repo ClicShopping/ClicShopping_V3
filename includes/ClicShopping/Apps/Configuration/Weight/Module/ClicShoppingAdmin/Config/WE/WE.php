@@ -16,8 +16,8 @@
 
     protected $pm_code = 'weight';
 
-    public $is_uninstallable = true;
-    public $sort_order = 400;
+    public bool $is_uninstallable = true;
+    public ?int $sort_order = 400;
 
     protected function init()
     {

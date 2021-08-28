@@ -18,7 +18,7 @@
 
   class PreviewContent implements \ClicShopping\OM\Modules\HooksInterface
   {
-    protected $app;
+    protected mixed $app;
     protected $qteUnit;
 
     public function __construct()

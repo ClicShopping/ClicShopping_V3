@@ -19,7 +19,7 @@
 
   class CO implements \ClicShopping\OM\Modules\PaymentInterface
   {
-    public $code;
+    public string $code;
     public $title;
     public $description;
     public $enabled = false;
@@ -28,7 +28,7 @@
     protected $api_version;
     public $public_title;
     public $order_status;
-    public $sort_order = 0;
+    public ?int $sort_order = 0;
     public $group;
 
     public function __construct()

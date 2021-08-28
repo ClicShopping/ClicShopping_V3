@@ -22,7 +22,7 @@
 
   class Newsletter
   {
-    protected $app;
+    protected mixed $app;
     public $show_chooseAudience;
     public $title;
     public $content;

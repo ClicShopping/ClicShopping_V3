@@ -21,7 +21,7 @@
     protected mixed $db;
     protected mixed $lang;
     protected mixed $template;
-    protected $app;
+    protected mixed $app;
 
     protected function init()
     {

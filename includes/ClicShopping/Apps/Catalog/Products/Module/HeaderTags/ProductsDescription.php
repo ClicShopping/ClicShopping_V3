@@ -19,7 +19,7 @@
   class ProductsDescription extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
     protected mixed $lang;
-    protected $app;
+    protected mixed $app;
 
     protected function init()
     {

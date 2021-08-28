@@ -15,8 +15,8 @@
   class ml_login_mode_b2b_b2c {
     public string $code;
     public string $group;
-    public string $title;
-    public string $description;
+    public $title;
+    public $description;
     public ?int $sort_order = 0;
     public bool $enabled = false;
 

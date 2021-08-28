@@ -14,7 +14,7 @@
   class pay_to extends \ClicShopping\Apps\Payment\MoneyOrder\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
     public $default = '';
-    public $sort_order = 50;
+    public ?int $sort_order = 50;
 
     protected function init()
     {

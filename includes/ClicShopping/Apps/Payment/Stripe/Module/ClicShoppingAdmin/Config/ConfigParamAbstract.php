@@ -14,11 +14,11 @@
   use ClicShopping\OM\Registry;
 
   abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin\ConfigParamAbstract {
-    protected $app;
+    protected mixed $app;
     protected $config_module;
 
-    protected $key_prefix = 'clicshopping_app_stripe_';
-    public $app_configured = true;
+    protected string $key_prefix = 'clicshopping_app_stripe_';
+    public bool $app_configured = true;
 
     public function __construct($config_module) {
         $this->app = Registry::get('Stripe');

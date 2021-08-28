@@ -16,7 +16,7 @@
   class transaction_method extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
     public $default = 'automatic';
-    public $sort_order = 50;
+    public ?int $sort_order = 50;
 
     protected function init()
     {

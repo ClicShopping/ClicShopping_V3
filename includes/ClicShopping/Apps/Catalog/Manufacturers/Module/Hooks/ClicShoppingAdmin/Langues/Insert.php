@@ -18,7 +18,7 @@
 
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
-    protected $app;
+    protected mixed $app;
     protected $insert_language_id;
 
     public function __construct()

@@ -17,7 +17,7 @@
 
   class TableReset extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $app;
+    protected mixed $app;
 
     public function __construct()
     {

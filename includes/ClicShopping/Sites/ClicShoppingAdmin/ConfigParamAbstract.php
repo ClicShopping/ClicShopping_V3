@@ -15,13 +15,13 @@
 
   abstract class ConfigParamAbstract
   {
-    protected $code;
-    protected $key_prefix;
-    protected $key;
+    protected string $code;
+    protected string $key_prefix;
+    protected string $key;
     public $title;
     public $description;
     public $default;
-    public $sort_order = 0;
+    public ?int $sort_order = 0;
 
     abstract protected function init();
 
@@ -37,7 +37,7 @@
     protected function getInputValue()
     {
       $key = strtoupper($this->key);
-      $value = \defined($key) ? constant($key) : null;
+      $value = \defined($key) ? \constant($key) : null;
 
       if (!isset($value) && isset($this->default)) {
         $value = $this->default;

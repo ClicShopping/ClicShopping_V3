@@ -15,7 +15,7 @@ use ClicShopping\OM\HTML;
 
 class prepare_order_status_id extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract {
     public $default = '0';
-    public $sort_order = 400;
+    public ?int $sort_order = 400;
 
     protected function init() {
         $this->title = $this->app->getDef('cfg_stripe_prepare_order_status_id_title');

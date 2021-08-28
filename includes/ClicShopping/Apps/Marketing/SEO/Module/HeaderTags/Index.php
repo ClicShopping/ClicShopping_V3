@@ -22,7 +22,7 @@
   class Index extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
     protected mixed $lang;
-    protected $app;
+    protected mixed $app;
     protected mixed $template;
 
     protected function init()

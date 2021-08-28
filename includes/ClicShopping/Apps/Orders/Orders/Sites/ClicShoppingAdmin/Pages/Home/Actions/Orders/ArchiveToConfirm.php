@@ -16,7 +16,7 @@
 
   class ArchiveToConfirm extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $app;
+    protected mixed $app;
     protected $oID;
 
     public function __construct()

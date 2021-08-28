@@ -14,7 +14,7 @@
   class handling extends \ClicShopping\Apps\Shipping\Item\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
     public $default = '';
-    public $sort_order = 50;
+    public ?int $sort_order = 50;
 
     protected function init()
     {

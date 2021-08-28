@@ -19,7 +19,7 @@
 
   class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $app;
+    protected mixed $app;
     protected bool $restock;
     protected int $oID;
 

@@ -15,7 +15,7 @@
 
   class server_prod extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract {
     public $default = 'False';
-    public $sort_order = 15;
+    public ?int $sort_order = 15;
 
     protected function init() {
       $this->title = $this->app->getDef('cfg_stripe_server_prod_title');

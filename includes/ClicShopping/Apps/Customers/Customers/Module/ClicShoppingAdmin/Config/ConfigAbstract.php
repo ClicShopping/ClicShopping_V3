@@ -16,17 +16,17 @@
 
   abstract class ConfigAbstract
   {
-    protected $app;
+    protected mixed $app;
 
-    public $code;
+    public string $code;
     public $title;
-    public $short_title;
-    public $introduction;
-    public $req_notes = [];
-    public $is_installed = false;
-    public $is_uninstallable = false;
-    public $is_migratable = false;
-    public $sort_order = 0;
+    public string $short_title;
+    public string $introduction;
+    public array $req_notes = [];
+    public bool $is_installed = false;
+    public bool $is_uninstallable = false;
+    public bool $is_migratable = false;
+    public ?int $sort_order = 0;
 
     abstract protected function init();
 
