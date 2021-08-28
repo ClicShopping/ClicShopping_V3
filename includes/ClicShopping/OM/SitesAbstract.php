@@ -15,9 +15,9 @@
   {
     protected string $code;
     protected string $default_page = 'Home'; // else white page
-    protected $page;
+    protected mixed $page;
     protected $app;
-    protected $route;
+    protected mixed $route;
     public int $actions_index = 1;
 
     abstract protected function init();

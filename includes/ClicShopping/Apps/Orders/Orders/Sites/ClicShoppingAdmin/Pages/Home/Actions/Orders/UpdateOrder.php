@@ -31,11 +31,11 @@
     /**
      * @var bool|\lang|null
      */
-    protected $lang;
+    protected mixed $lang;
     /**
      * @var bool|\db|null
      */
-    protected $db;
+    protected mixed $db;
     /**
      * @var bool|\hooks|null
      */

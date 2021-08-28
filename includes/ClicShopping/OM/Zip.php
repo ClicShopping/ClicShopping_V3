@@ -15,59 +15,33 @@
   {
     public static function zipStatusString($status)
     {
-      switch ((int)$status) {
-        case \ZipArchive::ER_OK           :
-          return 'N No error';
-        case \ZipArchive::ER_MULTIDISK    :
-          return 'N Multi-disk zip archives not supported';
-        case \ZipArchive::ER_RENAME       :
-          return 'S Renaming temporary file failed';
-        case \ZipArchive::ER_CLOSE        :
-          return 'S Closing zip archive failed';
-        case \ZipArchive::ER_SEEK         :
-          return 'S Seek error';
-        case \ZipArchive::ER_READ         :
-          return 'S Read error';
-        case \ZipArchive::ER_WRITE        :
-          return 'S Write error';
-        case \ZipArchive::ER_CRC          :
-          return 'N CRC error';
-        case \ZipArchive::ER_ZIPCLOSED    :
-          return 'N Containing zip archive was closed';
-        case \ZipArchive::ER_NOENT        :
-          return 'N No such file';
-        case \ZipArchive::ER_EXISTS       :
-          return 'N File already exists';
-        case \ZipArchive::ER_OPEN         :
-          return 'S Can\'t open file';
-        case \ZipArchive::ER_TMPOPEN      :
-          return 'S Failure to create temporary file';
-        case \ZipArchive::ER_ZLIB         :
-          return 'Z Zlib error';
-        case \ZipArchive::ER_MEMORY       :
-          return 'N Malloc failure';
-        case \ZipArchive::ER_CHANGED      :
-          return 'N Entry has been changed';
-        case \ZipArchive::ER_COMPNOTSUPP  :
-          return 'N Compression method not supported';
-        case \ZipArchive::ER_EOF          :
-          return 'N Premature EOF';
-        case \ZipArchive::ER_INVAL        :
-          return 'N Invalid argument';
-        case \ZipArchive::ER_NOZIP        :
-          return 'N Not a zip archive';
-        case \ZipArchive::ER_INTERNAL     :
-          return 'N Internal error';
-        case \ZipArchive::ER_INCONS       :
-          return 'N Zip archive inconsistent';
-        case \ZipArchive::ER_REMOVE       :
-          return 'S Can\'t remove file';
-        case \ZipArchive::ER_DELETED      :
-          return 'N Entry has been deleted';
-
-        default:
-          return sprintf('Unknown status %s', $status);
-      }
+      return match ((int)$status) {
+        \ZipArchive::ER_OK => 'N No error',
+        \ZipArchive::ER_MULTIDISK => 'N Multi-disk zip archives not supported',
+        \ZipArchive::ER_RENAME => 'S Renaming temporary file failed',
+        \ZipArchive::ER_CLOSE => 'S Closing zip archive failed',
+        \ZipArchive::ER_SEEK => 'S Seek error',
+        \ZipArchive::ER_READ => 'S Read error',
+        \ZipArchive::ER_WRITE => 'S Write error',
+        \ZipArchive::ER_CRC => 'N CRC error',
+        \ZipArchive::ER_ZIPCLOSED => 'N Containing zip archive was closed',
+        \ZipArchive::ER_NOENT => 'N No such file',
+        \ZipArchive::ER_EXISTS => 'N File already exists',
+        \ZipArchive::ER_OPEN => 'S Can\'t open file',
+        \ZipArchive::ER_TMPOPEN => 'S Failure to create temporary file',
+        \ZipArchive::ER_ZLIB => 'Z Zlib error',
+        \ZipArchive::ER_MEMORY => 'N Malloc failure',
+        \ZipArchive::ER_CHANGED => 'N Entry has been changed',
+        \ZipArchive::ER_COMPNOTSUPP => 'N Compression method not supported',
+        \ZipArchive::ER_EOF => 'N Premature EOF',
+        \ZipArchive::ER_INVAL => 'N Invalid argument',
+        \ZipArchive::ER_NOZIP => 'N Not a zip archive',
+        \ZipArchive::ER_INTERNAL => 'N Internal error',
+        \ZipArchive::ER_INCONS => 'N Zip archive inconsistent',
+        \ZipArchive::ER_REMOVE => 'S Can\'t remove file',
+        \ZipArchive::ER_DELETED => 'N Entry has been deleted',
+        default => sprintf('Unknown status %s', $status),
+      };
     }
 
     public static function isDir($path)

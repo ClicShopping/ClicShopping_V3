@@ -18,7 +18,7 @@
   {
     protected int $supplier_id;
     protected int $language_id;
-    protected $db;
+    protected mixed $db;
 
     public function __construct()
     {

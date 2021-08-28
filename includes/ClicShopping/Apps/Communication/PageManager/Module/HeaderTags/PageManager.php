@@ -18,10 +18,10 @@
 
   class PageManager extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
-    protected $db;
-    protected $lang;
+    protected mixed $db;
+    protected mixed $lang;
     protected $app;
-    protected $template;
+    protected mixed $template;
 
     protected function init()
     {

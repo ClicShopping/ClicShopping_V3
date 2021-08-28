@@ -20,9 +20,9 @@
   class PageManagerShop
   {
     protected int $id;
-    protected $db;
+    protected mixed $db;
     protected $customer;
-    protected $lang;
+    protected mixed $lang;
     protected $rewriteUrl;
 
     public function __construct()

@@ -20,7 +20,7 @@
   class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
-    protected $db;
+    protected mixed $db;
 
     public function __construct()
     {

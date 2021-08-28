@@ -20,7 +20,7 @@
     protected $contents;
     protected $total;
     protected $weight;
-    protected $db;
+    protected mixed $db;
 
     public function __construct()
     {

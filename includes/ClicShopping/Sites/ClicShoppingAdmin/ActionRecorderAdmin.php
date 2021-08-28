@@ -18,7 +18,7 @@
 
   class ActionRecorderAdmin extends \ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder
   {
-    protected $lang;
+    protected mixed $lang;
 
     public function __construct(string $module, string $user_id = null, string $user_name = null)
     {

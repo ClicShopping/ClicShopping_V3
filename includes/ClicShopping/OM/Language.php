@@ -25,8 +25,8 @@
     protected array $definitions = [];
     protected array $detectors = [];
     protected bool $use_cache = false;
-    protected $db;
-    public $code;
+    protected mixed $db;
+    public string $code;
 
     /**
      * Language constructor.

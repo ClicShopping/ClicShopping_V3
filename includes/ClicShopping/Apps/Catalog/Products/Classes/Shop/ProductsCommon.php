@@ -53,7 +53,7 @@
     protected $saveMoney;
 
     protected $app;
-    protected $db;
+    protected mixed $db;
     protected $language;
     protected $customer;
 

@@ -22,7 +22,7 @@
     protected $file = null;
     protected bool $use_site_template = false;
     protected $pm;
-    protected $lang;
+    protected mixed $lang;
 
     protected function init()
     {

@@ -19,7 +19,7 @@
 
   class RSS extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
-    protected $lang;
+    protected mixed $lang;
     protected $app;
 
     protected function init()

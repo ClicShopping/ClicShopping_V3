@@ -18,8 +18,8 @@
   class ReviewsClass
   {
     protected $productsCommon;
-    protected $db;
-    protected $lang;
+    protected mixed $db;
+    protected mixed $lang;
     protected $customer;
     protected $reviews_number_comments;
     protected $reviews_number_word;

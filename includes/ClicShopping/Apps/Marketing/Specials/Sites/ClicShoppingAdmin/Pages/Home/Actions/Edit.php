@@ -22,6 +22,6 @@
       $this->page->setFile('edit.php');
       $this->page->data['action'] = 'Edit';
 
-      $CLICSHOPPING_Specials->loadDefinitions('Sites/ClicShoppingAdmin/Specials');
+      $CLICSHOPPING_Specials->loadDefinitions('Sites/ClicShoppingAdmin/main');
     }
   }

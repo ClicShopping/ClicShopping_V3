@@ -23,10 +23,10 @@
   class ProductsAdmin
   {
     protected $id;
-    protected $db;
-    protected $template;
+    protected mixed $db;
+    protected mixed $template;
     protected $hooks;
-    protected $lang;
+    protected mixed $lang;
 
     public function __construct()
     {

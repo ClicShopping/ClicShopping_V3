@@ -15,7 +15,7 @@
 
   class CurrenciesAdmin extends \ClicShopping\Apps\Configuration\Currency\Classes\Shop\Currencies
   {
-    protected $db;
+    protected mixed $db;
 
     public function __construct(array $currencies = null)
     {

@@ -17,8 +17,8 @@
 
   class SeoShop
   {
-    protected $db;
-    protected $lang;
+    protected mixed $db;
+    protected mixed $lang;
 
     protected string $seoDefaultTitle;
     protected string $seoDefaultDescription;

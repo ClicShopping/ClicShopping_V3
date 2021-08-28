@@ -20,7 +20,7 @@
   {
     public array $modules = [];
     public $selected_module;
-    protected $lang;
+    protected mixed $lang;
     
     public function __construct($module = null)
     {

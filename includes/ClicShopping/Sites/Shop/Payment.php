@@ -19,8 +19,8 @@
   {
     public array $modules = [];
     public string $selected_module;
-    protected $template;
-    protected $lang;
+    protected mixed $template;
+    protected mixed $lang;
 
 // class constructor
     public function __construct($module = null)

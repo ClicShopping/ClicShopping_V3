@@ -29,8 +29,8 @@
     protected string $productsId;
     protected bool $products_in_stock = true;
 
-    protected $db;
-    protected $lang;
+    protected mixed $db;
+    protected mixed $lang;
     protected $customer;
     protected $productsCommon;
     protected $prod;

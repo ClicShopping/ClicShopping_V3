@@ -23,8 +23,8 @@
 
     protected int $products_id;
     protected string $site_name;
-    protected $db;
-    protected $lang;
+    protected mixed $db;
+    protected mixed $lang;
     protected $navigationHistory;
     protected $rewriteUrl;
 

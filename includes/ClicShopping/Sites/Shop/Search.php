@@ -29,7 +29,7 @@
     protected $_category;
     protected $_result;
     protected $column_list;
-    protected $db;
+    protected mixed $db;
     protected bool $checkManufacturer = false;
     protected bool $_recursive = false;
     protected $listing;

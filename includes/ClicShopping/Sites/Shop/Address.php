@@ -20,7 +20,7 @@
    */
   class Address
   {
-    protected $db;
+    protected mixed $db;
 
     public function __construct()
     {

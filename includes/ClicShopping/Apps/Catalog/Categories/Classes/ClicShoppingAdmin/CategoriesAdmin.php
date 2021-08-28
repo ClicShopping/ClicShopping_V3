@@ -18,9 +18,9 @@
 
   class CategoriesAdmin
   {
-    protected $lang;
-    protected $template;
-    protected $db;
+    protected mixed $lang;
+    protected mixed $template;
+    protected mixed $db;
 
     public function __construct()
     {

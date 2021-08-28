@@ -22,8 +22,8 @@
     public string $version;
     public array $modules = [];
 
-    public $db;
-    public $lang;
+    public mixed $db;
+    public mixed $lang;
 
     abstract protected function init();
 

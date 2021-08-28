@@ -22,7 +22,7 @@
   class Insert extends \ClicShopping\OM\PagesActionsAbstract
   {
     protected $app;
-    protected $lang;
+    protected mixed $lang;
 
     public function __construct()
     {

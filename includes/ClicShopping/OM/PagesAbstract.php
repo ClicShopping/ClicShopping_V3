@@ -17,7 +17,7 @@
 
   abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   {
-    public $data = [];
+    public array $data = [];
 
     protected string $code;
     protected string $file = 'main.php';

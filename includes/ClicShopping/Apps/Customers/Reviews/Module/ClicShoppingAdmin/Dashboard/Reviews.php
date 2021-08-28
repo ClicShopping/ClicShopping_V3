@@ -19,7 +19,7 @@
 
   class Reviews extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
-    protected $lang;
+    protected mixed $lang;
     protected $app;
     public $group;
 

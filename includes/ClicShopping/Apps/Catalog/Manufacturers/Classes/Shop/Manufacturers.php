@@ -16,8 +16,8 @@
 
   class Manufacturers
   {
-    protected $db;
-    protected $lang;
+    protected mixed $db;
+    protected mixed $lang;
     protected ?int $Id;
 
     protected $rewriteUrl;

@@ -37,8 +37,8 @@
     public $coupon;
     public $content_type;
 
-    protected $db;
-    protected $lang;
+    protected mixed $db;
+    protected mixed $lang;
     protected $mail;
 
     public function __construct(?int $order_id = null)

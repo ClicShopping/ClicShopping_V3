@@ -22,6 +22,6 @@
       $this->page->setFile('specials.php');
       $this->page->data['action'] = 'Specials';
 
-      $CLICSHOPPING_Specials->loadDefinitions('Sites/ClicShoppingAdmin/Specials');
+      $CLICSHOPPING_Specials->loadDefinitions('Sites/ClicShoppingAdmin/main');
     }
   }

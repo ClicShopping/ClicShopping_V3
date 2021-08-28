@@ -20,7 +20,7 @@
   class Currencies
   {
     public array $currencies = [];
-    protected $db;
+    protected mixed $db;
     protected $show;
     protected string $selected;
     protected string $default;

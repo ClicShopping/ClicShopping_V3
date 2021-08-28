@@ -21,9 +21,7 @@
     {
       $base = str_replace('\\', '/', $base); // Unix style directory separator "/"
 
-
       $flags = \FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_SELF | \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::UNIX_PATHS;
-
 
       if ($recursive === true) {
         $dir = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($base, $flags));

@@ -22,7 +22,7 @@
       $this->page->setFile('configure.php');
       $this->page->data['action'] = 'Configure';
 
-      $CLICSHOPPING_Specials->loadDefinitions('ClicShoppingAdmin/configure');
+      $CLICSHOPPING_Specials->loadDefinitions('Sites/ClicShoppingAdmin/configure');
 
       $modules = $CLICSHOPPING_Specials->getConfigModules();
 

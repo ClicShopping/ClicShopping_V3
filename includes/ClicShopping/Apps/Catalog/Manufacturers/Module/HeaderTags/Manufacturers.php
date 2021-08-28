@@ -21,9 +21,9 @@
 
   class Manufacturers extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
-    protected $lang;
+    protected mixed $lang;
     protected $app;
-    protected $template;
+    protected mixed $template;
 
     protected function init()
     {

@@ -22,7 +22,7 @@
     protected array $_data = [];
     protected array $_data1 = [];
 
-    protected $db;
+    protected mixed $db;
 
     public function __construct()
     {

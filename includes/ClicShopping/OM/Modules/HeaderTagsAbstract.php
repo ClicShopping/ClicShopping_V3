@@ -21,7 +21,7 @@
     public ?int $sort_order = null;
     public bool $enabled = false;
 
-    protected $db;
+    protected mixed $db;
 
     abstract protected function init();
 

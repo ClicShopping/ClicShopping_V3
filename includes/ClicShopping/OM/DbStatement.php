@@ -24,13 +24,13 @@
     protected bool $is_error = false;
     protected string $page_set_keyword = 'page';
     protected ?string $page_set;
-    protected $page_set_results_per_page;
+    protected mixed $page_set_results_per_page;
     protected $cache;
     protected int $cache_expire;
     protected $cache_data;
     protected bool $cache_read = false;
     protected bool $cache_empty_results = false;
-    protected $query_call;
+    protected string $query_call;
     protected ?int $page_set_total_rows;
     protected $result;
 

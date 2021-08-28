@@ -19,8 +19,8 @@
 
   class ProductsAttributesAdmin
   {
-    protected $lang;
-    protected $db;
+    protected mixed $lang;
+    protected mixed $db;
     protected $app;
 
     public function __construct()

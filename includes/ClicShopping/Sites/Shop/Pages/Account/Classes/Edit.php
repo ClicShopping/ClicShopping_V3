@@ -15,7 +15,7 @@
 
   class Edit
   {
-    protected $db;
+    protected mixed $db;
     protected $customer;
 
     public function __construct()

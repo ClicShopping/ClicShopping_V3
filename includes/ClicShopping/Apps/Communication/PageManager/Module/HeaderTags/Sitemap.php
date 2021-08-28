@@ -18,9 +18,9 @@
 
   class Sitemap extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
-    protected $db;
-    protected $lang;
-    protected $template;
+    protected mixed $db;
+    protected mixed $lang;
+    protected mixed $template;
     protected $app;
 
     protected function init()

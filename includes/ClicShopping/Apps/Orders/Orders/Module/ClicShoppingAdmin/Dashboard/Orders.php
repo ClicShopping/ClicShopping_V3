@@ -20,7 +20,7 @@
 
   class Orders extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
-    protected $lang;
+    protected mixed $lang;
     protected $app;
     public $group;
 

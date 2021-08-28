@@ -20,7 +20,7 @@
     public ?int $sort_order = 0;
     public bool $enabled = false;
     public $pages;
-    protected $lang;
+    protected mixed $lang;
 
     public function  __construct() {
       $this->code = get_class($this);
