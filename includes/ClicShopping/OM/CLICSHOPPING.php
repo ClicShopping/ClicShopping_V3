@@ -639,7 +639,7 @@
      * @return bool|string
      * 
      */
-    public static function arrayToString(array $array, string $exclude = '', $equals = '=', string $separator = '&'): ?string
+    public static function arrayToString(array $array, string|array $exclude = '', string|array $equals = '=', string $separator = '&'): ?string
     {
       if (!\is_array($exclude)) {
         $exclude = [];
@@ -718,7 +718,7 @@
         'disable_classes' => @ini_get('disable_classes'),
         'filter.default' => @ini_get('filter.default'),
         'unicode.semantics' => (int)@ini_get('unicode.semantics'),
-        'zend_thread_safty' => (int)function_exists('zend_thread_id'),
+        'zend_thread_safty' => (int)\function_exists('zend_thread_id'),
         'extensions' => get_loaded_extensions()
       ];
 
