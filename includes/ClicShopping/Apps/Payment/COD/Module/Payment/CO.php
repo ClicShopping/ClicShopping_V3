@@ -23,7 +23,7 @@
     public $title;
     public $description;
     public $enabled = false;
-    public $app;
+    public mixed $app;
     protected $signature;
     protected $api_version;
     public $public_title;

@@ -27,7 +27,7 @@
     public $title;
     public $description;
     public $enabled = false;
-    public $app;
+    public mixed $app;
     protected $currency;
     public $signature;
     public $public_title;

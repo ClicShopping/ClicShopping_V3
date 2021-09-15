@@ -49,4 +49,4 @@ table_heading_status = Status
 table_heading_action = Action
 table_heading_group = Group
 
-text_info_module = ALL Sort Order numbers MUST be UNIQUE.<br />Any Group with no active module(s) will NOT display.
+text_info_module = ALL Sort Order numbers MUST be UNIQUE.<br />Any Group with no active module(s) will NOT displayed.

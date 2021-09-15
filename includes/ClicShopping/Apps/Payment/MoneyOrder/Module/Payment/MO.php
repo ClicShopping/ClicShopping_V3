@@ -24,7 +24,7 @@
     public $title;
     public $description;
     public $enabled = false;
-    public $app;
+    public mixed $app;
     public $title_selection;
     public $signature;
     public $public_title;

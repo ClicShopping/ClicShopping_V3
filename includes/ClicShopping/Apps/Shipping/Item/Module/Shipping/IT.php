@@ -24,7 +24,7 @@
     public $description;
     public $enabled = false;
     public $icon;
-    public $app;
+    public mixed $app;
     public $quotes;
     public $group;
     public $signature;

@@ -26,7 +26,7 @@
     public $group;
     public $output;
     public ?int $sort_order = 0;
-    public $app;
+    public mixed $app;
     public $surcharge;
     public $maximum;
     public $signature;

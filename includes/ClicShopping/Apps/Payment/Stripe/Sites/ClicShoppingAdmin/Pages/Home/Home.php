@@ -16,7 +16,7 @@
   use ClicShopping\Apps\Payment\Stripe\Stripe;
 
   class Home extends \ClicShopping\OM\PagesAbstract {
-    public $app;
+    public mixed $app;
 
     protected function init() {
       $CLICSHOPPING_Stripe = new Stripe();

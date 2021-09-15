@@ -17,7 +17,7 @@
 
   class Content extends \ClicShopping\OM\PagesAbstract
   {
-    public $app;
+    public mixed $app;
 
     protected function init()
     {
