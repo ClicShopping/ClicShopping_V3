@@ -1450,7 +1450,7 @@ class elFinder
     {
         $netVolumes = $this->getNetVolumes();
         $res = true;
-        if (is_object($volume) && method_exists($volume, 'netunmount')) {
+        if (\is_object($volume) && method_exists($volume, 'netunmount')) {
             $res = $volume->netunmount($netVolumes, $key);
             $volume->clearSessionCache();
         }
@@ -4763,7 +4763,7 @@ var go = function() {
                     $chk = is_string($data);
                     break;
                 case 'object':
-                    $chk = is_object($data);
+                    $chk = \is_object($data);
                     break;
                 case 'int':
                     $chk = is_int($data);

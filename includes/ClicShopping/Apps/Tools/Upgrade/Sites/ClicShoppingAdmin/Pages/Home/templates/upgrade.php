@@ -82,7 +82,7 @@
     $new_version = false;
     $core_online_info = $CLICSHOPPING_Github->getJsonCoreInformation();
 
-    if (is_object($core_online_info) && $core_online_info->version) {
+    if (\is_object($core_online_info) && $core_online_info->version) {
       if ($current_version < $core_online_info->version) {
         $new_version = true;
       }

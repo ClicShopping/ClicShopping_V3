@@ -81,7 +81,7 @@
         }
 
         if ($this->enabled === true) {
-          if (isset($CLICSHOPPING_Order) && is_object($CLICSHOPPING_Order)) {
+          if (isset($CLICSHOPPING_Order) && \is_object($CLICSHOPPING_Order)) {
             $this->update_status();
           }
         }

@@ -125,7 +125,7 @@ class Request
     public function addParam($param)
     {
         // check: do not add to self params which are not xmlrpc values
-        if (is_object($param) && is_a($param, 'PhpXmlRpc\Value')) {
+        if (\is_object($param) && is_a($param, 'PhpXmlRpc\Value')) {
             $this->params[] = $param;
 
             return true;
@@ -315,7 +315,7 @@ class Request
         }
         // third error check: parsing of the response has somehow gone boink.
         /// @todo shall we omit this check, since we trust the parsing code?
-        elseif ($returnType == 'xmlrpcvals' && !is_object($xmlRpcParser->_xh['value'])) {
+        elseif ($returnType == 'xmlrpcvals' && !\is_object($xmlRpcParser->_xh['value'])) {
             // something odd has happened
             // and it's time to generate a client side error
             // indicating something odd went on

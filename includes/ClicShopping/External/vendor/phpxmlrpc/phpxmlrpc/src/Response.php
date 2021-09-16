@@ -48,7 +48,7 @@ class Response
             $this->val = $val;
             if ($valType == '') {
                 // user did not declare type of response value: try to guess it
-                if (is_object($this->val) && is_a($this->val, 'PhpXmlRpc\Value')) {
+                if (\is_object($this->val) && is_a($this->val, 'PhpXmlRpc\Value')) {
                     $this->valtyp = 'xmlrpcvals';
                 } elseif (is_string($this->val)) {
                     $this->valtyp = 'xml';
@@ -138,7 +138,7 @@ class Response
                 Charset::instance()->encodeEntities($this->errstr, PhpXmlRpc::$xmlrpc_internalencoding, $charsetEncoding) . "</string></value>\n</member>\n" .
                 "</struct>\n</value>\n</fault>";
         } else {
-            if (!is_object($this->val) || !is_a($this->val, 'PhpXmlRpc\Value')) {
+            if (!\is_object($this->val) || !is_a($this->val, 'PhpXmlRpc\Value')) {
                 if (is_string($this->val) && $this->valtyp == 'xml') {
                     $result .= "<params>\n<param>\n" .
                         $this->val .

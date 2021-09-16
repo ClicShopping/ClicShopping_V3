@@ -66,7 +66,7 @@
             } else {
               list($module, $method) = explode('_', $_SESSION['shipping']);
 
-              if (is_object($GLOBALS[$module])) {
+              if (\is_object($GLOBALS[$module])) {
                 $CLICSHOPPING_SM = $GLOBALS[$module];
               }
             }

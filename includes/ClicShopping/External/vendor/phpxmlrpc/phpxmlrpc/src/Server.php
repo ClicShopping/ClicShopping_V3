@@ -341,7 +341,7 @@ class Server
     protected function verifySignature($in, $sigs)
     {
         // check each possible signature in turn
-        if (is_object($in)) {
+        if (\is_object($in)) {
             $numParams = $in->getNumParams();
         } else {
             $numParams = count($in);
@@ -350,7 +350,7 @@ class Server
             if (count($curSig) == $numParams + 1) {
                 $itsOK = 1;
                 for ($n = 0; $n < $numParams; $n++) {
-                    if (is_object($in)) {
+                    if (\is_object($in)) {
                         $p = $in->getParam($n);
                         if ($p->kindOf() == 'scalar') {
                             $pt = $p->scalartyp();
@@ -590,7 +590,7 @@ class Server
         static::$_xmlrpcs_occurred_errors = '';
         static::$_xmlrpc_debuginfo = '';
 
-        if (is_object($req)) {
+        if (\is_object($req)) {
             $methName = $req->method();
         } else {
             $methName = $req;
@@ -608,7 +608,7 @@ class Server
         // Check signature
         if (isset($dmap[$methName]['signature'])) {
             $sig = $dmap[$methName]['signature'];
-            if (is_object($req)) {
+            if (\is_object($req)) {
                 list($ok, $errStr) = $this->verifySignature($req, $sig);
             } else {
                 list($ok, $errStr) = $this->verifySignature($paramTypes, $sig);
@@ -630,7 +630,7 @@ class Server
         }
 
         if (is_array($func)) {
-            if (is_object($func[0])) {
+            if (\is_object($func[0])) {
                 $funcName = get_class($func[0]) . '->' . $func[1];
             } else {
                 $funcName = implode('::', $func);
@@ -659,7 +659,7 @@ class Server
 
         try {
             // Allow mixed-convention servers
-            if (is_object($req)) {
+            if (\is_object($req)) {
                 if ($sysCall) {
                     $r = call_user_func($func, $this, $req);
                 } else {
@@ -892,7 +892,7 @@ class Server
     public static function _xmlrpcs_methodSignature($server, $req)
     {
         // let accept as parameter both an xmlrpc value or string
-        if (is_object($req)) {
+        if (\is_object($req)) {
             $methName = $req->getParam(0);
             $methName = $methName->scalarval();
         } else {
@@ -934,7 +934,7 @@ class Server
     public static function _xmlrpcs_methodHelp($server, $req)
     {
         // let accept as parameter both an xmlrpc value or string
-        if (is_object($req)) {
+        if (\is_object($req)) {
             $methName = $req->getParam(0);
             $methName = $methName->scalarval();
         } else {
@@ -1079,7 +1079,7 @@ class Server
     {
         $result = array();
         // let accept a plain list of php parameters, beside a single xmlrpc msg object
-        if (is_object($req)) {
+        if (\is_object($req)) {
             $calls = $req->getParam(0);
             foreach($calls as $call) {
                 $result[] = static::_xmlrpcs_multicall_do_call($server, $call);

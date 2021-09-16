@@ -28,7 +28,7 @@ class elFinderPlugin
     {
         $name = substr(get_class($this), 14); // remove "elFinderPlugin"
         $opts = $this->opts;
-        if (is_object($volume)) {
+        if (\is_object($volume)) {
             $volOpts = $volume->getOptionsPlugin($name);
             if (is_array($volOpts)) {
                 $opts = array_merge($opts, $volOpts);

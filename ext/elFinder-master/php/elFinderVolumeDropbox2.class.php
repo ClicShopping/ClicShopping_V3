@@ -158,7 +158,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
         }
 
         $data = [];
-        if (is_object($raw)) {
+        if (\is_object($raw)) {
             $isFolder = $raw instanceof FolderMetadata;
             $data = $raw->getData();
         } elseif (is_array($raw)) {

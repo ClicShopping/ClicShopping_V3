@@ -14,7 +14,7 @@
   $CLICSHOPPING_LoggerAdmin = Registry::get('LoggerAdmin');
 
   if (DISPLAY_PAGE_PARSE_TIME == 'true') {
-    if (!is_object($CLICSHOPPING_LoggerAdmin)) {
+    if (!\is_object($CLICSHOPPING_LoggerAdmin)) {
       $CLICSHOPPING_LoggerAdmin = Registry::get('LoggerAdmin');
     }
 

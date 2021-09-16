@@ -105,7 +105,7 @@ class xmlrpcval extends Value
     public function serializeval($o)
     {
         // add check? slower, but helps to avoid recursion in serializing broken xmlrpcvals...
-        //if (is_object($o) && (get_class($o) == 'xmlrpcval' || is_subclass_of($o, 'xmlrpcval')))
+        //if (\is_object($o) && (get_class($o) == 'xmlrpcval' || is_subclass_of($o, 'xmlrpcval')))
         //{
         $ar = $o->me;
         $val = reset($ar);
@@ -136,7 +136,7 @@ class xmlrpcval extends Value
         }
 
         // add support for structures directly encoding php objects
-        if (is_object($b)) {
+        if (\is_object($b)) {
             $t = get_object_vars($b);
             foreach($t as $id => $cont) {
                 $t[$id] = $cont->scalarval();

@@ -58,7 +58,7 @@
     $modules_array[] = $Qmodules->value('module');
 
     $modules_list_array[] = ['id' => $Qmodules->value('module'),
-      'text' => (is_object($GLOBALS[$Qmodules->value('module')]) ? $GLOBALS[$Qmodules->value('module')]->title : $Qmodules->value('module'))
+      'text' => (\is_object($GLOBALS[$Qmodules->value('module')]) ? $GLOBALS[$Qmodules->value('module')]->title : $Qmodules->value('module'))
     ];
   }
 ?>
@@ -157,7 +157,7 @@
 
         $module_title = $Qactions->value('module');
 
-        if (is_object($GLOBALS[$module])) {
+        if (\is_object($GLOBALS[$module])) {
           $module_title = $GLOBALS[$module]->title;
         }
         ?>
@@ -180,7 +180,7 @@
       <div
         class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qactions->getPageSetLabel($CLICSHOPPING_ActionsRecorder->getDef('text_display_number_of_link')); ?></div>
       <div
-        class="float-end text-end"> <?php echo $Qactions->getPageSetLinks((isset($_POST['module']) && \in_array($_POST['module'], $modules_array) && is_object($GLOBALS[$_POST['module']]) ? 'module=' . $_POST['module'] : null) . '&' . (isset($_POST['search']) && !empty($_POST['search']) ? 'search=' . $_POST['search'] : null)); ?></div>
+        class="float-end text-end"> <?php echo $Qactions->getPageSetLinks((isset($_POST['module']) && \in_array($_POST['module'], $modules_array) && \is_object($GLOBALS[$_POST['module']]) ? 'module=' . $_POST['module'] : null) . '&' . (isset($_POST['search']) && !empty($_POST['search']) ? 'search=' . $_POST['search'] : null)); ?></div>
     </div>
   </div>
 </div>

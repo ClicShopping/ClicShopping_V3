@@ -36,7 +36,7 @@
 
               $m = new $class();
 
-              if (is_object($m)) {
+              if (\is_object($m)) {
                 $this->_modules[] = [
                   'code' => $m->code,
                   'directory' => $m->directory,
@@ -109,7 +109,7 @@
       for ($i = 0, $n = \count($modules_array); $i < $n; $i++) {
         $class = substr($modules_array[$i], 0, strrpos($modules_array[$i], '.'));
 
-        if (isset($GLOBALS[$class]) && is_object($GLOBALS[$class])) {
+        if (isset($GLOBALS[$class]) && \is_object($GLOBALS[$class])) {
           if ($GLOBALS[$class]->enabled) {
             $count++;
           }

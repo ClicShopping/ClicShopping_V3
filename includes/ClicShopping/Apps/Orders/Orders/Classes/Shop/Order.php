@@ -733,7 +733,7 @@
           }
 
   // discount coupons
-          if (is_object($this->coupon)) {
+          if (\is_object($this->coupon)) {
             $discount = $this->coupon->getCalculateDiscount($this->products[$index], $valid_products_count);
 
             if ($discount['applied_discount'] > 0) {
@@ -1469,7 +1469,7 @@
      */
     private function getFinalizeCouponDiscount()
     {
-      if (is_object($this->coupon)) {
+      if (\is_object($this->coupon)) {
         $this->info['total'] = $this->coupon->getFinalizeDiscount($this->info);
 
         return $this->info['total'];

@@ -167,13 +167,13 @@ class Wrapper
             $callable = explode('::', $callable);
         }
         if (is_array($callable)) {
-            if (count($callable) < 2 || (!is_string($callable[0]) && !is_object($callable[0]))) {
+            if (count($callable) < 2 || (!is_string($callable[0]) && !\is_object($callable[0]))) {
                 Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': syntax for function to be wrapped is wrong');
                 return false;
             }
             if (is_string($callable[0])) {
                 $plainFuncName = implode('::', $callable);
-            } elseif (is_object($callable[0])) {
+            } elseif (\is_object($callable[0])) {
                 $plainFuncName = get_class($callable[0]) . '->' . $callable[1];
             }
             $exists = method_exists($callable[0], $callable[1]);
@@ -567,7 +567,7 @@ class Wrapper
 
         // since we are building source code for later use, if we are given an object instance,
         // we go out of our way and store a pointer to it in a static class var var...
-        if (is_array($callable) && is_object($callable[0])) {
+        if (is_array($callable) && \is_object($callable[0])) {
             self::$objHolder[$newFuncName] = $callable[0];
             $innerCode .= "\$obj = PhpXmlRpc\\Wrapper::\$objHolder['$newFuncName'];\n";
             $realFuncName = '$obj->' . $callable[1];
@@ -624,11 +624,11 @@ class Wrapper
                 $func = new \ReflectionMethod($className, $mName);
                 if (!$func->isPrivate() && !$func->isProtected() && !$func->isConstructor() && !$func->isDestructor() && !$func->isAbstract()) {
                     if (($func->isStatic() && ($methodType == 'all' || $methodType == 'static' || ($methodType == 'auto' && is_string($className)))) ||
-                        (!$func->isStatic() && ($methodType == 'all' || $methodType == 'nonstatic' || ($methodType == 'auto' && is_object($className))))
+                        (!$func->isStatic() && ($methodType == 'all' || $methodType == 'nonstatic' || ($methodType == 'auto' && \is_object($className))))
                     ) {
                         $methodWrap = $this->wrapPhpFunction(array($className, $mName), '', $extraOptions);
                         if ($methodWrap) {
-                            if (is_object($className)) {
+                            if (\is_object($className)) {
                                 $realClassName = get_class($className);
                             }else {
                                 $realClassName = $className;

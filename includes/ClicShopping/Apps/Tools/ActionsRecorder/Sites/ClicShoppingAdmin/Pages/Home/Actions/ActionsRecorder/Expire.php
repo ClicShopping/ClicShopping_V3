@@ -70,7 +70,7 @@
       if (isset($_GET['module']) && \in_array($_GET['module'], $modules_array)) {
         $get_module_class = $CLICSHOPPING_ActionsRecorderClass->getClassModule($_GET['module']);
 
-        if (is_object($get_module_class)) {
+        if (\is_object($get_module_class)) {
           $expired_entries += $get_module_class->expireEntries();
         } else {
           $expired_entries = $this->app->db->delete('action_recorder', ['module' => $_GET['module']]);
@@ -79,7 +79,7 @@
         if (\is_array($modules_array)) {
           foreach ($modules_array as $module) {
             $get_module_class = $CLICSHOPPING_ActionsRecorderClass->getClassModule($module);
-            if (isset($get_module_class) && is_object($get_module_class)) {
+            if (isset($get_module_class) && \is_object($get_module_class)) {
               $expired_entries += $get_module_class->expireEntries();
             }
           }

@@ -432,7 +432,7 @@
     {
       $result = $this->getSearchInsideRepo();
 
-      if(is_object($result)) {
+      if(\is_object($result)) {
         $count = $result->total_count;
       } else {
         $count = 0;

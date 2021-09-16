@@ -36,7 +36,7 @@
       Registry::set('OrderTotal', new OrderTotalClass());
       Registry::set('ProductsAttributes', new ProductsAttributesShop());
 
-      if (!isset($_SESSION['cart']) || !is_object($_SESSION['cart']) || (get_class($_SESSION['cart']) != 'shoppingCart')) {
+      if (!isset($_SESSION['cart']) || !\is_object($_SESSION['cart']) || (get_class($_SESSION['cart']) != 'shoppingCart')) {
         Registry::set('ShoppingCart', new ShoppingCartClass());
       }
 

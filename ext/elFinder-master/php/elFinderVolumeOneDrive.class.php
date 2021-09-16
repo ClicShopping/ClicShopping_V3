@@ -955,7 +955,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
         $error = false;
         try {
             $this->token = json_decode($this->options['accessToken']);
-            if (!is_object($this->token)) {
+            if (!\is_object($this->token)) {
                 throw new Exception('Required option `accessToken` is invalid JSON.');
             }
 
@@ -971,7 +971,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                     if ($this->aTokenFile) {
                         if (is_file($this->aTokenFile)) {
                             $this->token = json_decode(file_get_contents($this->aTokenFile));
-                            if (!is_object($this->token)) {
+                            if (!\is_object($this->token)) {
                                 unlink($this->aTokenFile);
                                 throw new Exception('Required option `accessToken` is invalid JSON.');
                             }

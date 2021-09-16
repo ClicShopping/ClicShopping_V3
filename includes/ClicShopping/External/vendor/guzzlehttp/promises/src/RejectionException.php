@@ -25,7 +25,7 @@ class RejectionException extends \RuntimeException
         if ($description) {
             $message .= ' with reason: ' . $description;
         } elseif (is_string($reason)
-            || (is_object($reason) && method_exists($reason, '__toString'))
+            || (\is_object($reason) && method_exists($reason, '__toString'))
         ) {
             $message .= ' with reason: ' . $this->reason;
         } elseif ($reason instanceof \JsonSerializable) {

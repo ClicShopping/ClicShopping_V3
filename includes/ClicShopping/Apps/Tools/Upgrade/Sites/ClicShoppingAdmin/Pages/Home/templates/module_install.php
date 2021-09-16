@@ -169,7 +169,7 @@
             if (!\is_null($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json')) || $CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true) {
               $result_module_real_name = $CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json');
 
-              if ($item !== false && is_object($item->version)) {
+              if ($item !== false && \is_object($item->version)) {
                 $temp_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge bg-info">' . $item->version . '</span>';
               } else {
                 $temp_version = 'Unkown';
