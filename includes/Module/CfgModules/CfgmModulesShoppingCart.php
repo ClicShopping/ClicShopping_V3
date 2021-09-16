@@ -15,11 +15,11 @@
   class CfgmModulesShoppingCart
   {
     public string $code = 'modules_shopping_cart';
-    public $directory;
+    public string $directory;
     public $language_directory;
     public string $site = 'Shop';
     public string $key = 'MODULE_MODULES_SHOPPING_CART_INSTALLED';
-    public $title;
+    public string $title;
     public bool $template_integration = true;
 
     public function __construct()

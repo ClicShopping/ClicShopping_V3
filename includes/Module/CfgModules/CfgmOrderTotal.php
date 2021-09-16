@@ -15,11 +15,11 @@
   class CfgmOrderTotal
   {
     public string $code = 'order_total';
-    public $directory;
+    public string $directory;
     public $language_directory;
     public string $site = 'Shop';
     public string $key = 'MODULE_ORDER_TOTAL_INSTALLED';
-    public $title;
+    public string $title;
     public bool $template_integration = false;
 
     public function __construct()

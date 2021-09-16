@@ -14,10 +14,10 @@
   class CfgmService
   {
     public string $code = 'service';
-    public $directory;
+    public string $directory;
     public string $site = 'Shop';
     public string $key = 'MODULE_SERVICES_INSTALLED';
-    public $title;
+    public string $title;
     public $language_directory;
     public bool $template_integration = false;
 

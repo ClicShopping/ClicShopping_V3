@@ -16,11 +16,11 @@
   {
 
     public string $code = 'action_recorder';
-    public $directory;
+    public string $directory;
     public $language_directory;
     public string $site = 'Shop';
     public string $key = 'MODULE_ACTION_RECORDER_INSTALLED';
-    public $title;
+    public string $title;
     public bool $template_integration = false;
 
     public function __construct()

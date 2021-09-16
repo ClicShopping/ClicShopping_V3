@@ -15,11 +15,11 @@
   class CfgmShipping
   {
     public string $code = 'shipping';
-    public $directory;
+    public string $directory;
     public $language_directory;
     public string $site = 'Shop';
     public string $key = 'MODULE_SHIPPING_INSTALLED';
-    public $title;
+    public string $title;
     public bool $template_integration = false;
 
     public function __construct()

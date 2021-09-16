@@ -15,11 +15,11 @@
   class CfgmModulesAdvancedSearch
   {
     public string $code = 'modules_advanced_search';
-    public $directory;
+    public string $directory;
     public $language_directory;
     public string $site = 'Shop';
     public string $key = 'MODULE_MODULES_ADVANCED_SEARCH_INSTALLED';
-    public $title;
+    public string $title;
     public bool $template_integration = true;
 
     public function __construct()

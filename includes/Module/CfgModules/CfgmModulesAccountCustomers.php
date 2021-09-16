@@ -15,11 +15,11 @@
   class CfgmModulesAccountCustomers
   {
     public string $code = 'modules_account_customers';
-    public $directory;
+    public string $directory;
     public $language_directory;
     public string $site = 'Shop';
     public string $key = 'MODULE_MODULES_ACCOUNT_CUSTOMERS_INSTALLED';
-    public $title;
+    public string $title;
     public bool $template_integration = true;
 
     public function __construct()

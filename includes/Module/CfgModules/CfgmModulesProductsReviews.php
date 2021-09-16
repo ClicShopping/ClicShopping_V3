@@ -15,11 +15,11 @@
   class CfgmModulesProductsReviews
   {
     public string $code = 'modules_products_reviews';
-    public $directory;
+    public string $directory;
     public $language_directory;
     public string $site = 'Shop';
     public string $key = 'MODULE_MODULES_PRODUCTS_REVIEWS_INSTALLED';
-    public $title;
+    public string $title;
     public bool $template_integration = true;
 
     public function __construct()
