@@ -17,7 +17,7 @@
     public $code = 'modules_front_page';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_FRONT_PAGE_INSTALLED';
     public $title;
     public $template_integration = true;

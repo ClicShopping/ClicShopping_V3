@@ -17,7 +17,7 @@
     public $code = 'modules_products_featured';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_PRODUCTS_FEATURED_INSTALLED';
     public $title;
     public $template_integration = true;

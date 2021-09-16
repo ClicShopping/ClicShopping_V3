@@ -17,7 +17,7 @@
     public $code = 'modules_contact_us';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_CONTACT_US_INSTALLED';
     public $title;
     public $template_integration = true;

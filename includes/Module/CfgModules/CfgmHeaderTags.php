@@ -17,7 +17,7 @@
     public $code = 'header_tags';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_HEADER_TAGS_INSTALLED';
     public $title;
     public $template_integration = true;

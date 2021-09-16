@@ -17,7 +17,7 @@
     public $code = 'modules_login';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_LOGIN_INSTALLED';
     public $title;
     public $template_integration = true;

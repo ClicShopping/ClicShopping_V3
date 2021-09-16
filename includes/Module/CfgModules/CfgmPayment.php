@@ -17,7 +17,7 @@
     public $code = 'payment';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_PAYMENT_INSTALLED';
     public $title;
     public $template_integration = false;

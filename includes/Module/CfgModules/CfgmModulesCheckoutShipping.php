@@ -17,7 +17,7 @@
     public $code = 'modules_checkout_shipping';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_CHECKOUT_SHIPPING_INSTALLED';
     public $title;
     public $template_integration = true;

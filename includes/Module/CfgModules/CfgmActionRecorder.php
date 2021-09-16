@@ -18,7 +18,7 @@
     public $code = 'action_recorder';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_ACTION_RECORDER_INSTALLED';
     public $title;
     public $template_integration = false;

@@ -15,7 +15,7 @@
   {
     public $code = 'service';
     public $directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_SERVICES_INSTALLED';
     public $title;
     public $language_directory;

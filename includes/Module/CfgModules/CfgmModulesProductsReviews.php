@@ -17,7 +17,7 @@
     public $code = 'modules_products_reviews';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_PRODUCTS_REVIEWS_INSTALLED';
     public $title;
     public $template_integration = true;

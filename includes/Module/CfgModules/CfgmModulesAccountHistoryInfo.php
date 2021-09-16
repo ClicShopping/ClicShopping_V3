@@ -17,7 +17,7 @@
     public $code = 'modules_account_history_info';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_ACCOUNT_HISTORY_INFO_INSTALLED';
     public $title;
     public $template_integration = true;

@@ -17,7 +17,7 @@
     public $code = 'shipping';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_SHIPPING_INSTALLED';
     public $title;
     public $template_integration = false;

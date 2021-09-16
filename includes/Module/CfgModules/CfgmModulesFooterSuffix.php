@@ -17,7 +17,7 @@
     public $code = 'modules_footer_suffix';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_FOOTER_SUFFIX_INSTALLED';
     public $title;
     public $template_integration = true;

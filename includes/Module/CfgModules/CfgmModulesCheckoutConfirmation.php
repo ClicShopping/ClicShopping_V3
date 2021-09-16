@@ -17,7 +17,7 @@
     public $code = 'modules_checkout_confirmation';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_CHECKOUT_CONFIRMATION_INSTALLED';
     public $title;
     public $template_integration = true;

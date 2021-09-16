@@ -17,7 +17,7 @@
     public $code = 'modules_tell_a_friend';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_TELL_A_FRIEND_INSTALLED';
     public $title;
     public $template_integration = true;

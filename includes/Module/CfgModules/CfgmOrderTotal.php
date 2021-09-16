@@ -17,7 +17,7 @@
     public $code = 'order_total';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_ORDER_TOTAL_INSTALLED';
     public $title;
     public $template_integration = false;

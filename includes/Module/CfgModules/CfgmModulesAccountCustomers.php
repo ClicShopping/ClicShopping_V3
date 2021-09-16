@@ -17,7 +17,7 @@
     public $code = 'modules_account_customers';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_ACCOUNT_CUSTOMERS_INSTALLED';
     public $title;
     public $template_integration = true;

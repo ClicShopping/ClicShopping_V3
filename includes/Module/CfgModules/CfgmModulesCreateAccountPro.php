@@ -17,7 +17,7 @@
     public $code = 'modules_create_account_pro';
     public $directory;
     public $language_directory;
-    public $site = 'Shop';
+    public string $site = 'Shop';
     public $key = 'MODULE_MODULES_CREATE_ACCOUNT_PRO_INSTALLED';
     public $title;
     public $template_integration = true;
