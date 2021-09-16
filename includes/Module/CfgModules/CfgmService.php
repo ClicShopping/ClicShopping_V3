@@ -17,7 +17,7 @@
     public string $directory;
     public string $site = 'Shop';
     public string $key = 'MODULE_SERVICES_INSTALLED';
-    public string $title;
+    public $title;
     public $language_directory;
     public bool $template_integration = false;
 

@@ -19,7 +19,7 @@
     public $language_directory;
     public string $site = 'Shop';
     public string $key = 'MODULE_ORDER_TOTAL_INSTALLED';
-    public string $title;
+    public $title;
     public bool $template_integration = false;
 
     public function __construct()
