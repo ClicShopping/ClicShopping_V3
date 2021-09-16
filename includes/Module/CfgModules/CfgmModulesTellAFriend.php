@@ -14,13 +14,13 @@
 
   class CfgmModulesTellAFriend
   {
-    public $code = 'modules_tell_a_friend';
+    public string $code = 'modules_tell_a_friend';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_MODULES_TELL_A_FRIEND_INSTALLED';
+    public string $key = 'MODULE_MODULES_TELL_A_FRIEND_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

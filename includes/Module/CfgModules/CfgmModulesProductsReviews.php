@@ -14,13 +14,13 @@
 
   class CfgmModulesProductsReviews
   {
-    public $code = 'modules_products_reviews';
+    public string $code = 'modules_products_reviews';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_MODULES_PRODUCTS_REVIEWS_INSTALLED';
+    public string $key = 'MODULE_MODULES_PRODUCTS_REVIEWS_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

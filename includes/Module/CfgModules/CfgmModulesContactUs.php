@@ -14,13 +14,13 @@
 
   class CfgmModulesContactUs
   {
-    public $code = 'modules_contact_us';
+    public string $code = 'modules_contact_us';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_MODULES_CONTACT_US_INSTALLED';
+    public string $key = 'MODULE_MODULES_CONTACT_US_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

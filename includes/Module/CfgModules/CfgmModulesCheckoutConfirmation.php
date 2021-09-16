@@ -14,13 +14,13 @@
 
   class CfgmModulesCheckoutConfirmation
   {
-    public $code = 'modules_checkout_confirmation';
+    public string $code = 'modules_checkout_confirmation';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_MODULES_CHECKOUT_CONFIRMATION_INSTALLED';
+    public string $key = 'MODULE_MODULES_CHECKOUT_CONFIRMATION_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

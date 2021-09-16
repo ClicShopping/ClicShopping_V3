@@ -14,13 +14,13 @@
 
   class CfgmModulesHeader
   {
-    public $code = 'modules_header';
+    public string $code = 'modules_header';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_MODULES_HEADER_INSTALLED';
+    public string $key = 'MODULE_MODULES_HEADER_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

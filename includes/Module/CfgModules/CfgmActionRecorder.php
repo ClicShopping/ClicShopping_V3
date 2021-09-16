@@ -15,13 +15,13 @@
   class CfgmActionRecorder
   {
 
-    public $code = 'action_recorder';
+    public string $code = 'action_recorder';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_ACTION_RECORDER_INSTALLED';
+    public string $key = 'MODULE_ACTION_RECORDER_INSTALLED';
     public $title;
-    public $template_integration = false;
+    public bool $template_integration = false;
 
     public function __construct()
     {

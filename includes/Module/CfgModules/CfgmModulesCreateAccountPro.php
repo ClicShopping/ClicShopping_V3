@@ -14,13 +14,13 @@
 
   class CfgmModulesCreateAccountPro
   {
-    public $code = 'modules_create_account_pro';
+    public string $code = 'modules_create_account_pro';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_MODULES_CREATE_ACCOUNT_PRO_INSTALLED';
+    public string $key = 'MODULE_MODULES_CREATE_ACCOUNT_PRO_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

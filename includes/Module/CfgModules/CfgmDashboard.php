@@ -14,13 +14,13 @@
 
   class CfgmDashboard
   {
-    public $code = 'dashboard';
+    public string $code = 'dashboard';
     public $directory;
     public $language_directory;
     public $site = 'ClicShoppingAdmin';
-    public $key = 'MODULE_ADMIN_DASHBOARD_INSTALLED';
+    public string $key = 'MODULE_ADMIN_DASHBOARD_INSTALLED';
     public $title;
-    public $template_integration = false;
+    public bool $template_integration = false;
 
     public function __construct()
     {

@@ -14,13 +14,13 @@
 
   class CfgmModulesProductsInfo
   {
-    public $code = 'modules_products_info';
+    public string $code = 'modules_products_info';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_MODULES_PRODUCTS_INFO_INSTALLED';
+    public string $key = 'MODULE_MODULES_PRODUCTS_INFO_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

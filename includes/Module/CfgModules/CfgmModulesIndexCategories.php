@@ -14,13 +14,13 @@
 
   class CfgmModulesIndexCategories
   {
-    public $code = 'modules_index_categories';
+    public string $code = 'modules_index_categories';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_MODULES_INDEX_CATEGORIES_INSTALLED';
+    public string $key = 'MODULE_MODULES_INDEX_CATEGORIES_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

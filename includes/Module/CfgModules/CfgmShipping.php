@@ -14,13 +14,13 @@
 
   class CfgmShipping
   {
-    public $code = 'shipping';
+    public string $code = 'shipping';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_SHIPPING_INSTALLED';
+    public string $key = 'MODULE_SHIPPING_INSTALLED';
     public $title;
-    public $template_integration = false;
+    public bool $template_integration = false;
 
     public function __construct()
     {

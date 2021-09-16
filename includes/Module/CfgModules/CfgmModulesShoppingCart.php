@@ -14,13 +14,13 @@
 
   class CfgmModulesShoppingCart
   {
-    public $code = 'modules_shopping_cart';
+    public string $code = 'modules_shopping_cart';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_MODULES_SHOPPING_CART_INSTALLED';
+    public string $key = 'MODULE_MODULES_SHOPPING_CART_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

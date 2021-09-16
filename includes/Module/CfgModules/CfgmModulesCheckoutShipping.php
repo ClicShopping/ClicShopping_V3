@@ -14,13 +14,13 @@
 
   class CfgmModulesCheckoutShipping
   {
-    public $code = 'modules_checkout_shipping';
+    public string $code = 'modules_checkout_shipping';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_MODULES_CHECKOUT_SHIPPING_INSTALLED';
+    public string $key = 'MODULE_MODULES_CHECKOUT_SHIPPING_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

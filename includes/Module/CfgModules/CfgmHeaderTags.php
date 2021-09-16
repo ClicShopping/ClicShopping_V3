@@ -14,13 +14,13 @@
 
   class CfgmHeaderTags
   {
-    public $code = 'header_tags';
+    public string $code = 'header_tags';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_HEADER_TAGS_INSTALLED';
+    public string $key = 'MODULE_HEADER_TAGS_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

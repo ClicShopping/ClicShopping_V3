@@ -14,13 +14,13 @@
 
   class CfgmModulesBoxes
   {
-    public $code = 'modules_boxes';
+    public string $code = 'modules_boxes';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_MODULES_BOXES_INSTALLED';
+    public string $key = 'MODULE_MODULES_BOXES_INSTALLED';
     public $title;
-    public $template_integration = true;
+    public bool $template_integration = true;
 
     public function __construct()
     {

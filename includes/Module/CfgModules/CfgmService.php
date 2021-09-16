@@ -13,13 +13,13 @@
 
   class CfgmService
   {
-    public $code = 'service';
+    public string $code = 'service';
     public $directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_SERVICES_INSTALLED';
+    public string $key = 'MODULE_SERVICES_INSTALLED';
     public $title;
     public $language_directory;
-    public $template_integration = false;
+    public bool $template_integration = false;
 
     public function __construct()
     {

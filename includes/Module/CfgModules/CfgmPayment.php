@@ -14,13 +14,13 @@
 
   class CfgmPayment
   {
-    public $code = 'payment';
+    public string $code = 'payment';
     public $directory;
     public $language_directory;
     public string $site = 'Shop';
-    public $key = 'MODULE_PAYMENT_INSTALLED';
+    public string $key = 'MODULE_PAYMENT_INSTALLED';
     public $title;
-    public $template_integration = false;
+    public bool $template_integration = false;
 
     public function __construct()
     {
