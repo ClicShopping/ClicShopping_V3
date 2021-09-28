@@ -43,7 +43,7 @@
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
-      if (isset($_GET['Products']) && isset($_GET['Featured'])) {
+      if (isset($_GET['Products'], $_GET['Featured'])) {
         if (MODULE_PRODUCTS_FEATURED_MAX_DISPLAY != 0 ) {
 
           $products_template = MODULE_PRODUCTS_FEATURED_TEMPLATE;

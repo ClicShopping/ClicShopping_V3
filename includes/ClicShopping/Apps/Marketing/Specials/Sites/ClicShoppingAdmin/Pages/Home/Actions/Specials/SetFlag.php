@@ -22,7 +22,7 @@
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-      if (isset($_GET['flag']) && isset($_GET['id'])) {
+      if (isset($_GET['flag'], $_GET['id'])) {
         static::getSpecialsStatus($_GET['id'], $_GET['flag']);
       }
 

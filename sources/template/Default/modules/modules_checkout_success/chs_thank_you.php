@@ -38,7 +38,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Success'])) {
+      if (isset($_GET['Checkout'], $_GET['Success'])) {
         if ($CLICSHOPPING_Customer->getCustomerGuestAccount($CLICSHOPPING_Customer->getID()) == 1) {
           $guest_account = 1;
           $text_info = CLICSHOPPING::getDef('module_checkout_success_create_account_success', ['store_name' => STORE_NAME,

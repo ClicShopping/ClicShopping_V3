@@ -39,7 +39,7 @@
       $content_width = (int)MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_CONTENT_WIDTH;
       $text_position = MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_POSITION;
 
-      if (isset($_GET['Products']) && isset($_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
+      if (isset($_GET['Products'], $_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
         $data = '<!-- pr_modules_products_reviews_write_customer_agreement start -->' . "\n";
 
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {

@@ -180,7 +180,7 @@ exit;
 
     public function execute()
     {
-      if (isset($_GET['Orders']) && isset($_GET['UpdateOrder'])) {
+      if (isset($_GET['Orders'], $_GET['UpdateOrder'])) {
         $order_updated = false;
 
         if (empty($this->quantity)) {

@@ -38,7 +38,7 @@
       if (isset($_POST['products_id'])) {
         $current_products_id = HTML::sanitize($_POST['products_id']);
 
-        if (isset($current_products_id) && isset($_GET['CopyConfirm'])) {
+        if (isset($current_products_id, $_GET['CopyConfirm'])) {
           $products_length = $this->app->db->prepare('select products_length_class_id,
                                                               products_dimension_width,
                                                               products_dimension_height,

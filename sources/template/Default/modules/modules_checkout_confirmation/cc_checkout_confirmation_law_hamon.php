@@ -40,7 +40,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn()) {
+      if (isset($_GET['Checkout'], $_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn()) {
 
         if (CONFIGURATION_LAW_HAMON == 'true') {
           $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_CONTENT_WIDTH;

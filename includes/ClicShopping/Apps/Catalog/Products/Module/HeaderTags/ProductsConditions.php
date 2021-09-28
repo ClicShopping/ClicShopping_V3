@@ -61,7 +61,7 @@
 
       $products_id = $CLICSHOPPING_ProductsCommon->getId();
 
-      if (isset($_GET['Products']) && isset($_GET['Description'])) {
+      if (isset($_GET['Products'], $_GET['Description'])) {
         $jsonLtd = $CLICSHOPPING_ProductsFunctionTemplate->getProductJsonLd($products_id);
 
         $footer_tag = '<!-- products condition json_ltd -->' . "\n";

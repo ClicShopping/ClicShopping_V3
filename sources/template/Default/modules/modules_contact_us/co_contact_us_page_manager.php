@@ -38,7 +38,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
 
-      if (isset($_GET['Info']) && isset($_GET['Contact']) && !isset($_GET['Success'])) {
+      if (isset($_GET['Info'], $_GET['Contact']) && !isset($_GET['Success'])) {
 
         $content_width = (int)MODULES_CONTACT_US_PAGE_MANAGER_CONTENT_WIDTH;
 

@@ -39,7 +39,7 @@
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
     $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-    if (isset($_GET['Account']) && isset($_GET['Create']) && !isset($_GET['Success'])) {
+    if (isset($_GET['Account'], $_GET['Create']) && !isset($_GET['Success'])) {
       $content_width = (int)MODULE_CREATE_ACCOUNT_REGISTRATION_CONTENT_WIDTH;
 
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";

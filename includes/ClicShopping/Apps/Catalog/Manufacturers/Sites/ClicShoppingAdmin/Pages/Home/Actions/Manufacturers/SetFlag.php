@@ -30,7 +30,7 @@
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-      if (isset($_GET['id']) && isset($_GET['flag'])) {
+      if (isset($_GET['id'], $_GET['flag'])) {
         Status::getManufacturersStatus($_GET['id'], $_GET['flag']);
 
         $this->app->redirect('Manufacturers&page=' . $page . '&mID=' . (int)$_GET['id']);

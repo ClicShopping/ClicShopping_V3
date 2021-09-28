@@ -39,7 +39,7 @@
 
     public function execute()
     {
-      if (isset($_GET['Insert']) && isset($_GET['Products'])) {
+      if (isset($_GET['Insert'], $_GET['Products'])) {
         $Qproducts = $this->app->db->prepare('select products_id
                                               from :table_products
                                               order by products_id desc

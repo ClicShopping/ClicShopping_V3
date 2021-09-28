@@ -40,7 +40,7 @@
 
       $content_width = (int)MODULES_TELL_A_FRIEND_CONTENT_WIDTH;
 
-      if (isset($_GET['Products']) && isset($_GET['TellAFriend'])) {
+      if (isset($_GET['Products'], $_GET['TellAFriend'])) {
 
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $customer_name = $CLICSHOPPING_Customer->getName();

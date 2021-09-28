@@ -20,7 +20,7 @@
     {
       $CLICSHOPPING_Featured = Registry::get('Featured');
 
-      if (isset($_GET['flag']) && isset($_GET['id'])) {
+      if (isset($_GET['flag'], $_GET['id'])) {
         static::getFeaturedProductsStatus($_GET['id'], $_GET['flag']);
       }
 

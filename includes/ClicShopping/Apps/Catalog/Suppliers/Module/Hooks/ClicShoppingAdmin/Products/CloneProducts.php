@@ -35,7 +35,7 @@
         return false;
       }
 
-      if (isset($_GET['Update']) && isset($_POST['clone_categories_id_to'])) {
+      if (isset($_GET['Update'], $_POST['clone_categories_id_to'])) {
         $Qproducts = $this->app->db->prepare('select *
                                               from :table_products
                                               where products_id = :products_id

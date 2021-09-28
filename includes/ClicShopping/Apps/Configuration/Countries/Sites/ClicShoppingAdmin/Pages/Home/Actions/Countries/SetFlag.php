@@ -31,7 +31,7 @@
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-      if (isset($_GET['cID']) && isset($_GET['flag'])) {
+      if (isset($_GET['cID'], $_GET['flag'])) {
         Status::getCountriesStatus($_GET['cID'], $_GET['flag']);
 
         $this->app->redirect('Countries&page=' . $page . '&cID=' . $_GET['cID']);

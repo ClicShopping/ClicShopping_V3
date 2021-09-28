@@ -35,7 +35,7 @@
         return false;
       }
 
-      if (isset($_GET['Update']) && isset($_GET['pID'])) {
+      if (isset($_GET['Update'], $_GET['pID'])) {
         $id = HTML::sanitize($_GET['pID']);
 
         $sql_data_array = ['products_length_class_id' => (int)HTML::sanitize($_POST['products_length_class_id']),

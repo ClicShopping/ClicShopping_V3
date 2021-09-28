@@ -52,7 +52,7 @@
         </table>
 
 <?php
-  if (isset($_GET['Account']) &&  isset($_GET['HistoryInfo'])) {
+  if (isset($_GET['Account'], $_GET['HistoryInfo'])) {
 ?>
    <div class="separator"></div>
    <p><?php CLICSHOPPING::getDef('module_account_customers_history_info_download_text_download_header_footer_download', ['url' => HTML::link(CLICSHOPPING::link(null, 'Account&Main'), CLICSHOPPING::getDef('module_account_customers_history_info_download_text_download_header_title_my_account'))]); ?></p>

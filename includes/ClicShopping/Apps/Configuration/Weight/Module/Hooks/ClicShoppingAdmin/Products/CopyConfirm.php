@@ -38,7 +38,7 @@
       if (isset($_GET['products_id'])) {
         $current_products_id = HTML::sanitize($_POST['products_id']);
 
-        if (isset($current_products_id) && isset($_GET['CopyConfirm'])) {
+        if (isset($current_products_id, $_GET['CopyConfirm'])) {
           $weight = $this->app->db->prepare('select products_weight_class_id
                                              from :table_products
                                              where products_id = :products_id

@@ -39,7 +39,7 @@
 
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Shipping'])) {
+      if (isset($_GET['Checkout'], $_GET['Shipping'])) {
         $content_width = (int)MODULE_CHECKOUT_SHIPPING_COMMENT_CONTENT_WIDTH;
 
         $shipping = '<!-- start cs_checkout_shipping_comment -->' . "\n";

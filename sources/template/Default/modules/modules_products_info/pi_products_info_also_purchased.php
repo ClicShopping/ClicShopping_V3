@@ -36,7 +36,7 @@
     }
 
     public function execute() {
-      if (isset($_GET['Description']) && isset($_GET['Products'])) {
+      if (isset($_GET['Description'], $_GET['Products'])) {
         $CLICSHOPPING_Customer = Registry::get('Customer');
         $CLICSHOPPING_Db = Registry::get('Db');
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');

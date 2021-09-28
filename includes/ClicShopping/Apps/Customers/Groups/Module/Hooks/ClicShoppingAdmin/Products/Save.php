@@ -61,7 +61,7 @@
 
       $QcustomersGroup->execute();
 
-      if (isset($_GET['Insert']) && isset($_GET['Products'])) {
+      if (isset($_GET['Insert'], $_GET['Products'])) {
         $products_price = HTML::sanitize($_POST['products_price']);
 
         while ($QcustomersGroup->fetch()) {
@@ -169,7 +169,7 @@
 
           $this->app->db->save('products_groups', $sql_array);
         }
-      } elseif (isset($_GET['Update']) && isset($_GET['Products'])) {
+      } elseif (isset($_GET['Update'], $_GET['Products'])) {
         $products_price = HTML::sanitize($_POST['products_price']);
 
         while ($QcustomersGroup->fetch()) {

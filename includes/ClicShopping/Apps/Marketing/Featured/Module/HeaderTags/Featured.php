@@ -51,7 +51,7 @@
 
     public function getOutput()
     {
-      if (isset($_GET['Products']) && isset($_GET['Featured'])) {
+      if (isset($_GET['Products'], $_GET['Featured'])) {
         $this->template = Registry::get('Template');
 
         if (!Registry::exists('SeoShopFeatured')) {

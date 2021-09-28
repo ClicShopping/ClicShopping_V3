@@ -52,7 +52,7 @@
 
     public function getOutput()
     {
-       if (isset($_GET['Search']) && isset($_GET['Q']) && isset($_POST['keywords'])) {
+       if (isset($_GET['Search'], $_GET['Q'], $_POST['keywords'])) {
          $this->template = Registry::get('Template');
 
         if (!Registry::exists('SeoShopSearch')) {

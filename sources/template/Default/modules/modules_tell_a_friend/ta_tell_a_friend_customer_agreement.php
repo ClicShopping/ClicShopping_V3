@@ -38,7 +38,7 @@
 
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Products']) && isset($_GET['TellAFriend'])) {
+      if (isset($_GET['Products'], $_GET['TellAFriend'])) {
 
         $CLICSHOPPING_ProductsCommon  = Registry::get('ProductsCommon');
         $content_width = (int)MODULES_TELL_A_FRIEND_CUSTOMER_AGREEMENT_CONTENT_WIDTH;

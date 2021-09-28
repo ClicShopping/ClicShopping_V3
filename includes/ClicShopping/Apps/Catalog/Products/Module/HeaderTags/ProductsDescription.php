@@ -20,6 +20,7 @@
   {
     protected mixed $lang;
     protected mixed $app;
+    public string $group;
 
     protected function init()
     {
@@ -56,7 +57,7 @@
         return false;
       }
 
-      if (isset($_GET['Products']) && isset($_GET['Description'])) {
+      if (isset($_GET['Products'], $_GET['Description'])) {
         if ($CLICSHOPPING_ProductsCommon->getID()) {
           $products_id = $CLICSHOPPING_ProductsCommon->getID();
 

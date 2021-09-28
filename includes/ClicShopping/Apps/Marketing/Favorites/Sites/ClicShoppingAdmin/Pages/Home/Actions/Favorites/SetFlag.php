@@ -20,7 +20,7 @@
     {
       $CLICSHOPPING_Favorites = Registry::get('Favorites');
 
-      if (isset($_GET['flag']) && isset($_GET['id'])) {
+      if (isset($_GET['flag'], $_GET['id'])) {
         static::getFavoritesProductsStatus($_GET['id'], $_GET['flag']);
       }
 

@@ -39,7 +39,7 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Billing'])) {
+      if (isset($_GET['Checkout'], $_GET['Billing'])) {
         if (!Registry::exists('Payment')) {
           Registry::set('Payment', new Payment());
         }

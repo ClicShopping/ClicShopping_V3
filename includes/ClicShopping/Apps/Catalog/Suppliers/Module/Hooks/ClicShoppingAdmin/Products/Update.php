@@ -43,7 +43,7 @@
         return false;
       }
 
-      if (isset($_GET['Update']) && isset($_GET['Products'])) {
+      if (isset($_GET['Update'], $_GET['Products'])) {
         $id = HTML::sanitize($_GET['pID']);
 
         $suppliers_id = $this->supplierAdmin->getSupplierId($_POST['suppliers_name']);

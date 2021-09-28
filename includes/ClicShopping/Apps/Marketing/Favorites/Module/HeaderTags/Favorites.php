@@ -50,7 +50,7 @@
 
     public function getOutput()
     {
-      if (isset($_GET['Products']) && isset($_GET['Favorites'])) {
+      if (isset($_GET['Products'], $_GET['Favorites'])) {
         $this->template = Registry::get('Template');
 
         if (!Registry::exists('SeoShopFavorites')) {

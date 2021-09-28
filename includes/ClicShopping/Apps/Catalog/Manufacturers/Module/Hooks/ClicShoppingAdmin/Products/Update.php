@@ -36,7 +36,7 @@
         return false;
       }
 
-      if (isset($_GET['Update']) && isset($_GET['Products'])) {
+      if (isset($_GET['Update'], $_GET['Products'])) {
         $id = HTML::sanitize($_GET['pID']);
 
         $manufacturers_id = ManufacturerAdmin::getManufacturerId($_POST['manufacturers_name']);

@@ -37,7 +37,7 @@
 
     $CLICSHOPPING_Template = Registry::get('Template');
 
-    if (isset($_GET['Account']) && isset($_GET['CreatePro']) && !isset($_GET['Success'])) {
+    if (isset($_GET['Account'], $_GET['CreatePro']) && !isset($_GET['Success'])) {
 
       $content_width = (int)MODULE_CREATE_ACCOUNT_PRO_INTRODUCTION_CONTENT_WIDTH;
 

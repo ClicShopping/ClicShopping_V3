@@ -43,7 +43,7 @@
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
-      if (isset($_GET['Products']) && isset($_GET['Specials'])) {
+      if (isset($_GET['Products'], $_GET['Specials'])) {
         if (MODULE_PRODUCTS_SPECIAL_MAX_DISPLAY != 0 ) {
           $Qlisting = SpecialsClass::getListing();
 

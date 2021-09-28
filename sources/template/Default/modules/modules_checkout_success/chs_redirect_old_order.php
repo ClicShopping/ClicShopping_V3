@@ -36,7 +36,7 @@
     public function execute() {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Success'])) {
+      if (isset($_GET['Checkout'], $_GET['Success'])) {
         if ((int)MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_MINUTES > 0 ) {
           $QLastorder = $CLICSHOPPING_Db->prepare('select orders_id
                                                 from :table_orders

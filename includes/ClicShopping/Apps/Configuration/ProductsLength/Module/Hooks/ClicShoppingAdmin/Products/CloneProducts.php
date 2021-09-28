@@ -35,7 +35,7 @@
         return false;
       }
 
-      if (isset($_GET['Update']) && isset($_POST['clone_categories_id_to']) && isset($_GET['pID'])) {
+      if (isset($_GET['Update'], $_POST['clone_categories_id_to'], $_GET['pID'])) {
 
         $Qproducts = $this->app->db->prepare('select products_length_class_id,
                                                       products_dimension_width,

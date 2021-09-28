@@ -52,7 +52,7 @@
        return false;
      }
 
-      if (isset($_GET['Langues']) && isset($_GET['Insert'])) {
+      if (isset($_GET['Langues'], $_GET['Insert'])) {
         $this->insert();
       }
     }

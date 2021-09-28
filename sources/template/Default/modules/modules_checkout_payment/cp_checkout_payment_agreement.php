@@ -38,7 +38,7 @@
 
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Billing'])) {
+      if (isset($_GET['Checkout'], $_GET['Billing'])) {
 
         if (CONFIGURATION_LAW_HAMON == 'true') {
           $content_width = (int)MODULE_CHECKOUT_PAYMENT_AGREEMENT_CONTENT_WIDTH;

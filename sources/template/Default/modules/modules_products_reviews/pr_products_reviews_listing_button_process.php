@@ -41,7 +41,7 @@ class pr_products_reviews_listing_button_process {
     $content_width = (int)MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_CONTENT_WIDTH;
     $text_position = MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_POSITION;
 
-    if (isset($_GET['Products']) && isset($_GET['Review'])) {
+    if (isset($_GET['Products'], $_GET['Review'])) {
 
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');

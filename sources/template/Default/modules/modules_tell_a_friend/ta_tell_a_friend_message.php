@@ -44,7 +44,7 @@
 
       $content_width = (int)MODULES_TELL_A_FRIEND_MESSAGE_CONTENT_WIDTH;
 
-      if (isset($_GET['Products']) && isset($_GET['TellAFriend'])) {
+      if (isset($_GET['Products'], $_GET['TellAFriend'])) {
 
         $message = HTML::textAreaField('message', null, 80, 8, 'class="form-control" required aria-required="true" id="inputMessage" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_message_title_friend_message') . '"');
 

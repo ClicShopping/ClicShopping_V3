@@ -42,7 +42,7 @@
       $content_width = (int)MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_CONTENT_WIDTH;
       $text_position = MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_POSITION;
 
-      if (isset($_GET['Products']) && isset($_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
+      if (isset($_GET['Products'], $_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
         $customer_name = HTML::outputProtected($CLICSHOPPING_Customer->getFirstName() . ' ' . $CLICSHOPPING_Customer->getLastName());
         $customer_group_id = $CLICSHOPPING_Customer->getCustomersGroupID();
         $comment = HTML::textAreaField('review', null, 80, 10, 'required aria-required="true" id="productsReview"');

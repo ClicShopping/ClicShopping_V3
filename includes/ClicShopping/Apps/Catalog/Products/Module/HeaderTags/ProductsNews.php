@@ -56,7 +56,7 @@
         return false;
       }
 
-      if (isset($_GET['Products']) && isset($_GET['ProductsNew'])) {
+      if (isset($_GET['Products'], $_GET['ProductsNew'])) {
         $Qsubmit = $this->app->db->prepare('select submit_id,
                                                   language_id,
                                                   submit_defaut_language_title,

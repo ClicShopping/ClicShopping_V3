@@ -39,7 +39,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Billing'])) {
+      if (isset($_GET['Checkout'], $_GET['Billing'])) {
 
         $content_width = (int)MODULE_CHECKOUT_PAYMENT_ADDRESS_CONTENT_WIDTH;
 

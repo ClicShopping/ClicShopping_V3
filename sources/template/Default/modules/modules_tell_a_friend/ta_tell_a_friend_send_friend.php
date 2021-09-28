@@ -39,7 +39,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $content_width = (int)MODULES_TELL_A_FRIEND_SEND_FRIEND_CONTENT_WIDTH;
 
-      if (isset($_GET['Products']) && isset($_GET['TellAFriend'])) {
+      if (isset($_GET['Products'], $_GET['TellAFriend'])) {
 
         $name = HTML::inputField('to_name', NULL, 'required aria-required="true" id="inputToName" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_friend_name') . '" minlength="'. (int)ENTRY_FIRST_NAME_MIN_LENGTH .'"');
         $customer_email = HTML::inputField('to_email_address', NULL, 'title="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_friend_email') . '" data-bs-toggle="tooltip" data-placement="right" required aria-required="true" id="inputFromEmail" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_friend_email') . '"', 'email');

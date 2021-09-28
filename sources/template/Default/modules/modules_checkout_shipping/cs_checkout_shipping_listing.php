@@ -41,7 +41,7 @@
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Shipping'])) {
+      if (isset($_GET['Checkout'], $_GET['Shipping'])) {
         if (!Registry::exists('Shipping')) {
           Registry::set('Shipping', new Delivery());
         }
@@ -50,7 +50,7 @@
 
         $quotes = $CLICSHOPPING_Shipping->getQuote();
 
-        if (isset($_GET['Checkout']) && isset($_GET['Shipping'])) {
+        if (isset($_GET['Checkout'], $_GET['Shipping'])) {
           $content_width = (int)MODULE_CHECKOUT_SHIPPING_LISTING_CONTENT_WIDTH;
 
           $shipping_listing = '<!-- start checkout_shipping_listing -->' . "\n";

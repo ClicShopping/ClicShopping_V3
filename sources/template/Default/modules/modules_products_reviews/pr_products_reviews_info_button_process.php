@@ -40,7 +40,7 @@ class pr_products_reviews_info_button_process {
     $content_width = (int)MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_CONTENT_WIDTH;
     $text_position = MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_POSITION;
 
-    if (isset($_GET['Products']) && isset($_GET['ReviewsInfo'])) {
+    if (isset($_GET['Products'], $_GET['ReviewsInfo'])) {
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
       $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Products&Reviews&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'primary');

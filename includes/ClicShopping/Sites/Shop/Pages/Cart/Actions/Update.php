@@ -22,7 +22,7 @@
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (isset($_GET['Update']) && isset($_GET['Cart'])) {
+      if (isset($_GET['Update'], $_GET['Cart'])) {
         if (isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
           if (isset($_POST['products_id'])) {
 

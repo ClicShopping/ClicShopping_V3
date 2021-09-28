@@ -31,7 +31,7 @@
 
     public function execute()
     {
-      if (isset($_GET['Insert']) && isset($_POST['customers_group'])) {
+      if (isset($_GET['Insert'], $_POST['customers_group'])) {
         $customers_group_id = HTML::sanitize($_POST['customers_group']);
 
         $Qpages = $this->app->db->prepare('select pages_id

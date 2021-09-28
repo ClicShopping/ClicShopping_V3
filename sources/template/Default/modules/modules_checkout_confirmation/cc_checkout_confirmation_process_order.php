@@ -43,7 +43,7 @@
       $CLICSHOPPING_Order = Registry::get('Order');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn()) {
+      if (isset($_GET['Checkout'], $_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn()) {
 
         if (!Registry::exists('Payment')) {
           Registry::set('Payment', new Payment());

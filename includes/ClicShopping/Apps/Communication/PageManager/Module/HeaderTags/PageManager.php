@@ -55,7 +55,7 @@
         return false;
       }
 
-      if (isset($_GET['Info']) && isset($_GET['Content'])) {
+      if (isset($_GET['Info'], $_GET['Content'])) {
         $this->template = Registry::get('Template');
 
         $Qsubmit = $this->app->db->prepare('select submit_id,

@@ -31,7 +31,7 @@
 
     public function execute()
     {
-      if (isset($_GET['Update']) && isset($_GET['Customers'])) {
+      if (isset($_GET['Update'], $_GET['Customers'])) {
         $CLICSHOPPING_Customers = Registry::get('Customers');
 
         if (isset($_POST['customers_group_id'])) {

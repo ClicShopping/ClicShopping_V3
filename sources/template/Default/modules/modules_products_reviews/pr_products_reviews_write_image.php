@@ -40,7 +40,7 @@
       $content_width = (int)MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_CONTENT_WIDTH;
       $text_position = MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_POSITION;
 
-      if (isset($_GET['Products']) && isset($_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
+      if (isset($_GET['Products'], $_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
         $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 

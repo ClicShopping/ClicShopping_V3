@@ -36,7 +36,7 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Info']) && isset($_GET['Contact']) && !isset($_GET['Success'])) {
+      if (isset($_GET['Info'], $_GET['Contact']) && !isset($_GET['Success'])) {
         $content_width = (int)MODULES_CONTACT_US_PRIVACY_CONDITION_CONTENT_WIDTH;
 
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {

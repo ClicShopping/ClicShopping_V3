@@ -40,7 +40,7 @@
       $CLICSHOPPING_Order = Registry::get('Order');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn()) {
+      if (isset($_GET['Checkout'], $_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn()) {
          if (!empty($CLICSHOPPING_Order->info['comments'])) {
           $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_CONTENT_WIDTH;
 

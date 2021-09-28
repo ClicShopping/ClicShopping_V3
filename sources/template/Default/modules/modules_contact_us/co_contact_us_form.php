@@ -39,7 +39,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (isset($_GET['Info']) && isset($_GET['Contact']) && !isset($_GET['Success'])) {
+      if (isset($_GET['Info'], $_GET['Contact']) && !isset($_GET['Success'])) {
         $content_width = (int)MODULE_CONTACT_US_FORM_CONTENT_WIDTH;
         $min_caracters_to_write = (int)MODULE_CONTACT_US_FORM_CONTENT_CARACTER;
 

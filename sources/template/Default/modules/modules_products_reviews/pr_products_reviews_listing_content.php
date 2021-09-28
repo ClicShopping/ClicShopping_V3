@@ -45,7 +45,7 @@
       $content_width = (int)MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_WIDTH;
       $text_position = MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_POSITION;
 
-      if (isset($_GET['Products']) && isset($_GET['Reviews'])) {
+      if (isset($_GET['Products'], $_GET['Reviews'])) {
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
         $data = '<!-- pr_products_reviews_listing_content start -->' . "\n";

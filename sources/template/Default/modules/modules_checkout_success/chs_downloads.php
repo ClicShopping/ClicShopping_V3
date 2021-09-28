@@ -40,7 +40,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Success'])) {
+      if (isset($_GET['Checkout'], $_GET['Success'])) {
         if (DOWNLOAD_ENABLED == 'true') {
           $download = '<!-- Product download start -->' . "\n";
 

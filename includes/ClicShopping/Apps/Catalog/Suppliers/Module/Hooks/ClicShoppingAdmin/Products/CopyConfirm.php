@@ -38,7 +38,7 @@
       if (isset($_POST['products_id']) && isset($_GET['Products'])) {
         $current_products_id = HTML::sanitize($_POST['products_id']);
 
-        if (isset($current_products_id) && isset($_GET['CopyConfirm'])) {
+        if (isset($current_products_id, $_GET['CopyConfirm'])) {
           $Qsuppliers = $this->app->db->prepare('select suppliers_id
                                                  from :table_products
                                                  where products_id = :products_id

@@ -34,7 +34,7 @@
         } elseif (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
           $id = empty($_POST['products_id']) ? null : HTML::sanitize($_POST['products_id']);
         }
-      } elseif (isset($_GET['Search']) && isset($_GET['Q'])) {
+      } elseif (isset($_GET['Search'], $_GET['Q'])) {
         if (isset($_POST['Id']) && is_numeric($_POST['Id']) && !empty(HTML::sanitize($_POST['Id']))) {
           $id = HTML::sanitize($_POST['Id']);
         }elseif (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {

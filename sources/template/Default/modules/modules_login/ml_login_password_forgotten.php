@@ -37,7 +37,7 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Account']) && isset($_GET['PasswordForgotten'])) {
+      if (isset($_GET['Account'], $_GET['PasswordForgotten'])) {
         $content_width = (int)MODULE_LOGIN_PASSWORD_FORGOTTEN_CONTENT_WIDTH;
 
         $ml_login_connexion = '<!-- ml_login_password_forgotten start-->' . "\n";

@@ -31,7 +31,7 @@
 
     public function execute()
     {
-      if (isset($_GET['Update']) && isset($_POST['customers_group'])) {
+      if (isset($_GET['Update'], $_POST['customers_group'])) {
         $customers_group_id = HTML::sanitize($_POST['customers_group']);
 
         $pages_id = HTML::sanitize($_POST['pages_id']);
