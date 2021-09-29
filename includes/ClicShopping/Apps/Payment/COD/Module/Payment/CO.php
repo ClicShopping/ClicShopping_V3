@@ -99,7 +99,8 @@
       if (($this->enabled === true) && ((int)CLICSHOPPING_APP_COD_CO_ZONE > 0)) {
         $check_flag = false;
 
-        $Qcheck = $this->app->db->get('zones_to_geo_zones', 'zone_id', ['geo_zone_id' => CLICSHOPPING_APP_COD_CO_ZONE,
+        $Qcheck = $this->app->db->get('zones_to_geo_zones', 'zone_id', [
+          'geo_zone_id' => CLICSHOPPING_APP_COD_CO_ZONE,
           'zone_country_id' => $CLICSHOPPING_Order->billing['country']['id']
         ],
           'zone_id'

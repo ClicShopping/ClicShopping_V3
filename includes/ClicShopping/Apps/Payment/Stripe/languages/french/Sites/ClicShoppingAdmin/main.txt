@@ -31,3 +31,5 @@ alert_cfg_saved_success = les paramètres ont été sauvegardé
 text_error_composer = Veuillez vérifier si composer est installé
 text_error_exec = Erreur Exec; veuillez vérifier
 text_warning = Veuillez ne pas oublier d'activer le module Stripe dans votre section SEO / Meta
+
+text_warning_group = Veuillez mettre à jour vos groupes clients pour afficher ce module dans la partie catalogue

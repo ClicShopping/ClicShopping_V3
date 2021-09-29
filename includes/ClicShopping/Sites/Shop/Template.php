@@ -135,7 +135,7 @@
       return $this->_grid_container_width;
     }
 
-    public function setGridContentWidth($width)
+    public function setGridContentWidth($width): void
     {
       $this->_grid_content_width = $width;
     }
@@ -145,7 +145,7 @@
       return $this->_grid_content_width;
     }
 
-    public function getGridColumnWidth()
+    public function getGridColumnWidth(): float|int
     {
       $width = ((12 - GRID_CONTENT_WITH) / 2);
       return $width;
@@ -154,7 +154,7 @@
     /**
      * @param string|null $title
      */
-    public function setTitle(?string $title)
+    public function setTitle(?string $title): void
     {
       $this->_title = $title;
     }
@@ -170,7 +170,7 @@
     /**
      * @param string|null $description
      */
-    public function setDescription(?string $description)
+    public function setDescription(?string $description): void
     {
       $this->_description = $description;
     }
@@ -186,7 +186,7 @@
     /**
      * @param string|null $keywords
      */
-    public function setKeywords(?string $keywords)
+    public function setKeywords(?string $keywords): void
     {
       $this->_keywords = $keywords;
     }
@@ -216,7 +216,7 @@
      * @param $block
      * @param $group
      */
-    public function addBlock(string $block, string $group)
+    public function addBlock(string $block, string $group): void
     {
       if (\defined('CONFIGURATION_TEMPLATE_MINIFY_HTML') && CONFIGURATION_TEMPLATE_MINIFY_HTML == 'true') {
         $block = HTMLOverrideCommon::getMinifyHtml($block);
@@ -237,7 +237,7 @@
     /**
      * return all HeaderTags files in apps Hooks
      */
-    public function getAppsHeaderTags()
+    public function getAppsHeaderTags(): void
     {
       if (\defined('MODULE_HEADER_TAGS_INSTALLED') && !\is_null(MODULE_HEADER_TAGS_INSTALLED)) {
         $header_tags_array = explode(';', MODULE_HEADER_TAGS_INSTALLED);
@@ -255,7 +255,7 @@
       }
     }
 
-    public function getBlocks($group)
+    public function getBlocks($group): string
     {
       if ($this->hasBlocks($group)) {
         return "\n" . '<!-- block ' . $group . ' -->' . "\n" . implode("\n", $this->_blocks[$group]) . "\n" . '<!-- end block ' . $group . ' -->' . "\n";
@@ -297,7 +297,7 @@
      * @return string
      */
 
-    public function getDropDownSelectedTemplateByCustomer()
+    public function getDropDownSelectedTemplateByCustomer(): string
     {
       $template_directory = CLICSHOPPING::getConfig('dir_root') . $this->_directoryTemplateSources . $this->_directoryTemplate;
       $weeds = ['.', '..', '_notes', 'index.php', 'ExNewTemplate', '.htaccess', 'README'];
@@ -370,7 +370,7 @@
      * DIR_WS_MODULES - includes/modules
      *
      */
-    public function getModuleDirectory()
+    public function getModuleDirectory(): string
     {
       return $this->_directoryIncludes . $this->_directoryModules; // includes/modules
     }
@@ -480,7 +480,7 @@
       return $result;
     }
 
-    public function buildBlocks()
+    public function buildBlocks(): void
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Language = Registry::get('Language');

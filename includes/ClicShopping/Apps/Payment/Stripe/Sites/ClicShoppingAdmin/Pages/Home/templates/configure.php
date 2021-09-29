@@ -42,6 +42,10 @@
     </div>
   </div>
   <div class="separator"></div>
+  <div class="col-md-12 alert alert-warning" role="alert">
+    <span><?php echo $CLICSHOPPING_Chronopost->getDef('text_warning_group'); ?></span>
+  </div>
+
 <?php
   if ($CLICSHOPPING_Composer->checkComposerInstalled() === false) {
     echo '<div class="alert alert-warning" role="alert">' . $CLICSHOPPING_Stripe->getDef('text_error_composer') . '</div>';
