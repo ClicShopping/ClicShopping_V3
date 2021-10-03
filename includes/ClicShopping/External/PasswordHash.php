@@ -31,10 +31,10 @@
 
   class PasswordHash
   {
-    public $itoa64;
-    public $iteration_count_log2;
+    public string $itoa64;
+    public mixed $iteration_count_log2;
     public $portable_hashes;
-    public $random_state;
+    public string $random_state;
 
     public function __construct($iteration_count_log2, $portable_hashes)
     {
@@ -91,16 +91,20 @@
       do {
         $value = ord($input[$i++]);
         $output .= $this->itoa64[$value & 0x3f];
-        if ($i < $count)
+        if ($i < $count) {
           $value |= ord($input[$i]) << 8;
+        }
         $output .= $this->itoa64[($value >> 6) & 0x3f];
-        if ($i++ >= $count)
+        if ($i++ >= $count) {
           break;
-        if ($i < $count)
+        }
+        if ($i < $count) {
           $value |= ord($input[$i]) << 16;
+        }
         $output .= $this->itoa64[($value >> 12) & 0x3f];
-        if ($i++ >= $count)
+        if ($i++ >= $count) {
           break;
+        }
         $output .= $this->itoa64[($value >> 18) & 0x3f];
       } while ($i < $count);
 
@@ -125,18 +129,21 @@
 
       $id = substr($setting, 0, 3);
       # We use "$P$", phpBB3 uses "$H$" for the same thing
-      if ($id !== '$P$' && $id !== '$H$')
+      if ($id !== '$P$' && $id !== '$H$') {
         return $output;
+      }
 
       $count_log2 = strpos($this->itoa64, $setting[3]);
-      if ($count_log2 < 7 || $count_log2 > 30)
+      if ($count_log2 < 7 || $count_log2 > 30) {
         return $output;
+      }
 
       $count = 1 << $count_log2;
 
       $salt = substr($setting, 4, 8);
-      if (\strlen($salt) !== 8)
+      if (\strlen($salt) !== 8) {
         return $output;
+      }
 
       # We were kind of forced to use MD5 here since it's the only
       # cryptographic primitive that was available in all versions

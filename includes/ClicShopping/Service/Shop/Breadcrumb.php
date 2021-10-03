@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTML;
 
   use ClicShopping\Sites\Shop\Breadcrumb as BreadcrumbClass;
 
@@ -25,7 +26,7 @@
         $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
 
         $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('header_title_top'), CLICSHOPPING::getConfig('http_server', 'Shop'));
-        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('header_title_catalog', ['store_name' => STORE_NAME]), CLICSHOPPING::link());
+        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('header_title_catalog', ['store_name' => HTML::sanitize(STORE_NAME)]), CLICSHOPPING::link());
 
         return true;
       } else {

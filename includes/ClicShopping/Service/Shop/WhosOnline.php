@@ -146,7 +146,8 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      $CLICSHOPPING_Db->save('whos_online', ['session_id' => $new_id],
+      $CLICSHOPPING_Db->save('whos_online',
+        ['session_id' => $new_id],
         ['session_id' => $old_id]
       );
     }

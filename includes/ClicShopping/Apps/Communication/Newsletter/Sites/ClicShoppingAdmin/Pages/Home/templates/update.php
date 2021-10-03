@@ -73,7 +73,8 @@
     $nInfo = new ObjectInfo($parameters);
 
     if (isset($_GET['Update']) && !\is_null($nID)) {
-      $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', ['title',
+      $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', [
+        'title',
         'content',
         'module',
         'languages_id',
@@ -123,7 +124,8 @@
     }
 
     for ($i = 0, $n = \count($directory_array); $i < $n; $i++) {
-      $modules_array[] = ['id' => substr($directory_array[$i], 0, strrpos($directory_array[$i], '.')),
+      $modules_array[] = [
+        'id' => substr($directory_array[$i], 0, strrpos($directory_array[$i], '.')),
         'text' => substr($directory_array[$i], 0, strrpos($directory_array[$i], '.'))
       ];
     }
@@ -131,11 +133,9 @@
     // Put languages information into an array for drop-down boxes
     $customers_group = GroupsB2BAdmin::getCustomersGroup();
 
-    $values_customers_group_id[0] = ['id' => '0',
-      'text' => $CLICSHOPPING_Newsletter->getDef('text_all_customers')
-    ];
     for ($i = 0, $n = \count($customers_group); $i < $n; $i++) {
-      $values_customers_group_id[$i + 1] = ['id' => $customers_group[$i]['id'],
+      $values_customers_group_id[$i + 1] = [
+        'id' => $customers_group[$i]['id'],
         'text' => $customers_group[$i]['text']
       ];
     }
@@ -143,12 +143,14 @@
     // Put languages information into an array for drop-down boxes
     $languages = $CLICSHOPPING_Language->getLanguages();
 
-    $values_languages_id[0] = ['id' => '0',
+    $values_languages_id[0] = [
+      'id' => '0',
       'text' => $CLICSHOPPING_Newsletter->getDef('text_all_languages')
     ];
 
     for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-      $values_languages_id[$i + 1] = ['id' => $languages[$i]['id'],
+      $values_languages_id[$i + 1] = [
+        'id' => $languages[$i]['id'],
         'text' => $languages[$i]['name']
       ];
     }
