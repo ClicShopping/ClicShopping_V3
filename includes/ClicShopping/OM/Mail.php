@@ -319,24 +319,24 @@
      * @param string $email
      * @return bool
      */
-    public static function excludeEmailDomain(string $email = '')
+    public static function excludeEmailDomain($email = '')
     {
       if( filter_var( $email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
         $array_domain = explode('@', $email);
         $domain = array_pop($array_domain);
-        $exclude_domain = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
+        $exlude_domain = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
 
-        if (\is_array($exclude_domain)) {
-          foreach ($exclude_domain as $value) {
+        if (\is_array($exlude_domain)) {
+          foreach ($exlude_domain as $value) {
             if ($value === $domain) {
               return false;
             } else {
               return true;
             }
           }
-        } else {
-          return true;
         }
+
+        return true;
       }
     }
   
@@ -367,8 +367,8 @@
         return false;
       }
 
-       if ($this->validateDomainEmail($from_email_address) === false || static::excludeEmailDomain($from_email_address) === false) {
-        break;
+      if ($this->validateDomainEmail($to_email_address) === false || static::excludeEmailDomain($to_email_address) === false) {
+        return false;
       }
       
 // Build the text version
