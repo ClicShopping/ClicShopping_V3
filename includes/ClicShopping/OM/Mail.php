@@ -254,7 +254,7 @@
 //Set who the message is to be sent to
       $this->phpMail->AddAddress($to_addr, $to_name ?? '');
 
-      if ($this->validateDomainEmail($to_addr === false) || static::excludeEmailDomain($to_addr) === false) {
+      if ($this->validateDomainEmail($to_addr === false) || $this->excludeEmailDomain($to_addr) === true) {
         return false;
       }
 
@@ -319,23 +319,25 @@
      * @param string $email
      * @return bool
      */
-    public static function excludeEmailDomain($email = '')
+    public function excludeEmailDomain($email = '')
     {
       if( filter_var( $email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
         $array_domain = explode('@', $email);
         $domain = array_pop($array_domain);
-        $exlude_domain = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
+        $exclude_domain = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
 
-        if (\is_array($exlude_domain)) {
-          foreach ($exlude_domain as $value) {
+        if (\is_array($exclude_domain)) {
+          foreach ($exclude_domain as $value) {
             if ($value === $domain) {
-              return false;
-            } else {
               return true;
+            } else {
+              return false;
             }
           }
+        } else {
+          return false;
         }
-
+      } else {
         return true;
       }
     }
@@ -367,10 +369,7 @@
         return false;
       }
 
-      if ($this->validateDomainEmail($to_email_address) === false || static::excludeEmailDomain($to_email_address) === false) {
-        return false;
-      }
-      
+
 // Build the text version
       $text = strip_tags($email_text);
 
@@ -394,8 +393,8 @@
     {
       if (Is::EmailAddress($email, true) === false) {
         return false;
-      } else {
-        return true;
       }
+
+      return true;
     }
   }
