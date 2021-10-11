@@ -1,8 +1,10 @@
-Version 3.301
-
-Boostrap 5.0.1
+Version 3.303
+ 
 fix little bug
 update libraries
+spam managment more strict
+php 8.1 compatible
+improve speed core
 no Sql update
 
 Version 3.300 

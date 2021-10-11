@@ -39,12 +39,12 @@ Easy to install in just some clicks on a server or on your computer, you can use
 #Requirement (more information in the wiki)
  - Apache 2.4<br>
  - MYSQL 7 / MariaDb 10.3 - 10.4 / Postgres<br>
- - PHP > 8.0 
+ - PHP > 8.0 and 8.1
  - More information in the Wiki
 
 #Installation
  - Step1 : Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
- - Step2 : Install Clicshopping : https://www.mysite.com/install
+ - Step2 : Install ClicShopping : https://www.mysite.com/install
 More information in the Wiki
 
 #Checklist
@@ -72,7 +72,7 @@ More information in the Wiki
 
 #Analyse
 
-    [![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
+    [![SymfonyInsight](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e/big.svg)](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e)    [![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
     [![php](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen])](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen)
     ![GitHub repo size](https://img.shields.io/github/repo-size/ClicShopping/ClicShopping_v3)
     ![GitHub top language](https://img.shields.io/github/languages/top/ClicShopping/ClicShopping_v3)
