@@ -70,8 +70,9 @@
     {
       $cardNumber = strrev($this->cc_number);
       $numSum = 0;
+      $cardNumber = \strlen($cardNumber);
 
-      for ($i = 0; $i < \strlen($cardNumber); $i++) {
+      for ($i = 0; $i <$cardNumber; $i++) {
         $currentNum = substr($cardNumber, $i, 1);
 
 // Double every second digit
