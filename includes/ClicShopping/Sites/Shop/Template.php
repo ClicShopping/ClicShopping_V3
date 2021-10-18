@@ -255,10 +255,16 @@
       }
     }
 
+    /**
+     * @param $group
+     * @return string
+     */
     public function getBlocks($group): string
     {
       if ($this->hasBlocks($group)) {
         return "\n" . '<!-- block ' . $group . ' -->' . "\n" . implode("\n", $this->_blocks[$group]) . "\n" . '<!-- end block ' . $group . ' -->' . "\n";
+      } else {
+        return '';
       }
     }
 
