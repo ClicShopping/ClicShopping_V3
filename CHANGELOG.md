@@ -1,11 +1,14 @@
-Version 3.303
+Version 3.302
  
 fix little bug
-update libraries
-spam managment more strict
+libraries updated
+spam management more strict
 php 8.1 compatible
 improve speed core
+boostrap, elfinder, wysiwyg updated
 no Sql update
+
+
 
 Version 3.300 
 
