@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => '78bc71b8db9d25e7a3f3d26ea3d1df46ac5ac488',
+    'reference' => '55646f5c1e9b85b869d49b9372af2e277b5f4083',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => '78bc71b8db9d25e7a3f3d26ea3d1df46ac5ac488',
+      'reference' => '55646f5c1e9b85b869d49b9372af2e277b5f4083',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -73,12 +73,12 @@ class InstalledVersions
     ),
     'guzzlehttp/promises' => 
     array (
-      'pretty_version' => '1.5.0',
-      'version' => '1.5.0.0',
+      'pretty_version' => '1.5.1',
+      'version' => '1.5.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '136a635e2b4a49b9d79e9c8fee267ffb257fdba0',
+      'reference' => 'fe752aedc9fd8fcca3fe7ad05d419d32998a06da',
     ),
     'guzzlehttp/psr7' => 
     array (

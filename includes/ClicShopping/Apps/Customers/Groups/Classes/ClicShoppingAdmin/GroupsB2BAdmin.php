@@ -51,7 +51,8 @@
       $customers_group_array = [];
 
       if ($default) {
-        $customers_group_array[] = ['id' => '',
+        $customers_group_array[] = [
+          'id' => '',
           'text' => $default
         ];
       }
@@ -65,7 +66,8 @@
       $QcustomersGroup->execute();
 
       while ($customers_group = $QcustomersGroup->fetch()) {
-        $customers_group_array[] = ['id' => $customers_group['customers_group_id'],
+        $customers_group_array[] = [
+          'id' => $customers_group['customers_group_id'],
           'text' => $customers_group['customers_group_name']
         ];
       }
@@ -85,11 +87,6 @@
       $customers_group[] = [
         'id' => '99',
         'text' => CLICSHOPPING::getDef('text_all_groups')
-      ];
-
-      $values_customers_group_id[0] = [
-        'id' => 0,
-        'text' => CLICSHOPPING::getDef('visitor_name')
       ];
 
       for ($i = 0, $n = \count($customers_group); $i < $n; $i++) {

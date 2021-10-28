@@ -72,7 +72,7 @@
       <div class="col-md-12"><?php echo $CLICSHOPPING_Members->getDef('text_accept_intro'); ?><br/><br/></div>
       <div class="separator"></div>
       <div
-        class="col-md-5"><?php echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup($CLICSHOPPING_Members->getDef('visitor_name')), $cInfo->customers_group_id ?? null); ?>
+        class="col-md-5"><?php echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup(), $cInfo->customers_group_id ?? null); ?>
         <br/><br/></div>
       <div class="separator"></div>
       <div
