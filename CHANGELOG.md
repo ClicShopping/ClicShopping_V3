@@ -1,3 +1,7 @@
+Version 3.303
+
+
+-------------
 Version 3.302
  
 fix little bug
@@ -9,7 +13,7 @@ boostrap, elfinder, wysiwyg updated
 no Sql update
 
 
-
+-------------
 Version 3.300 
 
 Note : This version works only with php > 8.0
