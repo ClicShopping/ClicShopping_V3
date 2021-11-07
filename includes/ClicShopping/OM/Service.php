@@ -37,7 +37,7 @@
 
       $exclude = ['.', '..', '_htaccess', '.htaccess'];
 
-      if (CLICSHOPPING::getSite() === 'ClicShoppingAdmin') {
+      if (CLICSHOPPING::getSite() == 'ClicShoppingAdmin') {
         $files = array_diff(scandir($this->directoryAdmin), $exclude);
       } else {
         $files = array_diff(scandir($this->directory), $exclude);
@@ -65,7 +65,7 @@
       */
       if (CLICSHOPPING::getSite() === 'Shop') {
         if ($this->isStarted('output_compression')) {
-          $key = array_search('output_compression', $this->_started_services);
+          $key = array_search('output_compression', $this->_started_services, true);
           unset($this->_started_services[$key]);
 
           $this->_started_services[] = 'output_compression';
@@ -123,7 +123,7 @@
      */
     public function isStarted(string $service): bool
     {
-      return \in_array($service, $this->_started_services);
+      return \in_array($service, $this->_started_services, true);
     }
 
     /**
@@ -139,27 +139,39 @@
      * @param $object
      * @param $method
      */
-    public function addCallAfterPageContent($object, $method)
+    public function addCallAfterPageContent($object, $method): void
     {
       $this->_call_after_page_content[] = [$object, $method];
     }
 
-    public function hasBeforePageContentCalls()
+    /**
+     * @return bool
+     */
+    public function hasBeforePageContentCalls(): bool
     {
       return !empty($this->_call_before_page_content);
     }
 
-    public function hasAfterPageContentCalls()
+    /**
+     * @return bool
+     */
+    public function hasAfterPageContentCalls(): bool
     {
       return !empty($this->_call_after_page_content);
     }
 
-    public function getCallBeforePageContent()
+    /**
+     * @return array
+     */
+    public function getCallBeforePageContent(): array
     {
       return $this->_call_before_page_content;
     }
 
-    public function getCallAfterPageContent()
+    /**
+     * @return array
+     */
+    public function getCallAfterPageContent(): array
     {
       return $this->_call_after_page_content;
     }

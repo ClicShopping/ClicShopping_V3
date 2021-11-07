@@ -66,7 +66,7 @@
   
         $output .= (isset($_SESSION['admin']) ? '&nbsp;' . AdministratorAdmin::getUserAdmin() . '&nbsp; - &nbsp;<a href="' . CLICSHOPPING::link('login.php', 'action=logoff') . '" class="headerLink"><i class="bi bi-power" aria-hidden="true"></i></a>' : '');
   
-        if ($_SESSION['admin']['access'] == 1 && \count(glob(ErrorHandler::getDirectory() . 'errors-*.txt', GLOB_NOSORT)) > 0) {
+        if ($_SESSION['admin']['access'] === 1 && \count(glob(ErrorHandler::getDirectory() . 'errors-*.txt', GLOB_NOSORT)) > 0) {
           $output .= '&nbsp; - &nbsp; ' . HTML::link(CLICSHOPPING::link(null, 'A&Tools\EditLogError&LogError'), '<i class="bi bi-exclamation-circle-fill text-warning"></i>');
         }
   
@@ -110,7 +110,7 @@
           if ($menus['link'] != '') {
             $output .= '<li class="nav-item p-2 m-1">' . HTML::link(CLICSHOPPING::link($menus['link']), $menus['label'], 'class="nav-link"') . '</li>';
           } else {
-            $output .= '<li class="nav-item active m-1 "><a href="#submenu1sub' . $i .'" data-bs-target="#submenu1sub' . $i .'" data-bs-toggle="collapse" class="nav-link collapsed text-uppercase">- ' . $image . ' ' . $menus['label'] . '</a>
+            $output .= '<li class="nav-item active m-1 "><a href="#submenu1sub' . $i .'" data-bs-target="#submenu1sub' . $i .'" data-bs-toggle="collapse" class="nav-link collapsed text-uppercase"><i class="bi bi-plus-circle"></i>' . $image . ' ' . $menus['label'] . '</a>
                         <div class="collapse" id="submenu1sub' . $i .'" aria-expanded="false">
                       ';
           }
@@ -122,13 +122,13 @@
   
             $n = 1;
             foreach ($menus['sub_menu'] as $second_level) {
-              $n = $n+1;
+              ++$n;
               $image = '';
 
               if ($menu_sub[$second_level]['link'] != '') {
                 $output .= '<li class="nav-item p-1 small m-1">' . HTML::link(CLICSHOPPING::link($menu_sub[$second_level]['link']), $image . ' ' . $menu_sub[$second_level]['label'], 'class="nav-link"') . '</li>';
               } else {
-                $output .= '<li class="nav-item active m-1"><a href="#submenu2sub' . $n .'" data-bs-target="#submenu2sub' . $n .'" data-bs-toggle="collapse" class="nav-link collapsed text-uppercase">-- ' . $image . ' ' . $menu_sub[$second_level]['label'] . '</a>
+                $output .= '<li class="nav-item active m-1"><a href="#submenu2sub' . $n .'" data-bs-target="#submenu2sub' . $n .'" data-bs-toggle="collapse" class="nav-link collapsed text-uppercase small"><i class="bi bi-plus-circle"></i> ' . $image . ' ' . $menu_sub[$second_level]['label'] . '</a>
                             <div class="collapse" id="submenu2sub' . $n .'" aria-expanded="false">
                             ';
               }

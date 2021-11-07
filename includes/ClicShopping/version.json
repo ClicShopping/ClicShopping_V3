@@ -1,5 +1,5 @@
 {
- "version": "3.303",
- "description": "This release is compatible with php 8.x, it introduces little fix.",
+ "version": "3.304",
+ "description": "This release is compatible with php 8.x, it introduces some fix.",
  "date": "2021"
 }
