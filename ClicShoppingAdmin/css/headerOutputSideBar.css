@@ -61,6 +61,11 @@
     display: none;
 }
 
+.media-body {
+    border-bottom: solid #eee;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05)
+}
+
 @media (max-width: 768px) {
     .page-content {
         width: calc(100% - 0rem);

@@ -78,15 +78,15 @@
         $output .= '</div>';
   
         $output .= '<!-- start vertical menu -->';
-        $output .= '<div class="vertical-nav bg-white" id="sidebar">';
+        $output .= '<div class="vertical-nav bg-header" id="sidebar">';
         $output .= '<div class="py-1 px-1 mb-4 bg-header">';
         
         $output .= '<div class="media d-flex align-items-center" id="my-nav">';
         $output .= HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'header/logo_clicshopping1.webp', 'ClicShopping', '51', '51', 'mr-3 rounded-circle img-thumbnail shadow-s');
-        $output .= '<div class="media-body">';
+        $output .= '<div class="textLogo">';
         $output .= '<h4 class="m-0">&nbsp;&nbsp;ClicShopping</h4>';
         $output .= '</div>';
-        
+
         $output .= '<div class="sidebarCollapse1 sidebarHide">';
         $output .= '&nbsp;&nbsp;&nbsp;<button id="sidebarCollapse1" type="button" class="btn"><i class="bi bi-layout-three-columns"></i></button>';
         $output .= '</div>';
@@ -96,7 +96,7 @@
         $output .= '</div>';
         $output .= '</div>';
         $output .= '<div class="addScrollSideBar" id="addScrollSideBar">';
-        $output .= '<div class="collapse show d-md-flex bg-light pt-2 pl-0 min-vh-100 bg-white" id="sidebar">';
+        $output .= '<div class="collapse show d-md-flex bg-light pt-2 pl-0 min-vh-100 bg-header" id="sidebar">';
         $output .= '<ul class="nav flex-column flex-nowrap overflow-hidden collapsed" id="submenu1sub1" aria-expanded="false">';
 
 //--------------------------------------------------------------
@@ -110,7 +110,7 @@
           if ($menus['link'] != '') {
             $output .= '<li class="nav-item p-2 m-1">' . HTML::link(CLICSHOPPING::link($menus['link']), $menus['label'], 'class="nav-link"') . '</li>';
           } else {
-            $output .= '<li class="nav-item active m-1 "><a href="#submenu1sub' . $i .'" data-bs-target="#submenu1sub' . $i .'" data-bs-toggle="collapse" class="nav-link collapsed text-uppercase"><i class="bi bi-plus-circle"></i>' . $image . ' ' . $menus['label'] . '</a>
+            $output .= '<li class="nav-item active m-1"><a href="#submenu1sub' . $i .'" data-bs-target="#submenu1sub' . $i .'" data-bs-toggle="collapse" class="nav-link collapsed text-uppercase"><i class="bi bi-plus-circle"></i>' . $image . ' ' . $menus['label'] . '</a>
                         <div class="collapse" id="submenu1sub' . $i .'" aria-expanded="false">
                       ';
           }
