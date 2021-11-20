@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => '0c1d72c794890ed24b4e5fb22627d724a914cbe7',
+    'reference' => '1ba812fa4d3d5176d1e868cac0d14f7ffc219c6e',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => '0c1d72c794890ed24b4e5fb22627d724a914cbe7',
+      'reference' => '1ba812fa4d3d5176d1e868cac0d14f7ffc219c6e',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -152,12 +152,12 @@ class InstalledVersions
     ),
     'stripe/stripe-php' => 
     array (
-      'pretty_version' => 'v7.102.0',
-      'version' => '7.102.0.0',
+      'pretty_version' => 'v7.103.0',
+      'version' => '7.103.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7c612a45fd6661e35ff255c722f5d529b98e811f',
+      'reference' => '3a029598395bb4c7cfafa64707a553f4b01a9a12',
     ),
     'symfony/finder' => 
     array (
