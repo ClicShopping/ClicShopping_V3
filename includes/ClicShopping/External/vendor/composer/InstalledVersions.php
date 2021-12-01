@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => '351bf182e624995bebf6bd4ff57484b30cc7176b',
+    'reference' => 'b270b8156312a09512c5cec6b89568ce210bbc48',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => '351bf182e624995bebf6bd4ff57484b30cc7176b',
+      'reference' => 'b270b8156312a09512c5cec6b89568ce210bbc48',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -159,14 +159,23 @@ class InstalledVersions
       ),
       'reference' => '3a029598395bb4c7cfafa64707a553f4b01a9a12',
     ),
-    'symfony/finder' => 
+    'symfony/deprecation-contracts' => 
     array (
-      'pretty_version' => 'v5.3.7',
-      'version' => '5.3.7.0',
+      'pretty_version' => 'v3.0.0',
+      'version' => '3.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'a10000ada1e600d109a6c7632e9ac42e8bf2fb93',
+      'reference' => 'c726b64c1ccfe2896cb7df2e1331c357ad1c8ced',
+    ),
+    'symfony/finder' => 
+    array (
+      'pretty_version' => 'v5.4.0',
+      'version' => '5.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd2f29dac98e96a98be467627bd49c2efb1bc2590',
     ),
     'symfony/polyfill-intl-idn' => 
     array (
