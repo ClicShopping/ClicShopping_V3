@@ -2,7 +2,7 @@
     "config": {
         "vendor-dir": "includes/ClicShopping/External/vendor"
     },
-    "license": ["(GPL-2 or MIT)"],
+    "license": ["(GPL-2.0-or-later or MIT)"],
     "require": {
         "phpmailer/phpmailer": "^6.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -13,5 +13,9 @@
         "mattketmo/email-checker": "^2.0",
         "daveearley/daves-email-validation-tool": "^1.2",
         "darkghosthunter/preloader": "^2.2"
+    },
+    "support": {
+        "wiki": "https://github.com/ClicShopping/ClicShopping_V3/wiki",
+        "forum": "https://wwww.ciclicshopping.org"
     }
 }
