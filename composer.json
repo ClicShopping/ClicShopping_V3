@@ -17,5 +17,11 @@
     "support": {
         "wiki": "https://github.com/ClicShopping/ClicShopping_V3/wiki",
         "forum": "https://wwww.ciclicshopping.org"
-    }
+    },
+    "funding": [
+        {
+            "type": "other",
+            "url": "https://www.clicshopping.org/forum/clients/donations/"
+        }
+    ]
 }
