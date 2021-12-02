@@ -2,6 +2,7 @@
     "config": {
         "vendor-dir": "includes/ClicShopping/External/vendor"
     },
+    "license": ["(GPL-2 or MIT)"],
     "require": {
         "phpmailer/phpmailer": "^6.0",
         "guzzlehttp/guzzle": "^6.3",

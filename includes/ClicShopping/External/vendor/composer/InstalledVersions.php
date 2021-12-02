@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => 'b270b8156312a09512c5cec6b89568ce210bbc48',
+    'reference' => 'cda35c691b67be5ab563b712a7fa52c52da10d4e',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => 'b270b8156312a09512c5cec6b89568ce210bbc48',
+      'reference' => 'cda35c691b67be5ab563b712a7fa52c52da10d4e',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -152,12 +152,12 @@ class InstalledVersions
     ),
     'stripe/stripe-php' => 
     array (
-      'pretty_version' => 'v7.103.0',
-      'version' => '7.103.0.0',
+      'pretty_version' => 'v7.104.0',
+      'version' => '7.104.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '3a029598395bb4c7cfafa64707a553f4b01a9a12',
+      'reference' => '6bfd895eaa3f6ebb49c10f9ab9ccc9e5baadded5',
     ),
     'symfony/deprecation-contracts' => 
     array (
