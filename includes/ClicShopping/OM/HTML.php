@@ -263,8 +263,10 @@
         }
       }
 
-      if (\strlen($value) > 0) {
-        $field .= ' value="' . static::output($value) . '"';
+      if (!\is_null($value)) {
+        if (\strlen($value) > 0) {
+          $field .= ' value="' . static::output($value) . '"';
+        }
       }
 
       if (!empty($parameters)) {
