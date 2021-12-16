@@ -43,7 +43,7 @@
   </div>
   <div class="separator"></div>
   <div class="col-md-12 alert alert-warning" role="alert">
-    <span><?php echo $CLICSHOPPING_Chronopost->getDef('text_warning_group'); ?></span>
+    <span><?php echo $CLICSHOPPING_MoneyOrder->getDef('text_warning_group'); ?></span>
   </div>
 
   <?php
