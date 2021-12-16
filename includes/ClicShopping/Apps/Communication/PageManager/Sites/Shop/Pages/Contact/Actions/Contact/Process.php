@@ -116,6 +116,10 @@
 
         $template_email_footer = TemplateEmailAdmin::getTemplateEmailTextFooter();
 
+        if ($CLICSHOPPING_Mail->validateDomainEmail($email_address) === false || $CLICSHOPPING_Mail->excludeEmailDomain($email_address) === true) {
+          return true;
+        }
+
         if ($error === false) {
           $today = date("Y-m-d H:i:s");
           if (!empty(CONTACT_DEPARTMENT_LIST)) {
@@ -157,7 +161,7 @@
             $CLICSHOPPING_Mail->clicMail(STORE_OWNER, $email_address, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'), $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
           }
 
-// insert the modification in the database
+          // insert the modification in the database
           if ($CLICSHOPPING_Customer->isLoggedOn()) {
             if ($order_id !== 0) {
               $sql_insert_array = [

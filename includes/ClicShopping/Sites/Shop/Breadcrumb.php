@@ -31,7 +31,7 @@
      *
      */
 
-    public function reset()
+    public function reset() :void
     {
       $this->_path = [];
     }
@@ -68,12 +68,12 @@
       $array = $this->_pathArray;
 
       foreach($array as $k => $v) {
-        $itemlistelement[] = array(
+        $itemlistelement[] = [
           '@type' => 'ListItem',
           'position' => $k,
           'item' => array('@id' => $v['link'],
           'name' => strip_tags($v['title']))
-        );
+        ];
       }
 
       $schema_breadcrumb = ['@context' => 'https://schema.org',
@@ -130,7 +130,7 @@
      * @return string
      */
 
-    public function setSeparator(string $separator)
+    public function setSeparator(string $separator) : ?string
     {
       $this->_separator = $separator;
     }
@@ -141,16 +141,16 @@
      *
      */
 
-    public function rewind()
+    public function Rewind() :void
     {
-      return reset($this->_path);
+    //  return reset($this->_path); // php8.1 deprecated  to do
     }
 
     /**
      *  Overloaded current iterator function
      * @return string
      */
-    public function current(): string
+    public function current(): mixed
     {
       return current($this->_path);
     }
@@ -168,18 +168,18 @@
 
     /**
      * Overloaded next iterator function
-     * @return string
+     *
      */
-    public function next(): string
+    public function Next(): void
     {
-      return next($this->_path);
+     // return next($this->_path);  // php8.1 deprecated  to do
     }
 
     /**
      * Overloaded next iterator function
-     * @return string
+     * @return bool
      */
-    public function valid(): string
+    public function Valid(): bool
     {
       return (current($this->_path) !== false);
     }

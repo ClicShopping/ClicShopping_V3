@@ -242,13 +242,13 @@
      */
     public function getCustomersGroupID(): int
     {
-      $customersgroupid = 0;
+      $customersGroupId = 0;
 
       if (isset($this->_data1['customers_group_id'])) {
-        $customersgroupid = $this->_data1['customers_group_id'];
+        $customersGroupId = $this->_data1['customers_group_id'];
       }
 
-      return $customersgroupid;
+      return $customersGroupId;
     }
 
     /**

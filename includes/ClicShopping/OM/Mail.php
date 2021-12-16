@@ -341,7 +341,7 @@
         return true;
       }
     }
-  
+
     /**
      * @param string $file
      * @return bool

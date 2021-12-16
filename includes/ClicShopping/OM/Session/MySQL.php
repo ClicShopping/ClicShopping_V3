@@ -113,8 +113,9 @@
 
     /**
      * Garbage collector for the database storage handler
-     *
-     * @param int $maxlifetime The maxmimum time a session should exist
+     * @param int $maxlifetime
+     * @return bool
+     * The maxmimum time a session should exist
      */
     public function gc($maxlifetime) :bool
     {
