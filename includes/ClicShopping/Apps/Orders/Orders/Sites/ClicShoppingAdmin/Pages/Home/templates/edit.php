@@ -47,9 +47,11 @@
   $QordersStatus->execute();
 
   while ($QordersStatus->fetch() !== false) {
-    $orders_statuses[] = ['id' => $QordersStatus->valueInt('orders_status_id'),
+    $orders_statuses[] = [
+     'id' => $QordersStatus->valueInt('orders_status_id'),
       'text' => $QordersStatus->value('orders_status_name')
     ];
+
     $orders_status_array[$QordersStatus->valueInt('orders_status_id')] = $QordersStatus->value('orders_status_name');
   }
 
@@ -80,7 +82,8 @@
   $QordersStatusInvoice->execute();
 
   while ($QordersStatusInvoice->fetch()) {
-    $orders_invoice_statuses[] = ['id' => $QordersStatusInvoice->valueInt('orders_status_invoice_id'),
+    $orders_invoice_statuses[] = [
+      'id' => $QordersStatusInvoice->valueInt('orders_status_invoice_id'),
       'text' => $QordersStatusInvoice->value('orders_status_invoice_name')
     ];
 
@@ -391,7 +394,7 @@
           <?php echo HTML::form('status', $CLICSHOPPING_Orders->link('Orders&Update&oID=' . $oID)); ?>
           <div class="adminformTitle" id="StatusOrder">
             <div class="row">
-              <div class="col-md-12" id="tab3ContentRow1">
+              <div class="col-md-12" id="orderComment">
                 <div class="row">
                   <div
                     class="col-md-8"><?php echo HTML::textAreaField('comments', null, '60', '5', 'placeholder="' . $CLICSHOPPING_Orders->getDef('entry_notify_comments') . '"'); ?></div>
@@ -400,22 +403,9 @@
                 </div>
               </div>
               <div class="separator"></div>
-              <div class="col-md-12">
-                <div class="row" id="tab3ContentRow2">
-                  <span
-                    class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_status'); ?></strong></span>
-                  <span
-                    class="col-md-4"><?php echo HTML::selectMenu('status', $orders_statuses, $order->info['orders_status']); ?></span>
-                  <span
-                    class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_status_invoice'); ?></strong></span>
-                  <span
-                    class="col-md-4"><?php echo HTML::selectMenu('status_invoice', $orders_invoice_statuses, $order->info['orders_status_invoice']); ?></span>
-                </div>
-              </div>
-
+              <div class="row col-md-12" id="entryStatus"></div>
               <div class="separator"></div>
               <div class="col-md-12" id="contentTab3"></div>
-
               <div class="separator"></div>
               <div class="col-md-12" id="StatusNotify">
                 <div class="row" id="tab3ContentRow4">

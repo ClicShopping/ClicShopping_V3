@@ -15,6 +15,9 @@
  ],
  "modules": {
   "Hooks": {
+   "ClicShoppingAdmin/Orders": {
+    "PageContentTab3": "Module\\Hooks\\ClicShoppingAdmin\\Orders\\PageContentTab3"
+   },
    "ClicShoppingAdmin/Langues": {
     "DeleteConfirm":	"Module\\Hooks\\ClicShoppingAdmin\\Langues\\DeleteConfirm",
     "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Langues\\Insert"
