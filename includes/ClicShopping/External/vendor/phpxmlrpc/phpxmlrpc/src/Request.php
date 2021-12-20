@@ -2,6 +2,7 @@
 
 namespace PhpXmlRpc;
 
+use PhpXmlRpc\Exception\HttpException;
 use PhpXmlRpc\Helper\Charset;
 use PhpXmlRpc\Helper\Http;
 use PhpXmlRpc\Helper\Logger;
@@ -13,6 +14,10 @@ use PhpXmlRpc\Helper\XMLParser;
  */
 class Request
 {
+    protected static $logger;
+    protected static $parser;
+    protected static $charsetEncoder;
+
     /// @todo: do these need to be public?
     public $payload;
     /** @internal */
@@ -23,7 +28,47 @@ class Request
     public $content_type = 'text/xml';
 
     // holds data while parsing the response. NB: Not a full Response object
+    /** @deprecated will be removed in a future release */
     protected $httpResponse = array();
+
+    public function getLogger()
+    {
+        if (self::$logger === null) {
+            self::$logger = Logger::instance();
+        }
+        return self::$logger;
+    }
+
+    public static function setLogger($logger)
+    {
+        self::$logger = $logger;
+    }
+
+    public function getParser()
+    {
+        if (self::$parser === null) {
+            self::$parser = new XMLParser();
+        }
+        return self::$parser;
+    }
+
+    public static function setParser($parser)
+    {
+        self::$parser = $parser;
+    }
+
+    public function getCharsetEncoder()
+    {
+        if (self::$charsetEncoder === null) {
+            self::$charsetEncoder = Charset::instance();
+        }
+        return self::$charsetEncoder;
+    }
+
+    public function setCharsetEncoder($charsetEncoder)
+    {
+        self::$charsetEncoder = $charsetEncoder;
+    }
 
     /**
      * @param string $methodName the name of the method to invoke
@@ -72,7 +117,7 @@ class Request
             $this->content_type = 'text/xml';
         }
         $this->payload = $this->xml_header($charsetEncoding);
-        $this->payload .= '<methodName>' . Charset::instance()->encodeEntities(
+        $this->payload .= '<methodName>' . $this->getCharsetEncoder()->encodeEntities(
             $this->methodname, PhpXmlRpc::$xmlrpc_internalencoding, $charsetEncoding) . "</methodName>\n";
         $this->payload .= "<params>\n";
         foreach ($this->params as $p) {
@@ -125,7 +170,7 @@ class Request
     public function addParam($param)
     {
         // check: do not add to self params which are not xmlrpc values
-        if (\is_object($param) && is_a($param, 'PhpXmlRpc\Value')) {
+        if (is_object($param) && is_a($param, 'PhpXmlRpc\Value')) {
             $this->params[] = $param;
 
             return true;
@@ -194,16 +239,16 @@ class Request
      *
      * @todo parsing Responses is not really the responsibility of the Request class. Maybe of the Client...
      */
-    public function parseResponse($data = '', $headersProcessed = false, $returnType = 'xmlrpcvals')
+    public function parseResponse($data = '', $headersProcessed = false, $returnType = XMLParser::RETURN_XMLRPCVALS)
     {
         if ($this->debug) {
-            Logger::instance()->debugMessage("---GOT---\n$data\n---END---");
+            $this->getLogger()->debugMessage("---GOT---\n$data\n---END---");
         }
 
         $this->httpResponse = array('raw_data' => $data, 'headers' => array(), 'cookies' => array());
 
         if ($data == '') {
-            Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': no response received from server.');
+            $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': no response received from server.');
             return new Response(0, PhpXmlRpc::$xmlrpcerr['no_data'], PhpXmlRpc::$xmlrpcstr['no_data']);
         }
 
@@ -212,13 +257,12 @@ class Request
             $httpParser = new Http();
             try {
                 $this->httpResponse = $httpParser->parseResponseHeaders($data, $headersProcessed, $this->debug);
-            } catch(\Exception $e) {
-                $r = new Response(0, $e->getCode(), $e->getMessage());
+            } catch (HttpException $e) {
                 // failed processing of HTTP response headers
                 // save into response obj the full payload received, for debugging
-                $r->raw_data = $data;
-
-                return $r;
+                return new Response(0, $e->getCode(), $e->getMessage(), '', array('raw_data' => $data, 'status_code', $e->statusCode()));
+            } catch(\Exception $e) {
+                return new Response(0, $e->getCode(), $e->getMessage(), '', array('raw_data' => $data));
             }
         }
 
@@ -243,19 +287,14 @@ class Request
                 $start += strlen('<!-- SERVER DEBUG INFO (BASE64 ENCODED):');
                 $end = strpos($data, '-->', $start);
                 $comments = substr($data, $start, $end - $start);
-                Logger::instance()->debugMessage("---SERVER DEBUG INFO (DECODED) ---\n\t" .
+                $this->getLogger()->debugMessage("---SERVER DEBUG INFO (DECODED) ---\n\t" .
                     str_replace("\n", "\n\t", base64_decode($comments)) . "\n---END---", $respEncoding);
             }
         }
 
         // if user wants back raw xml, give it to her
         if ($returnType == 'xml') {
-            $r = new Response($data, 0, '', 'xml');
-            $r->hdrs = $this->httpResponse['headers'];
-            $r->_cookies = $this->httpResponse['cookies'];
-            $r->raw_data = $this->httpResponse['raw_data'];
-
-            return $r;
+            return new Response($data, 0, '', 'xml', $this->httpResponse);
         }
 
         if ($respEncoding != '') {
@@ -272,7 +311,7 @@ class Request
                     if (extension_loaded('mbstring')) {
                         $data = mb_convert_encoding($data, 'UTF-8', $respEncoding);
                     } else {
-                        Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': invalid charset encoding of received response: ' . $respEncoding);
+                        $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': invalid charset encoding of received response: ' . $respEncoding);
                     }
                 }
             }
@@ -289,8 +328,8 @@ class Request
             $options = array(XML_OPTION_TARGET_ENCODING => PhpXmlRpc::$xmlrpc_internalencoding);
         }
 
-        $xmlRpcParser = new XMLParser($options);
-        $xmlRpcParser->parse($data, $returnType, XMLParser::ACCEPT_RESPONSE);
+        $xmlRpcParser = $this->getParser();
+        $xmlRpcParser->parse($data, $returnType, XMLParser::ACCEPT_RESPONSE, $options);
 
         // first error check: xml not well formed
         if ($xmlRpcParser->_xh['isf'] > 2) {
@@ -298,7 +337,9 @@ class Request
             // BC break: in the past for some cases we used the error message: 'XML error at line 1, check URL'
 
             $r = new Response(0, PhpXmlRpc::$xmlrpcerr['invalid_return'],
-                PhpXmlRpc::$xmlrpcstr['invalid_return'] . ' ' . $xmlRpcParser->_xh['isf_reason']);
+                PhpXmlRpc::$xmlrpcstr['invalid_return'] . ' ' . $xmlRpcParser->_xh['isf_reason'], '',
+                $this->httpResponse
+            );
 
             if ($this->debug) {
                 print $xmlRpcParser->_xh['isf_reason'];
@@ -307,7 +348,9 @@ class Request
         // second error check: xml well formed but not xml-rpc compliant
         elseif ($xmlRpcParser->_xh['isf'] == 2) {
             $r = new Response(0, PhpXmlRpc::$xmlrpcerr['invalid_return'],
-                PhpXmlRpc::$xmlrpcstr['invalid_return'] . ' ' . $xmlRpcParser->_xh['isf_reason']);
+                PhpXmlRpc::$xmlrpcstr['invalid_return'] . ' ' . $xmlRpcParser->_xh['isf_reason'], '',
+                $this->httpResponse
+            );
 
             if ($this->debug) {
                 /// @todo echo something for user?
@@ -315,15 +358,16 @@ class Request
         }
         // third error check: parsing of the response has somehow gone boink.
         /// @todo shall we omit this check, since we trust the parsing code?
-        elseif ($returnType == 'xmlrpcvals' && !\is_object($xmlRpcParser->_xh['value'])) {
+        elseif ($returnType == XMLParser::RETURN_XMLRPCVALS && !is_object($xmlRpcParser->_xh['value'])) {
             // something odd has happened
             // and it's time to generate a client side error
             // indicating something odd went on
-            $r = new Response(0, PhpXmlRpc::$xmlrpcerr['invalid_return'],
-                PhpXmlRpc::$xmlrpcstr['invalid_return']);
+            $r = new Response(0, PhpXmlRpc::$xmlrpcerr['invalid_return'], PhpXmlRpc::$xmlrpcstr['invalid_return'],
+                '', $this->httpResponse
+            );
         } else {
             if ($this->debug > 1) {
-                Logger::instance()->debugMessage(
+                $this->getLogger()->debugMessage(
                     "---PARSED---\n".var_export($xmlRpcParser->_xh['value'], true)."\n---END---"
                 );
             }
@@ -332,7 +376,7 @@ class Request
 
             if ($xmlRpcParser->_xh['isf']) {
                 /// @todo we should test here if server sent an int and a string, and/or coerce them into such...
-                if ($returnType == 'xmlrpcvals') {
+                if ($returnType == XMLParser::RETURN_XMLRPCVALS) {
                     $errNo_v = $v['faultCode'];
                     $errStr_v = $v['faultString'];
                     $errNo = $errNo_v->scalarval();
@@ -347,15 +391,11 @@ class Request
                     $errNo = -1;
                 }
 
-                $r = new Response(0, $errNo, $errStr);
+                $r = new Response(0, $errNo, $errStr, '', $this->httpResponse);
             } else {
-                $r = new Response($v, 0, '', $returnType);
+                $r = new Response($v, 0, '', $returnType, $this->httpResponse);
             }
         }
-
-        $r->hdrs = $this->httpResponse['headers'];
-        $r->_cookies = $this->httpResponse['cookies'];
-        $r->raw_data = $this->httpResponse['raw_data'];
 
         return $r;
     }

@@ -3,7 +3,7 @@
 namespace PhpXmlRpc;
 
 use PhpXmlRpc\Helper\Logger;
-
+use PhpXmlRpc\Helper\XMLParser;
 /**
  * Used to represent a client of an XML-RPC server.
  */
@@ -12,6 +12,8 @@ class Client
     const USE_CURL_NEVER = 0;
     const USE_CURL_ALWAYS = 1;
     const USE_CURL_AUTO = 2;
+
+    protected static $logger;
 
     /// @todo: do these need to be public?
     public $method = 'http';
@@ -88,10 +90,11 @@ class Client
 
     /**
      * The charset encoding that will be used for serializing request sent by the client.
-     * It defaults to NULL, which means using US-ASCII and encoding all characters outside of the ASCII range using
-     * their xml character entity representation (this has the benefit that line end characters will not be mangled in
-     * the transfer, a CR-LF will be preserved as well as a singe LF).
-     * Valid values are 'US-ASCII', 'UTF-8' and 'ISO-8859-1'
+     * It defaults to NULL, which means using US-ASCII and encoding all characters outside of the ASCII printable range
+     * using their xml character entity representation (this has the benefit that line end characters will not be mangled
+     * in the transfer, a CR-LF will be preserved as well as a singe LF).
+     * Valid values are 'US-ASCII', 'UTF-8' and 'ISO-8859-1'.
+     * For the fastest mode of operation, set your both your app internal encoding as well as this to UTF-8.
      */
     public $request_charset_encoding = '';
 
@@ -108,12 +111,25 @@ class Client
      * response will be lost. It will be e.g. impossible to tell whether a particular php string value was sent by the
      * server as an xmlrpc string or base64 value.
      */
-    public $return_type = 'xmlrpcvals';
+    public $return_type = XMLParser::RETURN_XMLRPCVALS;
 
     /**
      * Sent to servers in http headers.
      */
     public $user_agent;
+
+    public function getLogger()
+    {
+        if (self::$logger === null) {
+            self::$logger = Logger::instance();
+        }
+        return self::$logger;
+    }
+
+    public static function setLogger($logger)
+    {
+        self::$logger = $logger;
+    }
 
     /**
      * @param string $path either the PATH part of the xmlrpc server URL, or complete server URL (in which case you
@@ -309,7 +325,7 @@ class Client
     }
 
     /**
-     * Set attributes for SSL communication: SSL version to use. Best left at 0 (default value ): let cURL decide
+     * Set attributes for SSL communication: SSL version to use. Best left at 0 (default value): let cURL decide
      *
      * @param int $i
      */
@@ -643,7 +659,7 @@ class Client
 
         // Only create the payload if it was not created previously
         if (empty($req->payload)) {
-            $req->createPayload($this->request_charset_encoding);
+            $req->serialize($this->request_charset_encoding);
         }
 
         $payload = $req->payload;
@@ -670,7 +686,7 @@ class Client
         if ($username != '') {
             $credentials = 'Authorization: Basic ' . base64_encode($username . ':' . $password) . "\r\n";
             if ($authType != 1) {
-                Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth is supported with HTTP 1.0');
+                $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth is supported with HTTP 1.0');
             }
         }
 
@@ -690,7 +706,7 @@ class Client
             $uri = 'http://' . $server . ':' . $port . $this->path;
             if ($proxyUsername != '') {
                 if ($proxyAuthType != 1) {
-                    Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth to proxy is supported with HTTP 1.0');
+                    $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth to proxy is supported with HTTP 1.0');
                 }
                 $proxyCredentials = 'Proxy-Authorization: Basic ' . base64_encode($proxyUsername . ':' . $proxyPassword) . "\r\n";
             }
@@ -746,7 +762,7 @@ class Client
             $payload;
 
         if ($this->debug > 1) {
-            Logger::instance()->debugMessage("---SENDING---\n$op\n---END---");
+            $this->getLogger()->debugMessage("---SENDING---\n$op\n---END---");
         }
 
         $contextOptions = array();
@@ -769,6 +785,7 @@ class Client
             $contextOptions['ssl']['verify_peer'] = $this->verifypeer;
             $contextOptions['ssl']['verify_peer_name'] = $this->verifypeer;
         }
+
         $context = stream_context_create($contextOptions);
 
         if ($timeout <= 0) {
@@ -791,6 +808,7 @@ class Client
                 $err = error_get_last();
                 $this->errstr = $err['message'];
             }
+
             $this->errstr = 'Connect error: ' . $this->errstr;
             $r = new Response(0, PhpXmlRpc::$xmlrpcerr['http_error'], $this->errstr . ' (' . $this->errno . ')');
 
@@ -876,7 +894,7 @@ class Client
 
         // Only create the payload if it was not created previously
         if (empty($req->payload)) {
-            $req->createPayload($this->request_charset_encoding);
+            $req->serialize($this->request_charset_encoding);
         }
 
         // Deflate request body and set appropriate request headers
@@ -900,7 +918,7 @@ class Client
         }
 
         if ($this->debug > 1) {
-            Logger::instance()->debugMessage("---SENDING---\n$payload\n---END---");
+            $this->getLogger()->debugMessage("---SENDING---\n$payload\n---END---");
         }
 
         if (!$keepAlive || !$this->xmlrpc_curl_handle) {
@@ -976,7 +994,7 @@ class Client
             if (defined('CURLOPT_HTTPAUTH')) {
                 curl_setopt($curl, CURLOPT_HTTPAUTH, $authType);
             } elseif ($authType != 1) {
-                Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth is supported by the current PHP/curl install');
+                $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth is supported by the current PHP/curl install');
             }
         }
 
@@ -1024,7 +1042,7 @@ class Client
                 if (defined('CURLOPT_PROXYAUTH')) {
                     curl_setopt($curl, CURLOPT_PROXYAUTH, $proxyAuthType);
                 } elseif ($proxyAuthType != 1) {
-                    Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth to proxy is supported by the current PHP/curl install');
+                    $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth to proxy is supported by the current PHP/curl install');
                 }
             }
         }
@@ -1054,7 +1072,7 @@ class Client
                 $message .= $name . ': ' . $val . "\n";
             }
             $message .= '---END---';
-            Logger::instance()->debugMessage($message);
+            $this->getLogger()->debugMessage($message);
         }
 
         if (!$result) {

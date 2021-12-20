@@ -11,6 +11,10 @@ use PhpXmlRpc\Helper\XMLParser;
  */
 class Server
 {
+    protected static $logger;
+    protected static $parser;
+    protected static $charsetEncoder;
+
     /**
      * Defines how functions in dmap will be invoked: either using an xmlrpc request object
      * or plain php values.
@@ -94,6 +98,45 @@ class Server
     protected static $_xmlrpc_debuginfo = '';
     protected static $_xmlrpcs_occurred_errors = '';
     protected static $_xmlrpcs_prev_ehandler = '';
+
+    public function getLogger()
+    {
+        if (self::$logger === null) {
+            self::$logger = Logger::instance();
+        }
+        return self::$logger;
+    }
+
+    public static function setLogger($logger)
+    {
+        self::$logger = $logger;
+    }
+
+    public function getParser()
+    {
+        if (self::$parser === null) {
+            self::$parser = new XMLParser();
+        }
+        return self::$parser;
+    }
+
+    public static function setParser($parser)
+    {
+        self::$parser = $parser;
+    }
+
+    public function getCharsetEncoder()
+    {
+        if (self::$charsetEncoder === null) {
+            self::$charsetEncoder = Charset::instance();
+        }
+        return self::$charsetEncoder;
+    }
+
+    public function setCharsetEncoder($charsetEncoder)
+    {
+        self::$charsetEncoder = $charsetEncoder;
+    }
 
     /**
      * @param array[] $dispatchMap the dispatch map with definition of exposed services
@@ -194,7 +237,7 @@ class Server
             $out .= "<!-- SERVER DEBUG INFO (BASE64 ENCODED):\n" . base64_encode($this->debug_info) . "\n-->\n";
         }
         if (static::$_xmlrpc_debuginfo != '') {
-            $out .= "<!-- DEBUG INFO:\n" . Charset::instance()->encodeEntities(str_replace('--', '_-', static::$_xmlrpc_debuginfo), PhpXmlRpc::$xmlrpc_internalencoding, $charsetEncoding) . "\n-->\n";
+            $out .= "<!-- DEBUG INFO:\n" . $this->getCharsetEncoder()->encodeEntities(str_replace('--', '_-', static::$_xmlrpc_debuginfo), PhpXmlRpc::$xmlrpc_internalencoding, $charsetEncoding) . "\n-->\n";
             // NB: a better solution MIGHT be to use CDATA, but we need to insert it
             // into return payload AFTER the beginning tag
             //$out .= "<![CDATA[ DEBUG INFO:\n\n" . str_replace(']]>', ']_]_>', static::$_xmlrpc_debuginfo) . "\n]]>\n";
@@ -232,10 +275,12 @@ class Server
         if (!$r) {
             // this actually executes the request
             $r = $this->parseRequest($data, $reqCharset);
-        }
 
-        // save full body of request into response, for more debugging usages
-        $r->raw_data = $rawData;
+            // save full body of request into response, for more debugging usages.
+            // Note that this is the _request_ data, not the response's own data, unlike what happens client-side
+            /// @todo try to move this injection to the resp. constructor or use a non-deprecated access method
+            $r->raw_data = $rawData;
+        }
 
         if ($this->debug > 2 && static::$_xmlrpcs_occurred_errors) {
             $this->debugmsg("+++PROCESSING ERRORS AND WARNINGS+++\n" .
@@ -292,7 +337,7 @@ class Server
                 header('Content-Length: ' . (int)strlen($payload));
             }
         } else {
-            Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': http headers already sent before response is fully generated. Check for php warning or error messages');
+            $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': http headers already sent before response is fully generated. Check for php warning or error messages');
         }
 
         print $payload;
@@ -341,7 +386,7 @@ class Server
     protected function verifySignature($in, $sigs)
     {
         // check each possible signature in turn
-        if (\is_object($in)) {
+        if (is_object($in)) {
             $numParams = $in->getNumParams();
         } else {
             $numParams = count($in);
@@ -350,7 +395,7 @@ class Server
             if (count($curSig) == $numParams + 1) {
                 $itsOK = 1;
                 for ($n = 0; $n < $numParams; $n++) {
-                    if (\is_object($in)) {
+                    if (is_object($in)) {
                         $p = $in->getParam($n);
                         if ($p->kindOf() == 'scalar') {
                             $pt = $p->scalartyp();
@@ -385,14 +430,14 @@ class Server
     /**
      * Parse http headers received along with xmlrpc request. If needed, inflate request.
      *
-     * @return mixed Response|null on success or an error Response
+     * @return Response|null null on success or an error Response
      */
     protected function parseRequestHeaders(&$data, &$reqEncoding, &$respEncoding, &$respCompression)
     {
         // check if $_SERVER is populated: it might have been disabled via ini file
         // (this is true even when in CLI mode)
         if (count($_SERVER) == 0) {
-            Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': cannot parse request headers as $_SERVER is not populated');
+            $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': cannot parse request headers as $_SERVER is not populated');
         }
 
         if ($this->debug > 1) {
@@ -410,6 +455,8 @@ class Server
             $contentEncoding = '';
         }
 
+        $rawData = $data;
+
         // check if request body has been compressed and decompress it
         if ($contentEncoding != '' && strlen($data)) {
             if ($contentEncoding == 'deflate' || $contentEncoding == 'gzip') {
@@ -426,12 +473,16 @@ class Server
                             $this->debugmsg("+++INFLATED REQUEST+++[" . strlen($data) . " chars]+++\n" . $data . "\n+++END+++");
                         }
                     } else {
-                        $r = new Response(0, PhpXmlRpc::$xmlrpcerr['server_decompress_fail'], PhpXmlRpc::$xmlrpcstr['server_decompress_fail']);
+                        $r = new Response(0, PhpXmlRpc::$xmlrpcerr['server_decompress_fail'],
+                            PhpXmlRpc::$xmlrpcstr['server_decompress_fail'], '', array('raw_data' => $rawData)
+                        );
 
                         return $r;
                     }
                 } else {
-                    $r = new Response(0, PhpXmlRpc::$xmlrpcerr['server_cannot_decompress'], PhpXmlRpc::$xmlrpcstr['server_cannot_decompress']);
+                    $r = new Response(0, PhpXmlRpc::$xmlrpcerr['server_cannot_decompress'],
+                        PhpXmlRpc::$xmlrpcstr['server_cannot_decompress'], '', array('raw_data' => $rawData)
+                    );
 
                     return $r;
                 }
@@ -513,7 +564,7 @@ class Server
                     if (extension_loaded('mbstring')) {
                         $data = mb_convert_encoding($data, 'UTF-8', $reqEncoding);
                     } else {
-                        Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': invalid charset encoding of received request: ' . $reqEncoding);
+                        $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': invalid charset encoding of received request: ' . $reqEncoding);
                     }
                 }
             }
@@ -530,8 +581,8 @@ class Server
             $options = array(XML_OPTION_TARGET_ENCODING => PhpXmlRpc::$xmlrpc_internalencoding);
         }
 
-        $xmlRpcParser = new XMLParser($options);
-        $xmlRpcParser->parse($data, $this->functions_parameters_type, XMLParser::ACCEPT_REQUEST);
+        $xmlRpcParser = $this->getParser();
+        $xmlRpcParser->parse($data, $this->functions_parameters_type, XMLParser::ACCEPT_REQUEST, $options);
         if ($xmlRpcParser->_xh['isf'] > 2) {
             // (BC) we return XML error as a faultCode
             preg_match('/^XML error ([0-9]+)/', $xmlRpcParser->_xh['isf_reason'], $matches);
@@ -590,7 +641,7 @@ class Server
         static::$_xmlrpcs_occurred_errors = '';
         static::$_xmlrpc_debuginfo = '';
 
-        if (\is_object($req)) {
+        if (is_object($req)) {
             $methName = $req->method();
         } else {
             $methName = $req;
@@ -608,7 +659,7 @@ class Server
         // Check signature
         if (isset($dmap[$methName]['signature'])) {
             $sig = $dmap[$methName]['signature'];
-            if (\is_object($req)) {
+            if (is_object($req)) {
                 list($ok, $errStr) = $this->verifySignature($req, $sig);
             } else {
                 list($ok, $errStr) = $this->verifySignature($paramTypes, $sig);
@@ -630,7 +681,7 @@ class Server
         }
 
         if (is_array($func)) {
-            if (\is_object($func[0])) {
+            if (is_object($func[0])) {
                 $funcName = get_class($func[0]) . '->' . $func[1];
             } else {
                 $funcName = implode('::', $func);
@@ -643,7 +694,7 @@ class Server
 
         // verify that function to be invoked is in fact callable
         if (!is_callable($func)) {
-            Logger::instance()->errorLog("XML-RPC: " . __METHOD__ . ": function '$funcName' registered as method handler is not callable");
+            $this->getLogger()->errorLog("XML-RPC: " . __METHOD__ . ": function '$funcName' registered as method handler is not callable");
             return new Response(
                 0,
                 PhpXmlRpc::$xmlrpcerr['server_error'],
@@ -659,14 +710,14 @@ class Server
 
         try {
             // Allow mixed-convention servers
-            if (\is_object($req)) {
+            if (is_object($req)) {
                 if ($sysCall) {
                     $r = call_user_func($func, $this, $req);
                 } else {
                     $r = call_user_func($func, $req);
                 }
                 if (!is_a($r, 'PhpXmlRpc\Response')) {
-                    Logger::instance()->errorLog("XML-RPC: " . __METHOD__ . ": function '$funcName' registered as method handler does not return an xmlrpc response object but a " . gettype($r));
+                    $this->getLogger()->errorLog("XML-RPC: " . __METHOD__ . ": function '$funcName' registered as method handler does not return an xmlrpc response object but a " . gettype($r));
                     if (is_a($r, 'PhpXmlRpc\Value')) {
                         $r = new Response($r);
                     } else {
@@ -773,7 +824,13 @@ class Server
         return (strpos($methName, "system.") === 0);
     }
 
-    /* Functions that implement system.XXX methods of xmlrpc servers */
+    /**
+     * @return array[]
+     */
+    public function getDispatchMap()
+    {
+        return $this->dmap;
+    }
 
     /**
      * @return array[]
@@ -819,6 +876,8 @@ class Server
             ),
         );
     }
+
+    /* Functions that implement system.XXX methods of xmlrpc servers */
 
     /**
      * @return array[]
@@ -892,7 +951,7 @@ class Server
     public static function _xmlrpcs_methodSignature($server, $req)
     {
         // let accept as parameter both an xmlrpc value or string
-        if (\is_object($req)) {
+        if (is_object($req)) {
             $methName = $req->getParam(0);
             $methName = $methName->scalarval();
         } else {
@@ -934,7 +993,7 @@ class Server
     public static function _xmlrpcs_methodHelp($server, $req)
     {
         // let accept as parameter both an xmlrpc value or string
-        if (\is_object($req)) {
+        if (is_object($req)) {
             $methName = $req->getParam(0);
             $methName = $methName->scalarval();
         } else {
@@ -1079,7 +1138,7 @@ class Server
     {
         $result = array();
         // let accept a plain list of php parameters, beside a single xmlrpc msg object
-        if (\is_object($req)) {
+        if (is_object($req)) {
             $calls = $req->getParam(0);
             foreach($calls as $call) {
                 $result[] = static::_xmlrpcs_multicall_do_call($server, $call);
@@ -1119,7 +1178,10 @@ class Server
             // The previous error handler was the default: all we should do is log error
             // to the default error log (if level high enough)
             if (ini_get('log_errors') && (intval(ini_get('error_reporting')) & $errCode)) {
-                Logger::instance()->errorLog($errString);
+                if (self::$logger === null) {
+                    self::$logger = Logger::instance();
+                }
+                self::$logger->errorLog($errString);
             }
         } else {
             // Pass control on to previous error handler, trying to avoid loops...

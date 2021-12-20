@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'c0a17098462067b40c62b122edd1b6c41e636235',
+    'reference' => 'e5da50816be889306d82ba4788b7e3197c4a4c0f',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'c0a17098462067b40c62b122edd1b6c41e636235',
+      'reference' => 'e5da50816be889306d82ba4788b7e3197c4a4c0f',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -85,12 +85,12 @@
     ),
     'phpxmlrpc/phpxmlrpc' => 
     array (
-      'pretty_version' => '4.5.2',
-      'version' => '4.5.2.0',
+      'pretty_version' => '4.6.0',
+      'version' => '4.6.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c27693ac87a6a64a63d410f3e0cd9aa00cf7841a',
+      'reference' => 'b9401ffa2174663e376dcbb3aadba09eb62d8d19',
     ),
     'psr/http-message' => 
     array (
@@ -128,12 +128,12 @@
     ),
     'stripe/stripe-php' => 
     array (
-      'pretty_version' => 'v7.104.0',
-      'version' => '7.104.0.0',
+      'pretty_version' => 'v7.107.0',
+      'version' => '7.107.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6bfd895eaa3f6ebb49c10f9ab9ccc9e5baadded5',
+      'reference' => 'a90f74037261ed376c0d37066f396c48809c8e99',
     ),
     'symfony/deprecation-contracts' => 
     array (
