@@ -40,30 +40,30 @@
      * @param int $data_type
      * @return bool
      */
-    public function bindValue($parameter, $value, $data_type = \PDO::PARAM_STR) :bool
+    public function bindValue(string|int $parameter, mixed $value, int $data_type = \PDO::PARAM_STR) :bool
     {
       return parent::bindValue($parameter, $value, $data_type);
     }
 
     /**
-     * @param $parameter
-     * @param $value
+     * @param string|int $parameter
+     * @param string|int $value
      * @return bool
      */
-    public function bindInt($parameter, $value) :bool
-    {
 // force type to int (see http://bugs.php.net/bug.php?id=44639)
+    public function bindInt(string|int $parameter, string|int|null $value) :bool
+    {
       return $this->bindValue($parameter, (int)$value, \PDO::PARAM_INT);
     }
 
     /**
-     * @param $parameter
-     * @param $value
+     * @param string|int $parameter
+     * @param bool $value
      * @return bool
      */
-    public function bindBool($parameter, bool $value) :bool
-    {
 // force type to bool (see http://bugs.php.net/bug.php?id=44639)
+    public function bindBool(string|int $parameter, bool $value) :bool
+    {
       return $this->bindValue($parameter, (bool)$value, \PDO::PARAM_BOOL);
     }
 
@@ -72,7 +72,7 @@
      * @param $value
      * @return bool
      */
-    public function bindDecimal($parameter, float $value) :bool
+    public function bindDecimal(string|int $parameter, float $value) :bool
     {
       return $this->bindValue($parameter, (float)$value); // there is no \PDO::PARAM_FLOAT
     }
@@ -81,7 +81,7 @@
      * @param $parameter
      * @return bool
      */
-    public function bindNull($parameter) :bool
+    public function bindNull(string|int $parameter) :bool
     {
       return $this->bindValue($parameter, null, \PDO::PARAM_NULL);
     }
@@ -111,7 +111,7 @@
      * @param null $input_parameters
      * @return bool|void
      */
-    public function execute($input_parameters = null)
+    public function execute($input_parameters = null) :void
     {
       if (isset($this->cache)) {
         if (isset($this->page_set)) {
@@ -156,10 +156,9 @@
      * @return mixed
      */
     public function fetch (
-      $fetch_style = \PDO::FETCH_ASSOC,
-      $cursor_orientation = \PDO::FETCH_ORI_NEXT,
-      $cursor_offset = 0
-    )
+      int $fetch_style = \PDO::FETCH_DEFAULT, //FETCH_ASSOC,
+      int $cursor_orientation = \PDO::FETCH_ORI_NEXT,
+      int $cursor_offset = 0): bool|array
     {
       if ($this->cache_read === true) {
         $this->result = current($this->cache_data);
@@ -184,7 +183,7 @@
      * @param array $ctor_args
      * @return array
      */
-    public function fetchAll(int $fetch_style = \PDO::FETCH_BOTH, mixed ...$args) //php8
+    public function fetchAll(?int $fetch_style = \PDO::FETCH_BOTH, mixed ...$args) :array
     {
       if ($this->cache_read === true) {
         $this->result = $this->cache_data;
