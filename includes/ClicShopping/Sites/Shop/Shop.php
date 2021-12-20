@@ -66,7 +66,7 @@
       $Qcfg->execute();
 
       while ($Qcfg->fetch()) {
-        \define($Qcfg->value('k'), $Qcfg->value('v'));
+        define($Qcfg->value('k'), $Qcfg->value('v'));
       }
 
 // set the session name and save path
