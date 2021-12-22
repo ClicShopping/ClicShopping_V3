@@ -33,7 +33,7 @@
 
     private function insert()
     {
-      if (isset($this->insert_language_id) && isset($_GET['Langues']) && isset( $_GET['Insert'])) {
+      if (isset($this->insert_language_id, $_GET['Langues'], $_GET['Insert'])) {
         $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
 
         $Qsuppliers = $this->app->db->prepare('select m.suppliers_id as orig_suppliers_id,

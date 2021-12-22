@@ -45,14 +45,14 @@
 
   echo HTMLOverrideAdmin::getCkeditor();
 ?>
-<script language="javascript"><!--
+<script>
     function go_option() {
         if (document.option_order_by.selected.options[document.option_order_by.selected.selectedIndex].value != "none") {
             location = "<?php echo $CLICSHOPPING_ProductsAttributes->link('productsAttributes&option_page=' . $option_page); ?>&option_order_by=" + document.option_order_by.selected.options[document.option_order_by.selected.selectedIndex].value;
         }
     }
 
-    //--></script>
+</script>
 <div class="contentBody">
   <?php
     // check if the catalog image directory exists
