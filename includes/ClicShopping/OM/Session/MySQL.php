@@ -41,7 +41,7 @@
     /**
      * Opens the database storage handler
      */
-    public function open($save_path, $name) :bool
+    public function open(string $save_path, string $name) :bool
     {
       return true;
     }
@@ -59,7 +59,7 @@
      *
      * @param string $session_id The ID of the session
      */
-    public function read($session_id) :string
+    public function read(string $session_id) :string
     {
       $Qsession = $this->db->prepare('select value from :table_sessions where sesskey = :sesskey');
       $Qsession->bindValue(':sesskey', $session_id);
@@ -77,7 +77,7 @@
      * @param string $session_id The ID of the session
      * @param string $session_data The session data to store
      */
-    public function write($session_id, $session_data): bool
+    public function write(string $session_id, string $session_data): bool
     {
       if ($this->exists($session_id)) {
         $result = $this->db->save('sessions', [
@@ -117,10 +117,10 @@
      * @return bool
      * The maxmimum time a session should exist
      */
-    public function gc($maxLifeTime) :int|false
+    public function gc($maxlifetime) :int|false
     {
       $Qdel = $this->db->prepare('delete from :table_sessions where expiry < :expiry');
-      $Qdel->bindValue(':expiry', time() - $maxLifeTime);
+      $Qdel->bindValue(':expiry', time() - $maxlifetime);
       $Qdel->execute();
 
       return $Qdel->isError() === false;

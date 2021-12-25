@@ -22,8 +22,8 @@
     protected string $database;
     protected string $table_prefix;
     protected ?int $port;
-    protected ?array $driver_options = null;
-    protected ?array $options = null;
+    protected ?array $driver_options = [];
+    protected ?array $options = [];
     protected $query_call;
 
     public static function initialize(
@@ -113,7 +113,7 @@
      * @param null $driver_options
      * @return bool|\PDOStatement
      */
-    public function prepare(string $statement, ?array $driver_options = null) : PDOStatement|false
+    public function prepare(string $statement, ?array $driver_options = null) : \PDOStatement|false
     {
       $statement = $this->autoPrefixTables($statement);
 
@@ -129,7 +129,7 @@
      * @param mixed ...$params
      * @return bool|mixed|\PDOStatement
      */
-    public function query(string $statement, ...$params) : PDOStatement|false
+    public function query(string $statement, ...$params) : \PDOStatement|false
     {
       $statement = $this->autoPrefixTables($statement);
 

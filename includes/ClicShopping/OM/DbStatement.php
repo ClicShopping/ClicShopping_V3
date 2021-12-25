@@ -108,12 +108,13 @@
     }
 
     /**
-     * @param null $input_parameters
-     * @return bool|void
+     * @param array|null $input_parameters
+     * @return bool
      */
-    public function execute($input_parameters = null) :void
+    public function execute(?array $input_parameters = null) :bool
     {
-      if (isset($this->cache)) {
+
+      if ($this->cache) {
         if (isset($this->page_set)) {
           $this->cache->setKey($this->cache->getKey() . '-pageset' . $this->page_set);
         }
@@ -127,6 +128,8 @@
           }
 
           $this->cache_read = true;
+        } else {
+          $this->cache_read = false;
         }
       }
 
@@ -147,6 +150,8 @@
           trigger_error('ClicShopping\OM\DbStatement::execute(): Page Set query does not contain SQL_CALC_FOUND_ROWS. Please add it to the query: ' . $this->queryString);
         }
       }
+
+      return false;
     }
 
     /**
