@@ -279,7 +279,7 @@ INSERT INTO administrator_menu_description VALUES(58, 'Social network modules', 
 INSERT INTO administrator_menu_description VALUES(58, 'Modules réseaux sociaux', 2);
 INSERT INTO administrator_menu_description VALUES(59, 'Metas modules', 1);
 INSERT INTO administrator_menu_description VALUES(59, 'Modules metas', 2);
-INSERT INTO administrator_menu_description VALUES(69, 'WebSite compression & optimization', 1);
+INSERT INTO administrator_menu_description VALUES(69, 'Website compression & optimization', 1);
 INSERT INTO administrator_menu_description VALUES(69, 'Compression Site Internet & optimisation', 2);
 INSERT INTO administrator_menu_description VALUES(70, 'Logging', 1);
 INSERT INTO administrator_menu_description VALUES(70, 'Logging', 2);
