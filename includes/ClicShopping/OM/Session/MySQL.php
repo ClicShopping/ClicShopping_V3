@@ -102,7 +102,7 @@
      *
      * @param string $session_id The ID of the session
      */
-    public function destroy($session_id) :bool
+    public function destroy(string $session_id) :bool
     {
       $result = $this->db->delete('sessions', [
         'sesskey' => $session_id
@@ -117,10 +117,10 @@
      * @return bool
      * The maxmimum time a session should exist
      */
-    public function gc($maxlifetime) :bool
+    public function gc($maxLifeTime) :int|false
     {
       $Qdel = $this->db->prepare('delete from :table_sessions where expiry < :expiry');
-      $Qdel->bindValue(':expiry', time() - $maxlifetime);
+      $Qdel->bindValue(':expiry', time() - $maxLifeTime);
       $Qdel->execute();
 
       return $Qdel->isError() === false;
