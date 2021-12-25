@@ -49,11 +49,11 @@
     }
 
     /**
-     * @param $url
-     * @param null $http_response_code - 301 - 302 - 303 - 307
+     * @param string|null $url
+     * @param int $http_response_code - 301 - 302 - 303 - 307
      */
 
-    public static function redirect(string $url, ?string $http_response_code = null)
+    public static function redirect(?string $url, int $http_response_code = 0): void
     {
       if ((strstr($url, "\n") === false) && (strstr($url, "\r") === false)) {
         if (str_contains($url, '&amp;')) {
@@ -67,7 +67,7 @@
     }
 
     /**
-     * @param array $parameters url, headers, parameters, method, verify_ssl, cafile, certificate, proxy
+     * @param array $data url, headers, parameters, method, verify_ssl, cafile, certificate, proxy
      */
     public static function getResponse(array $data)
     {
