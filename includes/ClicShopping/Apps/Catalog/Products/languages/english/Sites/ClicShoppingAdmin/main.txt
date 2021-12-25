@@ -64,7 +64,7 @@ heading_title_goto = Go To:
 header_tags_category_title = Category Title
 header_tags_category_description = Description
 header_tags_category_keywords = Keywords
-header_tags_category_refefrencement = Categories meta data
+header_tags_category_seo = Categories meta data
 
 heading_title_search = Search
 heading_title_goto = Go To:
@@ -90,6 +90,7 @@ text_products_header_description = Description
 text_products_description_summary = Short Description
 text_products_keywords = Keywords
 text_products_tag = Product Tags
+text_products_seo_url = Product Seo URL
 
 text_create = create
 text_edit = Edit

@@ -66,7 +66,7 @@ heading_title_goto = Aller à :
 header_tags_category_title = Titre catégorie
 header_tags_category_description = Description
 header_tags_category_keywords = Mots Clefs
-header_tags_category_refefrencement = Méta données pour la catégorie
+header_tags_category_seo = Méta données pour la catégorie
 
 heading_title_search = Rechercher
 heading_title_goto = Aller à :
@@ -92,6 +92,7 @@ text_products_header_description = Description
 text_products_description_summary = Description courte du produit
 text_products_keywords = Mots clef
 text_products_tag = Tags produit
+text_products_seo_url = Seo URL produit
 
 text_create = créer
 text_edit = Editer

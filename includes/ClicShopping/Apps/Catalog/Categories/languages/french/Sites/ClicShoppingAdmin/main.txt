@@ -69,6 +69,7 @@ text_products_page_refefrencement = Métadonnées pour la categorie
 text_products_page_title = Titre
 text_products_header_description = Description
 text_products_keywords = Mots clef
+text_categories_seo_url = Catégories SEO URL
 
 text_divers_title = Divers
 text_products_name = Catégorie

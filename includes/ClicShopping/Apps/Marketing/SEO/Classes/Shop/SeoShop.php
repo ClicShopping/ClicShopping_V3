@@ -490,4 +490,52 @@
     {
       return $this->keywordsAdvancedPage;
     }
+
+    /**
+     * Categories SEO URL
+     * @param int $category_id
+     * @param int $language_id
+     * @return string
+     */
+    public function getCategoriesSeoUrl(int $category_id, int $language_id) :string
+    {
+      if (!$language_id) $language_id = $this->lang->getId();
+
+      $Qseo = $this->db->prepare('select categories_seo_url
+                                  from :table_categories_description
+                                  where categories_id = :categories_id
+                                  and language_id = :language_id
+                                ');
+      $Qseo->bindInt(':categories_id', $category_id);
+      $Qseo->bindInt(':language_id', $language_id);
+
+      $Qseo->execute();
+
+      return $Qseo->value('categories_seo_url');
+    }
+    
+    
+
+    /**
+     * Products Seo URL
+     * @param int $products_id
+     * @param int $language_id
+     * @return string
+     */
+    public function getProductsSeoUrl(int $products_id, int $language_id) :string
+    {
+      if (!$language_id) $language_id = $this->lang->getId();
+
+      $Qseo = $this->db->prepare('select products_seo_url
+                                  from :table_products_description
+                                  where products_id = :products_id
+                                  and language_id = :language_id
+                                ');
+      $Qseo->bindInt(':products_id', $products_id);
+      $Qseo->bindInt(':language_id', $language_id);
+
+      $Qseo->execute();
+
+      return $Qseo->value('products_seo_url');
+    }
   }

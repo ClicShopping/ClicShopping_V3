@@ -4,6 +4,7 @@ products_name varchar(255) default('') not_null
 products_description text
 products_url varchar(255)
 products_viewed int(5) default(0)
+products_seo_url varchar(255)
 products_head_title_tag varchar(255)
 products_head_desc_tag varchar(255)
 products_head_keywords_tag varchar(255)

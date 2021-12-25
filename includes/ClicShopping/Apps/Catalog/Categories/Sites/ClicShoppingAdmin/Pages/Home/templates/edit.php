@@ -45,6 +45,7 @@
                                                                c.last_modified,
                                                                cd.categories_name,
                                                                cd.categories_description,
+                                                               cd.categories_seo_url,
                                                                cd.categories_head_title_tag,
                                                                cd.categories_head_desc_tag,
                                                                cd.categories_head_keywords_tag
@@ -266,7 +267,19 @@
                 </div>
               </div>
             </div>
-
+              <div class="separator"></div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group row">
+                          <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?>"
+                                 class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?></label>
+                          <div class="col-md-8">
+                            <?php echo HTML::inputField('categories_seo_url[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoUrl($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="default_url_' . $i . '"', false); ?>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+             <div class="separator"></div>
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
@@ -278,7 +291,7 @@
                 </div>
               </div>
             </div>
-
+            <div class="separator"></div>
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
@@ -290,7 +303,7 @@
                 </div>
               </div>
             </div>
-
+            <div class="separator"></div>
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">

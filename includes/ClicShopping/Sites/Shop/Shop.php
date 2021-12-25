@@ -59,14 +59,14 @@
 // set the application parameters
       $Qcfg = $CLICSHOPPING_Db->prepare('select configuration_key as k,
                                              configuration_value as v
-                                       from :table_configuration
+                                         from :table_configuration
                                        ');
       $Qcfg->setCache('configuration');
 
       $Qcfg->execute();
 
       while ($Qcfg->fetch()) {
-        define($Qcfg->value('k'), $Qcfg->value('v'));
+        \define($Qcfg->value('k'), $Qcfg->value('v'));
       }
 
 // set the session name and save path

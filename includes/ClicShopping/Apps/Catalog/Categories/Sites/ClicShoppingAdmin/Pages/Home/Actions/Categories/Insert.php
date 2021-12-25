@@ -40,7 +40,8 @@
 
       $parent_id = $_POST['move_to_category_id'];
 
-      $insert_sql_data = ['parent_id' => (int)$parent_id,
+      $insert_sql_data = [
+        'parent_id' => (int)$parent_id,
         'date_added' => 'now()',
         'virtual_categories' => 0
       ];
@@ -61,13 +62,15 @@
         $sql_data_array = [
           'categories_name' => HTML::sanitize($categories_name_array[$language_id]),
           'categories_description' => $_POST['categories_description'][$language_id],
+          'categories_seo_url' => HTML::sanitize($_POST['categories_seo_url'][$language_id]),
           'categories_head_title_tag' => HTML::sanitize($_POST['categories_head_title_tag'][$language_id]),
           'categories_head_desc_tag' => HTML::sanitize($_POST['categories_head_desc_tag'][$language_id]),
           'categories_head_keywords_tag' => HTML::sanitize($_POST['categories_head_keywords_tag'][$language_id])
         ];
 
 
-        $insert_sql_data = ['categories_id' => $categories_id,
+        $insert_sql_data = [
+          'categories_id' => $categories_id,
           'language_id' => $languages[$i]['id']
         ];
 
@@ -80,8 +83,7 @@
       if (isset($_POST['delete_image'])) {
         $categories_image = '';
 
-        $this->app->db->save('categories', ['categories_image' => $categories_image],
-          ['categories_id' => (int)$categories_id]
+        $this->app->db->save('categories', ['categories_image' => $categories_image], ['categories_id' => (int)$categories_id]
         );
 
 
@@ -93,11 +95,10 @@
         if (isset($_POST['categories_image']) && !\is_null($_POST['categories_image']) && ($_POST['categories_image'] != 'none')) {
           $categories_image = HTMLOverrideAdmin::getCkeditorImageAlone($categories_image);
         } else {
-          $categories_image = (isset($_POST['categories_previous_image']) ? $_POST['categories_previous_image'] : '');
+          $categories_image = ($_POST['categories_previous_image'] ?? '');
         }
 
-        $this->app->db->save('categories', ['categories_image' => $categories_image],
-          ['categories_id' => (int)$categories_id]
+        $this->app->db->save('categories', ['categories_image' => $categories_image], ['categories_id' => (int)$categories_id]
         );
       }
 

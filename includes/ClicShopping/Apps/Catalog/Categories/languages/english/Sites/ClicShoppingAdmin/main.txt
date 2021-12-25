@@ -68,6 +68,7 @@ text_products_page_refefrencement = Product Meta Data
 text_products_page_title = Title
 text_products_header_description = Description
 text_products_keywords = Keywords
+text_categories_seo_url = SEO URL categories
 
 text_divers_title = Others
 text_products_name = Categorie

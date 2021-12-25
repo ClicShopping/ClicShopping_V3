@@ -841,7 +841,7 @@
     }
 
     /**
-     * @param string $str
+     * @param array|string|null $str
      * @return string
      */
     private function replaceString(?string $str): string
@@ -855,6 +855,7 @@
     }
 
     /**
+     * Products URL
      * @param $products_id
      * @param string $parameters , url parameters
      * @return string
@@ -863,12 +864,31 @@
     public function getProductNameUrl($products_id, string $parameters = ''): string
     {
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+      $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_Db = Registry::get('Db');
 
       if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
-          $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
-          $products_name = $this->replaceString($products_name);
-          $products_url_rewrited = 'Products&Description&' . $products_name . '&Id=' . $products_id;
+          $Qseo = $CLICSHOPPING_Db->prepare('select products_seo_url
+                                             from :table_products_description
+                                             where products_id = :products_id
+                                             and language_id = :language_id
+                                           ');
+          $Qseo->bindInt(':products_id', $products_id);
+          $Qseo->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+
+          $Qseo->execute();
+
+          $products_seo_url = $Qseo->value('products_seo_url');
+
+          if(empty($products_seo_url) or \is_null($products_seo_url)) {
+            $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
+            $products_name = $this->replaceString($products_name);
+            $products_url_rewrited = 'Products&Description&' . $products_name . '&Id=' . $products_id;
+          } else {
+            $products_name = $this->replaceString($products_seo_url);
+            $products_url_rewrited = $products_name . '&Id=' . $products_id;
+          }
         } else {
           $products_url_rewrited = 'Products&Description&products_id=' . $products_id;
         }
@@ -882,6 +902,7 @@
     }
 
     /**
+     * Page Manager URL
      * @param $page_id , id of the content
      * @param string $parameters , url parameters
      * @return string
@@ -922,6 +943,7 @@
 
 
     /**
+     * Category SEO URL
      * @param string $categories_id , id of the categories
      * @param string $parameters , url parameters
      * @return string
@@ -929,12 +951,32 @@
 
     public function getCategoryTreeUrl(string $categories_id, string $parameters = ''): string
     {
+      $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_Db = Registry::get('Db');
+
       if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
-          $link_title = $this->title;
-          $link_title = $this->replaceString($link_title);
+          $Qseo = $CLICSHOPPING_Db->prepare('select categories_seo_url
+                                             from :table_categories_description
+                                             where categories_id = :categories_id
+                                             and language_id = :language_id
+                                           ');
+          $Qseo->bindInt(':categories_id', $categories_id);
+          $Qseo->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 
-          $categories_url_rewrited = $link_title . '&cPath=' . $categories_id;
+          $Qseo->execute();
+
+          $categories_seo_url = $Qseo->value('categories_seo_url');
+
+          if(empty($categories_seo_url) or \is_null($categories_seo_url)) {
+            $link_title = $this->title;
+            $link_title = $this->replaceString($link_title);
+
+            $categories_url_rewrited = $link_title . '&cPath=' . $categories_id;
+          } else {
+            $link_title = $this->replaceString($categories_seo_url);
+            $categories_url_rewrited = $link_title . '&cPath=' . $categories_id;
+          }
         } else {
           $categories_url_rewrited = 'cPath=' . $categories_id;
         }

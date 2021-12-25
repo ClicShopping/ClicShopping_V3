@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'e5da50816be889306d82ba4788b7e3197c4a4c0f',
+    'reference' => 'ccb2e7d5c7628345500e7be424e0f37cba9d6575',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'e5da50816be889306d82ba4788b7e3197c4a4c0f',
+      'reference' => 'ccb2e7d5c7628345500e7be424e0f37cba9d6575',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -128,12 +128,12 @@
     ),
     'stripe/stripe-php' => 
     array (
-      'pretty_version' => 'v7.107.0',
-      'version' => '7.107.0.0',
+      'pretty_version' => 'v7.108.0',
+      'version' => '7.108.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'a90f74037261ed376c0d37066f396c48809c8e99',
+      'reference' => '81524a3087612f1b41846b9cd6deb80150af985b',
     ),
     'symfony/deprecation-contracts' => 
     array (

@@ -80,6 +80,7 @@
         $sql_data_array = [
           'products_name' => HTML::sanitize($_POST['products_name'][$language_id]),
           'products_description' => isset($_POST['products_description'][$language_id]) ? $_POST['products_description'][$language_id] : '',
+          'products_seo_url' => isset($_POST['products_seo_url'][$language_id]) ? HTML::sanitize($_POST['products_seo_url'][$language_id]) : '',
           'products_head_title_tag' => isset($_POST['products_head_title_tag'][$language_id]) ? HTML::sanitize($_POST['products_head_title_tag'][$language_id]) : '',
           'products_head_desc_tag' => isset($_POST['products_head_desc_tag'][$language_id]) ? HTML::sanitize($_POST['products_head_desc_tag'][$language_id]) : '',
           'products_head_keywords_tag' => isset($_POST['products_head_keywords_tag'][$language_id]) ? HTML::sanitize($_POST['products_head_keywords_tag'][$language_id]) : '',
@@ -827,6 +828,7 @@
                                                     products_name,
                                                     products_description,
                                                     products_description_summary,
+                                                    products_seo_url,
                                                     products_head_title_tag,
                                                     products_head_desc_tag,
                                                     products_head_keywords_tag,
@@ -846,6 +848,7 @@
             'language_id' => (int)$Qdescription->valueInt('language_id'),
             'products_name' => $Qdescription->value('products_name'),
             'products_description' => $Qdescription->value('products_description'),
+            'products_seo_url' => $Qdescription->value('products_seo_url'),
             'products_head_title_tag' => $Qdescription->value('products_head_title_tag'),
             'products_head_desc_tag' => $Qdescription->value('products_head_desc_tag'),
             'products_head_keywords_tag' => $Qdescription->value('products_head_keywords_tag'),

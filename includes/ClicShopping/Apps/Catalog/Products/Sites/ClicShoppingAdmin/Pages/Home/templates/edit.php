@@ -1188,7 +1188,17 @@
                     </div>
                   </div>
                 </div>
-
+                <div class="row" id="productsSeoUrl">
+                  <div class="col-md-12">
+                      <div class="form-group row">
+                          <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?>"
+                                 class="col-1 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?></label>
+                          <div class="col-md-8">
+                            <?php echo '&nbsp;' . HTML::inputField('products_seo_url[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoUrl($pInfo->products_id, $languages[$i]['id']), 'maxlength="70" size="77" id="default_title_' . $i . '"', false); ?>
+                          </div>
+                      </div>
+                  </div>
+                </div>
                 <div class="row" id="productsTilte">
                   <div class="col-md-12">
                     <div class="form-group row">

@@ -12,6 +12,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\DateTime;
 
   class mc_new_products {
     public string $code;
@@ -178,7 +179,7 @@
               $new_prods_content .= '<div class="clearfix"></div>';
 
               if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_FRONT_TITLE != 'false') {
-                $new_prods_content .= '<div class="page-title ModuleIndexCategoriesProductsNewHeading"><h2>' . sprintf(CLICSHOPPING::getDef('module_index_categories_products_heading_title'), strftime('%B')) . '</h2></div>';
+                $new_prods_content .= '<div class="page-title ModuleIndexCategoriesProductsNewHeading"><h2>' . sprintf(CLICSHOPPING::getDef('module_index_categories_products_heading_title'), DateTime::getNow(CLICSHOPPING::getDef('date_format_long'))) . '</h2></div>';
               }
 
               $new_prods_content .= '<div class="d-flex flex-wrap ModuleIndexCategoriesboxContainerNewProducts">';

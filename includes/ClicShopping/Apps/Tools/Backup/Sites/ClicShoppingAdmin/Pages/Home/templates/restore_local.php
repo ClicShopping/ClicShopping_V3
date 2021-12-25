@@ -12,6 +12,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
+  use ClicShopping\OM\CLICSHOPPING;
 
   $CLICSHOPPING_Backup = Registry::get('Backup');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

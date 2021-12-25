@@ -190,6 +190,8 @@
           <div class="alert alert-info" role="alert">
             <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Categories->getDef('title_help_description')) . ' ' . $CLICSHOPPING_Categories->getDef('title_help_description') ?></div>
             <div class="separator"></div>
+            <div><?php echo $CLICSHOPPING_Categories->getDef('title_help_description'); ?></div>
+            <div class="separator"></div>
             <div class="row">
                 <span class="col-md-12">
                  <?php echo $CLICSHOPPING_Categories->getDef('help_options'); ?>
@@ -247,7 +249,19 @@
                     </div>
                   </div>
                 </div>
-
+              <div class="separator"></div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group row">
+                          <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?>"
+                                 class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?></label>
+                          <div class="col-md-8">
+                            <?php echo HTML::inputField('categories_seo_url[' . $languages[$i]['id'] . ']', null, 'maxlength="70" size="77" id="default_url_' . $i . '"', false); ?>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+             <div class="separator"></div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group row">
@@ -259,7 +273,7 @@
                     </div>
                   </div>
                 </div>
-
+            <div class="separator"></div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group row">

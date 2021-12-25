@@ -293,6 +293,10 @@
       <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_page_seo'); ?></div>
       <div class="adminformTitle">
         <div class="row" id="tab1ContentRow6">
+           <div class="col-md-12">
+            <span class="col-md-2"><?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?></span>
+            <span class="col-md-10"><?php echo $products['products_seo_url']; ?></span>
+          </div>
           <div class="col-md-12">
             <span class="col-md-2"><?php echo $CLICSHOPPING_Products->getDef('text_products_page_title'); ?></span>
             <span class="col-md-10"><?php echo $products['products_head_title_tag']; ?></span>

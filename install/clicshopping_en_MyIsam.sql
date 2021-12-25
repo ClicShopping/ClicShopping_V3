@@ -690,6 +690,7 @@ CREATE TABLE `clic_categories_description` (
   `language_id` int(11) NOT NULL DEFAULT '1',
   `categories_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `categories_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `categories_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `categories_head_title_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `categories_head_desc_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `categories_head_keywords_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
@@ -2795,6 +2796,7 @@ CREATE TABLE `clic_products_description` (
   `products_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `products_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `products_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_seo_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `products_viewed` int(5) DEFAULT '0',
   `products_head_title_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `products_head_desc_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,

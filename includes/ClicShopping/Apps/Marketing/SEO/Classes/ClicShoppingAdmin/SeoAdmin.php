@@ -310,20 +310,10 @@
       return $Qseo->value('submit_language_featured_keywords');
     }
 
-
-
-
-
-
-
-
-
-
-
     /**
      * the manufacturer seo description
      *
-     * @param int $manufacturers_id
+     * @param int|null $manufacturers_id
      * @param int $language_id
      * @return string $manufacturer['manufacturers_seo_description']
      *
@@ -349,7 +339,7 @@
     /**
      * the manufacturer seo title
      *
-     * @param string $manufacturer_id , $language_id
+     * @param int|null $manufacturer_id , $language_id
      * @return string $manufacturer['manufacturers_seo_title'],  seo title of the manufacturer
      *
      */
@@ -374,11 +364,11 @@
     /**
      * the manufacturer seo keyword
      *
-     * @param string $manufacturer_id , $language_id
+     * @param int $manufacturer_id , $language_id
      * @return string $manufacturer['manufacturers_seo_keyword'],  seo keyword of the manufacturer
      *
      */
-    public static function getManufacturerSeoKeyword($manufacturers_id, $language_id)
+    public static function getManufacturerSeoKeyword(int $manufacturers_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -399,11 +389,11 @@
     /**
      * Title Name of the submit
      *
-     * @param string $product_id , $language_id
+     * @param int $product_id , $language_id
      * @return string product['products_head_title_tag'], description name
      *
      */
-    public static function getProductsSeoTitle($product_id, $language_id)
+    public static function getProductsSeoTitle(int $product_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -423,11 +413,11 @@
     /**
      * Description Name
      *
-     * @param string $product_id , $language_id
+     * @param int $product_id , $language_id
      * @return string $product['products_head_desc_tag'], description name
      *
      */
-    public static function getProductsSeoDescription($product_id, $language_id)
+    public static function getProductsSeoDescription(int $product_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -447,11 +437,11 @@
     /**
      * keywords Name
      *
-     * @param string $product_id , $language_id
+     * @param int  $product_id , $language_id
      * @return string $product['products_head_keywords_tag'], keywords name
      *
      */
-    public static function getProductsSeoKeywords($product_id, $language_id)
+    public static function getProductsSeoKeywords(int $product_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -472,11 +462,11 @@
     /**
      * Tag Name
      *
-     * @param string $product_id , $language_id
+     * @param int $product_id , $language_id
      * @return string $product['products_head_tag'], keywords name
      *
      */
-    public static function getProductsSeoTag($product_id, $language_id)
+    public static function getProductsSeoTag(int $product_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -493,7 +483,65 @@
       return $Qproduct->value('products_head_tag');
     }
 
-    public static function getCategoriesSeoTitle($category_id, $language_id)
+    /**
+     * SEO URl
+     * @param $category_id
+     * @param $language_id
+     * @return string
+     */
+    public static function getProductsSeoUrl(int $products_id, int $language_id) :string
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Language = Registry::get('Language');
+
+      if (!$language_id) $language_id = $CLICSHOPPING_Language->getId();
+
+      $Qseo = $CLICSHOPPING_Db->prepare('select products_seo_url
+                                        from :table_products_description
+                                        where products_id = :products_id
+                                        and language_id = :language_id
+                                      ');
+      $Qseo->bindInt(':products_id', $products_id);
+      $Qseo->bindInt(':language_id', $language_id);
+
+      $Qseo->execute();
+
+      return $Qseo->value('products_seo_url');
+    }
+
+
+    /**
+     * SEO URl
+     * @param $category_id
+     * @param $language_id
+     * @return string
+     */
+    public static function getCategoriesSeoUrl(int $category_id, int $language_id) :string
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Language = Registry::get('Language');
+
+      if (!$language_id) $language_id = $CLICSHOPPING_Language->getId();
+
+      $Qseo = $CLICSHOPPING_Db->prepare('select categories_seo_url
+                                        from :table_categories_description
+                                        where categories_id = :categories_id
+                                        and language_id = :language_id
+                                      ');
+      $Qseo->bindInt(':categories_id', $category_id);
+      $Qseo->bindInt(':language_id', $language_id);
+
+      $Qseo->execute();
+
+      return $Qseo->value('categories_seo_url');
+    }
+
+    /**
+     * @param int $category_id
+     * @param int $language_id
+     * @return string
+     */
+    public static function getCategoriesSeoTitle(int $category_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -501,10 +549,10 @@
       if (!$language_id) $language_id = $CLICSHOPPING_Language->getId();
 
       $Qseo = $CLICSHOPPING_Db->prepare('select categories_head_title_tag
-                                              from :table_categories_description
-                                              where categories_id = :categories_id
-                                              and language_id = :language_id
-                                            ');
+                                          from :table_categories_description
+                                          where categories_id = :categories_id
+                                          and language_id = :language_id
+                                        ');
       $Qseo->bindInt(':categories_id', $category_id);
       $Qseo->bindInt(':language_id', $language_id);
 
@@ -513,7 +561,12 @@
       return $Qseo->value('categories_head_title_tag');
     }
 
-    public static function getCategoriesSeoDescription($category_id, $language_id)
+    /**
+     * @param int $category_id
+     * @param int $language_id
+     * @return string
+     */
+    public static function getCategoriesSeoDescription(int $category_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -533,7 +586,12 @@
       return $Qseo->value('categories_head_desc_tag');
     }
 
-    public static function getCategoriesSeoKeywords($category_id, $language_id)
+    /**
+     * @param int $category_id
+     * @param int $language_id
+     * @return string
+     */
+    public static function getCategoriesSeoKeywords(int $category_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');

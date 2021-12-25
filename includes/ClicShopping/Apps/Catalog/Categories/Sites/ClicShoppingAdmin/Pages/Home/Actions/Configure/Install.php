@@ -121,6 +121,7 @@ CREATE TABLE :table_categories_description (
   language_id int default(1) NOT NULL,
   categories_name varchar(255) NOT NULL,
   categories_description text,
+  categories_seo_url varchar(255),
   categories_head_title_tag varchar(255),
   categories_head_desc_tag varchar(255),
   categories_head_keywords_tag varchar(255),

@@ -63,11 +63,13 @@
         $categories_seo_title_array = HTML::sanitize($_POST['categories_head_title_tag']);
         $categories_seo_description_array = HTML::sanitize($_POST['categories_head_desc_tag']);
         $categories_seo_keyword_array = HTML::sanitize($_POST['categories_head_keywords_tag']);
+        $categories_seo_url_array = HTML::sanitize($_POST['categories_seo_url']);
         $language_id = $languages[$i]['id'];
 
         $sql_data_array = [
           'categories_name' => HTML::sanitize($categories_name_array[$language_id]),
           'categories_description' => $categories_description_array[$language_id],
+          'categories_seo_url' => HTML::sanitize($categories_seo_url_array[$language_id]),
           'categories_head_title_tag' => HTML::sanitize($categories_seo_title_array[$language_id]),
           'categories_head_desc_tag' => HTML::sanitize($categories_seo_description_array[$language_id]),
           'categories_head_keywords_tag' => HTML::sanitize($categories_seo_keyword_array[$language_id])
