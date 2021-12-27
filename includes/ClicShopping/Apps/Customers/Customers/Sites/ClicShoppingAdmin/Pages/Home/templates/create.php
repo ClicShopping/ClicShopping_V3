@@ -49,7 +49,7 @@
   </div>
   <div class="separator"></div>
   <?php
-    if (isset($_GET['error']) && $error === true) {
+    if (isset($_GET['error'])) {
       ?>
       <div class="alert alert-warning" role="alert">
         <?php echo $CLICSHOPPING_Customers->getDef('warning_edit_customers'); ?><br/>
@@ -87,7 +87,6 @@
             <div class="text-start"><?php echo $CLICSHOPPING_Customers->getDef('category_personal'); ?></div>
           </div>
           <div class="adminformTitle">
-
             <div class="row" id="CreateCustomerEntryGender">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -131,7 +130,7 @@
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?></label>
                   <div class="col-md-5">
                     <?php
-                      if (isset($_GET['error']) && $error === true) {
+                      if (isset($_GET['error'])) {
                         if ($entry_date_of_birth_error === true) {
                           echo HTML::inputField('customers_dob', $cInfo->customers_dob, 'maxlength="10" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_date_of_birth_error');
                         } else {
@@ -404,9 +403,16 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default'); ?></label>
-                  <div class="col-md-5">
-                    <?php echo HTML::checkboxField('customers_modify_address_default', '1', true); ?>
-                  </div>
+                    <div class="col-md-5">
+                        <ul class="list-group-slider list-group-flush">
+                            <li class="list-group-item-slider">
+                                <label class="switch">
+                                  <?php echo HTML::checkboxField('customers_modify_address_default', 1, true, 'class="success"'); ?>
+                                    <span class="slider"></span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
               </div>
             </div>
@@ -416,9 +422,16 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_add_address'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_add_address'); ?></label>
-                  <div class="col-md-5">
-                    <?php echo HTML::checkboxField('customers_add_address', '1', true); ?>
-                  </div>
+                    <div class="col-md-5">
+                        <ul class="list-group-slider list-group-flush">
+                            <li class="list-group-item-slider">
+                                <label class="switch">
+                                  <?php echo HTML::checkboxField('customers_add_address',  1, true, 'class="success"'); ?>
+                                    <span class="slider"></span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
               </div>
             </div>
@@ -428,7 +441,14 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_email'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_email'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::checkboxField('customers_email', '1', false); ?>
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          <?php echo HTML::checkboxField('customers_email',  1, false, 'class="success"'); ?>
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -464,7 +484,7 @@
 
   <?php echo $CLICSHOPPING_Hooks->output('Customer', 'CreateAccount', null, 'display'); ?>
 
-  <script type="text/javascript"><!--
+  <script>
       function check_form() {
           var error = 0;
           var error_message = "<?php echo $CLICSHOPPING_Customers->getDef('js_error'); ?>";
@@ -540,6 +560,6 @@
           }
       }
 
-      //--></script>
+      </script>
   </form>
 </div>
