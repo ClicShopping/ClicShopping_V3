@@ -121,7 +121,7 @@
               }
               ?>
               <th scope="row"><?php echo $entry; ?></th>
-              <td class="text-center"><?php echo date($CLICSHOPPING_Backup->getDef('php_date_time_format'), filemtime($backup_directory . $entry)); ?></td>
+              <td class="text-center"><?php echo date("m/d/Y", filemtime($backup_directory . $entry)); ?></td>
               <td class="text-end"><?php echo number_format(filesize($backup_directory . $entry)); ?>
                 bytes
               </td>

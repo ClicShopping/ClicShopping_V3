@@ -19,15 +19,16 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $backup_directory = CLICSHOPPING::BASE_DIR . 'Work/Backups/';
-  $file = basename($_GET['file']);
+  if (isset($_GET['file'])) {
+    $file = basename($_GET['file']);
 
-  $info = [
+    $info = [
     'file' => $file,
     'date' => date($CLICSHOPPING_Backup->getDef('php_date_time_format'), filemtime($backup_directory . $file)),
     'size' => number_format(filesize($backup_directory . $file)) . ' bytes'
-  ];
+    ];
 
-  switch (substr($info['file'], -3)) {
+    switch (substr($info['file'], -3)) {
     case 'zip':
       $info['compression'] = 'ZIP';
       break;
@@ -37,9 +38,10 @@
     default:
       $info['compression'] = $CLICSHOPPING_Backup->getDef('text_no_extension');
       break;
-  }
+    }
 
-  $buInfo = new ObjectInfo($info);
+    $buInfo = new ObjectInfo($info);
+  }
 ?>
 <div class="contentBody">
   <div class="row">
@@ -55,7 +57,7 @@
     </div>
   </div>
   <?php
-  if (is_file($backup_directory . $_GET['file'])) {
+    if (!is_file($backup_directory . !isset($_GET['file']))) {
     ?>
   <div class="separator"></div>
   <div class="col-md-12 mainTitle">
