@@ -364,11 +364,11 @@
     /**
      * the manufacturer seo keyword
      *
-     * @param int $manufacturer_id , $language_id
+     * @param int|null $manufacturers_id
+     * @param int $language_id
      * @return string $manufacturer['manufacturers_seo_keyword'],  seo keyword of the manufacturer
-     *
      */
-    public static function getManufacturerSeoKeyword(int $manufacturers_id, int $language_id) :string
+    public static function getManufacturerSeoKeyword(?int $manufacturers_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -389,11 +389,11 @@
     /**
      * Title Name of the submit
      *
-     * @param int $product_id , $language_id
+     * @param string $product_id , $language_id
+     * @param int $language_id
      * @return string product['products_head_title_tag'], description name
-     *
      */
-    public static function getProductsSeoTitle(int $product_id, int $language_id) :string
+    public static function getProductsSeoTitle(string $product_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -413,11 +413,11 @@
     /**
      * Description Name
      *
-     * @param int $product_id , $language_id
+     * @param string $product_id , $language_id
+     * @param int $language_id
      * @return string $product['products_head_desc_tag'], description name
-     *
      */
-    public static function getProductsSeoDescription(int $product_id, int $language_id) :string
+    public static function getProductsSeoDescription(string $product_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -437,11 +437,11 @@
     /**
      * keywords Name
      *
-     * @param int  $product_id , $language_id
+     * @param string $product_id , $language_id
+     * @param int $language_id
      * @return string $product['products_head_keywords_tag'], keywords name
-     *
      */
-    public static function getProductsSeoKeywords(int $product_id, int $language_id) :string
+    public static function getProductsSeoKeywords(string $product_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -462,11 +462,11 @@
     /**
      * Tag Name
      *
-     * @param int $product_id , $language_id
+     * @param string $product_id , $language_id
+     * @param int $language_id
      * @return string $product['products_head_tag'], keywords name
-     *
      */
-    public static function getProductsSeoTag(int $product_id, int $language_id) :string
+    public static function getProductsSeoTag(string $product_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -485,11 +485,11 @@
 
     /**
      * SEO URl
-     * @param $category_id
-     * @param $language_id
+     * @param int|null $products_id
+     * @param int $language_id
      * @return string
      */
-    public static function getProductsSeoUrl(int $products_id, int $language_id) :string
+    public static function getProductsSeoUrl(string $products_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -512,11 +512,11 @@
 
     /**
      * SEO URl
-     * @param $category_id
-     * @param $language_id
+     * @param int|null $category_id
+     * @param int $language_id
      * @return string
      */
-    public static function getCategoriesSeoUrl(int $category_id, int $language_id) :string
+    public static function getCategoriesSeoUrl(?int $category_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -537,11 +537,11 @@
     }
 
     /**
-     * @param int $category_id
+     * @param int|null $category_id
      * @param int $language_id
      * @return string
      */
-    public static function getCategoriesSeoTitle(int $category_id, int $language_id) :string
+    public static function getCategoriesSeoTitle(?int $category_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -562,11 +562,11 @@
     }
 
     /**
-     * @param int $category_id
+     * @param int|null $category_id
      * @param int $language_id
      * @return string
      */
-    public static function getCategoriesSeoDescription(int $category_id, int $language_id) :string
+    public static function getCategoriesSeoDescription(?int $category_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -587,11 +587,11 @@
     }
 
     /**
-     * @param int $category_id
+     * @param int|null $category_id
      * @param int $language_id
      * @return string
      */
-    public static function getCategoriesSeoKeywords(int $category_id, int $language_id) :string
+    public static function getCategoriesSeoKeywords(?int $category_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');

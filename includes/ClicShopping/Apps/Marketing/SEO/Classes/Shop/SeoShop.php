@@ -513,16 +513,15 @@
 
       return $Qseo->value('categories_seo_url');
     }
-    
-    
+
 
     /**
      * Products Seo URL
-     * @param int $products_id
+     * @param string|null $products_id
      * @param int $language_id
      * @return string
      */
-    public function getProductsSeoUrl(int $products_id, int $language_id) :string
+    public function getProductsSeoUrl(?string $products_id, int $language_id) :string
     {
       if (!$language_id) $language_id = $this->lang->getId();
 
