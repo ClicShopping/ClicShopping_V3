@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => 'ccb2e7d5c7628345500e7be424e0f37cba9d6575',
+    'reference' => '81e0c7d675871f62d67103c9e745edd359f7477c',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => 'ccb2e7d5c7628345500e7be424e0f37cba9d6575',
+      'reference' => '81e0c7d675871f62d67103c9e745edd359f7477c',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -91,12 +91,12 @@ class InstalledVersions
     ),
     'mattketmo/email-checker' => 
     array (
-      'pretty_version' => 'v2.0.0',
-      'version' => '2.0.0.0',
+      'pretty_version' => '2.1.0',
+      'version' => '2.1.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f96cd8e68f4702f6ca3e1d8dd699f038e013f761',
+      'reference' => '1ee51a3f04847583d3a47b82958ff41db5bf8c5b',
     ),
     'phpmailer/phpmailer' => 
     array (

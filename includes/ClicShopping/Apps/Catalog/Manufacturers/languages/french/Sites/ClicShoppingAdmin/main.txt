@@ -45,6 +45,12 @@ table_heading_edit_manufacturer = Editer marque
 table_heading_delete_manufacturer = Supprimer marque
 table_heading_status = Statut
 
+table_heading_products_model = Model
+table_heading_products_name = Products name
+table_heading_products_quantity = Products Quantity
+table_heading_products_suppliers_cost = Products Cost
+table_heading_total_cost = Total Cost
+
 title_manufacturer_general = Informations générale
 text_manufacturers_description = Description
 title_manufacturer_image = Image

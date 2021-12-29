@@ -1,0 +1,29 @@
+- some little bugs fixed
+- librairies update
+- php 8.1 compatibility
+- Add brand report
+===================================
+Step 1 : Update your Db by the sql below
+
+
+#insert in your phpmyAdmin this request in function of your language
+
+#All language
+
+INSERT INTO `clic_administrator_menu` (`id`, `link`, `parent_id`, `sort_order`, `access`, `image`, `b2b_menu`, `app_code`, `status`) VALUES
+('','index.php?A&Catalog\\Manufacturers&Stock',	107,	0,	0,	'',	1,	'app_catalog_manufacturers',	1);
+
+---
+note : Identify the last id and change 785 by your new id
+---
+INSERT INTO `clic_administrator_menu_description` (`id`, `label`, `language_id`) VALUES
+(785,	'Brand Stock',	1),
+(785,	'Stock des marques',	2);
+
+
+
+#English
+
+#french
+
+

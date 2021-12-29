@@ -1,1 +1,2 @@
 title_menu = Marques
+title_menu_stock = Stocks par marque

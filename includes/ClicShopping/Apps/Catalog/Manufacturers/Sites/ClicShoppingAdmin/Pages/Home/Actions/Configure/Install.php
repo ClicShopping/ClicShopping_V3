@@ -49,7 +49,8 @@
 
       if ($Qcheck->fetch() === false) {
 
-        $sql_data_array = ['sort_order' => 6,
+        $sql_data_array = [
+          'sort_order' => 6,
           'link' => 'index.php?A&Catalog\Manufacturers&Manufacturers',
           'image' => 'manufacturers.gif',
           'b2b_menu' => 0,
@@ -81,6 +82,46 @@
 
           $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
         }
+
+
+// Stock
+        $sql_data_array = [
+          'sort_order' => 6,
+          'link' => 'index.php?A&Catalog\Manufacturers&Stock',
+          'image' => 'manufacturers.gif',
+          'b2b_menu' => 0,
+          'access' => 0,
+          'app_code' => 'app_catalog_manufacturers'
+        ];
+
+        $insert_sql_data = ['parent_id' => 103];
+
+        $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+        $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+
+        $id = $CLICSHOPPING_Db->lastInsertId();
+
+        $languages = $CLICSHOPPING_Language->getLanguages();
+
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+          $language_id = $languages[$i]['id'];
+
+          $sql_data_array = ['label' => $CLICSHOPPING_Manufacturers->getDef('title_menu_stock')];
+
+          $insert_sql_data = [
+            'id' => (int)$id,
+            'language_id' => (int)$language_id
+          ];
+
+          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+          $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
+        }
+
+
+
+
 
         Cache::clear('menu-administrator');
       }

@@ -394,17 +394,17 @@
         },
         {
             "name": "mattketmo/email-checker",
-            "version": "v2.0.0",
-            "version_normalized": "2.0.0.0",
+            "version": "2.1.0",
+            "version_normalized": "2.1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MattKetmo/EmailChecker.git",
-                "reference": "f96cd8e68f4702f6ca3e1d8dd699f038e013f761"
+                "reference": "1ee51a3f04847583d3a47b82958ff41db5bf8c5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MattKetmo/EmailChecker/zipball/f96cd8e68f4702f6ca3e1d8dd699f038e013f761",
-                "reference": "f96cd8e68f4702f6ca3e1d8dd699f038e013f761",
+                "url": "https://api.github.com/repos/MattKetmo/EmailChecker/zipball/1ee51a3f04847583d3a47b82958ff41db5bf8c5b",
+                "reference": "1ee51a3f04847583d3a47b82958ff41db5bf8c5b",
                 "shasum": ""
             },
             "require": {
@@ -412,6 +412,7 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.18",
+                "illuminate/support": "^5.0 || ^6.0 || ^7.0 || ^8.0",
                 "knplabs/gaufrette": "^0.10",
                 "phpunit/phpunit": "^7.5 || ^9.5",
                 "symfony/validator": "^3.0 || ^4.0 || ^5.0"
@@ -420,7 +421,7 @@
                 "knplabs/gaufrette": "Use filesystem abstraction layer to read data",
                 "symfony/validator": "Add validation constraints"
             },
-            "time": "2021-01-29T16:23:33+00:00",
+            "time": "2021-12-27T13:28:22+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -457,7 +458,7 @@
             ],
             "support": {
                 "issues": "https://github.com/MattKetmo/EmailChecker/issues",
-                "source": "https://github.com/MattKetmo/EmailChecker/tree/v2.0.0"
+                "source": "https://github.com/MattKetmo/EmailChecker/tree/2.1.0"
             },
             "install-path": "../mattketmo/email-checker"
         },
