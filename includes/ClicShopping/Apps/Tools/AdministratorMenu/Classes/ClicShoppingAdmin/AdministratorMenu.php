@@ -69,12 +69,11 @@
     /**
      * the category name
      *
-     * @param int $id
+     * @param string|null $id
      * @param int $language_id
      * @return string $category['categories_name'],  name of the categorie
-     *
      */
-    public static function getAdministratorMenuLabel(int $id, int $language_id): string
+    public static function getAdministratorMenuLabel(?string $id, int $language_id): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
