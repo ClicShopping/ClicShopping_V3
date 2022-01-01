@@ -13,7 +13,7 @@ function SetFocus() {
     isNotAdminLanguage:
     for (f=0; f<document.forms.length; f++) {
       if (document.forms[f].name != "adminlanguage") {
-        var field = document.forms[f];
+        const field = document.forms[f];
         for (i=0; i<field.length; i++) {
           if ( (field.elements[i].type != "image") &&
                (field.elements[i].type != "hidden") &&

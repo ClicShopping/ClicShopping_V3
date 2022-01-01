@@ -23,10 +23,10 @@
   }
 
   function update_zone(theForm) {
-    var NumState = theForm.state.options.length;
-    var SelectedCountry = "";
+      let NumState = theForm.state.options.length;
+      let SelectedCountry = "";
 
-    while(NumState > 0) {
+      while(NumState > 0) {
       NumState--;
       theForm.state.options[NumState] = null;
     }

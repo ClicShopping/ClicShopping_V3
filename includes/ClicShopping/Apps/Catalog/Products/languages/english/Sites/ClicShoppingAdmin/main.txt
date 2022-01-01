@@ -326,3 +326,6 @@ text_products_large_image_delete_title = Delete image
 text_products_large_image_confirm_delete = Are you sure ?
 
 text_alert_info_product = Please selet a categorie to view a product
+
+
+tab_shipping = Shipping

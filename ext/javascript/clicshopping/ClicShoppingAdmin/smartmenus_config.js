@@ -18,7 +18,7 @@ $(function() {
 
 // SmartMenus mobile menu toggle button
 $(function() {
-  var $mainMenuState = $('#main-menu-state');
+  const $mainMenuState = $('#main-menu-state');
   if ($mainMenuState.length) {
     // animate mobile menu
     $mainMenuState.change(function(e) {

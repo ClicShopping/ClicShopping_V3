@@ -127,8 +127,9 @@ $('#tab1ContentRow1').append(
   window.addEventListener("DOMContentLoaded", (event) => {
    console.log("DOM uploaded and analysed");
    document.querySelector('#myAjax')
+   document.querySelector("div")
    .addEventListener('click',function(e){
-     var selectedOptionVal = document.querySelector('#move_to_category_id').value
+     let selectedOptionVal = document.querySelector('#move_to_category_id').value
      ,options_html="";
     fetch("{$categories_ajax}?"+selectedOptionVal)
       .then(function(response) {
@@ -137,7 +138,7 @@ $('#tab1ContentRow1').append(
       .then(function(jsonResponse) {
      // Ajax success
      console.log("data is :",jsonResponse);
-     for(var index in jsonResponse){
+     for(const index in jsonResponse){
       let category_id = jsonResponse[index].id;
       let category_name = jsonResponse[index].text;
       let selectedString = category_id == selectedOptionVal ? ' selected="selected"' : '';

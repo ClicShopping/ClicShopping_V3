@@ -1,5 +1,5 @@
-var $table = $('#table')
-var $button = $('#button')
+var $table = $('#table');
+var $button = $('#button');
 
 $(function() {
   $button.click(function () {

@@ -15,9 +15,9 @@ $(document).ready(function () {
   }
 
   $("a[data-bs-toggle='tab']").on("shown.bs.tab", function (e) {
-    var hash = $(e.target).prop("href");
+    const hash = $(e.target).prop("href");
     if (hash.substr(0,1) == "#") {
-      var position = $(window).scrollTop();
+      const position = $(window).scrollTop();
       location.replace("#" + hash.substr(1));
       $(window).scrollTop(position);
     }

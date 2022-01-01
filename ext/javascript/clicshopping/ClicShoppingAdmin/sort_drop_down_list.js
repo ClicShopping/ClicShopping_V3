@@ -12,7 +12,7 @@ function sortDropDownListByText() {
     // Loop for each select element on the page.
     $("#sortDropDownListByText").each(function() {
 // Keep track of the selected option.
-        var selectedValue = $(this).val();
+        const selectedValue = $(this).val();
 
 // Sort all the options by text. I could easily sort these by val.
         $(this).html($("option", $(this)).sort(function(a, b) {

@@ -158,28 +158,30 @@
       <li
         class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Products->getDef('tab_general') . '</a>'; ?></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_stock'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_shipping'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_price'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_stock'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_description'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_price'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab5" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_img'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab5" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_description'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab6" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_ref'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab6" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_img'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab9" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_other_options'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab7" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_ref'); ?></a></li>
+      <li
+        class="nav-item"><?php echo '<a href="#tab8" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_other_options'); ?></a></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
         <?php
           // packaging
-          $products_packaging_array = array(
+          $products_packaging_array = [
             array('id' => '0', 'text' => $CLICSHOPPING_Products->getDef('text_choose')),
             array('id' => '1', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_new')),
             array('id' => '2', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_repackaged')),
             array('id' => '3', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_used'))
-          );
+          ];
 
 
           // ******************************************
@@ -267,20 +269,16 @@
               </div>
               <div class="col-md-5" id="tab1ContentRow4Option"></div>
             </div>
-            <div class="separator"></div>
-            <div class="row" id="tab1ContentRow5">
-              <div class="col-md-5">
-                <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_weight'); ?>"
-                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_weight'); ?></label>
-                  <div class="col-md-5">
-                    <?php echo HTML::inputField('products_weight', $pInfo->products_weight, 'id="products_weight" onKeyUp="return calc_poids(\'products_weight\',value)" size="12"'); ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="separator"></div>
-            <div class="row" id="tab1ContentRow6"></div>
+
+
+
+
+
+
+
+
+
+
           </div>
           <div class="separator"></div>
           <div
@@ -303,36 +301,8 @@
               ?>
             </div>
 
-            <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tab1ContentRow12">
-              <span
-                class="col-sm-4"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay'); ?></span>
-              <span>
-            <a
-              href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=DISPLAY_SHIPPING_DELAY'); ?>"
-              data-bs-toggle="modal" data-refresh="true"
-              data-bs-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('text_create')); ?></a>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                 aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-body"><div class="te"></div></div>
-                </div> <!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-          </span>
-            </div>
-            <?php
-              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                ?>
-                <div class="form-group row">
-                  <label for="code"
-                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                  <div
-                    class="col-md-5"><?php echo HTML::inputField('products_shipping_delay[' . $languages[$i]['id'] . ']', (isset($products_shipping_delay[$languages[$i]['id']]) ? $products_shipping_delay[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsShippingDelay($pInfo->products_id, $languages[$i]['id'])), 'size="90"'); ?></div>
-                </div>
-                <?php
-              }
-            ?>
+
+
             <div class="row" id="tab1ContentRow13">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -355,18 +325,81 @@
           <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab1', null, 'display'); ?>
         </div>
 
+
+        <?php
+// ******************************************
+// Tab 2 Shipping
+//*******************************************
+        ?>
+        <div class="tab-pane" id="tab2">
+          <div class="col-md-12 mainTitle">
+            <span><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping'); ?></span>
+          </div>
+          <div class="adminformTitle">
+            <div class="separator"></div>
+            <div class="row" id="productsWeight">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_weight'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_weight'); ?></label>
+                  <div class="col-md-5">
+                    <?php echo HTML::inputField('products_weight', $pInfo->products_weight, 'id="products_weight" onKeyUp="return calc_poids(\'products_weight\',value)" size="12"'); ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="separator"></div>
+            <div class="row" id="tab2Shipping"></div>
+            <div class="separator"></div>
+            <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelay">
+              <span
+                class="col-sm-4"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay'); ?></span>
+              <span>
+                <a
+                  href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=DISPLAY_SHIPPING_DELAY'); ?>"
+                  data-bs-toggle="modal" data-refresh="true"
+                  data-bs-target="#myModal1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('text_create')); ?></a>
+                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body"><div class="te"></div></div>
+                    </div> <!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+              </span>
+            </div>
+
+            <?php
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              ?>
+              <div class="form-group row">
+                <label for="code"
+                       class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                <div
+                  class="col-md-5"><?php echo HTML::inputField('products_shipping_delay[' . $languages[$i]['id'] . ']', (isset($products_shipping_delay[$languages[$i]['id']]) ? $products_shipping_delay[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsShippingDelay($pInfo->products_id, $languages[$i]['id'])), 'size="90"'); ?></div>
+              </div>
+              <?php
+            }
+            ?>
+            <div class="separator"></div>
+            <div class="row" id="tab2ShippingAdd"></div>
+            <div class="separator"></div>
+          </div>
+        </div>
+
         <?php
           // ******************************************
-          // Tab 2 Stock
+          // Tab 3 Stock
           //*******************************************
 
-          $stockable_dopdown = array(
+          $stockable_dopdown = [
             array('id' => 'product', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_product')),
             array('id' => 'consu', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_consumable')),
             array('id' => 'service', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_service')),
-          );
+          ];
         ?>
-        <div class="tab-pane" id="tab2">
+        <div class="tab-pane" id="tab3">
           <div class="col-md-12 mainTitle">
             <span><?php echo $CLICSHOPPING_Products->getDef('text_products_stock'); ?></span>
           </div>
@@ -651,7 +684,7 @@
             }
         </script>
 
-        <div class="tab-pane" id="tab3">
+        <div class="tab-pane" id="tab4">
           <div class="col-md-12 mainTitle">
             <span><?php echo $CLICSHOPPING_Products->getDef('text_products_price_public'); ?></span>
           </div>
@@ -829,7 +862,7 @@
           // Tab 4 Description
           //*******************************************
         ?>
-        <div class="tab-pane" id="tab4">
+        <div class="tab-pane" id="tab5">
           <div class="col-md-12 mainTitle">
             <span><?php echo $CLICSHOPPING_Products->getDef('text_products_description'); ?></span>
           </div>
@@ -900,7 +933,7 @@
           // Tab 5 Image
           //*******************************************
         ?>
-        <div class="tab-pane" id="tab5">
+        <div class="tab-pane" id="tab6">
           <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_image'); ?></div>
           <div class="adminformTitle">
             <div class="row" id="tab5ContentRow1">
@@ -1024,7 +1057,7 @@
 
               <script>
                 $(function () {
-                    var templateLargeImage = $('#templateLargeImage').html();
+                    const templateLargeImage = $('#templateLargeImage').html();
                     Mustache.parse(templateLargeImage);
 
                   <?php
@@ -1053,10 +1086,10 @@
                         handle: '.sortHandle'
                     });
 
-                    $('#tab5 a[data-action="addNewPiForm"]').on('click', function () {
-                        var piSize = $('#piList li').length + 1;
+                    $('#tab6 a[data-action="addNewPiForm"]').on('click', function () {
+                        const piSize = $('#piList li').length + 1;
 
-                        var data = {
+                        const data = {
                             counter: piSize,
                             input_file_name: 'products_image_large_new_' + piSize,
                             input_html_content_name: 'products_image_htmlcontent_new_' + piSize
@@ -1067,13 +1100,13 @@
                         $('#piId' + piSize + ' .piActions a[data-state="inactive"]').hide();
                     });
 
-                    $('#tab5').on('click', '#piList li a[data-action="showPiDelConfirm"]', function () {
+                    $('#tab6').on('click', '#piList li a[data-action="showPiDelConfirm"]', function () {
                         $('#piDelConfirm').data('piid', $(this).data('piid'));
 
                         $('#piDelConfirm').modal('show');
                     });
 
-                    $('#tab5').on('click', '#piList li a[data-action="undoDelete"]', function () {
+                    $('#tab6').on('click', '#piList li a[data-action="undoDelete"]', function () {
                         $('#piId' + $(this).data('piid') + ' .piActions a[data-state="inactive"]').hide();
                         $('#piId' + $(this).data('piid') + ' .piActions a[data-state="active"]').show();
                         $('#piId' + $(this).data('piid') + ' :input').prop('disabled', false);
@@ -1165,7 +1198,7 @@
           // Tab 6 Meta Datas
           //*******************************************
         ?>
-        <div class="tab-pane" id="tab6">
+        <div class="tab-pane" id="tab7">
           <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_page_seo'); ?></div>
           <div class="adminformTitle">
             <div class="separator"></div>
@@ -1289,7 +1322,7 @@
             $Qcategories->execute();
           }
         ?>
-        <div class="tab-pane" id="tab9">
+        <div class="tab-pane" id="tab8">
           <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_others_options'); ?></div>
           <div class="adminformTitle" id="tab9Content">
 
