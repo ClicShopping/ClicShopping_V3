@@ -18,7 +18,7 @@
 
   use ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin\WeightAdmin;
 
-  class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
+  class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected mixed $app;
 
@@ -29,7 +29,7 @@
       }
 
       $this->app = Registry::get('Weight');
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
+      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_2');
     }
 
     private function getProductsWeightId()
@@ -77,7 +77,7 @@
 <!--  Start Weight Hooks      -->
 <!-- ######################## -->
 <script>
-$('#tab1ContentRow5').append(
+$('#productsWeight').append(
     '{$content}'
 );
 </script>
@@ -85,7 +85,7 @@ $('#tab1ContentRow5').append(
 <!-- ######################## -->
 <!--  End Weight App      -->
 <!-- ######################## -->
-
+------------------------- 
 EOD;
       return $output;
 

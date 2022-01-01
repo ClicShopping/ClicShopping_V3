@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => '81e0c7d675871f62d67103c9e745edd359f7477c',
+    'reference' => 'c639eca48e9b1d893b1c736d563bd2517c2762e8',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => '81e0c7d675871f62d67103c9e745edd359f7477c',
+      'reference' => 'c639eca48e9b1d893b1c736d563bd2517c2762e8',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -91,12 +91,12 @@ class InstalledVersions
     ),
     'mattketmo/email-checker' => 
     array (
-      'pretty_version' => '2.1.0',
-      'version' => '2.1.0.0',
+      'pretty_version' => '2.1.1',
+      'version' => '2.1.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1ee51a3f04847583d3a47b82958ff41db5bf8c5b',
+      'reference' => '7162c58fbf8cdea557c78aadcb28429ce06a9d8e',
     ),
     'phpmailer/phpmailer' => 
     array (
@@ -170,12 +170,12 @@ class InstalledVersions
     ),
     'symfony/finder' => 
     array (
-      'pretty_version' => 'v5.4.0',
-      'version' => '5.4.0.0',
+      'pretty_version' => 'v5.4.2',
+      'version' => '5.4.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd2f29dac98e96a98be467627bd49c2efb1bc2590',
+      'reference' => 'e77046c252be48c48a40816187ed527703c8f76c',
     ),
     'symfony/polyfill-intl-idn' => 
     array (

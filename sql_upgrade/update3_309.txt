@@ -1,4 +1,4 @@
-- some little bugs fixed
+- fix weight classe not appear inside product shipping tab
 - librairies update
 
 ===================================
