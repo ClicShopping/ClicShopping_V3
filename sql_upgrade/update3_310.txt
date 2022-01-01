@@ -1,0 +1,22 @@
+-
+===================================
+Step 1 : Update your Db by the sql below
+
+
+#insert in your phpmyAdmin this request in function of your language
+
+#All language
+
+
+---
+note : Identify the last id and change 785 by your new id
+---
+
+
+
+
+#English
+
+#french
+
+
