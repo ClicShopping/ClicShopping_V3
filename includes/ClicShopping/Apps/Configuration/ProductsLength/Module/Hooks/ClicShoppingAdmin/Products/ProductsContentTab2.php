@@ -60,7 +60,7 @@
         return false;
       }
 
-      $product_length = $this->getProductsProductsLength();
+        $product_length = $this->getProductsProductsLength();
 
         $products_length_class_id = $product_length['products_length_class_id'] ?? '0.00';
         $products_dimension_width = $product_length['products_dimension_width'] ?? '0.00';
@@ -88,15 +88,20 @@
         $content .= '</div>';
         $content .= '</div>';
 
+        $content .= '<div class="separator"></div>';
         $content .= '<div class="col-md-5">';
         $content .= '<div class="form-group row">';
-        $content .= '<div class="col-md-5">';
-        $content .= $this->app->getDef('text_products_length_type') . '<br /><br />';
-        $content .= $this->app->getDef('text_products_volume');
+        $content .= '<label for="' . $this->app->getDef('text_products_length_type') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_length_type') . '</label>';
+        $content .= '<div class="col-md-6 row">';
+        $content .= HTML::selectField('products_length_class_id', ProductsLengthAdmin::getClassesPullDown(), $products_length_class_id);
+        $content .= '</div>';
+        $content .= '</div>';
         $content .= '</div>';
 
         $content .= '<div class="col-md-5">';
-        $content .= HTML::selectField('products_length_class_id', ProductsLengthAdmin::getClassesPullDown(), $products_length_class_id);
+        $content .= '<div class="form-group row">';
+        $content .= '<label for="' . $this->app->getDef('text_products_volume') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_volume') . '</label>';
+        $content .= '<div class="col-md-6 row">';
         $content .= HTML::inputField('products_volume', $products_volume, 'placeholder="' . $this->app->getDef('text_products_volume') . '" id="products_volume" class="form-control"');
         $content .= '</div>';
         $content .= '</div>';
