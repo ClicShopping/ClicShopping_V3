@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '6ff7cd2d9467e639b2173c7d497da1ae917b9b4a',
+    'reference' => '741bfff3210a63373f8eb18c74b1944248440c47',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '6ff7cd2d9467e639b2173c7d497da1ae917b9b4a',
+      'reference' => '741bfff3210a63373f8eb18c74b1944248440c47',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -128,12 +128,21 @@
     ),
     'stripe/stripe-php' => 
     array (
-      'pretty_version' => 'v7.111.0',
-      'version' => '7.111.0.0',
+      'pretty_version' => 'v7.112.0',
+      'version' => '7.112.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '374647b1079203ed7278ad4b58afc0fae3faaab9',
+      'reference' => 'f5213ccb88795663f73841bc65f467a0e1e61180',
+    ),
+    'stymiee/email-validator' => 
+    array (
+      'pretty_version' => '1.0.2',
+      'version' => '1.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'dd780e742f18c9c9a1087f15f66631d33003ac5a',
     ),
     'symfony/deprecation-contracts' => 
     array (
@@ -146,12 +155,12 @@
     ),
     'symfony/finder' => 
     array (
-      'pretty_version' => 'v5.4.2',
-      'version' => '5.4.2.0',
+      'pretty_version' => 'v5.4.3',
+      'version' => '5.4.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'e77046c252be48c48a40816187ed527703c8f76c',
+      'reference' => '231313534dded84c7ecaa79d14bc5da4ccb69b7d',
     ),
     'symfony/polyfill-intl-idn' => 
     array (

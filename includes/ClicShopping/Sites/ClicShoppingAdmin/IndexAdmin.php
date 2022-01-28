@@ -35,7 +35,7 @@
 
       // Max unit to display
       $depth = \count($sys['prefix']) - 1;
-      if ($max && false !== $d = array_search($max, $sys['prefix'])) {
+      if ($max && false !== $d = array_search($max, $sys['prefix'], true)) {
         $depth = $d;
       }
 

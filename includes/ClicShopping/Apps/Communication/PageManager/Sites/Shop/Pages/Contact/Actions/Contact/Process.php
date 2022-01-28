@@ -35,7 +35,7 @@
 //language
       $CLICSHOPPING_PageManager->loadDefinitions('Sites/Shop/Contact/contact');
 
-      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action'], $_POST['formid']) && ($_POST['action'] == 'process') && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $CLICSHOPPING_Hooks->call('Contact', 'PreAction');
 
         $name = HTML::sanitize($_POST['name']);

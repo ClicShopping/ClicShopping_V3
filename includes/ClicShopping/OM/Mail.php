@@ -11,10 +11,10 @@
 
   namespace ClicShopping\OM;
 
-  use ClicShopping\OM\Is;
-
+  use ClicShopping\OM\CLICSHOPPING;
   use PHPMailer\PHPMailer\Exception;
   use PHPMailer\PHPMailer\PHPMailer;
+  use EmailValidator\EmailValidator;
 
   class Mail
   {
@@ -314,33 +314,6 @@
       return true;
     }
 
-    /**
-     * Do not send en email if it'excluded by the admin
-     * @param string $email
-     * @return bool
-     */
-    public function excludeEmailDomain($email = '')
-    {
-      if( filter_var( $email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
-        $array_domain = explode('@', $email);
-        $domain = array_pop($array_domain);
-        $exclude_domain = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
-
-        if (\is_array($exclude_domain)) {
-          foreach ($exclude_domain as $value) {
-            if ($value === $domain) {
-              return true;
-            } else {
-              return false;
-            }
-          }
-        } else {
-          return false;
-        }
-      } else {
-        return true;
-      }
-    }
 
     /**
      * @param string $file
@@ -396,5 +369,38 @@
       }
 
       return true;
+    }
+
+    /**
+     * Do not send en email if it'excluded by the admin
+     * @param string $email
+     * @return bool
+     */
+    public function excludeEmailDomain($email = '')
+    {
+      if( filter_var( $email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
+
+        $bannedDomainList = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
+
+        $contactEmailAddresses = [
+          $email
+        ];
+
+        $config = [
+          'checkMxRecords' => true,
+          'checkBannedListedEmail' => true,
+          'bannedList' => $bannedDomainList,
+        ];
+
+        $result = new EmailValidator($config);
+
+        foreach ($contactEmailAddresses as $value) {
+          $result = $result->validate($value);
+
+          if ($result === false) {
+            CLICSHOPPING::redirect();
+          }
+        }
+      }
     }
   }

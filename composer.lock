@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "466d9aa9ac043057afe129762883857b",
+    "content-hash": "0eda1786f1f090aee9ba99c38d707338",
     "packages": [
         {
             "name": "darkghosthunter/preloader",
@@ -736,16 +736,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.111.0",
+            "version": "v7.112.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "374647b1079203ed7278ad4b58afc0fae3faaab9"
+                "reference": "f5213ccb88795663f73841bc65f467a0e1e61180"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/374647b1079203ed7278ad4b58afc0fae3faaab9",
-                "reference": "374647b1079203ed7278ad4b58afc0fae3faaab9",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/f5213ccb88795663f73841bc65f467a0e1e61180",
+                "reference": "f5213ccb88795663f73841bc65f467a0e1e61180",
                 "shasum": ""
             },
             "require": {
@@ -790,9 +790,66 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v7.111.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v7.112.0"
             },
-            "time": "2022-01-20T17:30:55+00:00"
+            "time": "2022-01-25T19:42:36+00:00"
+        },
+        {
+            "name": "stymiee/email-validator",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stymiee/email-validator.git",
+                "reference": "dd780e742f18c9c9a1087f15f66631d33003ac5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stymiee/email-validator/zipball/dd780e742f18c9c9a1087f15f66631d33003ac5a",
+                "reference": "dd780e742f18c9c9a1087f15f66631d33003ac5a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "nunomaduro/phpinsights": "@stable",
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": "^8",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EmailValidator\\": [
+                        "src/EmailValidator/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "John Conde",
+                    "email": "stymiee@gmail.com",
+                    "homepage": "https://stymiee.dev",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Email Validator library builds upon PHP's built in filter_var($emailAddress, FILTER_VALIDATE_EMAIL); by adding a default MX record check. It also offers additional validation against disposable email addresses, free email address providers, and a custom banned domain list.",
+            "homepage": "https://github.com/stymiee/php-simple-encryption",
+            "keywords": [
+                "email",
+                "php",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/stymiee/email-validator/issues",
+                "source": "https://github.com/stymiee/email-validator/tree/1.0.2"
+            },
+            "time": "2022-01-24T15:30:56+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -863,16 +920,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v5.4.2",
+            "version": "v5.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "e77046c252be48c48a40816187ed527703c8f76c"
+                "reference": "231313534dded84c7ecaa79d14bc5da4ccb69b7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/e77046c252be48c48a40816187ed527703c8f76c",
-                "reference": "e77046c252be48c48a40816187ed527703c8f76c",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/231313534dded84c7ecaa79d14bc5da4ccb69b7d",
+                "reference": "231313534dded84c7ecaa79d14bc5da4ccb69b7d",
                 "shasum": ""
             },
             "require": {
@@ -906,7 +963,7 @@
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/finder/tree/v5.4.2"
+                "source": "https://github.com/symfony/finder/tree/v5.4.3"
             },
             "funding": [
                 {
@@ -922,7 +979,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-15T11:06:13+00:00"
+            "time": "2022-01-26T16:34:36+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
