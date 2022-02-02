@@ -54,8 +54,16 @@ class EmailValidator
      */
     private $reason;
 
+    /**
+     * @var EmailAddress
+     * @since 1.1.0
+     */
+    private $emailAddress;
+
     public function __construct(array $config = [])
     {
+        $this->reason = self::NO_ERROR;
+
         $policy = new Policy($config);
 
         $this->mxValidator = new MxValidator($policy);
@@ -75,17 +83,17 @@ class EmailValidator
     {
         $this->resetErrorCode();
 
-        $emailAddress = new EmailAddress($email);
+        $this->emailAddress = new EmailAddress($email);
 
-        if (!$this->basicValidator->validate($emailAddress)) {
+        if (!$this->basicValidator->validate($this->emailAddress)) {
             $this->reason = self::FAIL_BASIC;
-        } elseif (!$this->mxValidator->validate($emailAddress)) {
+        } elseif (!$this->mxValidator->validate($this->emailAddress)) {
             $this->reason = self::FAIL_MX_RECORD;
-        } elseif (!$this->bannedListValidator->validate($emailAddress)) {
+        } elseif (!$this->bannedListValidator->validate($this->emailAddress)) {
             $this->reason = self::FAIL_BANNED_DOMAIN;
-        } elseif (!$this->disposableEmailValidator->validate($emailAddress)) {
+        } elseif (!$this->disposableEmailValidator->validate($this->emailAddress)) {
             $this->reason = self::FAIL_DISPOSABLE_DOMAIN;
-        } elseif (!$this->freeEmailValidator->validate($emailAddress)) {
+        } elseif (!$this->freeEmailValidator->validate($this->emailAddress)) {
             $this->reason = self::FAIL_FREE_PROVIDER;
         }
 
@@ -145,5 +153,29 @@ class EmailValidator
     private function resetErrorCode(): void
     {
         $this->reason = self::NO_ERROR;
+    }
+
+    /**
+     * Determines if a gmail account is using the "plus trick".
+     *
+     * @codeCoverageIgnore
+     * @since 1.1.0
+     * @return bool
+     */
+    public function isGmailWithPlusChar(): bool
+    {
+        return $this->emailAddress->isGmailWithPlusChar();
+    }
+
+    /**
+     * Returns a gmail address with the "plus trick" portion of the email address.
+     *
+     * @codeCoverageIgnore
+     * @since 1.1.0
+     * @return string
+     */
+    public function getGmailAddressWithoutPlus(): string
+    {
+        return $this->emailAddress->getGmailAddressWithoutPlus();
     }
 }

@@ -30,6 +30,7 @@ $testEmailAddresses = [
     'test@nobugmail.com',
     'test@cellurl.com',
     'test@10minutemail.com',
+    'test+example@gmail.com',
 ];
 
 $config = [
@@ -46,5 +47,12 @@ $emailValidator = new EmailValidator($config);
 foreach ($testEmailAddresses as $emailAddress) {
     $emailIsValid = $emailValidator->validate($emailAddress);
     echo  ($emailIsValid) ? 'Email is valid' : $emailValidator->getErrorReason();
+    if ($emailValidator->isGmailWithPlusChar()) {
+        printf(
+            ' (%s is a Gmail account and contains a plus character. Sanitized address: %s)',
+            $emailAddress,
+            $emailValidator->getGmailAddressWithoutPlus()
+        );
+    }
     echo PHP_EOL;
 }

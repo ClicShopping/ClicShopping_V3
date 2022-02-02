@@ -8,6 +8,7 @@ use EmailValidator\Validator\DisposableEmailValidator;
 use EmailValidator\Validator\FreeEmailValidator;
 use EmailValidator\Validator\MxValidator;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 class EmailValidatorTest extends TestCase
 {
@@ -31,6 +32,7 @@ class EmailValidatorTest extends TestCase
      * @param bool $banned
      * @param bool $disposable
      * @param bool $free
+     * @throws ReflectionException
      */
     public function testValidate(int $errCode, bool $basic, bool $mx, bool $banned, bool $disposable, bool $free): void
     {
@@ -114,5 +116,10 @@ class EmailValidatorTest extends TestCase
         $reason->setValue($emailValidator, $errorCode);
 
         self::assertEquals($errorMsg, $emailValidator->getErrorReason());
+    }
+
+    public function testGetErrorCode(): void
+    {
+        self::assertEquals(EmailValidator::NO_ERROR, (new EmailValidator())->getErrorCode());
     }
 }

@@ -52,4 +52,31 @@ class EmailAddressTest extends TestCase
         $email = new EmailAddress($emailAddress);
         self::assertEquals($email->getEmailAddress(), $emailAddress);
     }
+
+    public function emailWithPlusDataProvider(): array
+    {
+        return [
+            ['test@gmail.com', false],
+            ['test+example@gmail.com', true],
+            ['test@example.com', false],
+            ['test+example@example.com', false],
+        ];
+    }
+
+    /**
+     * @dataProvider emailWithPlusDataProvider
+     * @param string $emailAddress
+     * @param bool $hasPlus
+     */
+    public function testIsGmailWithPlusChar(string $emailAddress, bool $hasPlus): void
+    {
+        $email = new EmailAddress($emailAddress);
+        self::assertEquals($hasPlus, $email->isGmailWithPlusChar());
+    }
+
+    public function testGetGmailAddressWithoutPlus(): void
+    {
+        $email = new EmailAddress('user+test@example.com');
+        self::assertEquals('user@example.com', $email->getGmailAddressWithoutPlus());
+    }
 }

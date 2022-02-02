@@ -14,6 +14,7 @@ The PHP Email Validator will validate an email address for all or some of the fo
 - is not a disposable email address (optional)
 - is not a free email account (optional)
 - is not a banned email domain (optional)
+- flag Gmail accounts that use the "plus trick" and return a sanitized email address
 
 The Email Validator is configurable, so you have full control over how much validation will occur.
 
@@ -27,13 +28,13 @@ Simply add a dependency on `stymiee/email-validator` to your project's `composer
 [Composer](https://getcomposer.org/) to manage the dependencies of your project.
 
 Here is a minimal example of a `composer.json` file that just defines a dependency on PHP Simple Encryption:
-
-    {
-        "require": {
-            "stymiee/email-validator": "^1"
-        }
+```json
+{
+    "require": {
+        "stymiee/email-validator": "^1"
     }
-    
+}
+```
 ## Functional Description
 
 The Email Validator library builds upon PHP's built in `filter_var($emailAddress, FILTER_VALIDATE_EMAIL);` by adding a 
@@ -72,6 +73,15 @@ If you have users from a domain abusing your system, or you have business rules 
 domains (i.e. public email providers like Gmail or Yahoo mail), you can block then by setting `checkBannedListedEmail` 
 to `true` in the configuration (see below) and providing an array of banned domains. Examples are provided in the 
 `examples` directory which demonstrate how to do this.
+
+### Flag Gmail Addresses Using The "Plus Trick"
+
+Gmail offers the ability to create unique email addresses within a Google account by adding a `+` character and unique
+identifier after the username portion of the email address. If not explicitly checked for a user can create an unlimited 
+amount of unique email addresses that all belong to the same account. 
+
+A special check can be performed when a Gmail account is used and a sanitized email address (e.g. one without the "plus 
+trick") can be obtained and then checked for uniqueness in your system.
 
 ### Configuration
 
@@ -116,81 +126,96 @@ An array of domains that are suspected disposable email address providers.
 An array of domains that are free email address providers.
 
 **Example**
-
-    $config = [
-        'checkMxRecords' => true,
-        'checkBannedListedEmail' => true,
-        'checkDisposableEmail' => true,
-        'checkFreeEmail' => true,
-        'bannedList' => $bannedDomainList,
-        'disposableList' => $customDisposableEmailList,
-        'freeList' => $customFreeEmailList,
-    ];
-    $emailValidator = new EmailValidator($config);
-
+```php
+$config = [
+    'checkMxRecords' => true,
+    'checkBannedListedEmail' => true,
+    'checkDisposableEmail' => true,
+    'checkFreeEmail' => true,
+    'bannedList' => $bannedDomainList,
+    'disposableList' => $customDisposableEmailList,
+    'freeList' => $customFreeEmailList,
+];
+$emailValidator = new EmailValidator($config);
+````
 ### Example
+```php
+<?php
 
-    <?php
-    use EmailValidator\EmailValidator;
-    
-    require('../vendor/autoload.php');
-    
-    $customDisposableEmailList = [
-        'example.com',
-    ];
-    $customFreeEmailList = [
-        'example2.com',
-    ];
-    $bannedDomainList = [
-        'domain.com',
-    ];
-    $testEmailAddresses = [
-        'test@johnconde.net',
-        'test@gmail.com',
-        'test@hotmail.com',
-        'test@outlook.com',
-        'test@yahoo.com',
-        'test@domain.com',
-        'test@mxfuel.com',
-        'test@example.com',
-        'test@example2.com',
-        'test@nobugmail.com',
-        'test@cellurl.com',
-        'test@10minutemail.com',
-    ];
-    
-    $config = [
-        'checkMxRecords' => true,
-        'checkBannedListedEmail' => true,
-        'checkDisposableEmail' => true,
-        'checkFreeEmail' => true,
-        'bannedList' => $bannedDomainList,
-        'disposableList' => $customDisposableEmailList,
-        'freeList' => $customFreeEmailList,
-    ];
-    $emailValidator = new EmailValidator($config);
-    
-    foreach($testEmailAddresses as $emailAddress) {
-        $emailIsValid = $emailValidator->validate($emailAddress);
-        echo ($emailIsValid) ? 'Email is valid' : $emailValidator->getErrorReason();
-        echo PHP_EOL;
+namespace EmailValidator;
+
+require('../vendor/autoload.php');
+
+$customDisposableEmailList = [
+    'example.com',
+];
+
+$bannedDomainList = [
+    'domain.com',
+];
+
+$customFreeEmailList = [
+    'example2.com',
+];
+
+$testEmailAddresses = [
+    'test@domain.com',
+    'test@johnconde.net',
+    'test@gmail.com',
+    'test@hotmail.com',
+    'test@outlook.com',
+    'test@yahoo.com',
+    'test@domain.com',
+    'test@mxfuel.com',
+    'test@example.com',
+    'test@example2.com',
+    'test@nobugmail.com',
+    'test@cellurl.com',
+    'test@10minutemail.com',
+    'test+example@gmail.com',
+];
+
+$config = [
+    'checkMxRecords' => true,
+    'checkBannedListedEmail' => true,
+    'checkDisposableEmail' => true,
+    'checkFreeEmail' => true,
+    'bannedList' => $bannedDomainList,
+    'disposableList' => $customDisposableEmailList,
+    'freeList' => $customFreeEmailList,
+];
+$emailValidator = new EmailValidator($config);
+
+foreach ($testEmailAddresses as $emailAddress) {
+    $emailIsValid = $emailValidator->validate($emailAddress);
+    echo  ($emailIsValid) ? 'Email is valid' : $emailValidator->getErrorReason();
+    if ($emailValidator->isGmailWithPlusChar()) {
+        printf(
+            ' (Sanitized address: %s)',
+            $emailValidator->getGmailAddressWithoutPlus()
+        );
     }
+    echo PHP_EOL;
+}
+```
     
 **Output**
-
-    Email is valid
-    Domain is used by free email providers
-    Domain is used by free email providers
-    Domain is used by free email providers
-    Domain is used by free email providers
-    Domain is banned
-    Domain is used by disposable email providers
-    Domain is used by free email providers
-    Domain is used by disposable email providers
-    Domain does not accept email
-    Domain is used by disposable email providers
-    Domain is used by disposable email providers
- 
+```
+Domain is banned
+Email is valid
+Domain is used by free email providers
+Domain is used by free email providers
+Domain is used by free email providers
+Domain is used by free email providers
+Domain is banned
+Domain does not accept email
+Domain is used by disposable email providers
+Domain is used by free email providers
+Domain is used by disposable email providers
+Domain does not accept email
+Domain is used by disposable email providers
+Domain is used by free email providers (Sanitized address: test@gmail.com)
+```
 ## Notes
 
 The email address is checked against a list of known disposable email address providers which are aggregated from

@@ -1,3 +1,8 @@
+VERSION 1.1.0 - 2022-02-02
+-----------------------------------------------------------------------------------------------------------------------
+Added support for identifying and working with Gmail addresses using the "plus trick" to create unique addresses
+
+
 VERSION 1.0.2 - 2022-01-24
 -----------------------------------------------------------------------------------------------------------------------
 Issue #2: Error state not clearing between validations

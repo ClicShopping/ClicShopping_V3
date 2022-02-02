@@ -812,17 +812,17 @@
         },
         {
             "name": "stymiee/email-validator",
-            "version": "1.0.2",
-            "version_normalized": "1.0.2.0",
+            "version": "1.1.0",
+            "version_normalized": "1.1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stymiee/email-validator.git",
-                "reference": "dd780e742f18c9c9a1087f15f66631d33003ac5a"
+                "reference": "61b14e8b4c6568307bd7f9d7b36324a6d3301572"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stymiee/email-validator/zipball/dd780e742f18c9c9a1087f15f66631d33003ac5a",
-                "reference": "dd780e742f18c9c9a1087f15f66631d33003ac5a",
+                "url": "https://api.github.com/repos/stymiee/email-validator/zipball/61b14e8b4c6568307bd7f9d7b36324a6d3301572",
+                "reference": "61b14e8b4c6568307bd7f9d7b36324a6d3301572",
                 "shasum": ""
             },
             "require": {
@@ -835,7 +835,7 @@
                 "phpunit/phpunit": "^8",
                 "squizlabs/php_codesniffer": "3.*"
             },
-            "time": "2022-01-24T15:30:56+00:00",
+            "time": "2022-02-02T13:18:18+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -866,7 +866,7 @@
             ],
             "support": {
                 "issues": "https://github.com/stymiee/email-validator/issues",
-                "source": "https://github.com/stymiee/email-validator/tree/1.0.2"
+                "source": "https://github.com/stymiee/email-validator/tree/1.1.0"
             },
             "install-path": "../stymiee/email-validator"
         },
