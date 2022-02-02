@@ -519,7 +519,7 @@
           </div>
           <div class="row col-md-12">
             <div class="col-md-6">
-              <label for="buttonheaderAdministration"><a href="<?php echo CLICSHOPPING::link('login.php'); ?>">
+              <label for="buttonHeaderAdministration"><a href="<?php echo CLICSHOPPING::link('login.php'); ?>">
                 <button class="btn btn-secondary text-start"
                         type="button"><?php echo CLICSHOPPING::getDef('header_title_administration'); ?></button>
                 </a></label>
