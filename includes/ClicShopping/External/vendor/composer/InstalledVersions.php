@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => 'c646ba08696418bd6988e0ee17dfe1739ec080af',
+    'reference' => 'aee2b489887c5321d7389e13f2d24beec9749616',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => 'c646ba08696418bd6988e0ee17dfe1739ec080af',
+      'reference' => 'aee2b489887c5321d7389e13f2d24beec9749616',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -152,12 +152,12 @@ class InstalledVersions
     ),
     'stripe/stripe-php' => 
     array (
-      'pretty_version' => 'v7.112.0',
-      'version' => '7.112.0.0',
+      'pretty_version' => 'v7.113.0',
+      'version' => '7.113.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f5213ccb88795663f73841bc65f467a0e1e61180',
+      'reference' => '1aef1ccffad48f39952073e0ed53cb8f3f1b1d8c',
     ),
     'stymiee/email-validator' => 
     array (

@@ -1,8 +1,46 @@
 Version 3.310
 Spam Fight improvment
 Librairies update
-mall bug fix
+small bug fix
 
+-------------
+version 3.309
+fix weight classe not appear inside product shipping tab
+librairies update
+
+-------------
+version 3.308
+some little bugs fixed
+librairies update
+little fix javascript
+add a new shipping tab inside product
+
+-------------
+version 3.307
+    some little bugs fixed
+    librairies update
+    php 8.1 compatibility
+    Add brand report
+    Sql Update see update for instructions
+
+-------------
+version 3.306
+some little bugs fixed
+librairies update
+php 8.1 compatibility
+add categories_seo_url to customize the url for rewriting
+add products_seo_url to customize the url for rewriting
+
+-------------
+version 3.305
+Minor release,
+little fix, update libraries
+
+-------------
+version 3.304
+Some little fix discover, minor release
+
+-------------
 Version 3.03
 update B2b
 
