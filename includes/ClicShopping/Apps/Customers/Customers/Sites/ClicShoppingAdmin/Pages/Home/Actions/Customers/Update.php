@@ -184,9 +184,9 @@
 
 // Autorisation aux clients de modifier adresse principal
       if (isset($_POST['customers_modify_address_default'])) {
-        if (isset($_POST['customers_modify_address_default'])) {
-          $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
-        }
+        $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
+      } else {
+        $customers_modify_address_default = 0;
       }
 
       if (isset($_POST['customers_add_address'])) {
