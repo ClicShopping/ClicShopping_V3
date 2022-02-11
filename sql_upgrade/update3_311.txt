@@ -1,0 +1,24 @@
+-
+===================================
+Step 1 : Update your Db by the sql below
+
+
+#insert in your phpmyAdmin this request in function of your language
+
+#All language
+INSERT INTO clic_customers_groups VALUES(0, 'Client Normal', '0.00', 'FF0000', 0, 'CO', 'IT', 'true', 0)
+
+
+
+---
+note : Identify the last id and change 785 by your new id
+---
+
+
+
+
+#English
+
+#french
+
+

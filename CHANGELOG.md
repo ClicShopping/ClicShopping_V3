@@ -1,3 +1,7 @@
+Version 3.311
+add sql customer groups (see sql upgrade)
+
+------------
 Version 3.310
 Spam Fight improvment
 Librairies update
