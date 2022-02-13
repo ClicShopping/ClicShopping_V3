@@ -38,7 +38,6 @@
       return $QcustomersGroup->value('customers_group_name');
     }
 
-
     /**
      * Returns an array with customers_groups
      * @param string $default
@@ -65,10 +64,10 @@
 
       $QcustomersGroup->execute();
 
-      while ($customers_group = $QcustomersGroup->fetch()) {
+      while ($QcustomersGroup->fetch()) {
         $customers_group_array[] = [
-          'id' => $customers_group['customers_group_id'],
-          'text' => $customers_group['customers_group_name']
+          'id' => $QcustomersGroup->valueInt('customers_group_id'),
+          'text' => $QcustomersGroup->value('customers_group_name')
         ];
       }
 
@@ -127,6 +126,5 @@
 
       return $iso;
     }
-
   }
 
