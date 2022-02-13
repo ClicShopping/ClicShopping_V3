@@ -14,7 +14,7 @@
 
   use ClicShopping\Apps\Catalog\Categories\Classes\ClicShoppingAdmin\CategoriesAdmin;
 
-  define('CLICSHOPPING_BASE_DIR', dirname(dirname(__DIR__)) . '/includes/ClicShopping/' . '/');
+  define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/ClicShopping/') . '/');
 
   require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
   spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
