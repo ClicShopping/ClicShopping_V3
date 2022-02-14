@@ -1,3 +1,12 @@
+
+-------------
+Version 3.312
+
+code improvement
+fix customer group
+fix db demo error
+
+-------------
 Version 3.311
 add sql customer groups (see sql upgrade)
 
