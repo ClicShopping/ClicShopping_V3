@@ -78,11 +78,12 @@
 
       <label for="demo">Install Demo Database</label>
 <?php
-  $demo = array(array('id' => 'normal', 'text' => 'Normal'),
-                array('id' => 'demo', 'text' => 'Demo'),
-  );
+  $demo = [
+    ['id' => 'demo', 'text' => 'Demo'],
+    ['id' => 'normal', 'text' => 'Normal'],
+   ];
 
-  echo HTML::selectMenu('demo', $demo, 'normal', 'id="demo"');
+  echo HTML::selectMenu('demo', $demo, 'demo', 'id="demo"');
 ?>
       <br />
 
