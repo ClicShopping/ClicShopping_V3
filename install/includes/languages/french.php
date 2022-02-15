@@ -97,7 +97,7 @@ define('TEXT_INFO_CUSTOMER','
 Vous renforcez aussi la sécurité de votre serveur');
 define('TEXT_INFO_CUSTOMER_ALERT', '<blockquote>Veuillez corriger les erreurs suivantes avant de continuer la procédure d\'installation.</blockquote>');
 
-define('TEXT_INFO_CUSTOMER_ALERT_SERVER','TEXT_INFO_CUSTOMER_ALERT_SERVER', '<p><i>Si des changements doivent être effectués sur le serveur, veuillez penser à le redémarrer et à relancer l\'installation de ClicShopping.</i></p>');
+define('TEXT_INFO_CUSTOMER_ALERT_SERVER', '<p><i>Si des changements doivent être effectués sur le serveur, veuillez penser à le redémarrer et à relancer l\'installation de ClicShopping.</i></p>');
 
 define('TEXT_INFO_SERVER_OK', '<p>L\'environnement du serveur a été vérifié et il est conforme au standard de fonctionnement technologique de ClicShopping.</p>
     <p>Si dans la section configuration, vous voyez une croix rouge, veuillez noter qu\'il se peut que des composants ne puissent pas fonctionner correctement ou produisent des dysfonctionnements, certains ne sont pas forcément indispensables mais fortement recommandés pour une utilisation maximale</p>
