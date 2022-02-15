@@ -317,12 +317,12 @@
         $email_subject = CLICSHOPPING::getDef('email_subject_customer', ['store_name' => STORE_NAME]);
         $email_text = CLICSHOPPING::getDef('email_text_customer', ['store_name' => STORE_NAME]);
 
-        $CLICSHOPPING_Mail->clicMail($this->customer->getLastName(), $this->customer->getEmailAddress(), $email_subject, $email_text, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+        $CLICSHOPPING_Mail->clicMail($this->customer->getEmailAddress(), $this->customer->getLastName(), $email_subject, $email_text, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
         $email_subject = CLICSHOPPING::getDef('email_subject', ['store_name' => STORE_NAME]);
         $email_text = CLICSHOPPING::getDef('email_text', ['store_name' => STORE_NAME]);
 
-        $CLICSHOPPING_Mail->clicMail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, $email_subject, $email_text, $this->productsCommon->getProductsName(), STORE_OWNER_EMAIL_ADDRESS);
+        $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_NAME, $email_subject, $email_text, $this->productsCommon->getProductsName(), STORE_OWNER_EMAIL_ADDRESS);
       }
     }
 

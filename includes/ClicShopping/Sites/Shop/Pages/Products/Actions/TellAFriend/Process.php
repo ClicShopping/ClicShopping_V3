@@ -106,7 +106,7 @@
 
           $email_body .= TemplateEmail::getTemplateEmailSignature();
 
-          $CLICSHOPPING_Mail->clicMail($to_name, $to_email_address, $email_subject, $email_body, $from_name, $from_email_address);
+          $CLICSHOPPING_Mail->clicMail($to_email_address, $to_name, $email_subject, $email_body, $from_name, $from_email_address);
 
           $CLICSHOPPING_ActionRecorder->record();
 

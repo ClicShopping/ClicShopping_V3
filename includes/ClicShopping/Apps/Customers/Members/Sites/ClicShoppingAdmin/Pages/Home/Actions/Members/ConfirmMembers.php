@@ -107,8 +107,8 @@
       $email_text = $email_text_confirm . $email_coupon . $email_signature . $email_warning;
 
 // mails avec le mot de passe
-      $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_firstname'), $QcheckCustomer->value('customers_email_address'), $email_text_subject, $email_text, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, '');
-      $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname'), $QcheckCustomer->value('customers_email_address'), $email_text_subject, '<br />' . nl2br(sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass)), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+      $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, $QcheckCustomer->value('customers_firstname'), $QcheckCustomer->value('customers_email_address'), $email_text, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, '');
+      $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_email_address'), $QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname'), $email_text_subject, '<br />' . nl2br(sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass)), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
       $CLICSHOPPING_Members->redirect('Members&page=' . $page);
     }

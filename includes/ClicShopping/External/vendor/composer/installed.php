@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '464129b1a6e23354d91be66c747ec39d3c1bc804',
+    'reference' => 'e89d3e7470a252aec4621341a3fd1bb15144bc16',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '464129b1a6e23354d91be66c747ec39d3c1bc804',
+      'reference' => 'e89d3e7470a252aec4621341a3fd1bb15144bc16',
     ),
     'darkghosthunter/preloader' => 
     array (

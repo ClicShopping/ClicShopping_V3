@@ -80,7 +80,7 @@
 
             $email_subject = CLICSHOPPING::getDef('email_password_subject', ['store_name' => STORE_NAME]);
 
-            $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname'), $QcheckCustomer->value('customers_email_address'), $email_subject, $email_password_reminder_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+            $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_email_address'), $QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname'), $email_subject, $email_password_reminder_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_updated'), 'success');
 

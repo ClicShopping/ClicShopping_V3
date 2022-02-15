@@ -521,10 +521,10 @@
           $message = $email_text;
           $message = str_replace('src="/', 'src="' . HTTP::typeUrlDomain() . '/', $message);
           $CLICSHOPPING_Mail->addHtmlCkeditor($message);
-          ;
-          $from = STORE_OWNER_EMAIL_ADDRESS;
-          $CLICSHOPPING_Mail->send($name, $email_address, null, $from, $email_subject);
 
+          $from = STORE_OWNER_EMAIL_ADDRESS;
+
+          $CLICSHOPPING_Mail->send($email_address, $name, null, $from, $email_subject);
 // Administrator email
           if (EMAIL_INFORMA_ACCOUNT_ADMIN == 'true') {
             $email_subject_admin = CLICSHOPPING::getDef('admin_email_subject', ['store_name' => STORE_NAME]);
@@ -543,8 +543,8 @@
             $from = STORE_OWNER_EMAIL_ADDRESS;
             $admin_email_text_admin .= $admin_email_welcome . $admin_email_text_admin;
             $CLICSHOPPING_Mail->addHtmlCkeditor($admin_email_text_admin);
-            ;
-            $CLICSHOPPING_Mail->send(STORE_NAME, $email_address, null, $from, $email_subject_admin);
+
+            $CLICSHOPPING_Mail->send($email_address, STORE_NAME, null, $from, $email_subject_admin);
           }
 
           $CLICSHOPPING_ActionRecorder->record();

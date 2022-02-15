@@ -299,7 +299,7 @@
           echo("<meta http-equiv=\"refresh\" content=\"12\">");
         }
 
-        $CLICSHOPPING_Mail->send($QmailNewsletterAccountTemp->value['customers_firstname'] . ' ' . $QmailNewsletterAccountTemp->value['customers_lastname'], $QmailNewsletterAccountTemp->value['customers_email_address'], null, $this->emailFrom, $this->title);
+        $CLICSHOPPING_Mail->send($QmailNewsletterAccountTemp->value['customers_email_address'], $QmailNewsletterAccountTemp->value['customers_firstname'] . ' ' . $QmailNewsletterAccountTemp->value['customers_lastname'],null, $this->emailFrom, $this->title);
 
 // delete all entry in the table
         $Qdelete = $this->app->db->prepare('delete

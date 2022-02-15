@@ -78,7 +78,7 @@
       }
 
 // mail report
-      $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, $this->app->getDef('report_password_change_subject', ['username' => $username]), $this->app->getDef('report_password_change_text', ['username' => $username]), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+      $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER, $this->app->getDef('report_password_change_subject', ['username' => $username]), $this->app->getDef('report_password_change_text', ['username' => $username]), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
       $this->app->redirect('Administrators&aID=' . (int)$_GET['aID']);
     }

@@ -1,5 +1,9 @@
 -------------
 Version 3.313
+fix mail function (deprecated)
+move error_document in root
+-------------
+Version 3.313
 fix error sql
 
 -------------

@@ -1304,7 +1304,7 @@
         $email_order .= TemplateEmail::getTemplateEmailSignature() . "\n\n";
         $email_order .= TemplateEmail::getTemplateEmailTextFooter(). "\n";
 
-        $this->mail->clicMail($this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]), $email_order, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+        $this->mail->clicMail($this->customer['email_address'], $this->customer['firstname'] . ' ' . $this->customer['lastname'], CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]), $email_order, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
 // SEND_EXTRA_ORDER_EMAILS_TO does'nt work like this, test<test@test.com>, just with test@test.com
         if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
@@ -1316,10 +1316,10 @@
 
             if (\is_array($email)) {
               foreach ($email as $key => $value) {
-                $this->mail->clicMail(null, $value[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+                $this->mail->clicMail($value[$key], null, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
               }
             } else {
-              $this->mail->clicMail(null, $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+              $this->mail->clicMail($email, null, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
             }
           }
         }
@@ -1365,7 +1365,7 @@
               $email_product_sold_out_stock = stripslashes(CLICSHOPPING::getDef('email_text_stock'));
               $email_product_sold_out_stock .= "\n" . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n" . CLICSHOPPING::getDef('email_text_model') . '  ' . $Qproducts->value('products_model') . "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name') . "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) . "\n";
 
-              $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $email_product_sold_out_stock, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+              $this->mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER, $email_text_subject_stock, $email_product_sold_out_stock, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
             }
           } // end stock alert
         }  // end while
@@ -1416,7 +1416,7 @@
                 $reorder_stock_email = stripslashes(CLICSHOPPING::getDef('email_reorder_level_text_alert_stock'));
                 $reorder_stock_email .= "\n" . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n" . CLICSHOPPING::getDef('email_text_model') . ' ' . $Qproducts->value('products_model') . "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name') . "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_url') . ' </strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' . $Qproducts->value('products_id') . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_stock') . ' ' . $stock_products_quantity_alert . '</strong>';
 
-                $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $reorder_stock_email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+                $this->mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER, $email_text_subject_stock, $reorder_stock_email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
               }
 
               if ($current_stock <= $warning_stock) {
@@ -1425,7 +1425,7 @@
                 $reorder_stock_email = stripslashes(CLICSHOPPING::getDef('email_reorder_level_text_stock'));
                 $reorder_stock_email .= "\n" . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n" . CLICSHOPPING::getDef('email_text_model') . ' ' . $Qproducts->value('products_model') . "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name') . "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_url') . ' </strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' . $Qproducts->value('products_id') . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_stock') . ' ' . $stock_products_quantity_alert . '</strong>';
 
-                $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $reorder_stock_email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+                $this->mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER, $email_text_subject_stock, $reorder_stock_email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
               }
             }
           }

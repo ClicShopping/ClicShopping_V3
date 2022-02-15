@@ -31,7 +31,7 @@
       $page_file = CLICSHOPPING::getSitePageFile();
 
       if (empty($page_file) || !is_file($page_file)) {
-        $page_file = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/error_documents/404.php';
+        $page_file = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'error_documents/404.php';
       }
 
       if (CLICSHOPPING::useSiteTemplateWithPageFile()) {

@@ -98,7 +98,7 @@
       $CLICSHOPPING_Mail->addHtmlCkeditor($message);
 
       $from = STORE_OWNER_EMAIL_ADDRESS;
-      $CLICSHOPPING_Mail->send($check['customers_name'], $check['customers_email_address'], null, $from, $email_subject);
+      $CLICSHOPPING_Mail->send($check['customers_email_address'], $check['customers_name'], null, $from, $email_subject);
 
       $this->hooks->call('Orders', 'OrderEmail');
     }

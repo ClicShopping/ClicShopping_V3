@@ -374,7 +374,7 @@ function selectAll(FormName, SelectBox) {
       $CLICSHOPPING_Mail->addText($text . $this->app->getDef('text_unsubscribe') . HTTP::getShopUrlDomain() . 'index.php?Account&Newsletters');
 
       foreach ($audience as $key => $value) {
-        $CLICSHOPPING_Mail->send($value['firstname'] . ' ' . $value['lastname'], $value['email_address'], null, $this->app->getDef('email_from'), $this->title);
+        $CLICSHOPPING_Mail->send($value['email_address'], $value['firstname'] . ' ' . $value['lastname'], null, $this->app->getDef('email_from'), $this->title);
       }
 
       $newsletter_id = HTML::sanitize($newsletter_id);
@@ -503,10 +503,9 @@ function selectAll(FormName, SelectBox) {
       $CLICSHOPPING_Mail = str_replace('src="/', 'src="' . HTTP::getShopUrlDomain() . '/', $message);
 
       $CLICSHOPPING_Mail->addHtmlCkeditor($message);
-      ;
 
       foreach ($audience as $key => $value) {
-        $CLICSHOPPING_Mail->send($value['firstname'] . ' ' . $value['lastname'], $value['email_address'], null, $this->app->getDef('email_from'), $this->title);
+        $CLICSHOPPING_Mail->send($value['email_address'], $value['firstname'] . ' ' . $value['lastname'], null, $this->app->getDef('email_from'), $this->title);
       }
 
       $CLICSHOPPING_Db->save('newsletters', [

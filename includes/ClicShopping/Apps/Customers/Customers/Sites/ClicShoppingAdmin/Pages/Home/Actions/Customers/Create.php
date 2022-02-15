@@ -404,7 +404,7 @@
 
         $name = $email_gender . ' ' . $customers_firstname . ' ' . $customers_lastname;
 
-        $CLICSHOPPING_Mail->send($name, $customers_email_address, null, $from, $email_subject);
+        $CLICSHOPPING_Mail->send($customers_email_address, $name, null, $from, $email_subject);
       }
 
       $CLICSHOPPING_Hooks->call('Customers', 'Create');

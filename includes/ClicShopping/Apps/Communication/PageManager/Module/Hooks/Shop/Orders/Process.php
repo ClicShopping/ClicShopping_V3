@@ -33,10 +33,10 @@
       $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
       $CLICSHOPPING_Order = Registry::get('Order');
 
-
       $page_manager_general_condition = $CLICSHOPPING_PageManagerShop->pageManagerGeneralCondition();
 
-      $sql_data_array = ['orders_id' => (int)$CLICSHOPPING_Order->getLastOrderId(),
+      $sql_data_array = [
+        'orders_id' => (int)$CLICSHOPPING_Order->getLastOrderId(),
         'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
         'page_manager_general_condition' => $page_manager_general_condition
       ];

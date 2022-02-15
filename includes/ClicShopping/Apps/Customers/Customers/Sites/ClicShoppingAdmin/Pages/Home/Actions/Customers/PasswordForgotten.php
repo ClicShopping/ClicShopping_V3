@@ -73,7 +73,7 @@
         $from_name = STORE_NAME;
         $from_email_address = STORE_OWNER_EMAIL_ADDRESS;
 
-        $CLICSHOPPING_Mail->clicMail($to_name, $to_email_address, $email_subject, nl2br($email_body), $from_name, $from_email_address);
+        $CLICSHOPPING_Mail->clicMail($to_email_address, $to_name, $email_subject, nl2br($email_body), $from_name, $from_email_address);
 
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customer->getDef('text_new_password') . '&nbsp;' . ($QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname')), 'success');
       }

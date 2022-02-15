@@ -78,7 +78,7 @@
           $email_text_body = ' <br />' . TemplateEmail::getTemplateEmailTextFooter();
           $email_text_body .= ' <br />' . TemplateEmail::getTemplateEmailSignature();
 
-          $CLICSHOPPING_Mail->clicMail($Qcheck->value('customers_firstname') . ' ' . $Qcheck->value('customers_lastname'), $email_address, CLICSHOPPING::getDef('text_email_subject', ['store_name' => STORE_NAME]), CLICSHOPPING::getDef('text_email_body', ['store_name' => STORE_NAME]) . $email_text_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+          $CLICSHOPPING_Mail->clicMail($email_address, $Qcheck->value('customers_firstname') . ' ' . $Qcheck->value('customers_lastname'), CLICSHOPPING::getDef('text_email_subject', ['store_name' => STORE_NAME]), CLICSHOPPING::getDef('text_email_body', ['store_name' => STORE_NAME]) . $email_text_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
           $CLICSHOPPING_Customer->reset();
 
