@@ -1785,8 +1785,7 @@ INSERT INTO currencies VALUES(1, 'Euro', 'EUR', '', 'EUR', '.', ',', '2', 1.0000
 INSERT INTO currencies VALUES(2, 'Dollard', 'USD', 'USD', '', '.', ',', '2', 1.40750003, '2008-09-13 18:02:36', 1, 0);
 INSERT INTO currencies VALUES(3, 'Canada', 'CAD', '', 'CAD', '.', '.', '2', 1.50580001, '2008-09-13 18:02:36', 1, 0);
 
-INSERT INTO customers_groups VALUES(1, 'Client Normal', '0.00', '3BFF0A', 0, 'CO', 'IT', 'true', 0);
-INSERT INTO customers_groups VALUES(2, 'Tarifs 1', '5.00', 'FF0000', 0, 'CO', 'IT', 'true', 0);
+INSERT INTO customers_groups VALUES(1, 'Tarifs 1', '5.00', 'FF0000', 0, 'CO', 'IT', 'true', 0);
 
 INSERT INTO geo_zones VALUES(1, 'France', 'Etat français avec tous les départements', '2016-12-03 11:34:53', '2006-04-11 18:48:30');
 INSERT INTO geo_zones VALUES(2, 'Etats membres de l\'UE', 'Etats membres de l\'union européenne', '2016-12-03 11:34:30', '2006-05-04 10:27:42');
