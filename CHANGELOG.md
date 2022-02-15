@@ -1,8 +1,9 @@
 -------------
-Version 3.313
+Version 3.314
 fix mail function (deprecated)
 move error_document in root
 remove constant french installation (can create a deprecated warning)
+
 -------------
 Version 3.313
 fix error sql
