@@ -95,10 +95,11 @@ define('TEXT_INFO_CUSTOMER','
       </blockquote>
 <strong>Note : </strong> Nous conseillons fortement de mettre votre serveur <strong>register_global sur OFF</strong> dans votre fichier de configuration du php.ini. Des fonctionnalités ultérieures propres à ClicShopping fonctionneront uniquement dans ce mode de configuration.<br />
 Vous renforcez aussi la sécurité de votre serveur');
-define('TEXT_INFO_CUSTOMER_ALERT','<blockquote>Veuillez corriger les erreurs suivantes avant de continuer la procédure d\'installation.</blockquote>');
-define('TEXT_INFO_CUSTOMER_ALERT_SERVER','TEXT_INFO_CUSTOMER_ALERT_SERVER','<p><i>Si des changements doivent &ecirc;tre effectués sur le serveur, veuillez penser à le redémarrer et à relancer l\'installation de ClicShopping.</i></p>');
+define('TEXT_INFO_CUSTOMER_ALERT', '<blockquote>Veuillez corriger les erreurs suivantes avant de continuer la procédure d\'installation.</blockquote>');
 
-define('TEXT_INFO_SERVER_OK','<p>L\'environnement du serveur a été vérifié et il est conforme au standard de fonctionnement technologique de ClicShopping.</p>
+define('TEXT_INFO_CUSTOMER_ALERT_SERVER','TEXT_INFO_CUSTOMER_ALERT_SERVER', '<p><i>Si des changements doivent être effectués sur le serveur, veuillez penser à le redémarrer et à relancer l\'installation de ClicShopping.</i></p>');
+
+define('TEXT_INFO_SERVER_OK', '<p>L\'environnement du serveur a été vérifié et il est conforme au standard de fonctionnement technologique de ClicShopping.</p>
     <p>Si dans la section configuration, vous voyez une croix rouge, veuillez noter qu\'il se peut que des composants ne puissent pas fonctionner correctement ou produisent des dysfonctionnements, certains ne sont pas forcément indispensables mais fortement recommandés pour une utilisation maximale</p>
 <strong>Note : </strong> Nous conseillons fortement de mettre votre <strong>register_global sur OFF</strong> dans votre fichier de configuration php.ini et d\'utiliser la technologie PHP5 . Des fonctionnalités ultérieures propres à ClicShopping fonctionneront uniquement dans ce mode de configuration.<br />
     <p>Veuillez continuer la procédure d\'installation.</p>Vous renforcerez aussi la sécurité de votre serveur et de ClicShopping<br /> <br />');
