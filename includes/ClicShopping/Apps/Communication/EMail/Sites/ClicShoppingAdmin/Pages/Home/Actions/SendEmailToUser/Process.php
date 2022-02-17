@@ -133,7 +133,6 @@
             $QmailSave->execute();
 
             if ($QmailSave->fetch()) {
-
               $customers_id = $QmailSave->valueInt('customers_id');
 
               if (!empty($customers_id) && !empty($this->messageMail)) {
@@ -150,7 +149,7 @@
             }
 
             break;
-        }
+          }
 
         $message = $this->messageMail . '<br />' . $this->templateEmailSignature . '<br />' . $this->templateEmailFooter;
 
@@ -160,7 +159,7 @@
         $this->mail->addHtmlCkeditor($message);
 
         while ($Qmail->fetch()) {
-          $this->mail->send($Qmail->value('customers_firstname') . ' ' . $Qmail->value('customers_lastname'), $Qmail->value('customers_email_address'), '', $this->from, $this->subject);
+          $this->mail->send($Qmail->value('customers_email_address'), $Qmail->value('customers_firstname') . ' ' . $Qmail->value('customers_lastname'), $this->from, null, $this->subject);
         }
 
         $CLICSHOPPING_MessageStack->add($this->app->getDef('success_email_sent'), 'success', 'email');

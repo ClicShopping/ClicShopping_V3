@@ -15,6 +15,7 @@
   use PHPMailer\PHPMailer\Exception;
   use PHPMailer\PHPMailer\PHPMailer;
   use EmailValidator\EmailValidator;
+  use PHPMailer\PHPMailer\SMTP;
 
   class Mail
   {
@@ -37,7 +38,7 @@
       $this->phpMail = new PHPMailer();
 
       $this->phpMail->XMailer = 'ClicShopping ' . CLICSHOPPING::getVersion();
-      $this->phpMail->SMTPDebug = $this->debug;
+      $this->phpMail->SMTPDebug = SMTP::DEBUG_SERVER;
 // test with exit
 //      $this->phpMail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";};
       $this->phpMail->debugOutput = $this->debugFileOutput;
@@ -45,34 +46,77 @@
       $this->phpMail->WordWrap = 998;
       $this->phpMail->Encoding = 'quoted-printable';
 
+      /*
+      //Configure message signing (the actual signing does not occur until sending)
+            $phpMail->sign('/path/to/cert.crt', //The location of your certificate file
+                          '/path/to/cert.key', //The location of your private key file
+                          'yourSecretPrivateKeyPassword', //The password you protected your private key with (not the Import Password! may be empty but parameter must not be omitted!)
+                          '/path/to/certchain.pem' //The location of your chain file
+                          );
+      */
 
-      if (EMAIL_TRANSPORT == 'smtp' || EMAIL_TRANSPORT == 'gmail') {
-        $this->phpMail->IsSMTP();
-
-        $this->phpMail->Port = EMAIL_SMTP_PORT;
-
-        if (EMAIL_SMTP_SECURE != 'no') {
-          $this->phpMail->SMTPSecure = EMAIL_SMTP_SECURE;
-        }
-
-        $this->phpMail->Host = EMAIL_SMTP_HOSTS;
-        $this->phpMail->SMTPAuth = EMAIL_SMTP_AUTHENTICATION;
-
-        $this->phpMail->Username = EMAIL_SMTP_USER;
-        $this->phpMail->Password = EMAIL_SMTP_PASSWORD;
-
-      } else {
-        try {
-          $this->phpMail->isSendmail();
-        } catch (Exception $e) {
-          echo CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]);
-        }
-      }
 
       if (EMAIL_LINEFEED == 'CRLF') {
         $this->lf = "\r\n";
       } else {
         $this->lf = "\n";
+      }
+    }
+
+    /**
+     *  Send email
+     */
+    protected function sendPhpMailer() :bool
+    {
+        if (EMAIL_TRANSPORT == 'smtp' || EMAIL_TRANSPORT == 'gmail') {
+          try {
+ //           $this->phpMail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $this->phpMail->IsSMTP();
+
+            $this->phpMail->Host = EMAIL_SMTP_HOSTS;
+            $this->phpMail->SMTPAuth = EMAIL_SMTP_AUTHENTICATION;
+
+            $this->phpMail->Username = EMAIL_SMTP_USER;
+            $this->phpMail->Password = EMAIL_SMTP_PASSWORD;
+
+            if (EMAIL_SMTP_SECURE != 'no') {
+              if (EMAIL_SMTP_SECURE == 'tls') {
+                $this->phpMail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $this->phpMail->Port = 587;
+              } elseif (EMAIL_SMTP_SECURE == 'ssl') {
+                $this->phpMail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $this->phpMail->Port = 465;
+              } else {
+                $this->phpMail->SMTPSecure = EMAIL_SMTP_SECURE;
+                $this->phpMail->Port = EMAIL_SMTP_PORT;
+              }
+            }
+
+        //    $this->phpMail->send();
+          } catch (Exception $e) {
+            echo CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]);
+          }
+        } else {
+          try {
+            $this->phpMail->isSendmail();
+          } catch (Exception $e) {
+            echo CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]);
+          }
+        }
+
+      $error = false;
+
+      if (!$this->phpMail->Send()) {
+        $error = true;
+      }
+
+      $this->phpMail->clearAddresses();
+      $this->phpMail->clearAttachments();
+
+      if ($error === true) {
+        return false;
+      } else {
+        return true;
       }
     }
 
@@ -121,7 +165,7 @@
      * content-id's.
      */
 
-    public function addHtmlCkeditor(string $html, $text = NULL, $images_dir = NULL)
+    public function addHtmlCkeditor(string $html, ?string $text = NULL, ?string $images_dir = NULL): void
     {
       $this->phpMail->IsHTML(true);
 
@@ -145,7 +189,7 @@
      * @return bool
      * @throws Exception
      */
-    public function addCC(string $email_address, $name = null)
+    public function addCC(string $email_address, ?string $name = null)
     {
       return $this->phpMail->addCC($email_address, $name);
     }
@@ -156,7 +200,7 @@
      * @return bool
      * @throws Exception
      */
-    public function addBCC(string $email_address, $name = null)
+    public function addBCC(string $email_address, ?string $name = null)
     {
       return $this->phpMail->addBCC($email_address, $name);
     }
@@ -249,7 +293,8 @@
       }
 
 //Set who the message is to be sent from
-      $this->phpMail->setFrom($from_addr, $from_addr ?? '');
+
+      $this->phpMail->setFrom($from_addr, STORE_NAME);
 
 //Set who the message is to be sent to
       $this->phpMail->AddAddress($to_addr, $to_name ?? '');
@@ -269,47 +314,18 @@
 
       if (!empty($this->html)) {
         $this->phpMail->Body = $this->html;
-        $this->phpMail->AltBody = $this->html_text;
 
+        if (!empty($this->html_text)) {
+          $this->phpMail->AltBody = $this->html_text;
+        }else {
+          $this->phpMail->AltBody = HTML::sanitize(STORE_NAME);
+        }
       } else {
         $this->phpMail->Body = $this->text;
+        $this->phpMail->AltBody = HTML::sanitize(STORE_NAME);
       }
 
-      if (EMAIL_TRANSPORT == 'smtp' || EMAIL_TRANSPORT == 'gmail') {
-
-        $this->phpMail->IsSMTP();
-
-        $this->phpMail->Port = EMAIL_SMTP_PORT;
-
-        if (EMAIL_SMTP_SECURE !== 'no') {
-          $this->phpMail->SMTPSecure = EMAIL_SMTP_SECURE;
-        }
-
-        $this->phpMail->Host = EMAIL_SMTP_HOSTS;
-        $this->phpMail->SMTPAuth = EMAIL_SMTP_AUTHENTICATION;
-        $this->phpMail->Username = EMAIL_SMTP_USER;
-        $this->phpMail->Password = EMAIL_SMTP_PASSWORD;
-
-      } else {
-        try {
-          $this->phpMail->isSendmail();
-        } catch (Exception $e) {
-          echo CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]);
-        }
-      }
-
-      $error = false;
-
-      if (!$this->phpMail->Send()) {
-        $error = true;
-      }
-
-      $this->phpMail->clearAddresses();
-      $this->phpMail->clearAttachments();
-
-      if ($error === true) {
-        return false;
-      }
+      $this->sendPhpMailer();
 
       return true;
     }
@@ -342,14 +358,15 @@
         return false;
       }
 
-
 // Build the text version
       $text = strip_tags($email_text);
 
       if (EMAIL_USE_HTML == 'true') {
         $this->addHtml($email_text, $text);
+        $this->phpMail->AltBody = HTML::sanitize(STORE_NAME);
       } else {
         $this->addText($text);
+        $this->phpMail->AltBody = HTML::sanitize(STORE_NAME);
       }
 
       // Send message
