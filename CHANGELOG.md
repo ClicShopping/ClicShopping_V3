@@ -1,3 +1,9 @@
+Version 3.315
+Ckeditor version updated
+Librairies updated
+fix Mail classes
+
+
 -------------
 Version 3.314
 fix mail function (deprecated)
