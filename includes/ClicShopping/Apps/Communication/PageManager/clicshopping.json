@@ -25,6 +25,9 @@
     "DeleteConfirm":	"Module\\Hooks\\ClicShoppingAdmin\\Langues\\DeleteConfirm",
     "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Langues\\Insert"
    },
+   "ClicShoppingAdmin/CustomersGroup": {
+    "Delete":	"Module\\Hooks\\ClicShoppingAdmin\\CustomersGroup\\Delete"
+   },
    "Shop/Orders": {
     "Process":	"Module\\Hooks\\Shop\\Orders\\Process"
    }

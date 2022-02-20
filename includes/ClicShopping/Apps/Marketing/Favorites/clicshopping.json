@@ -22,6 +22,9 @@
     "PageTab":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\PageContent",
     "Save":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\Save",
     "RemoveProduct":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\RemoveProduct"
+   },
+   "ClicShoppingAdmin/CustomersGroup": {
+    "Delete":	"Module\\Hooks\\ClicShoppingAdmin\\CustomersGroup\\Delete"
    }
   }
  },

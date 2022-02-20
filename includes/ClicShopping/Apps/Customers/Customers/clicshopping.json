@@ -18,6 +18,9 @@
     "TotalCustomers": "Module\\ClicShoppingAdmin\\Dashboard\\TotalCustomers"
    },
   "Hooks": {
+   "ClicShoppingAdmin/CustomersGroup": {
+    "Delete":	"Module\\Hooks\\ClicShoppingAdmin\\CustomersGroup\\Delete"
+   },
    "ClicShoppingAdmin/StatsDashboard": {
     "PageTabContent":  "Module\\Hooks\\ClicShoppingAdmin\\StatsDashboard\\PageTabContent"
    },
