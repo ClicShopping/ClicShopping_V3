@@ -62,35 +62,18 @@
         if ($banner_customers_id['count'] > 0) {
 
           $Qdelete = $CLICSHOPPING_Groups->db->prepare('delete from :table_banners
-                                                  where customers_group_id = :customers_group_id
-                                                 ');
-          $Qdelete->bindInt(':customers_group_id', (int)$group_id);
-          $Qdelete->execute();
-        }
-
-  // delete all extra fields
-
-        $QproductsExtraFieldsCustomersId = $CLICSHOPPING_Groups->db->prepare('select count(customers_group_id) as count
-                                                                             from :table_products_extra_fields
-                                                                             where customers_group_id = :customers_group_id
-                                                                            ');
-        $QproductsExtraFieldsCustomersId->bindInt(':customers_group_id', (int)$group_id);
-        $QproductsExtraFieldsCustomersId->execute();
-
-        if ($QproductsExtraFieldsCustomersId->valueInt('count') > 0) {
-
-          $Qdelete = $CLICSHOPPING_Groups->db->prepare('delete
-                                                        from :table_products_extra_fields
                                                         where customers_group_id = :customers_group_id
-                                                      ');
+                                                       ');
           $Qdelete->bindInt(':customers_group_id', (int)$group_id);
           $Qdelete->execute();
         }
+
+
 
         $QpageManagerCustomersId = $CLICSHOPPING_Groups->db->prepare("select count(customers_group_id) as count
-                                                         from :table_pages_manager
-                                                         where customers_group_id = :customers_group_id
-                                                       ");
+                                                                     from :table_pages_manager
+                                                                     where customers_group_id = :customers_group_id
+                                                                   ");
         $QpageManagerCustomersId->bindInt(':customers_group_id', (int)$group_id);
         $QpageManagerCustomersId->execute();
 
@@ -124,17 +107,17 @@
 
   // delete all products favorites
         $QProductsFavoritesCustomersId = $CLICSHOPPING_Groups->db->prepare('select count(customers_group_id) as count
-                                                                 from :table_products_favorites
-                                                                 where customers_group_id = :customers_group_id
-                                                               ');
+                                                                           from :table_products_favorites
+                                                                           where customers_group_id = :customers_group_id
+                                                                         ');
         $QProductsFavoritesCustomersId->bindInt(':customers_group_id', (int)$group_id);
         $QProductsFavoritesCustomersId->execute();
 
         if ($QProductsFavoritesCustomersId->valueInt('count') > 0) {
           $Qdelete = $CLICSHOPPING_Groups->db->prepare('delete
-                                                  from :table_products_favorites
-                                                  where customers_group_id = :customers_group_id
-                                                ');
+                                                        from :table_products_favorites
+                                                        where customers_group_id = :customers_group_id
+                                                      ');
           $Qdelete->bindInt(':customers_group_id', (int)$group_id);
           $Qdelete->execute();
         }
