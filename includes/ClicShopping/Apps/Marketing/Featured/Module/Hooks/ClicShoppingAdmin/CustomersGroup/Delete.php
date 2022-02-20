@@ -35,17 +35,17 @@
     private function delete(int $group_id) :void
     {
       $QProductsFeaturedCustomersId = $this->app->db->prepare('select count(customers_group_id) as count
-                                                         from :table_products_featured
-                                                         where customers_group_id = :customers_group_id
-                                                         ');
+                                                               from :table_products_featured
+                                                               where customers_group_id = :customers_group_id
+                                                               ');
       $QProductsFeaturedCustomersId->bindInt(':customers_group_id', (int)$group_id);
       $QProductsFeaturedCustomersId->execute();
 
       if ($QProductsFeaturedCustomersId->valueInt('count') > 0) {
         $Qdelete = $this->app->db->prepare('delete
-                                       from :table_products_featured
-                                       where customers_group_id = :customers_group_id
-                                       ');
+                                             from :table_products_featured
+                                             where customers_group_id = :customers_group_id
+                                             ');
         $Qdelete->bindInt(':customers_group_id', (int)$group_id);
         $Qdelete->execute();
       }

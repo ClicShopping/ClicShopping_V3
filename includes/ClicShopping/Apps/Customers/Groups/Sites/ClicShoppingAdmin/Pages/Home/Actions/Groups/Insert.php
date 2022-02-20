@@ -71,6 +71,8 @@
           }
 
           $group_payment_unallowed = substr($group_payment_unallowed, 0, \strlen($group_payment_unallowed) - 1);
+        } else {
+          $group_payment_unallowed = '';
         }
 
 // Module de livraison autorise
@@ -84,9 +86,12 @@
           }
 
           $group_shipping_unallowed = substr($group_shipping_unallowed, 0, \strlen($group_shipping_unallowed) - 1);
+        } else {
+          $group_shipping_unallowed = '';
         }
 
-        $CLICSHOPPING_Groups->db->save('customers_groups', ['customers_group_name' => $customers_groups_name,
+        $CLICSHOPPING_Groups->db->save('customers_groups', [
+            'customers_group_name' => $customers_groups_name,
             'customers_group_discount' => (float)$customers_groups_discount,
             'color_bar' => $color_bar,
             'group_payment_unallowed' => $group_payment_unallowed,
