@@ -26,7 +26,6 @@
 
     public function execute()
     {
-
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
       $lID = HTML::sanitize($_GET['lID']);
       $name = HTML::sanitize($_POST['name']);
@@ -36,7 +35,7 @@
       $sort_order = (int)HTML::sanitize($_POST['sort_order']);
       $locale = HTML::sanitize($_POST['locale']);
 
-      $this->app->db->save('languages', [
+      $save_sql = [
         'name' => $name,
         'code' => $code,
         'image' => $image,
@@ -44,9 +43,9 @@
         'sort_order' => (int)$sort_order,
         'status' => 1,
         'locale' => $locale
-      ],
-        ['languages_id' => (int)$lID]
-      );
+      ];
+
+      $this->app->db->save('languages', $save_sql, ['languages_id' => (int)$lID]);
 
       if (isset($_POST['default'])) {
         $this->app->db->save('configuration', ['configuration_value' => $code],

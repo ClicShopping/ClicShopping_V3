@@ -137,8 +137,7 @@
 // ---------------------------------------------------------
 // -- insert datas
 // ---------------------------------------------------------
-
-      $this->app->db->save('languages', [
+      $insert_array =  [
         'name' => $name,
         'code' => $code,
         'image' => $image,
@@ -146,8 +145,9 @@
         'sort_order' => (int)$sort_order,
         'status' => 0,
         'locale' => $locale
-        ]
-      );
+      ];
+
+      $this->app->db->save('languages', $insert_array );
 
       $insert_id = $this->app->db->lastInsertId();
 

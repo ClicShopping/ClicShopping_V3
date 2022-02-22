@@ -35,15 +35,11 @@
       $Qlng = $this->app->db->get('languages', 'languages_id', ['code' => DEFAULT_LANGUAGE]);
 
       if ($Qlng->valueInt('languages_id') === (int)$lID) {
-        $this->app->db->save('configuration', ['configuration_value' => ''],
-          ['configuration_key' => 'DEFAULT_CURRENCY']
-        );
+        $this->app->db->save('configuration', ['configuration_value' => ''], ['configuration_key' => 'DEFAULT_CURRENCY']);
       }
 
 // Delete all table for the language deleted
       $this->app->db->delete('languages', ['languages_id' => $lID]);
-
-
       $this->app->db->delete('products_options', ['language_id' => $lID]);
       $this->app->db->delete('products_options_values', ['language_id' => $lID]);
 

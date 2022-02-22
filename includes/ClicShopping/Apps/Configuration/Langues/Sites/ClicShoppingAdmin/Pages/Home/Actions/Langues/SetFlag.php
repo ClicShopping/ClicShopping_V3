@@ -9,14 +9,12 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Configuration\Langues\Sites\ClicShoppingAdmin\Pages\Home\Actions\Langues;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Cache;
 
   use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\Status;
-
 
   class SetFlag extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -29,7 +27,6 @@
 
     public function execute()
     {
-
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       Status::getLanguageStatus($_GET['lid'], $_GET['flag']);

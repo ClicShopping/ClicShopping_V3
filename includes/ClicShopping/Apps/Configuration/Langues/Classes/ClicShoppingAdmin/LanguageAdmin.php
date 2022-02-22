@@ -15,21 +15,22 @@
 
   class LanguageAdmin
   {
-    /**
-     * @return int
-     */
-      public static function getLatestLanguageID()  :int
-      {
-        $CLICSHOPPING_Db = Registry::get('Db');
+  /**
+   * @return int
+   */
+    public static function getLatestLanguageID()  :int
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
 
-        $Qcheck = $CLICSHOPPING_Db->prepare('select languages_id
-                                             from :table_languages
-                                             order by languages_id desc
-                                             limit 1
-                                          ');
-        $Qcheck->execute();
-        $language_id = $Qcheck->valueInt('languages_id');
+      $Qcheck = $CLICSHOPPING_Db->prepare('select languages_id
+                                           from :table_languages
+                                           order by languages_id desc
+                                           limit 1
+                                        ');
+      $Qcheck->execute();
 
-        return $language_id;
-      }
+      $language_id = $Qcheck->valueInt('languages_id');
+
+      return $language_id;
+    }
   }
