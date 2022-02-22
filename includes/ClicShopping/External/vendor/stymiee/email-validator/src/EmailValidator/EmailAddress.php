@@ -44,7 +44,7 @@ class EmailAddress
      */
     private function getUsername(): ?string
     {
-        return explode('@', $this->email)[0] ?? null;
+        return explode('@', $this->email)[0] ?? '';
     }
 
     /**
@@ -71,6 +71,6 @@ class EmailAddress
      */
     public function getGmailAddressWithoutPlus(): string
     {
-        return preg_replace('/^(.+?)(\+.+?)(@.+?)/', '$1$3', $this->getEmailAddress());
+        return preg_replace('/^(.+?)(\+.+?)(@.+)/', '$1$3', $this->getEmailAddress());
     }
 }

@@ -225,4 +225,4 @@ the address.
 ## Support
 
 If you require assistance using this library start by viewing the [HELP.md](HELP.md) file included in this package. It 
-includes common problems and solutions as well hwo to ask for additional assistance.
+includes common problems and solutions as well how to ask for additional assistance.

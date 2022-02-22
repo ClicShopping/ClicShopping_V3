@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => 'ffdd80cce85b94b06b957cc6b7ff6062eff9cf40',
+    'reference' => '753b3bf639470f0e75583fe500b8b5d9c08be9d2',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => 'ffdd80cce85b94b06b957cc6b7ff6062eff9cf40',
+      'reference' => '753b3bf639470f0e75583fe500b8b5d9c08be9d2',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -161,12 +161,12 @@ class InstalledVersions
     ),
     'stymiee/email-validator' => 
     array (
-      'pretty_version' => '1.1.0',
-      'version' => '1.1.0.0',
+      'pretty_version' => '1.1.1',
+      'version' => '1.1.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '61b14e8b4c6568307bd7f9d7b36324a6d3301572',
+      'reference' => 'f6b1e246687591afd17cbe38d08580d71b48c081',
     ),
     'symfony/deprecation-contracts' => 
     array (

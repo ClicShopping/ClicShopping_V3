@@ -1,3 +1,8 @@
+VERSION 1.1.1 - 2022-02-22
+-----------------------------------------------------------------------------------------------------------------------
+When getting an email address' username, if there was none, return an empty string instead of NULL
+
+
 VERSION 1.1.0 - 2022-02-02
 -----------------------------------------------------------------------------------------------------------------------
 Added support for identifying and working with Gmail addresses using the "plus trick" to create unique addresses

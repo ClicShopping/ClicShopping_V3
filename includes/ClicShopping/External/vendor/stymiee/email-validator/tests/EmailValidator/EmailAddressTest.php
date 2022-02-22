@@ -60,6 +60,7 @@ class EmailAddressTest extends TestCase
             ['test+example@gmail.com', true],
             ['test@example.com', false],
             ['test+example@example.com', false],
+            ['@example.com', false],
         ];
     }
 
