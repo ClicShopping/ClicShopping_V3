@@ -2,7 +2,7 @@ Version 3.315
 Ckeditor version updated
 Librairies updated
 fix Mail classes
-
+Code refactoring
 
 -------------
 Version 3.314

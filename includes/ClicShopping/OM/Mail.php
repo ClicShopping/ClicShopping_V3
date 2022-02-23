@@ -38,7 +38,7 @@
       $this->phpMail = new PHPMailer();
 
       $this->phpMail->XMailer = 'ClicShopping ' . CLICSHOPPING::getVersion();
-//      $this->phpMail->SMTPDebug = SMTP::DEBUG_SERVER;
+
 // test with exit
 //      $this->phpMail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";};
       $this->phpMail->debugOutput = $this->debugFileOutput;
@@ -70,6 +70,7 @@
     {
         if (EMAIL_TRANSPORT == 'smtp' || EMAIL_TRANSPORT == 'gmail') {
           try {
+ //           $this->phpMail->SMTPDebug = SMTP::DEBUG_SERVER;
             $this->phpMail->IsSMTP();
 
             $this->phpMail->Host = EMAIL_SMTP_HOSTS;

@@ -15,6 +15,7 @@
 
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Item = Registry::get('Item');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
@@ -43,7 +44,7 @@
   </div>
   <div class="separator"></div>
   <div class="col-md-12 alert alert-warning" role="alert">
-    <span><?php echo $CLICSHOPPING_Chronopost->getDef('text_warning_group'); ?></span>
+    <span><?php echo $CLICSHOPPING_Item->getDef('text_warning_group'); ?></span>
   </div>
   
   <?php

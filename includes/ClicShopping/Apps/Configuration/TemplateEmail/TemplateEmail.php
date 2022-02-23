@@ -18,7 +18,7 @@
   {
 
     protected $api_version = 1;
-    protected $identifier = 'ClicShopping_TemplateEmail_V1';
+    protected string $identifier = 'ClicShopping_TemplateEmail_V1';
 
     protected function init()
     {
@@ -32,39 +32,10 @@
         $result = [];
 
         $directory = CLICSHOPPING::BASE_DIR . 'Apps/Configuration/TemplateEmail/Module/ClicShoppingAdmin/Config';
+        $name_space_config = 'ClicShopping\Apps\Configuration\TemplateEmail\Module\ClicShoppingAdmin\Config';
+        $trigger_message = 'ClicShopping\Apps\Configuration\TemplateEmail\TemplateEmail::getConfigModules(): ';
 
-        if ($dir = new \DirectoryIterator($directory)) {
-          foreach ($dir as $file) {
-            if (!$file->isDot() && $file->isDir() && is_file($file->getPathname() . '/' . $file->getFilename() . '.php')) {
-              $class = 'ClicShopping\Apps\Configuration\TemplateEmail\Module\ClicShoppingAdmin\Config\\' . $file->getFilename() . '\\' . $file->getFilename();
-
-              if (is_subclass_of($class, 'ClicShopping\Apps\Configuration\TemplateEmail\Module\ClicShoppingAdmin\Config\ConfigAbstract')) {
-                $sort_order = $this->getConfigModuleInfo($file->getFilename(), 'sort_order');
-                if ($sort_order > 0) {
-                  $counter = $sort_order;
-                } else {
-                  $counter = \count($result);
-                }
-
-                while (true) {
-                  if (isset($result[$counter])) {
-                    $counter++;
-
-                    continue;
-                  }
-
-                  $result[$counter] = $file->getFilename();
-
-                  break;
-                }
-              } else {
-                trigger_error('ClicShopping\Apps\Configuration\TemplateEmail\TemplateEmail::getConfigModules(): ClicShopping\Apps\Configuration\TemplateEmail\Module\ClicShoppingAdmin\Config\\' . $file->getFilename() . '\\' . $file->getFilename() . ' is not a subclass of ClicShopping\Apps\Configuration\TemplateEmail\Module\ClicShoppingAdmin\Config\ConfigAbstract and cannot be loaded.');
-              }
-            }
-          }
-
-          ksort($result, SORT_NUMERIC);
-        }
+        $this->getConfigApps($result, $directory, $name_space_config, $trigger_message);
       }
 
       return $result;
@@ -87,7 +58,10 @@
       return $this->api_version;
     }
 
-    public function getIdentifier()
+     /**
+     * @return string
+     */
+    public function getIdentifier() :String
     {
       return $this->identifier;
     }
