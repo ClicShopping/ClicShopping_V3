@@ -519,6 +519,11 @@ INSERT INTO administrator_menu_description VALUES(781, 'Produits sélectionnés'
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
 
+INSERT INTO categories VALUES (1, '', 0, 0, '2022-02-24 10:00:18', NULL, 0, 1, 99);
+INSERT INTO categories_description VALUES (1, 1, 'Monitor', '', '', '', '', '');
+INSERT INTO categories_description VALUES (1, 2, 'Moniteur', '',	'', '', '', '');
+
+
 INSERT INTO configuration VALUES(1, 'Nom de la boutique', 'STORE_NAME', '', 'Veuillez indiquer le nom de votre boutique.<br><br><font color="#FF0000"><b>Note :</b> Ce nom s\'affichera dans le contenu des e-mails</font><br>', 1, 1, '2007-06-02 15:39:18', '2006-04-09 16:13:47', NULL, NULL);
 INSERT INTO configuration VALUES(2, 'Responsable de la boutique', 'STORE_OWNER', '', 'Veuillez indiquer le nom du responsable de la boutique.<br>', 1, 2, '2008-09-15 09:39:27', '2006-04-09 16:13:47', NULL, NULL);
 INSERT INTO configuration VALUES(3, 'Adresse  e-Mail de la boutique', 'STORE_OWNER_EMAIL_ADDRESS', '', 'Veuillez indiquer l\'adresse email qui sera utilisée par la boutique lors des envois des emails.', 1, 3, '2007-06-02 15:40:42', '2006-04-09 16:13:47', NULL, NULL);
@@ -1892,6 +1897,14 @@ INSERT INTO pages_manager_description VALUES(14, 'Nos Coups de coeur', '', 'inde
 INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 1, '', '', '');
 INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 2, '', '', '');
 
+INSERT INTO products VALUES (1, NULL, NULL, 10, 'REF-1399712127', 'products/demo/130_H9BIPqG26z_imac_1-500x500.jpg', 'REF-2092687104', 'REF-777702931', 'products/demo/640_H9BIPqG26z_imac_1-500x500.jpg', 2500.0000,	'2022-02-24 10:05:06',	'2022-02-24 10:14:15',	NULL,	1.0000,	'',	1,	1,	0,	0,	1,	'1',	'1',	0,	0,	1,	0,	0.00,	0.00,	0.00,	2,	'admin admin',	'0.00',	0,	0,	'products/demo/250_H9BIPqG26z_imac_1-500x500.jpg',	'products/demo/70_H9BIPqG26z_imac_1-500x500.jpg', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
+
+INSERT INTO products_description VALUES (1, 1, 'IMac Monitor', 'Introducing the new 15.4-inch MacBook Pro. The state-of-the-art quad-core Intel i7 processor delivers up to 2x faster performance (over the previous generation of MacBook Pro). New Thunderbolt technology lets you connect high-performance peripherals and high-resolution displays to a single port, and transfer files at lightning speeds. And with the new built-in FaceTime HD camera, you can make astonishingly crisp HD video calls. <br />\r\n<br />\r\nWith the revolutionary Thunderbolt technology, you\'ll be able to achieve bi-directional channels with transfer speeds to peripherals like external hard drives and servers up to an amazing 10 Gbps--while also connecting to a DisplayPort-compatible high-resolution display. <br />\r\n<br />\r\nAs with previous models, the MacBook Pro features a precision unibody enclosure crafted from a single block of aluminum, creating a thin and light mobile computing workhorse (less than 1 inch thin and just 5.6 pounds) that\'s also highly durable. It includes a 15.4-inch, LED-backlit glass display as well as a glass trackpad that doesn\'t include a button (for larger tracking area) that features Apple\'s Multi-Touch technology. And it comes standard with automatic graphics switching that provides performance when you need it and energy efficiency when you don\'t. You\'ll also get up to 9 hours of battery life while on the go. <br />\r\n<br />\r\nThis version of the 15.4-inch MacBook Pro features a 2.2 GHz Core i7 \"Haswell/Crystalwell\" quad-core processor, 256 GB solid state hard drive, and 16 GB of installed RAM. other features include ultra fast connectivity includes 802.11ac Wi-Fi, Bluetooth 4.0, two USB 3.0 ports, two \"Thunderbolt 2\" ports, an HDMI port, an audio in/out port, and an SDXC card slot. It also comes with the Mac OS X El Capitan operating system as well as the iLife software suite, which includes the latest versions of iPhoto, iMovie, and GarageBand.', '', 0, '', '',	'', '', '', '', '');
+INSERT INTO products_description VALUES (1, 2, 'Moniteur IMac', 'Introducing the new 15.4-inch MacBook Pro. The state-of-the-art quad-core Intel i7 processor delivers up to 2x faster performance (over the previous generation of MacBook Pro). New Thunderbolt technology lets you connect high-performance peripherals and high-resolution displays to a single port, and transfer files at lightning speeds. And with the new built-in FaceTime HD camera, you can make astonishingly crisp HD video calls. <br />\r\n<br />\r\nWith the revolutionary Thunderbolt technology, you\'ll be able to achieve bi-directional channels with transfer speeds to peripherals like external hard drives and servers up to an amazing 10 Gbps--while also connecting to a DisplayPort-compatible high-resolution display. <br />\r\n<br />\r\nAs with previous models, the MacBook Pro features a precision unibody enclosure crafted from a single block of aluminum, creating a thin and light mobile computing workhorse (less than 1 inch thin and just 5.6 pounds) that\'s also highly durable. It includes a 15.4-inch, LED-backlit glass display as well as a glass trackpad that doesn\'t include a button (for larger tracking area) that features Apple\'s Multi-Touch technology. And it comes standard with automatic graphics switching that provides performance when you need it and energy efficiency when you don\'t. You\'ll also get up to 9 hours of battery life while on the go. <br />\r\n<br />\r\nThis version of the 15.4-inch MacBook Pro features a 2.2 GHz Core i7 \"Haswell/Crystalwell\" quad-core processor, 256 GB solid state hard drive, and 16 GB of installed RAM. other features include ultra fast connectivity includes 802.11ac Wi-Fi, Bluetooth 4.0, two USB 3.0 ports, two \"Thunderbolt 2\" ports, an HDMI port, an audio in/out port, and an SDXC card slot. It also comes with the Mac OS X El Capitan operating system as well as the iLife software suite, which includes the latest versions of iPhoto, iMovie, and GarageBand.', '', 0, '', '',	'', '', '', '', '');
+
+INSERT INTO products_groups VALUES (1, 2375.0000, 1, 2500.0000, '1','1', '1', 0, '', 1);
+
+INSERT INTO products_images VALUES (1, 1, 'products/demo/imac_2-500x500.jpg', '', 1);
 
 INSERT INTO products_quantity_unit VALUES(4, 2, 'douzaine');
 INSERT INTO products_quantity_unit VALUES(4, 1, 'dozen');
@@ -1903,6 +1916,8 @@ INSERT INTO products_quantity_unit VALUES(5, 2, 'pcs');
 INSERT INTO products_quantity_unit VALUES(5, 1, 'pièces');
 INSERT INTO products_quantity_unit VALUES(1, 2, 'unité');
 INSERT INTO products_quantity_unit VALUES(1, 1, 'unit');
+
+INSERT INTO products_to_categories VALUES (1, 1);
 
 INSERT INTO sec_directory_whitelist VALUES(1, 'ClicShoppingAdmin/includes/backups');
 INSERT INTO sec_directory_whitelist VALUES(2, 'ClicShoppingAdmin/images');
@@ -2663,4 +2678,3 @@ INSERT INTO zones_to_geo_zones VALUES(80, 38, 77, 7, NULL, '2015-02-09 16:11:01'
 INSERT INTO zones_to_geo_zones VALUES(81, 38, 68, 14, NULL, '2015-02-09 16:12:03');
 INSERT INTO zones_to_geo_zones VALUES(82, 38, 77, 14, NULL, '2015-02-09 16:12:14');
 INSERT INTO zones_to_geo_zones VALUES(83, 38, 76, 9, NULL, '2015-02-09 18:53:27');
-
