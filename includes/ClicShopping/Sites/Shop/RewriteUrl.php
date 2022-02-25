@@ -881,7 +881,7 @@
 
           $products_seo_url = $Qseo->value('products_seo_url');
 
-          if(empty($products_seo_url) or \is_null($products_seo_url)) {
+          if(empty($products_seo_url) || \is_null($products_seo_url)) {
             $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
             $products_name = $this->replaceString($products_name);
             $products_url_rewrited = 'Products&Description&' . $products_name . '&Id=' . $products_id;
@@ -968,7 +968,7 @@
 
           $categories_seo_url = $Qseo->value('categories_seo_url');
 
-          if(empty($categories_seo_url) or \is_null($categories_seo_url)) {
+          if(empty($categories_seo_url) || \is_null($categories_seo_url)) {
             $link_title = $this->title;
             $link_title = $this->replaceString($link_title);
 
