@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => '5d0e3be779bce467ecda590f9004e08b709992d0',
+    'reference' => '495960da4e8a0a13b66dac9ff14a45b4004094b8',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => '5d0e3be779bce467ecda590f9004e08b709992d0',
+      'reference' => '495960da4e8a0a13b66dac9ff14a45b4004094b8',
     ),
     'darkghosthunter/preloader' => 
     array (

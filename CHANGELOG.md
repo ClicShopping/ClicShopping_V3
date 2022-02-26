@@ -3,6 +3,9 @@
 Version 3.316
 Automatic install detection for the first installation
 code refactoring
+add support menu with wiki link (technical doc)
+
+
 
 -------------
 Version 3.315
