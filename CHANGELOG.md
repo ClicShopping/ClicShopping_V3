@@ -1,3 +1,10 @@
+
+-------------
+Version 3.316
+Automatic install detection for the first installation
+code refactoring
+
+-------------
 Version 3.315
 Ckeditor version updated
 Librairies updated

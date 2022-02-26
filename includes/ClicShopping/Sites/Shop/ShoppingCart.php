@@ -123,8 +123,13 @@
           $this->productsId = $item_id;
           $restore_qty = $this->getRestoreQty($qty, $item_id);
 
-          if ($qty < $restore_qty) $qty = $this->getRestoreQty();
-          if ($qty > $restore_qty) $qty = $data['qty'];
+          if ($qty < $restore_qty) {
+            $qty = $this->getRestoreQty();
+          }
+
+          if ($qty > $restore_qty) {
+            $qty = $data['qty'];
+          }
 
           $Qcheck = $this->db->prepare('select products_id
                                          from :table_customers_basket
@@ -450,14 +455,14 @@
                 $this->contents[$products_id_string]['attributes'][$option] = $value;
 // insert into database
                 if ($this->customer->isLoggedOn()) {
-
-                  $this->db->save('customers_basket_attributes', [
+                  $insert_array = [
                     'customers_id' => (int)$this->customer->getID(),
                     'products_id' => $products_id_string,
                     'products_options_id' => (int)$option,
                     'products_options_value_id' => (int)$value
-                    ]
-                  );
+                  ];
+
+                  $this->db->save('customers_basket_attributes', $insert_array);
                 }
               }
             }
@@ -545,12 +550,14 @@
                 $this->contents[$products_id_string]['attributes'][$option] = $value;
 // insert into database
                 if ($this->customer->isLoggedOn()) {
-                  $this->db->save('customers_basket_attributes', ['customers_id' => (int)$this->customer->getID(),
-                      'products_id' => $products_id_string,
-                      'products_options_id' => (int)$option,
-                      'products_options_value_id' => (int)$value
-                    ]
-                  );
+                  $insert_array = [
+                    'customers_id' => (int)$this->customer->getID(),
+                    'products_id' => $products_id_string,
+                    'products_options_id' => (int)$option,
+                    'products_options_value_id' => (int)$value
+                  ];
+
+                  $this->db->save('customers_basket_attributes', $insert_array);
                 }
               }
             }

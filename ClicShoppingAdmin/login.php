@@ -42,7 +42,7 @@
       case 'process':
         $CLICSHOPPING_Hooks->call('PreAction', 'Process');
 
-        if (isset($_SESSION['redirect_origin']) && isset($_SESSION['redirect_origin']['auth_user']) && !isset($_POST['username'])) {
+        if (isset($_SESSION['redirect_origin'], $_SESSION['redirect_origin']['auth_user']) && !isset($_POST['username'])) {
           $username = HTML::sanitize($_SESSION['redirect_origin']['auth_user']);
           $password = HTML::sanitize($_SESSION['redirect_origin']['auth_pw']);
         } else {
@@ -145,14 +145,15 @@
           $first_name = HTML::sanitize($_POST['first_name']);
 
           if (!empty($username)) {
-            $CLICSHOPPING_Db->save('administrators', [
-                'user_name' => $username,
-                'user_password' => Hash::encrypt($password),
-                'name' => $name,
-                'first_name' => $first_name,
-                'access' => 1
-              ]
-            );
+            $insert_array = [
+              'user_name' => $username,
+              'user_password' => Hash::encrypt($password),
+              'name' => $name,
+              'first_name' => $first_name,
+              'access' => 1
+            ];
+
+            $CLICSHOPPING_Db->save('administrators', $insert_array);
           }
         }
 
@@ -178,7 +179,7 @@
           $Qcheck->bindValue(':user_name', $username);
           $Qcheck->execute();
 
-          if ($Qcheck->rowCount() == 1 && Is::EmailAddress($username)) {
+          if ($Qcheck->rowCount() === 1 && Is::EmailAddress($username)) {
             $new_password = Hash::getRandomString(ENTRY_PASSWORD_MIN_LENGTH);
             $crypted_password = Hash::encrypt($new_password);
 
