@@ -23,11 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Maintenance</title>
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-<!-- CSS only -->
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-  <script src="https://kit.fontawesome.com/89fdf54890.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
 <div class="text-center" style="padding-top:150px;">
@@ -37,8 +33,7 @@
         <div class="jumbotron" style="margin-top: 40px;">
           <h1>We'll be back soon!</h1>
           <p>We're currently working on and improving our website. We'll be back in a few moments..</p>
-          <p
-            style="margin-top: 40px;"><?php echo HTML::button('Return to website', null, CLICSHOPPING::link(), 'primary', null, 'sm'); ?></p>
+          <p style="margin-top: 40px;"><?php echo HTML::button('Return to website', null, CLICSHOPPING::link(), 'primary', null, 'sm'); ?></p>
         </div>
       </div>
     </div>

@@ -10,6 +10,16 @@
    */
 
   use ClicShopping\OM\HTTP;
+  use ClicShopping\OM\CLICSHOPPING;
+
+  define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../includes/ClicShopping/') . '/');
+
+  require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+  spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
+
+  CLICSHOPPING::initialize();
+
+  CLICSHOPPING::loadSite('Shop');
 
   http_response_code(404);
 ?>
@@ -22,9 +32,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 <!-- CSS only -->
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-  <script src="https://kit.fontawesome.com/89fdf54890.js" crossorigin="anonymous"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 <body>
 <div class="text-center" style="padding-top:150px;">
@@ -41,14 +50,12 @@
             <h1>This Page is Missing</h1>
             <p>It looks like this page is missing. Please continue back to our website and try again.</p>
             <p style="margin-top: 40px;">
-              <php echo HTML::button(
-              'Return to website', null, CLICSHOPPING::link(), null, 'primary'); ?>
+              <?php echo HTML::button('Return to website', null, CLICSHOPPING::link(), null, 'primary'); ?>
             </p>
-
           </div>
           <div class="error-actions">
             <br/><br/>
-            <i class="fas fa-home"></i> <span style="text-decoration:none;"><a
+            <i class="bi bi-house"></i><span style="text-decoration:none;"><a
                 href="<?php echo HTTP::redirect(HTTP::getShopUrlDomain() . 'index.php'); ?>">Go to the web store</a></span>
           </div>
         </div>
@@ -58,5 +65,9 @@
 </div>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<?php
+  exit;
+?>
   </body>
 </html>
+
