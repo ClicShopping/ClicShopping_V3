@@ -23,7 +23,6 @@
     protected $pdo;
     protected bool $is_error = false;
     protected string $page_set_keyword = 'page';
-    protected ?string $page_set;
     protected mixed $page_set_results_per_page;
     protected $cache;
     protected int $cache_expire;
@@ -33,7 +32,8 @@
     protected string $query_call;
     protected ?int $page_set_total_rows;
     protected $result;
-
+    public ?string $page_set;
+    
     /**
      * @param mixed $parameter
      * @param mixed $value
