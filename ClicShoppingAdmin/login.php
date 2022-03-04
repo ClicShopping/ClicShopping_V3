@@ -41,6 +41,8 @@
     switch ($action) {
       case 'process':
         $CLICSHOPPING_Hooks->call('PreAction', 'Process');
+        $username = '';
+        $password = '';
 
         if (isset($_SESSION['redirect_origin'], $_SESSION['redirect_origin']['auth_user']) && !isset($_POST['username'])) {
           $username = HTML::sanitize($_SESSION['redirect_origin']['auth_user']);
