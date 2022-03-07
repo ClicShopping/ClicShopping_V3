@@ -7,7 +7,6 @@ add support menu with wiki link (technical doc)
 error template updated
 librairies updated.
 
-
 -------------
 Version 3.315
 Ckeditor version updated
