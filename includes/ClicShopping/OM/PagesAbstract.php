@@ -22,7 +22,7 @@
     protected string $code;
     protected string $file = 'main.php';
     protected bool $use_site_template = true;
-    protected $site;
+    protected SitesInterface $site;
     protected array $actions_run = [];
     protected array $ignored_actions = [];
     protected bool $is_rpc = false;
