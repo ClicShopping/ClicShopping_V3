@@ -188,6 +188,8 @@ INSERT INTO administrator_menu VALUES(778, 'index.php?A&Marketing\\Favorites&Fav
 INSERT INTO administrator_menu VALUES(779, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_favorites', 117, 1, 0, 'products_favorites.png', 0, 'app_marketing_favorites', 1);
 INSERT INTO administrator_menu VALUES(780, 'index.php?A&Marketing\\Featured&Featured', 5, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
 INSERT INTO administrator_menu VALUES(781, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_featured', 117, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
+INSERT INTO administrator_menu VALUES(782, '', 163, 0, 0, '', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(783, 'https://github.com/ClicShopping/ClicShopping_V3/wiki', 782, 0, 0, '', 0, NULL, 1);
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
 INSERT INTO administrator_menu_description VALUES(0, '', 2);
@@ -516,6 +518,9 @@ INSERT INTO administrator_menu_description VALUES(780, 'Featured products', 1);
 INSERT INTO administrator_menu_description VALUES(780, 'Produits sélectionnés', 2);
 INSERT INTO administrator_menu_description VALUES(781, 'Featured products', 1);
 INSERT INTO administrator_menu_description VALUES(781, 'Produits sélectionnés', 2);
+INSERT INTO administrator_menu_description VALUES(782, ''Technical documents'', 1);
+INSERT INTO administrator_menu_description VALUES(782, ''Documents Techniques'', 2);
+
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
 

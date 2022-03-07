@@ -1,3 +1,13 @@
+
+-------------
+Version 3.316
+Automatic install detection for the first installation
+code refactoring
+add support menu with wiki link (technical doc)
+error template updated
+librairies updated.
+
+-------------
 Version 3.315
 Ckeditor version updated
 Librairies updated

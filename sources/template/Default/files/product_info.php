@@ -21,7 +21,7 @@
 // ----------------------------------------------------------------//
 
   if ($CLICSHOPPING_ProductsCommon->getProductsCount() < 1 || (\is_null($CLICSHOPPING_ProductsCommon->getID())) || $CLICSHOPPING_ProductsCommon->getID() === false ) {
-    header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+    http_response_code(404);
 ?>
  <section class="product" id="product">
   <div class="contentContainer">

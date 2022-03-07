@@ -338,9 +338,7 @@
     public function setDefaultAddressID(int $id)
     {
       if (is_numeric($id) && ($id > 0)) {
-
         if (!isset($this->_data['default_address_id']) || ($this->_data['default_address_id'] != $id)) {
-
           $Qupdate = $this->db->prepare('update :table_customers
                                          set customers_default_address_id = :customers_default_address_id
                                          where customers_id = :customers_id'
@@ -473,21 +471,24 @@
     public function customerGreeting(): string
     {
       if ($this->isLoggedOn()) {
-        $greeting_string = CLICSHOPPING::getDef('text_greeting_personal', ['first_name' => HTML::outputProtected($this->getFirstName()),
-            'url_products_new' => CLICSHOPPING::link(null, 'Products&ProductsNew'),
-            'url_logoff' => CLICSHOPPING::link(null, 'Account&LogOff')
+        $greeting_string = CLICSHOPPING::getDef('text_greeting_personal', [
+          'first_name' => HTML::outputProtected($this->getFirstName()),
+          'url_products_new' => CLICSHOPPING::link(null, 'Products&ProductsNew'),
+          'url_logoff' => CLICSHOPPING::link(null, 'Account&LogOff')
           ]
         );
       } else {
         if (MODE_MANAGEMENT_B2C_B2B == 'B2C_B2B' || MODE_MANAGEMENT_B2C_B2B == 'B2B') {
-          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest', ['url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
-              'url_create_account' => CLICSHOPPING::link(null, 'Account&Create'),
-              'url_create_account_pro' => CLICSHOPPING::link('Account.php', 'Account&CreatePro')
+          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest', [
+            'url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
+            'url_create_account' => CLICSHOPPING::link(null, 'Account&Create'),
+            'url_create_account_pro' => CLICSHOPPING::link('Account.php', 'Account&CreatePro')
             ]
           );
         } else {
-          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest', ['url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
-              'url_products_new' => CLICSHOPPING::link(null, 'Products&ProductsNew')
+          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest', [
+            'url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
+            'url_products_new' => CLICSHOPPING::link(null, 'Products&ProductsNew')
             ]
           );
         }
@@ -515,7 +516,7 @@
     /**
      * @return mixed
      */
-    public function getProductNotifications()
+    public function getProductNotifications() :mixed
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 

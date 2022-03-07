@@ -21,6 +21,23 @@
 
   CLICSHOPPING::initialize();
 
+//check configuration
+  if (!CLICSHOPPING::configExists('db_server') || (\strlen(CLICSHOPPING::getConfig('db_server')) < 1)) {
+    if (realpath(__DIR__ . '/install/')) {
+      $realDocRoot = realpath($_SERVER['DOCUMENT_ROOT']);
+      $realDirPath = realpath(__DIR__);
+      $suffix = str_replace($realDocRoot, '', $realDirPath);
+      $prefix = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+      $folderUrl = $prefix . $_SERVER['HTTP_HOST'] . $suffix . '/install';
+
+      header('Location:' . $folderUrl);
+      exit;
+    } else {
+      echo 'Please look your install directory to begin your new installation like https://wwww.mydomain.com/MyDirectory/install';
+      exit;
+    }
+  }
+
   CLICSHOPPING::loadSite('Shop');
 
   if (CLICSHOPPING::hasSitePage()) {

@@ -35,17 +35,6 @@
       $CLICSHOPPING_Cookies = new Cookies();
       Registry::set('Cookies', $CLICSHOPPING_Cookies);
 
-//check configuration
-      if (!CLICSHOPPING::configExists('db_server') || (\strlen(CLICSHOPPING::getConfig('db_server')) < 1)) {
-        if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/install')) {
-          header('Location: /install/index.php');
-          exit;
-        } else {
-          echo 'Please look your install directory to begin your new installation like https://wwww.mydomain.com/MyDirectory/install';
-          exit;
-        }
-      }
-
       try {
         $CLICSHOPPING_Db = Db::initialize();
         Registry::set('Db', $CLICSHOPPING_Db);
@@ -136,7 +125,7 @@
       $CLICSHOPPING_Breadcrumb->getCategoriesManufacturer();
     }
 
-    public function setPage()
+    public function setPage() :void
     {
 
 // en relation avec SitesAbstract
@@ -187,6 +176,11 @@
       }
     }
 
+    /**
+     * @param array $route
+     * @param array $routes
+     * @return array|mixed
+     */
     public static function resolveRoute(array $route, array $routes)
     {
       $result = [];

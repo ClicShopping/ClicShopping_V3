@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => '5d0e3be779bce467ecda590f9004e08b709992d0',
+    'reference' => '05f582da528242505480bfdbdbb0385c87c25215',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => '5d0e3be779bce467ecda590f9004e08b709992d0',
+      'reference' => '05f582da528242505480bfdbdbb0385c87c25215',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -100,12 +100,12 @@ class InstalledVersions
     ),
     'phpmailer/phpmailer' => 
     array (
-      'pretty_version' => 'v6.5.4',
-      'version' => '6.5.4.0',
+      'pretty_version' => 'v6.6.0',
+      'version' => '6.6.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c0d9f7dd3c2aa247ca44791e9209233829d82285',
+      'reference' => 'e43bac82edc26ca04b36143a48bde1c051cfd5b1',
     ),
     'phpxmlrpc/phpxmlrpc' => 
     array (
@@ -152,12 +152,12 @@ class InstalledVersions
     ),
     'stripe/stripe-php' => 
     array (
-      'pretty_version' => 'v7.114.0',
-      'version' => '7.114.0.0',
+      'pretty_version' => 'v7.116.0',
+      'version' => '7.116.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '63be231686c6874befb5b3a47fb8effb4c30b78b',
+      'reference' => '7a39f594f213ed3f443a95adf769d1ecbc8393e7',
     ),
     'stymiee/email-validator' => 
     array (

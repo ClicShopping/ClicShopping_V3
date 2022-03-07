@@ -9,7 +9,6 @@
    *
    */
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,22 +18,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 <!-- CSS only -->
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <base href="<?php echo $_SERVER['HTTP_HOST']; ?>">
-
-  <script src="https://kit.fontawesome.com/89fdf54890.js" crossorigin="anonymous"></script>
   <title>Template problem !</title>
 </head>
 <body>
 <div style="padding-top:100px;"></div>
 <div class="alert alert-warning" role="alert">
   <div class="text-center">Le nom de ce template n'existe pas ou plus. Veuillez changer le nom du template.</div>
-  <div class="text-center" style="padding-top:10px">This template name does'nt exist. Please change your template
-    name.
-  </div>
-  <div class="text-center" style="padding-top:50px;"><a href="<?php echo $_SERVER['HTTP_HOST']; ?>"><img
-        src="images/logo_clicshopping.webp" alt="ClicShopping"></a></div>
+  <div class="text-center" style="padding-top:10px">This template name does'nt exist. Please change your template  name.</div>
+  <div class="text-center" style="padding-top:50px;"><a href="<?php echo $_SERVER['HTTP_HOST']; ?>"><img src="images/logo_clicshopping.webp" alt="ClicShopping"></a></div>
 </div>
 </body>
 <!-- JavaScript Bundle with Popper -->

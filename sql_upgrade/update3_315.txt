@@ -1,0 +1,16 @@
+
+===================================
+Step 1 : Update your Db by the sql below
+
+
+#insert in your phpmyAdmin this request in function of your language
+
+#All language
+INSERT INTO administrator_menu VALUES(782, '', 163, 0, 0, '', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(783, 'https://github.com/ClicShopping/ClicShopping_V3/wiki', 163, 0, 0, '', 0, NULL, 1);
+INSERT INTO administrator_menu_description VALUES(782, 'Technicals documents', 1);
+INSERT INTO administrator_menu_description VALUES(782, 'Documents Techniques', 2);
+
+#English
+
+#french

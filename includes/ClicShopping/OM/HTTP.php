@@ -111,7 +111,7 @@
         $options['json'] = $data['parameters'];
       } else {
         if (($data['method'] === 'post') && !empty($data['parameters'])) {
-          if (!isset($options['headers']) || !isset($options['headers']['Content-Type'])) {
+          if (!isset($options['headers'], $options['headers']['Content-Type'])) {
             $options['headers']['Content-Type'] = 'application/x-www-form-urlencoded';
           }
 
@@ -298,9 +298,11 @@
         $base = rtrim($base, $separator);
       }
     
-      if ($path === '' || $path === '.' . $separator) return $base;
-    
-      if (substr($path, 0, 3) === '..' . $separator) {
+      if ($path == '' || $path == '.' . $separator) {
+        return $base;
+      }
+	  
+      if (substr($path, 0, 3) == '..' . $separator) {
         $path = $base . $separator . $path;
       }
 
@@ -314,7 +316,7 @@
       }
       
       // Relative path from 'Here'
-      if (substr($path, 0, 2) === '.' . $separator || $path[0] !== '.') {
+      if (substr($path, 0, 2) == '.' . $separator || $path[0] !== '.') {
         $arrn = preg_split($preg_separator, $path, -1, PREG_SPLIT_NO_EMPTY);
         if ($arrn[0] !== '.') {
           array_unshift($arrn, '.');
