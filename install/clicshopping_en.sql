@@ -518,8 +518,8 @@ INSERT INTO administrator_menu_description VALUES(780, 'Featured products', 1);
 INSERT INTO administrator_menu_description VALUES(780, 'Produits sélectionnés', 2);
 INSERT INTO administrator_menu_description VALUES(781, 'Featured products', 1);
 INSERT INTO administrator_menu_description VALUES(781, 'Produits sélectionnés', 2);
-INSERT INTO administrator_menu_description VALUES(782, ''Technical documents'', 1);
-INSERT INTO administrator_menu_description VALUES(782, ''Documents Techniques'', 2);
+INSERT INTO administrator_menu_description VALUES(782, 'Technical documents', 1);
+INSERT INTO administrator_menu_description VALUES(782, 'Documents Techniques', 2);
 
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');

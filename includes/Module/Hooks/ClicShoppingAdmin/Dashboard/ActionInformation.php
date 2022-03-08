@@ -44,84 +44,75 @@
 
       $output = '
               <div class="separator"></div>
-              <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-11 mainTable">
-                  <div class="form-group row">
-                    <label for="' . CLICSHOPPING::getDef('title_web_site_size') . '" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_web_site_size') . '</label>
-                    <div class="col-md-3">
-                      ' . IndexAdmin::getSizeReadable(IndexAdmin::getDirSize('.')) . '
+                <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-11 mainTable">
+                    <div class="form-group row">
+                      <label for="' . CLICSHOPPING::getDef('title_db_index') . '" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_db_index') . '</label>
+                      <div class="col-md-3">
+                        ' . DB::sizeDb() . ' MB
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-11 mainTable">
+                    <div class="form-group row">
+                      <label for="System Memory" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_system_memory') . '</label>
+                      <div class="col-md-3">
+                        ' . $memory . ' MB
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-11 mainTable">
+                    <div class="form-group row">
+                      <label for="Bootstrap Core Memory Usage" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_core_memory') . '</label>
+                      <div class="col-md-3">
+                        <div class="separator"></div>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="' . $valuenow . '" aria-valuemin="0" aria-valuemax="100" style="width: '.  $valuenow . '%;">
+                             <strong>' . $valuenow . '%</strong>
+                          </div>
+                        </div> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-11 mainTable">
+                    <div class="form-group row">
+                      <label for="' . CLICSHOPPING::getDef('space') . '" class="col-9 col-form-label">' . CLICSHOPPING::getDef('space') . '</label>
+                      <div class="col-md-3">
+                        ' . $space_disk . '
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-11 mainTable">
+                    <div class="form-group row">
+                      <label for="' . CLICSHOPPING::getDef('bandwith') . '" class="col-9 col-form-label">' . CLICSHOPPING::getDef('bandwith') . '</label>
+                      <div class="col-md-3">
+                        ' . $bandwidth . '
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-11 mainTable">
+                    <div class="form-group row">
+                      <label for="' . CLICSHOPPING::getDef('backup_site') . '" class="col-9 col-form-label">' . CLICSHOPPING::getDef('backup_site') . '</label>
+                      <div class="col-md-3">
+                        ' . $backup . '
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-11 mainTable">
-                  <div class="form-group row">
-                    <label for="' . CLICSHOPPING::getDef('title_db_index') . '" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_db_index') . '</label>
-                    <div class="col-md-3">
-                      ' . DB::sizeDb() . ' MB
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-11 mainTable">
-                  <div class="form-group row">
-                    <label for="System Memory" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_system_memory') . '</label>
-                    <div class="col-md-3">
-                      ' . $memory . ' MB
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-11 mainTable">
-                  <div class="form-group row">
-                    <label for="Bootstrap Core Memory Usage" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_core_memory') . '</label>
-                    <div class="col-md-3">
-                      <div class="separator"></div>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="' . $valuenow . '" aria-valuemin="0" aria-valuemax="100" style="width: '.  $valuenow . '%;">
-                           <strong>' . $valuenow . '%</strong>
-                        </div>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-11 mainTable">
-                  <div class="form-group row">
-                    <label for="' . CLICSHOPPING::getDef('space') . '" class="col-9 col-form-label">' . CLICSHOPPING::getDef('space') . '</label>
-                    <div class="col-md-3">
-                      ' . $space_disk . '
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-11 mainTable">
-                  <div class="form-group row">
-                    <label for="' . CLICSHOPPING::getDef('bandwith') . '" class="col-9 col-form-label">' . CLICSHOPPING::getDef('bandwith') . '</label>
-                    <div class="col-md-3">
-                      ' . $bandwidth . '
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-11 mainTable">
-                  <div class="form-group row">
-                    <label for="' . CLICSHOPPING::getDef('backup_site') . '" class="col-9 col-form-label">' . CLICSHOPPING::getDef('backup_site') . '</label>
-                    <div class="col-md-3">
-                      ' . $backup . '
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             ';
+
       return $output;
     }
   }

@@ -1,3 +1,6 @@
+Version 3.317
+fix db install
+remove info application size
 
 -------------
 Version 3.316
