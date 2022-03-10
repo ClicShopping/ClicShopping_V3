@@ -1,0 +1,15 @@
+
+===================================
+Step 1 : Update your Db by the sql below
+
+
+#insert in your phpmyAdmin this request in function of your language
+
+#All language
+ALTER TABLE `clic_submit_description` ADD `submit_defaut_language_title_h1` text;
+
+
+---------------------------
+#English
+
+#french

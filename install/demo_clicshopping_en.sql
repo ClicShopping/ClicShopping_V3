@@ -2103,8 +2103,8 @@ INSERT INTO sec_directory_whitelist VALUES(7, 'includes/Work');
 INSERT INTO specials VALUES(1, 1, '160.0000', '2018-07-26 11:41:43', '2018-10-17 09:26:49', NULL, NULL, 1, NULL, 0, 0);
 INSERT INTO specials VALUES(2, 8, '380.0000', '2018-07-26 11:53:00', '2018-10-17 09:28:03', NULL, NULL, 1, NULL, 0, 0);
 
-INSERT INTO submit_description VALUES(1, 1, 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo');
-INSERT INTO submit_description VALUES(1, 2, 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo');
+INSERT INTO submit_description VALUES(1, 1, 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'ClicShopping B2B B2C Solution');
+INSERT INTO submit_description VALUES(1, 2, 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'demo', 'ClicShopping B2B B2C Solution');
 
 INSERT INTO suppliers VALUES(1, 'Apple', NULL, '2018-07-26 09:20:22', NULL, '', '', '', '', '', '', '', '', '', 0, '', 0);
 INSERT INTO suppliers VALUES(2, 'Canon', NULL, '2018-07-26 09:20:33', NULL, '', '', '', '', '', '', '', '', '', 0, '', 0);

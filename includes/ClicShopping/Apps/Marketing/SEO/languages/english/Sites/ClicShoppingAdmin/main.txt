@@ -72,7 +72,7 @@ text_submit_default_language_title = Title
 text_submit_default_language_keywords = Keywords
 text_submit_default_language_description = Description
 text_submit_default_language_footer = Footer
-
+text_submit_defaut_language_title_h1 = Index Page Title H1
 
 text_pages_submit_information_categories = Meta data management by categories of site
 display_title_categories = Display title defaut categories

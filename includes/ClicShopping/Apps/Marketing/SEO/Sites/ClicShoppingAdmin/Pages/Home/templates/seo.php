@@ -47,7 +47,8 @@
                                                   p.submit_language_favorites_description,
                                                   p.submit_language_featured_title,
                                                   p.submit_language_featured_keywords,
-                                                  p.submit_language_featured_description
+                                                  p.submit_language_featured_description,
+                                                  p.submit_defaut_language_title_h1       
                                          from :table_submit_description p
                                          where p.submit_id = 1
                                         ');
@@ -125,6 +126,18 @@
                 <div class="form-group row">
                   <label for="lang"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_defaut_language_title_h1'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_defaut_language_title_h1'); ?></label>
+                  <div class="col-md-7">
+                    <?php echo HTML::inputField('submit_defaut_language_title_h1_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_title_h1[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageTitleH1($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="default_title_h1_' .$i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_defaut_language_title_h1') . '"', true) . '&nbsp;'; ?>
+                  </div>
                 </div>
               </div>
             </div>

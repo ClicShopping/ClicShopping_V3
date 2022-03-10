@@ -21,6 +21,19 @@
     protected int $category_id;
 
     /**
+     * Get the default title H1 on index page
+     * @param int $submit_id
+     * @param int $language_id
+     * @return string
+     */
+    public static function getSeoDefaultLanguageTitleH1(int $submit_id, int $language_id): string
+    {
+      $Qseo = Registry::get('Db')->get('submit_description', 'submit_defaut_language_title_h1', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+
+      return $Qseo->value('submit_defaut_language_title_h1');
+    }
+
+    /**
      * Get the default title
      * @param int $submit_id
      * @param int $language_id

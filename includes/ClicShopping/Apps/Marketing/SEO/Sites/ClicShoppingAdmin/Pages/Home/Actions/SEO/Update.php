@@ -27,6 +27,7 @@
       for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $languages_id = $i +1;
 
+        $submit_defaut_language_title_h1 = HTML::sanitize($_POST['submit_defaut_language_title_h1_'][$languages[$i]['id']] ?? '');
         $submit_defaut_language_title = HTML::sanitize($_POST['submit_defaut_language_title_'][$languages[$i]['id']] ?? '');
         $submit_defaut_language_keywords = HTML::sanitize($_POST['submit_defaut_language_keywords_'][$languages[$i]['id']] ?? '');
         $submit_defaut_language_description = HTML::sanitize($_POST['submit_defaut_language_description_'][$languages[$i]['id']] ?? '');
@@ -73,7 +74,8 @@
           'submit_language_favorites_description' => $submit_language_favorites_description ,
           'submit_language_featured_title' => $submit_language_featured_title ,
           'submit_language_featured_keywords' => $submit_language_featured_keywords ,
-          'submit_language_featured_description' => $submit_language_featured_description 
+          'submit_language_featured_description' => $submit_language_featured_description,
+          'submit_defaut_language_title_h1' =>  $submit_defaut_language_title_h1
         ];
 
         $update_sql = [

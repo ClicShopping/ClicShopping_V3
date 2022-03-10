@@ -1,7 +1,8 @@
 
-Version 3.316
+Version 3.318
 fix Admin no image
 libraries update
+add a new Title SEO Index page (cf request sql for update)
 
 -------------
 Version 3.317
