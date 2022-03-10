@@ -133,7 +133,7 @@
         return false;
       }
 
-      if (CLICSHOPPING::getSite() === 'Shop') {
+      if (CLICSHOPPING::getSite() == 'Shop') {
         $CLICSHOPPING_Template = Registry::get('Template');
 
         if ((empty($src) || \is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
@@ -145,13 +145,13 @@
             $src = $image;
           }
         }
-      } else {
-        if ((empty($src) || \is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
-          $src = CLICSHOPPING::getConfig('http_path', 'Shop') . 'images/nophoto.png';
+      } elseif (CLICSHOPPING::getSite() == 'ClicShoppingAdmin') {
+        if ((empty($src) && static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
+          $src = CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'images/nophoto.png';
         }
       }
 
-      if (CLICSHOPPING::getSite() === 'Shop') {
+      if (CLICSHOPPING::getSite() == 'Shop') {
         $image = '<img data-src="' . static::output(CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $src) . '" alt="' . static::output($alt) . '"';
       } else {
         $image = '<img src="' . static::output($src) . '" alt="' . static::output($alt) . '"';

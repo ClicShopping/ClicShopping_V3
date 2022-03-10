@@ -1,3 +1,9 @@
+
+Version 3.316
+fix Admin no image
+libraries update
+
+-------------
 Version 3.317
 fix db install
 remove info application size
