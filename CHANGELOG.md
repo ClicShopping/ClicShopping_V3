@@ -3,6 +3,7 @@ Version 3.318
 fix Admin no image
 libraries update
 add a new Title SEO Index page (cf request sql for update)
+add id on buy button
 
 -------------
 Version 3.317

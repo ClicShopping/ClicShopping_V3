@@ -142,6 +142,7 @@
 
 // Template define
             $filename = $CLICSHOPPING_Template-> getTemplateModulesFilename($this->group .'/template_html/' . MODULE_PRODUCTS_FEATURED_TEMPLATE);
+            $counter = 1;
 
             while($Qlisting->fetch()) {
               $products_id = $Qlisting->valueInt('products_id');
@@ -159,7 +160,8 @@
 // display a message in public function the customer group applied - before submit button
               $submit_button_view = $CLICSHOPPING_ProductsFunctionTemplate->getButtonView($products_id);
 // button buy
-              $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary', null, 'sm');
+              $button_id = 'buttonId_' . $counter++;
+              $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary',   ['params' => 'id="' . $button_id . '"'], 'sm');
               $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
 
 // Display an input allowing for the customer to insert a quantity

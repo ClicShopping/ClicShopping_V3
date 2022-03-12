@@ -141,6 +141,7 @@
 
           $new_prods_content .= '<div class="ModuleProductsInfoAlsoPurchasedContainer">';
           $new_prods_content .= '<div class="d-flex flex-wrap">';
+            $counter = 1;
 
             while ($Qproducts->fetch()) {
               $products_id = $Qproducts->valueInt('products_id');
@@ -159,7 +160,8 @@
 // display a message in public function the customer group applied - before submit button
               $submit_button_view = $CLICSHOPPING_ProductsFunctionTemplate->getButtonView($products_id);
 // button buy
-              $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary', null, 'sm');
+              $button_id = 'buttonId_' . $counter++;
+              $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary',   ['params' => 'id="' . $button_id . '"'], 'sm');
               $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
 // Display an input allowing for the customer to insert a quantity
 
