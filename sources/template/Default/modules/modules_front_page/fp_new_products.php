@@ -147,7 +147,6 @@
           }
 
           if ($Qproduct->rowCount() > 0 ) {
-
 // display number of short description
             $products_short_description_number = (int)MODULE_FRONT_PAGE_NEW_PRODUCTS_SHORT_DESCRIPTION;
 // delete words
@@ -168,6 +167,7 @@
             }
 
             $new_prods_content .= '<div class="d-flex flex-wrap ModuleFrontPageboxContainerNewProducts">';
+            $counter = 1;
 
             while ($Qproduct->fetch()) {
               $products_id = $Qproduct->valueInt('products_id');
@@ -185,7 +185,8 @@
 // display a message in public function the customer group applied - before submit button
               $submit_button_view = $CLICSHOPPING_ProductsFunctionTemplate->getButtonView($products_id);
 // button buy
-              $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary', null, 'sm');
+              $button_id = 'buttonId_' . $counter++;
+              $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary',   ['params' => 'id="' . $button_id . '"'], 'sm');
               $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
 
 // Display an input allowing for the customer to insert a quantity

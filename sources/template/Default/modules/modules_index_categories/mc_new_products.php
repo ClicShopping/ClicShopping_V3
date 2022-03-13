@@ -160,29 +160,30 @@
             }
           }
 
-           if ($Qproduct->rowCount() > 0 ) {
-
-             if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_MAX_DISPLAY > 0) {
+         if ($Qproduct->rowCount() > 0 ) {
+           if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_MAX_DISPLAY > 0) {
 // delete words
-              $delete_word = (int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_SHORT_DESCRIPTION_DELETE_WORLDS;
+            $delete_word = (int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_SHORT_DESCRIPTION_DELETE_WORLDS;
 // display number of short description
-              $products_short_description_number = (int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_SHORT_DESCRIPTION;
+            $products_short_description_number = (int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_SHORT_DESCRIPTION;
 // nbr of column to display  boostrap
-              $bootstrap_column = (int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_COLUMNS;
+            $bootstrap_column = (int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_COLUMNS;
 // initialisation des boutons
-            $size_button = $CLICSHOPPING_ProductsCommon->getSizeButton('md');
+          $size_button = $CLICSHOPPING_ProductsCommon->getSizeButton('md');
 
 // Template define
-              $filename = $CLICSHOPPING_Template-> getTemplateModulesFilename($this->group .'/template_html/' . MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_TEMPLATE);
+            $filename = $CLICSHOPPING_Template-> getTemplateModulesFilename($this->group .'/template_html/' . MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_TEMPLATE);
 
-              $new_prods_content = '<!-- New Products start -->' . "\n";
-              $new_prods_content .= '<div class="clearfix"></div>';
+            $new_prods_content = '<!-- New Products start -->' . "\n";
+            $new_prods_content .= '<div class="clearfix"></div>';
 
-              if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_FRONT_TITLE != 'false') {
-                $new_prods_content .= '<div class="page-title ModuleIndexCategoriesProductsNewHeading"><h2>' . sprintf(CLICSHOPPING::getDef('module_index_categories_products_heading_title'), DateTime::getNow(CLICSHOPPING::getDef('date_format_long'))) . '</h2></div>';
-              }
+            if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_FRONT_TITLE != 'false') {
+              $new_prods_content .= '<div class="page-title ModuleIndexCategoriesProductsNewHeading"><h2>' . sprintf(CLICSHOPPING::getDef('module_index_categories_products_heading_title'), DateTime::getNow(CLICSHOPPING::getDef('date_format_long'))) . '</h2></div>';
+            }
 
-              $new_prods_content .= '<div class="d-flex flex-wrap ModuleIndexCategoriesboxContainerNewProducts">';
+            $new_prods_content .= '<div class="d-flex flex-wrap ModuleIndexCategoriesboxContainerNewProducts">';
+
+            $counter = 1;
 
             while ($Qproduct->fetch()) {
               $products_id = $Qproduct->valueInt('products_id');
@@ -201,7 +202,8 @@
 // display a message in public function the customer group applied - before submit button
               $submit_button_view = $CLICSHOPPING_ProductsFunctionTemplate->getButtonView($products_id);
 // button buy
-              $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary', null, 'sm');
+              $button_id = 'buttonId_' . $counter++;
+              $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary',   ['params' => 'id="' . $button_id . '"'], 'sm');
               $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
 
 // Display an input allowing for the customer to insert a quantity
@@ -216,7 +218,7 @@
 //Short description
               $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription($products_id, $delete_word, $products_short_description_number);
 // Reviews
-                $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
+              $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
 
 // **************************
 // display the differents buttons before minorder qty
