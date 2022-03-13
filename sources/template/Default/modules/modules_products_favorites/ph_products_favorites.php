@@ -162,7 +162,7 @@
 // display a message in public function the customer group applied - before submit button
               $submit_button_view = $CLICSHOPPING_ProductsFunctionTemplate->getButtonView($products_id);
 // button buy
-              $button_id = 'buttonId_' . $counter++;
+              $button_buy_id = 'buttonBuyId_' . $counter++;
               $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary',   ['params' => 'id="' . $button_id . '"'], 'sm');
               $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
 
