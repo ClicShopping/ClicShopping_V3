@@ -97,7 +97,7 @@ class elFinderSession implements elFinderSessionInterface
                 $checkFn = 'is_string';
             } elseif (is_array($empty)) {
                 $checkFn = 'is_array';
-            } elseif (\is_object($empty)) {
+            } elseif (is_object($empty)) {
                 $checkFn = 'is_object';
             } elseif (is_float($empty)) {
                 $checkFn = 'is_float';
