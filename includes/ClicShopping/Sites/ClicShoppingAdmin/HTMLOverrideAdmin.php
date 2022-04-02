@@ -42,7 +42,7 @@
      */
     public static function getCkeditor(): string
     {
-      $script = '<script src="//cdn.ckeditor.com/4.17.2/full/ckeditor.js"></script>';
+      $script = '<script src="//cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>';
 
       return $script;
     }

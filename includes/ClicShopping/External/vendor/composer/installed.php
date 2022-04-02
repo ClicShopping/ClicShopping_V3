@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'ad58127ceda95ad7594eff79ed17003025ad8e27',
+    'reference' => '22ba3e0814bac971e967cbf4490db00e75653ada',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'ad58127ceda95ad7594eff79ed17003025ad8e27',
+      'reference' => '22ba3e0814bac971e967cbf4490db00e75653ada',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -58,12 +58,12 @@
     ),
     'guzzlehttp/psr7' => 
     array (
-      'pretty_version' => '1.8.3',
-      'version' => '1.8.3.0',
+      'pretty_version' => '1.8.5',
+      'version' => '1.8.5.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1afdd860a2566ed3c2b0b4a3de6e23434a79ec85',
+      'reference' => '337e3ad8e5716c15f9657bd214d16cc5e69df268',
     ),
     'mattketmo/email-checker' => 
     array (
@@ -128,12 +128,12 @@
     ),
     'stripe/stripe-php' => 
     array (
-      'pretty_version' => 'v7.117.0',
-      'version' => '7.117.0.0',
+      'pretty_version' => 'v7.121.0',
+      'version' => '7.121.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c9d40524c63f3c5042d704f88a60f49a349b1221',
+      'reference' => 'e36e7afb71ae5511aae23b52dca712a0ef06d981',
     ),
     'stymiee/email-validator' => 
     array (
