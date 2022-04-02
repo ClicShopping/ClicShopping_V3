@@ -276,7 +276,7 @@
      * pdf logo
      * return string or bool
      */
-    public static function getOrderPdfInvoiceLogo(): string
+    public static function getOrderPdfInvoiceLogo(): string|bool
     {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
