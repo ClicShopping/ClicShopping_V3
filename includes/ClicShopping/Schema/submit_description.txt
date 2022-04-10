@@ -1,5 +1,5 @@
-submit_id int not_null defautl(1)
-language_id int not_null defautl(1)
+submit_id int not_null default(1)
+language_id int not_null default(1)
 submit_defaut_language_title varchar(255)
 submit_defaut_language_keywords text
 submit_defaut_language_description varchar(255)
@@ -22,6 +22,7 @@ submit_language_favorites_description varchar(255)
 submit_language_featured_title varchar(255)
 submit_language_featured_keywords text
 submit_language_featured_description varchar(255)
+submit_defaut_language_title_h1 text
 
 --
 primary submit_id language_id

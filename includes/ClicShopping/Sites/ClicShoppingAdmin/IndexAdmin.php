@@ -46,7 +46,7 @@
         $i++;
       }
 
-      return sprintf($retstring, $size, $sys['prefix'][$i]);
+      return printf($retstring, $size, $sys['prefix'][$i]);
     }
 
 
