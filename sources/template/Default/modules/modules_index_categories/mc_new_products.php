@@ -203,7 +203,7 @@
               $submit_button_view = $CLICSHOPPING_ProductsFunctionTemplate->getButtonView($products_id);
 // button buy
               $button_buy_id = 'buttonBuyId_' . $counter++;
-              $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary',   ['params' => 'id="' . $button_id . '"'], 'sm');
+              $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary',   ['params' => 'id="' . $button_buy_id . '"'], 'sm');
               $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
 
 // Display an input allowing for the customer to insert a quantity
