@@ -732,16 +732,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.122.0",
+            "version": "v7.125.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "c58179aa4cad16240a6e65dbf29c2bfd4ae0c033"
+                "reference": "822c00aa380c10c2a3c55d105c5da72ad577b7c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/c58179aa4cad16240a6e65dbf29c2bfd4ae0c033",
-                "reference": "c58179aa4cad16240a6e65dbf29c2bfd4ae0c033",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/822c00aa380c10c2a3c55d105c5da72ad577b7c4",
+                "reference": "822c00aa380c10c2a3c55d105c5da72ad577b7c4",
                 "shasum": ""
             },
             "require": {
@@ -786,9 +786,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v7.122.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v7.125.0"
             },
-            "time": "2022-04-08T16:57:33+00:00"
+            "time": "2022-04-21T22:31:37+00:00"
         },
         {
             "name": "stymiee/email-validator",
@@ -1318,5 +1318,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }

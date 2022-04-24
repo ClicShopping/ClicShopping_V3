@@ -5,11 +5,11 @@
 namespace Stripe;
 
 /**
- * PaymentMethod objects represent your customer's payment instruments. They can be
- * used with <a
+ * PaymentMethod objects represent your customer's payment instruments. You can use
+ * them with <a
  * href="https://stripe.com/docs/payments/payment-intents">PaymentIntents</a> to
- * collect payments or saved to Customer objects to store instrument details for
- * future payments.
+ * collect payments or save them to Customer objects to store instrument details
+ * for future payments.
  *
  * Related guides: <a
  * href="https://stripe.com/docs/payments/payment-methods">Payment Methods</a> and
@@ -30,6 +30,7 @@ namespace Stripe;
  * @property \Stripe\StripeObject $card_present
  * @property int $created Time at which the object was created. Measured in seconds since the Unix epoch.
  * @property null|string|\Stripe\Customer $customer The ID of the Customer to which this PaymentMethod is saved. This will not be set when the PaymentMethod has not been saved to a Customer.
+ * @property \Stripe\StripeObject $customer_balance
  * @property \Stripe\StripeObject $eps
  * @property \Stripe\StripeObject $fpx
  * @property \Stripe\StripeObject $giropay

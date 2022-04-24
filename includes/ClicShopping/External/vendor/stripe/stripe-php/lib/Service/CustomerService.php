@@ -120,6 +120,26 @@ class CustomerService extends \Stripe\Service\AbstractService
     }
 
     /**
+     * Retrieve funding instructions for a customer cash balance. If funding
+     * instructions do not yet exist for the customer, new funding instructions will be
+     * created. If funding instructions have already been created for a given customer,
+     * the same funding instructions will be retrieved. In other words, we will return
+     * the same funding instructions each time.
+     *
+     * @param string $id
+     * @param null|array $params
+     * @param null|array|\Stripe\Util\RequestOptions $opts
+     *
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
+     * @return \Stripe\Customer
+     */
+    public function createFundingInstructions($id, $params = null, $opts = null)
+    {
+        return $this->request('post', $this->buildPath('/v1/customers/%s/funding_instructions', $id), $params, $opts);
+    }
+
+    /**
      * When you create a new credit card, you must specify a customer or recipient on
      * which to create it.
      *
