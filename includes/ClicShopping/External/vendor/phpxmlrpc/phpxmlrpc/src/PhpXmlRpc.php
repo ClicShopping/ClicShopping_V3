@@ -26,6 +26,7 @@ class PhpXmlRpc
         'multicall_recursion' => 12,
         'multicall_noparams' => 13,
         'multicall_notarray' => 14,
+        'no_http2' => 15,
 
         'cannot_decompress' => 103,
         'decompress_fail' => 104,
@@ -53,6 +54,7 @@ class PhpXmlRpc
         'multicall_recursion' => 'Recursive system.multicall forbidden',
         'multicall_noparams' => 'Missing params',
         'multicall_notarray' => 'params is not an array',
+        'no_http2' => 'No HTTP/2 support compiled in',
 
         'cannot_decompress' => 'Received from server compressed HTTP and cannot decompress',
         'decompress_fail' => 'Received from server invalid compressed HTTP',
@@ -78,7 +80,7 @@ class PhpXmlRpc
     public static $xmlrpc_internalencoding = "UTF-8";
 
     public static $xmlrpcName = "XML-RPC for PHP";
-    public static $xmlrpcVersion = "4.6.1";
+    public static $xmlrpcVersion = "4.7.1";
 
     // let user errors start at 800
     public static $xmlrpcerruser = 800;
