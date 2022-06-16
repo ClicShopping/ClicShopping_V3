@@ -260,7 +260,6 @@
     $pdf->Text(60, 113, $temp . DateTime::toShort($order->info['date_purchased']));
   }
 
-
 //Draw Payment Method Text
   $temp = substr(utf8_decode($order->info['payment_method']), 0, 60);
   $pdf->Text(110, 113, $CLICSHOPPING_Orders->getDef('payment_method') . ' ' . $temp);

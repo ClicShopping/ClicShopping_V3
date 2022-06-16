@@ -138,8 +138,8 @@
 
           $result = strftime($pattern, $date->getTimestamp());
         }
-
       }
+
       return $result;
     }
 
@@ -287,13 +287,15 @@
      */
     public static function toDateReferenceShort(string $raw_datetime, bool $strict = true): string
     {
-
       $result = '';
 
-      $date = new DateTime($raw_datetime, true, $strict);
+      if (!empty($raw_datetime)) {
+        $date = new DateTime($raw_datetime, true, $strict);
 
-      if ($date->isValid()) {
-        $result = strftime(CLICSHOPPING::getDef('date_format'), $date->getTimestamp());
+        if ($date->isValid()) {
+          $pattern = CLICSHOPPING::getDef('date_invoice');
+          $result = strftime($pattern, $date->getTimestamp());
+        }
       }
 
       return $result;
