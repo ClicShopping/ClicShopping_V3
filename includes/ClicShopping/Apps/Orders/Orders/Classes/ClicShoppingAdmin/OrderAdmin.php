@@ -281,11 +281,11 @@
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
       if (is_file($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . 'logos/invoice/' . INVOICE_LOGO)) {
-        $logo = $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . 'logos/invoice/' . INVOICE_LOGO;
+        $result = $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . 'logos/invoice/' . INVOICE_LOGO;
       } else {
-        $logo = false;
+        $result = false;
       }
 
-      return $logo;
+      return $result;
     }
   }

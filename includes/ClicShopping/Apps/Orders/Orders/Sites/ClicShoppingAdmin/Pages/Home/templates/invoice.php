@@ -47,8 +47,7 @@
   $QordersInfo->bindInt(':orders_id', (int)$oID);
   $QordersInfo->execute();
 
-// Recuperations de la date de la facture (Voir aussi french.php & invoice.php)
-
+// Date invoice
   $QordersHistory = $CLICSHOPPING_Orders->db->prepare('select orders_status_id,
                                                                date_added,
                                                                customer_notified,
@@ -64,7 +63,6 @@
 
   $orders_history_display = $QordersHistory->valueInt('orders_status_invoice_id');
 
-
   $QordersStatusInvoice = $CLICSHOPPING_Orders->db->prepare('select orders_status_invoice_id,
                                                                     orders_status_invoice_name,
                                                                     language_id
@@ -78,7 +76,6 @@
 
   $order_status_invoice_display = $QordersStatusInvoice->value('orders_status_invoice_name');
 
-
   $QstatusOrder = $CLICSHOPPING_Orders->db->prepare('select orders_status
                                                      from :table_orders
                                                      where orders_id = :orders_id
@@ -91,7 +88,6 @@
   Registry::set('Order', new OrderAdmin($oID));
   $order = Registry::get('Order');
 
-
 //Instanciation of inherited class
 // Classe pdf.php
   $pdf = new \FPDF();
@@ -103,7 +99,6 @@
 // Add the first page
 // Ajoute page
   $pdf->AddPage();
-
 
   if (DISPLAY_INVOICE_HEADER == 'false') {
 // Logo
