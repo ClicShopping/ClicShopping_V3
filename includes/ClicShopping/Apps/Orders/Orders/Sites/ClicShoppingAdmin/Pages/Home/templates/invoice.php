@@ -145,7 +145,7 @@
     $pdf->SetTextColor(INVOICE_RGB);
     $pdf->Ln(0);
     $pdf->Cell(-3);
-    $pdf->MultiCell(100, 3.5, $CLICSHOPPING_Orders->getDef('entry_http_site') . ' ' . HTTP::typeUrlDomain(), 0, 'L');
+    $pdf->MultiCell(100, 3.5, $CLICSHOPPING_Orders->getDef('entry_http_site') . ' ' . CLICSHOPPING::getConfig('http_server', 'Shop'), 0, 'L');
   }
 
 
