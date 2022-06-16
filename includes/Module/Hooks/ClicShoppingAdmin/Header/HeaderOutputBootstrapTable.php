@@ -22,7 +22,7 @@
 
       if (isset($_SESSION['admin'])) {
         $output = '<!-- Start Bootstrap table -->' . "\n";
-        $output .= '<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">' . "\n";
+        $output .= '<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">' . "\n";
         $output .= '<!-- Start Bootstrap table -->' . "\n";
       } else {
         return false;
