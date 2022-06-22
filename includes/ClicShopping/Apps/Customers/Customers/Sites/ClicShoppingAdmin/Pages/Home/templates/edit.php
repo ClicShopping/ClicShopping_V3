@@ -1069,9 +1069,9 @@
 ?>
             </div>
           </div>
-          <div id="tab4Content">
+        </div>
+        <div id="tab4Content">
             <?php echo $CLICSHOPPING_Hooks->output('Customers', 'pageTab4', null, 'display'); ?>
-          </div>
         </div>
       </div>
     </div>

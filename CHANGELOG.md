@@ -3,6 +3,8 @@ fix order pdf website info link
 add a check on page manager
 update invoice number for pdf
 update bootstrap icon 1.8.3
+update bootstrap@5.2.0-beta1
+small other fix
 
 -------------
 Version 3.319

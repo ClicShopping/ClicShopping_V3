@@ -14,8 +14,6 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Db;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\IndexAdmin;
-
   class ActionInformation
   {
 

@@ -38,7 +38,7 @@
       $this->phpMail = new PHPMailer();
 
       $this->phpMail->XMailer = 'ClicShopping ' . CLICSHOPPING::getVersion();
-
+//      $this->phpMail->SMTPDebug = SMTP::DEBUG_SERVER; // Only for debug
 // test with exit
 //      $this->phpMail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";};
       $this->phpMail->debugOutput = $this->debugFileOutput;

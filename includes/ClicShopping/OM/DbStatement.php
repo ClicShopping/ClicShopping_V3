@@ -33,7 +33,7 @@
     protected ?int $page_set_total_rows;
     protected $result;
     public ?string $page_set;
-    
+
     /**
      * @param mixed $parameter
      * @param mixed $value

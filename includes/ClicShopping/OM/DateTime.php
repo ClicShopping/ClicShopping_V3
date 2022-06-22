@@ -318,7 +318,7 @@
 
     /**
      * Unix Date
-     * @param null $year
+     * @param string|null $year
      * @return bool
      */
     public static function isLeapYear(?string $year = null): bool
@@ -343,9 +343,9 @@
 
     /**
      * Check date
-     * @param $date_to_check
-     * @param $format_string
-     * @param $date_array
+     * @param string $date_to_check
+     * @param string $format_string
+     * @param array $date_array
      * @return bool
      * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
      */

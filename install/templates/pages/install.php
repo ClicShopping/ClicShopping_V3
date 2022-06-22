@@ -60,7 +60,7 @@
 
       <div>
         <label for="password"><?php echo TEXT_PASSWORD; ?></label>
-        <?php echo HTML::passwordField('DB_SERVER_PASSWORD', null, 'id="password"'); ?>
+        <?php echo HTML::passwordField('DB_SERVER_PASSWORD', null, 'required aria-required="true" id="password"'); ?>
         <span class="help-block"><?php echo TEXT_PASSWORD_HELP; ?></span>
       </div>
 

@@ -229,7 +229,7 @@ $(function() {
           <tr>
             <td><?php echo PHP_VERSION; ?></td>
             <td class="text-end" width="25">
-              <?php echo ((version_compare(phpversion(), '7.3.3', '>')) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
+              <?php echo ((version_compare(phpversion(), '8.0', '>')) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
           </tr>
         </tbody>
       </table>

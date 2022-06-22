@@ -41,6 +41,21 @@
 
         unset($_SESSION['MessageStack_Data']);
       }
+
+
+      Registry::get('Hooks')->watch('Session', 'StartAfter', 'execute', function() {
+        if (isset($_SESSION['MessageStack_Data']) && !empty($_SESSION['MessageStack_Data'])) {
+          foreach ($_SESSION['MessageStack_Data'] as $group => $messages) {
+            foreach ($messages as $message) {
+              $this->add($message['text'], $message['type'], $group);
+            }
+          }
+
+          unset($_SESSION['MessageStack_Data']);
+        }
+
+      });
+
       Registry::get('Hooks')->watch('Account', 'LogoutAfter', 'execute', function() {
         $this->reset('main');
       });
