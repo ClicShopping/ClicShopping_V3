@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
-        'reference' => 'b3d9ea188621f9d778f2d17c1089406acccc977f',
+        'reference' => '6476dc13d9940d5fcc3d5d7090e1584e7f6daeea',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
-            'reference' => 'b3d9ea188621f9d778f2d17c1089406acccc977f',
+            'reference' => '6476dc13d9940d5fcc3d5d7090e1584e7f6daeea',
             'dev_requirement' => false,
         ),
         'darkghosthunter/preloader' => array(
@@ -173,8 +173,8 @@
             'dev_requirement' => false,
         ),
         'symfony/deprecation-contracts' => array(
-            'pretty_version' => 'v3.1.0',
-            'version' => '3.1.0.0',
+            'pretty_version' => 'v3.1.1',
+            'version' => '3.1.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
             'aliases' => array(),

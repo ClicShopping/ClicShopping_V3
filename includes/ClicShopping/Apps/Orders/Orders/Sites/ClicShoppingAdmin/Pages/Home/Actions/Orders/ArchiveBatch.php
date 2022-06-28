@@ -51,7 +51,8 @@
         $QordersInfo->execute();
 
         while ($QordersInfo->fetch()) {
-          $this->app->db->save('orders', ['orders_archive' => 1,
+          $this->app->db->save('orders', [
+            'orders_archive' => 1,
             'last_modified' => 'now()'
           ], [
               'orders_id' => $QordersInfo->valueInt('orders_id')

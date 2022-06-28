@@ -65,13 +65,13 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card card-block headerCard">
-        <div class="row col-md-12">
+        <span class="row col-md-12">
           <div
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/client.gif', $CLICSHOPPING_Orders->getDef('heading_title_'), '40', '40'); ?></div>
           <div
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title'); ?></div>
-          <div class="col-md-7">
-           <span class="col-md-5 float-start">
+          <div class="col-md-5">
+           <span class="col-md-3 float-start">
 <?php
   echo HTML::form('orders', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"', ['session_id' => true]);
   echo HTML::inputField('orders_id', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Orders->getDef('heading_title_search') . '"');
@@ -79,7 +79,7 @@
   echo '</form>';
 ?>
             </span>
-            <span class="col-md-4 float-start">
+            <span class="col-md-3 float-start">
 <?php
   // Permettre l'affichage des couleurs des groupes en mode B2B
   if (MODE_B2B_B2C == 'true') {
@@ -97,10 +97,23 @@
 ?>
             </span>
           </div>
+
+        <div
+                class="col-md-4">
+          <span class="col-md-6 float-left" id="OrdersArchive">
+<?php
+echo HTML::form('OrdersArchive', $CLICSHOPPING_Orders->link('OrdersArchive'), 'post', ' role="form"', ['session_id' => true]);
+echo HTML::button($CLICSHOPPING_Orders->getDef('button_archive_batch'), null, null, 'warning');
+echo '</form>';
+?>
+          </span>
+
 <?php
           if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($_POST['status'])) {
 ?>
-          <div class="col-md-2 text-end"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_reset'), null, $CLICSHOPPING_Orders->link('Orders'), 'warning'); ?></div>
+          <span class="col-md-6 text-end" id="buttonReset">
+            <?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_reset'), null, $CLICSHOPPING_Orders->link('Orders'), 'danger'); ?>
+          </span>
 <?php
   }
 ?>
