@@ -109,7 +109,7 @@ echo '</form>';
           </span>
 
 <?php
-          if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($_POST['status'])) {
+          if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($_POST['status']) || isset($_GET['aID'])) {
 ?>
           <span class="col-md-6 text-end" id="buttonReset">
             <?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_reset'), null, $CLICSHOPPING_Orders->link('Orders'), 'danger'); ?>
