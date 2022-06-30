@@ -72,7 +72,7 @@
 // Informations sur la societe
       if (isset($_POST['customers_company'])) $customers_company = HTML::sanitize($_POST['customers_company']);
       if (isset($_POST['customers_siret'])) $customers_siret = HTML::sanitize($_POST['customers_siret']);
-      if (isset($_POST['customers_tva_intracom_code_iso'])) $customers_ape = HTML::sanitize($_POST['customers_ape']);
+      if (isset($_POST['customers_ape'])) $customers_ape = HTML::sanitize($_POST['customers_ape']);
 
 // Informations numero de TVA avec transformation de code ISO en majuscule
       if (isset($_POST['customers_tva_intracom_code_iso']))  {

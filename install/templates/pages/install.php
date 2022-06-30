@@ -58,7 +58,7 @@
         <span class="help-block"><?php echo TEXT_USERNAME_HELP; ?></span>
       </div>
 
-      <div>
+      <div class="form-group">
         <label for="password"><?php echo TEXT_PASSWORD; ?></label>
         <?php echo HTML::passwordField('DB_SERVER_PASSWORD', null, 'required aria-required="true" id="password"'); ?>
         <span class="help-block"><?php echo TEXT_PASSWORD_HELP; ?></span>
@@ -140,7 +140,7 @@ $(function() {
 
     formSubmited = true;
 
-    $('#installModal .modal-body').html('<p><i class="bi bi-arrow-repeat"></i> Testing database connection..</p>');
+    $('#installModal .modal-body').html('<div class="spinner-border" role="status" id="preloader"><div id="preloader_status"><span class="visually-hidden"><p>Testing database connection..</p></span></div> </div>');
 
     $('#installModal').modal({
       keyboard: false,
