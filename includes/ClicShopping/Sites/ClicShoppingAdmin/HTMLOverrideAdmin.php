@@ -14,7 +14,6 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTTP;
 
   class HTMLOverrideAdmin extends HTML
   {

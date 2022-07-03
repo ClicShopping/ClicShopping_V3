@@ -373,7 +373,8 @@
 
       foreach ($directories as $directory) {
         if (is_dir($template_directory . $directory)) {
-          $directory_array[] = ['id' => $directory,
+          $directory_array[] = [
+            'id' => $directory,
             'text' => $directory
           ];
         }
@@ -392,9 +393,13 @@
     public function getProductsName($product_id = '', int $language_id = 0): string
     {
       if ($language_id == 0) $language_id = $this->lang->getId();
-      $Qproduct = Registry::get('Db')->get('products_description', 'products_name', ['products_id' => (int)$product_id,
-          'language_id' => (int)$language_id]
-      );
+
+      $array = [
+        'products_id' => (int)$product_id,
+        'language_id' => (int)$language_id
+      ];
+
+      $Qproduct = Registry::get('Db')->get('products_description', 'products_name', $array);
 
       return $Qproduct->value('products_name');
     }
@@ -447,7 +452,8 @@
       $Qsupplier->execute();
 
       while ($Qsupplier->fetch() !== false) {
-        $supplier[] = ['id' => $Qsupplier->valueInt('suppliers_id'),
+        $supplier[] = [
+	'id' => $Qsupplier->valueInt('suppliers_id'),
           'text' => $Qsupplier->value('suppliers_name')
         ];
       }
