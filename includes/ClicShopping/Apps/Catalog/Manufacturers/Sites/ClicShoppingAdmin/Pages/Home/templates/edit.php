@@ -167,10 +167,10 @@
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="row">
-                  <div class="col-md-1">
+                  <div class="col-md-12">
                     <div class="form-group row">
-                      <label for="Code"
-                             class="col-1 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                      <label for="code"
+                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                     </div>
                   </div>
                 </div>

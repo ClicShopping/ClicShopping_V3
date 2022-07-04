@@ -802,10 +802,10 @@
      * @param string $source_folder , directory
      * @param string $filename , name of the file
      * @param string $ext , file extension
-     * @return array|bool
+     * @return
      *
      */
-    public function getSpecificFiles(string $source_folder, string $filename, string $ext = 'php'): array
+    public function getSpecificFiles(string $source_folder, string $filename, string $ext = 'php')
     {
       if (is_dir($source_folder)) {
         $FILES = glob($source_folder . $filename . '.' . $ext);

@@ -400,9 +400,9 @@
      * @param string $source_folder
      * @param string $filename
      * @param string $ext
-     * @return array|bool
+     * @return array|null
      */
-    public function getSpecificFiles(string $source_folder, string $filename, string $ext = 'php'): array
+    public function getSpecificFiles(string $source_folder, string $filename, string $ext = 'php')
     {
       $result = parent::getSpecificFiles($source_folder, $filename, $ext);
 
