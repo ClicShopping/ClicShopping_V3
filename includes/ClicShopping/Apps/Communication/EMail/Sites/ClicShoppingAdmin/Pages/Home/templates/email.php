@@ -104,6 +104,7 @@
               </div>
             </div>
           </div>
+          <div class="separator"></div>
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
@@ -115,7 +116,7 @@
               </div>
             </div>
           </div>
-
+          <div class="separator"></div>
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
@@ -136,7 +137,7 @@
               }
               $('#elfinder').elfinder(options);
           </script>
-
+         <div class="separator"></div>
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">

@@ -401,6 +401,7 @@
                       </div>
                     </div>
                   </div>
+                  <div class="separator"></div>
 <?php
     }
   }
@@ -481,6 +482,7 @@
                 </div>
               </div>
             </div>
+            <div class="separator"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -511,6 +513,7 @@
                     </div>
                   </div>
                 </div>
+                <div class="separator"></div>
 <?php
   }
 ?>
@@ -525,6 +528,7 @@
                 </div>
               </div>
             </div>
+            <div class="separator"></div>
 <?php
   if ($page_type == 1) {
 ?>
@@ -611,6 +615,7 @@
                     </div>
                   </div>
                 </div>
+                <div class="separator"></div>
 <?php
   }
 ?>
@@ -686,7 +691,7 @@
                         </div>
                       </div>
                     </div>
-
+                    <div class="separator"></div>
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group row">
@@ -699,7 +704,7 @@
                         </div>
                       </div>
                     </div>
-
+                    <div class="separator"></div>
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group row">

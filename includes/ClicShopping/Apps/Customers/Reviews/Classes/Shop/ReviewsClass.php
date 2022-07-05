@@ -17,12 +17,12 @@
 
   class ReviewsClass
   {
-    protected $productsCommon;
+    protected mixed $productsCommon;
     protected mixed $db;
     protected mixed $lang;
-    protected $customer;
-    protected $reviews_number_comments;
-    protected $reviews_number_word;
+    protected mixed $customer;
+    protected int $reviews_number_comments;
+    protected int $reviews_number_word;
 
     public function __construct()
     {
@@ -295,11 +295,13 @@
 
       $insert_id = $this->db->lastInsertId();
 
-      $this->db->save('reviews_description', ['reviews_id' => (int)$insert_id,
-          'languages_id' => (int)$this->lang->getId(),
-          'reviews_text' => HTML::sanitize($_POST['review'])
-        ]
-      );
+      $array_sql =  [
+        'reviews_id' => (int)$insert_id,
+        'languages_id' => (int)$this->lang->getId(),
+        'reviews_text' => HTML::sanitize($_POST['review'])
+      ];
+
+      $this->db->save('reviews_description', $array_sql);
     }
 
     /**
@@ -527,10 +529,10 @@
     public function getCount(int $products_id): int
     {
       $Qcount = $this->db->prepare('select count(r.reviews_id) as reviews_total
-                                      from :table_reviews r
-                                      where r.products_id = :products_id
-                                      and r.status = 1
-                                      ');
+                                from :table_reviews r
+                                where r.products_id = :products_id
+                                and r.status = 1
+                               ');
       $Qcount->bindInt(':products_id', $products_id);
       $Qcount->execute();
 

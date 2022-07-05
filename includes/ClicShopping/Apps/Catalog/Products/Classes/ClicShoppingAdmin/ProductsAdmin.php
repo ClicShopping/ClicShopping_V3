@@ -79,7 +79,7 @@
 
         $sql_data_array = [
           'products_name' => HTML::sanitize($_POST['products_name'][$language_id]),
-          'products_description' => isset($_POST['products_description'][$language_id]) ? $_POST['products_description'][$language_id] : '',
+          'products_description' => $_POST['products_description'][$language_id] ?? '',
           'products_seo_url' => isset($_POST['products_seo_url'][$language_id]) ? HTML::sanitize($_POST['products_seo_url'][$language_id]) : '',
           'products_head_title_tag' => isset($_POST['products_head_title_tag'][$language_id]) ? HTML::sanitize($_POST['products_head_title_tag'][$language_id]) : '',
           'products_head_desc_tag' => isset($_POST['products_head_desc_tag'][$language_id]) ? HTML::sanitize($_POST['products_head_desc_tag'][$language_id]) : '',

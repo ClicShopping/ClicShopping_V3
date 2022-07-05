@@ -269,16 +269,6 @@
               </div>
               <div class="col-md-5" id="tab1ContentRow4Option"></div>
             </div>
-
-
-
-
-
-
-
-
-
-
           </div>
           <div class="separator"></div>
           <div
@@ -1243,7 +1233,7 @@
                     </div>
                   </div>
                 </div>
-
+                <div class="separator"></div>
                 <div class="row" id="productsDescription">
                   <div class="col-md-12">
                     <div class="form-group row">
@@ -1255,7 +1245,7 @@
                     </div>
                   </div>
                 </div>
-
+                <div class="separator"></div>
                 <div class="row" id="productsKeywords">
                   <div class="col-md-12">
                     <div class="form-group row">
@@ -1267,7 +1257,7 @@
                     </div>
                   </div>
                 </div>
-
+                <div class="separator"></div>
                 <div class="row" id="producrsTag">
                   <div class="col-md-12">
                     <div class="form-group row">

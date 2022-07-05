@@ -22,6 +22,7 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
   $form_action = 'Insert';
   $variable = '';
@@ -174,7 +175,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group row">
