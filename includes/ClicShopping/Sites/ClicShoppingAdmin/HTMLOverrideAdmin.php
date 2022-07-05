@@ -149,6 +149,8 @@
 
       if (!empty($image)) {
         $doc = new \DOMDocument();
+        libxml_use_internal_errors(true);
+
         $doc->loadHTML($image);
         $xpath = new \DOMXPath($doc);
 
@@ -161,6 +163,8 @@
         $image_end = strstr($image, '&quot;');
         $image = str_replace($image_end, '', $image);
         $image = str_replace($CLICSHOPPING_Template->getDirectoryShopSources(), '', $image);
+
+        libxml_clear_errors();
       }
 
       return $image;
