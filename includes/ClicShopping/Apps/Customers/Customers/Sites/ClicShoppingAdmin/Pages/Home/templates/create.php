@@ -380,7 +380,7 @@
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_group_name'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_group_name'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup()); ?>
+                        <?php echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups()); ?>
                       </div>
                     </div>
                   </div>

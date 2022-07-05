@@ -70,8 +70,6 @@
      */
     public static function textAreaCkeditor(string $name, ?string $value = null, int $width = 750, int $height = 200, ?string $text = null, ?string $parameters = null, bool $override = true): string
     {
-
-
       $field = '<textarea name="' . HTML::output($name) . '"';
 
       if (!\is_null($parameters)) $field .= ' ' . $parameters;
