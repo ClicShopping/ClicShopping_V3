@@ -12,7 +12,7 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class securityCheck_default_currency
+  class securityCheck_default_language
   {
     public string $type = 'danger';
 
@@ -20,16 +20,16 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $CLICSHOPPING_Language->loadDefinitions('modules/security_check/default_currency', null, null, 'Shop');
+      $CLICSHOPPING_Language->loadDefinitions('modules/SecurityCheck/default_language', null, null, 'Shop');
     }
 
     public function pass()
     {
-      return \defined('DEFAULT_CURRENCY');
+      return \defined('DEFAULT_LANGUAGE');
     }
 
     public function getMessage()
     {
-      return CLICSHOPPING::getDef('error_no_default_currency_defined');
+      return CLICSHOPPING::getDef('error_no_default_language_defined');
     }
   }

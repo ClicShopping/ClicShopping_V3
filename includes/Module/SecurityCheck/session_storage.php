@@ -21,7 +21,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $CLICSHOPPING_Language->loadDefinitions('modules/security_check/session_storage', null, null, 'Shop');
+      $CLICSHOPPING_Language->loadDefinitions('modules/SecurityCheck/session_storage', null, null, 'Shop');
 
     }
 

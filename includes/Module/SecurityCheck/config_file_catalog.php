@@ -9,9 +9,11 @@
    *
    */
 
+  use ClicShopping\OM\FileSystem;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
-  class securityCheck_file_uploads
+  class securityCheck_config_file_catalog
   {
     public string $type = 'warning';
 
@@ -19,18 +21,19 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $CLICSHOPPING_Language->loadDefinitions('modules/security_check/file_uploads', null, null, 'Shop');
+      $CLICSHOPPING_Language->loadDefinitions('Shop', 'modules/SecurityCheck/config_file_catalog', null, null, 'Shop');
 
     }
 
     public function pass()
     {
-      return (bool)ini_get('file_uploads');
+      return !FileSystem::isWritable(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/configure.php');
     }
 
     public function getMessage()
     {
-      return CLICSHOPPING::getDef('warning_file_uploads_disabled');
+      return CLICSHOPPING::getDef('warning_config_file_writeable', [
+        'configure_file_path' => CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/configure.php'
+      ]);
     }
   }
-

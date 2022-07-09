@@ -17,7 +17,7 @@
   class SC extends \ClicShopping\Apps\Tools\SecurityCheck\Module\ClicShoppingAdmin\Config\ConfigAbstract
   {
 
-    protected $pm_code = 'security_check';
+    protected $pm_code = 'SecurityCheck';
 
     public bool $is_uninstallable = true;
     public ?int $sort_order = 400;

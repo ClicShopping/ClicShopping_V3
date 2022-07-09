@@ -7,6 +7,10 @@ update bootstrap@5.2.0-beta1
 small other fix
 Orders : Add a simple order archive batch on 30d,
 fix possible warning DOMDocument::loadHTML(): Tag figure invalid in Entity with ckeditor
+Move security check inside Modules
+
+
+
 
 -------------
 Version 3.319

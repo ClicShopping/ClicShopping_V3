@@ -9,11 +9,9 @@
    *
    */
 
-  use ClicShopping\OM\FileSystem;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
 
-  class securityCheck_config_file_catalog
+  class securityCheck_session_auto_start
   {
     public string $type = 'warning';
 
@@ -21,19 +19,16 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $CLICSHOPPING_Language->loadDefinitions('Shop', 'modules/security_check/config_file_catalog', null, null, 'Shop');
-
+      $CLICSHOPPING_Language->loadDefinitions('modules/SecurityCheck/session_auto_start', null, null, 'Shop');
     }
 
     public function pass()
     {
-      return !FileSystem::isWritable(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/configure.php');
+      return ((bool)ini_get('session.auto_start') === false);
     }
 
     public function getMessage()
     {
-      return CLICSHOPPING::getDef('warning_config_file_writeable', [
-        'configure_file_path' => CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/configure.php'
-      ]);
+      return CLICSHOPPING::getDef('warning_session_auto_start');
     }
   }

@@ -9,26 +9,27 @@
    *
    */
 
+  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class securityCheck_session_auto_start
+  class securityCheck_default_currency
   {
-    public string $type = 'warning';
+    public string $type = 'danger';
 
     public function __construct()
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $CLICSHOPPING_Language->loadDefinitions('modules/security_check/session_auto_start', null, null, 'Shop');
+      $CLICSHOPPING_Language->loadDefinitions('modules/SecurityCheck/default_currency', null, null, 'Shop');
     }
 
     public function pass()
     {
-      return ((bool)ini_get('session.auto_start') === false);
+      return \defined('DEFAULT_CURRENCY');
     }
 
     public function getMessage()
     {
-      return CLICSHOPPING::getDef('warning_session_auto_start');
+      return CLICSHOPPING::getDef('error_no_default_currency_defined');
     }
   }

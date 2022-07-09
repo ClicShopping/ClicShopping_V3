@@ -53,9 +53,9 @@
 
       $secmodules_array = [];
 
-      if ($secdir = @dir(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/security_check/')) {
+      if ($secdir = @dir(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/SecurityCheck/')) {
         while (false !== ($file = $secdir->read())) {
-          if (!is_file(CLICSHOPPING::getConfig('dir_root') . 'includes/modules/security_check/' . $file)) {
+          if (!is_file(CLICSHOPPING::getConfig('dir_root') . 'includes/Module/SecurityCheck/' . $file)) {
             if (substr($file, strrpos($file, '.')) == $file_extension) {
               $secmodules_array[] = $file;
             }
@@ -66,14 +66,14 @@
       }
 
       foreach ($secmodules_array as $secmodule) {
-        include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/security_check/' . $secmodule);
+        include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/SecurityCheck/' . $secmodule);
 
         $secclass = 'securityCheck_' . substr($secmodule, 0, strrpos($secmodule, '.'));
         if (class_exists($secclass)) {
           $secCheck = new $secclass;
 
           if (!$secCheck->pass()) {
-            if (!\in_array($secCheck->type, $secCheck_types)) {
+            if (!\in_array($secCheck->type, $secCheck_types, true)) {
               $secCheck->type = 'info';
             }
 

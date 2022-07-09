@@ -9,27 +9,28 @@
    *
    */
 
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class securityCheck_default_language
+  class securityCheck_file_uploads
   {
-    public string $type = 'danger';
+    public string $type = 'warning';
 
     public function __construct()
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $CLICSHOPPING_Language->loadDefinitions('modules/security_check/default_language', null, null, 'Shop');
+      $CLICSHOPPING_Language->loadDefinitions('modules/SecurityCheck/file_uploads', null, null, 'Shop');
+
     }
 
     public function pass()
     {
-      return \defined('DEFAULT_LANGUAGE');
+      return (bool)ini_get('file_uploads');
     }
 
     public function getMessage()
     {
-      return CLICSHOPPING::getDef('error_no_default_language_defined');
+      return CLICSHOPPING::getDef('warning_file_uploads_disabled');
     }
   }
+
