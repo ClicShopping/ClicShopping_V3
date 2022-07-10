@@ -75,7 +75,7 @@
       }
 
 // Security
-      require_once(CLICSHOPPING::getConfig('dir_root') . 'includes/modules/security_pro/Security.php');
+      require_once(CLICSHOPPING::getConfig('dir_root') . 'includes/Module/SecurityPro/Security.php');
       $security_pro = new \Security();
 
 // If you need to exclude a file from cleansing then you can add it like below

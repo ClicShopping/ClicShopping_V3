@@ -18,10 +18,10 @@
   {
 
 // Array of files to be excluded from cleansing, these can also be added in application_top.php if preferred using _Security_Pro::addExclusion()
-    public $_excluded_from_cleansing = [];
-    public $_enabled = true; // Turn on or off - bool true / false
+    public array $_excluded_from_cleansing = [];
+    public bool $_enabled = true; // Turn on or off - bool true / false
     public $_basename;
-    public $_cleanse_keys; // Turn on or off - bool true / false
+    public bool $_cleanse_keys; // Turn on or off - bool true / false
 
     /**
      * Constructor
