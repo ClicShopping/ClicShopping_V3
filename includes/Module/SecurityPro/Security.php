@@ -18,10 +18,10 @@
   {
 
 // Array of files to be excluded from cleansing, these can also be added in application_top.php if preferred using _Security_Pro::addExclusion()
-    public array $_excluded_from_cleansing = [];
+    public $_excluded_from_cleansing = [];
     public bool $_enabled = true; // Turn on or off - bool true / false
     public $_basename;
-    public bool $_cleanse_keys; // Turn on or off - bool true / false
+    public $_cleanse_keys; // Turn on or off - bool true / false
 
     /**
      * Constructor
@@ -29,7 +29,7 @@
      * @param bool $cleanse_keys
      * @uses \defined()
      */
-    public function __construct($cleanse_keys = false)
+    public function __construct(bool $cleanse_keys = false)
     {
       if ($cleanse_keys) $this->_cleanse_keys = true;
       $this->addExclusions(array(\defined('FILENAME_PROTX_PROCESS') ? FILENAME_PROTX_PROCESS : 'protx_process.php'));
@@ -49,6 +49,7 @@
       if (!\in_array($file_to_exclude, $this->_excluded_from_cleansing)) {
         $this->_excluded_from_cleansing[] = (string)$file_to_exclude;
       }
+
       return $this;
     } // end method
 
@@ -61,7 +62,7 @@
      * @return void
      * @uses foreach()
      */
-    public function addExclusions(array $args = array())
+    public function addExclusions(array $args = array()) :void
     {
       if (empty ($args)) return;
       foreach ($args as $index => $exclusion_file) {
@@ -82,7 +83,7 @@
      * @uses function_exists()
      */
 
-    public function cleanse($data = '')
+    public function cleanse(string $data = '')
     {
       if (false === $this->_enabled) {
         return;
@@ -110,7 +111,7 @@
      * @return void
      * @uses \is_array()
      */
-    public function cleanseGetRecursive(&$get)
+    public function cleanseGetRecursive(&$get) :void
     {
       foreach ($get as $key => &$value) {
         // If cleanse keys is set to on we unset array keys if they don't conform to expectations
@@ -137,7 +138,7 @@
      *
      * @uses urldecode()
      */
-    public function cleanseKeyString($string)
+    public function cleanseKeyString(string $string) :string
     {
       $banned_string_pattern = '@GLOBALS|_REQUEST|base64_encode|UNION|%3C|%3E@i';
       // Apply the whitelist
@@ -158,7 +159,7 @@
      *
      * @uses urldecode()
      */
-    public function cleanseValueString($string)
+    public function cleanseValueString(string $string) :string
     {
       $banned_string_pattern = '@GLOBALS|_REQUEST|base64_encode|UNION|%3C|%3E@i';
 // Apply the whitelist
@@ -187,7 +188,7 @@
      *
      *
      */
-    public function cleanGlobals()
+    public function cleanGlobals() :void
     {
       foreach ($_GET as $key => $value) {
         if (array_key_exists($key, $GLOBALS)) {
