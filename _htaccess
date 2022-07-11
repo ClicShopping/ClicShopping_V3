@@ -2,9 +2,37 @@
 #Options +FollowSymlinks
 #Options -MultiViews
 
-#### Your config to change ###############
 #AllowOverride All
 #AcceptPathInfo on
+
+
+##################################
+# Your config to change
+##################################
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+## URL Canonicalization
+#to change in function your website
+#    RewriteCond %{HTTP_HOST} !^www.test.com$ [NC]
+#    RewriteRule ^(.*)$ https://www.test.com/$1 [L,R=301]
+
+#to change in function your website
+#RewriteBase /
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+
+#RewriteCond %{HTTP_HOST} ^test.org[NC]
+#RewriteCond %{REQUEST_URI} !
+#RewriteRule ^(.*)$ https://test/index.php/$1 [L,R=301,NC]
+</IfModule>
+
+
+
+
+
 
 ##################################
 # Security
@@ -48,33 +76,6 @@ BrowserMatchNoCase "FlipboardProxy" bots
 Order Allow,Deny
 Allow from ALL
 Deny from env=bots
-
-##################################
-# Your config to change
-##################################
-##Uncomment and adapt
-
-<IfModule mod_rewrite.c>
-RewriteEngine On
-
-## URL Canonicalization
-#to change in function your website
-#    RewriteCond %{HTTP_HOST} !^www.satinecreation.com$ [NC]
-#    RewriteRule ^(.*)$ https://www.satinecreation.com/$1 [L,R=301]
-
-#to change in function your website
-RewriteBase /
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-RewriteCond %{HTTP_HOST} ^demo.clicshopping.org[NC]
-RewriteCond %{REQUEST_URI} !
-RewriteRule ^(.*)$ https://www.demo.clicshopping.org/index.php/$1 [L,R=301,NC]
-
-#RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
-#RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,NE,L]
-</IfModule>
 
 ##################################
 #Caching schema
