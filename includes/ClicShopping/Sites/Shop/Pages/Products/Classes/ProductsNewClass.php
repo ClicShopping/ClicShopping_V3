@@ -15,7 +15,9 @@
 
   class ProductsNewClass
   {
-
+    /**
+     * @return array
+     */
     public static function getCountColumnList()
     {
 // create column list
@@ -38,6 +40,9 @@
       return $column_list;
     }
 
+    /**
+     * @return string
+     */
     private static function Listing()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -67,7 +72,6 @@
       }
 
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-
         $Qlisting .= ' p.products_id,
                        p.products_quantity as in_stock,
                        g.customers_group_price,
@@ -101,7 +105,6 @@
       }
 
       if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > \count($count_column))) {
-
         for ($i = 0, $n = \count($count_column); $i < $n; $i++) {
           if ($count_column[$i] == 'MODULE_PRODUCTS_NEW_LIST_DATE_ADDED') {
             $_GET['sort'] = $i + 1 . 'a';
@@ -140,6 +143,9 @@
       return $Qlisting;
     }
 
+    /**
+     * @return mixed
+     */
     public static function getListing()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');

@@ -7,6 +7,14 @@ Options -MultiViews
  AcceptPathInfo on
 
 ##################################
+# Remove rewriting
+##################################
+<IfModule mod_rewrite.c>
+RewriteEngine Off
+</IfModule>
+
+
+##################################
 # Bot
 ##################################
 #Rules to block bad bods from accessing web pages on your site.

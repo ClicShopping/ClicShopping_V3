@@ -14,6 +14,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\Language;
 
   class HTMLOverrideAdmin extends HTML
   {
@@ -36,26 +37,54 @@
      *
      * @param string $string
      * @return string $string,
-     *
-     *
      */
     public static function getCkeditor(): string
     {
-      $script = '<script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>';
+      $CLICSHOPPING_Language = Registry::get('Language');
+      $code = $CLICSHOPPING_Language->getCode();
+      $version ='34.2.0';
+      $type = 'super-build';
+
+      $script = '<script src="https://cdn.ckeditor.com/ckeditor5/' . $version . '/' . $type . '/ckeditor.js"></script>';
+      $script .= '<script src="https://cdn.ckeditor.com/ckeditor5/' . $version . '/' . $type . '/translations/' . $code . '.js"></script>';
 
       return $script;
     }
 
     /**
-     * Script url
      * @return string
      */
-    public static function getCkeditorCustomizeJsURL(): string
+    public static function getCkeditorLanguage() :string
     {
-      $url = CLICSHOPPING::link('Shop/ext/javascript/cKeditor/ckeditor4_config.js');
+      $CLICSHOPPING_Language = Registry::get('Language');
+      $code = $CLICSHOPPING_Language->getCode();
 
-      return $url;
+      return $code;
     }
+
+
+    /**
+     * @return string
+     */
+    private static function getElFinderConnector() :string
+    {
+      $connector =  '../ext/elFinder-master/php/connector.minimal.php';
+
+      return $connector;
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    public static function CkEditorId(string $name) :string
+    {
+      $result = str_replace('[', '', $name);
+      $result = str_replace(']', '', $result);
+
+      return $result;
+    }
+
 
     /*
      * Outputs a form textarea field with ckeditor
@@ -85,19 +114,310 @@
         $field .= HTML::outputProtected($text);
       }
 
-      $url  = CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.php?Admin=ClicShoppingAdmin');
-
       $field .= '</textarea>';
-      $field .= '<script>
-        CKEDITOR.replace(\'' . HTML::output($name) . '\',
-    {
-        customConfig: "' . static::getCkeditorCustomizeJsURL()  . '",
-        height : ' . $height . ',
-        width : ' . $width . ',
-        toolbar : "Full",
-        filebrowserBrowseUrl :"' . $url . '",
-    });
-            </script>';
+
+      $ckeditor_id = str_replace('[', '', $name);
+      $ckeditor_id = str_replace(']', '', $ckeditor_id);
+      $connector = static::getElFinderConnector();
+      $language_code = static::getCkeditorLanguage();
+
+
+      $field .= "<script>
+// elfinder folder hash of the destination folder to be uploaded in this CKeditor 5
+const uploadTargetHash{$ckeditor_id} = 'l2_Q0stRmlsZXM' . $ckeditor_id;
+
+// elFinder connector URL
+//const connectorUrl = 'php/connector.minimal.php';
+const connectorUrl{$ckeditor_id} = '{$connector}';
+ 
+CKEDITOR.ClassicEditor
+   .create(document.getElementById('{$ckeditor_id}'), {
+/*
+ClassicEditor
+    .create(document.getElementById('{$ckeditor_id}') , {
+*/    
+        language: '{$language_code}',
+//        toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'insertTable', '|', 'ckfinder', '|' , 'link', 'mediaEmbed',  '|' ,'undo', 'redo']
+
+               toolbar: {
+                    items: [
+                        'heading', '|',
+                        'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                        'bulletedList', 'numberedList', 'todoList', '|',
+                        'outdent', 'indent', '|',
+                        'undo', 'redo',
+                        '-',
+                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
+                        'alignment', '|',
+                        'findAndReplace', 'selectAll', '|',
+                        'link', 'ckfinder', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                        'specialCharacters', 'horizontalLine', 'pageBreak', '|',
+                        'exportPDF','exportWord', '|',                       
+                        'sourceEditing'
+                    ],
+                    shouldNotGroupWhenFull: true
+                },
+                
+                list: {
+                    properties: {
+                        styles: true,
+                        startIndex: true,
+                        reversed: true
+                    }
+                },
+
+                heading: {
+                    options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                        { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+                        { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+                        { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+                    ]
+                },                
+                
+                fontFamily: {
+                    options: [
+                        'default',
+                        'Arial, Helvetica, sans-serif',
+                        'Courier New, Courier, monospace',
+                        'Georgia, serif',
+                        'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                        'Tahoma, Geneva, sans-serif',
+                        'Times New Roman, Times, serif',
+                        'Trebuchet MS, Helvetica, sans-serif',
+                        'Verdana, Geneva, sans-serif'
+                    ],
+                    supportAllValues: true
+                },
+                
+                fontSize: {
+                    options: [ 10, 12, 14, 'default', 18, 20, 22 ],
+                    supportAllValues: true
+                },
+                
+                 link: {
+                    decorators: {
+                        addTargetToExternalLinks: true,
+                        defaultProtocol: 'https://',
+                        toggleDownloadable: {
+                            mode: 'manual',
+                            label: 'Downloadable',
+                            attributes: {
+                                download: 'file'
+                            }
+                        }
+                    }
+                },
+                
+                removePlugins: [
+                    // These two are commercial, but you can try them out without registering to a trial.
+                    // 'ExportPdf',
+                    // 'ExportWord',
+                    'CKBox',
+                    //'CKFinder',
+                    'EasyImage',
+                    // This sample uses the Base64UploadAdapter to handle image uploads as it requires no configuration.
+                    // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html
+                    // Storing images as Base64 is usually a very bad idea.
+                    // Replace it on production website with other solutions:
+                    // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/image-upload.html
+                    // 'Base64UploadAdapter',
+                    'RealTimeCollaborativeComments',
+                    'RealTimeCollaborativeTrackChanges',
+                    'RealTimeCollaborativeRevisionHistory',
+                    'PresenceList',
+                    'Comments',
+                    'TrackChanges',
+                    'TrackChangesData',
+                    'RevisionHistory',
+                    'Pagination',
+                    'WProofreader',
+                    // Careful, with the Mathtype plugin CKEditor will not load when loading this sample
+                    // from a local file system (file://) - load this site via HTTP server if you enable MathType
+                    'MathType'
+                ]
+
+    } )
+    
+  .then(editor => {
+    const ckf = editor.commands.get('ckfinder'),
+      fileRepo = editor.plugins.get('FileRepository'),
+      ntf = editor.plugins.get('Notification'),
+      i18 = editor.locale.t,
+      // Insert images to editor window
+      insertImages = urls => {
+        const imgCmd = editor.commands.get('imageUpload');
+        if (!imgCmd.isEnabled) {
+            ntf.showWarning(i18('Could not insert image at the current position.'), {
+                title: i18('Inserting image failed'),
+                namespace: 'ckfinder'
+            });
+      return;
+      }
+        editor.execute('imageInsert', { source: urls });
+    },
+    // To get elFinder instance
+    getfm = open => {
+    return new Promise((resolve, reject) => {
+      // Execute when the elFinder instance is created
+      const done = () => {
+        if (open) {
+          // request to open folder specify
+          if (!Object.keys(_fm.files()).length) {
+            // when initial request
+            _fm.one('open', () => {
+              _fm.file(open)? resolve(_fm) : reject(_fm, 'errFolderNotFound');
+            });
+                            } else {
+            // elFinder has already been initialized
+            new Promise((res, rej) => {
+              if (_fm.file(open)) {
+                res();
+              } else {
+                // To acquire target folder information
+                _fm.request({cmd: 'parents', target: open}).done(e =>{
+                  _fm.file(open)? res() : rej();
+                }).fail(() => {
+                  rej();
+                });
+                                    }
+            }).then(() => {
+              // Open folder after folder information is acquired
+              _fm.exec('open', open).done(() => {
+                resolve(_fm);
+              }).fail(err => {
+                reject(_fm, err? err : 'errFolderNotFound');
+              });
+                                }).catch((err) => {
+              reject(_fm, err? err : 'errFolderNotFound');
+            });
+          }
+        } else {
+          // show elFinder manager only
+          resolve(_fm);
+        }
+      };
+
+      // Check elFinder instance
+      if (_fm) {
+        // elFinder instance has already been created
+        done();
+      } else {
+        // To create elFinder instance
+        $.dialogelfinder = jQuery.dialogelfinder;
+        _fm = $('<div/>').dialogelfinder({
+              // dialog title
+              title : 'File Manager',
+              // connector URL
+              url : connectorUrl{$ckeditor_id},
+              // start folder setting
+              startPathHash : open? open : void(0),
+              // Set to do not use browser history to un-use location.hash
+              useBrowserHistory : false,
+              // Disable auto open
+              autoOpen : false,
+              // elFinder dialog width
+              width : '80%',
+              // set getfile command options
+              commandsOptions : {
+          getfile: {
+            oncomplete : 'close',
+            multiple : true
+          }
+        },
+       // Insert in CKEditor when choosing files
+        getFileCallback : (files, fm) => {
+          let imgs = [];
+                  fm.getUI('cwd').trigger('unselectall');
+                  $.each(files, function(i, f) {
+                    if (f && f.mime.match(/^image\//i)) {
+                      imgs.push(fm.convAbsUrl(f.url));
+                  } else {
+                    editor.execute('link', fm.convAbsUrl(f.url));
+                  }
+                });
+                if (imgs.length) {
+                  insertImages(imgs);
+                }
+              }
+          }).elfinder('instance');
+          done();
+        }
+       });
+      };
+
+        // elFinder instance
+        let _fm;
+
+        if (ckf) {
+          // Take over ckfinder execute()
+          ckf.execute = () => {
+            getfm().then(fm => {
+              fm.getUI().dialogelfinder('open');
+            });
+            };
+        }
+
+        // Make uploader
+        const uploder = function(loader) {
+          let upload = function(file, resolve, reject) {
+            getfm(uploadTargetHash{$ckeditor_id}).then(fm => {
+              let fmNode = fm.getUI();
+                    fmNode.dialogelfinder('open');
+                    fm.exec('upload', {files: [file], target: uploadTargetHash{$ckeditor_id}}, void(0), uploadTargetHash{$ckeditor_id})
+                        .done(data => {
+                if (data.added && data.added.length) {
+                  fm.url(data.added[0].hash, { async: true }).done(function(url) {
+                    resolve({
+                       'default': fm.convAbsUrl(url)
+                    });
+                    fmNode.dialogelfinder('close');
+                  }).fail(function() {
+                  reject('errFileNotFound');
+                });
+              } else {
+                  reject(fm.i18n(data.error? data.error : 'errUpload'));
+                  fmNode.dialogelfinder('close');
+                }
+              })
+              .fail(err => {
+                const error = fm.parseError(err);
+                reject(fm.i18n(error? (error === 'userabort'? 'errAbort' : error) : 'errUploadNoFiles'));
+              });
+                }).catch((fm, err) => {
+              const error = fm.parseError(err);
+              reject(fm.i18n(error? (error === 'userabort'? 'errAbort' : error) : 'errUploadNoFiles'));
+            });
+            };
+
+            this.upload = function() {
+              return new Promise(function(resolve, reject) {
+                if (loader.file instanceof Promise || (loader.file && typeof loader.file.then === 'function')) {
+                  loader.file.then(function(file) {
+                    upload(file, resolve, reject);
+                  });
+                } else {
+                  upload(loader.file, resolve, reject);
+                }
+                });
+            };
+            this.abort = function() {
+              _fm && _fm.getUI().trigger('uploadabort');
+            };
+        };
+
+        // Set up image uploader
+        fileRepo.createUploadAdapter = loader => {
+        return new uploder(loader);
+     };
+   })
+   .catch(error => {
+        console.error( error );
+   });
+            </script>";
 
       return $field;
     }
@@ -119,19 +439,232 @@
         $width = '250';
       }
 
-      $url  = CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.php?Admin=ClicShoppingAdmin');
+      $field = '<textarea name="' . HTML::output($name) . '" id="' . HTML::output($name) . '" /></textarea>';
 
-      $field = '<textarea name="' . HTML::output($name) . '" /></textarea>';
+      $connector = static::getElFinderConnector();
 
-      $field .= '<script>
-        CKEDITOR.replace(\'' . HTML::output($name) . '\',
-      {
-        customConfig: "' . static::getCkeditorCustomizeJsURL()  . '",
-        width : ' . $width . ',
-        height : ' . $height . ',
-        filebrowserBrowseUrl : "' . $url . '",
-     });
-            </script>';
+      $field .= "<script>
+// elfinder folder hash of the destination folder to be uploaded in this CKeditor 5
+const uploadTargetHashImage = 'l2_Q0stRmlsZXM_' . $name;
+
+// elFinder connector URL
+//const connectorUrl = 'php/connector.minimal.php';
+const connectorUrlImage = '{$connector}';
+
+// To create CKEditor 5 classic editor
+CKEDITOR.ClassicEditor
+   .create(document.getElementById('{$name}'), {
+        toolbar: {
+                items: [
+                    'ckfinder', '|',
+                    'sourceEditing'
+                    ],
+                 shouldNotGroupWhenFull: true
+        },
+                    
+        removePlugins: [
+            // These two are commercial, but you can try them out without registering to a trial.
+            // 'ExportPdf',
+            // 'ExportWord',
+            'CKBox',
+            //'CKFinder',
+            'EasyImage',
+            // This sample uses the Base64UploadAdapter to handle image uploads as it requires no configuration.
+            // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html
+            // Storing images as Base64 is usually a very bad idea.
+            // Replace it on production website with other solutions:
+            // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/image-upload.html
+            // 'Base64UploadAdapter',
+            'RealTimeCollaborativeComments',
+            'RealTimeCollaborativeTrackChanges',
+            'RealTimeCollaborativeRevisionHistory',
+            'PresenceList',
+            'Comments',
+            'TrackChanges',
+            'TrackChangesData',
+            'RevisionHistory',
+            'Pagination',
+            'WProofreader',
+            // Careful, with the Mathtype plugin CKEditor will not load when loading this sample
+            // from a local file system (file://) - load this site via HTTP server if you enable MathType
+            'MathType'
+        ]
+    } )
+  .then(editor => {
+    const ckf = editor.commands.get('ckfinder'),
+      fileRepo = editor.plugins.get('FileRepository'),
+      ntf = editor.plugins.get('Notification'),
+      i18 = editor.locale.t,
+      // Insert images to editor window
+      insertImages = urls => {
+        const imgCmd = editor.commands.get('imageUpload');
+        if (!imgCmd.isEnabled) {
+            ntf.showWarning(i18('Could not insert image at the current position.'), {
+                title: i18('Inserting image failed'),
+                namespace: 'ckfinder'
+            });
+        return;
+        }
+        editor.execute('imageInsert', { source: urls });
+      },
+      // To get elFinder instance
+      getfm = open => {
+      return new Promise((resolve, reject) => {
+        // Execute when the elFinder instance is created
+        const done = () => {
+          if (open) {
+            // request to open folder specify
+            if (!Object.keys(_fm.files()).length) {
+              // when initial request
+              _fm.one('open', () => {
+                _fm.file(open)? resolve(_fm) : reject(_fm, 'errFolderNotFound');
+              });
+                              } else {
+              // elFinder has already been initialized
+              new Promise((res, rej) => {
+                if (_fm.file(open)) {
+                  res();
+                } else {
+                  // To acquire target folder information
+                  _fm.request({cmd: 'parents', target: open}).done(e =>{
+                    _fm.file(open)? res() : rej();
+                  }).fail(() => {
+                    rej();
+                  });
+                                      }
+              }).then(() => {
+                // Open folder after folder information is acquired
+                _fm.exec('open', open).done(() => {
+                  resolve(_fm);
+                }).fail(err => {
+                  reject(_fm, err? err : 'errFolderNotFound');
+                });
+              }).catch((err) => {
+                reject(_fm, err? err : 'errFolderNotFound');
+              });
+            }
+          } else {
+            // show elFinder manager only
+            resolve(_fm);
+          }
+        };
+
+        // Check elFinder instance
+        if (_fm) {
+          // elFinder instance has already been created
+          done();
+        } else {
+          // To create elFinder instance
+          _fm = $('<div/>').dialogelfinder({
+            // dialog title
+            title : 'File Manager',
+            // connector URL
+            url : connectorUrlImage,
+            // start folder setting
+            startPathHash : open? open : void(0),
+            // Set to do not use browser history to un-use location.hash
+            useBrowserHistory : false,
+            // Disable auto open
+            autoOpen : false,
+            // elFinder dialog width
+            width : '80%',
+            // set getfile command options
+            commandsOptions : {
+            getfile: {
+                oncomplete : 'close',
+                multiple : true
+            }
+          },
+          // Insert in CKEditor when choosing files
+          getFileCallback : (files, fm) => {
+          let imgs = [];
+          fm.getUI('cwd').trigger('unselectall');
+          $.each(files, function(i, f) {
+            if (f && f.mime.match(/^image\//i)) {
+              imgs.push(fm.convAbsUrl(f.url));
+            } else {
+                editor.execute('link', fm.convAbsUrl(f.url));
+            }
+          });
+          if (imgs.length) {
+            insertImages(imgs);
+          }
+         }
+        }).elfinder('instance');
+            done();
+        }
+      });
+    };
+
+    // elFinder instance
+    let _fm;
+
+    if (ckf) {
+      // Take over ckfinder execute()
+      ckf.execute = () => {
+        getfm().then(fm => {
+          fm.getUI().dialogelfinder('open');
+        });
+        };
+    }
+
+    // Make uploader
+    const uploder = function(loader) {
+      let upload = function(file, resolve, reject) {
+        getfm(uploadTargetHashImage).then(fm => {
+          let fmNode = fm.getUI();
+              fmNode.dialogelfinder('open');
+              fm.exec('upload', {files: [file], target: uploadTargetHashImage}, void(0), uploadTargetHashImage)
+            .done(data => {
+            if (data.added && data.added.length) {
+              fm.url(data.added[0].hash, { async: true }).done(function(url) {
+                resolve({
+                    'default': fm.convAbsUrl(url)
+                    });
+                    fmNode.dialogelfinder('close');
+                  }).fail(function() {
+                reject('errFileNotFound');
+              });
+                        } else {
+              reject(fm.i18n(data.error? data.error : 'errUpload'));
+              fmNode.dialogelfinder('close');
+            }
+          })
+          .fail(err => {
+            const error = fm.parseError(err);
+            reject(fm.i18n(error? (error === 'userabort'? 'errAbort' : error) : 'errUploadNoFiles'));
+          });
+          }).catch((fm, err) => {
+          const error = fm.parseError(err);
+          reject(fm.i18n(error? (error === 'userabort'? 'errAbort' : error) : 'errUploadNoFiles'));
+        });
+        };
+
+          this.upload = function() {
+            return new Promise(function(resolve, reject) {
+              if (loader.file instanceof Promise || (loader.file && typeof loader.file.then === 'function')) {
+                loader.file.then(function(file) {
+                  upload(file, resolve, reject);
+                });
+              } else {
+                upload(loader.file, resolve, reject);
+              }
+              });
+          };
+          this.abort = function() {
+            _fm && _fm.getUI().trigger('uploadabort');
+          };
+        };
+
+        // Set up image uploader
+        fileRepo.createUploadAdapter = loader => {
+        return new uploder(loader);
+      };
+    })
+    .catch(error => {
+    console.error( error );
+  });
+            </script>";
 
       return $field;
     }

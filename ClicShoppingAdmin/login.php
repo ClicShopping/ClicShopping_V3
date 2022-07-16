@@ -48,8 +48,12 @@
           $username = HTML::sanitize($_SESSION['redirect_origin']['auth_user']);
           $password = HTML::sanitize($_SESSION['redirect_origin']['auth_pw']);
         } else {
-          $username = HTML::sanitize($_POST['username']);
-          $password = HTML::sanitize($_POST['password']);
+            if(isset($_POST['username'], $_POST['password'])) {
+              $username = HTML::sanitize($_POST['username']);
+              $password = HTML::sanitize($_POST['password']);
+            } else {
+              CLICSHOPPING::redirect('login.php');
+            }
         }
 
         if (!empty($username)) {
@@ -75,9 +79,7 @@
 //**********************************
                 if (PHP_VERSION < 7.4) {
                   if (Hash::needsRehash($Qadmin->value('user_password'))) {
-                    $CLICSHOPPING_Db->save('administrators', ['user_password' => Hash::encrypt($password)],
-                      ['id' => $Qadmin->valueInt('id')]
-                    );
+                    $CLICSHOPPING_Db->save('administrators', ['user_password' => Hash::encrypt($password)], ['id' => $Qadmin->valueInt('id')]);
                   }
                 }
 
@@ -440,12 +442,12 @@
 ?>
     <div id="loginModal" tabindex="-1" role="document" aria-hidden="true" style="padding-top:10rem;">
       <div class="modal-dialog">
-        <div class="modal-content" style="background-color: transparent; border: none;">
+        <div class="modal-content" style="background-color: transparent; border: none; align-items: center;">
           <div class="modal-header">
-            <h1 style="color:#233C7A;"><?php echo CLICSHOPPING::getDef('heading_title'); ?></h1>
+            <h1 style="color:#233C7A; text-align: center;"><?php echo CLICSHOPPING::getDef('heading_title'); ?></h1>
           </div>
           <?php echo HTML::form('login', CLICSHOPPING::link('login.php', 'action=' . $form_action)); ?>
-          <div class="modal-body">
+          <div class="modal-body" style="width:20rem; padding-top:3rem;">
             <div class="col-md-12 center-block">
 <?php
     if ($form_action == 'create') {
@@ -481,7 +483,7 @@
           </div>
           </form>
           <div class="modal-footer">
-            <div class="row col-md-12">
+            <div class="row col-md-12" style="width:30rem;">
               <div class="col-md-6">
                 <label for="buttononlineCatalog"><a href="../index.php">
                   <button class="btn text-start" data-bs-dismiss="modal"
@@ -502,14 +504,14 @@
 <?php
   } else {
 ?>
-    <div id="loginModal" tabindex="-1" role="document" aria-hidden="true" style="padding-top:10rem">
+    <div id="loginModal" tabindex="-1" role="document" aria-hidden="true" style="padding-top:10rem;">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="background-color: transparent; border: none; align-items: center;">
           <?php echo HTML::form('send_password', CLICSHOPPING::link('login.php', 'action=send_password')); ?>
           <div class="modal-header">
             <h2 style="color:#233C7A;"><?php echo CLICSHOPPING::getDef('heading_title_sent_password'); ?></h2>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" style="width:30rem; padding-top:3rem;">
             <div class="col-md-12 center-block">
               <div class="text-danger"
                    style="font-size:12px; padding-bottom:10px;"><?php echo CLICSHOPPING::getDef('text_sent_password'); ?></div>

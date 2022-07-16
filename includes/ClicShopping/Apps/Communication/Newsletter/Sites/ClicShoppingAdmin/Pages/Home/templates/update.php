@@ -256,42 +256,21 @@
           <div class="mainTitle"><?php echo $CLICSHOPPING_Newsletter->getDef('text_newsletter_content'); ?></div>
           <div class="adminformTitle">
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <div class="col-md-5">
-                    <?php echo HTMLOverrideAdmin::textAreaCkeditor('message', 'soft', '750', '300', $nInfo->content); ?>
+                  <div class="col-md-12">
+                    <?php
+                    $name = 'message';
+                    $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+
+                    echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', $nInfo->content, 'id="' . $ckeditor_id . '"');
+                    ?>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="separator"></div>
-          <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Newsletter->getDef('title_help_description')) . ' ' . $CLICSHOPPING_Newsletter->getDef('title_help_description') ?></div>
-            <div class="separator"></div>
-            <div class="row">
-              <span class="col-md-12">
-               <blockquote><i><a data-bs-toggle="modal"
-                                 data-bs-target="#myModalWysiwyg2"><?php echo $CLICSHOPPING_Newsletter->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
-               <div class="modal fade" id="myModalWysiwyg2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                    aria-hidden="true">
-                 <div class="modal-dialog">
-                   <div class="modal-content">
-                     <div class="modal-header">
-                       <button type="button" class="close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                       <h4 class="modal-title"
-                           id="myModalLabel"><?php echo $CLICSHOPPING_Newsletter->getDef('text_help_wysiwyg'); ?></h4>
-                     </div>
-                     <div class="modal-body text-center">
-                       <img class="img-fluid"
-                            src="<?php echo $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png'; ?>">
-                     </div>
-                   </div>
-                 </div>
-               </div>
-              </span>
-            </div>
-          </div>
         </div>
       </div>
     </div>

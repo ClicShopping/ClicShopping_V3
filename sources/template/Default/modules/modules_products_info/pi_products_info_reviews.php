@@ -39,7 +39,7 @@
     public function execute() {
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-      if ($CLICSHOPPING_ProductsCommon->getID() && isset($_GET['Description']) && isset($_GET['Products'])) {
+      if ($CLICSHOPPING_ProductsCommon->getID()) {
         $content_width = (int)MODULE_PRODUCTS_INFO_REVIEWS_CONTENT_WIDTH;
 
         $CLICSHOPPING_Db = Registry::get('Db');

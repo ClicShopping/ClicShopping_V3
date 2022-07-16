@@ -867,7 +867,14 @@
                       class="col-sm-2"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>&nbsp;</span>
                     <span class="col-sm-10">
                       <div
-                        style="visibility:visible; display:block;"><?php echo HTMLOverrideAdmin::textAreaCkeditor('products_description[' . $languages[$i]['id'] . ']', 'soft', '750', '300', (isset($products_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages[$i]['id']))); ?></div>
+                        style="visibility:visible; display:block;">
+                        <?php
+                        $name = 'products_description[' . $languages[$i]['id'] . ']';
+                        $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+
+                        echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', (isset($products_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                        ?>
+                      </div>
                   </span>
                   </div>
                   <div class="separator"></div>
@@ -889,34 +896,8 @@
             </div>
           </div>
           <div class="separator"></div>
-          <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_description')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_description') ?></div>
-            <div class="separator"></div>
-            <div class="row">
-          <span class="col-sm-12">
-            <?php echo $CLICSHOPPING_Products->getDef('title_help_description'); ?>
-            <blockquote><i><a data-bs-toggle="modal"
-                              data-bs-target="#myModalWysiwyg"><?php echo $CLICSHOPPING_Products->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
-            <div class="modal fade" id="myModalWysiwyg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                 aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 class="modal-title"
-                        id="myModalLabel"><?php echo $CLICSHOPPING_Products->getDef('text_help_wysiwyg'); ?></h4>
-                  </div>
-                  <div class="modal-body text-center">
-                    <img class="img-fluid"
-                         src="<?php echo $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png'; ?>">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </span>
+          <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab4', null, 'display'); ?>
         </div>
-     </div>
-     <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab4', null, 'display'); ?>
-   </div>
 
         <?php
           // ******************************************
@@ -1203,14 +1184,14 @@
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
 
-                <div class="row">
-                  <div class="col-md-1">
-                    <div class="form-group row">
-                      <label for="Code"
-                             class="col-1 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                    </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group row">
+                              <label for="code"
+                                     class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                          </div>
+                      </div>
                   </div>
-                </div>
                 <div class="row" id="productsSeoUrl">
                   <div class="col-md-12">
                       <div class="form-group row">

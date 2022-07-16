@@ -1034,7 +1034,14 @@
           <div class="adminformTitle">
             <div class="row">
               <div class="col-md-12">
-                <span><?php echo HTMLOverrideAdmin::textAreaCkeditor('customers_notes', 'soft', '750', '200', ''); ?></span>
+                <span>
+                  <?php
+                  $name = 'customers_notes';
+                  $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+
+                  echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '200', '', 'id="' . $ckeditor_id . '"');
+                  ?>
+                </span>
               </div>
             </div>
           </div>

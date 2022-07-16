@@ -195,7 +195,12 @@
                   <div class="form-group row">
                     <label for="lang" class="col-1 col-form-label"></label>
                     <div class="col-md-8">
-                      <?php echo HTMLOverrideAdmin::textAreaCkeditor('categories_description[' . $languages[$i]['id'] . ']', 'soft', '750', '300', (isset($categories_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($categories_description[$languages[$i]['id']])) : $CLICSHOPPING_CategoriesAdmin->getCategoryDescription($cInfo->categories_id, $languages[$i]['id']))); ?>
+                      <?php
+                      $name = 'categories_description[' . $languages[$i]['id'] . ']';
+                      $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+
+                      echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', (isset($categories_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($categories_description[$languages[$i]['id']])) : $CLICSHOPPING_CategoriesAdmin->getCategoryDescription($cInfo->categories_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                      ?>
                     </div>
                   </div>
                 </div>
@@ -229,14 +234,14 @@
         <?php
           for ($i = 0, $n = \count($languages); $i < $n; $i++) {
             ?>
-            <div class="row">
-              <div class="col-md-1">
-                <div class="form-group row">
-                  <label for="Code"
-                         class="col-1 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                      <label for="code"
+                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                  </div>
                 </div>
               </div>
-            </div>
               <div class="separator"></div>
               <div class="row">
                   <div class="col-md-12">

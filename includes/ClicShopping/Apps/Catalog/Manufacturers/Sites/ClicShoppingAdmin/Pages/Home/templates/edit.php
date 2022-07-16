@@ -179,7 +179,12 @@
                   <div class="col-md-12">
                     <div class="form-group row">
                       <div class="col-md-8">
-                        <?php echo HTMLOverrideAdmin::textAreaCkeditor('manufacturer_description[' . $languages[$i]['id'] . ']', 'soft', '750', '300', (isset($manufacturer_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($manufacturer_description[$languages[$i]['id']])) : ManufacturerAdmin::getManufacturerDescription($mInfo->manufacturers_id ?? null, $languages[$i]['id']))); ?>
+                        <?php
+                          $name = 'manufacturer_description[' . $languages[$i]['id'] . ']';
+                          $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+
+                          echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', (isset($manufacturer_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($manufacturer_description[$languages[$i]['id']])) : ManufacturerAdmin::getManufacturerDescription($mInfo->manufacturers_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -189,36 +194,6 @@
             ?>
           </div>
           <div class="separator"></div>
-
-          <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Manufacturers->getDef('title_help_description')) . ' ' . $CLICSHOPPING_Manufacturers->getDef('title_help_description') ?></div>
-            <div class="separator"></div>
-            <div><?php echo $CLICSHOPPING_Manufacturers->getDef('text_help_clone'); ?></div>
-            <div class="separator"></div>
-            <div class="row">
-                <span class="col-md-12">
-                  <blockquote><i><a data-bs-toggle="modal"
-                                    data-bs-target="#myModalWysiwyg"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
-                  <div class="modal fade" id="myModalWysiwyg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                       aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-bs-dismiss="modal"><span
-                              aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title"
-                              id="myModalLabel"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_help_wysiwyg'); ?></h4>
-                        </div>
-                        <div class="modal-body text-center">
-                          <img class="img-fluid"
-                               src="<?php echo $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png'; ?>">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </span>
-            </div>
-          </div>
           <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ProductsContentTab2', null, 'display'); ?>
         </div>
 
@@ -231,11 +206,11 @@
             <div class="row">
               <div class="col-md-12">
                 <span
-                  class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/banner_manager.gif', $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette'), '40', '40'); ?></span>
+                  class="col-md-6"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/banner_manager.gif', $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette'), '40', '40'); ?></span>
                 <span
-                  class="col-md-3 main"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette'); ?></span>
+                  class="col-md-6 main"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette'); ?></span>
                 <span
-                  class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product.gif', $CLICSHOPPING_Manufacturers->getDef('text_products_image_visuel'), '40', '40'); ?></span>
+                  class="col-md-6"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product.gif', $CLICSHOPPING_Manufacturers->getDef('text_products_image_visuel'), '40', '40'); ?></span>
                 <span
                   class="col-md-7 main"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_products_image_visuel'); ?></span>
               </div>
@@ -243,7 +218,9 @@
                 <div class="adminformAide">
                   <div class="row">
                     <span
-                      class="col-md-4 text-center float-start"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('manufacturers_image', null, '212', '212'); ?></span>
+                      class="col-md-4 text-center float-start">
+                      <?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('manufacturers_image', null, '212', '212'); ?>
+                    </span>
                     <span class="col-md-8 text-center float-end">
                         <div
                           class="col-md-12"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($mInfo->manufacturers_image ?? null, $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette')); ?></div>
@@ -286,14 +263,14 @@
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
 
-                <div class="row">
-                  <div class="col-md-1">
-                    <div class="form-group row">
-                      <label for="Code"
-                             class="col-1 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                    </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group row">
+                              <label for="code"
+                                     class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                          </div>
+                      </div>
                   </div>
-                </div>
 
                 <div class="row">
                   <div class="col-md-12">

@@ -57,7 +57,7 @@
         return false;
       }
 
-      if (isset($_GET['Products'], $_GET['Description'])) {
+      if (isset($_GET['Id']) || isset($_GET['products_id'])) {
         if ($CLICSHOPPING_ProductsCommon->getID()) {
           $products_id = $CLICSHOPPING_ProductsCommon->getID();
 

@@ -986,6 +986,7 @@ div.elfinder {
     visibility: visible;
     font-size: 18px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
+    z-index: 9999;
 }
 
 /* prevent auto zoom on iOS */

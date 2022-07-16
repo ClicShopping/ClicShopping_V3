@@ -605,12 +605,17 @@
     }
 ?>
                 <div class="row">
-                  <div class="col-md-5">
+                  <div class="col-md-12">
                     <div class="form-group row">
                       <label for="Lang1"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                      <div class="col-md-5">
-                        <?php echo HTMLOverrideAdmin::textAreaCkeditor('pages_html_text_' . $languages[$i]['id'], 'soft', '750', '300', str_replace('& ', '&amp; ', trim($text_description))); ?>
+                             class="col-1 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                      <div class="col-md-11">
+                        <?php
+                        $name = 'pages_html_text_[' . $languages[$i]['id'] . ']';
+                        $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+
+                        echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', str_replace('& ', '&amp; ', trim($text_description)), 'id="' . $ckeditor_id . '"');
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -621,34 +626,6 @@
 ?>
           </div>
           <div class="separator"></div>
-          <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_PageManager->getDef('title_help_description')) . ' ' . $CLICSHOPPING_PageManager->getDef('title_help_description') ?></div>
-            <div class="separator"></div>
-            <div class="row">
-               <span class="col-md-12">
-                 <?php echo $CLICSHOPPING_PageManager->getDef('help_options'); ?>
-                 <blockquote><i><a data-bs-toggle="modal"
-                                   data-bs-target="#myModalWysiwyg2"><?php echo $CLICSHOPPING_PageManager->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
-                 <div class="modal fade" id="myModalWysiwyg2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                      aria-hidden="true">
-                   <div class="modal-dialog">
-                     <div class="modal-content">
-                       <div class="modal-header">
-                         <button type="button" class="close" data-bs-dismiss="modal"><span
-                             aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title"
-                             id="myModalLabel"><?php echo $CLICSHOPPING_PageManager->getDef('text_help_wysiwyg'); ?></h4>
-                       </div>
-                       <div class="modal-body text-center">
-                         <img class="img-fluid"
-                              src="<?php echo $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png'; ?>">
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-               </span>
-            </div>
-          </div>
         </div>
 <!-- //################################################################################################################ -->
 <!--               ONGLET Information seo		          //-->
