@@ -81,7 +81,7 @@
                                                                   and m.manufacturers_id = :manufacturers_id
                                                                 ');
       $Qmanufacturers->bindValue(':languages_id', (int)$CLICSHOPPING_Language->getId());
-      $Qmanufacturers->bindValue(':manufacturers_id', $_GET['mID']);
+      $Qmanufacturers->bindInt(':manufacturers_id', $_GET['mID']);
       $Qmanufacturers->execute();
 
       $mInfo = new ObjectInfo($Qmanufacturers->toArray());

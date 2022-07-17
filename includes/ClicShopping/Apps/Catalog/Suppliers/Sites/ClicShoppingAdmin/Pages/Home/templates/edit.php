@@ -33,10 +33,12 @@
 
   if ((isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID']))) {
     $form_action = 'Update';
-    $variable = '&mID=' . $_GET['mID'];
+    $variable = '&mID=' . HTML::sanitize($_GET['mID']);
   }
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+  echo HTMLOverrideAdmin::getCkeditor();
 ?>
 <div class="contentBody">
   <div class="row">
@@ -50,7 +52,7 @@
           <span class="col-md-7 text-end">
 <?php
   echo HTML::form('suppliers', $CLICSHOPPING_Suppliers->link('Suppliers&' . $form_action . $variable));
-  if ($form_action == 'Update') echo HTML::hiddenField('suppliers_id', $_GET['mID']);
+  if ($form_action == 'Update') echo HTML::hiddenField('suppliers_id', HTML::sanitize($_GET['mID']));
 
   echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_cancel'), null, $CLICSHOPPING_Suppliers->link('Suppliers&page=' . $page . $variable), 'warning') . '&nbsp;';
   echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Suppliers->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Suppliers->getDef('button_update'), null, null, 'success'));
@@ -76,8 +78,6 @@
     } else {
       $mInfo = new ObjectInfo([]);
     }
-
-    echo HTMLOverrideAdmin::getCkeditor();
   ?>
   <div id="suppliersTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
