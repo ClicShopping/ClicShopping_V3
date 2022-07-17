@@ -35,9 +35,7 @@
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
   echo HTMLOverrideAdmin::getCkeditor();
-  echo HTML::form('manufacturers', $CLICSHOPPING_Manufacturers->link('Manufacturers&' . $form_action . $variable));
 ?>
-
 <div class="contentBody">
   <div class="row">
     <div class="col-md-12">
@@ -49,6 +47,7 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Manufacturers->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
 <?php
+  echo HTML::form('manufacturers', $CLICSHOPPING_Manufacturers->link('Manufacturers&' . $form_action . $variable));
   if ($form_action == 'Update') echo HTML::hiddenField('manufacturers_id', HTML::sanitize($_GET['mID']));
 
   echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_cancel'), null, $CLICSHOPPING_Manufacturers->link('Manufacturers&page=' . $page . $variable), 'warning') . '&nbsp;';
@@ -61,7 +60,7 @@
   </div>
   <div class="separator"></div>
   <?php
-    if ((isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID']))) {
+    if (isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID'])) {
       $Qmanufacturers = $CLICSHOPPING_Manufacturers->db->prepare('select m.manufacturers_id,
                                                                          m.manufacturers_name,
                                                                          m.manufacturers_image,
@@ -84,6 +83,8 @@
       $Qmanufacturers->bindInt(':manufacturers_id', $_GET['mID']);
       $Qmanufacturers->execute();
 
+      $manufacturers = $Qmanufacturers->fetch();
+      
       $mInfo = new ObjectInfo($Qmanufacturers->toArray());
     } else {
       $mInfo = new ObjectInfo(array());

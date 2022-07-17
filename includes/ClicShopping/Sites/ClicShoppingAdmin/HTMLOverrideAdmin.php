@@ -14,7 +14,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Language;
+  use ClicShopping\OM\HTTP;
 
   class HTMLOverrideAdmin extends HTML
   {
@@ -68,7 +68,7 @@
      */
     private static function getElFinderConnector() :string
     {
-      $connector =  '../ext/elFinder-master/php/connector.minimal.php';
+      $connector = HTTP::getShopUrlDomain() . 'ext/elFinder-master/php/connector.minimal.php';
 
       return $connector;
     }
