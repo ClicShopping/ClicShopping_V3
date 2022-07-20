@@ -20,7 +20,7 @@
      * @param string $key
      * @return mixed|null
      */
-    public static function get(string $key)
+    public static function get(string $key): mixed
     {
       if (static::exists($key)) {
         $value = static::$data[$key];
@@ -108,7 +108,7 @@
     /**
      * @param string $key
      */
-    public static function remove(string $key)
+    public static function remove(string $key): void
     {
       unset(static::$data[$key]);
     }
@@ -131,7 +131,7 @@
     /**
      * @param array $keys
      */
-    public static function addAliases(array $keys)
+    public static function addAliases(array $keys): void
     {
       foreach ($keys as $key => $class) {
         static::addAlias($key, $class);
@@ -150,7 +150,7 @@
     /**
      * @param string $key
      */
-    public static function removeAlias(string $key)
+    public static function removeAlias(string $key): void
     {
       unset(static::$aliases[$key]);
     }
