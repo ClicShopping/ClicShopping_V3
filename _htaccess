@@ -3,7 +3,7 @@
 #Options -MultiViews
 
 #AllowOverride All
-AcceptPathInfo on
+#AcceptPathInfo on
 
 
 ##################################
