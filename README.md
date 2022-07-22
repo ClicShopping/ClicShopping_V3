@@ -38,8 +38,8 @@ Easy to install in just some clicks on a server or on your computer, you can use
 
 #Requirement (more information in the wiki)
  - Apache 2.4<br>
- - MYSQL 7 / MariaDb 10.3 - 10.4 / Postgres<br>
- - PHP > 8.0 and 8.1
+ - MYSQL 7 / MariaDb 10.x / Postgres<br>
+ - PHP > 8.1
  - More information in the Wiki
 
 #Installation
@@ -90,7 +90,7 @@ ClicShopping(tm) has a trademark deposed : https://www.clicshopping.org/forum/tr
 
 #Functionnalities (some)
 - B2B - B2C  full functionalities
-- WYSIWYG to create your products description, content with CKeditor4.x
+- WYSIWYG to create your products description, content with CKeditor5.x
 - Image Editor management with El-Finder 2.x - drag and drop - webp
 - Full SEO functionalities optimization ad url
 - Payment and Shipping modules included inside the application with Paypal
@@ -99,7 +99,7 @@ ClicShopping(tm) has a trademark deposed : https://www.clicshopping.org/forum/tr
 - Some dynamic statistics inside the dashboard and all the back-office
 - GDRP included and some regulation aspect
 - Some configuration capacities to adapt the settings in function of your needs in B2B or B2C
-- Ready for mobile, tablet and desktop with BootStrap 4.x technology
+- Ready for mobile, tablet and desktop with BootStrap 5.x technology
 - Several modes of payment / delivery can be installed
 - More 250 modules available and free functional on the marketplace and available on Github !
 - Full responsive design  application with Bootstrap 4.x

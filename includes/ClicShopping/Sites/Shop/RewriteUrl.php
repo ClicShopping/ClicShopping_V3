@@ -438,7 +438,7 @@
       }
 
       if ( static::seemsUtf8( $string )) {
-        $chars =[
+        $chars = [
           // Decompositions for Latin-1 Supplement
           'ª' => 'a',
           'º' => 'o',
