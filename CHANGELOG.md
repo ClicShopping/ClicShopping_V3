@@ -1,5 +1,6 @@
 3.322
-
+fix elfinder link
+fix github proprieties access
 
 
 -------------
