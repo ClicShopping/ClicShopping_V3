@@ -68,7 +68,7 @@
      */
     private static function getElFinderConnector() :string
     {
-      $connector = CLICSHOPPING::getConfig('http_server', 'Shop') . '/ext/elFinder-master/php/connector.minimal.php';
+      $connector = CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path','Shop') . 'ext/elFinder-master/php/connector.minimal.php';
 
       return $connector;
     }
