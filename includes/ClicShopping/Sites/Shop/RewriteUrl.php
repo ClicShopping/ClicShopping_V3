@@ -891,10 +891,10 @@
             $products_url_rewrited = $products_name . '&Id=' . $products_id;
           }
         } else {
-          $products_url_rewrited = 'Products&Description&products_id=' . $products_id;
+          $products_url_rewrited = 'Products&Description&Id=' . $products_id;
         }
       } else {
-        $products_url_rewrited = 'Products&Description&products_id=' . $products_id;
+        $products_url_rewrited = 'Products&Description&Id=' . $products_id;
       }
 
       $url = CLICSHOPPING::link(null, $products_url_rewrited . $parameters);

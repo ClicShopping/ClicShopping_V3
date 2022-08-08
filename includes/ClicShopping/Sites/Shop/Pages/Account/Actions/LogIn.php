@@ -53,11 +53,11 @@
         $password = HTML::sanitize($_POST['password']);
 
 // Check if email exists
-        $Qcheck = $CLICSHOPPING_Db->get('customers', ['customers_id',
-          'customers_password'],
-          ['customers_email_address' => $email_address],
-          null, 1
-        );
+        $array_sql = [
+          'customers_id',
+          'customers_password'];
+
+        $Qcheck = $CLICSHOPPING_Db->get('customers',  $array_sql,   ['customers_email_address' => $email_address], null, 1);
 
 // login content module must return $login_customer_id as an integer after successful customer authentication
         $_SESSION['login_customer_id'] = false;

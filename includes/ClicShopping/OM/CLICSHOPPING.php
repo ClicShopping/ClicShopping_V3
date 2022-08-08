@@ -353,9 +353,9 @@
     }
 
     /**
-     *
+     * load config element to connect db and path
      */
-    public static function loadConfig()
+    public static function loadConfig() :void
     {
       static::loadConfigFile(static::BASE_DIR . 'Conf/global.php', 'global');
 
@@ -380,7 +380,7 @@
      * @param string $group
      */
 
-    public static function loadConfigFile(string $file, string $group)
+    public static function loadConfigFile(string $file, string $group) :void
     {
       $cfg = [];
 
@@ -560,7 +560,7 @@
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
     public static function getSiteApplication(): ?string
     {

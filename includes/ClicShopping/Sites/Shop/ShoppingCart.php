@@ -355,11 +355,10 @@
      * remove all items
      * @param bool $reset_database
      */
-    public function reset(bool $reset_database = false)
+    public function reset(bool $reset_database = false) :void
     {
-      if ($this->customer->isLoggedOn() && ($reset_database === true)) {
+      if ($this->customer->isLoggedOn() && $reset_database === true) {
         $this->db->delete('customers_basket', ['customers_id' => (int)$this->customer->getID()]);
-
         $this->db->delete('customers_basket_attributes', ['customers_id' => (int)$this->customer->getID()]);
       }
 
