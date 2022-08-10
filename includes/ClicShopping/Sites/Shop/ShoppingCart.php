@@ -642,7 +642,7 @@
     /**
      * items cleanUp
      */
-    private function cleanUp()
+    private function cleanUp() :void
     {
       foreach ($this->contents as $item_id => $data) {
         if ( $data['qty'] < 1 ) {

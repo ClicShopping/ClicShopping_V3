@@ -328,7 +328,7 @@
     /**
      * Cart
      */
-    public function cart()
+    public function cart() :void
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
@@ -911,7 +911,7 @@
           $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
                                                               from :table_products_groups
                                                               where products_id = :products_id
-                                                              and customers_group_id =  :customers_group_id
+                                                              and customers_group_id = :customers_group_id
                                                             ');
           $QproductsModuleCustomersGroup->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($this->products[$i]['id']));
           $QproductsModuleCustomersGroup->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
@@ -939,6 +939,7 @@
           'products_tax' => (float)$this->products[$i]['tax'],
           'products_quantity' => (int)$this->products[$i]['qty']
         ];
+
         $this->db->save('orders_products', $sql_data_array);
 
         $order_products_id = $this->db->lastInsertId();
@@ -992,7 +993,7 @@
      * @param int $last_order_id
      * @param int $customer_id
      */
-    public function saveGdpr(int $last_order_id, int  $customer_id)
+    public function saveGdpr(int $last_order_id, int $customer_id) :void
     {
       $Qgdpr = $this->db->prepare('select no_ip_address
                                    from :table_customers_gdpr
@@ -1027,7 +1028,7 @@
      * order process
      * @param int $order_id
      */
-    public function process(int $order_id)
+    public function process(int $order_id) :void
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Prod = Registry::get('Prod');
@@ -1150,7 +1151,7 @@
      * @param int $insert_id
      * @param string|null $comment
      */
-    public function adminOrdersStatusHistory(int $insert_id, string $comment  = '')
+    public function adminOrdersStatusHistory(int $insert_id, string $comment  = '') :void
     {
       $customer_notification = (SEND_EMAILS == 'true') ? '1' : '0';
 
@@ -1171,7 +1172,7 @@
      * sendCustomerEmail : sent email to customer
      * @param int $insert_id
      */
-    public function sendCustomerEmail(int $insert_id)
+    public function sendCustomerEmail(int $insert_id) :void
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
@@ -1330,7 +1331,7 @@
      * Alert by mail product sold out if a product is 0 or < 0
      * @param int $insert_id
      */
-    public function sendEmailAlertProductsSoldOut(int $insert_id)
+    public function sendEmailAlertProductsSoldOut(int $insert_id) :void
     {
       $CLICSHOPPING_Prod = Registry::get('Prod');
 
@@ -1375,7 +1376,7 @@
     /**
      * @param int $insert_id
      */
-    public function sendEmailAlertStockWarning(int $insert_id)
+    public function sendEmailAlertStockWarning(int $insert_id) :void
     {
       $CLICSHOPPING_Prod = Registry::get('Prod');
 
@@ -1436,7 +1437,7 @@
     /**
      * Verify the coupon
      */
-    private function getCodeCoupon()
+    private function getCodeCoupon() :void
     {
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 

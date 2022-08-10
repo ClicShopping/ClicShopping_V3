@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
-        'reference' => '4af11bfb1da1c39afad6a763f80c6833593ab957',
+        'reference' => '91d6ec062226149875bb04ae03584784f1c36adc',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
-            'reference' => '4af11bfb1da1c39afad6a763f80c6833593ab957',
+            'reference' => '91d6ec062226149875bb04ae03584784f1c36adc',
             'dev_requirement' => false,
         ),
         'darkghosthunter/preloader' => array(
@@ -182,12 +182,12 @@
             'dev_requirement' => false,
         ),
         'symfony/finder' => array(
-            'pretty_version' => 'v5.4.8',
-            'version' => '5.4.8.0',
+            'pretty_version' => 'v5.4.11',
+            'version' => '5.4.11.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/finder',
             'aliases' => array(),
-            'reference' => '9b630f3427f3ebe7cd346c277a1408b00249dad9',
+            'reference' => '7872a66f57caffa2916a584db1aa7f12adc76f8c',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-php80' => array(

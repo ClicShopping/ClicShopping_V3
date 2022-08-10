@@ -41,13 +41,15 @@
           include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/SecurityCheck/' . $file);
           $$class = new $class();
 
-          $modules[] = ['title' => isset($$class->title) ? $$class->title : substr($file, 0, strrpos($file, '.')),
+          $modules[] = [
+            'title' => isset($$class->title) ? $$class->title : substr($file, 0, strrpos($file, '.')),
             'class' => $class,
             'code' => substr($file, 0, strrpos($file, '.'))
           ];
         }
       }
     }
+
     $secdir->close();
   }
 
@@ -62,13 +64,15 @@
 
           $$class = new $class();
 
-          $modules[] = ['title' => isset($$class->title) ? $$class->title : substr($file, 0, strrpos($file, '.')),
+          $modules[] = [
+            'title' => isset($$class->title) ? $$class->title : substr($file, 0, strrpos($file, '.')),
             'class' => $class,
             'code' => substr($file, 0, strrpos($file, '.'))
           ];
         }
       }
     }
+
     $extdir->close();
   }
 
