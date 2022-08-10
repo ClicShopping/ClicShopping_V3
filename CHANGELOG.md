@@ -1,7 +1,9 @@
 3.322
 fix elfinder link
 fix github proprieties access
+upgrade rewriting via htaccess
 
+fix small bugs
 
 -------------
 3.321
