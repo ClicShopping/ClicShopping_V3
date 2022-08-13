@@ -4,7 +4,6 @@
    * @copyright 2008 - https://www.clicshopping.org
    * @Brand : ClicShopping(Tm) at Inpi all right Reserved
    * @Licence GPL 2 & MIT
-   * @licence MIT - Portion of osCommerce 2.4
    * @Info : https://www.clicshopping.org/forum/trademark/
    *
    */
@@ -55,10 +54,10 @@
   $Qseo->execute();
 
   $seoBject = $Qseo->toArray();
-  
+
   if (\is_array($seoBject)){
     $seo = new ObjectInfo($Qseo->toArray());
-  
+
     $languages = $CLICSHOPPING_Language->getLanguages();
   
     echo HTML::form('seo', $CLICSHOPPING_SEO->link('SEO&Update'));

@@ -4,7 +4,6 @@
    * @copyright 2008 - https://www.clicshopping.org
    * @Brand : ClicShopping(Tm) at Inpi all right Reserved
    * @Licence GPL 2 & MIT
-   * @licence MIT - Portion of osCommerce 2.4
    * @Info : https://www.clicshopping.org/forum/trademark/
    *
    */
@@ -24,9 +23,8 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 // Language
-      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-        $languages_id = $i +1;
-
+      for ($i = 1, $n = \count($languages); $i < $n; $i++) {
+        $languages_id = $i;
         $submit_defaut_language_title_h1 = HTML::sanitize($_POST['submit_defaut_language_title_h1_'][$languages[$i]['id']] ?? '');
         $submit_defaut_language_title = HTML::sanitize($_POST['submit_defaut_language_title_'][$languages[$i]['id']] ?? '');
         $submit_defaut_language_keywords = HTML::sanitize($_POST['submit_defaut_language_keywords_'][$languages[$i]['id']] ?? '');
@@ -57,6 +55,7 @@
           'submit_defaut_language_keywords' => $submit_defaut_language_keywords ,
           'submit_defaut_language_description' => $submit_defaut_language_description ,
           'submit_defaut_language_footer' => $submit_defaut_language_footer ,
+          'submit_defaut_language_title_h1' =>  $submit_defaut_language_title_h1,
           'submit_language_products_info_title' => $submit_language_products_info_title ,
           'submit_language_products_info_keywords' => $submit_language_products_info_keywords ,
           'submit_language_products_info_description' => $submit_language_products_info_description ,
@@ -74,8 +73,7 @@
           'submit_language_favorites_description' => $submit_language_favorites_description ,
           'submit_language_featured_title' => $submit_language_featured_title ,
           'submit_language_featured_keywords' => $submit_language_featured_keywords ,
-          'submit_language_featured_description' => $submit_language_featured_description,
-          'submit_defaut_language_title_h1' =>  $submit_defaut_language_title_h1
+          'submit_language_featured_description' => $submit_language_featured_description
         ];
 
         $update_sql = [
