@@ -14,7 +14,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
-  use ClicShopping\Apps\Orders\Orders\Classes\ClicShoppingAdmin\OrderAdmin;
+  use ClicShopping\Apps\Orders\Orders\Classes\ClicShoppingAdmin\OrderAdmin as OrderAdminInvoice;
 
   use ClicShopping\Sites\Shop\Tax;
   use ClicShopping\Sites\Common\PDF;
@@ -84,7 +84,7 @@
 
   $status_order = $QstatusOrder->fetch();
 
-  Registry::set('Order', new OrderAdmin($oID));
+  Registry::set('Order', new OrderAdminInvoice($oID));
   $order = Registry::get('Order');
 
 //Instanciation of inherited class
@@ -101,8 +101,8 @@
 
   if (DISPLAY_INVOICE_HEADER == 'false') {
 // Logo
-    if (OrderAdmin::getOrderPdfInvoiceLogo() !== false) {
-      $pdf->Image(OrderAdmin::getOrderPdfInvoiceLogo(), 5, 10, 50);
+    if (OrderAdminInvoice::getOrderPdfInvoiceLogo() !== false) {
+      $pdf->Image(OrderAdminInvoice::getOrderPdfInvoiceLogo(), 5, 10, 50);
     }
 
     // Nom de la compagnie
