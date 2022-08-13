@@ -2,7 +2,7 @@
 fix elfinder link
 fix github proprieties access
 upgrade rewriting via htaccess
-
+fix email impact on session shoppingcart 
 fix small bugs
 
 -------------
