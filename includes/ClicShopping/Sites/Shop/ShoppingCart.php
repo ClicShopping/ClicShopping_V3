@@ -692,7 +692,6 @@
       return $total_items;
     }
 
-
     /**
      * get total quantity on each items in cart
      * @param string $item_id

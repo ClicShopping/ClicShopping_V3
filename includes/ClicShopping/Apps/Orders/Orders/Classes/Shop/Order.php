@@ -1025,9 +1025,9 @@
      ***********************************************************/
     /**
      * order process
-     * @param int $order_id
+     * @param int $last_order_id
      */
-    public function process(int $order_id) :void
+    public function process(int $last_order_id) :void
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Prod = Registry::get('Prod');
@@ -1036,11 +1036,11 @@
       $CLICSHOPPING_Hooks->call('Orders', 'PreActionProcess');
 
       $Qproducts = $this->db->prepare('select products_id,
-                                               products_quantity
+                                              products_quantity
                                         from :table_orders_products
                                         where orders_id = :orders_id
                                        ');
-      $Qproducts->bindInt(':orders_id', $order_id);
+      $Qproducts->bindInt(':orders_id', $last_order_id);
       $Qproducts->execute();
 
       while ($Qproducts->fetch()) {
@@ -1124,9 +1124,9 @@
 
 // alert an email if the product stock is < stock reorder level
 // Alert by mail if a product is 0 or < 0
-            $this->sendEmailAlertStockWarning($order_id);
-// Email alert when a product is exahuted
-            $this->sendEmailAlertProductsSoldOut($order_id);
+            $this->sendEmailAlertStockWarning($last_order_id);
+// Email alert when a product is exhausted
+            $this->sendEmailAlertProductsSoldOut($last_order_id);
           }
         }
 
@@ -1139,23 +1139,23 @@
         $Qupdate->execute();
       } // end while
 
-      $this->adminOrdersStatusHistory($order_id);
-      $this->sendCustomerEmail($order_id);
+      $this->adminOrdersStatusHistory($last_order_id);
+      $this->sendCustomerEmail($last_order_id);
 
       $CLICSHOPPING_Hooks->call('Orders', 'Process');
     }
 
     /**
      *  Status History order
-     * @param int $insert_id
+     * @param int $order_id
      * @param string|null $comment
      */
-    public function adminOrdersStatusHistory(int $insert_id, string $comment  = '') :void
+    public function adminOrdersStatusHistory(int $order_id, string $comment  = '') :void
     {
       $customer_notification = (SEND_EMAILS == 'true') ? '1' : '0';
 
       $sql_data_array = [
-        'orders_id' => (int)$insert_id,
+        'orders_id' => (int)$order_id,
         'orders_status_id' => (int)$this->info['order_status'],
         'orders_status_invoice_id' => (int)$this->info['order_status_invoice'],
         'admin_user_name' => '',
@@ -1171,7 +1171,7 @@
      * sendCustomerEmail : sent email to customer
      * @param int $insert_id
      */
-    public function sendCustomerEmail(int $insert_id) :void
+    public function sendCustomerEmail(int $order_id) :void
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
@@ -1189,7 +1189,7 @@
                                      where orders_id = :orders_id
                                      limit 1
                                      ');
-      $Qorder->bindInt(':orders_id', $insert_id);
+      $Qorder->bindInt(':orders_id', $order_id);
       $Qorder->execute();
 
       if ($Qorder->fetch() !== false) {
@@ -1204,12 +1204,12 @@
                                          where orders_id = :orders_id
                                          order by orders_products_id
                                          ');
-        $Qproducts->bindInt(':orders_id', $insert_id);
+        $Qproducts->bindInt(':orders_id', $order_id);
         $Qproducts->execute();
 
-        $message_order = stripslashes(CLICSHOPPING::getDef('entry_text_order_number')) . ' ' . $insert_id . "\n" . stripslashes(CLICSHOPPING::getDef('email_text_invoice_url'));
+        $message_order = stripslashes(CLICSHOPPING::getDef('entry_text_order_number')) . ' ' . $order_id . "\n" . stripslashes(CLICSHOPPING::getDef('email_text_invoice_url'));
 
-        $email_order = $message_order . ' ' . CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . $insert_id) . "\n" . CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n\n";
+        $email_order = $message_order . ' ' . CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . $order_id) . "\n" . CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n\n";
 
         if ($this->info['comments']) {
           $email_order .= HTML::outputProtected($this->info['comments']) . "\n\n";
@@ -1252,7 +1252,7 @@
                                        where orders_id = :orders_id
                                        order by sort_order
                                        ');
-        $Qtotals->bindInt(':orders_id', $insert_id);
+        $Qtotals->bindInt(':orders_id', $order_id);
         $Qtotals->execute();
 
         while ($Qtotals->fetch()) {
@@ -1304,7 +1304,11 @@
         $email_order .= TemplateEmail::getTemplateEmailSignature() . "\n\n";
         $email_order .= TemplateEmail::getTemplateEmailTextFooter(). "\n";
 
-        $this->mail->clicMail($this->customer['email_address'], $this->customer['firstname'] . ' ' . $this->customer['lastname'], CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]), $email_order, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+        $to_email_address = $this->customer['email_address'];
+        $to_name = $this->customer['firstname'] . ' ' . $this->customer['lastname'];
+        $email_subject =  CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]);
+
+        $this->mail->clicMail($to_email_address, $to_name, $email_subject, $email_order, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
 // SEND_EXTRA_ORDER_EMAILS_TO does'nt work like this, test<test@test.com>, just with test@test.com
         if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {

@@ -298,8 +298,12 @@
 //Set who the message is to be sent to
       $this->phpMail->AddAddress($to_addr, $to_name ?? '');
 
+// check if the email is correct or not
+// If not the email is not sent
+      $error_email = false;
+
       if ($this->validateDomainEmail($to_addr === false) || $this->excludeEmailDomain($to_addr) === true) {
-        return false;
+        $error_email = true;
       }
 
 //Set an alternative reply-to address
@@ -324,7 +328,9 @@
         $this->phpMail->AltBody = HTML::sanitize(STORE_NAME);
       }
 
-      $this->sendPhpMailer();
+      if ($error_email = false) {
+         $this->sendPhpMailer();
+      }
 
       return true;
     }
@@ -353,7 +359,7 @@
      */
     public function clicMail( string|null $to_email_address = null, ?string $to_name = null, string $email_subject = '', string $email_text = '', string $from_email_name = '', string $from_email_address = '')
     {
-      if (SEND_EMAILS != 'true') {
+      if (SEND_EMAILS == 'false') {
         return false;
       }
 
@@ -370,7 +376,7 @@
 
       // Send message
 
-      $this->send($to_email_address, $to_name, $from_email_name, $from_email_address, $email_subject);
+      $this->send($to_email_address, $to_name, $from_email_name, $from_email_address, $email_subject) ;
     }
 
     /**
@@ -389,32 +395,33 @@
 
     /**
      * Do not send en email if it'excluded by the admin
-     * @param string $email
+     * @param string|null $email
      * @return bool
      */
-    public function excludeEmailDomain($email = '')
+    public function excludeEmailDomain(?string $email = '')
     {
-      if( filter_var( $email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
+      if (SEND_EMAILS == 'false') {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
+          $bannedDomainList = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
 
-        $bannedDomainList = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
+          $contactEmailAddresses = [
+            $email
+          ];
 
-        $contactEmailAddresses = [
-          $email
-        ];
+          $config = [
+            'checkMxRecords' => true,
+            'checkBannedListedEmail' => true,
+            'bannedList' => $bannedDomainList,
+          ];
 
-        $config = [
-          'checkMxRecords' => true,
-          'checkBannedListedEmail' => true,
-          'bannedList' => $bannedDomainList,
-        ];
+          $result = new EmailValidator($config);
 
-        $result = new EmailValidator($config);
+          foreach ($contactEmailAddresses as $value) {
+            $result = $result->validate($value);
 
-        foreach ($contactEmailAddresses as $value) {
-          $result = $result->validate($value);
-
-          if ($result === false) {
-            CLICSHOPPING::redirect();
+            if ($result === false) {
+              return true; // could be redirect but becarefull with an order
+            }
           }
         }
       }

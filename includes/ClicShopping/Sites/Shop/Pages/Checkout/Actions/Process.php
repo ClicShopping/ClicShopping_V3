@@ -100,8 +100,9 @@
       $CLICSHOPPING_Payment->before_process();
 
 // process to order
-      $insert_id = $CLICSHOPPING_Order->Insert();
-      $CLICSHOPPING_Order->Process($insert_id);
+      $last_order_id = $CLICSHOPPING_Order->Insert();
+
+      $CLICSHOPPING_Order->Process($last_order_id);
 
 // load the after_process function from the payment modules
       $CLICSHOPPING_Payment->after_process();
@@ -120,7 +121,7 @@
         }
       }
 
-      $CLICSHOPPING_ShoppingCart->reset(true);
+     $CLICSHOPPING_ShoppingCart->reset(true);
 
 // unregister session variables used during checkout
       unset($_SESSION['sendto']);
