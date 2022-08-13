@@ -167,8 +167,27 @@
      */
     public static function link(string $page = null, string $parameters = null, bool $add_session_id = true, bool $search_engine_safe = true): string
     {
+/*
+ * remove index.php for the seo
+ */
       if (\is_null($page)) {
-        $page = static::getConfig('bootstrap_file');
+        if (static::getSite() === 'ClicShoppingAdmin') {
+          $page = static::getConfig('bootstrap_file');
+        } else {
+          if ((\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') && (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
+//SEO with htaccess
+// remove seo htaccess if the customer is connected
+            if (isset($_SESSION['login_customer_id'])){
+              $page = static::getConfig('bootstrap_file');
+            } else {
+              $page = '';
+            }
+          } elseif ((\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
+            $page = static::getConfig('bootstrap_file');
+          } else {
+            $page = static::getConfig('bootstrap_file');
+          }
+        }
       }
 
       $page = HTML::sanitize($page);
@@ -238,8 +257,24 @@
         $link = str_replace('&&', '&', $link);
       }
 
-      if ($search_engine_safe === true && \defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start() && static::getSite() != 'ClicShoppingAdmin') {
-        $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
+/*
+ * Change url syntax if Seo is enable or not
+ */
+
+      if (static::getSite() === 'Shop') {
+//SEO with htaccess
+        if ($search_engine_safe === true && SEFU::start() && \defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') && (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
+//SEO with htaccess
+// remove seo htaccess if the customer is connected
+          if (isset($_SESSION['login_customer_id'])) {
+            $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
+          } else {
+            $link = str_replace(['?', '&', '='], ['', '/', '-'], $link);
+          }
+
+        } elseif ($search_engine_safe === true && SEFU::start() && (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
+          $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
+        }
       }
 
       return $link;

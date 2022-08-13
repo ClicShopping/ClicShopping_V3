@@ -69,6 +69,7 @@
     /**
      * Script url
      * @return string
+     * for ckeditor 4
      */
     public static function getCkeditorCustomizeJsURL(): string
     {

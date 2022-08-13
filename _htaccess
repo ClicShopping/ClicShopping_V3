@@ -7,7 +7,7 @@
 
 
 ##################################
-# Your config to change
+# Your config to change and to customize
 ##################################
 
 <IfModule mod_rewrite.c>
@@ -15,21 +15,44 @@ RewriteEngine On
 
 ## URL Canonicalization
 #to change in function your website
-#    RewriteCond %{HTTP_HOST} !^www.test.com$ [NC]
-#    RewriteRule ^(.*)$ https://www.test.com/$1 [L,R=301]
-
-#to change in function your website
-#RewriteBase /
-
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteCond %{REQUEST_FILENAME} !-d
-
-#RewriteCond %{HTTP_HOST} ^test.org[NC]
-#RewriteCond %{REQUEST_URI} !
-#RewriteRule ^(.*)$ https://test/index.php/$1 [L,R=301,NC]
+#    RewriteCond %{HTTP_HOST} !^www.domain.com$ [NC]
+#    RewriteRule ^(.*)$ https://domain.com/$1 [L,R=301]
 </IfModule>
 
 
+##################################
+# url rewiting
+#improve url rewriting
+#work fine without directory https://mydomain.com/test/index.php
+#the rewriting must be activated inside the application
+# uncomment
+##################################
+
+<IfModule mod_rewrite.c>
+#RewriteEngine On
+#DirectorySlash Off
+
+#
+# Remove WWW
+#
+#RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+#RewriteRule ^ https://%1%{REQUEST_URI} [R=302,L]
+
+#
+# Remove Trailing Slashes
+#
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{THE_REQUEST} \s(.+?)//+[?\s]
+#RewriteRule ^ %1 [R=302,L]
+
+#
+# Reroute to index.php
+#
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ index.php/$1 [L]
+
+</IfModule>
 
 
 
