@@ -103,7 +103,8 @@
       $QstatusOrder->bindInt('orders_id', $this->id);
       $QstatusOrder->execute();
 
-      $data_array = ['orders_id' => (int)$this->id,
+      $data_array = [
+        'orders_id' => (int)$this->id,
         'orders_status_id' => (int)$this->status,
         'orders_status_invoice_id' => (int)$this->statusInvoice,
         'admin_user_name' => AdministratorAdmin::getUserAdmin(),

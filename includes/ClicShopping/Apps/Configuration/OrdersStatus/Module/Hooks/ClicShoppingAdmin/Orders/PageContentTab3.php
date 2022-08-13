@@ -14,6 +14,7 @@
   use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Configuration\OrdersStatus\OrdersStatus as OrdersStatusApp;
+  use ClicShopping\Apps\Orders\Orders\Classes\ClicShoppingAdmin\OrderAdmin;
 
   class PageContentTab3 implements \ClicShopping\OM\Modules\HooksInterface
   {

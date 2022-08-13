@@ -908,10 +908,10 @@
 // search the good model
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
-                                                              from :table_products_groups
-                                                              where products_id = :products_id
-                                                              and customers_group_id = :customers_group_id
-                                                            ');
+                                                               from :table_products_groups
+                                                               where products_id = :products_id
+                                                               and customers_group_id = :customers_group_id
+                                                              ');
           $QproductsModuleCustomersGroup->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($this->products[$i]['id']));
           $QproductsModuleCustomersGroup->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
           $QproductsModuleCustomersGroup->execute();
