@@ -1,5 +1,5 @@
 3.322
-fix elfinder link
+revert ckeditor 4 due to impact ckeditor 5
 fix github proprieties access
 upgrade rewriting via htaccess
 fix email impact on session shoppingcart 
