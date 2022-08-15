@@ -626,8 +626,8 @@
     {
       if (empty($_SERVER['QUERY_STRING'])) {
         $url = $_SERVER['REQUEST_URI'];
-//If SEO is activated
-        if ((SEARCH_ENGINE_FRIENDLY_URLS == 'true' || SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true')) {
+// If SEO is activated
+        if (SEARCH_ENGINE_FRIENDLY_URLS == 'true' || SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $substring = '/';
 
           $index = strpos($url,$substring);
