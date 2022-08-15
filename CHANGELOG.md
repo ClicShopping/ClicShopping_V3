@@ -4,6 +4,14 @@
 
 
 ----------------------
+3.325
+Fix boxes selected in function the template file selected
+
+----------------------
+3.324
+Fix code error identified in ClicShopping
+
+----------------------
 3.323
 fix syntax error
 

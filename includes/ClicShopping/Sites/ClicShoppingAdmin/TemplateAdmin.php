@@ -289,6 +289,7 @@
         'Blog&Categories',
         'Blog&Content',
         'Categories',
+        'cPath',
         'Cart',
         'Checkout&Shipping',
         'Checkout&ShippingAddress',
@@ -312,6 +313,10 @@
         'search&AdvancedSearch',
         'search&Q',
       ];
+
+      if (SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true' || SEARCH_ENGINE_FRIENDLY_URLS == 'true') {
+        $file_array = str_replace(['&'], ['/'], $file_array);
+      }
 
       if (!\is_null($catalog_files)) {
         $file_array = [$catalog_files];

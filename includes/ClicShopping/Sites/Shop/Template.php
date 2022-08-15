@@ -626,23 +626,54 @@
     {
       if (empty($_SERVER['QUERY_STRING'])) {
         $url = $_SERVER['REQUEST_URI'];
-        $replace = str_replace(CLICSHOPPING::getConfig('bootstrap_file'), '', $url);
-        $replace = str_replace(CLICSHOPPING::getConfig('http_path'), '', $replace);
-        $replace = substr($replace, 1);
-        $replace = str_replace($string, '&', $replace);
+//If SEO is activated
+        if ((SEARCH_ENGINE_FRIENDLY_URLS == 'true' || SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true')) {
+          $substring = '/';
 
-        $search = $replace;
+          $index = strpos($url,$substring);
 
-        if (str_contains($search, 'language')) {
-          $replace = substr($replace, 0, strpos($replace, 'language'));
+          if ($index !== false) {
+            $replace = substr($url, $index + strlen($substring));
+            $search = $replace;
+//language
+            if (str_contains($search, 'language')) {
+              $replace = substr($replace, 0, strpos($replace, 'language'));
+            }
+//currency
+            if (str_contains($search, 'currency')) {
+              $replace = substr($replace, 0, strpos($replace, 'currency'));
+            }
+//categories
+            if (str_contains($search, 'cPath')) {
+              $replace = substr($replace, 0, strpos($replace, 'cPath'));
+            }
+
+            $url_string = $replace;
+          } else {
+            $url_string = $url;
+          }
+        } else {
+          $replace = str_replace(CLICSHOPPING::getConfig('bootstrap_file'), '', $url);
+          $replace = str_replace(CLICSHOPPING::getConfig('http_path'), '', $replace);
+          $replace = substr($replace, 1);
+          $replace = str_replace($string, '&', $replace);
+
+          $search = $replace;
+//language
+          if (str_contains($search, 'language')) {
+            $replace = substr($replace, 0, strpos($replace, 'language'));
+          }
+//currency
+          if (str_contains($search, 'currency')) {
+            $replace = substr($replace, 0, strpos($replace, 'currency'));
+          }
+//categories
+          if (str_contains($search, 'cPath')) {
+            $replace = substr($replace, 0, strpos($replace, 'cPath'));
+          }
+
+          $url_string = $replace;
         }
-
-        if (str_contains($search, 'currency')) {
-          $replace = substr($replace, 0, strpos($replace, 'currency'));
-        }
-
-        $url_string = $replace;
-
       } else {
         $url_string = $_SERVER['QUERY_STRING'];
       }
