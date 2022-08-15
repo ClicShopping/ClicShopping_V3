@@ -1,3 +1,7 @@
+3.323
+fix syntax error
+
+-------------
 3.322
 revert ckeditor 4 due to impact ckeditor 5
 fix github proprieties access
