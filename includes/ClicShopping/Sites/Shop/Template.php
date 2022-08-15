@@ -487,6 +487,10 @@
       return $result;
     }
 
+    /**
+     * return void
+     */
+
     public function buildBlocks(): void
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -837,7 +841,7 @@
      * @param string $files_get_call
      * @param string $hook_call
      */
-    public function useRecursiveModulesHooksForTemplate(string $source_folder, string $file_get_output, string $files_get_call, string $hook_call) :void
+    public function useRecursiveModulesHooksForTemplate(string $source_folder, string $file_get_output, string $files_get_call, string $hook_call)
     {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 

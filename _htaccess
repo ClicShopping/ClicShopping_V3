@@ -16,7 +16,7 @@ RewriteEngine On
 ## URL Canonicalization
 #to change in function your website
 #    RewriteCond %{HTTP_HOST} !^www.domain.com$ [NC]
-#    RewriteRule ^(.*)$ https://domain.com/$1 [L,R=301]
+#    RewriteRule ^(.*)$ https://www.domain.com/$1 [L,R=301]
 </IfModule>
 
 
