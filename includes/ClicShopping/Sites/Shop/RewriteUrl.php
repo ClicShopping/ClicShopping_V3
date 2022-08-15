@@ -887,7 +887,7 @@
             $products_url_rewrited = 'Products&Description&' . $products_name . '&Id=' . $products_id;
           } else {
             $products_name = $this->replaceString($products_seo_url);
-            $products_url_rewrited = $products_name . '&Id=' . $products_id;
+            $products_url_rewrited = 'Products&Description&' . $products_name . '&Id=' . $products_id;
           }
         } else {
           $products_url_rewrited = 'Products&Description&Id=' . $products_id;

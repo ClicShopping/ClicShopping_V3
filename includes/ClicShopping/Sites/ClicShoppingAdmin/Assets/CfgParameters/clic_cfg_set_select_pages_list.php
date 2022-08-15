@@ -78,5 +78,6 @@
       );
     });
   </script>";
+
     return $string;
   }

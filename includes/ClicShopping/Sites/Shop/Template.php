@@ -70,7 +70,7 @@
       $this->addBlock('<meta name="author" content="ClicShopping" />', 'header_tags');
     }
 
-    public function setCodeSail($_codeSail)
+    public function setCodeSail($_codeSail) :void
     {
       $this->_code = $_codeSail;
     }
@@ -124,7 +124,7 @@
 //           Boostrap
 //******************************************
 
-    public function setGridContainerWidth($width)
+    public function setGridContainerWidth($width) :void
     {
       $this->_grid_container_width = $width;
     }
@@ -311,13 +311,15 @@
 
       header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 5) . 'GMT');
 
-      $filename_array[] = ['id' => 0,
+      $filename_array[] = [
+        'id' => 0,
         'text' => '-- Select --'
       ];
 
       foreach ($directories as $template) {
         if (is_dir($template_directory)) {
-          $filename_array[] = ['id' => $template,
+          $filename_array[] = [
+            'id' => $template,
             'text' => $template
           ];
         }
@@ -835,7 +837,7 @@
      * @param string $files_get_call
      * @param string $hook_call
      */
-    public function useRecursiveModulesHooksForTemplate(string $source_folder, string $file_get_output, string $files_get_call, string $hook_call)
+    public function useRecursiveModulesHooksForTemplate(string $source_folder, string $file_get_output, string $files_get_call, string $hook_call) :void
     {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 

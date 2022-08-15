@@ -268,7 +268,7 @@
      *
      * @return array, file list
      */
-    public static function getCatalogFiles(string $catalog_files = null): array
+    public static function getCatalogFiles(?string $catalog_files = null): array
     {
       $file_array = [
         'Account&AddressBook',
@@ -326,9 +326,8 @@
      * Return an array of the catalog directory. mechanism for reading this.
      */
 
-    public static function getListCatalogFilesNotIncluded(string $boostrap_file = null): array
+    public static function getListCatalogFilesNotIncluded(?string $boostrap_file = null): array
     {
-
       if (\is_null($boostrap_file)) $boostrap_file = CLICSHOPPING::getConfig('bootstrap_file');
 
       $file = static::getCatalogFiles();
