@@ -192,7 +192,7 @@
           $cmd = 'cd ' . self::$root . ' && composer require  ' . $library . ' 2>&1';
           exec($cmd, $output, $return); // update dependencies
 
-          if (isset($output)) {
+          if (isset($output) && is_array($output)) {
             $result = $output[2];
           }
         }

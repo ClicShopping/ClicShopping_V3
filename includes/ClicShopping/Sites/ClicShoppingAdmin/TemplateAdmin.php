@@ -266,6 +266,7 @@
      *
      * @string $catalog_files, string, nwe specific files
      *
+     * @param string|null $catalog_files
      * @return array, file list
      */
     public static function getCatalogFiles(?string $catalog_files = null): array
