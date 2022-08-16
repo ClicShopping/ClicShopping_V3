@@ -1,0 +1,19 @@
+# Rules for ClicSopping (https://www.clicshopping.org)
+User-Agent: *
+
+# Block pages with no unique content
+Disallow: /Account/LogIn/
+Disallow: /Account/CreatePro
+Disallow: /Account/Create
+Disallow: /Account/PasswordForgotten
+Disallow: /Search/AdvancedSearch/
+Disallow: /Search/Q/
+Disallow: /Info/Content/politiques-de-confidentialite/pagesId-5
+Disallow: /Info/Content/conditions-generales/pagesId-4
+
+# Block faceted pages and 301 redirect pages
+Disallow: /*?page=
+Disallow: /*?sort=
+
+# Sitemap URL
+Sitemap: https://domain.tld/index.php?Sitemap&GoogleSitemapIndex

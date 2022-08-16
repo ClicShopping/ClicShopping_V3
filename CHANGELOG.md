@@ -1,6 +1,7 @@
 ----------------------
 3.326
 Add Sitemap inside Seo page
+Add a specific robot.txt
 
 ----------------------
 3.325
