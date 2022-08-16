@@ -57,6 +57,7 @@ tab_submit_specials = Specials
 tab_submit_reviews = Reviews
 tab_submit_favorites = Favorites
 tab_submit_featured = Featured
+tab_submit_sitemap = Sitemap
 
 keywords_google_trend =  Google trend
 

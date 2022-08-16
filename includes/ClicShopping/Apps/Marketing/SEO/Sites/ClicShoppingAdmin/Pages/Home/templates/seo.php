@@ -9,6 +9,7 @@
    */
 
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\Apps\Marketing\SEO\Classes\ClicShoppingAdmin\SeoAdmin;
@@ -96,6 +97,8 @@
          class="nav-item"><?php echo '<a href="#tab6" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_favorites'); ?></a></li>
       <li
          class="nav-item"><?php echo '<a href="#tab7" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_featured'); ?></a></li>
+      <li
+         class="nav-item"><?php echo '<a href="#tab8" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_sitemap'); ?></a></li>
     </ul>
 
 
@@ -658,6 +661,81 @@
           </div>
         </div>
       </div>
+
+        <!-- ############################################################# //-->
+        <!--          ONGLET Information  featured                    //-->
+        <!-- ############################################################# //-->
+
+        <div class="tab-pane" id="tab8">
+            <div class="adminformTitle">
+                <div class="row">
+                    <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                        <td>
+                            <table class="table table-sm table-hover table-striped">
+                                <thead>
+                                <tr class="dataTableHeadingRow">
+                                    <td>Link</td>
+                                    <td>Description</td>
+                                    <td>google</td>
+                                    <td>bing</td>
+                                </tr>
+                                <td></td>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapProducts', 'Products Sitemap', 'target="_blank"'); ?></td>
+                                    <td>Products Sitemap</td>
+                                    <td><?php echo HTML::link('https://search.google.com/search-console/about', 'Google Search Console', 'target="_blank"'); ?></td>
+                                    <td><?php echo HTML::link('https://www.bing.com/webmasters/', 'Bing Console', 'target="_blank"'); ?></td>
+                                </tr>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapIndex', 'Index Sitemap', 'target="_blank"'); ?></td>
+                                    <td>Index Sitemap</td>
+                                    <td></td>
+                                    <td></td>
+                                <tr>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapCategories', 'Categories Sitemap', 'target="_blank"'); ?></td>
+                                    <td>Categories Sitemap</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapFavorites', 'Favorites Sitemap', 'target="_blank"'); ?></td>
+                                    <td>Favorites Sitemap</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapFeatured', 'Featured Sitemap', 'target="_blank"'); ?></td>
+                                    <td>Featured Sitemap</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapManufacturers', 'Manufacturers Sitemap', 'target="_blank"'); ?></td>
+                                    <td>Manufacturers Sitemap</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapSpecials', 'Specials Sitemap', 'target="_blank"'); ?></td>
+                                    <td>Specials Sitemap</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Info&RSS', 'Rss', 'target="_blank"'); ?></td>
+                                    <td>RSS</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </table>
+                </div>
+            </div>
+        </div>
+
       <div class="separator"></div>
       <?php
         //***********************************
