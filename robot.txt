@@ -6,10 +6,8 @@ Disallow: /Account/LogIn/
 Disallow: /Account/CreatePro
 Disallow: /Account/Create
 Disallow: /Account/PasswordForgotten
-Disallow: /Search/AdvancedSearch/
-Disallow: /Search/Q/
-Disallow: /Info/Content/politiques-de-confidentialite/pagesId-5
-Disallow: /Info/Content/conditions-generales/pagesId-4
+Disallow: /Search/AdvancedSearch
+Disallow: /Search/Q
 
 # Block faceted pages and 301 redirect pages
 Disallow: /*?page=
