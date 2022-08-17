@@ -270,8 +270,15 @@
             $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
           } else {
             $link = str_replace(['?', '&', '='], ['', '/', '-'], $link);
-          }
+//cart seo	    
+            if (str_contains($link, 'Cart') && \defined('DISPLAY_CART') && DISPLAY_CART == 'true') {
+              $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
+            }
 
+            if (str_contains($link, 'Cart') && \defined('DISPLAY_CART') && DISPLAY_CART == 'false') {
+              $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
+            }
+          }
         } elseif ($search_engine_safe === true && SEFU::start() && (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
           $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
         }
