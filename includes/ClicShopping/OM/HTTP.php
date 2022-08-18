@@ -251,7 +251,7 @@
       if (CLICSHOPPING::getSite() === 'ClicShoppingAdmin') {
         $domain = CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin');
       } else {
-        $domain = CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop');
+        $domain = static::getShopUrlDomain();
       }
 
       return $domain;

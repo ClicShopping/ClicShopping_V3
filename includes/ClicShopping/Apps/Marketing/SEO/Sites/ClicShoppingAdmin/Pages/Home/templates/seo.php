@@ -12,6 +12,8 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
+  use ClicShopping\OM\HTTP;
+
   use ClicShopping\Apps\Marketing\SEO\Classes\ClicShoppingAdmin\SeoAdmin;
 
   $CLICSHOPPING_SEO = Registry::get('SEO');
@@ -683,47 +685,47 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapProducts', 'Products Sitemap', 'target="_blank"'); ?></td>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(HTTP::getShopUrlDomain() . 'index.php?Sitemap&GoogleSitemapProducts', 'Products Sitemap', 'target="_blank"'); ?></td>
                                     <td>Products Sitemap</td>
                                     <td><?php echo HTML::link('https://search.google.com/search-console/about', 'Google Search Console', 'target="_blank"'); ?></td>
                                     <td><?php echo HTML::link('https://www.bing.com/webmasters/', 'Bing Console', 'target="_blank"'); ?></td>
                                 </tr>
-                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapIndex', 'Index Sitemap', 'target="_blank"'); ?></td>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(HTTP::getShopUrlDomain() . 'index.php?Sitemap&GoogleSitemapIndex', 'Index Sitemap', 'target="_blank"'); ?></td>
                                     <td>Index Sitemap</td>
                                     <td></td>
                                     <td></td>
                                 <tr>
-                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapCategories', 'Categories Sitemap', 'target="_blank"'); ?></td>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(HTTP::getShopUrlDomain() . 'index.php?Sitemap&GoogleSitemapCategories', 'Categories Sitemap', 'target="_blank"'); ?></td>
                                     <td>Categories Sitemap</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapFavorites', 'Favorites Sitemap', 'target="_blank"'); ?></td>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(HTTP::getShopUrlDomain() . 'index.php?Sitemap&GoogleSitemapFavorites', 'Favorites Sitemap', 'target="_blank"'); ?></td>
                                     <td>Favorites Sitemap</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapFeatured', 'Featured Sitemap', 'target="_blank"'); ?></td>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(HTTP::getShopUrlDomain() . 'index.php?Sitemap&GoogleSitemapFeatured', 'Featured Sitemap', 'target="_blank"'); ?></td>
                                     <td>Featured Sitemap</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapManufacturers', 'Manufacturers Sitemap', 'target="_blank"'); ?></td>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(HTTP::getShopUrlDomain() . 'index.php?Sitemap&GoogleSitemapManufacturers', 'Manufacturers Sitemap', 'target="_blank"'); ?></td>
                                     <td>Manufacturers Sitemap</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Sitemap&GoogleSitemapSpecials', 'Specials Sitemap', 'target="_blank"'); ?></td>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(HTTP::getShopUrlDomain() . 'index.php?Sitemap&GoogleSitemapSpecials', 'Specials Sitemap', 'target="_blank"'); ?></td>
                                     <td>Specials Sitemap</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Info&RSS', 'Rss', 'target="_blank"'); ?></td>
+                                    <td><i class="bi bi-link"></i> <?php echo HTML::link(HTTP::getShopUrlDomain() . 'index.php?Info&RSS', 'Rss', 'target="_blank"'); ?></td>
                                     <td>RSS</td>
                                     <td></td>
                                     <td></td>

@@ -63,7 +63,7 @@
 
       if (isset($backup_file)) {
         if (is_file(CLICSHOPPING::BASE_DIR . 'Work/Backups/' . $backup_file)) {
-          $request = $this->getHttpRequest(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'includes/Work/Backups/' . $backup_file);
+          $request = $this->getHttpRequest(HTTP::getShopUrlDomain() . 'includes/Work/Backups/' . $backup_file);
 
           $result = ($request['http_code'] !== 200);
         }

@@ -851,7 +851,6 @@
         $button .= ' ' . $params['params'];
       }
 
-
       $button .= ' class="btn ';
 
       if (isset($style)) {

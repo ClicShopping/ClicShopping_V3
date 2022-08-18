@@ -14,6 +14,7 @@
   use ClicShopping\OM\FileSystem;
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\DateTime;
+  use ClicShopping\OM\HTTP;
 
   use ClicShopping\Apps\Marketing\SEO\Classes\ClicShoppingAdmin\SeoAdmin;
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
@@ -944,7 +945,7 @@
                   <div
                     class="col-sm-12 text-center"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($pInfo->products_image, $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '150', '150') . HTML::hiddenField('products_image', $pInfo->products_image); ?></div>
                   <div
-                    class="col-sm-12 text-center"><?php echo 'URL : ' . CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'sources/images/' . $pInfo->products_image; ?></div>
+                    class="col-sm-12 text-center"><?php echo 'URL : ' . HTTP::getShopUrlDomain() . 'sources/images/' . $pInfo->products_image; ?></div>
                   <div class="separator"></div>
                   <div class="col-sm-12 text-center">
                     <?php echo $CLICSHOPPING_Products->getDef('text_products_delete_image') . ' ' . HTML::checkboxField('delete_image', 'yes', false); ?>

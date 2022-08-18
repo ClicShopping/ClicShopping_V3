@@ -48,7 +48,6 @@
 
     case 'url':
       if (isset($_GET['goto']) && !\is_null($_GET['goto'])) {
-
         $Qcheck = $CLICSHOPPING_Db->get('products_description', 'products_url', ['products_url' => HTML::sanitize($_GET['goto'])],
                                                                                 null,
                                                                                 1
@@ -63,7 +62,6 @@
 
     case 'manufacturer':
       if ($CLICSHOPPING_Manufacturer->getID() && is_numeric($CLICSHOPPING_Manufacturer->getID())) {
-
        $Qmanufacturer = $CLICSHOPPING_Db->get('manufacturers_info',
                                               'manufacturers_url', ['manufacturers_id' => $CLICSHOPPING_Manufacturer->getID(),
                                                                    'languages_id' => $CLICSHOPPING_Language->getId()
@@ -71,7 +69,6 @@
                                              );
 
         if ($Qmanufacturer->fetch() !== false) {
-
 // url exists in selected language
           if (!empty($Qmanufacturer->value('manufacturers_url'))) {
             $Qupdate = $CLICSHOPPING_Db->prepare('update :table_manufacturers_info
