@@ -84,7 +84,7 @@
           <th scope="row"><?php echo $key; ?></th>
           <td class="text-end"><?php echo \count($cache_files[$key]); ?></td>
           <td
-            class="text-end"><?php echo '<a href="' . $CLICSHOPPING_Cache->link('Cache&Reset&block=' . $key) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/icon_reset.gif', $CLICSHOPPING_Cache->getDef('button_reset'), 16, 16) . '</a>'; ?></td>
+            class="text-end"><?php echo '<a href="' . $CLICSHOPPING_Cache->link('Cache&Reset&block=' . $key) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Cache->getDef('image_reset') . '"></i></h4></a>'; ?></td>
         </tr>
         <?php
       }

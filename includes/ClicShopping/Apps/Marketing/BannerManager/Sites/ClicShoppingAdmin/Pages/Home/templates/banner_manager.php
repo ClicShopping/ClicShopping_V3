@@ -229,15 +229,16 @@
             ?>
             <td><?php echo $banner_language['name']; ?></td>
             <td class="text-end">
+              <div class="btn-group" role="group" aria-label="buttonGroup">
               <?php
-                echo '<a href="' . $CLICSHOPPING_BannerManager->link('Update&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_BannerManager->getDef('icon_edit')) . '</a>';
+                echo '<a href="' . $CLICSHOPPING_BannerManager->link('Update&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_BannerManager->getDef('icon_edit') . '"></i></h4></a>';
                 echo '&nbsp;';
-                echo '<a href="' . $CLICSHOPPING_BannerManager->link('BannerManager&CopyTo&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_BannerManager->getDef('icon_copy_to')) . '</a>';
+                echo '<a href="' . $CLICSHOPPING_BannerManager->link('BannerManager&CopyTo&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '"><h4><i class="bi bi-clipboard2" title="' . $CLICSHOPPING_BannerManager->getDef('icon_copy_to') . '"></i></h4></a>';
                 echo '&nbsp;';
-                echo '&nbsp;';
-                echo '<a href="' . $CLICSHOPPING_BannerManager->link('Delete&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_BannerManager->getDef('icon_delete')) . '</a>';
+                echo '<a href="' . $CLICSHOPPING_BannerManager->link('Delete&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_BannerManager->getDef('icon_delete')  . '"></i></h4></a>';
                 echo '&nbsp;';
               ?>
+              </div>
             </td>
           </tr>
           <?php

@@ -13,6 +13,7 @@
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\CLICSHOPPING;
 
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
@@ -114,12 +115,14 @@
               scope="row"><?php echo $Qzones->hasValue('countries_name') ? $Qzones->value('countries_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries'); ?></th>
             <td><?php echo $Qzones->hasValue('zone_name') ? $Qzones->value('zone_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_selected'); ?></td>
             <td class="text-end">
+              <div class="btn-group" role="group" aria-label="buttonGroup">
               <?php
-                echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('EditGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_edit')) . '</a>';
+                echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('EditGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_TaxGeoZones->getDef('icon_edit') . '"></i></h4></a>';
                 echo '&nbsp;';
-                echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('DeleteGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_delete')) . '</a>';
+                echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('DeleteGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_TaxGeoZones->getDef('icon_delete') . '"></i></h4></a>';
                 echo '&nbsp;';
               ?>
+              </div>
             </td>
           </tr>
           <?php

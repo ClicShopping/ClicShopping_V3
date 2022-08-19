@@ -126,14 +126,16 @@
               </td>
               <td class="text-center" onclick="document.location.href='<?php $compression; ?>'"></td>
               <td class="text-end">
+                <div class="btn-group" role="group" aria-label="buttonGroup">
                 <?php
-                  echo '<a href="' . $CLICSHOPPING_Backup->link('Backup&Download&file=' . $entry) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/file_download.gif', $CLICSHOPPING_Backup->getDef('icon_file_downlad')) . '</a>';
+                  echo '<a href="' . $CLICSHOPPING_Backup->link('Backup&Download&file=' . $entry) . '"><h4><i class="bi bi-cloud-arrow-down" title="' . $CLICSHOPPING_Backup->getDef('icon_file_download') . '"></i></h4></a>';
                   echo '&nbsp;';
-                  echo '<a href="' . $CLICSHOPPING_Backup->link('Restore&file=' . $entry) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/restore.gif', $CLICSHOPPING_Backup->getDef('icon_restore')) . '</a>';
+                  echo '<a href="' . $CLICSHOPPING_Backup->link('Restore&file=' . $entry) . '"><h4><i class="bi bi-cloud-arrow-up" title="' . $CLICSHOPPING_Backup->getDef('icon_restore') . '"></i></h4></a>';
                   echo '&nbsp;';
-                  echo '<a href="' . $CLICSHOPPING_Backup->link('Delete&file=' . $entry) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Backup->getDef('icon_delete')) . '</a>';
+                  echo '<a href="' . $CLICSHOPPING_Backup->link('Delete&file=' . $entry) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Backup->getDef('icon_delete') . '"></i></h4></a>';
                   echo '&nbsp;';
                 ?>
+                </div>
               </td>
               </tr>
               <?php

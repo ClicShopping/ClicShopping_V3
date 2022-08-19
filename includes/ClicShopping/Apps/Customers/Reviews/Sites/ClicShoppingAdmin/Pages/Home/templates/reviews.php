@@ -202,7 +202,7 @@
                 echo HTML::link($CLICSHOPPING_Reviews->link('Reviews&SetFlag&flag=1&id=' . $Qreviews->valueInt('reviews_id')), '<i class="bi bi-x text-danger"></i>');
               }
             ?>
-          <td class="text-end"><?php echo '<a href="' . $CLICSHOPPING_Reviews->link('Edit&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Reviews->getDef('icon_edit')) . '</a>'; ?></td>
+          <td class="text-end"><?php echo '<a href="' . $CLICSHOPPING_Reviews->link('Edit&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Reviews->getDef('icon_edit') . '"></i></h4></a>'; ?></td>
           </td>
           </tr>
           <?php

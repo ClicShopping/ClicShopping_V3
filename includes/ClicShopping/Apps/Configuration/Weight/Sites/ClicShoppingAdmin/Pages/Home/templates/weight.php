@@ -108,14 +108,16 @@
             <td><?php echo $weight_class_title; ?></td>
             <td><?php echo $Qweight->value('weight_class_rule'); ?></td>
             <td class="text-end">
+              <div class="btn-group" role="group" aria-label="buttonGroup">
               <?php
-                echo HTML::link($CLICSHOPPING_Weight->link('ClassEdit&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id') . '&tID=' . $Qweight->valueInt('weight_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Weight->getDef('icon_edit')));
+                echo HTML::link($CLICSHOPPING_Weight->link('ClassEdit&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id') . '&tID=' . $Qweight->valueInt('weight_class_to_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Weight->getDef('icon_edit') . '"></i></h4>');
                 echo '&nbsp;';
-                echo HTML::link($CLICSHOPPING_Weight->link('WeightEdit&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_Weight->getDef('icon_edit_class_title')));
+                echo HTML::link($CLICSHOPPING_Weight->link('WeightEdit&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id')), '<h4><i class="bi bi-pencil-fill" title="' . $CLICSHOPPING_Weight->getDef('icon_edit_class_title') . '"></i></h4>');
                 echo '&nbsp;';
-                echo HTML::link($CLICSHOPPING_Weight->link('ClassDelete&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id') . '&tID=' . $Qweight->valueInt('weight_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Weight->getDef('icon_delete')));
+                echo HTML::link($CLICSHOPPING_Weight->link('ClassDelete&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id') . '&tID=' . $Qweight->valueInt('weight_class_to_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Weight->getDef('icon_delete') . '"></i></h4>');
                 echo '&nbsp;';
               ?>
+              </div>
             </td>
           </tr>
           <?php

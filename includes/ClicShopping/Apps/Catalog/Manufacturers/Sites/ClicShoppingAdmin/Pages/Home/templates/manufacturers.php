@@ -138,9 +138,9 @@
               }
             ?>
           </td>
-          <td class="text-end">
+          <td class="text-end align-middle">
             <?php
-              echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Edit&page=' . $page . '&mID=' . $Qmanufacturers->valueInt('manufacturers_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Manufacturers->getDef('icon_edit')) . '</a>';
+              echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Edit&page=' . $page . '&mID=' . $Qmanufacturers->valueInt('manufacturers_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Manufacturers->getDef('icon_edit') . '"></i></h4></a>';
               echo '&nbsp;';
             ?>
           </td>

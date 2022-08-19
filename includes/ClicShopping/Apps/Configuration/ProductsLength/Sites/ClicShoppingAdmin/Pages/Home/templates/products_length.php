@@ -110,14 +110,16 @@
                 <td><?php echo $products_length_class_title; ?></td>
                 <td><?php echo $Qproducts_length->value('products_length_class_rule'); ?></td>
                 <td class="text-end">
+                  <div class="btn-group" role="group" aria-label="buttonGroup">
                   <?php
-                    echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassEdit&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id') . '&tID=' . $Qproducts_length->valueInt('products_length_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_ProductsLength->getDef('icon_edit')));
+                    echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassEdit&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id') . '&tID=' . $Qproducts_length->valueInt('products_length_class_to_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_ProductsLength->getDef('icon_edit') . '"></i></h4>');
                     echo '&nbsp;';
-                    echo HTML::link($CLICSHOPPING_ProductsLength->link('ProductsLengthEdit&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_ProductsLength->getDef('icon_edit_class_title')));
+                    echo HTML::link($CLICSHOPPING_ProductsLength->link('ProductsLengthEdit&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id')), '<h4><i class="bi bi-clipboard2" title="' . $CLICSHOPPING_ProductsLength->getDef('icon_edit_class_title') . '"></i></h4>');
                     echo '&nbsp;';
-                    echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassDelete&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id') . '&tID=' . $Qproducts_length->valueInt('products_length_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_ProductsLength->getDef('icon_delete')));
+                    echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassDelete&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id') . '&tID=' . $Qproducts_length->valueInt('products_length_class_to_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_ProductsLength->getDef('icon_delete') . '"></i></h4>');
                     echo '&nbsp;';
                   ?>
+                  </div>>
                 </td>
               </tr>
               <?php

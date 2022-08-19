@@ -201,7 +201,7 @@
       </td>
       <td class="text-end">
         <?php
-          echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&Update&page=' . $page . '&aID=' . $Qproducts->valueInt('products_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unpack.gif', $CLICSHOPPING_Archive->getDef('icon_unpack')) . '</a>';
+          echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&Update&page=' . $page . '&aID=' . $Qproducts->valueInt('products_id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Archive->getDef('icon_unpack') . '"></i></h4></a>';
           echo '&nbsp;';
         ?>
       </td>

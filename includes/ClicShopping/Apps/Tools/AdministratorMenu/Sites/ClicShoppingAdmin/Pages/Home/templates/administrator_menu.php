@@ -228,14 +228,16 @@
           <td><?php echo $Qcategories->value('app_code'); ?></td>
           <td class="text-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
           <td class="text-end">
+            <div class="btn-group" role="group" aria-label="buttonGroup">
             <?php
-              echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_AdministratorMenu->getDef('image_edit')) . '</a>';
+              echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_AdministratorMenu->getDef('image_edit') . '"></i></h4></a>';
               echo '&nbsp;';
-              echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Move&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/move.gif', $CLICSHOPPING_AdministratorMenu->getDef('image_move')) . '</a>';
+              echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Move&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '"><h4><i class="bi bi-arrows-move" title="' . $CLICSHOPPING_AdministratorMenu->getDef('image_move') . '"></i></h4></a>';
               echo '&nbsp;';
-              echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Delete&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_AdministratorMenu->getDef('image_delete')) . '</a>';
+              echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Delete&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_AdministratorMenu->getDef('image_delete') . '"></i></h4></a>';
               echo '&nbsp;';
             ?>
+            </div>
           </td>
         </tr>
         <?php

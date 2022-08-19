@@ -170,7 +170,7 @@ echo '</form>';
       <th data-field="status" data-sortable="true" class="text-end"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_status'); ?>&nbsp;</th>
       <th data-field="erp" class="text-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_erp'); ?>&nbsp;</th>
       <th data-field="realised_by"class="text-end"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_realised_by'); ?>&nbsp;</th>
-      <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_action'); ?>&nbsp;</th>
+      <th data-field="action" data-switchable="false" data-width="150" class="text-end"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_action'); ?>&nbsp;</th>
     </tr>
     </thead>
     <tbody>
@@ -548,20 +548,21 @@ echo '</form>';
           ?>
           <td class="text-end"><?php echo $Qhistory->value('admin_user_name'); ?></td>
           <td class="text-end">
+            <div class="btn-group" role="group" aria-label="buttonGroup">
             <?php
-              echo HTML::link(ClicShopping::link('index.php?A&Customers\Customers&Edit&cID=' . $Qorders->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_Orders->getDef('icon_edit_customer')));
+              echo HTML::link(ClicShopping::link('index.php?A&Customers\Customers&Edit&cID=' . $Qorders->valueInt('customers_id')), '<h4><i class="bi bi-person" title="' . $CLICSHOPPING_Orders->getDef('icon_edit_customer') . '"></i></h4>');
               echo '&nbsp;';
-              echo HTML::link($CLICSHOPPING_Orders->link('Edit&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit_order')));
+              echo HTML::link($CLICSHOPPING_Orders->link('Edit&oID=' . $Qorders->valueInt('orders_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Orders->getDef('icon_edit') . '"></i></h4>');
               echo '&nbsp;';
-              echo HTML::link($CLICSHOPPING_Orders->link('Invoice&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/invoice.gif', $CLICSHOPPING_Orders->getDef('icon_invoice')), 'target="_blank" rel="noreferrer"');
+              echo HTML::link($CLICSHOPPING_Orders->link('Invoice&oID=' . $Qorders->valueInt('orders_id')), '<h4><i class="bi bi-box" title="' . $CLICSHOPPING_Orders->getDef('icon_invoice') . '"></i></h4>', 'target="_blank" rel="noreferrer"');
               echo '&nbsp;';
-              echo HTML::link($CLICSHOPPING_Orders->link('PackingSlip&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/packingslip.gif', $CLICSHOPPING_Orders->getDef('icon_packingslip')), 'target="_blank" rel="noreferrer"');
+              echo HTML::link($CLICSHOPPING_Orders->link('PackingSlip&oID=' . $Qorders->valueInt('orders_id')), '<h4><i class="bi bi-box2" title="' . $CLICSHOPPING_Orders->getDef('icon_packingslip') . '"></i></h4>', 'target="_blank" rel="noreferrer"');
               echo '&nbsp;';
 
               if ($archive_id != 1) {
                 echo HTML::link($CLICSHOPPING_Orders->link('Archive&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/archive.gif', $CLICSHOPPING_Orders->getDef('icon_archive_to')));
               } else {
-                echo HTML::link($CLICSHOPPING_Orders->link('Orders&Unpack&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unpack.gif', $CLICSHOPPING_Orders->getDef('icon_archive_to')));
+                echo HTML::link($CLICSHOPPING_Orders->link('Orders&Unpack&oID=' . $Qorders->valueInt('orders_id')), '<h4><i class="bi bi-archive" title="' . $CLICSHOPPING_Orders->getDef('icon_archive_to') . '"></i></h4>');
               }
 
               $QordersStatus = $CLICSHOPPING_Orders->db->prepare('select authorize_to_delete_order
@@ -572,12 +573,12 @@ echo '</form>';
               $QordersStatus->execute();
 
               if ($QordersStatus->valueInt('authorize_to_delete_order') == 1) {
-                echo HTML::link($CLICSHOPPING_Orders->link('Delete&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Orders->getDef('icon_delete')));
+                echo HTML::link($CLICSHOPPING_Orders->link('Delete&oID=' . $Qorders->valueInt('orders_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Orders->getDef('icon_delete') . '"></i></h4>');
               } else {
                 echo '&nbsp;&nbsp;';
               }
-              echo '&nbsp;';
             ?>
+            </div>
           </td>
           </tr>
           <?php

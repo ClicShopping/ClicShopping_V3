@@ -275,7 +275,7 @@
         </td>
         <td class="text-end">
           <?php
-            echo '<a href="' . $CLICSHOPPING_Favorites->link('Edit&page=' . (int)$page . '&sID=' . (int)$Qfavorites->valueInt('products_favorites_id') . '&action=update') . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Favorites->getDef('icon_edit')) . '</a>';
+            echo '<a href="' . $CLICSHOPPING_Favorites->link('Edit&page=' . (int)$page . '&sID=' . (int)$Qfavorites->valueInt('products_favorites_id') . '&action=update') . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Favorites->getDef('icon_edit') . '"></i></h4></a>';
             echo '&nbsp;';
           ?>
         </td>

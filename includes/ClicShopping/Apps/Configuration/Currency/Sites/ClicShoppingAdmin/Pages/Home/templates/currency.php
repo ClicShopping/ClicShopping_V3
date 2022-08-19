@@ -120,12 +120,14 @@
             ?>
           </td>
           <td class="text-end">
+            <div class="btn-group" role="group" aria-label="buttonGroup">
             <?php
-              echo HTML::link($CLICSHOPPING_Currency->link('Edit&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Currency->getDef('icon_edit')));
+              echo HTML::link($CLICSHOPPING_Currency->link('Edit&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Currency->getDef('icon_edit') . '"></i></h4>');
               echo '&nbsp;';
-              echo HTML::link($CLICSHOPPING_Currency->link('Delete&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Currency->getDef('icon_delete')));
+              echo HTML::link($CLICSHOPPING_Currency->link('Delete&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Currency->getDef('icon_delete') . '"></i></h4>');
               echo '&nbsp;';
             ?>
+            </div>
           </td>
           </tr>
           <?php

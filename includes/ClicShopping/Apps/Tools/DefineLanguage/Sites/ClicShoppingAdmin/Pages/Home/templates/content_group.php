@@ -157,7 +157,7 @@
               <tr class="<?php echo $Qdefinitions->value('definition_key'); ?>">
                 <td style="word-break: break-all;"><?php echo $Qdefinitions->value('definition_key'); ?><br/><span
                     style="cursor:pointer"
-                    onclick="DeleteDef('<?php echo $Qdefinitions->value('definition_key'); ?>')"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_DefineLanguage->getDef('icon_delete')); ?></span>
+                    onclick="DeleteDef('<?php echo $Qdefinitions->value('definition_key'); ?>')"><?php echo '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_DefineLanguage->getDef('icon_delete') . '"></i></h4>'; ?></span>
                 </td>
                 <td>
                   <?php

@@ -249,18 +249,20 @@
               <td class="text-start"><?php echo $Qproducts->value('admin_user_name'); ?></td>
               <td class="text-end"><?php echo $Qproducts->valueInt('products_sort_order'); ?></td>
               <td class="text-end">
+                <div class="btn-group" role="group" aria-label="buttonGroup">
                 <?php
-                  echo HTML::link($CLICSHOPPING_Products->link('Edit&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('icon_edit')));
+                  echo HTML::link($CLICSHOPPING_Products->link('Edit&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>');
                   echo '&nbsp;';
-                  echo HTML::link($CLICSHOPPING_Products->link('CopyTo&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_Products->getDef('icon_copy_to')));
+                  echo HTML::link($CLICSHOPPING_Products->link('CopyTo&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), '<h4><i class="bi bi-clipboard2" title="' . $CLICSHOPPING_Products->getDef('icon_copy_to') . '"></i></h4>');
                   echo '&nbsp;';
-                  echo HTML::link($CLICSHOPPING_Products->link('Move&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/move.gif', $CLICSHOPPING_Products->getDef('icon_move')));
+                  echo HTML::link($CLICSHOPPING_Products->link('Move&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), '<h4><i class="bi bi-arrows-move" title="' . $CLICSHOPPING_Products->getDef('icon_move') . '"></i></h4>');
                   echo '&nbsp;';
-                  echo HTML::link($CLICSHOPPING_Products->link('Archive&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/archive.gif', $CLICSHOPPING_Products->getDef('icon_archive_to')));
+                  echo HTML::link($CLICSHOPPING_Products->link('Archive&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), '<h4><i class="bi bi-archive" title="' . $CLICSHOPPING_Products->getDef('icon_archive_to') . '"></i></h4>');
                   echo '&nbsp;';
-                  echo HTML::link($CLICSHOPPING_Products->link('Delete&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Products->getDef('icon_delete')));
+                  echo HTML::link($CLICSHOPPING_Products->link('Delete&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Products->getDef('icon_delete') . '"></i></h4>');
                   echo '&nbsp;';
                 ?>
+                </div>
               </td>
             </tr>
             <?php

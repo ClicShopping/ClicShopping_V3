@@ -75,12 +75,14 @@
               <th scope="row"><?php echo $Qclasse->value('tax_class_title'); ?></th>
               <td><?php echo $Qclasse->value('tax_class_description'); ?></td>
               <td class="text-end">
+                <div class="btn-group" role="group" aria-label="buttonGroup">
                 <?php
-                  echo '<a href="' . $CLICSHOPPING_TaxClass->link('Edit&page=' . $page . '&tID=' . $Qclasse->valueInt('tax_class_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxClass->getDef('icon_edit')) . '</a>';
+                  echo '<a href="' . $CLICSHOPPING_TaxClass->link('Edit&page=' . $page . '&tID=' . $Qclasse->valueInt('tax_class_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_TaxClass->getDef('icon_edit') . '"></i></h4></a>';
                   echo '&nbsp;';
-                  echo '<a href="' . $CLICSHOPPING_TaxClass->link('Delete&page=' . $page . '&tID=' . $Qclasse->valueInt('tax_class_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxClass->getDef('icon_delete')) . '</a>';
+                  echo '<a href="' . $CLICSHOPPING_TaxClass->link('Delete&page=' . $page . '&tID=' . $Qclasse->valueInt('tax_class_id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_TaxClass->getDef('icon_delete') . '"></i></h4></a>';
                   echo '&nbsp;';
                 ?>
+                </div>
               </td>
               </tr>
 

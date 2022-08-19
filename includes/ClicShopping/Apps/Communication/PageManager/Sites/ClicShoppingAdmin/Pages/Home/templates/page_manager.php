@@ -220,16 +220,18 @@
     <td><?php echo $page_box; ?></td>
     <td class="text-center"><?php echo $Qpages->valueInt('sort_order'); ?></td>
     <td class="text-end">
+      <div class="btn-group" role="group" aria-label="buttonGroup">
 <?php
-    echo '<a href="' . $CLICSHOPPING_PageManager->link('Edit&bID=' . $Qpages->valueInt('pages_id') . '&page=' . $page) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_PageManager->getDef('icon_edit')) . '</a>';
+    echo '<a href="' . $CLICSHOPPING_PageManager->link('Edit&bID=' . $Qpages->valueInt('pages_id') . '&page=' . $page) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_PageManager->getDef('icon_edit') . '"></i></h4></a>';
     echo '&nbsp;';
 
     if ($Qpages->valueInt('pages_id') === 3 || $Qpages->valueInt('pages_id') === 4 || $Qpages->valueInt('pages_id' === 5)) {
       echo '&nbsp;';
     } else {
-      echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_PageManager->getDef('icon_delete'));
+      echo '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_PageManager->getDef('icon_delete') . '"></i></h4>';
     }
 ?>
+      </div>
     </td>
     </tr>
 <?php

@@ -16,6 +16,7 @@
   $CLICSHOPPING_ProductsQuantityUnit = Registry::get('ProductsQuantityUnit');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
@@ -90,15 +91,17 @@
           }
         ?>
         <td class="text-end">
+          <div class="btn-group" role="group" aria-label="buttonGroup">
           <?php
             if ($QproductsQuantityUnit->valueInt('products_quantity_unit_id') > 1) {
-              echo '<a href="' . $CLICSHOPPING_ProductsQuantityUnit->link('Delete&page=' . $page . '&oID=' . $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_ProductsQuantityUnit->getDef('icon_delete')) . '</a>';
+              echo '<a href="' . $CLICSHOPPING_ProductsQuantityUnit->link('Delete&page=' . $page . '&oID=' . $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_ProductsQuantityUnit->getDef('icon_edit') . '"></i></h4></a>';
             }
             echo '&nbsp;';
-            echo '<a href="' . $CLICSHOPPING_ProductsQuantityUnit->link('Edit&page=' . $page . '&oID=' . $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_ProductsQuantityUnit->getDef('icon_edit')) . '</a>';
+            echo '<a href="' . $CLICSHOPPING_ProductsQuantityUnit->link('Edit&page=' . $page . '&oID=' . $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_ProductsQuantityUnit->getDef('icon_delete') . '"></i></h4></a>';
           ?>
-                </td>
-              </tr>
+          </div>
+        </td>
+      </tr>
         <?php
           } //enwhile
           } // end $listingTotalRow

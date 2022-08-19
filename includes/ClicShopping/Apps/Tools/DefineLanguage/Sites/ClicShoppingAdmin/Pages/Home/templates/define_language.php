@@ -125,16 +125,15 @@
         <tr>
           <td><?php echo $Qcontent_group->value('content_group') . ($search_count > '' ? '<span class="text-info"><small><i>' . $search_count . '</i></small></span>' : ''); ?></td>
           <td class="action text-end">
+              <div class="btn-group" role="group" aria-label="buttonGroup">
             <?php
+              echo HTML::link($CLICSHOPPING_DefineLanguage->link('ContentGroup=' . $Qcontent_group->value('content_group')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_DefineLanguage->getDef('icon_edit') . '"></i></h4>');
+              echo '&nbsp;';
               if ($search_count > '') {
-                echo HTML::link($CLICSHOPPING_DefineLanguage->link('ContentGroup=' . $Qcontent_group->value('content_group') . '&search=' . $search), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/filter.png', $CLICSHOPPING_DefineLanguage->getDef('image_filter')));
+                echo HTML::link($CLICSHOPPING_DefineLanguage->link('ContentGroup=' . $Qcontent_group->value('content_group') . '&search=' . $search), '<h4><i class="bi bi-funnel" title="' . $CLICSHOPPING_DefineLanguage->getDef('image_filter') . '"></i></h4>');
               }
-              ?>
-          </td>
-          <td class="action text-end">
-            <?php
-              echo HTML::link($CLICSHOPPING_DefineLanguage->link('ContentGroup=' . $Qcontent_group->value('content_group')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_DefineLanguage->getDef('image_edit')));
-            ?>
+           ?>
+              </div>
           </td>
         </tr>
         <?php

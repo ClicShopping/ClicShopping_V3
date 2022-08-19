@@ -98,16 +98,17 @@
               scope="row"><?php echo HTML::link($CLICSHOPPING_TaxGeoZones->link('List&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), $Qzones->value('geo_zone_name')) . '&nbsp;'; ?></th>
             <td><?php echo $Qzones->value('geo_zone_description'); ?></td>
             <td><?php echo $zInfo->num_zones ?? null; ?></td>
-
             <td class="text-end">
+              <div class="btn-group" role="group" aria-label="buttonGroup">
               <?php
-                echo HTML::link($CLICSHOPPING_TaxGeoZones->link('Edit&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_edit')));
+                echo HTML::link($CLICSHOPPING_TaxGeoZones->link('Edit&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_TaxGeoZones->getDef('icon_edit') . '"></i></h4>');
                 echo '&nbsp;';
-                echo HTML::link($CLICSHOPPING_TaxGeoZones->link('ListGeo&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/geo_zones.gif', $CLICSHOPPING_TaxGeoZones->getDef('image_details')));
+                echo HTML::link($CLICSHOPPING_TaxGeoZones->link('ListGeo&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), '<h4><i class="bi bi-geo-alt" title="' . $CLICSHOPPING_TaxGeoZones->getDef('icon_geo') . '"></i></h4>');
                 echo '&nbsp;';
-                echo HTML::link($CLICSHOPPING_TaxGeoZones->link('Delete&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_delete')));
+                echo HTML::link($CLICSHOPPING_TaxGeoZones->link('Delete&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_TaxGeoZones->getDef('icon_delete') . '"></i></h4>');
                 echo '&nbsp;';
               ?>
+              </div>
             </td>
           </tr>
           <?php

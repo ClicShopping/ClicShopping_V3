@@ -2,7 +2,10 @@
 3.326
 Add Sitemap inside Seo page
 Add a specific robot.txt
+add new version bootstrap icon
+
 fix seo cart link
+
 
 ----------------------
 3.325

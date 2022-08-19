@@ -87,7 +87,7 @@
             <a
               href="<?php echo $CLICSHOPPING_Settings->link('SettingsPopUp&Save&gID=' . HTML::sanitize($_GET['gID']) . '&cID=' .  HTML::sanitize($Qconfiguration->valueInt('configuration_id'))); ?>"
               data-bs-toggle="modal" data-refresh="true"
-              data-bs-target="#myModal_<?php echo $Qconfiguration->valueInt('configuration_id'); ?>"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Settings->getDef('icon_edit')); ?></a>
+              data-bs-target="#myModal_<?php echo $Qconfiguration->valueInt('configuration_id'); ?>"><h4><i class="bi bi-pencil" title="<?php echo $CLICSHOPPING_Settings->getDef('icon_edit'); ?>"></i></h4></a>
             <div class="modal fade" id="myModal_<?php echo $Qconfiguration->valueInt('configuration_id'); ?>"
                  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">

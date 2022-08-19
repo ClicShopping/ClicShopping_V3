@@ -140,7 +140,7 @@
       </td>
       <td class="text-end">
         <?php
-          echo '<a href="' . $CLICSHOPPING_Suppliers->link('Edit&page=' . $page . '&mID=' . $Qsuppliers->valueInt('suppliers_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Suppliers->getDef('icon_edit')) . '</a>';
+          echo '<a href="' . $CLICSHOPPING_Suppliers->link('Edit&page=' . $page . '&mID=' . $Qsuppliers->valueInt('suppliers_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Suppliers->getDef('icon_edit') . '"></i></h4></a>';
           echo '&nbsp;';
         ?>
       </td>

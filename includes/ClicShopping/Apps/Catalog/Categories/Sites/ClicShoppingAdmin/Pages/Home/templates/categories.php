@@ -136,7 +136,7 @@
         <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_status'); ?></th>
         <th data-field="last_modified" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_last_modified'); ?></th>
         <th data-field="sort_order" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_sort_order'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="action" data-switchable="false" class="text-end" data-width="150"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -202,16 +202,17 @@
           ?>
         </td>
         <td class="text-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
-        <td class="text-end">
+        <th class="text-end">
+            <div class="btn-group" role="group" aria-label="buttonGroup">
           <?php
-          echo '<a href="' . $CLICSHOPPING_Categories->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Categories->getDef('icon_edit')) . '</a>';
+          echo '<a href="' . $CLICSHOPPING_Categories->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Categories->getDef('icon_edit') . '"></i></h4></a>';
           echo '&nbsp;';
-          echo '<a href="' . $CLICSHOPPING_Categories->link('Move&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/move.gif', $CLICSHOPPING_Categories->getDef('icon_move')) . '</a>';
+          echo '<a href="' . $CLICSHOPPING_Categories->link('Move&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '"><h4><i class="bi bi-arrows-move" title="' . $CLICSHOPPING_Categories->getDef('icon_move') . '"></i></h4></a>';
           echo '&nbsp;';
-          echo '<a href="' . $CLICSHOPPING_Categories->link('Delete&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Categories->getDef('icon_delete')) . '</a>';
-          echo '&nbsp;';
+          echo '<a href="' . $CLICSHOPPING_Categories->link('Delete&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Categories->getDef('icon_delete') . '"></i></h4></a>';
           ?>
-        </td>
+            </div>
+        </th>
       </tr>
       <?php
     }

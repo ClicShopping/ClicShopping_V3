@@ -315,7 +315,7 @@
           </td>
           <td class="text-end">
             <?php
-              echo '<a href="' . $CLICSHOPPING_Specials->link('Edit&page=' . (int)$page . '&sID=' . (int)$Qspecials->valueInt('specials_id') . '&action=update') . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Specials->getDef('icon_edit')) . '</a>';
+              echo '<a href="' . $CLICSHOPPING_Specials->link('Edit&page=' . (int)$page . '&sID=' . (int)$Qspecials->valueInt('specials_id') . '&action=update') . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Specials->getDef('icon_edit') . '"></i></h4></a>';
               echo '&nbsp;';
             ?>
           </td>

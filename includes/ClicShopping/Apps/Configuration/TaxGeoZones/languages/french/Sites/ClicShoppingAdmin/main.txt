@@ -39,6 +39,7 @@ text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <stro
 
 icon_edit = Editer
 icon_delete = Supprimer
+icon_geo = Géo Zone
 
 table_heading_country = Pays
 table_heading_country_zone = Zone

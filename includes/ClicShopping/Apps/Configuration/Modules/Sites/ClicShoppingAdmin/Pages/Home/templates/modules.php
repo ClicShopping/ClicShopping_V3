@@ -265,15 +265,17 @@
           ?>
         </td>
         <td class="text-end">
+          <div class="btn-group" role="group" aria-label="buttonGroup">
           <?php
           if ($module->check() > 0) {
-            echo HTML::link($CLICSHOPPING_Modules->link('Edit&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Modules->getDef('icon_edit'))) . '&nbsp;';
-            echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Remove&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/remove.gif', $CLICSHOPPING_Modules->getDef('icon_delete')));
+            echo HTML::link($CLICSHOPPING_Modules->link('Edit&set=' . $set . '&module=' . $class), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Modules->getDef('icon_edit') . '"></i></h4>') . '&nbsp;';
+            echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Remove&set=' . $set . '&module=' . $class), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Modules->getDef('icon_remove') . '"></i></h4>');
           } else {
-            echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Install&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/install.gif', $CLICSHOPPING_Modules->getDef('icon_install')));
+            echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Install&set=' . $set . '&module=' . $class), '<h4><i class="bi bi-bag-plus" title="' . $CLICSHOPPING_Modules->getDef('icon_install') . '"></i></h4>');
           }
           echo '&nbsp;';
           ?>
+          </div>
         </td>
       </tr>
       <?php

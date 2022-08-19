@@ -99,7 +99,7 @@
           <td><?php echo $template_email_type; ?></td>
           <td><?php echo $QtemplateEmail->value('template_email_short_description'); ?></td>
           <td class="text-center"><?php echo $template_email_customer_group; ?></td>
-          <td class="text-end"><?php echo HTML::link($CLICSHOPPING_TemplateEmail->link('Edit&page=' . $page . '&tID=' . $QtemplateEmail->valueInt('template_email_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TemplateEmail->getDef('image_edit'))); ?></td>
+          <td class="text-end"><?php echo HTML::link($CLICSHOPPING_TemplateEmail->link('Edit&page=' . $page . '&tID=' . $QtemplateEmail->valueInt('template_email_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_TemplateEmail->getDef('icon_edit') . '"></i></h4>'); ?></td>
         </tr>
         <?php
       }

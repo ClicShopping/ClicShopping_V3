@@ -14,6 +14,7 @@
 
   $CLICSHOPPING_Customers = Registry::get('Customers');
   $CLICSHOPPING_Currencies = Registry::get('Currencies');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
@@ -99,19 +100,9 @@
             <td
               class="text-end"><?php echo $CLICSHOPPING_Currencies->format($Qcustomers->valueInt('ordersum')); ?>&nbsp;
             </td>
-            <?php
-              if ($Qcustomers->valueInt('customers_group_id') > 0) {
-                ?>
-                <td
-                  class="text-end"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers%5CCustomers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customer'))); ?></td>
-                <?php
-              } else {
-                ?>
-                <td
-                  class="text-end"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customer'))); ?></td>
-                <?php
-              }
-            ?>
+            <td
+                  class="text-end"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers%5CCustomers&Customers&search=' . $Qcustomers->value('customers_lastname')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Customers->getDef('icon_edit_customer') . '"></i></h4>'); ?>
+            </td>
           </tr>
           <?php
         } // end while

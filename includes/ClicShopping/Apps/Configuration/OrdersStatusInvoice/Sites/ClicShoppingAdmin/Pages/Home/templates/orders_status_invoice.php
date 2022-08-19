@@ -16,6 +16,7 @@
   $CLICSHOPPING_OrdersStatusInvoice = Registry::get('OrdersStatusInvoice');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
@@ -92,15 +93,15 @@
       }
     ?>
       <td class="text-end">
+        <div class="btn-group" role="group" aria-label="buttonGroup">
         <?php
+          echo HTML::link($CLICSHOPPING_OrdersStatusInvoice->link('Edit&page=' . $page . '&oID=' . $QordersStatusInvoice->valueInt('orders_status_invoice_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_edit') . '"></i></h4>');
+          echo '&nbsp;';
           if ($QordersStatusInvoice->valueInt('orders_status_invoice_id') > 4) {
-            echo HTML::link($CLICSHOPPING_OrdersStatusInvoice->link('Delete&page=' . $page . '&oID=' . $QordersStatusInvoice->valueInt('orders_status_invoice_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_delete')));
+            echo HTML::link($CLICSHOPPING_OrdersStatusInvoice->link('Delete&page=' . $page . '&oID=' . $QordersStatusInvoice->valueInt('orders_status_invoice_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_delete') . '"></i></h4>');
           }
-
-          echo '&nbsp;';
-          echo HTML::link($CLICSHOPPING_OrdersStatusInvoice->link('Edit&page=' . $page . '&oID=' . $QordersStatusInvoice->valueInt('orders_status_invoice_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_edit')));
-          echo '&nbsp;';
         ?>
+        </div>
       </td>
     </tr>
     <?php

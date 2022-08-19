@@ -14,6 +14,7 @@
 
   $CLICSHOPPING_Langues = Registry::get('Langues');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
@@ -106,15 +107,16 @@
             ?>
           </td>
           <td class="text-end">
+            <div class="btn-group" role="group" aria-label="buttonGroup">
             <?php
-              echo HTML::link($CLICSHOPPING_Langues->link('Edit&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=edit'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Langues->getDef('icon_edit')));
+              echo HTML::link($CLICSHOPPING_Langues->link('Edit&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=edit'), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Langues->getDef('icon_edit') . '"></i></h4>');
               echo '&nbsp;';
 
               if ($Qlanguages->valueInt('languages_id') > 1) {
-                echo HTML::link($CLICSHOPPING_Langues->link('Delete&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=delete'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Langues->getDef('icon_delete')));
+                echo HTML::link($CLICSHOPPING_Langues->link('Delete&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=delete'), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Langues->getDef('icon_delete') . '"></i></h4>');
               }
-              echo '&nbsp;';
             ?>
+            </div>
           </td>
           </tr>
           <?php

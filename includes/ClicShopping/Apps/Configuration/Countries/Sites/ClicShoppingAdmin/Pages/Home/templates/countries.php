@@ -16,6 +16,7 @@
   $CLICSHOPPING_Countries = Registry::get('Countries');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
@@ -112,11 +113,13 @@
             <td class="text-center" width="40"><?php echo $Qcountries->value('countries_iso_code_2'); ?></td>
             <td class="text-center" width="40"><?php echo $Qcountries->value('countries_iso_code_3'); ?></td>
             <td class="text-end">
+              <div class="btn-group" role="group" aria-label="buttonGroup">
               <?php
-                echo HTML::link($CLICSHOPPING_Countries->link('Edit&page=' . $page . '&cID=' . $Qcountries->valueInt('countries_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Countries->getDef('icon_edit')));
+                echo HTML::link($CLICSHOPPING_Countries->link('Edit&page=' . $page . '&cID=' . $Qcountries->valueInt('countries_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Countries->getDef('icon_edit') . '"></i></h4>');
                 echo '&nbsp;';
-                echo HTML::link($CLICSHOPPING_Countries->link('Delete&page=' . $page . '&cID=' . $Qcountries->valueInt('countries_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Countries->getDef('icon_delete')));
+                echo HTML::link($CLICSHOPPING_Countries->link('Delete&page=' . $page . '&cID=' . $Qcountries->valueInt('countries_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Countries->getDef('icon_delete') . '"></i></h4>');
               ?>
+              </div>
             </td>
           </tr>
         <?php

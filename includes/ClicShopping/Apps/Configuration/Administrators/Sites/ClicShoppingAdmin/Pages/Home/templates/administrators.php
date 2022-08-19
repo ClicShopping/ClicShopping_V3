@@ -15,6 +15,7 @@
   $CLICSHOPPING_Administrators = Registry::get('Administrators');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -88,14 +89,16 @@
           ?>
         </td>
         <td class="text-end">
+          <div class="btn-group" role="group" aria-label="buttonGroup">
           <?php
-            echo '<a href="' . $CLICSHOPPING_Administrators->link('Edit&aID=' . $Qadmin->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Administrators->getDef('image_edit')) . '</a>';
+            echo '<a href="' . $CLICSHOPPING_Administrators->link('Edit&aID=' . $Qadmin->valueInt('id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Administrators->getDef('image_edit') . '"></i></h4></a>';
             echo '&nbsp;';
-            echo '<a href="' . $CLICSHOPPING_Administrators->link('Delete&aID=' . $Qadmin->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Administrators->getDef('image_delete')) . '</a>';
+            echo '<a href="' . $CLICSHOPPING_Administrators->link('Delete&aID=' . $Qadmin->valueInt('id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Administrators->getDef('image_delete') . '"></i></h4></a>';
             echo '&nbsp;';
             echo '</tr>';
             }
           ?>
+          </div>
         </td>
       </tr>
     </tbody>

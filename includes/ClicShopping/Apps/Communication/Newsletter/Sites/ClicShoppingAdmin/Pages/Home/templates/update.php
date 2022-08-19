@@ -130,7 +130,7 @@
     }
 
     // Put languages information into an array for drop-down boxes
-    $customers_group = GroupsB2BAdmin::getCustomersGroup();
+    $customers_group = GroupsB2BAdmin::getAllGroups();
 
     for ($i = 0, $n = \count($customers_group); $i < $n; $i++) {
       $values_customers_group_id[$i + 1] = [

@@ -330,22 +330,24 @@
         }
         ?>
         <td class="text-end">
+          <div class="btn-group" role="group" aria-label="buttonGroup">
           <?php
             if ($QcustColl->valueInt('customers_group_id') > 0) {
-              echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Groups&Edit&cID=' . $QcustColl->valueInt('customers_group_id') . '&action=edit'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/group_client.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customers_group'), 16, 16));
+              echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Groups&Edit&cID=' . $QcustColl->valueInt('customers_group_id') . '&action=edit'), '<h4><i class="bi bi-edit" title="' . $CLICSHOPPING_Customers->getDef('icon_edit_customers_group') . '"></i></h4>');
               echo '&nbsp;';
             }
 
-            echo HTML::link($CLICSHOPPING_Customers->link('Edit&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customer')));
+            echo HTML::link($CLICSHOPPING_Customers->link('Edit&cID=' . $Qcustomers->valueInt('customers_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Customers->getDef('icon_edit') . '"></i></h4>');
             echo '&nbsp;';
-            echo HTML::link(CLICSHOPPING::link(null, 'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_Customers->getDef('icon_email')));
+            echo HTML::link(CLICSHOPPING::link(null, 'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), '<h4><i class="bi bi-send" title="' . $CLICSHOPPING_Customers->getDef('icon_email') . '"></i></h4>');
             echo '&nbsp;';
 
-            echo HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/order.gif', $CLICSHOPPING_Customers->getDef('icon_edit_orders')));
+            echo HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders'),  '<h4><i class="bi bi-cart3" title="' . $CLICSHOPPING_Customers->getDef('icon_edit_order') . '"></i></h4>');
             echo '&nbsp;';
-            echo HTML::link($CLICSHOPPING_Customers->link('Customers&Customers&PasswordForgotten&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/new_password.gif', $CLICSHOPPING_Customers->getDef('icon_edit_new_password')));
+            echo HTML::link($CLICSHOPPING_Customers->link('Customers&Customers&PasswordForgotten&cID=' . $Qcustomers->valueInt('customers_id')), '<h4><i class="bi bi-pass" title="' . $CLICSHOPPING_Customers->getDef('icon_new_password') . '"></i></h4>');
             echo '&nbsp;';
           ?>
+          </div>
         </td>
       </tr>
         <?php
