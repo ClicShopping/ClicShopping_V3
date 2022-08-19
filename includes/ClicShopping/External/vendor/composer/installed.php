@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
-        'reference' => '663a79c0b2d2659b669546d3f74b13f63f531f59',
+        'reference' => 'c05a4ce621ff8cf86ed2a7872212806b126fcaad',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
-            'reference' => '663a79c0b2d2659b669546d3f74b13f63f531f59',
+            'reference' => 'c05a4ce621ff8cf86ed2a7872212806b126fcaad',
             'dev_requirement' => false,
         ),
         'darkghosthunter/preloader' => array(
