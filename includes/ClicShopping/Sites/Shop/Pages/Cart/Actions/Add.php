@@ -38,17 +38,30 @@
 
           $CLICSHOPPING_ShoppingCart->addCart($_POST['products_id'], $CLICSHOPPING_ShoppingCart->getQuantity($CLICSHOPPING_Prod::getProductIDString($_POST['products_id'], $attributes)) + ((int)$_POST['cart_quantity']), $attributes);
 
-          if (DISPLAY_CART == 'true') {
-            $goto = CLICSHOPPING::getConfig('bootstrap_file');
-            $parameters = 'Cart';
-          } else {
-            $goto = CLICSHOPPING::getConfig('bootstrap_file');
+          if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true' && !isset($_SESSION['login_customer_id'])) {
+            if (DISPLAY_CART == 'true') {
+              $goto = null;
+              $parameters = 'Cart';
+            } else {
+              $goto = null;
 
-            if (isset($_POST['url'])) {
-              $parameters = $_POST['url'];
+              if (isset($_POST['url'])) {
+                $parameters = $_POST['url'];
+              }
+            }
+          } else {
+            if (DISPLAY_CART == 'true') {
+              $goto = CLICSHOPPING::getConfig('bootstrap_file');
+              $parameters = 'Cart';
+            } else {
+              $goto = CLICSHOPPING::getConfig('bootstrap_file');
+
+              if (isset($_POST['url'])) {
+                $parameters = $_POST['url'];
+              }
             }
           }
-
+	  
           $CLICSHOPPING_Hooks->call('Cart', 'Add');
 
           CLICSHOPPING::redirect($goto, $parameters);
