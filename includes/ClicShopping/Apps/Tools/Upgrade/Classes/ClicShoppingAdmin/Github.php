@@ -28,7 +28,7 @@
     protected $context;
     protected string $coreName;
     protected string $githubRepoClicShoppingCore;
-    public string $githubRepoName;
+    public ?string $githubRepoName;
     protected string $saveFileFromGithub;
     protected string $cacheGithub;
     public string $cacheGithubTemp;

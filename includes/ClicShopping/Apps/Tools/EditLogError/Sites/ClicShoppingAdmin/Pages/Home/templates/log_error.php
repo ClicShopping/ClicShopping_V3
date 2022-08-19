@@ -68,7 +68,7 @@
           <td><?php echo $f['date']; ?></td>
           <td class="text-end"><?php echo $f['size']; ?></td>
           <td
-            class="text-end"><?php echo HTML::link($CLICSHOPPING_EditLogError->link('Edit&View&log=' . $f['key']), '<h4><i class="bi bi-edit" title="' . $CLICSHOPPING_EditLogError->getDef('icon_edit') . '"></i></h4>'); ?></td>
+            class="text-end"><?php echo HTML::link($CLICSHOPPING_EditLogError->link('Edit&View&log=' . $f['key']), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_EditLogError->getDef('icon_edit') . '"></i></h4>'); ?></td>
         </tr>
         <?php
       }
