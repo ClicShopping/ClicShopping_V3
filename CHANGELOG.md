@@ -1,6 +1,6 @@
 V.327
-Updqte librairies bootstrap table
-
+Update librairies bootstrap table
+fix stripe token
 
 ----------------------
 3.326

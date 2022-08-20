@@ -93,11 +93,11 @@
         }
 
         if (CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD == 'True') {
-          $this->private_key = \getenv('CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY');
-          $this->public_key = \getenv('CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY');
+          $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY;
+          $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY;
         } else {
-          $this->private_key = \getenv('CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY_TEST');
-          $this->public_key = \getenv('CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY_TEST');
+          $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY_TEST;
+          $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY_TEST;
         }
 
         $this->sort_order = \defined('CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER') ? CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER : 0;
@@ -227,7 +227,11 @@ pre_confirmation_check()
       if (!isset($stripe_payment_intent_id)) {
         $description = STORE_NAME . ' - Order date time : ' . date('Y-m-d H:i:s');
 
-        $token  = $_POST['stripeToken'];
+        $token = [];
+
+        if (isset($_POST['stripeToken'])) {
+          $token = $_POST['stripeToken'];
+        }
 
         $params = [
             'amount' => $total_amount,
