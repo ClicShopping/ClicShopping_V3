@@ -99,13 +99,6 @@
 
         <div
                 class="col-md-4">
-          <span class="col-md-6 float-left" id="OrdersArchive">
-<?php
-echo HTML::form('OrdersArchive', $CLICSHOPPING_Orders->link('OrdersArchive'), 'post', ' role="form"', ['session_id' => true]);
-echo HTML::button($CLICSHOPPING_Orders->getDef('button_archive_batch'), null, null, 'warning');
-echo '</form>';
-?>
-          </span>
 
 <?php
           if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($_POST['status']) || isset($_GET['aID'])) {
