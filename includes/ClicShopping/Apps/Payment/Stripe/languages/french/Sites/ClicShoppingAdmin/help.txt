@@ -34,10 +34,12 @@ Click to create a new Application and give it a name, such as "Webstore", and cl
 - Add a new Endpoints<br />
 - The url must be like that : https://www.mydomain.com/shop/index.php?order&stripe&webhook&st<br />
 You must update the url in function.<br />
-- Add an Event Endpoints and save:<br />
+- Add an Event Endpoints and save:<br /><br />
 Choose the 2 elements :<br />
-payment_methof.attached<br />
+payment_method.attached<br />
 payment_intent_succeeded<br />
+charge.succeeded<br /><br />
+
 
 3/ <strong>Test your integration</strong><br /><br />
 - In your clicShopping Stripe Apps select also the test environnement<br />

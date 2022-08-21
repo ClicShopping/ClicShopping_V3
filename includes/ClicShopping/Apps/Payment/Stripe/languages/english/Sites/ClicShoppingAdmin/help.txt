@@ -25,7 +25,7 @@ Funds are deposited in your bank account in 1-2 business days.<br /><br />
 1/ Define your environment :
 Click to create a new Application and give it a name, such as "Webstore", and click Create<br />
 
-2/ <strong>Click on Developper section and API Key</strong><br /><br />
+2/ <strong>Click on Developer section and API Key</strong><br /><br />
 - Activate the test environment
 - Click the "Show Secret" button, and copy the Secret key test inside ClicShopping Stripe apps.<br />
 - Also Copy the public key inside ClicShopping Stripe apps.<br /><br />
@@ -34,13 +34,14 @@ Click to create a new Application and give it a name, such as "Webstore", and cl
 - Add a new Endpoints<br />
 - The url must be like that : https://www.mydomain.com/shop/index.php?order&stripe&webhook&st<br />
 You must update the url in function.<br />
-- Add an Event Endpoints and save:<br />
+- Add an Event Endpoints and save:<br /><br />
 Choose the 2 elements :<br />
-payment_methof.attached<br />
+payment_method.attached<br />
 payment_intent_succeeded<br />
+charge.succeeded<br /><br />
 
 3/ <strong>Test your integration</strong><br /><br />
-- In your clicShopping Stripe Apps select also the test environnement<br />
+- In your clicShopping Stripe Apps select also the test environment<br />
 - Now you are ready to make a test<br />
 - Note : on this url, you wil have all the test card, choose one and proceed an order : https://stripe.com/docs/testing#cards
 
@@ -50,7 +51,7 @@ payment_intent_succeeded<br />
 - Go to developper section : click on webhooks and the link : You must see a blue success information<br /><br />
 
 5/ <strong>Production mode</strong><br />
-- Change the menu test environnement in production<br />
+- Change the menu test environment in production<br />
 - change inside your ClicShopping apps Stripe the configuration test to production<br />
 - Change inside the apps the key to include the production key (fo that you must activate completly your account)<br />
 - Make last test.

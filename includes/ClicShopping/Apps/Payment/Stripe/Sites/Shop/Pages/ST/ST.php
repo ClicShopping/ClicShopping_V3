@@ -16,7 +16,7 @@
 
   class ST extends \ClicShopping\OM\PagesAbstract
   {
-    protected string $file = '';
+    protected $file = null;
     protected bool $use_site_template = false;
     protected $pm;
     protected mixed $lang;
@@ -35,8 +35,8 @@
 
       $endpoint_secret = CLICSHOPPING_APP_STRIPE_ST_KEY_WEBHOOK_ENDPOINT;
       $payload = @file_get_contents('php://input');
-      $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
-
+      //$sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+      $sig_header = '';
       $event = null;
 
       try {
@@ -55,10 +55,16 @@
 
 // Handle the event
       switch ($event->type) {
+        case 'charge.succeeded':
+          //$charge = $event->data->object;
+	  $event->data->object;
+          break;
         case 'payment_intent.succeeded':
+          //$paymentIntent = $event->data->object;
           $event->data->object;
           break;
         case 'payment_method.attached':
+          //$paymentMethod = $event->data->object;
           $event->data->object;
           break;
         // ... handle other event types

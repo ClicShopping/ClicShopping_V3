@@ -13,7 +13,7 @@
   abstract class PagesActionsAbstract implements \ClicShopping\OM\PagesActionsInterface
   {
     protected $page;
-    protected string $file;
+    protected $file;
     protected bool $is_rpc = false;
 
     public function __construct(\ClicShopping\OM\PagesInterface $page)

@@ -240,7 +240,8 @@ pre_confirmation_check()
             'setup_future_usage' => 'off_session',
             'description' => $description,
             'capture_method' => $capture_method,
-            'metadata' => $metadata
+            'metadata' => $metadata,
+            'payment_method_types' => ['card'],
         ];
 
         $this->intent = PaymentIntent::create($params);
