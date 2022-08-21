@@ -560,7 +560,7 @@ echo '</form>';
               echo '&nbsp;';
 
               if ($archive_id != 1) {
-                echo HTML::link($CLICSHOPPING_Orders->link('Archive&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/archive.gif', $CLICSHOPPING_Orders->getDef('icon_archive_to')));
+                echo HTML::link($CLICSHOPPING_Orders->link('Archive&oID=' . $Qorders->valueInt('orders_id')), '<h4><i class="bi bi-archive" title="' . $CLICSHOPPING_Orders->getDef('icon_archive_to') . '"></i></h4>');
               } else {
                 echo HTML::link($CLICSHOPPING_Orders->link('Orders&Unpack&oID=' . $Qorders->valueInt('orders_id')), '<h4><i class="bi bi-archive" title="' . $CLICSHOPPING_Orders->getDef('icon_archive_to') . '"></i></h4>');
               }

@@ -822,7 +822,6 @@
         }
       }
 
-
 // Manage the atos module and the  Atos situation report in database.
 // Do not modify
       if (\defined('MODULE_PAYMENT_ATOS_STATUS') && MODULE_PAYMENT_ATOS_STATUS == 'True') {

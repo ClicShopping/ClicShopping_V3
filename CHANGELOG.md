@@ -1,6 +1,7 @@
 V.327
 Update librairies bootstrap table
-fix stripe token
+fix stripe 
+fix icon order
 
 ----------------------
 3.326

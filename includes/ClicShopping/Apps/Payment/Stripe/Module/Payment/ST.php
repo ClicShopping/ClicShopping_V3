@@ -34,9 +34,9 @@
     protected $api_version;
     public $group;
 
-    protected $intent;
-    protected $private_key;
-    protected $public_key;
+    public $intent;
+    public $private_key;
+    public $public_key;
 
     public function __construct()
     {
@@ -327,7 +327,7 @@ pre_confirmation_check()
 
       $comment = $this->app->getDef('text_reference_transaction');
 
-      if (CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID == 0) {
+      if (CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID == 0 || empty(CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID)) {
         $new_order_status = DEFAULT_ORDERS_STATUS_ID;
       } else {
         $new_order_status = CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID;

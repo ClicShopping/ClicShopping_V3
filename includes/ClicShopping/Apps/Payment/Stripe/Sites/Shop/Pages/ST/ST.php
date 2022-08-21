@@ -14,18 +14,15 @@
 
   use ClicShopping\Apps\Payment\Stripe\Module\Payment\ST as PaymentStripeST;
 
-  use Stripe\Event as StripeEvent;
-
   class ST extends \ClicShopping\OM\PagesAbstract
   {
-    protected $file = null;
+    protected string $file = '';
     protected bool $use_site_template = false;
     protected $pm;
     protected mixed $lang;
 
     protected function init()
     {
-
       $this->lang = Registry::get('Language');
 
       $this->pm = new PaymentStripeST();
@@ -36,38 +33,38 @@
 
       $this->lang->loadDefinitions('Shop/checkout_process');
 
+      $endpoint_secret = CLICSHOPPING_APP_STRIPE_ST_KEY_WEBHOOK_ENDPOINT;
       $payload = @file_get_contents('php://input');
+      $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+
       $event = null;
 
       try {
-        $event = StripeEvent::constructFrom(
-            json_decode($payload, true)
+        $event = \Stripe\Webhook::constructEvent(
+          $payload, $sig_header, $endpoint_secret
         );
       } catch(\UnexpectedValueException $e) {
         // Invalid payload
         http_response_code(400);
         exit();
+      } catch(\Stripe\Exception\SignatureVerificationException $e) {
+        // Invalid signature
+        http_response_code(400);
+        exit();
       }
-
-//      $stripe_sca = StripeAPI();
 
 // Handle the event
       switch ($event->type) {
         case 'payment_intent.succeeded':
           $event->data->object;
-//          $paymentIntent = $event->data->object; // contains a \Stripe\PaymentIntent
-//handlePaymentIntentSucceeded($paymentIntent);
           break;
         case 'payment_method.attached':
           $event->data->object;
-//          $paymentMethod = $event->data->object; // contains a \Stripe\PaymentMethod
-//handlePaymentMethodAttached($paymentMethod);
           break;
         // ... handle other event types
         default:
-          // Unexpected event type
-          http_response_code(400);
-          exit();
+          echo 'Received unknown event type ' . $event->type;
+          exit;
       }
 
       http_response_code(200);
