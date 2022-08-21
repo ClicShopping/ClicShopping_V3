@@ -35,7 +35,7 @@
 
       $endpoint_secret = CLICSHOPPING_APP_STRIPE_ST_KEY_WEBHOOK_ENDPOINT;
       $payload = @file_get_contents('php://input');
-      //$sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+//      $sig_header = isset( $_SERVER['HTTP_STRIPE_SIGNATURE'] ) ? $_SERVER['HTTP_STRIPE_SIGNATURE'] : ''; //see for prod it work
       $sig_header = '';
       $event = null;
 

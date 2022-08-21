@@ -83,7 +83,7 @@
   // Permettre l'affichage des couleurs des groupes en mode B2B
   if (MODE_B2B_B2C == 'true') {
     echo HTML::form('grouped', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"');
-    echo HTML::selectField('customers_group_id', GroupsB2BAdmin::getCustomersGroup(), '', 'onchange="this.form.submit();"');
+    echo HTML::selectField('customers_group_id', GroupsB2BAdmin::getAllGroups(), '', 'onchange="this.form.submit();"');
     echo '</form>';
   }
 ?>
