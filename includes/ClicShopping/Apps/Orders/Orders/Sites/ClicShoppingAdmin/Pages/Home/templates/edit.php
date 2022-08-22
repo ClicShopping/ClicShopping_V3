@@ -225,7 +225,7 @@
                     <a
                       href="<?php echo $CLICSHOPPING_Orders->link('PageManagerOrderHistoryContract&order_id=' . (int)$order_id . '&customer_id=' . $Qcustomers->valueInt('customers_id')); ?>"
                       data-bs-toggle="modal" data-refresh="true"
-                      data-bs-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit')); ?></a>
+                      data-bs-target="#myModal"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Orders->getDef('icon_edit') . '"></i></h4>'; ?></a>
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                          aria-hidden="true">
                       <div class="modal-dialog">
@@ -247,7 +247,7 @@
                 <span
                   class="col-md-3 text-end"><?php echo $CLICSHOPPING_Orders->getDef('entry_customer_location'); ?></span>
                 <span class="col-md-3"><a target="_blank" rel="noreferrer"
-                                          href="http://maps.google.com/maps?q=<?php echo $order->delivery['street_address'], ',', $order->delivery['postcode'], ',', $order->delivery['state'], ',', $order->delivery['country']; ?>&hl=fr&um=1&ie=UTF-8&sa=N&tab=wl"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/google_map.gif', $CLICSHOPPING_Orders->getDef('entry_customer_location')); ?></a></span>
+                                          href="http://maps.google.com/maps?q=<?php echo $order->delivery['street_address'], ',', $order->delivery['postcode'], ',', $order->delivery['state'], ',', $order->delivery['country']; ?>&hl=fr&um=1&ie=UTF-8&sa=N&tab=wl"><h4><i class="bi bi-plus-circle" title="'<?php echo $CLICSHOPPING_Orders->getDef('entry_customer_location'); ?>"></i></h4></a></span>
               </div>
               <div class="separator"></div>
               <div class="col-md-12">
@@ -337,8 +337,8 @@
                 $products_id = $order->products[$i]['products_id'];
 
                 echo '    <tr class="dataTableRow">' . "\n" .
-                  '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $products_id . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Orders->getDef('icon_preview'))) . '</td>' . "\n" .
-                  '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $products_id), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit'))) . '</td>' . "\n" .
+                  '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $products_id . '?page=' . $page), '<h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_Orders->getDef('icon_preview') . '"></i></h4>') .'</td>' . "\n" .
+                  '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $products_id), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Orders->getDef('icon_edit') . '"></i></h4>') . '</td>' . "\n" .
                   '      <td class="dataTableContent" valign="top">' . $CLICSHOPPING_Image->getSmallImageAdmin($products_id) . '</td>' . "\n" .
                   '      <td class="dataTableContent" valign="top">' . $order->products[$i]['qty'] . '&nbsp;x</td>' . "\n" .
                   '      <td class="dataTableContent" colspan="3" valign="top">' . $order->products[$i]['name'];

@@ -62,7 +62,7 @@
       $content .= '<div class="col-md-5">';
       $content .= HTML::inputField('manufacturers_name', $manufacturers_name, 'id="ajax_manufacturers_name" list="manufacturer_list" class="form-control"');
       $content .= '<datalist id="manufacturer_list"></datalist>';
-      $content .= '<a href="' . $this->app->link('ManufacturersPopUp') . '"  data-bs-toggle="modal" data-refresh="true" data-bs-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
+      $content .= '<a href="' . $this->app->link('ManufacturersPopUp') . '"  data-bs-toggle="modal" data-refresh="true" data-bs-target="#myModal"><h4><i class="bi bi-plus-circle" title="' . $this->app->getDef('icon_create') . '"></i></h4></a>';
       $content .= '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
       $content .= '<div class="modal-dialog">';
       $content .= '<div class="modal-content">';

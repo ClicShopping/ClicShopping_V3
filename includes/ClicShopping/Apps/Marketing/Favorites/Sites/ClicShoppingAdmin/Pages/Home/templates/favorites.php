@@ -213,7 +213,7 @@
       <td></td>
       <td><?php echo $Qfavorites->valueInt('products_favorites_id'); ?></td>
         <td scope="row" width="50px">
-        <?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qfavorites->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Favorites->getDef('icon_preview'))); ?>
+        <?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qfavorites->valueInt('products_id') . '?page=' . $page), '<h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_Favorites->getDef('icon_preview') . '"></i></h4>'); ?>
       </td>
       <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qfavorites->valueInt('products_id')); ?></td>
       <td><?php echo $Qfavorites->value('products_name') . ' [' . $Qfavorites->value('products_model') . ']'; ?></td>

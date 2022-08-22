@@ -479,7 +479,7 @@
       <div class="alert alert-info" role="alert">
         <div class="row">
           <span class="col-md-12">
-            <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Upgrade->getDef('title_help')); ?>
+            <?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Upgrade->getDef('title_help') . '"></i></h4>'; ?>
              <strong><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('title_help'); ?></strong>
            </span>
         </div>

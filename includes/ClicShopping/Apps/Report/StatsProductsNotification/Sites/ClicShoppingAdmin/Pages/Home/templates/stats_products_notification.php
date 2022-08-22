@@ -87,6 +87,7 @@
   $listingTotalRow = $Qcustomers->getPageSetTotalRows();
 
   if ($listingTotalRow > 0) {
+    $rows = 0;
     while ($customers = $Qcustomers->fetch()) {
       $rows++;
 
@@ -104,9 +105,9 @@
             </td>
             <td class="dataTableContent text-end">
               <?php
-                echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer')));
+                echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer') . '"></i></h4>');
                 echo '&nbsp;';
-                echo HTML::link(CLICSHOPPING::link(null, 'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_email')));
+                echo HTML::link(CLICSHOPPING::link(null, 'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), '<h4><i class="bi bi-send" title="' . $CLICSHOPPING_StatsProductsNotification->getDef('icon_email') . '"></i></h4>');
               ?>
             </td>
           </tr>
@@ -209,7 +210,7 @@
             ?>
             <tr>
               <td scope="row"
-                  width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_preview'))); ?></td>
+                  width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), '<h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_StatsProductsNotification->getDef('icon_preview') . '"></i></h4>'); ?></td>
               <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id'));; ?></td>
               <td><?php echo $rows; ?>.</td>
               <td><?php echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $products['products_id'] . '&page=' . $page), $Qproducts->value('products_name')); ?></td>
@@ -218,9 +219,9 @@
               <td class="text-center"><?php echo $Qproducts->valueInt('count_notifications'); ?>&nbsp;</td>
               <td class=text-end">
                 <?php
-                  echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $Qproducts->valueInt('products_id') . '&page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer')));
+                  echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $Qproducts->valueInt('products_id') . '&page=' . $page), '<h4><i class="bi bi-person" title="' . $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer') . '"></i></h4>');
                   echo '&nbsp;';
-                  echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit')));
+                  echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit') . '"></i></h4>');
                 ?>
             </tr>
             <?php

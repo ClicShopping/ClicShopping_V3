@@ -353,7 +353,7 @@
               ?>
               <div class="separator"></div>
               <div class="alert alert-info" id="CreateCustomerHelCustomersTva">
-                <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Customers->getDef('title_help_customers_tva')) . ' ' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') ?></div>
+                <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') . '"></i></h4> ' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') ?></div>
                 <div class="separator"></div>
                 <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_tva_customers'); ?></div>
               </div>

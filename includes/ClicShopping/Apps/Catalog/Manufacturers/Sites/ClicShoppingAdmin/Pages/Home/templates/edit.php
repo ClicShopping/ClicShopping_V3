@@ -236,7 +236,7 @@
           <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ProductsContentTab3', null, 'display'); ?>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Manufacturers->getDef('title_help_image')) . ' ' . $CLICSHOPPING_Manufacturers->getDef('title_help_image') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Manufacturers->getDef('title_help_image') . '"></i></h4>' . $CLICSHOPPING_Manufacturers->getDef('title_help_image') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Manufacturers->getDef('help_image_manufacturers'); ?></div>
           </div>
@@ -315,7 +315,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Manufacturers->getDef('title_help_submit')) . ' ' . $CLICSHOPPING_Manufacturers->getDef('title_help_submit') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Manufacturers->getDef('title_help_submit') . '"></i></h4>' . $CLICSHOPPING_Manufacturers->getDef('title_help_submit') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Manufacturers->getDef('help_submit'); ?></div>
           </div>

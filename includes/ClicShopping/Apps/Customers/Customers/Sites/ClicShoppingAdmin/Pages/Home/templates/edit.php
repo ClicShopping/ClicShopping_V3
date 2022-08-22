@@ -218,7 +218,7 @@
                 <td>
                   <div class="alert alert-warning">
                     <?php
-                      echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/warning.gif', $CLICSHOPPING_Customers->getDef('icon_warning')) . ' ';
+                      echo '<h4><i class="bi bi-exclamation-diamond" title="' . $CLICSHOPPING_Customers->getDef('icon_warning') . '"></i></h4> ';
                       echo $CLICSHOPPING_Customers->getDef('warning_edit_customers');
                     ?>
                   </div>
@@ -792,7 +792,7 @@
               <div id="tab2Content"></div>
               <div class="separator"></div>
               <div class="alert alert-info">
-                <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Customers->getDef('title_help_customers_tva')) . ' ' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') ?></div>
+                <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_Customers->getDef('title_help_customers_tva') . '"></i></h4> ' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') ?></div>
                 <div class="separator"></div>
                 <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_tva_customers'); ?></div>
               </div>
@@ -949,7 +949,7 @@
                           <span><a
                               href="https://maps.google.com/maps?q=<?php echo $QaddressesBook->value('street_address') . ',' . $QaddressesBook->value('suburb') . ',' . $QaddressesBook->value('postcode') . ',' . $QaddressesBook->value('city'); ?>&hl=fr&um=1&ie=UTF-8&sa=N&tab=wl"
                               target="_blank"
-                              rel="noreferrer"><?php echo $CLICSHOPPING_Customers->getDef('entry_customer_location') . ' ' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/google_map.gif', $CLICSHOPPING_Customers->getDef('entry_customer_location')); ?></a></span>
+                              rel="noreferrer"><?php echo $CLICSHOPPING_Customers->getDef('entry_customer_location') . ' <h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Customers->getDef('entry_customer_location') . '"></i></h4></a></span>'; ?>
                         </div>
                       </div>
                     </div>
@@ -1017,7 +1017,7 @@
 ?>
           <div id="tab3Content"></div>
           <div class="alert alert-info">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Customers->getDef('title_help_customers_image')) . ' ' . $CLICSHOPPING_Customers->getDef('title_help_customers_image') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_Customers->getDef('title_help_customers_image') . '"></i></h4> ' . $CLICSHOPPING_Customers->getDef('title_help_customers_image') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_customers_default_address'); ?></div>
           </div>

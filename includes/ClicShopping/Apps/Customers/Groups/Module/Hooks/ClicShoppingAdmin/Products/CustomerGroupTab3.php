@@ -221,7 +221,7 @@
             $content .= '<div class="alert alert-info">';
             $content .= '<div class="row">';
             $content .= '<span class="col-sm-12">';
-            $content .= HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $this->app->getDef('title_help_price'));
+            $content .= '<h4><i class="bi bi-question-circle" title="' . $this->app->getDef('title_help_price') . '"></i></h4>';
             $content .= '<strong>' . '&nbsp;' . $this->app->getDef('title_help_price') . '</strong>';
             $content .= '</span>';
             $content .= '</div>';

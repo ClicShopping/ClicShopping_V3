@@ -246,7 +246,7 @@
     ?>
     <div class="alert alert-danger" role="alert">
       <?php
-        echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/warning.gif', $CLICSHOPPING_PageManager->getDef('icon_warning')) . ' ';
+        echo '<h4><i class="bi bi-exclamation-diamond" title="' . $CLICSHOPPING_PageManager->getDef('icon_warning') . '"></i></h4> ';
         echo $CLICSHOPPING_PageManager->getDef('warning_edit_customers');
       ?>
     </div>
@@ -294,7 +294,7 @@
 ?>
 
       <div class="alert alert-danger" role="alert">
-        <span><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/warning.gif', $CLICSHOPPING_PageManager->getDef('icon_warning')); ?></span>
+        <span><?php echo '<h4><i class="bi bi-exclamation-diamond" title="' . $CLICSHOPPING_PageManager->getDef('icon_warning') . '"></i></h4>'; ?></span>
         <span><?php echo $CLICSHOPPING_PageManager->getDef('warning_edit_customers'); ?></span>
       </div>
 <?php
@@ -533,7 +533,7 @@
 ?>
                 <div class="separator"></div>
                 <div class="alert alert-info" role="alert">
-                  <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_PageManager->getDef('title_help_page_manager')) . ' ' . $CLICSHOPPING_PageManager->getDef('title_help_page_manager') ?></div>
+                  <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_PageManager->getDef('title_help_page_manager') . '"></i></h4> ' . $CLICSHOPPING_PageManager->getDef('title_help_page_manager') ?></div>
                   <div class="separator"></div>
                   <div><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_type_information'); ?></div>
                 </div>
@@ -698,7 +698,7 @@
               </div>
               <div class="separator"></div>
               <div class="alert alert-info" role="alert">
-                <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_PageManager->getDef('title_help_submit')) . ' ' . $CLICSHOPPING_PageManager->getDef('title_help_submit') ?></div>
+                <div><?php echo'<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_PageManager->getDef('title_help_submit') . '"></i></h4> ' . $CLICSHOPPING_PageManager->getDef('title_help_submit') ?></div>
                 <div class="separator"></div>
                 <div><?php echo $CLICSHOPPING_PageManager->getDef('help_submit'); ?></div>
               </div>

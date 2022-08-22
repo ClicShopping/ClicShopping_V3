@@ -236,7 +236,7 @@
           <td></td>
           <td><?php echo $Qspecials->valueInt('specials_id'); ?></td>
           <td scope="row"
-              width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qspecials->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Specials->getDef('icon_preview'))); ?></td>
+              width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qspecials->valueInt('products_id') . '?page=' . $page), '<h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_Specials->getDef('icon_preview') . '"></i></h4>'); ?></td>
           <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qspecials->valueInt('products_id')); ?></td>
           <td><?php echo $Qspecials->value('products_name') . ' ['. $Qspecials->value('products_model') . ']'; ?></td>
           <?php

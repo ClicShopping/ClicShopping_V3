@@ -71,7 +71,7 @@
         $content .= HTML::selectMenu('move_to_category_id[]', $category_tree, $current_category_id, 'id="move_to_category_id"');
         $content .= '</div>';
         $content .= HTML::hiddenField('current_category_id', $current_category_id);
-        $content .= '<a href="' . $this->app->link('CategoriesPopUp') . '"  data-bs-toggle="modal" data-bs-refresh="true" data-bs-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
+        $content .= '<a href="' . $this->app->link('CategoriesPopUp') . '"  data-bs-toggle="modal" data-bs-refresh="true" data-bs-target="#myModal"><h4><i class="bi bi--plus-circle" title="' . $this->app->getDef('text_create') . '"></i></h4></a>';
         $content .= '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
         $content .= '<div class="modal-dialog">';
         $content .= '<div class="modal-content">';

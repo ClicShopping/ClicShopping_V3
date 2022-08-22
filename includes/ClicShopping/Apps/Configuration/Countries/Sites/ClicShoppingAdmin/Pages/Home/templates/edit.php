@@ -14,7 +14,7 @@
 
   $CLICSHOPPING_Countries = Registry::get('Countries');
   $CLICSHOPPING_Address = Registry::get('Address');
-
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $Qcountries = $CLICSHOPPING_Countries->db->prepare('select *
@@ -128,7 +128,7 @@
       ?>  </div>
     <div class="separator"></div>
     <div class="alert alert-info" role="alert">
-      <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Countries->getDef('title_help_general')) . ' ' . $CLICSHOPPING_Countries->getDef('title_help_general') ?></div>
+      <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Countries->getDef('title_help_image') . '"></i></h4> ' . $CLICSHOPPING_Countries->getDef('title_help_general') ?></div>
       <div class="separator"></div>
       <div><?php echo $CLICSHOPPING_Countries->getDef('help_general'); ?></div>
     </div>

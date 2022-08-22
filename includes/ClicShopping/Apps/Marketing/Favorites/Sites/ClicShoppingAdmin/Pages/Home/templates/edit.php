@@ -215,7 +215,7 @@
         </div>
         <div class="separator"></div>
         <div class="alert alert-info" role="alert">
-          <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Favorites->getDef('text_help_products_favorites')); ?></div>
+          <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_Favorites->getDef('text_help_products_favorites') . '"></i></h4>'; ?></div>
           <div class="separator"></div>
           <div><?php echo $CLICSHOPPING_Favorites->getDef('text_help_products_favorites_price'); ?></div>
         </div>

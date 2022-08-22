@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
-        'reference' => '602f8de70450ec55ba6dacf715a0391b8d377d9c',
+        'reference' => 'e3292dcffcdc7bdfcef824013fb6661f447807ee',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
-            'reference' => '602f8de70450ec55ba6dacf715a0391b8d377d9c',
+            'reference' => 'e3292dcffcdc7bdfcef824013fb6661f447807ee',
             'dev_requirement' => false,
         ),
         'darkghosthunter/preloader' => array(
@@ -74,12 +74,12 @@
             'dev_requirement' => false,
         ),
         'phpmailer/phpmailer' => array(
-            'pretty_version' => 'v6.6.3',
-            'version' => '6.6.3.0',
+            'pretty_version' => 'v6.6.4',
+            'version' => '6.6.4.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpmailer/phpmailer',
             'aliases' => array(),
-            'reference' => '9400f305a898f194caff5521f64e5dfa926626f3',
+            'reference' => 'a94fdebaea6bd17f51be0c2373ab80d3d681269b',
             'dev_requirement' => false,
         ),
         'phpxmlrpc/phpxmlrpc' => array(

@@ -138,7 +138,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general')) . ' ' . $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general') . '"></i></h4> ' . $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_TemplateEmail->getDef('text_help_template'); ?></div>
           </div>
@@ -183,7 +183,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general')) . ' ' . $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general') . '"></i></h4> ' . $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_TemplateEmail->getDef('text_help_template'); ?></div>
           </div>

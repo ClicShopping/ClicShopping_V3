@@ -1100,7 +1100,7 @@
             }
           ?>
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_ProductsAttributes->getDef('title_help_attributs')) . '&nbsp;' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_attributs', ['file_size' => @ini_get('upload_max_filesize')]); ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_attributs') . '"></i></h4>&nbsp;' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_attributs', ['file_size' => @ini_get('upload_max_filesize')]); ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_help_attributs', ['upload_max_filesize' => $upload_max_filesize]); ?></div>
           </div>
@@ -1172,7 +1172,7 @@
           </table>
 
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_ProductsAttributes->getDef('title_help_clone')) . ' ' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_clone') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_clone') . '"></i></h4>'; ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_help_clone'); ?></div>
           </div>

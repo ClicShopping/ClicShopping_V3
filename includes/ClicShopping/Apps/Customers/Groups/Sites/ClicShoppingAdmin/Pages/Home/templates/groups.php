@@ -150,13 +150,13 @@
               <td class="text-start"><?php echo $QustomersGroup->value('customers_group_discount'); ?>%</td>
               <td class="text-end">
                 <?php
-                  echo HTML::link($CLICSHOPPING_Groups->link('Edit&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Groups->getDef('icon_edit')));
+                  echo HTML::link($CLICSHOPPING_Groups->link('Edit&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Groups->getDef('icon_edit') . '"></i></h4>');
                   echo '&nbsp;';
-                  echo HTML::link($CLICSHOPPING_Groups->link('Groups&UpdateAllPrice&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/actualiser.gif', $CLICSHOPPING_Groups->getDef('icon_update')));
+                  echo HTML::link($CLICSHOPPING_Groups->link('Groups&UpdateAllPrice&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), '<h4><i class="bi bi-arrow-clockwise" title="' . $CLICSHOPPING_Groups->getDef('icon_update') . '"></i></h4>');
                   echo '&nbsp;';
 
                   if ($QustomersGroup->valueInt('customers_group_id') > 1) {
-                    echo HTML::link($CLICSHOPPING_Groups->link('Groups&Delete&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Groups->getDef('image_delete')));
+                    echo HTML::link($CLICSHOPPING_Groups->link('Groups&Delete&cID=' . $QustomersGroup->valueInt('customers_group_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Groups->getDef('icon_delete') . '"></i></h4>');
                     echo '&nbsp;';
                   }
                 ?>

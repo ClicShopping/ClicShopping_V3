@@ -232,7 +232,7 @@
                     <a
                       href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=CONFIGURATION_PREFIX_MODEL'); ?>"
                       data-bs-toggle="modal" data-refresh="true"
-                      data-bs-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('text_edit')); ?></a>
+                      data-bs-target="#myModal"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>'; ?></a>
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                          aria-hidden="true">
                       <div class="modal-dialog">
@@ -308,7 +308,7 @@
 
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_general')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Products->getDef('title_help_general') . '"></i></h4> ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Products->getDef('help_general'); ?></div>
           </div>
@@ -348,7 +348,7 @@
                 <a
                   href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=DISPLAY_SHIPPING_DELAY'); ?>"
                   data-bs-toggle="modal" data-refresh="true"
-                  data-bs-target="#myModal1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('text_create')); ?></a>
+                  data-bs-target="#myModal1"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>'; ?></a>
                 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                   <div class="modal-dialog">
@@ -434,7 +434,7 @@
                     <a
                       href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=STOCK_REORDER_LEVEL'); ?>"
                       data-bs-toggle="modal" data-refresh="true"
-                      data-bs-target="#myModal2"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('text_edit_default_configuration')); ?></a>
+                      data-bs-target="#myModal2"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>'; ?></a>
                     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                          aria-hidden="true">
                       <div class="modal-dialog">
@@ -468,7 +468,7 @@
                     <a
                       href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=MAX_MIN_IN_CART'); ?>"
                       data-bs-toggle="modal" data-refresh="true"
-                      data-bs-target="#myModal2"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('text_edit_default_configuration')); ?></a>
+                      data-bs-target="#myModal2"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('text_edit_default_configuration') . '"></i></h4>'; ?></a>
                     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                          aria-hidden="true">
                       <div class="modal-dialog">
@@ -531,7 +531,7 @@
           <div class="row" id="tab2ContentRow8"></div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert" id="titleHelpGeneral">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_general')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Products->getDef('title_help_general') . '"></i></h4> ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Products->getDef('help_stock'); ?></div>
           </div>
@@ -1159,7 +1159,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_image')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_image') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Products->getDef('title_help_image') . '"></i></h4> ' . $CLICSHOPPING_Products->getDef('title_help_image') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Products->getDef('title_help_products'); ?></div>
           </div>
@@ -1364,7 +1364,7 @@
   
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_general')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Products->getDef('title_help_general') . '"></i></h4> ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Products->getDef('help_general_tab8') . ' ' . $CLICSHOPPING_Products->getDef('help_general_tab8_1') . ' ' . (int)(ini_get('upload_max_filesize')) . ' Mb'; ?></div>
           </div>

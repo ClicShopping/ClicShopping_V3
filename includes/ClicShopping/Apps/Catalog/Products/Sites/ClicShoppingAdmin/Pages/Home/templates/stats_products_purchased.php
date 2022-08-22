@@ -105,7 +105,7 @@
             <td class="text-end">
               <div class="btn-group" role="group" aria-label="buttonGroup">
                 <?php
-                echo HTML::link($CLICSHOPPING_Products->link('Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), '<h4><i class="bi bi-easel2" title="' . $CLICSHOPPING_Products->getDef('icon_preview') . '"></i></h4>');
+                echo HTML::link($CLICSHOPPING_Products->link('Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), '<h4><i class="bi bi-easel3" title="' . $CLICSHOPPING_Products->getDef('icon_preview') . '"></i></h4>');
                 echo '&nbsp;';
                 echo HTML::link($CLICSHOPPING_Products->link('Products&UpdateStatsProductsPurchased&resetPurchased=1&products_id=' . $Qproducts->valueInt('products_id') . '&page=' . $page), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Products->getDef('icon_delete') . '"></i></h4>');
                 ?>

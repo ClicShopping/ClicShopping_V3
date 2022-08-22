@@ -50,9 +50,9 @@
       <div class="alert alert-warning">
         <?php
           if ($error == 'categorie') {
-            echo '&nbsp;' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/warning.gif', $CLICSHOPPING_Groups->getDef('icon_warning')) . '&nbsp;' . $CLICSHOPPING_Groups->getDef('entry_groups_categorie_error');
+            echo '&nbsp;<h4><i class="bi bi-exclamation-diamond" title="' . $CLICSHOPPING_Groups->getDef('icon_warning') . '"></i></h4>&nbsp;' . $CLICSHOPPING_Groups->getDef('entry_groups_categorie_error');
           } else if ($error == 'name') {
-            echo '&nbsp;' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/warning.gif', $CLICSHOPPING_Groups->getDef('icon_warning')) . '&nbsp;' . $CLICSHOPPING_Groups->getDef('entry_groups_name_error');
+            echo '&nbsp;<h4><i class="bi bi-exclamation-diamond" title="' . $CLICSHOPPING_Groups->getDef('icon_warning') . '"></i></h4>&nbsp;' . $CLICSHOPPING_Groups->getDef('entry_groups_name_error');
           }
         ?>
       </div>
@@ -166,7 +166,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Groups->getDef('help_title_onglet_general')) . ' ' . $CLICSHOPPING_Groups->getDef('help_title_onglet_general') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Groups->getDef('help_title_onglet_general') . '"></i></h4> ' . $CLICSHOPPING_Groups->getDef('help_title_onglet_general') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Groups->getDef('help_group_tax'); ?></div>
           </div>
@@ -260,7 +260,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Groups->getDef('help_title_onglet_facturation')) . ' ' . $CLICSHOPPING_Groups->getDef('help_title_onglet_facturation') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Groups->getDef('help_title_onglet_facturation') . '"></i></h4> ' . $CLICSHOPPING_Groups->getDef('help_title_onglet_facturation') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Groups->getDef('help_order_tax'); ?></div>
           </div>

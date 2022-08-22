@@ -155,7 +155,7 @@
 <?php
     if (!empty($Qpages->valueInt('pages_id')) && $Qpages->valueInt('page_type') == 4 && empty($Qpages->value('externallink'))) {
 ?>
-      <td class="text-center"><?php echo '<a href="' . HTTP::getShopUrlDomain() . 'index.php?Info&Content&' . 'pagesId=' . $Qpages->valueInt('pages_id') . '" target="_blank" rel="noreferrer">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview_catalog.png', $CLICSHOPPING_PageManager->getDef('icon_preview')) . '</a>'; ?></td>
+      <td class="text-center"><?php echo '<a href="' . HTTP::getShopUrlDomain() . 'index.php?Info&Content&' . 'pagesId=' . $Qpages->valueInt('pages_id') . '" target="_blank" rel="noreferrer"><h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_PageManager->getDef('icon_preview') . '"></i></h4></a>'; ?></td>
 <?php
     } else {
 ?>

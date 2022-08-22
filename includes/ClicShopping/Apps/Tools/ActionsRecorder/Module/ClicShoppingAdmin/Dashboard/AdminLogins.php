@@ -90,7 +90,7 @@
           '    <td class="text-center"><i class="bi bi-' . (($Qlogins->valueInt('success') === 1) ? 'check' : 'bi-x') . '"></i>&nbsp;' .
           '    <td><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . $Qlogins->valueProtected('user_name') . '</a></td>' .
           '    <td class="text-center">' . DateTime::toShort($Qlogins->value('date_added')) . '</td>' .
-          '    <td class="text-end"><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_admin_logins_icon_edit')) . '</a>&nbsp;' .
+          '    <td class="text-end"><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '"><h4><i class="bi bi-pencil" title="' . $this->app->getDef('module_admin_dashboard_admin_logins_icon_edit') . '"></i></h4></a>&nbsp;' .
           '  </tr>';
       }
 

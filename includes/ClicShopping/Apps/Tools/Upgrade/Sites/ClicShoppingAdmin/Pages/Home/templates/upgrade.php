@@ -75,7 +75,7 @@
   </div>
   <div class="separator"></div>
   <div class="alert alert-info" role="alert">
-    <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Upgrade->getDef('title_help')) . ' ' . $CLICSHOPPING_Upgrade->getDef('title_help') ?></div>
+    <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Upgrade->getDef('title_help') . '"></i></h4>' . $CLICSHOPPING_Upgrade->getDef('title_help') ?></div>
     <div class="separator"></div>
     <?php
     $new_version = false;

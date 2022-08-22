@@ -277,7 +277,7 @@
           <td class="text-center">
             <?php
               if ($Qcustomers->valueInt('member_level') == 0) {
-                echo HTML::link(CLICSHOPPING::link('index.php?A&Customers\Members&Members'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/locked.gif', $CLICSHOPPING_Customers->getDef('approved_client')));
+                echo HTML::link(CLICSHOPPING::link('index.php?A&Customers\Members&Members'), '<h4><i class="bi bi-lock" title="' .$CLICSHOPPING_Customers->getDef('approved_client') . '"></i></h4>');
               }
             ?>
           </td>

@@ -300,7 +300,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Suppliers->getDef('title_help_image')) . ' ' . $CLICSHOPPING_Suppliers->getDef('title_help_image') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_Suppliers->getDef('title_help_image') . '"></i></h4> '  . $CLICSHOPPING_Suppliers->getDef('title_help_image') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Suppliers->getDef('help_image_suppliers'); ?></div>
           </div>

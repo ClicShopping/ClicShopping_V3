@@ -225,7 +225,7 @@
 
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_BannerManager->getDef('title_help_banners_image')) . ' ' . $CLICSHOPPING_BannerManager->getDef('title_help_banners_image') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_BannerManager->getDef('title_help_banners_image') . '"></i></h4> ' . $CLICSHOPPING_BannerManager->getDef('title_help_banners_image') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_expiracy_note') . '<br />' . $CLICSHOPPING_BannerManager->getDef('text_banners_scheduled_note'); ?></div>
           </div>
@@ -267,7 +267,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_BannerManager->getDef('text_help_banners_image')) . ' ' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_BannerManager->getDef('text_help_banners_image') . '"></i></h4> ' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_insert_note'); ?></div>
           </div>
@@ -292,7 +292,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_BannerManager->getDef('text_help_banners_image')) . ' ' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_BannerManager->getDef('text_help_banners_image') . '"></i></h4> ' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_banner_note'); ?></div>
           </div>

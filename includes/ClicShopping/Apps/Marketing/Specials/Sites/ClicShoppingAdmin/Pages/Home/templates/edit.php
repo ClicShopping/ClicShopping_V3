@@ -238,7 +238,7 @@
         </div>
         <div class="separator"></div>
         <div class="alert alert-info" role="alert">
-          <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Specials->getDef('title_help_products_specials_price')) . ' ' . $CLICSHOPPING_Specials->getDef('title_help_products_specials_price') ?></div>
+          <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_Specials->getDef('title_help_products_specials_price') . '"></i></h4> ' . $CLICSHOPPING_Specials->getDef('title_help_products_specials_price') ?></div>
           <div class="separator"></div>
           <div><?php echo $CLICSHOPPING_Specials->getDef('text_help_specials_price'); ?></div>
         </div>
