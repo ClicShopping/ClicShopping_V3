@@ -35,8 +35,15 @@
 
       $endpoint_secret = CLICSHOPPING_APP_STRIPE_ST_KEY_WEBHOOK_ENDPOINT;
       $payload = @file_get_contents('php://input');
-//      $sig_header = isset( $_SERVER['HTTP_STRIPE_SIGNATURE'] ) ? $_SERVER['HTTP_STRIPE_SIGNATURE'] : ''; //see for prod it works
-      $sig_header = '';
+
+//Could be different in test mode
+// In my case I do not receive the HTTP_STRIPE_SIGNATURE in test mod
+      if (CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD == 'True') {
+        $sig_header = isset($_SERVER['HTTP_STRIPE_SIGNATURE']) ? $_SERVER['HTTP_STRIPE_SIGNATURE'] : '';
+      } else {
+        $sig_header = '';
+      }
+
       $event = null;
 
       try {
