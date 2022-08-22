@@ -105,7 +105,7 @@
 
       $error = false;
 
-      if (!$this->phpMail->Send()) {
+      if (!$this->phpMail->send()) {
         $error = true;
       }
 
