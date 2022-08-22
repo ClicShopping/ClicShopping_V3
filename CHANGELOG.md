@@ -1,7 +1,8 @@
 V.327
 Update librairies bootstrap table
-fix stripe 
-fix icon order
+fix stripe
+replace icon by svg
+libraries update
 
 ----------------------
 3.326
