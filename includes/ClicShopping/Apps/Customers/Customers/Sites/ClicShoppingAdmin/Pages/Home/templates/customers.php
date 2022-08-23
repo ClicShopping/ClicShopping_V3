@@ -337,14 +337,14 @@
               echo '&nbsp;';
             }
 
-            echo HTML::link($CLICSHOPPING_Customers->link('Edit&cID=' . $Qcustomers->valueInt('customers_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Customers->getDef('icon_edit') . '"></i></h4>');
+            echo HTML::link($CLICSHOPPING_Customers->link('Edit&cID=' . $Qcustomers->valueInt('customers_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Customers->getDef('icon_edit_customer') . '"></i></h4>');
             echo '&nbsp;';
             echo HTML::link(CLICSHOPPING::link(null, 'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), '<h4><i class="bi bi-send" title="' . $CLICSHOPPING_Customers->getDef('icon_email') . '"></i></h4>');
             echo '&nbsp;';
 
-            echo HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders'),  '<h4><i class="bi bi-cart3" title="' . $CLICSHOPPING_Customers->getDef('icon_edit_order') . '"></i></h4>');
+            echo HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders'),  '<h4><i class="bi bi-cart3" title="' . $CLICSHOPPING_Customers->getDef('icon_edit_orders') . '"></i></h4>');
             echo '&nbsp;';
-            echo HTML::link($CLICSHOPPING_Customers->link('Customers&Customers&PasswordForgotten&cID=' . $Qcustomers->valueInt('customers_id')), '<h4><i class="bi bi-pass" title="' . $CLICSHOPPING_Customers->getDef('icon_new_password') . '"></i></h4>');
+            echo HTML::link($CLICSHOPPING_Customers->link('Customers&Customers&PasswordForgotten&cID=' . $Qcustomers->valueInt('customers_id')), '<h4><i class="bi bi-pass" title="' . $CLICSHOPPING_Customers->getDef('icon_edit_new_password') . '"></i></h4>');
             echo '&nbsp;';
           ?>
           </div>
