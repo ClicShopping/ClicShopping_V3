@@ -102,3 +102,6 @@ button_export_customer_info = CSV Export
 
 text_result_page = Page {{listing_from}} of {{listing_total}}
 text_display_number_of_link = Displaying <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (of <strong>{{listing_total}}</strong>)
+
+title_help_company_warning = No information at this moment
+text_help_compaby_warning = Please, see the B2B configuration settings to display information

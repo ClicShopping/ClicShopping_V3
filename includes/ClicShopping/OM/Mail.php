@@ -39,7 +39,7 @@
       $this->phpMail->XMailer = 'ClicShopping ' . CLICSHOPPING::getVersion();
 //      $this->phpMail->SMTPDebug = SMTP::DEBUG_SERVER; // Only for debug
 // test with exit
-//      $this->phpMail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";};
+      $this->phpMail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";};
       $this->phpMail->debugOutput = $this->debugFileOutput;
       $this->phpMail->CharSet = PHPMailer::CHARSET_UTF8;
       $this->phpMail->WordWrap = 998;
@@ -90,8 +90,6 @@
                 $this->phpMail->Port = EMAIL_SMTP_PORT;
               }
             }
-
-        //    $this->phpMail->send();
           } catch (Exception $e) {
             echo CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]);
           }
@@ -328,7 +326,7 @@
         $this->phpMail->AltBody = HTML::sanitize(STORE_NAME);
       }
 
-      if ($error_email = false) {
+      if ($error_email === false) {
          $this->sendPhpMailer();
       }
 

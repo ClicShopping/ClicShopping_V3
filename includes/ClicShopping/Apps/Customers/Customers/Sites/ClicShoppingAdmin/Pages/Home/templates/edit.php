@@ -254,7 +254,6 @@
         <div class="tab-pane active" id="tab1">
           <div class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('category_personal'); ?></div>
           <div class="adminformTitle">
-
 <?php
   if (ACCOUNT_GENDER == 'true') {
 ?>
@@ -786,7 +785,7 @@
                       </div>
                     </div>
 <?php
-  }
+    }
 ?>
               </div>
               <div id="tab2Content"></div>
@@ -797,6 +796,14 @@
                 <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_tva_customers'); ?></div>
               </div>
             </div>
+<?php
+  } else {
+?>
+                <div class="alert alert-info">
+                 <div><?php echo '<h4><i class="bi bi-warning" title="' .$CLICSHOPPING_Customers->getDef('title_help_company_warning') . '"></i></h4> ' . $CLICSHOPPING_Customers->getDef('title_help_company_warning') ?></div>
+                 <div class="separator"></div>
+                 <div><?php echo $CLICSHOPPING_Customers->getDef('text_help_compaby_warning'); ?></div>
+               </div>
 <?php
   }
 ?>
