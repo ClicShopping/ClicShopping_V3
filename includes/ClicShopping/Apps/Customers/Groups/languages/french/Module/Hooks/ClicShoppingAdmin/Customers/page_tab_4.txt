@@ -11,4 +11,4 @@ category_order_customer_group = Mode de paiement autorisé sur le groupe
 options_order_taxe = Avec taxes
 options_order_no_taxe = Sans taxes
 
-visitor_name = client normal
+visitor_name = Client normal

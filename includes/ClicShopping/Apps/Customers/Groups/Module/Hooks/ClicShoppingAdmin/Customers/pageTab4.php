@@ -94,7 +94,7 @@
           $content .= '<div class="form-group row">';
           $content .= '<label for="' . $this->app->getDef('entry_customers_group_name') . '" class="col-5 col-form-label">' . $this->app->getDef('entry_customers_group_name') . '</label>';
           $content .= '<div class="col-md-5">';
-          $content .= HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup(), $cInfo->customers_group_id);
+          $content .= HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup($this->app->getDef('visitor_name')), $cInfo->customers_group_id);
           $content .= '</div>';
           $content .= '</div>';
           $content .= '</div>';

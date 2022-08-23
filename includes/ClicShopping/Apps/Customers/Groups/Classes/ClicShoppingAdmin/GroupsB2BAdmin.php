@@ -50,7 +50,7 @@
 
       if ($default) {
         $customers_group_array[] = [
-          'id' => '',
+          'id' => '0',
           'text' => $default
         ];
       }
