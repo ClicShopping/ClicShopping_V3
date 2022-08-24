@@ -19,7 +19,7 @@
 
   class Language
   {
-    protected string $language;
+    public string $language;
     protected array $languages = [];
     protected array $definitions = [];
     protected array $detectors = [];
@@ -117,7 +117,10 @@
       }
     }
 
-    public function getCode()
+    /**
+     * @return string
+     */
+    public function getCode() :string
     {
       return $this->language;
     }
