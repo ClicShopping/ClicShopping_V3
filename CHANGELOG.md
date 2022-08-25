@@ -1,7 +1,7 @@
 
 ----------------------
 3.329
-
+fix File download attributes never deleted
 
 ----------------------
 3.328

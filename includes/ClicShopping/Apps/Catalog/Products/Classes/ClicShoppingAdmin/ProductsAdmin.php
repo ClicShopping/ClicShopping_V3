@@ -640,8 +640,8 @@
       $this->db->delete('products', ['products_id' => (int)$product_id]);
       $this->db->delete('products_description', ['products_id' => (int)$product_id]);
       $this->db->delete('products_to_categories', ['products_id' => (int)$product_id]);
-
       $this->db->delete('products_attributes', ['products_id' => (int)$product_id]);
+      $this->db->delete('products_attributes_download', ['products_id' => (int)$product_id]);
       $this->db->delete('products_notifications', ['products_id' => (int)$product_id]);
 
       $Qdelete = $this->db->prepare('delete

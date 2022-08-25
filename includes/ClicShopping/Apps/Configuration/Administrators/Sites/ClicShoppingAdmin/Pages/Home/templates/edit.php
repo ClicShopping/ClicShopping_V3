@@ -14,6 +14,7 @@
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
   $CLICSHOPPING_Administrators = Registry::get('Administrators');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', ['id',
