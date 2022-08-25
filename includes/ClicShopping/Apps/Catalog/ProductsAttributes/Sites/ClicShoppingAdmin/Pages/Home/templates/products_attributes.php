@@ -26,6 +26,7 @@
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   $CLICSHOPPING_ProductsAttributesAdmin = new ProductsAttributesAdmin;
 
@@ -42,7 +43,7 @@
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  echo HTMLOverrideAdmin::getCkeditor();
+  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 <script>
     function go_option() {

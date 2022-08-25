@@ -20,6 +20,7 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -27,7 +28,7 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
-  echo HTMLOverrideAdmin::getCkeditor();
+  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 
 <div class="contentBody">

@@ -26,6 +26,7 @@
 
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
       if (isset($_GET['cPath'])) {
         $cPath = HTML::sanitize($_GET['cPath']);
@@ -92,7 +93,7 @@
 
 // Insertion images des produits via l'editeur FCKeditor (fonctionne sur les nouveaux produits et editions produits)
         if (isset($_POST['categories_image']) && !\is_null($_POST['categories_image']) && ($_POST['categories_image'] != 'none')) {
-          $categories_image = HTMLOverrideAdmin::getCkeditorImageAlone($categories_image);
+          $categories_image = HTMLOverrideAdmin::getWysiwygImageAlone($categories_image);
         } else {
           $categories_image = ($_POST['categories_previous_image'] ?? '');
         }

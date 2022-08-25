@@ -22,6 +22,7 @@
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   $form_action = 'Insert';
   $variable = '';
@@ -33,7 +34,7 @@
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  echo HTMLOverrideAdmin::getCkeditor();
+  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 <div class="contentBody">
   <div class="row">
@@ -163,7 +164,7 @@
           </div>
           <div class="adminformTitle" id="manufactuerDescription">
             <?php
-              echo HTMLOverrideAdmin::getCkeditor();
+              echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
@@ -181,9 +182,9 @@
                       <div class="col-md-8">
                         <?php
                           $name = 'manufacturer_description[' . $languages[$i]['id'] . ']';
-                          $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+                          $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                          echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', (isset($manufacturer_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($manufacturer_description[$languages[$i]['id']])) : ManufacturerAdmin::getManufacturerDescription($mInfo->manufacturers_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                          echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($manufacturer_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($manufacturer_description[$languages[$i]['id']])) : ManufacturerAdmin::getManufacturerDescription($mInfo->manufacturers_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
                         ?>
                       </div>
                     </div>
@@ -219,7 +220,7 @@
                   <div class="row">
                     <span
                       class="col-md-4 text-center float-start">
-                      <?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('manufacturers_image', null, '212', '212'); ?>
+                      <?php echo $CLICSHOPPING_Wysiwyg::fileFieldImageCkEditor('manufacturers_image', null, '212', '212'); ?>
                     </span>
                     <span class="col-md-8 text-center float-end">
                         <div

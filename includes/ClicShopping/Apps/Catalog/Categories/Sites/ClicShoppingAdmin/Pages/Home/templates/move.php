@@ -21,6 +21,7 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   $Qcategories = $CLICSHOPPING_Categories->db->prepare('select c.categories_id,
                                                                cd.categories_name,
@@ -47,7 +48,7 @@
 
   if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
 
-  echo HTMLOverrideAdmin::getCkeditor();
+  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 <div class="contentBody">
   <div class="row">

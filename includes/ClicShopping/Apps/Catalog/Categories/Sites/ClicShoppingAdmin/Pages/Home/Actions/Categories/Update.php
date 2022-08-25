@@ -26,6 +26,7 @@
 
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
       if (isset($_GET['cID'])) {
         $categories_id = HTML::sanitize($_GET['cID']);
@@ -88,7 +89,7 @@
           $categories_image = $_POST['categories_image'];
 
           if (!empty($categories_image) && !\is_null($categories_image)) {
-            $categories_image = HTMLOverrideAdmin::getCkeditorImageAlone($categories_image);
+            $categories_image = HTMLOverrideAdmin::getWysiwygImageAlone($categories_image);
           }
 
           $sql_data_array = ['categories_image' => $categories_image];

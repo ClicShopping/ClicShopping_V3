@@ -29,6 +29,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
       if (isset($_GET['mID'])) $manufacturers_id = HTML::sanitize($_GET['mID']);
 
@@ -51,7 +52,7 @@
         $manufacturers_image = $_POST['manufacturers_image'];
 
         if (!empty($manufacturers_image) && !\is_null($manufacturers_image)) {
-          $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($manufacturers_image);
+          $manufacturers_image = HTMLOverrideAdmin::getWysiwygImageAlone($manufacturers_image);
         }
 
         $sql_data_array = ['manufacturers_image' => $manufacturers_image];

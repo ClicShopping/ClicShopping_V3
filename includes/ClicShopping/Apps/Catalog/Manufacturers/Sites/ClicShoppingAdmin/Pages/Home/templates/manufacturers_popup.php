@@ -120,7 +120,7 @@
                   <span
                     class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product.gif', $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette'), '40', '40'); ?></span>
                   <span
-                    class="col-md-4"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette') . '<br /><br />' . HTMLOverrideAdmin::fileFieldImageCkEditor('manufacturers_image', null, '212', '212'); ?></span>
+                    class="col-md-4"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette') . '<br /><br />' . $CLICSHOPPING_Wysiwyg::fileFieldImageCkEditor('manufacturers_image', null, '212', '212'); ?></span>
                 </div>
               </div>
             </div>

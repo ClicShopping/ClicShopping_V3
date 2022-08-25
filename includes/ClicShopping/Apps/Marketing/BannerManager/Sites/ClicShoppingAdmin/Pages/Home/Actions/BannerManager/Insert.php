@@ -17,13 +17,12 @@
 
   class insert extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -58,7 +57,7 @@
 
 // Insertion de l'image de la banniere
       if (!empty($banners_image_local) && !\is_null($_POST['banners_image_local'])) {
-        $banners_image_local = HTMLOverrideAdmin::getCkeditorImageAlone($banners_image_local);
+        $banners_image_local = HTMLOverrideAdmin::getWysiwygImageAlone($banners_image_local);
       } else {
         if (!\is_null($banners_image_show)) {
           $banners_image_local = $banners_image_show;

@@ -25,6 +25,7 @@
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   $CLICSHOPPING_Hooks->call('Categories', 'PreAction');
 
@@ -53,7 +54,7 @@
 
   echo HTML::form('new_category', $CLICSHOPPING_Categories->link('Categories&Insert&cPath=' . $cPath . '&cID=' . $cID), 'post', 'enctype="multipart/form-data"');
 
-  echo HTMLOverrideAdmin::getCkeditor();
+  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 
 <div class="contentBody">
@@ -178,9 +179,9 @@
                       <div class="col-md-8">
                         <?php
                           $name = 'categories_description[' . $languages[$i]['id'] . ']';
-                          $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+                          $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                          echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', null, 'id="' . $ckeditor_id . '"');
+                          echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', null, 'id="' . $ckeditor_id . '"');
                         ?>
                       </div>
                     </div>
@@ -308,7 +309,7 @@
                 <div class="adminformAide">
                   <div class="row">
                     <span
-                      class="col-md-4 text-center float-start"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('categories_image', null, '300', '300'); ?></span>
+                      class="col-md-4 text-center float-start"><?php echo $CLICSHOPPING_Wysiwyg::fileFieldImageCkEditor('categories_image', null, '300', '300'); ?></span>
                     <span class="col-md-8 text-center float-end">
                         <div class="col-md-12">
                           <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage(null, $CLICSHOPPING_Categories->getDef('text_categories_image_vignette')); ?>

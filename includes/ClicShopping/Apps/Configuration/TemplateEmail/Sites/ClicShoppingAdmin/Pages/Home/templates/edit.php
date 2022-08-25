@@ -19,6 +19,7 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   $QtemplateEmailDescription = $CLICSHOPPING_TemplateEmail->db->prepare('select ted.language_id,
                                                                         ted.template_email_name,
@@ -58,7 +59,7 @@
   echo HTML::button($CLICSHOPPING_TemplateEmail->getDef('button_cancel'), null, $CLICSHOPPING_TemplateEmail->link('TemplateEmail&page=' . $page . '&tID=' . $_GET['tID']), 'warning') . '&nbsp;';
   echo HTML::button($CLICSHOPPING_TemplateEmail->getDef('button_update'), null, null, 'success');
 
-  echo HTMLOverrideAdmin::getCkeditor();
+  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
             </span>
         </div>
@@ -169,9 +170,9 @@
                       <div class="col-md-3">
                         <?php
                         $name = 'template_email_description[' . $languages[$i]['id'] . ']';
-                        $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+                        $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                        echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', (isset($template_email_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($template_email_description[$languages[$i]['id']])) : TemplateEmailAdmin::getTemplateEmailDescription($tInfo->template_email_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                        echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($template_email_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($template_email_description[$languages[$i]['id']])) : TemplateEmailAdmin::getTemplateEmailDescription($tInfo->template_email_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
                         ?>
                       </div>
                     </div>

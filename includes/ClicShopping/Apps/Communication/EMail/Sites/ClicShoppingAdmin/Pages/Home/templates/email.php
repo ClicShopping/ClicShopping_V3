@@ -18,6 +18,7 @@
   $CLICSHOPPING_Mail = Registry::get('Mail');
   $CLICSHOPPING_EMail = Registry::get('EMail');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   // dropdown
   $customers = [];
@@ -55,7 +56,7 @@
     $message = $CLICSHOPPING_EMail->getDef('text_message_customer');
   }
   
-  echo HTMLOverrideAdmin::getCkeditor();
+  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -145,9 +146,9 @@
                 <div class="col-md-11">
                   <?php
                   $name = 'message';
-                  $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+                  $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                  echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', $message, 'id="' . $ckeditor_id . '"');
+                  echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', $message, 'id="' . $ckeditor_id . '"');
                   ?>
                 </div>
               </div>

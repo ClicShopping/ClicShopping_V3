@@ -2,6 +2,7 @@
 ----------------------
 3.329
 fix File download attributes never deleted
+More flexibility to update and change wysiwyg
 
 ----------------------
 3.328

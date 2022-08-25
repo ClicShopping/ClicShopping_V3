@@ -24,6 +24,7 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Address = Registry::get('Address');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   if ($CLICSHOPPING_MessageStack->exists('header')) {
     echo $CLICSHOPPING_MessageStack->get('header');
@@ -1033,7 +1034,7 @@
   //################################################################################################################ -->
   //          ONGLET customers notes     //-->
   //################################################################################################################ -->
-  echo HTMLOverrideAdmin::getCkeditor();
+  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
         <div class="tab-pane" id="tab6">
           <div class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('customers_note'); ?></div>
@@ -1043,9 +1044,9 @@
                 <span>
                   <?php
                   $name = 'customers_notes';
-                  $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+                  $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                  echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '200', '', 'id="' . $ckeditor_id . '"');
+                  echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '200', '', 'id="' . $ckeditor_id . '"');
                   ?>
                 </span>
               </div>

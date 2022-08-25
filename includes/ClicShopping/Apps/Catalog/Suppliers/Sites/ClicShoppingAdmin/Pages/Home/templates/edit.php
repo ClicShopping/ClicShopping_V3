@@ -24,6 +24,7 @@
   $CLICSHOPPING_Suppliers = Registry::get('Suppliers');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
@@ -37,7 +38,7 @@
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  echo HTMLOverrideAdmin::getCkeditor();
+  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 <div class="contentBody">
   <div class="row">
@@ -284,7 +285,7 @@
                 <div class="adminformAide">
                   <div class="row">
                     <span
-                      class="col-md-4 text-center float-start"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('suppliers_image', '212', '212', null); ?></span>
+                      class="col-md-4 text-center float-start"><?php echo $CLICSHOPPING_Wysiwyg::fileFieldImageCkEditor('suppliers_image', '212', '212', null); ?></span>
                     <span class="col-md-8 text-center float-end">
                         <div class="col-md-12">
                           <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($mInfo->suppliers_image ?? '', $CLICSHOPPING_Suppliers->getDef('text_products_image_vignette')); ?>

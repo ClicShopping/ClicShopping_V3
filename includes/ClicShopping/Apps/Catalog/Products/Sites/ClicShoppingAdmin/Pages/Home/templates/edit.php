@@ -26,13 +26,15 @@
 
   $CLICSHOPPING_Products = Registry::get('Products');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
+
+  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $CLICSHOPPING_Hooks->call('Products', 'PreAction');
 
@@ -122,7 +124,7 @@
 
   echo HTML::form('new_product', $CLICSHOPPING_Products->link('Products&' . $form_action . '&cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID'] : '')), 'post', 'enctype="multipart/form-data" id="new_product"');
 
-  echo HTMLOverrideAdmin::getCkeditor();
+  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 <div class="contentBody">
   <div class="row">
@@ -870,9 +872,9 @@
                         style="visibility:visible; display:block;">
                         <?php
                         $name = 'products_description[' . $languages[$i]['id'] . ']';
-                        $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+                        $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                        echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', (isset($products_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                        echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($products_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
                         ?>
                       </div>
                   </span>
@@ -1116,7 +1118,7 @@
                         <div class="col-md-12 adminformAide">
                           <div class="col-md-12 text-center">
                             <span
-                              class="col-sm-12 text-center"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('products_image', null, '100', '100'); ?></span>
+                              class="col-sm-12 text-center"><?php echo $CLICSHOPPING_Wysiwyg::fileFieldImageCkEditor('products_image', null, '100', '100'); ?></span>
                           </div>
                           <div class="col-md-12">
                             <span

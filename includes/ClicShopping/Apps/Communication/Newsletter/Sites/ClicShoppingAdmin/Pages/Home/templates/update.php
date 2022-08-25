@@ -21,6 +21,7 @@
   $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -248,7 +249,7 @@
           //                     Tab 2
           //------------------------------------------
 
-          echo HTMLOverrideAdmin::getCkeditor();
+          echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
         ?>
         <div class="tab-pane" id="tab2">
           <div class="separator"></div>
@@ -260,9 +261,9 @@
                   <div class="col-md-12">
                     <?php
                     $name = 'message';
-                    $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+                    $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                    echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', $nInfo->content, 'id="' . $ckeditor_id . '"');
+                    echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', $nInfo->content, 'id="' . $ckeditor_id . '"');
                     ?>
                   </div>
                 </div>

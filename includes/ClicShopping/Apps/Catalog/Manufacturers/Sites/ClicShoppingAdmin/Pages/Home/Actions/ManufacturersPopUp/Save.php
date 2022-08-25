@@ -29,6 +29,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
       if (!empty($_POST['manufacturers_name'])) {
         $manufacturers_name = HTML::sanitize($_POST['manufacturers_name']);
@@ -36,7 +37,7 @@
         if (isset($_POST['manufacturers_image']) && !\is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
           $manufacturers_image = $_POST['manufacturers_image'];
 
-          $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($manufacturers_image);
+          $manufacturers_image = HTMLOverrideAdmin::getWysiwygImageAlone($manufacturers_image);
         } else {
           $manufacturers_image = 'null';
         }

@@ -21,6 +21,7 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -240,7 +241,7 @@
 </script>
 
 <?php
-  echo HTMLOverrideAdmin::getCkeditor();
+  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 
   if ($page_error === true) {
     ?>
@@ -611,9 +612,9 @@
                       <div class="col-md-11">
                         <?php
                         $name = 'pages_html_text_[' . $languages[$i]['id'] . ']';
-                        $ckeditor_id = HTMLOverrideAdmin::CkEditorId($name);
+                        $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                        echo HTMLOverrideAdmin::textAreaCkeditor($name, 'soft', '750', '300', str_replace('& ', '&amp; ', trim($text_description)), 'id="' . $ckeditor_id . '"');
+                        echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', str_replace('& ', '&amp; ', trim($text_description)), 'id="' . $ckeditor_id . '"');
                         ?>
                       </div>
                     </div>
