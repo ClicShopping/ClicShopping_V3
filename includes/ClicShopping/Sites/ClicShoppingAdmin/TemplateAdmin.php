@@ -132,9 +132,9 @@
 
     /**********************************************
      * Relative / virtual Path
-     ***********************************************
+     *********************************************
      *
-     * /*
+     *
      * getFileAdmin inside a directory
      * @param : $file name of the file
      * @param : $template : template directory
