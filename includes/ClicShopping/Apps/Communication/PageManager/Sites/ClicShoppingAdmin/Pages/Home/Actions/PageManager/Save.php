@@ -152,8 +152,8 @@
             $pages_title = '';
           }
 
-          if (isset($_POST['pages_html_text_' . $languages[$i]['id']])) {
-            $pages_html_text = $_POST['pages_html_text_' . $languages[$i]['id']];
+          if (isset($_POST['pages_html_text_'][$languages[$i]['id']])) {
+            $pages_html_text = $_POST['pages_html_text_'][$languages[$i]['id']];
           } else {
             $pages_html_text = null;
           }

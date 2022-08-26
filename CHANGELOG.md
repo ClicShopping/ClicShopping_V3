@@ -3,7 +3,7 @@
 3.329
 fix File download attributes never deleted
 More flexibility to update and change wysiwyg
-
+fix little bug
 ----------------------
 3.328
 fix bug email
