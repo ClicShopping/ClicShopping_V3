@@ -12,7 +12,7 @@
 
   use ClicShopping\OM\Registry;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\CkEditor4 as WysiwygClass;
+  use ClicShopping\Sites\ClicShoppingAdmin\CkEditor5 as WysiwygClass;
 
   class Wysiwyg implements \ClicShopping\OM\ServiceInterface
   {
