@@ -70,12 +70,14 @@
       $output = '';
 
       if ($count > 0) {
-        $suppliers_name_array[] = ['id' => 0,
+        $suppliers_name_array[] = [
+          'id' => 0,
           'text' => CLICSHOPPING::getDef('text_select')
         ];
 
         while ($Qsuppliers->fetch()) {
-          $suppliers_name_array[] = ['id' => $Qsuppliers->valueInt('suppliers_id'),
+          $suppliers_name_array[] = [
+            'id' => $Qsuppliers->valueInt('suppliers_id'),
             'text' => $Qsuppliers->value('suppliers_name')
           ];
         }

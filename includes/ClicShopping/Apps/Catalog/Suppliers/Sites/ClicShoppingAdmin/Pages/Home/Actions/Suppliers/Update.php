@@ -127,7 +127,7 @@
 
       } elseif (isset($_POST['suppliers_image']) && !\is_null($_POST['suppliers_image']) && ($_POST['suppliers_image'] != 'none') && !empty($_POST['suppliers_image'])) {
         if (!empty($suppliers_image) && !\is_null($suppliers_image)) {
-          $suppliers_image = HTMLOverrideAdmin::getWysiwygImageAlone($suppliers_image);
+          $suppliers_image = $CLICSHOPPING_Wysiwyg::getWysiwygImageAlone($suppliers_image);
         }
 
         $sql_data_array = ['suppliers_image' => $suppliers_image];

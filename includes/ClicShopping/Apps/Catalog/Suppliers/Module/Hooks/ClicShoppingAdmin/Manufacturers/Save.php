@@ -34,7 +34,7 @@
         return false;
       }
 
-      if (isset($_GET['Manufacturers'])) {
+      if (isset($_GET['Manufacturers']) ) {
         $suppliers_id = HTML::sanitize($_POST['suppliers_id']);
         if (empty($suppliers_id)) $suppliers_id = 0;
 

@@ -57,7 +57,7 @@
 
 // Insertion de l'image de la banniere
       if (!empty($banners_image_local) && !\is_null($_POST['banners_image_local'])) {
-        $banners_image_local = HTMLOverrideAdmin::getWysiwygImageAlone($banners_image_local);
+        $banners_image_local = $CLICSHOPPING_Wysiwyg::getWysiwygImageAlone($banners_image_local);
       } else {
         if (!\is_null($banners_image_show)) {
           $banners_image_local = $banners_image_show;

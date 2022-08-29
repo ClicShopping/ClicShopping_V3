@@ -98,7 +98,7 @@
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       if (isset($_POST['suppliers_image']) && !\is_null($_POST['suppliers_image']) && !empty($_POST['suppliers_image']) && (!isset($_POST['delete_image']))) {
-        $suppliers_image = HTMLOverrideAdmin::getWysiwygImageAlone($suppliers_image);
+        $suppliers_image = $CLICSHOPPING_Wysiwyg::getWysiwygImageAlone($suppliers_image);
       } else {
         $suppliers_image = null;
       }

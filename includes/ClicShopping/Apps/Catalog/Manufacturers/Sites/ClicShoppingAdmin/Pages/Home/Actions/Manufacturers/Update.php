@@ -52,7 +52,7 @@
         $manufacturers_image = $_POST['manufacturers_image'];
 
         if (!empty($manufacturers_image) && !\is_null($manufacturers_image)) {
-          $manufacturers_image = HTMLOverrideAdmin::getWysiwygImageAlone($manufacturers_image);
+          $manufacturers_image = $CLICSHOPPING_Wysiwyg::getWysiwygImageAlone($manufacturers_image);
         }
 
         $sql_data_array = ['manufacturers_image' => $manufacturers_image];

@@ -23,6 +23,7 @@
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
+  $CLICSHOPPING_Template= Registry::get('TemplateAdmin');
 
   $form_action = 'Insert';
   $variable = '';
@@ -35,6 +36,9 @@
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
   echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
+
+  echo HTML::form('manufacturers', $CLICSHOPPING_Manufacturers->link('Manufacturers&' . $form_action . $variable));
+  if ($form_action == 'Update') echo HTML::hiddenField('manufacturers_id', HTML::sanitize($_GET['mID']));
 ?>
 <div class="contentBody">
   <div class="row">
@@ -47,9 +51,6 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Manufacturers->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
 <?php
-  echo HTML::form('manufacturers', $CLICSHOPPING_Manufacturers->link('Manufacturers&' . $form_action . $variable));
-  if ($form_action == 'Update') echo HTML::hiddenField('manufacturers_id', HTML::sanitize($_GET['mID']));
-
   echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_cancel'), null, $CLICSHOPPING_Manufacturers->link('Manufacturers&page=' . $page . $variable), 'warning') . '&nbsp;';
   echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Manufacturers->getDef('button_update'), null, null, 'success'));
 ?>
@@ -60,7 +61,13 @@
   </div>
   <div class="separator"></div>
   <?php
-    if (isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID'])) {
+ //   if (isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID'])) {
+  if (isset($_GET['mID'])) {
+    $mId = $_GET['mID'];
+  } else {
+    $mId = null;
+  }
+
       $Qmanufacturers = $CLICSHOPPING_Manufacturers->db->prepare('select m.manufacturers_id,
                                                                          m.manufacturers_name,
                                                                          m.manufacturers_image,
@@ -80,15 +87,9 @@
                                                                   and m.manufacturers_id = :manufacturers_id
                                                                 ');
       $Qmanufacturers->bindValue(':languages_id', (int)$CLICSHOPPING_Language->getId());
-      $Qmanufacturers->bindInt(':manufacturers_id', $_GET['mID']);
+      $Qmanufacturers->bindInt(':manufacturers_id', $mId);
       $Qmanufacturers->execute();
 
-      $manufacturers = $Qmanufacturers->fetch();
-      
-      $mInfo = new ObjectInfo($Qmanufacturers->toArray());
-    } else {
-      $mInfo = new ObjectInfo(array());
-    }
   ?>
   <div id="manufacturersTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
@@ -122,7 +123,7 @@
                   <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_name'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_name'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('manufacturers_name', $mInfo->manufacturers_name ?? null, 'required aria-required="true" id="manufacturers_name" placeholder="' . $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_name') . '"', 'manufacturers_name'); ?>
+                    <?php echo HTML::inputField('manufacturers_name', $Qmanufacturers->value('manufacturers_name') ?? null, 'required aria-required="true" id="manufacturers_name" placeholder="' . $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_name') . '"', 'manufacturers_name'); ?>
                   </div>
                 </div>
               </div>
@@ -145,7 +146,7 @@
                     <label for="code"
                            class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                     <div class="col-md-5">
-                      <?php echo HTML::inputField('manufacturers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_ProductsAdmin->getManufacturerUrl($mInfo->manufacturers_id ?? null, $languages[$i]['id'])); ?>
+                      <?php echo HTML::inputField('manufacturers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_ProductsAdmin->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages[$i]['id'])); ?>
                     </div>
                   </div>
                   <?php
@@ -184,7 +185,7 @@
                           $name = 'manufacturer_description[' . $languages[$i]['id'] . ']';
                           $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                          echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($manufacturer_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($manufacturer_description[$languages[$i]['id']])) : ManufacturerAdmin::getManufacturerDescription($mInfo->manufacturers_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                          echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($manufacturer_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($manufacturer_description[$languages[$i]['id']])) : ManufacturerAdmin::getManufacturerDescription($Qmanufacturers->valueInt('manufacturers_id'), $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
                         ?>
                       </div>
                     </div>
@@ -224,7 +225,7 @@
                     </span>
                     <span class="col-md-8 text-center float-end">
                         <div
-                          class="col-md-12"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($mInfo->manufacturers_image ?? null, $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette')); ?></div>
+                          class="col-md-12"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($Qmanufacturers->value('manufacturers_image') ?? null, $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette')); ?></div>
                         <div class="col-md-12 text-end">
                           <?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_image_delete') . ' ' . HTML::checkboxField('delete_image', 'yes', false); ?>
                         </div>
@@ -279,7 +280,7 @@
                       <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_title'); ?>"
                              class="col-1 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_title'); ?></label>
                       <div class="col-md-8">
-                        <?php echo HTML::inputField('manufacturer_seo_title[' . $languages[$i]['id'] . ']', SeoAdmin::getManufacturerSeoTitle($mInfo->manufacturers_id ?? null, $languages[$i]['id']), 'maxlength="70" size="77" id="default_title_' . $i . '"', false); ?>
+                        <?php echo HTML::inputField('manufacturer_seo_title[' . $languages[$i]['id'] . ']', SeoAdmin::getManufacturerSeoTitle($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages[$i]['id']), 'maxlength="70" size="77" id="default_title_' . $i . '"', false); ?>
                       </div>
                     </div>
                   </div>
@@ -292,7 +293,7 @@
                         for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_description'); ?>"
                         class="col-1 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_description'); ?></label>
                       <div class="col-md-8">
-                        <?php echo HTML::textAreaField('manufacturer_seo_description[' . $languages[$i]['id'] . ']', SeoAdmin::getManufacturerSeoDescription($mInfo->manufacturers_id ?? null, $languages[$i]['id']), '75', '2', 'id="default_description_' . $i . '"'); ?>
+                        <?php echo HTML::textAreaField('manufacturer_seo_description[' . $languages[$i]['id'] . ']', SeoAdmin::getManufacturerSeoDescription($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages[$i]['id']), '75', '2', 'id="default_description_' . $i . '"'); ?>
                       </div>
                     </div>
                   </div>
@@ -304,7 +305,7 @@
                       <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_keywords'); ?>"
                              class="col-1 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_keywords'); ?></label>
                       <div class="col-md-8">
-                        <?php echo HTML::textAreaField('manufacturer_seo_keyword[' . $languages[$i]['id'] . ']', SeoAdmin::getManufacturerSeoKeyword($mInfo->manufacturers_id ?? null, $languages[$i]['id']), '75', '5'); ?>
+                        <?php echo HTML::textAreaField('manufacturer_seo_keyword[' . $languages[$i]['id'] . ']', SeoAdmin::getManufacturerSeoKeyword($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages[$i]['id']), '75', '5'); ?>
                       </div>
                     </div>
                   </div>

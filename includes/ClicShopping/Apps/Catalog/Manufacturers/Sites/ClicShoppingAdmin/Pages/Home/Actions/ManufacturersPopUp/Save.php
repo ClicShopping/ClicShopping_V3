@@ -37,7 +37,7 @@
         if (isset($_POST['manufacturers_image']) && !\is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
           $manufacturers_image = $_POST['manufacturers_image'];
 
-          $manufacturers_image = HTMLOverrideAdmin::getWysiwygImageAlone($manufacturers_image);
+          $manufacturers_image = $CLICSHOPPING_Wysiwyg::getWysiwygImageAlone($manufacturers_image);
         } else {
           $manufacturers_image = 'null';
         }

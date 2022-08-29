@@ -89,7 +89,7 @@
           $categories_image = $_POST['categories_image'];
 
           if (!empty($categories_image) && !\is_null($categories_image)) {
-            $categories_image = HTMLOverrideAdmin::getWysiwygImageAlone($categories_image);
+            $categories_image = $CLICSHOPPING_Wysiwyg::getWysiwygImageAlone($categories_image);
           }
 
           $sql_data_array = ['categories_image' => $categories_image];

@@ -8,7 +8,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Catalog\Manufacturers\Sites\ClicShoppingAdmin\Pages\Home\Actions\Manufacturers;
 
   use ClicShopping\OM\HTML;
@@ -36,23 +35,22 @@
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       $manufacturers_name = HTML::sanitize($_POST['manufacturers_name']);
-      $manufacturers_image = HTML::sanitize($_POST['manufacturers_image']);
+
       $suppliers_id = 0;
 
 // Insertion images des fabricants via l'éditeur FCKeditor (fonctionne sur les nouvelles et éditions des fabricants)
       if (isset($_POST['manufacturers_image']) && !\is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
-        $manufacturers_image = HTMLOverrideAdmin::getWysiwygImageAlone($manufacturers_image);
+        $manufacturers_image = $_POST['manufacturers_image'];
+        $manufacturers_image = $CLICSHOPPING_Wysiwyg::getWysiwygImageAlone($manufacturers_image);
       } else {
         $manufacturers_image = null;
       }
 
-      $sql_data_array = ['manufacturers_name' => $manufacturers_name,
-        'suppliers_id' => $suppliers_id
+      $sql_data_array = [
+        'manufacturers_name' => $manufacturers_name,
+        'suppliers_id' => $suppliers_id,
+        'manufacturers_image' => $manufacturers_image
       ];
-
-      if (\is_null($manufacturers_image)) {
-        $sql_data_array = ['manufacturers_image' => $manufacturers_image];
-      }
 
       $insert_sql_data = ['date_added' => 'now()'];
 
@@ -61,7 +59,6 @@
       $this->app->db->save('manufacturers', $sql_data_array);
 
       $manufacturers_id = $this->app->db->lastInsertId();
-
 
       for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $manufacturers_url_array = HTML::sanitize($_POST['manufacturers_url']);
@@ -73,7 +70,8 @@
 
         $sql_data_array = ['manufacturers_id' => $manufacturers_id];
 
-        $insert_sql_data = ['manufacturers_url' => HTML::sanitize($manufacturers_url_array[$language_id]),
+        $insert_sql_data = [
+          'manufacturers_url' => HTML::sanitize($manufacturers_url_array[$language_id]),
           'languages_id' => (int)$language_id,
           'manufacturer_description' => $manufacturer_description_array[$language_id],
           'manufacturer_seo_title' => HTML::sanitize($manufacturer_seo_title_array[$language_id]),
