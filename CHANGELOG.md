@@ -1,12 +1,13 @@
+3.330
+fix Wysiwsyg call
+fix insert image
+update composer libraries
 
 ----------------------
 3.329
 fix File download attributes never deleted
 More flexibility to update and change wysiwyg
 fix little bug
-fix Wysiwsyg call
-fix insert image
-update composer libraries
 
 ----------------------
 3.328
