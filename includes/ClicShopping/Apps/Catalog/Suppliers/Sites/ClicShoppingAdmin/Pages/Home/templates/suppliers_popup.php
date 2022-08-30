@@ -13,14 +13,13 @@
 
   use ClicShopping\OM\Registry;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
-
   use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Address = Registry::get('Address');
   $CLICSHOPPING_Suppliers = Registry::get('Suppliers');
+  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   Registry::set('SupplierAdmin', new SupplierAdmin());
   $CLICSHOPPING_SupplierAdmin = Registry::get('SupplierAdmin');

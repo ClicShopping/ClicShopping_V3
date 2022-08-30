@@ -644,7 +644,7 @@
     }
 
     /*  the global scope
-    *   @return String : element of url like ClicShoppingAdmin/index.php or Shop/index.php
+    *   @return String : element of url like Shop/index.php
     */
     public static function getIndex(): string
     {

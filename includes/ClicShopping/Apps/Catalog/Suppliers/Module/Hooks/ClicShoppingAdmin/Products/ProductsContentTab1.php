@@ -68,7 +68,7 @@
       $content .= '<div class="col-md-5">';
       $content .= HTML::inputField('suppliers_name', $suppliers_name, 'id="ajax_suppliers_name" list="supplier_list" class="form-control"');
       $content .= '<datalist id="supplier_list"></datalist>';
-      $content .= '<a href="' . $this->app->link('SuppliersPopUp') . '"  data-bs-toggle="modal" data-refresh="true" data-bs-target="#myModal"><h4><i class="bi bi-plus-circle" title="' . $this->app->getDef('icon_create') . '"></i></h4></a>';
+      $content .= '<a href="' . $this->app->link('SuppliersPopUp') . '" data-bs-toggle="modal" data-refresh="true" data-bs-target="#myModal"><h4><i class="bi bi-plus-circle" title="' . $this->app->getDef('icon_create') . '"></i></h4></a>';
       $content .= '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
       $content .= '<div class="modal-dialog">';
       $content .= '<div class="modal-content">';

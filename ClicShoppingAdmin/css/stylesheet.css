@@ -285,14 +285,13 @@ FORM {
 /* Styles for dhtml tabbed-pages */
 .mainTitle {
     padding-top: 0.1875rem;
-    height: 1.4375rem;
+    height: 2rem;
     color: White;
     font-weight: bold;
     background-color: #2969C3;
 }
 
 .mainTitleTexteSeul {
-
     color: White;
     font-weight: bold;
 }
