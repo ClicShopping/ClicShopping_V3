@@ -14,6 +14,8 @@
 
   class PageManagerOrderHistoryContract extends \ClicShopping\OM\PagesActionsAbstract
   {
+    protected $use_site_template = false;
+
     public function execute()
     {
       $CLICSHOPPING_Orders = Registry::get('Orders');

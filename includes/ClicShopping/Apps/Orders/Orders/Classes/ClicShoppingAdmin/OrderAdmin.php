@@ -193,7 +193,6 @@
       $CLICSHOPPING_Hooks->call('OrderAdmin', 'Query');
     }
 
-
     /**
      * Remove order
      *
@@ -237,7 +236,6 @@
 
       $CLICSHOPPING_Hooks->call('OrderAdmin', 'removeOrder');
     }
-
 
     /**
      * the name order status

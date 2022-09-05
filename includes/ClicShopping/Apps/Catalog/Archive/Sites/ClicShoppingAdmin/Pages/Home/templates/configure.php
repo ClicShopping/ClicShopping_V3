@@ -13,6 +13,7 @@
 
   $CLICSHOPPING_Archive = Registry::get('Archive');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_Template = Registry::get('Template<admin');
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 

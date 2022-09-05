@@ -17,13 +17,15 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
+  $id = HTML::sanitize($_GET['aID']);
+
   $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', ['id',
     'user_name',
     'name',
     'first_name',
     'access'
   ],
-    ['id' => $_GET['aID']]
+    ['id' => $id]
   );
 ?>
 <!-- body //-->

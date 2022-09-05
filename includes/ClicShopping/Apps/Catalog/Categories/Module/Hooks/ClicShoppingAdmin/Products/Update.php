@@ -21,7 +21,7 @@
   class Update implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected mixed $app;
-    protected ProductsAdmin $productsAdmin;
+    protected $productsAdmin;
     protected string $productsLink;
     protected string $currentCategoryId;
 

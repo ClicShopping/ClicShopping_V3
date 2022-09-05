@@ -19,7 +19,7 @@
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
   $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
-  
+
   $supplier_inputs_string = '';
   $languages = $CLICSHOPPING_Language->getLanguages();
 
