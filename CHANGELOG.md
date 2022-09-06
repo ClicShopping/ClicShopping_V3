@@ -2,6 +2,7 @@
 fix Wysiwsyg call
 fix insert image
 update composer libraries
+Updte sql countries
 
 ----------------------
 3.329

@@ -1820,8 +1820,8 @@ INSERT INTO countries VALUES(232, 'Virgin Islands (U.S.)', 'VI', 'VIR', 1, 1);
 INSERT INTO countries VALUES(233, 'Wallis and Futuna Islands', 'WF', 'WLF', 1, 1);
 INSERT INTO countries VALUES(234, 'Western Sahara', 'EH', 'ESH', 1, 1);
 INSERT INTO countries VALUES(235, 'Yemen', 'YE', 'YEM', 1, 1);
-INSERT INTO countries VALUES(236, 'Yugoslavia', 'YU', 'YUG', 1, 1);
-INSERT INTO countries VALUES(237, 'Zaire', 'ZR', 'ZAR', 1, 1);
+INSERT INTO countries VALUES(236, 'Serbia', 'RS', 'SRB', 1, 1);
+INSERT INTO countries VALUES(237, 'East Timor', 'TL', 'TLS', 1, 1);
 INSERT INTO countries VALUES(238, 'Zambia', 'ZM', 'ZMB', 1, 1);
 INSERT INTO countries VALUES(239, 'Zimbabwe', 'ZW', 'ZWE', 1, 1);
 
