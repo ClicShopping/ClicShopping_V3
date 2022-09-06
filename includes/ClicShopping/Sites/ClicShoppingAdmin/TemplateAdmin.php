@@ -428,11 +428,13 @@
     }
 
     /**
-     * return catlog template
+     * look the directory template inside template directory
      * @param string $key
+     * @param string $default
+     * @param bool $config
      * @return string
      */
-    public function getAllTemplate(string $key = '') :string
+    public function getAllTemplate(string $key = '', string $default = '', $config = true) :string
     {
       $name = (!empty($key) ? 'configuration[' . $key . ']' : 'configuration_value');
 
@@ -441,8 +443,15 @@
       $weeds = array('.', '..', '_notes', 'index.php', 'ExNewTemplate', '.htaccess', 'README');
 
       $directories = array_diff(scandir($template_directory), $weeds);
-      $filename_array = [];
 
+      if ($config === true ) {
+        $filename_array = [];
+      } else {
+        $filename_array[] = [
+          'id' => '0',
+          'text' => $default
+        ];
+      }
 
       foreach ($directories as $value) {
         if (is_dir($template_directory . $value)) {
