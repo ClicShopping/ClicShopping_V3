@@ -1,4 +1,4 @@
-#Options -Indexes
+Options -Indexes
 #Options +FollowSymlinks
 #Options -MultiViews
 
@@ -10,22 +10,15 @@
 # Your config to change and to customize
 ##################################
 
-<IfModule mod_rewrite.c>
-RewriteEngine On
-
-## URL Canonicalization
-#to change in function your website
-#    RewriteCond %{HTTP_HOST} !^www.domain.com$ [NC]
-#    RewriteRule ^(.*)$ https://www.domain.com/$1 [L,R=301]
-</IfModule>
 
 
 ##################################
 # url rewiting
 #improve url rewriting
 #work fine without directory https://mydomain.com/test/index.php
-#the rewriting must be activated inside the application
-# uncomment
+#the rewriting must be activated inside the application via the administration (SEO Url Pro)
+#You also must rewrite your hard link (ex : index.php?Products&Favorites ==> Products/Favorites) inside the page manager
+#uncomment the line between ifModule
 ##################################
 
 <IfModule mod_rewrite.c>
