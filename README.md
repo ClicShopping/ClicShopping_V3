@@ -7,6 +7,7 @@
 * [What is ClicShopping](https://github.com/ClicShopping#ClicShopping)
   - [Demo Site](https://www.clicshopping.org)
 * [Solution](https://github.com/ClicShopping#Solution) 
+* [Marketplace](https://github.com/ClicShopping#Marketplace)  
 * [Requirement](https://github.com/ClicShopping#Requirement)
 * [Installation](https://github.com/ClicShopping#Installation)
   - [User Checklist](https://github.com/ClicShopping#Checklist) 
@@ -32,19 +33,27 @@ Easy to install in just some clicks on a server or on your computer, you can use
 #Solution
  - The solution is built on modules and APP to have a very big flexibility.
  - The approach is completely modular on the catalog / administration with simple code to understand, to customize and to update at need.
-
- - All informations are available at the forum https://www.clicshopping.org
+ - All informations are available at the forum https://www.clicshopping or look the [Wiki](https://github.com/ClicShopping/ClicShopping_V3/wiki)
  - The modules are available on Github (Official and Community) or by an internal install.
+
+#Marketplace
+  - A markeplace is also available on the : 
+    - For all App : [community](https://www.clicshopping.org/forum/files/) 
+    - Or github :
+        - Community : https://github.com/ClicShoppingV3Community
+        - Official : https://github.com/ClicShoppingOfficialModulesV3
 
 #Requirement (more information in the wiki)
  - Apache 2.4<br>
- - MYSQL 7 / MariaDb 10.x / Postgres<br>
+ - MYSQL 7;x / MariaDb 10.x / Postgress<br>
  - PHP > 8.1
  - More information in the Wiki
 
 #Installation
- - Step1 : Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
+ - Step1 : Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/releases
  - Step2 : Install ClicShopping : https://www.mysite.com/install
+ - Step3 : Follow Checklist
+
 More information in the Wiki
 
 #Checklist
@@ -55,7 +64,7 @@ More information in the Wiki
       Tools > Security
 - [ ] join the community
 - [ ] install your Apps, modules;  
-      Configuration > My administration > Dasboard<br>
+      Configuration > My administration > Dashboard<br>
       Configuration > shipping<br>
       Configuration > payment<br>
 - [ ] Choose your own Apps, modules;        
@@ -71,10 +80,10 @@ More information in the Wiki
   - <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)
 
 #Analyse
-    [![SymfonyInsight](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e/big.svg)](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e)    [![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
-    [![php](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen])](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen)
-    ![GitHub repo size](https://img.shields.io/github/repo-size/ClicShopping/ClicShopping_v3)
-    ![GitHub top language](https://img.shields.io/github/languages/top/ClicShopping/ClicShopping_v3)
+  -  [![SymfonyInsight](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e/big.svg)](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e)    [![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
+  -  [![php](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen])](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen)
+  -  ![GitHub repo size](https://img.shields.io/github/repo-size/ClicShopping/ClicShopping_v3)
+  -  ![GitHub top language](https://img.shields.io/github/languages/top/ClicShopping/ClicShopping_v3)
 
 #Donation
  - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a> or use the button below.
@@ -84,14 +93,14 @@ More information in the Wiki
  - More information are available on the community website.
 
 #Trademark
-License GPL2 - MIT
-ClicShopping(tm) has a trademark deposed : https://www.clicshopping.org/forum/trademark/
+- License GPL2 - MIT
+- ClicShopping(tm) has a trademark deposed : https://www.clicshopping.org/forum/trademark/
 
 #Functionnalities (some)
 - B2B - B2C  full functionalities
-- WYSIWYG to create your products description, content with CKeditor5.x
+- WYSIWYG to create your products description, content with CKeditor
 - Image Editor management with El-Finder 2.x - drag and drop - webp
-- Full SEO functionalities optimization ad url
+- Full SEO functionalities optimization and url
 - Payment and Shipping modules included inside the application with Paypal
 - Extension System to install new Applications via the back-office
 - No limit to insert content
@@ -101,12 +110,12 @@ ClicShopping(tm) has a trademark deposed : https://www.clicshopping.org/forum/tr
 - Ready for mobile, tablet and desktop with BootStrap 5.x technology
 - Several modes of payment / delivery can be installed
 - More 250 modules available and free functional on the marketplace and available on Github !
-- Full responsive design  application with Bootstrap 4.x
+- Full responsive design application with Bootstrap 5.x
 - Multi-template
 - multi-currency
 - Multi-language (English and french included)
 - Lazy load image optimization
-- Free Apps osCommerce, OpenCart, ZenCart, Crealoaded, Prestashop .... database migration available on the marketplace
+- Free Apps to import from osCommerce 2.x, OpenCart, ZenCart, Crealoaded, Prestashop .... database migration available on the marketplace
 
 #Images
  ![image2](https://www.clicshopping.org/images/frontoffice.png)
