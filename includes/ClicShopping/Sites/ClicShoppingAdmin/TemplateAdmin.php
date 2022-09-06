@@ -426,4 +426,33 @@
 
       return $result;
     }
+
+    /**
+     * return catlog template
+     * @param string $key
+     * @return string
+     */
+    public function getAllTemplate(string $key = '') :string
+    {
+      $name = (!empty($key) ? 'configuration[' . $key . ']' : 'configuration_value');
+
+      $template_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . $this->getTemplateDirectory() . '/';
+
+      $weeds = array('.', '..', '_notes', 'index.php', 'ExNewTemplate', '.htaccess', 'README');
+
+      $directories = array_diff(scandir($template_directory), $weeds);
+      $filename_array = [];
+
+
+      foreach ($directories as $value) {
+        if (is_dir($template_directory . $value)) {
+          $filename_array[] = [
+            'id' => $value,
+            'text' => $value
+          ];
+        }
+      }
+
+      return HTML::selectMenu($name, $filename_array, $value);
+    }
   }
