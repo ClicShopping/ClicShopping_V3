@@ -15,6 +15,7 @@
 
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   if ($CLICSHOPPING_MessageStack->exists('BannerManager')) {
     echo $CLICSHOPPING_MessageStack->get('BannerManager');

@@ -30,21 +30,22 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if ($status == '1') {
-
-        return $CLICSHOPPING_Db->save('banners', [
+        $insert_array = [
           'status' => 1,
           'date_status_change' => 'now()',
-          'date_scheduled' => 'null'],
-          ['banners_id' => (int)$banners_id]
-        );
+          'date_scheduled' => 'null'
+        ];
+
+        return $CLICSHOPPING_Db->save('banners', $insert_array, ['banners_id' => (int)$banners_id]);
 
 
       } elseif ($status == '0') {
-        return $CLICSHOPPING_Db->save('banners', [
+        $insert_array =  [
           'status' => 0,
-          'date_status_change' => 'now()'],
-          ['banners_id' => (int)$banners_id]
-        );
+          'date_status_change' => 'now()'
+        ];
+
+        return $CLICSHOPPING_Db->save('banners',$insert_array, ['banners_id' => (int)$banners_id]);
       } else {
         return -1;
       }
@@ -57,7 +58,7 @@
      *
      * @return boolean
      */
-    public static function activateBanners()
+    public static function activateBanners() :void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -84,7 +85,7 @@
      *
      * @return boolean
      */
-    public static function expireBanners()
+    public static function expireBanners() :void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -120,7 +121,6 @@
      */
     public static function displayBanner($action, $identifier)
     {
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -147,19 +147,21 @@
                                                           banners_html_text,
                                                           customers_group_id,
                                                           banners_group,
-                                                          languages_id
+                                                          languages_id,
+                                                          banners_theme
                                                  from :table_banners
                                                  where banners_group = :banners_group
                                                  and status = 1
                                                  and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                                  and (languages_id  = :languages_id or languages_id = 0)
+                                                 and (banners_theme = :banners_theme or banners_theme is null)
                                                  order by rand()
                                                  limit 1
                                               ');
-
             $Qbanner->bindValue(':banners_group', $identifier);
             $Qbanner->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
             $Qbanner->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
+            $Qbanner->bindValue(':banners_theme', HTML::sanitize(SITE_THEMA));
             $Qbanner->execute();
 
             $banner = $Qbanner->fetch();
@@ -171,20 +173,21 @@
                                                           banners_html_text,
                                                           customers_group_id,
                                                           banners_group,
-                                                          languages_id
+                                                          languages_id,
+                                                          banners_theme
                                                  from :table_banners
                                                  where banners_group = :banners_group
                                                  and status = 1
                                                  and (customers_group_id = 0 or customers_group_id = 99)
                                                  and (languages_id  = :languages_id or languages_id = 0)
+                                                 and (banners_theme = :banners_theme or banners_theme is null)
                                                  order by rand()
                                                  limit 1
                                               ');
 
-
-            $Qbanner->bindValue(':banners_group', 'Developpement_shopping_cart');
+            $Qbanner->bindValue(':banners_group', $identifier);
             $Qbanner->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
-
+            $Qbanner->bindValue(':banners_theme', HTML::sanitize(SITE_THEMA));
             $Qbanner->execute();
 
             $banner = $Qbanner->fetch();
@@ -195,24 +198,27 @@
           $banner = $identifier;
         } else {
           if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-
             $Qbanner = $CLICSHOPPING_Db->prepare('select banners_id,
                                                          banners_title,
                                                          banners_image,
                                                          banners_target,
                                                          banners_html_text,
                                                          customers_group_id,
-                                                         languages_id
+                                                         languages_id,
+                                                         banners_theme
                                                  from :table_banners
                                                  where status = 1
                                                  and banners_group = :banners_group
                                                  and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                                  and (languages_id  = :languages_id or languages_id = 0)
+                                                 and (banners_theme = :banners_theme or banners_theme is null)
                                                  limit 1
                                                ');
             $Qbanner->bindValue(':banners_group', $identifier);
             $Qbanner->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
             $Qbanner->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
+            $Qbanner->bindValue(':banners_theme', HTML::sanitize(SITE_THEMA));
+
             $Qbanner->execute();
           } else {
             $Qbanner = $CLICSHOPPING_Db->prepare('select banners_id,
@@ -221,16 +227,20 @@
                                                          banners_target,
                                                          banners_html_text,
                                                          customers_group_id,
-                                                         languages_id
+                                                         languages_id,
+                                                         banners_theme
                                                  from :table_banners
                                                  where status = 1
                                                  and banners_group = :banners_group
                                                  and (customers_group_id = 0 or customers_group_id = 99)
                                                  and (languages_id  = :languages_id or languages_id = 0)
+                                                 and (banners_theme = :banners_theme  or banners_theme is null)
                                                  limit 1
                                                ');
             $Qbanner->bindValue(':banners_group', $identifier);
             $Qbanner->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
+            $Qbanner->bindValue(':banners_theme', HTML::sanitize(SITE_THEMA));
+
             $Qbanner->execute();
           }
 
@@ -268,7 +278,6 @@
 
     public static function bannerExists($action, $identifier)
     {
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -282,12 +291,14 @@
                                                         banners_target,
                                                         banners_html_text,
                                                         languages_id,
-                                                       customers_group_id
+                                                        customers_group_id,
+                                                        banners_theme
                                                from :table_banners
                                                where banners_group = :banners_group
                                                and status = 1
                                                and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                                and (languages_id = :languages_id or languages_id = 0)
+                                               and (banners_theme = :banners_theme or banners_theme is null)
                                                order by rand()
                                                limit 1
                                               ');
@@ -295,6 +306,7 @@
           $Qbanners->bindValue(':banners_group', $identifier);
           $Qbanners->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
           $Qbanners->bindInt(':languages_id', $CLICSHOPPING_Language->getId());
+          $Qbanners->bindValue(':banners_theme', HTML::sanitize(SITE_THEMA));
 
           $Qbanners->execute();
 
@@ -308,18 +320,21 @@
                                                         banners_target,
                                                         banners_html_text,
                                                         languages_id,
-                                                       customers_group_id
+                                                        customers_group_id,
+                                                        banners_theme
                                                from :table_banners
                                                where banners_group = :banners_group
                                                and status = 1
                                                and (customers_group_id = 0 or customers_group_id = 99)
                                                and (languages_id = :languages_id or languages_id = 0)
+                                               and (banners_theme = :banners_theme or banners_theme is null)
                                                order by rand()
                                                limit 1
                                               ');
 
           $Qbanners->bindValue(':banners_group', $identifier);
           $Qbanners->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
+          $Qbanners->bindValue(':banners_theme', HTML::sanitize(SITE_THEMA));
 
           $Qbanners->execute();
 
@@ -335,18 +350,20 @@
                                                        banners_target,
                                                        banners_html_text,
                                                        customers_group_id,
-                                                       languages_id
+                                                       languages_id,
+                                                       banners_theme
                                                 from :table_banners
                                                 where status = 1
                                                 and banners_group = :banners_group
                                                 and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                                 and (languages_id = :languages_id or languages_id = 0)
+                                                and (banners_theme = :banners_theme  or banners_theme is null)
                                               ');
-
 
           $Qbanners->bindValue(':banners_group', $identifier);
           $Qbanners->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
           $Qbanners->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
+          $Qbanners->bindValue(':banners_theme', HTML::sanitize(SITE_THEMA));
 
           $Qbanners->execute();
 
@@ -354,23 +371,25 @@
 
           return $result;
         } else {
-
           $Qbanners = $CLICSHOPPING_Db->prepare('select banners_id,
                                                        banners_title,
                                                        banners_image,
                                                        banners_target,
                                                        banners_html_text,
                                                        customers_group_id,
-                                                       languages_id
+                                                       languages_id,
+                                                       banners_theme
                                                   from :table_banners
                                                   where status = 1
                                                   and banners_group = :banners_group
                                                   and (customers_group_id = 0 or customers_group_id = 99 )
                                                   and (languages_id = :languages_id or languages_id = 0)
+                                                  and (banners_theme = :banners_theme  or banners_theme is null)
                                                 ');
 
           $Qbanners->bindValue(':banners_group', $identifier);
           $Qbanners->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
+          $Qbanners->bindValue(':banners_theme', HTML::sanitize(SITE_THEMA));
 
           $Qbanners->execute();
 
@@ -388,7 +407,7 @@
      * @param int $id The ID of the banner
      * @access private
      */
-    private static function updateBannerDisplayCount($banner_id)
+    private static function updateBannerDisplayCount(int $banner_id) :void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -437,7 +456,7 @@
      * @access private
      */
 
-    public static function updateBannerClickCount($banner_id)
+    public static function updateBannerClickCount(int $banner_id) :void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

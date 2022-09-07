@@ -35,7 +35,8 @@
     'banners_image' => '',
     'banners_html_text' => '',
     'expires_impressions' => '',
-    'banners_title_admin' => ''
+    'banners_title_admin' => '',
+    'banners_theme' => ''
   ];
 
   $bInfo = new ObjectInfo($parameters);
@@ -57,7 +58,8 @@
       'date_status_change',
       'customers_group_id',
       'languages_id',
-      'banners_title_admin'
+      'banners_title_admin',
+      'banners_theme'
     ], [
         'banners_id' => (int)$bID
       ]
@@ -92,6 +94,11 @@
     ];
   }
 
+
+
+
+
+    $theme_array = [];
   if (!empty($bInfo->date_scheduled)) {
     $date_scheduled = DateTime::toShortWithoutFormat($bInfo->date_scheduled);
   } else {
@@ -106,7 +113,8 @@
 
   // reactions au niveau du clique
   $banners_target_array = array(array('id' => '_self', 'text' => $CLICSHOPPING_BannerManager->getDef('text_banners_same_windows')),
-    array('id' => '_blank', 'text' => $CLICSHOPPING_BannerManager->getDef('text_banners_new_windows')));
+                                array('id' => '_blank', 'text' => $CLICSHOPPING_BannerManager->getDef('text_banners_new_windows'))
+                               );
 
   echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
@@ -163,7 +171,7 @@
                 </div>
               </div>
             </div>
-
+            <div class="separator"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -175,7 +183,7 @@
                 </div>
               </div>
             </div>
-
+            <div class="separator"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -187,7 +195,7 @@
                 </div>
               </div>
             </div>
-
+            <div class="separator"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -217,7 +225,7 @@
                 </div>
               </div>
             </div>
-
+            <div class="separator"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -229,7 +237,7 @@
                 </div>
               </div>
             </div>
-
+            <div class="separator"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -241,8 +249,20 @@
                 </div>
               </div>
             </div>
+            <div class="separator"></div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_theme'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_theme'); ?></label>
+                  <div class="col-md-5">
+                    <?php echo $CLICSHOPPING_Template->updateTemplate('banners_theme',  $CLICSHOPPING_BannerManager->getDef('text_banners_all_themes'), $bInfo->banners_theme); ?>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
+          <div class="separator"></div>
           <div class="separator"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_BannerManager->getDef('title_banners_date'); ?></div>
           <div class="adminformTitle">

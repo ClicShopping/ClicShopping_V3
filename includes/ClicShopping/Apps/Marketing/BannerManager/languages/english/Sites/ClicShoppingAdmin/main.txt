@@ -54,6 +54,7 @@ table_heading_status = Status
 table_heading_action = Action
 table_heading_customers_group = Customers group
 table_heading_language = languages
+table_heading_banners_theme = Template theme
 
 text_banners_title = Catalog Banner Title:
 text_banners_title_admin = Administration Banner Title:
@@ -69,6 +70,8 @@ text_banners_language = Display language
 text_all_languages = All languages
 normal_customer = Normal Customers
 text_all_groups = All groups
+text_banners_all_themes = All themes
+text_banners_theme = Template theme
 
 text_banners_image = Image of the banner
 text_banners_image_local = Image local:

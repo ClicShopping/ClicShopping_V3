@@ -1,6 +1,8 @@
 3.332
 Add new function to select template
-
+Add new DB inside banners table
+Allow to select a banner in function the theme
+little fix
 
 ----------------------
 3.331

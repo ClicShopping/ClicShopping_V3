@@ -15,8 +15,7 @@
   use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
-
-  Registry::set('SupplierAdmin', new SupplierAdmin());
+  
   $CLICSHOPPING_SupplierAdmin = Registry::get('SupplierAdmin');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
@@ -39,6 +38,9 @@
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
   echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
+
+  Registry::set('SupplierAdmin', new SupplierAdmin());
+
 ?>
 <div class="contentBody">
   <div class="row">

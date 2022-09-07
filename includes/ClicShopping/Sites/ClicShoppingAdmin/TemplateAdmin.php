@@ -436,7 +436,11 @@
      */
     public function getAllTemplate(string $key = '', string $default = '', $config = true) :string
     {
-      $name = (!empty($key) ? 'configuration[' . $key . ']' : 'configuration_value');
+      if ($config === true ) {
+        $name = (!empty($key) ? 'configuration[' . $key . ']' : 'configuration_value');
+      } else {
+        $name = $key;
+      }
 
       $template_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . $this->getTemplateDirectory() . '/';
 
@@ -448,7 +452,7 @@
         $filename_array = [];
       } else {
         $filename_array[] = [
-          'id' => '0',
+          'id' => null,
           'text' => $default
         ];
       }
@@ -463,5 +467,41 @@
       }
 
       return HTML::selectMenu($name, $filename_array, $value);
+    }
+
+    /**
+     * Update templatetheme
+     * @param string $name
+     * @param string $default
+     * @param string|null $item_value
+     * @return string
+     */
+    public function updateTemplate(string $name, string $default = '', ?string $item_value) :string
+    {
+      $template_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . $this->getTemplateDirectory() . '/';
+
+      $weeds = array('.', '..', '_notes', 'index.php', 'ExNewTemplate', '.htaccess', 'README');
+
+      $directories = array_diff(scandir($template_directory), $weeds);
+
+      $filename_array[] = [
+        'id' => null,
+        'text' => $default
+      ];
+
+      if (empty($item_value)) {
+        $item_value = null;
+      }
+
+      foreach ($directories as $value) {
+        if (is_dir($template_directory . $value)) {
+          $filename_array[] = [
+            'id' => $value,
+            'text' => $value
+          ];
+        }
+      }
+
+      return HTML::selectMenu($name, $filename_array, $item_value);
     }
   }

@@ -14,10 +14,8 @@
 
   class CopyTo extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
@@ -39,7 +37,8 @@
                                                                  status,
                                                                  customers_group_id,
                                                                  languages_id,
-                                                                 banners_title_admin
+                                                                 banners_title_admin,
+                                                                 banners_theme
                                                           from :table_banners
                                                           where banners_id = :banners_id
                                                           ');
@@ -61,7 +60,8 @@
             'status' => 0,
             'customers_group_id' => (int)$QbannersCopy->valueInt('customers_group_id'),
             'languages_id' => (int)$QbannersCopy->valueInt('languages_id'),
-            'banners_title_admin' => $QbannersCopy->value('banners_title_admin')
+            'banners_title_admin' => $QbannersCopy->value('banners_title_admin'),
+            'banners_theme' => $QbannersCopy->value('$banners_theme')
           ]
         );
       }

@@ -13,8 +13,6 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
-
   class Update extends \ClicShopping\OM\PagesActionsAbstract
   {
     public function execute()
@@ -49,6 +47,7 @@
       $date_scheduled = HTML::sanitize($_POST['date_scheduled']);
 
       $language_id = HTML::sanitize($_POST['languages_id']);
+      $banners_theme = (empty($_POST['banners_theme'])) ? NULL : HTML::sanitize($_POST['banners_theme']);
 
       $banner_error = false;
 
@@ -59,7 +58,7 @@
 
 // Insertion de l'image de la banniere
       if (!empty($banners_image_local) && !\is_null($_POST['banners_image_local'])) {
-        $banners_image_local = HTMLOverrideAdmin::getWysiwygImageAlone($banners_image_local);
+        $banners_image_local = $CLICSHOPPING_Wysiwyg::getWysiwygImageAlone($banners_image_local);
       } else {
         if (!\is_null($banners_image_show)) {
           $banners_image_local = $banners_image_show;
@@ -78,7 +77,8 @@
       }
 
       if ($banner_error === false) {
-        $sql_data_array = ['banners_title' => $banners_title,
+        $sql_data_array = [
+          'banners_title' => $banners_title,
           'banners_url' => $banners_url,
           'banners_group' => $banners_group,
           'banners_target' => $banners_target,
@@ -88,7 +88,8 @@
           'expires_impressions' => 0,
           'date_scheduled' => null,
           'banners_title_admin' => $banners_title_admin,
-          'customers_group_id' => (int)$customers_group_id
+          'customers_group_id' => (int)$customers_group_id,
+          'banners_theme' => $banners_theme
         ];
 
         $insert_image_sql_data = ['banners_image' => $banners_image_local];
@@ -101,7 +102,8 @@
         if (!empty($expires_date)) {
           $expires_date = substr($expires_date, 0, 4) . substr($expires_date, 5, 2) . substr($expires_date, 8, 2);
 
-          $CLICSHOPPING_BannerManager->db->save('banners', ['expires_date' => $expires_date,
+          $CLICSHOPPING_BannerManager->db->save('banners', [
+            'expires_date' => $expires_date,
             'expires_impressions' => 'null'
           ],
             ['banners_id' => (int)$banners_id]
@@ -109,7 +111,8 @@
 
         } elseif (!empty($expires_impressions)) {
 
-          $CLICSHOPPING_BannerManager->db->save('banners', ['expires_date' => 'null',
+          $CLICSHOPPING_BannerManager->db->save('banners', [
+            'expires_date' => 'null',
             'expires_impressions' => $expires_impressions
           ],
             ['banners_id' => (int)$banners_id]
@@ -121,7 +124,8 @@
           $date_scheduled = substr($date_scheduled, 0, 4) . substr($date_scheduled, 5, 2) . substr($date_scheduled, 8, 2);
 
 
-          $CLICSHOPPING_BannerManager->db->save('banners', ['status' => '0',
+          $CLICSHOPPING_BannerManager->db->save('banners', [
+            'status' => '0',
             'date_scheduled' => $date_scheduled
           ],
             ['banners_id' => (int)$banners_id]

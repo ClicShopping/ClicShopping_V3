@@ -183,8 +183,19 @@
                 </div>
               </div>
             </div>
+            <div class="separator"></div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_theme'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_theme'); ?></label>
+                  <div class="col-md-5">
+                    <?php echo $CLICSHOPPING_Template->getAllTemplate('banners_theme',  $CLICSHOPPING_BannerManager->getDef('text_banners_all_themes'), false); ?>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
           <div class="separator"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_BannerManager->getDef('title_banners_date'); ?></div>
           <div class="adminformTitle">

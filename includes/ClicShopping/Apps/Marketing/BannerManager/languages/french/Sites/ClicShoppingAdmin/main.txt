@@ -17,7 +17,7 @@ button_save = Sauver
 button_dialog_uninstall =  Désinstaller
 button_uninstall =  Désinstaller
 button_delete = Supprimer
-button_new_banner = Nouvele bannière
+button_new_banner = Nouvelle bannière
 button_cancel = Annuler
 button_new = Nouveau
 button_insert =  Insérer
@@ -52,10 +52,10 @@ table_heading_banners_admin = Bannières Admin
 table_heading_groups = Groupes
 table_heading_statistics = Affichages / Clics
 table_heading_status = Statut
-
 table_heading_action = Action
 table_heading_customers_group = Groupes Client
 table_heading_language = Langues
+table_heading_banners_theme = Thème template
 
 text_banners_title = Titre bannière catalogue:
 text_banners_title_admin = Titre bannière administration:
@@ -71,6 +71,8 @@ text_banners_language = Langue d'affichage
 text_all_languages = Toutes les langues
 normal_customer = Client normal
 text_all_groups = Tous les groupes
+text_banners_all_themes =  Tous les thèmes
+text_banners_theme = Thème template
 
 text_banners_image = Image de la bannière
 text_banners_image_local = Image sur serveur :

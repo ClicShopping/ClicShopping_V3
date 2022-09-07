@@ -91,6 +91,7 @@
         }
       ?>
       <th data-field="language" data-sortable="true"><?php echo $CLICSHOPPING_BannerManager->getDef('table_heading_language'); ?></th>
+      <th data-field="banners_theme" data-sortable="true"><?php echo $CLICSHOPPING_BannerManager->getDef('table_heading_banners_theme'); ?></th>
       <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_BannerManager->getDef('table_heading_action'); ?>&nbsp;
       </th>
     </tr>
@@ -121,7 +122,8 @@
                                                                                        date_added,
                                                                                        customers_group_id,
                                                                                        languages_id,
-                                                                                       banners_title_admin
+                                                                                       banners_title_admin,
+                                                                                       banners_theme
                                                            from :table_banners
                                                            where ' . $search . '
                                                            order by banners_title_admin desc,
@@ -129,7 +131,6 @@
                                                                     banners_group
                                                            limit :page_set_offset, :page_set_max_results
                                                         ');
-
       } else {
         $Qbanner = $CLICSHOPPING_BannerManager->db->prepare('select SQL_CALC_FOUND_ROWS banners_id,
                                                                                        banners_title,
@@ -144,7 +145,8 @@
                                                                                        date_added,
                                                                                        customers_group_id,
                                                                                        languages_id,
-                                                                                       banners_title_admin
+                                                                                       banners_title_admin,
+                                                                                       banners_theme
                                                              from :table_banners
                                                              order by banners_title_admin desc,
                                                                       banners_title,
@@ -229,6 +231,15 @@
               }
             ?>
             <td><?php echo $banner_language['name']; ?></td>
+            <td>
+              <?php
+                if (empty($Qbanner->value('banners_theme'))) {
+                  echo $CLICSHOPPING_BannerManager->getDef('text_banners_all_themes');
+                } else {
+                  echo $Qbanner->value('banners_theme');
+                }
+              ?>
+            </td>
             <td class="text-end">
               <div class="btn-group" role="group" aria-label="buttonGroup">
               <?php

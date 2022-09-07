@@ -68,7 +68,7 @@
                                                                    ]
                                              );
 
-        if ($Qmanufacturer->fetch() !== false) {
+       if ($Qmanufacturer->fetch() !== false) {
 // url exists in selected language
           if (!empty($Qmanufacturer->value('manufacturers_url'))) {
             $Qupdate = $CLICSHOPPING_Db->prepare('update :table_manufacturers_info
@@ -84,9 +84,7 @@
 
             HTTP::redirect($Qmanufacturer->value('manufacturers_url'));
           }
-
-        } else {
-
+       } else {
 // no url exists for the selected language, lets use the default language then
           $Qmanufacturer = $CLICSHOPPING_Db->prepare('select mi.languages_id,
                                                              mi.manufacturers_url
