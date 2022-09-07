@@ -6,7 +6,7 @@ Step 1 : Update your Db by the sql below
 #insert in your phpmyAdmin this request in function of your language
 
 #All language
-ALTER TABLE `clic_banners` ADD `banners_theme` VARCHAR(50) NULL DEFAULT NULL AFTER `banners_theme`;
+ALTER TABLE `clic_banners` ADD `banners_theme` VARCHAR(50) NULL DEFAULT NULL AFTER `banners_title_admin`;
 
 ---------------------------
 #English

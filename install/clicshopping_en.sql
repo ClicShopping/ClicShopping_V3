@@ -522,7 +522,7 @@ INSERT INTO administrator_menu_description VALUES(782, 'Technical documents', 1)
 INSERT INTO administrator_menu_description VALUES(782, 'Documents Techniques', 2);
 
 
-INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
+INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo', NULL);
 
 INSERT INTO categories VALUES (1, '', 0, 0, '2022-02-24 10:00:18', NULL, 0, 1, 99);
 INSERT INTO categories_description VALUES (1, 1, 'Monitor', '', '', '', '', '');
