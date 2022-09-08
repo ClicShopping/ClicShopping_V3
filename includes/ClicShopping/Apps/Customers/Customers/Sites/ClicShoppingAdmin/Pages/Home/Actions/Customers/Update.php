@@ -190,6 +190,8 @@
 
       if (isset($_POST['customers_add_address'])) {
         $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
+      } else {
+        $customers_add_address = 0;
       }
 
       if (!\is_null($customers_dob)) {
