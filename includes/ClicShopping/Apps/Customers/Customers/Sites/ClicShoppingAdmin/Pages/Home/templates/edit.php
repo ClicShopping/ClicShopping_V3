@@ -298,7 +298,7 @@
       echo $cInfo->customers_firstname . HTML::hiddenField('customers_firstname');
     }
   } else {
-    echo HTML::inputField('customers_firstname', $cInfo->customers_firstname, 'maxlength="32" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '"', true);
+    echo HTML::inputField('customers_firstname', $cInfo->customers_firstname, 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_first_name') . '"', true);
   }
 ?>
                   </div>
@@ -317,7 +317,7 @@
       echo $cInfo->customers_lastname . HTML::hiddenField('customers_lastname');
     }
   } else {
-    echo HTML::inputField('customers_lastname', $cInfo->customers_lastname, 'maxlength="32" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_last_name') . '"', true);
+    echo HTML::inputField('customers_lastname', $cInfo->customers_lastname, 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_last_name') . '"', true);
   }
 ?>
                   </div>
@@ -370,7 +370,7 @@
       echo $customers_email_address . HTML::hiddenField('customers_email_address');
     }
   } else {
-    echo HTML::inputField('customers_email_address', $cInfo->customers_email_address, 'maxlength="96" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', true);
+    echo HTML::inputField('customers_email_address', $cInfo->customers_email_address, 'maxlength="96" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_email_address') . '"', true);
   }
 ?>
                   </div>
@@ -392,7 +392,7 @@
                           echo $cInfo->customers_telephone . HTML::hiddenField('customers_telephone');
                         }
                       } else {
-                        echo HTML::inputField('customers_telephone', $cInfo->customers_telephone, 'maxlength="32" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"', true);
+                        echo HTML::inputField('customers_telephone', $cInfo->customers_telephone, 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_telephone_number') . '"', true);
                       }
                     ?>
                   </div>
@@ -435,7 +435,7 @@
       echo $cInfo->entry_street_address . HTML::hiddenField('entry_street_address');
     }
   } else {
-    echo HTML::inputField('entry_street_address', $cInfo->entry_street_address, 'maxlength="64" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_street_address') . '"');
+    echo HTML::inputField('entry_street_address', $cInfo->entry_street_address, 'maxlength="64" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_street_address') . '"');
   }
 ?>
                   </div>
@@ -483,7 +483,7 @@
       echo $cInfo->entry_postcode . HTML::hiddenField('entry_postcode');
     }
   } else {
-    echo HTML::inputField('entry_postcode', $cInfo->entry_postcode, 'maxlength="8" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_post_code') . '"');
+    echo HTML::inputField('entry_postcode', $cInfo->entry_postcode, 'maxlength="8" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_post_code') . '"');
   }
 ?>
                   </div>
@@ -502,7 +502,7 @@
       echo $cInfo->entry_city . HTML::hiddenField('entry_city');
     }
   } else {
-    echo HTML::inputField('entry_city', $cInfo->entry_city, 'maxlength="32" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_city') . '"');
+    echo HTML::inputField('entry_city', $cInfo->entry_city, 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_city') . '"');
   }
 ?>
                   </div>

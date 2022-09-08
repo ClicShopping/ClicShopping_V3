@@ -86,7 +86,7 @@
 ?>
       <br />
 
-      <span class="help-block"><?php echo '(Load the demo data, recommended fo test)'; ?></span>
+      <span class="help-block"><?php echo '(Load the demo data, recommended for test)'; ?></span>
 
       <p>
 <?=

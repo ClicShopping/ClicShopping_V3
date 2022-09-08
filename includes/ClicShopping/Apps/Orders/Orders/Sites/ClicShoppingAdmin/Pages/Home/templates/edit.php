@@ -240,20 +240,29 @@
                 </div>
               </div>
               <div class="separator"></div>
-
               <div class="col-md-12">
                 <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_telephone_number'); ?></span>
                 <span class="col-md-3"><strong><?php echo $order->customer['telephone']; ?></strong></span>
                 <span
-                  class="col-md-3 text-end"><?php echo $CLICSHOPPING_Orders->getDef('entry_customer_location'); ?></span>
-                <span class="col-md-3"><a target="_blank" rel="noreferrer"
-                                          href="http://maps.google.com/maps?q=<?php echo $order->delivery['street_address'], ',', $order->delivery['postcode'], ',', $order->delivery['state'], ',', $order->delivery['country']; ?>&hl=fr&um=1&ie=UTF-8&sa=N&tab=wl"><h4><i class="bi bi-plus-circle" title="'<?php echo $CLICSHOPPING_Orders->getDef('entry_customer_location'); ?>"></i></h4></a></span>
               </div>
+              <?php
+                if (!empty($order->customer['cellular_phone'])) {
+              ?>
               <div class="separator"></div>
               <div class="col-md-12">
                 <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_cellular_phone_number'); ?></span>
                 <span class="col-md-5"><strong><?php echo $order->customer['cellular_phone']; ?></strong></span>
               </div>
+              <?php
+                }
+              ?>
+              <div class="separator"></div>
+              <div class="col-md-12 group-text">
+                <span class="col-md-5 text-end"><?php echo $CLICSHOPPING_Orders->getDef('entry_customer_location'); ?></span>
+                <span class="col-md-4"><a target="_blank" rel="noreferrer"
+                                          href="http://maps.google.com/maps?q=<?php echo $order->delivery['street_address'], ',', $order->delivery['postcode'], ',', $order->delivery['state'], ',', $order->delivery['country']; ?>&hl=fr&um=1&ie=UTF-8&sa=N&tab=wl"><h4><i class="bi bi-plus-circle" title="'<?php echo $CLICSHOPPING_Orders->getDef('entry_customer_location'); ?>"></i></h4></a></span>
+              </div>
+              <div class="separator"></div>
               <div class="separator"></div>
               <div class="col-md-12">
                 <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_email_address'); ?></span>

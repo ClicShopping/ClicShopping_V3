@@ -373,8 +373,7 @@
       }
 
       // Send message
-
-      $this->send($to_email_address, $to_name, $from_email_name, $from_email_address, $email_subject) ;
+      $this->send($to_email_address, $to_name, $from_email_name, $from_email_address, $email_subject);
     }
 
     /**

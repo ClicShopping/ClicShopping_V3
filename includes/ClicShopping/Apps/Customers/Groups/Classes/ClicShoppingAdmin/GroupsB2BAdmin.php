@@ -48,7 +48,7 @@
 
       $customers_group_array = [];
 
-      if ($default) {
+      if (!empty($default)) {
         $customers_group_array[] = [
           'id' => '0',
           'text' => $default
@@ -56,7 +56,7 @@
       }
 
       $QcustomersGroup = $CLICSHOPPING_Db->prepare('select customers_group_id,
-                                                          customers_group_name
+                                                           customers_group_name
                                                    from :table_customers_groups
                                                    order by customers_group_name
                                                   ');

@@ -46,10 +46,8 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
       if (isset($_POST['customers_email_address'])) {
-
         switch ($_POST['customers_email_address']) {
           case '***':
-
             $Qmail = $this->app->db->prepare('select customers_firstname,
                                                        customers_lastname,
                                                        customers_email_address
@@ -57,11 +55,8 @@
                                                 where customers_email_validation = 0
                                                ');
             $Qmail->execute();
-
             break;
-
           case '**D':
-
             $Qmail = $this->app->db->prepare('select customers_firstname,
                                                        customers_lastname,
                                                        customers_email_address
@@ -70,9 +65,7 @@
                                                 and customers_email_validation = 0
                                                ');
             $Qmail->execute();
-
             break;
-
 // B2B
           case 'group':
             $QCustomersGroup = $this->app->db->prepare('select distinct customers_group_name,
@@ -86,7 +79,6 @@
 // A analyse pb avec la B2B
             if ($QCustomersGroup->rowCount() > 0) {
               while ($QCustomersGroup->fetch()) {
-
                 $Qmail = $this->app->db->prepare('select customers_firstname,
                                                             customers_lastname,
                                                             customers_email_address,
@@ -119,7 +111,6 @@
 
             $Qmail->execute();
 
-
             $QmailSave = $this->app->db->prepare('select customers_id,
                                                            customers_firstname,
                                                            customers_lastname,
@@ -136,10 +127,11 @@
 
               if (!empty($customers_id) && !empty($this->messageMail)) {
 // notes clients
-                $this->app->db->save('customers_notes', ['customers_id' => $customers_id,
-                    'customers_notes' => $this->subject . ' <br />' . $this->messageMail,
-                    'customers_notes_date' => 'now()',
-                    'user_administrator' => AdministratorAdmin::getUserAdmin(),
+                $this->app->db->save('customers_notes', [
+                   'customers_id' => $customers_id,
+                   'customers_notes' => $this->subject . ' <br />' . $this->messageMail,
+                   'customers_notes_date' => 'now()',
+                   'user_administrator' => AdministratorAdmin::getUserAdmin(),
                   ]
                 );
               }
