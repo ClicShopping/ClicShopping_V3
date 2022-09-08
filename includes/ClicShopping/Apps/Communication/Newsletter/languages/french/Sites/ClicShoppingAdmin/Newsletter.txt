@@ -48,8 +48,8 @@ text_finished_sending_email = Fini.. Tous les courriers électroniques sont envo
 text_help_wysiwyg = Wysiwyg
 
 icon_edit = Editer
-image_lock = Vérrouiller
-icon_unlock = Dévérrouiller
+image_locked = Vérrouiller
+icon_unlocked = Dévérrouiller
 image_send = Envoyer
 icon_preview = Prévisualiser
 

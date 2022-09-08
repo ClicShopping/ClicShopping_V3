@@ -48,8 +48,8 @@ text_finished_sending_email = Finished sending e-mails!
 text_help_wysiwyg = Wysiwyg
 
 icon_edit = Edit
-image_lock = Lock
-icon_unlock = Unlock
+image_locked = Lock
+icon_unlocked = Unlock
 image_send = send
 icon_preview = Preview
 
