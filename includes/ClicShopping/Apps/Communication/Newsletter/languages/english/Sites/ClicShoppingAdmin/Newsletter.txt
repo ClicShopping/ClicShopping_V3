@@ -19,6 +19,9 @@ text_newsletter_language = Customer type referred
 text_newsletter_create_file_html = Do you want create a html file ? *
 text_newsletter_twitter = Do you want publish this newsletter on Twitter ?
 text_newsletter_customer_no_account = Do you want include the customer without no account ?
+text_send_newsletter_subject = Newsletter from :
+text_send_newsletter_email =
+
 
 text_customers = Subscribers
 text_b2c = B2C

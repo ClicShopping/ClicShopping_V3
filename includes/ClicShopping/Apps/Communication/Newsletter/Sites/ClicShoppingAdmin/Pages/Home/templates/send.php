@@ -23,7 +23,8 @@
   if (isset($_GET['nID'])) {
     $nID = HTML::sanitize($_GET['nID']);
 
-    $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', ['title',
+    $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', [
+      'title',
       'content',
       'module'
     ], [

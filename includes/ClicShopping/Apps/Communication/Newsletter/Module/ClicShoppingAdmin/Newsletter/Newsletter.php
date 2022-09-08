@@ -15,6 +15,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTTP;
   use ClicShopping\OM\FileSystem;
+  use ClicShopping\OM\Is;
 
   use ClicShopping\Apps\Communication\Newsletter\Newsletter as AppNewsletter;
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\TemplateEmailAdmin;
@@ -26,14 +27,14 @@
     public $title;
     public $content;
 
-    protected $twitter;
+    protected int $twitter;
     protected $file;
-    protected $languageId;
-    protected $customerGroupId;
-    protected $createFile;
-    protected $newsletterNoAccount;
-    protected $fileId;
-    protected $emailFrom;
+    protected int $languageId;
+    protected int $customerGroupId;
+    protected int $createFile;
+    protected int $newsletterNoAccount;
+    protected int $fileId;
+    protected string $emailFrom;
 
     public function __construct($title, $content)
     {
@@ -48,18 +49,17 @@
       $this->show_chooseAudience = false;
       $this->title = $title;
       $this->content = $content;
-      $this->emailFrom = $this->app->getDef('email_from');
-      $this->twitter = HTML::sanitize($_GET['at']); // send to twitter
+      $this->emailFrom = HTML::sanitize(STORE_OWNER_EMAIL_ADDRESS);
+      $this->twitter = (int)$_GET['at']; // send to twitter
 
       if (isset($_GET['ana'])) {
-        $this->newsletterNoAccount = HTML::sanitize($_GET['ana']);
+        $this->newsletterNoAccount = (int)$_GET['ana'];
       }
 
-      $this->fileId = HTML::sanitize($_GET['nID']); // id file on disk
-      $this->languageId = HTML::sanitize($_GET['nlID']);
-      $this->customerGroupId = HTML::sanitize($_GET['cgID']);
-      $this->createFile = HTML::sanitize($_GET['ac']);
-
+      $this->fileId = (int)$_GET['nID']; // id file on disk
+      $this->languageId = (int)$_GET['nlID'];
+      $this->customerGroupId = (int)$_GET['cgID'];
+      $this->createFile = (int)$_GET['ac'];
     }
 
     public function chooseAudience()
@@ -70,7 +70,8 @@
     public function confirm()
     {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
-//
+      $CLICSHOPPING_Language = Registry::get('Language');
+
 // delete all entries in the table newsletter temp for initilization
 //
       $Qdelete = $this->app->db->prepare('delete from :table_newsletters_customers_temp');
@@ -82,28 +83,25 @@
 // customer with an account
 // ----------------------
       if ($this->languageId == 0) {
-
         $Qmail = $this->app->db->prepare('select count(*) as count
                                           from :table_customers
                                           where customers_newsletter = 1
-                                          and customers_group_id = :customers_group_id
+                                          and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                           and customers_email_validation = 0
                                         ');
         $Qmail->bindInt(':customers_group_id', (int)$this->customerGroupId);
 
         $Qmail->execute();
-
       } else {
-
-        $Qmail = $this->app->db->prepare('select count(*) as count
+          $Qmail = $this->app->db->prepare('select count(*) as count
                                           from :table_customers
                                           where customers_newsletter = 1
-                                          and languages_id = :languages_id
-                                          and customers_group_id = :customers_group_id
+                                          and (languages_id = :languages_id or languages_id = 0)
+                                          and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                           and customers_email_validation = 0
                                         ');
         $Qmail->bindInt(':customers_group_id', (int)$this->customerGroupId);
-        $Qmail->bindInt(':languages_id', (int)$this->languageId);
+        $Qmail->bindInt(':languages_id', $CLICSHOPPING_Language->getId());
 
         $Qmail->execute();
       }
@@ -152,7 +150,7 @@
 // ----------------------
 // Display a button if subcription is > 0
 // ----------------------
-      if (SEND_EMAILS == 'true' && $Qmail->valueInt('\count') > 0) {
+      if (SEND_EMAILS == 'true' && $Qmail->valueInt('count') > 0) {
         $send_button = '<span class="float-end">' . HTML::button($this->app->getDef('button_send'), null, $this->app->link('ConfirmSend&page=' . (int)$_GET['page'] . '&nID=' . $this->fileId . '&nlID=' . $this->languageId . '&cgID=' . $this->customerGroupId . '&ac=' . $this->createFile . '&at=' . $this->twitter . '&ana=' . $this->newsletterNoAccount), 'success', null) . '</span>';
       } else {
         $send_button = '';
@@ -182,7 +180,7 @@
 
       $confirm_string .= '<div id="newsletterBody">' . "\n";
       $confirm_string .= '<div class="text-center alert alert-info" id="newsletterAlert">';
-      $confirm_string .= '<div id="newsletterCount"><strong>' . $this->app->getDef('text_count_customers') . ' ' . $Qmail->valueInt('\count') . '<strong></div>';
+      $confirm_string .= '<div id="newsletterCount"><strong>' . $this->app->getDef('text_count_customers') . ' ' . $Qmail->valueInt('count') . '<strong></div>';
       $confirm_string .= '</div>' . "\n";
 
       $confirm_string .= $file_name . "\n";
@@ -205,11 +203,11 @@
     {
       $CLICSHOPPING_Mail = Registry::get('Mail');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_Language = Registry::get('Language');
 
       if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
-
 
       if ($this->languageId == 0) {
         $Qmail = $this->app->db->prepare('select customers_firstname,
@@ -217,7 +215,7 @@
                                                customers_email_address
                                         from :table_customers
                                         where customers_newsletter = 1
-                                        and customers_group_id = :customers_group_id
+                                        and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                         and customers_email_validation = 0
                                        ');
         $Qmail->bindInt(':customers_group_id', (int)$this->customerGroupId);
@@ -228,15 +226,14 @@
                                                  customers_email_address
                                           from :table_customers
                                           where customers_newsletter = 1
-                                          and languages_id = :languages_id
-                                          and customers_group_id = :customers_group_id
+                                          and (languages_id = :languages_id or languages_id = 0)
+                                          and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                           and customers_email_validation = 0
                                           ');
         $Qmail->bindInt(':customers_group_id', (int)$this->customerGroupId);
-        $Qmail->bindInt(':languages_id', (int)$this->languageId);
+        $Qmail->bindInt(':languages_id', $CLICSHOPPING_Language->getId());
         $Qmail->execute();
       } //end $this->languageId
-
 
       $max_execution_time = 0.8 * (int)ini_get('max_execution_time');
       $time_start = explode(' ', PAGE_PARSE_START_TIME);
@@ -250,8 +247,6 @@
         $CLICSHOPPING_Mail->addText('<p class="text-center">' . $this->app->getDef('text_send_newsletter_email', ['store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]) . '</p>' . $this->content . ' ' . $this->app->getDef('text_send_newsletter', ['store_name' => STORE_NAME]) . ' ' . HTTP::getShopUrlDomain() . 'index.php?Account&Newsletters');
       }
 
-      ;
-
 // ------------------------------------------
 // copy e-mails to a temporary table if that table is empty
 // ------------------------------------------
@@ -262,35 +257,35 @@
       $Qcheck->execute();
 
       if ($Qcheck->valueInt('num_customers_email_address') == 0) {
-
         // ------------------------------------------
         // copy customers account in temp newsletter
         // ------------------------------------------
 
-        while ($copy_customers_account = $Qmail->fetch()) {
-          if (preg_match("#^[-a-z0-9._]+@([-a-z0-9_]+\.)+[a-z]{2,6}$#i", $copy_customers_account['customers_email_address'])) {
+        $this->app->db->delete('newsletters_customers_temp');
 
-            $this->app->db->save('newsletters_customers_temp', [
-                'customers_firstname' => addslashes($copy_customers_account['customers_firstname']),
-                'customers_lastname' => addslashes($copy_customers_account['customers_lastname']),
-                'customers_email_address' => $copy_customers_account['customers_email_address']
-              ]
-            );
+        while ($Qmail->fetch()) {
+          if (Is::EmailAddress($Qmail->value('customers_email_address'))) {
+            $data_array =  [
+              'customers_firstname' => addslashes($Qmail->value('customers_firstname')),
+              'customers_lastname' => addslashes($Qmail->value('customers_lastname')),
+              'customers_email_address' => $Qmail->value('customers_email_address')
+            ];
+
+            $this->app->db->save('newsletters_customers_temp', $data_array);
           }
         }  // end while
       } else {
-        echo 'There is a problem with your newsletters_customers_temp database, please, click cancel to go back and retry.<br />';
+        echo '<div class="alert alert-warning text-center">There is a problem with your newsletters_customers_temp database, please, click cancel to go back and retry.</div>';
       }
 
       $QmailNewsletterAccountTemp = $this->app->db->prepare('select customers_firstname,
-                                                                       customers_lastname,
-                                                                       customers_email_address
-                                                                from :table_newsletters_customers_temp
-                                                              ');
+                                                                     customers_lastname,
+                                                                     customers_email_address
+                                                              from :table_newsletters_customers_temp
+                                                            ');
       $QmailNewsletterAccountTemp->execute();
 
       while ($QmailNewsletterAccountTemp->fetch()) {
-
         $time_end = explode(' ', microtime());
         $timer_total = number_format(($time_end[1] + $time_end[0] - ($time_start[1] + $time_start[0])), 3);
 
@@ -298,17 +293,16 @@
           echo("<meta http-equiv=\"refresh\" content=\"12\">");
         }
 
-        $CLICSHOPPING_Mail->send($QmailNewsletterAccountTemp->value['customers_email_address'], $QmailNewsletterAccountTemp->value['customers_firstname'] . ' ' . $QmailNewsletterAccountTemp->value['customers_lastname'],null, $this->emailFrom, $this->title);
+        $CLICSHOPPING_Mail->send($QmailNewsletterAccountTemp->value('customers_email_address'), $QmailNewsletterAccountTemp->value('customers_firstname') . ' ' . $QmailNewsletterAccountTemp->value('customers_lastname'), null, $this->emailFrom, $this->title);
 
 // delete all entry in the table
         $Qdelete = $this->app->db->prepare('delete
                                             from :table_newsletters_customers_temp
                                             where customers_email_address = :customers_email_address
                                           ');
-        $Qdelete->bindValue(':customers_email_address', $QmailNewsletterAccountTemp->value['customers_email_address']);
+        $Qdelete->bindValue(':customers_email_address', $QmailNewsletterAccountTemp->value('customers_email_address'));
         $Qdelete->execute();
       } //end while
-
 
       $newsletter_id = HTML::sanitize($newsletter_id);
 
@@ -320,9 +314,7 @@
       $Qupdate->bindInt(':newsletters_id', $newsletter_id);
       $Qupdate->execute();
 
-
       $CLICSHOPPING_Hooks->call('Newsletter', 'NewsletterSend');
-
 
       $this->sendTwitter();
     } // end function
@@ -350,15 +342,14 @@
       $max_execution_time = 0.8 * (int)ini_get('max_execution_time');
       $time_start = explode(' ', PAGE_PARSE_START_TIME);
 
-
       if ($this->languageId == 0) {
         $Qmail = $this->app->db->prepare('select customers_firstname,
                                                  customers_lastname,
                                                  customers_email_address
                                           from :table_customers
                                           where customers_newsletter = 1
-                                          and customers_group_id = :customers_group_id
-                                          and customers_email_validation = 0
+                                          and (customers_group_id = :customers_group_id or customers_group_id = 99)
+                                        and customers_email_validation = 0
                                          ');
         $Qmail->bindInt(':customers_group_id', (int)$this->customerGroupId);
         $Qmail->execute();
@@ -368,8 +359,8 @@
                                                  customers_email_address
                                           from :table_customers
                                           where customers_newsletter = 1
-                                          and languages_id = :languages_id
-                                          and customers_group_id = :customers_group_id
+                                          and (languages_id = :languages_id or languages_id = 0)
+                                          and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                           and customers_email_validation = 0
                                          ');
         $Qmail->bindInt(':customers_group_id', $this->customerGroupId);
@@ -386,6 +377,8 @@
 // ------------------------------------------
 // copy customers account in temp newsletter
 // ------------------------------------------
+        $this->app->db->delete('newsletters_customers_temp');
+
         while ($Qmail->fetch()) {
           $time_end = explode(' ', microtime());
           $timer_total = number_format(($time_end[1] + $time_end[0] - ($time_start[1] + $time_start[0])), 3);
@@ -394,8 +387,7 @@
             echo("<meta http-equiv=\"refresh\" content=\"12\">");
           }
 
-          if (preg_match("#^[-a-z0-9._]+@([-a-z0-9_]+\.)+[a-z]{2,6}$#i", $Qmail->value('customers_email_address'))) {
-
+          if (Is::EmailAddress($Qmail->value('customers_email_address'))) {
             $sql_array = [
               'customers_firstname' => addslashes($Qmail->value('customers_firstname')),
               'customers_lastname' => addslashes($Qmail->value('customers_lastname')),
@@ -416,6 +408,9 @@
                                                             from :table_newsletters_customers_temp
                                                          ');
       $QmailNewsletterAccountTemp->execute();
+      $send_newsletter = $QmailNewsletterAccountTemp->fetchAll();
+
+      $subject = $this->app->getDef('text_send_newsletter_subject', ['store_name' => STORE_NAME]);
 
       if ($this->createFile == 1) {
         $message = html_entity_decode('<p class="text-center">' . $this->app->getDef('text_send_newsletter_email', ['store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]) . '</p>' . $this->content . $this->app->getDef('text_send_newsletter', ['store_name' => STORE_NAME]) . HTTP::getShopUrlDomain() . 'sources/public/newsletter/newsletter_' . $this->fileId . '.html<br /><br />' . $email_footer);
@@ -424,12 +419,14 @@
       }
 
       $message = str_replace('src="/', 'src="' . HTTP::getShopUrlDomain(), $message);
-      $CLICSHOPPING_Mail->addHtmlCkeditor($message);
-      ;
 
+      $CLICSHOPPING_Mail->addHtmlCkeditor($message);
+
+      foreach($send_newsletter as $value) {
+        $CLICSHOPPING_Mail->send($value['customers_email_address'], $value['customers_firstname'] . ' ' . $value['customers_lastname'], $this->emailFrom, null, $subject);
+      }
 
       $CLICSHOPPING_Hooks->call('Newsletter', 'NewsletterSendCkEditor');
-
 
       $this->sendTwitter();
     }

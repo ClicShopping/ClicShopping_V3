@@ -21,12 +21,13 @@
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  $nID = HTML::sanitize($_GET['nID']);
-  $nlID = HTML::sanitize($_GET['nlID']);
-  $cgID = HTML::sanitize($_GET['cgID']);
-  $ac = HTML::sanitize($_GET['ac']);
+  $nID = (int)$_GET['nID'];
+  $nlID = (int)$_GET['nlID'];
+  $cgID = (int)$_GET['cgID'];
+  $ac = (int)$_GET['ac'];
 
-  $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', ['newsletters_id',
+  $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', [
+    'newsletters_id',
     'title',
     'content',
     'module',
@@ -41,7 +42,6 @@
   );
 
   $nInfo = new ObjectInfo($Qnewsletter->toArray());
-
   $module_name = $nInfo->module;
   $module = new NewsletterModule($nInfo->title, $nInfo->content);
 ?>

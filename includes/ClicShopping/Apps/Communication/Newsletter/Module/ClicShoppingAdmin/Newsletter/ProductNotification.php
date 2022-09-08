@@ -400,7 +400,6 @@ function selectAll(FormName, SelectBox) {
       $audience = [];
 
       if (isset($_POST['global']) && ($_POST['global'] == 'true')) {
-
         $Qproducts = $CLICSHOPPING_Db->prepare('select distinct pn.customers_id,
                                                         c.customers_firstname,
                                                         c.customers_lastname,

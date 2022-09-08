@@ -19,6 +19,8 @@ text_newsletter_language = Type de client visé
 text_newsletter_create_file_html = Souhaitez vous créer un fichier html ? *
 text_newsletter_twitter = Souhaitez vous publier cette newsletter sur Twitter ?
 text_newsletter_customer_no_account = Souhaitez vous inclure les clients sans compte ?
+text_send_newsletter_subject = Bulletin d'information de :
+text_send_newsletter_email =
 
 text_customers = Abonnées
 text_b2c = B2C

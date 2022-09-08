@@ -77,7 +77,8 @@
       }
 
       if ($newsletter_error === false) {
-        $sql_data_array = ['title' => $title,
+        $sql_data_array = [
+          'title' => $title,
           'content' => $content,
           'module' => $newsletter_module,
           'languages_id' => (int)$languages_newsletter_id,
