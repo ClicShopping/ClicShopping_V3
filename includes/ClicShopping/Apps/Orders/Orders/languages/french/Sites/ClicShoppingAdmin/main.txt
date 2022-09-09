@@ -123,6 +123,16 @@ entry_telephone_number = Téléphone
 entry_cellular_phone_number = Cellulaire
 entry_email_address = Adresse email
 
+customers_company = Société
+entry_first_name = Prénom
+entry_last_name = Nom
+entry_address = adresse
+entry_suburb = Addresse complémentaire
+entry_postcode = Code postal
+entry_city = Ville
+entry_country_id = Pays
+entry_zone_id = Zone
+
 text_info_heading_delete_order = Supprimer la commande
 text_info_delete_intro = Etes vous s&ucirc;r de vouloir supprimer cette commande ?
 text_info_restock_product_quantity = Restaurer la valeur de stock

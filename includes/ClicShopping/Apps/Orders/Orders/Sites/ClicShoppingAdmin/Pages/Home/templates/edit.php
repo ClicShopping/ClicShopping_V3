@@ -170,6 +170,22 @@
                     <strong><?php echo $CLICSHOPPING_Address->addressFormat($order->customer['format_id'], $order->customer, 1, '', '<br />'); ?></strong>
                   </p>
                 </div>
+                <div class="col-md-12 text-end">
+                  <a
+                    href="<?php echo $CLICSHOPPING_Orders->link('EditCustomerAddress&order_id=' . (int)$order_id . '&customer_id=' . $Qcustomers->valueInt('customers_id')); ?>"
+                    data-bs-toggle="modal" data-refresh="true"
+                    data-bs-target="#myModal1"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Orders->getDef('icon_edit') . '"></i></h4>'; ?></a>
+                  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                       aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <div class="te"></div>
+                        </div>
+                      </div> <!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
+                </div>
               </div>
               <div class="col-md-3 card m-1">
                 <div class="card-body">
@@ -177,6 +193,22 @@
                   <p class="card-text">
                     <strong><?php echo $CLICSHOPPING_Address->addressFormat($order->delivery['format_id'], $order->delivery, 1, '', '<br />'); ?></strong>
                   </p>
+                </div>
+                <div class="col-md-12 text-end">
+                  <a
+                    href="<?php echo $CLICSHOPPING_Orders->link('EditShippingAddress&order_id=' . (int)$order_id . '&customer_id=' . $Qcustomers->valueInt('customers_id')); ?>"
+                    data-bs-toggle="modal" data-refresh="true"
+                    data-bs-target="#myModal2"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Orders->getDef('icon_edit') . '"></i></h4>'; ?></a>
+                  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                       aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <div class="te"></div>
+                        </div>
+                      </div> <!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
                 </div>
               </div>
               <div class="col-md-3 card m-1">
@@ -186,10 +218,25 @@
                     <strong><?php echo $CLICSHOPPING_Address->addressFormat($order->billing['format_id'], $order->billing, 1, '', '<br />'); ?></strong>.
                   </p>
                 </div>
+                <div class="col-md-12 text-end">
+                  <a
+                    href="<?php echo $CLICSHOPPING_Orders->link('EditPaymentAddress&order_id=' . (int)$order_id . '&customer_id=' . $Qcustomers->valueInt('customers_id')); ?>"
+                    data-bs-toggle="modal" data-refresh="true"
+                    data-bs-target="#myModal3"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Orders->getDef('icon_edit') . '"></i></h4>'; ?></a>
+                  <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                       aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <div class="te"></div>
+                        </div>
+                      </div> <!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
+                </div>
               </div>
             </div>
           </div>
-
           <div class="separator"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Orders->getDef('title_orders_customers'); ?></div>
           <div class="adminformTitle">
@@ -215,8 +262,6 @@
               <?php
                 }
               ?>
-              <script
-                src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/modal_popup.js'); ?>"></script>
               <div class="col-md-8">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Orders->getDef('text_condition_general_of_sales'); ?>"
@@ -511,6 +556,8 @@
         <!-- //################################################################################################################ -->
         <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageTab', null, 'display'); ?>
 
+        <script
+          src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/modal_popup.js'); ?>"></script>
       </div>
     </div>
   </div>

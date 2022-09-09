@@ -116,9 +116,19 @@ entry_notify_customer = Notify Customer:
 entry_notify_comments = Append Comments:
 entry_printable = Print Invoice
 
-entry_telephone_number = Téléphone
+entry_telephone_number = Phone
 entry_cellular_phone_number = Cellulaire
 entry_email_address = Email Address
+
+customers_company = Company
+entry_first_name = First Name
+entry_last_name = Last Name
+entry_address = address
+entry_suburb = Suburb
+entry_postcode = Post code
+entry_city = city
+entry_country_id = Country
+entry_zone_id = Zone
 
 text_info_heading_delete_order = Delete Order
 text_info_delete_intro = Are you sure you want to delete this order?
