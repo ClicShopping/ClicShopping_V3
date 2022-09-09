@@ -197,11 +197,21 @@
             $Qupdate->execute();
 
             $body_subject = CLICSHOPPING::getDef('email_password_reminder_subject', ['store_name' => STORE_NAME]);
-            $email_body = CLICSHOPPING::getDef('email_password_reminder_body', ['store_name' => STORE_NAME, 'remote_address' => $_SERVER['REMOTE_ADDR'], 'new_password' => $new_password]) . "\n";
+            $email_body = CLICSHOPPING::getDef('email_password_reminder_body', ['store_name' => STORE_NAME,
+                                                                                'remote_address' => $_SERVER['REMOTE_ADDR'],
+                                                                                'new_password' => $new_password]
+                                              ) . "\n";
             $email_body .= TemplateEmailAdmin::getTemplateEmailSignature() . "\n";
             $email_body .= TemplateEmailAdmin::getTemplateEmailTextFooter();
 
-            $CLICSHOPPING_Mail->clicMail($username, null, $body_subject, sprintf($email_body, $new_password), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+            $to_addr = $username;
+            $from_name = STORE_OWNER;
+            $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+            $to_name = NULL;
+            $subject = $body_subject;
+
+            $CLICSHOPPING_Mail->addHtml($email_body);
+            $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_sent'), 'success');
           } else {

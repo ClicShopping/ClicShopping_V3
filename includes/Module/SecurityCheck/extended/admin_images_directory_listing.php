@@ -10,6 +10,7 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTTP;
 
   class securityCheckExtended_admin_images_directory_listing
   {

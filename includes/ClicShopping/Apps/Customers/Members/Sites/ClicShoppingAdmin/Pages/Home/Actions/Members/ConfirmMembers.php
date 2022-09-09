@@ -106,8 +106,23 @@
       $email_text = $email_text_confirm . $email_coupon . $email_signature . $email_warning;
 
 // mails avec le mot de passe
-      $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, $QcheckCustomer->value('customers_firstname'), $QcheckCustomer->value('customers_email_address'), $email_text, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, '');
-      $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_email_address'), $QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname'), $email_text_subject, '<br />' . nl2br(sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass)), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+      $to_addr = $QcheckCustomer->value('customers_email_address');
+      $from_name = STORE_NAME;
+      $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+      $to_name = $QcheckCustomer->value('customers_firstname');
+      $subject = STORE_NAME;
+
+      $CLICSHOPPING_Mail->addHtml($email_text);
+      $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
+
+      $to_addr = $QcheckCustomer->value('customers_email_address');
+      $from_name = STORE_NAME;
+      $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+      $to_name = $QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname');
+      $subject = $email_text_subject;
+
+      $CLICSHOPPING_Mail->addHtml('<br />' . nl2br(sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass)));
+      $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
 
       $CLICSHOPPING_Members->redirect('Members&page=' . $page);
     }

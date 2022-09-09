@@ -212,7 +212,7 @@
                     <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_tva_intracom'); ?></span>
                     <span class="col-md-5"><strong><?php echo $order->customer['tva_intracom']; ?></strong></span>
                   </div>
-                  <?php
+              <?php
                 }
               ?>
               <script

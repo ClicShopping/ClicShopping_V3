@@ -23,10 +23,10 @@
     protected mixed $app;
     protected mixed $lang;
     protected mixed $db;
-    protected $oID;
-    protected $status;
-    protected $statusInvoice;
-    protected $comments;
+    protected int $oID;
+    protected int $status;
+    protected int $statusInvoice;
+    protected string $comments;
     protected $notifyComments;
     protected $notify;
     protected $hooks;

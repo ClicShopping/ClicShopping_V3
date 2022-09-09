@@ -63,7 +63,14 @@
             $report .= "\n" . CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin');
             $report .= "\n\n" . TemplateEmailAdmin::getTemplateEmailTextFooter();
 
-            $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+            $to_addr = STORE_OWNER_EMAIL_ADDRESS;
+            $from_name = STORE_NAME;
+            $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+            $to_name = STORE_NAME;
+            $subject = CLICSHOPPING::getDef('report_email_subject');
+
+            $CLICSHOPPING_Mail->addHtml($report);
+            $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
           }
         }
       }

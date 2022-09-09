@@ -10,5 +10,7 @@ ALTER TABLE `clic_banners` ADD `banners_theme` VARCHAR(50) NULL DEFAULT NULL AFT
 
 ---------------------------
 #English
+INSERT INTO clic_configuration VALUES('', 'Do you want to activate the Debug Email option ?', 'EMAIL_DEBUG', 'false', 'This option allows you to analyse if the email is sent. Please, this option stop the execution script.', 12, 12, NULL, '2006-04-09 16:13:47', NULL, 'clic_cfg_set_boolean_value(array(true, false))');
 
 #french
+INSERT INTO clic_configuration VALUES('', 'Souhaitez-vous activer l\'option Debug Email', 'EMAIL_DEBUG', 'false', 'Cette option vous permet d\'analyser l\'envoie d\'email. Veuillez noter qu\'elle stoppe le script à son éxécution.<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 12, 12, NULL, '2006-04-09 16:13:47', NULL, 'clic_cfg_set_boolean_value(array(true, false))');

@@ -1305,9 +1305,16 @@
 
         $to_email_address = $this->customer['email_address'];
         $to_name = $this->customer['firstname'] . ' ' . $this->customer['lastname'];
-        $email_subject =  CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]);
+        $email_subject = CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]);
 
-        $this->mail->clicMail($to_email_address, $to_name, $email_subject, $email_order, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+        $to_addr = $to_email_address;
+        $from_name = STORE_NAME;
+        $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+        $to_name = $to_name;
+        $subject = $email_subject;
+
+        $this->mail->addHtml($email_order);
+        $this->mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
 
 // SEND_EXTRA_ORDER_EMAILS_TO does'nt work like this, test<test@test.com>, just with test@test.com
         if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {

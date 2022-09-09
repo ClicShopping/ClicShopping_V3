@@ -154,11 +154,42 @@
               $CLICSHOPPING_Mail->clicMail($email_address, STORE_OWNER, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'), $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
             }
           } else {
-            $message_to_admin = $email_subject . ' ' . STORE_NAME . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone . "\n" . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer_information') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_admin_read_message') . "\n\n";
-            $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER, $email_subject, $message_to_admin, $name, $email_address);
+            $message_to_admin = $email_subject . ' ' . STORE_NAME . "\n\n" .
+                                $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" .
+                                $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id . "\n\n" .
+                                $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" .
+                                $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone . "\n" .
+                                $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" .
+                                $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer_information') . ' ' . $enquiry . "\n\n" .
+                                $CLICSHOPPING_PageManager->getDef('entry_admin_read_message') . "\n\n";
+
+            $to_addr = STORE_OWNER_EMAIL_ADDRESS;
+            $from_name = $name;
+            $from_addr = $email_address;
+            $to_name = STORE_OWNER;
+            $subject = $email_subject;
+
+            $CLICSHOPPING_Mail->addHtml($message_to_admin);
+            $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
 // send information to customer
-            $message_to_customer = $email_subject . ' ' . STORE_NAME . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone . "\n" . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_additional_information') . "\n\n" . $template_email_footer;
-            $CLICSHOPPING_Mail->clicMail($email_address, STORE_OWNER, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'), $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
+            $message_to_customer = $email_subject . ' ' . STORE_NAME . "\n\n" .
+                                   $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" .
+                                   $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id . "\n\n" .
+                                   $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" .
+                                   $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone . "\n" .
+                                   $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" .
+                                   $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer') . ' ' . $enquiry . "\n\n" .
+                                   $CLICSHOPPING_PageManager->getDef('entry_additional_information') . "\n\n" . $template_email_footer;
+
+            $CLICSHOPPING_Mail->addHtmlCkeditor($message_to_customer);
+            $to_addr = $email_address;
+            $from_name = STORE_OWNER;
+            $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+            $to_name = $name;
+            $subject = $CLICSHOPPING_PageManager->getDef('entry_email_object_customer');
+
+            $CLICSHOPPING_Mail->addHtml($message_to_admin);
+            $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
           }
 
 // insert the modification in the database

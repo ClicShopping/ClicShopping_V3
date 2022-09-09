@@ -78,7 +78,14 @@
 
                 $email_subject = CLICSHOPPING::getDef('email_password_reset_subject', ['store_name' => STORE_NAME]);
 
-                $CLICSHOPPING_Mail->clicMail($email_address, $Qcheck->value('customers_firstname') . ' ' . $Qcheck->value('customers_lastname'), $email_subject, $email_password_reminder_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+                $to_addr = $email_address;
+                $from_name = STORE_NAME;
+                $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+                $to_name = $Qcheck->value('customers_firstname') . ' ' . $Qcheck->value('customers_lastname');
+                $subject = $email_subject;
+
+                $CLICSHOPPING_Mail->addHtml($email_password_reminder_body);
+                $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
 
                 $password_reset_initiated = true;
               } else {

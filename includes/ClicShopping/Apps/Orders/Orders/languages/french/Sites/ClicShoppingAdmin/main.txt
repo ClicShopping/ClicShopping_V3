@@ -121,7 +121,7 @@ entry_printable = Imprimer la facture
 
 entry_telephone_number = Téléphone
 entry_cellular_phone_number = Cellulaire
-entry_email_address = Email Address
+entry_email_address = Adresse email
 
 text_info_heading_delete_order = Supprimer la commande
 text_info_delete_intro = Etes vous s&ucirc;r de vouloir supprimer cette commande ?
