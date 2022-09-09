@@ -65,14 +65,14 @@
         $text_password_body .= '<br />' . TemplateEmailAdmin::getTemplateEmailSignature();
         $text_password_body .= '<br />' . TemplateEmailAdmin::getTemplateEmailTextFooter();
 
-        $to_name = $QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname');
-        $to_email_address = $QcheckCustomer->value('customers_email_address');
-        $email_subject = $CLICSHOPPING_Customer->getDef('email_password_reminder_subject', ['store_name' => STORE_NAME]);
-        $email_body = sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass);
+        $to_addr = $QcheckCustomer->value('customers_email_address');;
         $from_name = STORE_NAME;
-        $from_email_address = STORE_OWNER_EMAIL_ADDRESS;
+        $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+        $to_name = $QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname');
+        $subject = $CLICSHOPPING_Customer->getDef('email_password_reminder_subject', ['store_name' => STORE_NAME]);
 
-        $CLICSHOPPING_Mail->clicMail($to_email_address, $to_name, $email_subject, nl2br($email_body), $from_name, $from_email_address);
+        $CLICSHOPPING_Mail->addHtml(sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass));
+        $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
 
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customer->getDef('text_new_password') . '&nbsp;' . ($QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname')), 'success');
       }

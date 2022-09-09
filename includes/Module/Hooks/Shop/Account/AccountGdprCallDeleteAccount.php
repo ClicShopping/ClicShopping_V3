@@ -59,7 +59,14 @@
 
           $text_email = html_entity_decode(CLICSHOPPING::getDef('module_account_customers_gdpr_email_text_message')) . "\n";
 
-          $CLICSHOPPING_Mail->clicMail($QcustomerEmail->value('customers_email_address'), $QcustomerEmail->value('customers_firstname') . ' ' . $QcustomerEmail->value('customers_lastname'), CLICSHOPPING::getDef('email_text_subject'), $text_email, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+          $to_addr = $QcustomerEmail->value('customers_email_address');
+          $from_name = STORE_NAME;
+          $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+          $to_name = $QcustomerEmail->value('customers_firstname') . ' ' . $QcustomerEmail->value('customers_lastname');
+          $subject = CLICSHOPPING::getDef('email_text_subject');
+
+          $CLICSHOPPING_Mail->addHtml($text_email);
+          $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
 
           $Qdelete = $CLICSHOPPING_Db->prepare('delete
                                                 from :table_customers

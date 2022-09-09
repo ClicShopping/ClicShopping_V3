@@ -315,15 +315,28 @@
       $CLICSHOPPING_Mail = Registry::get('Mail');
 
       if (REVIEW_COMMENT_SEND_EMAIL == 'true') {
-        $email_subject = CLICSHOPPING::getDef('email_subject_customer', ['store_name' => STORE_NAME]);
         $email_text = CLICSHOPPING::getDef('email_text_customer', ['store_name' => STORE_NAME]);
 
-        $CLICSHOPPING_Mail->clicMail($this->customer->getEmailAddress(), $this->customer->getLastName(), $email_subject, $email_text, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+        $to_addr = $this->customer->getEmailAddress();
+        $from_name = STORE_NAME;
+        $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+        $to_name =  $this->customer->getLastName();
+        $subject = CLICSHOPPING::getDef('email_subject_customer', ['store_name' => STORE_NAME]);
 
-        $email_subject = CLICSHOPPING::getDef('email_subject', ['store_name' => STORE_NAME]);
+        $CLICSHOPPING_Mail->addHtml($email_text);
+        $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
+
+ //admin
         $email_text = CLICSHOPPING::getDef('email_text', ['store_name' => STORE_NAME]);
 
-        $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_NAME, $email_subject, $email_text, $this->productsCommon->getProductsName(), STORE_OWNER_EMAIL_ADDRESS);
+        $to_addr = STORE_OWNER_EMAIL_ADDRESS;
+        $from_name = STORE_NAME;
+        $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+        $to_name =  STORE_NAME;
+        $subject = CLICSHOPPING::getDef('email_subject', ['store_name' => STORE_NAME]);
+
+        $CLICSHOPPING_Mail->addHtml($email_text .'<br />' . $this->productsCommon->getProductsName());
+        $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
       }
     }
 

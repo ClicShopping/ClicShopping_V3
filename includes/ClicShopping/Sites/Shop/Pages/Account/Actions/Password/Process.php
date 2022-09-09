@@ -77,9 +77,14 @@
             $email_password_reminder_body .= TemplateEmail::getTemplateEmailTextFooter() . "\n";
             $email_password_reminder_body .= TemplateEmail::getTemplateEmailSignature();
 
-            $email_subject = CLICSHOPPING::getDef('email_password_subject', ['store_name' => STORE_NAME]);
+            $to_addr = $QcheckCustomer->value('customers_email_address');
+            $from_name = STORE_NAME;
+            $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+            $to_name = $QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname');
+            $subject = CLICSHOPPING::getDef('email_password_subject', ['store_name' => STORE_NAME]);
 
-            $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_email_address'), $QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname'), $email_subject, $email_password_reminder_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+            $CLICSHOPPING_Mail->addHtml($email_password_reminder_body);
+            $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_updated'), 'success');
 

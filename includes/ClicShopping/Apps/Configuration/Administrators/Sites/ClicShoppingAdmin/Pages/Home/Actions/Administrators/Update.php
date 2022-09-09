@@ -59,13 +59,13 @@
         $_SESSION['admin']['access'] = $access;
       }
 
-      $this->app->db->save('administrators', ['user_name' => $username,
+      $sql_array = ['user_name' => $username,
         'name' => $name,
         'first_name' => $first_name,
         'access' => $access
-      ],
-        ['id' => (int)$_GET['aID']]
-      );
+      ];
+
+      $this->app->db->save('administrators', $sql_array, ['id' => (int)$_GET['aID']]);
 
       if (!empty($password)) {
         $this->app->db->save('administrators', [
@@ -77,7 +77,14 @@
       }
 
 // mail report
-      $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER, $this->app->getDef('report_password_change_subject', ['username' => $username]), $this->app->getDef('report_password_change_text', ['username' => $username]), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+      $to_addr = STORE_OWNER_EMAIL_ADDRESS;
+      $from_name = STORE_NAME;
+      $from_addr = STORE_OWNER_EMAIL_ADDRESS;
+      $to_name = STORE_OWNER_EMAIL_ADDRESS;
+      $subject = $this->app->getDef('report_password_change_subject', ['username' => $username]);
+
+      $CLICSHOPPING_Mail->addHtml($this->app->getDef('report_password_change_text', ['username' => $username]));
+      $CLICSHOPPING_Mail->send($to_addr, $from_name, $from_addr, $to_name, $subject);
 
       $this->app->redirect('Administrators&aID=' . (int)$_GET['aID']);
     }

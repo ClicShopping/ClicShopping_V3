@@ -15,7 +15,7 @@
   use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
-  
+
   $CLICSHOPPING_SupplierAdmin = Registry::get('SupplierAdmin');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
