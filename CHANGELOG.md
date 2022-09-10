@@ -1,5 +1,7 @@
 3.333
 Allow to edit address in the order
+update smtp debug
+fox html div in order
 
 --------------------
 3.332
