@@ -236,6 +236,7 @@
                 </div>
               </div>
             </div>
+          </div>
             <div class="separator"></div>
             <div class="row">
               <div class="mainTitle"><?php echo $CLICSHOPPING_Orders->getDef('title_orders_customers'); ?></div>
@@ -362,7 +363,6 @@
                   ?>
                   <div class="separator"></div>
                   <div class="separator"></div>
-                </div>
               </div>
             </div>
           </div>
