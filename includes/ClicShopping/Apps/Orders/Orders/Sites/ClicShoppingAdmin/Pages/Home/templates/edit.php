@@ -365,17 +365,8 @@
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
-
-
           </div>
-
+          <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageContentTab1', null, 'display'); ?>
         </div>
         <!-- //###########################################//-->
         <!--          Order informations  Tab2                                                   //-->

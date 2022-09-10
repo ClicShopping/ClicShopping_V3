@@ -97,8 +97,7 @@
             </span>
           </div>
 
-        <div
-                class="col-md-4">
+        <div class="col-md-4">
 
 <?php
           if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($_POST['status']) || isset($_GET['aID'])) {
