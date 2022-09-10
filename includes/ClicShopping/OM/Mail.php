@@ -22,7 +22,7 @@
     protected string $text;
     protected string $html_text;
     protected string $lf;
-    protected int $debug = 0;
+    protected int $debug = 2;
     public string $debugOutput;
 
 //Enable SMTP debugging
@@ -37,7 +37,6 @@
       $this->phpMail = new PHPMailer();
 
       $this->phpMail->XMailer = 'ClicShopping ' . CLICSHOPPING::getVersion();
-      $this->phpMail->SMTPDebug = SMTP::DEBUG_SERVER; // Only for debug
 
 // test with exit
       $this->phpMail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";};
@@ -72,8 +71,8 @@
           try {
 
             if (EMAIL_DEBUG == 'true'){
-            $this->phpMail->SMTPDebug = SMTP::DEBUG_SERVER;
-          }
+              $this->phpMail->SMTPDebug = SMTP::DEBUG_SERVER;
+            }
 
             $this->phpMail->IsSMTP();
 
