@@ -63,13 +63,13 @@
             "sameAs" : [
           ';
           if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL)) {
-            $footer_tag .= ' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL . '" ';
+            $footer_tag .= ' "" ';
           }
           if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL)) {
-            $footer_tag .= '  ,"' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL . '" ';
+            $footer_tag .= ' ,"" ';
           }
           if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL)) {
-            $footer_tag .= ' ,"' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL . '" ';
+            $footer_tag .= ' ,"" ';
           }
           $footer_tag .= '
           ]';
@@ -196,7 +196,7 @@
               'configuration_title' => 'Please indicate the Facebook URL ?',
               'configuration_key' => 'MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL',
               'configuration_value' => '',
-              'configuration_description' => 'Insert a title',
+              'configuration_description' => '',
               'configuration_group_id' => '6',
               'sort_order' => '5',
               'set_function' => '',
@@ -220,7 +220,7 @@
               'configuration_title' => 'Please indicate the Pointerest URL ?',
               'configuration_key' => 'MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL',
               'configuration_value' => '',
-              'configuration_description' => 'Insert a title',
+              'configuration_description' => '',
               'configuration_group_id' => '6',
               'sort_order' => '7',
               'set_function' => '',
