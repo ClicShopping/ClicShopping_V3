@@ -22,14 +22,13 @@
     protected string $text;
     protected string $html_text;
     protected string $lf;
-    protected int $debug = 2;
-    public string $debugOutput;
+    public string $Debugoutput;
+    protected string $fileError;
 
 //Enable SMTP debugging
 // 0 = off (for production use)
 // 1 = client messages
 // 2 = client and server messages
-    protected string $debugFileOutput = CLICSHOPPING::BASE_DIR . 'Work/Log/phpmail_error.log';
     protected PHPMailer $phpMail;
 
     public function __construct()
@@ -37,10 +36,6 @@
       $this->phpMail = new PHPMailer();
 
       $this->phpMail->XMailer = 'ClicShopping ' . CLICSHOPPING::getVersion();
-
-// test with exit
-      $this->phpMail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";};
-      $this->phpMail->debugOutput = $this->debugFileOutput;
       $this->phpMail->CharSet = PHPMailer::CHARSET_UTF8;
       $this->phpMail->WordWrap = 998;
       $this->phpMail->Encoding = 'quoted-printable';
@@ -60,6 +55,8 @@
       } else {
         $this->lf = "\n";
       }
+
+      $this->fileError = CLICSHOPPING::BASE_DIR . 'Work/Log/phpmail_error-' . date('Ymd') . '.log';
     }
 
     /**
@@ -67,11 +64,20 @@
      */
     protected function sendPhpMailer() :bool
     {
+      $filename_log = $this->fileError;
+
         if (EMAIL_TRANSPORT == 'smtp' || EMAIL_TRANSPORT == 'gmail') {
           try {
-
-            if (EMAIL_DEBUG == 'true'){
+            if (DEBUG_EMAIL == 'true'){
               $this->phpMail->SMTPDebug = SMTP::DEBUG_SERVER;
+
+              $this->phpMail->Debugoutput = function($str, $level) {
+                $filename = $this->fileError;
+                $data = date('Y-m-d H:i:s') . "\t" . "\t$level\t$str\n";
+                $flags =  FILE_APPEND | LOCK_EX;
+
+                file_put_contents($filename, $data, $flags);
+                };
             }
 
             $this->phpMail->IsSMTP();
@@ -95,13 +101,15 @@
               }
             }
           } catch (Exception $e) {
-            echo CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]);
+            file_put_contents($filename_log, gmdate('Y-m-d H:i:s'). "\n$e->errorMessage\n", FILE_APPEND | LOCK_EX);
+            $error = true;
           }
         } else {
           try {
             $this->phpMail->isSendmail();
           } catch (Exception $e) {
-            echo CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]);
+            file_put_contents($filename_log, gmdate('Y-m-d H:i:s'). "\n$e->errorMessage\n", FILE_APPEND | LOCK_EX);
+            $error = true;
           }
         }
 

@@ -1,0 +1,15 @@
+
+===================================
+Step 1 : Update your Db by the sql below
+
+
+#insert in your phpmyAdmin this request in function of your language
+
+#All language
+INSERT INTO `clic_administrator_menu` VALUES(784, 'index.php?A&Tools\\EditLogError&LogErrorPhpMailer', 664, 0, 1, '', 1, NULL, 1);
+
+---------------------------
+#English
+INSERT INTO `clic_administrator_menu_description` VALUES(784, 'Errors phpMailer Log', 1);
+#french
+INSERT INTO `clic_administrator_menu_description` VALUES(784, 'Erreurs Log phpMailer', 2);

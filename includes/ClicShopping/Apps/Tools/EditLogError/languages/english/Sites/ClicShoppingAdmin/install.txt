@@ -1,1 +1,2 @@
-title_menu = Application error
+title_menu = Application errors
+title_menu_phpmailer = Phpmailer Errors

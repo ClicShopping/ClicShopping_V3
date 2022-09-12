@@ -14,7 +14,7 @@
   use ClicShopping\OM\DateTime;
   use ClicShopping\OM\ErrorHandler;
 
-  class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
+  class DeleteAllPhpMailer extends \ClicShopping\OM\PagesActionsAbstract
   {
     public function execute()
     {
@@ -25,10 +25,10 @@
 
       $files = [];
 
-      foreach (glob(ErrorHandler::getDirectory() . 'errors-*.txt') as $f) {
+      foreach (glob(ErrorHandler::getDirectory() . 'phpmail_error-*.txt') as $f) {
         $key = basename($f, '.txt');
 
-        if (preg_match('/^errors-([0-9]{4})([0-9]{2})([0-9]{2})$/', $key, $matches)) {
+        if (preg_match('/^phpmail_error-([0-9]{4})([0-9]{2})([0-9]{2})$/', $key, $matches)) {
           $files[$key] = [
             'path' => $f,
             'key' => $key,

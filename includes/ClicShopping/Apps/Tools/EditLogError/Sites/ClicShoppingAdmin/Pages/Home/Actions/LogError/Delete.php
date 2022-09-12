@@ -8,7 +8,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Tools\EditLogError\Sites\ClicShoppingAdmin\Pages\Home\Actions\LogError;
 
   use ClicShopping\OM\Registry;
@@ -20,7 +19,6 @@
   {
     public function execute()
     {
-
       $CLICSHOPPING_EditLogError = Registry::get('EditLogError');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
