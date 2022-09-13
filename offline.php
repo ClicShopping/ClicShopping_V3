@@ -1,37 +1,36 @@
-<!--
-  ~
-  ~  @copyright 2008 - https://www.clicshopping.org
-  ~  @Brand : ClicShopping(Tm) at Inpi all right Reserved
-  ~  @Licence GPL 2 & MIT
-  ~  @licence MIT - Portion of osCommerce 2.4
-  ~  @Info : https://www.clicshopping.org/forum/trademark/
-  ~
-  -->
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Offline</title>
+  <meta name="description" content="Offline">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="error_documents/css/base.css">
+  <link rel="stylesheet" href="error_documents/css/main.css">
+  <link rel="shortcut icon" href="images/favicon.png">
+</head>
+<body>
 
-<html dir="ltr" lang="fr">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <title>Site offline</title>
-  </head>
-  <body width="0" height="0" topmargin="0" leftmargin="0" bgcolor="#f0edec">
-    <div style="text-align:center; padding-top:150px;">
-      <img src="sources/images/logos/others/offline_logo.png" border="0" vspace="23" alt="Off line">
-      <div class="jumbotron">
-        <div style="text-align:center; padding-top:20px;">
-          <p>This website is temporarily offline for maintenance.</p>
-          <p> We apologize for this inconvenience but we come back very quikly </p>
-          <p>to achieve an improvement in our services.</p>
-          <p>&nbsp;</p>
-          <p> Regards,<br /> <br />
-            The sales team.
-          </p>
-        </div>
-      </div>
+<div id="content-wrap">
+  <main class="row">
+    <div id="main-content" class="twelve columns">
+      <br/>
+      <h1>We apologize for this drawback. We will be back very quickly</h1>
+      <p>&nbsp;</p>
+      <p>Regards,<br /> <br />
+        The team.
+      </p>
+      <br/><br/>
+      <hr>
     </div>
-  </body>
-  <!-- JavaScript Bundle with Popper -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </main>
+
+</div>
+<div id="preloader">
+  <div id="loader">
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
+<script src="error_documents/js/main.js"></script>
+</body>
 </html>

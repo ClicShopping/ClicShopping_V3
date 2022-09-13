@@ -1,6 +1,7 @@
 3.334
 add phpmailer error
 uppdate error_documents directory
+add ip restriction management
 
 --------------------
 3.333

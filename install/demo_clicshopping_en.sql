@@ -192,6 +192,8 @@ INSERT INTO administrator_menu VALUES(781, 'index.php?A&Configuration\\Modules&M
 INSERT INTO administrator_menu VALUES(782, '', 163, 0, 0, '', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(783, 'https://github.com/ClicShopping/ClicShopping_V3/wiki', 782, 0, 0, '', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(784, 'index.php?A&Tools\\EditLogError&LogErrorPhpMailer', 664, 0, 1, 'log.png', 1, 'app_tools_php_mailer_edit_log_error', 1);
+INSERT INTO administrator_menu VALUES(785, 'index.php?A&Tools\SecurityCheck&IpRestriction', 178, 1, 1, 'cybermarketing.gif', 1, NULL, 1);
+
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
 INSERT INTO administrator_menu_description VALUES(0, '', 2);
@@ -524,6 +526,9 @@ INSERT INTO administrator_menu_description VALUES(782, 'Technical documents', 1)
 INSERT INTO administrator_menu_description VALUES(782, 'Documents Techniques', 2);
 INSERT INTO administrator_menu_description VALUES(784, 'PhpMailer Log errors', 1);
 INSERT INTO administrator_menu_description VALUES(784, 'Erreurs Log phpMailer', 2);
+INSERT INTO administrator_menu_description VALUES(785, 'Ip Restrictions', 1);
+INSERT INTO administrator_menu_description VALUES(785, 'Restrictions IP', 2);
+
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', NULL, NULL, NULL, '2018-07-26 11:47:52', NULL, 1, 0, 99, 'Logo', NULL);
 INSERT INTO banners VALUES(2, 'Hotline', '', '', 'Default_multi_template_banner', '_self', '<div class=\"alert alert-success\">Hotline :\r\n+1 800 55 55 55</div>', 0, NULL, NULL, '2018-11-23 21:52:02', NULL, 1, 0, 0, 'Hotline', NULL);

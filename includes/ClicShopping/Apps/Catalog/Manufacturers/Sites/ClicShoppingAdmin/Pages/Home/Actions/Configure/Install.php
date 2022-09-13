@@ -11,7 +11,6 @@
   namespace ClicShopping\Apps\Catalog\Manufacturers\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
 
   use ClicShopping\OM\Registry;
-
   use ClicShopping\OM\Cache;
 
   class Install extends \ClicShopping\OM\PagesActionsAbstract
@@ -117,10 +116,6 @@
 
           $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
         }
-
-
-
-
 
         Cache::clear('menu-administrator');
       }

@@ -1,0 +1,10 @@
+id int not_null auto_increment
+ip_restriction varchar(64) not null
+ip_comment varchar(255) null default null
+ip_status int(1) not null default 0
+--
+primary id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

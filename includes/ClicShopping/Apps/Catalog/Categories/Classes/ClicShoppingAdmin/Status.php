@@ -42,7 +42,8 @@
         $data = ['id' => $categories_id];
 
         foreach (array_merge(array($data['id']), $CLICSHOPPING_CategoryTree->getChildren($data['id'])) as $c) {
-          $sql_array = ['status' => 1,
+          $sql_array = [
+            'status' => 1,
             'last_modified' => 'now()'
           ];
 

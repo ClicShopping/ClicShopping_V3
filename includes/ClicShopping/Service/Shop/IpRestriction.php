@@ -12,31 +12,30 @@
 
   use ClicShopping\OM\CLICSHOPPING;
 
-  class StoreOffline implements \ClicShopping\OM\ServiceInterface
+  use ClicShopping\Apps\Tools\SecurityCheck\Classes\IpRestriction as restriction;
+
+  class IpRestriction implements \ClicShopping\OM\ServiceInterface
   {
+    /**
+     * @return bool
+     */
     public static function start(): bool
     {
-      if (STORE_OFFLINE == 'true') {
-        $allowed_ip = false;
-        $ips = explode(',', STORE_OFFLINE_ALLOW);
+      $ip_restriction = restriction::CheckAllIpRestriction();
 
-        foreach ($ips as $ip) {
-          if (trim($ip) === $_SERVER['REMOTE_ADDR']) {
-            $allowed_ip = true;
-            break;
-          }
-        }
-
-        if ($allowed_ip === false) {
-          CLICSHOPPING::redirect('offline.php');
-        }
+      if ($ip_restriction === true) {
+        CLICSHOPPING::redirect('offline.php');
       }
 
       return true;
     }
 
+    /**
+     * @return bool
+     */
     public static function stop(): bool
     {
       return true;
     }
   }
+
