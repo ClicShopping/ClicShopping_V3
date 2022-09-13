@@ -30,10 +30,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/cybermarketing.gif', $CLICSHOPPING_SecurityCheck->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo $CLICSHOPPING_SecurityCheck->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
-             <?php
-               echo HTML::button($CLICSHOPPING_SecurityCheck->getDef('button_reset'), null, $CLICSHOPPING_SecurityCheck->link('SecurityCheck'), 'danger') . ' ';
-               echo HTML::button($CLICSHOPPING_SecurityCheck->getDef('button_new'), null, $CLICSHOPPING_SecurityCheck->link('EditIpRestriction'), 'success');
-             ?>
+             <?php  echo HTML::button($CLICSHOPPING_SecurityCheck->getDef('button_new'), null, $CLICSHOPPING_SecurityCheck->link('EditIpRestriction'), 'success'); ?>
            </span>
         </div>
         </div>

@@ -22,6 +22,7 @@ button_security_check = Vérification sécurité
 button_reset = Reset
 button_update = Mettre à jour
 button_reload = Ré-iniatiliser
+button_new = Nouvelle Adresse IP
 
 dialog_uninstall_title = Désinstaller
 dialog_uninstall_body = Souhaitez-vous installer cette App ?
