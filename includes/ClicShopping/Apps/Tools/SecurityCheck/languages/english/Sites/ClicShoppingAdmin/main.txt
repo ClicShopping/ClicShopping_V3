@@ -36,3 +36,13 @@ alert_cfg_saved_success = Configuration parameters have been successfully saved.
 table_heading_title = Title
 table_heading_info = Info
 table_heading_module = Modules
+
+table_heading_ip = Ip restrictions
+table_heading_comment = Comments
+table_heading_status = Status
+table_heading_action = Action
+
+text_ip_restriction = Ip restriction
+text_ip_comment = Comment
+
+tab_general = General
