@@ -15,6 +15,7 @@
   use ClicShopping\OM\FileSystem;
   use ClicShopping\OM\Cache;
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTTP;
 
   use ClicShopping\Sites\ClicShoppingAdmin\ModuleDownload;
 
@@ -73,6 +74,7 @@
     private function getGithubCoreRepo()
     {
       $url = $this->githubApi . '/' . $this->githubRepo . '/' . $this->coreName . '/' . $this->githubRepoClicShoppingCore;
+
       return $url;
     }
 
@@ -94,20 +96,23 @@
      */
     public function getJsonCoreInformation()
     {
-      $VersionCache = new Cache('clicshopping_core_information');
+      $versionCache = new Cache('clicshopping_core_information');
 
-      if ($VersionCache->exists(30) !== false) {
-        $result = $VersionCache->get();
+      if ($versionCache->exists(30) !== false) {
+        $result = $versionCache->get();
       } else {
-        if (is_file($this->getGithubCoreRepo() . '/contents/shop/includes/ClicShopping/version.json?ref=master')) {
-          $json = @file_get_contents($this->getGithubCoreRepo() . '/contents/shop/includes/ClicShopping/version.json?ref=master', true, $this->context);
+        $response = HTTP::getResponse([
+          'url' => $this->getGithubCoreRepo() . '/contents/includes/ClicShopping/version.json?ref=master'
+        ]);
+
+         if ($response !== false) {
+          $json = @file_get_contents($this->getGithubCoreRepo() . '/contents/includes/ClicShopping/version.json?ref=master', true, $this->context);
 
           $url = json_decode($json);
-
           $url_download = @file_get_contents($url->download_url, true, $this->setContext()); //content of readme.
           $data = json_decode($url_download);
 
-          $result = $VersionCache->save($data);
+          $result = $versionCache->save($data);
         } else {
           $result = false;
         }

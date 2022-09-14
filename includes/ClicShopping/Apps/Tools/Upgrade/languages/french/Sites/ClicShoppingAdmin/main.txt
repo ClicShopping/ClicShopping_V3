@@ -57,8 +57,13 @@ text_step_upgrade = <p><strong>Procédure de mise à jour :</strong></p>
 text_warning_upgrade = <p><strong>Le process va commencer, veuillez attendre un moment. Cette page sera mise à jour</strong></p>
 
 text_upgrade_version = <p>- <strong>Votre version de ClicShopping n'est pas à jour</strong>. votre version actuelle :</p>
-
+text_check_latest_release = Vérification des versions utilisées
 text_upgrade_site = Toutes les applications sont disponibles en consultant ces addresses (veuillez prendre note que cette espace est expérimentale et il peut y avoir des erreurs :
+text_current_version = Version actuelle
+text_latest_version = Dernière version
+text_latest_release_date = Date dernière version
+text_changelog = Changements /Informations
+text_uptodate = Vous êtes à jour.
 
 text_upgrade_new_version = La nouvelle version est :
 text_reload = re-test

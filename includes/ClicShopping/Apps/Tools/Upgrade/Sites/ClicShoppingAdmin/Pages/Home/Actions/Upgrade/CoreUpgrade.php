@@ -34,7 +34,7 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Github = new Github();
 
-      if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Sites/Work/OnlineUpdates')) {
+      if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Sites/Work/Temp')) {
         $CLICSHOPPING_Github->UpgradeClicShoppingCore();
         $CLICSHOPPING_MessageStack->add($this->app->getDef('success_core_installed'), 'success');
       } else {

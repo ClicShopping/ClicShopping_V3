@@ -39,6 +39,7 @@ alert_cfg_saved_success = Configuration parameters have been successfully saved.
 
 title_help = Help
 button_manual = Manual install
+button_automatic_install = Automatic install
 text_local_version = Local version :
 text_server_version = Server version :
 text_up_to_date =
@@ -57,9 +58,13 @@ text_step_upgrade = <p><strong>Upgrade process :</strong></p>
 
 text_warning_upgrade = <p><strong>The process has began, please wait a moment. This page will be updated</strong></p>
 
-text_upgrade_version =
-<p>Your ClicShopping version <strong>is not up to date</strong>. Your current version :
-
+text_upgrade_version = <p>Your ClicShopping version <strong>is not up to date</strong>. Your current version :
+text_check_latest_release = Check lastest release used
+text_current_version = Current version
+text_latest_version = Latest version
+text_latest_release_date = Latest release date
+text_changelog = Changelog
+text_uptodate = You are up to date.
 text_upgrade_site = All applications are available at theses address :<br />
 
 text_upgrade_new_version = The new version is :

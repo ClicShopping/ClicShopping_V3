@@ -30,6 +30,15 @@
   } else {
     $template_directory = '';
   }
+
+  $check_new_version = false;
+  $core_online_info = $CLICSHOPPING_Github->getJsonCoreInformation();
+
+  if (\is_object($core_online_info) && $core_online_info->version) {
+    if ($current_version < $core_online_info->version) {
+      $check_new_version = true;
+    }
+  }
 ?>
 <div class="contentBody">
   <div class="row">
@@ -74,71 +83,93 @@
     </div>
   </div>
   <div class="separator"></div>
-  <div class="alert alert-info" role="alert">
-    <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Upgrade->getDef('title_help') . '"></i></h4>' . $CLICSHOPPING_Upgrade->getDef('title_help') ?></div>
-    <div class="separator"></div>
-    <?php
-    $new_version = false;
-    $core_online_info = $CLICSHOPPING_Github->getJsonCoreInformation();
 
-    if (\is_object($core_online_info) && $core_online_info->version) {
-      if ($current_version < $core_online_info->version) {
-        $new_version = true;
-      }
-    }
-
-    if ($new_version === true) {
-?>
-    <div class="row">
-      <span class="col-md-12 text-end">
-<?php
-  echo HTML::form('reset', $CLICSHOPPING_Upgrade->link('CoreReset'));
-  echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset_cache_core'), null, null, 'danger', null, 'sm');
-  echo '</form>';
-?>
-      </span>
+  <div class="card">
+    <div class="card-header">
+      <h4><?php echo $CLICSHOPPING_Upgrade->getDef('text_check_latest_release'); ?></h4>
     </div>
-    <div class="row">
-      <div
-        class="col-md-12"><?php echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_version') . $current_version; ?></div>
-      <div class="separator"></div>
-<?php
-      if ($current_version < $core_online_info->version) {
-?>
-        <div class="col-md-12" style="color: #0000CC;">
-<?php
-              echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_new_version') . ' ' . $core_online_info->version . '<br />';
-              echo 'Date : ' . $core_online_info->date . '<br />';
-              echo 'Description : ' . $core_online_info->description . '<br />';
-              echo 'Github : <a href="https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('test_download') . '</a><br />';
-?>
-        </div>
-<?php
-      } else {
-?>
-      <div class="col-md-12">
-        <span class="col-md-1"><?php echo HTML::link($CLICSHOPPING_Upgrade->link('Upgrade'), HTML::button($CLICSHOPPING_Upgrade->getDef('test_download'), null, null, 'warning', null, 'sm')) . ' '; ?></span>
-        <span class="col-md-11"><?php echo '<a href="https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip" target="_blank" rel="nofollow">' . HTML::button('ClicShopping', null, null, 'primary', null, 'sm') . '</a>'; ?></span>
-<?php
-      }
-?>
-        <div class="separator"></div>
-        <div>
-<?php
-        echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_site');
-        echo '-  <a href="https://github.com/ClicShopping/ClicShopping_V3/" target="_blank" rel="noreferrer">ClicShopping</a><br />';
-        echo '-  <a href="https://github.com/ClicShoppingOfficialModulesV3" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_official') . '<br />';
-        echo '- <a href="https://github.com/ClicShoppingV3Community" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_community') . '<br />';
-?>
-        </div>
-<?php
-      } else {
-?>
-          <div class="row">
-            <span class="col-md-12"><?php echo $CLICSHOPPING_Upgrade->getDef('text_up_to_date') . CLICSHOPPING::getVersion(); ?></span>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body" style="height:10rem;">
+              <h5 class="card-title"><i class="bi bi-clock-history"></i> <?php echo $CLICSHOPPING_Upgrade->getDef('text_current_version'); ?></h5>
+              <p class="card-text">
+                <h4>
+                  <?php echo $current_version; ?>
+                </h4>
+              </p>
+            </div>
           </div>
-<?php
-      }
-?>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body" style="height:10rem;">
+              <h5 class="card-title"><i class="bi bi-git"></i> <?php echo $CLICSHOPPING_Upgrade->getDef('text_latest_version'); ?></h5>
+              <p class="card-text">
+                <h4>
+                <?php
+                  if ($check_new_version === true) {
+                ?>
+                 <div class="row">
+                   <div class="col-md-12 text-start"><?php echo $core_online_info->version; ?></div>
+                   <div class="col-md-12 text-center">
+                     <?php //echo HTML::link($CLICSHOPPING_Upgrade->link('CoreUpgrade'), HTML::button($CLICSHOPPING_Upgrade->getDef('button_automatic_install'), null, null, 'danger', null, 'sm')); ?>
+                     <?php echo '<a href="https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip" target="_blank" rel="nofollow">' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_manual'), null, null, 'primary', null, 'sm') . '</a>'; ?>
+                   </div>
+                 </div>
+                <?php
+                  } else {
+                    echo $CLICSHOPPING_Upgrade->getDef('text_uptodate');
+                  }
+                ?>
+                </h4>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body" style="height:10rem;">
+              <h5 class="card-title"><i class="bi bi-calendar2-check"></i> <?php echo $CLICSHOPPING_Upgrade->getDef('text_latest_release_date'); ?></h5>
+              <p class="card-text">
+                <h4>
+                <?php
+                  if ($check_new_version === true) {
+                    echo $core_online_info->date;
+                  }
+                ?>
+              </h4>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="separator"></div>
+  <div class="card">
+    <div class="card-header">
+      <h5><i class="bi bi-file-diff"></i> <?php echo $CLICSHOPPING_Upgrade->getDef('text_changelog'); ?></h5>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <?php
+          if ($check_new_version === true) {
+            echo $core_online_info->description;
+          }
+        ?>
+      </p>
+    </div>
+  </div>
+  <div class="separator"></div>
+  <div class="alert alert-info" role="alert">
+      <?php
+      echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Upgrade->getDef('title_help') . '"></i></h4>' . $CLICSHOPPING_Upgrade->getDef('title_help') . '<br />';
+      echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_site') . '<br />';
+      echo '- <a href=https://github.com/ClicShopping/ClicShopping_V3/releases" target="_blank" rel="noreferrer">ClicShopping Release</a><br />';
+      echo '- <a href="https://github.com/ClicShoppingOfficialModulesV3" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_official') . '</a><br />';
+      echo '- <a href="https://github.com/ClicShoppingV3Community" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_community') . '</a><br />';
+      ?>
+  </div>
+</div>

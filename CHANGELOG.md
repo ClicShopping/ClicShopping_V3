@@ -2,6 +2,10 @@
 add phpmailer error
 uppdate error_documents directory
 add ip restriction management
+fix upgrade check and app redesign
+
+
+
 
 --------------------
 3.333
