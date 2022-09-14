@@ -18,39 +18,24 @@
 
     public function __construct()
     {
-      $this->app = Registry::get('Suppliers');
+      $this->app = Registry::get('SecurityCheck');
     }
 
     public function execute()
     {
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+
       if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
           $Qdelete = $this->app->db->prepare('delete
-                                              from :table_suppliers
-                                              where suppliers_id = :suppliers_id
+                                              from :table_ip_restriction
+                                              where id = :id
                                             ');
-          $Qdelete->bindInt(':suppliers_id', $id);
+          $Qdelete->bindInt(':id', $id);
           $Qdelete->execute();
-
-          $Qdelete = $this->app->db->prepare('delete
-                                              from :table_suppliers_info
-                                              where suppliers_id = :suppliers_id
-                                            ');
-          $Qdelete->bindInt(':suppliers_id', $id);
-          $Qdelete->execute();
-
-          $Qupdate = $this->app->db->prepare('update :table_products
-                                              set suppliers_id = :suppliers_id,
-                                                  products_status = 0
-                                              where suppliers_id = :suppliers_id1
-                                            ');
-          $Qupdate->bindInt(':suppliers_id', '');
-          $Qupdate->bindInt(':suppliers_id1', $id);
-
-          $Qupdate->execute();
         }
       }
 
-      $this->app->redirect('Suppliers');
+      $this->app->redirect('IpRestriction&page=' . $page);
     }
   }

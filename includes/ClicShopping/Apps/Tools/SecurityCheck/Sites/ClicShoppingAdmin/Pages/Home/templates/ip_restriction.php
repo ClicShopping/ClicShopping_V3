@@ -42,7 +42,7 @@
   <!-- //                                             LISTING DES COUPS DE COEUR                                             -->
   <!-- //################################################################################################################ -->
   <?php
-    echo HTML::form('delete_all', $CLICSHOPPING_SecurityCheck->link('Favorites&Favorites&DeleteAll&page=' . $page));
+    echo HTML::form('delete_all', $CLICSHOPPING_SecurityCheck->link('IpRestriction&DeleteAll&page=' . $page));
   ?>
 
   <div id="toolbar" class="float-end">
@@ -67,6 +67,7 @@
       <thead class="dataTableHeadingRow">
         <tr>
           <th data-checkbox="true" data-field="state"></th>
+          <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_SecurityCheck->getDef('id'); ?></th>
           <th data-field="ip" data-sortable="true"><?php echo $CLICSHOPPING_SecurityCheck->getDef('table_heading_ip'); ?></th>
           <th data-field="comment" data-switchable="false""><?php echo $CLICSHOPPING_SecurityCheck->getDef('table_heading_comment'); ?></th>
           <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_SecurityCheck->getDef('table_heading_status'); ?></th>
@@ -94,6 +95,7 @@
       ?>
       <tr>
         <td></td>
+        <th><?php echo $QIpRestriction->valueInt('id'); ?></th>
         <th><?php echo $QIpRestriction->value('ip_restriction'); ?></th>
         <td><?php echo $QIpRestriction->value('ip_comment'); ?></td>
         <td>
