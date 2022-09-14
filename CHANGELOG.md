@@ -3,7 +3,7 @@ add phpmailer error
 uppdate error_documents directory
 add ip restriction management
 fix upgrade check and app redesign
-
+add gdpr inside customer table
 
 
 
