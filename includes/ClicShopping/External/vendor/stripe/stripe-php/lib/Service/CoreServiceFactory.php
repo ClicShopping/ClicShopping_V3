@@ -11,6 +11,7 @@ namespace Stripe\Service;
  * @property AccountService $accounts
  * @property ApplePayDomainService $applePayDomains
  * @property ApplicationFeeService $applicationFees
+ * @property Apps\AppsServiceFactory $apps
  * @property BalanceService $balance
  * @property BalanceTransactionService $balanceTransactions
  * @property BillingPortal\BillingPortalServiceFactory $billingPortal
@@ -33,7 +34,6 @@ namespace Stripe\Service;
  * @property Issuing\IssuingServiceFactory $issuing
  * @property MandateService $mandates
  * @property OAuthService $oauth
- * @property OrderReturnService $orderReturns
  * @property OrderService $orders
  * @property PaymentIntentService $paymentIntents
  * @property PaymentLinkService $paymentLinks
@@ -64,6 +64,7 @@ namespace Stripe\Service;
  * @property TokenService $tokens
  * @property TopupService $topups
  * @property TransferService $transfers
+ * @property Treasury\TreasuryServiceFactory $treasury
  * @property WebhookEndpointService $webhookEndpoints
  */
 class CoreServiceFactory extends \Stripe\Service\AbstractServiceFactory
@@ -76,6 +77,7 @@ class CoreServiceFactory extends \Stripe\Service\AbstractServiceFactory
         'accounts' => AccountService::class,
         'applePayDomains' => ApplePayDomainService::class,
         'applicationFees' => ApplicationFeeService::class,
+        'apps' => Apps\AppsServiceFactory::class,
         'balance' => BalanceService::class,
         'balanceTransactions' => BalanceTransactionService::class,
         'billingPortal' => BillingPortal\BillingPortalServiceFactory::class,
@@ -98,7 +100,6 @@ class CoreServiceFactory extends \Stripe\Service\AbstractServiceFactory
         'issuing' => Issuing\IssuingServiceFactory::class,
         'mandates' => MandateService::class,
         'oauth' => OAuthService::class,
-        'orderReturns' => OrderReturnService::class,
         'orders' => OrderService::class,
         'paymentIntents' => PaymentIntentService::class,
         'paymentLinks' => PaymentLinkService::class,
@@ -129,6 +130,7 @@ class CoreServiceFactory extends \Stripe\Service\AbstractServiceFactory
         'tokens' => TokenService::class,
         'topups' => TopupService::class,
         'transfers' => TransferService::class,
+        'treasury' => Treasury\TreasuryServiceFactory::class,
         'webhookEndpoints' => WebhookEndpointService::class,
     ];
 

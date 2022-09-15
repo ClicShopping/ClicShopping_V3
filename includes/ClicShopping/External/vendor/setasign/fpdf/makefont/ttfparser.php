@@ -2,8 +2,8 @@
 /*******************************************************************************
 * Class to parse and subset TrueType fonts                                     *
 *                                                                              *
-* Version: 1.1                                                                 *
-* Date:    2015-11-29                                                          *
+* Version: 1.11                                                                *
+* Date:    2021-04-18                                                          *
 * Author:  Olivier PLATHEY                                                     *
 *******************************************************************************/
 
@@ -75,7 +75,7 @@ class TTFParser
 			$tag = $this->Read(4);
 			$checkSum = $this->Read(4);
 			$offset = $this->ReadULong();
-			$length = $this->ReadULong(4);
+			$length = $this->ReadULong();
 			$this->tables[$tag] = array('offset'=>$offset, 'length'=>$length, 'checkSum'=>$checkSum);
 		}
 	}	
@@ -354,15 +354,7 @@ class TTFParser
 
 	function Subset($chars)
 	{
-/*		$chars = array_keys($this->chars);
-		$this->subsettedChars = $chars;
 		$this->subsettedGlyphs = array();
-		for($i=0;$i<$this->numGlyphs;$i++)
-		{
-			$this->subsettedGlyphs[] = $i;
-			$this->glyphs[$i]['ssid'] = $i;
-		}*/
-
 		$this->AddGlyph(0);
 		$this->subsettedChars = array();
 		foreach($chars as $char)
@@ -379,7 +371,7 @@ class TTFParser
 	{
 		if(!isset($this->glyphs[$id]['ssid']))
 		{
-			$this->glyphs[$id]['ssid'] = \count($this->subsettedGlyphs);
+			$this->glyphs[$id]['ssid'] = count($this->subsettedGlyphs);
 			$this->subsettedGlyphs[] = $id;
 			if(isset($this->glyphs[$id]['components']))
 			{
@@ -411,7 +403,7 @@ class TTFParser
 		sort($chars);
 		$segments = array();
 		$segment = array($chars[0], $chars[0]);
-		for($i=1;$i<\count($chars);$i++)
+		for($i=1;$i<count($chars);$i++)
 		{
 			if($chars[$i]>$segment[1]+1)
 			{
@@ -423,7 +415,7 @@ class TTFParser
 		}
 		$segments[] = $segment;
 		$segments[] = array(0xFFFF, 0xFFFF);
-		$segCount = \count($segments);
+		$segCount = count($segments);
 
 		// Build a Format 4 subtable
 		$startCount = array();
@@ -489,7 +481,7 @@ class TTFParser
 	function BuildHhea()
 	{
 		$this->LoadTable('hhea');
-		$numberOfHMetrics = \count($this->subsettedGlyphs);
+		$numberOfHMetrics = count($this->subsettedGlyphs);
 		$data = substr_replace($this->tables['hhea']['data'], pack('n',$numberOfHMetrics), 4+15*2, 2);
 		$this->SetTable('hhea', $data);
 	}
@@ -550,7 +542,7 @@ class TTFParser
 	function BuildMaxp()
 	{
 		$this->LoadTable('maxp');
-		$numGlyphs = \count($this->subsettedGlyphs);
+		$numGlyphs = count($this->subsettedGlyphs);
 		$data = substr_replace($this->tables['maxp']['data'], pack('n',$numGlyphs), 4, 2);
 		$this->SetTable('maxp', $data);
 	}
@@ -561,7 +553,7 @@ class TTFParser
 		if($this->glyphNames)
 		{
 			// Version 2.0
-			$numberOfGlyphs = \count($this->subsettedGlyphs);
+			$numberOfGlyphs = count($this->subsettedGlyphs);
 			$numNames = 0;
 			$names = '';
 			$data = $this->Read(2*4+2*2+5*4);
@@ -598,7 +590,7 @@ class TTFParser
 			if(isset($this->tables[$tag]))
 				$tags[] = $tag;
 		}
-		$numTables = \count($tags);
+		$numTables = count($tags);
 		$offset = 12 + 16*$numTables;
 		foreach($tags as $tag)
 		{
@@ -607,7 +599,6 @@ class TTFParser
 			$this->tables[$tag]['offset'] = $offset;
 			$offset += strlen($this->tables[$tag]['data']);
 		}
-//		$this->tables['head']['data'] = substr_replace($this->tables['head']['data'], "\x00\x00\x00\x00", 8, 4);
 
 		// Build offset table
 		$entrySelector = 0;

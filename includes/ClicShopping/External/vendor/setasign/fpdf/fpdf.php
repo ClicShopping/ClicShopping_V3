@@ -2,12 +2,12 @@
 /*******************************************************************************
 * FPDF                                                                         *
 *                                                                              *
-* Version: 1.81                                                                *
-* Date:    2015-12-20                                                          *
+* Version: 1.84                                                                *
+* Date:    2021-08-28                                                          *
 * Author:  Olivier PLATHEY                                                     *
 *******************************************************************************/
 
-define('FPDF_VERSION','1.81');
+define('FPDF_VERSION','1.84');
 
 class FPDF
 {
@@ -73,6 +73,8 @@ protected $PDFVersion;         // PDF version number
 
 function __construct($orientation='P', $unit='mm', $size='A4')
 {
+	// Some checks
+	$this->_dochecks();
 	// Initialization of properties
 	$this->state = 0;
 	$this->page = 0;
@@ -398,7 +400,7 @@ function SetTextColor($r, $g=null, $b=null)
 {
 	// Set color for text
 	if(($r==0 && $g==0 && $b==0) || $g===null)
-		@$this->TextColor = sprintf('%.3F g',$r/255);
+		$this->TextColor = sprintf('%.3F g',$r/255);
 	else
 		$this->TextColor = sprintf('%.3F %.3F %.3F rg',$r/255,$g/255,$b/255);
 	$this->ColorFlag = ($this->FillColor!=$this->TextColor);
@@ -455,7 +457,7 @@ function AddFont($family, $style='', $file='')
 	if(isset($this->fonts[$fontkey]))
 		return;
 	$info = $this->_loadfont($file);
-	$info['i'] = \count($this->fonts)+1;
+	$info['i'] = count($this->fonts)+1;
 	if(!empty($info['file']))
 	{
 		// Embedded font
@@ -531,7 +533,7 @@ function SetFontSize($size)
 function AddLink()
 {
 	// Create a new internal link
-	$n = \count($this->links)+1;
+	$n = count($this->links)+1;
 	$this->links[$n] = array(0, 0);
 	return $n;
 }
@@ -881,7 +883,7 @@ function Image($file, $x=null, $y=null, $w=0, $h=0, $type='', $link='')
 		if(!method_exists($this,$mtd))
 			$this->Error('Unsupported image type: '.$type);
 		$info = $this->$mtd($file);
-		$info['i'] = \count($this->images)+1;
+		$info['i'] = count($this->images)+1;
 		$this->images[$file] = $info;
 	}
 	else
@@ -1032,6 +1034,13 @@ function Output($dest='', $name='', $isUTF8=false)
 *                              Protected methods                               *
 *******************************************************************************/
 
+protected function _dochecks()
+{
+	// Check mbstring overloading
+	if(ini_get('mbstring.func_overload') & 2)
+		$this->Error('mbstring overloading must be disabled');
+}
+
 protected function _checkoutput()
 {
 	if(PHP_SAPI!='cli')
@@ -1075,6 +1084,7 @@ protected function _beginpage($orientation, $size, $rotation)
 {
 	$this->page++;
 	$this->pages[$this->page] = '';
+	$this->PageLinks[$this->page] = array();
 	$this->state = 2;
 	$this->x = $this->lMargin;
 	$this->y = $this->tMargin;
@@ -1492,27 +1502,13 @@ protected function _putpage($n)
 	if(isset($this->PageInfo[$n]['rotation']))
 		$this->_put('/Rotate '.$this->PageInfo[$n]['rotation']);
 	$this->_put('/Resources 2 0 R');
-	if(isset($this->PageLinks[$n]))
+	if(!empty($this->PageLinks[$n]))
 	{
-		// Links
-		$annots = '/Annots [';
+		$s = '/Annots [';
 		foreach($this->PageLinks[$n] as $pl)
-		{
-			$rect = sprintf('%.2F %.2F %.2F %.2F',$pl[0],$pl[1],$pl[0]+$pl[2],$pl[1]-$pl[3]);
-			$annots .= '<</Type /Annot /Subtype /Link /Rect ['.$rect.'] /Border [0 0 0] ';
-			if(is_string($pl[4]))
-				$annots .= '/A <</S /URI /URI '.$this->_textstring($pl[4]).'>>>>';
-			else
-			{
-				$l = $this->links[$pl[4]];
-				if(isset($this->PageInfo[$l[0]]['size']))
-					$h = $this->PageInfo[$l[0]]['size'][1];
-				else
-					$h = ($this->DefOrientation=='P') ? $this->DefPageSize[1]*$this->k : $this->DefPageSize[0]*$this->k;
-				$annots .= sprintf('/Dest [%d 0 R /XYZ 0 %.2F null]>>',$this->PageInfo[$l[0]]['n'],$h-$l[1]*$this->k);
-			}
-		}
-		$this->_put($annots.']');
+			$s .= $pl[5].' 0 R ';
+		$s .= ']';
+		$this->_put($s);
 	}
 	if($this->WithAlpha)
 		$this->_put('/Group <</Type /Group /S /Transparency /CS /DeviceRGB>>');
@@ -1522,22 +1518,50 @@ protected function _putpage($n)
 	if(!empty($this->AliasNbPages))
 		$this->pages[$n] = str_replace($this->AliasNbPages,$this->page,$this->pages[$n]);
 	$this->_putstreamobject($this->pages[$n]);
+	// Annotations
+	foreach($this->PageLinks[$n] as $pl)
+	{
+		$this->_newobj();
+		$rect = sprintf('%.2F %.2F %.2F %.2F',$pl[0],$pl[1],$pl[0]+$pl[2],$pl[1]-$pl[3]);
+		$s = '<</Type /Annot /Subtype /Link /Rect ['.$rect.'] /Border [0 0 0] ';
+		if(is_string($pl[4]))
+			$s .= '/A <</S /URI /URI '.$this->_textstring($pl[4]).'>>>>';
+		else
+		{
+			$l = $this->links[$pl[4]];
+			if(isset($this->PageInfo[$l[0]]['size']))
+				$h = $this->PageInfo[$l[0]]['size'][1];
+			else
+				$h = ($this->DefOrientation=='P') ? $this->DefPageSize[1]*$this->k : $this->DefPageSize[0]*$this->k;
+			$s .= sprintf('/Dest [%d 0 R /XYZ 0 %.2F null]>>',$this->PageInfo[$l[0]]['n'],$h-$l[1]*$this->k);
+		}
+		$this->_put($s);
+		$this->_put('endobj');
+	}
 }
 
 protected function _putpages()
 {
 	$nb = $this->page;
-	for($n=1;$n<=$nb;$n++)
-		$this->PageInfo[$n]['n'] = $this->n+1+2*($n-1);
-	for($n=1;$n<=$nb;$n++)
-		$this->_putpage($n);
+	$n = $this->n;
+	for($i=1;$i<=$nb;$i++)
+	{
+		$this->PageInfo[$i]['n'] = ++$n;
+		$n++;
+		foreach($this->PageLinks[$i] as &$pl)
+			$pl[5] = ++$n;
+		unset($pl);
+	}
+	for($i=1;$i<=$nb;$i++)
+		$this->_putpage($i);
 	// Pages root
 	$this->_newobj(1);
 	$this->_put('<</Type /Pages');
 	$kids = '/Kids [';
-	for($n=1;$n<=$nb;$n++)
-		$kids .= $this->PageInfo[$n]['n'].' 0 R ';
-	$this->_put($kids.']');
+	for($i=1;$i<=$nb;$i++)
+		$kids .= $this->PageInfo[$i]['n'].' 0 R ';
+	$kids .= ']';
+	$this->_put($kids);
 	$this->_put('/Count '.$nb);
 	if($this->DefOrientation=='P')
 	{
@@ -1756,7 +1780,7 @@ protected function _putimage(&$info)
 	if(isset($info['trns']) && is_array($info['trns']))
 	{
 		$trns = '';
-		for($i=0;$i<\count($info['trns']);$i++)
+		for($i=0;$i<count($info['trns']);$i++)
 			$trns .= $info['trns'][$i].' '.$info['trns'][$i].' ';
 		$this->_put('/Mask ['.$trns.']');
 	}

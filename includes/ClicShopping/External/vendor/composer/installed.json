@@ -886,20 +886,24 @@
         },
         {
             "name": "setasign/fpdf",
-            "version": "1.8.1",
-            "version_normalized": "1.8.1.0",
+            "version": "1.8.4",
+            "version_normalized": "1.8.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Setasign/FPDF.git",
-                "reference": "2c68c9e6c034ac3187d25968790139a73184cdb1"
+                "reference": "b0ddd9c5b98ced8230ef38534f6f3c17308a7974"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Setasign/FPDF/zipball/2c68c9e6c034ac3187d25968790139a73184cdb1",
-                "reference": "2c68c9e6c034ac3187d25968790139a73184cdb1",
+                "url": "https://api.github.com/repos/Setasign/FPDF/zipball/b0ddd9c5b98ced8230ef38534f6f3c17308a7974",
+                "reference": "b0ddd9c5b98ced8230ef38534f6f3c17308a7974",
                 "shasum": ""
             },
-            "time": "2016-01-01T17:47:15+00:00",
+            "require": {
+                "ext-gd": "*",
+                "ext-zlib": "*"
+            },
+            "time": "2021-08-30T07:50:06+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -909,7 +913,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "no usage restriction"
+                "MIT"
             ],
             "authors": [
                 {
@@ -924,21 +928,24 @@
                 "fpdf",
                 "pdf"
             ],
+            "support": {
+                "source": "https://github.com/Setasign/FPDF/tree/1.8.4"
+            },
             "install-path": "../setasign/fpdf"
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.128.0",
-            "version_normalized": "7.128.0.0",
+            "version": "v9.6.0",
+            "version_normalized": "9.6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "c704949c49b72985c76cc61063aa26fefbd2724e"
+                "reference": "7c43066015d03ad9c4458db683ecfe019ce225da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/c704949c49b72985c76cc61063aa26fefbd2724e",
-                "reference": "c704949c49b72985c76cc61063aa26fefbd2724e",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/7c43066015d03ad9c4458db683ecfe019ce225da",
+                "reference": "7c43066015d03ad9c4458db683ecfe019ce225da",
                 "shasum": ""
             },
             "require": {
@@ -949,11 +956,12 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "3.5.0",
+                "php-coveralls/php-coveralls": "^2.5",
                 "phpstan/phpstan": "^1.2",
                 "phpunit/phpunit": "^5.7 || ^9.0",
                 "squizlabs/php_codesniffer": "^3.3"
             },
-            "time": "2022-05-05T17:18:02+00:00",
+            "time": "2022-09-15T19:45:46+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -985,7 +993,7 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v7.128.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v9.6.0"
             },
             "install-path": "../stripe/stripe-php"
         },

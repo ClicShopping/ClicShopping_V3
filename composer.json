@@ -4,16 +4,16 @@
     },
     "license": ["(GPL-2.0-or-later or MIT)"],
     "require": {
-        "phpmailer/phpmailer": "^6.0",
-        "guzzlehttp/guzzle": "^7.4",
-        "setasign/fpdf": "1.8.1",
-        "phpxmlrpc/phpxmlrpc": "^4.0",
-        "stripe/stripe-php": "^7.23",
+        "phpmailer/phpmailer": "^6.6",
+        "guzzlehttp/guzzle": "^7.5",
+        "setasign/fpdf": "^1.8",
+        "phpxmlrpc/phpxmlrpc": "^4.8",
+        "stripe/stripe-php": "^9.6",
         "ext-json": "*",
         "mattketmo/email-checker": "^2.1",
         "daveearley/daves-email-validation-tool": "^1.2",
         "darkghosthunter/preloader": "^2.2",
-        "stymiee/email-validator": "^1.0"
+        "stymiee/email-validator": "^1.1"
     },
     "support": {
         "wiki": "https://github.com/ClicShopping/ClicShopping_V3/wiki",
