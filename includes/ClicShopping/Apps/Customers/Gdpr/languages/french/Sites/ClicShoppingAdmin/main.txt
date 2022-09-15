@@ -33,7 +33,7 @@ alert_module_install_success = Le module a été installée.
 alert_module_uninstall_success = Le module a été désinstallée.
 alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
 
-text_info = Les demandes de suppression du compte GDPR se traiteront après {{date_info}} des jours afin que toute détection de fraude, recharge ou remboursement puisse être traitée
+text_info = Les demandes de suppression du compte GDPR se traiteront après {{date_info}} jours afin que toute détection de fraude, recharge ou remboursement puisse être traitée
 
 table_heading_lastname = Nom
 table_heading_firstname = Prénom
