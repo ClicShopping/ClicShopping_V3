@@ -18,11 +18,6 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
-
-  // Permettre l'utilisation de l'approbation des comptes en mode B2B
-  if (\defined('B2C') && B2C == 'true') {
-    CLICSHOPPING::redirect();
-  }
 ?>
 <div class="contentBody">
   <div class="row">
@@ -59,7 +54,13 @@
   <div class="separator"></div>
   <div class="col-md-12 alert alert-warning" role="alert">
     <?php echo $CLICSHOPPING_Gdpr->getDef('text_info', ['date_info' => CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_DATE]); ?>
-    </div>
+  </div>
+  <div class="separator"></div>
+  <?php  echo HTML::form('delete_all', $CLICSHOPPING_Gdpr->link('Manufacturers&DeleteAll&page=' . $page)); ?>
+
+  <div id="toolbar" class="float-end">
+    <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Gdpr->getDef('button_delete'); ?></button>
+  </div>
   <div class="separator"></div>
   <table
     id="table"
@@ -70,10 +71,14 @@
     data-buttons-class="primary"
     data-show-toggle="true"
     data-show-columns="true"
+    data-select-item-name="selected[]"
+    data-click-to-select="true"
     data-mobile-responsive="true">
 
     <thead class="dataTableHeadingRow">
       <tr>
+        <th data-checkbox="true" data-field="state"></th>
+        <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Gdpr->getDef('id'); ?></th>
         <th data-field="lastname"><?php echo $CLICSHOPPING_Gdpr->getDef('table_heading_lastname'); ?></th>
         <th data-field="firstname"><?php echo $CLICSHOPPING_Gdpr->getDef('table_heading_firstname'); ?></th>
         <th data-field="company"><?php echo $CLICSHOPPING_Gdpr->getDef('table_heading_email'); ?></th>
@@ -143,6 +148,8 @@
         while ($Qcustomers->fetch()) {
         ?>
         <tr>
+          <td></td>
+          <td><?php echo $Qcustomers->valueInt('customers_id'); ?></td>
           <td scope="row"><?php echo $Qcustomers->value('customers_lastname'); ?></td>
           <td><?php echo $Qcustomers->value('customers_firstname'); ?></td>
           <td><?php echo $Qcustomers->value('customers_email_address'); ?></td>
@@ -151,8 +158,6 @@
             <div class="btn-group" role="group" aria-label="buttonGroup">
             <?php
               echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Edit&cID=' . $Qcustomers->valueInt('customers_id')), '<h4><i class="bi bi-person" title="' . $CLICSHOPPING_Gdpr->getDef('icon_edit_customer') . '"></i></h4>');
-              echo '&nbsp;';
-              echo HTML::link($CLICSHOPPING_Gdpr->link('Delete&cID=' . $Qcustomers->valueInt('customers_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Gdpr->getDef('icon_delete') . '"></i></h4>');
               echo '&nbsp;';
             ?>
             </div>
