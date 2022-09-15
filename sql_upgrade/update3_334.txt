@@ -6,9 +6,12 @@ Step 1 : Update your Db by the sql below
 #insert in your phpmyAdmin this request in function of your language
 
 #All language
-INSERT INTO `clic_administrator_menu` VALUES(784, 'index.php?A&Tools\\EditLogError&LogErrorPhpMailer', 664, 0, 1, '', 1, NULL, 1);
-INSERT INTO `clic_administrator_menu` VALUES(785, 'index.php?A&Tools\SecurityCheck&IpRestriction', 178, 1, 1, '', 1, NULL, 1);
+INSERT INTO `clic_administrator_menu` VALUES(789, 'index.php?A&Tools\\EditLogError&LogErrorPhpMailer', 664, 0, 1, 'log.png', 1, 'app_tools_php_mailer_edit_log_error', 1);
+INSERT INTO `clic_administrator_menu` VALUES(805, 'index.php?A&Tools\\SecurityCheck&IpRestriction', 178, 1, 1, 'cybermarketing.gif', 0, 'app_tools_security_check', 1);
+INSERT INTO `clic_administrator_menu` VALUES(806, 'index.php?A&Customers\\Gdpr&Gdpr', 4, 8, 1, 'gdpr.gif', 1, 'app_customers_gdpr', 1);
 
+
+ALTER TABLE `clic_customers` ADD `gdpr` TINYINT(1) NOT NULL DEFAULT '0' AFTER `customer_guest_account`;
 
 CREATE TABLE :table_ip_restriction(
   id int NOT NULL auto_increment,
@@ -23,8 +26,9 @@ CREATE TABLE :table_ip_restriction(
 #English
 INSERT INTO `clic_administrator_menu_description` VALUES(784, 'Errors phpMailer Log', 1);
 INSERT INTO `clic_administrator_menu_description` VALUES(785, 'Ip Restriction', 1);
-
+INSERT INTO `clic_administrator_menu_description` VALUES(806, 'Gdpr', 1);
 
 #french
 INSERT INTO `clic_administrator_menu_description` VALUES(784, 'Erreurs Log phpMailer', 2);
 INSERT INTO `clic_administrator_menu_description` VALUES(785, 'Restriction IP', 2);
+INSERT INTO `clic_administrator_menu_description` VALUES(806, 'Rgpd', 1);

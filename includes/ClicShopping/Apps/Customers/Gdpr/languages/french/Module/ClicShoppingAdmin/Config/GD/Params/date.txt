@@ -1,0 +1,2 @@
+cfg_gdpr_date_title = Délais de suppression de compte
+cfg_gdpr_date_description = Choisissez un nombre de jours qui affichera les comptes à supprimer

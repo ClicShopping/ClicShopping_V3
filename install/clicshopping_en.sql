@@ -188,10 +188,9 @@ INSERT INTO administrator_menu VALUES(778, 'index.php?A&Marketing\\Favorites&Fav
 INSERT INTO administrator_menu VALUES(779, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_favorites', 117, 1, 0, 'products_favorites.png', 0, 'app_marketing_favorites', 1);
 INSERT INTO administrator_menu VALUES(780, 'index.php?A&Marketing\\Featured&Featured', 5, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
 INSERT INTO administrator_menu VALUES(781, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_featured', 117, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
-INSERT INTO administrator_menu VALUES(782, '', 163, 0, 0, '', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(783, 'https://github.com/ClicShopping/ClicShopping_V3/wiki', 782, 0, 0, '', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(784, 'index.php?A&Tools\\EditLogError&LogErrorPhpMailer', 664, 0, 1, 'log.png', 1, 'app_tools_php_mailer_edit_log_error', 1);
-INSERT INTO administrator_menu VALUES(785, 'index.php?A&Tools\SecurityCheck&IpRestriction', 178, 1, 1, 'cybermarketing.gif', 1, NULL, 1);
+INSERT INTO administrator_menu VALUES(782, 'index.php?A&Tools\\EditLogError&LogErrorPhpMailer', 664, 0, 1, 'log.png', 1, 'app_tools_php_mailer_edit_log_error', 1);
+INSERT INTO administrator_menu VALUES(783, 'index.php?A&Tools\SecurityCheck&IpRestriction', 178, 1, 1, 'cybermarketing.gif', 1, 'app_tools_security_check', 1);
+INSERT INTO administrator_menu VALUES(784, 'index.php?A&Customers\\Gdpr&Gdpr', 4, 8, 1, 'gdpr.gif', 1, 'app_customers_gdpr', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -521,12 +520,12 @@ INSERT INTO administrator_menu_description VALUES(780, 'Featured products', 1);
 INSERT INTO administrator_menu_description VALUES(780, 'Produits sélectionnés', 2);
 INSERT INTO administrator_menu_description VALUES(781, 'Featured products', 1);
 INSERT INTO administrator_menu_description VALUES(781, 'Produits sélectionnés', 2);
-INSERT INTO administrator_menu_description VALUES(782, 'Technical documents', 1);
-INSERT INTO administrator_menu_description VALUES(782, 'Documents Techniques', 2);
-INSERT INTO administrator_menu_description VALUES(784, 'PhpMailer Log errors', 1);
-INSERT INTO administrator_menu_description VALUES(784, 'Erreurs Log phpMailer', 2);
-INSERT INTO administrator_menu_description VALUES(785, 'Ip Restrictions', 1);
-INSERT INTO administrator_menu_description VALUES(785, 'Restrictions IP', 2);
+INSERT INTO administrator_menu_description VALUES(782, 'PhpMailer Log errors', 1);
+INSERT INTO administrator_menu_description VALUES(782, 'Erreurs Log phpMailer', 2);
+INSERT INTO administrator_menu_description VALUES(783, 'Ip Restrictions', 1);
+INSERT INTO administrator_menu_description VALUES(783, 'Restrictions IP', 2);
+INSERT INTO administrator_menu_description VALUES(784, 'Gdpr', 1);
+INSERT INTO administrator_menu_description VALUES(784, 'Gdpr', 2);
 
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo', NULL);
