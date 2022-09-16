@@ -13,7 +13,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\Apps\Tools\SecurityCheck\Classes\IpRestriction;
 
-  class SetFlag extends \ClicShopping\OM\PagesActionsAbstract
+  class SetFlagAdmin extends \ClicShopping\OM\PagesActionsAbstract
   {
     protected mixed $app;
 
@@ -27,7 +27,7 @@
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       if (isset($_GET['cID'], $_GET['flag'])) {
-        IpRestriction::getIpRestrictionStatus($_GET['cID'], $_GET['flag']);
+        IpRestriction::getIpRestrictionAdminStatus($_GET['cID'], $_GET['flag']);
 
         $this->app->redirect('IpRestriction&page=' . $page . '&cID=' . (int)$_GET['cID']);
       } else {

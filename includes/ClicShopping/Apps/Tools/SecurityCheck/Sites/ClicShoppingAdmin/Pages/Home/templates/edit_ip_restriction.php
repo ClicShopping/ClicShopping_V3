@@ -66,7 +66,7 @@
     $QIpRestriction->bindInt(':id', $cID);
     $QIpRestriction->execute();
   ?>
-  <div id="manufacturersTabs" style="overflow: auto;">
+  <div id="IprestrcitionTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
         class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_SecurityCheck->getDef('tab_general') . '</a>'; ?></li>
@@ -82,7 +82,7 @@
         <div class="tab-pane active" id="tab1">
           <div class="col-md-12 mainTitle">
             <div
-              class="float-start"><?php echo $CLICSHOPPING_SecurityCheck->getDef('title_manufacturer_general'); ?></div>
+              class="float-start"><?php echo $CLICSHOPPING_SecurityCheck->getDef('title_iprestricton_general'); ?></div>
           </div>
           <div class="adminformTitle">
 

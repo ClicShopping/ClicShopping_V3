@@ -38,11 +38,15 @@ table_heading_info = Info
 table_heading_module = Modules
 
 table_heading_ip = Ip restrictions
-table_heading_comment = Comments
-table_heading_status = Status
+table_heading_comment = Commentaires
+table_heading_status = Statuts
+table_heading_status_shop = Statut catalogue
+table_heading_status_admin = Statut admin
 table_heading_action = Action
+table_heading_count = Tentative
 
-text_ip_restriction = Ip restriction
+title_iprestricton_general = Restriction Ip
+text_ip_restriction = Restriction Ip
 text_ip_comment = Comment
 
 tab_general = General

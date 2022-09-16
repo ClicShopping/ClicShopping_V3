@@ -1,0 +1,8 @@
+id int not_null auto_increment
+ip_remote varchar(64)
+--
+primary id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

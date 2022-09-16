@@ -27,11 +27,27 @@
 
       if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
+          $Qselect = $this->app->db->prepare('select ip_restriction
+                                              from :table_ip_restriction
+                                              where id = :id
+                                            ');
+          $Qselect->bindInt(':id', $id);
+          $Qselect->execute();
+
+          $delete_ip = $Qselect->value('ip_restriction');
+
           $Qdelete = $this->app->db->prepare('delete
                                               from :table_ip_restriction
                                               where id = :id
                                             ');
           $Qdelete->bindInt(':id', $id);
+          $Qdelete->execute();
+
+          $Qdelete = $this->app->db->prepare('delete
+                                              from :table_ip_restriction_stats
+                                              where ip_remote = :ip_remote
+                                            ');
+          $Qdelete->bindInt(':ip_remote', $delete_ip);
           $Qdelete->execute();
         }
       }

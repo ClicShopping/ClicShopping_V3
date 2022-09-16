@@ -8,7 +8,7 @@
    *
    */
 
-  namespace ClicShopping\Service\Shop;
+  namespace ClicShopping\Service\ClicShoppingAdmin;
 
   use ClicShopping\OM\CLICSHOPPING;
 
@@ -21,11 +21,11 @@
      */
     public static function start(): bool
     {
-      $ip_restriction = Reject::checkAllIpShopRestriction();
-      Reject::saveIpRestriction ();
+      $ip_restriction = Reject::checkAllIpAdminRestriction();
+      Reject::saveIpRestriction();
 
       if ($ip_restriction === true) {
-        CLICSHOPPING::redirect('offline.php');
+        CLICSHOPPING::redirect('../offline.php');
       }
 
       return true;

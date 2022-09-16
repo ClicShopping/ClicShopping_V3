@@ -132,7 +132,14 @@ CREATE TABLE :table_ip_restriction(
   id int NOT NULL auto_increment,
   ip_restriction varchar(64) NOT NULL,
   ip_comment varchar(255) NULL DEFAULT NULL,
-  ip_status int(1) NOT NULL DEFAULT 0,
+  ip_status_shop tinyint(1) default(0) NOT NULL,
+  ip_status_admin tinyint(0) default(0) NOT NULL,
+  PRIMARY KEY (id)
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE :table_ip_restriction_stats(
+  id int NOT NULL auto_increment,
+  ip_remote varchar(64) NOT NULL,
   PRIMARY KEY (id)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;

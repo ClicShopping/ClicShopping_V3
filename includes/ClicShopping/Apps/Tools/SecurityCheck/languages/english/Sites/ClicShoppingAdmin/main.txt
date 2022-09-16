@@ -41,8 +41,12 @@ table_heading_module = Modules
 table_heading_ip = Ip restrictions
 table_heading_comment = Comments
 table_heading_status = Status
+table_heading_status_shop = Shop Status
+table_heading_status_admin = Admin Status
 table_heading_action = Action
+table_heading_count = Attempt
 
+title_iprestricton_general = Ip restriction
 text_ip_restriction = Ip restriction
 text_ip_comment = Comment
 
