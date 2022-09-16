@@ -60,7 +60,7 @@
         $text_banner_heading = $this->app->getDef('module_header_tags_text_info_title', ['store_name' => STORE_NAME]);
         $text_reject = $this->app->getDef('module_header_tags_text_info_reject');
         $text_accept = $this->app->getDef('module_header_tags_text_info_accept');
-        $text_privacy = CLICSHOPPING::link(SHOP_CODE_URL_CONFIDENTIALITY);
+        $text_privacy = CLICSHOPPING::link(null, SHOP_CODE_URL_CONFIDENTIALITY, false, true);
 
         $footer_tag = '<!-- gdpr policies -->' . "\n";
         $footer_tag .= '<script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.1.7/src/glowCookies.min.js"></script>';
