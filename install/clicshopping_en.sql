@@ -189,7 +189,7 @@ INSERT INTO administrator_menu VALUES(779, 'index.php?A&Configuration\\Modules&M
 INSERT INTO administrator_menu VALUES(780, 'index.php?A&Marketing\\Featured&Featured', 5, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
 INSERT INTO administrator_menu VALUES(781, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_featured', 117, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
 INSERT INTO administrator_menu VALUES(782, 'index.php?A&Tools\\EditLogError&LogErrorPhpMailer', 664, 0, 1, 'log.png', 1, 'app_tools_php_mailer_edit_log_error', 1);
-INSERT INTO administrator_menu VALUES(783, 'index.php?A&Tools\SecurityCheck&IpRestriction', 178, 1, 1, 'cybermarketing.gif', 1, 'app_tools_security_check', 1);
+INSERT INTO administrator_menu VALUES(783, 'index.php?A&Tools\\SecurityCheck&IpRestriction', 178, 1, 1, 'cybermarketing.gif', 1, 'app_tools_security_check', 1);
 INSERT INTO administrator_menu VALUES(784, 'index.php?A&Customers\\Gdpr&Gdpr', 4, 8, 1, 'gdpr.gif', 1, 'app_customers_gdpr', 1);
 
 
