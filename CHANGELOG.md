@@ -5,6 +5,7 @@ add ip restriction management
 fix upgrade check and app redesign
 add gdpr inside customer table
 add gdpr management and header tag
+add design studio tool
 
 
 --------------------

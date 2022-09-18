@@ -14,3 +14,4 @@
 
 // Configuration mode normal B2B / B2C
   define('MODE_B2B_B2C', 'true'); // true ou false
+  define('MODE_DEMO' , 'false'); // only demo mode

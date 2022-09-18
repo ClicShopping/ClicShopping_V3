@@ -17,10 +17,8 @@
 
   class Install extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_EditLogError = Registry::get('EditLogError');
 
@@ -71,7 +69,8 @@
 
           $sql_data_array = ['label' => $CLICSHOPPING_EditLogError->getDef('title_menu')];
 
-          $insert_sql_data = ['id' => (int)$id,
+          $insert_sql_data = [
+            'id' => (int)$id,
             'language_id' => (int)$language_id
           ];
 

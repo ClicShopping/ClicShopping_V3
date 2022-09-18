@@ -50,6 +50,7 @@ INSERT INTO administrator_menu VALUES(27, 'index.php?A&Configuration\\Settings&S
 INSERT INTO administrator_menu VALUES(28, 'index.php?A&Configuration\\Settings&Settings&gID=9', 13, 6, 0, 'configuration_9.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(30, 'index.php?A&Configuration\\Settings&Settings&gID=12', 13, 8, 0, 'configuration_12.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(31, 'index.php?A&Configuration\\Settings&Settings&gID=13', 13, 9, 0, 'configuration_13.gif', 0, NULL, 1);
+
 INSERT INTO administrator_menu VALUES(33, 'index.php?A&Configuration\\Modules&Modules&set=dashboard', 14, 1, 0, 'configuration_admin.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(34, 'index.php?A&Configuration\\Settings&Settings&gID=21', 14, 2, 0, 'configuration_3.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(35, 'index.php?A&Configuration\\Settings&Settings&gID=23', 14, 3, 0, 'configuration_4.gif', 0, NULL, 1);
@@ -191,6 +192,7 @@ INSERT INTO administrator_menu VALUES(781, 'index.php?A&Configuration\\Modules&M
 INSERT INTO administrator_menu VALUES(782, 'index.php?A&Tools\\EditLogError&LogErrorPhpMailer', 664, 0, 1, 'log.png', 1, 'app_tools_php_mailer_edit_log_error', 1);
 INSERT INTO administrator_menu VALUES(783, 'index.php?A&Tools\\SecurityCheck&IpRestriction', 178, 1, 1, 'cybermarketing.gif', 1, 'app_tools_security_check', 1);
 INSERT INTO administrator_menu VALUES(784, 'index.php?A&Customers\\Gdpr&Gdpr', 4, 8, 1, 'gdpr.gif', 1, 'app_customers_gdpr', 1);
+INSERT INTO administrator_menu VALUES(785, 'index.php?A&Tools\\EditDesign&EditDesign', 116, 0, 1, '', 0, 'app_tools_design', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -284,7 +286,7 @@ INSERT INTO administrator_menu_description VALUES(58, 'Modules réseaux sociaux'
 INSERT INTO administrator_menu_description VALUES(59, 'Metas modules', 1);
 INSERT INTO administrator_menu_description VALUES(59, 'Modules metas', 2);
 INSERT INTO administrator_menu_description VALUES(69, 'Website compression & optimization', 1);
-INSERT INTO administrator_menu_description VALUES(69, 'Compression Site Internet & optimisation', 2);
+INSERT INTO administrator_menu_description VALUES(69, 'Compression Site internet & optimisation', 2);
 INSERT INTO administrator_menu_description VALUES(70, 'Logging', 1);
 INSERT INTO administrator_menu_description VALUES(70, 'Logging', 2);
 INSERT INTO administrator_menu_description VALUES(71, 'Sessions', 1);
@@ -526,6 +528,8 @@ INSERT INTO administrator_menu_description VALUES(783, 'Ip Restrictions', 1);
 INSERT INTO administrator_menu_description VALUES(783, 'Restrictions IP', 2);
 INSERT INTO administrator_menu_description VALUES(784, 'Gdpr', 1);
 INSERT INTO administrator_menu_description VALUES(784, 'Gdpr', 2);
+INSERT INTO administrator_menu_description VALUES(785, 'Design Studio', 1);
+INSERT INTO administrator_menu_description VALUES(785, 'Studio Design', 2);
 
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo', NULL);

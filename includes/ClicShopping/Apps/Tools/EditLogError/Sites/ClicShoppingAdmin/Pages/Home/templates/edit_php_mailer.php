@@ -12,7 +12,6 @@
   use ClicShopping\OM\ErrorHandler;
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');

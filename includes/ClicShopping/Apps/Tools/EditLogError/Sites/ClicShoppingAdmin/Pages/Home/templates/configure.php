@@ -13,6 +13,7 @@
 
   $CLICSHOPPING_EditLogError = Registry::get('EditLogError');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
