@@ -77,208 +77,254 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
 }
 ?>
 
-<br />
-<div class="separator"></div>
-<div class="col-md-1">
-  <form action="index.php" method="get">
-    <?php echo HTML::selectMenu('language', $languages_array, $language, 'onChange="this.form.submit();"'); ?>
-  </form>
-</div>
-<br /><br />
-
-<div class="alert alert-info" role="alert">
-  <h2><?php echo TEXT_TITLE_WELCOME; ?> <small>v<?php echo CLICSHOPPING::getVersion(); ?></small></h2>
-
-  <p><?php echo TEXT_INTRO_WELCOME; ?></p>
-</div>
-
-<div class="row">
-  <div class="col-xs-12 col-sm-push-3 col-sm-9">
-    <h1><?php echo TEXT_NEW_INSTALLATION; ?></h1>
-
-<?php
-if (!empty($warning_array)) {
-?>
-
-    <div class="alert alert-danger" role="alert">
-      <p><?php echo TEXT_NOTICE; ?></p>
-
-      <ul style="margin-top: 20px; margin-bottom: 20px;">
-
-<?php
-    foreach ($warning_array as $key => $value) {
-        echo '<li>' . $value . '</li>';
-    }
-?>
-
-      </ul>
-
-      <p><i>Changing webserver configuration parameters may require the webserver service to be restarted before the changes take affect.</i></p>
-    </div>
-
-<?php
-}
-
-if (!empty($configfile_array)  || !empty($directory_array)) {
-?>
-
-    <div class="alert alert-danger" role="alert">
-      <p><?php echo TEXT_NOT_SAVE_PARAMETERS; ?></p>
-
-      <ul style="margin-top: 20px;">
-
-<?php
-    foreach ($configfile_array as $file) {
-        echo '<li>' . FileSystem::displayPath($file) . '</li>';
-    }
-
-    foreach ($directory_array as $dir) {
-      echo  '<li>' . $dir . '</li>';
-    }
-?>
-
-      </ul>
-    </div>
-
-<?php
-}
-
-if (!empty($configfile_array) || !empty($warning_array) || !empty($directory_array)) {
-?>
-
-    <p><a href="index.php" class="btn btn-danger" role="button">Retry Installation</a></p>
-
-<?php
-} else {
-?>
-
-    <div id="detectHttps" class="alert alert-info" role="alert">
-      <p><i class="bi bi-arrow-repeat fa-fw"></i> Please wait, detecting web server environment..</p>
-    </div>
-
-    <div id="jsOn" style="display: none;">
-      <p>The web server environment has been verified to proceed with a successful installation and configuration of your online store.</p>
-
-      <div id="httpsNotice" style="display: none;">
-        <div class="alert alert-warning" role="alert">
-          <p><strong>HTTPS Server Detected</strong></p>
-
-          <p>A HTTPS configured web server has been detected. It is recommended to install your online store in a secure environment. Please click the following <span class="label label-warning">Reload in HTTPS</span> button to reload this installation procedure in HTTPS. If you receive an error, please use your browsers back button to return to this page and continue the installation using the <span class="label label-success">Start the Installation Procedure</span> button below.</p>
-
-          <p><a href="<?= $https_url; ?>" class="btn btn-warning btn-sm" role="button">Reload in HTTPS</a></p>
-        </div>
+<br id="content">
+  <div class="page-header">
+    <div class="container">
+      <div class="col-md-1 float-right">
+        <form action="index.php" method="get">
+          <?php echo HTML::selectMenu('language', $languages_array, $language, 'onChange="this.form.submit();"'); ?>
+        </form>
       </div>
-
-      <p><a href="install.php" class="btn btn-success" role="button">Start the Installation Procedure</a></p>
+      <br /><br />
+      <h2><?php echo TEXT_TITLE_WELCOME; ?> <small>v<?php echo CLICSHOPPING::getVersion(); ?></small></h2>
+      <p><?php echo TEXT_INTRO_WELCOME; ?></p>
     </div>
-
-    <div id="jsOff">
-      <p class="text-danger">Please enable Javascript in your browser to be able to start the installation procedure.</p>
-      <p><a href="index.php" class="btn btn-danger" role="button">Retry Installation</a></p>
-    </div>
-
-<script>
-$(function() {
-  $('#jsOff').hide();
-
-  if (document.location.protocol == 'https:') {
-    $('#detectHttps').hide();
-    $('#jsOn').show();
-  } else {
-    var httpsCheckUrl = 'rpc.php?action=httpsCheck';
-
-    $.post(httpsCheckUrl, null, function (response) {
-      if (('status' in response) && ('message' in response)) {
-        if ((response.status == '1') && (response.message == 'success')) {
-          $('#detectHttps').hide();
-          $('#httpsNotice').show();
-          $('#jsOn').show();
-        } else {
-          $('#detectHttps').hide();
-          $('#jsOn').show();
-        }
-      } else {
-        $('#detectHttps').hide();
-        $('#jsOn').show();
-      }
-    }, 'json').fail(function() {
-      $('#detectHttps').hide();
-      $('#jsOn').show();
-    });
-  }
-});
-</script>
-
-<?php
-}
-?>
-
   </div>
 
-  <div class="col-xs-12 col-sm-pull-9 col-sm-3">
+  <br/></br />
+
+  <div class="container">
     <div class="card">
-      <div class="card-header">
-        <?php echo TEXT_SERVER_CARACTERISTICS; ?>
-      </div>
-
-      <p style="margin: 5px;"><strong>PHP Version</strong></p>
-
-      <table class="table">
-        <tbody>
+      <div class="card-header"><i class="fab fa-opencart"></i>Please configure your PHP settings to match requirements listed below.</div>
+      <div class="card-body">
+        <br>
+        <h5><?php echo TEXT_PHP_SETTINGS; ?></h5>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <td width="35%"><b>PHP Settings</b></td>
+            <td width="25%"><b>Current Settings</b></td>
+            <td width="25%"><b>Required Settings</b></td>
+            <td width="15%" class="text-center"><b>Status</b></td>
+          </tr>
+          </thead>
+          <tbody>
           <tr>
             <td><?php echo PHP_VERSION; ?></td>
-            <td class="text-end" width="25">
-              <?php echo ((version_compare(phpversion(), '8.0', '>')) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
+            <td class="text-center"><?php echo phpversion(); ?></td></td>
+            <td class="text-center">PHP 8.1</td>
+            <td class="text-end"><?php echo ((version_compare(phpversion(), '8.1', '>')) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
           </tr>
-        </tbody>
-      </table>
-
-<?php
-if (function_exists('ini_get')) {
-?>
-
-      <p style="margin: 5px;"><strong><?php echo TEXT_PHP_SETTINGS; ?></strong></p>
-
-      <table class="table">
-        <tbody>
           <tr>
-            <td>file_uploads</td>
-            <td class="text-end"><?php echo (((int)ini_get('file_uploads') === 0) ? 'Off' : 'On'); ?></td>
+            <td>File Upload</td>
+            <td class="text-center"><?php echo (((int)ini_get('file_uploads') === 0) ? 'Off' : 'On'); ?></td></td>
+            <td class="text-center">On</td>
             <td class="text-end"><?php echo (((int)ini_get('file_uploads') === 1) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
           </tr>
-        </tbody>
-      </table>
 
-      <p style="margin: 5px;"><strong><?php echo TEXT_PHP_VERSION; ?></strong></p>
-
-      <table class="table">
-        <tbody>
           <tr>
-            <td>PDO MySQL / Maria Db</td>
+            <td>File Upload</td>
+            <td class="text-center"><?php echo (((int)ini_get('file_uploads') === 0) ? 'Off' : 'On'); ?></td></td>
+            <td class="text-center">On</td>
+            <td class="text-end"><?php echo (((int)ini_get('file_uploads') === 1) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <br>
+        <div><h5><?php echo TEXT_PHP_EXTENSION; ?></h5></div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <td width="35%"><b>Extension Settingss</b></td>
+            <td width="25%"><b>Current Settings</b></td>
+            <td width="25%"><b>Required Settings</b></td>
+            <td width="15%" class="text-center"><b>Status</b></td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Database</td>
+            <td class="text-center"><?php echo extension_loaded('pdo') && extension_loaded('pdo_mysql') ? 'On' : 'Off'; ?></td>
+            <td class="text-center">On</td>
             <td class="text-end"><?php echo extension_loaded('pdo') && extension_loaded('pdo_mysql') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'; ?></td>
           </tr>
           <tr>
             <td>cURL</td>
+            <td class="text-center"><?php echo extension_loaded('curl') ? 'On' : 'Off'; ?></td>
+            <td class="text-center">On</td>
             <td class="text-end"><?php echo extension_loaded('curl') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
           </tr>
           <tr>
-            <td>Zip</td>
+            <td>zip</td>
+            <td class="text-center"><?php echo extension_loaded('zip') ? 'On' : 'Off'; ?></td>
+            <td class="text-center">On</td>
             <td class="text-end"><?php echo extension_loaded('zip') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
           </tr>
           <tr>
-            <td>GD</td>
+            <td>Gd</td>
+            <td class="text-center"><?php echo extension_loaded('gd') ? 'On' : 'Off'; ?></td>
+            <td class="text-center">On</td>
             <td class="text-end"><?php echo extension_loaded('gd') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
           </tr>
           <tr>
             <td>OpenSSL</td>
+            <td class="text-center"><?php echo extension_loaded('openssl') ? 'On' : 'Off'; ?></td>
+            <td class="text-center">On</td>
             <td class="text-end"><?php echo extension_loaded('openssl') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
           </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+        <br>
+        <div><h5><?php echo TEXT_PHP_EXTENSION; ?></h5></div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <td width="70%"><b>Files</b></td>
+            <td width="25%"><b>Status</b></td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><?php echo CLICSHOPPING::BASE_DIR . 'Work'; ?></td>
+            <td class="text-end"><?php echo is_writable(CLICSHOPPING::BASE_DIR . 'Work') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
+          </tr>
+          <tr>
+            <td><?php echo CLICSHOPPING::BASE_DIR . 'Conf/ElFinderConfig.php'; ?></td>
+            <td class="text-end"><?php echo is_writable(CLICSHOPPING::BASE_DIR . 'Conf/ElFinderConfig.php') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
+          </tr>
+          <tr>
+            <td><?php echo CLICSHOPPING::BASE_DIR . 'Conf/global.php'; ?></td>
+            <td class="text-end"><?php echo is_writable(CLICSHOPPING::BASE_DIR . 'Conf/global.php') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
+          </tr>
+          <tr>
+            <td><?php echo CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/conf.php'; ?></td>
+            <td class="text-end"><?php echo is_writable(CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/site_conf.php') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
+          </tr>
+          <tr>
+            <td><?php echo CLICSHOPPING::BASE_DIR . 'Sites/Shop/conf.php'; ?></td>
+            <td class="text-end"><?php echo is_writable(CLICSHOPPING::BASE_DIR . 'Sites/Shop/site_conf.php') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-<?php
-}
-?>
+
+    <br />
+    <div class="separator"></div>
+
+
+    <div class="row">
+      <div class="col-md-12">
+    <?php
+    if (!empty($warning_array)) {
+    ?>
+        <div class="alert alert-danger" role="alert">
+          <p><?php echo TEXT_NOTICE; ?></p>
+          <ul style="margin-top: 20px; margin-bottom: 20px;">
+    <?php
+        foreach ($warning_array as $key => $value) {
+            echo '<li>' . $value . '</li>';
+        }
+    ?>
+          </ul>
+          <p><i>Changing webserver configuration parameters may require the webserver service to be restarted before the changes take affect.</i></p>
+        </div>
+
+    <?php
+    }
+
+    if (!empty($configfile_array)  || !empty($directory_array)) {
+    ?>
+
+        <div class="alert alert-danger" role="alert">
+          <p><?php echo TEXT_NOT_SAVE_PARAMETERS; ?></p>
+
+          <ul style="margin-top: 20px;">
+    <?php
+        foreach ($configfile_array as $file) {
+            echo '<li>' . FileSystem::displayPath($file) . '</li>';
+        }
+
+        foreach ($directory_array as $dir) {
+          echo  '<li>' . $dir . '</li>';
+        }
+    ?>
+          </ul>
+        </div>
+
+    <?php
+    }
+
+    if (!empty($configfile_array) || !empty($warning_array) || !empty($directory_array)) {
+    ?>
+
+        <p class="text-end"><a href="index.php" class="btn btn-danger" role="button">Retry Installation</a></p>
+
+    <?php
+    } else {
+    ?>
+
+        <div id="detectHttps" class="alert alert-info" role="alert">
+          <p><i class="bi bi-arrow-repeat fa-fw"></i> Please wait, detecting web server environment..</p>
+        </div>
+
+        <div id="jsOn" style="display: none;">
+          <p>The web server environment has been verified to proceed with a successful installation and configuration of your online store.</p>
+
+          <div id="httpsNotice" style="display: none;">
+            <div class="alert alert-warning" role="alert">
+              <p><strong>HTTPS Server Detected</strong></p>
+              <p>A HTTPS configured web server has been detected. It is recommended to install your online store in a secure environment. Please click the following <span class="label label-warning">Reload in HTTPS</span> button to reload this installation procedure in HTTPS. If you receive an error, please use your browsers back button to return to this page and continue the installation using the <span class="label label-success">Start the Installation Procedure</span> button below.</p>
+              <p class="text-end"><a href="<?= $https_url; ?>" class="btn btn-warning btn-sm" role="button">Reload in HTTPS</a></p>
+            </div>
+          </div>
+
+          <p class="text-end"><a href="install.php" class="btn btn-primary" role="button">Start the Installation Procedure</a></p>
+        </div>
+
+        <div id="jsOff">
+          <p class="text-danger">Please enable Javascript in your browser to be able to start the installation procedure.</p>
+          <p class="text-end"><a href="index.php" class="btn btn-danger" role="button">Retry Installation</a></p>
+        </div>
+
+    <script>
+    $(function() {
+      $('#jsOff').hide();
+
+      if (document.location.protocol == 'https:') {
+        $('#detectHttps').hide();
+        $('#jsOn').show();
+      } else {
+        var httpsCheckUrl = 'rpc.php?action=httpsCheck';
+
+        $.post(httpsCheckUrl, null, function (response) {
+          if (('status' in response) && ('message' in response)) {
+            if ((response.status == '1') && (response.message == 'success')) {
+              $('#detectHttps').hide();
+              $('#httpsNotice').show();
+              $('#jsOn').show();
+            } else {
+              $('#detectHttps').hide();
+              $('#jsOn').show();
+            }
+          } else {
+            $('#detectHttps').hide();
+            $('#jsOn').show();
+          }
+        }, 'json').fail(function() {
+          $('#detectHttps').hide();
+          $('#jsOn').show();
+        });
+      }
+    });
+    </script>
+
+    <?php
+    }
+    ?>
+      </div>
     </div>
   </div>
 </div>

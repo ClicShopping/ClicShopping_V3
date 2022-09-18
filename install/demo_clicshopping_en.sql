@@ -1554,6 +1554,10 @@ INSERT INTO configuration VALUES(1544, 'Do you want to Display the sidebar horiz
 INSERT INTO configuration VALUES(1545, 'Indicate a minimum number of characters to insert in the message before the customer can send it', 'MODULE_CONTACT_US_FORM_CONTENT_CARACTER', '90', 'Messages less than this number will not be sent. A warning pop up will be displayed to the client indicating the minimum number of characters', 6, 10, NULL, '2019-09-22 21:39:43', NULL, '');
 INSERT INTO configuration VALUES(1546, 'Check if the email is valid or not', 'ENTRY_EMAIL_ADDRESS_CHECKER', 'false', 'Check if the email is valid or not. More information there : https://github.com/MattKetmo/EmailChecker', 12, 4, NULL, '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO configuration VALUES(1547, 'Do you want to activate the Debug Email option ?', 'DEBUG_EMAIL', 'false', 'This option allows you to analyse if the email is sent. Please, this option stop the execution script.', 12, 12, NULL, '2006-04-09 16:13:47', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+INSERT INTO configuration VALUES(1548, 'Parameter [Gdpr App]', 'MODULE_MODULES_CUSTOMERS_GDPR_INSTALLED', ';Customers\\Gdpr\\GD', 'Parameter [Gdpr App]', 6, 0, NULL, '2022-09-18 17:12:49', NULL, NULL);
+INSERT INTO configuration VALUES(1549, 'Status', 'CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2022-09-18 17:17:34', NULL, NULL);
+INSERT INTO configuration VALUES(1550, 'Sort Order', 'CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_SORT_ORDER', '30', 'The sort order location of the module shown in the available methods listing (lowest is displayed first).', 6, 0, NULL, '2022-09-18 17:17:34', NULL, NULL);
+INSERT INTO configuration VALUES(1551, 'Date account deletion', 'CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_DATE', '180', 'Choose the date (in day) to display the account deletion', 6, 0, NULL, '2022-09-18 17:17:34', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);

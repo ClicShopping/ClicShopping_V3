@@ -10,108 +10,102 @@
 
   use ClicShopping\OM\HTML;
 ?>
-
-<div class="row">
-  <div class="col-sm-9">
-    <div class="alert alert-info" role="alert">
-      <?php echo TEXT_STEP_INTRO; ?>
+<form name="install" id="installForm" action="install.php?step=2" method="post">
+<div id="content">
+  <div class="page-header">
+    <div class="container">
+      <div></div>
+      <h1><?php echo TEXT_DATABASE_SERVER; ?></h1>
     </div>
   </div>
-
-  <div class="col-sm-3">
+  <div class="container">
     <div class="card">
-      <div class="card-header">
-        <p>Step 1/4</p>
-
-        <ol>
-          <li><strong>&gt; Database Server</strong></li>
-          <li>Web Server</li>
-          <li>Online Store Settings</li>
-          <li>Finished!</li>
-        </ol>
-      </div>
-    </div>
-    <br />
-    <div class="progress">
-      <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-12 col-sm-push-3 col-sm-9">
-    <div id="mBox"></div>
-
-    <h1><?php echo TEXT_DATABASE_SERVER; ?></h1>
-
-    <form name="install" id="installForm" action="install.php?step=2" method="post">
-      <div class="form-group has-feedback">
-        <label for="dbServer"><?php echo TEXT_DATABASE_SERVER; ?></label>
-        <?php echo HTML::inputField('DB_SERVER', null, 'required aria-required="true" id="dbServer" placeholder="localhost"'); ?>
-        <span class="help-block"><?php echo TEXT_DATABASE_SERVER_HELP; ?></span>
-      </div>
-
-      <div class="form-group has-feedback">
-        <label for="username"><?php echo TEXT_USERNAME; ?></label>
-        <?php echo HTML::inputField('DB_SERVER_USERNAME', null, 'required aria-required="true" id="username"'); ?>
-        <span class="help-block"><?php echo TEXT_USERNAME_HELP; ?></span>
-      </div>
-
-      <div class="form-group">
-        <label for="password"><?php echo TEXT_PASSWORD; ?></label>
-        <?php echo HTML::passwordField('DB_SERVER_PASSWORD', null, 'required aria-required="true" id="password"'); ?>
-        <span class="help-block"><?php echo TEXT_PASSWORD_HELP; ?></span>
-      </div>
-
-      <div class="form-group has-feedback">
-        <label for="dbName"><?php echo TEXT_DATABASE_NAME; ?></label>
-        <?php echo HTML::inputField('DB_DATABASE', null, 'required aria-required="true" id="dbName"'); ?>
-        <span class="help-block"><?php echo TEXT_DATABASE_HELP; ?></span>
-      </div>
-
-      <div>
-        <label for="dbTablePrefix">Table Prefix</label>
-        <?php echo HTML::inputField('DB_TABLE_PREFIX', 'clic_', 'id="dbTablePrefix"'); ?>
-        <span class="help-block"><?php echo 'Prefix all table names in the database with this value'; ?></span>
-      </div>
-
-      <label for="demo">Install Demo Database</label>
-<?php
-  $demo = [
-    ['id' => 'demo', 'text' => 'Demo'],
-    ['id' => 'normal', 'text' => 'Normal'],
-   ];
-
-  echo HTML::selectMenu('demo', $demo, 'demo', 'id="demo"');
-?>
-      <br />
-
-      <span class="help-block"><?php echo '(Load the demo data, recommended for test)'; ?></span>
-
-      <p>
-<?=
-    HTML::button(TEXT_CONTINUE, null, null, 'success', ['params' => 'id="buttonDoImport"']) . '&nbsp;' .
-    HTML::button(TEXT_SKIP_DATABASE, null, null, 'warning', ['params' => 'id="buttonSkipImport"']);
-?>
-      </p>
-    </form>
-  </div>
-
-  <div class="col-xs-12 col-sm-pull-9 col-sm-3">
-    <br />
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">
-          <?php echo TEXT_STEP_INTRO_1; ?>
-        </div>
-      </div>
-
+      <div class="card-header"><i class="fa-solid fa-cogs"></i> <?php echo TEXT_STEP_INTRO_1; ?></div>
       <div class="card-body">
-        <p><?php echo TEXT_STEP_INTRO_2; ?></p>
+          <fieldset>
+            <div class="row">
+              <div class="col-md-4  order-md-2">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">
+                      <?php echo TEXT_STEP_INTRO_1; ?>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <p><?php echo TEXT_STEP_INTRO_2; ?></p>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8 order-md-1">
+                <div class="form-row">
+                  <div class="form-group col required">
+                    <label for="dbServer"><?php echo TEXT_DATABASE_SERVER; ?></label>
+                    <?php echo HTML::inputField('DB_SERVER', null, 'required aria-required="true" id="dbServer" placeholder="localhost"'); ?>
+                    <span class="help-block"><?php echo TEXT_DATABASE_SERVER_HELP; ?></span>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col required">
+                    <label for="username"><?php echo TEXT_USERNAME; ?></label>
+                    <?php echo HTML::inputField('DB_SERVER_USERNAME', null, 'required aria-required="true" id="username"'); ?>
+                    <span class="help-block"><?php echo TEXT_USERNAME_HELP; ?></span>
+                  </div>
+                  <div class="form-group col">
+                    <label for="password"><?php echo TEXT_PASSWORD; ?></label>
+                    <?php echo HTML::passwordField('DB_SERVER_PASSWORD', null, 'required aria-required="true" id="password"'); ?>
+                    <span class="help-block"><?php echo TEXT_PASSWORD_HELP; ?></span>
+                  </div>
+                </div>
+
+
+                <div class="form-row">
+                  <div class="form-group col-6 required">
+                   <label for="dbName"><?php echo TEXT_DATABASE_NAME; ?></label>
+                    <?php echo HTML::inputField('DB_DATABASE', null, 'required aria-required="true" id="dbName"'); ?>
+                    <span class="help-block"><?php echo TEXT_DATABASE_HELP; ?></span>
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="input-db-prefix" class="col-form-label">Table Prefix</label>
+                    <?php echo HTML::inputField('DB_TABLE_PREFIX', 'clic_', 'id="dbTablePrefix"'); ?>
+                    <span class="help-block"><?php echo 'Prefix all table names in the database with this value'; ?></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <br /><br />
+          <div class="row mt-3">
+            <div for="demo"><h3>Install Demo Database</h3></div>
+            <?php
+            $demo = [
+              ['id' => 'demo', 'text' => 'Demo'],
+              ['id' => 'normal', 'text' => 'Normal'],
+            ];
+
+            echo '<div class="col-md-3">' . HTML::selectMenu('demo', $demo, 'demo', 'id="demo"') .'</div>';
+            ?>
+            <br />
+
+            <div class="help-block"><?php echo '(Load the demo data, recommended for test)'; ?></div>
+
+            <div class="col text-end">
+              <?=
+              HTML::button(TEXT_CONTINUE, null, null, 'success', ['params' => 'id="buttonDoImport"']) . '&nbsp;' .
+              HTML::button(TEXT_SKIP_DATABASE, null, null, 'warning', ['params' => 'id="buttonSkipImport"']);
+              ?>
+            </div>
+          </div>
       </div>
     </div>
+    <br />
+    <br />
   </div>
 </div>
+</form>
 
 <div class="modal" id="installModal" tabindex="-1" role="dialog" aria-labelledby="installModalLabel">
   <div class="modal-dialog" role="document">
@@ -119,8 +113,8 @@
       <div class="modal-header">
         <h4 class="modal-title" id="installModalLabel"><?php echo TEXT_WAIT; ?></h4>
       </div>
-
-      <div class="modal-body"></div>
+      <div id="mBox"></div>
+      <div class="modal-body" id="modal-body"></div>
     </div>
   </div>
 </div>
@@ -270,7 +264,13 @@ $(function() {
   });
 });
 </script>
-<script
-        src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"></script>
+<script>
+  $( document ).ready(function() {
+    $("#myModal").on("show.bs.modal", function(e) {
+      const link = $(e.relatedTarget);
+      $(this).find(".modal-body").load(link.attr("href"));
+    });
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>

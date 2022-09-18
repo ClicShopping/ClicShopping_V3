@@ -6,7 +6,7 @@ fix upgrade check and app redesign
 add gdpr inside customer table
 add gdpr management and header tag
 add design studio tool
-
+new design install process
 
 --------------------
 3.333

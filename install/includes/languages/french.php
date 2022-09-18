@@ -26,7 +26,10 @@ define('TEXT_INTRO_WELCOME','  <p>ClicShopping a été con&ccedil;ue spécialeme
 
 define('TEXT_SERVER_CARACTERISTICS','Caractéristiques du serveur');
 define('TEXT_DIRECTORIES','Permissions des répertoires devant etre mis en 777 ou 755 en fonction de serveurs');
-define('TEXT_PHP_SETTINGS','Configuration Serveur');
+define('TEXT_PHP_SETTINGS','1. Veuillez vérifier les caractéristiques de votre version php');
+define('TEXT_PHP_EXTENSION','2. Veuillez vérifier que les extansions ci-dessous sont bien installées.');
+
+
 define('TEXT_R_G','Register Globals');
 define('TEXT_M_Q','Magic Quotes');
 define('TEXT_F_U','Files upload');

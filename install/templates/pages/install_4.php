@@ -63,13 +63,15 @@
                                                 ['user_name' => $_POST['CFG_ADMINISTRATOR_USERNAME']]
                              );
     } else {
-      $CLICSHOPPING_Db->save('administrators', ['user_name' => $_POST['CFG_ADMINISTRATOR_USERNAME'],
-                                               'user_password' => Hash::encrypt(trim($_POST['CFG_ADMINISTRATOR_PASSWORD'])),
-                                               'name' => HTML::sanitize($_POST['CFG_ADMINISTRATOR_NAME']),
-                                               'first_name' => HTML::sanitize($_POST['CFG_ADMINISTRATOR_FIRSTNAME']),
-                                               'access' => '1'
-                                              ]
-                           );
+      $update_array =  [
+        'user_name' => $_POST['CFG_ADMINISTRATOR_USERNAME'],
+        'user_password' => Hash::encrypt(trim($_POST['CFG_ADMINISTRATOR_PASSWORD'])),
+        'name' => HTML::sanitize($_POST['CFG_ADMINISTRATOR_NAME']),
+        'first_name' => HTML::sanitize($_POST['CFG_ADMINISTRATOR_FIRSTNAME']),
+        'access' => '1'
+      ];
+
+      $CLICSHOPPING_Db->save('administrators', $update_array);
     }
   }
 
@@ -152,6 +154,7 @@
   $http_url = parse_url($_POST['HTTP_WWW_ADDRESS']);
   $http_server = $http_url['scheme'] . '://' . $http_url['host'];
   $http_catalog = $http_url['path'];
+
   if (isset($http_url['port']) && !empty($http_url['port'])) {
     $http_server .= ':' . $http_url['port'];
   }
@@ -160,7 +163,9 @@
     $http_catalog .= '/';
   }
 
+
   $admin_folder = 'ClicShoppingAdmin';
+
   if (isset($_POST['CFG_ADMIN_DIRECTORY']) && !empty($_POST['CFG_ADMIN_DIRECTORY']) && FileSystem::isWritable($dir_fs_document_root) && FileSystem::isWritable($dir_fs_document_root . 'ClicShoppingAdmin')) {
     $admin_folder = preg_replace('/[^a-zA-Z0-9]/', '', trim($_POST['CFG_ADMIN_DIRECTORY']));
 
@@ -179,6 +184,7 @@
   $dbDatabase = trim($_POST['DB_DATABASE']);
   $dbTablePrefix = trim($_POST['DB_TABLE_PREFIX']);
   $timezone = trim($_POST['TIME_ZONE']);
+
 
 $file_contents = <<<ENDCFG
 <?php

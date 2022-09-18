@@ -26,7 +26,9 @@ define('TEXT_INTRO_WELCOME','  <p>ClicShopping has been specially designed to se
 
 define('TEXT_SERVER_CARACTERISTICS','Server caracteristic');
 define('TEXT_DIRECTORIES','Directories permissions (777 or 755 depending the server');
-define('TEXT_PHP_SETTINGS','Server configuration');
+define('TEXT_PHP_SETTINGS','1. Please check your PHP settings to match requirements listed below');
+define('TEXT_PHP_EXTENSION','2. Please make sure the PHP extensions listed below are installed.');
+
 define('TEXT_R_G','Register Globals');
 define('TEXT_M_Q','Magic Quotes');
 define('TEXT_F_U','Files upload');
@@ -204,7 +206,7 @@ define('TEXT_TITLE_SHOP', 'Configure your store');
 define('TEXT_INTRO_SHOP', 'This space concerns information to insert concerning your shop.');
 define('TEXT_TITLE_ACCESS', 'Setting up access to your administration');
 define('TEXT_TITLE_STMP', 'SMTP Configuration');
-define('TEXT_INTRO_SMTP', 'This space concerns the configuration of sending your emails if you want to configure it. Some companies block SendMail for security reasons. The default SMTP port is Sendmail which will be used. <br /><p style="color:red">It is not mandatory to fill the fields below if you want to use Senmail</p>');
+define('TEXT_INTRO_SMTP', 'This space concerns the configuration of sending your emails if you want to configure it. Some companies block SendMail for security reasons. The default SMTP port is Sendmail which will be used. <br /><p style="color:red">It is not mandatory to fill the fields below if you want to use Sendmail</p>');
 define('TEXT_SMTP_EMAIL_TRANSORT', 'Email transort');
 define('TEXT_SMTP_HOST', 'SMTP Host');
 define('TEXT_SMTP_PORT', 'SMTP Port');

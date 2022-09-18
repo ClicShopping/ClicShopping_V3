@@ -26,12 +26,14 @@
     public static function getFilenameGabari(): array
     {
       if (isset($_POST['filename'])) {
-        $filename_selected = HTML::sanitize($_POST['filename']);
+        $filename = HTML::sanitize($_POST['filename']);
+      } elseif (isset($_GET['filename'])) {
+        $filename = HTML::sanitize($_GET['filename']);
       } else {
-        $filename_selected = HTML::sanitize($_GET['filename']);
+       $filename = [];
       }
 
-        $filename_selected = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/template/' . SITE_THEMA . '/files/';
+      $filename_selected = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/template/' . SITE_THEMA . '/files/';
 
       $found = []; //initialize an array for matching files
       $fileTypes = ['php']; // Create an array of file types
