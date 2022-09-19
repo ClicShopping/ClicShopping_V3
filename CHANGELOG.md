@@ -1,3 +1,6 @@
+3.335
+
+--------------------
 3.334
 add phpmailer error
 update error_documents directory
@@ -7,6 +10,7 @@ add gdpr inside customer table
 add gdpr management and header tag
 add design studio tool
 new design install process
+see sql update to update your shop
 
 --------------------
 3.333
