@@ -101,7 +101,7 @@ More information in the Wiki
 - WYSIWYG to create your products description, content with CKeditor
 - Image Editor management with El-Finder 2.x - drag and drop - webp
 - Full SEO functionalities optimization and url
-- Payment and Shipping modules included inside the application with Paypal
+- Payment and Shipping modules included inside the application with Stripe
 - Extension System to install new Applications via the back-office
 - No limit to insert content
 - Some dynamic statistics inside the dashboard and all the back-office
