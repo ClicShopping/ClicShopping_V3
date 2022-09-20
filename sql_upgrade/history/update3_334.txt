@@ -14,13 +14,22 @@ INSERT INTO `clic_administrator_menu` VALUES(785, 'index.php?A&Tools\\EditDesign
 ALTER TABLE `clic_customers` ADD `gdpr` TINYINT(1) NOT NULL DEFAULT '0' AFTER `customer_guest_account`;
 
 
-CREATE TABLE :table_ip_restriction(
+CREATE TABLE clic_ip_restriction(
   id int NOT NULL auto_increment,
   ip_restriction varchar(64) NOT NULL,
   ip_comment varchar(255) NULL DEFAULT NULL,
-  ip_status int(1) NOT NULL DEFAULT 0,
+  ip_status_shop int(1) NOT NULL DEFAULT 0,
+  ip_status_admin int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (id)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `clic_ip_restriction_stats` (
+  `id` int(11) NOT NULL,
+  `ip_remote` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+ALTER TABLE `clic_ip_restriction_stats`  ADD PRIMARY KEY (`id`);
+ALTER TABLE `clic_ip_restriction_stats`  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 
 ---------------------------

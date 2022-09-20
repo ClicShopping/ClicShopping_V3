@@ -192,7 +192,7 @@ class Wrapper
                 $plainFuncName = get_class($callable[0]) . '->' . $callable[1];
             }
             $exists = method_exists($callable[0], $callable[1]);
-        } else if ($callable instanceof \Closure) {
+        } elseif ($callable instanceof \Closure) {
             // we do not support creating code which wraps closures, as php does not allow to serialize them
             if (!$buildIt) {
                 $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': a closure can not be wrapped in generated source code');

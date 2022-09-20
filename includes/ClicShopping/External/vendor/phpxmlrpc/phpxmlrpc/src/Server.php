@@ -686,7 +686,7 @@ class Server
             } else {
                 $funcName = implode('::', $func);
             }
-        } else if ($func instanceof \Closure) {
+        } elseif ($func instanceof \Closure) {
             $funcName = 'Closure';
         } else {
             $funcName = $func;

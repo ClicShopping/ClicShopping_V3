@@ -212,11 +212,11 @@
 // Code modifie par rapport a l'original afin d'avoir un meilleur controle sur l'affichage de la TVA selon les comptes clients
       if (($CLICSHOPPING_Customer->isLoggedOn()) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && ($group_tax['group_tax'] == 'true') && ($tax > 0)) {
         $group_taxed = 'true';
-      } else if (($CLICSHOPPING_Customer->isLoggedOn()) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && ($group_tax['group_tax'] != 'true')) {
+      } elseif (($CLICSHOPPING_Customer->isLoggedOn()) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && ($group_tax['group_tax'] != 'true')) {
         $group_taxed = 'false';
-      } else if (($CLICSHOPPING_Customer->isLoggedOn()) && (DISPLAY_PRICE_WITH_TAX == 'true') && ($tax > 0)) {
+      } elseif (($CLICSHOPPING_Customer->isLoggedOn()) && (DISPLAY_PRICE_WITH_TAX == 'true') && ($tax > 0)) {
         $group_taxed = 'true';
-      } else if ((!$CLICSHOPPING_Customer->isLoggedOn()) && (DISPLAY_PRICE_WITH_TAX == 'true') && ($tax > 0)) {
+      } elseif ((!$CLICSHOPPING_Customer->isLoggedOn()) && (DISPLAY_PRICE_WITH_TAX == 'true') && ($tax > 0)) {
         $group_taxed = 'true';
       } else {
         $group_taxed = 'false';

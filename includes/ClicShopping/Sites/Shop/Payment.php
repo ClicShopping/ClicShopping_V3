@@ -122,9 +122,9 @@
           '        payment_value = document.checkout_payment.payment[i].value;' . "\n" .
           '      }' . "\n" .
           '    }' . "\n" .
-          '  } else if (document.checkout_payment.payment.checked) {' . "\n" .
+          '  } elseif (document.checkout_payment.payment.checked) {' . "\n" .
           '    payment_value = document.checkout_payment.payment.value;' . "\n" .
-          '  } else if (document.checkout_payment.payment.value) {' . "\n" .
+          '  } elseif (document.checkout_payment.payment.value) {' . "\n" .
           '    payment_value = document.checkout_payment.payment.value;' . "\n" .
           '  }' . "\n\n";
 

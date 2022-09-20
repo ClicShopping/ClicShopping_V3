@@ -24,7 +24,7 @@ use ClicShopping\OM\HTML;
         <?php echo CLICSHOPPING::getDef('module_create_account_pro_introduction_text_b2b') . '  ' . HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(null, 'Account&Create'), 'info', null, 'sm'); ?>
       </div>
 <?php
-  } else if ((MODE_MANAGEMENT_B2C_B2B == 'B2C_B2B') && (MODE_B2B_B2C == 'true')) {
+  } elseif ((MODE_MANAGEMENT_B2C_B2B == 'B2C_B2B') && (MODE_B2B_B2C == 'true')) {
 ?>
       <div class="modulesCreateAccountProIntroductionTextB2bB2c"><?php echo CLICSHOPPING::getDef('module_create_account_pro_introduction_text_b2b') . '  ' . HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(null, 'Account&Create'), 'info', null, 'sm'); ?></div>
 <?php

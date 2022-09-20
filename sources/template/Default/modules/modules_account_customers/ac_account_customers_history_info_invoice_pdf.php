@@ -47,9 +47,10 @@
 // Display the pdf type in function the status
         if ($count_history_info > 0) {
           $display_support = HistoryInfo::getDisplayHistoryInfoSupport();
+          $order_id = HTML::sanitize($_GET['order_id']);
 
           if ($display_support == 0) {
-            $print_invoice_pdf = HTML::link(CLICSHOPPING::link(null, 'Account&OrderInvoice&order_id=' . (int)$_GET['order_id'])  . '" target="_blank" rel="noopener"', HTML::Button(null, 'bi bi-printer-fill HistoyInfoPDF'));
+            $print_invoice_pdf = HTML::link(CLICSHOPPING::link(null, 'Account&OrderInvoice&order_id=' . (int)$order_id)  . '" target="_blank" rel="noopener"', HTML::Button(null, 'bi bi-printer-fill HistoyInfoPDF'));
           }
         }
 

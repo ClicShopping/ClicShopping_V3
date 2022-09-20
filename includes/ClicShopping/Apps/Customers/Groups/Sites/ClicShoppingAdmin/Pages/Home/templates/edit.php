@@ -109,7 +109,7 @@
         <?php
           if ($error == 'categorie') {
             echo '&nbsp;<h4><i class="bi bi-exclamation-diamond" title="' . $CLICSHOPPING_Groups->getDef('icon_warning') . '"></i></h4>&nbsp;' . $CLICSHOPPING_Groups->getDef('entry_groups_categorie_error');
-          } else if ($error == 'name') {
+          } elseif ($error == 'name') {
             echo '&nbsp;<h4><i class="bi bi-exclamation-diamond" title="' . $CLICSHOPPING_Groups->getDef('icon_warning') . '"></i></h4>&nbsp;' . $CLICSHOPPING_Groups->getDef('entry_groups_name_error');
           }
         ?>

@@ -41,7 +41,7 @@ table_heading_email = E-mail
 table_heading_account_last_logon = Dernière connexion
 table_heading_action = Action
 heading_title_search = Rechercher
-heading_title = RDGPD
+heading_title = GRPD
 
 icon_delete = Supprimer
 

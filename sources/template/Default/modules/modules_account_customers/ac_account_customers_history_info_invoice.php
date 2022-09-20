@@ -41,10 +41,10 @@
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
       if (isset($_GET['Account'], $_GET['HistoryInfo'])) {
-
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_INVOICE_CONTENT_WIDTH;
+        $order_id = HTML::sanitize($_GET['order_id']);
 
-        $info_link = (int)$_GET['order_id'].'&customer_id='. $CLICSHOPPING_Customer->getID();
+        $info_link = (int)$order_id . '&customer_id='. $CLICSHOPPING_Customer->getID();
 
         $account_history = '<!-- Start account_customers_history_info_rules --> ' . "\n";
 

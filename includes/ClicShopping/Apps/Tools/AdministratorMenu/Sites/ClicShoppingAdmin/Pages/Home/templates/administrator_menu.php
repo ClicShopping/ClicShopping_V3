@@ -217,7 +217,7 @@
           <?php
           if ($Qcategories->valueInt('access') == 0) {
             echo '<td>' . $CLICSHOPPING_AdministratorMenu->getDef('text_all_right') . '</td>';
-          } else if ($Qcategories->valueInt('access') == 1) {
+          } elseif ($Qcategories->valueInt('access') == 1) {
             echo '<td class="text-info">' . $CLICSHOPPING_AdministratorMenu->getDef('text_all_rights_admin') . '</td>';
           } elseif ($Qcategories->valueInt('access') == 2) {
             echo '<td class="text-warning">' . $CLICSHOPPING_AdministratorMenu->getDef('text_rights_employee') . '</td>';

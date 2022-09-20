@@ -23,7 +23,7 @@ use ClicShopping\OM\CLICSHOPPING;
         </div>
       </div>
     </div>
-
+    <div class="separator"></div>
     <div class="card-block">
       <div class="separator"></div>
       <div class="card-text">

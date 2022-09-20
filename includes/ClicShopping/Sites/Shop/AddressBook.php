@@ -35,6 +35,7 @@
       $Qaddress = $CLICSHOPPING_Db->prepare('select address_book_id,
                                                     entry_firstname as firstname,
                                                     entry_lastname as lastname,
+                                                    entry_telephone as telephone,
                                                     entry_company as company,
                                                     entry_street_address as street_address,
                                                     entry_suburb as suburb,
@@ -427,7 +428,7 @@
         $Qentry->execute();
 
         return $Qentry->toArray();
-      } else{
+      } else {
         $Qentry = $CLICSHOPPING_Db->prepare('select entry_gender as gender,
                                                      entry_company as company,
                                                      entry_firstname as firstname,

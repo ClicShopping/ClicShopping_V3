@@ -178,12 +178,12 @@
       <div class="tab-content">
         <?php
           // packaging
-          $products_packaging_array = [
-            array('id' => '0', 'text' => $CLICSHOPPING_Products->getDef('text_choose')),
-            array('id' => '1', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_new')),
-            array('id' => '2', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_repackaged')),
-            array('id' => '3', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_used'))
-          ];
+        $products_packaging_array = [
+          array('id' => '0', 'text' => $CLICSHOPPING_Products->getDef('text_choose')),
+          array('id' => '1', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_new')),
+          array('id' => '2', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_repackaged')),
+          array('id' => '3', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_used'))
+        ];
 
 
           // ******************************************

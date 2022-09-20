@@ -312,7 +312,7 @@
     if (\strlen($product_name_attrib_contact) > 40 && \strlen($product_name_attrib_contact) < 95) {
       $pdf->SetFont('Arial', '', 6);
       $pdf->MultiCell(103, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
-    } else if (\strlen($product_name_attrib_contact) > 95) {
+    } elseif (\strlen($product_name_attrib_contact) > 95) {
       $pdf->SetFont('Arial', '', 6);
       $pdf->MultiCell(103, 6, utf8_decode(substr($product_name_attrib_contact, 0, 95)) . " .. ", 1, 'L');
     } else {

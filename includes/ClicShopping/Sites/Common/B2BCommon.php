@@ -47,7 +47,7 @@
           $payments_unallowed = explode(",", $payments_not_allowed['group_payment_unallowed']);
           $clearance = (\in_array($pay_check, $payments_unallowed)) ? true : false;
 
-        } else if ($CLICSHOPPING_Customer->isLoggedOn()) {
+        } elseif ($CLICSHOPPING_Customer->isLoggedOn()) {
           $clearance = true;
         } else {
           $clearance = false;

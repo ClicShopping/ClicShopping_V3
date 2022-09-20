@@ -155,7 +155,7 @@
         if ($num_country == 1) {
           $output_string .= '  if (' . $country . ' == "' . (int)$countries['zone_country_id'] . '") {' . "\n";
         } else {
-          $output_string .= '  } else if (' . $country . ' == "' . (int)$countries['zone_country_id'] . '") {' . "\n";
+          $output_string .= '  } elseif (' . $country . ' == "' . (int)$countries['zone_country_id'] . '") {' . "\n";
         }
 
         $Qzone = $CLICSHOPPING_Db->prepare('select zone_name,

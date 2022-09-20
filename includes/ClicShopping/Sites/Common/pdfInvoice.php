@@ -22,7 +22,7 @@
 
       if ($style == 'F') {
         $op = 'f';
-      } else if ($style == 'FD' || $style == 'DF') {
+      } elseif ($style == 'FD' || $style == 'DF') {
         $op = 'B';
       } else {
         $op = 'S';

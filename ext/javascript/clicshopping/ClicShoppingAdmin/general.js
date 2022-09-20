@@ -38,9 +38,9 @@ function SetFocus() {
 function toggleDivBlock(id) {
   if (document.getElementById) {
     itm = document.getElementById(id);
-  } else if (document.all){
+  } elseif (document.all){
     itm = document.all[id];
-  } else if (document.layers){
+  } elseif (document.layers){
     itm = document.layers[id];
   }
 

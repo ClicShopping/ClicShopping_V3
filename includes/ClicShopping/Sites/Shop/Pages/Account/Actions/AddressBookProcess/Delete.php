@@ -35,7 +35,7 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_address_book_full'), 'error');
 
           CLICSHOPPING::redirect(null, 'Account&AddressBook');
-        } else if (AddressBook::countCustomersAddAddress() == 0) {
+        } elseif (AddressBook::countCustomersAddAddress() == 0) {
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_address_book_no_add'), 'error');
 
           CLICSHOPPING::redirect(null, 'Account&AddressBook');

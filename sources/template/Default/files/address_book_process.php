@@ -33,7 +33,7 @@
     $entry = AddressBook::getEntry((int)$_GET['edit']);
 
     echo HTML::form('addressbook', CLICSHOPPING::link(null, 'Account&AddressBookProcess' . (isset($_GET['edit']) ? '&Edit&edit=' . HTML::sanitize($_GET['edit']) : '') . $newcustomer), 'post', 'id="addressbook"',  ['tokenize' => true]);
-  } else if (!isset($_GET['delete']) && !isset($_POST['edit'])) {
+  } elseif (!isset($_GET['delete']) && !isset($_POST['edit'])) {
     echo HTML::form('addressbook', CLICSHOPPING::link(null, 'Account&AddressBookProcess&Create&action=process'), 'post', 'id="addressbook"',  ['tokenize' => true]);
   }
 ?>

@@ -90,14 +90,14 @@
           if (\in_array($file->getBasename(), array('.', '..')) !== true) {
             if ($file->isDir() === true) {
               rmdir($file->getPathName());
-            } else if (($file->isFile() === true) || ($file->isLink() === true)) {
+            } elseif (($file->isFile() === true) || ($file->isLink() === true)) {
               unlink($file->getPathname());
             }
           }
         }
 
         return rmdir($source);
-      } else if ((is_file($source) === true) || (is_link($source) === true)) {
+      } elseif ((is_file($source) === true) || (is_link($source) === true)) {
         return unlink($source);
       }
 
