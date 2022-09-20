@@ -126,7 +126,7 @@ var jscolor = {
 	addEvent : function(el, evnt, func) {
 		if(el.addEventListener) {
 			el.addEventListener(evnt, func, false);
-		} else if(el.attachEvent) {
+		} elseif(el.attachEvent) {
 			el.attachEvent('on'+evnt, func);
 		}
 	},
@@ -140,10 +140,10 @@ var jscolor = {
 			var ev = document.createEvent('HTMLEvents');
 			ev.initEvent(evnt, true, true);
 			el.dispatchEvent(ev);
-		} else if(document.createEventObject) {
+		} elseif(document.createEventObject) {
 			var ev = document.createEventObject();
 			el.fireEvent('on'+evnt, ev);
-		} else if(el['on'+evnt]) { // alternatively use the traditional event model (IE5)
+		} elseif(el['on'+evnt]) { // alternatively use the traditional event model (IE5)
 			el['on'+evnt]();
 		}
 	},
@@ -177,7 +177,7 @@ var jscolor = {
 		if (typeof e.offsetX === 'number') {
 			x = e.offsetX;
 			y = e.offsetY;
-		} else if (typeof e.layerX === 'number') {
+		} elseif (typeof e.layerX === 'number') {
 			x = e.layerX;
 			y = e.layerY;
 		}
@@ -188,9 +188,9 @@ var jscolor = {
 	getViewPos : function() {
 		if(typeof window.pageYOffset === 'number') {
 			return [window.pageXOffset, window.pageYOffset];
-		} else if(document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+		} elseif(document.body && (document.body.scrollLeft || document.body.scrollTop)) {
 			return [document.body.scrollLeft, document.body.scrollTop];
-		} else if(document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
+		} elseif(document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
 			return [document.documentElement.scrollLeft, document.documentElement.scrollTop];
 		} else {
 			return [0, 0];
@@ -201,9 +201,9 @@ var jscolor = {
 	getViewSize : function() {
 		if(typeof window.innerWidth === 'number') {
 			return [window.innerWidth, window.innerHeight];
-		} else if(document.body && (document.body.clientWidth || document.body.clientHeight)) {
+		} elseif(document.body && (document.body.clientWidth || document.body.clientHeight)) {
 			return [document.body.clientWidth, document.body.clientHeight];
-		} else if(document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+		} elseif(document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
 			return [document.documentElement.clientWidth, document.documentElement.clientHeight];
 		} else {
 			return [0, 0];
@@ -295,12 +295,12 @@ var jscolor = {
 			while(path) {
 				if(path.substr(0,3)==='../' || path.substr(0,2)==='./') {
 					path = path.replace(/^\.+/,'').substr(1);
-				} else if(path.substr(0,3)==='/./' || path==='/.') {
+				} elseif(path.substr(0,3)==='/./' || path==='/.') {
 					path = '/'+path.substr(3);
-				} else if(path.substr(0,4)==='/../' || path==='/..') {
+				} elseif(path.substr(0,4)==='/../' || path==='/..') {
 					path = '/'+path.substr(4);
 					out = out.replace(/\/?[^\/]*$/, '');
-				} else if(path==='.' || path==='..') {
+				} elseif(path==='.' || path==='..') {
 					path = '';
 				} else {
 					var rm = path.match(/^\/?[^\/]*/)[0];
@@ -422,14 +422,14 @@ var jscolor = {
 						styleElement.style.color = styleElement.jscStyle.color;
 						this.exportColor(leaveValue | leaveStyle);
 					}
-				} else if(!this.required && /^\s*$/.test(valueElement.value)) {
+				} elseif(!this.required && /^\s*$/.test(valueElement.value)) {
 					valueElement.value = '';
 					styleElement.style.backgroundImage = styleElement.jscStyle.backgroundImage;
 					styleElement.style.backgroundColor = styleElement.jscStyle.backgroundColor;
 					styleElement.style.color = styleElement.jscStyle.color;
 					this.exportColor(leaveValue | leaveStyle);
 
-				} else if(this.fromString(valueElement.value)) {
+				} elseif(this.fromString(valueElement.value)) {
 					// OK
 				} else {
 					this.exportColor();
@@ -621,7 +621,7 @@ var jscolor = {
 					holdSld && setSld(e);
 					if (document.selection) {
 						document.selection.empty();
-					} else if (window.getSelection) {
+					} elseif (window.getSelection) {
 						window.getSelection().removeAllRanges();
 					}
 					dispatchImmediateChange();
