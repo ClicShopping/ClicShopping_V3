@@ -18,7 +18,9 @@ use ClicShopping\OM\DateTime;
   <div class="separator"></div>
   <div class="card">
     <div class="card-header">
-      <div class="modulesAccountCustomerHistoryInforOrderCommentHeadingHistory"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_order_comment_heading_history'); ?></h3></div>
+      <div class="modulesAccountCustomerHistoryInforOrderCommentHeadingHistory">
+        <h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_order_comment_heading_history'); ?></h3>
+      </div>
     </div>
     <div class="card-block">
       <div class="separator"></div>
