@@ -188,6 +188,27 @@
     }
 
     /**
+     * @param string|null $telephone
+     */
+    public function setCellularPhone(?string $telephone)
+    {
+      $this->_data['customers_cellular_phone'] = $telephone;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCellularPhone(): ?string
+    {
+      if (isset($this->_data['customers_cellular_phone'])) {
+        return $this->_data['customers_cellular_phone'];
+      }
+
+      return false;
+    }
+
+
+    /**
      * @return int|null
      */
     public function getCountryID(): ?int

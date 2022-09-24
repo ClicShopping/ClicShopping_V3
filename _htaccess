@@ -65,6 +65,11 @@ Header set X-XSS-Protection "1; mode=block"
 
 #X Frame
 Header always set X-FRAME-OPTIONS "DENY"
+
+#http header
+  <FilesMatch ".(js|css|xml|gz|html)$">
+    Header append Vary: Accept-Encoding
+  </FilesMatch>
 </IfModule>
 ##################################
 # Bot
