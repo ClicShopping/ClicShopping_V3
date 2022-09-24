@@ -46,13 +46,18 @@
 // ----------------------
 ?>
     <div class="col-md-12">
-      <span class="col-md-6"><?php echo '<strong>' . CLICSHOPPING::getDef('module_account_customers_history_order_date') . '</strong> ' .  DateTime::toLong($order['date_purchased']); ?></span>
-      <span class="col-md-2"><strong><?php echo $order_type; ?></strong><?php echo HTML::outputProtected($order_name); ?></span>
-      <span class="col-md-2"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_order_cost'); ?></strong><?php echo strip_tags($order['order_total']); ?></span>
+      <div class="col-md-6"><?php echo '<strong>' . CLICSHOPPING::getDef('module_account_customers_history_order_date') . '</strong> ' .  DateTime::toLong($order['date_purchased']); ?></>
+      <div class="col-md-6"><strong><?php echo $order_type; ?></strong> <?php echo HTML::outputProtected($order_name); ?></div>
+    </div>
+    <div class="col-md-12">
+      <span class="col-md-2"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_order_cost'); ?></strong> <?php echo strip_tags($order['order_total']); ?></span>
       <span class="col-md-2">
         <p class="float-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_view'), null, CLICSHOPPING::link(null, (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'Account&HistoryInfo&order_id=' . (int)$order['orders_id']), 'info', null,'sm'); ?></p>
       </span>
     </div>
+    </div>
+    <div class="separator"></div>
+    <hr>
     <div class="separator"></div>
 <?php
     }
@@ -84,11 +89,7 @@
   // --- Button   -----
   // ----------------------
 ?>
-    <div class="clearfix"></div>
-    <div class="separator"></div>
     <div class="control-group">
-      <div>
         <div class="buttonSet"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&Main'), 'primary'); ?></div>
-      </div>
     </div>
 </div>
