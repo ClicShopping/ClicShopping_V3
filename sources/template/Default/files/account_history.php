@@ -12,7 +12,7 @@
 
 ?>
 <section class="account_history" id="account_history">
-  <div class="contentContainer card">
+  <div class="contentContainer">
     <div class="contentText">
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_account_customers'); ?>
     </div>

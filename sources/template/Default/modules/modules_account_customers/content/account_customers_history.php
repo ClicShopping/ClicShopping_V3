@@ -18,7 +18,7 @@
     <div class="separator"></div>
     <div class="col-md-12"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_heading_description'); ?></strong></div>
     <div class="separator"></div>
-    <div class="d-flex flex-wrap">
+  <div>
 <?php
   if ($ordersTotalRow > 0) {
     foreach ($Qorders->fetchAll() as $order) {
@@ -33,32 +33,34 @@
 // --- Display history number   -----
 // ---------------------- --------
 ?>
-    <div class="separator"></div>
-    <div class="col-md-12">
-      <span class="col-md-10"><?php echo '<strong>' . CLICSHOPPING::getDef('module_account_customers_history_order_number') . '</strong> ' . (int)$order['orders_id']; ?></span>
-    </div>
-    <span class="col-md-12">
-      <span class="col-md-10"><?php echo '<strong>' . CLICSHOPPING::getDef('module_account_customers_history_order_status') . '</strong> ' . $order['orders_status_name']; ?></span>
-    </span>
-<?php
-// ----------------------
-// --- Display Order   -----
-// ----------------------
-?>
-    <div class="col-md-12">
-      <div class="col-md-6"><?php echo '<strong>' . CLICSHOPPING::getDef('module_account_customers_history_order_date') . '</strong> ' .  DateTime::toLong($order['date_purchased']); ?></>
-      <div class="col-md-6"><strong><?php echo $order_type; ?></strong> <?php echo HTML::outputProtected($order_name); ?></div>
-    </div>
-    <div class="col-md-12">
-      <span class="col-md-2"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_order_cost'); ?></strong> <?php echo strip_tags($order['order_total']); ?></span>
-      <span class="col-md-2">
-        <p class="float-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_view'), null, CLICSHOPPING::link(null, (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'Account&HistoryInfo&order_id=' . (int)$order['orders_id']), 'info', null,'sm'); ?></p>
-      </span>
-    </div>
-    </div>
-    <div class="separator"></div>
-    <hr>
-    <div class="separator"></div>
+      <div class="separator"></div>
+      <div class="card">
+        <div class="card-header">
+          <div class="col-md-12">
+            <div class="row">
+              <span class="col-md-6"><?php echo '<strong>' . CLICSHOPPING::getDef('module_account_customers_history_order_number') . '</strong> ' . (int)$order['orders_id']; ?></span>
+              <span class="col-md-6 text-end"><?php echo '<strong>' . CLICSHOPPING::getDef('module_account_customers_history_order_status') . '</strong> ' . $order['orders_status_name']; ?></span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6"><?php echo '<strong>' . CLICSHOPPING::getDef('module_account_customers_history_order_date') . '</strong> ' .  DateTime::toLong($order['date_purchased']); ?></div>
+              <div class="col-md-6 text-end"><strong><?php echo $order_type; ?></strong> <?php echo HTML::outputProtected($order_name); ?></div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-10"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_order_cost'); ?></strong> <?php echo strip_tags($order['order_total']); ?></div>
+              <div class="col-md-2">
+                <p class="float-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_view'), null, CLICSHOPPING::link(null, (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'Account&HistoryInfo&order_id=' . (int)$order['orders_id']), 'info', null,'sm'); ?></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="separator"></div>
 <?php
     }
   } else {
