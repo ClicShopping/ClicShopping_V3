@@ -70,7 +70,8 @@
       }
 
       while ($QordersStatus->fetch() !== false) {
-        $orders_statuses[] = ['id' => $QordersStatus->valueInt('orders_status_id'),
+        $orders_statuses[] = [
+          'id' => $QordersStatus->valueInt('orders_status_id'),
           'text' => $QordersStatus->value('orders_status_name')
         ];
 
