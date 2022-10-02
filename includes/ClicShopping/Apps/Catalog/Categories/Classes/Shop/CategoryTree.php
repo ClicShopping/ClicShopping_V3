@@ -138,7 +138,7 @@
      * Count the categories
      * @return int
      */
-    public function getCountCategories()
+    public function getCountCategories() : int
     {
       $Qcategories = $this->db->prepare('select count(categories_id) as count
                                          from :table_categories
@@ -146,9 +146,12 @@
 
       $Qcategories->execute();
 
-      return ($Qcategories->valueInt('count'));
+      return $Qcategories->valueInt('count');
     }
 
+    /**
+     *
+     */
     public function reset()
     {
       $this->root_category_id = 0;
@@ -182,7 +185,7 @@
      * @access protected
      * @return string
      */
-    protected function _buildBranch($parent_id, $level = 0)
+    protected function _buildBranch(int|string $parent_id, int $level = 0) :string
     {
 
       $result = ((($level === 0) && ($this->parent_group_apply_to_root === true)) || ($level > 0)) ? $this->parent_group_start_string : null;
@@ -249,7 +252,13 @@
       return $result;
     }
 
-    public function buildBranchArray($parent_id, $level = 0, $result = '')
+    /**
+     * @param int|string $parent_id
+     * @param int $level
+     * @param string $result
+     * @return array|mixed|string
+     */
+    public function buildBranchArray(int | string $parent_id, int $level = 0, string $result = '')
     {
       if (empty($result)) {
         $result = [];
@@ -283,7 +292,12 @@
       return $result;
     }
 
-    public function buildBreadcrumb($category_id, $level = 0)
+    /**
+     * @param $category_id
+     * @param int $level
+     * @return int|string
+     */
+    public function buildBreadcrumb(?string $category_id, int $level = 0) :string
     {
       $breadcrumb = '';
 
@@ -308,12 +322,10 @@
 
     /**
      * Return a formated string representation of the category structure relationship data
-     *
-     *
      * @return string
      */
 
-    public function getTree()
+    public function getTree() :string
     {
       return $this->_buildBranch($this->root_category_id);
     }
@@ -325,17 +337,25 @@
      *
      * @return string
      */
-    public function __toString()
+    public function __toString() :string
     {
       return $this->getTree();
     }
 
-    public function getArray($parent_id = '')
+    /**
+     * @param string $parent_id
+     * @return bool
+     */
+    public function getArray(string $parent_id = '') :bool
     {
       return $this->buildBranchArray((empty($parent_id) ? $this->root_category_id : $parent_id));
     }
 
-    public function exists($id)
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function exists(string $id) :bool
     {
       foreach ($this->_data as $parent => $categories) {
         foreach ($categories as $category_id => $info) {
@@ -348,7 +368,12 @@
       return false;
     }
 
-    public function getChildren($category_id, &$array = [])
+    /**
+     * @param string $category_id
+     * @param array $array
+     * @return array
+     */
+    public function getChildren(string $category_id, array &$array = []) :array
     {
       foreach ($this->_data as $parent => $categories) {
         if ($parent == $category_id) {
@@ -371,7 +396,7 @@
      * @since v3.0.0
      */
 
-    public function getData($id, $key = null)
+    public function getData(string $id, $key = null) :array | bool
     {
       foreach ($this->_data as $parent => $categories) {
         foreach ($categories as $category_id => $info) {
@@ -401,7 +426,7 @@
      * @since v3.0.2
      */
 
-    public function getParentID($id)
+    public function getParentID(string $id) :array
     {
       return $this->getData($id, 'parent_id');
     }
@@ -410,11 +435,12 @@
      * Calculate the number of products in each category
      * @param bool $filter_active
      */
-    protected function _calculateProductTotals($filter_active = true)
+    protected function _calculateProductTotals(bool $filter_active = true) :void
     {
       $totals = [];
 
-      $sql_query = 'select p2c.categories_id, count(*) as total
+      $sql_query = 'select p2c.categories_id, 
+                           count(*) as total
                     from :table_products p,
                         :table_products_to_categories p2c
                     where p2c.products_id = p.products_id';
@@ -463,7 +489,11 @@
       }
     }
 
-    public function getNumberOfProducts($id)
+    /**
+     * @param $id
+     * @return false|mixed
+     */
+    public function getNumberOfProducts($id) : int|bool
     {
       foreach ($this->_data as $parent => $categories) {
         foreach ($categories as $category_id => $info) {
@@ -476,47 +506,76 @@
       return false;
     }
 
-    public function setRootCategoryID($root_category_id)
+    /**
+     * @param $root_category_id
+     */
+    public function setRootCategoryID($root_category_id) :void
     {
       $this->root_category_id = $root_category_id;
     }
 
-    public function setMaximumLevel($max_level)
+    /**
+     * @param $max_level
+     */
+    public function setMaximumLevel($max_level) :void
     {
       $this->max_level = $max_level;
     }
 
-    public function setRootString($root_start_string, $root_end_string)
+    /**
+     * @param $root_start_string
+     * @param $root_end_string
+     */
+    public function setRootString($root_start_string, $root_end_string) :void
     {
       $this->root_start_string = $root_start_string;
       $this->root_end_string = $root_end_string;
     }
 
-    public function setParentString($parent_start_string, $parent_end_string)
+    /**
+     * @param $parent_start_string
+     * @param $parent_end_string
+     */
+    public function setParentString($parent_start_string, $parent_end_string) :void
     {
       $this->parent_start_string = $parent_start_string;
       $this->parent_end_string = $parent_end_string;
     }
 
-    public function setParentGroupString($parent_group_start_string, $parent_group_end_string, $apply_to_root = false)
+    /**
+     * @param $parent_group_start_string
+     * @param $parent_group_end_string
+     * @param false $apply_to_root
+     */
+    public function setParentGroupString($parent_group_start_string, $parent_group_end_string, bool $apply_to_root = false) :void
     {
       $this->parent_group_start_string = $parent_group_start_string;
       $this->parent_group_end_string = $parent_group_end_string;
       $this->parent_group_apply_to_root = $apply_to_root;
     }
 
-    public function setChildString($child_start_string, $child_end_string)
+    /**
+     * @param $child_start_string
+     * @param $child_end_string
+     */
+    public function setChildString($child_start_string, $child_end_string) :void
     {
       $this->child_start_string = $child_start_string;
       $this->child_end_string = $child_end_string;
     }
 
-    public function setBreadcrumbSeparator($breadcrumb_separator)
+    /**
+     * @param $breadcrumb_separator
+     */
+    public function setBreadcrumbSeparator($breadcrumb_separator) :void
     {
       $this->breadcrumb_separator = $breadcrumb_separator;
     }
 
-    public function setBreadcrumbUsage($breadcrumb_usage)
+    /**
+     * @param $breadcrumb_usage
+     */
+    public function setBreadcrumbUsage($breadcrumb_usage) :void
     {
       if ($breadcrumb_usage === true) {
         $this->breadcrumb_usage = true;
@@ -525,13 +584,22 @@
       }
     }
 
-    public function setSpacerString($spacer_string, $spacer_multiplier = 2)
+    /**
+     * @param string $spacer_string
+     * @param float|int $spacer_multiplier
+     */
+    public function setSpacerString(string $spacer_string, float|int $spacer_multiplier = 2) :void
     {
       $this->spacer_string = $spacer_string;
       $this->spacer_multiplier = $spacer_multiplier;
     }
 
-    public function setCategoryPath($cpath, $cpath_start_string = '', $cpath_end_string = '')
+    /**
+     * @param string $cpath
+     * @param string $cpath_start_string
+     * @param string $cpath_end_string
+     */
+    public function setCategoryPath(string $cpath, string $cpath_start_string = '', string $cpath_end_string = '')  :void
     {
       $this->follow_cpath = true;
       $this->cpath_array = explode($this->breadcrumb_separator, $cpath);
@@ -539,7 +607,10 @@
       $this->cpath_end_string = $cpath_end_string;
     }
 
-    public function setFollowCategoryPath($follow_cpath)
+    /**
+     * @param bool follow_cpath
+     */
+    public function setFollowCategoryPath(bool $follow_cpath) :void
     {
       if ($follow_cpath === true) {
         $this->follow_cpath = true;
@@ -548,13 +619,20 @@
       }
     }
 
-    public function setCategoryPathString($cpath_start_string, $cpath_end_string)
+    /**
+     * @param string $cpath_start_string
+     * @param string $cpath_end_string
+     */
+    public function setCategoryPathString(string $cpath_start_string, string $cpath_end_string) :void
     {
       $this->cpath_start_string = $cpath_start_string;
       $this->cpath_end_string = $cpath_end_string;
     }
 
-    public function setShowCategoryProductCount($show_category_product_count)
+    /**
+     * @param int $show_category_product_count
+     */
+    public function setShowCategoryProductCount(int $show_category_product_count) :void
     {
       if ($show_category_product_count === true) {
         $this->_show_total_products = true;
@@ -563,7 +641,11 @@
       }
     }
 
-    public function setCategoryProductCountString($category_product_count_start_string, $category_product_count_end_string)
+    /**
+     * @param $category_product_count_start_string
+     * @param $category_product_count_end_string
+     */
+    public function setCategoryProductCountString(string $category_product_count_start_string, string $category_product_count_end_string) :void
     {
       $this->category_product_count_start_string = $category_product_count_start_string;
       $this->category_product_count_end_string = $category_product_count_end_string;
@@ -574,7 +656,7 @@
      * @param $categories_name
      * @return string
      */
-    public function getCategoryTreeTitle($categories_name)
+    public function getCategoryTreeTitle(string $categories_name) :string
     {
       $category_name = $this->rewriteUrl->getCategoryTreeTitle($categories_name);
 
@@ -583,10 +665,10 @@
 
     /**
      * Rewrite link of category
-     * @param $categories_link
+     * @param int $categories_id
      * @return mixed
      */
-    public function getCategoryTreeUrl($categories_id)
+    public function getCategoryTreeUrl(int $categories_id) :string
     {
       $categories_url = $this->rewriteUrl->getCategoryTreeUrl($categories_id);
 
@@ -595,10 +677,10 @@
 
     /**
      * Rewrite link of Image
-     * @param $categories_link
+     * @param int $categories_id
      * @return mixed
      */
-    public function getCategoryTreeImageUrl($categories_id)
+    public function getCategoryTreeImageUrl(int $categories_id) :string
     {
       $categories_url = $this->rewriteUrl->getCategoryImageUrl($categories_id);
 
@@ -607,10 +689,10 @@
 
     /**
      * Rewrite link of Image
-     * @param $categories_link
+     * @param int $categories_id
      * @return mixed
      */
-    public function getCategoryImageUrl($categories_id)
+    public function getCategoryImageUrl(int $categories_id) :string
     {
       $category = $this->getPathCategories($categories_id);
 
