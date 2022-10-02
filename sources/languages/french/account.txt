@@ -1,7 +1,6 @@
 navbar_title = Mon compte
 heading_title = Informations sur mon compte
 
-
 my_support = Contater le support
 my_orders_title = Mes commandes
 my_orders_view = Voir les commandes que j'ai effectuées.

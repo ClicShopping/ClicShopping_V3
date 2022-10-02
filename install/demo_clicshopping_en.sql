@@ -194,6 +194,8 @@ INSERT INTO administrator_menu VALUES(782, 'index.php?A&Tools\\EditLogError&LogE
 INSERT INTO administrator_menu VALUES(783, 'index.php?A&Tools\\SecurityCheck&IpRestriction', 178, 1, 1, 'cybermarketing.gif', 1, 'app_tools_security_check', 1);
 INSERT INTO administrator_menu VALUES(784, 'index.php?A&Customers\\Gdpr&Gdpr', 4, 8, 1, 'gdpr.gif', 1, 'app_customers_gdpr', 1);
 INSERT INTO administrator_menu VALUES(785, 'index.php?A&Tools\\EditDesign&EditDesign', 116, 0, 1, '', 0, 'app_tools_design', 1);
+INSERT INTO administrator_menu VALUES(786, 'index.php?A&Orders\\ReturnOrders&ReturnOrders', 4, 2, 0, 'return_orders.png', 0, 'app_orders_return_orders', 1);
+INSERT INTO administrator_menu VALUES(787, 'index.php?A&Orders\\ReturnOrders&Configure', 14, 8, 1, '', 1, 'app_orders_return_orders', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -531,6 +533,10 @@ INSERT INTO administrator_menu_description VALUES(784, 'Gdpr', 1);
 INSERT INTO administrator_menu_description VALUES(784, 'Gdpr', 2);
 INSERT INTO administrator_menu_description VALUES(785, 'Design Studio', 1);
 INSERT INTO administrator_menu_description VALUES(785, 'Studio Design', 2);
+INSERT INTO administrator_menu_description VALUES(786, 'Product return management', 1);
+INSERT INTO administrator_menu_description VALUES(786, 'Gestion des Retours produit', 2);
+INSERT INTO administrator_menu_description VALUES(787, 'Products return status', 1);
+INSERT INTO administrator_menu_description VALUES(787, 'Statuts des retours produits', 2);
 
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', NULL, NULL, NULL, '2018-07-26 11:47:52', NULL, 1, 0, 99, 'Logo', NULL);

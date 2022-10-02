@@ -11,6 +11,8 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\DateTime;
   use ClicShopping\Sites\Shop\Tax;
+  use ClicShopping\OM\HTML;
+  use ClicShopping\Apps\Orders\ReturnOrders\Classes\Shop\ReturnProduct;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
@@ -33,6 +35,7 @@
   } else {
 ?>
           <tr>
+            <td><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_action'); ?></strong></td>
             <th colspan="2"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_products'); ?></strong></th>
             <th class="text-end"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_order_total'); ?></strong></th>
           </tr>
@@ -42,9 +45,24 @@
   }
 
   for ($i=0, $n=\count($CLICSHOPPING_Order->products); $i<$n; $i++) {
-    echo '       <tr>' . "\n" .
-      '            <td class="text-end" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x&nbsp;</td>' . "\n" .
-      '            <td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'];
+    $link_product_return = CLICSHOPPING::link(null, 'Account&ProductReturn&product_id=' . $CLICSHOPPING_Order->products[$i]['id'] . '&order_id=' . HTML::sanitize($_GET['order_id']) . '"');
+    $link_product_return_history = CLICSHOPPING::link(null, 'Account&ProductReturnHistory&order_id=' . HTML::sanitize($_GET['order_id']));
+    $result = ReturnProduct::removeButtonHistoryInfo($_GET['order_id'], $CLICSHOPPING_Order->products[$i]['id']);
+
+    echo '       <tr>' . "\n";
+
+    if ($result['opened'] == 1) {
+      echo '        <td>' .  HTML::button(CLICSHOPPING::getDef('button_return_product_closed'), 'bi bi-question-diamond', null, 'danger', null, 'sm') . '</td>' . "\n";
+    } else {
+      if ($result['return_status_id'] != 0) {
+        echo '        <td>' .  HTML::button(CLICSHOPPING::getDef('button_return_product_waiting'), 'bi bi-question-diamond', $link_product_return_history, 'warning', null, 'sm') . '</td>' . "\n";
+      } else {
+        echo '        <td>' .  HTML::button(CLICSHOPPING::getDef('button_return_product'), 'bi bi-question-diamond', $link_product_return, 'primary', null, 'sm') . '</td>' . "\n";
+      }
+    }
+
+    echo '            <td class="text-end" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x&nbsp;</td>' . "\n" .
+         '            <td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'];
 
     if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (\count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
       for ($j=0, $n2=\count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
@@ -61,7 +79,7 @@
           $price = '';
         }
 
-        echo '<br /><nobr><small>&nbsp;<i> - <strong>' . $reference . '</strong>' . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option'] . ' : ' . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['value'] . $price .'</i></small></nobr>';
+        echo '<br /><small>&nbsp;<i> - <strong>' . $reference . '</strong>' . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option'] . ' : ' . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['value'] . $price .'</i></small>';
       }
     }
 
@@ -71,8 +89,8 @@
       echo '            <td class="text-end" valign="top">' . Tax::displayTaxRateValue($CLICSHOPPING_Order->products[$i]['tax']) . '</td>' . "\n";
     }
 
-    echo '            <td class="text-end" valign="top">' . $CLICSHOPPING_Currencies->format(Tax::addTax($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax']) * $CLICSHOPPING_Order->products[$i]['qty'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']) . '</td>' . "\n" .
-      '          </tr>' . "\n";
+    echo '            <td class="text-end" valign="top">' . $CLICSHOPPING_Currencies->format(Tax::addTax($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax']) * $CLICSHOPPING_Order->products[$i]['qty'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']) . '</td>' . "\n";
+    echo '          </tr>' . "\n";
   }
 ?>
           </tbody>

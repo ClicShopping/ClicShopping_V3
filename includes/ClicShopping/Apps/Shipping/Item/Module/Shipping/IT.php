@@ -124,7 +124,7 @@
         'methods' => array(array('id' => $this->code,
           'title' => $this->app->getDef('module_item_text_way'),
           'cost' => ((float)CLICSHOPPING_APP_ITEM_IT_COST * (int)$number_of_items) + (float)CLICSHOPPING_APP_ITEM_IT_HANDLING
-        )
+          )
         )
       ];
 

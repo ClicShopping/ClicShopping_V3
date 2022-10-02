@@ -17,5 +17,4 @@ module_account_customers_history_no_purchases = <p style="color:#ff0000;">Vous n
 
 button_view = Afficher
 button_back = Retour
-
-
+button_return_product_closed = Cloturé

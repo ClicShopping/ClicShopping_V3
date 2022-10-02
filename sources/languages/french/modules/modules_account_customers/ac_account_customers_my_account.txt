@@ -9,4 +9,5 @@ module_account_customers_my_account_notifications = Modifier les paramètres de 
 module_account_customers_my_account_my_feed_back = Voir ou écrire une rétrocation sur nos services commande / produit ....
 module_account_customers_my_account_customer = Gestion de votre compte
 module_account_customers_my_account_delete_account = Supprimer mon compte
-module_account_customers_my_account_gdpr = Gestion des accès à mes données
+module_account_customers_my_account_gdpr = Gestion des accès à mes
+module_account_customers_my_account_return_history = Gérer vos retours produit

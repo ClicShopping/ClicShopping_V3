@@ -1,0 +1,10 @@
+return_status_id int(11) not null,
+language_id int(11) not null default 0,
+name varchar(32) not null
+--
+primary return_status_id
+idx_return_status_id language_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

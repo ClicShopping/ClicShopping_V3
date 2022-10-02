@@ -1,0 +1,2 @@
+title_menu = Gestion des Retours produits
+title_menu_return_orders_status = Statuts des retours produits

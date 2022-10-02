@@ -68,6 +68,7 @@
         $footer_tag .= ' glowCookies.start(\'en\', { ';
         $footer_tag .= ' analytics: \'' . MODULE_HEADER_TAGS_GDPR_GOOGLE_ANALYTICS . '\', ';
         $footer_tag .= ' facebookPixel: \'' . MODULE_HEADER_TAGS_GDPR_FACEBOOK_PIXEL . '\', ';
+        $footer_tag .= ' hideAfterClick: true, ';
         $footer_tag .= ' border: \'' . MODULE_HEADER_TAGS_GDPR_BORDER . '\', ';
         $footer_tag .= ' position:  \'' . MODULE_HEADER_TAGS_GDPR_POSITION . '\', ';
         $footer_tag .= ' policyLink: \'' . $text_privacy . '\', ';

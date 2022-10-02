@@ -3,4 +3,3 @@ navbar_title_1 = Mon compte
 navbar_title_2 = Historique
 
 heading_title = Historique de mes commandes / factures
-
