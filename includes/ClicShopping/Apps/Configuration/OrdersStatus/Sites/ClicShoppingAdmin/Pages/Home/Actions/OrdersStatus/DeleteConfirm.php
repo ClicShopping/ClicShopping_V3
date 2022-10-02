@@ -22,6 +22,7 @@
     public function __construct()
     {
       $this->app = Registry::get('OrdersStatus');
+      $this->hooks = Registry::get('Hooks');
     }
 
     public function execute()
@@ -43,6 +44,7 @@
         }
 
         $this->app->db->delete('orders_status', ['orders_status_id' => (int)$oID]);
+        $this->hooks->call('OrdersStatus', 'DeleteConfirmOrdersStatus');
 
         Cache::clear('configuration');
 

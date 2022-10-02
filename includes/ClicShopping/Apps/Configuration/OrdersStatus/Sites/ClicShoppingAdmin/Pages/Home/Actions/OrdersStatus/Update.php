@@ -21,6 +21,7 @@
     public function __construct()
     {
       $this->app = Registry::get('OrdersStatus');
+      $this->hooks = Registry::get('Hooks');
     }
 
     public function execute()
@@ -60,6 +61,8 @@
             ]
           );
         }
+
+        $this->hooks->call('OrdersStatus', 'UpdateOrdersStatusUpdate');
 
         Cache::clear('configuration');
 
