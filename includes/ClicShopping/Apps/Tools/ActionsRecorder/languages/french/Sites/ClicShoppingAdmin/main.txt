@@ -5,7 +5,7 @@ module_ar_short_title = Actions sur connexions
 text_actions_recorder =  Actions sur connexions
 text_configure =  Configurer App Module
 
-text_intro = Cette app vous permet d'include un gestionaire de menus d'adminisration <br /><br />
+text_intro = Cette app vous permet d'include un gestionaire de menus d'administration <br /><br />
 - Activer ce module qui est situé dans le menu Tools
 
 module_ar_introduction = Le processus d'installation installe la base de données et le menu

@@ -5,7 +5,7 @@ module_am_short_title = Menu Administrateur
 text_administrator_menu =  Menu Administrateur
 text_configure =  Configurer App Module
 
-text_intro = Cette app vous permet d'include un gestionaire de menus d'adminisration <br /><br />
+text_intro = Cette app vous permet d'include un gestionaire de menus d'administration <br /><br />
 - Activer ce module qui est situé dans le menu Tools
 
 module_am_introduction = Le processus d'installation installe la base de données et le menu
