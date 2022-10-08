@@ -3,6 +3,7 @@ fix error document
 Add new hooks
 Add product return management
 bootstrap 5.2
+Gdpr Optimization
 
 
 --------------------

@@ -12,7 +12,6 @@
   use ClicShopping\OM\DateTime;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
 
   $CLICSHOPPING_Gdpr = Registry::get('Gdpr');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
@@ -94,7 +93,7 @@
       if (isset($_POST['search'])) {
         $keywords = HTML::sanitize($_POST['search']);
 
-        $Qcustomers = $CLICSHOPPING_Gdpr->db->prepare('select  SQL_CALC_FOUND_ROWS c.customers_id,
+        $Qcustomers = $CLICSHOPPING_Gdpr->db->prepare('select SQL_CALC_FOUND_ROWS c.customers_id,
                                                                                    c.customers_lastname,
                                                                                    c.customers_firstname,
                                                                                    c.customers_email_address,
@@ -119,8 +118,6 @@
         $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
         $Qcustomers->execute();
       } else {
-        $date = date('Y-m-d', strtotime('+ 180 days'));
-
         $Qcustomers = $CLICSHOPPING_Gdpr->db->prepare('select SQL_CALC_FOUND_ROWS c.customers_id,
                                                                                   c.customers_lastname,
                                                                                   c.customers_firstname,
