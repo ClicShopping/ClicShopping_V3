@@ -19,7 +19,6 @@
 
     public function execute()
     {
-
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Cronjob = Registry::get('Cronjob');
 
@@ -31,13 +30,17 @@
       $m->install();
 
       static::installDbMenuAdministration();
+      static::installDb();
 
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Cronjob->getDef('alert_module_install_success'), 'success', 'Cronjob');
 
       $CLICSHOPPING_Cronjob->redirect('Configure&module=' . $current_module);
     }
 
-    private static function installDbMenuAdministration()
+    /**
+     *
+     */
+    private static function installDbMenuAdministration()  :void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Cronjob = Registry::get('Cronjob');
@@ -83,4 +86,30 @@
       }
     }
 
+    /**
+     *
+     */
+    private static function installDb() :void
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_cron"');
+
+      if ($Qcheck->fetch() === false) {
+        $sql = <<<EOD
+CREATE TABLE :table_cron (
+    cron_id int(11) NOT NULL,
+  code varchar(128) NOT NULL,
+  description text DEFAULT NULL,
+  cycle varchar(128) NOT NULL,
+  action text NOT NULL,
+  status tinyint(1) NOT NULL,
+  date_added datetime NOT NULL,
+  date_modified datetime DEFAULT NULL
+  PRIMARY KEY (cron_id)
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+EOD;
+        $CLICSHOPPING_Db->exec($sql);
+      }
+    }
   }
