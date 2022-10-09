@@ -195,6 +195,7 @@ INSERT INTO administrator_menu VALUES(784, 'index.php?A&Customers\\Gdpr&Gdpr', 4
 INSERT INTO administrator_menu VALUES(785, 'index.php?A&Tools\\EditDesign&EditDesign', 116, 0, 1, '', 0, 'app_tools_design', 1);
 INSERT INTO administrator_menu VALUES(786, 'index.php?A&Orders\\ReturnOrders&ReturnOrders', 4, 2, 0, 'return_orders.png', 0, 'app_orders_return_orders', 1);
 INSERT INTO administrator_menu VALUES(787, 'index.php?A&Orders\\ReturnOrders&Configure', 14, 8, 1, '', 1, 'app_orders_return_orders', 1);
+INSERT INTO administrator_menu VALUES(788, 'index.php?A&Tools\\Cronjob&Cronjob', 4, 2, 0, 'return_orders.png', 0, 'app_tools_cronjob', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -536,6 +537,8 @@ INSERT INTO administrator_menu_description VALUES(786, 'Product return managemen
 INSERT INTO administrator_menu_description VALUES(786, 'Gestion des Retours produits', 2);
 INSERT INTO administrator_menu_description VALUES(787, 'Products return status', 1);
 INSERT INTO administrator_menu_description VALUES(787, 'Statuts des retours produits', 2);
+INSERT INTO administrator_menu_description VALUES(788, 'Cronjob', 1);
+INSERT INTO administrator_menu_description VALUES(788, 'Cronjob', 2);
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo', NULL);
 
@@ -1810,6 +1813,9 @@ INSERT INTO countries VALUES(237, 'East Timor', 'TL', 'TLS', 1, 1);
 INSERT INTO countries VALUES(238, 'Zambia', 'ZM', 'ZMB', 1, 1);
 INSERT INTO countries VALUES(239, 'Zimbabwe', 'ZW', 'ZWE', 1, 1);
 
+INSERT INTO cron VALUES(1, 'currency', null, 'day', 'currency', 1, '2014-09-25 14:40:00', '2022-10-08 17:57:36');
+INSERT INTO cron VALUES(2, 'gdpr', null, 'day', 'gdpr', 0, '2014-09-01 14:40:00', '2022-10-08 18:04:38');
+INSERT INTO cron VALUES(3, 'backup', null, 'day', 'backup', 1, '1900-01-01 00:00:00', '2022-10-08 17:31:47');
 
 INSERT INTO currencies VALUES(1, 'Euro', 'EUR', '', 'EUR', '.', ',', '2', 1.00000000, '2008-09-13 18:02:35', 1, 0);
 INSERT INTO currencies VALUES(2, 'Dollard', 'USD', 'USD', '', '.', ',', '2', 1.40750003, '2008-09-13 18:02:36', 1, 0);

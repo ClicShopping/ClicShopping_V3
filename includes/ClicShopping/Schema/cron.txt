@@ -1,0 +1,15 @@
+cron_id int not_null auto_increment
+code varchar(128) not_null
+description text default null
+cycle varchar(128) not_null
+action text not_null
+status tinyint(1) not_null
+date_added datetime not_null
+date_modified datetime default null
+
+--
+primary cron_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

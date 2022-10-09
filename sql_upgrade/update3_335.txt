@@ -107,6 +107,31 @@ ALTER TABLE `clic_return_orders` MODIFY `return_id` int(11) NOT NULL AUTO_INCREM
 INSERT INTO `clic_administrator_menu` VALUES('786', 'index.php?A&Orders\\ReturnOrders&ReturnOrders', 4, 2, 0, 'return_orders.png', 0, 'app_orders_return_orders', 1);
 INSERT INTO `clic_administrator_menu` VALUES('787', 'index.php?A&Orders\\ReturnOrders&Configure', 14, 8, 1, '', 1, 'app_orders_return_orders', 1);
 
+ALTER TABLE `clic_customers_gdpr` ADD `date_added` datetime NULL AFTER `no_ip_address`;
+
+
+
+CREATE TABLE `clic_cron` (
+  `cron_id` int(11) NOT NULL,
+  `code` varchar(128) NOT NULL,
+  `description` text DEFAULT NULL,
+  `cycle` varchar(128) NOT NULL,
+  `action` text NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+INSERT INTO `clic_cron` VALUES(1, 'currency', null, 'day', 'currency', 1, '2014-09-25 14:40:00', '2022-10-08 17:57:36');
+INSERT INTO `clic_cron` VALUES(2, 'gdpr', null, 'day', 'gdpr', 0, '2014-09-01 14:40:00', '2022-10-08 18:04:38');
+INSERT INTO `clic_cron` VALUES(3, 'backup', null, 'day', 'backup', 1, '1900-01-01 00:00:00', '2022-10-08 17:31:47');
+
+ALTER TABLE `clic_cron` ADD PRIMARY KEY (`cron_id`);
+ALTER TABLE `clic_cron` MODIFY `cron_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+
+
+
 
 ---------------------------
 #English

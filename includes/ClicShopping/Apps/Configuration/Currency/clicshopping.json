@@ -13,6 +13,16 @@
    "website":	"https://www.clicshopping.org"
   }
  ],
+ "modules": {
+  "Hooks": {
+   "ClicShoppingAdmin/Cronjob": {
+    "Process":	"Module\\Hooks\\ClicShoppingAdmin\\Cronjob\\Process"
+   },
+   "Shop/Cronjob": {
+    "Process":	"Module\\Hooks\\Shop\\Cronjob\\Process"
+   }
+  }
+ },
  "routes": {
   "ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home"
  }

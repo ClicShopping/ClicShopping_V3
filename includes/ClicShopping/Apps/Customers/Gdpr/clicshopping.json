@@ -21,6 +21,12 @@
   "Hooks": {
    "Shop/Account": {
     "Process":	"Module\\Hooks\\Shop\\Account\\Process"
+   },
+   "ClicShoppingAdmin/Cronjob": {
+    "Process":	"Module\\Hooks\\ClicShoppingAdmin\\Cronjob\\Process"
+   },
+   "Shop/Cronjob": {
+    "Process":	"Module\\Hooks\\Shop\\Cronjob\\Process"
    }
   }
  },

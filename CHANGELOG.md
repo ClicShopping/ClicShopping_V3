@@ -4,7 +4,11 @@ Add new hooks
 Add product return management
 bootstrap 5.2
 Gdpr Optimization
+fix bug stats product notification
+add cronjob
 
+
+see sql update for modification
 
 --------------------
 3.334

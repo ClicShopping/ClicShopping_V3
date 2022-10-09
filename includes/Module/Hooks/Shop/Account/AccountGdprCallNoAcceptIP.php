@@ -10,10 +10,7 @@
 
   namespace ClicShopping\OM\Module\Hooks\Shop\Account;
 
-  use ClicShopping\OM\CLICSHOPPING;
-
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   class AccountGdprCallNoAcceptIP
   {
@@ -32,7 +29,7 @@
       $Qcheck->execute();
 
       if ($Qcheck->fetch() === false) {
-        $CLICSHOPPING_Db->save('customers_gdpr', ['customers_id' => $CLICSHOPPING_Customer->getID()]);
+        $CLICSHOPPING_Db->save('customers_gdpr', ['customers_id' => $CLICSHOPPING_Customer->getID(), 'date_added' => now()]);
       } else {
         if (!\is_null($_POST['no_ip_address'])) {
           $no_ip_address = 1;
@@ -42,7 +39,8 @@
 
         $Qupdate = $CLICSHOPPING_Db->prepare('update :table_customers_gdpr
                                               set no_ip_address = :no_ip_address,
-                                              customers_id = :customers_id
+                                              customers_id = :customers_id,
+                                              date_added = now()
                                             ');
         $Qupdate->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
         $Qupdate->bindInt(':no_ip_address', $no_ip_address);

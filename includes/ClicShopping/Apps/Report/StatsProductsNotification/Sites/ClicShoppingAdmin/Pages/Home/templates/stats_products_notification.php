@@ -76,7 +76,7 @@
                                                                     where c.customers_id = pn.customers_id
                                                                     and pn.products_id = :products_id
                                                                     order by c.customers_firstname,
-                                                                     c.customers_lastname";
+                                                                             c.customers_lastname
                                                                     limit :page_set_offset,
                                                                           :page_set_max_results
                                                                     ');
