@@ -9,6 +9,7 @@ add cronjob
 
 
 see sql update for modification
+You must activate the rma module and cron module
 
 --------------------
 3.334

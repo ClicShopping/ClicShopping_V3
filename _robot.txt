@@ -8,8 +8,10 @@ Disallow: /Account/Create
 Disallow: /Account/LogIn
 Disallow: /Account/logoff
 Disallow: /Account/PasswordForgotten
-Disallow: /Search/AdvancedSearch/
-Disallow: /Search/Q/
+Disallow: /Search/AdvancedSearch
+Disallow: /Search/Q
+Disallow: /Infos/Cookies
+Disallow: /Infos/SSLCheck
 Disallow: /Cart
 
 # Block faceted pages and 301 redirect pages
