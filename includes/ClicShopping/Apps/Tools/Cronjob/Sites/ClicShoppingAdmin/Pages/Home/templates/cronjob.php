@@ -37,11 +37,10 @@
   <div class="separator"></div>
   <div class="card">
     <div class="card-header">
-      CRON Instructions
+      <?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_instruction'); ?>
     </div>
     <div class="card-body">
-      <div class="card-text">Cron Job's are scheduled tasks that are run periodically. To setup your servers to use cron job you can read the ClicShopping documentation page.
-        You need to set your Cron task to run every hour.</div>
+      <div class="card-text"><?php echo $CLICSHOPPING_Cronjob->getDef('text_info_cronjob'); ?></div>
       <div class="separator"></div>
        <div class="row">
          <div class="input-group">

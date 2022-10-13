@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
-        'reference' => '6fefcbd09073972f8e894de253ee65470946ec8f',
+        'reference' => 'dac858dee25f6b62fd37ab02754dc23fe4a2dcc9',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
-            'reference' => '6fefcbd09073972f8e894de253ee65470946ec8f',
+            'reference' => 'dac858dee25f6b62fd37ab02754dc23fe4a2dcc9',
             'dev_requirement' => false,
         ),
         'darkghosthunter/preloader' => array(
@@ -164,12 +164,12 @@
             'dev_requirement' => false,
         ),
         'stymiee/email-validator' => array(
-            'pretty_version' => '1.1.1',
-            'version' => '1.1.1.0',
+            'pretty_version' => '1.1.3',
+            'version' => '1.1.3.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../stymiee/email-validator',
             'aliases' => array(),
-            'reference' => 'f6b1e246687591afd17cbe38d08580d71b48c081',
+            'reference' => '017a53567aadc82e51773b887d0dff381aae5f2e',
             'dev_requirement' => false,
         ),
         'symfony/deprecation-contracts' => array(

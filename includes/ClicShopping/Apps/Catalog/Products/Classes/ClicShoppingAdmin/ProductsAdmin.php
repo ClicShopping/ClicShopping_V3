@@ -125,6 +125,9 @@
       return $products_model;
     }
 
+    /**
+     * @return string
+     */
     public function getProductSKU(): string
     {
       if (empty($_POST['products_sku'])) {
@@ -138,6 +141,9 @@
       return $products_sku;
     }
 
+    /**
+     * @return string
+     */
     public function getProductEAN(): string
     {
       if (empty($_POST['products_ean'])) {
@@ -799,6 +805,11 @@
           'products_sort_order' => (int)$Qproducts->valueInt('products_sort_order'),
           'products_quantity_alert' => (int)$Qproducts->valueInt('products_quantity_alert'),
           'products_image_small' => $Qproducts->value('products_image_small'),
+          'products_type' => $Qproducts->value('products_type'),
+          'products_jan' => $Qproducts->value('products_jan'),
+          'products_isbn' => $Qproducts->value('products_isbn'),
+          'products_mpn' => $Qproducts->value('products_mpn'),
+          'products_upc' => $Qproducts->value('products_upc')
         ];
 
 // copy du produit
@@ -967,10 +978,10 @@
             if (($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] <> $Qattributes->valueDecimal('customers_group_price')) && ($Qattributes->valueInt('customers_group_id') == $QcustomersGroup->valueInt('customers_group_id'))) {
 
               $Qupdate = $this->db->prepare('update :table_products_groups
-                                            set customers_group_price = :customers_group_price,
-                                                products_price = :products_price
-                                            where customers_group_id = :customers_group_id
-                                            and products_id = :products_id
+                                             set customers_group_price = :customers_group_price,
+                                                 products_price = :products_price
+                                             where customers_group_id = :customers_group_id
+                                             and products_id = :products_id
                                           ');
               $Qupdate->bindInt(':customers_group_price', $_POST['price' . $QcustomersGroup->valueInt('customers_group_id')]);
               $Qupdate->bindInt(':products_price', $_POST['products_price']);
@@ -1022,6 +1033,10 @@
                                                                      p.products_model,
                                                                      p.products_ean,
                                                                      p.products_sku,
+                                                                     p.products_mpn,
+                                                                     p.products_isbn,
+                                                                     p.products_upc,
+                                                                     p.products_jan,
                                                                      p.products_quantity,
                                                                      p.products_image,
                                                                      p.products_price,
@@ -1058,6 +1073,10 @@
                                                                      p.products_model,
                                                                      p.products_ean,
                                                                      p.products_sku,
+                                                                     p.products_mpn,
+                                                                     p.products_isbn,
+                                                                     p.products_upc,
+                                                                     p.products_jan,
                                                                      p.products_quantity,
                                                                      p.products_image,
                                                                      p.products_price,
@@ -1195,7 +1214,11 @@
         'products_quantity_alert' => (int)HTML::sanitize($_POST['products_quantity_alert']),
         'products_only_shop' => (int)HTML::sanitize($products_only_shop),
         'products_download_public' => (int)HTML::sanitize($products_download_public),
-        'products_type' => HTML::sanitize($_POST['products_type'])
+        'products_type' => HTML::sanitize($_POST['products_type']),
+        'products_jan' => HTML::sanitize($_POST['products_jan']),
+        'products_isbn' => HTML::sanitize($_POST['products_isbn']),
+        'products_mpn' => HTML::sanitize($_POST['products_mpn']),
+        'products_upc' => HTML::sanitize($_POST['products_upc'])
       ];
 
 // Download file

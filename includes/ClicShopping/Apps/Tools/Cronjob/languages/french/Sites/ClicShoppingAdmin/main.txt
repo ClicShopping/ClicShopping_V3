@@ -57,4 +57,5 @@ success_expired_entries = Succès
 
 success_cronjob_status_updated = Succès : Mise à jour effectuée
 
+text_cronjob_instruction = CRON Instructions
 text_info_cronjob = Les CRON sont des tâches programmées qui sont exécutées périodiquement. Vous devez configurer votre serveur pour utiliser les CRON. Vous devez aussi définir votre tâche CRON pour l'exécuter toutes les heures.

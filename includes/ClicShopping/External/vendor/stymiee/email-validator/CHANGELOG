@@ -1,3 +1,13 @@
+VERSION 1.1.3 - 2022-10-12
+-----------------------------------------------------------------------------------------------------------------------
+Handled potential for null being returned when validating a banned domain name
+
+
+VERSION 1.1.2 - 2022-10-11
+-----------------------------------------------------------------------------------------------------------------------
+Changed banned domain check to use pattern matching for more robust validation including subdomains
+
+
 VERSION 1.1.1 - 2022-02-22
 -----------------------------------------------------------------------------------------------------------------------
 When getting an email address' username, if there was none, return an empty string instead of NULL

@@ -470,7 +470,7 @@
     /**
      * display date available
      * @param int|null $id
-     * @return string $products_name, name of the product
+     * @return string
      */
     public function getProductsDateAvailable(?int $id = null)
     {
@@ -478,9 +478,9 @@
     }
 
     /**
-     * display products ean / sku
+     * display products ean
      * @param string
-     * @return string $products_name, name of the product
+     * @return string
      */
     public function getProductsEAN()
     {
@@ -490,7 +490,7 @@
     /**
      * display products ean
      * @param string
-     * @return string $products_date_available,  product date available
+     * @return string
      * @access private
      */
     private function setProductsEAN()
@@ -509,7 +509,7 @@
     /**
      * display products sku
      * @param int|null $id
-     * @return string $products_name, name of the product
+     * @return string
      */
     public function getProductsSKU(?int $id = null): string
     {
@@ -519,7 +519,7 @@
     /**
      * display products sku
      * @param int|null $id
-     * @return string $products_date_available,  product date available
+     * @return string
      * @access private
      */
     private function setProductsSKU(?int $id): string
@@ -540,7 +540,124 @@
     }
 
     /**
-     * display products bacode
+     * display products jan
+     * @param int|null $id
+     * @return string
+     * @access private
+     */
+    private function setProductsJAN(?int $id): string
+    {
+      $Qproducts = $this->db->get('products', ['products_jan'],
+        ['products_status' => 1,
+          'products_id' => (int)$id
+        ]
+      );
+
+      $products_jan= HTML::outputProtected($Qproducts->value('products_jan'));
+
+      return $products_jan;
+    }
+
+    /**
+     * display products jan
+     * @param int|null $id
+     * @return string $products_name, name of the product
+     */
+    public function getProductsJAN(?int $id = null): string
+    {
+      return $this->setProductsJAN($id);
+    }
+
+    /**
+     * display products isbn
+     * @param int|null $id
+     * @return string
+     * @access private
+     */
+    private function setProductsISBN(?int $id): string
+    {
+      $Qproducts = $this->db->get('products', ['products_isbn'],
+        ['products_status' => 1,
+          'products_id' => (int)$id
+        ]
+      );
+
+      $products_isbn = isbnHTML::outputProtected($Qproducts->value('products_isbn'));
+
+      return $products_isbn;
+    }
+
+    /**
+     * display products isbn
+     * @param int|null $id
+     * @return string
+     */
+    public function getProductsISBN(?int $id = null): string
+    {
+      return $this->setProductsISBN($id);
+    }
+
+    /**
+     * display products MNP
+     * @param int|null $id
+     * @return string
+     * @access private
+     */
+    private function setProductsMNP(?int $id): string
+    {
+      $Qproducts = $this->db->get('products', ['products_mpn'],
+        ['products_status' => 1,
+          'products_id' => (int)$id
+        ]
+      );
+
+      $products_mpn = isbnHTML::outputProtected($Qproducts->value('products_isbn'));
+
+      return $products_mpn;
+    }
+
+    /**
+     * display products mnp
+     * @param int|null $id
+     * @return string
+     */
+    public function getProductsMNP(?int $id = null): string
+    {
+      return $this->setProductsMNP($id);
+    }
+
+    /**
+     * display products UPC
+     * @param int|null $id
+     * @return string
+     * @access private
+     */
+    private function setProductsUPC(?int $id): string
+    {
+      $Qproducts = $this->db->get('products', ['products_upc'],
+        ['products_status' => 1,
+          'products_id' => (int)$id
+        ]
+      );
+
+      $products_upc = isbnHTML::outputProtected($Qproducts->value('products_upc'));
+
+      return $products_upc;
+    }
+
+    /**
+     * display products upc
+     * @param int|null $id
+     * @return string
+     */
+    public function getProductsUPC(?int $id = null): string
+    {
+      return $this->setProductsUPC($id);
+    }
+
+
+    /**
+     * display products barcode
      * @param string
      * @return string bar code
      */

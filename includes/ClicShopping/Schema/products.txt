@@ -6,6 +6,10 @@ products_model varchar(255) null
 products_image varchar(255) null
 products_ean varchar(15) null
 products_sku varchar(255) null
+products_jan varchar(255) null
+products_isbn varchar(255) null
+products_mpn varchar(255) null
+products_upc varchar(255) null
 products_image_zoom varchar(255)
 products_price decimal(15,4) not_null
 products_date_added datetime not_null

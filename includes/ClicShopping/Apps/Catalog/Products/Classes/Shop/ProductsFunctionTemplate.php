@@ -537,7 +537,9 @@
    ],
   "description": "' . $description . '",
   "sku": "' . $this->productsCommon->getProductsSKU($products_id) . '",
-  "mpn": "' . $this->productsCommon->getProductsSKU($products_id) . '", 
+  "mpn": "' . $this->productsCommon->getProductsMNP($products_id) . '", 
+  "jan": "' . $this->productsCommon->getProductsISBN($products_id) . '", 
+  "isbn": "' . $this->productsCommon->getProductsISBN($products_id) . '", 
   "brand": {
     "@type": "Thing",
     "name": "' . $this->productsCommon->getProductsManufacturer($products_id) . '"

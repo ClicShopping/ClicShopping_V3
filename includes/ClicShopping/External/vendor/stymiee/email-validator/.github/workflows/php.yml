@@ -23,6 +23,9 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate
 
+    - name: Suppress composer error message
+      run: composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 

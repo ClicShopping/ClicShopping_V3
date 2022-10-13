@@ -970,16 +970,16 @@
         },
         {
             "name": "stymiee/email-validator",
-            "version": "1.1.1",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stymiee/email-validator.git",
-                "reference": "f6b1e246687591afd17cbe38d08580d71b48c081"
+                "reference": "017a53567aadc82e51773b887d0dff381aae5f2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stymiee/email-validator/zipball/f6b1e246687591afd17cbe38d08580d71b48c081",
-                "reference": "f6b1e246687591afd17cbe38d08580d71b48c081",
+                "url": "https://api.github.com/repos/stymiee/email-validator/zipball/017a53567aadc82e51773b887d0dff381aae5f2e",
+                "reference": "017a53567aadc82e51773b887d0dff381aae5f2e",
                 "shasum": ""
             },
             "require": {
@@ -1021,9 +1021,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stymiee/email-validator/issues",
-                "source": "https://github.com/stymiee/email-validator/tree/1.1.1"
+                "source": "https://github.com/stymiee/email-validator/tree/1.1.3"
             },
-            "time": "2022-02-22T13:16:24+00:00"
+            "time": "2022-10-11T19:23:13+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",

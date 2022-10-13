@@ -56,6 +56,10 @@
     'products_model' => '',
     'products_ean' => '',
     'products_sku' => '',
+    'products_mpn' => '',
+    'products_jan' => '',
+    'products_isbn' => '',
+    'products_upc' => '',
     'products_image' => '',
     'products_image_zoom' => '',
     'products_larger_images' => [],
@@ -84,6 +88,10 @@
     'products_download_public' => '',
     'products_description_summary' => '',
     'products_type' => '',
+    'products_jan' => '',
+    'products_isbn' => '',
+    'products_mpn' => '',
+    'products_upc' => '',
   ];
 
   $pInfo = new ObjectInfo($parameters);
@@ -253,11 +261,51 @@
                   <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_sku'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_sku'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('products_sku', $pInfo->products_sku, 'id="products_sku"'); ?>
+                    <?php echo HTML::inputField('products_sku', $pInfo->products_sku, 'id="products_sku" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_sku_info') . '"'); ?>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5" id="tab1ContentRow3Upc">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_upc'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_upc'); ?></label>
+                  <div class="col-md-5">
+                    <?php echo HTML::inputField('products_upc', $pInfo->products_upc, 'id="products_upc" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_upc_info') . '"'); ?>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-5" id="tab1ContentRow3Jan">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_jan'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_jan'); ?></label>
+                  <div class="col-md-5">
+                    <?php echo HTML::inputField('products_jan', $pInfo->products_jan, 'id="products_jan" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_jan_info') . '"'); ?>
+                  </div>
+                </div>
+              </div>
+              <div class="separator"></div>
+              <div class="col-md-5" id="tab1ContentRow3Isbn">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_isbn'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_isbn'); ?></label>
+                  <div class="col-md-5">
+                    <?php echo HTML::inputField('products_isbn', $pInfo->products_isbn, 'id="products_isbn" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_isbn_info') . '"'); ?>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-5" id="tab1ContentRow3Mnp">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_mpn'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_mpn'); ?></label>
+                  <div class="col-md-5">
+                    <?php echo HTML::inputField('products_mpn', $pInfo->products_mpn, 'id="products_mpn" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_mpn_info') . '"'); ?>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="separator"></div>
             <div class="row" id="tab1ContentRow4">
               <div class="col-md-5" id="tab1ContentRow4Ean">
@@ -292,8 +340,6 @@
                 }
               ?>
             </div>
-
-
 
             <div class="row" id="tab1ContentRow13">
               <div class="col-md-5">

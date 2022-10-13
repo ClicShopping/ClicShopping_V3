@@ -1,3 +1,9 @@
+Add new fields in product
+Update cron app
+updale librairies
+
+
+--------------------
 3.335
 fix error document
 Add new hooks

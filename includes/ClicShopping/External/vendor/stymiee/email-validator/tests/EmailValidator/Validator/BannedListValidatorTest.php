@@ -11,7 +11,8 @@ class BannedListValidatorTest extends TestCase
     public function dataProvider(): array
     {
         $bannedList = [
-            'example.com'
+            'example.com',
+            '*.example.com',
         ];
 
         return [
@@ -19,6 +20,8 @@ class BannedListValidatorTest extends TestCase
             [$bannedList, 'user@gmail.com'  , true, true],
             [$bannedList, 'user@example.com', false, true],
             [$bannedList, 'user@gmail.com'  , false, true],
+            [$bannedList, 'user@test.example.com', true, false],
+            [$bannedList, 'user@', true, true],
         ];
     }
 

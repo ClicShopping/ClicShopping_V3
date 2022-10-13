@@ -194,7 +194,17 @@ text_products_min_order_quantity = Quantity minimal for a customer order :
 text_products_model = Model
 
 text_products_ean = EAN
+text_products_ean_info = European Article Number
 text_products_sku = SKU
+text_products_sku_info = Stock Keeping Unit
+text_products_upc = Upc
+text_products_upc_info = Universal Product Code
+text_products_jan = Jan
+text_products_jan_info = Japanese Article Number
+text_products_isbn = Isbn
+text_products_isbn_info = International Standard Book Number
+text_products_mpn = Nmp
+text_products_mpn_info = Manufacturer Part Number
 
 icon_edit_customers_group = Is included in a customers group
 icon_edit_status_display_catalog_on = Field displayed in catalog

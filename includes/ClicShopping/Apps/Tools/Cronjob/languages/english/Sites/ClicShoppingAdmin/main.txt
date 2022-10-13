@@ -57,4 +57,5 @@ success_expired_entries = Success
 
 success_cronjob_status_updated = Success : Status updated
 
+text_cronjob_instruction = CRON Instructions
 text_info_cronjob = Cron Job's are scheduled tasks that are run periodically. You must to setup your servers use it. You also need to set your Cron task to run every hour.
