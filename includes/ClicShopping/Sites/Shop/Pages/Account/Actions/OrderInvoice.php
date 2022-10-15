@@ -51,17 +51,25 @@
 // Recuperation de la valeur id de order.php
       if (isset($_GET['order_id'])) {
         $oID = HTML::sanitize($_GET['order_id']);
+
+        if (\is_null($oID)) {
+          CLICSHOPPING::redirect(null, 'Account&Main');
+        }
       } else {
         CLICSHOPPING::redirect(null, 'Account&Main');
       }
 
       $QordersInfo = $CLICSHOPPING_Db->prepare('select orders_id,
-                                                 customers_id
-                                          from :table_orders
-                                          where orders_id = :orders_id
-                                         ');
+                                                       customers_id
+                                                from :table_orders
+                                                where orders_id = :orders_id
+                                               ');
       $QordersInfo->bindInt(':orders_id', (int)$oID);
       $QordersInfo->execute();
+
+      if ($QordersInfo->fetch() === false) {
+        CLICSHOPPING::redirect(null, 'Account&Main');
+      }
 
       $QordersHistory = $CLICSHOPPING_Db->prepare('select orders_status_id,
                                                          date_added,
