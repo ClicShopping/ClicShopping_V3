@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
-        'reference' => 'dac858dee25f6b62fd37ab02754dc23fe4a2dcc9',
+        'reference' => '16f96eb3b93b9d856e25f6562c04dbdda9c5733e',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
-            'reference' => 'dac858dee25f6b62fd37ab02754dc23fe4a2dcc9',
+            'reference' => '16f96eb3b93b9d856e25f6562c04dbdda9c5733e',
             'dev_requirement' => false,
         ),
         'darkghosthunter/preloader' => array(
@@ -155,12 +155,12 @@
             'dev_requirement' => false,
         ),
         'stripe/stripe-php' => array(
-            'pretty_version' => 'v9.6.0',
-            'version' => '9.6.0.0',
+            'pretty_version' => 'v9.7.0',
+            'version' => '9.7.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../stripe/stripe-php',
             'aliases' => array(),
-            'reference' => '7c43066015d03ad9c4458db683ecfe019ce225da',
+            'reference' => '13e8ab3c7fa6b146cb94618000fe01aabaf4158f',
             'dev_requirement' => false,
         ),
         'stymiee/email-validator' => array(

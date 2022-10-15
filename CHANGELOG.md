@@ -1,7 +1,11 @@
+
+
+--------------------
+3.336
 Add new fields in product
 Update cron app
-updale librairies
-
+update librairies
+add link to install app in upgrade
 
 --------------------
 3.335

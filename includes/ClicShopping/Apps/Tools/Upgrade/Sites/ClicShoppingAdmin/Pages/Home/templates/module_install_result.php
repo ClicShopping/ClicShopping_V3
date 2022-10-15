@@ -74,8 +74,8 @@
         <div class="card-block">
           <div class="card-text">
        <?php
-        if (is_file(CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/' . $_GET['file'] . '.json')) {
-          $json = file_get_contents(CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/' . $_GET['file'] . '.json', true);
+        if (is_file(CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/' . HTML::sanitize($_GET['file']) . '.json')) {
+          $json = file_get_contents(CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/' . HTML::sanitize($_GET['file']) . '.json', true);
           $result = json_decode($json);
         ?>
         <blockquote>
@@ -88,7 +88,19 @@
 
                   if (!\is_array($value)) $text = $value;
 
-                  echo '<li>' . $key . ' :' . $text . '</li>';
+                 if ($key == 'type') {
+                   $_SESSION['app'] = $value;
+                 }
+
+                  if ($key == 'module_directory') {
+                    $_SESSION['module_directory'] = $value;
+                  }
+
+                  if ($key == 'apps_name') {
+                    $_SESSION['_module_apps_name'] = $value;
+                  }
+
+                  echo '<li>' . $key . ' : ' . $text . '</li>';
 
                   if (\is_array($value)) {
                     echo '<div class="separator"></div>';
@@ -101,6 +113,18 @@
                       echo '      -' . $item->Community . '<br />';
                     }
                   }
+                }
+
+                if (isset($_SESSION['module_directory'])) {
+                  echo '<div class="separator"></div>';
+                  echo '<div class="alert alert-success" role="alert">';
+                  echo '<span class="text-center"><h3>';
+                  echo HTML::link(CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin') . 'index.php?A&' . $_SESSION['module_directory'] . '\\' . $_SESSION['_module_apps_name'], $CLICSHOPPING_Upgrade->getDef('text_activate'));
+                  echo '</h3></span>';
+                  echo '</div>';
+
+                  unset($_SESSION['module_directory']);
+                  unset($_SESSION['_module_apps_name']);
                 }
               ?>
             </ul>

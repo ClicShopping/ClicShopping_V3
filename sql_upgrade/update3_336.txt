@@ -1,0 +1,18 @@
+
+===================================
+Step 1 : Update your Db by the sql below
+
+
+#insert in your phpmyAdmin this request in function of your language
+
+#All language
+
+ALTER TABLE `clic_products` ADD `products_upc` VARCHAR(255) NULL DEFAULT NULL AFTER `products_type`, ADD `products_mpn` VARCHAR(255) NULL DEFAULT NULL AFTER `products_upc`, ADD `products_jan` VARCHAR(255) NULL DEFAULT NULL AFTER `products_nmp`, ADD `products_isbn` VARCHAR(255) NULL DEFAULT NULL AFTER `products_jan`;
+
+
+
+---------------------------
+#English
+
+
+#French

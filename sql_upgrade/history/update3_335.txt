@@ -1,0 +1,143 @@
+
+===================================
+Step 1 : Update your Db by the sql below
+
+
+#insert in your phpmyAdmin this request in function of your language
+
+#All language
+
+CREATE TABLE `clic_return_orders_status` (
+  `return_status_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+INSERT INTO `clic_return_orders_status` VALUES(1, 1, 'Pending');
+INSERT INTO `clic_return_orders_status` VALUES(1, 2, 'En attente');
+INSERT INTO `clic_return_orders_status` VALUES(2, 1, 'Awaiting Products');
+INSERT INTO `clic_return_orders_status` VALUES(2, 2, 'en attente du retour du produit');
+INSERT INTO `clic_return_orders_status` VALUES(3, 1, 'Complete');
+INSERT INTO `clic_return_orders_status` VALUES(3, 2, 'Complété');
+ALTER TABLE `clic_return_orders_status` ADD PRIMARY KEY (`return_status_id`,`language_id`);
+ALTER TABLE `clic_return_orders_status` MODIFY `return_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+
+
+CREATE TABLE `clic_return_orders_reason` (
+  `return_reason_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+INSERT INTO `clic_return_orders_reason` VALUES(1, 1, 'Non -compliant package');
+INSERT INTO `clic_return_orders_reason` VALUES(1, 2, 'Colis non conforme');
+INSERT INTO `clic_return_orders_reason` VALUES(2, 1, 'Received Wrong Item');
+INSERT INTO `clic_return_orders_reason` VALUES(2, 2, 'Mauvais produit reçu');
+INSERT INTO `clic_return_orders_reason` VALUES(3, 1, 'Order Error');
+INSERT INTO `clic_return_orders_reason` VALUES(3, 2, 'Erreur commande');
+INSERT INTO `clic_return_orders_reason` VALUES(4, 1, 'Do not meet my expectations');
+INSERT INTO `clic_return_orders_reason` VALUES(4, 2, 'Ne répond pas à mes attentes');
+INSERT INTO `clic_return_orders_reason` VALUES(5, 1, 'Others');
+INSERT INTO `clic_return_orders_reason` VALUES(5, 2, 'Autres');
+ALTER TABLE `clic_return_orders_reason`  ADD PRIMARY KEY (`return_reason_id`,`language_id`);
+ALTER TABLE `clic_return_orders_reason`  MODIFY `return_reason_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+
+CREATE TABLE `clic_return_orders_history` (
+  `return_history_id` int(11) NOT NULL,
+  `return_id` int(11) NOT NULL,
+  `return_status_id` int(11) NOT NULL,
+  `notify` tinyint(1) NOT NULL,
+  `comment` text NOT NULL,
+  `date_added` datetime NOT NULL,
+  `admin_user_name` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `clic_return_orders_history`  ADD PRIMARY KEY (`return_history_id`);
+ALTER TABLE `clic_return_orders_history`  MODIFY `return_history_id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+CREATE TABLE `clic_return_orders_action` (
+  `return_action_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+INSERT INTO `clic_return_orders_action` VALUES(1, 1, 'no action');
+INSERT INTO `clic_return_orders_action` VALUES(1, 2, 'Aucune action');
+INSERT INTO `clic_return_orders_action` VALUES(2, 1, 'Refunded');
+INSERT INTO `clic_return_orders_action` VALUES(2, 2, 'Produit à Rembourser');
+INSERT INTO `clic_return_orders_action` VALUES(3, 1, 'Credit Issued');
+INSERT INTO `clic_return_orders_action` VALUES(3, 2, 'Problème crédit');
+INSERT INTO `clic_return_orders_action` VALUES(4, 1, 'Replacement Sent');
+INSERT INTO `clic_return_orders_action` VALUES(4, 2, 'Remplacement envoyé');
+ALTER TABLE `clic_return_orders_action`  ADD PRIMARY KEY (`return_action_id`,`language_id`);
+ALTER TABLE `clic_return_orders_action`  MODIFY `return_action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+
+CREATE TABLE `clic_return_orders` (
+  `return_id` int(11) NOT NULL,
+  `return_ref` varchar(32) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `customer_firstname` varchar(32) NOT NULL,
+  `customer_lastname` varchar(32) NOT NULL,
+  `customer_email` varchar(96) NOT NULL,
+  `customer_telephone` varchar(32) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_model` varchar(64) NOT NULL,
+  `quantity` int(4) NOT NULL,
+  `opened` tinyint(1) NOT NULL DEFAULT 0,
+  `return_reason_id` int(11) NOT NULL,
+  `return_action_id` int(11) NOT NULL,
+  `return_status_id` int(11) NOT NULL DEFAULT 1,
+  `comment` text NOT NULL,
+  `date_ordered` date NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime DEFAULT NULL,
+  `archive` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `clic_return_orders` ADD PRIMARY KEY (`return_id`);
+ALTER TABLE `clic_return_orders` MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+INSERT INTO `clic_administrator_menu` VALUES('786', 'index.php?A&Orders\\ReturnOrders&ReturnOrders', 4, 2, 0, 'return_orders.png', 0, 'app_orders_return_orders', 1);
+INSERT INTO `clic_administrator_menu` VALUES('787', 'index.php?A&Orders\\ReturnOrders&Configure', 14, 8, 1, '', 1, 'app_orders_return_orders', 1);
+
+ALTER TABLE `clic_customers_gdpr` ADD `date_added` datetime NULL AFTER `no_ip_address`;
+
+
+
+CREATE TABLE `clic_cron` (
+  `cron_id` int(11) NOT NULL,
+  `code` varchar(128) NOT NULL,
+  `description` text DEFAULT NULL,
+  `cycle` varchar(128) NOT NULL,
+  `action` text NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+INSERT INTO `clic_cron` VALUES(1, 'currency', null, 'day', 'currency', 1, '2014-09-25 14:40:00', '2022-10-08 17:57:36');
+INSERT INTO `clic_cron` VALUES(2, 'gdpr', null, 'day', 'gdpr', 0, '2014-09-01 14:40:00', '2022-10-08 18:04:38');
+INSERT INTO `clic_cron` VALUES(3, 'backup', null, 'day', 'backup', 1, '1900-01-01 00:00:00', '2022-10-08 17:31:47');
+
+ALTER TABLE `clic_cron` ADD PRIMARY KEY (`cron_id`);
+ALTER TABLE `clic_cron` MODIFY `cron_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+
+
+
+
+---------------------------
+#English
+INSERT INTO `clic_administrator_menu_description` VALUES(786, 'Product return management', 1);
+INSERT INTO `clic_administrator_menu_description` VALUES(787, 'Products return status', 1);
+
+#French
+INSERT INTO `clic_administrator_menu_description` VALUES(786, 'Gestion des Retours produit', 2);
+INSERT INTO `clic_administrator_menu_description` VALUES(787, 'Statuts des retours produits', 2);
