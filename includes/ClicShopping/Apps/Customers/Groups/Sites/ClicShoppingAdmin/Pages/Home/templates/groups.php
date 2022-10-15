@@ -149,6 +149,7 @@
                 class="text-start"><?php echo $QustomersGroup->valueInt('customers_group_quantity_default'); ?></td>
               <td class="text-start"><?php echo $QustomersGroup->value('customers_group_discount'); ?>%</td>
               <td class="text-end">
+                <div class="btn-group" role="group" aria-label="buttonGroup">
                 <?php
                   echo HTML::link($CLICSHOPPING_Groups->link('Edit&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Groups->getDef('icon_edit') . '"></i></h4>');
                   echo '&nbsp;';
@@ -160,6 +161,7 @@
                     echo '&nbsp;';
                   }
                 ?>
+                </div>
               </td>
             </tr>
             <?php
