@@ -88,16 +88,12 @@
 
                   if (!\is_array($value)) $text = $value;
 
-                 if ($key == 'type') {
-                   $_SESSION['app'] = $value;
-                 }
-
                   if ($key == 'module_directory') {
                     $_SESSION['module_directory'] = $value;
                   }
 
                   if ($key == 'apps_name') {
-                    $_SESSION['_module_apps_name'] = $value;
+                    $_SESSION['module_apps_name'] = $value;
                   }
 
                   echo '<li>' . $key . ' : ' . $text . '</li>';
@@ -124,7 +120,7 @@
                   echo '</div>';
 
                   unset($_SESSION['module_directory']);
-                  unset($_SESSION['_module_apps_name']);
+                  unset($_SESSION['module_apps_name']);
                 }
               ?>
             </ul>
