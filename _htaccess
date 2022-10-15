@@ -56,15 +56,20 @@ Options -Indexes
 # Below for linux
 ##################################
   <IfModule mod_headers.c>
+    # prevent mime based attacks
+    Header set X-Content-Type-Options "nosniff"
 
-# prevent mime based attacks
-Header set X-Content-Type-Options "nosniff"
+    # XSS Protection
+    Header set X-XSS-Protection "1; mode=block"
 
-# XSS Protection
-Header set X-XSS-Protection "1; mode=block"
+    #X Frame
+    Header always append X-Frame-Options SAMEORIGIN
 
-#X Frame
-Header always set X-FRAME-OPTIONS "DENY"
+    # Clickjacking Protection
+    Header set Content-Security-Policy "frame-ancestors 'self';"
+
+    #Remove Powered
+    Header always unset X-Powered-By
 
 #http header
   <FilesMatch ".(js|css|xml|gz|html)$">
