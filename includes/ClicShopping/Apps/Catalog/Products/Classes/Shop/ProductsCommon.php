@@ -582,7 +582,7 @@
         ]
       );
 
-      $products_isbn = isbnHTML::outputProtected($Qproducts->value('products_isbn'));
+      $products_isbn = HTML::outputProtected($Qproducts->value('products_isbn'));
 
       return $products_isbn;
     }
@@ -611,7 +611,7 @@
         ]
       );
 
-      $products_mpn = isbnHTML::outputProtected($Qproducts->value('products_isbn'));
+      $products_mpn = HTML::outputProtected($Qproducts->value('products_mpn'));
 
       return $products_mpn;
     }
@@ -640,7 +640,7 @@
         ]
       );
 
-      $products_upc = isbnHTML::outputProtected($Qproducts->value('products_upc'));
+      $products_upc = HTML::outputProtected($Qproducts->value('products_upc'));
 
       return $products_upc;
     }

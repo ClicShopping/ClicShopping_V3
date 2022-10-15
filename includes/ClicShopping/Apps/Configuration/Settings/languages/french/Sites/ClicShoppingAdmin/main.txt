@@ -44,7 +44,7 @@ icon_delete = Supprimer
 table_heading_configuration_title = Titre
 table_heading_configuration_value = Valeur
 table_heading_action = Action
-
+table_heading_configuration_key = Clef
 text_info_edit_intro = Merci de faire les changements nécessaires
 text_info_date_added = Date d'ajout :
 text_info_last_modified = Dernière modification :

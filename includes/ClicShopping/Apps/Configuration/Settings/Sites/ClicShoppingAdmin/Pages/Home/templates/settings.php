@@ -52,6 +52,7 @@
       <tr>
         <th data-field="title"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_title'); ?></th>
         <th data-field="value"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_value'); ?></th>
+        <th data-field="key"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_key'); ?></th>
         <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
@@ -62,6 +63,7 @@
         'configuration_id',
         'configuration_title',
         'configuration_value',
+        'configuration_key',
         'use_function'
       ], [
         'configuration_group_id' => (int)$gID
@@ -75,6 +77,7 @@
         <tr>
           <td><?php echo $Qconfiguration->value('configuration_title'); ?></td>
           <td><?php echo htmlspecialchars($cfgValue, ENT_QUOTES | ENT_HTML5); ?></td>
+          <td><span class="badge text-bg-light"><?php echo $Qconfiguration->value('configuration_key'); ?></span></td>
           <td>
             <script>
                 $(document).ready(function () {
