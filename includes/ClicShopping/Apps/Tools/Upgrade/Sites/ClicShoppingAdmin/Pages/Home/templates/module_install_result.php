@@ -115,7 +115,7 @@
                   echo '<div class="separator"></div>';
                   echo '<div class="alert alert-success" role="alert">';
                   echo '<span class="text-center"><h3>';
-                  echo HTML::link(CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin') . 'index.php?A&' . $_SESSION['module_directory'] . '\\' . $_SESSION['_module_apps_name'], $CLICSHOPPING_Upgrade->getDef('text_activate'));
+                  echo HTML::link(CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin') . 'index.php?A&' . $_SESSION['module_directory'] . '\\' . $_SESSION['module_apps_name'], $CLICSHOPPING_Upgrade->getDef('text_activate'));
                   echo '</h3></span>';
                   echo '</div>';
 

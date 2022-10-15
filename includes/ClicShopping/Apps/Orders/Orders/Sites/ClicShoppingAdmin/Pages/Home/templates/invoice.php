@@ -34,6 +34,10 @@
 // Recuperation de la valeur no id de order.php
   if (isset($_GET['oID'])) {
     $oID = HTML::sanitize($_GET['oID']);
+
+    if (\is_null($oID)) {
+      $CLICSHOPPING_Orders->redirect('Orders');
+    }
   } else {
     $CLICSHOPPING_Orders->redirect('Orders');
   }
@@ -45,6 +49,10 @@
                                                    ');
   $QordersInfo->bindInt(':orders_id', (int)$oID);
   $QordersInfo->execute();
+
+  if ($QordersInfo->fetch() === false) {
+    $CLICSHOPPING_Orders->redirect('Orders');
+  }
 
 // Date invoice
   $QordersHistory = $CLICSHOPPING_Orders->db->prepare('select orders_status_id,
