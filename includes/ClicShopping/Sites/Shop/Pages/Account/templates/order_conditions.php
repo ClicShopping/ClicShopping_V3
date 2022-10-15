@@ -9,6 +9,8 @@
    */
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTML;
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
@@ -16,6 +18,12 @@
   $CLICSHOPPING_Customer = Registry::get('Customer');
 
   $customer_id = $CLICSHOPPING_Customer->getID();
+
+  $oId = HTML::sanitize( $_GET['order_id']);
+
+  if (\is_null($oId)) {
+    CLICSHOPPING::redirect(null, 'Account&Main');
+  }
 
   $QconditionGeneralOfSales = $CLICSHOPPING_Db->prepare('select page_manager_general_condition
                                                              from  :table_orders_pages_manager
@@ -27,6 +35,10 @@
   $QconditionGeneralOfSales->bindInt(':customers_id', $customer_id);
 
   $QconditionGeneralOfSales->execute();
+
+  if ($QconditionGeneralOfSales->fetch() === false) {
+    CLICSHOPPING::redirect(null, 'Account&Main');
+  }
 ?>
 
 <html dir="ltr" lang="fr">
