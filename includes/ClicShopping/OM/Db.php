@@ -877,14 +877,20 @@
     /**
      * install new db
      * @param string $filename
+     * @param bool|null $migrate
      */
-    public function installNewDb(string $filename)
+    public function installNewDb(string $filename, ?bool $migrate = false)
     {
       $prefix = CLICSHOPPING::getConfig('db_table_prefix');
 
       $this->exec('SET FOREIGN_KEY_CHECKS = 0');
 
-      $directory = CLICSHOPPING::BASE_DIR . 'Custom/Schema/';
+      if ($migrate === true) {
+        $directory = CLICSHOPPING::BASE_DIR . 'Custom/Schema/' .  CLICSHOPPING::getVersionDirectory() . '/';
+      } else {
+        $directory = CLICSHOPPING::BASE_DIR . 'Custom/Schema/';
+      }
+
       $path_file = $directory . $filename . '.txt';
       $file = $directory . $filename;
 

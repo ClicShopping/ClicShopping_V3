@@ -66,6 +66,28 @@
     }
 
     /**
+     * Get the installed directiory version number
+     * @return string|null
+     */
+    public static function getVersionDirectory(): ?string
+    {
+      if (!isset(static::$version)) {
+        $file = static::BASE_DIR . 'version.json';
+
+        $current = trim(file_get_contents($file));
+
+        $v = json_decode($current);
+
+        if (is_numeric($v->directory_version)) {
+          static::$directoryVersion = $v->directory_version;
+        } else {
+          trigger_error('Directory Version number is not numeric. Please verify: ' . $file);
+        }
+      }
+      return static::$directoryVersion;
+    }
+
+    /**
      * @param $site
      * @param bool $strict
      * @return bool
