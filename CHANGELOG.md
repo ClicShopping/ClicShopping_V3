@@ -6,7 +6,7 @@ Add new fields in product
 Update cron app
 update librairies
 add link to install app in upgrade
-
+bug fix suppliers
 --------------------
 3.335
 fix error document

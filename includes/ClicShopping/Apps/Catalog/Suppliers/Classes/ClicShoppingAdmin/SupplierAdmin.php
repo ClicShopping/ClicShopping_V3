@@ -55,13 +55,13 @@
         return false;
       }
     }
-    
+
     /**
      * the supplier_url
      *
-     * @param string $supplier_id , $language_id
+     * @param int|null $supplier_id , $language_id
+     * @param int $language_id
      * @return string $supplier['supplier_description'],  description of the supplier
-     *
      */
     public function getSupplierUrl(?int $supplier_id, int $language_id): string
     {
@@ -81,12 +81,12 @@
         return '';
       }
     }
-  
+
     /**
      * the supplier name
      *
-     * @param string $supplier_name
-     * @return int supplier_id
+     * @param string|null $supplier_name
+     * @return int|string supplier_id
      */
     public function getSupplierId(?string $supplier_name = null) :int|string
     {
