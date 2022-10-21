@@ -12,7 +12,7 @@
 
   use ClicShopping\OM\Registry;
 
-  use ClicShopping\Sites\Common\B2BCommon;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\OrderTotal\TotalShipping\TotalShipping as TotalShippingApp;
 

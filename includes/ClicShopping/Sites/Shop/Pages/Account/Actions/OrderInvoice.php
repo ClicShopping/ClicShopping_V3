@@ -353,7 +353,7 @@
 //          $Y_Fields_Name_position = 125;
 // Table position, under Fields Name
           $Y_Table_Position = 70;
-          Common::outputTableHeadingPdf($Y_Table_Position - 6);
+          PDF::outputTableHeadingPdf($Y_Table_Position - 6);
           if ($i == 20) $item_count = 1;
         }
       }

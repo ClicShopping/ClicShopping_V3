@@ -12,6 +12,7 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\FileSystem;
+  use ClicShopping\OM\CLICSHOPPING;
 
   class ModuleDownload
   {

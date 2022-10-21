@@ -9,6 +9,8 @@
  */
    namespace ClicShopping\Apps\Customers\Gdpr\Classes\ClicShoppingAdmin;
 
+   use ClicShopping\OM\Registry;
+
   class Gdpr
   {
     public static function deleteCustomersData(int $customers_id) :void

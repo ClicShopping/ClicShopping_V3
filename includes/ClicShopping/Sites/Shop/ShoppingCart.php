@@ -123,7 +123,7 @@
           $restore_qty = $this->getRestoreQty($qty, $item_id);
 
           if ($qty < $restore_qty) {
-            $qty = $this->getRestoreQty();
+            $qty = $this->getRestoreQty($qty, $item_id);
           }
 
           if ($qty > $restore_qty) {

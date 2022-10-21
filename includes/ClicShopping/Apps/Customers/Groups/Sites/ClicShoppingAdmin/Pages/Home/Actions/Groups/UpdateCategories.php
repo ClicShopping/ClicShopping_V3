@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\CLICSHOPPING;
 
   class UpdateCategories extends \ClicShopping\OM\PagesActionsAbstract
   {
