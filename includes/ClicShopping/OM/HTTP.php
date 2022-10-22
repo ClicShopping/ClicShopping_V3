@@ -52,7 +52,7 @@
      * @param int $http_response_code - 301 - 302 - 303 - 307
      */
 
-    public static function redirect(?string $url, int $http_response_code = 0): void
+    public static function redirect(?string $url, int $http_response_code = 0)
     {
       if ((strstr($url, "\n") === false) && (strstr($url, "\r") === false)) {
         if (str_contains($url, '&amp;')) {

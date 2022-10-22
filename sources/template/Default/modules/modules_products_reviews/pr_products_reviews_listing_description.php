@@ -10,6 +10,7 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTML;
 
   class pr_products_reviews_listing_description {
     public string $code;

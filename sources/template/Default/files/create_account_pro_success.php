@@ -8,6 +8,8 @@
  *
  */
 
+  use ClicShopping\OM\CLICSHOPPING;
+
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="create_account_pro_success" id="create_account_pro_success">

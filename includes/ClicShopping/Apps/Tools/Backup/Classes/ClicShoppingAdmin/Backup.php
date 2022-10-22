@@ -5,7 +5,7 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
-
+  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Tools\Backup\Backup as BackupApp;
 
