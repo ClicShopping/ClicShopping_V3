@@ -9,6 +9,7 @@
    */
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   class securityCheck_session_auto_start
   {
