@@ -88,10 +88,6 @@
     'products_download_public' => '',
     'products_description_summary' => '',
     'products_type' => '',
-    'products_jan' => '',
-    'products_isbn' => '',
-    'products_mpn' => '',
-    'products_upc' => '',
   ];
 
   $pInfo = new ObjectInfo($parameters);
