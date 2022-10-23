@@ -15,6 +15,7 @@
   use ClicShopping\OM\HTML;
 
   use ClicShopping\Sites\Shop\RewriteUrl;
+  use ClicShopping\Apps\Catalog\Categories\Classes\Shop\Category;
 
   class CategoryTree
   {
@@ -75,6 +76,15 @@
       $this->db = Registry::get('Db');
       $this->lang = Registry::get('Language');
 
+      if (!Registry::exists('RewriteUrl')) {
+        Registry::set('RewriteUrl', new RewriteUrl());
+      }
+
+      $this->rewriteUrl = Registry::get('RewriteUrl');
+
+      Registry::set('Category', new Category());
+      $this->Category = Registry::get('Category');
+
       if (isset($_category_tree_data)) {
         $this->_data = $_category_tree_data;
       } else {
@@ -126,12 +136,6 @@
 
         $_category_tree_data = $this->_data;
       }
-
-      if (!Registry::exists('RewriteUrl')) {
-        Registry::set('RewriteUrl', new RewriteUrl());
-      }
-
-      $this->rewriteUrl = Registry::get('RewriteUrl');
     }
 
     /**
@@ -689,13 +693,12 @@
 
     /**
      * Rewrite link of Image
-     * @param int $categories_id
+     * @param string $categories_id
      * @return mixed
      */
-    public function getCategoryImageUrl(int $categories_id) :string
+    public function getCategoryImageUrl(string $categories_id) :string
     {
-      $category = $this->getPathCategories($categories_id);
-
+      $category = $this->Category->getPathCategories($categories_id);
       $categories_url = $this->rewriteUrl->getCategoryImageUrl($category);
 
       return $categories_url;
@@ -711,8 +714,6 @@
    */
     public function getShopCategoryTree(int $parent_id = 0, string $spacing = '', $exclude = '',  $category_tree_array = '', bool $include_itself = false) :array
     {
-      $this->lang = Registry::get('Language');
-
       if (!\is_array($category_tree_array)) {
         $category_tree_array = [];
       }
