@@ -1,0 +1,16 @@
+.ModulesBrandBoostrapListing{}
+
+.card-height-brand{
+    height: 150px;
+}
+
+.ModulesBrandBoostrapListingImages{}
+
+.modulBrandListingText{
+    text-align: center;
+}
+
+.modulBrandListingText h3 A {
+    text-transform: uppercase;
+    text-decoration: none;
+}

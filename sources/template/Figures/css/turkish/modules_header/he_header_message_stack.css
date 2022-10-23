@@ -1,0 +1,28 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+.headerError {
+  text-align: center;
+  background-color: #BB0000;
+  padding-top: 0.625rem;
+  padding-bottom :3px;
+  font-weight: bold;
+  color:#fff;
+}
+
+
+.headerInfo {
+  text-align: center;
+  background-color: #0078e7;
+  padding-top: 0.625rem;
+  padding-bottom :3px;
+  font-weight: bold;
+  color:#fff;
+}

@@ -1,0 +1,25 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+div.SitemapSummaryTable {
+  text-decoration:none!important;
+}
+
+div.SitemapSummary A {
+  padding-left: 0.3125rem;
+  line-height: 1.25rem;
+  text-decoration:none;
+}
+
+
+li.SitemapSummary {
+  list-style:none;
+  list-style-type: none;
+}

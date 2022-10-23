@@ -1,0 +1,27 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+.ModuleFrontPageboxContainerNewProducts {
+  padding-top: 0.625rem;
+  padding-right: 0.5rem;
+}
+
+.ModuleFrontPageColNewProducts {
+  padding-right: 0.5rem;
+  min-width: 18.75rem;
+}
+
+.ModuleFrontPageProductsNewHeading h2 {
+  padding-left: 0.5rem;
+}
+
+.ModulesFrontPageBoostrapColumn5Button {
+  padding-bottom: 0.5rem;
+}

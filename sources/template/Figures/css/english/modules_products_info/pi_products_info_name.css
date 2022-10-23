@@ -1,0 +1,26 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+div.moduleProductsInfoName, span.moduleProductsInfoName h1 {
+ color: #212529!important;
+  text-decoration: none;
+}
+
+.moduleProductsInfoName A {
+    color: #212529!important;
+    text-decoration: none;
+}
+
+h1.moduleProductsInfoName {
+  color: #212529!important;
+  text-decoration: none!important;
+  font-weight: bold;
+    font-size :1.5rem
+}

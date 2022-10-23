@@ -1,0 +1,88 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+.ModulesProductsFeaturedBoostrapColumn5 {
+  min-width: 18.75rem;
+  padding-right: 0.5rem;
+}
+
+.ModulesProductsFeaturedBoostrapColumn5Image {
+  text-align: center;
+}
+
+.ModulesProductsFeaturedBoostrapColumn5Title h3 {
+  text-align:center;
+  vertical-align:text-top;
+  padding-top: 0.3125rem;
+  height: 0.625rem;
+  padding-left: 0.3125rem;
+  padding-right:5px;
+  font-size: 0.875rem!important;
+}
+
+.ModulesProductsFeaturedBoostrapColumn5Title A {
+  text-decoration: none;
+}
+
+.ModulesProductsFeaturedBoostrapColumn5ShortDescription h3 {
+  text-align:center;
+  padding-top: 0.3125rem;
+  color: #7F736F;
+  text-transform: lowercase;
+  padding-left: 0.3125rem;
+  padding-right:5px;
+}
+
+.ModulesProductsFeaturedBoostrapColumn5TextPrice {
+  color:#000000;
+  text-align:center;
+  vertical-align:text-top;
+  padding-top: 0.625rem;
+}
+
+
+.ModulesProductsFeaturedBoostrapColumn5StockImage {
+  text-align:center;
+  vertical-align:text-top;
+  color: #7F736F;
+  padding-top: 0.625rem;
+}
+
+
+
+.ModulesProductsFeaturedBoostrapColumn5ImageNewArrival  {
+  text-align:center;
+  vertical-align:text-top;
+  color: #7F736F;
+  padding-top: 0.625rem;
+}
+
+
+.ModulesProductsFeaturedBoostrapColumn5QuantityMinOrder {
+  text-align:center;
+  color: #7F736F;
+  padding-top: 0.625rem;
+  padding-bottom:5px;
+}
+
+
+.ModulesProductsFeaturedBoostrapColumn5ProductsQuantityUnit  {
+   text-align:center;
+  color: #7F736F;
+  padding-top: 0.625rem;
+}
+
+.ModulesproductsFeaturedBoostrapColumn5ViewDetails {
+  text-align:right;
+}
+
+.ModulesproductsFeaturedBoostrapColumn5SubmitButton {
+  text-align:left;
+  text-transform:uppercase;
+}

@@ -1,0 +1,69 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+
+div.sitemapCategoryTreeTittleManufacturers {
+    padding-left: 35px;
+    color: #000;
+}
+
+
+div.SitemapCategoryTreeBlockManufacturers {
+    float: left;
+    width: 80%;
+    padding-left: 75px;
+    text-decoration: none !important;
+}
+
+div.SitemapCategoryTreeManufacturers A {
+    list-style: none;
+    list-style-type: none;
+    padding-left: 0.3125rem;
+    text-decoration: none !important;
+}
+
+/*
+.categoryTree a:hover{
+	font-weight:bold;
+  text-transform: underline;  
+}
+*/
+
+div.SitemapCategoryTreeManufacturers {
+    color: #EDAC27;
+}
+
+
+div.SitemapCategoryTreeManufacturers ul {
+    float: left;
+    list-style: none;
+    list-style-type: none;
+    width: 100%;
+    border-left: 1px dotted gray;
+}
+
+div.SitemapCategoryTreeManufacturers li {
+    list-style: none;
+    list-style-type: none;
+    width: 100%;
+}
+
+ul.list-group-SitemapTreeManufacturers {
+    margin-bottom: 5px;
+    padding-left: 30px;
+}
+
+li.list-group-itemSitemapTreeManufacturers {
+    border: none;
+    padding-top: 0.625rem;
+    padding-right: 1px;
+    padding-bottom: 1px;
+    padding-left: 0.3125rem;
+}

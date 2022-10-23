@@ -1,0 +1,107 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+span.headerMultiTemplateDefaultTitle {
+  color:#524169;
+  padding-right: 0rem;
+}
+
+a.headerMultiTemplateDefaultTitle {
+  color:#524169;
+  text-decoration: underline;
+}
+
+div.headerMultiTemplateDefaultLogo {
+  padding-top: 0rem;
+  padding-left:0rem;
+}
+
+span.headerMultiTemplateDefaultShoppingCartImage {
+  text-align: right;
+  padding-left:1rem;
+  padding-top:2rem;
+}
+
+i.headerMultiTemplateDefaultShoppingCart {
+  color: #edac27;
+  font-weight: bold;
+  padding-right: 0.5rem;
+  padding-top: 0rem;
+  font-size: 2rem;
+}
+
+a.headerMultiTemplateDefaultShoppingCart {
+  text-decoration:none;
+}
+
+li.headerMultiTemplateDefaultShoppingCart {
+  list-style-type: none;
+}
+
+span .headerMultiTemplateDefaultShoppingSmallCart {
+  color: #edac27;
+  font-weight: bold;
+  padding-right: 0.5rem;
+  padding-top: 0rem;
+}
+
+span.headerMultiTemplateDefaultCheckout {
+  color: #28a745;
+  font-weight: bold;
+  padding-right: 0.5rem;
+  padding-top: 0rem;
+}
+
+a.headerMultiTemplateDefaultCheckout {
+  color: #28a745;
+}
+
+span.headerMultiTemplateDefaultHeaderSearch {
+  padding-top:3rem;
+  text-align: center;
+  padding-bottom: 0.625rem;
+}
+
+
+span.headerMultiTemplateDefaultPassword {
+  padding-top: 0.3125rem;
+}
+
+.headerMultiTemplateDefaultPassword a {
+  color: #7F736F;
+}
+
+span.headerMultiTemplateDefaultLoginText {
+  padding-top: 0.3125rem;
+}
+
+span.headerMultiTemplateDefaultLanguage {
+  padding-left: 0.3125rem;
+}
+
+li.headerMultiTemplateDefaultLanguage{
+  list-style-type:none;
+}
+
+.headerMultiTemplateDefaultCartLink {
+  padding-right: 5px;
+}
+
+a.headerMultiTemplateDefaultCartLink h2 {
+}
+
+.headerMultiTemplateDefaultCurrencies {
+  height: 30px;
+}
+
+.headerManufacturer{
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
