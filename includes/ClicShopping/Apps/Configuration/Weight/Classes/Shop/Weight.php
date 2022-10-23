@@ -16,9 +16,9 @@
   class Weight
   {
     protected array $weight_classes = [];
-    protected int $precision = 2;
+    protected int $precision;
 
-    public function __construct(?int $precision = null)
+    public function __construct(?int $precision = 2)
     {
       if (\is_int($precision)) {
         $this->precision = $precision;
