@@ -1959,8 +1959,8 @@ INSERT INTO products_quantity_unit VALUES(1, 1, 'unit');
 
 INSERT INTO products_to_categories VALUES (1, 1);
 
-INSERT INTO sec_directory_whitelist VALUES(1, 'ClicShoppingAdmin/includes/backups');
-INSERT INTO sec_directory_whitelist VALUES(2, 'ClicShoppingAdmin/images');
+INSERT INTO sec_directory_whitelist VALUES(1, 'includes/ClicShopping/Work/Backups');
+INSERT INTO sec_directory_whitelist VALUES(2, 'ext/images');
 INSERT INTO sec_directory_whitelist VALUES(4, 'sources');
 INSERT INTO sec_directory_whitelist VALUES(5, 'sources/images');
 INSERT INTO sec_directory_whitelist VALUES(6, 'pub');
