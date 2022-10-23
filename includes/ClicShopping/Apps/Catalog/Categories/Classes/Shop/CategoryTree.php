@@ -704,14 +704,14 @@
       return $categories_url;
     }
 
-  /**
-   * @param string $parent_id
-   * @param string $spacing
-   * @param string $exclude
-   * @param string $category_tree_array
-   * @param bool $include_itself
-   * @return array|string
-   */
+    /**
+     * @param int $parent_id
+     * @param string $spacing
+     * @param string $exclude
+     * @param string $category_tree_array
+     * @param bool $include_itself
+     * @return array
+     */
     public function getShopCategoryTree(int $parent_id = 0, string $spacing = '', $exclude = '',  $category_tree_array = '', bool $include_itself = false) :array
     {
       if (!\is_array($category_tree_array)) {
