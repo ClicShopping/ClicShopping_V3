@@ -93,9 +93,12 @@
             <div class="help-block"><?php echo '(Load the demo data, recommended for test)'; ?></div>
 
             <div class="col text-end">
-              <?=
-              HTML::button(TEXT_CONTINUE, null, null, 'success', ['params' => 'id="buttonDoImport"']) . '&nbsp;' .
-              HTML::button(TEXT_SKIP_DATABASE, null, null, 'warning', ['params' => 'id="buttonSkipImport"']);
+              <?php
+              echo HTML::button(TEXT_CONTINUE, null, null, 'success', ['params' => 'id="buttonDoImport" data-bs-toggle="modal" data-bs-target="#installModal"']) . '&nbsp;';
+              ?>
+
+              <?php
+              echo HTML::button(TEXT_SKIP_DATABASE, null, null, 'warning', ['params' => 'id="buttonSkipImport"']);
               ?>
             </div>
           </div>
@@ -107,14 +110,16 @@
 </div>
 </form>
 
-<div class="modal" id="installModal" tabindex="-1" role="dialog" aria-labelledby="installModalLabel">
-  <div class="modal-dialog" role="document">
+<!-- Modal -->
+<div class="modal fade" id="installModal" tabindex="-1" aria-labelledby="installModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="installModalLabel"><?php echo TEXT_WAIT; ?></h4>
       </div>
       <div id="mBox"></div>
-      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-body">
+      </div>
     </div>
   </div>
 </div>
@@ -133,7 +138,7 @@ $(function() {
 
     formSubmited = true;
 
-    $('#installModal .modal-body').html('<div class="spinner-border" role="status" id="preloader"><div id="preloader_status"><span class="visually-hidden"><p>Testing database connection..</p></span></div> </div>');
+      $('#installModal .modal-body').html('<p><i class="bi bi-arrow-repeat"></i> Testing database connection..</p>');
 
     $('#installModal').modal({
       keyboard: false,
@@ -264,13 +269,4 @@ $(function() {
   });
 });
 </script>
-<script>
-  $( document ).ready(function() {
-    $("#myModal").on("show.bs.modal", function(e) {
-      const link = $(e.relatedTarget);
-      $(this).find(".modal-body").load(link.attr("href"));
-    });
-  });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
+
