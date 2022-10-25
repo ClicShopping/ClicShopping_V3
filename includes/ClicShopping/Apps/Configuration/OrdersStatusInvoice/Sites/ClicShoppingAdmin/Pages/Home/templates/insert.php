@@ -66,7 +66,7 @@
               <label for="<?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('lang'); ?>"
                      class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
               <div class="col-md-5">
-                <?php echo HTML::inputField('orders_status_invoice_name[' . $languages[$i]['id'] . ']', '', 'class="form-control" required aria-required="true" required=""'); ?>
+                <?php echo HTML::inputField('orders_status_invoice_name[' . $languages[$i]['id'] . ']', '', 'class="form-control" required aria-required="true" Authentificator'); ?>
               </div>
             </div>
           </div>

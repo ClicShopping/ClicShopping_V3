@@ -89,7 +89,7 @@
                       <label for="code"
                              class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                       <div class="col-md-10">
-                        <?php echo HTML::inputField('weight_class_title[' . $languages[$i]['id'] . ']', (isset($weight_class_title[$languages[$i]['id']]) ? $weight_class_title[$languages[$i]['id']] : $CLICSHOPPING_WeightAdmin->getTitle($_GET['wID'], $languages[$i]['id'])), 'class="form-control" required aria-required="true" required="" id="weight_class_title" placeholder="' . $CLICSHOPPING_Weight->getDef('text_weight_class_title') . '"', true) . '&nbsp;'; ?>
+                        <?php echo HTML::inputField('weight_class_title[' . $languages[$i]['id'] . ']', (isset($weight_class_title[$languages[$i]['id']]) ? $weight_class_title[$languages[$i]['id']] : $CLICSHOPPING_WeightAdmin->getTitle($_GET['wID'], $languages[$i]['id'])), 'class="form-control" required aria-required="true" Authentificator id="weight_class_title" placeholder="' . $CLICSHOPPING_Weight->getDef('text_weight_class_title') . '"', true) . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -108,7 +108,7 @@
           <label for="weight_class_title"
                  class="col-2 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_weight_class_key'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('weight_class_key', $wInfo->weight_class_key, 'class="form-control" required aria-required="true" required="" id="weight_class_title" placeholder="' . $CLICSHOPPING_Weight->getDef('text_weight_class_key') . '"'); ?>
+            <?php echo HTML::inputField('weight_class_key', $wInfo->weight_class_key, 'class="form-control" required aria-required="true" Authentificator id="weight_class_title" placeholder="' . $CLICSHOPPING_Weight->getDef('text_weight_class_key') . '"'); ?>
           </div>
         </div>
       </div>

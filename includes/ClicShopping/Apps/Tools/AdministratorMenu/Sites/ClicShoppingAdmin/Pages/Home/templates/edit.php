@@ -114,7 +114,7 @@
                       <label for="code"
                              class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::inputField('label[' . $languages[$i]['id'] . ']', AdministratorMenu::getAdministratorMenuLabel($cInfo->id ?? null, $languages[$i]['id']), 'class="form-control" required aria-required="true" required="" id="label" placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_menu') . '"', true) . '&nbsp;'; ?>
+                        <?php echo HTML::inputField('label[' . $languages[$i]['id'] . ']', AdministratorMenu::getAdministratorMenuLabel($cInfo->id ?? null, $languages[$i]['id']), 'class="form-control" required aria-required="true" Authentificator id="label" placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_menu') . '"', true) . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>

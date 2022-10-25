@@ -80,7 +80,7 @@
                       <label for="code"
                              class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                       <div class="col-md-10">
-                        <?php echo HTML::inputField('products_length_class_title[' . $languages[$i]['id'] . ']', '', 'class="form-control" required aria-required="true" required="" id="products_length_class_title" placeholder="' . $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_title') . '"', true) . '&nbsp;'; ?>
+                        <?php echo HTML::inputField('products_length_class_title[' . $languages[$i]['id'] . ']', '', 'class="form-control" required aria-required="true" Authentificator id="products_length_class_title" placeholder="' . $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_title') . '"', true) . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -99,7 +99,7 @@
           <label for="products_length_class_title"
                  class="col-2 col-form-label"><?php echo $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_key'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('products_length_class_key', null, 'class="form-control" required aria-required="true" required="" id="products_length_class_title" placeholder="' . $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_key') . '"'); ?>
+            <?php echo HTML::inputField('products_length_class_key', null, 'class="form-control" required aria-required="true" Authentificator id="products_length_class_title" placeholder="' . $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_key') . '"'); ?>
           </div>
         </div>
       </div>
