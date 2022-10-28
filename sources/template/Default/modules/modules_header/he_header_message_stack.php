@@ -30,7 +30,7 @@
       $this->description = CLICSHOPPING::getDef('module_header_message_stack_description');
 
       if (\defined('MODULE_HEADER_MESSAGE_STACK_STATUS')) {
-        $this->sort_order = MODULE_HEADER_MESSAGE_STACK_SORT_ORDER;
+        $this->sort_order = (int)MODULE_HEADER_MESSAGE_STACK_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_HEADER_MESSAGE_STACK_STATUS == 'True');
       }
     }

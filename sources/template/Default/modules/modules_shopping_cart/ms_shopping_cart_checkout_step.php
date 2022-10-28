@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('module_shopping_cart_checkout_step_description');
 
       if (\defined('MODULE_SHOPPING_CART_CHECKOUT_STEP_STATUS')) {
-        $this->sort_order = MODULE_SHOPPING_CART_CHECKOUT_STEP_SORT_ORDER;
+        $this->sort_order = (int)MODULE_SHOPPING_CART_CHECKOUT_STEP_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_SHOPPING_CART_CHECKOUT_STEP_STATUS == 'True');
       }
     }

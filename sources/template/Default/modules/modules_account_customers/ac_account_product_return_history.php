@@ -29,7 +29,7 @@
       $this->description = CLICSHOPPING::getDef('module_account_product_return_history_description');
 
       if (\defined('MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_STATUS')) {
-        $this->sort_order = (int)MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_SORT_ORDER;
+        $this->sort_order = (int)MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_STATUS == 'True');
       }
     }

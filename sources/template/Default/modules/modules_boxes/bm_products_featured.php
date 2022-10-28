@@ -29,7 +29,7 @@
       $this->description = CLICSHOPPING::getDef('module_boxes_products_featured_description');
 
       if (\defined('MODULE_BOXES_PRODUCTS_FEATURED_STATUS')) {
-        $this->sort_order = MODULE_BOXES_PRODUCTS_FEATURED_SORT_ORDER;
+        $this->sort_order = (int)MODULE_BOXES_PRODUCTS_FEATURED_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_BOXES_PRODUCTS_FEATURED_STATUS == 'True');
         $this->pages = MODULE_BOXES_PRODUCTS_FEATURED_DISPLAY_PAGES;
 

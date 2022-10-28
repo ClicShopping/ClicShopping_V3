@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_order_total_description');
 
       if (\defined('MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_STATUS')) {
-        $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_SORT_ORDER;
+        $this->sort_order = (int)MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_STATUS == 'True');
       }
      }

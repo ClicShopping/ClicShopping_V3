@@ -29,7 +29,7 @@
       $this->description = CLICSHOPPING::getDef('module_boxes_languages_description');
 
       if (\defined('MODULE_BOXES_LANGUAGES_STATUS')) {
-        $this->sort_order = MODULE_BOXES_LANGUAGES_SORT_ORDER;
+        $this->sort_order = (int)MODULE_BOXES_LANGUAGES_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_BOXES_LANGUAGES_STATUS == 'True');
         $this->pages = MODULE_BOXES_LANGUAGES_DISPLAY_PAGES;
         $this->group = ((MODULE_BOXES_LANGUAGES_CONTENT_PLACEMENT == 'Left Column') ? 'boxes_column_left' : 'boxes_column_right');

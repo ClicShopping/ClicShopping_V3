@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('module_boxes_manufacturer_info_description');
 
       if (\defined('MODULE_BOXES_MANUFACTURER_INFO_STATUS')) {
-        $this->sort_order = MODULE_BOXES_MANUFACTURER_INFO_SORT_ORDER;
+        $this->sort_order = (int)MODULE_BOXES_MANUFACTURER_INFO_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_BOXES_MANUFACTURER_INFO_STATUS == 'True');
         $this->group = ((MODULE_BOXES_MANUFACTURER_INFO_CONTENT_PLACEMENT == 'Left Column') ? 'boxes_column_left' : 'boxes_column_right');
       }

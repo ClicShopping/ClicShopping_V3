@@ -29,7 +29,7 @@
       $this->description = CLICSHOPPING::getDef('module_create_account_success_description');
 
       if (\defined('MODULE_CREATE_ACCOUNT_SUCCESS_STATUS')) {
-        $this->sort_order = MODULE_CREATE_ACCOUNT_SUCCESS_SORT_ORDER;
+        $this->sort_order = (int)MODULE_CREATE_ACCOUNT_SUCCESS_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_CREATE_ACCOUNT_SUCCESS_STATUS == 'True');
       }
     }

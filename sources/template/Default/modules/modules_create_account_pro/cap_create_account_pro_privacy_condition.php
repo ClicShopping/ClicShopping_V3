@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('module_create_account_pro_privacy_condition_description');
 
       if (\defined('MODULE_CREATE_ACCOUNT_PRO_PRIVACY_CONDITION_STATUS')) {
-        $this->sort_order = MODULE_CREATE_ACCOUNT_PRO_PRIVACY_CONDITION_SORT_ORDER;
+        $this->sort_order = (int)MODULE_CREATE_ACCOUNT_PRO_PRIVACY_CONDITION_SORT_ORDER;
         $this->enabled = (MODULE_CREATE_ACCOUNT_PRO_PRIVACY_CONDITION_STATUS == 'True');
       }
     }

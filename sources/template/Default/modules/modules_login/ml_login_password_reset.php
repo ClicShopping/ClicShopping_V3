@@ -30,7 +30,7 @@
       $this->description = CLICSHOPPING::getDef('module_login_password_reset_description');
 
       if (\defined('MODULE_LOGIN_PASSWORD_RESET_STATUS')) {
-        $this->sort_order = MODULE_LOGIN_PASSWORD_RESET_SORT_ORDER;
+        $this->sort_order = (int)MODULE_LOGIN_PASSWORD_RESET_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_LOGIN_PASSWORD_RESET_STATUS == 'True');
       }
      }

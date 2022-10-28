@@ -27,7 +27,7 @@
       $this->description = CLICSHOPPING::getDef('module_shopping_cart_delay_save_cart_message_description');
 
       if (\defined('MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_STATUS')) {
-        $this->sort_order = MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_SORT_ORDER;
+        $this->sort_order = (int)MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_STATUS == 'True');
       }
      }

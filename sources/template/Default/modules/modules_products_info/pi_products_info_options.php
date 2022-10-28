@@ -29,7 +29,7 @@
       $this->description = CLICSHOPPING::getDef('module_products_info_options_description');
 
       if (\defined('MODULE_PRODUCTS_INFO_OPTIONS_STATUS')) {
-        $this->sort_order = MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER;
+        $this->sort_order = (int)MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_PRODUCTS_INFO_OPTIONS_STATUS == 'True');
       }
     }
@@ -218,7 +218,7 @@
             if(MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER == '') {
                $module_produts_info_price_sort_order = -1;
             } else {
-              $module_produts_info_price_sort_order = MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER;
+              $module_produts_info_price_sort_order = MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER ?? 0;
             }
 
             if ( MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER > $module_produts_info_price_sort_order) {

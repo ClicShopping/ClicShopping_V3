@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('module_login_connexion_description');
 
       if (\defined('MODULE_LOGIN_CONNEXION_STATUS')) {
-        $this->sort_order = MODULE_LOGIN_CONNEXION_SORT_ORDER;
+        $this->sort_order = (int)MODULE_LOGIN_CONNEXION_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_LOGIN_CONNEXION_STATUS == 'True');
       }
      }

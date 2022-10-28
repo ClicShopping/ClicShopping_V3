@@ -29,7 +29,7 @@
       $this->description = CLICSHOPPING::getDef('module_header_page_manager_header_menu_description');
 
       if (\defined('MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_STATUS')) {
-        $this->sort_order = MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_SORT_ORDER;
+        $this->sort_order = (int)MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_STATUS == 'True');
         $this->pages = MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_DISPLAY_PAGES;
       }

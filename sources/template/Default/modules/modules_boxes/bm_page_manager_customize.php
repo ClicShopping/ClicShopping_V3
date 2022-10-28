@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('module_boxes_page_manager_customize_description');
 
       if (\defined('MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_STATUS')) {
-        $this->sort_order = MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_SORT_ORDER;
+        $this->sort_order = (int)MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_STATUS == 'True');
         $this->pages = MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_PAGES;
         $this->group = ((MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_CONTENT_PLACEMENT == 'Left Column') ? 'boxes_column_left' : 'boxes_column_right');

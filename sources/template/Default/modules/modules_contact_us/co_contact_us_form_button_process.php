@@ -27,7 +27,7 @@
       $this->description = CLICSHOPPING::getDef('modules_contact_us_form_button_process_description');
 
       if (\defined('MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS')) {
-        $this->sort_order = (int)MODULES_CONTACT_US_FORM_BUTTON_PROCESS_SORT_ORDER;
+        $this->sort_order = (int)MODULES_CONTACT_US_FORM_BUTTON_PROCESS_SORT_ORDER ?? 0;
         $this->enabled = (MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS == 'True');
       }
     }

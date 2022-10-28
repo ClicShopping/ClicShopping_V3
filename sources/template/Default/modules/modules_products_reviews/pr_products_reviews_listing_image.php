@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('modules_products_reviews_listing_image_description');
 
       if (\defined('MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_STATUS')) {
-        $this->sort_order = MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_SORT_ORDER;
+        $this->sort_order = (int)MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_SORT_ORDER ?? 0;
         $this->enabled = (MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_STATUS == 'True');
       }
     }

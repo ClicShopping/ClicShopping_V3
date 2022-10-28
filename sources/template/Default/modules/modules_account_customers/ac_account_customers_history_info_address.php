@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('module_account_customers_info_history_address_descrition');
 
       if (\defined('MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_ADDRESS_TITLE_STATUS')) {
-        $this->sort_order = MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_ADDRESS_TITLE_SORT_ORDER;
+        $this->sort_order = (int)MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_ADDRESS_TITLE_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_ADDRESS_TITLE_STATUS == 'True');
       }
     }

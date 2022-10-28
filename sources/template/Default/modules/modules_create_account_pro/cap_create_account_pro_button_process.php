@@ -27,7 +27,7 @@
       $this->description = CLICSHOPPING::getDef('module_create_account_pro_button_process_description');
 
       if (\defined('MODULE_CREATE_ACCOUNT_PRO_BUTTON_PROCESS_STATUS')) {
-        $this->sort_order = MODULE_CREATE_ACCOUNT_PRO_BUTTON_PROCESS_SORT_ORDER;
+        $this->sort_order = (int)MODULE_CREATE_ACCOUNT_PRO_BUTTON_PROCESS_SORT_ORDER;
         $this->enabled = (MODULE_CREATE_ACCOUNT_PRO_BUTTON_PROCESS_STATUS == 'True');
       }
     }

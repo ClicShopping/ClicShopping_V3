@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('modules_tell_a_friend_customer_agreement_description');
 
       if (\defined('MODULES_TELL_A_FRIEND_CUSTOMER_AGREEMENT_STATUS')) {
-        $this->sort_order = MODULES_TELL_A_FRIEND_CUSTOMER_AGREEMENT_SORT_ORDER;
+        $this->sort_order = (int)MODULES_TELL_A_FRIEND_CUSTOMER_AGREEMENT_SORT_ORDER ?? 0;
         $this->enabled = (MODULES_TELL_A_FRIEND_CUSTOMER_AGREEMENT_STATUS == 'True');
       }
     }

@@ -29,7 +29,7 @@
       $this->description = CLICSHOPPING::getDef('module_boxes_best_sellers_description');
 
       if (\defined('MODULE_BOXES_BEST_SELLERS_STATUS')) {
-        $this->sort_order = MODULE_BOXES_BEST_SELLERS_SORT_ORDER;
+        $this->sort_order = (int)MODULE_BOXES_BEST_SELLERS_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_BOXES_BEST_SELLERS_STATUS == 'True');
         $this->pages = MODULE_BOXES_BEST_SELLERS_DISPLAY_PAGES;
         $this->group = ((MODULE_BOXES_BEST_SELLERS_CONTENT_PLACEMENT == 'Left Column') ? 'boxes_column_left' : 'boxes_column_right');

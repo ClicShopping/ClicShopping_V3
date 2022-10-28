@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('module_advanced_search_price_description');
 
       if (\defined('MODULE_ADVANCED_SEARCH_PRICE_STATUS')) {
-        $this->sort_order = MODULE_ADVANCED_SEARCH_PRICE_SORT_ORDER;
+        $this->sort_order = (int)MODULE_ADVANCED_SEARCH_PRICE_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_ADVANCED_SEARCH_PRICE_STATUS == 'True');
       }
     }

@@ -27,7 +27,7 @@
       $this->description = CLICSHOPPING::getDef('module_footer_page_manager_description');
 
       if (\defined('MODULES_FOOTER_PAGE_MANAGER_STATUS')) {
-        $this->sort_order = MODULES_FOOTER_PAGE_MANAGER_SORT_ORDER;
+        $this->sort_order = (int)MODULES_FOOTER_PAGE_MANAGER_SORT_ORDER ?? 0;
         $this->enabled = (MODULES_FOOTER_PAGE_MANAGER_STATUS == 'True');
         $this->pages = MODULE_FOOTER_PAGE_MANAGER_DISPLAY_PAGES;
       }

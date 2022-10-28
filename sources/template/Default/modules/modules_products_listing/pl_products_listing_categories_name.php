@@ -29,7 +29,7 @@
       $this->description = CLICSHOPPING::getDef('module_products_listing_categories_name_description');
 
       if (\defined('MODULE_PRODUCTS_LISTING_CATEGORIES_NAME_STATUS')) {
-        $this->sort_order = (int)MODULE_PRODUCTS_LISTING_CATEGORIES_NAME_SORT_ORDER;
+        $this->sort_order = (int)(int)MODULE_PRODUCTS_LISTING_CATEGORIES_NAME_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_PRODUCTS_LISTING_CATEGORIES_NAME_STATUS == 'True');
       }
     }

@@ -30,7 +30,7 @@
       $this->description = CLICSHOPPING::getDef('module_checkout_shipping_address_description');
 
       if (\defined('MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS')) {
-        $this->sort_order = MODULE_CHECKOUT_SHIPPING_ADDRESS_SORT_ORDER;
+        $this->sort_order = (int)MODULE_CHECKOUT_SHIPPING_ADDRESS_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS == 'True');
       }
      }

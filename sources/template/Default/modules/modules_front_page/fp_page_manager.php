@@ -27,7 +27,7 @@
       $this->description = CLICSHOPPING::getDef('module_front_page_manager_description');
 
       if (\defined('MODULE_FRONT_PAGE_PAGE_MANAGER_STATUS')) {
-        $this->sort_order = MODULE_FRONT_PAGE_PAGE_MANAGER_SORT_ORDER;
+        $this->sort_order = (int)MODULE_FRONT_PAGE_PAGE_MANAGER_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_FRONT_PAGE_PAGE_MANAGER_STATUS == 'True');
       }
     }

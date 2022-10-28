@@ -32,7 +32,7 @@
       $this->description = CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_description');
 
       if (\defined('MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_STATUS')) {
-        $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_SORT_ORDER;
+        $this->sort_order = (int)MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_STATUS == 'True');
       }
      }

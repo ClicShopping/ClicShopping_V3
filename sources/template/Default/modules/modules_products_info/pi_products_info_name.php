@@ -28,7 +28,7 @@
       $this->description = CLICSHOPPING::getDef('module_products_info_name_description');
 
       if (\defined('MODULE_PRODUCTS_INFO_NAME_STATUS')) {
-        $this->sort_order = MODULE_PRODUCTS_INFO_NAME_SORT_ORDER;
+        $this->sort_order = (int)MODULE_PRODUCTS_INFO_NAME_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_PRODUCTS_INFO_NAME_STATUS == 'True');
       }
     }

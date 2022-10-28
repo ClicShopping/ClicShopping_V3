@@ -30,7 +30,7 @@
       $this->description = CLICSHOPPING::getDef('modules_header_multi_template_description');
 
       if (\defined('MODULES_HEADER_MULTI_TEMPLATE_STATUS')) {
-        $this->sort_order = MODULES_HEADER_MULTI_TEMPLATE_SORT_ORDER;
+        $this->sort_order = (int)MODULES_HEADER_MULTI_TEMPLATE_SORT_ORDER ?? 0;
         $this->enabled = (MODULES_HEADER_MULTI_TEMPLATE_STATUS == 'True');
         $this->pages = MODULES_HEADER_MULTI_TEMPLATE_TEMPLATE_DISPLAY_PAGES;
       }

@@ -30,7 +30,7 @@
       $this->description = CLICSHOPPING::getDef('module_footer_multi_template_description');
 
       if (\defined('MODULE_FOOTER_MULTI_TEMPLATE_STATUS')) {
-        $this->sort_order = MODULE_FOOTER_MULTI_TEMPLATE_SORT_ORDER;
+        $this->sort_order = (int)MODULE_FOOTER_MULTI_TEMPLATE_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_FOOTER_MULTI_TEMPLATE_STATUS == 'True');
         $this->pages = MODULE_FOOTER_MULTI_TEMPLATE_DISPLAY_PAGES;
       }

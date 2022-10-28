@@ -27,7 +27,7 @@
       $this->description = CLICSHOPPING::getDef('module_login_customer_privacy_description');
 
       if (\defined('MODULE_LOGIN_CUSTOMER_PRIVACY_STATUS')) {
-        $this->sort_order = MODULE_LOGIN_CUSTOMER_PRIVACY_SORT_ORDER;
+        $this->sort_order = (int)MODULE_LOGIN_CUSTOMER_PRIVACY_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_LOGIN_CUSTOMER_PRIVACY_STATUS == 'True');
       }
      }

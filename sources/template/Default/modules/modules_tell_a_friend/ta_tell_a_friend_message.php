@@ -30,7 +30,7 @@
       $this->description = CLICSHOPPING::getDef('modules_tell_a_friend_message_description');
 
       if (\defined('MODULES_TELL_A_FRIEND_MESSAGE_STATUS')) {
-        $this->sort_order = MODULES_TELL_A_FRIEND_MESSAGE_SORT_ORDER;
+        $this->sort_order = (int)MODULES_TELL_A_FRIEND_MESSAGE_SORT_ORDER ?? 0;
         $this->enabled = (MODULES_TELL_A_FRIEND_MESSAGE_STATUS == 'True');
       }
     }

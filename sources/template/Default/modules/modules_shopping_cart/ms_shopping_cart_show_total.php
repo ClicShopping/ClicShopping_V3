@@ -27,7 +27,7 @@
       $this->description = CLICSHOPPING::getDef('module_shopping_cart_show_total_description');
 
       if (\defined('MODULE_SHOPPING_CART_SHOW_TOTAL_STATUS')) {
-        $this->sort_order = MODULE_SHOPPING_CART_SHOW_TOTAL_SORT_ORDER;
+        $this->sort_order = (int)MODULE_SHOPPING_CART_SHOW_TOTAL_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_SHOPPING_CART_SHOW_TOTAL_STATUS == 'True');
       }
      }

@@ -29,7 +29,7 @@
       $this->description = CLICSHOPPING::getDef('module_index_categories_new_products_description');
 
       if (\defined('MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_STATUS')) {
-        $this->sort_order = MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_SORT_ORDER;
+        $this->sort_order = (int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_STATUS == 'True');
       }
     }

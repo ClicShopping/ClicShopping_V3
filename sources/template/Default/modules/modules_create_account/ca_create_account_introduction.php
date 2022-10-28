@@ -28,7 +28,7 @@
 
 
       if (\defined('MODULE_CREATE_ACCOUNT_INTRODUCTION_STATUS')) {
-        $this->sort_order = MODULE_CREATE_ACCOUNT_INTRODUCTION_SORT_ORDER;
+        $this->sort_order = (int)MODULE_CREATE_ACCOUNT_INTRODUCTION_SORT_ORDER ?? 0;
         $this->enabled = (MODULE_CREATE_ACCOUNT_INTRODUCTION_STATUS == 'True');
       }
     }

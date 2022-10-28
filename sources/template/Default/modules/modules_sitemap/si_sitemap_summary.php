@@ -27,7 +27,7 @@
       $this->description = CLICSHOPPING::getDef('modules_sitemap_summary_description');
 
       if (\defined('MODULES_SITEMAP_SUMMARY_STATUS')) {
-        $this->sort_order = MODULES_SITEMAP_SUMMARY_SORT_ORDER;
+        $this->sort_order = (int)MODULES_SITEMAP_SUMMARY_SORT_ORDER ?? 0;
         $this->enabled = (MODULES_SITEMAP_SUMMARY_STATUS == 'True');
       }
     }

@@ -29,7 +29,7 @@
       $this->description = CLICSHOPPING::getDef('module_checkout_shipping_comment_description');
 
       if (\defined('MODULE_CHECKOUT_SHIPPING_COMMENT_STATUS')) {
-        $this->sort_order = MODULE_CHECKOUT_SHIPPING_COMMENT_SORT_ORDER;
+        $this->sort_order = (int)MODULE_CHECKOUT_SHIPPING_COMMENT_SORT_ORDER;
         $this->enabled = (MODULE_CHECKOUT_SHIPPING_COMMENT_STATUS == 'True');
       }
      }
