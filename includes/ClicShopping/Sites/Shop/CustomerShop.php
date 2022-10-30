@@ -90,9 +90,9 @@
     }
 
     /**
-     * @return string|null
+     * @return string|bool|null
      */
-    public function getFirstName(): ?string
+    public function getFirstName(): string|bool
     {
       if (isset($this->_data['first_name'])) {
         return $this->_data['first_name'];
@@ -104,7 +104,7 @@
     /**
      * @return string|null
      */
-    public function getLastName(): ?string
+    public function getLastName(): string|bool
     {
       if (isset($this->_data['last_name'])) {
         return $this->_data['last_name'];
@@ -138,7 +138,7 @@
     /**
      * @return string|null
      */
-    public function getGender(): ?string
+    public function getGender() :string|bool
     {
       if (isset($this->_data['gender'])) {
         return $this->_data['gender'];
@@ -158,7 +158,7 @@
     /**
      * @return string|null
      */
-    public function getEmailAddress(): ?string
+    public function getEmailAddress() :string|bool
     {
       if (isset($this->_data['email_address'])) {
         return $this->_data['email_address'];
@@ -170,7 +170,7 @@
     /**
      * @param string|null $telephone
      */
-    public function setTelephone(?string $telephone)
+    public function setTelephone(?string $telephone) :void
     {
       $this->_data['customers_telephone'] = $telephone;
     }
@@ -178,7 +178,7 @@
     /**
      * @return string|null
      */
-    public function getTelephone(): ?string
+    public function getTelephone() :string|bool
     {
       if (isset($this->_data['customers_telephone'])) {
         return $this->_data['customers_telephone'];
@@ -190,7 +190,7 @@
     /**
      * @param string|null $telephone
      */
-    public function setCellularPhone(?string $telephone)
+    public function setCellularPhone(?string $telephone) :void
     {
       $this->_data['customers_cellular_phone'] = $telephone;
     }
@@ -198,7 +198,7 @@
     /**
      * @return string|null
      */
-    public function getCellularPhone(): ?string
+    public function getCellularPhone() :string|bool
     {
       if (isset($this->_data['customers_cellular_phone'])) {
         return $this->_data['customers_cellular_phone'];
@@ -343,7 +343,7 @@
     /**
      * @param int $id
      */
-    public function setID(int $id)
+    public function setID(int $id) :void
     {
       if (is_numeric($id) && ($id > 0)) {
         $this->_data['id'] = $id;
@@ -379,7 +379,6 @@
      */
     public function hasDefaultAddress() :bool
     {
-
       if (isset($this->_data['default_address_id']) && is_numeric($this->_data['default_address_id'])) {
         return true;
       }
@@ -390,7 +389,7 @@
     /**
      * @param string|null $gender
      */
-    public function setGender(?string $gender)
+    public function setGender(?string $gender) :void
     {
       if ((strtolower($gender) == 'm') || (strtolower($gender) == 'f')) {
         $this->_data['gender'] = strtolower($gender);
@@ -402,7 +401,7 @@
     /**
      * @param string|null $first_name
      */
-    public function setFirstName(?string $first_name)
+    public function setFirstName(?string $first_name) :void
     {
       $this->_data['first_name'] = $first_name;
     }
@@ -410,7 +409,7 @@
     /**
      * @param string|null $last_name
      */
-    public function setLastName(?string $last_name)
+    public function setLastName(?string $last_name) :void
     {
       $this->_data['last_name'] = $last_name;
     }
@@ -418,7 +417,7 @@
     /**
      * @param string $email_address
      */
-    public function setEmailAddress(string $email_address)
+    public function setEmailAddress(string $email_address) :void
     {
       $this->_data['email_address'] = $email_address;
     }
@@ -443,7 +442,7 @@
     /**
      * @param int $id
      */
-    public function setCountryID(int $id)
+    public function setCountryID(int $id) :void
     {
       $this->_data['country_id'] = $id;
     }
@@ -451,7 +450,7 @@
     /**
      * @param int $id
      */
-    public function setZoneID(int $id)
+    public function setZoneID(int $id) :void
     {
       $this->_data['zone_id'] = $id;
     }
@@ -460,7 +459,7 @@
      * B2B
      * @param int $id
      */
-    public function setCustomersgroupID(int $id)
+    public function setCustomersgroupID(int $id) :void
     {
       $this->_data1['customers_group_id'] = $id;
     }
@@ -468,7 +467,7 @@
     /**
      *
      */
-    public function reset()
+    public function reset() :void
     {
       $this->_is_logged_on = false;
       $this->_data = [];
@@ -491,26 +490,29 @@
     public function customerGreeting(): string
     {
       if ($this->isLoggedOn()) {
-        $greeting_string = CLICSHOPPING::getDef('text_greeting_personal', [
+        $text_array = [
           'first_name' => HTML::outputProtected($this->getFirstName()),
           'url_products_new' => CLICSHOPPING::link(null, 'Products&ProductsNew'),
           'url_logoff' => CLICSHOPPING::link(null, 'Account&LogOff')
-          ]
-        );
+        ];
+
+        $greeting_string = CLICSHOPPING::getDef('text_greeting_personal', $text_array);
       } else {
         if (MODE_MANAGEMENT_B2C_B2B == 'B2C_B2B' || MODE_MANAGEMENT_B2C_B2B == 'B2B') {
-          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest', [
-            'url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
-            'url_create_account' => CLICSHOPPING::link(null, 'Account&Create'),
-            'url_create_account_pro' => CLICSHOPPING::link('Account.php', 'Account&CreatePro')
-            ]
-          );
+          $text_array = [
+              'url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
+              'url_create_account' => CLICSHOPPING::link(null, 'Account&Create'),
+              'url_create_account_pro' => CLICSHOPPING::link('Account.php', 'Account&CreatePro')
+            ];
+
+          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest', $text_array);
         } else {
-          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest', [
-            'url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
-            'url_products_new' => CLICSHOPPING::link(null, 'Products&ProductsNew')
-            ]
-          );
+          $text_array = [
+              'url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
+              'url_products_new' => CLICSHOPPING::link(null, 'Products&ProductsNew')
+          ];
+
+          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest', $text_array);
         }
       }
 

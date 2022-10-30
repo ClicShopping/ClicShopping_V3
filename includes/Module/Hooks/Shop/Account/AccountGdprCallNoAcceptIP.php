@@ -14,7 +14,6 @@
 
   class AccountGdprCallNoAcceptIP
   {
-
     public function execute()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -29,7 +28,7 @@
       $Qcheck->execute();
 
       if ($Qcheck->fetch() === false) {
-        $CLICSHOPPING_Db->save('customers_gdpr', ['customers_id' => $CLICSHOPPING_Customer->getID(), 'date_added' => now()]);
+        $CLICSHOPPING_Db->save('customers_gdpr', ['customers_id' => $CLICSHOPPING_Customer->getID(), 'date_added' => 'now()']);
       } else {
         if (!\is_null($_POST['no_ip_address'])) {
           $no_ip_address = 1;

@@ -15,7 +15,6 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Hash;
 
-
   class LogIn extends \ClicShopping\OM\PagesActionsAbstract
   {
     public function execute()
