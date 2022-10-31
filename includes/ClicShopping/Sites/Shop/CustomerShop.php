@@ -355,17 +355,15 @@
     /**
      * @param int $id
      */
-    public function setDefaultAddressID(int $id)
+    public function setDefaultAddressID(int $id) :void
     {
       if (is_numeric($id) && ($id > 0)) {
         if (!isset($this->_data['default_address_id']) || ($this->_data['default_address_id'] != $id)) {
-          $Qupdate = $this->db->prepare('update :table_customers
-                                         set customers_default_address_id = :customers_default_address_id
-                                         where customers_id = :customers_id'
-                                       );
-          $Qupdate->bindInt(':customers_default_address_id', $id);
-          $Qupdate->bindInt(':customers_id', $this->getID());
-          $Qupdate->execute();
+          $update_sql = [
+            'customers_default_address_id' => $id
+          ];
+
+          $this->db->save('customers', $update_sql, ['customers_id' => $this->getID()]);
         }
 
         $this->_data['default_address_id'] = $id;
@@ -423,20 +421,24 @@
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      * @return int|null
      */
     public function getCustomerGuestAccount(int $id): ?int
     {
-      $Qcustomer = $this->db->prepare('select customer_guest_account
-                                        from :table_customers
-                                        where customers_id = :customers_id
-                                      ');
+      $Qresult = $this->db->get('customers', 'customer_guest_account', ['customers_id' => (int)$id]);
 
-      $Qcustomer->bindInt(':customers_id', $id);
-      $Qcustomer->execute();
+      return $Qresult->valueInt('customer_guest_account');
+    }
 
-      return $Qcustomer->valueInt('customer_guest_account');
+    /**
+     * @return string
+     */
+    public function getCustomerIp(): string
+    {
+      $Qresult = $this->db->get('customers', 'client_computer_ip', ['customers_id' => $this->getID()], null, 1);
+
+      return $Qresult->value('client_computer_ip');
     }
 
     /**

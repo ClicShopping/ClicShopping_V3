@@ -21,6 +21,10 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
             'Symfony\\Component\\Finder\\' => 25,
             'Stripe\\' => 7,
         ),
+        'R' => 
+        array (
+            'RobThree\\Auth\\' => 14,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -59,6 +63,10 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
         'Stripe\\' => 
         array (
             0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
+        'RobThree\\Auth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/robthree/twofactorauth/lib',
         ),
         'Psr\\Http\\Message\\' => 
         array (

@@ -47,7 +47,6 @@
 
           $this->app->redirect('AdministratorMenu&cPath=' . (int)$this->cPath . '&cID=' . (int)$this->Id);
         } else {
-
           $this->app->db->save('administrator_menu', [
             'parent_id' => (int)$new_parent_id
           ], [

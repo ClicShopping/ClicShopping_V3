@@ -12,7 +12,6 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
-  use ClicShopping\Sites\Shop;
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract
   {

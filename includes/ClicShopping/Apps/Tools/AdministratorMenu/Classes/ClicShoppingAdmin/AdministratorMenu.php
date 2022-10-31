@@ -203,7 +203,7 @@
      * @param int $id
      * @param string $categories_array
      * @param int $index
-     * @return array|string
+     * @return array
      */
     public static function getGenerateCategoryPath(int $id, $categories_array = '', int $index = 0): array
     {
@@ -235,7 +235,7 @@
       ];
 
       if ((!\is_null($Qcategory->valueInt('parent_id'))) && ($Qcategory->valueInt('parent_id') != '0')) {
-        $categories_array = static::getGenerateCategoryPath($Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
+        $categories_array = static::getGenerateCategoryPath($Qcategory->valueInt('parent_id'), $categories_array, $index);
       }
 
       return $categories_array;

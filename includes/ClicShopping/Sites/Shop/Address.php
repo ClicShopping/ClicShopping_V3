@@ -325,7 +325,8 @@
       $Qzones->execute();
 
       while ($Qzones->fetch()) {
-        $zones_array[] = ['id' => $Qzones->valueInt('zone_id'),
+        $zones_array[] = [
+          'id' => $Qzones->valueInt('zone_id'),
           'name' => $Qzones->value('zone_name'),
           'country_id' => $Qzones->valueInt('zone_country_id'),
           'country_name' => $Qzones->value('countries_name')
@@ -379,15 +380,17 @@
       $zones = self::getCountryZones($country_id);
 
       if (\count($zones) > 0) {
-        $zones_select = array(['id' => '',
-            'text' => CLICSHOPPING::getDef('text_selected')
+        $zones_select = array([
+          'id' => '',
+          'text' => CLICSHOPPING::getDef('text_selected')
           ]
         );
         $zones = array_merge($zones_select, $zones);
 
       } else {
-        $zones = array(['id' => '',
-            'text' => CLICSHOPPING::getDef('text_selected')
+        $zones = array([
+          'id' => '',
+          'text' => CLICSHOPPING::getDef('text_selected')
           ]
         );
       }

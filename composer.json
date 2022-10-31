@@ -13,7 +13,8 @@
         "mattketmo/email-checker": "^2.1",
         "daveearley/daves-email-validation-tool": "^1.2",
         "darkghosthunter/preloader": "^2.2",
-        "stymiee/email-validator": "^1.1"
+        "stymiee/email-validator": "^1.1",
+        "robthree/twofactorauth": "^1.8"
     },
     "support": {
         "wiki": "https://github.com/ClicShopping/ClicShopping_V3/wiki",

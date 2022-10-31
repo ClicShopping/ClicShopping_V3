@@ -57,7 +57,7 @@
         </div>
         <div class="separator"></div>
         <div>
-          <?php echo AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_GET['delete'], true, ' ', '<br />'); ?>
+          <?php echo AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), HTML::sanitize($_GET['delete']), true, ' ', '<br />'); ?>
         </div>
       </div>
 <?php

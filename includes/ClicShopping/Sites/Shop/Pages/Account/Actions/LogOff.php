@@ -13,13 +13,10 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-
   class LogOff extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 
