@@ -125,7 +125,7 @@
     $pdf->SetX(0);
     $pdf->SetY(10);
     $pdf->SetFont('Arial', 'B', 10);
-    $pdf->SetTextColor(INVOICE_RGB);
+    $pdf->SetTextColor((float)INVOICE_RGB);
     $pdf->Ln(0);
     $pdf->Cell(125);
     $pdf->MultiCell(100, 3.5, utf8_decode(STORE_NAME), 0, 'L');
@@ -134,7 +134,7 @@
     $pdf->SetX(0);
     $pdf->SetY(15);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->SetTextColor(INVOICE_RGB);
+    $pdf->SetTextColor((float)INVOICE_RGB);
     $pdf->Ln(0);
     $pdf->Cell(125);
     $pdf->MultiCell(100, 3.5, utf8_decode(STORE_NAME_ADDRESS), 0, 'L');
@@ -143,7 +143,7 @@
     $pdf->SetX(0);
     $pdf->SetY(30);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->SetTextColor(INVOICE_RGB);
+    $pdf->SetTextColor((float)INVOICE_RGB);
     $pdf->Ln(0);
     $pdf->Cell(-3);
     $pdf->MultiCell(100, 3.5, utf8_decode($CLICSHOPPING_Orders->getDef('entry_email')) . ' ' . STORE_OWNER_EMAIL_ADDRESS, 0, 'L');
@@ -152,7 +152,7 @@
     $pdf->SetX(0);
     $pdf->SetY(34);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->SetTextColor(INVOICE_RGB);
+    $pdf->SetTextColor((float)INVOICE_RGB);
     $pdf->Ln(0);
     $pdf->Cell(-3);
     $pdf->MultiCell(100, 3.5, $CLICSHOPPING_Orders->getDef('entry_http_site') . ' ' . HTTP::typeUrlDomain(), 0, 'L');
@@ -366,52 +366,52 @@
     // Remerciement
     $pdf->SetY(-65);
     $pdf->SetFont('Arial', 'B', 8);
-    $pdf->SetTextColor(INVOICE_RGB);
+    $pdf->SetTextColor((float)INVOICE_RGB);
     $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('thank_you_customer')), 0, 0, 'C');
 
 // Proprieties Legal
     $pdf->SetY(-60);
     $pdf->SetFont('Arial', '', 7);
-    $pdf->SetTextColor(INVOICE_RGB);
+    $pdf->SetTextColor((float)INVOICE_RGB);
     $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('reserve_propriete', ['store_name' => STORE_NAME])), 0, 0, 'C');
 
     $pdf->SetY(-55);
     $pdf->SetFont('Arial', '', 7);
-    $pdf->SetTextColor(INVOICE_RGB);
+    $pdf->SetTextColor((float)INVOICE_RGB);
     $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('reserve_propriete_next')), 0, 0, 'C');
 
     $pdf->SetY(-50);
     $pdf->SetFont('Arial', '', 7);
-    $pdf->SetTextColor(INVOICE_RGB);
+    $pdf->SetTextColor((float)INVOICE_RGB);
     $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('reserve_propriete_next1', ['url_sell_conditions' => HTTP::getShopUrlDomain() . SHOP_CODE_URL_CONDITIONS_VENTE])), 0, 0, 'C');
 
 // Informations de la compagnie
     if (DISPLAY_DOUBLE_TAXE == 'false') {
       $pdf->SetY(-45);
       $pdf->SetFont('Arial', '', 8);
-      $pdf->SetTextColor(INVOICE_RGB);
+      $pdf->SetTextColor((float)INVOICE_RGB);
       $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('entry_info_societe', ['info_societe' => SHOP_CODE_CAPITAL . ' - ' . SHOP_CODE_RCS . ' - ' . SHOP_CODE_APE])), 0, 0, 'C');
 
       $pdf->SetY(-40);
       $pdf->SetFont('Arial', '', 8);
-      $pdf->SetTextColor(INVOICE_RGB);
+      $pdf->SetTextColor((float)INVOICE_RGB);
       $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('entry_info_societe_next', ['tva_intracom' => TVA_SHOP_INTRACOM])), 0, 0, 'C');
     } else {
       $pdf->SetY(-45);
       $pdf->SetFont('Arial', '', 8);
-      $pdf->SetTextColor(INVOICE_RGB);
+      $pdf->SetTextColor((float)INVOICE_RGB);
       $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('entry_info_societe1', ['info_societe1' => SHOP_CODE_CAPITAL . ' - ' . SHOP_CODE_RCS . ' - ' . SHOP_CODE_APE])), 0, 0, 'C');
 
       $pdf->SetY(-40);
       $pdf->SetFont('Arial', '', 8);
-      $pdf->SetTextColor(INVOICE_RGB);
+      $pdf->SetTextColor((float)INVOICE_RGB);
       $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('entry_info_societe_next1', ['info_societe1' => TVA_SHOP_PROVINCIAL . ' - ' . TVA_SHOP_FEDERAL])), 0, 0, 'C');
     }
 
 // Autres informations (champ libre) sur la compagnie
     $pdf->SetY(-35);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->SetTextColor(INVOICE_RGB);
+    $pdf->SetTextColor((float)INVOICE_RGB);
     $pdf->Cell(0, 10, utf8_decode(SHOP_DIVERS), 0, 0, 'C');
   }
 
