@@ -1575,6 +1575,8 @@ INSERT INTO configuration VALUES(1557, 'Sort order', 'MODULE_ACCOUNT_PRODUCT_RET
 INSERT INTO configuration VALUES(1558, 'Do you want to enable this module ?', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_STATUS', 'True', 'Do you want to enable this module in your shop ?', 6, 1, NULL, '2022-10-09 09:06:34', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1559, 'Please select the width of the module', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 1, NULL, '2022-10-09 09:06:34', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1560, 'Sort order', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_SORT_ORDER', '120', 'Sort order of display. Lowest is displayed first. The sort order must be different on every module', 6, 105, NULL, '2022-10-09 09:06:34', NULL, '');
+INSERT INTO configuration VALUES(1561, 'Double Authentification WebSite Short Title', 'CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_SHORT_TILTE', 'ClicShopping', 'Please, insert in One word the authenticcation title (without spance and accent)', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1562, 'Double Authentification TOTP Catalog', 'CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_CATALOG', 'False', 'Activate the double authentication Catalog', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
@@ -1616,7 +1618,7 @@ INSERT INTO configuration_group VALUES(37, 'Setup specials for home page', 'Sett
 INSERT INTO configuration_group VALUES(43, 'General and miscellaneous Setup design', 'General and miscellaneous Setting design', 43, 1);
 INSERT INTO configuration_group VALUES(44, 'Web Service', 'Connect via webservice at new external application', 1, 1);
 INSERT INTO configuration_group VALUES(45, 'Configuration HTTP/API', 'Configuration HTTP/API', 1, 1);
-
+INSERT INTO configuration_group VALUES(46, 'Double Authentification', 'Double Authentification TOTP / 2FA', '1', '1');
 
 INSERT INTO countries VALUES(1, 'Afghanistan', 'AF', 'AFG', 1, 1);
 INSERT INTO countries VALUES(2, 'Albania', 'AL', 'ALB', 1, 1);

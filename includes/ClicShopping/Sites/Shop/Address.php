@@ -416,8 +416,9 @@
 
       if ($Qcheck->rowCount() > 1) {
         while ($Qcheck->fetch()) {
-          $zones_array[] = ['id' => $Qcheck->value('zone_name'),
-              'text' => $Qcheck->value('zone_name')
+          $zones_array[] = [
+            'id' => $Qcheck->value('zone_name'),
+            'text' => $Qcheck->value('zone_name')
           ];
         }
 

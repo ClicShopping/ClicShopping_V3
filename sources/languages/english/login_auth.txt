@@ -1,0 +1,28 @@
+navbar_title = 2 factors authentication
+heading_title_login_auth = 2 factors authentication
+
+text_login_auth_introduction = <strong> Please scan or enter your Google Authenticator or Microsoft Authenticator identification code. </strong> <br />
+We have implemented this process to protect access to your space with the latest recommended technologies. <br /> <br />
+To find out your code, please scan the QR code with your camera and insert the given number by the authentication application. <br />
+Please note that this code will be requested for each connection. <br />
+If a connection is made to your account, you will receive an information email.
+We have implemented this approach to provide you with better security regarding access to giving you.
+
+
+text_auth_qr_code = Please scan the QR code via your camera on your phone.
+text_auth_code = Authentication code
+
+text_code_auth_invalid = You have inserted a erroneous or not recognized code. Please start the procedure again by scanning the new barcode via the camera vote.
+In the event or you already have an identification code in your application, please delete it and replace it with the new code.
+
+button_continue = continue
+
+text_login_auth_error = <strong> Error: </strong>Your code is disabled. Please start again.
+
+email_subject = Alert connection on your account {{store_name}}
+Text_message = We have seen a new connection in your administration space.
+In the event or this connection is not your responsibility, we invite you to contact us as quickly as possible. <br />
+The safety of your access and more generally to the site is very important for us. <br />
+Information available to you: <br />
+IP address: {address_ip}} <br />
+Provider: {{provider}} <br />

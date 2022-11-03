@@ -50,6 +50,13 @@
         $email_address = HTML::sanitize($_POST['email_address']);
         $password = HTML::sanitize($_POST['password']);
 
+        if (CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_CATALOG == 'True') {
+          $_SESSION['email_address'] = $email_address;
+          $_SESSION['password'] = $password;
+
+          CLICSHOPPING::redirect(null, 'Account&LogInAuth');
+        }
+
 // Check if email exists
         $array_sql = [
           'customers_id',

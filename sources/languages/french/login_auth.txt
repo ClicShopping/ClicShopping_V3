@@ -1,0 +1,29 @@
+navbar_title = Authentification à 2 facteurs
+heading_title_Login_auth = Authentification à 2 facteurs
+
+text_Login_auth_introduction = <strong>Veuillez scanner ou entrer votre code d'identification Google Authentificator ou Microsoft Authentificator.</strong><br />
+Nous avons mis en place ce processus afin de protéger l'accès à votre espace avec les dernières technologies recommendées.<br /> <br />
+Pour connaître votre code, veuillez scanner avec votre appareil photo le code Qr et insérer le numéro donné par l'application d'authentification. <br />
+Veuillez noter que ce code vous sera demandé à chaque connexion. <br />
+Si une connexion est faite sur votre compte, vous recevrez un email d'information.
+Nous avons mis en place cette approche pour vous fournir une meilleure sécurité concernant l'accès à vos donner.
+
+
+text_auth_qr_code = Veuillez scanner le code Qr via votre appareil photo de votre téléphone.
+text_auth_code = Code d'authentification
+
+text_code_auth_invalid = Vous avez inséré un code erronée ou non reconnu. Merci de recommencer la procédure en scannant le nouveau code barre via vote appareil photo.
+Dans l'hypothèse ou vous avez déjà un code d'identification dans votre application, merci de le supprimer et le remplacer par le nouveau code.
+
+button_continue = Continuer
+
+text_Login_auth_error =  <strong>ERREUR :</strong></font> votre code est invalide. Veuillez recommencer.
+
+email_subject = Alerte connexion sur votre compte {{STORE_NAME}}
+text_message = Nous avons constater une nouvelle connexion dans votre espace d'administration.
+Dans l'hypothèse ou cette connexion n'est pas de votre ressort, nous vous invitons à nous contacter le plus rapidement possible.<br />
+La sécurité de votre accès et plus globalement au site est très importante pour nous.<br />
+Informations mise à votre disposition :<br />
+adresse IP : {{address_ip}}<br />
+Provider : {{provider}}<br />
+

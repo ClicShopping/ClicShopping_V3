@@ -1531,15 +1531,17 @@ INSERT INTO configuration VALUES(1548, 'Parameter [Gdpr App]', 'MODULE_MODULES_C
 INSERT INTO configuration VALUES(1549, 'Statut', 'CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique ?', 6, 0, NULL, '2022-09-18 17:12:49', NULL, NULL);
 INSERT INTO configuration VALUES(1550, 'Ordre de tri d\'affichage', 'CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_SORT_ORDER', '30', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2022-09-18 17:12:49', NULL, NULL);
 INSERT INTO configuration VALUES(1551, 'Délais de suppression de compte', 'CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_DATE', '180', 'Choisissez un nombre de jours qui affichera les comptes à supprimer', 6, 0, NULL, '2022-09-18 17:12:49', NULL, NULL);
-INSERT INTO configuration VALUES(1552, 'Souhaitez-vous activer ce module ?', 'MODULE_ACCOUNT_PRODUCT_RETURN_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique ?', 6, 1, NULL, '2022-10-09 09:06:16', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1552, 'Souhaitez-vous activer ce module ?', 'MODULE_ACCOUNT_PRODUCT_RETURN_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique ?<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 6, 1, NULL, '2022-10-09 09:06:16', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1553, 'Veuillez selectionner la largeur de l\'affichqge', 'MODULE_ACCOUNT_PRODUCT_RETURN_CONTENT_WIDTH', '12', 'Veuillez indiquer un nombre compris entre 1 et 12', 6, 1, NULL, '2022-10-09 09:06:16', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1554, 'Ordre de tri d\'affichage', 'MODULE_ACCOUNT_PRODUCT_RETURN_SORT_ORDER', '120', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 105, NULL, '2022-10-09 09:06:16', NULL, '');
-INSERT INTO configuration VALUES(1555, 'Souhaitez-vous activer ce module ?', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique ?', 6, 1, NULL, '2022-10-09 09:06:25', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1555, 'Souhaitez-vous activer ce module ?', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_STATUS', 'True', '<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 6, 1, NULL, '2022-10-09 09:06:25', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1556, 'Veuillez selectionner la largeur de l\'affichage', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_CONTENT_WIDTH', '12', 'Veuillez indiquer un nombre compris entre 1 et 12', 6, 1, NULL, '2022-10-09 09:06:25', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1557, 'Ordre de tri d\'affichage', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_SORT_ORDER', '120', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 105, NULL, '2022-10-09 09:06:25', NULL, '');
-INSERT INTO configuration VALUES(1558, 'Souhaitez-vous activer ce module ?', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique ?', 6, 1, NULL, '2022-10-09 09:06:34', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1558, 'Souhaitez-vous activer ce module ?', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique ?<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 6, 1, NULL, '2022-10-09 09:06:34', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1559, 'Veuillez selectionner la largeur de l\'affichage', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_CONTENT_WIDTH', '12', 'Veuillez indiquer un nombre compris entre 1 et 12', 6, 1, NULL, '2022-10-09 09:06:34', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1560, 'Ordre de tri d\'affichage', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_SORT_ORDER', '120', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 105, NULL, '2022-10-09 09:06:34', NULL, '');
+INSERT INTO configuration VALUES(1561, 'Titre court double authentification site internet ', 'CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_SHORT_TILTE', 'ClicShopping', 'Veuillez insérer une un mot le titre de de l\'authentification (sans espace et accent)', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1562, 'Double authentification TOTP Catalogue', 'CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_CATALOG', 'False', 'Souhaitez-vous activer cette fonctionnalité de double authentification<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
@@ -1581,7 +1583,7 @@ INSERT INTO configuration_group VALUES(37, 'Gestion des promotions pour la page 
 INSERT INTO configuration_group VALUES(43, 'Configuration générale et diverse sur le design', 'Configuration générale  et diverse sur du design', 43, 1);
 INSERT INTO configuration_group VALUES(44, 'Web Service', 'Se connecter a une application externe', 1, 1);
 INSERT INTO configuration_group VALUES(45, 'Configuration HTTP/API', 'Configuration HTTP/API', 1, 1);
-
+INSERT INTO configuration_group VALUES(46, 'Double Authentification', 'Double Authentification TOTP / 2FA', '1', '1');
 
 INSERT INTO countries VALUES(1, 'Afghanistan', 'AF', 'AFG', 1, 1);
 INSERT INTO countries VALUES(2, 'Albania', 'AL', 'ALB', 1, 1);

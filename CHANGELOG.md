@@ -1,7 +1,7 @@
 --------------------
 3.339
 fix and add pop up install db
-add double identification Topt approach
+add doublei authentification Topt approach
 some fix
 
 --------------------

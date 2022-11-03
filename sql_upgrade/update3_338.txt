@@ -1,0 +1,15 @@
+
+
+ALTER TABLE `clic_customers` ADD `double_authentification_secret` VARCHAR(255) NULL DEFAULT NULL AFTER `gdpr`;
+
+#English
+INSERT INTO `clic_configuration_group` (`configuration_group_id`, `configuration_group_title`, `configuration_group_description`, `sort_order`, `visible`) VALUES ('46', 'Double Authentification', 'Double Authentification TOTP / 2FA', '1', '1');
+
+INSERT INTO `clic_configuration` VALUES(1561, 'Double Authentification WebSite Short Title', 'CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_SHORT_TILTE', 'ClicShopping', 'Please, insert in One word the authenticcation title (without spance and accent)', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO `clic_configuration` VALUES(1562, 'Double Authentification TOTP Catalog', 'CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_CATALOG', 'False', 'Activate the double authentication Catalog', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+
+
+
+#
+INSERT INTO `clic_configuration` VALUES(1561, 'Titre court double authentification site internet ', 'CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_SHORT_TILTE', 'ClicShopping', 'Veuillez insérer une un mot le titre de de l\'authentification (sans espace et accent)', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO `clic_configuration` VALUES(1562, 'Double authentification TOTP Catalogue', 'CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_CATALOG', 'False', 'Souhaitez-vous activer cette fonctionnalité de double authentification<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');

@@ -28,6 +28,7 @@ provider_name_client varchar(64)  null
 customer_website_company varchar(64) null
 customer_guest_account tinyint(1) default(0) not_null
 gdpr tinyint(1) default(0) not_null
+double_authentification_secret varchar(255) null
 
 --
 primary customers_id
