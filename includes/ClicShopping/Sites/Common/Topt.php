@@ -87,9 +87,13 @@
     /**
      * @return void
      */
-    public function resetAll() :void
+    public static function resetAll() :void
     {
+      unset($_SESSION['customer_id']);
+      unset($_SESSION['password']);
+      unset($_SESSION['email_address']);
       unset($_SESSION['tfa_secret']);
+      unset($_SESSION['user_secret']);
     }
 
     /**

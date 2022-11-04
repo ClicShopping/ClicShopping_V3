@@ -75,6 +75,12 @@
         CLICSHOPPING::redirect(null, 'Info&Cookies');
       }
 
+      if (!isset($_SESSION['email_address']) || !isset($_SESSION['password'])) {
+        unset($_SESSION['email_address']);
+        unset($_SESSION['password']);
+        CLICSHOPPING::redirect('Account&LogIn');
+      }
+
       $error = true;
 
 // Check the topt
