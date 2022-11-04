@@ -260,8 +260,8 @@
 
     /**
      * Output a date now
-     * @param null $format date format
-     * @return false|string
+     * @param string|null $format date format
+     * @return string
      */
     public static function getNow(?string $format = null): string
     {
@@ -280,11 +280,13 @@
      */
     public function getDateReferenceShort(): string
     {
-      return strftime(CLICSHOPPING::getDef('date_format'), $this->getTimestamp());
+      $pattern = new DateTime(CLICSHOPPING::getDef('date_format'), true, true);
+
+      return date($pattern, $this->getTimestamp());
     }
 
     /**
-     * @param $raw_datetime
+     * @param string $raw_datetime
      * @param bool $strict
      * @return string
      */
@@ -297,7 +299,7 @@
 
         if ($date->isValid()) {
           $pattern = CLICSHOPPING::getDef('date_invoice');
-          $result = date(CLICSHOPPING::getDef('date_invoice'), $date->getTimestamp());
+          $result = date($pattern, $date->getTimestamp());
         }
       }
 
@@ -464,8 +466,8 @@
 
     /**
      * Interval between 2 date
-     * @param $dateStart
-     * @param $dateEnd
+     * @param string $dateStart
+     * @param string $dateEnd
      * @param string $differenceFormat
      * @return string
      */

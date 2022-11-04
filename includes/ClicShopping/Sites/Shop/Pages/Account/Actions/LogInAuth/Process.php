@@ -29,7 +29,6 @@
       $this->Customer = Registry::get('Customer');
     }
 
-
     /**
      * @return void
      */
@@ -130,11 +129,7 @@
       if (is_numeric($login_customer_id) && ($login_customer_id > 0)) {
         if ($login_customer_id > 0) {
           $this->Customer->setData($login_customer_id);
-          unset($_SESSION['customer_id']);
-          unset($_SESSION['password']);
-          unset($_SESSION['email_address']);
-          unset($_SESSION['tfa_secret']);
-          unset($_SESSION['user_secret']);
+          Topt::resetAll();
         }
 
         $Qupdate = $this->Db->prepare('update :table_customers_info
