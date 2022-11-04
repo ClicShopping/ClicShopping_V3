@@ -63,7 +63,7 @@ text_delete_intro = Etes vous sur de vouloir supprimer cette sauvegarde ?
 text_no_extension = Aucune
 text_backup_directory = Répertoire de sauvegarde :
 text_last_restoration = Dernière restauration :
-text_forget = (<u>oublié</u>)
+text_forget = (<u>oublier</u>)
 
 error_backup_directory_does_not_exist = Erreur : Le répertoire de sauvegarde n'existe pas. Merci de le préciser dans le fichier configure. .
 error_backup_directory_not_writeable = Erreur : Impossible d'écrire dans le répertoire de sauvegarde.

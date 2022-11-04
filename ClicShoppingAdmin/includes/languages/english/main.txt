@@ -1,11 +1,12 @@
-date_format_short = %m/%d/%Y
-date_format_short_sql = %Y-%m-%d
-date_format_long = %A %d %B, %Y
+date_format_short = m/d/Y
+date_format_short_sql = Y-m-d
+date_format_long = m/d/Y H:i:s
+date_format_sql = Y-m-d
 date_format = m/d/Y
 date_format_en = Y/m/d
-date_invoice = %Y%m%d
+date_invoice = Ymd
 php_date_time_format = m/d/Y H:i:s
-date_time_format = %m/%d/%Y %H:%M:%S
+date_time_format = m/d/Y H:M:S
 jquery_datepicker_format = yyyy-mm-dd
 jquery_datepicker_language = en
 js_date_format = dd/mm/yyyy

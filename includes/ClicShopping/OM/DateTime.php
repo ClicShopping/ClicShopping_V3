@@ -92,7 +92,10 @@
     public function getShort(bool $with_time = false): string
     {
       $pattern = ($with_time === false) ? CLICSHOPPING::getDef('date_format_short') : CLICSHOPPING::getDef('date_time_format');
-      return strftime($pattern, $this->getTimestamp());
+
+      $date = new DateTime($pattern, true, true);
+
+      return date($pattern, $date->getTimestamp());
     }
 
     /**
@@ -111,7 +114,7 @@
         if ($date->isValid()) {
           $pattern = ($with_time === false) ? CLICSHOPPING::getDef('date_format_short') : CLICSHOPPING::getDef('date_time_format');
 
-          $result = strftime($pattern, $date->getTimestamp());
+          $result = date($pattern, $date->getTimestamp());
         }
       }
 
@@ -132,10 +135,9 @@
         $date = new DateTime($raw_datetime, true, $strict);
 
         if ($date->isValid()) {
-
           $pattern = ($with_time === false) ? CLICSHOPPING::getDef('date_format_short_sql') : CLICSHOPPING::getDef('date_time_format');
 
-          $result = strftime($pattern, $date->getTimestamp());
+          $result = date($pattern, $date->getTimestamp());
         }
       }
 
@@ -152,7 +154,9 @@
 
     public function getLong(): string
     {
-      return strftime(CLICSHOPPING::getDef('date_format_long'), $this->getTimestamp());
+      $pattern = new DateTime(CLICSHOPPING::getDef('date_format_long'), true, true);
+
+      return date($pattern, $this->getTimestamp());
     }
 
     /**
@@ -167,7 +171,7 @@
       $date = new DateTime($raw_datetime, true, $strict);
 
       if ($date->isValid()) {
-        $result = strftime(CLICSHOPPING::getDef('date_format_long'), $date->getTimestamp());
+        $result = date(CLICSHOPPING::getDef('date_format_long'), $date->getTimestamp());
       }
 
       return $result;
@@ -214,7 +218,7 @@
 
         $id_array = explode('/', $tz_string, 2);
 
-        $time_zones_array[$id_array[0]][$id] = isset($id_array[1]) ? $id_array[1] : $id_array[0];
+        $time_zones_array[$id_array[0]][$id] = $id_array[1] ?? $id_array[0];
       }
 
       $result = [];
@@ -293,7 +297,7 @@
 
         if ($date->isValid()) {
           $pattern = CLICSHOPPING::getDef('date_invoice');
-          $result = strftime($pattern, $date->getTimestamp());
+          $result = date(CLICSHOPPING::getDef('date_invoice'), $date->getTimestamp());
         }
       }
 

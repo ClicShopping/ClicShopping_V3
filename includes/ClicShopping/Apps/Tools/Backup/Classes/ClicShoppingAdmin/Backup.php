@@ -5,9 +5,6 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-
-  use ClicShopping\Apps\Tools\Backup\Backup as BackupApp;
 
   class Backup
   {
@@ -17,11 +14,6 @@
     public static function backupNow()
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-
-      if (!Registry::exists('BackupApp')) {
-        Registry::set('Backup', new BackupApp());
-      }
-
       $CLICSHOPPING_Backup = Registry::get('Backup');
 
       set_time_limit(0);

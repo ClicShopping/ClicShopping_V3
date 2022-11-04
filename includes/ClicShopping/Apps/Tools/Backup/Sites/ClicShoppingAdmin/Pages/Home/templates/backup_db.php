@@ -59,7 +59,9 @@
       <div class="separator"></div>
       <div>
         <?php
-          if (is_file(LOCAL_EXE_GZIP)) $contents[] = array('text' => HTML::radioField('compress', 'gzip') . ' ' . $CLICSHOPPING_Backup->getDef('text_info_use_gzip'));
+          if (is_file(LOCAL_EXE_GZIP)) {
+            $contents[] = ['text' => HTML::radioField('compress', 'gzip') . ' ' . $CLICSHOPPING_Backup->getDef('text_info_use_gzip')];
+          }
         ?>
       </div>
       <div class="separator"></div>

@@ -1,6 +1,7 @@
 --------------------
 3.339
 fix and add pop up install db
+fix strotime deprecated
 add doublei authentification Topt approach
 some fix
 
