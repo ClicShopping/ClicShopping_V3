@@ -102,7 +102,7 @@
               class="dataTableContent"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?></td>
             <td
               class="dataTableContent"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), $Qcustomers->value('customers_email_address')) ?></td>
-            <td class="dataTableContent"><?php echo DateTime::getLong($Qcustomers->value('date_added')); ?>&nbsp;
+            <td class="dataTableContent"><?php echo DateTime::toLong($Qcustomers->value('date_added')); ?>&nbsp;
             </td>
             <td class="dataTableContent text-end">
               <?php

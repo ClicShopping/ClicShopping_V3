@@ -153,7 +153,7 @@
       fclose($fp);
 
       if (isset($_POST['compress'])) {
-        $compress = HTML::sanitze($_POST['compress']);
+        $compress = $_POST['compress'];
       } else {
         $compress = 'gzip';
       }
