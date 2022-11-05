@@ -2,7 +2,7 @@ navbar_title = Authentification à 2 facteurs
 heading_title_Login_auth = Authentification à 2 facteurs
 
 text_Login_auth_introduction = <strong>Veuillez scanner ou entrer votre code d'identification Google Authentificator ou Microsoft Authentificator.</strong><br />
-Nous avons mis en place ce processus afin de protéger l'accès à votre espace avec les dernières technologies recommendées.<br /> <br />
+Nous avons mis en place ce processus afin de protéger l'accès à votre espace avec les dernières technologies recommandées.<br /> <br />
 Pour connaître votre code, veuillez scanner avec votre appareil photo le code Qr et insérer le numéro donné par l'application d'authentification. <br />
 Veuillez noter que ce code vous sera demandé à chaque connexion. <br />
 Si une connexion est faite sur votre compte, vous recevrez un email d'information.
