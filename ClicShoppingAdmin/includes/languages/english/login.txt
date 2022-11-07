@@ -31,3 +31,9 @@ report_sender_ip_address = Senders ip address : {{IP}}
 report_sender_host_name = Senders host name : {{HOST}}
 report_subject_email = [Report] Admin-Login connexion error
 report_sender_username = Username : {{USERNAME}}
+
+text_login_auth_introduction = <strong> Please scan or enter your Google Authenticator or Microsoft Authenticator identification code. </strong>
+text_auth_code = Authentication code
+text_code_auth_invalid = You have inserted a erroneous or not recognized code. Please start the procedure again by scanning the new barcode via the camera vote.
+In the event or you already have an identification code in your application, please delete it and replace it with the new code.
+text_login_auth_error = <strong> Error: </strong>Your code is disabled. Please start again.

@@ -13,7 +13,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-
   use RobThree\Auth\TwoFactorAuth;
 
   class Topt
@@ -83,19 +82,6 @@
       return $result;
     }
 
-
-    /**
-     * @return void
-     */
-    public static function resetAll() :void
-    {
-      unset($_SESSION['customer_id']);
-      unset($_SESSION['password']);
-      unset($_SESSION['email_address']);
-      unset($_SESSION['tfa_secret']);
-      unset($_SESSION['user_secret']);
-    }
-
     /**
      * @param string $email
      * @return string
@@ -109,4 +95,28 @@
       return $Qcheck->value('double_authentification_secret');
     }
 
+
+    /**
+     * @return void
+     */
+    public static function resetAllAdmin() :void
+    {
+      unset($_SESSION['username']);
+      unset($_SESSION['password']);
+      unset($_SESSION['user_secret']);
+      unset($_SESSION['tfa_secret']);
+      unset($_SESSION['adminAuth']);
+    }
+
+    /**
+     * @return void
+     */
+    public static function resetAll() :void
+    {
+      unset($_SESSION['customer_id']);
+      unset($_SESSION['password']);
+      unset($_SESSION['email_address']);
+      unset($_SESSION['tfa_secret']);
+      unset($_SESSION['user_secret']);
+    }
   }

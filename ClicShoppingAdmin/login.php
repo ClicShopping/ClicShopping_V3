@@ -16,8 +16,8 @@
   use ClicShopping\OM\HTTP;
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\TemplateEmailAdmin;
-
   use ClicShopping\Sites\ClicShoppingAdmin\ActionRecorderAdmin;
+  use ClicShopping\Sites\Common\Topt;
 
   $login_request = true;
 
@@ -29,7 +29,7 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $action = HTML::sanitize($_GET['action']) ?? '';
+  $action = $_GET['action'] ?? '';
 
 // prepare to logout an active administrator if the login page is accessed again
   if (isset($_SESSION['admin'])) {
@@ -38,6 +38,155 @@
 
   if (!\is_null($action)) {
     switch ($action) {
+      case 'loginAuth':
+        $error = false;
+
+        if (isset($_POST['username'], $_POST['password'])) {
+          $_SESSION['username'] = HTML::sanitize($_POST['username']);
+          $_SESSION['password'] = HTML::sanitize($_POST['password']);
+
+          $username = $_SESSION['username'];
+          $password = $_SESSION['password'];
+        } else {
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_invalid_administrator'), 'error');
+
+          $CLICSHOPPING_Hooks->call('Login', 'ErrorProcess');
+        }
+
+        Registry::set('ActionRecorderAdmin', new ActionRecorderAdmin('ar_admin_login', null, $username));
+        $CLICSHOPPING_ActionRecorder = Registry::get('ActionRecorderAdmin');
+
+        if ($CLICSHOPPING_ActionRecorder->canPerform()) {
+          $sql_array = [
+            'id',
+            'user_name',
+            'user_password',
+            'name',
+            'first_name',
+            'access',
+            'double_authentification_secret'
+          ];
+
+          $Qcheck = $CLICSHOPPING_Db->get('administrators', $sql_array, ['user_name' => $username]);
+
+          if ($Qcheck->fetch()) {
+            if (Hash::verify($password, $Qcheck->value('user_password'))) {
+
+              $sql_array = [
+                'id',
+                'username',
+                'access',
+                'double_authentification_secret'
+              ];
+
+              $Qcheck = $CLICSHOPPING_Db->get('administrators', 'double_authentification_secret', ['user_name' => $username]);
+
+              $_SESSION['adminAuth'] = [
+                'id' => $Qcheck->valueInt('id'),
+                'username' => $Qcheck->value('user_name'),
+                'access' => $Qcheck->value('access')
+              ];
+
+              $CLICSHOPPING_ActionRecorder->_user_id = $_SESSION['adminAuth']['id'];
+              $CLICSHOPPING_ActionRecorder->record();
+
+              if (empty(Topt::checkAuthAdmin($username))) {
+                $_SESSION['tfa_secret'] = Topt::getTfaSecret();
+                $update_array = ['double_authentification_secret' => $_SESSION['tfa_secret']];
+
+                $CLICSHOPPING_Db->save('administrators', $update_array, ['user_name' => $username]);
+              } else if (empty($_SESSION['tfa_secret'])) {
+                $_SESSION['tfa_secret'] = $Qcheck->value('double_authentification_secret');
+              }
+            }
+          } else {
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_invalid_administrator'), 'error');
+
+            $CLICSHOPPING_Hooks->call('Login', 'ErrorProcess');
+          }
+        } else {
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_admin_login_minutes' => (\defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES : 5)]));
+        }
+
+        if (isset($_POST['username'])) {
+          $CLICSHOPPING_ActionRecorder->record(false);
+        }
+      break;
+
+      case 'loginAuthProcess':
+        $error = true;
+// Check the topt
+        if (isset($_POST['tfa_code'])) {
+          $tfaCode = HTML::sanitize($_POST['tfa_code']);
+
+          if (empty($tfaCode)) {
+            CLICSHOPPING::redirect('login.php?action=loginAuth');
+          } else {
+            if (!empty(Topt::checkAuthAdmin($_SESSION['username']))) {
+              if (Topt::getVerifyAuth($_SESSION['tfa_secret'], $tfaCode) === true) {
+                $username = HTML::sanitize($_SESSION['username']);
+                $password = HTML::sanitize($_SESSION['password']);
+
+                if (!empty($username) && !empty($password)) {
+                    $sql_array = [
+                      'user_name',
+                      'user_password',
+                    ];
+
+                    $Qadmin = $CLICSHOPPING_Db->get('administrators', $sql_array, ['user_name' => $username]);
+
+                    if ($Qadmin->fetch() !== false) {
+                      if (Hash::verify($password, $Qadmin->value('user_password'))) {
+                        $_SESSION['admin'] = [
+                          'id' => $Qadmin->valueInt('id'),
+                          'username' => $Qadmin->value('user_name'),
+                          'access' => $Qadmin->value('access')
+                        ];
+
+                        if (isset($_SESSION['redirect_origin'])) {
+                          $page = $_SESSION['redirect_origin']['page'];
+
+                          $get_string = http_build_query($_SESSION['redirect_origin']['get']);
+
+                          unset($_SESSION['redirect_origin']);
+                          Topt::resetAllAdmin();
+
+                          $CLICSHOPPING_Hooks->call('Login', 'Process');
+
+                          CLICSHOPPING::redirect($page, $get_string);
+                        } else {
+                          CLICSHOPPING::redirect();
+                        }
+                      }
+                    }
+
+                    if (isset($_POST['username'])) {
+                      $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_invalid_administrator'), 'error');
+
+                      $CLICSHOPPING_Hooks->call('Login', 'ErrorProcess');
+                    }
+                } else {
+                  unset($_SESSION['user_secret']);
+                  CLICSHOPPING::redirect('login.php');
+                }
+              } else {
+                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_code_auth_invalid'), 'error');
+                unset($_SESSION['user_secret']);
+                CLICSHOPPING::redirect('login.php?action=loginAuth');
+              }
+            } else {
+              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_code_auth_invalid'), 'error');
+              unset($_SESSION['user_secret']);
+              CLICSHOPPING::redirect('login.php?action=loginAuth');
+            }
+          }
+        } else {
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_code_auth_invalid'), 'error');
+          unset($_SESSION['user_secret']);
+          CLICSHOPPING::redirect('login.php?action=loginAuth');
+        }
+      break;
+
       case 'process':
         $CLICSHOPPING_Hooks->call('PreAction', 'Process');
         $username = '';
@@ -117,6 +266,7 @@
         $CLICSHOPPING_Hooks->call('Account', 'LogoutBefore');
 
         unset($_SESSION['admin']);
+        Topt::resetAllAdmin();
 
         if (isset($_SERVER['PHP_AUTH_USER']) && !empty($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']) && !empty($_SERVER['PHP_AUTH_PW'])) {
           $_SESSION['auth_ignore'] = true;
@@ -249,7 +399,16 @@
   <div class="loader-wrapper"></div>
 <?php
   if ($Qcheck->check()) {
-    $form_action = 'process';
+    if (CLICSHOPPING_TOTP_ADMIN == 'True') {
+      if (!empty($_SESSION['tfa_secret'])) {
+        $form_action = 'loginAuthProcess';
+      } else {
+        $form_action = 'loginAuth';
+      }
+    } else {
+      $form_action = 'process';
+    }
+
     $button_text = CLICSHOPPING::getDef('button_login');
   } else {
     $form_action = 'create';
@@ -281,7 +440,32 @@
             </div>
             <div class="separator"></div>
 <?php
-    }
+    } elseif(!empty($_SESSION['tfa_secret'])) {
+?>
+            <div class="contentText">
+            <?php
+               if (empty($_SESSION['user_secret'])) {
+            ?>
+              <div class="col-md-12 text-center">
+                <?php echo Topt::getImageTopt(CLICSHOPPING_TOTP_SHORT_TILTE, $_SESSION['tfa_secret']); ?>
+                <div class="separator"></div>
+                <div class="row">
+                  <span class="col-md-12"><?php echo HTML::inputField('tfa_code', null, 'aria-required="true" required placeholder="' . CLICSHOPPING::getDef('text_auth_code') . '"'); ?></span>
+                </div>
+                <div class="separator"></div>
+                <span class="col-md-6">
+                    <label for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?></label>
+                    <label for="buttonCancel"><?php echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, 'login.php?action=logoff', 'warning'); ?></label>
+                  </span>
+              </div>
+              <div class="separator"></div>
+              <div class="col-md-12"><?php echo CLICSHOPPING::getDef('text_Login_auth_introduction'); ?></div>
+            <?php
+              }
+            ?>
+            </div>
+<?php
+    } elseif(empty($_SESSION['tfa_secret'])) {
 ?>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"></span>
@@ -320,6 +504,7 @@
       </div>
     </div>
 <?php
+    }
   } else {
 ?>
     <div id="loginModal" tabindex="-1" role="document" aria-hidden="true" style="padding-top:10rem;">

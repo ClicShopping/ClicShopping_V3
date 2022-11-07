@@ -27,7 +27,7 @@
 
       $this->page->setFile('LogInAuth.php');
 
-      if (CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_CATALOG == 'False') {
+      if (CLICSHOPPING_TOTP_CATALOG == 'False') {
         CLICSHOPPING::redirect('Account&LogIn');
       }
 

@@ -196,7 +196,7 @@ INSERT INTO administrator_menu VALUES(785, 'index.php?A&Tools\\EditDesign&EditDe
 INSERT INTO administrator_menu VALUES(786, 'index.php?A&Orders\\ReturnOrders&ReturnOrders', 4, 2, 0, 'return_orders.png', 0, 'app_orders_return_orders', 1);
 INSERT INTO administrator_menu VALUES(787, 'index.php?A&Orders\\ReturnOrders&Configure', 14, 8, 1, '', 1, 'app_orders_return_orders', 1);
 INSERT INTO administrator_menu VALUES(788, 'index.php?A&Tools\\Cronjob&Cronjob', 163, 2, 0, 'return_orders.png', 0, 'app_tools_cronjob', 1);
-
+INSERT INTO administrator_menu VALUES(789, 'index.php?A&Configuration\\Settings&Settings&gID=46', 13, 11, 0, '', 1, NULL, 1);
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
 INSERT INTO administrator_menu_description VALUES(0, '', 2);
@@ -539,6 +539,8 @@ INSERT INTO administrator_menu_description VALUES(787, 'Products return status',
 INSERT INTO administrator_menu_description VALUES(787, 'Statuts des retours produits', 2);
 INSERT INTO administrator_menu_description VALUES(788, 'Cronjob', 1);
 INSERT INTO administrator_menu_description VALUES(788, 'Cronjob', 2);
+INSERT INTO administrator_menu_description VALUES(789, 'Double authentification', 1);
+INSERT INTO administrator_menu_description VALUES(789, 'Authentification double', 2);
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo', NULL);
 
@@ -1540,8 +1542,8 @@ INSERT INTO configuration VALUES(1557, 'Ordre de tri d\'affichage', 'MODULE_ACCO
 INSERT INTO configuration VALUES(1558, 'Souhaitez-vous activer ce module ?', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique ?<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 6, 1, NULL, '2022-10-09 09:06:34', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1559, 'Veuillez selectionner la largeur de l\'affichage', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_CONTENT_WIDTH', '12', 'Veuillez indiquer un nombre compris entre 1 et 12', 6, 1, NULL, '2022-10-09 09:06:34', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1560, 'Ordre de tri d\'affichage', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_SORT_ORDER', '120', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 105, NULL, '2022-10-09 09:06:34', NULL, '');
-INSERT INTO configuration VALUES(1561, 'Titre court double authentification site internet ', 'CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_SHORT_TILTE', 'ClicShopping', 'Veuillez insérer une un mot le titre de de l\'authentification (sans espace et accent)', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
-INSERT INTO configuration VALUES(1562, 'Double authentification TOTP Catalogue', 'CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_CATALOG', 'False', 'Souhaitez-vous activer cette fonctionnalité de double authentification<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1561, 'Titre court double authentification site internet ', 'CLICSHOPPING_TOTP_SHORT_TILTE', 'ClicShopping', 'Veuillez insérer une un mot le titre de de l\'authentification (sans espace et accent)', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1562, 'Double authentification TOTP Catalogue', 'CLICSHOPPING_TOTP_CATALOG', 'False', 'Souhaitez-vous activer cette fonctionnalité de double authentification<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);

@@ -33,3 +33,9 @@ report_sender_ip_address = Adresse IP : {{IP}}
 report_sender_host_name = Nom du serveur ou provider : {{HOST}}
 report_subject_email = [Rapport] Erreur de connexion pour acceder a votre administration
 report_sender_username = Nom du utilsateur : {{USERNAME}}
+
+text_auth_code = code authentification
+text_Login_auth_introduction = <strong>Veuillez scanner ou entrer votre code d'identification Google Authentificator ou Microsoft Authentificator.</strong>
+text_code_auth_invalid = Vous avez inséré un code erronée ou non reconnu. Merci de recommencer la procédure en scannant le nouveau code barre via vote appareil photo.
+Dans l'hypothèse ou vous avez déjà un code d'identification dans votre application, merci de le supprimer et le remplacer par le nouveau code.
+text_Login_auth_error =  <strong>ERREUR :</strong></font> votre code est invalide. Veuillez recommencer.

@@ -31,7 +31,7 @@
       <div class="separator"></div>
       <div class="col-md-12 text-center">
         <p><?php echo CLICSHOPPING::getDef('text_auth_qr_code'); ?></p>
-        <?php echo Topt::getImageTopt(CLICSHOPPING_DOUBLE_AUTHENTIFICATION_TOTP_SHORT_TILTE, $_SESSION['tfa_secret']); ?>
+        <?php echo Topt::getImageTopt(CLICSHOPPING_TOTP_SHORT_TILTE, $_SESSION['tfa_secret']); ?>
         <div class="separator"></div>
         <div class="separator"></div>
         <?php echo HTML::form('double_authentification', CLICSHOPPING::link(null, 'Account&LogInAuth&Process'), 'post', 'role="form" id="double_authentfication"', ['tokenize' => true, 'action' => 'process']); ?>
