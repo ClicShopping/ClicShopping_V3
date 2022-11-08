@@ -1544,6 +1544,7 @@ INSERT INTO configuration VALUES(1559, 'Veuillez selectionner la largeur de l\'a
 INSERT INTO configuration VALUES(1560, 'Ordre de tri d\'affichage', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_SORT_ORDER', '120', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 105, NULL, '2022-10-09 09:06:34', NULL, '');
 INSERT INTO configuration VALUES(1561, 'Titre court double authentification site internet ', 'CLICSHOPPING_TOTP_SHORT_TILTE', 'ClicShopping', 'Veuillez insérer une un mot le titre de de l\'authentification (sans espace et accent)', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1562, 'Double authentification TOTP Catalogue', 'CLICSHOPPING_TOTP_CATALOG', 'False', 'Souhaitez-vous activer cette fonctionnalité de double authentification<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1563, 'Double authentification TOTP Administration', 'CLICSHOPPING_TOTP_ADMIN', 'False', 'Souhaitez-vous activer cette fonctionnalité de double authentification<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 46, 4, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);

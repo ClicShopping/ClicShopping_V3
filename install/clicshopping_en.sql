@@ -1544,6 +1544,7 @@ INSERT INTO configuration VALUES(1559, 'Please select the width of the module', 
 INSERT INTO configuration VALUES(1560, 'Sort order', 'MODULE_ACCOUNT_PRODUCT_RETURN_HISTORY_INFO_SORT_ORDER', '120', 'Sort order of display. Lowest is displayed first. The sort order must be different on every module', 6, 105, NULL, '2022-10-09 09:06:34', NULL, '');
 INSERT INTO configuration VALUES(1561, 'Double Authentification WebSite Short Title', 'CLICSHOPPING_TOTP_SHORT_TILTE', 'ClicShopping', 'Please, insert in One word the authenticcation title (without spance and accent)', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1562, 'Double Authentification TOTP Catalog', 'CLICSHOPPING_TOTP_CATALOG', 'False', 'Activate the double authentication Catalog', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1563, 'Double Authentification TOTP Administration', 'CLICSHOPPING_TOTP_ADMIN', 'False', 'Activate the double authentication Catalog', 46, 4, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
