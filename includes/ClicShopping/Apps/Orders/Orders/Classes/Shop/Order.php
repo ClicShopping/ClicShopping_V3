@@ -54,7 +54,7 @@
       $this->billing = [];
 
       if (isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
-        $this->_id = HTML::sanitize($_GET['order_id']);
+        $this->_id = (int)$_GET['order_id'];
         $this->query($this->_id);
       } elseif (!\is_null($order_id)) {
         $this->query((int) $order_id);
