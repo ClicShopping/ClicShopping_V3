@@ -159,8 +159,6 @@
           'final_price' => $Qproducts->valueDecimal('final_price')
         ];
 
-        $i = 0;
-
         $Qattributes = $CLICSHOPPING_Db->get('orders_products_attributes', [
           'products_options',
           'products_options_values',
@@ -172,9 +170,12 @@
             'orders_products_id' => $Qproducts->valueInt('orders_products_id')
           ]
         );
+
         $Qattributes->execute();
 
         if ($Qattributes->fetch() !== false) {
+          $i = 0;
+
           do {
             $this->products[$index]['attributes'][$i] = [
               'option' => $Qattributes->value('products_options'),
