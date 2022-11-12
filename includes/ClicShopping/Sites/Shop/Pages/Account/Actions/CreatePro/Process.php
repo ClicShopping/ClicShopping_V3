@@ -21,6 +21,7 @@
   use ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder;
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
+  use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\VatNumber;
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -87,15 +88,22 @@
           $ape =  null;
         }
 
-        if (isset($_POST['tva_intracom']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') {
+
+        if (isset($_POST['tva_intracom']) && isset($_POST['ISO']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') {
           $tva_intracom = HTML::sanitize($_POST['tva_intracom']);
+          $iso = HTML::sanitize($_POST['ISO']);
+
+// webservice check the tva
+          if (!empty($iso) && !empty($tva_intracom)) {
+            $result = VatNumber::serviceCheckVat($iso, $tva_intracom);
+
+            if ($result === true) {
+              $error = true;
+              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_tva_intracom_error'), 'error');
+            }
+          }
         } else {
           $tva_intracom = null;
-        }
-
-        if (isset($_POST['ISO']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') {
-          $iso = HTML::sanitize($_POST['ISO']);
-        } else {
           $iso = null;
         }
 

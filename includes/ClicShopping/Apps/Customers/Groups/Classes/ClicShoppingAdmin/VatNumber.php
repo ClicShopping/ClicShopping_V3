@@ -119,6 +119,10 @@
      */
     public static function serviceCheckVat(string $country_iso, string $tva_intracom)
     {
+      if (ACCOUNT_TVA_INTRACOM_PRO_VERIFICATION == 'false') {
+        return false;
+      }
+
       $error = false;
 
       $result = static::checkIsoCountry($country_iso);

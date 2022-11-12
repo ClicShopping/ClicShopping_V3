@@ -1581,6 +1581,7 @@ INSERT INTO configuration VALUES(1560, 'Sort order', 'MODULE_ACCOUNT_PRODUCT_RET
 INSERT INTO configuration VALUES(1561, 'Double Authentification WebSite Short Title', 'CLICSHOPPING_TOTP_SHORT_TILTE', 'ClicShopping', 'Please, insert in One word the authenticcation title (without spance and accent)', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1562, 'Double Authentification TOTP Catalog', 'CLICSHOPPING_TOTP_CATALOG', 'False', 'Activate the double authentication Catalog', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1563, 'Double Authentification TOTP Administration', 'CLICSHOPPING_TOTP_ADMIN', 'False', 'Activate the double authentication Catalog', 46, 4, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1564, 'Do you want to activate the VAT number verification via webservice ? (EU only)', 'ACCOUNT_TVA_INTRACOM_PRO_VERIFICATION', 'false', 'The verification of the intracom VAT number is made via a webservice call<br>Website : https://ec.europa.eu/taxation_customs/vies/', 18, 9, '2006-10-29 16:05:56', '2006-04-26 14:43:56', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);

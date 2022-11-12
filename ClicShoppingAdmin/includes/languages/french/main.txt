@@ -57,6 +57,7 @@ box_customers_groups = Groupes clients
 
 text_box_heading_module = Module
 text_selected = -- Sélectionner --
+entry_text_select = -- Sélectionner --
 text_all_right = Tous
 text_all_rights_admin =  Droits administration
 text_rights_employee = Droits des employés

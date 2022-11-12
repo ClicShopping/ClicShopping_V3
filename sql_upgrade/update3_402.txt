@@ -2,7 +2,9 @@
 
 
 #English
+INSERT INTO clic_configuration VALUES(null, 'Do you want to activate the VAT number verification via webservice ? (EU only)', 'ACCOUNT_TVA_INTRACOM_PRO_VERIFICATION', 'false', 'The verification of the intracom VAT number is made via a webservice call<br>Website : https://ec.europa.eu/taxation_customs/vies/', 18, 9, '2006-10-29 16:05:56', '2006-04-26 14:43:56', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 
 
 #French
+INSERT INTO clic_configuration VALUES(null, 'Souhaitez-vous activer la vérification du Numéro de TVA Intracommunautaire via un webservice (Europe seulement)', 'ACCOUNT_TVA_INTRACOM_PRO_VERIFICATION', 'false', 'La vérification du numéro de TVA Intracom se fait via un appel de webservice.<br>site : https://ec.europa.eu/taxation_customs/vies/<br><i>(Valeur True = Oui - Valeur False = Non)</i><br><br><font color="#FF0000"><b> Note :</b> Valide uniquement pour l\'europe</font>', 18, 9, '2006-10-29 16:05:56', '2006-04-26 14:43:56', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');

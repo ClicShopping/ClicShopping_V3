@@ -58,6 +58,8 @@ box_customers_groups = Groups
 
 text_box_heading_module = Module
 text_selected = -- Select --
+entry_text_select = -- Select --
+
 text_all_right = All
 text_all_rights_admin = Admin Rights
 text_rights_employee = Employee Rights
