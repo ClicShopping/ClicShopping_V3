@@ -98,6 +98,7 @@
               </div>
             </div>
 
+            <div class="separator"></div>
             <div class="row" id="CreateCustomerEntryFirstName">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -110,6 +111,7 @@
               </div>
             </div>
 
+            <div class="separator"></div>
             <div class="row" id="CreateCustomercvEntrylastName">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -122,6 +124,7 @@
               </div>
             </div>
 
+            <div class="separator"></div>
             <div class="row" id="CreateCustomerEntryDateOfBirth">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -136,7 +139,7 @@
                           echo $cInfo->customers_dob . HTML::hiddenField('customers_dob');
                         }
                       } else {
-                        echo HTML::inputField('customers_dob', null, 'minlength="' . ENTRY_DOB_MIN_LENGTH . '"', 'date');
+                        echo HTML::inputField('customers_dob', null, 'minlength="' . (int)ENTRY_DOB_MIN_LENGTH . '"', 'date');
                       }
                     ?>
                   </div>
@@ -144,6 +147,7 @@
               </div>
             </div>
 
+            <div class="separator"></div>
             <div class="row" id="CreateCustomerEntryEmailAddress">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -156,6 +160,7 @@
               </div>
             </div>
 
+            <div class="separator"></div>
             <div class="row" id="CreateCustomerEntrytelephoneNumber">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -168,6 +173,7 @@
               </div>
             </div>
 
+            <div class="separator"></div>
             <div class="row" id="CreateCustomerEntryCellularPhoneNumber">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -198,6 +204,7 @@
               </div>
             </div>
 
+            <div class="separator"></div>
             <div class="row" id="CreateCustomerEntrySuburb">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -210,6 +217,7 @@
               </div>
             </div>
 
+            <div class="separator"></div>
             <div class="row" id="CreateCustomerInfoCountry">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -242,6 +250,8 @@
                 include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');
               }
             ?>
+
+            <div class="separator"></div>
             <div class="row" id="CreateCustomerEntryPostCode">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -254,6 +264,7 @@
               </div>
             </div>
 
+            <div class="separator"></div>
             <div class="row" id="CreateCustomerEntryCity">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -301,6 +312,7 @@
             <?php
               if (MODE_B2B_B2C == 'true') {
                 ?>
+                <div class="separator"></div>
                 <div class="row" id="CreateCustomerEntrySiret">
                   <div class="col-md-5">
                     <div class="form-group row">
@@ -313,6 +325,7 @@
                   </div>
                 </div>
 
+                <div class="separator"></div>
                 <div class="row" id="CreateCustomerEntryApe">
                   <div class="col-md-5">
                     <div class="form-group row">
@@ -327,6 +340,7 @@
                 <?php
                 if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
                   ?>
+                  <div class="separator"></div>
                   <div class="row" id="CreateCustomerEntryTva">
                     <div class="col-md-5">
                       <div class="form-group row">
