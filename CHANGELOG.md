@@ -1,4 +1,6 @@
 3.402
+Add new class tva intracom Check
+Librairies updated
 
 
 --------------------

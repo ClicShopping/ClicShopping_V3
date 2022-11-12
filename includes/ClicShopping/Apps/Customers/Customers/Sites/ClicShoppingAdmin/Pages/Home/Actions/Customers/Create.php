@@ -18,6 +18,7 @@
   use ClicShopping\OM\Is;
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\TemplateEmailAdmin;
+  use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\VatNumber;
 
   class Create extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -102,17 +103,13 @@
       }
 
 // Informations numero de TVA avec transformation de code ISO en majuscule
-      if (isset($_POST['customers_tva_intracom_code_iso']))  {
+      if (isset($_POST['customers_tva_intracom_code_iso']) && isset($_POST['customers_tva_intracom']))  {
         $customers_tva_intracom_code_iso = HTML::sanitize($_POST['customers_tva_intracom_code_iso']);
         $customers_tva_intracom_code_iso = strtoupper($customers_tva_intracom_code_iso);
-      } else {
-        $customers_tva_intracom_code_iso = '';
-      }
-
-      if (isset($_POST['customers_tva_intracom'])) {
         $customers_tva_intracom = HTML::sanitize($_POST['customers_tva_intracom']);
       } else {
         $customers_tva_intracom = '';
+        $customers_tva_intracom_code_iso = '';
       }
 
 // Informations sur le type de facturation
@@ -211,7 +208,7 @@
       } // end while
 
 // Controle des saisies faites sur les champs TVA Intracom
-      if ((\strlen($customers_tva_intracom_code_iso) > 0) || (\strlen($customers_tva_intracom) > 0)) {
+      if ((\strlen($customers_tva_intracom_code_iso > 0) || \strlen($customers_tva_intracom) > 0) && CCOUNT_TVA_INTRACOM_PRO == 'true') {
         $QcustomersTva = $CLICSHOPPING_Customers->db->prepare('select countries_iso_code_2
                                                                from :table_countries
                                                                where countries_iso_code_2 = :countries_iso_code_2
@@ -226,6 +223,15 @@
         } else {
           $error = true;
           $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_iso'), 'error');
+        }
+// webservice check the tva
+        if (!empty($customers_tva_intracom_code_iso) && !empty($customers_tva_intracom)) {
+          $result = VatNumber::serviceCheckVat($customers_tva_intracom_code_iso, $customers_tva_intracom);
+
+          if ($result === true) {
+            $error = true;
+            $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_tva_intracom'), 'error');
+          }
         }
       }
 

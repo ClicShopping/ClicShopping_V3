@@ -101,34 +101,5 @@
 
       return $values_customers_group_id;
     }
-
-    /**
-     * heck the vat european
-     * @param string $iso
-     * @param string $piva
-     * @return string
-     */
-    public function isoCheck(string $iso, string $piva): string
-    {
-
-      $fp1 = fsockopen("europa.eu.int", 80, $errno1, $errstr1, 30);
-      if (!$fp1) {
-        //echo "$errstr1 ($errno1)<br />\n";
-        $iso = '2';
-      } else {
-        $lang = "EN";
-        $find = "No, invalid VAT number";
-        fputs($fp1, "GET /comm/taxation_customs/vies/cgi-bin/viesquer?Lang=" . $lang . "&MS=" . $iso . "&ISO=" . $iso . "&VAT=" . $piva . " HTTP/1.1\r\nHost: europa.eu.int\r\n\r\n");
-        $iso = '0';
-        while (!feof($fp1)) {
-          if (substr_count(fgets($fp1, 128), $find) == 1) {
-            $iso = '1';
-          }
-        }
-        fclose($fp1);
-      }
-
-      return $iso;
-    }
   }
 

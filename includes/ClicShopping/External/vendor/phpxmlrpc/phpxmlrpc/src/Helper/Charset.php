@@ -177,7 +177,7 @@ class Charset
                             $escapedData .= $ch;
                         }
                     }
-                    elseif ($ii < 128) {
+                    else if ($ii < 128) {
                         /// @todo shall we replace this with a (supposedly) faster str_replace?
                         /// @todo to be 'print safe', should we encode as well character 127 (DEL) ?
                         switch ($ii) {

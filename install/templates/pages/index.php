@@ -68,6 +68,11 @@ if (!extension_loaded('zip')) {
     You can bypass this process (not recommended) but you can have error more later if you don\'t install Zip. <a href="install.php">Continue the process</a>';
 }
 
+if (!extension_loaded('soap')) {
+  $warning_array[] = 'The soap extension (zip) is not installed or enabled in PHP. Please enable it in the PHP configuration to continue installation.<br />
+    You can bypass this process (not recommended) but you can have error more later if you don\'t install soap. <a href="install.php">Continue the process</a>';
+}
+
 $https_url = 'https://' . $_SERVER['HTTP_HOST'];
 
 if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
@@ -121,13 +126,6 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
             <td class="text-center">On</td>
             <td class="text-end"><?php echo (((int)ini_get('file_uploads') === 1) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
           </tr>
-
-          <tr>
-            <td>File Upload</td>
-            <td class="text-center"><?php echo (((int)ini_get('file_uploads') === 0) ? 'Off' : 'On'); ?></td></td>
-            <td class="text-center">On</td>
-            <td class="text-end"><?php echo (((int)ini_get('file_uploads') === 1) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
-          </tr>
           </tbody>
         </table>
 
@@ -172,6 +170,12 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
             <td class="text-center"><?php echo extension_loaded('openssl') ? 'On' : 'Off'; ?></td>
             <td class="text-center">On</td>
             <td class="text-end"><?php echo extension_loaded('openssl') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
+          </tr>
+          <tr>
+            <td>Soap</td>
+            <td class="text-center"><?php echo extension_loaded('soap') ? 'On' : 'Off'; ?></td>
+            <td class="text-center">On</td>
+            <td class="text-end"><?php echo extension_loaded('soap') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
           </tr>
           </tbody>
         </table>

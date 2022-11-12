@@ -34,3 +34,4 @@ error_country = Error country
 error_state = Error State
 error_telephone = Error Telephone
 error_email_exists = Error email exits
+error_tva_intracom = Error tva Intracom, please check your tva

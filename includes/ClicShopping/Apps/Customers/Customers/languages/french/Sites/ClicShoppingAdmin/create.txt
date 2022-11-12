@@ -34,3 +34,4 @@ error_country = Erreur pays
 error_state = Erreur Etat/département
 error_telephone = Erreur Telephone
 error_email_exists = Erreur email existe
+error_tva_intracom = Erreur tva Intracom, veuillez vérifier votre tva
