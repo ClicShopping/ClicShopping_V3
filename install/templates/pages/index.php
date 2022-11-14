@@ -69,7 +69,17 @@ if (!extension_loaded('zip')) {
 }
 
 if (!extension_loaded('soap')) {
-  $warning_array[] = 'The soap extension (zip) is not installed or enabled in PHP. Please enable it in the PHP configuration to continue installation.<br />
+  $warning_array[] = 'The soap extension (soap) is not installed or enabled in PHP. Please enable it in the PHP configuration to continue installation.<br />
+    You can bypass this process (not recommended) but you can have error more later if you don\'t install soap. <a href="install.php">Continue the process</a>';
+}
+
+if (!extension_loaded('xml')) {
+  $warning_array[] = 'The xml extension (xml) is not installed or enabled in PHP. Please enable it in the PHP configuration to continue installation.<br />
+    You can bypass this process (not recommended) but you can have error more later if you don\'t install soap. <a href="install.php">Continue the process</a>';
+}
+
+if (!extension_loaded('json')) {
+  $warning_array[] = 'The json extension (json) is not installed or enabled in PHP. Please enable it in the PHP configuration to continue installation.<br />
     You can bypass this process (not recommended) but you can have error more later if you don\'t install soap. <a href="install.php">Continue the process</a>';
 }
 
@@ -176,6 +186,18 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
             <td class="text-center"><?php echo extension_loaded('soap') ? 'On' : 'Off'; ?></td>
             <td class="text-center">On</td>
             <td class="text-end"><?php echo extension_loaded('soap') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
+          </tr>
+          <tr>
+            <td>XML</td>
+            <td class="text-center"><?php echo extension_loaded('xml') ? 'On' : 'Off'; ?></td>
+            <td class="text-center">On</td>
+            <td class="text-end"><?php echo extension_loaded('xml') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
+          </tr>
+          <tr>
+            <td>Json</td>
+            <td class="text-center"><?php echo extension_loaded('json') ? 'On' : 'Off'; ?></td>
+            <td class="text-center">On</td>
+            <td class="text-end"><?php echo extension_loaded('json') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
           </tr>
           </tbody>
         </table>
