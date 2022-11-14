@@ -152,7 +152,7 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
           </thead>
           <tbody>
           <tr>
-            <td>Database</td>
+            <td>Mysql / Maria-Db database</td>
             <td class="text-center"><?php echo extension_loaded('pdo') && extension_loaded('pdo_mysql') ? 'On' : 'Off'; ?></td>
             <td class="text-center">On</td>
             <td class="text-end"><?php echo extension_loaded('pdo') && extension_loaded('pdo_mysql') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'; ?></td>

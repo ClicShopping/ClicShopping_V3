@@ -225,7 +225,7 @@
             echo '<td class="text-danger">' . $CLICSHOPPING_AdministratorMenu->getDef('text_rights_visitor') . '</td>';
           }
           ?>
-          <td><?php echo $Qcategories->value('app_code'); ?></td>
+          <td><span class="badge text-bg-light"><?php echo $Qcategories->value('app_code'); ?></span></td>
           <td class="text-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
           <td class="text-end">
             <div class="btn-group" role="group" aria-label="buttonGroup">

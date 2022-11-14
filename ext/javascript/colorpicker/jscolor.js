@@ -126,7 +126,9 @@ var jscolor = {
 	addEvent : function(el, evnt, func) {
 		if(el.addEventListener) {
 			el.addEventListener(evnt, func, false);
-		} elseif(el.attachEvent) {
+		}
+
+		if(el.attachEvent) {
 			el.attachEvent('on'+evnt, func);
 		}
 	},
@@ -140,10 +142,14 @@ var jscolor = {
 			var ev = document.createEvent('HTMLEvents');
 			ev.initEvent(evnt, true, true);
 			el.dispatchEvent(ev);
-		} elseif(document.createEventObject) {
+		}
+
+		if(document.createEventObject) {
 			var ev = document.createEventObject();
 			el.fireEvent('on'+evnt, ev);
-		} elseif(el['on'+evnt]) { // alternatively use the traditional event model (IE5)
+		}
+
+		if(el['on'+evnt]) { // alternatively use the traditional event model (IE5)
 			el['on'+evnt]();
 		}
 	},
@@ -177,7 +183,9 @@ var jscolor = {
 		if (typeof e.offsetX === 'number') {
 			x = e.offsetX;
 			y = e.offsetY;
-		} elseif (typeof e.layerX === 'number') {
+		}
+
+		if (typeof e.layerX === 'number') {
 			x = e.layerX;
 			y = e.layerY;
 		}
@@ -188,9 +196,13 @@ var jscolor = {
 	getViewPos : function() {
 		if(typeof window.pageYOffset === 'number') {
 			return [window.pageXOffset, window.pageYOffset];
-		} elseif(document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+		}
+
+		if(document.body && (document.body.scrollLeft || document.body.scrollTop)) {
 			return [document.body.scrollLeft, document.body.scrollTop];
-		} elseif(document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
+		}
+
+		if(document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
 			return [document.documentElement.scrollLeft, document.documentElement.scrollTop];
 		} else {
 			return [0, 0];
@@ -201,9 +213,13 @@ var jscolor = {
 	getViewSize : function() {
 		if(typeof window.innerWidth === 'number') {
 			return [window.innerWidth, window.innerHeight];
-		} elseif(document.body && (document.body.clientWidth || document.body.clientHeight)) {
+		}
+
+		if(document.body && (document.body.clientWidth || document.body.clientHeight)) {
 			return [document.body.clientWidth, document.body.clientHeight];
-		} elseif(document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+		}
+
+		if(document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
 			return [document.documentElement.clientWidth, document.documentElement.clientHeight];
 		} else {
 			return [0, 0];
@@ -295,12 +311,18 @@ var jscolor = {
 			while(path) {
 				if(path.substr(0,3)==='../' || path.substr(0,2)==='./') {
 					path = path.replace(/^\.+/,'').substr(1);
-				} elseif(path.substr(0,3)==='/./' || path==='/.') {
+				}
+
+				if(path.substr(0,3)==='/./' || path==='/.') {
 					path = '/'+path.substr(3);
-				} elseif(path.substr(0,4)==='/../' || path==='/..') {
+				}
+
+				if(path.substr(0,4)==='/../' || path==='/..') {
 					path = '/'+path.substr(4);
 					out = out.replace(/\/?[^\/]*$/, '');
-				} elseif(path==='.' || path==='..') {
+				}
+
+				if(path==='.' || path==='..') {
 					path = '';
 				} else {
 					var rm = path.match(/^\/?[^\/]*/)[0];
@@ -422,14 +444,18 @@ var jscolor = {
 						styleElement.style.color = styleElement.jscStyle.color;
 						this.exportColor(leaveValue | leaveStyle);
 					}
-				} elseif(!this.required && /^\s*$/.test(valueElement.value)) {
+				}
+
+				if(!this.required && /^\s*$/.test(valueElement.value)) {
 					valueElement.value = '';
 					styleElement.style.backgroundImage = styleElement.jscStyle.backgroundImage;
 					styleElement.style.backgroundColor = styleElement.jscStyle.backgroundColor;
 					styleElement.style.color = styleElement.jscStyle.color;
 					this.exportColor(leaveValue | leaveStyle);
 
-				} elseif(this.fromString(valueElement.value)) {
+				}
+
+				if(this.fromString(valueElement.value)) {
 					// OK
 				} else {
 					this.exportColor();
@@ -621,9 +647,12 @@ var jscolor = {
 					holdSld && setSld(e);
 					if (document.selection) {
 						document.selection.empty();
-					} elseif (window.getSelection) {
+					}
+
+					if (window.getSelection) {
 						window.getSelection().removeAllRanges();
 					}
+
 					dispatchImmediateChange();
 				}
 			};
