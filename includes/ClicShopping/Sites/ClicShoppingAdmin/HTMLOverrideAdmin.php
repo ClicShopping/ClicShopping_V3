@@ -155,7 +155,7 @@
         if ($num_country == 1) {
           $output_string .= '  if (' . $country . ' == "' . (int)$countries['zone_country_id'] . '") {' . "\n";
         } else {
-          $output_string .= '  } elseif (' . $country . ' == "' . (int)$countries['zone_country_id'] . '") {' . "\n";
+          $output_string .= '  if (' . $country . ' == "' . (int)$countries['zone_country_id'] . '") {' . "\n";
         }
 
         $Qzone = $CLICSHOPPING_Db->prepare('select zone_name,
@@ -172,15 +172,15 @@
         $num_state = 1;
 
         while ($states = $Qzone->fetch()) {
-          if ($num_state == '1') $output_string .= '    ' . $form . '.' . $field . '.options[0] = new Option("' . CLICSHOPPING::getDef('text_selected') . '", "");' . "\n";
+          if ($num_state == '1') $output_string .= '    ' . $form . '.' . $field . '.options[0] = new Option("' . CLICSHOPPING::getDef('text_selected') . '", ""); ' . "\n";
           $output_string .= '    ' . $form . '.' . $field . '.options[' . $num_state . '] = new Option("' . $states['zone_name'] . '", "' . $states['zone_id'] . '");' . "\n";
           $num_state++;
         }
-
+        $output_string .= ' } ';
         $num_country++;
       }
 
-      $output_string .= '  } else {' . "\n" .
+      $output_string .= '   else {' . "\n" .
         '    ' . $form . '.' . $field . '.options[0] = new Option("' . CLICSHOPPING::getDef('text_select') . '", "");' . "\n" .
         '  }' . "\n";
 
