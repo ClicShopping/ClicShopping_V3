@@ -114,10 +114,11 @@
     }
 
     /**
+     * @param string|null $country_iso
      * @param string $tva_intracom
-     * @return string
+     * @return bool
      */
-    public static function serviceCheckVat(string $country_iso, string $tva_intracom)
+    public static function serviceCheckVat(?string $country_iso, string $tva_intracom) :bool
     {
       if (ACCOUNT_TVA_INTRACOM_PRO_VERIFICATION == 'false') {
         return false;
@@ -125,7 +126,14 @@
 
       $error = false;
 
-      $result = static::checkIsoCountry($country_iso);
+      if (!empty($country_iso)) {
+        $result = static::checkIsoCountry($country_iso);
+      } else {
+        $country_iso = substr($tva_intracom, 0, 2);
+        $country_iso = substr(str_replace(' ', '', $country_iso), 2);
+
+        $result = static::checkIsoCountry($country_iso);
+      }
 
       if ($result === true) {
         $error = true;

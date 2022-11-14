@@ -208,7 +208,7 @@
       } // end while
 
 // Controle des saisies faites sur les champs TVA Intracom
-      if ((\strlen($customers_tva_intracom_code_iso > 0) || \strlen($customers_tva_intracom) > 0) && CCOUNT_TVA_INTRACOM_PRO == 'true') {
+      if ((\strlen($customers_tva_intracom_code_iso > 0) || \strlen($customers_tva_intracom) > 0) && ACCOUNT_TVA_INTRACOM_PRO == 'true') {
         $QcustomersTva = $CLICSHOPPING_Customers->db->prepare('select countries_iso_code_2
                                                                from :table_countries
                                                                where countries_iso_code_2 = :countries_iso_code_2

@@ -231,9 +231,11 @@
                 </div>
               </div>
             </div>
+
             <?php
               if (ACCOUNT_STATE == 'true') {
                 ?>
+                <div class="separator"></div>
                 <div class="row" id="CreateCustomerInfoCountryZone">
                   <div class="col-md-5">
                     <div class="form-group row">

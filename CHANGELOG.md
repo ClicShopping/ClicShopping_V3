@@ -1,7 +1,7 @@
 3.402
 Add new class tva intracom Check
 Librairies updated
-
+fix js error elseif deprecated
 
 --------------------
 3.401
