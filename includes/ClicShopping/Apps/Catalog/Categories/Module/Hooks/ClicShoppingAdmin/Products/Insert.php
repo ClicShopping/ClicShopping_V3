@@ -29,7 +29,11 @@
       $this->app = Registry::get('Categories');
     }
 
-    private function saveProductCategory($current_category_id)
+    /**
+     * @param array $current_category_id
+     * @return void
+     */
+    private function saveProductCategory(array $current_category_id) :void
     {
       if (isset($_GET['Insert'])) {
         $current_category_id = $current_category_id[0];

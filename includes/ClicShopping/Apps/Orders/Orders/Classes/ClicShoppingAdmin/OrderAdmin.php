@@ -279,7 +279,7 @@
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
       if (is_file($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . 'logos/invoice/' . INVOICE_LOGO)) {
-        $result = $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . 'logos/invoice/' . INVOICE_LOGO;
+        $result = $CLICSHOPPING_Template->getHttpTemplateShopImages() . 'logos/invoice/' . INVOICE_LOGO;
       } else {
         $result = false;
       }

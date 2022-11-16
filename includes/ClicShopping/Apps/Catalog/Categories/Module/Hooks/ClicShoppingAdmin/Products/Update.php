@@ -44,7 +44,12 @@
       $this->productsAdmin = new ProductsAdmin();
     }
 
-    public function moveCategory($move_new_category, $id)
+    /**
+     * @param int $move_new_category
+     * @param int $id
+     * @return void
+     */
+    public function moveCategory(int $move_new_category, int $id) :void
     {
       $QCheck = $this->app->db->prepare('select count(*)
                                           from :table_products_to_categories
@@ -69,7 +74,11 @@
       }
     }
 
-    public function updateProductCategories($id = null)
+    /**
+     * @param int|null $id
+     * @return void
+     */
+    public function updateProductCategories(?int $id = null) :void
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
@@ -88,10 +97,12 @@
 //link the category
           if (\is_array($new_category) && isset($new_category)) {
             foreach ($new_category as $value_id) {
-              $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', ['products_id' => (int)$id,
-                  'categories_id' => (int)$value_id
-                ]
-              );
+              $insert_sql = [
+                'products_id' => (int)$id,
+                'categories_id' => (int)$value_id
+              ];
+
+              $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', $insert_sql);
 
               if ($Qcheck->fetch() === false) {
 //if the product does not exist inside the category

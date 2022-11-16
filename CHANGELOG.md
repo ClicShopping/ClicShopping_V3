@@ -1,3 +1,10 @@
+
+4.403
+fix deprecated js condiftion elseif
+add http link for logo invoice order in admin
+add typage for function
+
+--------------------
 3.402
 Add new class tva intracom Check
 Librairies updated
