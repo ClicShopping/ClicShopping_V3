@@ -1,6 +1,6 @@
 products_id int not_null auto_increment
-parent_id int unsigned
-has_children int DEFAULT 0
+parent_id int default(0) not_null
+has_children int default(0) not_null
 products_quantity int(4) not_null
 products_model varchar(255) null
 products_image varchar(255) null
@@ -11,7 +11,7 @@ products_isbn varchar(255) null
 products_mpn varchar(255) null
 products_upc varchar(255) null
 products_image_zoom varchar(255)
-products_price decimal(15,4) not_null
+products_price decimal(15,4) default(0.0000) not_null
 products_date_added datetime not_null
 products_last_modified datetime
 products_date_available datetime

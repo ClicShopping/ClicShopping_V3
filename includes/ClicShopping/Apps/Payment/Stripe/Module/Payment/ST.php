@@ -110,12 +110,12 @@
       if ( ($this->enabled === true) && ((int)CLICSHOPPING_APP_STRIPE_ST_ZONE > 0)) {
         $check_flag = false;
 
-        $Qcheck = $this->app->db->get('zones_to_geo_zones', 'zone_id', [
+        $sql_array = [
           'geo_zone_id' => CLICSHOPPING_APP_STRIPE_ST_ZONE,
           'zone_country_id' => $CLICSHOPPING_Order->delivery['country']['id']
-        ],
-          'zone_id'
-        );
+        ];
+
+        $Qcheck = $this->app->db->get('zones_to_geo_zones', 'zone_id', $sql_array, 'zone_id');
 
         while ($Qcheck->fetch()) {
           if (($Qcheck->valueInt('zone_id') < 1) || ($Qcheck->valueInt('zone_id') === $CLICSHOPPING_Order->delivery['zone_id'])) {
@@ -174,7 +174,7 @@ pre_confirmation_check()
       $customer_id = $CLICSHOPPING_Customer->getId();
       $currency = strtoupper($CLICSHOPPING_Order->info['currency']);
       $total_amount = $CLICSHOPPING_Order->info['total'] * 100;
-      $total_amount = str_replace('.','', $total_amount);  // Chargeble amount
+      $total_amount = str_replace('.','', $total_amount);  // Chargeable amount
 
       $metadata = ['customer_id' => (int)$customer_id,
                    'customer_name' => $CLICSHOPPING_Customer->getName(),
