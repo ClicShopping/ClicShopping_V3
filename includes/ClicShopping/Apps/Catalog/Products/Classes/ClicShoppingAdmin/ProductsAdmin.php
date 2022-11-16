@@ -458,7 +458,7 @@
 
       while ($Qsupplier->fetch() !== false) {
         $supplier[] = [
-	'id' => $Qsupplier->valueInt('suppliers_id'),
+	        'id' => $Qsupplier->valueInt('suppliers_id'),
           'text' => $Qsupplier->value('suppliers_name')
         ];
       }
@@ -469,11 +469,10 @@
     /**
      * product : remove product
      *
-     * @param string $product_id
-     * @return
-     *
+     * @param int $id
+     * @return void
      */
-    public function removeProduct(int $product_id)
+    public function removeProduct(int $id): void
     {
       $Qimage = $this->db->prepare('select products_image,
                                           products_image_zoom,
@@ -484,7 +483,7 @@
                                    from :table_products
                                    where products_id = :products_id
                                   ');
-      $Qimage->bindInt(':products_id', (int)$product_id);
+      $Qimage->bindInt(':products_id', $id);
       $Qimage->execute();
 
 // Controle si l'image est utilisee le visuel d'un autre produit
@@ -538,7 +537,6 @@
 
       $duplicate_image_product_description = $QduplicateImageProductDescription->fetch();
 
-
 // Controle si l'image est utilisee sur une banniere
       $QduplicateImageBanners = $this->db->prepare('select count(*) as total
                                                      from :table_banners
@@ -556,7 +554,6 @@
       $QduplicateImageBanners->execute();
 
       $duplicate_image_banners = $QduplicateImageBanners->fetch();
-
 
 // Controle si l'image est utilisee sur les fabricants
       $QduplicateImageManufacturers = $this->db->prepare('select count(*) as total
@@ -617,8 +614,7 @@
         }
       }
 
-      $Qimages = $this->db->get('products_images', 'image', ['products_id' => (int)$product_id]);
-
+      $Qimages = $this->db->get('products_images', 'image', ['products_id' => (int)$id]);
 
       if ($Qimages->fetch() !== false) {
         do {
@@ -626,7 +622,7 @@
             'image' => $Qimages->value('image'),
             'products_id' => [
               'op' => '!=',
-              'val' => (int)$product_id
+              'val' => (int)$id
             ]
           ],
             null,
@@ -640,23 +636,22 @@
           }
         } while ($Qimages->fetch());
 
-        $this->db->delete('products_images', ['products_id' => (int)$product_id]);
+        $this->db->delete('products_images', ['products_id' => (int)$id]);
       }
 
-      $this->db->delete('products', ['products_id' => (int)$product_id]);
-      $this->db->delete('products_description', ['products_id' => (int)$product_id]);
-      $this->db->delete('products_to_categories', ['products_id' => (int)$product_id]);
-      $this->db->delete('products_attributes', ['products_id' => (int)$product_id]);
-      $this->db->delete('products_attributes_download', ['products_id' => (int)$product_id]);
-      $this->db->delete('products_notifications', ['products_id' => (int)$product_id]);
+      $this->db->delete('products', ['products_id' => (int)$id]);
+      $this->db->delete('products_description', ['products_id' => (int)$id]);
+      $this->db->delete('products_to_categories', ['products_id' => (int)$id]);
+      $this->db->delete('products_attributes', ['products_id' => (int)$id]);
+      $this->db->delete('products_notifications', ['products_id' => (int)$id]);
 
       $Qdelete = $this->db->prepare('delete
                                      from :table_customers_basket
                                      where products_id = :products_id
                                      or products_id like :products_id_att
                                   ');
-      $Qdelete->bindInt(':products_id', (int)$product_id);
-      $Qdelete->bindInt(':products_id_att', (int)$product_id . '{%');
+      $Qdelete->bindInt(':products_id', (int)$id);
+      $Qdelete->bindInt(':products_id_att', (int)$id . '{%');
       $Qdelete->execute();
 
       $Qdel = $this->db->prepare('delete
@@ -664,12 +659,12 @@
                                   where products_id = :products_id
                                   or products_id like :products_id_att
                                  ');
-      $Qdel->bindInt(':products_id', (int)$product_id);
-      $Qdel->bindInt(':products_id_att', (int)$product_id . '{%');
+      $Qdel->bindInt(':products_id', (int)$id);
+      $Qdel->bindInt(':products_id_att', (int)$id . '{%');
       $Qdel->execute();
 
 // for hooks
-      $_POST['remove_id'] = $product_id;
+      $_POST['remove_id'] = $id;
 
       $this->hooks->call('Products', 'RemoveProduct');
 
@@ -741,9 +736,10 @@
     /**
      * Prepare to clone a products in other category for products page
      * @param $id - products id of the products
-     * @param $categories_id - category id
+     * @param $categories_id - category
+     * @return void
      */
-    private function prepageCloneProducts(int $id, int $categories_id)
+    private function prepageCloneProducts(int $id, int $categories_id): void
     {
       $new_category = $categories_id;
 
@@ -758,9 +754,9 @@
      * cloneProductsInOtherCategory
      * @param $id - products id of the products
      * @param $categories_id - category id
-     *
+      @return void
      */
-    public function cloneProductsInOtherCategory(int $id, int $categories_id)
+    public function cloneProductsInOtherCategory(int $id, int $categories_id): void
     {
       $multi_clone_categories_id_to = [];
 
@@ -784,6 +780,10 @@
           'products_model' => $Qproducts->value('products_model'),
           'products_ean' => $Qproducts->value('products_ean'),
           'products_sku' => $Qproducts->value('products_sku'),
+          'products_jan' => $Qproducts->value('products_jan'),
+          'products_isbn' => $Qproducts->value('products_isbn'),
+          'products_mpn' => $Qproducts->value('products_mpn'),
+          'products_upc' => $Qproducts->value('products_upc'),
           'products_image' => $Qproducts->value('products_image'),
           'products_image_zoom' => $Qproducts->value('products_image_zoom'),
           'products_price' => (float)$Qproducts->value('products_price'),
@@ -805,11 +805,7 @@
           'products_sort_order' => (int)$Qproducts->valueInt('products_sort_order'),
           'products_quantity_alert' => (int)$Qproducts->valueInt('products_quantity_alert'),
           'products_image_small' => $Qproducts->value('products_image_small'),
-          'products_type' => $Qproducts->value('products_type'),
-          'products_jan' => $Qproducts->value('products_jan'),
-          'products_isbn' => $Qproducts->value('products_isbn'),
-          'products_mpn' => $Qproducts->value('products_mpn'),
-          'products_upc' => $Qproducts->value('products_upc')
+          'products_type' => $Qproducts->value('products_type')
         ];
 
 // copy du produit
