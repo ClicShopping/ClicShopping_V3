@@ -11,6 +11,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ClicShopping;
+  use ClicShopping\OM\HTTP;
 
   $CLICSHOPPING_Cronjob = Registry::get('Cronjob');
   $CLICSHOPPING_Language = Registry::get('Language');
@@ -45,7 +46,7 @@
        <div class="row">
          <div class="input-group">
            <div class="input-group-text">Cron URL</div>
-           <input type="text" value="wget <?php echo CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?cronjob&runall'; ?> --read-timeout=5400" id="input-cron" class="form-control">
+           <input type="text" value="wget <?php echo HTTP::getShopUrlDomain() . 'index.php?cronjob&runall'; ?> --read-timeout=5400" id="input-cron" class="form-control">
            <button type="button" id="button-copy" data-bs-toggle="tooltip" title="" class="btn btn-light" data-bs-original-title="Copy" aria-label="Copy"><i class="fas fa-copy"></i></button>
          </div>
        </div>

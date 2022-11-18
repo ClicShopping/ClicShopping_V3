@@ -89,9 +89,11 @@
         }
 
 
-        if (isset($_POST['tva_intracom']) && isset($_POST['ISO']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') {
+        if (isset($_POST['tva_intracom']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') {
           $tva_intracom = HTML::sanitize($_POST['tva_intracom']);
-          $iso = HTML::sanitize($_POST['ISO']);
+
+          $iso = substr($tva_intracom, 0, 2);
+          $iso = substr(str_replace(' ', '', $iso), 2);
 
 // webservice check the tva
           if (!empty($iso) && !empty($tva_intracom)) {

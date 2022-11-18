@@ -9,11 +9,11 @@
    */
 
   namespace ClicShopping\Sites\ClicShoppingAdmin;
-
-  use ClicShopping\OM\Apps;
+  
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTTP;
 
   class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   {
@@ -93,10 +93,7 @@
     }
 
     /**
-     * Verify if the timage direcotyr exist in shop
-     *
-     * @param string
-     *
+     * Verify if the image exist in shop
      * @return string
      */
 
@@ -105,8 +102,19 @@
       return parent::getPathRoot() . parent::getDirectoryTemplateImages(); // CLICSHOPPING::getConfig('dir_root', 'Shop1') . 'sources/images/
     }
 
+
     /**
-     * Verify if the language direcotry exist in shop
+     * Verify if the image exist in shop
+     * @return string
+     */
+
+    public function getHttpTemplateShopImages(): string
+    {
+      return HTTP::getShopUrlDomain() . parent::getDirectoryTemplateImages(); // CLICSHOPPING::getConfig('dir_root', 'Shop1') . 'sources/images/
+    }
+
+    /**
+     * Verify if the language exist in shop
      * @return string
      */
 
