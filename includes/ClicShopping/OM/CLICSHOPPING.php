@@ -254,6 +254,8 @@
           '%7D'
         ], $p);
 
+       $p = htmlspecialchars($p);
+
         $link .= '?' . $p;
         $separator = '&';
       } else {

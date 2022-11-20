@@ -3,6 +3,7 @@
 fix deprecated js condiftion elseif
 add http link for logo invoice order in admin
 add typage for function
+fix XSS-Reflected
 
 --------------------
 3.402
