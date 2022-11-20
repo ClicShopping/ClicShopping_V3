@@ -1,0 +1,10 @@
+api_ip_id int(11) not_null auto_increment
+api_id int(11) not_null
+ip varchar(40) not_null
+
+--
+primary api_ip_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

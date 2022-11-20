@@ -1,0 +1,13 @@
+api_id int not_null auto_increment
+username varchar(64) not_null
+api_key text not_null
+status tinyint(1) not_null defaut(0)
+date_added datetime not_null
+date_modified datetime not_null
+
+--
+primary api_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci
