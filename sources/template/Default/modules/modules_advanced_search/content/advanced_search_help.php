@@ -11,7 +11,7 @@
 use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <a data-bs-toggle="modal" data-bs-target="#helpSearch" class="badge bg-light text-end"><?php echo CLICSHOPPING::getDef('module_advanced_search_help_title'); ?></a></div>
+  <a data-bs-toggle="modal" data-bs-target="#helpSearch" class="badge bg-success text-end"><?php echo CLICSHOPPING::getDef('module_advanced_search_help_title'); ?></a>
   <div class="modal fade" id="helpSearch" tabindex="-1" role="dialog" aria-labelledby="helpSearchLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
