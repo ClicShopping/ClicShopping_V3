@@ -37,15 +37,18 @@
       <div class="form-group row">
         <label for="inputPasswordNew" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_password_new'); ?></label>
         <div class="col-md-8">
+          <div class="btn-group" role="group" aria-label="buttonGroup">
+           <span><?php echo HTML::inputField('password_new', null, 'required aria-required="true" autocomplete="off" id="inputPassword" aria-describedby="' . CLICSHOPPING::getDef('entry_password_new') . '" placeholder="' . CLICSHOPPING::getDef('entry_password_new') . '"  minlength="' . (int)ENTRY_PASSWORD_MIN_LENGTH . '"'); ?></span>
+           <span><button type="button" id="button-generate" class="btn btn-primary btn-sm"><i class="bi bi-arrow-clockwise"></i></button></span>
           <?php
-            echo HTML::inputField('password_new', null, 'required aria-required="true" id="inputPasswordNew" aria-describedby="' . CLICSHOPPING::getDef('entry_password_new') . '" placeholder="' . CLICSHOPPING::getDef('entry_password_new') . '"  minlength="' . ENTRY_PASSWORD_MIN_LENGTH . '"', 'password');
             if (!\is_null(CLICSHOPPING::getDef('entry_password_current_text'))) echo '<span class="form-text">' . CLICSHOPPING::getDef('entry_password_current_text') . '</span>';
           ?>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
+  <div class="separator"></div>
 
   <div class="row">
     <div class="col-md-7">
@@ -53,7 +56,7 @@
         <label for="inputPasswordConfirmation" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_password_confirmation'); ?></label>
         <div class="col-md-8">
 <?php
-  echo HTML::inputField('password_confirmation', null, 'required aria-required="true" id="inputPasswordConfirmation" aria-describedby="' . CLICSHOPPING::getDef('entry_password_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_password_confirmation') . '"  minlength="' . ENTRY_PASSWORD_MIN_LENGTH . '"', 'password');
+  echo HTML::inputField('password_confirmation', null, 'required aria-required="true" autocomplete="off" id="inputPasswordConfirmation" aria-describedby="' . CLICSHOPPING::getDef('entry_password_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_password_confirmation') . '"  minlength="' . (int)ENTRY_PASSWORD_MIN_LENGTH . '"', 'password');
   if (!\is_null(CLICSHOPPING::getDef('entry_password_current_text'))) echo '<span class="form-text">' . CLICSHOPPING::getDef('entry_password_current_text') . '</span>';
 ?>
         </div>
@@ -65,7 +68,7 @@
     <div class="control-group">
       <div>
         <div class="buttonSet">
-          <span class="col-md-2"><?php echo $back_button;  ?></span>
+          <span class="col-md-2"><?php echo $back_button; ?></span>
           <span class="col-md-2 float-end text-end"><?php echo $process_button;  ?></span>
         </div>
       </div>

@@ -39,8 +39,13 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if (isset($_GET['Account']) &&  isset($_GET['Password'])) {
-
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_PASSWORD_CONTENT_WIDTH;
+
+        $footer_tag = '<!-- password start  -->' . "\n";
+        $footer_tag .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/generate_password.js')) . '"></script>' . "\n";
+        $footer_tag .= '<!--password  end  -->' . "\n";
+
+        $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
 
         $back_button = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&Main'), 'primary');
         $process_button = HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');

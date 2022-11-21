@@ -521,7 +521,7 @@
                 <label for="inputPassword" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_password'); ?></label>
                 <div class="col-sm-6 col-md-6">
                   <div class="btn-group" role="group" aria-label="buttonGroup">
-                    <span><?php echo HTML::inputField('password', null, 'required aria-required="true" autocomplete="off" id="inputPassword" aria-describedby="' . CLICSHOPPING::getDef('entry_password') . '" placeholder="' . CLICSHOPPING::getDef('entry_password') . '" minlength="'. ENTRY_PASSWORD_PRO_MIN_LENGTH .'"', 'password'); ?></span>
+                    <span><?php echo HTML::inputField('password', null, 'required aria-required="true" autocomplete="off" id="inputPassword" aria-describedby="' . CLICSHOPPING::getDef('entry_password') . '" placeholder="' . CLICSHOPPING::getDef('entry_password') . '" minlength="' . (int)ENTRY_PASSWORD_PRO_MIN_LENGTH . '"'); ?></span>
                     <span><button type="button" id="button-generate" class="btn btn-primary btn-sm"><i class="bi bi-arrow-clockwise"></i></button></span>
                   </div>
                 </div>
@@ -534,7 +534,7 @@
               <div class="form-group row">
                 <label for="inputPasswordconfirmation" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_password_confirmation'); ?></label>
                 <div class="col-sm-6 col-md-6">
-                  <?php echo HTML::inputField('confirmation', null, 'required aria-required="true" id="inputPasswordconfirmation" aria-describedby="' . CLICSHOPPING::getDef('entry_password_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_password_confirmation') . '" minlength="'. ENTRY_PASSWORD_PRO_MIN_LENGTH .'"', 'password'); ?>
+                  <?php echo HTML::inputField('confirmation', null, 'required aria-required="true" id="inputPasswordconfirmation" aria-describedby="' . CLICSHOPPING::getDef('entry_password_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_password_confirmation') . '" minlength="' . (int)ENTRY_PASSWORD_PRO_MIN_LENGTH . '"', 'password'); ?>
                 </div>
               </div>
             </div>

@@ -39,8 +39,13 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if (isset($_GET['Account'], $_GET['PasswordReset'])) {
-
         $content_width = (int)MODULE_LOGIN_PASSWORD_RESET_CONTENT_WIDTH;
+
+        $footer_tag = '<!-- password start  -->' . "\n";
+        $footer_tag .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/generate_password.js')) . '"></script>' . "\n";
+        $footer_tag .= '<!--password  end  -->' . "\n";
+
+        $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
 
         $ml_password = '<!-- ml_login_password_reset start-->' . "\n";
 
