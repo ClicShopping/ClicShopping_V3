@@ -1589,7 +1589,7 @@ INSERT INTO configuration_group VALUES(36, 'Gestion des imports / exports', 'Con
 INSERT INTO configuration_group VALUES(37, 'Gestion des promotions pour la page d\'acceuil', 'Gestion des promotions pour la page d\'acceuil', 37, 1);
 INSERT INTO configuration_group VALUES(43, 'Configuration générale et diverse sur le design', 'Configuration générale  et diverse sur du design', 43, 1);
 INSERT INTO configuration_group VALUES(44, 'Web Service', 'Se connecter a une application externe', 1, 1);
-INSERT INTO configuration_group VALUES(45, 'Configuration HTTP/API', 'Configuration HTTP/API', 1, 1);
+INSERT INTO configuration_group VALUES(45, 'Configuration HTTP', 'Configuration HTTP', 1, 1);
 INSERT INTO configuration_group VALUES(46, 'Double Authentification', 'Double Authentification TOTP / 2FA', '1', '1');
 
 INSERT INTO countries VALUES(1, 'Afghanistan', 'AF', 'AFG', 1, 1);

@@ -1588,7 +1588,7 @@ INSERT INTO configuration_group VALUES(36, 'Setup import / export', 'Setting imp
 INSERT INTO configuration_group VALUES(37, 'Setup specials for home page', 'Setting specials for home page', 37, 1);
 INSERT INTO configuration_group VALUES(43, 'General and miscellaneous Setup design', 'General and miscellaneous Setting design', 43, 1);
 INSERT INTO configuration_group VALUES(44, 'Web Service', 'Connect via webservice at new external application', 1, 1);
-INSERT INTO configuration_group VALUES(45, 'Configuration HTTP/API', 'Configuration HTTP/API', 1, 1);
+INSERT INTO configuration_group VALUES(45, 'Configuration HTTP', 'Configuration HTTP', 1, 1);
 INSERT INTO configuration_group VALUES(46, 'Double Authentification', 'Double Authentification TOTP / 2FA', '1', '1');
 
 
