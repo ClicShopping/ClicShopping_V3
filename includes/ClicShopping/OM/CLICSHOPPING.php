@@ -244,15 +244,20 @@
           $replace_backslash = "\\";
         }
 
-        $p = str_replace([
-          "\\", // apps
-          '{', // product attributes
-          '}' // product attributes
-        ], [
-          $replace_backslash,
-          '%7B',
-          '%7D'
-        ], $p);
+        $search = [
+            "\\", // apps
+            '{', // product attributes
+            '}' // product attributes
+        ];
+
+        $replace = [
+            $replace_backslash,
+            '%7B',
+            '%7D'
+        ];
+
+        $p = str_replace($search, $replace, $p);
+
 
        $p = htmlspecialchars($p);
 
