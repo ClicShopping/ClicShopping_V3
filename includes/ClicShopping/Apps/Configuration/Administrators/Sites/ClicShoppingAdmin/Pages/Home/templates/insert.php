@@ -10,6 +10,7 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
@@ -63,7 +64,7 @@
         </div>
       </div>
     </div>
-
+    <div class="separator"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
@@ -75,7 +76,7 @@
         </div>
       </div>
     </div>
-
+    <div class="separator"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
@@ -87,19 +88,22 @@
         </div>
       </div>
     </div>
-
+    <div class="separator"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
           <label for="code"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Administrators->getDef('text_info_password'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('password', null, 'required aria-required="true" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_password') . '"', 'password'); ?>
+            <div class="input-group" role="group" aria-label="buttonGroup">
+              <span><?php echo HTML::inputField('password', null, 'id="input-password" required aria-required="true" autocomplete="off" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_password') . '"'); ?></span>
+              <span><button type="button" id="button-generate" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i></button></span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
+    <div class="separator"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
@@ -114,3 +118,4 @@
   </div>
   </form>
 </div>
+<script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/generate_password.js'); ?>"></script>

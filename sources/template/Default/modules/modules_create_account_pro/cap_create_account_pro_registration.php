@@ -12,7 +12,9 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class ca_create_account_registration {
+  use ClicShopping\Sites\Shop\Pages\Account\Classes\CreateAccount;
+
+  class cap_create_account_pro_registration {
     public string $code;
     public string $group;
     public $title;
@@ -24,43 +26,63 @@
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
-      $this->title = CLICSHOPPING::getDef('module_create_account_registration_title');
-      $this->description = CLICSHOPPING::getDef('module_create_account_registration_description');
+      $this->title = CLICSHOPPING::getDef('module_create_account_pro_registration_title');
+      $this->description = CLICSHOPPING::getDef('module_create_account_pro_registration_description');
 
-      if (\defined('MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS')) {
-        $this->sort_order = (int)MODULE_CREATE_ACCOUNT_REGISTRATION_SORT_ORDER ?? 0;
-        $this->enabled = (MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS == 'True');
+      if (\defined('MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS')) {
+        $this->sort_order = (int)MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_SORT_ORDER;
+        $this->enabled = (MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS == 'True');
       }
     }
 
   public function execute() {
     $CLICSHOPPING_Template = Registry::get('Template');
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-    if (isset($_GET['Account'], $_GET['Create']) && !isset($_GET['Success'])) {
-      $content_width = (int)MODULE_CREATE_ACCOUNT_REGISTRATION_CONTENT_WIDTH;
+    if (isset($_GET['Account'], $_GET['CreatePro']) && !isset($_GET['Success'])) {
+      $content_width = (int)MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_CONTENT_WIDTH;
+
+      $process = isset($_SESSION['process']);
+
+      if (isset( $_SESSION['entry_state_has_zones'])) {
+        $entry_state_has_zones = $_SESSION['entry_state_has_zones'];
+      } else {
+        $entry_state_has_zones = false;
+      }
+
+      if (isset( $_SESSION['entry_state_has_zones'])) {
+        if (isset($_SESSION['country'])) {
+          $country = HTML::sanitize($_SESSION['country']);
+        } else {
+          $country =  0;
+        }
+      }
+
+      if (isset($_POST['country']))  {
+        $default_country_pro = HTML::sanitize($_POST['country']);
+      } else {
+        $default_country_pro = CreateAccount::getCountryPro();
+      }
 
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";
 
-      $form = HTML::form('create_account', CLICSHOPPING::link(null, 'Account&Create&Process'), 'post', 'id="usrForm"',  ['tokenize' => true, 'action' => 'process']);
-      $endform = '</form>';
+      $form = HTML::form('create_account_pro', CLICSHOPPING::link(null, 'Account&CreatePro&Process'), 'post', 'id="usrForm"',  ['tokenize' => true, 'action' => 'process']);
+      $endform ='</form>';
 
       $footer_tag = '<!-- password start  -->' . "\n";
       $footer_tag .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/generate_password.js')) . '"></script>' . "\n";
       $footer_tag .= '<!--password  end  -->' . "\n";
 
-      $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
-
       ob_start();
-      require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/create_account_registration'));
+      require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/create_account_pro_registration'));
 
       $create_account .= ob_get_clean();
 
-      $create_account .= '<!-- End create_account_introduction  -->' . "\n";
+      $create_account .= '<!-- End create_account_introduction end -->' . "\n";
 
       $CLICSHOPPING_Template->addBlock($create_account, $this->group);
-
     }
   }
 
@@ -69,7 +91,7 @@
   }
 
   public function check() {
-    return \defined('MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS');
+    return \defined('MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS');
   }
 
   public function install() {
@@ -77,7 +99,7 @@
 
     $CLICSHOPPING_Db->save('configuration', [
         'configuration_title' => 'Do you want to enable this module ?',
-        'configuration_key' => 'MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS',
+        'configuration_key' => 'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS',
         'configuration_value' => 'True',
         'configuration_description' => 'Do you want to enable this module in your shop ?',
         'configuration_group_id' => '6',
@@ -89,7 +111,7 @@
 
     $CLICSHOPPING_Db->save('configuration', [
         'configuration_title' => 'Please select the width of the module',
-        'configuration_key' => 'MODULE_CREATE_ACCOUNT_REGISTRATION_CONTENT_WIDTH',
+        'configuration_key' => 'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_CONTENT_WIDTH',
         'configuration_value' => '12',
         'configuration_description' => 'Select a number between 1 and 12',
         'configuration_group_id' => '6',
@@ -101,7 +123,7 @@
 
     $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
-          'configuration_key' => 'MODULE_CREATE_ACCOUNT_REGISTRATION_SORT_ORDER',
+          'configuration_key' => 'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_SORT_ORDER',
           'configuration_value' => '150',
           'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
           'configuration_group_id' => '6',
@@ -118,9 +140,9 @@
 
   public function keys() {
     return array(
-      'MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS',
-      'MODULE_CREATE_ACCOUNT_REGISTRATION_CONTENT_WIDTH',
-      'MODULE_CREATE_ACCOUNT_REGISTRATION_SORT_ORDER'
+      'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS',
+      'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_CONTENT_WIDTH',
+      'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_SORT_ORDER'
     );
   }
 }

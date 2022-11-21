@@ -1,7 +1,7 @@
 3.404
 
 fix sql install violation
-
+Help to generate password
 
 --------------------
 3.403
