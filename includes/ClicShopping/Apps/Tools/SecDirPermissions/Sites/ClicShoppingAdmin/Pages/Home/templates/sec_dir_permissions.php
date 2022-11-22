@@ -23,7 +23,7 @@
   {
     $path = rtrim($path, '/') . '/';
 
-    $exclude_array = ['.', '..', '.DS_Store', 'Thumbs.db', '.haccess', '_htaccess'];
+    $exclude_array = ['.', '..', '.DS_Store', 'Thumbs.db', '.htaccess', '_htaccess'];
 
     $result = [];
 

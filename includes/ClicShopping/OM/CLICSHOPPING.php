@@ -258,7 +258,6 @@
 
         $p = str_replace($search, $replace, $p);
 
-
        $p = htmlspecialchars($p);
 
         $link .= '?' . $p;

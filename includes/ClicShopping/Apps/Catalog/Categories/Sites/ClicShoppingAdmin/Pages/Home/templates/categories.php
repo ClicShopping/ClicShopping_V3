@@ -58,7 +58,6 @@
   echo HTML::selectField('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
   echo '</form>';
 ?>
-              </form>
            </div>
           </span>
           <span class="col-md-4 text-end">

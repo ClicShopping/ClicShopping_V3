@@ -118,4 +118,4 @@
   </div>
   </form>
 </div>
-<script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/generate_password.js'); ?>"></script>
+<script defer src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/generate_password.js'); ?>"></script>

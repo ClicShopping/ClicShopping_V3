@@ -10,7 +10,6 @@
 
   use ClicShopping\OM\DateTime;
   use ClicShopping\OM\ErrorHandler;
-  use ClicShopping\OM\FileSystem;
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 

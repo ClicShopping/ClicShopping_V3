@@ -13,7 +13,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\FileSystem;
-  use ClicShopping\OM\HTML;
 
   class UpdateContent extends \ClicShopping\OM\PagesActionsAbstract
   {
