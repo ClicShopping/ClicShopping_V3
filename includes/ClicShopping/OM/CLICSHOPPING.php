@@ -257,8 +257,10 @@
         ];
 
         $p = str_replace($search, $replace, $p);
-
-       $p = htmlspecialchars($p);
+//xss patch
+        if ((\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'false')) {
+          $p = htmlspecialchars($p);
+        }
 
         $link .= '?' . $p;
         $separator = '&';

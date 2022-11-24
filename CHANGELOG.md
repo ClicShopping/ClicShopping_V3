@@ -1,6 +1,6 @@
 3.405
 Bootstrap 5.2.3
-
+fix url error due xss patch when the rewriting is off
 --------------------
 3.404
 fix sql install violation
