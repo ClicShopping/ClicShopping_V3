@@ -1,8 +1,37 @@
 #general
 
+CREATE TABLE `clic_api` (
+  `api_id` int(11) NOT NULL,
+  `username` varchar(64) NOT NULL,
+  `key` text NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
+INSERT INTO `clic_api` VALUES(1, 'Default', 'd0a36b839700b60727fe13998e22aa0af197c61d8b371e26114c133ca51c4864bd0da73ad6d1e5090b02b55cff42b8a0cd23866e64e78fc8884eb6228d32f5e9d76bed468869dd89ee6bb8a3208c5077e88560d0bc238f67cfc732efcf5313a0cb361e297c29c8d82d050d770ed7dee972af6445e801fa9af12e3d478bf5346a', 1, '2022-09-18 14:25:54', '2022-09-18 14:25:54');
+ALTER TABLE `clic_api`  ADD PRIMARY KEY (`api_id`);
 
+CREATE TABLE `clic_api_ip` (
+  `api_ip_id` int(11) NOT NULL,
+  `api_id` int(11) NOT NULL,
+  `ip` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
+ALTER TABLE `clic_api_ip`  ADD PRIMARY KEY (`api_ip_id`);
+ALTER TABLE `clic_api_ip`  MODIFY `api_ip_id` int(11) NOT NULL AUTO_INCREMENT;
+
+CREATE TABLE `clic_api_session` (
+  `api_session_id` int(11) NOT NULL,
+  `api_id` int(11) NOT NULL,
+  `session_id` varchar(32) NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `clic_api_session`  ADD PRIMARY KEY (`api_session_id`);
+ALTER TABLE `clic_api_session`  MODIFY `api_session_id` int(11) NOT NULL AUTO_INCREMENT;
 #English
 
 
