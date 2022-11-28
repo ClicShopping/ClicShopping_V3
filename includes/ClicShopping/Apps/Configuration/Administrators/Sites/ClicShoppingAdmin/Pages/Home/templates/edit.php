@@ -20,14 +20,14 @@
 
   $id = HTML::sanitize($_GET['aID']);
 
-  $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', ['id',
+  $sql_array = [
+    'id',
     'user_name',
     'name',
     'first_name',
     'access'
-  ],
-    ['id' => $id]
-  );
+  ];
+  $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', $sql_array, ['id' => (int)$id]);
 ?>
 <!-- body //-->
 <div class="contentBody">

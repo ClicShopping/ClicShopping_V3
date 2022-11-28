@@ -66,11 +66,15 @@ class Http
      *
      * @param string $data the http response, headers and body. It will be stripped of headers
      * @param bool $headersProcessed when true, we assume that response inflating and dechunking has been already carried out
+     * @param int $debug when != 0, logs to screen messages detailing info about the parsed data
      *
      * @return array with keys 'headers', 'cookies', 'raw_data' and 'status_code'
      * @throws HttpException
+     *
+     * @todo if $debug is 0, we could avoid populating 'raw_data' and 'headers' in the returned value - even better, have
+     *       2 debug levels
      */
-    public function parseResponseHeaders(&$data, $headersProcessed = false, $debug=0)
+    public function parseResponseHeaders(&$data, $headersProcessed = false, $debug = 0)
     {
         $httpResponse = array('raw_data' => $data, 'headers'=> array(), 'cookies' => array(), 'status_code' => null);
 
@@ -114,10 +118,12 @@ class Http
         }
 
         // When using Curl to query servers using Digest Auth, we get back a double set of http headers.
+        // Same when following redirects
         // We strip out the 1st...
-        if ($headersProcessed && preg_match('/^HTTP\/[0-9](?:\.[0-9])? 401 /', $data)) {
+        /// @todo we should let the caller know that there was a redirect involved
+        if ($headersProcessed && preg_match('/^HTTP\/[0-9](?:\.[0-9])? (?:401|30[1278]) /', $data)) {
             if (preg_match('/(\r?\n){2}HTTP\/[0-9](?:\.[0-9])? 200 /', $data)) {
-                $data = preg_replace('/^HTTP\/[0-9](?:\.[0-9])? 401 .+?(?:\r?\n){2}(HTTP\/[0-9.]+ 200 )/s', '$1', $data, 1);
+                $data = preg_replace('/^HTTP\/[0-9](?:\.[0-9])? (?:401|30[1278]) .+?(?:\r?\n){2}(HTTP\/[0-9.]+ 200 )/s', '$1', $data, 1);
             }
         }
 
@@ -129,7 +135,7 @@ class Http
         if ($httpResponse['status_code'] !== '200') {
             $errstr = substr($data, 0, strpos($data, "\n") - 1);
             Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': HTTP error, got response: ' . $errstr);
-            throw new HttpException(PhpXmlRpc::$xmlrpcstr['http_error'] . ' (' . $errstr . ')', PhpXmlRpc::$xmlrpcerr['http_error'], null, $httpResponse['status_code'] );
+            throw new HttpException(PhpXmlRpc::$xmlrpcstr['http_error'] . ' (' . $errstr . ')', PhpXmlRpc::$xmlrpcerr['http_error'], null, $httpResponse['status_code']);
         }
 
         // be tolerant to usage of \n instead of \r\n to separate headers and data
@@ -151,7 +157,7 @@ class Http
         // be tolerant to line endings, and extra empty lines
         $ar = preg_split("/\r?\n/", trim(substr($data, 0, $pos)));
 
-        foreach($ar as $line) {
+        foreach ($ar as $line) {
             // take care of multi-line headers and cookies
             $arr = explode(':', $line, 2);
             if (count($arr) > 1) {

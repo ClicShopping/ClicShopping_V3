@@ -14,7 +14,7 @@ Documentation
 See the documentation page at [gggeek.github.io/phpxmlrpc](https://gggeek.github.io/phpxmlrpc) for a list of the
 library main features and all project related information.
 
-The user manual can be found in the doc/manual directory, in Asciidoc format: [phpxmlrpc_manual.adoc](doc/manual/phpxmlrpc_manual.adoc)
+The user manual can be found in the doc/manual directory, in AsciiDoc format: [phpxmlrpc_manual.adoc](doc/manual/phpxmlrpc_manual.adoc)
 
 Older release tarballs also contain HTML and PDF versions of the manual, as well as an automatically generated API documentation.
 
@@ -49,7 +49,7 @@ The full sequence of operations is:
     # and, once you have finished all testing related work:
     ./tests/ci/vm.sh cleanup
 
-By default tests are run using php 7.2 in a Container based on Ubuntu 18 Bionic.
+By default, tests are run using php 7.4 in a Container based on Ubuntu 20 Focal.
 You can change the version of PHP and Ubuntu in use by setting the environment variables PHP_VERSION and UBUNTU_VERSION
 before building the Container.
 
@@ -65,4 +65,4 @@ Use of this software is subject to the terms in the [license.txt](license.txt) f
 [![Total Downloads](https://poser.pugx.org/phpxmlrpc/phpxmlrpc/downloads)](https://packagist.org/packages/phpxmlrpc/phpxmlrpc)
 
 [![Build Status](https://github.com/gggeek/phpxmlrpc/actions/workflows/ci.yml/badge.svg)](https://github.com/gggeek/phpxmlrpc/actions/workflows/ci.yml)
-[![Code Coverage](https://scrutinizer-ci.com/g/gggeek/phpxmlrpc/badges/coverage.png)](https://scrutinizer-ci.com/g/gggeek/phpxmlrpc)
+[![Code Coverage](https://codecov.io/gh/gggeek/phpxmlrpc/branch/master/graph/badge.svg)](https://app.codecov.io/gh/gggeek/phpxmlrpc)

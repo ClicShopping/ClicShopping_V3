@@ -83,7 +83,8 @@ class Wrapper
                 return '';
             default:
                 if (class_exists($phpType)) {
-                    if (is_a($phpType, 'DateTimeInterface')) {
+                    // DateTimeInterface is not present in php 5.4...
+                    if (is_a($phpType, 'DateTimeInterface') || is_a($phpType, 'DateTime')) {
                         return Value::$xmlrpcDateTime;
                     }
                     return Value::$xmlrpcStruct;
@@ -605,7 +606,7 @@ class Wrapper
             }
         }
         // shall we exclude functions returning by ref?
-        // if($func->returnsReference())
+        // if ($func->returnsReference())
         //     return false;
 
         $code = "function $newFuncName(\$req) {\n" . $innerCode . "\n}";
@@ -876,7 +877,7 @@ class Wrapper
             }
 
             $xmlrpcArgs = array();
-            foreach($currentArgs as $i => $arg) {
+            foreach ($currentArgs as $i => $arg) {
                 if ($i == $maxArgs) {
                     break;
                 }
@@ -1125,19 +1126,18 @@ class Wrapper
 
     /**
      * Given necessary info, generate php code that will build a client object just like the given one.
-     * Take care that no full checking of input parameters is done to ensure that
-     * valid php code is emitted.
+     * Take care that no full checking of input parameters is done to ensure that valid php code is emitted.
      * @param Client $client
-     * @param bool $verbatimClientCopy when true, copy all of the state of the client, except for 'debug' and 'return_type'
+     * @param bool $verbatimClientCopy when true, copy the whole state of the client, except for 'debug' and 'return_type'
      * @param string $prefix used for the return_type of the created client
      * @param string $namespace
      *
      * @return string
      */
-    protected function buildClientWrapperCode($client, $verbatimClientCopy, $prefix = 'xmlrpc', $namespace = '\\PhpXmlRpc\\' )
+    protected function buildClientWrapperCode($client, $verbatimClientCopy, $prefix = 'xmlrpc', $namespace = '\\PhpXmlRpc\\')
     {
-        $code = "\$client = new {$namespace}Client('" . str_replace("'", "\'", $client->path) .
-            "', '" . str_replace("'", "\'", $client->server) . "', $client->port);\n";
+        $code = "\$client = new {$namespace}Client('" . str_replace(array("\\", "'"), array("\\\\", "\'"), $client->path) .
+            "', '" . str_replace(array("\\", "'"), array("\\\\", "\'"), $client->server) . "', $client->port);\n";
 
         // copy all client fields to the client that will be generated runtime
         // (this provides for future expansion or subclassing of client obj)

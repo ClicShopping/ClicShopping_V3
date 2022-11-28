@@ -33,8 +33,8 @@ dialog_uninstall_body = Souhaitez-vous installer cette App ?
 dialog_uninstall_title = Désinstaller le module?
 dialog_uninstall_body = Etes vous sur de désinstaller ce module?
 
-alert_module_install_success = Le module a été installée.
-alert_module_uninstall_success = Le module a été désinstallée.
+alert_module_install_success = Le module a été installé.
+alert_module_uninstall_success = Le module a été désinstallé.
 alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
 
 text_result_page = Page {{listing_from}}  sur{{listing_total}}

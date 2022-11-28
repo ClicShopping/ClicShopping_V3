@@ -195,7 +195,7 @@ class Response
     {
         //trigger_error('getting property Response::' . $name . ' is deprecated', E_USER_DEPRECATED);
 
-        switch($name) {
+        switch ($name) {
             case 'hdrs':
                 return $this->httpResponse['headers'];
             case '_cookies':
@@ -203,7 +203,7 @@ class Response
             case 'raw_data':
                 return $this->httpResponse['raw_data'];
             default:
-                $trace = debug_backtrace();
+                $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
                 trigger_error('Undefined property via __get(): ' . $name . ' in ' . $trace[0]['file'] . ' on line ' . $trace[0]['line'], E_USER_WARNING);
                 return null;
         }
@@ -213,7 +213,7 @@ class Response
     {
         //trigger_error('setting property Response::' . $name . ' is deprecated', E_USER_DEPRECATED);
 
-        switch($name) {
+        switch ($name) {
             case 'hdrs':
                 $this->httpResponse['headers'] = $value;
                 break;
@@ -224,14 +224,14 @@ class Response
                 $this->httpResponse['raw_data'] = $value;
                 break;
             default:
-                $trace = debug_backtrace();
+                $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
                 trigger_error('Undefined property via __set(): ' . $name . ' in ' . $trace[0]['file'] . ' on line ' . $trace[0]['line'], E_USER_WARNING);
         }
     }
 
     public function __isset($name)
     {
-        switch($name) {
+        switch ($name) {
             case 'hdrs':
                 return isset($this->httpResponse['headers']);
             case '_cookies':
@@ -245,7 +245,7 @@ class Response
 
     public function __unset($name)
     {
-        switch($name) {
+        switch ($name) {
             case 'hdrs':
                 unset($this->httpResponse['headers']);
                 break;
@@ -256,7 +256,7 @@ class Response
                 unset($this->httpResponse['raw_data']);
                 break;
             default:
-                $trace = debug_backtrace();
+                $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
                 trigger_error('Undefined property via __unset(): ' . $name . ' in ' . $trace[0]['file'] . ' on line ' . $trace[0]['line'], E_USER_WARNING);
         }
     }

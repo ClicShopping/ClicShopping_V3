@@ -238,6 +238,8 @@ class Request
      * @return Response
      *
      * @todo parsing Responses is not really the responsibility of the Request class. Maybe of the Client...
+     * @todo what about only populating 'raw_data' and 'headers' in httpResponse when debug mode is on? Even better, have
+     *       3 debug levels: data only, echo messages, echo more messages
      */
     public function parseResponse($data = '', $headersProcessed = false, $returnType = XMLParser::RETURN_XMLRPCVALS)
     {
@@ -279,7 +281,10 @@ class Request
         }
 
         // try to 'guestimate' the character encoding of the received response
-        $respEncoding = XMLParser::guessEncoding(@$this->httpResponse['headers']['content-type'], $data);
+        $respEncoding = XMLParser::guessEncoding(
+            isset($this->httpResponse['headers']['content-type']) ? $this->httpResponse['headers']['content-type'] : '',
+            $data
+        );
 
         if ($this->debug) {
             $start = strpos($data, '<!-- SERVER DEBUG INFO (BASE64 ENCODED):');
@@ -336,8 +341,8 @@ class Request
 
             // BC break: in the past for some cases we used the error message: 'XML error at line 1, check URL'
 
-            $r = new Response(0, PhpXmlRpc::$xmlrpcerr['invalid_return'],
-                PhpXmlRpc::$xmlrpcstr['invalid_return'] . ' ' . $xmlRpcParser->_xh['isf_reason'], '',
+            $r = new Response(0, PhpXmlRpc::$xmlrpcerr['invalid_xml'],
+                PhpXmlRpc::$xmlrpcstr['invalid_xml'] . ' ' . $xmlRpcParser->_xh['isf_reason'], '',
                 $this->httpResponse
             );
 
@@ -347,8 +352,8 @@ class Request
         }
         // second error check: xml well formed but not xml-rpc compliant
         elseif ($xmlRpcParser->_xh['isf'] == 2) {
-            $r = new Response(0, PhpXmlRpc::$xmlrpcerr['invalid_return'],
-                PhpXmlRpc::$xmlrpcstr['invalid_return'] . ' ' . $xmlRpcParser->_xh['isf_reason'], '',
+            $r = new Response(0, PhpXmlRpc::$xmlrpcerr['xml_not_compliant'],
+                PhpXmlRpc::$xmlrpcstr['xml_not_compliant'] . ' ' . $xmlRpcParser->_xh['isf_reason'], '',
                 $this->httpResponse
             );
 
@@ -359,10 +364,8 @@ class Request
         // third error check: parsing of the response has somehow gone boink.
         /// @todo shall we omit this check, since we trust the parsing code?
         elseif ($returnType == XMLParser::RETURN_XMLRPCVALS && !is_object($xmlRpcParser->_xh['value'])) {
-            // something odd has happened
-            // and it's time to generate a client side error
-            // indicating something odd went on
-            $r = new Response(0, PhpXmlRpc::$xmlrpcerr['invalid_return'], PhpXmlRpc::$xmlrpcstr['invalid_return'],
+            // something odd has happened and it's time to generate a client side error indicating something odd went on
+            $r = new Response(0, PhpXmlRpc::$xmlrpcerr['xml_parsing_error'], PhpXmlRpc::$xmlrpcstr['xml_parsing_error'],
                 '', $this->httpResponse
             );
         } else {

@@ -1,4 +1,5 @@
 <?php
+
 $query = '';
 if (isset($_GET['run'])) {
     $path = parse_url($_GET['run']);
