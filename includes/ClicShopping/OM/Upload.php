@@ -95,7 +95,7 @@
 
       if (!empty($this->_upload)) {
         if (!empty($this->_extensions)) {
-          if (!\in_array(strtolower(substr($this->_upload['name'], strrpos($this->_upload['name'], '.') + 1)), $this->_extensions)) {
+          if (!\in_array(mb_strtolower(substr($this->_upload['name'], strrpos($this->_upload['name'], '.') + 1)), $this->_extensions)) {
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_filetype_not_allowed') . implode(', ', $this->_extensions), 'warning');
 
             return false;
@@ -173,7 +173,7 @@
         $extensions = [$extensions];
       }
 
-      $extensions = array_map('strtolower', $extensions);
+      $extensions = array_map('mb_strtolower', $extensions);
 
       $this->_extensions = array_merge($this->_extensions, $extensions);
     }
@@ -219,7 +219,7 @@
      */
     public function getExtension(): string
     {
-      return strtolower(substr($this->getFilename(), strrpos($this->getFilename(), '.') + 1));
+      return mb_strtolower(substr($this->getFilename(), strrpos($this->getFilename(), '.') + 1));
     }
 
     /**

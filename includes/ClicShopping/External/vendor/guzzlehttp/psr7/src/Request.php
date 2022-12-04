@@ -44,7 +44,7 @@ class Request implements RequestInterface
             $uri = new Uri($uri);
         }
 
-        $this->method = strtoupper($method);
+        $this->method = mb_strtoupper($method);
         $this->uri = $uri;
         $this->setHeaders($headers);
         $this->protocol = $version;
@@ -97,7 +97,7 @@ class Request implements RequestInterface
     {
         $this->assertMethod($method);
         $new = clone $this;
-        $new->method = strtoupper($method);
+        $new->method = mb_strtoupper($method);
         return $new;
     }
 

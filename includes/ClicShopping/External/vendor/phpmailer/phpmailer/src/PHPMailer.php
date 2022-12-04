@@ -1168,14 +1168,14 @@ class PHPMailer
             return false;
         }
         if ('Reply-To' !== $kind) {
-            if (!array_key_exists(strtolower($address), $this->all_recipients)) {
+            if (!array_key_exists(mb_strtolower($address), $this->all_recipients)) {
                 $this->{$kind}[] = [$address, $name];
-                $this->all_recipients[strtolower($address)] = true;
+                $this->all_recipients[mb_strtolower($address)] = true;
 
                 return true;
             }
-        } elseif (!array_key_exists(strtolower($address), $this->ReplyTo)) {
-            $this->ReplyTo[strtolower($address)] = [$address, $name];
+        } elseif (!array_key_exists(mb_strtolower($address), $this->ReplyTo)) {
+            $this->ReplyTo[mb_strtolower($address)] = [$address, $name];
 
             return true;
         }
@@ -2299,7 +2299,7 @@ class PHPMailer
 
         //Validate $langcode
         $foundlang = true;
-        $langcode  = strtolower($langcode);
+        $langcode  = mb_strtolower($langcode);
         if (
             !preg_match('/^(?P<lang>[a-z]{2})(?P<script>_[a-z]{4})?(?P<country>_[a-z]{2})?$/', $langcode, $matches)
             && $langcode !== 'en'
@@ -2436,7 +2436,7 @@ class PHPMailer
         }
         //If utf-8 encoding is used, we will need to make sure we don't
         //split multibyte characters when we wrap
-        $is_utf8 = static::CHARSET_UTF8 === strtolower($this->CharSet);
+        $is_utf8 = static::CHARSET_UTF8 === mb_strtolower($this->CharSet);
         $lelen = strlen(static::$LE);
         $crlflen = strlen(static::$LE);
 
@@ -3397,7 +3397,7 @@ class PHPMailer
     public function encodeString($str, $encoding = self::ENCODING_BASE64)
     {
         $encoded = '';
-        switch (strtolower($encoding)) {
+        switch (mb_strtolower($encoding)) {
             case static::ENCODING_BASE64:
                 $encoded = chunk_split(
                     base64_encode($str),
@@ -3443,7 +3443,7 @@ class PHPMailer
     public function encodeHeader($str, $position = 'text')
     {
         $matchcount = 0;
-        switch (strtolower($position)) {
+        switch (mb_strtolower($position)) {
             case 'phrase':
                 if (!preg_match('/[\200-\377]/', $str)) {
                     //Can't use addslashes as we don't know the value of magic_quotes_sybase
@@ -3624,7 +3624,7 @@ class PHPMailer
         //There should not be any EOL in the string
         $pattern = '';
         $encoded = str_replace(["\r", "\n"], '', $str);
-        switch (strtolower($position)) {
+        switch (mb_strtolower($position)) {
             case 'phrase':
                 //RFC 2047 section 5.3
                 $pattern = '^A-Za-z0-9!*+\/ -';
@@ -3955,7 +3955,7 @@ class PHPMailer
     public function clearAddresses()
     {
         foreach ($this->to as $to) {
-            unset($this->all_recipients[strtolower($to[0])]);
+            unset($this->all_recipients[mb_strtolower($to[0])]);
         }
         $this->to = [];
         $this->clearQueuedAddresses('to');
@@ -3967,7 +3967,7 @@ class PHPMailer
     public function clearCCs()
     {
         foreach ($this->cc as $cc) {
-            unset($this->all_recipients[strtolower($cc[0])]);
+            unset($this->all_recipients[mb_strtolower($cc[0])]);
         }
         $this->cc = [];
         $this->clearQueuedAddresses('cc');
@@ -3979,7 +3979,7 @@ class PHPMailer
     public function clearBCCs()
     {
         foreach ($this->bcc as $bcc) {
-            unset($this->all_recipients[strtolower($bcc[0])]);
+            unset($this->all_recipients[mb_strtolower($bcc[0])]);
         }
         $this->bcc = [];
         $this->clearQueuedAddresses('bcc');
@@ -4495,7 +4495,7 @@ class PHPMailer
             'webm' => 'video/webm',
             'mkv' => 'video/x-matroska',
         ];
-        $ext = strtolower($ext);
+        $ext = mb_strtolower($ext);
         if (array_key_exists($ext, $mimes)) {
             return $mimes[$ext];
         }
@@ -4776,7 +4776,7 @@ class PHPMailer
             }
             list($heading, $value) = explode(':', $line, 2);
             //Lower-case header name
-            $heading = strtolower($heading);
+            $heading = mb_strtolower($heading);
             //Collapse white space within the value, also convert WSP to space
             $value = preg_replace('/[ \t]+/', ' ', $value);
             //RFC6376 is slightly unclear here - it says to delete space at the *end* of each value
@@ -4876,7 +4876,7 @@ class PHPMailer
         $headersToSign = [];
         foreach ($parsedHeaders as $header) {
             //Is this header one that must be included in the DKIM signature?
-            if (in_array(strtolower($header['label']), $autoSignHeaders, true)) {
+            if (in_array(mb_strtolower($header['label']), $autoSignHeaders, true)) {
                 $headersToSignKeys[] = $header['label'];
                 $headersToSign[] = $header['label'] . ': ' . $header['value'];
                 if ($this->DKIM_copyHeaderFields) {

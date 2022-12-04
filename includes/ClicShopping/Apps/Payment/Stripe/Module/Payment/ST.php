@@ -172,7 +172,7 @@ pre_confirmation_check()
       StripeAPI::setApiKey($this->private_key);
 
       $customer_id = $CLICSHOPPING_Customer->getId();
-      $currency = strtoupper($CLICSHOPPING_Order->info['currency']);
+      $currency = mb_strtoupper($CLICSHOPPING_Order->info['currency']);
       $total_amount = $CLICSHOPPING_Order->info['total'] * 100;
       $total_amount = str_replace('.','', $total_amount);  // Chargeable amount
 

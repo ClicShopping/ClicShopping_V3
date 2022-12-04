@@ -24,7 +24,7 @@
   $CLICSHOPPING_Db = Registry::get('Db');
 
   if (isset($_GET['q'])) {
-    $terms = HTML::sanitize(strtolower($_GET['q']));
+    $terms = HTML::sanitize(mb_strtolower($_GET['q']));
 
     $Qcheck = $CLICSHOPPING_Db->prepare('select distinct manufacturers_id as id,
                                                          manufacturers_name as name

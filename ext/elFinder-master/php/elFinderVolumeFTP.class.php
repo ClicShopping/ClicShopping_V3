@@ -457,7 +457,7 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
         $owner_computed = isset($stat['isowner']) ? $stat['isowner'] : $this->options['owner'];
         $perm = $this->parsePermissions($info[0], $owner_computed);
         $stat['name'] = $name;
-        $stat['mime'] = substr(strtolower($info[0]), 0, 1) == 'd' ? 'directory' : $this->mimetype($stat['name'], true);
+        $stat['mime'] = substr(mb_strtolower($info[0]), 0, 1) == 'd' ? 'directory' : $this->mimetype($stat['name'], true);
         $stat['size'] = $stat['mime'] == 'directory' ? 0 : $info[4];
         $stat['read'] = $perm['read'];
         $stat['write'] = $perm['write'];
@@ -902,7 +902,7 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
         if (is_array($raw) && count($raw) > 1 && substr(trim($raw[0]), 0, 1) == 2) {
             $parts = explode(';', trim($raw[1]));
             array_pop($parts);
-            $parts = array_map('strtolower', $parts);
+            $parts = array_map('mb_strtolower', $parts);
             $stat = array();
             $mode = '';
             foreach ($parts as $part) {
@@ -943,7 +943,7 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
                         break;
 
                     case 'perm':
-                        $val = strtolower($val);
+                        $val = mb_strtolower($val);
                         $stat['read'] = (int)preg_match('/e|l|r/', $val);
                         $stat['write'] = (int)preg_match('/w|m|c/', $val);
                         if (!preg_match('/f|d/', $val)) {
@@ -1052,7 +1052,7 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
                 $info = $this->normalizeRawWindows($str);
             }
             $name = isset($info[8]) ? trim($info[8]) : '';
-            if ($name && $name !== '.' && $name !== '..' && substr(strtolower($info[0]), 0, 1) === 'd') {
+            if ($name && $name !== '.' && $name !== '..' && substr(mb_strtolower($info[0]), 0, 1) === 'd') {
                 return true;
             }
         }
@@ -1123,7 +1123,7 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
         // try ftp stream wrapper
         if ($this->options['mode'] === 'passive' && ini_get('allow_url_fopen')) {
             $url = ($this->isFTPS ? 'ftps' : 'ftp') . '://' . $this->options['user'] . ':' . $this->options['pass'] . '@' . $this->options['host'] . ':' . $this->options['port'] . $path;
-            if (strtolower($mode[0]) === 'w') {
+            if (mb_strtolower($mode[0]) === 'w') {
                 $context = stream_context_create(array('ftp' => array('overwrite' => true)));
                 $fp = fopen($url, $mode, false, $context);
             } else {

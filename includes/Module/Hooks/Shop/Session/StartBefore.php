@@ -20,7 +20,7 @@
         $user_agent = '';
 
         if (isset($_SERVER['HTTP_USER_AGENT'])) {
-          $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+          $user_agent = mb_strtolower($_SERVER['HTTP_USER_AGENT']);
         }
 
         if (!empty($user_agent)) {

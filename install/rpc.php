@@ -28,7 +28,7 @@
     switch ($_GET['action']) {
       case 'httpsCheck':
         if (isset($_GET['subaction']) && ($_GET['subaction'] == 'do')) {
-          if ((isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on')) || (isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] == 443))) {
+          if ((isset($_SERVER['HTTPS']) && (mb_strtolower($_SERVER['HTTPS']) == 'on')) || (isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] == 443))) {
             $result['status'] = '1';
             $result['message'] = 'success';
           }

@@ -193,10 +193,10 @@ class elFinderPluginNormalizer extends elFinderPlugin
             $str = strtr($str, $opts['convmap']);
         }
         if ($opts['lowercase']) {
-            if (function_exists('mb_strtolower')) {
-                $str = mb_strtolower($str, 'UTF-8');
+            if (function_exists('mb_mb_strtolower')) {
+                $str = mb_mb_strtolower($str, 'UTF-8');
             } else {
-                $str = strtolower($str);
+                $str = mb_strtolower($str);
             }
         }
         return $str;

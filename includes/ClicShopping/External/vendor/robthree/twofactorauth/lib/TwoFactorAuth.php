@@ -73,7 +73,7 @@ class TwoFactorAuth
         }
         $this->period = $period;
 
-        $algorithm = strtolower(trim($algorithm));
+        $algorithm = mb_strtolower(trim($algorithm));
         if (!in_array($algorithm, self::$_supportedalgos)) {
             throw new TwoFactorAuthException('Unsupported algorithm: ' . $algorithm);
         }
@@ -274,7 +274,7 @@ class TwoFactorAuth
             . '?secret=' . rawurlencode($secret)
             . '&issuer=' . rawurlencode((string)$this->issuer)
             . '&period=' . intval($this->period)
-            . '&algorithm=' . rawurlencode(strtoupper($this->algorithm))
+            . '&algorithm=' . rawurlencode(mb_strtoupper($this->algorithm))
             . '&digits=' . intval($this->digits);
     }
 

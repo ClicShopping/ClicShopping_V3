@@ -497,23 +497,23 @@
             $next = 'insert';
           }
 
-          if ((strtoupper($next) == 'DROP T') ||
-            (strtoupper($next) == 'CREATE') ||
-            (strtoupper($next) == 'INSERT') ||
-            (strtoupper($next) == 'ALTER ') ||
-            (strtoupper($next) == 'SET FO')) {
+          if ((mb_strtoupper($next) == 'DROP T') ||
+            (mb_strtoupper($next) == 'CREATE') ||
+            (mb_strtoupper($next) == 'INSERT') ||
+            (mb_strtoupper($next) == 'ALTER ') ||
+            (mb_strtoupper($next) == 'SET FO')) {
             $next = '';
 
             $sql_query = substr($import_queries, 0, $i);
 
             if (isset($table_prefix) && !empty($table_prefix)) {
-              if (strtoupper(substr($sql_query, 0, 20)) == 'DROP TABLE IF EXISTS') {
+              if (mb_strtoupper(substr($sql_query, 0, 20)) == 'DROP TABLE IF EXISTS') {
                 $sql_query = 'DROP TABLE IF EXISTS ' . $table_prefix . substr($sql_query, 21);
-              } elseif (strtoupper(substr($sql_query, 0, 12)) == 'CREATE TABLE') {
+              } elseif (mb_strtoupper(substr($sql_query, 0, 12)) == 'CREATE TABLE') {
                 $sql_query = 'CREATE TABLE ' . $table_prefix . substr($sql_query, 13);
-              } elseif (strtoupper(substr($sql_query, 0, 11)) == 'INSERT INTO') {
+              } elseif (mb_strtoupper(substr($sql_query, 0, 11)) == 'INSERT INTO') {
                 $sql_query = 'INSERT INTO ' . $table_prefix . substr($sql_query, 12);
-              } elseif (strtoupper(substr($sql_query, 0, 12)) == 'CREATE INDEX') {
+              } elseif (mb_strtoupper(substr($sql_query, 0, 12)) == 'CREATE INDEX') {
                 $sql_query = substr($sql_query, 0, stripos($sql_query, ' on ')) .
                   ' on ' .
                   $table_prefix .
@@ -743,11 +743,11 @@
           $row = '  FOREIGN KEY ' . $name . ' (' . implode(', ', $fields['col']) . ') REFERENCES ' . (isset($prefix) && (!isset($fields['prefix']) || ($fields['prefix'] != 'false')) ? $prefix : '') . $fields['ref_table'] . '(' . implode(', ', $fields['ref_col']) . ')';
 
           if (isset($fields['on_update'])) {
-            $row .= ' ON UPDATE ' . strtoupper($fields['on_update']);
+            $row .= ' ON UPDATE ' . mb_strtoupper($fields['on_update']);
           }
 
           if (isset($fields['on_delete'])) {
-            $row .= ' ON DELETE ' . strtoupper($fields['on_delete']);
+            $row .= ' ON DELETE ' . mb_strtoupper($fields['on_delete']);
           }
 
           $rows[] = $row;

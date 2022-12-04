@@ -135,7 +135,7 @@
       $this->DefPageFormat = $format;
       $this->CurPageFormat = $format;
       //Page orientation
-      $orientation = strtolower($orientation);
+      $orientation = mb_strtolower($orientation);
       if ($orientation == 'p' || $orientation == 'portrait') {
         $this->DefOrientation = 'P';
         $this->w = $this->DefPageFormat[0];
@@ -456,12 +456,12 @@
     public function AddFont($family, $style = '', $file = '')
     {
       //Add a TrueType or Type1 font
-      $family = strtolower($family);
+      $family = mb_strtolower($family);
       if ($file == '')
-        $file = str_replace(' ', '', $family) . strtolower($style) . '.php';
+        $file = str_replace(' ', '', $family) . mb_strtolower($style) . '.php';
       if ($family == 'arial')
         $family = 'helvetica';
-      $style = strtoupper($style);
+      $style = mb_strtoupper($style);
       if ($style == 'IB')
         $style = 'BI';
       $fontkey = $family . $style;
@@ -501,14 +501,14 @@
       //Select a font; size given in points
       global $fpdf_charwidths;
 
-      $family = strtolower($family);
+      $family = mb_strtolower($family);
       if ($family == '')
         $family = $this->FontFamily;
       if ($family == 'arial')
         $family = 'helvetica';
       elseif ($family == 'symbol' || $family == 'zapfdingbats')
         $style = '';
-      $style = strtoupper($style);
+      $style = mb_strtoupper($style);
       if (str_contains($style, 'U')) {
         $this->underline = true;
         $style = str_replace('U', '', $style);
@@ -530,7 +530,7 @@
             //Load metric file
             $file = $family;
             if ($family == 'times' || $family == 'helvetica')
-              $file .= strtolower($style);
+              $file .= mb_strtolower($style);
             include($this->_getfontpath() . $file . '.php');
             if (!isset($fpdf_charwidths[$fontkey]))
               $this->Error('Could not include font metric file');
@@ -864,7 +864,7 @@
             $this->Error('Image file has no extension and no type was specified: ' . $file);
           $type = substr($file, $pos + 1);
         }
-        $type = strtolower($type);
+        $type = mb_strtolower($type);
         if ($type == 'jpeg')
           $type = 'jpg';
         $mtd = '_parse' . $type;
@@ -945,7 +945,7 @@
       //Output PDF to some destination
       if ($this->state < 3)
         $this->Close();
-      $dest = strtoupper($dest);
+      $dest = mb_strtoupper($dest);
       if ($dest == '') {
         if ($name == '') {
           $name = 'doc.pdf';
@@ -1019,7 +1019,7 @@
 
     public function _getpageformat($format)
     {
-      $format = strtolower($format);
+      $format = mb_strtolower($format);
       if (!isset($this->PageFormats[$format]))
         $this->Error('Unknown page format: ' . $format);
       $a = $this->PageFormats[$format];
@@ -1045,7 +1045,7 @@
       if ($orientation == '')
         $orientation = $this->DefOrientation;
       else
-        $orientation = strtoupper($orientation[0]);
+        $orientation = mb_strtoupper($orientation[0]);
       if ($format == '')
         $format = $this->DefPageFormat;
       else {
@@ -1453,7 +1453,7 @@
           $this->_out('endobj');
         } else {
           //Allow for additional types
-          $mtd = '_put' . strtolower($type);
+          $mtd = '_put' . mb_strtolower($type);
           if (!method_exists($this, $mtd))
             $this->Error('Unsupported font type: ' . $type);
           $this->$mtd($font);

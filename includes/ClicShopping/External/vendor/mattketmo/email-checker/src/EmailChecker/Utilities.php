@@ -38,7 +38,7 @@ class Utilities
             throw new InvalidEmailException(sprintf('"%s" is not a valid email', $email));
         }
 
-        return array_map('strtolower', [$parts['local'], $parts['domain']]);
+        return array_map('mb_strtolower', [$parts['local'], $parts['domain']]);
     }
 
     /**
@@ -55,7 +55,7 @@ class Utilities
 
         // Trim and convert to lowercase
         $lines = array_map('trim', $lines);
-        $lines = array_map('strtolower', $lines);
+        $lines = array_map('mb_strtolower', $lines);
 
         // Remove empty lines and comments
         $lines = array_filter($lines, function ($line) {

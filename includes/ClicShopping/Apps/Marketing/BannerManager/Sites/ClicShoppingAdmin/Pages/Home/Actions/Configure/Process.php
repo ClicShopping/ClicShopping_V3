@@ -24,7 +24,7 @@
       $m = Registry::get('BannerManagerAdminConfig' . $current_module);
 
       foreach ($m->getParameters() as $key) {
-        $p = strtolower($key);
+        $p = mb_strtolower($key);
 
         if (isset($_POST[$p])) {
           $CLICSHOPPING_BannerManager->saveCfgParam($key, $_POST[$p]);

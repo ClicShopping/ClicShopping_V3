@@ -24,7 +24,7 @@
       $m = Registry::get('BackupAdminConfig' . $current_module);
 
       foreach ($m->getParameters() as $key) {
-        $p = strtolower($key);
+        $p = mb_strtolower($key);
 
         if (isset($_POST[$p])) {
           $CLICSHOPPING_Backup->saveCfgParam($key, $_POST[$p]);

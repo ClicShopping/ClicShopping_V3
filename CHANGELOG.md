@@ -1,5 +1,7 @@
 3.406       
-
+php8.2 compatibility
+strtolower => mb_strtolower
+mb_strtoupper => mb_mb_strtoupper
 
 --------------------
 3.405

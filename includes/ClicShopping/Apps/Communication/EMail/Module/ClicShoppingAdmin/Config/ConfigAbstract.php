@@ -45,7 +45,7 @@
       $cut_length = \strlen('CLICSHOPPING_APP_EMAIL_' . $this->code . '_');
 
       foreach ($this->getParameters() as $key) {
-        $p = strtolower(substr($key, $cut_length));
+        $p = mb_strtolower(substr($key, $cut_length));
 
         $class = 'ClicShopping\Apps\Communication\EMail\Module\ClicShoppingAdmin\Config\\' . $this->code . '\Params\\' . $p;
 
@@ -79,7 +79,7 @@
             $class = 'ClicShopping\Apps\Communication\EMail\Module\ClicShoppingAdmin\Config\\' . $this->code . '\\Params\\' . $file->getBasename('.php');
 
             if (is_subclass_of($class, 'ClicShopping\Apps\Communication\EMail\Module\ClicShoppingAdmin\Config\ConfigParamAbstract')) {
-              $result[] = 'CLICSHOPPING_APP_EMAIL_' . $this->code . '_' . strtoupper($file->getBasename('.php'));
+              $result[] = 'CLICSHOPPING_APP_EMAIL_' . $this->code . '_' . mb_strtoupper($file->getBasename('.php'));
             } else {
               trigger_error('ClicShopping\Apps\Communication\EMail\Module\ClicShoppingAdmin\Config\\ConfigAbstract::getParameters(): ClicShopping\Apps\Communication\EMail\Module\ClicShoppingAdmin\Config\\' . $this->code . '\\Params\\' . $file->getBasename('.php') . ' is not a subclass of ClicShopping\Apps\Communication\EMail\Module\ClicShoppingAdmin\Config\ConfigParamAbstract and cannot be loaded.');
             }
@@ -99,7 +99,7 @@
       $cut_length = \strlen($cut);
 
       foreach ($this->getParameters() as $key) {
-        $p = strtolower(substr($key, $cut_length));
+        $p = mb_strtolower(substr($key, $cut_length));
 
         $class = 'ClicShopping\Apps\Communication\EMail\Module\ClicShoppingAdmin\Config\\' . $this->code . '\Params\\' . $p;
 

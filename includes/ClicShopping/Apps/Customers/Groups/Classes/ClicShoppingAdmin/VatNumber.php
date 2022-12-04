@@ -92,7 +92,7 @@
       }
 
       foreach (static::getPrefixIntracomVAT() as $value) {
-        if (strtoupper($value) == strtoupper($country_iso)) {
+        if (mb_strtoupper($value) == mb_strtoupper($country_iso)) {
           return false;
         }
       }

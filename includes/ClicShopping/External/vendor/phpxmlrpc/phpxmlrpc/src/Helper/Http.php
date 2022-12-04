@@ -161,7 +161,7 @@ class Http
             // take care of multi-line headers and cookies
             $arr = explode(':', $line, 2);
             if (count($arr) > 1) {
-                $headerName = strtolower(trim($arr[0]));
+                $headerName = mb_strtolower(trim($arr[0]));
                 /// @todo some other headers (the ones that allow a CSV list of values)
                 ///       do allow many values to be passed using multiple header lines.
                 ///       We should add content to $xmlrpc->_xh['headers'][$headerName]

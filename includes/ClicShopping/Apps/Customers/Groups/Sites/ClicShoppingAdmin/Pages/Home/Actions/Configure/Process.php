@@ -24,7 +24,7 @@
       $m = Registry::get('GroupsAdminConfig' . $current_module);
 
       foreach ($m->getParameters() as $key) {
-        $p = strtolower($key);
+        $p = mb_strtolower($key);
 
         if (isset($_POST[$p])) {
           $CLICSHOPPING_Groups->saveCfgParam($key, $_POST[$p]);

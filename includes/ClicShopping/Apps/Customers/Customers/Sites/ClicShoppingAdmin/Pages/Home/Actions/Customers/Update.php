@@ -159,7 +159,7 @@
 
       if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
         if (isset($_POST['customers_id'])) {
-          $customers_tva_intracom_code_iso = strtoupper($customers_tva_intracom_code_iso);
+          $customers_tva_intracom_code_iso = mb_strtoupper($customers_tva_intracom_code_iso);
         }
       } else {
         $customers_tva_intracom_code_iso = 0;

@@ -40,7 +40,7 @@
 
       $sql_data_array = [
         'title' => $title,
-        'code' => strtoupper($code),
+        'code' => mb_strtoupper($code),
         'symbol_left' => $symbol_left,
         'symbol_right' => $symbol_right,
         'decimal_point' => $decimal_point,

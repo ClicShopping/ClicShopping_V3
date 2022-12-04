@@ -24,7 +24,7 @@
       $m = Registry::get('OrdersStatusAdminConfig' . $current_module);
 
       foreach ($m->getParameters() as $key) {
-        $p = strtolower($key);
+        $p = mb_strtolower($key);
 
         if (isset($_POST[$p])) {
           $CLICSHOPPING_OrdersStatus->saveCfgParam($key, $_POST[$p]);

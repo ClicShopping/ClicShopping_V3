@@ -867,7 +867,7 @@ abstract class elFinderVolumeDriver
 
         // set image manipulation library
         $type = preg_match('/^(imagick|gd|convert|auto|none)$/i', $this->options['imgLib'])
-            ? strtolower($this->options['imgLib'])
+            ? mb_strtolower($this->options['imgLib'])
             : 'auto';
 
         if ($type === 'none') {
@@ -896,7 +896,7 @@ abstract class elFinderVolumeDriver
         if (!empty($this->options['imgConverter']) && is_array($this->options['imgConverter'])) {
             foreach ($this->options['imgConverter'] as $_type => $_converter) {
                 if (isset($_converter['func'])) {
-                    $this->imgConverter[strtolower($_type)] = $_converter;
+                    $this->imgConverter[mb_strtolower($_type)] = $_converter;
                 }
             }
         }
@@ -915,7 +915,7 @@ abstract class elFinderVolumeDriver
         }
 
         // check onetimeUrl
-        if (strtolower($this->options['onetimeUrl']) === 'auto') {
+        if (mb_strtolower($this->options['onetimeUrl']) === 'auto') {
             $this->options['onetimeUrl'] = elFinder::getStaticVar('commonTempPath')? true : false;
         }
 
@@ -1037,7 +1037,7 @@ abstract class elFinderVolumeDriver
     {
         return array(
             'id' => $this->id(),
-            'name' => strtolower(substr(get_class($this), strlen('elfinderdriver'))),
+            'name' => mb_strtolower(substr(get_class($this), strlen('elfinderdriver'))),
             'mimeDetect' => $this->mimeDetect,
             'imgLib' => $this->imgLib
         );
@@ -1226,7 +1226,7 @@ abstract class elFinderVolumeDriver
         }
 
         // set server encoding
-        if (!empty($this->options['encoding']) && strtoupper($this->options['encoding']) !== 'UTF-8') {
+        if (!empty($this->options['encoding']) && mb_strtoupper($this->options['encoding']) !== 'UTF-8') {
             $this->encoding = $this->options['encoding'];
         } else {
             $this->encoding = null;
@@ -1298,7 +1298,7 @@ abstract class elFinderVolumeDriver
             
         $auto_types[] = 'internal';
 
-        $type = strtolower($this->options['mimeDetect']);
+        $type = mb_strtolower($this->options['mimeDetect']);
         if (!in_array($type, $auto_types)) {
             $type = 'auto';
         }
@@ -1369,7 +1369,7 @@ abstract class elFinderVolumeDriver
             $this->URL .= '/';
         }
 
-        $dirUrlOwn = strtolower($this->options['dirUrlOwn']);
+        $dirUrlOwn = mb_strtolower($this->options['dirUrlOwn']);
         if ($dirUrlOwn === 'auto') {
             $this->options['dirUrlOwn'] = $this->URL ? false : true;
         } else if ($dirUrlOwn === 'hide') {
@@ -1498,7 +1498,7 @@ abstract class elFinderVolumeDriver
             list($req) = explode('?', $_SERVER['REQUEST_URI']);
             $reqs = explode('/', dirname($req));
             $uri = join('/', array_slice($reqs, 0, count($reqs) - 1)) . substr($this->tmpLinkPath, strlen($cur));
-            $https = (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off');
+            $https = (isset($_SERVER['HTTPS']) && mb_strtolower($_SERVER['HTTPS']) !== 'off');
             $this->tmpLinkUrl = ($https ? 'https://' : 'http://')
                 . $_SERVER['SERVER_NAME'] // host
                 . (((!$https && $_SERVER['SERVER_PORT'] == 80) || ($https && $_SERVER['SERVER_PORT'] == 443)) ? '' : (':' . $_SERVER['SERVER_PORT']))  // port
@@ -2163,7 +2163,7 @@ abstract class elFinderVolumeDriver
             $res = $stat['tmb'] == "1" ? $this->createTmb($path, $stat) : $stat['tmb'];
             if (!$res) {
                 list($type) = explode('/', $stat['mime']);
-                $fallback = $this->options['resourcePath'] . DIRECTORY_SEPARATOR . strtolower($type) . '.png';
+                $fallback = $this->options['resourcePath'] . DIRECTORY_SEPARATOR . mb_strtolower($type) . '.png';
                 if (is_file($fallback)) {
                     $res = $this->tmbname($stat);
                     if (!copy($fallback, $this->tmbPath . DIRECTORY_SEPARATOR . $res)) {
@@ -4123,7 +4123,7 @@ abstract class elFinderVolumeDriver
      */
     protected function convEnc($var, $from, $to, $locale, $restoreLocale, $unknown = '_')
     {
-        if (strtoupper($from) !== strtoupper($to)) {
+        if (mb_strtoupper($from) !== mb_strtoupper($to)) {
             if ($locale) {
                 setlocale(LC_ALL, $locale);
             }
@@ -4169,7 +4169,7 @@ abstract class elFinderVolumeDriver
         if ($ext === '') {
             $ext = (false === $pos = strrpos($name, '.')) ? '' : substr($name, $pos + 1);
         }
-        $_checkKey = strtolower($ext . ':' . $type);
+        $_checkKey = mb_strtolower($ext . ':' . $type);
         if ($type === '') {
             $_keylen = strlen($_checkKey);
             foreach ($this->options['mimeMap'] as $_key => $_type) {
@@ -4181,11 +4181,11 @@ abstract class elFinderVolumeDriver
         } else if (isset($this->options['mimeMap'][$_checkKey])) {
             $type = $this->options['mimeMap'][$_checkKey];
         } else {
-            $_checkKey = strtolower($ext . ':*');
+            $_checkKey = mb_strtolower($ext . ':*');
             if (isset($this->options['mimeMap'][$_checkKey])) {
                 $type = $this->options['mimeMap'][$_checkKey];
             } else {
-                $_checkKey = strtolower('*:' . $type);
+                $_checkKey = mb_strtolower('*:' . $type);
                 if (isset($this->options['mimeMap'][$_checkKey])) {
                     $type = $this->options['mimeMap'][$_checkKey];
                 }
@@ -4268,7 +4268,7 @@ abstract class elFinderVolumeDriver
     public function getImageSize($path, $mime = '')
     {
         $size = false;
-        if ($mime === '' || strtolower(substr($mime, 0, 5)) === 'image') {
+        if ($mime === '' || mb_strtolower(substr($mime, 0, 5)) === 'image') {
             if ($work = $this->getWorkFile($path)) {
                 if ($size = getimagesize($work)) {
                     $size['dimensions'] = $size[0] . 'x' . $size[1];
@@ -4476,7 +4476,7 @@ abstract class elFinderVolumeDriver
         // logic based on http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#order
         $allow = $this->mimeAccepted($mime, $this->uploadAllow, null);
         $deny = $this->mimeAccepted($mime, $this->uploadDeny, null);
-        if (strtolower($this->uploadOrder[0]) == 'allow') { // array('allow', 'deny'), default is to 'deny'
+        if (mb_strtolower($this->uploadOrder[0]) == 'allow') { // array('allow', 'deny'), default is to 'deny'
             $res = false; // default is deny
             if (!$deny && ($allow === true)) { // match only allow
                 $res = true;
@@ -4816,7 +4816,7 @@ abstract class elFinderVolumeDriver
         if (!$this instanceof elFinderVolumeLocalFileSystem) {
             $nameCheck = true;
         }
-        $ext = (false === $pos = strrpos($name, '.')) ? '' : strtolower(substr($name, $pos + 1));
+        $ext = (false === $pos = strrpos($name, '.')) ? '' : mb_strtolower(substr($name, $pos + 1));
         if (!$nameCheck && $size === null) {
             $size = file_exists($path) ? filesize($path) : -1;
         }
@@ -4915,7 +4915,7 @@ abstract class elFinderVolumeDriver
         $ext = '';
         if ($path) {
             $pinfo = pathinfo($path);
-            $ext = isset($pinfo['extension']) ? strtolower($pinfo['extension']) : '';
+            $ext = isset($pinfo['extension']) ? mb_strtolower($pinfo['extension']) : '';
         }
         return ($ext && isset(elFinderVolumeDriver::$mimetypes[$ext])) ? elFinderVolumeDriver::$mimetypes[$ext] : 'unknown';
     }
@@ -5553,7 +5553,7 @@ abstract class elFinderVolumeDriver
         if ((!$checkTmbPath || $this->tmbPathWritable)
             && (!$this->tmbPath || strpos($path, $this->tmbPath) === false) // do not create thumnbnail for thumnbnail
         ) {
-            $mime = strtolower($stat['mime']);
+            $mime = mb_strtolower($stat['mime']);
             list($type) = explode('/', $mime);
             if (!empty($this->imgConverter)) {
                 if (isset($this->imgConverter[$mime])) {
@@ -5613,7 +5613,7 @@ abstract class elFinderVolumeDriver
         $imgConverter = null;
 
         // check imgConverter
-        $mime = strtolower($stat['mime']);
+        $mime = mb_strtolower($stat['mime']);
         list($type) = explode('/', $mime);
         if (isset($this->imgConverter[$mime])) {
             $imgConverter = $this->imgConverter[$mime]['func'];
@@ -5835,7 +5835,7 @@ abstract class elFinderVolumeDriver
                     if ($ani) {
                         $img->setFirstIterator();
                     }
-                    if (strtoupper($img->getImageFormat()) === 'JPEG') {
+                    if (mb_strtoupper($img->getImageFormat()) === 'JPEG') {
                         $img->setImageCompression(imagick::COMPRESSION_JPEG);
                         $img->setImageCompressionQuality($jpgQuality);
                         if (isset($options['preserveExif']) && !$options['preserveExif']) {
@@ -6512,7 +6512,7 @@ abstract class elFinderVolumeDriver
                     $img->setImageFormat('jpeg');
                 }
             }
-            if (strtoupper($img->getImageFormat()) === 'JPEG') {
+            if (mb_strtoupper($img->getImageFormat()) === 'JPEG') {
                 $img->setImageCompression(imagick::COMPRESSION_JPEG);
                 $img->setImageCompressionQuality($jpgQuality);
                 if ($this->options['jpgProgressive']) {
@@ -6637,8 +6637,8 @@ abstract class elFinderVolumeDriver
     {
         if (function_exists('mb_stripos')) {
             return mb_stripos($haystack, $needle, $offset, 'UTF-8');
-        } else if (function_exists('mb_strtolower') && function_exists('mb_strpos')) {
-            return mb_strpos(mb_strtolower($haystack, 'UTF-8'), mb_strtolower($needle, 'UTF-8'), $offset);
+        } else if (function_exists('mb_mb_strtolower') && function_exists('mb_strpos')) {
+            return mb_strpos(mb_mb_strtolower($haystack, 'UTF-8'), mb_mb_strtolower($needle, 'UTF-8'), $offset);
         }
         return stripos($haystack, $needle, $offset);
     }

@@ -558,20 +558,20 @@ class elFinder
     {
         // set default_charset
         if (version_compare(PHP_VERSION, '5.6', '>=')) {
-            if (($_val = ini_get('iconv.internal_encoding')) && strtoupper($_val) !== 'UTF-8') {
+            if (($_val = ini_get('iconv.internal_encoding')) && mb_strtoupper($_val) !== 'UTF-8') {
                 ini_set('iconv.internal_encoding', '');
             }
-            if (($_val = ini_get('mbstring.internal_encoding')) && strtoupper($_val) !== 'UTF-8') {
+            if (($_val = ini_get('mbstring.internal_encoding')) && mb_strtoupper($_val) !== 'UTF-8') {
                 ini_set('mbstring.internal_encoding', '');
             }
-            if (($_val = ini_get('internal_encoding')) && strtoupper($_val) !== 'UTF-8') {
+            if (($_val = ini_get('internal_encoding')) && mb_strtoupper($_val) !== 'UTF-8') {
                 ini_set('internal_encoding', '');
             }
         } else {
-            if (function_exists('iconv_set_encoding') && strtoupper(iconv_get_encoding('internal_encoding')) !== 'UTF-8') {
+            if (function_exists('iconv_set_encoding') && mb_strtoupper(iconv_get_encoding('internal_encoding')) !== 'UTF-8') {
                 iconv_set_encoding('internal_encoding', 'UTF-8');
             }
-            if (function_exists('mb_internal_encoding') && strtoupper(mb_internal_encoding()) !== 'UTF-8') {
+            if (function_exists('mb_internal_encoding') && mb_strtoupper(mb_internal_encoding()) !== 'UTF-8') {
                 mb_internal_encoding('UTF-8');
             }
         }
@@ -1494,7 +1494,7 @@ class elFinder
      */
     protected function getPluginInstance($name, $opts = array())
     {
-        $key = strtolower($name);
+        $key = mb_strtolower($name);
         if (!isset($this->plugins[$key])) {
             $class = 'elFinderPlugin' . $name;
             // to try auto load
@@ -2585,7 +2585,7 @@ class elFinder
     protected function validate_address($url)
     {
         $info = parse_url($url);
-        $host = trim(strtolower($info['host']), '.');
+        $host = trim(mb_strtolower($info['host']), '.');
         // do not support IPv6 address
         if (preg_match('/^\[.*\]$/', $host)) {
             return false;
@@ -3343,7 +3343,7 @@ class elFinder
                             if (($headers = get_headers($url, true)) && !empty($headers['Content-Disposition'])) {
                                 if (preg_match('/filename\*=(?:([a-zA-Z0-9_-]+?)\'\')"?([a-z0-9_.~%-]+)"?/i', $headers['Content-Disposition'], $m)) {
                                     $_name = rawurldecode($m[2]);
-                                    if ($m[1] && strtoupper($m[1]) !== 'UTF-8' && function_exists('mb_convert_encoding')) {
+                                    if ($m[1] && mb_strtoupper($m[1]) !== 'UTF-8' && function_exists('mb_convert_encoding')) {
                                         $_name = mb_convert_encoding($_name, 'UTF-8', $m[1]);
                                     }
                                 } else if (preg_match('/filename="?([ a-z0-9_.~%-]+)"?/i', $headers['Content-Disposition'], $m)) {
@@ -3439,7 +3439,7 @@ class elFinder
             }
 
             // Set name if name eq 'image.png' and $args has 'name' array, e.g. clipboard data
-            if (strtolower(substr($name, 0, 5)) === 'image' && is_array($args['name']) && isset($args['name'][$i])) {
+            if (mb_strtolower(substr($name, 0, 5)) === 'image' && is_array($args['name']) && isset($args['name'][$i])) {
                 $type = $files['type'][$i];
                 $name = $args['name'][$i];
                 $ext = isset($extTable[$type]) ? '.' . $extTable[$type] : '';
@@ -3688,14 +3688,14 @@ class elFinder
         }
 
         $mime = isset($file['mime']) ? $file['mime'] : '';
-        if ($mime && (strtolower(substr($mime, 0, 4)) === 'text' || in_array(strtolower($mime), self::$textMimes))) {
+        if ($mime && (mb_strtolower(substr($mime, 0, 4)) === 'text' || in_array(mb_strtolower($mime), self::$textMimes))) {
             $enc = '';
             if ($content !== '') {
                 if (!$args['conv'] || $args['conv'] == '1') {
                     // detect encoding
                     if (function_exists('mb_detect_encoding')) {
                         if ($enc = mb_detect_encoding($content, mb_detect_order(), true)) {
-                            $encu = strtoupper($enc);
+                            $encu = mb_strtoupper($enc);
                             if ($encu === 'UTF-8' || $encu === 'ASCII') {
                                 $enc = '';
                             }
@@ -3707,7 +3707,7 @@ class elFinder
                     }
                     if ($enc === 'unknown') {
                         $enc = $volume->getOption('encoding');
-                        if (!$enc || strtoupper($enc) === 'UTF-8') {
+                        if (!$enc || mb_strtoupper($enc) === 'UTF-8') {
                             $enc = 'unknown';
                         }
                     }
@@ -3753,7 +3753,7 @@ class elFinder
                 }
                 if ($args['conv']) {
                     $enc = $args['conv'];
-                    if (strtoupper($enc) !== 'UTF-8') {
+                    if (mb_strtoupper($enc) !== 'UTF-8') {
                         $_content = $content;
                         $errlev = error_reporting();
                         $this->setToastErrorHandler(array(
@@ -4881,7 +4881,7 @@ var go = function() {
             }
         }
         $val = trim($val, "bB \t\n\r\0\x0B");
-        $last = strtolower($val[strlen($val) - 1]);
+        $last = mb_strtolower($val[strlen($val) - 1]);
         $val = sprintf('%u', $val);
         switch ($last) {
             case 'y':
@@ -4936,7 +4936,7 @@ var go = function() {
             return ELFINDER_CONNECTOR_URL;
         }
 
-        $https = (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off');
+        $https = (!empty($_SERVER['HTTPS']) && mb_strtolower($_SERVER['HTTPS']) !== 'off');
         $url = ($https ? 'https://' : 'http://')
             . $_SERVER['SERVER_NAME']                                              // host
             . ((empty($_SERVER['SERVER_PORT']) || (!$https && $_SERVER['SERVER_PORT'] == 80) || ($https && $_SERVER['SERVER_PORT'] == 443)) ? '' : (':' . $_SERVER['SERVER_PORT']))  // port
@@ -4980,7 +4980,7 @@ var go = function() {
                 'https' => '443',
                 'ftp' => '21'
             );
-            $url['scheme'] = strtolower($url['scheme']);
+            $url['scheme'] = mb_strtolower($url['scheme']);
             if (!isset($url['port']) && isset($ports[$url['scheme']])) {
                 $url['port'] = $ports[$url['scheme']];
             }

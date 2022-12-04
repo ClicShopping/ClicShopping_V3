@@ -39,17 +39,17 @@ function </span>WriteHTML<span class="kw">(</span>$html<span class="kw">)
         {
             </span><span class="cmt">// Tag
             </span><span class="kw">if(</span>$e<span class="kw">[</span>0<span class="kw">]==</span><span class="str">'/'</span><span class="kw">)
-                </span>$<span class="kw">this-&gt;</span>CloseTag<span class="kw">(</span>strtoupper<span class="kw">(</span>substr<span class="kw">(</span>$e<span class="kw">,</span>1<span class="kw">)));
+                </span>$<span class="kw">this-&gt;</span>CloseTag<span class="kw">(</span>mb_strtoupper<span class="kw">(</span>substr<span class="kw">(</span>$e<span class="kw">,</span>1<span class="kw">)));
             else
             {
                 </span><span class="cmt">// Extract attributes
                 </span>$a2 <span class="kw">= </span>explode<span class="kw">(</span><span class="str">' '</span><span class="kw">,</span>$e<span class="kw">);
-                </span>$tag <span class="kw">= </span>strtoupper<span class="kw">(</span>array_shift<span class="kw">(</span>$a2<span class="kw">));
+                </span>$tag <span class="kw">= </span>mb_strtoupper<span class="kw">(</span>array_shift<span class="kw">(</span>$a2<span class="kw">));
                 </span>$attr <span class="kw">= array();
                 foreach(</span>$a2 <span class="kw">as </span>$v<span class="kw">)
                 {
                     if(</span>preg_match<span class="kw">(</span><span class="str">'/([^=]*)=["\']?([^"\']*)/'</span><span class="kw">,</span>$v<span class="kw">,</span>$a3<span class="kw">))
-                        </span>$attr<span class="kw">[</span>strtoupper<span class="kw">(</span>$a3<span class="kw">[</span>1<span class="kw">])] = </span>$a3<span class="kw">[</span>2<span class="kw">];
+                        </span>$attr<span class="kw">[</span>mb_strtoupper<span class="kw">(</span>$a3<span class="kw">[</span>1<span class="kw">])] = </span>$a3<span class="kw">[</span>2<span class="kw">];
                 }
                 </span>$<span class="kw">this-&gt;</span>OpenTag<span class="kw">(</span>$tag<span class="kw">,</span>$attr<span class="kw">);
             }

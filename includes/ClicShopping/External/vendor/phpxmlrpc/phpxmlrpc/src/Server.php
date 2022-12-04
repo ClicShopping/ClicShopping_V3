@@ -403,7 +403,7 @@ class Server
                             $pt = $p->kindOf();
                         }
                     } else {
-                        $pt = ($in[$n] == 'i4') ? 'int' : strtolower($in[$n]); // dispatch maps never use i4...
+                        $pt = ($in[$n] == 'i4') ? 'int' : mb_strtolower($in[$n]); // dispatch maps never use i4...
                     }
 
                     // param index is $n+1, as first member of sig is return type
@@ -497,7 +497,7 @@ class Server
                 // here we should check if we can match the client-requested encoding
                 // with the encodings we know we can generate.
                 /// @todo we should parse q=0.x preferences instead of getting first charset specified...
-                $clientAcceptedCharsets = explode(',', strtoupper($_SERVER['HTTP_ACCEPT_CHARSET']));
+                $clientAcceptedCharsets = explode(',', mb_strtoupper($_SERVER['HTTP_ACCEPT_CHARSET']));
                 // Give preference to internal encoding
                 $knownCharsets = array(PhpXmlRpc::$xmlrpc_internalencoding, 'UTF-8', 'ISO-8859-1', 'US-ASCII');
                 foreach ($knownCharsets as $charset) {

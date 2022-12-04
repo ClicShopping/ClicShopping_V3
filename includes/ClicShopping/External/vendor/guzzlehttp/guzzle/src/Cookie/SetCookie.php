@@ -379,9 +379,9 @@ class SetCookie
 
         // Remove the leading '.' as per spec in RFC 6265.
         // https://tools.ietf.org/html/rfc6265#section-5.2.3
-        $cookieDomain = \ltrim(\strtolower($cookieDomain), '.');
+        $cookieDomain = \ltrim(\mb_strtolower($cookieDomain), '.');
 
-        $domain = \strtolower($domain);
+        $domain = \mb_strtolower($domain);
 
         // Domain not set or exact match.
         if ('' === $cookieDomain || $domain === $cookieDomain) {

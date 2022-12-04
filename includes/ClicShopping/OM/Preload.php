@@ -87,11 +87,11 @@
       // Was a filter on file extensions included? | default action: return all file types
       if(isset($args[1])){
         if(gettype($args[1]) == 'array'){
-          self::$ext_filter = array_map('strtolower', $args[1]);
+          self::$ext_filter = array_map('mb_strtolower', $args[1]);
         }
         else
           if(gettype($args[1]) == 'string') {
-            self::$ext_filter[] = strtolower($args[1]);
+            self::$ext_filter[] = mb_strtolower($args[1]);
           }
       }
 
@@ -165,7 +165,7 @@
         }
 
         if(is_file($dir.DIRECTORY_SEPARATOR.$value)){
-          if(!self::$ext_filter || \in_array(strtolower(pathinfo($dir . DIRECTORY_SEPARATOR . $value, PATHINFO_EXTENSION)), self::$ext_filter, true)){
+          if(!self::$ext_filter || \in_array(mb_strtolower(pathinfo($dir . DIRECTORY_SEPARATOR . $value, PATHINFO_EXTENSION)), self::$ext_filter, true)){
             self::$files[] = $result[] = $dir . DIRECTORY_SEPARATOR . $value;
           }
           continue;

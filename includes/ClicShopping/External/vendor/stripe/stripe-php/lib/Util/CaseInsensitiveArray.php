@@ -88,7 +88,7 @@ class CaseInsensitiveArray implements \ArrayAccess, \Countable, \IteratorAggrega
     private static function maybeLowercase($v)
     {
         if (\is_string($v)) {
-            return \strtolower($v);
+            return \mb_strtolower($v);
         }
 
         return $v;

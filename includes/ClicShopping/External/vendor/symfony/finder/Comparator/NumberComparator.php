@@ -51,7 +51,7 @@ class NumberComparator extends Comparator
         }
         if (isset($matches[3])) {
             // magnitude
-            switch (strtolower($matches[3])) {
+            switch (mb_strtolower($matches[3])) {
                 case 'k':
                     $target *= 1000;
                     break;

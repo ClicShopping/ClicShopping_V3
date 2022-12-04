@@ -209,7 +209,7 @@
                           <p><?php echo $description; ?></p>
                           <p>
     <?php
-            if (strtolower($item->type) === 'apps') {
+            if (mb_strtolower($item->type) === 'apps') {
               echo '<strong>' . $CLICSHOPPING_Upgrade->getDef('text_activate') . '</strong> ' . HTTP::typeUrlDomain('ClicShoppingAdmin') . 'index.php?A&' . $item->module_directory . '\\' . $item->apps_name;
             }
     ?>
@@ -256,7 +256,7 @@
             if ($temp_check === true) {
               $error = false;
 
-              if (strtolower($item->is_free) == 'no') {
+              if (mb_strtolower($item->is_free) == 'no') {
                 if (!empty($item->website_link_to_sell)) {
                   if (strpos('https://www.clicshopping.org/forum/files/file/', 'https://www.clicshopping.org')) {
                     $message = $CLICSHOPPING_Upgrade->getDef('error_link_not_allowed');
@@ -280,16 +280,16 @@
               echo HTML::hiddenField('module_real_name', $module_real_name);
               echo HTML::hiddenField('module_directory', $module_directory);
 
-              if (isset($item->is_free) && strtolower($item->is_free) == 'yes') {
+              if (isset($item->is_free) && mb_strtolower($item->is_free) == 'yes') {
                 echo '</form>';
               }
 
-              if (isset($item->is_core) && strtolower($item->is_core) == 'yes') {
+              if (isset($item->is_core) && mb_strtolower($item->is_core) == 'yes') {
                 echo '<span class="text-end"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_core'), null, null, 'danger', null, 'sm') . '</span>';
               }
             }
 
-            if (isset($item->type) && strtolower($item->type) == 'apps') {
+            if (isset($item->type) && mb_strtolower($item->type) == 'apps') {
               $module = CLICSHOPPING::link(null, 'A&' . $item->module_directory . '\\' . $item->apps_name);
             } else {
               $module = 'index.php?A&Configuration\Modules&Modules&set=' . $item->module_directory;
@@ -386,7 +386,7 @@
                         <p><?php echo '<strong> ' .  $CLICSHOPPING_Upgrade->getDef('text_more_infos') . '</strong> <a href="' . $link_html . '" target="_blank" rel="noreferrer">Github</a>'; ?></p>
                         <p>
 <?php
-              if (strtolower($result_content_module->is_free) != 'no') {
+              if (mb_strtolower($result_content_module->is_free) != 'no') {
                 echo $CLICSHOPPING_Upgrade->getDef('text_download') . '<a href="' . $link_html . '/archive/master.zip">' . $module_real_name . '</a>';
               }
 ?>
@@ -422,14 +422,14 @@
                 </div>
                 <div class="col-md-6 text-end float-end">
 <?php
-              if (strtolower($result_content_module->is_free) != 'yes') {
+              if (mb_strtolower($result_content_module->is_free) != 'yes') {
                 echo '<span class="text-end"><a href="' . $result_content_module->website_link_to_sell . '" target="_blank" rel="noreferrer" class="btn btn-success btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
               } else {
                 echo HTML::form('install', $CLICSHOPPING_Upgrade->link('Upgrade&ModuleInstall'));
                 echo '<span class="text-end"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_install'), null, null, 'warning', null, 'sm') . '</span>';
               }
 
-              if (isset($item->is_core) && strtolower($result_content_module->is_core) == 'yes') {
+              if (isset($item->is_core) && mb_strtolower($result_content_module->is_core) == 'yes') {
                 echo '<span class="text-end"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_core'), null, null, 'danger', null, 'sm') . '</span>';
               }
 
@@ -437,11 +437,11 @@
               echo HTML::hiddenField('module_real_name', $module_real_name);
               echo HTML::hiddenField('module_directory', $module_directory);
 
-              if (isset($item->is_free) && strtolower($result_content_module->is_free) == 'yes') {
+              if (isset($item->is_free) && mb_strtolower($result_content_module->is_free) == 'yes') {
                 echo '</form>';
               }
 
-              if (isset($item->type) && strtolower($result_content_module->type) == 'apps') {
+              if (isset($item->type) && mb_strtolower($result_content_module->type) == 'apps') {
                 $module = CLICSHOPPING::link(null, 'A&' . $result_content_module->module_directory . '\\' . $result_content_module->apps_name);
               } else {
                 $module = 'index.php?A&Configuration\Modules&Modules&set=' . $result_content_module->module_directory;

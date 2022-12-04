@@ -24,7 +24,7 @@
     {
       $this->app = Registry::get('PageManager');
 
-      $this->key_prefix .= strtolower($config_module) . '_';
+      $this->key_prefix .= mb_strtolower($config_module) . '_';
 
       $this->config_module = $config_module;
 

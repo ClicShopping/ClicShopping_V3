@@ -49,7 +49,7 @@
           self::$spider_flag = false;
 
           if (!empty($user_agent) || strpos($user_agent, "Googlebot") > 0) {
-            $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+            $user_agent = mb_strtolower($_SERVER['HTTP_USER_AGENT']);
 
             if (!empty($user_agent)) {
               $file_array = file(CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Assets/spiders.txt');

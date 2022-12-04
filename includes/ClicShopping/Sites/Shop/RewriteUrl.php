@@ -837,7 +837,7 @@
       $str = preg_replace('#&[^;]+;#', '', $str);
       $str = preg_replace('/[^A-Za-z0-9\-]/', '', $str); // Removes special chars
 
-      return strtolower($str);
+      return mb_strtolower($str);
     }
 
     /**

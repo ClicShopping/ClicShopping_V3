@@ -206,7 +206,7 @@ class elFinderPluginWatermark extends elFinderPlugin
             $opts['ratio'] = null;
         }
 
-        $opts['position'] = strtoupper($opts['position']);
+        $opts['position'] = mb_strtoupper($opts['position']);
 
         // Set vertical position
         if (strpos($opts['position'], 'T') !== false) {
@@ -262,7 +262,7 @@ class elFinderPluginWatermark extends elFinderPlugin
             }
 
             // Set transparency
-            if (strtoupper($watermark->getImageFormat()) !== 'PNG') {
+            if (mb_strtoupper($watermark->getImageFormat()) !== 'PNG') {
                 $watermark->setImageOpacity($transparency / 100);
             }
 
@@ -270,7 +270,7 @@ class elFinderPluginWatermark extends elFinderPlugin
             $img->compositeImage($watermark, imagick::COMPOSITE_OVER, $dest_x, $dest_y);
 
             // Set quality
-            if (strtoupper($img->getImageFormat()) === 'JPEG') {
+            if (mb_strtoupper($img->getImageFormat()) === 'JPEG') {
                 $img->setImageCompression(imagick::COMPRESSION_JPEG);
                 $img->setCompressionQuality($quality);
             }

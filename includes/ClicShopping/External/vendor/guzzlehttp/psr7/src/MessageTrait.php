@@ -47,12 +47,12 @@ trait MessageTrait
 
     public function hasHeader($header): bool
     {
-        return isset($this->headerNames[strtolower($header)]);
+        return isset($this->headerNames[mb_strtolower($header)]);
     }
 
     public function getHeader($header): array
     {
-        $header = strtolower($header);
+        $header = mb_strtolower($header);
 
         if (!isset($this->headerNames[$header])) {
             return [];
@@ -72,7 +72,7 @@ trait MessageTrait
     {
         $this->assertHeader($header);
         $value = $this->normalizeHeaderValue($value);
-        $normalized = strtolower($header);
+        $normalized = mb_strtolower($header);
 
         $new = clone $this;
         if (isset($new->headerNames[$normalized])) {
@@ -88,7 +88,7 @@ trait MessageTrait
     {
         $this->assertHeader($header);
         $value = $this->normalizeHeaderValue($value);
-        $normalized = strtolower($header);
+        $normalized = mb_strtolower($header);
 
         $new = clone $this;
         if (isset($new->headerNames[$normalized])) {
@@ -104,7 +104,7 @@ trait MessageTrait
 
     public function withoutHeader($header): MessageInterface
     {
-        $normalized = strtolower($header);
+        $normalized = mb_strtolower($header);
 
         if (!isset($this->headerNames[$normalized])) {
             return $this;
@@ -150,7 +150,7 @@ trait MessageTrait
 
             $this->assertHeader($header);
             $value = $this->normalizeHeaderValue($value);
-            $normalized = strtolower($header);
+            $normalized = mb_strtolower($header);
             if (isset($this->headerNames[$normalized])) {
                 $header = $this->headerNames[$normalized];
                 $this->headers[$header] = array_merge($this->headers[$header], $value);

@@ -360,7 +360,7 @@
       $month_abbr = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
       $no_of_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-      $format_string = strtolower($format_string);
+      $format_string = mb_strtolower($format_string);
 
       if (\strlen($date_to_check) != \strlen($format_string)) {
         return false;

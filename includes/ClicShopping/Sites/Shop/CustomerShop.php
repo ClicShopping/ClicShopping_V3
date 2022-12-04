@@ -389,8 +389,8 @@
      */
     public function setGender(?string $gender) :void
     {
-      if ((strtolower($gender) == 'm') || (strtolower($gender) == 'f')) {
-        $this->_data['gender'] = strtolower($gender);
+      if ((mb_strtolower($gender) == 'm') || (mb_strtolower($gender) == 'f')) {
+        $this->_data['gender'] = mb_strtolower($gender);
       } else {
         $this->_data['gender'] = false;
       }

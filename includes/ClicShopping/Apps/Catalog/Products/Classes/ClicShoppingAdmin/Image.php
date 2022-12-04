@@ -77,7 +77,7 @@
     {
       if (isset($_POST['new_directory_products_image']) && !empty($_POST['new_directory_products_image'])) {
         $new_dir_products_image_without_accents = HTML::removeFileAccents($_POST['new_directory_products_image']);
-        $new_dir_products_image = strtolower($new_dir_products_image_without_accents);
+        $new_dir_products_image = mb_strtolower($new_dir_products_image_without_accents);
         $new_dir_products_image = HTML::replaceString(' ', '_', $new_dir_products_image);
 
         if (!is_dir($new_dir_products_image)) {
@@ -109,7 +109,7 @@
     {
       if (CONFIGURATION_CONVERT_IMAGE == 'true') {
         $p = pathinfo($this->template->getDirectoryPathTemplateShopImages() . $image);
-        $ext = strtolower($p['extension']);
+        $ext = mb_strtolower($p['extension']);
 
         $big_image_resized_path = $this->template->getDirectoryPathTemplateShopImages() . $image;
 
@@ -415,7 +415,7 @@
       if (isset($_POST['new_directory']) && !empty($_POST['new_directory'])) {
         $new_dir_without_accents = HTML::removeFileAccents($_POST['new_directory']);
         $new_dir = HTML::replaceString(' ', '_', $new_dir_without_accents);
-        $new_dir = strtolower($new_dir);
+        $new_dir = mb_strtolower($new_dir);
         $dir = 'products/' . $new_dir . '/' . HTML::sanitize($_POST['directory']);
       } else {
         if (!empty($_POST['directory_products_image'])) {

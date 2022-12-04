@@ -940,7 +940,7 @@ class SMTP
         if (empty($dsn)) {
             $rcpt = 'RCPT TO:<' . $address . '>';
         } else {
-            $dsn = strtoupper($dsn);
+            $dsn = mb_strtoupper($dsn);
             $notify = [];
 
             if (strpos($dsn, 'NEVER') !== false) {

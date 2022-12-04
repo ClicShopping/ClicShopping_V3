@@ -59,7 +59,7 @@ class GoogleChartsQrCodeProvider extends BaseHTTPQRCodeProvider
     {
         return 'https://chart.googleapis.com/chart'
             . '?chs=' . $size . 'x' . $size
-            . '&chld=' . urlencode(strtoupper($this->errorcorrectionlevel) . '|' . $this->margin)
+            . '&chld=' . urlencode(mb_strtoupper($this->errorcorrectionlevel) . '|' . $this->margin)
             . '&cht=' . 'qr'
             . '&choe=' . $this->encoding
             . '&chl=' . rawurlencode($qrtext);

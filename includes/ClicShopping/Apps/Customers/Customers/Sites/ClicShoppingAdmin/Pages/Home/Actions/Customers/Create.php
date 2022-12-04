@@ -105,7 +105,7 @@
 // Informations numero de TVA avec transformation de code ISO en majuscule
       if (isset($_POST['customers_tva_intracom_code_iso']) && isset($_POST['customers_tva_intracom']))  {
         $customers_tva_intracom_code_iso = HTML::sanitize($_POST['customers_tva_intracom_code_iso']);
-        $customers_tva_intracom_code_iso = strtoupper($customers_tva_intracom_code_iso);
+        $customers_tva_intracom_code_iso = mb_strtoupper($customers_tva_intracom_code_iso);
         $customers_tva_intracom = HTML::sanitize($_POST['customers_tva_intracom']);
       } else {
         $customers_tva_intracom = '';
