@@ -618,16 +618,15 @@
 
       if ($Qimages->fetch() !== false) {
         do {
-          $Qduplicate = $this->db->get('products_images', 'id', [
+          $sql_array = [
             'image' => $Qimages->value('image'),
             'products_id' => [
               'op' => '!=',
               'val' => (int)$id
             ]
-          ],
-            null,
-            1
-          );
+          ];
+	  
+          $Qduplicate = $this->db->get('products_images', 'id', $sql_array, null, 1);
 
           if ($Qduplicate->fetch() === false) {
             if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'))) {

@@ -2,6 +2,10 @@
 php8.2 compatibility
 strtolower => mb_strtolower
 mb_strtoupper => mb_mb_strtoupper
+utf8_decode => CLICSHOPPING::utf8Decode()
+utf8_encode => CLICSHOPPING::utf8Encode()
+
+
 
 --------------------
 3.405

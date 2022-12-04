@@ -11,6 +11,7 @@
   namespace ClicShopping\Apps\Marketing\SEO\Sites\Shop\Pages\GoogleSitemap\Actions;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   class GoogleSitemapFavorites extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -41,7 +42,7 @@
         $Qproducts->execute();
 
         while ($Qproducts->fetch()) {
-          $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getProductNameUrl($Qproducts->valueInt('products_id'))), ENT_QUOTES | ENT_HTML5);
+          $location = htmlspecialchars(CLICSHOPPING::utf8Encode($this->rewriteUrl->getProductNameUrl($Qproducts->valueInt('products_id'))), ENT_QUOTES | ENT_HTML5);
 
           $products_array[$Qproducts->valueInt('products_id')]['loc'] = $location;
           $products_array[$Qproducts->valueInt('products_id')]['lastmod'] = $Qproducts->value('last_modified');

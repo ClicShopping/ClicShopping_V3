@@ -17,19 +17,21 @@
     public function execute()
     {
       $CLICSHOPPING_Favorites = Registry::get('Favorites');
+      $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
-
           $Qdelete = $CLICSHOPPING_Favorites->db->prepare('delete
-                                                    from :table_products_favorites
-                                                    where products_favorites_id = :products_favorites_id
-                                                  ');
+                                                            from :table_products_favorites
+                                                            where products_favorites_id = :products_favorites_id
+                                                          ');
           $Qdelete->bindInt(':products_favorites_id', (int)$id);
           $Qdelete->execute();
+
+          $CLICSHOPPING_Hooks->call('Favorites', 'RemoveFavorites');
         }
       }
 
-      $CLICSHOPPING_Favorites->redirect('Favorites', 'page=' . $_GET['page']);
+      $CLICSHOPPING_Favorites->redirect('Favorites', (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'sID=' . (int)$_GET['id']);
     }
   }

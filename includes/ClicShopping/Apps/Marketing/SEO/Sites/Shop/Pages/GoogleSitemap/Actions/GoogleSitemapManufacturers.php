@@ -11,6 +11,7 @@
   namespace ClicShopping\Apps\Marketing\SEO\Sites\Shop\Pages\GoogleSitemap\Actions;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   class GoogleSitemapManufacturers extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -39,7 +40,7 @@
         $Qmanufacturers->execute();
 
         while ($Qmanufacturers->fetch()) {
-          $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id'))), ENT_QUOTES | ENT_HTML5);
+          $location = htmlspecialchars(CLICSHOPPING::utf8Encode($this->rewriteUrl->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id'))), ENT_QUOTES | ENT_HTML5);
 
           $manufacturer_array[$Qmanufacturers->valueInt('manufacturers_id')]['loc'] = $location;
           $manufacturer_array[$Qmanufacturers->valueInt('manufacturers_id')]['lastmod'] = $Qmanufacturers->value('last_modified');

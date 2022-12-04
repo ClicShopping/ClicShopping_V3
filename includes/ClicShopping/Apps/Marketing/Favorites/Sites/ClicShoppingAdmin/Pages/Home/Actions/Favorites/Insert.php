@@ -37,17 +37,18 @@
         $schdate = null;
       }
 
-      $CLICSHOPPING_Favorites->db->save('products_favorites', [
-          'products_id' => (int)$products_id,
-          'products_favorites_date_added' => 'now()',
-          'scheduled_date' => $schdate,
-          'expires_date' => $expdate,
-          'status' => 1
-        ]
-      );
+      $sql_array = [
+        'products_id' => (int)$products_id,
+        'products_favorites_date_added' => 'now()',
+        'scheduled_date' => $schdate,
+        'expires_date' => $expdate,
+        'status' => 1
+      ];
+
+      $CLICSHOPPING_Favorites->db->save('products_favorites', $sql_array);
 
       $CLICSHOPPING_Hooks->call('Favorites', 'Insert');
 
-      $CLICSHOPPING_Favorites->redirect('Favorites', 'page=' . $page);
+      $CLICSHOPPING_Favorites->redirect('Favorites', (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'sID=' . (int)$_GET['id']);
     }
   }

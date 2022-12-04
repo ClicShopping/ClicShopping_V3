@@ -48,7 +48,7 @@
       while ($Qcategorie->fetch()) {
 
         $this->rewriteUrl->getCategoryTreeTitle($Qcategorie->value('categories_name'));
-        $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getCategoryTreeUrl($Qcategorie->valueInt('categories_id'))), ENT_QUOTES | ENT_HTML5);
+        $location = htmlspecialchars(CLICSHOPPING::utf8Encode($this->rewriteUrl->getCategoryTreeUrl($Qcategorie->valueInt('categories_id'))), ENT_QUOTES | ENT_HTML5);
 
         $category_array[$Qcategorie->valueInt('categories_id')]['loc'] = $location;
         $category_array[$Qcategorie->valueInt('categories_id')]['lastmod'] = $Qcategorie->value('last_modified');

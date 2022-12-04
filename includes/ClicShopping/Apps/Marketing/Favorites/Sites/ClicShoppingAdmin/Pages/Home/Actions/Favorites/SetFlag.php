@@ -45,7 +45,8 @@
           ['products_favorites_id' => (int)$products_favorites_id]
         );
       } elseif ($status == 0) {
-        return $CLICSHOPPING_Db->save('products_favorites', ['status' => 0,
+        return $CLICSHOPPING_Db->save('products_favorites', [
+          'status' => 0,
           'date_status_change' => 'now()'
         ],
           ['products_favorites_id' => (int)$products_favorites_id]

@@ -8,6 +8,7 @@
    *
    */
 
+  use ClicShopping\OM\CLICSHOPPING;
 
   /**
    * Security Pro Querystring whitelist protection against hacking.
@@ -165,7 +166,7 @@
       $lang_additions = '@ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ'; // Special language characters go here - see the example above
 
 // decode utf8 ==> search engine problem
-      $cleansed = preg_replace('/[^\s{}a-z0-9_\.\-@' . $lang_additions . ']/i', '', urldecode(utf8_decode($string)));
+      $cleansed = preg_replace('/[^\s{}a-z0-9_\.\-@' . $lang_additions . ']/i', '', urldecode(CLICSHOPPING::utf8Decode($string)));
 //      $cleansed = preg_replace ( "/[^\s{}a-z0-9_\.\-@$language_characters]/i", "", urldecode ( $string ) );
 
 // Remove banned words
@@ -173,7 +174,7 @@
 // Ensure that a clever hacker hasn't gained himself a naughty double hyphen -- after our cleansing
 
 // convert utf8 ==> search engine problem
-      $cleansed = utf8_encode($cleansed);
+      $cleansed = CLICSHOPPING::utf8Encode($cleansed);
 
       return preg_replace('@[-]+@', '-', $cleansed);
     } // end method
