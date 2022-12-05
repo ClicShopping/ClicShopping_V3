@@ -830,19 +830,11 @@
      * replace utf8_encode
      * iso8859_1_to_utf8
      */
-    public static function utf8Encode(string $string) :string
+    public static function utf8Encode(string $string, string $iso = 'ISO-8859-1') :string
     {
-      $s .= $string;
-      $len = \strlen($s);
+      $result = mb_convert_encoding($string, 'UTF-8', $iso);
 
-      for ($i = $len >> 1, $j = 0; $i < $len; ++$i, ++$j) {
-        switch (true) {
-          case $s[$i] < "\x80": $s[$j] = $s[$i]; break;
-          case $s[$i] < "\xC0": $s[$j] = "\xC2"; $s[++$j] = $s[$i]; break;
-          default: $s[$j] = "\xC3"; $s[++$j] = \chr(\ord($s[$i]) - 64); break;
-        }
-      }
 
-      return substr($s, 0, $j);
+      return $result;
     }
   }

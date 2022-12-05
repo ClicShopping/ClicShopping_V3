@@ -7,18 +7,13 @@
    * @Info : https://www.clicshopping.org/forum/trademark/
    *
    */
+   use ClicShopping\OM\CLICSHOPPING;
 
-  use ClicShopping\OM\CLICSHOPPING;
-
-  /**
-   * Security Pro Querystring whitelist protection against hacking.
-   *
-   */
   class Security
   {
 
 // Array of files to be excluded from cleansing, these can also be added in application_top.php if preferred using _Security_Pro::addExclusion()
-    public $_excluded_from_cleansing = [];
+    public array $_excluded_from_cleansing = [];
     public bool $_enabled = true; // Turn on or off - bool true / false
     public $_basename;
     public $_cleanse_keys; // Turn on or off - bool true / false
@@ -46,7 +41,7 @@
      */
     public function addExclusion($file_to_exclude = '')
     {
-      if (!\in_array($file_to_exclude, $this->_excluded_from_cleansing)) {
+      if (!\in_array($file_to_exclude, $this->_excluded_from_cleansing, true)) {
         $this->_excluded_from_cleansing[] = (string)$file_to_exclude;
       }
 
@@ -70,18 +65,17 @@
       }
     } // end method
 
-    /**
-     * Called from application_top.php here we instigate the cleansing of the querystring
-     *
-     * @param array $_GET - long array
-     *
-     *
-     * @return void
-     * @uses ini_get()
-     * @see  _Security_Pro::cleanGlobals()
-     * @uses \in_array()
-     * @uses function_exists()
-     */
+  /**
+   * Called from application_top.php here we instigate the cleansing of the querystring
+   *
+   * @param string $data
+   * @return void
+   * @uses ini_get()
+   * @see  _Security_Pro::cleanGlobals()
+   * @uses \in_array()
+   * @uses function_exists()
+   *  array $_GET - long array
+   */
 
     public function cleanse(string $data = '')
     {
@@ -92,7 +86,7 @@
         return;
       }
       $this->_basename = $data;
-      if (\in_array($this->_basename, $this->_excluded_from_cleansing)) {
+      if (\in_array($this->_basename, $this->_excluded_from_cleansing, true)) {
         return;
       }
       $this->cleanseGetRecursive($_GET);
@@ -166,14 +160,11 @@
       $lang_additions = '@ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ'; // Special language characters go here - see the example above
 
 // decode utf8 ==> search engine problem
-      $cleansed = preg_replace('/[^\s{}a-z0-9_\.\-@' . $lang_additions . ']/i', '', urldecode(CLICSHOPPING::utf8Decode($string)));
-//      $cleansed = preg_replace ( "/[^\s{}a-z0-9_\.\-@$language_characters]/i", "", urldecode ( $string ) );
+      $cleansed = preg_replace ( "/[^\s{}a-z0-9_\.\-@$lang_additions]/i", "", urldecode ( CLICSHOPPING::utf8Decode($string)));
 
 // Remove banned words
       $cleansed = preg_replace($banned_string_pattern, '', $cleansed);
 // Ensure that a clever hacker hasn't gained himself a naughty double hyphen -- after our cleansing
-
-// convert utf8 ==> search engine problem
       $cleansed = CLICSHOPPING::utf8Encode($cleansed);
 
       return preg_replace('@[-]+@', '-', $cleansed);
