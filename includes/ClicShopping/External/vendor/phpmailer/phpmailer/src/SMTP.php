@@ -35,7 +35,7 @@ class SMTP
      *
      * @var string
      */
-    const VERSION = '6.6.5';
+    const VERSION = '6.7';
 
     /**
      * SMTP line break constant.
@@ -940,7 +940,7 @@ class SMTP
         if (empty($dsn)) {
             $rcpt = 'RCPT TO:<' . $address . '>';
         } else {
-            $dsn = mb_strtoupper($dsn);
+            $dsn = strtoupper($dsn);
             $notify = [];
 
             if (strpos($dsn, 'NEVER') !== false) {
