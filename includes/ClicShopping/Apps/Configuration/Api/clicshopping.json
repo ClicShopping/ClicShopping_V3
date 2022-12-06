@@ -1,0 +1,24 @@
+{
+ "title": "Api App",
+ "app": "Api",
+ "vendor":"Configuration",
+ "version":	"1.0.0",
+ "req_core_version": "3.3",
+ "license":	"GPL-2 / MIT",
+ "authors": [
+  {
+   "name": "ClicShopping",
+   "company": "ClicShopping",
+   "email":	"admin@clicshopping.org",
+   "website": "https://www.clicshopping.org"
+  }
+ ],
+ "modules": {
+  "Hooks": {
+  }
+ },
+ "routes": {
+  "ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home"
+
+ }
+}
