@@ -99,14 +99,14 @@
     public function getLocale()
     {
       $code = $this->getCode();
+
       return $this->get('locale', $code);
     }
 
     /**
-     * Set Code
      * @param $code
      */
-    protected function set($code)
+    protected function set(string $code) :void
     {
       $this->code = $code;
 

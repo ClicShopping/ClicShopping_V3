@@ -42,12 +42,12 @@
       if (preg_match('/->/', $use_function)) {
         $class_method = explode('->', $use_function);
 
-        if (!\is_object(${$class_method[0]})) {
+        if (!\is_object($class_method[0])) {
           include_once('includes/classes/' . $class_method[0] . '.php');
           ${$class_method[0]} = new $class_method[0]();
         }
 
-        $cfgValue = CallUserFuncConfiguration::execute($class_method[1], $Qconfiguration->value('configuration_value'), ${$class_method[0]});
+        $cfgValue = CallUserFuncConfiguration::execute($class_method[1], $Qconfiguration->value('configuration_value'), $class_method[0]);
 
       } else {
         $cfgValue = CallUserFuncConfiguration::execute($use_function, $Qconfiguration->value('configuration_value'));

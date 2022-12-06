@@ -1,10 +1,10 @@
 3.406       
-php8.2 compatibility
+fix php8.2 compatibility
 strtolower => mb_strtolower
 mb_strtoupper => mb_mb_strtoupper
 utf8_decode => CLICSHOPPING::utf8Decode()
 utf8_encode => CLICSHOPPING::utf8Encode()
-
+others little fix
 
 
 --------------------

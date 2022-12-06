@@ -29,8 +29,7 @@
 
       if (!empty($_POST['configuration'])) {
         $cKey = HTML::sanitize($_GET['cKey']);
-
-        $array = $_POST['configuration'];
+        $array = HTML::sanitize($_POST['configuration']);
 
         if (isset($array['CONFIGURATION_PREFIX_MODEL'])) {
           $configuration_value = $array['CONFIGURATION_PREFIX_MODEL'];
@@ -46,6 +45,10 @@
 
         if (isset($array['MAX_MIN_IN_CART'])) {
           $configuration_value = (int)$array['MAX_MIN_IN_CART'];
+        }
+
+        if (isset($array['DISPLAY_SHIPPING_DELAY'])) {
+          $configuration_value = (int)$array['DISPLAY_SHIPPING_DELAY'];
         }
 
         $Qupdate = $this->app->db->prepare('update :table_configuration
