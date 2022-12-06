@@ -76,6 +76,8 @@ text_description_order_return = IProduct information and return reason
 
 text_ref_return_orders_product_name = Product name
 text_ref_return_orders_product_model = product model
+table_heading_return_orders_customer = Customers
+table_heading_return_orders_products_name = Product
 text_ref_return_orders_return_reason = Return reason
 text_ref_return_orders_opened = Return order status
 text_ref_return_orders_return_action = Actions return
