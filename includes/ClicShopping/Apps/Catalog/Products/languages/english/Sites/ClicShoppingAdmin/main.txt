@@ -100,7 +100,7 @@ text_products_price_info = Sell price
 text_products_cost = Product supplier price
 text_products_handling = Other costs associated
 text_products_price_margins = Profit Margin
-
+text_products_shipping = Shipping management
 text_products_tax_class = Tax Class
 text_products_average_rating = Average Rating
 text_products_quantity_info = Quantity

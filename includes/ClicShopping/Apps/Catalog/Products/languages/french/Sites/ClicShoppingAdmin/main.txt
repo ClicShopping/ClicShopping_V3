@@ -102,7 +102,7 @@ text_products_price_info = Prix
 text_products_cost = Prix fournisseur du produit
 text_products_handling = Autres couts associés
 text_products_price_margins = Marge de profit
-
+text_products_shipping = Gestion Expéditions
 text_products_tax_class = Classe Fiscale
 text_products_average_rating = Ratio moyen
 text_products_quantity_info = Quantité
