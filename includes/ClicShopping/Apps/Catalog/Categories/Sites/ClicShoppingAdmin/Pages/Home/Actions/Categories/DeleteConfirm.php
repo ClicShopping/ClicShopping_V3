@@ -37,13 +37,11 @@
       $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
       if (isset($categories_id) && is_numeric($categories_id) && isset($cPath)) {
-
         $categories = $CLICSHOPPING_CategoriesAdmin->getCategoryTree($categories_id, '', '0', '', true);
         $products = [];
         $products_delete = [];
 
         for ($i = 0, $n = \count($categories); $i < $n; $i++) {
-
           $QproductIds = $this->app->db->get('products_to_categories', 'products_id', ['categories_id' => (int)$categories[$i]['id']]);
 
           while ($QproductIds->fetch()) {

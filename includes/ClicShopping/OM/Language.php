@@ -113,7 +113,8 @@
       if ($this->exists($this->code)) {
         $this->language = $this->code;
       } else {
-        trigger_error('ClicShopping\OM\Language::set() - The language does not exist: ' . $this->code);
+        $this->language = 'en';
+        trigger_error('ClicShopping\OM\Language::set() - The language does not exist: ' . $this->code . ' En language choose by default');
       }
     }
 

@@ -29,13 +29,72 @@
 
       $username = HTML::sanitize($_POST['username']);
       $api_key = HTML::sanitize($_POST['api_key']);
+      
+// products
+      if (isset($_POST['get_product_status'])) {
+        $get_product_status = HTML::sanitize($_POST['get_product_status']);
+      } else {
+        $get_product_status = 0;
+      }
+
+      if (isset($_POST['update_product_status'])) {
+        $update_product_status = HTML::sanitize($_POST['update_product_status']);
+      } else {
+        $update_product_status = 0;
+      }
+
+      if (isset($_POST['insert_product_status'])) {
+        $insert_product_status = HTML::sanitize($_POST['insert_product_status']);
+      } else {
+        $insert_product_status = 0;
+      }
+
+
+      if (isset($_POST['delete_product_status'])) {
+        $delete_product_status = HTML::sanitize($_POST['delete_product_status']);
+      } else {
+        $delete_product_status = 0;
+      }
+
+// categories
+      if (isset($_POST['get_categories_status'])) {
+        $get_categories_status = HTML::sanitize($_POST['get_categories_status']);
+      } else {
+        $get_categories_status = 0;
+      }
+
+      if (isset($_POST['update_categories_status'])) {
+        $update_categories_status = HTML::sanitize($_POST['update_categories_status']);
+      } else {
+        $update_categories_status = 0;
+      }
+
+      if (isset($_POST['insert_categories_status'])) {
+        $insert_categories_status = HTML::sanitize($_POST['insert_categories_status']);
+      } else {
+        $insert_categories_status = 0;
+      }
+
+      if (isset($_POST['delete_categories_status'])) {
+        $delete_categories_status = HTML::sanitize($_POST['delete_categories_status']);
+      } else {
+        $delete_categories_status = 0;
+      }
 
       $sql_data_array = [
         'username' => $username,
         'api_key' => $api_key,
         'status' => 0,
         'date_added' => 'now()',
-        'date_modified' => 'now()'
+        'date_modified' => 'now()',
+        'get_product_status' => $get_product_status,
+        'update_product_status' => $update_product_status,
+        'insert_product_status' => $insert_product_status,
+        'delete_product_status' => $delete_product_status,
+        'get_categories_status' => $get_categories_status,
+        'update_categories_status' => $update_categories_status,
+        'insert_categories_status' => $insert_categories_status,
+        'delete_categories_status' => $delete_categories_status,
       ];
 
       $this->app->db->save('api', $sql_data_array);

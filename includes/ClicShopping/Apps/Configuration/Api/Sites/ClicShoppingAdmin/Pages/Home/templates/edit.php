@@ -27,7 +27,12 @@
 
   $Qapi = $CLICSHOPPING_Api->db->prepare('select api_id,
                                                    username,
-                                                   api_key                              
+                                                   api_key,
+                                                   get_product_status,
+                                                   update_product_status,
+                                                   insert_product_status,
+                                                   delete_product_status,
+                                                   get_categories_status
                                             from :table_api
                                             where api_id = :api_id
                                           ');
@@ -51,7 +56,8 @@
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Api->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
-<?php
+<?php 
+  echo HTML::form('form_api', $CLICSHOPPING_Api->link('Api&' . $form_action . '&page=' . $page . '&' . (isset($_GET['cID']) ? '&cID=' . $_GET['cID'] : '')));
   echo HTML::button($CLICSHOPPING_Api->getDef('button_cancel'), null, $CLICSHOPPING_Api->link('Api&page=' . $page . '&cID=' . $Qapi->valueInt('api_id')), 'warning')  . ' ';
 
   if (!empty($cId)) {
@@ -66,6 +72,7 @@
     </div>
   </div>
   <div class="separator"></div>
+
   <div id="ApiTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Api->getDef('tab_general') . '</a>'; ?></li>
@@ -81,7 +88,6 @@
 
         ?>
           <div class="tab-pane active" id="tab1">
-            <?php echo HTML::form('form_api', $CLICSHOPPING_Api->link('Api&' . $form_action . '&page=' . $page . '&' . (isset($_GET['cID']) ? '&cID=' . $_GET['cID'] : ''))); ?>
               <div class="separator"></div>
               <div class="row" id="api_username">
                 <div class="col-md-12">
@@ -108,6 +114,81 @@
                   </div>
                 </div>
               </div>
+              <div class="separator"></div>
+
+            <table class="table">
+                <thead class="dataTableHeadingRow">
+                  <td><?php echo $CLICSHOPPING_Api->getDef('text_heading_product_management'); ?></td>
+                  <td><?php echo $CLICSHOPPING_Api->getDef('text_heading_categories_management'); ?></td>
+                  <td><?php echo $CLICSHOPPING_Api->getDef('text_heading_customers_management'); ?></td>
+                  <td><?php echo $CLICSHOPPING_Api->getDef('text_heading_orders_management'); ?></td>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="row" id="getPoductsStatus">
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <label for="<?php echo $CLICSHOPPING_Api->getDef('text_get_status'); ?>"
+                                   class="col-7 col-form-label"><?php echo $CLICSHOPPING_Api->getDef('text_get_status'); ?></label>
+                            <div class="col-md-5">
+                              <ul class="list-group-slider list-group-flush">
+                                <li class="list-group-item-slider">
+                                  <label class="switch">
+                                    <?php echo HTML::checkboxField('get_product_status', '1', $Qapi->valueInt('get_product_status'), 'class="success"'); ?>
+                                      <span class="slider"></span>
+                                  </label>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" id="deletePoductsStatus">
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <label for="<?php echo $CLICSHOPPING_Api->getDef('text_delete_status'); ?>"
+                                   class="col-7 col-form-label"><?php echo $CLICSHOPPING_Api->getDef('text_delete_status'); ?></label>
+                            <div class="col-md-5">
+                              <ul class="list-group-slider list-group-flush">
+                                <li class="list-group-item-slider">
+                                  <label class="switch">
+                                    <?php echo HTML::checkboxField('delete_product_status', '1', $Qapi->valueInt('delete_product_status'), 'class="success"'); ?>
+                                    <span class="slider"></span>
+                                  </label>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="row" id="getCategoriesStatus">
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <label for="<?php echo $CLICSHOPPING_Api->getDef('text_get_status'); ?>"
+                                   class="col-7 col-form-label"><?php echo $CLICSHOPPING_Api->getDef('text_get_status'); ?></label>
+                            <div class="col-md-5">
+                              <ul class="list-group-slider list-group-flush">
+                                <li class="list-group-item-slider">
+                                  <label class="switch">
+                                    <?php echo HTML::checkboxField('get_categories_status', '1', $Qapi->valueInt('get_categories_status'), 'class="success"'); ?>
+                                    <span class="slider"></span>
+                                  </label>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  <td></td>
+                  <td></td>
+                </tbody>
+              </table>
+
               <div class="separator"></div>
               <div class="separator"></div>
             <?php echo $CLICSHOPPING_Hooks->output('Api', 'ApiContentTab1', null, 'display'); ?>
@@ -233,9 +314,9 @@
                                                            date_added,
                                                            date_modified
                                                     from :table_api_session
-                                                    
+                                                    where api_id = :api_id
                                                   ');
-
+        $Qsession->bindInt(':api_id', $cId);
         $Qsession->execute();
 
         $result = $Qsession->fetchAll();

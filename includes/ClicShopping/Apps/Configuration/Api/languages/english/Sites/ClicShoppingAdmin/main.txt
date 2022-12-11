@@ -57,12 +57,23 @@ tab_session = Session
 text_api_username = Username
 text_api_key = Api Key
 text_add_ip = Add IP
+text_add = Add IP
 text_ip = IP Address
 text_action = Action
 text_token = Token
 text_date_added = Date added
 text_date_modified = Date modified
 text_api_generate_key = Generate a key
+
+text_heading_product_management = Product management
+text_heading_categories_management = Categories management
+text_heading_customers_management = Customers management
+text_heading_orders_management = orders Management
+text_get_status = Display (GET)
+text_delete_status = Delete (DELETE)
+text_update_status = Update (POST)
+text_insert_status = Insert (POST)
+
 
 text_info_warning = You must save your Api before to add some others elements
 text_info_message = Below you can create a list of IP's allowed to access the API. Your current IP is {{ip_address}}

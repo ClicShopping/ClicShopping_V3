@@ -57,12 +57,23 @@ tab_session = Session
 text_api_username = Nom utilisateur
 text_api_key = Clef Api
 text_add_ip = Ajouter IP
+text_add = Ajouter IP
 text_ip = Adresse IP
 text_action = Action
 text_token = Token
 text_date_added = Date ajout
 text_date_modified = Date modifiée
 text_api_generate_key = Générer une clef
+
+
+text_heading_product_management = Gestion produits
+text_heading_categories_management = Gestion catégories
+text_heading_customers_management = Gestion clients
+text_heading_orders_management = Gestion commandes
+text_get_status = Afficher (GET)
+text_delete_status = Supprimer (DELETE)
+text_update_status = Mettre à jour (POST)
+text_insert_status = Insérer (POST)
 
 text_info_warning = Vous devez sauvegarder votre API avant de pouvoir ajouter d'autres information
 text_info_message = Vous pouvez créer ci-dessous une liste d'adresse IP permises. Votre adresse actuelle est {{ip_address}}

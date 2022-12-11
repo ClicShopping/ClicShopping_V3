@@ -4,7 +4,10 @@ api_key text not_null
 status tinyint(1) not_null defaut(0)
 date_added datetime not_null
 date_modified datetime not_null
-
+get_product tinyint(1) not_null defaut(0)
+update_product tinyint(1) not_null defaut(0)
+insert_product tinyint(1) not_null defaut(0)
+delete_product tinyint(1) not_null defaut(0)
 --
 primary api_id
 ##

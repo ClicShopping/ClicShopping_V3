@@ -1,5 +1,16 @@
 #general
 
+ALTER TABLE `clic_api` ADD `get_product_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `date_modified`,
+ADD `update_product_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `get_product_status`,
+ADD `insert_product_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `update_product_status`,
+ADD `delete_product_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `insert_product_status`,
+ADD `get_categories_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `delete_product_status`;
+
+ALTER TABLE `clic_api` ADD `update_categories_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `get_categories_status`,
+ADD `insert_categories_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `update_categories_status`,
+ADD `delete_categories_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `insert_categories_status`;
+
+
 #English
 
 
