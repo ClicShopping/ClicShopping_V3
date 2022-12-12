@@ -39,6 +39,10 @@
 
     public function execute()
     {
+      if (!\defined('CLICSHOPPING_APP_FEATURED_FE_STATUS') || CLICSHOPPING_APP_FEATURED_FE_STATUS == 'False') {
+        return false;
+      }
+
       if (isset($_POST['remove_id'])) {
         $pID = HTML::sanitize($_POST['remove_id']);
       } elseif (isset($_POST['pID'])) {

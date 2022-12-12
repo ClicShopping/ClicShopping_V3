@@ -18,6 +18,9 @@
    "ClicShoppingAdmin/Langues": {
     "DeleteConfirm":	"Module\\Hooks\\ClicShoppingAdmin\\Langues\\DeleteConfirm",
     "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Langues\\Insert"
+   },
+   "ClicShoppingAdmin/Products": {
+    "RemoveProduct":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\RemoveProduct"
    }
   }
  },

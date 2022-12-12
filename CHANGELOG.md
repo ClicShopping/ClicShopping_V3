@@ -6,6 +6,7 @@ utf8_decode => CLICSHOPPING::utf8Decode()
 utf8_encode => CLICSHOPPING::utf8Encode()
 others little fix
 Add API Apps
+Refactorisation
 
 --------------------
 3.405

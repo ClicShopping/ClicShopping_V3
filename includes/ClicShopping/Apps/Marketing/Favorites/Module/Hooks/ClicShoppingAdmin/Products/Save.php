@@ -48,6 +48,10 @@
 
     public function execute()
     {
+      if (!\defined('CLICSHOPPING_APP_FAVORITES_FA_STATUS') || CLICSHOPPING_APP_FAVORITES_FA_STATUS == 'False') {
+        return false;
+      }
+          
       if (isset($_GET['pID'])) {
         $id = HTML::sanitize($_GET['pID']);
         $this->save($id);

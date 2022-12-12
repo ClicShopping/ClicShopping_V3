@@ -24,7 +24,7 @@
     protected $id;
     protected mixed $db;
     protected mixed $template;
-    protected $hooks;
+    protected mixed $hooks;
     protected mixed $lang;
 
     public function __construct()
@@ -641,7 +641,6 @@
       $this->db->delete('products', ['products_id' => (int)$id]);
       $this->db->delete('products_description', ['products_id' => (int)$id]);
       $this->db->delete('products_to_categories', ['products_id' => (int)$id]);
-      $this->db->delete('products_attributes', ['products_id' => (int)$id]);
       $this->db->delete('products_notifications', ['products_id' => (int)$id]);
 
       $Qdelete = $this->db->prepare('delete
@@ -738,7 +737,7 @@
      * @param $categories_id - category
      * @return void
      */
-    private function prepageCloneProducts(int $id, int $categories_id): void
+    private function prepareCloneProducts(int $id, int $categories_id): void
     {
       $new_category = $categories_id;
 
@@ -1253,7 +1252,7 @@
 
       if (isset($_POST['clone_categories_id_to'])) {
         $categories_id = $_POST['clone_categories_id_to'];
-        $this->prepageCloneProducts($id, $categories_id);
+        $this->prepareCloneProducts($id, $categories_id);
       }
 
       $this->hooks->call('Products', 'Save');

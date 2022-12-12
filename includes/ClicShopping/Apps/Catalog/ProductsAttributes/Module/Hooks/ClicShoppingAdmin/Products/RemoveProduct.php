@@ -8,12 +8,12 @@
    *
    */
 
-  namespace ClicShopping\Apps\Marketing\Favorites\Module\Hooks\ClicShoppingAdmin\Products;
+  namespace ClicShopping\Apps\Catalog\ProductsAttributes\Module\Hooks\ClicShoppingAdmin\Products;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  use ClicShopping\Apps\Marketing\Favorites\Favorites as FavoritesApp;
+  use ClicShopping\Apps\Catalog\ProductsAttributes\ProductsAttributes as ProductsAttributesApp;
 
   class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -21,27 +21,28 @@
 
     public function __construct()
     {
-      if (!Registry::exists('Favorites')) {
-        Registry::set('Favorites', new FavoritesApp());
+      if (!Registry::exists('ProductsAttributesApp')) {
+        Registry::set('ProductsAttributes', new ProductsAttributesApp());
       }
 
-      $this->app = Registry::get('Favorites');
+      $this->app = Registry::get('ProductsAttributes');
     }
 
-    private function removeProducts($id)
+    /**
+     * @param int $id
+     */
+    private function removeProducts(int $id) :void
     {
-      if (!empty($_POST['products_favorites'])) {
-        $this->app->db->delete('products_favorites', ['products_id' => (int)$id]);
-      }
+      $this->app->db->delete('products_attributes', ['products_id' => (int)$id]);
     }
 
     public function execute()
     {
-      if (!\defined('CLICSHOPPING_APP_FAVORITES_FA_STATUS') || CLICSHOPPING_APP_FAVORITES_FA_STATUS == 'False') {
+      if (!\defined('CLICSHOPPING_APP_PRODUCTS_ATTRIBUTES_PA_STATUS') || CLICSHOPPING_APP_PRODUCTS_ATTRIBUTES_PA_STATUS == 'False') {
         return false;
       }
 
-      if (isset($_POST['remove_id'])) {
+     if (isset($_POST['remove_id'])) {
         $pID = HTML::sanitize($_POST['remove_id']);
       } elseif (isset($_POST['pID'])) {
         $pID = HTML::sanitize($_POST['pID']);
