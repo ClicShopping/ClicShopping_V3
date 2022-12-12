@@ -85,6 +85,31 @@
          $delete_categories_status = 0;
        }
 
+// customer
+       if (isset($_POST['get_customer_status'])) {
+         $get_customer_status = HTML::sanitize($_POST['get_customer_status']);
+       } else {
+         $get_customer_status = 0;
+       }
+
+       if (isset($_POST['update_customer_status'])) {
+         $update_customer_status = HTML::sanitize($_POST['update_customer_status']);
+       } else {
+         $update_customer_status = 0;
+       }
+
+       if (isset($_POST['insert_customer_status'])) {
+         $insert_customer_status = HTML::sanitize($_POST['insert_customer_status']);
+       } else {
+         $insert_customer_status = 0;
+       }
+
+       if (isset($_POST['delete_customer_status'])) {
+         $delete_customer_status = HTML::sanitize($_POST['delete_customer_status']);
+       } else {
+         $delete_customer_status = 0;
+       }
+
        $sql_data_array = [
          'username' => $username,
          'api_key' => $api_key,
@@ -97,6 +122,10 @@
          'update_categories_status' => $update_categories_status,
          'insert_categories_status' => $insert_categories_status,
          'delete_categories_status' => $delete_categories_status,
+         'get_customer_status' => $get_customer_status,
+         'update_customer_status' => $update_customer_status,
+         'insert_customer_status' => $insert_customer_status,
+         'delete_customer_status' => $delete_customer_status,
        ];
 
         $this->app->db->save('api', $sql_data_array, ['api_id' => (int)$api_id]);

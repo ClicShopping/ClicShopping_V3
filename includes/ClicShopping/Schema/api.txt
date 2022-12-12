@@ -12,6 +12,10 @@ get_categories_status tinyint(1) not_null defaut(0)
 update_categories_status tinyint(1) not_null defaut(0)
 insert_categories_status tinyint(1) not_null defaut(0)
 delete_categories_status tinyint(1) not_null defaut(0)
+get_customer_status tinyint(1) not_null defaut(0)
+update_customer_status tinyint(1) not_null defaut(0)
+insert_customer_status tinyint(1) not_null defaut(0)
+delete_customer_status tinyint(1) not_null defaut(0)
 --
 primary api_id
 ##

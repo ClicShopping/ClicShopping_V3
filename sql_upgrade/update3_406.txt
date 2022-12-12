@@ -10,6 +10,10 @@ ALTER TABLE `clic_api` ADD `update_categories_status` TINYINT(1) NOT NULL DEFAUL
 ADD `insert_categories_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `update_categories_status`,
 ADD `delete_categories_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `insert_categories_status`;
 
+ALTER TABLE `clic_api` ADD `get_customer_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `delete_categories_status`,
+ADD `delete_customer_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `get_customer_status`,
+ADD `update_customer_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `delete_customer_status`,
+ADD `insert_customer_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `update_customer_status`;
 
 #English
 

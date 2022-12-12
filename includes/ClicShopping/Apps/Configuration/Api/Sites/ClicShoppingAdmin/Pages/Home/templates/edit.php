@@ -32,7 +32,14 @@
                                                    update_product_status,
                                                    insert_product_status,
                                                    delete_product_status,
-                                                   get_categories_status
+                                                   get_categories_status,
+                                                   delete_categories_status,
+                                                   insert_categories_status,
+                                                   update_categories_status,
+                                                   get_customer_status,
+                                                   delete_customer_status,
+                                                   insert_customer_status,
+                                                   update_customer_status
                                             from :table_api
                                             where api_id = :api_id
                                           ');
@@ -203,7 +210,45 @@
                         </div>
                       </div>
                     </td>
-                  <td></td>
+                  <td>
+                    <div class="row" id="getCustomersStatus">
+                      <div class="col-md-12">
+                        <div class="form-group row">
+                          <label for="<?php echo $CLICSHOPPING_Api->getDef('text_get_status'); ?>"
+                                 class="col-7 col-form-label"><?php echo $CLICSHOPPING_Api->getDef('text_get_status'); ?></label>
+                          <div class="col-md-5">
+                            <ul class="list-group-slider list-group-flush">
+                              <li class="list-group-item-slider">
+                                <label class="switch">
+                                  <?php echo HTML::checkboxField('get_customer_status', '1', $Qapi->valueInt('get_customer_status'), 'class="success"'); ?>
+                                  <span class="slider"></span>
+                                </label>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row" id="deleteCustomersStatus">
+                      <div class="col-md-12">
+                        <div class="form-group row">
+                          <label for="<?php echo $CLICSHOPPING_Api->getDef('text_delete_status'); ?>"
+                                 class="col-7 col-form-label"><?php echo $CLICSHOPPING_Api->getDef('text_delete_status'); ?></label>
+                          <div class="col-md-5">
+                            <ul class="list-group-slider list-group-flush">
+                              <li class="list-group-item-slider">
+                                <label class="switch">
+                                  <?php echo HTML::checkboxField('delete_customer_status', '1', $Qapi->valueInt('delete_customer_status'), 'class="success"'); ?>
+                                  <span class="slider"></span>
+                                </label>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
                   <td></td>
                 </tbody>
               </table>

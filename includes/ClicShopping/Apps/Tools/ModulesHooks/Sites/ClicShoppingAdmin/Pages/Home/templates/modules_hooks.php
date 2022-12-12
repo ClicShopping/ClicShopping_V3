@@ -37,7 +37,6 @@
                     if (!$hookfile->isDot() && !$hookfile->isDir() && ($hookfile->getExtension() == 'php')) {
                       $hook = $hookfile->getBasename('.php');
                       $class = 'ClicShopping\OM\Module\Hooks\\' . $site . '\\' . $group . '\\' . $hook;
-
                       $h = new \ReflectionClass($class);
 
                       foreach ($h->getMethods(\ReflectionMethod::IS_STATIC | \ReflectionMethod::IS_PUBLIC) as $method) {
