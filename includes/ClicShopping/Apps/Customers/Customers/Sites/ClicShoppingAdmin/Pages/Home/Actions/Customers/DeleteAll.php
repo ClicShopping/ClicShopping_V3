@@ -15,36 +15,23 @@
 
   class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_Customers = Registry::get('Customers');
+      $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-      if (isset($_POST['selected'])) {
+      if (isset($_POST['selected']) && isset($_GET['DeleteAll'])) {
         foreach ($_POST['selected'] as $id) {
-
           $CLICSHOPPING_Customers->db->delete('address_book', ['customers_id' => $id]);
           $CLICSHOPPING_Customers->db->delete('customers', ['customers_id' => $id]);
           $CLICSHOPPING_Customers->db->delete('customers_info', ['customers_info_id' => $id]);
           $CLICSHOPPING_Customers->db->delete('customers_basket', ['customers_id' => $id]);
           $CLICSHOPPING_Customers->db->delete('customers_basket_attributes', ['customers_id' => $id]);
-          $CLICSHOPPING_Customers->db->delete('whos_online', ['customer_id' => $id]);
-
-          if (isset($_POST['delete_reviews']) && ($_POST['delete_reviews'] == 'on')) {
-
-            $Qreviews = $CLICSHOPPING_Customers->db->get('reviews', 'reviews_id', ['customers_id' => $id]);
-
-            while ($Qreviews->fetch()) {
-              $CLICSHOPPING_Customers->db->delete('reviews_description', ['reviews_id' => (int)$Qreviews->valueInt('reviews_id')]);
-            }
-
-            $CLICSHOPPING_Customers->db->delete('reviews', ['customers_id' => $id]);
-          } else {
-            $CLICSHOPPING_Customers->db->save('reviews', ['customers_id' => 'null'], ['customers_id' => $id]);
-          }
         }
+
+        $CLICSHOPPING_Hooks->call('Customers', 'DeleteCustomers');
       }
 
       $CLICSHOPPING_Customers->redirect('Customers', 'page=' . $page);
