@@ -14,8 +14,6 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
-
   class Update extends \ClicShopping\OM\PagesActionsAbstract
   {
     protected mixed $app;

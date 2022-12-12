@@ -11,7 +11,6 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   $CLICSHOPPING_Products = Registry::get('Products');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();

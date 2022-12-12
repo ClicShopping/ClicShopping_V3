@@ -8,13 +8,10 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Catalog\Suppliers\Sites\ClicShoppingAdmin\Pages\Home\Actions\Suppliers;
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   class Update extends \ClicShopping\OM\PagesActionsAbstract
   {

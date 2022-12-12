@@ -8,11 +8,8 @@
    *
    */
 
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
-
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Mail = Registry::get('Mail');

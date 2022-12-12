@@ -12,8 +12,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
-
   use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
 
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');

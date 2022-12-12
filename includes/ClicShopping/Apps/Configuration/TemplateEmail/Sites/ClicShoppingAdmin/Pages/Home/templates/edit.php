@@ -12,7 +12,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\TemplateEmailAdmin;
 
   $CLICSHOPPING_TemplateEmail = Registry::get('TemplateEmail');

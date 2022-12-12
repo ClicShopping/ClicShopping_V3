@@ -20,9 +20,6 @@
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
   use ClicShopping\Sites\ClicShoppingAdmin\Tax;
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
-
-  use ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin\WeightAdmin;
 
   $CLICSHOPPING_Products = Registry::get('Products');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');

@@ -13,7 +13,6 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   class Insert extends \ClicShopping\OM\PagesActionsAbstract
   {

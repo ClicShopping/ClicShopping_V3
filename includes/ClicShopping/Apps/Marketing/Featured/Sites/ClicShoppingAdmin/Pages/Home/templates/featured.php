@@ -16,8 +16,6 @@
 
   use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
-
   $CLICSHOPPING_Featured = Registry::get('Featured');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Hooks = Registry::get('Hooks');

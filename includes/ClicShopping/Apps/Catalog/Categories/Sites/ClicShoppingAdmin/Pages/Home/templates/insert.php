@@ -11,9 +11,6 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\FileSystem;
-  use ClicShopping\OM\HTTP;
-
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 

@@ -13,7 +13,6 @@
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\CLICSHOPPING;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
   use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

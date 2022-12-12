@@ -13,8 +13,6 @@
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\DateTime;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
-
   $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Hooks = Registry::get('Hooks');

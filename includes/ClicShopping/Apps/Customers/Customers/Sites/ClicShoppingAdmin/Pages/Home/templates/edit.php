@@ -10,11 +10,8 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\DateTime;
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
-
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   use ClicShopping\Sites\ClicShoppingAdmin\AddressAdmin;
 

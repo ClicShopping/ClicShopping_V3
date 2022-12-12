@@ -14,8 +14,6 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Cache;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
-
   class Save extends \ClicShopping\OM\PagesActionsAbstract
   {
     protected mixed $app;

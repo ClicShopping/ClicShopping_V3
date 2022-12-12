@@ -13,10 +13,7 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\FileSystem;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
-
   use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
-
   use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\ClicShoppingAdmin\ProductsAttributesAdmin;
 
   $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');

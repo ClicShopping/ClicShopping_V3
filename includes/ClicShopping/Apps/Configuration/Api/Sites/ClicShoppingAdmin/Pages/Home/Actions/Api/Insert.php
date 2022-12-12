@@ -29,7 +29,7 @@
 
       $username = HTML::sanitize($_POST['username']);
       $api_key = HTML::sanitize($_POST['api_key']);
-      
+
 // products
       if (isset($_POST['get_product_status'])) {
         $get_product_status = HTML::sanitize($_POST['get_product_status']);

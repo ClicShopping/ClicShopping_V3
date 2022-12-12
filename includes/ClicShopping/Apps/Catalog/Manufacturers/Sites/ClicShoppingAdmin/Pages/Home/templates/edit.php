@@ -10,11 +10,8 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
   use ClicShopping\Apps\Marketing\SEO\Classes\ClicShoppingAdmin\SeoAdmin;
-
   use ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin\ManufacturerAdmin;
 
   $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');

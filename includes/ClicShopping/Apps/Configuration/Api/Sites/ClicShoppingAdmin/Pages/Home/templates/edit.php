@@ -183,6 +183,25 @@
                           </div>
                         </div>
                       </div>
+
+                      <div class="row" id="deleteCategoriesStatus">
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <label for="<?php echo $CLICSHOPPING_Api->getDef('text_delete_status'); ?>"
+                                   class="col-7 col-form-label"><?php echo $CLICSHOPPING_Api->getDef('text_delete_status'); ?></label>
+                            <div class="col-md-5">
+                              <ul class="list-group-slider list-group-flush">
+                                <li class="list-group-item-slider">
+                                  <label class="switch">
+                                    <?php echo HTML::checkboxField('delete_categories_status', '1', $Qapi->valueInt('delete_categories_status'), 'class="success"'); ?>
+                                    <span class="slider"></span>
+                                  </label>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </td>
                   <td></td>
                   <td></td>

@@ -10,9 +10,6 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
-
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();

@@ -13,7 +13,6 @@
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\DateTime;
 
-
   use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   $CLICSHOPPING_Featured = Registry::get('Featured');
