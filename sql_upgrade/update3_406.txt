@@ -15,6 +15,23 @@ ADD `delete_customer_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `get_customer
 ADD `update_customer_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `delete_customer_status`,
 ADD `insert_customer_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `update_customer_status`;
 
+ALTER TABLE `clic_api` ADD `get_order_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `insert_customer_status`,
+ADD `delete_order_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `get_order_status`,
+ADD `insert_order_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `delete_order_status`,
+ADD `update_order_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `insert_order_status`;
+
+ALTER TABLE `clic_api` ADD `get_manufacturer_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `update_order_status`,
+ADD `delete_manufacturer_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `get_manufacturer_status`,
+ADD `insert_manufacturer_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `delete_manufacturer_status`,
+ADD `update_manufacturer_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `insert_manufacturer_status`;
+
+ALTER TABLE `clic_api` ADD `get_supplier_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `update_manufacturer_status`,
+ADD `delete_supplier_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `get_supplier_status`,
+ADD `insert_supplier_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `delete_supplier_status`,
+ADD `update_supplier_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `insert_supplier_status`;
+
+
+
 #English
 
 

@@ -18,7 +18,15 @@
   }
  },
  "routes": {
-  "ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home"
-
+  "ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home",
+  "Shop": {
+   "api&token": "Sites\\Shop\\Pages\\Token",
+   "api&product": "Sites\\Shop\\Pages\\Product",
+   "api&categories": "Sites\\Shop\\Pages\\Category",
+   "api&customers": "Sites\\Shop\\Pages\\Customers",
+   "api&orders": "Sites\\Shop\\Pages\\Orders",
+   "api&manufacturers": "Sites\\Shop\\Pages\\Manufacturers",
+   "api&suppliers": "Sites\\Shop\\Pages\\Suppliers"
+  }
  }
 }

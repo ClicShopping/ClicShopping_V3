@@ -56,7 +56,7 @@ class Wrapper
      */
     public function php2XmlrpcType($phpType)
     {
-        switch (mb_strtolower($phpType)) {
+        switch (strtolower($phpType)) {
             case 'string':
                 return Value::$xmlrpcString;
             case 'integer':
@@ -104,7 +104,7 @@ class Wrapper
      */
     public function xmlrpc2PhpType($xmlrpcType)
     {
-        switch (mb_strtolower($xmlrpcType)) {
+        switch (strtolower($xmlrpcType)) {
             case 'base64':
             case 'datetime.iso8601':
             case 'string':
@@ -124,7 +124,7 @@ class Wrapper
             case 'null':
             default:
                 // unknown: might be any xmlrpc type
-                return mb_strtolower($xmlrpcType);
+                return strtolower($xmlrpcType);
         }
     }
 
@@ -307,7 +307,7 @@ class Wrapper
                 } elseif (strpos($doc, '@param') === 0) {
                     // syntax: @param type $name [desc]
                     if (preg_match('/@param\s+(\S+)\s+(\$\S+)\s*(.+)?/', $doc, $matches)) {
-                        $name = mb_strtolower(trim($matches[2]));
+                        $name = strtolower(trim($matches[2]));
                         //$paramDocs[$name]['name'] = trim($matches[2]);
                         $paramDocs[$name]['doc'] = isset($matches[3]) ? $matches[3] : '';
                         $paramDocs[$name]['type'] = $matches[1];
@@ -363,7 +363,7 @@ class Wrapper
         $pNum = count($funcDesc['params']);
         foreach ($funcDesc['params'] as $param) {
             /* // match by name real param and documented params
-            $name = mb_strtolower($param['name']);
+            $name = strtolower($param['name']);
             if (!isset($funcDesc['paramDocs'][$name])) {
                 $funcDesc['paramDocs'][$name] = array();
             }
@@ -396,7 +396,7 @@ class Wrapper
             $sig = array($this->php2XmlrpcType($funcDesc['returns']));
             $pSig = array($funcDesc['returnsDocs']);
             for ($i = 0; $i < count($pars); $i++) {
-                $name = mb_strtolower($funcDesc['params'][$i]['name']);
+                $name = strtolower($funcDesc['params'][$i]['name']);
                 if (isset($funcDesc['paramDocs'][$name]['type'])) {
                     $sig[] = $this->php2XmlrpcType($funcDesc['paramDocs'][$name]['type']);
                 } else {

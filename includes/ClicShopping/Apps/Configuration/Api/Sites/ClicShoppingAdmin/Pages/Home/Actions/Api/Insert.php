@@ -106,6 +106,31 @@
         $delete_customer_status = 0;
       }
 
+// customer
+      if (isset($_POST['get_order_status'])) {
+        $get_order_status = HTML::sanitize($_POST['get_order_status']);
+      } else {
+        $get_order_status = 0;
+      }
+
+      if (isset($_POST['update_order_status'])) {
+        $update_order_status = HTML::sanitize($_POST['update_order_status']);
+      } else {
+        $update_order_status = 0;
+      }
+
+      if (isset($_POST['insert_order_status'])) {
+        $insert_order_status = HTML::sanitize($_POST['insert_order_status']);
+      } else {
+        $insert_order_status = 0;
+      }
+
+      if (isset($_POST['delete_order_status'])) {
+        $delete_order_status = HTML::sanitize($_POST['delete_order_status']);
+      } else {
+        $delete_order_status = 0;
+      }
+
       $sql_data_array = [
         'username' => $username,
         'api_key' => $api_key,
@@ -124,6 +149,10 @@
         'update_customer_status' => $update_customer_status,
         'insert_customer_status' => $insert_customer_status,
         'delete_customer_status' => $delete_customer_status,
+        'get_order_status' => $get_order_status,
+        'update_order_status' => $update_order_status,
+        'insert_order_status' => $insert_order_status,
+        'delete_order_status' => $delete_order_status,
       ];
 
       $this->app->db->save('api', $sql_data_array);

@@ -92,6 +92,12 @@
       return implode('', \call_user_func_array([$this, 'call'], \func_get_args()));
     }
 
+    /**
+     * @param string $group
+     * @param string $hook
+     * @param string $action
+     * @param $code
+     */
     public function watch(string $group, string $hook, string $action, $code)
     {
       $this->watches[$this->site][$group][$hook][$action][] = $code;

@@ -16,6 +16,19 @@ get_customer_status tinyint(1) not_null defaut(0)
 update_customer_status tinyint(1) not_null defaut(0)
 insert_customer_status tinyint(1) not_null defaut(0)
 delete_customer_status tinyint(1) not_null defaut(0)
+get_order_status tinyint(1) not_null defaut(0)
+update_order_status tinyint(1) not_null defaut(0)
+insert_order_status tinyint(1) not_null defaut(0)
+delete_order_status tinyint(1) not_null defaut(0)
+get_manufacturer_status tinyint(1) not_null defaut(0)
+update_manufacturer_status tinyint(1) not_null defaut(0)
+insert_manufacturer_status tinyint(1) not_null defaut(0)
+delete_manufacturer_status tinyint(1) not_null defaut(0)
+get_supplier_status tinyint(1) not_null defaut(0)
+update_supplier_status tinyint(1) not_null defaut(0)
+insert_supplier_status tinyint(1) not_null defaut(0)
+delete_supplier_status tinyint(1) not_null defaut(0)
+
 --
 primary api_id
 ##

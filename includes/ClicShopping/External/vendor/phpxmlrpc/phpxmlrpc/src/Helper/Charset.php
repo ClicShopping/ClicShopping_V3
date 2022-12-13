@@ -146,7 +146,7 @@ class Charset
             $destEncoding = 'US-ASCII';
         }
 
-        $conversion = mb_strtoupper($srcEncoding . '_' . $destEncoding);
+        $conversion = strtoupper($srcEncoding . '_' . $destEncoding);
 
         // list ordered with (expected) most common scenarios first
         switch ($conversion) {
@@ -235,6 +235,7 @@ class Charset
 
             case 'ISO-8859-1_UTF-8':
                 $escapedData = str_replace(array('&', '"', "'", '<', '>'), array('&amp;', '&quot;', '&apos;', '&lt;', '&gt;'), $data);
+                /// @todo if on php >= 8.2, prefer using mbstring or iconv
                 $escapedData = utf8_encode($escapedData);
                 break;
 
@@ -288,7 +289,7 @@ class Charset
         if (is_string($validList)) {
             $validList = explode(',', $validList);
         }
-        if (@in_array(mb_strtoupper($encoding), $validList)) {
+        if (@in_array(strtoupper($encoding), $validList)) {
             return true;
         } else {
             if (array_key_exists($encoding, $this->charset_supersets)) {

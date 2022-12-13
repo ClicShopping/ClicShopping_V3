@@ -36,7 +36,6 @@
 
     }
 
-
     public function execute()
     {
       if (!\defined('CLICSHOPPING_APP_FEATURED_FE_STATUS') || CLICSHOPPING_APP_FEATURED_FE_STATUS == 'False') {

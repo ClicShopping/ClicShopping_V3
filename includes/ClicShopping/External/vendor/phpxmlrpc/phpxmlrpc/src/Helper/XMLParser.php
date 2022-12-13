@@ -199,7 +199,7 @@ class XMLParser
                     ($name == 'METHODRESPONSE' && ($accept & self::ACCEPT_RESPONSE)) ||
                     ($name == 'VALUE' && ($accept & self::ACCEPT_VALUE)) ||
                     ($name == 'FAULT' && ($accept & self::ACCEPT_FAULT))) {
-                    $this->_xh['rt'] = mb_strtolower($name);
+                    $this->_xh['rt'] = strtolower($name);
                 } else {
                     $this->_xh['isf'] = 2;
                     $this->_xh['isf_reason'] = 'missing top level xmlrpc element. Found: ' . $name;
@@ -418,7 +418,7 @@ class XMLParser
                 case 'DOUBLE':
                 case 'DATETIME.ISO8601':
                 case 'BASE64':
-                    $this->_xh['vt'] = mb_strtolower($name);
+                    $this->_xh['vt'] = strtolower($name);
                     /// @todo: optimization creep - remove the if/elseif cycle below
                     /// since the case() in which we are already did that
                     if ($name == 'STRING') {
@@ -495,7 +495,7 @@ class XMLParser
                     // fetch out of stack array of values, and promote it to current value
                     $currVal = array_pop($this->_xh['valuestack']);
                     $this->_xh['value'] = $currVal['values'];
-                    $this->_xh['vt'] = mb_strtolower($name);
+                    $this->_xh['vt'] = strtolower($name);
                     if (isset($currVal['php_class'])) {
                         $this->_xh['php_class'] = $currVal['php_class'];
                     }
@@ -634,7 +634,7 @@ class XMLParser
         /// @todo this test will pass if ANY header has charset specification, not only Content-Type. Fix it?
         $matches = array();
         if (preg_match('/;\s*charset\s*=([^;]+)/i', $httpHeader, $matches)) {
-            return mb_strtoupper(trim($matches[1], " \t\""));
+            return strtoupper(trim($matches[1], " \t\""));
         }
 
         // 2 - scan the first bytes of the data for a UTF-16 (or other) BOM pattern
@@ -662,7 +662,7 @@ class XMLParser
         if (preg_match('/^<\?xml\s+version\s*=\s*' . "((?:\"[a-zA-Z0-9_.:-]+\")|(?:'[a-zA-Z0-9_.:-]+'))" .
             '\s+encoding\s*=\s*' . "((?:\"[A-Za-z][A-Za-z0-9._-]*\")|(?:'[A-Za-z][A-Za-z0-9._-]*'))/",
             $xmlChunk, $matches)) {
-            return mb_strtoupper(substr($matches[2], 1, -1));
+            return strtoupper(substr($matches[2], 1, -1));
         }
 
         // 4 - if mbstring is available, let it do the guesswork
