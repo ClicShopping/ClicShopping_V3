@@ -65,7 +65,6 @@
           'customers_email_address'       => $value['customers_email_address'],
           'customers_default_address_id'  => $value['customers_default_address_id'],
           'customers_telephone'           => $value['customers_telephone'],
-          'client_computer_ip'            => $value['client_computer_ip'],
           'customers_street_address'      => $value['customers_street_address'],
           'customers_suburb'              => $value['customers_suburb'],
           'customers_city'                => $value['customers_city'],
