@@ -30,10 +30,19 @@ ADD `delete_supplier_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `get_supplier
 ADD `insert_supplier_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `delete_supplier_status`,
 ADD `update_supplier_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `insert_supplier_status`;
 
+INSERT INTO `clic_administrator_menu` VALUES(790, 'index.php?A&Configuration\\Api&Api', 14, 14, 0, 'api.png', 0, 'app_configuration_api', 1);
 
 
 #English
+INSERT INTO administrator_menu_description VALUES(790, 'API management', 1);
+INSERT INTO `clic_configuration` VALUES(null, 'Sort Order', 'CLICSHOPPING_APP_API_AI_SORT_ORDER', '30', 'Sort order of display (the lowest is diplayed in first)', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Status', 'CLICSHOPPING_APP_API_AI_STATUS', 'True', 'Do you want to activate this module ?', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Parameter [Api App]', 'MODULE_MODULES_API_INSTALLED', 'Configuration\\Api\\AI', 'Parameter [Api App]', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
 
 
 
 #French
+INSERT INTO administrator_menu_description VALUES(790, 'Gestion API', 2);
+INSERT INTO `clic_configuration` VALUES(null, 'Ordre de tri d\'affichage', 'CLICSHOPPING_APP_API_AI_SORT_ORDER', '30', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Statut', 'CLICSHOPPING_APP_API_AI_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Parameter [Api App]', 'MODULE_MODULES_API_INSTALLED', 'Configuration\\Api\\AI', 'Parameter [Api App]', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);

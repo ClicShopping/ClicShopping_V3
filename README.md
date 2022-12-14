@@ -117,6 +117,8 @@ More information in the Wiki
 - Lazy load image optimization
 - Free modular Apps to create import or to import from osCommerce 2.x, OpenCart, ZenCart, Crealoaded, Prestashop .... database migration available on the marketplace
 - double authentification
+- API REST
+
 
 #Images
  ![image2](https://www.clicshopping.org/images/frontoffice.png)

@@ -197,6 +197,9 @@ INSERT INTO administrator_menu VALUES(786, 'index.php?A&Orders\\ReturnOrders&Ret
 INSERT INTO administrator_menu VALUES(787, 'index.php?A&Orders\\ReturnOrders&Configure', 14, 8, 1, '', 1, 'app_orders_return_orders', 1);
 INSERT INTO administrator_menu VALUES(788, 'index.php?A&Tools\\Cronjob&Cronjob', 163, 2, 0, 'return_orders.png', 0, 'app_tools_cronjob', 1);
 INSERT INTO administrator_menu VALUES(789, 'index.php?A&Configuration\\Settings&Settings&gID=46', 13, 11, 0, '', 1, NULL, 1);
+INSERT INTO administrator_menu VALUES(789, 'index.php?A&Configuration\\Settings&Settings&gID=46', 13, 11, 0, '', 1, NULL, 1);
+INSERT INTO administrator_menu VALUES(790, 'index.php?A&Configuration\\Api&Api', 14, 14, 0, 'api.png', 0, 'app_configuration_api', 1);
+
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
 INSERT INTO administrator_menu_description VALUES(0, '', 2);
@@ -264,8 +267,8 @@ INSERT INTO administrator_menu_description VALUES(39, 'Orders / invoices edition
 INSERT INTO administrator_menu_description VALUES(39, 'Edition commandes / factures', 2);
 INSERT INTO administrator_menu_description VALUES(42, 'Exports Security', 1);
 INSERT INTO administrator_menu_description VALUES(42, 'Sécurité exports', 2);
-INSERT INTO administrator_menu_description VALUES(44, 'API / SSL certificates', 1);
-INSERT INTO administrator_menu_description VALUES(44, 'Certificats SSL / API', 2);
+INSERT INTO administrator_menu_description VALUES(44, 'Proxy / SSL certificates', 1);
+INSERT INTO administrator_menu_description VALUES(44, 'Certificats SSL / Proxy', 2);
 INSERT INTO administrator_menu_description VALUES(45, 'Configuration', 1);
 INSERT INTO administrator_menu_description VALUES(45, 'Configuration', 2);
 INSERT INTO administrator_menu_description VALUES(46, 'Customers details', 1);
@@ -541,6 +544,9 @@ INSERT INTO administrator_menu_description VALUES(788, 'Cronjob', 1);
 INSERT INTO administrator_menu_description VALUES(788, 'Cronjob', 2);
 INSERT INTO administrator_menu_description VALUES(789, 'Double authentification', 1);
 INSERT INTO administrator_menu_description VALUES(789, 'Authentification double', 2);
+INSERT INTO administrator_menu_description VALUES(790, 'API management', 1);
+INSERT INTO administrator_menu_description VALUES(790, 'Gestion API', 2);
+
 
 INSERT INTO api VALUES(1, 'Default', 'd0a36b839700b60727fe13998e22aa0af197c61d8b371e26114c133ca51c4864bd0da73ad6d1e5090b02b55cff42b8a0cd23866e64e78fc8884eb6228d32f5e9d76bed468869dd89ee6bb8a3208c5077e88560d0bc238f67cfc732efcf5313a0cb361e297c29c8d82d050d770ed7dee972af6445e801fa9af12e3d478bf5346a', 1, '2022-09-18 14:25:54', '2022-09-18 14:25:54', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO api_ip VALUES(1, 1, '127.0.0.1');
@@ -1549,6 +1555,9 @@ INSERT INTO configuration VALUES(1561, 'Titre court double authentification site
 INSERT INTO configuration VALUES(1562, 'Double authentification TOTP Catalogue', 'CLICSHOPPING_TOTP_CATALOG', 'False', 'Souhaitez-vous activer cette fonctionnalité de double authentification<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 46, 2, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1563, 'Double authentification TOTP Administration', 'CLICSHOPPING_TOTP_ADMIN', 'False', 'Souhaitez-vous activer cette fonctionnalité de double authentification<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 46, 4, NULL, '2018-07-29 16:22:38', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1564, 'Souhaitez-vous activer la vérification du Numéro de TVA Intracommunautaire via un webservice (Europe seulement)', 'ACCOUNT_TVA_INTRACOM_PRO_VERIFICATION', 'false', 'La vérification du numéro de TVA Intracom se fait via un appel de webservice.<br>site : https://ec.europa.eu/taxation_customs/vies/<br><i>(Valeur True = Oui - Valeur False = Non)</i><br><br><font color="#FF0000"><b> Note :</b> Valide uniquement pour l\'europe</font>', 18, 9, '2006-10-29 16:05:56', '2006-04-26 14:43:56', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+INSERT INTO configuration VALUES(1565, 'Ordre de tri d\'affichage', 'CLICSHOPPING_APP_API_AI_SORT_ORDER', '30', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
+INSERT INTO configuration VALUES(1566, 'Statut', 'CLICSHOPPING_APP_API_AI_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
+INSERT INTO configuration VALUES(1567, 'Parameter [Api App]', 'MODULE_MODULES_API_INSTALLED', 'Configuration\\Api\\AI', 'Parameter [Api App]', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
@@ -1591,6 +1600,7 @@ INSERT INTO configuration_group VALUES(43, 'Configuration générale et diverse 
 INSERT INTO configuration_group VALUES(44, 'Web Service', 'Se connecter a une application externe', 1, 1);
 INSERT INTO configuration_group VALUES(45, 'Configuration HTTP', 'Configuration HTTP', 1, 1);
 INSERT INTO configuration_group VALUES(46, 'Double Authentification', 'Double Authentification TOTP / 2FA', '1', '1');
+
 
 INSERT INTO countries VALUES(1, 'Afghanistan', 'AF', 'AFG', 1, 1);
 INSERT INTO countries VALUES(2, 'Albania', 'AL', 'ALB', 1, 1);
@@ -1866,6 +1876,7 @@ INSERT INTO orders_status VALUES(3, 2, 'Livré', 1, 0, 0, 0);
 INSERT INTO orders_status VALUES(3, 1, 'Delivered', 1, 0, 0, 0);
 INSERT INTO orders_status VALUES(4, 2, 'Annulé', 1, 0, 0, 1);
 INSERT INTO orders_status VALUES(4, 1, 'Cancelled', 1, 0, 0, 1);
+
 
 INSERT INTO orders_status_invoice VALUES(1, 1, 'Order');
 INSERT INTO orders_status_invoice VALUES(1, 2, 'Commande');

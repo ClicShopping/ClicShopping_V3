@@ -5,7 +5,7 @@ mb_strtoupper => mb_mb_strtoupper
 utf8_decode => CLICSHOPPING::utf8Decode()
 utf8_encode => CLICSHOPPING::utf8Encode()
 others little fix
-Add API Apps
+Add API REST Apps
 Refactorisation
 
 --------------------
