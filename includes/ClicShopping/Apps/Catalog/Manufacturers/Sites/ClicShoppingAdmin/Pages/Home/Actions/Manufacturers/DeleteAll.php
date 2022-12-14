@@ -19,6 +19,7 @@
     public function execute()
     {
       $this->app = Registry::get('Manufacturers');
+      $this->Hooks = Registry::get('Hooks');
 
       if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
@@ -36,6 +37,8 @@
           $Qupdate->bindInt(':manufacturers_id', $id);
 
           $Qupdate->execute();
+
+          $this->Hooks->call('Manufacturers', 'Delete');
         }
       }
 

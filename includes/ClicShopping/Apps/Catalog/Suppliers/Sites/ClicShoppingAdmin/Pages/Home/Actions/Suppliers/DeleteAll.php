@@ -19,6 +19,7 @@
     public function __construct()
     {
       $this->app = Registry::get('Suppliers');
+      $this->Hooks = Registry::get('Hooks');
     }
 
     public function execute()
@@ -48,6 +49,8 @@
           $Qupdate->bindInt(':suppliers_id1', $id);
 
           $Qupdate->execute();
+
+          $this->Hooks->call('Suppliers', 'Delete');
         }
       }
 
