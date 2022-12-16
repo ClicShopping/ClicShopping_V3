@@ -646,7 +646,8 @@
           <?php
           $Qip = $CLICSHOPPING_Api->db->prepare('select api_ip_id,
                                                          api_id,
-                                                         ip
+                                                         ip,
+                                                         comment
                                                   from :table_api_ip
                                                   where api_id = :api_id
                                                 ');
@@ -682,10 +683,18 @@
                                       <?php echo HTML::inputField('ip'); ?>
                                     </div>
                                   </div>
+                                  <div class="form-group row">
+                                    <label for="<?php echo $CLICSHOPPING_Api->getDef('text_comment'); ?>"
+                                           class="col-3 col-form-label"><?php echo $CLICSHOPPING_Api->getDef('text_comment'); ?></label>
+                                    <div class="col-md-7">
+                                      <?php echo HTML::inputField('comment'); ?>
+                                    </div>
+                                  </div>
+
                                 </div>
                                 <div class="separator"></div>
                                 <div class="text-center">
-                                  <?php echo HTML::button('text_add', null, null, 'success');?>
+                                  <?php echo HTML::button($CLICSHOPPING_Api->getDef('text_add'), null, null, 'success');?>
                                 </div>
                               </div>
                               </form>
@@ -706,6 +715,7 @@
             <thead class="dataTableHeadingRow">
             <tr>
               <td><?php echo $CLICSHOPPING_Api->getDef('text_ip'); ?></td>
+              <td><?php echo $CLICSHOPPING_Api->getDef('text_heading_comment'); ?></td>
               <td class="text-end"><?php echo $CLICSHOPPING_Api->getDef('text_action'); ?></td>
             </tr>
             </thead>
@@ -715,11 +725,12 @@
               ?>
               <tr>
                 <td><?php echo $value['ip']; ?></td>
+                <td><?php echo $value['comment']; ?></td>
                 <td class="text-end">
                   <?php
                   echo HTML::link($CLICSHOPPING_Api->link('Api&DeleteIP&dID=' . $value['api_ip_id'] .'&cID=' . $cId), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Api->getDef('icon_delete') . '"></i></h4>');
                   echo '&nbsp;';
-                  ?>
+                  ?></td>
               </tr>
               <?php
             }

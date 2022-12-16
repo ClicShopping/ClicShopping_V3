@@ -30,6 +30,8 @@ ADD `delete_supplier_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `get_supplier
 ADD `insert_supplier_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `delete_supplier_status`,
 ADD `update_supplier_status` TINYINT(1) NOT NULL DEFAULT '0' AFTER `insert_supplier_status`;
 
+ALTER TABLE `clic_api_ip` ADD `comment` VARCHAR(255) NULL DEFAULT NULL AFTER `ip`;
+
 INSERT INTO `clic_administrator_menu` VALUES(790, 'index.php?A&Configuration\\Api&Api', 14, 14, 0, 'api.png', 0, 'app_configuration_api', 1);
 
 

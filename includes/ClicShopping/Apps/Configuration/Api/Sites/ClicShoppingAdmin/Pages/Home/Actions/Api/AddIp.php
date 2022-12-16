@@ -30,10 +30,12 @@
       if (isset($_GET['AddIp'])) {
         $api_id = HTML::sanitize($_GET['cID']);
         $ip = HTML::sanitize($_POST['ip']);
+        $comment = HTML::sanitize($_POST['comment']);
 
         $sql_data_array = [
           'api_id' => $api_id,
           'ip' => $ip,
+          'comment' => $comment,
         ];
 
         $this->app->db->save('api_ip', $sql_data_array);

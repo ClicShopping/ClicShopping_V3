@@ -64,6 +64,7 @@ text_token = Token
 text_date_added = Date added
 text_date_modified = Date modified
 text_api_generate_key = Generate a key
+text_comment = Comment
 
 text_heading_product_management = Products
 text_heading_categories_management = Categories
@@ -71,11 +72,12 @@ text_heading_customers_management = Customers
 text_heading_orders_management = Orders
 text_heading_manufacturers_management = Manufacturers
 text_heading_suppliers_management = Suppliers
+text_heading_comment = Comments
+
 text_get_status = Display (GET)
 text_delete_status = Delete (DELETE)
 text_update_status = Update (POST)
 text_insert_status = Insert (POST)
-
 
 text_info_warning = You must save your Api before to add some others elements
 text_info_message = Below you can create a list of IP's allowed to access the API. Your current IP is {{ip_address}}
