@@ -202,7 +202,7 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
           </tbody>
         </table>
         <br>
-        <div><h5><?php echo TEXT_PHP_EXTENSION; ?></h5></div>
+        <div><h5><?php echo TEXT_CHECK_RIGHT; ?></h5></div>
         <table class="table table-bordered">
           <thead>
           <tr>

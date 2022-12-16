@@ -50,6 +50,8 @@ define('TEXT_XML','XML');
 define('TEXT_XML_RPC','XML-RPC (webservice)');
 define('TEXT_CURL','cURL');
 define('TEXT_OPENSSL','OpenSSL');
+define('TEXT_CHECK_RIGHT','Please, check if the rights are correct (777)');
+
 
 define('TEXT_NOTES','Notes :');
 define('TEXT_NOTICE','<blockquote>- Please note that some servers do not accept human rights analysis on directories.</blockquote>
