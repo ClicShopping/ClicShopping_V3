@@ -285,6 +285,7 @@
     }
 
     /**
+     * to remove not update with some tab
      * @param array $result
      * @param string $directory
      * @param string $name_space_config

@@ -16,7 +16,6 @@
 
   class Api extends \ClicShopping\OM\AppAbstract
   {
-
     protected $api_version = 1;
     protected string $identifier = 'ClicShopping_Api_V1';
 
@@ -38,13 +37,49 @@
         $name_space_config = 'ClicShopping\Apps\Configuration\Api\Module\ClicShoppingAdmin\Config';
         $trigger_message = 'ClicShopping\Apps\Configuration\Api\Api::getConfigModules(): ';
 
-        $this->getConfigApps($result, $directory, $name_space_config, $trigger_message);
+        if ($dir = new \DirectoryIterator($directory)) {
+          foreach ($dir as $file) {
+            if (!$file->isDot() && $file->isDir() && is_file($file->getPathname() . '/' . $file->getFilename() . '.php')) {
+              $class = '' . $name_space_config . '\\' . $file->getFilename() . '\\' . $file->getFilename();
+
+              if (is_subclass_of($class, '' . $name_space_config .'\ConfigAbstract')) {
+                $sort_order = $this->getConfigModuleInfo($file->getFilename(), 'sort_order');
+                if ($sort_order > 0) {
+                  $counter = $sort_order;
+                } else {
+                  $counter = count($result);
+                }
+
+                while (true) {
+                  if (isset($result[$counter])) {
+                    $counter++;
+
+                    continue;
+                  }
+
+                  $result[$counter] = $file->getFilename();
+
+                  break;
+                }
+              } else {
+                trigger_error('' . $trigger_message .'' . $name_space_config .'\\' . $file->getFilename() . '\\' . $file->getFilename() . ' is not a subclass of ' . $name_space_config . '\ConfigAbstract and cannot be loaded.');
+              }
+            }
+
+            ksort($result, SORT_NUMERIC);
+          }
+        }
       }
 
       return $result;
     }
 
-    public function getConfigModuleInfo($module, $info)
+    /**
+     * @param string $module
+     * @param string $info
+     * @return mixed
+     */
+    public function getConfigModuleInfo(string $module, string $info) :mixed
     {
       if (!Registry::exists('ApiAdminConfig' . $module)) {
         $class = 'ClicShopping\Apps\Configuration\Api\Module\ClicShoppingAdmin\Config\\' . $module . '\\' . $module;
@@ -55,8 +90,10 @@
       return Registry::get('ApiAdminConfig' . $module)->$info;
     }
 
-
-    public function getApiVersion()
+    /**
+     * @return string|int
+     */
+    public function getApiVersion(): string|int
     {
       return $this->api_version;
     }
@@ -67,16 +104,5 @@
     public function getIdentifier() :String
     {
       return $this->identifier;
-    }
-
-    /**
-     * @param string $message
-     * @param string $version
-     */
-      public function logUpdate(string $message, string $version)
-    {
-      if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/Log')) {
-        file_put_contents(CLICSHOPPING::BASE_DIR . 'Work/Log/apiLog-' . $version . '.log', '[' . date('d-M-Y H:i:s') . '] ' . $message . "\n", FILE_APPEND);
-      }
     }
   }
