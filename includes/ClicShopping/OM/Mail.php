@@ -187,7 +187,7 @@
     /**
      * @param string $encoding
      */
-    public function setContentTransferEncoding(string $encoding)
+    public function setContentTransferEncoding(string $encoding): void
     {
       $this->phpMail->Encoding = $encoding;
     }
@@ -217,7 +217,7 @@
     /**
      * Clear all recipients
      */
-    public function clearTo()
+    public function clearTo(): void
     {
       $this->phpMail->clearAllRecipients();
     }
@@ -225,7 +225,7 @@
     /**
      * @param string $charset
      */
-    public function setCharset(string $charset)
+    public function setCharset(string $charset): void
     {
       $this->phpMail->CharSet = $charset;
     }
@@ -234,7 +234,7 @@
      * @param string $key
      * @param string $value
      */
-    public function addHeader(string $key, string $value)
+    public function addHeader(string $key, string $value): void
     {
       $this->phpMail->addCustomHeader($key, $value);
     }
@@ -242,7 +242,7 @@
     /**
      * Clear header
      */
-    public function clearHeaders()
+    public function clearHeaders(): void
     {
       $this->phpMail->clearCustomHeaders();
     }
@@ -251,7 +251,7 @@
      *
      * @return mixed
      */
-    public function getMailer()
+    public function getMailer(): mixed
     {
       return $this->phpMail;
     }
@@ -277,7 +277,7 @@
      * @param string $subject
      * @param bool $reply_to
      * @return bool
-     * @throws \PHPMailer\PHPMailer\Exception
+     * @throws Exception
      */
     public function send(?string $to_addr, ?string $from_name, ?string $from_addr, ?string $to_name = '', string $subject = '', bool $reply_to = false): bool
     {

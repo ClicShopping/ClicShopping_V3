@@ -114,7 +114,6 @@
         $this->language = $this->code;
       } else {
         $this->language = 'en';
-        trigger_error('ClicShopping\OM\Language::set() - The language does not exist: ' . $this->code . ' En language choose by default');
       }
     }
 

@@ -602,16 +602,16 @@
         },
         {
             "name": "phpxmlrpc/phpxmlrpc",
-            "version": "4.9.1",
+            "version": "4.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gggeek/phpxmlrpc.git",
-                "reference": "c7ee2a7b266244fc2c14fec177024b3f055509ca"
+                "reference": "805d727670b7a7c08c9f129327482f13a4c1ea11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/c7ee2a7b266244fc2c14fec177024b3f055509ca",
-                "reference": "c7ee2a7b266244fc2c14fec177024b3f055509ca",
+                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/805d727670b7a7c08c9f129327482f13a4c1ea11",
+                "reference": "805d727670b7a7c08c9f129327482f13a4c1ea11",
                 "shasum": ""
             },
             "require": {
@@ -655,9 +655,9 @@
             ],
             "support": {
                 "issues": "https://github.com/gggeek/phpxmlrpc/issues",
-                "source": "https://github.com/gggeek/phpxmlrpc/tree/4.9.1"
+                "source": "https://github.com/gggeek/phpxmlrpc/tree/4.9.2"
             },
-            "time": "2022-12-12T11:30:38+00:00"
+            "time": "2022-12-18T21:47:48+00:00"
         },
         {
             "name": "psr/http-client",

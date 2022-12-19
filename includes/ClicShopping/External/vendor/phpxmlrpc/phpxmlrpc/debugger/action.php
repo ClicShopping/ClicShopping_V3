@@ -11,10 +11,8 @@
 
 header('Content-Type: text/html; charset=utf-8');
 
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+?><!DOCTYPE html>
+<html lang="en">
 <head>
     <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
     <title><?php if (defined('DEFAULT_WSTYPE') && DEFAULT_WSTYPE == 1) echo 'JSONRPC'; else echo 'XMLRPC'; ?> Debugger</title>
@@ -24,7 +22,7 @@ header('Content-Type: text/html; charset=utf-8');
         body {
             border-top: 1px solid gray;
             padding: 1em;
-            font-family: Verdana, Arial, Helvetica;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
             font-size: 8pt;
         }
 
@@ -546,6 +544,7 @@ if ($action) {
 
     <h3>Changelog</h3>
     <ul>
+        <li>2022-12-18: fix XSS vulnerability in the debugger; load jsxmlrpc from CDN; minor improvements</li>
         <li>2022-11-28: allow to use http/2 protocol; two security issues fixed in the underlying library</li>
         <li>2020-12-11: fix problems with running the debugger on php 8</li>
         <li>2015-05-30: fix problems with generating method payloads for NIL and Undefined parameters</li>
