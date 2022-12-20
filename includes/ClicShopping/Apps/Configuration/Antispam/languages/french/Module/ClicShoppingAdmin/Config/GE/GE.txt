@@ -1,0 +1,5 @@
+module_ge_title = Général
+module_ge_short_title = Général
+module_ge_public_title = Général
+
+module_ge_introduction = Ce module vous permet d'installer des anti spams

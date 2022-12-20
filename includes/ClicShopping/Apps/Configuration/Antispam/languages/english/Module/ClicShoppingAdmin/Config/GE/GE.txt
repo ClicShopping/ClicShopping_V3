@@ -1,0 +1,5 @@
+module_ge_title = General
+module_ge_short_title = General
+module_ge_public_title = General
+
+module_ge_introduction = This module allows you to install some different antispam

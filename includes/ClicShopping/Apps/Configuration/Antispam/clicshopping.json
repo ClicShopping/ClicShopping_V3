@@ -1,0 +1,26 @@
+{
+ "title":	"Antispam App",
+ "app": "Antispam",
+ "vendor":"Configuration",
+ "version":	"1.0.2",
+ "req_core_version":	"3.0",
+ "license":	"GPL-2",
+ "authors": [
+  {
+   "name": "ClicShopping",
+   "company":	"ClicShopping",
+   "email":	"admin@clicshopping.org",
+   "website":	"https://www.clicshopping.org"
+  }
+ ],
+ "modules": {
+  "Hooks": {
+   "Shop/Contact": {
+    "PreAction":	"Module\\Hooks\\Shop\\Info\\Contact\\PreAction"
+   }
+  }
+ },
+ "routes": {
+  "ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home"
+ }
+}
