@@ -51,7 +51,7 @@
           'image' => 'archive.gif',
           'b2b_menu' => 0,
           'access' => 0,
-          'app_code' => 'app_catalog_archive'
+          'app_code' => 'app_products_archive'
         ];
 
         $insert_sql_data = ['parent_id' => 3];
