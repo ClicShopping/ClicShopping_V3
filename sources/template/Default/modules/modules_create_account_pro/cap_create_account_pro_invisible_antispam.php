@@ -13,7 +13,7 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
 
-  class ca_create_account_invisible_antispam {
+  class cap_create_account_pro_invisible_antispam {
     public string $code;
     public $group;
     public $title;
@@ -25,14 +25,14 @@
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
-      $this->title = CLICSHOPPING::getDef('modules_create_account_invisible_antispam_title');
-      $this->description = CLICSHOPPING::getDef('modules_create_account_invisible_antispam_description');
+      $this->title = CLICSHOPPING::getDef('modules_create_account_pro_invisible_antispam_title');
+      $this->description = CLICSHOPPING::getDef('modules_create_account_pro_invisible_antispam_description');
 
       if (\defined('CLICSHOPPING_APP_ANTISPAM_AM_STATUS')) {
-        if (CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT == 'True' && CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT == 'True') {
-          if (\defined('MODULES_CREATE_ACCOUNT_INVISIBLE_ANTISPAM_STATUS')) {
-            $this->enabled = (MODULES_CREATE_ACCOUNT_INVISIBLE_ANTISPAM_STATUS  == 'True');
-            $this->sort_order = (int)MODULES_CREATE_ACCOUNT_INVISIBLE_ANTISPAM_SORT_ORDER ?? 0;
+        if (CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT_PRO == 'True' && CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT_PRO == 'True') {
+          if (\defined('MODULES_CREATE_ACCOUNT_PRO_INVISIBLE_ANTISPAM_STATUS')) {
+            $this->enabled = (MODULES_CREATE_ACCOUNT_PRO_INVISIBLE_ANTISPAM_STATUS  == 'True');
+            $this->sort_order = (int)MODULES_CREATE_ACCOUNT_PRO_INVISIBLE_ANTISPAM_SORT_ORDER ?? 0;
           }
         } else {
           $this->enabled = false;
@@ -43,12 +43,12 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Account'], $_GET['Create']) && !isset($_GET['Success'])) {
-        $create_account_invisible_antispam = '<!--  create_account_invisible_invisible_antispam start -->' . "\n";
-        $create_account_invisible_antispam .= HTML::inputField('invisible_clicshopping', '', 'id="hiddenRecaptcha"', null, null, 'hiddenRecaptcha');
-        $create_account_invisible_antispam .= '<!-- create_account_invisible_invisible_antispam end -->' . "\n";
+      if (isset($_GET['Account'], $_GET['CreatePro']) && !isset($_GET['Success'])) {
+        $create_account_pro_invisible_antispam = '<!--  create_account_pro_invisible_invisible_antispam start -->' . "\n";
+        $create_account_pro_invisible_antispam .= HTML::inputField('invisible_clicshopping', '', 'id="hiddenRecaptcha"', null, null, 'hiddenRecaptcha');
+        $create_account_pro_invisible_antispam .= '<!-- create_account_pro_invisible_invisible_antispam end -->' . "\n";
 
-        $CLICSHOPPING_Template->addBlock($create_account_invisible_antispam, $this->group);
+        $CLICSHOPPING_Template->addBlock($create_account_pro_invisible_antispam, $this->group);
       }
     }
 
@@ -57,7 +57,7 @@
     }
 
     public function check() {
-      return \defined('MODULES_CREATE_ACCOUNT_INVISIBLE_ANTISPAM_STATUS');
+      return \defined('MODULES_CREATE_ACCOUNT_PRO_INVISIBLE_ANTISPAM_STATUS');
     }
 
     public function install() {
@@ -65,7 +65,7 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Do you want to enable this module ?',
-          'configuration_key' => 'MODULES_CREATE_ACCOUNT_INVISIBLE_ANTISPAM_STATUS',
+          'configuration_key' => 'MODULES_CREATE_ACCOUNT_PRO_INVISIBLE_ANTISPAM_STATUS',
           'configuration_value' => 'True',
           'configuration_description' => 'Do you want to enable this module in your shop ?',
           'configuration_group_id' => '6',
@@ -77,7 +77,7 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
-          'configuration_key' => 'MODULES_CREATE_ACCOUNT_INVISIBLE_ANTISPAM_SORT_ORDER',
+          'configuration_key' => 'MODULES_CREATE_ACCOUNT_PRO_INVISIBLE_ANTISPAM_SORT_ORDER',
           'configuration_value' => '360',
           'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
           'configuration_group_id' => '6',
@@ -93,8 +93,8 @@
     }
 
     public function keys() {
-      return ['MODULES_CREATE_ACCOUNT_INVISIBLE_ANTISPAM_STATUS',
-              'MODULES_CREATE_ACCOUNT_INVISIBLE_ANTISPAM_SORT_ORDER'
+      return ['MODULES_CREATE_ACCOUNT_PRO_INVISIBLE_ANTISPAM_STATUS',
+              'MODULES_CREATE_ACCOUNT_PRO_INVISIBLE_ANTISPAM_SORT_ORDER'
              ];
     }
   }

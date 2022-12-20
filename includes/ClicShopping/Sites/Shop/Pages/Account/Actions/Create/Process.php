@@ -24,7 +24,6 @@
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -112,7 +111,6 @@
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_confirm_not_matching'), 'error');
         } else {
-
           $Qcheckemail = $CLICSHOPPING_Db->prepare('select customers_id
                                                     from :table_customers
                                                     where customers_email_address = :customers_email_address

@@ -8,7 +8,7 @@
    *
    */
 
-  namespace ClicShopping\Apps\Configuration\Antispam\Module\Hooks\Shop\Account\Create;
+  namespace ClicShopping\Apps\Configuration\Antispam\Module\Hooks\Shop\Account\CreatePro;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
@@ -40,7 +40,7 @@
 
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_STATUS') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
         $error = false;
-      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_CREATE_ACCOUNT') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
+      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_CREATE_ACCOUNT_PRO') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
         $error = false;
       } elseif (!isset($_POST['invisible_clicshopping'])) {
         $error = true;
@@ -56,7 +56,7 @@
     {
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_STATUS') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
         $error = false;
-      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
+      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT_PRO') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
         $error = false;
       } else {
         $error = AntiSpam::checkNumericAntiSpam();

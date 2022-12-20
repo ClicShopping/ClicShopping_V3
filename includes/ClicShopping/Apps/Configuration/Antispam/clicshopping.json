@@ -20,6 +20,9 @@
    },
    "Shop/Create": {
     "PreAction":	"Module\\Hooks\\Shop\\Account\\Create\\PreAction"
+   },
+   "Shop/CreatePro": {
+    "PreAction":	"Module\\Hooks\\Shop\\Account\\CreatePro\\PreAction"
    }
    }
   }

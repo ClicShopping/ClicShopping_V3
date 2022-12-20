@@ -88,7 +88,6 @@
           $ape =  null;
         }
 
-
         if (isset($_POST['tva_intracom']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') {
           $tva_intracom = HTML::sanitize($_POST['tva_intracom']);
 
@@ -237,7 +236,6 @@
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_confirmation_check_error_pro'), 'error');
         } else {
-
           $Qcheckemail = $CLICSHOPPING_Db->prepare('select customers_id
                                                     from :table_customers
                                                     where customers_email_address = :customers_email_address
@@ -445,7 +443,6 @@
           if (ACCOUNT_SIRET_PRO == 'true') $sql_data_array['customers_siret'] = $siret;
           if (ACCOUNT_APE_PRO == 'true') $sql_data_array['customers_ape'] = $ape;
           if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom'] = $tva_intracom;
-
           if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom_code_iso'] = $iso;
 
           $CLICSHOPPING_Db->save('customers', $sql_data_array);
