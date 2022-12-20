@@ -2,8 +2,8 @@
  "title":	"Antispam App",
  "app": "Antispam",
  "vendor":"Configuration",
- "version":	"1.0.2",
- "req_core_version":	"3.0",
+ "version":	"1.0.3",
+ "req_core_version":	"3.3",
  "license":	"GPL-2",
  "authors": [
   {
@@ -17,6 +17,10 @@
   "Hooks": {
    "Shop/Contact": {
     "PreAction":	"Module\\Hooks\\Shop\\Info\\Contact\\PreAction"
+   },
+   "Shop/Create": {
+    "PreAction":	"Module\\Hooks\\Shop\\Account\\Create\\PreAction"
+   }
    }
   }
  },

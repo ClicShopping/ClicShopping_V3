@@ -8,7 +8,7 @@
    *
    */
 
-  namespace ClicShopping\Apps\Configuration\Antispam\Module\Hooks\Shop\Info\Contact;
+  namespace ClicShopping\Apps\Configuration\Antispam\Module\Hooks\Shop\Account\Create;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
@@ -40,7 +40,7 @@
 
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_STATUS') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
         $error = false;
-      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_CONTACT') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
+      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_CREATE_ACCOUNT') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
         $error = false;
       } elseif (!isset($_POST['invisible_clicshopping'])) {
         $error = true;
@@ -57,7 +57,7 @@
     {
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_STATUS') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
         $error = false;
-      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_CONTACT') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
+      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
         $error = false;
       } else {
         $error = AntiSpam::checkNumericAntiSpam();
@@ -66,15 +66,13 @@
       return $error;
     }
 
-
-
     public function execute()
     {
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_STATUS') || CLICSHOPPING_APP_ANTISPAM_STATUS == 'False') {
         return false;
       }
 
-      if (isset($_GET['Info'], $_GET['Contact'], $_GET['Process'])) {
+      if (isset($_GET['Account'], $_GET['Create'], $_GET['Process'])) {
         $error = false;
 
         $error_invisible = static::checkInvisibleAntispam();
@@ -85,8 +83,8 @@
         }
 
         if ($error === true) {
-          $this->messageStack->add(CLICSHOPPING::getDef('text_error_antispam'), 'error');
-          CLICSHOPPING::redirect(null, 'Info&Contact');
+            $this->messageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error_number'), 'error');
+            CLICSHOPPING::redirect(null, 'Account&Create');
         }
       }
     }

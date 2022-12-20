@@ -39,7 +39,7 @@
      * @param string $antispan_confirmation
      * @return bool
      */
-    private static function checkNumericAntispam($antispan_confirmation): bool
+    private static function checkNumeric($antispan_confirmation): bool
     {
       if (isset($_SESSION['createResponseAntiSpam'])) {
         if ($antispan_confirmation === $_SESSION['createResponseAntiSpam']) {
@@ -60,14 +60,14 @@
      *
      * @return bool
      */
-    public static function checkInvisibleAntiSpam(): bool
+    public static function checkNumericAntiSpam(): bool
     {
       $error = false;
       if (isset($_POST['antispam'])) {
         $antispam = HTML::sanitize($_POST['antispam']);
         $result = md5($antispam);
 
-        if (self::checkNumericAntispam($result) === true) {
+        if (self::checkNumeric($result) === true) {
           $error = true;
         }
       } else {

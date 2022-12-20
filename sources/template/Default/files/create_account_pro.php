@@ -9,6 +9,11 @@
  */
   use ClicShopping\OM\CLICSHOPPING;
 
+
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
+  }
+
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="create_account_pro" id="create_account_pro">
