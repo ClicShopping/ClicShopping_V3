@@ -13,12 +13,14 @@
 
   $CLICSHOPPING_Template = Registry::get('Template');
   $CLICSHOPPING_Customer = Registry::get('Customer');
-  $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
   if (!$CLICSHOPPING_Customer->isLoggedOn()) {
     CLICSHOPPING::redirect(null, 'Account&LogIn');
   }
-// Do not touch the script below
+
+  if ($CLICSHOPPING_MessageStack->exists('rewiews_write')) {
+    echo $CLICSHOPPING_MessageStack->get('rewiews_write');
+  }
 ?>
 <?php require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb')); ?>
 <section class="product_reviews_write_success" id="product_reviews_write_success">

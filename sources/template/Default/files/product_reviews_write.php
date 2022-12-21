@@ -21,8 +21,8 @@
     CLICSHOPPING::redirect(null, 'Account&LogIn');
   }
 
-  if ($CLICSHOPPING_MessageStack->exists('rewiews_write')) {
-    echo $CLICSHOPPING_MessageStack->get('rewiews_write');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   $message_alert = CLICSHOPPING::getDef('text_alert_products_reviews');

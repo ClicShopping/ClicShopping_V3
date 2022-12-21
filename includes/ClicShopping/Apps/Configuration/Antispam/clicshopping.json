@@ -23,6 +23,9 @@
    },
    "Shop/CreatePro": {
     "PreAction":	"Module\\Hooks\\Shop\\Account\\CreatePro\\PreAction"
+   },
+   "Shop/ReviewsWrite": {
+    "PreAction":	"Module\\Hooks\\Shop\\Customers\\ReviewsWrite\\PreAction"
    }
    }
   }

@@ -15,7 +15,6 @@
 
   class Success extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_Template = Registry::get('Template');
