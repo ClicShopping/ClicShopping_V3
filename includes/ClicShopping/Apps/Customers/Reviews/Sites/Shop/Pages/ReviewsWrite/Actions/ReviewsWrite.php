@@ -16,10 +16,8 @@
 
   class ReviewsWrite extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
       $CLICSHOPPING_Db = Registry::get('Db');

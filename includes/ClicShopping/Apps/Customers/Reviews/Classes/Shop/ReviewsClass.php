@@ -264,6 +264,7 @@
      */
     public function saveEntry()
     {
+
       if ($this->customer->getCustomersGroupID() == 0) {
         $array_sql = [
           'products_id' => (int)$this->productsCommon->getID(),
