@@ -26,6 +26,9 @@
    },
    "Shop/ReviewsWrite": {
     "PreAction":	"Module\\Hooks\\Shop\\Customers\\ReviewsWrite\\PreAction"
+   },
+   "Shop/TellAFriend": {
+    "PreAction":	"Module\\Hooks\\Shop\\Products\\TellAFriend\\PreAction"
    }
    }
   }
