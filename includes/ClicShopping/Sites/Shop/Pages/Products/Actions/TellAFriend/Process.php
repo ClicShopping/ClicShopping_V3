@@ -21,10 +21,8 @@
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract
   {
-
-    public function execute()
+   public function execute()
     {
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Mail = Registry::get('Mail');
@@ -106,9 +104,7 @@
           $email_body .= TemplateEmail::getTemplateEmailSignature();
 
           $to_addr = $to_email_address;
-          $from_name = $from_name;
           $from_addr = $from_email_address;
-          $to_name = $to_name;
           $subject = $email_subject;
 
           $CLICSHOPPING_Mail->addHtml($email_body);

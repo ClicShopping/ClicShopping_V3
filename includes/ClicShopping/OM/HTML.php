@@ -887,7 +887,7 @@
      */
     public static function stars(int $rating = 0, bool $meta = true, string $style = 'text-warning'): string
     {
-      $stars = str_repeat('<i class="fas fa-star ' . $style . '"></i>', $rating);
+      $stars = str_repeat('<i class="bi bi-star-fill ' . $style . '"></i>', $rating);
 
       if ($meta !== false) {
         $stars .= '<meta itemprop="rating" content="' . $rating . '" />';

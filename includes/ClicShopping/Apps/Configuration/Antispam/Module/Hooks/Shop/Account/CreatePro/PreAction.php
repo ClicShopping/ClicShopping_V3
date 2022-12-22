@@ -52,7 +52,7 @@
     /**
      * @return bool
      */
-    private static function checkMumericAntispam() :bool
+    private static function checkNumericAntispam() :bool
     {
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_STATUS') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
         $error = false;
@@ -75,7 +75,7 @@
         $error = false;
 
         $error_invisible = static::checkInvisibleAntispam();
-        $error_numeric = static::checkMumericAntispam();
+        $error_numeric = static::checkNumericAntispam();
 
         if ($error_invisible === true || $error_numeric === true) {
           $error = true;

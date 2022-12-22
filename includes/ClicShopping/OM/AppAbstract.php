@@ -277,7 +277,7 @@
     /**
      * @param string $key
      */
-    final public function deleteCfgParam(string $key)
+    final public function deleteCfgParam(string $key) :void
     {
       $this->db->delete('configuration', [
         'configuration_key' => $key
