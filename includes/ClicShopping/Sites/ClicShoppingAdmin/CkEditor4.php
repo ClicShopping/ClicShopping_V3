@@ -24,7 +24,7 @@
       */
     public static function getWysiwyg(): string
     {
-      $script = '<script src="//cdn.ckeditor.com/4.20.0/full/ckeditor.js"></script>';
+      $script = '<script src="//cdn.ckeditor.com/4.20.1/full/ckeditor.js"></script>';
 
       return $script;
     }

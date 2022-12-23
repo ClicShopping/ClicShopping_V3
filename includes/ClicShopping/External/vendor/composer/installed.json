@@ -617,17 +617,17 @@
         },
         {
             "name": "phpxmlrpc/phpxmlrpc",
-            "version": "4.9.3.1",
-            "version_normalized": "4.9.3.1",
+            "version": "4.9.3",
+            "version_normalized": "4.9.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gggeek/phpxmlrpc.git",
-                "reference": "39a5c02e63e3ead81e43be6fb5bf008da20a55c3"
+                "reference": "1658b0c236e490c485e3b1233964223ceece52fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/39a5c02e63e3ead81e43be6fb5bf008da20a55c3",
-                "reference": "39a5c02e63e3ead81e43be6fb5bf008da20a55c3",
+                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/1658b0c236e490c485e3b1233964223ceece52fe",
+                "reference": "1658b0c236e490c485e3b1233964223ceece52fe",
                 "shasum": ""
             },
             "require": {
@@ -652,7 +652,7 @@
                 "phpxmlrpc/extras": "Adds more featured Server classes and other useful bits",
                 "phpxmlrpc/jsonrpc": "Adds support for the JSON-RPC protocol"
             },
-            "time": "2022-12-20T17:03:15+00:00",
+            "time": "2022-12-20T16:24:51+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -673,7 +673,7 @@
             ],
             "support": {
                 "issues": "https://github.com/gggeek/phpxmlrpc/issues",
-                "source": "https://github.com/gggeek/phpxmlrpc/tree/www"
+                "source": "https://github.com/gggeek/phpxmlrpc/tree/4.9.3"
             },
             "install-path": "../phpxmlrpc/phpxmlrpc"
         },
