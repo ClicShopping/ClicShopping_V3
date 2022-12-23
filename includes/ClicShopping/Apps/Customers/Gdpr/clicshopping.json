@@ -22,6 +22,9 @@
    "Shop/Account": {
     "Process":	"Module\\Hooks\\Shop\\Account\\Process"
    },
+   "ClicShoppingAdmin/TopDashboard": {
+    "TopDashboard":"Module\\Hooks\\ClicShoppingAdmin\\TopDashboard\\Gdpr"
+   },
    "ClicShoppingAdmin/Cronjob": {
     "Process":	"Module\\Hooks\\ClicShoppingAdmin\\Cronjob\\Process"
    },

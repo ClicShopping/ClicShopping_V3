@@ -17,7 +17,6 @@
   use ClicShopping\Apps\Tools\Cronjob\Classes\ClicShoppingAdmin\Cron;
   use ClicShopping\Apps\Customers\Gdpr\Classes\ClicShoppingAdmin\Gdpr;
 
-
   class Process implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected mixed $app;

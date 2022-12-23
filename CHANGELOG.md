@@ -3,7 +3,7 @@ New Apps Antispam
 Librairies updated
 Little bug fix
 remove star font awesome by bootstrap icon 
-
+Add GDPR Stat top Dashboard
 
 
 
