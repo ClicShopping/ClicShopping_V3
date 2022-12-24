@@ -66,22 +66,24 @@
     public function display() :string
     {
       $output = '
-  <div class="col-md-2 m-1">
-    <div class="card cardStatsSuccess">
-      <h4 class="card-title StatsTitle">' . $this->app->getDef('text_customers') . '</h4>
+<div class="col-md-2 col-12">
+    <div class="card bg-success">
+     <div class="card-body">
+      <h6 class="card-title text-white">' . $this->app->getDef('text_customers') . '</h6>
       <div class="card-text">
-        <div class="col-sm-12 StatsValue">
-          <span class="col-md-4 float-start">
-            <i class="bi bi-person-fill"></i>
+        <div class="col-sm-12">
+          <span class="float-start">
+            <i class="bi bi-person-fill text-white"></i>
           </span>
-          <span class="col-md-8 float-end">
-            <div class="col-sm-12 StatsValue">' . $this->statsCustomersB2C() . ' - ' . $this->app->getDef('text_b2c') . '</div>
-            <div class="col-sm-12 StatsValue">' . $this->statCustomersB2B() . ' - ' . $this->app->getDef('text_b2b') . '</div>
+          <span class="float-end">
+            <div class="col-sm-12 text-white">' . $this->statsCustomersB2C() . ' - ' . $this->app->getDef('text_b2c') . '</div>
+            <div class="col-sm-12 text-white">' . $this->statCustomersB2B() . ' - ' . $this->app->getDef('text_b2b') . '</div>
           </span>
         </div>
       </div>
     </div>
   </div>
+</div>
       ';
 
       return $output;

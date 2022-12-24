@@ -29,7 +29,10 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stat_categories');
     }
 
-    private function getCategoriesOn()
+    /**
+     * @return int
+     */
+    private function getCategoriesOn() :int
     {
       $QCategories = $this->app->db->prepare('select count(categories_id) as count
                                               from :table_categories
@@ -40,7 +43,10 @@
       return $QCategories->valueInt('count');
     }
 
-    private function getCategoriesOff()
+    /**
+     * @return int
+     */
+    private function getCategoriesOff() :int
     {
       $QCategories = $this->app->db->prepare('select count(categories_id) as count
                                               from :table_categories
@@ -58,22 +64,24 @@
       }
 
       $output = '
-  <div class="col-md-2 m-1">
-    <div class="card cardStatsWarning">
-      <h4 class="StatsTitle">' . $this->app->getDef('text_categories_alert') . '</h4>
+<div class="col-md-2 col-12">
+    <div class="card bg-warning">
+     <div class="card-body">
+      <h6 class="card-title text-white">' . $this->app->getDef('text_categories_alert') . '</h6>
       <div class="card-text">
         <div class="col-sm-12">
           <span class="float-start">
-           <i class="bi bi-bell-fill"></i>
+            <i class="bi bi-bell-fill text-white"></i>
           </span>
           <span class="float-end">
-            <div class="col-sm-12 StatsValue">' . $this->getCategoriesOn() . ' - ' . $this->app->getDef('text_categories_on') . '</div>
-            <div class="col-sm-12 StatsValue">' . $this->getCategoriesOff() . ' - ' . $this->app->getDef('text_categories_off') . '</div>
+            <div class="col-sm-12 text-white">' . $this->getCategoriesOn() . ' - ' . $this->app->getDef('text_categories_on') . '</div>
+            <div class="col-sm-12 text-white">' . $this->getCategoriesOff() . ' - ' . $this->app->getDef('text_categories_off') . '</div>
           </span>
         </div>
       </div>
     </div>
   </div>
+</div>  
       ';
 
       return $output;

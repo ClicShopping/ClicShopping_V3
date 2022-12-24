@@ -60,22 +60,25 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_products_out_of_stock');
 
       $output = '
-  <div class="col-md-2 m-1">
-    <div class="card cardStatsDanger">
-        <h4 class="card-title StatsTitle">' . $this->app->getDef('text_products_stock') . '</h4>
-        <div class="card-text">
-          <div class="col-sm-12 StatsValue">
-            <span class="float-start">
-              <i class="bi bi-cone-striped"></i>
-            </span>
-            <span class="float-end">
-              <div class="col-sm-12 StatsValue">' . $this->getOutOfStock() . ' - ' . $this->app->getDef('text_products_out_of_stock') . '</div>
-              <div class="col-sm-12 StatsValue">' . $this->getProductsOffLine() . ' - ' . $this->app->getDef('text_products_offline') . '</div>
-            </span>
-          </div>
+ <div class="col-md-2 col-12">
+    <div class="card bg-danger">
+     <div class="card-body">
+      <h6 class="card-title text-white">' . $this->app->getDef('text_products_stock') . '</h6>
+      <div class="card-text">
+        <div class="col-sm-12">
+          <span class="float-start">
+            <i class="bi bi-cone-striped text-white"></i>
+          </span>
+          <span class="float-end">
+              <div class="col-sm-12 text-white">' . $this->getOutOfStock() . ' - ' . $this->app->getDef('text_products_out_of_stock') . '</div>
+              <div class="col-sm-12 text-white">' . $this->getProductsOffLine() . ' - ' . $this->app->getDef('text_products_offline') . '</div>
+          </span>
         </div>
-     </div>
+      </div>
+    </div>
   </div>
+</div>  
+
       ';
 
       return $output;

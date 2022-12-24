@@ -61,22 +61,24 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_products_alert');
 
       $output = '
-  <div class="col-md-2 m-1">
-    <div class="card cardStatsWarning">
-      <h4 class="StatsTitle">' . $this->app->getDef('text_products_alert_stock') . '</h4>
+<div class="col-md-2 col-12">
+    <div class="card bg-warning">
+     <div class="card-body">
+      <h6 class="card-title text-white">' . $this->app->getDef('text_products_alert_stock') . '</h6>
       <div class="card-text">
         <div class="col-sm-12">
           <span class="float-start">
-            <i class="bi bi-bell-fill"></i>
+            <i class="bi bi-bell-fill text-white"></i>
           </span>
           <span class="float-end">
-            <div class="col-sm-12 StatsValue">' . $this->getProductsAlert() . ' - ' . $this->app->getDef('text_products_alert_quantity') . '</div>
-            <div class="col-sm-12 StatsValue">' . $this->getProductsNotView() . ' - ' . $this->app->getDef('text_products_not_view') . '</div>
+            <div class="col-sm-12 text-white">' . $this->getProductsAlert() . ' - ' . $this->app->getDef('text_products_alert_quantity') . '</div>
+            <div class="col-sm-12 text-white">' . $this->getProductsNotView() . ' - ' . $this->app->getDef('text_products_not_view') . '</div>
           </span>
         </div>
       </div>
-    </div>  
+    </div>
   </div>
+</div>  
       ';
 
       return $output;

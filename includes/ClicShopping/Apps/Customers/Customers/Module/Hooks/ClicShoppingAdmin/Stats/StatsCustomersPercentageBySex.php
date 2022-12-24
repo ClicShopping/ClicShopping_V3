@@ -26,7 +26,6 @@
 
       $this->app = Registry::get('Customers');
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/StatsCustomersPercentageBySex');
-
     }
 
     /**
@@ -79,22 +78,24 @@
     public function display() :string
     {
       $output = '
-  <div class="col-md-2 m-1">
-    <div class="card cardStatsPrimary">
-      <h4 class="card-title StatsTitle">' . $this->app->getDef('text_customers') . '</h4>
+<div class="col-md-2 col-12">
+    <div class="card bg-primary">
+     <div class="card-body">
+      <h6 class="card-title text-white">' . $this->app->getDef('text_customers') . '</h6>
       <div class="card-text">
-        <div class="col-sm-12 StatsValue">
-          <span class="col-md-4 float-start">
-            <i class=""bi bi-person-fill"></i>
+        <div class="col-sm-12">
+          <span class="float-start">
+            <i class="bi bi-person-fill text-white"></i>
           </span>
-          <span class="col-md-8 float-end">
-            <div class="col-sm-12 StatsValue">' . $this->statsAverageCustomersMen() . '% ' . $this->app->getDef('text_male') . '</div>
-            <div class="col-sm-12 StatsValue">' . $this->statsAverageCustomersWomen() . '% ' . $this->app->getDef('text_female') . '</div>
+          <span class="float-end">
+            <div class="col-sm-12 text-white">' . $this->statsAverageCustomersMen() . '% ' . $this->app->getDef('text_male') . '</div>
+            <div class="col-sm-12 text-white">' . $this->statsAverageCustomersWomen() . '% ' . $this->app->getDef('text_female') . '</div>
           </span>
         </div>
       </div>
     </div>
   </div>
+</div>
       ';
 
       return $output;
