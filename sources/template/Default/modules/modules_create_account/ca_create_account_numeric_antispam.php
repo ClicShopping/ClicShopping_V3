@@ -96,7 +96,6 @@
         ]
       );
 
-
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_CREATE_ACCOUNT_NUMERIC_ANTISPAM_SORT_ORDER',
