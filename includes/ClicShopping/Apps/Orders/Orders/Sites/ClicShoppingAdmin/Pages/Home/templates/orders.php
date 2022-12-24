@@ -488,12 +488,12 @@
           if ($Qorders->valueInt('orders_status_id') == 1) {
             ?>
             <td class="text-end"><span
-                class="badge bg-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+                class="badge bg-primary"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
             <?php
           } elseif ($Qorders->valueInt('orders_status') == 2) {
             ?>
             <td class="text-end"><span
-                class="badge bg-primary"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+                class="badge bg-warning"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
             <?php
           } elseif ($Qorders->valueInt('orders_status_id') == 3) {
             ?>
