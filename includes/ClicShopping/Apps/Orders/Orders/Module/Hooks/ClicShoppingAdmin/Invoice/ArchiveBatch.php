@@ -67,7 +67,7 @@
                         </div>
                         <div class="separator"></div>
                         <div>
-                        ' . HTML::button($this->app->getDef('button_archive'), null, null, 'primary') . ' ' . HTML::button($this->app->getDef('button_archive_consult'), null, $this->app->link('Orders&aID=1'), 'secondary') . '
+                        ' . HTML::button($this->app->getDef('button_archive_batch'), null, null, 'primary') . ' ' . HTML::button($this->app->getDef('button_archive_consult'), null, $this->app->link('Orders&aID=1'), 'secondary') . '
                         </div>
                       </form>
                     </div>

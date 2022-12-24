@@ -50,7 +50,7 @@
       <div class="col-md-12"><?php echo $CLICSHOPPING_Orders->getDef('text_info_archive_intro'); ?><br/><br/></div>
       <div class="separator"></div>
       <div class="col-md-12 text-center">
-        <span><br/><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_cancel'), null, $CLICSHOPPING_Orders->link('Orders&oID=' . $orders_id), 'warning', null, 'sm') . '&nbsp;</span><span>' . HTML::button($CLICSHOPPING_Orders->getDef('button_archive'), null, null, 'primary', null, 'sm'); ?></span>
+        <span><br/><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_cancel'), null, $CLICSHOPPING_Orders->link('Orders&oID=' . $orders_id), 'warning', null, 'sm') . '&nbsp;</span><span>' . HTML::button($CLICSHOPPING_Orders->getDef('button_archive_batch'), null, null, 'primary', null, 'sm'); ?></span>
       </div>
     </div>
   </div>

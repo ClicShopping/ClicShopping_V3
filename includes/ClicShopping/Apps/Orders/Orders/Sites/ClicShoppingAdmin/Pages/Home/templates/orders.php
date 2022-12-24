@@ -68,7 +68,15 @@
           <div
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/client.gif', $CLICSHOPPING_Orders->getDef('heading_title_'), '40', '40'); ?></div>
           <div
-            class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title'); ?></div>
+            class="col-md-2 pageHeading">
+            <?php
+            if (isset($_GET['aID'])) {
+              echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title_archive');
+            } else {
+              echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title');
+            }
+            ?>
+          </div>
           <div class="col-md-5">
            <span class="col-md-3 float-start">
 <?php
@@ -554,7 +562,7 @@
               if ($archive_id != 1) {
                 echo HTML::link($CLICSHOPPING_Orders->link('Archive&oID=' . $Qorders->valueInt('orders_id')), '<h4><i class="bi bi-archive" title="' . $CLICSHOPPING_Orders->getDef('icon_archive_to') . '"></i></h4>');
               } else {
-                echo HTML::link($CLICSHOPPING_Orders->link('Orders&Unpack&oID=' . $Qorders->valueInt('orders_id')), '<h4><i class="bi bi-archive" title="' . $CLICSHOPPING_Orders->getDef('icon_archive_to') . '"></i></h4>');
+                echo HTML::link($CLICSHOPPING_Orders->link('Orders&Unpack&oID=' . $Qorders->valueInt('orders_id')), '<h4><i class="bi bi-archive-fill" title="' . $CLICSHOPPING_Orders->getDef('icon_archive_to') . '"></i></h4>');
               }
 
               $QordersStatus = $CLICSHOPPING_Orders->db->prepare('select authorize_to_delete_order

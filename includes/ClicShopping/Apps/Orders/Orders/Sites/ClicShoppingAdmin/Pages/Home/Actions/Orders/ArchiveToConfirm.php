@@ -37,7 +37,7 @@
         $Qupdate->bindInt(':orders_id', $this->oID);
         $Qupdate->execute();
       } else {
-        $CLICSHOPPING_MessageStack->add($this->app->getDef('text_orders_not_archived'), 'warning');
+        $CLICSHOPPING_MessageStack->add($this->app->getDef('text_orders_not_archived'), 'main');
       }
 
       $this->app->redirect('Orders');

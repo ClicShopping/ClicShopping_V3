@@ -1,4 +1,5 @@
 heading_title = Orders
+heading_title_archive = Archives
 module_od_title = Orders
 module_od_short_title = Orders
 
@@ -29,6 +30,7 @@ button_archive_consult = Consult
 button_history = History
 button_invoice = Invoice
 button_packingslip = Packingslip
+button_archive_batch = Archive
 
 dialog_uninstall_title = Uninstall
 dialog_uninstall_body = Do you want to install this App ?

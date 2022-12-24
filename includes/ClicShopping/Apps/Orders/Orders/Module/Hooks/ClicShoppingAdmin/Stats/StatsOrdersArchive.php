@@ -13,6 +13,7 @@
   namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Stats;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
@@ -48,6 +49,7 @@
         return false;
       }
 
+      $output = '';
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_orders_archive');
 
       if ($this->statsOrderArchive() > 0) {
@@ -62,7 +64,7 @@
             <i class="bi bi-archive-fill text-white"></i>
           </span>
           <span class="float-end">
-            <div class="text-white">' . $this->statsOrderArchive() . ' - ' . $this->app->getDef('text_orders_archive') . '</div>
+            <div class="text-white">' . $this->statsOrderArchive() . ' - ' .  HTML::link($this->app->link('Orders&aID=1'), $this->app->getDef('text_orders_archive'))  . '</div>
             <div class="separator"></div>   
           </span>
         </div>
@@ -71,8 +73,6 @@
   </div>
 </div>
       ';
-      } else {
-        $output = '';
       }
 
       return $output;

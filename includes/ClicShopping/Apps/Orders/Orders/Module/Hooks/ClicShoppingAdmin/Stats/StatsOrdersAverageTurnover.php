@@ -50,8 +50,6 @@
 
     public function display()
     {
-      $CLICSHOPPING_Currencies = Registry::get('Currencies');
-
       if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
         return false;
       }
