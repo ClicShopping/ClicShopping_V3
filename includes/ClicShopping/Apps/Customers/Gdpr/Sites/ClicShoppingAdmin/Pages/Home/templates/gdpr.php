@@ -88,7 +88,6 @@
     <tbody>
     <?php
       $search = '';
-      $date = date('Y-m-d', strtotime('+ ' . CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_DATE . ' days'));
 
       if (isset($_POST['search'])) {
         $keywords = HTML::sanitize($_POST['search']);
@@ -99,8 +98,7 @@
                                                                                    c.customers_email_address,
                                                                                    c.gdpr,
                                                                                    ci.customers_info_id,
-                                                                                   ci.customers_info_date_of_last_logon
-
+                                                                                   datediff(now(), ci.customers_info_date_of_last_logon) as datediff
                                                         from :table_customers,
                                                              :table_customers_info ci
                                                         where (c.customers_lastname like :keywords
@@ -109,13 +107,12 @@
                                                               )
                                                         and c.gdpr = 0
                                                         and c.customers_id = ci.customers_info_id
-                                                        and customers_info_date_of_last_logon <= :date
                                                         limit :page_set_offset,
                                                               :page_set_max_results
                                                         ');
-
         $Qcustomers->bindValue(':keywords', '%' . $keywords . '%');
         $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+
         $Qcustomers->execute();
       } else {
         $Qcustomers = $CLICSHOPPING_Gdpr->db->prepare('select SQL_CALC_FOUND_ROWS c.customers_id,
@@ -124,30 +121,28 @@
                                                                                   c.customers_email_address,
                                                                                   c.gdpr,
                                                                                   ci.customers_info_id,
-                                                                                  ci.customers_info_date_of_last_logon
+                                                                                  datediff(now(), ci.customers_info_date_of_last_logon) as datediff
                                                         from :table_customers c,
                                                              :table_customers_info ci
                                                         where c.gdpr = 0
-                                                        and c.customers_id = ci.customers_info_id
-                                                        and customers_info_date_of_last_logon <= :date
+                                                        and c.customers_id = ci.customers_info_id                                                      
                                                         limit :page_set_offset,
                                                               :page_set_max_results
                                                       ');
-
-        $Qcustomers->bindValue(':date', $date);
         $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+
         $Qcustomers->execute();
       }
-
       $listingTotalRow = $Qcustomers->getPageSetTotalRows();
 
       if ($listingTotalRow > 0) {
         while ($Qcustomers->fetch()) {
+          if ($Qcustomers->value('datediff') > (int)CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_DATE) {
         ?>
         <tr>
           <td></td>
           <td><?php echo $Qcustomers->valueInt('customers_id'); ?></td>
-          <td scope="row"><?php echo $Qcustomers->value('customers_lastname'); ?></td>
+          <td></td><?php echo $Qcustomers->value('customers_lastname'); ?></td>
           <td><?php echo $Qcustomers->value('customers_firstname'); ?></td>
           <td><?php echo $Qcustomers->value('customers_email_address'); ?></td>
           <td class="text-end"><?php echo DateTime::toShort($Qcustomers->value('customers_info_date_of_last_logon')); ?></td>
@@ -161,6 +156,7 @@
           </td>
         </tr>
       <?php
+          }
         }
       } // end $listingTotalRow
     ?>

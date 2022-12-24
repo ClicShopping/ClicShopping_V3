@@ -43,24 +43,29 @@ namespace ClicShopping\Apps\Customers\Gdpr\Module\Hooks\ClicShoppingAdmin\TopDas
 
       $date = date('Y-m-d', strtotime('+ ' . CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_DATE . ' days'));
 
-      $QstatGdpr = $this->app->db->prepare('select count(customers_id) as count
+      $QstatGdpr = $this->app->db->prepare('select c.customers_id,
+                                            datediff(now(), ci.customers_info_date_of_last_logon) as datediff
                                             from :table_customers c,
                                                  :table_customers_info ci
                                             where c.gdpr = 0
                                             and c.customers_id = ci.customers_info_id
-                                            and customers_info_date_of_last_logon <= :date
                                            ');
-
-      $QstatGdpr->bindValue(':date', $date);
 
       $QstatGdpr->execute();
 
-      $number_gdpr = $QstatGdpr->valueInt('count');
+      $count = 0;
+
+      while($QstatGdpr->fetch()) {
+        if ($QstatGdpr->value('datediff') > (int)CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_DATE) {
+          ++$count;
+        }
+      }
+
       $text_gdpr = $this->app->getDef('text_number_gdpr');
       $text_view = $this->app->getDef('text_view');
       $output = '';
 
-      if ($number_gdpr > 0) {
+      if ($count > 0) {
         $output = '
 <div class="col-md-2 col-12 m-1">
     <div class="card bg-warning">
@@ -73,7 +78,7 @@ namespace ClicShopping\Apps\Customers\Gdpr\Module\Hooks\ClicShoppingAdmin\TopDas
           </div> 
         </div>
         <div class="col-md-12">
-          <span class="text-white"><strong>' . $number_gdpr . '</strong></span>
+          <span class="text-white"><strong>' . $count . '</strong></span>
           <span><small class="text-white">' . HTML::link(CLICSHOPPING::link(null, 'A&Customers\Gdpr&Gdpr'), $text_view, 'class="text-white"') . '</small></span>
         </div>
       </div>
