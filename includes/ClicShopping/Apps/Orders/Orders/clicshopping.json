@@ -29,6 +29,7 @@
    "ClicShoppingAdmin/Stats": {
     "StatsOrdersStatus":	"Module\\Hooks\\ClicShoppingAdmin\\Stats\\StatsOrdersStatus",
     "StatsOrdersTurnover":	"Module\\Hooks\\ClicShoppingAdmin\\Stats\\StatsOrdersTurnover",
+    "StatsOrdersAverageTurnover":	"Module\\Hooks\\ClicShoppingAdmin\\Stats\\StatsOrdersAverageTurnover",
     "StatsOrdersSupport":	"Module\\Hooks\\ClicShoppingAdmin\\Stats\\StatsOrdersSupport",
     "StatsOrdersCustomersB2BB2C":	"Module\\Hooks\\ClicShoppingAdmin\\Stats\\StatsOrdersCustomersB2BB2C",
     "StatsOrdersArchive":	"Module\\Hooks\\ClicShoppingAdmin\\Stats\\StatsOrdersArchive"

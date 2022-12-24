@@ -26,10 +26,6 @@ namespace ClicShopping\Apps\Customers\Gdpr\Module\Hooks\ClicShoppingAdmin\TopDas
 
     public function __construct()
     {
-      if (!Registry::exists('CustomersSupport')) {
-        Registry::set('CustomersSupport', new CustomersSupportApp());
-      }
-
       if (!Registry::exists('Gdpr')) {
         Registry::set('Gdpr', new GdprApp());
       }
