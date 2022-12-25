@@ -41,8 +41,8 @@
 
     /**
      * Strictly parse a user submited value
-     *
-     * @param string $string The string to strictly parse and output
+     * The string to strictly parse and output
+     * @param string $string
      * @return string
      */
     public static function outputProtected(?string $string): string

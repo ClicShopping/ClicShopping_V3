@@ -26,10 +26,8 @@
 
     /**
      * Resets the breadcrumb navigation path
-     *
-     *
+     * @return void
      */
-
     public function reset() :void
     {
       $this->_path = [];
@@ -46,8 +44,9 @@
     public function add(string $title, string $link = ''): void
     {
       if (!empty($link)) {
-        $title = '<span class="breadcrumb-item breadcrumbCustomize">'. HTML::link(HTML::outputProtected($link), $title) . '</span>';
+        $title = '<span class="breadcrumb-item breadcrumbCustomize">'. HTML::link(HTML::output($link), $title) . '</span>';
       }
+
       $this->_path[] = $title;
       $this->_pathArray[] = [
         'link' => HTML::outputProtected($link),
@@ -57,7 +56,6 @@
 
     /**
      * return navigation path
-     * @param string|null $separator
      * @return string
      */
     public function getJsonBreadcrumb(): string
