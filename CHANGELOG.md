@@ -7,7 +7,7 @@ Add GDPR Stat top Dashboard
 Add new Hook Stats
 Fix gdpr time
 Order text improvment
-
+Add new Hooks ShoppingCart
 
 --------------------
 3.406       

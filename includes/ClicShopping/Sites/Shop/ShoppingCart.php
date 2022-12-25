@@ -14,7 +14,6 @@
   use ClicShopping\OM\Registry;
 
   use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\Shop\ProductsAttributesShop;
-
   class ShoppingCart
   {
     public array $contents = [];
@@ -27,7 +26,6 @@
     protected int $quantity;
     protected string $productsId;
     protected bool $products_in_stock = true;
-
     protected mixed $db;
     protected mixed $lang;
     protected $customer;
@@ -45,6 +43,7 @@
       $this->prod = Registry::get('Prod');
       $this->productsCommon = Registry::get('ProductsCommon');
       $this->tax = Registry::get('Tax');
+      $this->hooks = Registry::get('Hooks');
 
       if (!Registry::exists('ProductsAttributesShop')) {
         Registry::set('ProductsAttributesShop', new ProductsAttributesShop());
@@ -383,6 +382,8 @@
      */
     public function add(string $products_id, int $qty = 1, $attributes = '', bool $notify = true)
     {
+      $this->hooks->call('ShoppingCartAdd', 'PreAction');
+
       $products_id_string = $this->getUprid($products_id, $attributes);
       $products_id = $this->getPrid($products_id_string);
 
@@ -472,6 +473,8 @@
           $this->cartID = $this->generate_cart_id();
         }
       }
+
+      $this->hooks->call('ShoppingCartAdd', 'PostAction');
     }
 
     /**
@@ -483,6 +486,8 @@
      */
     public function addCart(string $products_id,int $qty = 1, $attributes = '', bool $notify = true)
     {
+      $this->hooks->call('ShoppingCartAddAddCart', 'PreAction');
+
       $products_id_string = $this->getUprid($products_id, $attributes);
       $products_id = $this->getPrid($products_id_string);
 // B2B / B2C Choose the good qty
@@ -567,6 +572,8 @@
           $this->cartID = $this->generate_cart_id();
         }
       }
+
+      $this->hooks->call('ShoppingCartAddAddCart', 'PostAction');
     }
 
 //************************************************
@@ -777,6 +784,8 @@
       $_SESSION['cartID'] = $this->generate_cart_id();
 
       if ($this->hasContents()) {
+        $this->hooks->call('ShoppingCartCalculate', 'PreAction');
+
         foreach ($this->contents as $item_id => $data) {
           $qty = $data['qty'];
 
@@ -916,6 +925,8 @@
             }
           }
         }
+
+        $this->hooks->call('ShoppingCartCalculate', 'PostAction');
       }
     }
 
