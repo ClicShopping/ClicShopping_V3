@@ -43,7 +43,7 @@
      *
      */
 
-    public function add(string $title, string $link = '')
+    public function add(string $title, string $link = ''): void
     {
       if (!empty($link)) {
         $title = '<span class="breadcrumb-item breadcrumbCustomize">'. HTML::link(HTML::outputProtected($link), $title) . '</span>';
@@ -128,7 +128,6 @@
      * @param string $separator The string to separator breadcrumb entries with
      * @return string
      */
-
     public function setSeparator(string $separator) : ?string
     {
       $this->_separator = $separator;
@@ -136,10 +135,8 @@
 
     /**
      * Overloaded rewind iterator function
-     *
-     *
+     * @return void
      */
-
     public function Rewind() :void
     {
     //  return reset($this->_path); // php8.1 deprecated  to do
@@ -163,7 +160,6 @@
     {
       return key($this->_path);
     }
-
 
     /**
      * Overloaded next iterator function
@@ -217,9 +213,9 @@
 // add category names or the manufacturer name to the breadcrumb trail
       if (isset($cPath_array)) {
         for ($i = 0, $n = \count($cPath_array); $i < $n; $i++) {
-
-          $Qcategories = $CLICSHOPPING_Db->get('categories_description', 'categories_name', ['categories_id' => (int)$cPath_array[$i],
-              'language_id' => $CLICSHOPPING_Language->getId()
+          $Qcategories = $CLICSHOPPING_Db->get('categories_description', 'categories_name', [
+            'categories_id' => (int)$cPath_array[$i],
+            'language_id' => $CLICSHOPPING_Language->getId()
             ]
           );
 

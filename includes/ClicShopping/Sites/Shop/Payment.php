@@ -91,7 +91,6 @@
     */
     public function update_status()
     {
-
       if (\is_array($this->modules)) {
         if (str_contains($this->selected_module, '\\')) {
           $code = 'Payment_' . str_replace('\\', '_', $this->selected_module);

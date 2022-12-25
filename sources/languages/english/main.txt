@@ -286,6 +286,7 @@ email_text_product_url = Product URL
 email_text_product_stock = New product stock
 email_text_date_alert = Alert date
 
+text_add_discount_message_shopping_cart = . It will be applied on order summary
 text_error_antispam = Antispam error
 pull_down_default_manufacturer = Our brands
 

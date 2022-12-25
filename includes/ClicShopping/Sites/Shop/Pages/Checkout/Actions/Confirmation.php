@@ -30,6 +30,7 @@
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
       $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Checkout/';
 
@@ -83,9 +84,9 @@
 // Confirmation des conditions des vente
       if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
         if (!isset($_POST['conditions']) || ($_POST['conditions'] != 1)) {
-          $message = CLICSHOPPING::getDef('error_conditions_not_accepted');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_conditions_not_accepted'), 'error');
 
-          CLICSHOPPING::redirect(null, 'Checkout&Billing&error_message=' . urlencode($message));
+          CLICSHOPPING::redirect(null, 'Checkout&Billing');
         }
       }
 
@@ -124,7 +125,6 @@
       if (\is_array($CLICSHOPPING_Payment->modules)) {
         $CLICSHOPPING_Payment->pre_confirmation_check();
       }
-
 
       $CLICSHOPPING_OrderTotal->process();
 
@@ -166,6 +166,5 @@
 
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null, 'Checkout&Shipping'));
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'));
-
     }
   }

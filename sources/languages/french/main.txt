@@ -291,6 +291,7 @@ email_text_product_url = Url du produit :
 email_text_product_stock = Nouveau stock du produit :
 email_text_date_alert = Date Alerte
 
+text_add_discount_message_shopping_cart = . Il sera appliqué au récapitulatif de la commande
 text_error_antispam = Erreur sur l'antispam
 pull_down_default_manufacturer = Nos marques
 

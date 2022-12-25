@@ -1,4 +1,3 @@
-
 navbar_title = Contenu du panier
 heading_title = Contenu de votre panier...
 text_cart_empty = Votre panier est vide
