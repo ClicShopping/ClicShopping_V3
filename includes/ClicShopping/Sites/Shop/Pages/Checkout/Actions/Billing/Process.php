@@ -25,7 +25,6 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
-
 // if the customer is not logged on, redirect them to the login page
         if (!$CLICSHOPPING_Customer->isLoggedOn()) {
           $CLICSHOPPING_NavigationHistory->setSnapshot();
@@ -42,9 +41,8 @@
 
 // Confirmation des conditions des vente
         if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
-          if (!isset($_POST['conditions']) || ($_POST['conditions'] != 1)) {
+          if (!isset($_POST['conditions']) || HTML::sanitize($_POST['conditions']) != 1) {
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_conditions_not_accepted'), 'error');
-
             CLICSHOPPING::redirect(null, 'Checkout&Billing');
           }
         }

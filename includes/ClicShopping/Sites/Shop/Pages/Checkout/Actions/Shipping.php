@@ -79,7 +79,10 @@
 
           if ($QcheckAddress->fetch() === false) {
             $_SESSION['sendto'] = $CLICSHOPPING_Customer->getDefaultAddressID();
-            if (isset($_SESSION['shipping'])) unset($_SESSION['shipping']);
+	    
+            if (isset($_SESSION['shipping'])) {
+              unset($_SESSION['shipping']);
+            }
           }
         }
       }

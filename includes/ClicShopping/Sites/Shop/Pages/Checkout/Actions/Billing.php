@@ -18,7 +18,6 @@
 
   class Billing extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
@@ -83,7 +82,9 @@
 
           if ($QcheckAddress->fetch() === false) {
             $_SESSION['billto'] = $CLICSHOPPING_Customer->getDefaultAddressID();
-            if (isset($_SESSION['payment'])) unset($_SESSION['payment']);
+            if (isset($_SESSION['payment'])) {
+              unset($_SESSION['payment']);
+            }
           }
         }
       }

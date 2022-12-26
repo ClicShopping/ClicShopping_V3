@@ -310,7 +310,7 @@
                                          ');
 
       $QproductCheck->bindInt(':products_id', $this->getID());
-      $QproductCheck->bindInt(':language_id', (int)$this->language->getId());
+      $QproductCheck->bindInt(':language_id', $this->language->getId());
 
       $QproductCheck->execute();
 

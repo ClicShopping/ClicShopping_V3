@@ -51,7 +51,6 @@
             $CLICSHOPPING_SM = null;
 
             if (str_contains($_SESSION['shipping'], '\\')) {
-
               list($vendor, $app, $module) = explode('\\', $_SESSION['shipping']);
               list($module, $method) = explode('_', $module);
 
@@ -84,7 +83,7 @@
                 unset($_SESSION['shipping']);
               } else {
                 for ($i = 0, $n = \count($quote[0]['methods']); $i < $n; $i++) {
-                  if ((isset($quote[0]['methods'][$i]['title'])) && (isset($quote[0]['methods'][$i]['cost'])) && ($quote[0]['methods'][$i]['id'] == $method || $_SESSION['shipping'] == 'free_free')) {
+                  if (isset($quote[0]['methods'][$i]['title'], $quote[0]['methods'][$i]['cost']) && ($quote[0]['methods'][$i]['id'] == $method || $_SESSION['shipping'] == 'free_free')) {
                     $_SESSION['shipping'] = [
                       'id' => $_SESSION['shipping'],
                       'title' => (($_SESSION['free_shipping'] === true) ? $quote[0]['methods'][$i]['title'] : $quote[0]['module'] . (isset($quote[0]['methods'][$i]['title']) && !empty($quote[0]['methods'][0]['title']) ? ' ' . $quote[0]['methods'][$i]['title'] . '' : '')),

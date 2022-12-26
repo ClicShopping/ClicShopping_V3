@@ -47,7 +47,8 @@
             if (str_contains($value, '\\')) {
               $class = Apps::getModuleClass($value, 'Payment');
 
-              $include_modules[] = ['class' => $value,
+              $include_modules[] = [
+                'class' => $value,
                 'file' => $class
               ];
             }
