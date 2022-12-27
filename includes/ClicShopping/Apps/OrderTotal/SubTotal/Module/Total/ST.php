@@ -34,7 +34,6 @@
 
     public function __construct()
     {
-
       if (!Registry::exists('SubTotal')) {
         Registry::set('SubTotal', new SubTotalApp());
       }
@@ -58,13 +57,14 @@
 
     public function process()
     {
-
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Order = Registry::get('Order');
 
-      $this->output[] = array('title' => $this->title,
+      $this->output[] = [
+        'title' => $this->title,
         'text' => $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['subtotal'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']),
-        'value' => $CLICSHOPPING_Order->info['subtotal']);
+        'value' => $CLICSHOPPING_Order->info['subtotal']
+      ];
     }
 
     public function check()

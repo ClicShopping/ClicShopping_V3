@@ -16,9 +16,9 @@
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-if ($CLICSHOPPING_MessageStack->exists('main')) {
-  echo $CLICSHOPPING_MessageStack->get('main');
-}
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
+  }
 ?>
 <section class="cart" id="cart">
   <div class="contentContainer">

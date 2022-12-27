@@ -93,9 +93,6 @@
         $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
       }
 
-// reset coupon session if an error is make
-      if (isset($_SESSION['coupon'])) unset($_SESSION['coupon']);
-
 // templates
       $this->page->setFile('checkout_payment.php');
 //Content

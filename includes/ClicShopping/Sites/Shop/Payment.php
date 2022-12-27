@@ -38,7 +38,8 @@
 
           if (str_contains($module, '\\')) {
             $class = Apps::getModuleClass($module, 'Payment');
-            $include_modules[] = ['class' => $module,
+            $include_modules[] = [
+              'class' => $module,
               'file' => $class
             ];
           }
@@ -46,7 +47,6 @@
           foreach ($this->modules as $value) {
             if (str_contains($value, '\\')) {
               $class = Apps::getModuleClass($value, 'Payment');
-
               $include_modules[] = [
                 'class' => $value,
                 'file' => $class

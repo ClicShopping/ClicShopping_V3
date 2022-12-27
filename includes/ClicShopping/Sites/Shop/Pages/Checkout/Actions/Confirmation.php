@@ -90,17 +90,6 @@
         }
       }
 
-      if (!isset($_SESSION['coupon']) && isset($_POST['coupon'])) {
-        $_SESSION['coupon'] = HTML::sanitize($_POST['coupon']);
-      }
-
-//this needs to be set before the order object is created, but we must process it after
-      if (isset($_SESSION['coupon'])) {
-        if (!\is_null($_SESSION['coupon'])) {
-          $_SESSION['coupon'] = HTML::sanitize($_SESSION['coupon']);
-        }
-      }
-
 // load the selected payment module
       Registry::set('Payment', new Payment($_SESSION['payment']));
       $CLICSHOPPING_Payment = Registry::get('Payment');

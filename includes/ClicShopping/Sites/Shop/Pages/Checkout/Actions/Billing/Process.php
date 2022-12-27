@@ -31,10 +31,6 @@
           CLICSHOPPING::redirect(null, 'Account&LogIn');
         }
 
-        if (isset($_POST['coupon']) && !\is_null($_POST['coupon'])) {
-          $_SESSION['coupon'] = HTML::sanitize($_POST['coupon']);
-        }
-
         if (isset($_POST['comments']) && !\is_null($_POST['comments'])) {
           $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
         }
