@@ -1,8 +1,13 @@
 #general
+INSERT INTO `clic_configuration` VALUES(null, 'Parameter [Antispam App]', 'MODULE_MODULES_ANTISPAM_INSTALLED', '', 'Parameter [Antispam App]', 6, 0, NULL, '2022-12-18 10:57:34', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Status', 'CLICSHOPPING_APP_ANTISPAM_STATUS', 'False', 'Set True to enable or not the module', 6, 0, NULL, '2022-12-18 10:57:37', NULL, NULL);
+INSERT INTO `clic_administrator_menu` VALUES(791, 'index.php?A&Configuration\\Antispam&Configure', 13, 15, 0, 'antispam.png', 0, 'app_configuration_antispam', 1);
 
 
 #English
-
+INSERT INTO `clic_administrator_menu_description` VALUES(791, 'Antispam', 1);
+INSERT INTO `clic_administrator_menu_description` VALUES(791, 'Antispam', 2);
 
 
 #French
+INSERT INTO `clic_administrator_menu_description` VALUES(791, 'Antispam', 2);

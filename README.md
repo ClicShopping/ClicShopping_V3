@@ -45,8 +45,8 @@ Easy to install in just some clicks on a server or on your computer, you can use
 
 #Requirement (more information in the wiki)
  - Apache 2.4<br>
- - MYSQL 7;x / MariaDb 10.x / Postgress<br>
- - PHP > 8.1
+ - MYSQL 7.x / MariaDb 10.x / Postgress<br>
+ - PHP >= 8.1
  - More information in the Wiki
 
 #Installation
@@ -118,6 +118,7 @@ More information in the Wiki
 - Free modular Apps to create import or to import from osCommerce 2.x, OpenCart, ZenCart, Crealoaded, Prestashop .... database migration available on the marketplace
 - double authentification
 - API REST
+- Antispam ...
 
 
 #Images

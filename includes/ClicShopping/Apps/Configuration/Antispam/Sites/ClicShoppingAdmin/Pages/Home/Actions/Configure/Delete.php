@@ -16,7 +16,6 @@
 
   class Delete extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -42,7 +41,6 @@
       $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_antispam']);
 
       if ($Qcheck->fetch()) {
-
         $QMenuId = $CLICSHOPPING_Db->prepare('select id
                                               from :table_administrator_menu
                                               where app_code = :app_code

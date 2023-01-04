@@ -101,14 +101,14 @@
 
     /**
      * category tree
-     * @param string $parent_id
+     * @param int|string $parent_id
      * @param string $spacing
-     * @param string $exclude
-     * @param string $category_tree_array
+     * @param array|string $exclude
+     * @param array|string $category_tree_array
      * @param bool $include_itself
      * @return array
      */
-    public static function getLabelTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false): array
+    public static function getLabelTree(int|string $parent_id = '0', string $spacing = '', array|string $exclude = '', array|string $category_tree_array = '', bool $include_itself = false): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');

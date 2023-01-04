@@ -198,6 +198,7 @@ INSERT INTO administrator_menu VALUES(787, 'index.php?A&Orders\\ReturnOrders&Con
 INSERT INTO administrator_menu VALUES(788, 'index.php?A&Tools\\Cronjob&Cronjob', 163, 2, 0, 'return_orders.png', 0, 'app_tools_cronjob', 1);
 INSERT INTO administrator_menu VALUES(789, 'index.php?A&Configuration\\Settings&Settings&gID=46', 13, 11, 0, '', 1, NULL, 1);
 INSERT INTO administrator_menu VALUES(790, 'index.php?A&Configuration\\Api&Api', 14, 14, 0, 'api.png', 0, 'app_configuration_api', 1);
+INSERT INTO administrator_menu VALUES(791, 'index.php?A&Configuration\\Antispam&Configure', 13, 15, 0, 'antispam.png', 0, 'app_configuration_antispam', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -545,6 +546,8 @@ INSERT INTO administrator_menu_description VALUES(789, 'Double authentification'
 INSERT INTO administrator_menu_description VALUES(789, 'Authentification double', 2);
 INSERT INTO administrator_menu_description VALUES(790, 'API management', 1);
 INSERT INTO administrator_menu_description VALUES(790, 'Gestion API', 2);
+INSERT INTO administrator_menu_description VALUES(791, 'Antispam', 1);
+INSERT INTO administrator_menu_description VALUES(791, 'Antispam', 2);
 
 
 INSERT INTO api VALUES(1, 'Default', 'd0a36b839700b60727fe13998e22aa0af197c61d8b371e26114c133ca51c4864bd0da73ad6d1e5090b02b55cff42b8a0cd23866e64e78fc8884eb6228d32f5e9d76bed468869dd89ee6bb8a3208c5077e88560d0bc238f67cfc732efcf5313a0cb361e297c29c8d82d050d770ed7dee972af6445e801fa9af12e3d478bf5346a', 0, '2022-09-18 14:25:54', '2022-09-18 14:25:54', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -1557,6 +1560,8 @@ INSERT INTO configuration VALUES(1564, 'Souhaitez-vous activer la vérification 
 INSERT INTO configuration VALUES(1565, 'Ordre de tri d\'affichage', 'CLICSHOPPING_APP_API_AI_SORT_ORDER', '30', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
 INSERT INTO configuration VALUES(1566, 'Statut', 'CLICSHOPPING_APP_API_AI_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
 INSERT INTO configuration VALUES(1567, 'Parameter [Api App]', 'MODULE_MODULES_API_INSTALLED', 'Configuration\\Api\\AI', 'Parameter [Api App]', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
+INSERT INTO configuration VALUES(1568, 'Parameter [Antispam App]', 'MODULE_MODULES_ANTISPAM_INSTALLED', '', 'Parameter [Antispam App]', 6, 0, NULL, '2022-12-18 10:57:34', NULL, NULL);
+INSERT INTO configuration VALUES(1568, 'Status', 'CLICSHOPPING_APP_ANTISPAM_STATUS', 'False', 'Set True to enable or not the module', 6, 0, NULL, '2022-12-18 10:57:37', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);

@@ -49,11 +49,11 @@
           'link' => 'index.php?A&Configuration\Antispam&Configure',
           'image' => 'antispam.png',
           'b2b_menu' => 0,
-          'access' => 1,
+          'access' => 0,
           'app_code' => 'app_configuration_antispam'
         ];
 
-        $insert_sql_data = ['parent_id' => 14];
+        $insert_sql_data = ['parent_id' => 15];
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 

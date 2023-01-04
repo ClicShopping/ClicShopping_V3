@@ -1494,9 +1494,14 @@
 
     /**
      * Verify the coupon
+     * @return false|void
      */
-    private function getCodeCoupon() :void
+    private function getCodeCoupon()
     {
+      if (!\defined('CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS') || CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS == 'False') {
+        return false;
+      }
+
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 
       $products = $CLICSHOPPING_ShoppingCart->get_products();
@@ -1519,6 +1524,10 @@
      */
     private function getFinalizeCouponDiscount()
     {
+      if (!\defined('CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS') || CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS == 'False') {
+        return false;
+      }
+
       if (\is_object($this->coupon)) {
         $this->info['total'] = $this->coupon->getFinalizeDiscount($this->info);
 
