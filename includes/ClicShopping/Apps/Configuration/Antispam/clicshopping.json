@@ -30,7 +30,6 @@
    "Shop/TellAFriend": {
     "PreAction":	"Module\\Hooks\\Shop\\Products\\TellAFriend\\PreAction"
    }
-   }
   }
  },
  "routes": {
