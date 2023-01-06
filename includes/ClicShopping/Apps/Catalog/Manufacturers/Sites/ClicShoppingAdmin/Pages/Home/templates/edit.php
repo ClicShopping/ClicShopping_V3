@@ -161,36 +161,41 @@
             <span><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_description'); ?></span>
           </div>
           <div class="adminformTitle" id="manufactuerDescription">
+            <div class="accordion" id="accordionExample">
             <?php
               echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group row">
-                      <label for="code"
-                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group row">
-                      <div class="col-md-8">
-                        <?php
-                          $name = 'manufacturer_description[' . $languages[$i]['id'] . ']';
-                          $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading<?php $i; ?>">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                    </button>
+                  </h2>
+                  <?php
+                  if ($i == 0) {
+                    $show = ' show';
+                  } else {
+                    $show = '';
+                  }
+                  ?>
 
-                          echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($manufacturer_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($manufacturer_description[$languages[$i]['id']])) : ManufacturerAdmin::getManufacturerDescription($Qmanufacturers->valueInt('manufacturers_id'), $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
-                        ?>
-                      </div>
+                  <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <?php
+                      $name = 'manufacturer_description[' . $languages[$i]['id'] . ']';
+                      $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
+
+                      echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($manufacturer_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($manufacturer_description[$languages[$i]['id']])) : ManufacturerAdmin::getManufacturerDescription($Qmanufacturers->valueInt('manufacturers_id'), $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                      ?>
                     </div>
                   </div>
                 </div>
                 <?php
               }
             ?>
+            </div>
           </div>
           <div class="separator"></div>
           <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ProductsContentTab2', null, 'display'); ?>

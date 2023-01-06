@@ -1596,7 +1596,7 @@ INSERT INTO configuration VALUES(1565, 'Sort Order', 'CLICSHOPPING_APP_API_AI_SO
 INSERT INTO configuration VALUES(1566, 'Status', 'CLICSHOPPING_APP_API_AI_STATUS', 'True', 'Do you want to activate this module ?', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
 INSERT INTO configuration VALUES(1567, 'Parameter [Api App]', 'MODULE_MODULES_API_INSTALLED', 'Configuration\\Api\\AI', 'Parameter [Api App]', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
 INSERT INTO configuration VALUES(1568, 'Parameter [Antispam App]', 'MODULE_MODULES_ANTISPAM_INSTALLED', '', 'Parameter [Antispam App]', 6, 0, NULL, '2022-12-18 10:57:34', NULL, NULL);
-INSERT INTO configuration VALUES(1568, 'Status', 'CLICSHOPPING_APP_ANTISPAM_STATUS', 'False', 'Set True to enable or not the module', 6, 0, NULL, '2022-12-18 10:57:37', NULL, NULL);
+INSERT INTO configuration VALUES(1569, 'Status', 'CLICSHOPPING_APP_ANTISPAM_STATUS', 'False', 'Set True to enable or not the module', 6, 0, NULL, '2022-12-18 10:57:37', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
