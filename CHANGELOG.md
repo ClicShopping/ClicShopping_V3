@@ -8,6 +8,7 @@ Add new Hook Stats
 Fix gdpr time
 Order text improvment
 Add new Hooks ShoppingCart
+add accordeon for description language field (products, categories, page manager)
 
 --------------------
 3.406       

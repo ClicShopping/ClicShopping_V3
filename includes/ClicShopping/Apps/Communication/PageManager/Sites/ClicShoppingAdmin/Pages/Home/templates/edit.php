@@ -594,34 +594,44 @@
           <div
             class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_information_description'); ?></div>
           <div class="adminformTitle">
-<?php
-  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-    if (isset($pages_html_text[$languages[$i]['id']])) {
-      $text_description = $pages_html_text[$languages[$i]['id']];
-    } else {
-      $text_description = null;
-    }
-?>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group row">
-                      <label for="Lang1"
-                             class="col-1 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                      <div class="col-md-11">
-                        <?php
-                        $name = 'pages_html_text_[' . $languages[$i]['id'] . ']';
-                        $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
+            <div class="accordion" id="accordionExample">
+              <?php
+                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                  if (isset($pages_html_text[$languages[$i]['id']])) {
+                    $text_description = $pages_html_text[$languages[$i]['id']];
+                  } else {
+                    $text_description = null;
+                  }
+              ?>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading<?php $i; ?>">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                  </button>
+                </h2>
+                <?php
+                if ($i == 0) {
+                  $show = ' show';
+                } else {
+                  $show = '';
+                }
+                ?>
 
-                        echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', str_replace('& ', '&amp; ', trim($text_description)), 'id="' . $ckeditor_id . '"');
-                        ?>
-                      </div>
-                    </div>
+                <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <?php
+                    $name = 'pages_html_text_[' . $languages[$i]['id'] . ']';
+                    $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
+
+                    echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', str_replace('& ', '&amp; ', trim($text_description)), 'id="' . $ckeditor_id . '"');
+                    ?>
                   </div>
                 </div>
-                <div class="separator"></div>
-<?php
-  }
-?>
+              </div>
+              <?php
+                }
+              ?>
+            </div>
           </div>
           <div class="separator"></div>
         </div>

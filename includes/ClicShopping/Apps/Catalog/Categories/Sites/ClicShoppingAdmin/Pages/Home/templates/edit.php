@@ -136,6 +136,7 @@
               <?php
             }
           ?>
+
           <div class="row" id="categoriesName">
             <div class="col-md-5">
               <div class="form-group row">
@@ -176,30 +177,32 @@
           <span><?php echo $CLICSHOPPING_Categories->getDef('text_description_categories'); ?></span>
         </div>
         <div class="adminformTitle">
-          <?php
+          <div class="accordion" id="accordionExample">
+            <?php
             for ($i = 0, $n = \count($languages); $i < $n; $i++) {
               ?>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group row">
-                      <label for="code"
-                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                  </div>
-                </div>
-              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading<?php $i; ?>">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                  </button>
+                </h2>
+                <?php
+                if ($i == 0) {
+                  $show = ' show';
+                } else {
+                  $show = '';
+                }
+                ?>
 
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group row">
-                    <label for="lang" class="col-1 col-form-label"></label>
-                    <div class="col-md-8">
-                      <?php
-                      $name = 'categories_description[' . $languages[$i]['id'] . ']';
-                      $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
+                <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <?php
+                    $name = 'categories_description[' . $languages[$i]['id'] . ']';
+                    $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                      echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($categories_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($categories_description[$languages[$i]['id']])) : $CLICSHOPPING_CategoriesAdmin->getCategoryDescription($cInfo->categories_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
-                      ?>
-                    </div>
+                    echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($categories_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($categories_description[$languages[$i]['id']])) : $CLICSHOPPING_CategoriesAdmin->getCategoryDescription($cInfo->categories_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                    ?>
                   </div>
                 </div>
               </div>
@@ -207,8 +210,9 @@
             }
           ?>
         </div>
-        <div class="separator"></div>
-        <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab2', null, 'display'); ?>
+      </div>
+      <div class="separator"></div>
+      <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab2', null, 'display'); ?>
     </div>
     <?php
       // -----------------------------------------------------//-->

@@ -899,38 +899,46 @@
           </div>
           <div class="adminformTitle">
             <div class="separator"></div>
-            <div>
+            <div class="accordion" id="accordionExample">
               <?php
                 for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                   ?>
-                  <div class="row" id="tab4ContentRow1">
-                    <span
-                      class="col-sm-2"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>&nbsp;</span>
-                    <span class="col-sm-10">
-                      <div
-                        style="visibility:visible; display:block;">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading<?php $i; ?>">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                      </button>
+                    </h2>
+                    <?php
+                    if ($i == 0) {
+                      $show = ' show';
+                    } else {
+                      $show = '';
+                    }
+                    ?>
+                    <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
                         <?php
                         $name = 'products_description[' . $languages[$i]['id'] . ']';
                         $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
                         echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($products_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
                         ?>
+                          <div class="separator"></div>
+                          <div row id="tab4DescriptionSummaryTitle<?php echo $i; ?>">
+                            <span
+                              class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_description_summary'); ?></span>
+                          </div>
+                          <div class="row" id="tab4DescriptionSummaryTitleDescription<?php echo $i; ?>">
+                            <span
+                              class="col-sm-2"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>&nbsp;</span>
+                            <span class="col-sm-7">
+                              <?php echo HTML::textAreaField('products_description_summary[' . $languages[$i]['id'] . ']', (isset($products_description_summary[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description_summary[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescriptionSummary($pInfo->products_id, $languages[$i]['id'])), '120', '3'); ?>
+                            </span>
+                          </div>
                       </div>
-                  </span>
+                    </div>
                   </div>
-                  <div class="separator"></div>
-                  <div id="tab4ContentRow2">
-                    <span
-                      class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_description_summary'); ?></span>
-                  </div>
-                  <div class="row" id="tab4ContentRow3">
-                    <span
-                      class="col-sm-2"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>&nbsp;</span>
-                    <span class="col-sm-7">
-                      <?php echo HTML::textAreaField('products_description_summary[' . $languages[$i]['id'] . ']', (isset($products_description_summary[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description_summary[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescriptionSummary($pInfo->products_id, $languages[$i]['id'])), '120', '3'); ?>
-                    </span>
-                  </div>
-                  <div class="separator"></div>
                   <?php
                 }
               ?>

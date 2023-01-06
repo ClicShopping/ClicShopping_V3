@@ -160,8 +160,9 @@
                                         where categories_id = :categories_id
                                         and language_id = :language_id
                                       ');
-      $Qcategory->bindInt(':categories_id', (int)$category_id);
-      $Qcategory->bindInt(':language_id', (int)$language_id);
+				      
+      $Qcategory->bindInt(':categories_id', $category_id);
+      $Qcategory->bindInt(':language_id', $language_id);
 
       $Qcategory->execute();
 
