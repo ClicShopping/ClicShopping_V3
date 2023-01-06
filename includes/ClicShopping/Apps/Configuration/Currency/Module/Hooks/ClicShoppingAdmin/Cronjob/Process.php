@@ -21,15 +21,8 @@
 
   class Process implements \ClicShopping\OM\Modules\HooksInterface
   {
-    protected mixed $app;
-
     public function __construct()
     {
-      if (!Registry::exists('Gdpr')) {
-        Registry::set('Gdpr', new GdprApp());
-      }
-
-      $this->app = Registry::get('Gdpr');
     }
 
     /**
@@ -49,7 +42,7 @@
     /**
      *
      */
-    private function cronJob() :void
+    private static function cronJob() :void
     {
       $cron_id_gdpr = Cron::getCronCode('currency');
 
@@ -72,7 +65,7 @@
 
     public function execute()
     {
-      $this->cronJob();
+      static::cronJob();
 
       Cache::clear('currencies');
     }

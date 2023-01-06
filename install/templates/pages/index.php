@@ -83,6 +83,10 @@ if (!extension_loaded('json')) {
     You can bypass this process (not recommended) but you can have error more later if you don\'t install soap. <a href="install.php">Continue the process</a>';
 }
 
+if (!function_exists('pathinfo')) {
+ $warning_array[] = 'The pathinfo function is notenabled in PHP. Please enable it in the PHP configuration to continue installation.<br />';
+}
+
 $https_url = 'https://' . $_SERVER['HTTP_HOST'];
 
 if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
@@ -198,6 +202,12 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
             <td class="text-center"><?php echo extension_loaded('json') ? 'On' : 'Off'; ?></td>
             <td class="text-center">On</td>
             <td class="text-end"><?php echo extension_loaded('json') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
+          </tr>
+          <tr>
+            <td>Pathinfo</td>
+            <td class="text-center"><?php echo function_exists('pathinfo')  ? 'On' : 'Off'; ?></td>
+            <td class="text-center">On</td>
+            <td class="text-end"><?php echo function_exists('pathinfo') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
           </tr>
           </tbody>
         </table>

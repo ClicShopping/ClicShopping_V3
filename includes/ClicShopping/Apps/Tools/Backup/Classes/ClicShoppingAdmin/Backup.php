@@ -52,7 +52,6 @@
       );
 
       while ($Qtables->fetch()) {
-
         $table = $Qtables->value('TABLE_NAME');
 
         $schema = 'drop table if exists ' . $table . ';' . "\n" .
@@ -63,7 +62,6 @@
         $Qfields = $CLICSHOPPING_Backup->db->query('show fields from ' . $table);
 
         while ($Qfields->fetch()) {
-
           $table_list[] = $Qfields->value('Field');
 
           $schema .= '  ' . $Qfields->value('Field') . ' ' . $Qfields->value('Type');

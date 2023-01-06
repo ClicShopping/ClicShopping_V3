@@ -36,14 +36,13 @@
             if (isset($_GET['Update'])) {
               $cron_id = HTML::sanitize($_GET['cronId']);
               $form_action = 'Update&cronId=' . $cron_id;
-
             }
           ?>
           <span class="col-md-9 text-end">
             <?php
               echo HTML::form('cronjob', $CLICSHOPPING_Cronjob->link('Cronjob&' . $form_action));
 
-              if ($form_action == 'Update') {
+              if (isset($_GET['Update'])) {
                 $Qcron = $CLICSHOPPING_Cronjob->db->prepare('select code,
                                                                     cycle,
                                                                     action,
