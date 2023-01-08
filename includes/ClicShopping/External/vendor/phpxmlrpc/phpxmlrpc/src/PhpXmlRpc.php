@@ -7,6 +7,9 @@ namespace PhpXmlRpc;
  */
 class PhpXmlRpc
 {
+    /**
+     * @var int[]
+     */
     static public $xmlrpcerr = array(
         'unknown_method' => 1,
         /// @deprecated. left in for BC
@@ -27,13 +30,14 @@ class PhpXmlRpc
         'multicall_recursion' => 12,
         'multicall_noparams' => 13,
         'multicall_notarray' => 14,
-        'no_http2' => 15,
+        'no_http2' => 19,
         // the following 3 are meant to give greater insight than 'invalid_return'. They use the same code for BC,
         // but you can override their value in your own code
         'invalid_xml' => 2,
         'xml_not_compliant' => 2,
         'xml_parsing_error' => 2,
 
+        /// @todo verify: can these conflict with $xmlrpcerrxml?
         'cannot_decompress' => 103,
         'decompress_fail' => 104,
         'dechunk_fail' => 105,
@@ -41,6 +45,9 @@ class PhpXmlRpc
         'server_decompress_fail' => 107,
     );
 
+    /**
+     * @var string[]
+     */
     static public $xmlrpcstr = array(
         'unknown_method' => 'Unknown method',
         /// @deprecated. left in for BC
@@ -75,44 +82,75 @@ class PhpXmlRpc
         'server_decompress_fail' => 'Received from client invalid compressed HTTP request',
     );
 
-    // The charset encoding used by the server for received requests and by the client for received responses when
-    // received charset cannot be determined and mbstring extension is not enabled
+    /**
+     * @var string
+     * The charset encoding used by the server for received requests and by the client for received responses when
+     * received charset cannot be determined and mbstring extension is not enabled.
+     */
     public static $xmlrpc_defencoding = "UTF-8";
 
-    // The list of encodings used by the server for requests and by the client for responses to detect the charset of
-    // the received payload when
-    // - the charset cannot be determined by looking at http headers, xml declaration or BOM
-    // - mbstring extension is enabled
+    /**
+     * @var string[]
+     * The list of encodings used by the server for requests and by the client for responses to detect the charset of
+     * the received payload when
+     * - the charset cannot be determined by looking at http headers, xml declaration or BOM
+     * - mbstring extension is enabled
+     */
     public static $xmlrpc_detectencodings = array();
 
-    // The encoding used internally by PHP.
-    // String values received as xml will be converted to this, and php strings will be converted to xml as if
-    // having been coded with this.
-    // Valid also when defining names of xmlrpc methods
+    /**
+     * @var string
+     * The encoding used internally by PHP.
+     * String values received as xml will be converted to this, and php strings will be converted to xml as if
+     * having been coded with this.
+     * Valid also when defining names of xmlrpc methods
+     */
     public static $xmlrpc_internalencoding = "UTF-8";
 
+    /**
+     * @var string
+     */
     public static $xmlrpcName = "XML-RPC for PHP";
-    public static $xmlrpcVersion = "4.9.2";
+    /**
+     * @var string
+     */
+    public static $xmlrpcVersion = "4.9.4";
 
-    // let user errors start at 800
+    /**
+     * @var int
+     * Let user errors start at 800
+     */
     public static $xmlrpcerruser = 800;
-    // let XML parse errors start at 100
+    /**
+     * @var int
+     * Let XML parse errors start at 100
+     */
     public static $xmlrpcerrxml = 100;
 
-    // set to TRUE to enable correct decoding of <NIL/> and <EX:NIL/> values
+    /**
+     * @var bool
+     * Set to TRUE to enable correct decoding of <NIL/> and <EX:NIL/> values
+     */
     public static $xmlrpc_null_extension = false;
 
-    // set to TRUE to enable encoding of php NULL values to <EX:NIL/> instead of <NIL/>
+    /**
+     * @var bool
+     * Set to TRUE to enable encoding of php NULL values to <EX:NIL/> instead of <NIL/>
+     */
     public static $xmlrpc_null_apache_encoding = false;
 
     public static $xmlrpc_null_apache_encoding_ns = "http://ws.apache.org/xmlrpc/namespaces/extensions";
 
-    // number of decimal digits used to serialize Double values
+    /**
+     * @var int
+     * Number of decimal digits used to serialize Double values.
+     */
     public static $xmlpc_double_precision = 128;
 
     /**
      * A function to be used for compatibility with legacy code: it creates all global variables which used to be declared,
      * such as library version etc...
+     * @return void
      */
     public static function exportGlobals()
     {
@@ -151,6 +189,8 @@ class PhpXmlRpc
      * 2. set the values, e.g. $GLOBALS['xmlrpc_internalencoding'] = 'UTF-8';
      * 3. import them: PhpXmlRpc\PhpXmlRpc::importGlobals();
      * 4. run your own code.
+     *
+     * @return void
      */
     public static function importGlobals()
     {

@@ -8,7 +8,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Tools\Cronjob\Sites\ClicShoppingAdmin\Pages\Home\Actions\Cronjob;
 
   use ClicShopping\OM\Registry;

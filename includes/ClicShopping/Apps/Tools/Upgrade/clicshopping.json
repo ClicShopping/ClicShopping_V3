@@ -18,6 +18,14 @@
   "AdminDashboard": {
    "Upgrade":	"Module\\ClicShoppingAdmin\\Dashboard\\Upgrade",
    "LatestApps":	"Module\\ClicShoppingAdmin\\Dashboard\\LatestApps"
+  },
+  "Hooks": {
+   "ClicShoppingAdmin/Cronjob": {
+    "Process":	"Module\\Hooks\\ClicShoppingAdmin\\Cronjob\\Process"
+   },
+   "Shop/Cronjob": {
+    "Process":	"Module\\Hooks\\Shop\\Cronjob\\Process"
+   }
   }
  },
 

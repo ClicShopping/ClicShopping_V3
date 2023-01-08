@@ -7,6 +7,8 @@ use PhpXmlRpc\Helper\XMLParser;
 
 /**
  * Used to represent a client of an XML-RPC server.
+ *
+ * @todo add a setTimeout method, in the vein of other options which can be set to the Client
  */
 class Client
 {
@@ -48,6 +50,10 @@ class Client
 
     public $cookies = array();
     public $extracurlopts = array();
+
+    /**
+     * @var int
+     */
     public $use_curl = self::USE_CURL_AUTO;
 
     /**
@@ -61,6 +67,8 @@ class Client
     public $no_multicall = false;
 
     /**
+     * @var array
+     *
      * List of http compression methods accepted by the client for responses.
      * NB: PHP supports deflate, gzip compressions out of the box if compiled w. zlib.
      *
@@ -71,35 +79,48 @@ class Client
     public $accepted_compression = array();
 
     /**
+     * @var string|null
+     *
      * Name of compression scheme to be used for sending requests.
-     * Either null, gzip or deflate.
+     * Either null, 'gzip' or 'deflate'.
      */
     public $request_compression = '';
 
     /**
-     * CURL handle: used for keep-alive connections (PHP 4.3.8 up, see:
-     * http://curl.haxx.se/docs/faq.html#7.3).
+     * CURL handle: used for keep-alive
      * @internal
      */
     public $xmlrpc_curl_handle = null;
 
-    /// Whether to use persistent connections for http 1.1 and https
+    /**
+     * @var bool
+     *
+     * Whether to use persistent connections for http 1.1 and https.
+     */
     public $keepalive = false;
 
-    /// Charset encodings that can be decoded without problems by the client
+    /**
+     * @var string[]
+     *
+     * Charset encodings that can be decoded without problems by the client
+     */
     public $accepted_charset_encodings = array();
 
     /**
+     * @var string
+     *
      * The charset encoding that will be used for serializing request sent by the client.
-     * It defaults to NULL, which means using US-ASCII and encoding all characters outside of the ASCII printable range
+     * It defaults to NULL, which means using US-ASCII and encoding all characters outside the ASCII printable range
      * using their xml character entity representation (this has the benefit that line end characters will not be mangled
      * in the transfer, a CR-LF will be preserved as well as a singe LF).
      * Valid values are 'US-ASCII', 'UTF-8' and 'ISO-8859-1'.
-     * For the fastest mode of operation, set your both your app internal encoding as well as this to UTF-8.
+     * For the fastest mode of operation, set your both your app internal encoding and this to UTF-8.
      */
     public $request_charset_encoding = '';
 
     /**
+     * @var string
+     *
      * Decides the content of Response objects returned by calls to send() and multicall().
      * Valid values are 'xmlrpcvals', 'phpvals' or 'xml'.
      *
@@ -115,6 +136,8 @@ class Client
     public $return_type = XMLParser::RETURN_XMLRPCVALS;
 
     /**
+     * @var string
+     *
      * Sent to servers in http headers.
      */
     public $user_agent;
@@ -127,6 +150,10 @@ class Client
         return self::$logger;
     }
 
+    /**
+     * @param $logger
+     * @return void
+     */
     public static function setLogger($logger)
     {
         self::$logger = $logger;
@@ -218,17 +245,18 @@ class Client
     }
 
     /**
-     * Enable/disable the echoing to screen of the xmlrpc responses received. The default is not no output anything.
+     * Enable/disable the echoing to screen of the xmlrpc responses received. The default is not to output anything.
      *
      * The debugging information at level 1 includes the raw data returned from the XML-RPC server it was querying
      * (including bot HTTP headers and the full XML payload), and the PHP value the client attempts to create to
-     * represent the value returned by the server
-     * At level2, the complete payload of the xmlrpc request is also printed, before being sent t the server.
+     * represent the value returned by the server.
+     * At level2, the complete payload of the xmlrpc request is also printed, before being sent to the server.
      *
      * This option can be very useful when debugging servers as it allows you to see exactly what the client sends and
-     * the server returns.
+     * the server returns. Never leave it enabled for production!
      *
      * @param integer $level values 0, 1 and 2 are supported (2 = echo sent msg too, before received response)
+     * @return void
      */
     public function setDebug($level)
     {
@@ -248,6 +276,7 @@ class Client
      * @param integer $authType auth type. See curl_setopt man page for supported auth types. Defaults to CURLAUTH_BASIC
      *                          (basic auth). Note that auth types NTLM and Digest will only work if the Curl php
      *                          extension is enabled.
+     * @return void
      */
     public function setCredentials($user, $password, $authType = 1)
     {
@@ -265,6 +294,7 @@ class Client
      *
      * @param string $cert the name of a file containing a PEM formatted certificate
      * @param string $certPass the password required to use it
+     * @return void
      */
     public function setCertificate($cert, $certPass = '')
     {
@@ -279,6 +309,7 @@ class Client
      *
      * @param string $caCert certificate file name (or dir holding certificates)
      * @param bool $isDir set to true to indicate cacert is a dir. defaults to false
+     * @return void
      */
     public function setCaCertificate($caCert, $isDir = false)
     {
@@ -297,6 +328,7 @@ class Client
      *
      * @param string $key The name of a file containing a private SSL key
      * @param string $keyPass The secret password needed to use the private SSL key
+     * @return void
      */
     public function setKey($key, $keyPass)
     {
@@ -312,6 +344,7 @@ class Client
      * To specify custom SSL certificates to validate the server with, use the setCaCertificate method.
      *
      * @param bool $i enable/disable verification of peer certificate
+     * @return void
      */
     public function setSSLVerifyPeer($i)
     {
@@ -324,6 +357,7 @@ class Client
      * Note that support for value 1 has been removed in cURL 7.28.1
      *
      * @param int $i Set to 1 to only the existence of a CN, not that it matches
+     * @return void
      */
     public function setSSLVerifyHost($i)
     {
@@ -334,6 +368,7 @@ class Client
      * Set attributes for SSL communication: SSL version to use. Best left at 0 (default value): let cURL decide
      *
      * @param int $i
+     * @return void
      */
     public function setSSLVersion($i)
     {
@@ -351,6 +386,7 @@ class Client
      * @param string $proxyPassword Leave blank if proxy has public access
      * @param int $proxyAuthType defaults to CURLAUTH_BASIC (Basic authentication protocol); set to constant CURLAUTH_NTLM
      *                           to use NTLM auth with proxy (has effect only when the client uses the HTTP 1.1 protocol)
+     * @return void
      */
     public function setProxy($proxyHost, $proxyPort, $proxyUsername = '', $proxyPassword = '', $proxyAuthType = 1)
     {
@@ -370,6 +406,7 @@ class Client
      * It is up to the xmlrpc server to return compressed responses when receiving such requests.
      *
      * @param string $compMethod either 'gzip', 'deflate', 'any' or ''
+     * @return void
      */
     public function setAcceptedCompression($compMethod)
     {
@@ -390,6 +427,7 @@ class Client
      * uncompressed requests is not yet implemented).
      *
      * @param string $compMethod either 'gzip', 'deflate' or ''
+     * @return void
      */
     public function setRequestCompression($compMethod)
     {
@@ -410,6 +448,7 @@ class Client
      * @param string $path leave this empty unless the xml-rpc server only accepts RFC 2109 cookies
      * @param string $domain leave this empty unless the xml-rpc server only accepts RFC 2109 cookies
      * @param int $port leave this empty unless the xml-rpc server only accepts RFC 2109 cookies
+     * @return void
      *
      * @todo check correctness of urlencoding cookie value (copied from php way of doing it, but php is generally sending
      *       response not requests. We do the opposite...)
@@ -434,6 +473,7 @@ class Client
      * It allows eg. to bind client to a specific IP interface / address.
      *
      * @param array $options
+     * @return void
      */
     public function setCurlOptions($options)
     {
@@ -442,6 +482,7 @@ class Client
 
     /**
      * @param int $useCurlMode self::USE_CURL_ALWAYS, self::USE_CURL_AUTO or self::USE_CURL_NEVER
+     * @return void
      */
     public function setUseCurl($useCurlMode)
     {
@@ -455,6 +496,7 @@ class Client
      * The default user agent string includes the name of this library and the version number.
      *
      * @param string $agentString
+     * @return void
      */
     public function setUserAgent($agentString)
     {
@@ -487,8 +529,8 @@ class Client
      *                       for http/2 without tls. Note that 'h2c' will not use the h2c 'upgrade' method, and be
      *                       thus incompatible with any server/proxy not supporting http/2. This is because POST
      *                       request are not compatible with h2c upgrade.
-     *
      * @return Response|Response[] Note that the client will always return a Response object, even if the call fails
+     *
      * @todo allow throwing exceptions instead of returning responses in case of failed calls and/or Fault responses
      * @todo refactor: we now support many options besides connection timeout and http version to use. Why only privilege those?
      */
@@ -545,7 +587,6 @@ class Client
                 $this->sslversion
             );
         } else {
-            // plain 'http 1.0': default to using socket
             $r = $this->sendPayloadSocket(
                 $req,
                 $this->server,
@@ -701,6 +742,7 @@ class Client
         if ($username != '') {
             $credentials = 'Authorization: Basic ' . base64_encode($username . ':' . $password) . "\r\n";
             if ($authType != 1) {
+                /// @todo make this a proper error, ie. return a failure
                 $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth is supported with HTTP 1.0');
             }
         }
@@ -718,9 +760,11 @@ class Client
             $connectServer = $proxyHost;
             $connectPort = $proxyPort;
             $transport = 'tcp';
+            /// @todo check: should we not use https in some cases?
             $uri = 'http://' . $server . ':' . $port . $this->path;
             if ($proxyUsername != '') {
                 if ($proxyAuthType != 1) {
+                    /// @todo make this a proper error, ie. return a failure
                     $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth to proxy is supported with HTTP 1.0');
                 }
                 $proxyCredentials = 'Proxy-Authorization: Basic ' . base64_encode($proxyUsername . ':' . $proxyPassword) . "\r\n";
@@ -816,7 +860,7 @@ class Client
             STREAM_CLIENT_CONNECT, $context);
         if ($fp) {
             if ($timeout > 0) {
-                stream_set_timeout($fp, $timeout);
+                stream_set_timeout($fp, $timeout, 0);
             }
         } else {
             if ($this->errstr == '') {
@@ -976,6 +1020,8 @@ class Client
 
         // Deflate request body and set appropriate request headers
         $payload = $req->payload;
+        $encodingHdr = '';
+        /// @todo test for existence of proper function, in case of polyfills
         if (function_exists('gzdeflate') && ($this->request_compression == 'gzip' || $this->request_compression == 'deflate')) {
             if ($this->request_compression == 'gzip') {
                 $a = @gzencode($payload);
@@ -990,8 +1036,6 @@ class Client
                     $encodingHdr = 'Content-Encoding: deflate';
                 }
             }
-        } else {
-            $encodingHdr = '';
         }
 
         if (!$keepAlive || !$this->xmlrpc_curl_handle) {
@@ -1076,7 +1120,12 @@ class Client
                 curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
                 break;
             case 'h2c':
-                curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_2_PRIOR_KNOWLEDGE);
+                if (defined('CURL_HTTP_VERSION_2_PRIOR_KNOWLEDGE')) {
+                    curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_2_PRIOR_KNOWLEDGE);
+                } else {
+                    /// @todo make this a proper error, ie. return a failure
+                    $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. HTTP2 is not supported by the current PHP/curl install');
+                }
                 break;
             case 'h2':
                 curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_2_0);
@@ -1088,10 +1137,12 @@ class Client
             if (defined('CURLOPT_HTTPAUTH')) {
                 curl_setopt($curl, CURLOPT_HTTPAUTH, $authType);
             } elseif ($authType != 1) {
+                /// @todo make this a proper error, ie. return a failure
                 $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth is supported by the current PHP/curl install');
             }
         }
 
+        // note: h2c is http2 without the https. No need to have it in this IF
         if ($method == 'https' || $method == 'h2') {
             // set cert file
             if ($cert) {
@@ -1136,6 +1187,7 @@ class Client
                 if (defined('CURLOPT_PROXYAUTH')) {
                     curl_setopt($curl, CURLOPT_PROXYAUTH, $proxyAuthType);
                 } elseif ($proxyAuthType != 1) {
+                    /// @todo make this a proper error, ie. return a failure
                     $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth to proxy is supported by the current PHP/curl install');
                 }
             }
@@ -1181,7 +1233,6 @@ class Client
      * @param string $method the http protocol variant to be used. See the details in the docs for the send() method
      * @param boolean $fallback When true, upon receiving an error during multicall, multiple single calls will be
      *                         attempted
-     *
      * @return Response[]
      */
     public function multicall($reqs, $timeout = 0, $method = '', $fallback = true)
@@ -1189,14 +1240,16 @@ class Client
         if ($method == '') {
             $method = $this->method;
         }
+
         if (!$this->no_multicall) {
             $results = $this->_try_multicall($reqs, $timeout, $method);
+            /// @todo how to handle the case of $this->return_type = xml?
             if (is_array($results)) {
                 // System.multicall succeeded
                 return $results;
             } else {
-                // either system.multicall is unsupported by server,
-                // or call failed for some other reason.
+                // either system.multicall is unsupported by server, or the call failed for some other reason.
+                // Feature creep: is there a way to tell apart unsupported multicall from other faults?
                 if ($fallback) {
                     // Don't try it next time...
                     $this->no_multicall = true;
@@ -1216,16 +1269,14 @@ class Client
 
         $results = array();
         if ($fallback) {
-            // system.multicall is (probably) unsupported by server:
-            // emulate multicall via multiple requests
-            /// @todo use curl multi_ functions to make this quicker
+            // system.multicall is (probably) unsupported by server: emulate multicall via multiple requests
+            /// @todo use curl multi_ functions to make this quicker (see the implementation in the parallel.php demo)
             foreach ($reqs as $req) {
                 $results[] = $this->send($req, $timeout, $method);
             }
         } else {
-            // user does NOT want to fallback on many single calls:
-            // since we should always return an array of responses,
-            // return an array with the same error repeated n times
+            // user does NOT want to fallback on many single calls: since we should always return an array of responses,
+            // we return an array with the same error repeated n times
             foreach ($reqs as $req) {
                 $results[] = $result;
             }
@@ -1237,13 +1288,14 @@ class Client
     /**
      * Attempt to boxcar $reqs via system.multicall.
      *
-     * Returns either an array of Response, a single error Response or false (when received response does not respect
-     * valid multicall syntax).
-     *
      * @param Request[] $reqs
      * @param int $timeout
      * @param string $method
-     * @return Response[]|false|mixed|Response
+     * @return Response[]|string|false|Response string when return_type=xml, a single Response when the call returned a
+     *                                          fault, false when the returned response does not conform to what we expect
+     *                                          from a multicall response
+     * @todo always send back Response(s) which have the full set of cookies/headers/raw-data
+     * @todo instead of returning false, return a single Response with the proper fault codes + some details
      */
     private function _try_multicall($reqs, $timeout, $method)
     {
@@ -1277,7 +1329,6 @@ class Client
             return $rets;
         } elseif ($this->return_type == 'phpvals') {
             /// @todo test this code branch...
-            $rets = $result->value();
             if (!is_array($rets)) {
                 return false;       // bad return type from system.multicall
             }
@@ -1320,8 +1371,6 @@ class Client
             return $response;
         } else {
             // return type == 'xmlrpcvals'
-
-            $rets = $result->value();
             if ($rets->kindOf() != 'array') {
                 return false;       // bad return type from system.multicall
             }

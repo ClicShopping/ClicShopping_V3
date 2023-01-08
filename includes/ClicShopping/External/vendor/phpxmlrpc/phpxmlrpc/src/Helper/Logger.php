@@ -31,6 +31,7 @@ class Logger
      *
      * @param string $message
      * @param string $encoding
+     * @return void
      */
     public function debugMessage($message, $encoding = null)
     {
@@ -57,13 +58,14 @@ class Logger
             print "\n$message\n";
         }
 
-        // let the user see this now in case there's a time out later...
+        // let the user see this now in case there's a time-out later...
         flush();
     }
 
     /**
-     * Writes a message to the error log
+     * Writes a message to the error log.
      * @param string $message
+     * @return void
      */
     public function errorLog($message)
     {

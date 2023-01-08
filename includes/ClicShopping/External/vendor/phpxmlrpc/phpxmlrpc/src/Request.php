@@ -39,6 +39,10 @@ class Request
         return self::$logger;
     }
 
+    /**
+     * @param $logger
+     * @return void
+     */
     public static function setLogger($logger)
     {
         self::$logger = $logger;
@@ -52,6 +56,10 @@ class Request
         return self::$parser;
     }
 
+    /**
+     * @param $parser
+     * @return void
+     */
     public static function setParser($parser)
     {
         self::$parser = $parser;
@@ -65,6 +73,12 @@ class Request
         return self::$charsetEncoder;
     }
 
+    /**
+     * @param $charsetEncoder
+     * @return void
+     *
+     * @todo this should be a static method
+     */
     public function setCharsetEncoder($charsetEncoder)
     {
         self::$charsetEncoder = $charsetEncoder;
@@ -84,6 +98,7 @@ class Request
 
     /**
      * @internal this function will become protected in the future
+     *
      * @param string $charsetEncoding
      * @return string
      */
@@ -98,6 +113,7 @@ class Request
 
     /**
      * @internal this function will become protected in the future
+     *
      * @return string
      */
     public function xml_footer()
@@ -107,7 +123,9 @@ class Request
 
     /**
      * @internal this function will become protected in the future
+     *
      * @param string $charsetEncoding
+     * @return void
      */
     public function createPayload($charsetEncoding = '')
     {
@@ -132,7 +150,6 @@ class Request
      * Gets/sets the xmlrpc method to be invoked.
      *
      * @param string $methodName the method to be set (leave empty not to set it)
-     *
      * @return string the method that will be invoked
      */
     public function method($methodName = '')
@@ -148,7 +165,6 @@ class Request
      * Returns xml representation of the message. XML prologue included.
      *
      * @param string $charsetEncoding
-     *
      * @return string the xml representation of the message, xml prologue included
      */
     public function serialize($charsetEncoding = '')
@@ -160,11 +176,9 @@ class Request
 
     /**
      * Add a parameter to the list of parameters to be used upon method invocation.
-     *
      * Checks that $params is actually a Value object and not a plain php value.
      *
      * @param Value $param
-     *
      * @return boolean false on failure
      */
     public function addParam($param)
@@ -183,7 +197,6 @@ class Request
      * Returns the nth parameter in the request. The index zero-based.
      *
      * @param integer $i the index of the parameter to fetch (zero based)
-     *
      * @return Value the i-th parameter
      */
     public function getParam($i)
@@ -212,7 +225,6 @@ class Request
      * @param resource $fp stream pointer
      * @param bool $headersProcessed
      * @param string $returnType
-     *
      * @return Response
      */
     public function parseResponseFile($fp, $headersProcessed = false, $returnType = 'xmlrpcvals')
@@ -234,7 +246,6 @@ class Request
      *                               consequent decoding
      * @param string $returnType decides return type, i.e. content of response->value(). Either 'xmlrpcvals', 'xml' or
      *                           'phpvals'
-     *
      * @return Response
      *
      * @todo parsing Responses is not really the responsibility of the Request class. Maybe of the Client...
@@ -297,7 +308,7 @@ class Request
             }
         }
 
-        // if user wants back raw xml, give it to her
+        // if the user wants back raw xml, give it to her
         if ($returnType == 'xml') {
             return new Response($data, 0, '', 'xml', $this->httpResponse);
         }
@@ -309,6 +320,7 @@ class Request
             // The following code might be better for mb_string enabled installs, but makes the lib about 200% slower...
             //if (!is_valid_charset($respEncoding, array('UTF-8')))
             if (!in_array($respEncoding, array('UTF-8', 'US-ASCII')) && !XMLParser::hasEncoding($data)) {
+                /// @todo replace with function_exists
                 if (extension_loaded('mbstring')) {
                     $data = mb_convert_encoding($data, 'UTF-8', $respEncoding);
                 } else {
@@ -335,7 +347,7 @@ class Request
         $xmlRpcParser = $this->getParser();
         $xmlRpcParser->parse($data, $returnType, XMLParser::ACCEPT_RESPONSE, $options);
 
-        // first error check: xml not well formed
+        // first error check: xml not well-formed
         if ($xmlRpcParser->_xh['isf'] > 2) {
 
             // BC break: in the past for some cases we used the error message: 'XML error at line 1, check URL'
@@ -349,7 +361,7 @@ class Request
                 print $xmlRpcParser->_xh['isf_reason'];
             }
         }
-        // second error check: xml well formed but not xml-rpc compliant
+        // second error check: xml well-formed but not xml-rpc compliant
         elseif ($xmlRpcParser->_xh['isf'] == 2) {
             $r = new Response(0, PhpXmlRpc::$xmlrpcerr['xml_not_compliant'],
                 PhpXmlRpc::$xmlrpcstr['xml_not_compliant'] . ' ' . $xmlRpcParser->_xh['isf_reason'], '',
@@ -390,6 +402,7 @@ class Request
 
                 if ($errNo == 0) {
                     // FAULT returned, errno needs to reflect that
+                    /// @todo we should signal somehow that the server returned a fault with code 0?
                     $errNo = -1;
                 }
 
@@ -416,6 +429,7 @@ class Request
      * Enables/disables the echoing to screen of the xmlrpc responses received.
      *
      * @param integer $level values 0, 1, 2 are supported
+     * @return void
      */
     public function setDebug($level)
     {

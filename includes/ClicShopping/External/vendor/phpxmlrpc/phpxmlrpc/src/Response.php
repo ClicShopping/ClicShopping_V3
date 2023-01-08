@@ -38,6 +38,12 @@ class Response
         return self::$charsetEncoder;
     }
 
+    /**
+     * @param $charsetEncoder
+     * @return void
+     *
+     * @todo this should be a static method
+     */
     public function setCharsetEncoder($charsetEncoder)
     {
         self::$charsetEncoder = $charsetEncoder;
@@ -143,9 +149,7 @@ class Response
      * Returns xml representation of the response. XML prologue not included.
      *
      * @param string $charsetEncoding the charset to be used for serialization. If null, US-ASCII is assumed
-     *
      * @return string the xml representation of the response
-     *
      * @throws \Exception
      */
     public function serialize($charsetEncoding = '')

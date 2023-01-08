@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Gaetano Giunta
- * @copyright (C) 2006-2021 G. Giunta
+ * @copyright (C) 2006-2023 G. Giunta
  * @license code licensed under the BSD License: see file license.txt
  */
 
@@ -10,7 +10,7 @@ namespace PhpXmlRpc;
 use PhpXmlRpc\Helper\Logger;
 
 /**
- * PHP-XMLRPC "wrapper" class - generate stubs to transparently access xmlrpc methods as php functions and vice-versa.
+ * PHPXMLRPC "wrapper" class - generate stubs to transparently access xmlrpc methods as php functions and vice-versa.
  * Note: this class implements the PROXY pattern, but it is not named so to avoid confusion with http proxies.
  *
  * @todo use some better templating system for code generation?
@@ -34,6 +34,10 @@ class Wrapper
         return self::$logger;
     }
 
+    /**
+     * @param $logger
+     * @return void
+     */
     public static function setLogger($logger)
     {
         self::$logger = $logger;
@@ -49,10 +53,10 @@ class Wrapper
      * - for 'void' and 'null' returns 'undefined'
      *
      * @param string $phpType
-     *
      * @return string
      *
      * @todo support notation `something[]` as 'array'
+     * @todo check if nil support is enabled when finding null
      */
     public function php2XmlrpcType($phpType)
     {
@@ -99,7 +103,6 @@ class Wrapper
      * Given a string defining a phpxmlrpc type return the corresponding php type.
      *
      * @param string $xmlrpcType
-     *
      * @return string
      */
     public function xmlrpc2PhpType($xmlrpcType)
@@ -129,40 +132,36 @@ class Wrapper
     }
 
     /**
-     * Given a user-defined PHP function, create a PHP 'wrapper' function that can
-     * be exposed as xmlrpc method from an xmlrpc server object and called from remote
-     * clients (as well as its corresponding signature info).
+     * Given a user-defined PHP function, create a PHP 'wrapper' function that can be exposed as xmlrpc method from an
+     * xmlrpc server object and called from remote clients (as well as its corresponding signature info).
      *
-     * Since php is a typeless language, to infer types of input and output parameters,
-     * it relies on parsing the javadoc-style comment block associated with the given
-     * function. Usage of xmlrpc native types (such as datetime.dateTime.iso8601 and base64)
-     * in the '@param' tag is also allowed, if you need the php function to receive/send
-     * data in that particular format (note that base64 encoding/decoding is transparently
-     * carried out by the lib, while datetime vals are passed around as strings)
+     * Since php is a typeless language, to infer types of input and output parameters, it relies on parsing the
+     * javadoc-style comment block associated with the given function. Usage of xmlrpc native types (such as
+     * datetime.dateTime.iso8601 and base64) in the '@param' tag is also allowed, if you need the php function to
+     * receive/send data in that particular format (note that base64 encoding/decoding is transparently carried out by
+     * the lib, while datetime values are passed around as strings)
      *
      * Known limitations:
-     * - only works for user-defined functions, not for PHP internal functions
-     *   (reflection does not support retrieving number/type of params for those)
-     * - functions returning php objects will generate special structs in xmlrpc responses:
-     *   when the xmlrpc decoding of those responses is carried out by this same lib, using
-     *   the appropriate param in php_xmlrpc_decode, the php objects will be rebuilt.
-     *   In short: php objects can be serialized, too (except for their resource members),
-     *   using this function.
-     *   Other libs might choke on the very same xml that will be generated in this case
-     *   (i.e. it has a nonstandard attribute on struct element tags)
+     * - only works for user-defined functions, not for PHP internal functions (reflection does not support retrieving
+     *   number/type of params for those)
+     * - functions returning php objects will generate special structs in xmlrpc responses: when the xmlrpc decoding of
+     *   those responses is carried out by this same lib, using the appropriate param in php_xmlrpc_decode, the php
+     *   objects will be rebuilt.
+     *   In short: php objects can be serialized, too (except for their resource members), using this function.
+     *   Other libs might choke on the very same xml that will be generated in this case (i.e. it has a nonstandard
+     *   attribute on struct element tags)
      *
-     * Note that since rel. 2.0RC3 the preferred method to have the server call 'standard'
-     * php functions (ie. functions not expecting a single Request obj as parameter)
-     * is by making use of the functions_parameters_type class member.
+     * Note that since rel. 2.0RC3 the preferred method to have the server call 'standard' php functions (ie. functions
+     * not expecting a single Request obj as parameter) is by making use of the $functions_parameters_type and
+     * $exception_handling properties.
      *
-     * @param callable $callable the PHP user function to be exposed as xmlrpc method/ a closure, function name, array($obj, 'methodname') or array('class', 'methodname') are ok
+     * @param \Callable $callable the PHP user function to be exposed as xmlrpc method: a closure, function name, array($obj, 'methodname') or array('class', 'methodname') are ok
      * @param string $newFuncName (optional) name for function to be created. Used only when return_source in $extraOptions is true
      * @param array $extraOptions (optional) array of options for conversion. valid values include:
      *                            - bool return_source     when true, php code w. function definition will be returned, instead of a closure
      *                            - bool encode_php_objs   let php objects be sent to server using the 'improved' xmlrpc notation, so server can deserialize them as php objects
      *                            - bool decode_php_objs   --- WARNING !!! possible security hazard. only use it with trusted servers ---
      *                            - bool suppress_warnings remove from produced xml any warnings generated at runtime by the php function being invoked
-     *
      * @return array|false false on error, or an array containing the name of the new php function,
      *                     its signature and docs, to be used in the server dispatch map
      *
@@ -276,8 +275,8 @@ class Wrapper
             $func = new \ReflectionFunction($callable);
         }
         if ($func->isInternal()) {
-            // Note: from PHP 5.1.0 onward, we will possibly be able to use invokeargs
-            // instead of getparameters to fully reflect internal php functions ?
+            /// @todo from PHP 5.1.0 onward, we should be able to use invokeargs instead of getparameters to fully
+            ///       reflect internal php functions
             $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': function to be wrapped is internal: ' . $plainFuncName);
             return false;
         }
@@ -348,12 +347,11 @@ class Wrapper
     /**
      * Given the method description given by introspection, create method signature data
      *
+     * @param array $funcDesc as generated by self::introspectFunction()
+     * @return array
+     *
      * @todo support better docs with multiple types separated by pipes by creating multiple signatures
      *       (this is questionable, as it might produce a big matrix of possible signatures with many such occurrences)
-     *
-     * @param array $funcDesc as generated by self::introspectFunction()
-     *
-     * @return array
      */
     protected function buildMethodSignatures($funcDesc)
     {
@@ -416,19 +414,21 @@ class Wrapper
 
     /**
      * Creates a closure that will execute $callable
-     * @todo validate params? In theory all validation is left to the dispatch map...
-     * @todo add support for $catchWarnings
      *
      * @param $callable
      * @param array $extraOptions
      * @param string $plainFuncName
      * @param array $funcDesc
      * @return \Closure
+     *
+     * @todo validate params? In theory all validation is left to the dispatch map...
+     * @todo add support for $catchWarnings
      */
     protected function buildWrapFunctionClosure($callable, $extraOptions, $plainFuncName, $funcDesc)
     {
         /**
          * @param Request $req
+         *
          * @return mixed
          */
         $function = function($req) use($callable, $extraOptions, $funcDesc)
@@ -625,7 +625,7 @@ class Wrapper
      *                            - string method_filter  a regexp used to filter methods to wrap based on their names
      *                            - string prefix         used for the names of the xmlrpc methods created.
      *                            - string replace_class_name use to completely replace the class name with the prefix in the generated method names. e.g. instead of \Some\Namespace\Class.method use prefixmethod
-     * @return array|false false on failure
+     * @return array|false false on failure, or on array useable for the dispatch map
      */
     public function wrapPhpClass($className, $extraOptions = array())
     {
@@ -675,33 +675,23 @@ class Wrapper
     }
 
     /**
-     * Given an xmlrpc client and a method name, register a php wrapper function
-     * that will call it and return results using native php types for both
-     * params and results. The generated php function will return a Response
+     * Given an xmlrpc client and a method name, register a php wrapper function that will call it and return results
+     * using native php types for both arguments and results. The generated php function will return a Response
      * object for failed xmlrpc calls.
      *
      * Known limitations:
-     * - server must support system.methodsignature for the wanted xmlrpc method
-     * - for methods that expose many signatures, only one can be picked (we
-     *   could in principle check if signatures differ only by number of params
-     *   and not by type, but it would be more complication than we can spare time)
-     * - nested xmlrpc params: the caller of the generated php function has to
-     *   encode on its own the params passed to the php function if these are structs
-     *   or arrays whose (sub)members include values of type datetime or base64
+     * - server must support system.methodSignature for the target xmlrpc method
+     * - for methods that expose many signatures, only one can be picked (we could in principle check if signatures
+     *   differ only by number of params and not by type, but it would be more complication than we can spare time for)
+     * - nested xmlrpc params: the caller of the generated php function has to encode on its own the params passed to
+     *   the php function if these are structs or arrays whose (sub)members include values of type base64
      *
-     * Notes: the connection properties of the given client will be copied
-     * and reused for the connection used during the call to the generated
-     * php function.
-     * Calling the generated php function 'might' be slow: a new xmlrpc client
-     * is created on every invocation and an xmlrpc-connection opened+closed.
-     * An extra 'debug' param is appended to param list of xmlrpc method, useful
+     * Notes: the connection properties of the given client will be copied and reused for the connection used during
+     * the call to the generated php function.
+     * Calling the generated php function 'might' be slightly slow: a new xmlrpc client is created on every invocation
+     * and an xmlrpc-connection opened+closed.
+     * An extra 'debug' argument, defaulting to 0, is appended to the argument list of the generated function, useful
      * for debugging purposes.
-     *
-     * @todo allow caller to give us the method signature instead of querying for it, or just say 'skip it'
-     * @todo if we can not retrieve method signature, create a php function with varargs
-     * @todo allow the created function to throw exceptions on method calls failures
-     * @todo if caller did not specify a specific sig, shall we support all of them?
-     *       It might be hard (hence slow) to match based on type and number of arguments...
      *
      * @param Client $client an xmlrpc client set up correctly to communicate with target server
      * @param string $methodName the xmlrpc method to be mapped to a php function
@@ -716,8 +706,13 @@ class Wrapper
      *                            - mixed   return_on_fault     a php value to be returned when the xmlrpc call fails/returns a fault response (by default the Response object is returned in this case). If a string is used, '%faultCode%' and '%faultString%' tokens will be substituted with actual error values
      *                            - bool    debug               set it to 1 or 2 to see debug results of querying server for method synopsis
      *                            - int     simple_client_copy  set it to 1 to have a lightweight copy of the $client object made in the generated code (only used when return_source = true)
+     * @return \Closure|string[]|false false on failure, closure by default and array for return_source = true
      *
-     * @return \closure|string[]|false false on failure, closure by default and array for return_source = true
+     * @todo allow the created function to throw exceptions on method calls failures
+     * @todo allow caller to give us the method signature instead of querying for it, or just say 'skip it'
+     * @todo if we can not retrieve method signature, create a php function with varargs
+     * @todo if caller did not specify a specific sig, shall we support all of them?
+     *       It might be hard (hence slow) to match based on type and number of arguments...
      */
     public function wrapXmlrpcMethod($client, $methodName, $extraOptions = array())
     {
@@ -740,10 +735,6 @@ class Wrapper
             $newFuncName = $this->newFunctionName($methodName, $newFuncName, $extraOptions);
 
             $results = $this->buildWrapMethodSource($client, $methodName, $extraOptions, $newFuncName, $mSig, $mDesc);
-            /* was: $results = $this->build_remote_method_wrapper_code($client, $methodName,
-                $newFuncName, $mSig, $mDesc, $timeout, $protocol, $simpleClientCopy,
-                $prefix, $decodePhpObjects, $encodePhpObjects, $decodeFault,
-                $faultResponse, $namespace);*/
 
             $results['function'] = $newFuncName;
 
@@ -780,6 +771,7 @@ class Wrapper
         }
 
         $mSig = $response->value();
+        /// @todo what about return xml?
         if ($client->return_type != 'phpvals') {
             $decoder = new $decoderClass();
             $mSig = $decoder->decode($mSig);
@@ -917,6 +909,8 @@ class Wrapper
     }
 
     /**
+     * @internal made public just for Debugger usage
+     *
      * @param Client $client
      * @param string $methodName
      * @param array $extraOptions
@@ -1015,22 +1009,23 @@ class Wrapper
     }
 
     /**
-     * Similar to wrapXmlrpcMethod, but will generate a php class that wraps
-     * all xmlrpc methods exposed by the remote server as own methods.
-     * For more details see wrapXmlrpcMethod.
+     * Similar to wrapXmlrpcMethod, but will generate a php class that wraps all xmlrpc methods exposed by the remote
+     * server as own methods.
+     * For a slimmer alternative, see the code in demo/client/proxy.php.
+     * Note that unlike wrapXmlrpcMethod, we always have to generate php code here. Since php 7 anon classes exist, but
+     * we do not support them yet...
      *
-     * For a slimmer alternative, see the code in demo/client/proxy.php
-     *
-     * Note that unlike wrapXmlrpcMethod, we always have to generate php code here. It seems that php 7 will have anon classes...
+     * @see wrapXmlrpcMethod for more details.
      *
      * @param Client $client the client obj all set to query the desired server
-     * @param array $extraOptions list of options for wrapped code. See the ones from wrapXmlrpcMethod plus
-     *              - string method_filter      regular expression
-     *              - string new_class_name
-     *              - string prefix
-     *              - bool   simple_client_copy set it to true to avoid copying all properties of $client into the copy made in the new class
+     * @param array $extraOptions list of options for wrapped code. See the ones from wrapXmlrpcMethod, plus
+     *                            - string method_filter      regular expression
+     *                            - string new_class_name
+     *                            - string prefix
+     *                            - bool   simple_client_copy set it to true to avoid copying all properties of $client into the copy made in the new class
+     * @return string|array|false false on error, the name of the created class if all ok or an array with code, class name and comments (if the appropriate option is set in extra_options)
      *
-     * @return mixed false on error, the name of the created class if all ok or an array with code, class name and comments (if the appropriate option is set in extra_options)
+     * @todo add support for anonymous classes in the 'buildIt' case for php > 7
      */
     public function wrapXmlrpcServer($client, $extraOptions = array())
     {
@@ -1048,79 +1043,80 @@ class Wrapper
         $reqClass = $namespace . 'Request';
         $decoderClass = $namespace . 'Encoder';
 
+        // retrieve the list of methods
         $req = new $reqClass('system.listMethods');
         $response = $client->send($req, $timeout, $protocol);
         if ($response->faultCode()) {
             $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': could not retrieve method list from remote server');
 
             return false;
+        }
+        $mList = $response->value();
+        /// @todo what about return_type = xml?
+        if ($client->return_type != 'phpvals') {
+            $decoder = new $decoderClass();
+            $mList = $decoder->decode($mList);
+        }
+        if (!is_array($mList) || !count($mList)) {
+            $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': could not retrieve meaningful method list from remote server');
+
+            return false;
+        }
+
+        // pick a suitable name for the new function, avoiding collisions
+        if ($newClassName != '') {
+            $xmlrpcClassName = $newClassName;
         } else {
-            $mList = $response->value();
-            if ($client->return_type != 'phpvals') {
-                $decoder = new $decoderClass();
-                $mList = $decoder->decode($mList);
-            }
-            if (!is_array($mList) || !count($mList)) {
-                $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': could not retrieve meaningful method list from remote server');
+            $xmlrpcClassName = $prefix . '_' . preg_replace(array('/\./', '/[^a-zA-Z0-9_\x7f-\xff]/'),
+                    array('_', ''), $client->server) . '_client';
+        }
+        while ($buildIt && class_exists($xmlrpcClassName)) {
+            $xmlrpcClassName .= 'x';
+        }
 
-                return false;
+        /// @todo add method setDebug() to new class, to enable/disable debugging
+        $source = "class $xmlrpcClassName\n{\npublic \$client;\n\n";
+        $source .= "function __construct()\n{\n";
+        $source .= $this->buildClientWrapperCode($client, $verbatimClientCopy, $prefix, $namespace);
+        $source .= "\$this->client = \$client;\n}\n\n";
+        $opts = array(
+            'return_source' => true,
+            'simple_client_copy' => 2, // do not produce code to copy the client object
+            'timeout' => $timeout,
+            'protocol' => $protocol,
+            'encode_php_objs' => $encodePhpObjects,
+            'decode_php_objs' => $decodePhpObjects,
+            'prefix' => $prefix,
+        );
+        /// @todo build phpdoc for class definition, too
+        foreach ($mList as $mName) {
+            if ($methodFilter == '' || preg_match($methodFilter, $mName)) {
+                // note: this will fail if server exposes 2 methods called f.e. do.something and do_something
+                $opts['new_function_name'] = preg_replace(array('/\./', '/[^a-zA-Z0-9_\x7f-\xff]/'),
+                    array('_', ''), $mName);
+                $methodWrap = $this->wrapXmlrpcMethod($client, $mName, $opts);
+                if ($methodWrap) {
+                    if (!$buildIt) {
+                        $source .= $methodWrap['docstring'];
+                    }
+                    $source .= $methodWrap['source'] . "\n";
+                } else {
+                    $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': will not create class method to wrap remote method ' . $mName);
+                }
+            }
+        }
+        $source .= "}\n";
+        if ($buildIt) {
+            $allOK = 0;
+            eval($source . '$allOK=1;');
+            if ($allOK) {
+                return $xmlrpcClassName;
             } else {
-                // pick a suitable name for the new function, avoiding collisions
-                if ($newClassName != '') {
-                    $xmlrpcClassName = $newClassName;
-                } else {
-                    $xmlrpcClassName = $prefix . '_' . preg_replace(array('/\./', '/[^a-zA-Z0-9_\x7f-\xff]/'),
-                            array('_', ''), $client->server) . '_client';
-                }
-                while ($buildIt && class_exists($xmlrpcClassName)) {
-                    $xmlrpcClassName .= 'x';
-                }
-
-                /// @todo add function setdebug() to new class, to enable/disable debugging
-                $source = "class $xmlrpcClassName\n{\npublic \$client;\n\n";
-                $source .= "function __construct()\n{\n";
-                $source .= $this->buildClientWrapperCode($client, $verbatimClientCopy, $prefix, $namespace);
-                $source .= "\$this->client = \$client;\n}\n\n";
-                $opts = array(
-                    'return_source' => true,
-                    'simple_client_copy' => 2, // do not produce code to copy the client object
-                    'timeout' => $timeout,
-                    'protocol' => $protocol,
-                    'encode_php_objs' => $encodePhpObjects,
-                    'decode_php_objs' => $decodePhpObjects,
-                    'prefix' => $prefix,
-                );
-                /// @todo build phpdoc for class definition, too
-                foreach ($mList as $mName) {
-                    if ($methodFilter == '' || preg_match($methodFilter, $mName)) {
-                        // note: this will fail if server exposes 2 methods called f.e. do.something and do_something
-                        $opts['new_function_name'] = preg_replace(array('/\./', '/[^a-zA-Z0-9_\x7f-\xff]/'),
-                            array('_', ''), $mName);
-                        $methodWrap = $this->wrapXmlrpcMethod($client, $mName, $opts);
-                        if ($methodWrap) {
-                            if (!$buildIt) {
-                                $source .= $methodWrap['docstring'];
-                            }
-                            $source .= $methodWrap['source'] . "\n";
-                        } else {
-                            $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': will not create class method to wrap remote method ' . $mName);
-                        }
-                    }
-                }
-                $source .= "}\n";
-                if ($buildIt) {
-                    $allOK = 0;
-                    eval($source . '$allOK=1;');
-                    if ($allOK) {
-                        return $xmlrpcClassName;
-                    } else {
-                        $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': could not create class ' . $xmlrpcClassName . ' to wrap remote server ' . $client->server);
-                        return false;
-                    }
-                } else {
-                    return array('class' => $xmlrpcClassName, 'code' => $source, 'docstring' => '');
-                }
+                $this->getLogger()->errorLog('XML-RPC: ' . __METHOD__ . ': could not create class ' . $xmlrpcClassName . ' to wrap remote server ' . $client->server);
+                return false;
             }
+        } else {
+            return array('class' => $xmlrpcClassName, 'code' => $source, 'docstring' => '');
         }
     }
 
@@ -1131,7 +1127,6 @@ class Wrapper
      * @param bool $verbatimClientCopy when true, copy the whole state of the client, except for 'debug' and 'return_type'
      * @param string $prefix used for the return_type of the created client
      * @param string $namespace
-     *
      * @return string
      */
     protected function buildClientWrapperCode($client, $verbatimClientCopy, $prefix = 'xmlrpc', $namespace = '\\PhpXmlRpc\\')

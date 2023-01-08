@@ -14,6 +14,7 @@ use PhpXmlRpc\Value;
  *       - add parseRequest, parseResponse, parseValue methods
  * @todo if iconv() or mb_string() are available, we could allow to convert the received xml to a custom charset encoding
  *       while parsing, which is faster than doing it later by going over the rebuilt data structure
+ * @todo allow usage of a custom Logger via the DIC(ish) pattern we use in other classes
  */
 class XMLParser
 {
@@ -97,7 +98,8 @@ class XMLParser
      * @param string $data
      * @param string $returnType
      * @param int $accept a bit-combination of self::ACCEPT_REQUEST, self::ACCEPT_RESPONSE, self::ACCEPT_VALUE
-     * @param array $options
+     * @param array $options passed to the xml parser, in addition to the options received in the constructor
+     * @return void
      */
     public function parse($data, $returnType = self::RETURN_XMLRPCVALS, $accept = 3, $options = array())
     {
@@ -174,10 +176,12 @@ class XMLParser
     /**
      * xml parser handler function for opening element tags.
      * @internal
+     *
      * @param resource $parser
      * @param string $name
      * @param $attrs
      * @param bool $acceptSingleVals DEPRECATED use the $accept parameter instead
+     * @return void
      */
     public function xmlrpc_se($parser, $name, $attrs, $acceptSingleVals = false)
     {
@@ -342,6 +346,7 @@ class XMLParser
      * @param resource $parser
      * @param $name
      * @param $attrs
+     * @return void
      */
     public function xmlrpc_se_any($parser, $name, $attrs)
     {
@@ -351,9 +356,11 @@ class XMLParser
     /**
      * xml parser handler function for close element tags.
      * @internal
+     *
      * @param resource $parser
      * @param string $name
      * @param int $rebuildXmlrpcvals >1 for rebuilding xmlrpcvals, 0 for rebuilding php values, -1 for xmlrpc-extension compatibility
+     * @return void
      */
     public function xmlrpc_ee($parser, $name, $rebuildXmlrpcvals = 1)
     {
@@ -538,8 +545,10 @@ class XMLParser
     /**
      * Used in decoding xmlrpc requests/responses without rebuilding xmlrpc Values.
      * @internal
+     *
      * @param resource $parser
      * @param string $name
+     * @return void
      */
     public function xmlrpc_ee_fast($parser, $name)
     {
@@ -549,8 +558,10 @@ class XMLParser
     /**
      * Used in decoding xmlrpc requests/responses while building xmlrpc-extension Values (plain php for all but base64 and datetime).
      * @internal
+     *
      * @param resource $parser
      * @param string $name
+     * @return void
      */
     public function xmlrpc_ee_epi($parser, $name)
     {
@@ -560,8 +571,10 @@ class XMLParser
     /**
      * xml parser handler function for character data.
      * @internal
+     *
      * @param resource $parser
      * @param string $data
+     * @return void
      */
     public function xmlrpc_cd($parser, $data)
     {
@@ -576,11 +589,13 @@ class XMLParser
     }
 
     /**
-     * xml parser handler function for 'other stuff', ie. not char data or
-     * element start/end tag. In fact it only gets called on unknown entities...
+     * xml parser handler function for 'other stuff', ie. not char data or element start/end tag.
+     * In fact it only gets called on unknown entities...
      * @internal
+     *
      * @param $parser
      * @param string data
+     * @return void
      */
     public function xmlrpc_dh($parser, $data)
     {
@@ -598,7 +613,7 @@ class XMLParser
      * xml charset encoding guessing helper function.
      * Tries to determine the charset encoding of an XML chunk received over HTTP.
      * NB: according to the spec (RFC 3023), if text/xml content-type is received over HTTP without a content-type,
-     * we SHOULD assume it is strictly US-ASCII. But we try to be more tolerant of non conforming (legacy?) clients/servers,
+     * we SHOULD assume it is strictly US-ASCII. But we try to be more tolerant of non-conforming (legacy?) clients/servers,
      * which will be most probably using UTF-8 anyway...
      * In order of importance checks:
      * 1. http headers
@@ -666,6 +681,7 @@ class XMLParser
         }
 
         // 4 - if mbstring is available, let it do the guesswork
+        /// @todo replace with function_exists
         if (extension_loaded('mbstring')) {
             if ($encodingPrefs == null && PhpXmlRpc::$xmlrpc_detectencodings != null) {
                 $encodingPrefs = PhpXmlRpc::$xmlrpc_detectencodings;
@@ -692,7 +708,7 @@ class XMLParser
     }
 
     /**
-     * Helper function: checks if an xml chunk has a charset declaration (BOM or in the xml declaration)
+     * Helper function: checks if an xml chunk has a charset declaration (BOM or in the xml declaration).
      *
      * @param string $xmlChunk
      * @return bool

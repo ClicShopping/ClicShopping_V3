@@ -116,7 +116,7 @@
           <td class="text-end">
             <div class="btn-group" role="group" aria-label="buttonGroup">
               <?php
-                if( $Qcron->valueInt('cron_id') > 3 ) {
+                if( $Qcron->valueInt('cron_id') > 4) {
                   echo '<a href="' . $CLICSHOPPING_Cronjob->link('Edit&Update&cronId=' . $Qcron->valueInt('cron_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Cronjob->getDef('icon_edit') . '"></i></h4></a>';
                   echo '&nbsp;';
                 } else {
@@ -125,7 +125,7 @@
                 echo '<a href="' . $CLICSHOPPING_Cronjob->link('Cronjob&Run&cronId=' . $Qcron->valueInt('cron_id')) . '"><h4><i class="bi bi-gear" title="' . $CLICSHOPPING_Cronjob->getDef('icon_run') . '"></i></h4></a>';
                 echo '&nbsp;';
 
-                if( $Qcron->valueInt('cron_id') > 3 ) {
+                if( $Qcron->valueInt('cron_id') > 4) {
                   echo '<a href="' . $CLICSHOPPING_Cronjob->link('Cronjob&Delete&cronId=' . $Qcron->value('cron_id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Cronjob->getDef('icon_delete') . '"></i></h4></a>';
                   echo '&nbsp;';
                 } else {

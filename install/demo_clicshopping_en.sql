@@ -1881,8 +1881,9 @@ INSERT INTO countries VALUES(238, 'Zambia', 'ZM', 'ZMB', 1, 1);
 INSERT INTO countries VALUES(239, 'Zimbabwe', 'ZW', 'ZWE', 1, 1);
 
 INSERT INTO cron VALUES(1, 'currency', null, 'day', 'currency', 1, '2014-09-25 14:40:00', '2022-10-08 17:57:36');
-INSERT INTO cron VALUES(2, 'gdpr', null, 'day', 'gdpr', 0, '2014-09-01 14:40:00', '2022-10-08 18:04:38');
-INSERT INTO cron VALUES(3, 'backup', null, 'day', 'backup', 1, '1900-01-01 00:00:00', '2022-10-08 17:31:47');
+INSERT INTO cron VALUES(2, 'gdpr', null, 'monthly', 'gdpr', 0, '2014-09-01 14:40:00', '2022-10-08 18:04:38');
+INSERT INTO cron VALUES(3, 'backup', null, 'weekly', 'backup', 1, '1900-01-01 00:00:00', '2022-10-08 17:31:47');
+INSERT INTO cron VALUES(4, 'marketplace', 'Apps marketplace', 'monthly', 'marketplace', 1, '2023-01-06 15:51:34', '2023-01-06 18:19:19');
 
 INSERT INTO currencies VALUES(1, 'Euro', 'EUR', '', 'EUR', '.', ',', '2', 1.00000000, '2008-09-13 18:02:35', 1, 0);
 INSERT INTO currencies VALUES(2, 'Dollard', 'USD', 'USD', '', '.', ',', '2', 1.40750003, '2008-09-13 18:02:36', 1, 0);

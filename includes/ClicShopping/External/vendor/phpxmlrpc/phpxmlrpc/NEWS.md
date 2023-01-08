@@ -1,3 +1,19 @@
+## XML-RPC for PHP version 4.9.4 - 2023-1-7
+
+* improved: updated the user's manual to be inline with the version4 API and modern coding practices.
+  The manual is now bundled in the default distribution tarball, and is easily viewable as html, provided you can
+  serve it using a webserver. It is also available as pdf at https://gggeek.github.io/phpxmlrpc/doc-4/phpxmlrpc_manual.pdf
+
+* improved: automated the process of creating the github release when pushing a release-tag to GitHub; also add a tarball
+  of the demo files as release asset, and automatically update both http://gggeek.github.io and the code on altervista.org
+
+* improved: added a pre-push git hook script, to avoid pushing tagged versions with inconsistent version tags in code.
+  To install it, execute `composer run-script setup-git-hooks` (NB: it is only useful for developers of this library,
+  not for the developers simply using it)
+
+* fixed: the value for error 'no_http2' has been switched from 15 to 19 to avoid a collision
+
+
 ## XML-RPC for PHP version 4.9.3 - 2022-12-20
 
 * improved: avoid stalling the webserver when using the debugger with the php cli-webserver and testing the demo
@@ -334,7 +350,7 @@
 * improved: all of the API documentation has been moved out of the manual and into the source code phpdoc comments
 
 * fixed: when the internal character set is set to UTF-8 and the client sends requests (or the server responses), too
-  many characters were encoded as numeric entities, whereas some, like åäö, needed not not be
+  many characters were encoded as numeric entities, whereas some, like åäö, needed not to be
 
 * fixed: the 'valtyp' property of Response was not present in all cases; the ValType property had been added by error
   and has been removed
@@ -347,8 +363,7 @@ This release does away with the past and starts a transition to modern-world php
 Code has been heavily refactored, taking care to preserve backwards compatibility as much as possible,
 but some breackage is to be expected.
 
-The minimum required php version has been increased to 5.3, even though we strongly urge you to use
-more recent versions.
+The minimum required php version has been increased to 5.3, even though we strongly urge you to use more recent versions.
 
 PLEASE READ CAREFULLY THE NOTES BELOW to insure a smooth upgrade.
 
@@ -447,7 +462,7 @@ version 3.0.0 beta.
 The requirements have increased to php 5.1.0 - which is still way older than what you should be running for any serious
 purpose, really.
 
-It also is the first release to be installable via composer.
+It also is the first release to be installable via Composer.
 
 See the Changelog file or the pdf docs for a complete list of changes.
 
@@ -455,36 +470,33 @@ See the Changelog file or the pdf docs for a complete list of changes.
 ## XML-RPC for PHP version 3.0.0 beta - 2009/09/05
 
 This is the first release of the library to only support PHP 5.
-Some legacy code has been removed, and support for features such as exceptions
-and dateTime objects introduced.
+Some legacy code has been removed, and support for features such as exceptions and DateTime objects introduced.
 
-The "beta" tag is meant to indicate the fact that the refactoring has been more widespread
-than in precedent releases and that more changes are likely to be introduced with time -
-the library is still considered to be production quality.
+The "beta" tag is meant to indicate the fact that the refactoring has been more widespread than in precedent releases
+and that more changes are likely to be introduced with time - the library is still considered to be production quality.
 
 * improved: removed all usage of php functions deprecated in php 5.3, usage of assign-by-ref when creating new objects
   etc...
 * improved: add support for the <ex:nil/> tag used by the apache library, both in input and output
-* improved: add support for dateTime objects in both in php_xmlrpc_encode and as parameter for constructor of xmlrpcval
+* improved: add support for DateTime objects in both in php_xmlrpc_encode and as parameter for constructor of xmlrpcval
 * improved: add support for timestamps as parameter for constructor of xmlrpcval
 * improved: add option 'dates_as_objects' to php_xmlrpc_decode to return dateTime objects for xmlrpc datetimes
 * improved: add new method SetCurlOptions to xmrlpc_client to allow extra flexibility in tweaking http config, such as
   explicitly binding to an ip address
-* improved: add new method SetUserAgent to xmrlpc_client to allow having different user-agent http headers
+* improved: add new method setUserAgent to xmrlpc_client to allow having different user-agent http headers
 * improved: add a new member variable in server class to allow fine-tuning of the encoding of returned values when the
   server is in 'phpvals' mode
 * improved: allow servers in 'xmlrpcvals' mode to also register plain php functions by defining them in the dispatch map
   with an added option
 * improved: catch exceptions thrown during execution of php functions exposed as methods by the server
-* fixed: bad encoding if same object is encoded twice using php_xmlrpc_encode
+* fixed: bad encoding if the same object is encoded twice using php_xmlrpc_encode
 
 
 ## XML-RPC for PHP version 2.2.2 - 2009/03/16
 
-This release corrects all bugs that have been reported and successfully reproduced since
-version 2.2.1.
-Regardless of the intimidating message about dropping PHP 4 support, it still does
-support that ancient, broken and insecure platform.
+This release corrects all bugs that have been reported and successfully reproduced since version 2.2.1.
+Regardless of the intimidating message about dropping PHP 4 support, it still does support that ancient, broken and
+insecure platform.
 
 * fixed: php warning when receiving 'false' in a bool value
 * fixed: improve robustness of the debugger when parsing weird results from non-compliant servers
@@ -524,8 +536,8 @@ This release corrects a couple of bugs and adds a few minor features.
 * fixed: wrap_xmlrpc_method() generated code failed to properly encode php objects
 * improved: slightly faster encoding of data which is internally UTF-8
 * improved: debugger always generates a 'null' id for jsonrpc if user omits it
-* new: debugger can take advantage of a graphical value builder
-  (it has to be downloaded separately, as part of jsxmlrpc package)
+* new: debugger can take advantage of a graphical value builder (it has to be downloaded separately, as part of
+  jsxmlrpc package)
 * new: support for the <NIL/> xmlrpc extension
 * new: server support for the system.getCapabilities xmlrpc extension
 * new: wrap_xmlrpc_method() accepts two new options: debug and return_on_fault
@@ -743,6 +755,12 @@ included documentation, or, even better, take a look at the source code, which
 is commented in javadoc style quite a bit.
 
 
+## XML-RPC for PHP version 1.2.1 - 2005/09
+
+This release restores compatibility with PHP3, which had been broken in release 1.2.
+The only other changes are some minor documentation updates and removal of unused
+files that had been erroneously packed in 1.2.
+
 ## XML-RPC for PHP version 1.2 - 2005/08/14
 
 This removes all use of eval(), which is a potential security problem.
@@ -759,7 +777,7 @@ All users are invited to upgrade as soon as possible.
 ## XML-RPC for PHP version 1.1 - 2005/05/03
 
 I'm pleased to announce ## XML-RPC for PHP version 1.1
-It's taken two years to get to the this point, but here we are, finally.
+It's taken two years to get to this point, but here we are, finally.
 
 This is a bugfix and maintenance release. No major new features have been added.
 All known bugs have been ironed out, unless fixing would have meant breaking
@@ -829,7 +847,7 @@ available at http://xmlrpc.usefulinc.com/list.html, or to
 ## XML-RPC for PHP version 1.0 beta 9
 
 I'm pleased to announce ## XML-RPC for PHP version 1.0 beta 9. This is
-is largely a bugfix release.
+largely a bugfix release.
 
 It can be downloaded from http://xmlrpc.usefulinc.com/php.html
 
