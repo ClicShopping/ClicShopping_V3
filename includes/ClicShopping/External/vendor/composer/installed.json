@@ -464,17 +464,17 @@
         },
         {
             "name": "mattketmo/email-checker",
-            "version": "2.1.1",
-            "version_normalized": "2.1.1.0",
+            "version": "2.1.2",
+            "version_normalized": "2.1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MattKetmo/EmailChecker.git",
-                "reference": "7162c58fbf8cdea557c78aadcb28429ce06a9d8e"
+                "reference": "2d3c78e221297c67efd9cd3940e515dc8721599f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MattKetmo/EmailChecker/zipball/7162c58fbf8cdea557c78aadcb28429ce06a9d8e",
-                "reference": "7162c58fbf8cdea557c78aadcb28429ce06a9d8e",
+                "url": "https://api.github.com/repos/MattKetmo/EmailChecker/zipball/2d3c78e221297c67efd9cd3940e515dc8721599f",
+                "reference": "2d3c78e221297c67efd9cd3940e515dc8721599f",
                 "shasum": ""
             },
             "require": {
@@ -491,7 +491,7 @@
                 "knplabs/gaufrette": "Use filesystem abstraction layer to read data",
                 "symfony/validator": "Add validation constraints"
             },
-            "time": "2021-12-30T09:33:05+00:00",
+            "time": "2023-01-10T17:35:32+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -528,7 +528,7 @@
             ],
             "support": {
                 "issues": "https://github.com/MattKetmo/EmailChecker/issues",
-                "source": "https://github.com/MattKetmo/EmailChecker/tree/2.1.1"
+                "source": "https://github.com/MattKetmo/EmailChecker/tree/2.1.2"
             },
             "install-path": "../mattketmo/email-checker"
         },
@@ -617,17 +617,17 @@
         },
         {
             "name": "phpxmlrpc/phpxmlrpc",
-            "version": "4.9.4",
-            "version_normalized": "4.9.4.0",
+            "version": "4.9.5",
+            "version_normalized": "4.9.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gggeek/phpxmlrpc.git",
-                "reference": "4f6278c27bc749ef7623b325cfada24cdb4dd9ff"
+                "reference": "b61833dbd45deedb366cc78cd3bf95c0e9a89a8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/4f6278c27bc749ef7623b325cfada24cdb4dd9ff",
-                "reference": "4f6278c27bc749ef7623b325cfada24cdb4dd9ff",
+                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/b61833dbd45deedb366cc78cd3bf95c0e9a89a8b",
+                "reference": "b61833dbd45deedb366cc78cd3bf95c0e9a89a8b",
                 "shasum": ""
             },
             "require": {
@@ -652,7 +652,7 @@
                 "phpxmlrpc/extras": "Adds more featured Server classes and other useful bits",
                 "phpxmlrpc/jsonrpc": "Adds support for the JSON-RPC protocol"
             },
-            "time": "2023-01-07T19:10:47+00:00",
+            "time": "2023-01-11T11:15:43+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -673,7 +673,7 @@
             ],
             "support": {
                 "issues": "https://github.com/gggeek/phpxmlrpc/issues",
-                "source": "https://github.com/gggeek/phpxmlrpc/tree/4.9.4"
+                "source": "https://github.com/gggeek/phpxmlrpc/tree/4.9.5"
             },
             "install-path": "../phpxmlrpc/phpxmlrpc"
         },

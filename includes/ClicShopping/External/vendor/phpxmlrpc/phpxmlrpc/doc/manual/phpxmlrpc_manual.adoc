@@ -1,6 +1,6 @@
 = XML-RPC for PHP User Manual
 Gaetano Giunta; Edd Dumbill
-4.9.4
+4.9.5
 :keywords: xml-rpc, xml, rpc, webservices, http
 :title-page:
 :toc:
@@ -39,6 +39,11 @@ There are a lot of static class variables which are meant be treated as if they 
 Usage of Exceptions is almost non-existent.
 
 A mix of snake_case and CamelCase naming is used.
+
+
+== Requirements and installation instructions
+
+See https://github.com/gggeek/phpxmlrpc/blob/master/INSTALL.md
 
 
 == API usage [[apidocs]]
@@ -465,7 +470,7 @@ available in your php installation, via the `setCurlOptions` method.
 
 ==== Sending multiple requests
 
-Both the Client and Server classes provided by the library support the multicall xmlrpc extension, which allows to execute
+Both the Client and Server classes provided by the library support the "multicall" xmlrpc extension, which allows to execute
 multiple xml-rpc requests with a single http call, by wrapping them up in a call to the  `system.multiCall` method.
 
 The expected advantage is a nice improvements in performances, especially when there are many small requests at play, but,
@@ -499,7 +504,15 @@ sending every request separately, one at a time. If you are sure that the server
 might want to optimize and avoid this second attempt by passing `false` as 4th argument to `multicall()`.
 
 If, on the other hand, after writing code which uses the `multicall` method, you are forced to migrate to a server which
-does not support the `system.multiCall` method, you can simply set `$client->no_multicall = true`
+does not support the `system.multiCall` method, you can simply set `+$client->no_multicall = true+`.
+
+In case you are not using multicall, but have to send many requests in a row to the same server, the best performances
+are generally obtained by forcing the Client to use the cURL HTTP transport, which enables usage of http keepalive, and
+possibly of HTTP2.
+
+The demo file __demo/client/parallel.php_ is a good starting point if you want to compare the performances of a single
+multicall request vs. sending multiple requests in a row. It even shows a non-multicall implementation which uses cURL
+to achieve sending of multiple requests in parallel.
 
 === Server [[server]]
 
@@ -545,8 +558,9 @@ method, the key being the method name. The corresponding value is another associ
 members:
 
 * `function` - this entry is mandatory. It must be a callable: either a name of a function in the global scope which
-  services the XML-RPC method, an array containing an instance of an object and a method name, or an array containing
-  a class name and a static method name (for static class methods the '$class::$method' syntax is also supported).
+  services the XML-RPC method, an array containing an instance of an object and a method name, an array containing
+  a class name and a static method name (for static class methods the '$class::$method' syntax is also supported), or
+  an inline anonymous function.
 
 * `signature` - this entry is an array containing the possible signatures (see <<signatures>>) for the method. If this
   entry is present then the server will check that the correct number and type of parameters have been sent for this
@@ -561,7 +575,7 @@ members:
 
 * `parameters_type` - this entry can be used when the server is working in 'xmlrpcvals' mode (see <<method_handlers>>)
   to define one or more entries in the dispatch map as being functions that follow the 'phpvals' calling convention.
-  The only useful value is currently the string 'phpvals'.
+  The only useful value is currently the string 'phpvals'. _NB: this is known to be broken atm_
 
 Methods `system.listMethods`, `system.methodHelp`, `system.methodSignature` and `system.multicall` are already defined
 by the server, and should not be reimplemented (see <<reservedmethods>> below).
@@ -764,6 +778,8 @@ There are a few things to keep in mind when using this calling convention:
 
 * last but not least, the direct parsing of xml to php values is faster than using xmlrpcvals, and allows the library
   to handle much bigger messages without allocating all available server memory or smashing PHP recursive call stack.
+
+An example of a Server using automatic type conversion is found in demo file __demo/server/discuss.php__
 
 ==== Delaying the server response
 
@@ -1038,7 +1054,7 @@ string.
 
 ==== $xmlrpcVersion
 
-    PhpxmlRpc\PhpXmlRpc::$xmlrpcVersion = "4.9.4"
+    PhpXmlRpc\PhpXmlRpc::$xmlrpcVersion = "4.9.5"
 
 The string representation of the version number of the PHPXMLRPC library in use. It is used by the Client for
 building the User-Agent HTTP header that is sent with every request to the server. You can change its value if you need
@@ -1475,7 +1491,22 @@ is to test against the "demo" server which comes bundled with the library:
 
 The debugger can take advantage of the JSXMLRPC library's visual editor component to allow easy mouse-driven construction
 of the payload for remote methods. To enable the extra functionality, it has have to be downloaded separately and copied
-to the debugger directory: @TODO...
+to the debugger directory. The easiest way to achieve that is to run the command
+
+    ./taskfile setup_debugger_visualeditor
+
+If that command does not work on your installation (it has not been widely tested on MacOS, and it does not support Windows)
+and you have NodeJS installed, you can achieve the same by executing
+
+    cd debugger && npm install @jsxmlrpc/jsxmlrpc
+
+=== Alternative debugger setup
+
+Since November 2022, the same interactive xml-rpc debugger which is bundled with this library is also available as a
+Docker Container image, making it easy to use it as a standalone tool in any environment, without the need for having PHP
+or Composer installed.
+
+Installation and usage instructions can be found at https://github.com/gggeek/phpxmlrpc-debugger
 
 
 == Running tests [[tests]]
@@ -1546,8 +1577,8 @@ if (!$resp->faultCode())
 
 Note that this will not be 100% accurate, since the xml generated by the response object can be different from the xml
 received, especially if there is some character set conversion involved, or such (e.g. if you receive an empty string tag
-as "<string/>", `serialize()` will output "<string></string>"), or if the server sent back as response something invalid (in
-which case the xml generated client side using serialize() will correspond to the error response generated
+as "<string/>", `serialize()` will output "<string></string>"), or if the server sent back as response something invalid
+(in which case the xml generated client side using serialize() will correspond to the error response generated
 internally by the lib).
 
 3 - set the client object to return the raw xml received instead of the decoded objects:
@@ -1602,6 +1633,9 @@ the xml payload of the method call, the XML string will not break the surroundin
 assumed character set are used. The second method has the added benefits of working independently of the charset
 encoding used for the xml to be transmitted, and preserving exactly whitespace, whilst incurring in some extra message
 length and cpu load (for carrying out the base64 encoding/decoding).
+
+See the example given in __demo/client/which.php__ for the possibility of sending "standard xml-rpc" xml which was
+generated outside the phpxmlrpc library.
 
 === My server (client) returns an error whenever the client (server) returns accented characters
 
@@ -1674,6 +1708,12 @@ $client->setCurlOptions([CURLOPT_FOLLOWLOCATION => true, CURLOPT_POSTREDIR => 3]
 === Does the library support setting custom cURL options?
 
 Yes. Set `+$client->use_curl = Client::USE_CURL_ALWAYS+` then use the Client method `+$client->setCurlOptions()+`
+
+=== Does the server support cross-domain xml-rpc calls?
+
+It is trivial to make phpxmlrpc servers support CORS preflight requests, allowing them to receive xml-rpc requests sent
+from browsers visiting different domains. However, this feature is not enabled out of the box, for obvious security concerns.
+See at the top of the file __demo/server/server.php__ for an example of enabling that.
 
 === How to enable long-lasting method calls
 
@@ -1749,7 +1789,8 @@ tests/*:: the test suite for the library, written using PhpUnit, and the configu
 
 *Note* the standard procedure to download locally the demo and test files is to use Composer with  the option `--prefer-install=source`
 on the command line. That requires to have `git` installed. If that is not the case on your server, you might be able to
-download the complete source code from GitHub with other tools, such as f.e. TortoiseSVN.
+download the complete source code from GitHub with other tools, such as f.e. TortoiseSVN. Starting with release 4.9.4,
+the demo files are also available for download as a separate tarball from the releases page on GitHub.
 
-*Note* when downloading the full source code, including the demo files, make sure that the demo folder is not directly
-accessible from the internet, i.e. it is not within the webserver root directory.
+*Note* when downloading the demo files, make sure that the demo folder is not directly accessible from the internet, i.e.
+it is not within the webserver root directory.

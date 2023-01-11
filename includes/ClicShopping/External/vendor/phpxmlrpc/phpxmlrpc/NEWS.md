@@ -1,4 +1,19 @@
-## XML-RPC for PHP version 4.9.4 - 2023-1-7
+## XML-RPC for PHP version 4.9.5 - 2023/01/11
+
+* improved: revised all demo files. Showcase more features in client demos; isolate better testsuite functions in
+  server demos and make sure they are not active unless triggered by running the tests; add demos for code-generation
+  for both clients and servers
+
+* improved: added cli command `taskfile`, which can be used to download the demo files or the visualeditor component for
+  the debugger (requires bash, curl and a smattering of other common unix/linux/macos? tools)
+
+* improved: for php 7 and up, catch php Errors besides Exceptions thrown by method handler functions (ie. server-side)
+
+* fixed: when using the Exception or Error thrown by a method handler function to build the xml-rpc response, override
+  fault Code 0, as it breaks response serialization
+
+
+## XML-RPC for PHP version 4.9.4 - 2023/1/7
 
 * improved: updated the user's manual to be inline with the version4 API and modern coding practices.
   The manual is now bundled in the default distribution tarball, and is easily viewable as html, provided you can
@@ -14,7 +29,7 @@
 * fixed: the value for error 'no_http2' has been switched from 15 to 19 to avoid a collision
 
 
-## XML-RPC for PHP version 4.9.3 - 2022-12-20
+## XML-RPC for PHP version 4.9.3 - 2022/12/20
 
 * improved: avoid stalling the webserver when using the debugger with the php cli-webserver and testing the demo
   server within the same install

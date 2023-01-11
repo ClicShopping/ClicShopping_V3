@@ -455,16 +455,16 @@
         },
         {
             "name": "mattketmo/email-checker",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MattKetmo/EmailChecker.git",
-                "reference": "7162c58fbf8cdea557c78aadcb28429ce06a9d8e"
+                "reference": "2d3c78e221297c67efd9cd3940e515dc8721599f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MattKetmo/EmailChecker/zipball/7162c58fbf8cdea557c78aadcb28429ce06a9d8e",
-                "reference": "7162c58fbf8cdea557c78aadcb28429ce06a9d8e",
+                "url": "https://api.github.com/repos/MattKetmo/EmailChecker/zipball/2d3c78e221297c67efd9cd3940e515dc8721599f",
+                "reference": "2d3c78e221297c67efd9cd3940e515dc8721599f",
                 "shasum": ""
             },
             "require": {
@@ -516,9 +516,9 @@
             ],
             "support": {
                 "issues": "https://github.com/MattKetmo/EmailChecker/issues",
-                "source": "https://github.com/MattKetmo/EmailChecker/tree/2.1.1"
+                "source": "https://github.com/MattKetmo/EmailChecker/tree/2.1.2"
             },
-            "time": "2021-12-30T09:33:05+00:00"
+            "time": "2023-01-10T17:35:32+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -602,16 +602,16 @@
         },
         {
             "name": "phpxmlrpc/phpxmlrpc",
-            "version": "4.9.4",
+            "version": "4.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gggeek/phpxmlrpc.git",
-                "reference": "4f6278c27bc749ef7623b325cfada24cdb4dd9ff"
+                "reference": "b61833dbd45deedb366cc78cd3bf95c0e9a89a8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/4f6278c27bc749ef7623b325cfada24cdb4dd9ff",
-                "reference": "4f6278c27bc749ef7623b325cfada24cdb4dd9ff",
+                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/b61833dbd45deedb366cc78cd3bf95c0e9a89a8b",
+                "reference": "b61833dbd45deedb366cc78cd3bf95c0e9a89a8b",
                 "shasum": ""
             },
             "require": {
@@ -655,9 +655,9 @@
             ],
             "support": {
                 "issues": "https://github.com/gggeek/phpxmlrpc/issues",
-                "source": "https://github.com/gggeek/phpxmlrpc/tree/4.9.4"
+                "source": "https://github.com/gggeek/phpxmlrpc/tree/4.9.5"
             },
-            "time": "2023-01-07T19:10:47+00:00"
+            "time": "2023-01-11T11:15:43+00:00"
         },
         {
             "name": "psr/http-client",

@@ -17,7 +17,7 @@ class Server
 
     /**
      * @var string
-     * Defines how functions in dmap will be invoked: either using an xmlrpc request object or plain php values.
+     * Defines how functions in $dmap will be invoked: either using an xmlrpc request object or plain php values.
      * Valid strings are 'xmlrpcvals', 'phpvals' or 'epivals'.
      *
      * @todo create class constants for these
@@ -52,13 +52,13 @@ class Server
      * @var bool
      * When set to true, it will enable HTTP compression of the response, in case the client has declared its support
      * for compression in the request.
-     * Set at constructor time.
+     * Automatically set at constructor time.
      */
     public $compress_response = false;
 
     /**
      * @var string[]
-     * List of http compression methods accepted by the server for requests. Set at constructor time.
+     * List of http compression methods accepted by the server for requests. Automatically set at constructor time.
      * NB: PHP supports deflate, gzip compressions out of the box if compiled w. zlib
      */
     public $accepted_compression = array();
@@ -169,7 +169,7 @@ class Server
      *                             - docstring (optional)
      *                             - signature (array, optional)
      *                             - signature_docs (array, optional)
-     *                             - parameters_type (string, optional)
+     *                             - parameters_type (string, optional) - currently broken
      * @param boolean $serviceNow set to false to prevent the server from running upon construction
      */
     public function __construct($dispatchMap = null, $serviceNow = true)
@@ -177,7 +177,12 @@ class Server
         // if ZLIB is enabled, let the server by default accept compressed requests,
         // and compress responses sent to clients that support them
         if (function_exists('gzinflate')) {
-            $this->accepted_compression = array('gzip', 'deflate');
+            $this->accepted_compression[] = 'gzip';
+        }
+        if (function_exists('gzuncompress')) {
+            $this->accepted_compression[] = 'deflate';
+        }
+        if (function_exists('gzencode') || function_exists('gzcompress')) {
             $this->compress_response = true;
         }
 
@@ -337,16 +342,13 @@ class Server
 
             // http compression of output: only if we can do it, and we want to do it, and client asked us to,
             // and php ini settings do not force it already
-            /// @todo check separately for gzencode and gzcompress functions, in case of polyfills
             $phpNoSelfCompress = !ini_get('zlib.output_compression') && (ini_get('output_handler') != 'ob_gzhandler');
-            if ($this->compress_response && function_exists('gzencode') && $respEncoding != ''
-                && $phpNoSelfCompress
-            ) {
-                if (strpos($respEncoding, 'gzip') !== false) {
+            if ($this->compress_response && $respEncoding != '' && $phpNoSelfCompress) {
+                if (strpos($respEncoding, 'gzip') !== false && function_exists('gzencode')) {
                     $payload = gzencode($payload);
                     header("Content-Encoding: gzip");
                     header("Vary: Accept-Encoding");
-                } elseif (strpos($respEncoding, 'deflate') !== false) {
+                } elseif (strpos($respEncoding, 'deflate') !== false && function_exists('gzcompress')) {
                     $payload = gzcompress($payload);
                     header("Content-Encoding: deflate");
                     header("Vary: Accept-Encoding");
@@ -484,6 +486,7 @@ class Server
         if ($contentEncoding != '' && strlen($data)) {
             if ($contentEncoding == 'deflate' || $contentEncoding == 'gzip') {
                 // if decoding works, use it. else assume data wasn't gzencoded
+                /// @todo test separately for gzinflate and gzuncompress
                 if (function_exists('gzinflate') && in_array($contentEncoding, $this->accepted_compression)) {
                     if ($contentEncoding == 'deflate' && $degzdata = @gzuncompress($data)) {
                         $data = $degzdata;
@@ -622,6 +625,7 @@ class Server
             // we should allow the 'execute' method handle this, but in the
             // most common scenario (xmlrpc values type server with some methods
             // registered as phpvals) that would mean a useless encode+decode pass
+            /// @bug when parameters_type is set in the method, we still get full-fledged Value objects
             if ($this->functions_parameters_type != 'xmlrpcvals' ||
                 (isset($this->dmap[$xmlRpcParser->_xh['method']]['parameters_type']) &&
                     ($this->dmap[$xmlRpcParser->_xh['method']]['parameters_type'] != 'xmlrpcvals')
@@ -795,7 +799,34 @@ class Server
                     }
                     throw $e;
                 case 1:
-                    $r = new Response(0, $e->getCode(), $e->getMessage());
+                    $errCode = $e->getCode();
+                    if ($errCode == 0) {
+                        $errCode = PhpXmlRpc::$xmlrpcerr['server_error'];
+                    }
+                    $r = new Response(0, $errCode, $e->getMessage());
+                    break;
+                default:
+                    $r = new Response(0, PhpXmlRpc::$xmlrpcerr['server_error'], PhpXmlRpc::$xmlrpcstr['server_error']);
+            }
+        } catch (\Error $e) {
+            // (barring errors in the lib) an uncatched exception happened in the called function, we wrap it in a
+            // proper error-response
+            switch ($this->exception_handling) {
+                case 2:
+                    if ($this->debug > 2) {
+                        if (self::$_xmlrpcs_prev_ehandler) {
+                            set_error_handler(self::$_xmlrpcs_prev_ehandler);
+                        } else {
+                            restore_error_handler();
+                        }
+                    }
+                    throw $e;
+                case 1:
+                    $errCode = $e->getCode();
+                    if ($errCode == 0) {
+                        $errCode = PhpXmlRpc::$xmlrpcerr['server_error'];
+                    }
+                    $r = new Response(0, $errCode, $e->getMessage());
                     break;
                 default:
                     $r = new Response(0, PhpXmlRpc::$xmlrpcerr['server_error'], PhpXmlRpc::$xmlrpcstr['server_error']);
