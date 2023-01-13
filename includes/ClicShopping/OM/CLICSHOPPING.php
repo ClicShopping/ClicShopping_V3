@@ -368,7 +368,7 @@
 
       $args[0] = 'Shop/public/Sites/' . $req_site . '/' . $page;
 
-      $url = forward_static_call_array(static::link(), $args);
+      $url = forward_static_call_array('static::link()', $args);
 
       return $url;
     }

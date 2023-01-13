@@ -142,7 +142,6 @@
 
     public function setPage()
     {
-
 //important dans la redirection sinon page blanche
       $page_code = static::getDefaultApplication();
       $class = 'ClicShopping\Sites\\' . $this->code . '\Pages\\' . $page_code . '\\' . $page_code;
@@ -192,6 +191,7 @@
     /**
      * @param array $route
      * @param array $routes
+     * @return mixed
      */
     public static function resolveRoute(array $route, array $routes)
     {
