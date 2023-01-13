@@ -13,7 +13,7 @@
   use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Tools\Cronjob\Classes\ClicShoppingAdmin\Cron;
-  use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\Ipb;
+  use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\Marketplace;
 
   class Process implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -34,13 +34,13 @@
         Cron::updateCron($cron_id);
 
         if (isset($cron_id) && $cron_id_marketplace == $cron_id) {
-          Ipb::Cronjob();
+          Marketplace::Cronjob();
         }
       } else {
         Cron::updateCron($cron_id_marketplace);
 
         if (isset($cron_id_marketplace)) {
-          Ipb::Cronjob();
+          Marketplace::Cronjob();
         }
       }
     }
