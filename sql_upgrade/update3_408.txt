@@ -1,0 +1,66 @@
+#general
+INSERT INTO `clic_cron` VALUES(4, 'marketplace', '', 'monthly', 'marketplace', 1, '2023-01-06 15:51:34', '2023-01-06 18:19:19');
+
+
+CREATE TABLE `clic_marketplace_categories` (
+  `Id` int(11) NOT NULL,
+  `categories_id` int(11) NOT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT 0,
+  `categories_name` text DEFAULT NULL,
+  `url` text DEFAULT NULL,
+  `date_added` date DEFAULT NULL,
+  `date_modified` date DEFAULT NULL,
+  `sort_order` int(3) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `clic_marketplace_files` (
+  `id` int(11) NOT NULL,
+  `file_id` int(11) NOT NULL,
+  `file_categories_id` int(11) NOT NULL,
+  `file_name` varchar(255) DEFAULT NULL,
+  `file_url` text DEFAULT NULL,
+  `file_description` text DEFAULT NULL,
+  `file_author` varchar(255) NOT NULL,
+  `file_photo_url` text NOT NULL,
+  `file_profil_url` text NOT NULL,
+  `date_added` date DEFAULT NULL,
+  `date_modified` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `clic_marketplace_file_informations` (
+  `id` int(11) NOT NULL,
+  `file_id` int(11) NOT NULL,
+  `file_name` varchar(255) DEFAULT NULL,
+  `date_created` date DEFAULT NULL,
+  `date_updated` date DEFAULT NULL,
+  `file_version` varchar(255) DEFAULT NULL,
+  `file_downloads` int(11) DEFAULT NULL,
+  `file_rating` int(11) DEFAULT NULL,
+  `file_prices` decimal(15,4) DEFAULT NULL,
+  `file_date_added` date DEFAULT NULL,
+  `file_url_screenshot` text DEFAULT NULL,
+  `file_url_download` text DEFAULT NULL,
+  `is_installed` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `clic_marketplace_categories`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `idx_parent_id` (`parent_id`) USING BTREE;
+
+ALTER TABLE `clic_marketplace_files`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `file_id` (`file_id`);
+
+ALTER TABLE `clic_marketplace_file_informations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `index_file_id` (`file_id`);
+
+ALTER TABLE `clic_marketplace_categories` MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `clic_marketplace_files` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `clic_marketplace_file_informations` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+#English
+
+
+#French

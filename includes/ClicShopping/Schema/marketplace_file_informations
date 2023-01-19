@@ -1,0 +1,21 @@
+id int(11) not_null auto_increment
+file_id int(11) not_null
+file_name varchar(255) default null
+date_created date default null
+date_updated date default null
+file_version varchar(255) default null
+file_downloads int(11) default null
+file_rating int(11) default null
+file_prices decimal(154) default null
+file_date_added date default null
+file_url_screenshot text default null
+file_url_download text default null
+is_installed tinyint(1) not_null default 0
+
+--
+primary Id
+index_file_id file_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

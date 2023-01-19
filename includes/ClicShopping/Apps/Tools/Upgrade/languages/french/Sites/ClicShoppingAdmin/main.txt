@@ -1,15 +1,16 @@
 heading_title = Extensions
-module_up_title =  Extensions
+module_up_title = Extensions
 module_up_short_title = Extensions
 
 text_upgrade = Extensions
-text_configure =  Configurer App Github
+text_configure = Configure Apps Modules
 
 text_intro = Cette app vous permet d'accéder à un gestionnaire d'extensions<br /><br />
 - Cliquez sur configurer pour accéder à l'installation ou la désinstallation l'app.<br />
 
 module_up_introduction = Le processus d'installation crée la base de données et le menu pour ce module
 
+button_back = Retour
 button_install_title = Installer
 button_configure = Configurer
 button_save = Sauver
@@ -22,9 +23,10 @@ button_reset = Reset cache Files
 button_reset_temp = Reset Tmp
 button_analyse = Analyser
 button_update = Mettre à jour
+button_core = Core
 button_reset_cache_core = Reset cache core
 button_upgrade = Apps / Modules
-button_back = Retour
+
 
 dialog_uninstall_title = Désinstaller
 dialog_uninstall_body = Souhaitez-vous installer cette App ?
@@ -35,13 +37,14 @@ alert_module_install_success = Le module a été installé.
 alert_module_uninstall_success = Le module a été désinstallé.
 alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
 
-
 title_help = Aide
 button_manual = Installation manuelle
+button_automatic_install = Installation automatiue
 text_local_version = Version locale :
 text_server_version = Version Serveur :
-text_up_to_date = - La recherche se fait uniquement à partir d'une partie du nom du module. Par exemple pour connaitre tous les modules d'entête il suffit d'écrire header, pour le bas de page, footer ...<br />
-- Veuillez sélectionner un module ou un critère de recherche avant de lancer la recherche<br />
+text_up_to_date =
+<p>La recherche se fait uniquement à partir d'une partie du nom du module. Par exemple pour connaitre tous les modules d'entête il suffit d'écrire header, pour le bas de page, footer ...</p>
+<p>Veuillez sélectionner un module ou un critère de recherche avant de lancer la recherche</p>
 - <strong>Votre version est à jour. La version actuelle installée est : </strong>
 
 text_search = Rechercher
@@ -49,9 +52,9 @@ text_search = Rechercher
 text_step_upgrade = <p><strong>Procédure de mise à jour :</strong></p>
   <p>Step 1 : Fermeture de la boutique</p>
   <p>Step 2 : Téléchargement du zip de Github</p>
-  <p>Step 3 : Décompression et installation du core de ClicShopping</p>
-  <p>Step 4 : Installation SQL si nécessaire</p>
-  <p>Step 5 : Ouverture de la boutique</p>
+  <p>Step 3 : Décompression et installation du fichier</p>
+  <p>Step 4 : Ouverture de la boutique</p>
+  <p>Step 5 : Terminer manuellement le processus d'installation</p>
   <p>Step 6 : Vérifier le bon fonctionnement de ClicShopping</p>
 
 text_warning_upgrade = <p><strong>Le process va commencer, veuillez attendre un moment. Cette page sera mise à jour</strong></p>
@@ -64,6 +67,7 @@ text_latest_version = Dernière version
 text_latest_release_date = Date dernière version
 text_changelog = Changements /Informations
 text_uptodate = Vous êtes à jour.
+text_upgrade_site = Toutes les applications sont dispnibles à cette adresse :<br />
 
 text_upgrade_new_version = La nouvelle version est :
 text_reload = re-test
@@ -94,17 +98,25 @@ text_activate = Pour activer l'Apps, copier ce lien dans votre url ou cliquer: <
 text_dependance = Dependance :
 text_temp_version = Version cache temp :
 text_installed_version = Version intallée :
+text_info_upload = Veuillez insérer le fichier zip à télécharger
 
+text_installed = Installé
 text_more_infos = Plus Infos :
 text_close = Fermer
 text_search = Rechercher
-
-button_back = Retour
+text_top = -------- Top --------
+text_reset_success = La mise jour a été réalisée avec succès.
 button_not_free = Acheter
+button_free = Gratuit
 button_install = Installer
-button_setting = Configurer
 button_update_start = Mettre à jour
 button_more_infos = Plus Infos
+button_reset_search = Reset
+button_marketplace = Marketplace
+button_setting = Configurer
+button_uninstallable = Non installable
+button_install_app = Installe App
+
 
 text_search_limit = Limite recherche github :
 text_core_limit = Limite core github :
@@ -123,8 +135,11 @@ success_core_installed = La mise à jour a été faite avec succès
 success_file_installed = L'installation où la mise jour été faite avec succès, veuillez activer le module
 
 warning_no_module = Aucun module trouvé
-
-success_files_installed = le fichier a été installé
+text_marketplace_username = Veuillez insérer les paramétres de votre compte en cliquant sur le bouton Configurer.<br />
+Pour utiliser la marketplace, vous devez nécessairement être inscrit sur le forum<br />
+Veuillez noter que vos connexions sont enregistrées ainsi que votre adress IP et votre site internet.
+En cas d'abus, votre adresse IP peut être radiée définitvement.
+text_success_files_installed = le fichier a été installé
 error_file_not_installed = Une erreur s'est produite durant la procédure
 error_directory_not_writable = Le répertoire OnlineUpdates n'est pas en mode écriture
 error_rate_exceed = Limit de download de Github dépassé, veuillez revenir plus tard et réessayer
@@ -132,6 +147,7 @@ error_curl_error_transfert_failed = Erreur de transfert
 error_fopen_file = Erreur ouverture fichier
 error_project_not_writable_on_server =  Le projet ne peut pas être sauvegarder sur le serveur
 error_link_not_allowed = Lien non accepté
+text_file_download_error = Erreur téléchargement
 
 text_result_install = Résultat Installation
 error_result = Nou n'avouspas trouvé le fichier json. Veuillez vérifier le cache et l'installation
@@ -141,3 +157,11 @@ text_info_result =
             - Shop opened<br /><br />
             - File name : {{file}} <br /><br />
             - Info Json<br />
+
+text_marketplace_info = Pour pouvoir installer une app, vous devez être connecté sur le forum<p></p>
+Veuillez sélectionner une catégories pour afficher les apps et modules.<p></p>
+<strong>Note :</strong>  : - En fonction de la configuration de votre serveur et de ses autorisations, l'installation automatique risque de ne pas fonctionner, vous devrez le faire manuellement.<br />
+ - Vous pouvez aussi réactualiser la marketplace pour avoir les derniéres nouveautés ou paramétrer un cronjob (cf menu cronjob).
+
+text_marketplace_update =  Les catégories et les applications ont été mises à jour. <p></p>
+Veuillez actualiser une derniére fois votre page.

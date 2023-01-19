@@ -47,7 +47,8 @@
 
       if ($Qcheck->fetch() === false) {
 
-        $sql_data_array = ['sort_order' => 1,
+        $sql_data_array = [
+          'sort_order' => 1,
           'link' => 'index.php?A&Marketing\Favorites&Favorites',
           'image' => 'products_favorites.png',
           'b2b_menu' => 0,
@@ -71,7 +72,8 @@
 
           $sql_data_array = ['label' => $CLICSHOPPING_Favorites->getDef('title_menu')];
 
-          $insert_sql_data = ['id' => (int)$id,
+          $insert_sql_data = [
+            'id' => (int)$id,
             'language_id' => (int)$language_id
           ];
 
@@ -81,7 +83,8 @@
 
         }
 
-        $sql_data_array = ['sort_order' => 1,
+        $sql_data_array = [
+          'sort_order' => 1,
           'link' => 'index.php?A&Marketing\Favorites&Favorites',
           'link' => 'index.php?A&Configuration\Modules&Modules&set=modules_products_favorites',
           'image' => 'products_favorites.png',
@@ -106,7 +109,8 @@
 
           $sql_data_array = ['label' => $CLICSHOPPING_Favorites->getDef('title_menu')];
 
-          $insert_sql_data = ['id' => (int)$id,
+          $insert_sql_data = [
+            'id' => (int)$id,
             'language_id' => (int)$language_id
           ];
 

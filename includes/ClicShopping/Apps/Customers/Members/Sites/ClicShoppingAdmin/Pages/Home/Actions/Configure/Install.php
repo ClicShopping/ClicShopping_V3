@@ -69,7 +69,8 @@
 
           $sql_data_array = ['label' => $CLICSHOPPING_Members->getDef('title_menu')];
 
-          $insert_sql_data = ['id' => (int)$id,
+          $insert_sql_data = [
+            'id' => (int)$id,
             'language_id' => (int)$language_id
           ];
 

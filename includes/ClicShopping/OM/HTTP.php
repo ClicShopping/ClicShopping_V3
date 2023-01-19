@@ -70,7 +70,6 @@
      */
     public static function getResponse(array $data)
     {
-
       if (!isset($data['header']) || !\is_array($data['header'])) {
         $data['header'] = [];
       }

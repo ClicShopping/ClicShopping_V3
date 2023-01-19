@@ -17,10 +17,8 @@
 
   class Install extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Backup = Registry::get('Backup');
 
@@ -48,7 +46,8 @@
 
       if ($Qcheck->fetch() === false) {
 
-        $sql_data_array = ['sort_order' => 3,
+        $sql_data_array = [
+          'sort_order' => 3,
           'link' => 'index.php?A&Tools\Backup&Backup',
           'image' => 'backup.gif',
           'b2b_menu' => 0,

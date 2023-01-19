@@ -45,7 +45,8 @@
 
       if ($Qcheck->fetch() === false) {
 
-        $sql_data_array = ['sort_order' => 1,
+        $sql_data_array = [
+          'sort_order' => 1,
           'link' => 'index.php?A&Configuration\Antispam&Configure',
           'image' => 'antispam.png',
           'b2b_menu' => 0,

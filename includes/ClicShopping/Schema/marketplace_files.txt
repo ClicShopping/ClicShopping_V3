@@ -1,0 +1,19 @@
+id int(11) not_null auto_increment
+file_id int(11) not_null
+file_categories_id int(11) not_null
+file_name varchar(255) default null
+file_url text default null
+file_description text default null
+file_author varchar(255) not_null
+file_photo_url text not_null
+file_profil_url text not_null
+date_added date default null
+date_modified date default null
+
+--
+primary Id
+idx_file_id file_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

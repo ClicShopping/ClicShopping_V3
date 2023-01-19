@@ -12,14 +12,14 @@
 
   use ClicShopping\OM\Registry;
 
-  class ModuleInstallResult extends \ClicShopping\OM\PagesActionsAbstract
+  class Marketplace extends \ClicShopping\OM\PagesActionsAbstract
   {
     public function execute()
     {
       $CLICSHOPPING_Upgrade = Registry::get('Upgrade');
 
-      $this->page->setFile('module_install_result.php');
-      $this->page->data['action'] = 'ModuleInstallResult';
+      $this->page->setFile('marketplace.php');
+      $this->page->data['action'] = 'Marketplace';
 
       $CLICSHOPPING_Upgrade->loadDefinitions('Sites/ClicShoppingAdmin/main');
     }

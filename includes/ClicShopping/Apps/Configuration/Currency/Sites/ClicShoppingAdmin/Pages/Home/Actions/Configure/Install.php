@@ -48,7 +48,8 @@
 
       if ($Qcheck->fetch() === false) {
 
-        $sql_data_array = ['sort_order' => 1,
+        $sql_data_array = [
+          'sort_order' => 1,
           'link' => 'index.php?A&Configuration\Currency&Currency',
           'image' => 'currencies.gif',
           'b2b_menu' => 0,
@@ -72,7 +73,8 @@
 
           $sql_data_array = ['label' => $CLICSHOPPING_Currency->getDef('title_menu')];
 
-          $insert_sql_data = ['id' => (int)$id,
+          $insert_sql_data = [
+            'id' => (int)$id,
             'language_id' => (int)$language_id
           ];
 

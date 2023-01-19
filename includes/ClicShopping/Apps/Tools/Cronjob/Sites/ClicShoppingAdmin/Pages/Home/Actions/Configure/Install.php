@@ -16,10 +16,8 @@
 
   class Install extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Cronjob = Registry::get('Cronjob');
 
@@ -45,7 +43,8 @@
       $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_tools_cronjob']);
 
       if ($Qcheck->fetch() === false) {
-        $sql_data_array = ['sort_order' => 1,
+        $sql_data_array = [
+          'sort_order' => 1,
           'link' => 'index.php?A&Tools\Cronjob&Cronjob',
           'image' => 'menu.gif',
           'b2b_menu' => 0,

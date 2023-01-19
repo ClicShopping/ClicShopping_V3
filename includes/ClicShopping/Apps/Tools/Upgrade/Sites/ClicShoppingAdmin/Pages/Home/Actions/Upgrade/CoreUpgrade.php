@@ -8,7 +8,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Tools\Upgrade\Sites\ClicShoppingAdmin\Pages\Home\Actions\Upgrade;
 
   use ClicShopping\OM\Registry;
