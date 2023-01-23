@@ -134,7 +134,7 @@
       if (isset($_POST['search']) && !\is_null($_POST['search'])) {
 
         $keywords = HTML::sanitize($_POST['search']);
-        $search = " (c.customers_id like '" . $keywords . "' or
+        $search = " (c.customers_id like .'" . $keywords  . "' or
              c.customers_lastname like '%" . $keywords . "%'
              or c.customers_firstname like '%" . $keywords . "%'
              or c.customers_email_address like '%" . $keywords . "%'
