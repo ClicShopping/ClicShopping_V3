@@ -59,8 +59,14 @@ ALTER TABLE `clic_marketplace_categories` MODIFY `Id` int(11) NOT NULL AUTO_INCR
 ALTER TABLE `clic_marketplace_files` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `clic_marketplace_file_informations` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+INSERT INTO `clic_administrator_menu` VALUES(832, 'index.php?A&Tools\\Upgrade&Upgrade', 644, 5, 1, 'null', 0, 'app_tools_upgrade', 1);
+INSERT INTO `clic_administrator_menu` VALUES(833, 'index.php?A&Tools\\Upgrade&Marketplace', 644, 10, 1, 'null', 0, 'app_tools_upgrade', 1);
 
 #English
 
+INSERT INTO `clic_administrator_menu_description` VALUES(832, 'Core Information', 1);
+INSERT INTO `clic_administrator_menu_description` VALUES(833, 'Marketplace', 1);
 
 #French
+INSERT INTO `clic_administrator_menu_description` VALUES(832, 'Core information', 2);
+INSERT INTO `clic_administrator_menu_description` VALUES(833, 'Marketplace', 2);

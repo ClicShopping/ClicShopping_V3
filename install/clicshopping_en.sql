@@ -147,7 +147,7 @@ INSERT INTO administrator_menu VALUES(627, 'index.php?A&Catalog\\Manufacturers&M
 INSERT INTO administrator_menu VALUES(632, 'index.php?A&Configuration\\TemplateEmail&TemplateEmail', 20, 3, 0, 'mail.gif', 0, 'app_configuration_template_email', 1);
 INSERT INTO administrator_menu VALUES(633, 'index.php?A&Tools\\WhosOnline&WhosOnline', 163, 30, 0, 'whos_online.gif', 0, 'app_tools_whos_online', 1);
 INSERT INTO administrator_menu VALUES(638, 'index.php?A&Tools\\AdministratorMenu&AdministratorMenu', 170, 1, 1, 'menu.png', 0, 'app_configuration_administrator_menu', 1);
-INSERT INTO administrator_menu VALUES(644, 'index.php?A&Tools\\Upgrade&Upgrade', 163, 1, 1, 'modules_modules_products_featured.gif', 0, 'app_tools_upgrade', 1);
+INSERT INTO administrator_menu VALUES(644, '', 163, 1, 1, 'modules_modules_products_featured.gif', 0, 'app_tools_upgrade', 1);
 INSERT INTO administrator_menu VALUES(647, 'index.php?A&Configuration\\ProductsQuantityUnit&ProductsQuantityUnit', 13, 8, 0, 'products_unit.png', 0, 'app_configuration_products_quantity_unit', 1);
 INSERT INTO administrator_menu VALUES(650, 'index.php?A&Configuration\\OrdersStatusInvoice&OrdersStatusInvoice', 14, 7, 0, 'configuration_26.gif', 0, 'app_configuration_orders_status_invoice', 1);
 INSERT INTO administrator_menu VALUES(651, 'index.php?A&Configuration\\OrdersStatus&OrdersStatus', 14, 6, 0, 'order_status.gif', 0, 'app_configuration_orders_status', 1);
@@ -199,6 +199,8 @@ INSERT INTO administrator_menu VALUES(788, 'index.php?A&Tools\\Cronjob&Cronjob',
 INSERT INTO administrator_menu VALUES(789, 'index.php?A&Configuration\\Settings&Settings&gID=46', 13, 11, 0, '', 1, NULL, 1);
 INSERT INTO administrator_menu VALUES(790, 'index.php?A&Configuration\\Api&Api', 14, 14, 0, 'api.png', 0, 'app_configuration_api', 1);
 INSERT INTO administrator_menu VALUES(791, 'index.php?A&Configuration\\Antispam&Configure', 13, 15, 0, 'antispam.png', 0, 'app_configuration_antispam', 1);
+INSERT INTO  administrator_menu VALUES(792, 'index.php?A&Tools\\Upgrade&Upgrade', 644, 5, 1, null, 0, 'app_tools_upgrade', 1);
+INSERT INTO  administrator_menu VALUES(793, 'index.php?A&Tools\\Upgrade&Marketplace', 644, 10, 1, null, 0, 'app_tools_upgrade', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -548,6 +550,10 @@ INSERT INTO administrator_menu_description VALUES(790, 'API management', 1);
 INSERT INTO administrator_menu_description VALUES(790, 'Gestion API', 2);
 INSERT INTO administrator_menu_description VALUES(791, 'Antispam', 1);
 INSERT INTO administrator_menu_description VALUES(791, 'Antispam', 2);
+INSERT INTO administrator_menu_description VALUES(792, 'Core Information', 1);
+INSERT INTO administrator_menu_description VALUES(792, 'Core information', 2);
+INSERT INTO administrator_menu_description VALUES(793, 'Marketplace', 1);
+INSERT INTO administrator_menu_description VALUES(793, 'Marketplace', 2);
 
 
 INSERT INTO api VALUES(1, 'Default', 'd0a36b839700b60727fe13998e22aa0af197c61d8b371e26114c133ca51c4864bd0da73ad6d1e5090b02b55cff42b8a0cd23866e64e78fc8884eb6228d32f5e9d76bed468869dd89ee6bb8a3208c5077e88560d0bc238f67cfc732efcf5313a0cb361e297c29c8d82d050d770ed7dee972af6445e801fa9af12e3d478bf5346a', 0, '2022-09-18 14:25:54', '2022-09-18 14:25:54', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
