@@ -464,13 +464,47 @@
               <div class="col-md-12" id="contentTab3"></div>
               <div class="separator"></div>
               <div class="col-md-12" id="StatusNotify">
-                <div class="row" id="tab3ContentRow4">
-                  <span
-                    class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_notify_customer'); ?></strong></span>
-                  <span class="col-md-4"><?php echo HTML::checkboxField('notify', '', true); ?></span>
-                  <span
-                    class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_notify_comments'); ?></strong></span>
-                  <span class="col-md-4"><?php echo HTML::checkboxField('notify_comments', '', true); ?></span>
+                <div class="row">
+                  <div class="col-md-6">
+                    <span id="notifyCustomer">
+                      <div class="col-md-8">
+                        <div class="form-group row">
+                          <label for="<?php echo $CLICSHOPPING_Orders->getDef('entry_notify_customer'); ?>"
+                                 class="col-5 col-form-label"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_notify_customer'); ?></strong></label>
+                          <div class="col-md-5">
+                            <ul class="list-group-slider list-group-flush">
+                              <li class="list-group-item-slider">
+                                <label class="switch">
+                                  <?php echo HTML::checkboxField('notify_comments', '', true, 'class="success"'); ?>
+                                  <span class="slider"></span>
+                                </label>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                  <div class="col-md-6">
+                  <span id="notifyComments">
+                    <div class="col-md-8">
+                      <div class="form-group row">
+                        <label for="<?php echo $CLICSHOPPING_Orders->getDef('entry_notify_comments'); ?>"
+                               class="col-5 col-form-label"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_notify_comments'); ?></strong></label>
+                        <div class="col-md-5">
+                          <ul class="list-group-slider list-group-flush">
+                            <li class="list-group-item-slider">
+                              <label class="switch">
+                                <?php echo HTML::checkboxField('notify_comments', '', true, 'class="success"'); ?>
+                                <span class="slider"></span>
+                              </label>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                  </div>
                 </div>
               </div>
             </div>
