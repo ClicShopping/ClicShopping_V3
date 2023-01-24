@@ -125,7 +125,6 @@
       return $cPath_array;
     }
 
-
     /**
      * the category name
      *

@@ -112,7 +112,6 @@
         // -------------------------------------------------------------------
       ?>
       <div class="tab-pane active" id="tab1">
-
         <div class="col-md-12 mainTitle">
           <div class="float-start"><?php echo $CLICSHOPPING_Categories->getDef('text_products_name'); ?></div>
           <div

@@ -66,7 +66,7 @@
 
   $cPath_array = $CLICSHOPPING_CategoriesAdmin->getPathArray();
 
-  if (isset($cPath_array) && count($cPath_array) > 0) {
+  if (isset($cPath_array) && \count($cPath_array) > 0) {
     for ($i = 0, $n = \count($cPath_array) - 1; $i < $n; $i++) {
       if (empty($cPath_back)) {
         $cPath_back .= $cPath_array[$i];
@@ -87,7 +87,7 @@
     echo HTML::button($CLICSHOPPING_Categories->getDef('button_products'), null, CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&cPath=' . $current_category_id), 'success');
   }
 ?>
-              </span>
+          </span>
         </div>
       </div>
     </div>
