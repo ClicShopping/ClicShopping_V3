@@ -82,7 +82,7 @@ class Marketplace
   /**
    * @return string
    */
-  public function getSessionToken() :string
+  public function getSessionToken()
 {
   if (!isset($_SESSION['token'])) {
     $_SESSION['token'] = $this->getToken();
@@ -90,7 +90,7 @@ class Marketplace
   } else {
     $token = $_SESSION['token'];
   }
-;
+
   return $token;
 }
 

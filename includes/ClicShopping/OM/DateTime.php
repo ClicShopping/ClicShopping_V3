@@ -49,10 +49,12 @@
       } else {
         $errors = \DateTime::getLastErrors();
 
-        if (($errors['warning_count'] > 0) || ($errors['error_count'] > 0)) {
-          $this->datetime = false;
+        if (is_array($errors)) {
+          if (($errors['warning_count'] > 0) || ($errors['error_count'] > 0)) {
+            $this->datetime = false;
 
-          $strict_log = true;
+            $strict_log = true;
+          } 
         }
       }
 

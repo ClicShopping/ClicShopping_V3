@@ -49,6 +49,6 @@
 
       $CLICSHOPPING_Hooks->call('Favorites', 'Insert');
 
-      $CLICSHOPPING_Favorites->redirect('Favorites', (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'sID=' . (int)$_GET['id']);
+      $CLICSHOPPING_Favorites->redirect('Favorites', 'page=' . $page);
     }
   }
