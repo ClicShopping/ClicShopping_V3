@@ -33,7 +33,7 @@ final class Message
         }
 
         foreach ($message->getHeaders() as $name => $values) {
-            if (mb_strtolower($name) === 'set-cookie') {
+            if (strtolower($name) === 'set-cookie') {
                 foreach ($values as $value) {
                     $msg .= "\r\n{$name}: " . $value;
                 }
@@ -179,7 +179,7 @@ final class Message
             // Numeric array keys are converted to int by PHP.
             $k = (string) $k;
 
-            return mb_strtolower($k) === 'host';
+            return strtolower($k) === 'host';
         });
 
         // If no host is found, then a full URI cannot be constructed.

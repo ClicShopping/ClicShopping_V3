@@ -43,7 +43,7 @@ function Error($txt)
 
 function LoadMap($enc)
 {
-	$file = dirname(__FILE__).'/'.mb_strtolower($enc).'.map';
+	$file = dirname(__FILE__).'/'.strtolower($enc).'.map';
 	$a = file($file);
 	if(empty($a))
 		Error('Encoding not found: '.$enc);
@@ -386,7 +386,7 @@ function MakeFont($fontfile, $enc='cp1252', $embed=true, $subset=true)
 	// Generate a font definition file
 	if(!file_exists($fontfile))
 		Error('Font file not found: '.$fontfile);
-	$ext = mb_strtolower(substr($fontfile,-3));
+	$ext = strtolower(substr($fontfile,-3));
 	if($ext=='ttf' || $ext=='otf')
 		$type = 'TrueType';
 	elseif($ext=='pfb')

@@ -132,7 +132,7 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 	$this->DefPageSize = $size;
 	$this->CurPageSize = $size;
 	// Page orientation
-	$orientation = mb_strtolower($orientation);
+	$orientation = strtolower($orientation);
 	if($orientation=='p' || $orientation=='portrait')
 	{
 		$this->DefOrientation = 'P';
@@ -449,10 +449,10 @@ function Rect($x, $y, $w, $h, $style='')
 function AddFont($family, $style='', $file='')
 {
 	// Add a TrueType, OpenType or Type1 font
-	$family = mb_strtolower($family);
+	$family = strtolower($family);
 	if($file=='')
-		$file = str_replace(' ','',$family).mb_strtolower($style).'.php';
-	$style = mb_strtoupper($style);
+		$file = str_replace(' ','',$family).strtolower($style).'.php';
+	$style = strtoupper($style);
 	if($style=='IB')
 		$style = 'BI';
 	$fontkey = $family.$style;
@@ -477,8 +477,8 @@ function SetFont($family, $style='', $size=0)
 	if($family=='')
 		$family = $this->FontFamily;
 	else
-		$family = mb_strtolower($family);
-	$style = mb_strtoupper($style);
+		$family = strtolower($family);
+	$style = strtoupper($style);
 	if(strpos($style,'U')!==false)
 	{
 		$this->underline = true;
@@ -880,7 +880,7 @@ function Image($file, $x=null, $y=null, $w=0, $h=0, $type='', $link='')
 				$this->Error('Image file has no extension and no type was specified: '.$file);
 			$type = substr($file,$pos+1);
 		}
-		$type = mb_strtolower($type);
+		$type = strtolower($type);
 		if($type=='jpeg')
 			$type = 'jpg';
 		$mtd = '_parse'.$type;
@@ -996,7 +996,7 @@ function Output($dest='', $name='', $isUTF8=false)
 		$dest = 'I';
 	if($name=='')
 		$name = 'doc.pdf';
-	switch(mb_strtoupper($dest))
+	switch(strtoupper($dest))
 	{
 		case 'I':
 			// Send to standard output
@@ -1062,7 +1062,7 @@ protected function _getpagesize($size)
 {
 	if(is_string($size))
 	{
-		$size = mb_strtolower($size);
+		$size = strtolower($size);
 		if(!isset($this->StdPageSizes[$size]))
 			$this->Error('Unknown page size: '.$size);
 		$a = $this->StdPageSizes[$size];
@@ -1090,7 +1090,7 @@ protected function _beginpage($orientation, $size, $rotation)
 	if($orientation=='')
 		$orientation = $this->DefOrientation;
 	else
-		$orientation = mb_strtoupper($orientation[0]);
+		$orientation = strtoupper($orientation[0]);
 	if($size=='')
 		$size = $this->DefPageSize;
 	else
@@ -1139,7 +1139,7 @@ protected function _loadfont($font)
 	if(!isset($name))
 		$this->Error('Could not include font definition file');
 	if(isset($enc))
-		$enc = mb_strtolower($enc);
+		$enc = strtolower($enc);
 	if(!isset($subsetted))
 		$subsetted = false;
 	return get_defined_vars();
@@ -1711,7 +1711,7 @@ protected function _putfonts()
 		else
 		{
 			// Allow for additional types
-			$mtd = '_put'.mb_strtolower($type);
+			$mtd = '_put'.strtolower($type);
 			if(!method_exists($this,$mtd))
 				$this->Error('Unsupported font type: '.$type);
 			$this->$mtd($font);

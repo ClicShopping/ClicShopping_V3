@@ -195,7 +195,7 @@ class CurlClient implements ClientInterface, StreamingClientInterface
 
     private function constructRequest($method, $absUrl, $headers, $params, $hasFile)
     {
-        $method = \mb_strtolower($method);
+        $method = \strtolower($method);
 
         $opts = [];
         if (\is_callable($this->defaultOptions)) { // call defaultOptions callback, set options to return value

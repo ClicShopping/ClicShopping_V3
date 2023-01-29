@@ -27,17 +27,17 @@ function WriteHTML($html)
 		{
 			// Tag
 			if($e[0]=='/')
-				$this->CloseTag(mb_strtoupper(substr($e,1)));
+				$this->CloseTag(strtoupper(substr($e,1)));
 			else
 			{
 				// Extract attributes
 				$a2 = explode(' ',$e);
-				$tag = mb_strtoupper(array_shift($a2));
+				$tag = strtoupper(array_shift($a2));
 				$attr = array();
 				foreach($a2 as $v)
 				{
 					if(preg_match('/([^=]*)=["\']?([^"\']*)/',$v,$a3))
-						$attr[mb_strtoupper($a3[1])] = $a3[2];
+						$attr[strtoupper($a3[1])] = $a3[2];
 				}
 				$this->OpenTag($tag,$attr);
 			}

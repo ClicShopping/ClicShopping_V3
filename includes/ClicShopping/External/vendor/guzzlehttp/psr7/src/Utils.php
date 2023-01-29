@@ -21,11 +21,11 @@ final class Utils
         $result = [];
 
         foreach ($keys as &$key) {
-            $key = mb_strtolower($key);
+            $key = strtolower($key);
         }
 
         foreach ($data as $k => $v) {
-            if (!is_string($k) || !in_array(mb_strtolower($k), $keys)) {
+            if (!is_string($k) || !in_array(strtolower($k), $keys)) {
                 $result[$k] = $v;
             }
         }

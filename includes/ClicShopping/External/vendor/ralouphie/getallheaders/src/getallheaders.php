@@ -21,7 +21,7 @@ if (!function_exists('getallheaders')) {
             if (substr($key, 0, 5) === 'HTTP_') {
                 $key = substr($key, 5);
                 if (!isset($copy_server[$key]) || !isset($_SERVER[$key])) {
-                    $key = str_replace(' ', '-', ucwords(mb_strtolower(str_replace('_', ' ', $key))));
+                    $key = str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', $key))));
                     $headers[$key] = $value;
                 }
             } elseif (isset($copy_server[$key])) {

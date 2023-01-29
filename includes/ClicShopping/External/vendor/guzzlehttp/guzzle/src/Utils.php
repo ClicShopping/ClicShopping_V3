@@ -196,7 +196,7 @@ EOT
     {
         $result = [];
         foreach (\array_keys($headers) as $key) {
-            $result[\mb_strtolower($key)] = $key;
+            $result[\strtolower($key)] = $key;
         }
 
         return $result;

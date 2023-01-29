@@ -22,7 +22,7 @@ $exportedArray = '[' . PHP_EOL;
 
 foreach ($topLevelDomains as $domain) {
     if (! empty($domain)) {
-        $domain = mb_strtolower($domain);
+        $domain = strtolower($domain);
         $exportedArray .= "    '{$domain}'," . PHP_EOL;
     }
 }

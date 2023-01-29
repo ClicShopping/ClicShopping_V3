@@ -53,7 +53,7 @@ class QRServerProvider extends BaseHTTPQRCodeProvider
      */
     public function getMimeType()
     {
-        switch (mb_strtolower($this->format)) {
+        switch (strtolower($this->format)) {
             case 'png':
                 return 'image/png';
             case 'gif':
@@ -97,12 +97,12 @@ class QRServerProvider extends BaseHTTPQRCodeProvider
     {
         return 'https://api.qrserver.com/v1/create-qr-code/'
             . '?size=' . $size . 'x' . $size
-            . '&ecc=' . mb_strtoupper($this->errorcorrectionlevel)
+            . '&ecc=' . strtoupper($this->errorcorrectionlevel)
             . '&margin=' . $this->margin
             . '&qzone=' . $this->qzone
             . '&bgcolor=' . $this->decodeColor($this->bgcolor)
             . '&color=' . $this->decodeColor($this->color)
-            . '&format=' . mb_strtolower($this->format)
+            . '&format=' . strtolower($this->format)
             . '&data=' . rawurlencode($qrtext);
     }
 }

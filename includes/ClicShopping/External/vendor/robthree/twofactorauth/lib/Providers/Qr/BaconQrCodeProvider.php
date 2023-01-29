@@ -38,7 +38,7 @@ class BaconQrCodeProvider implements IQRCodeProvider
         $this->borderWidth = $borderWidth;
         $this->backgroundColour = $this->handleColour($backgroundColour);
         $this->foregroundColour = $this->handleColour($foregroundColour);
-        $this->format = mb_strtolower($format);
+        $this->format = strtolower($format);
     }
 
     /**
