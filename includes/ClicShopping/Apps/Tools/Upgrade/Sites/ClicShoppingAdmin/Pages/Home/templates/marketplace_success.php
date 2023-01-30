@@ -39,7 +39,7 @@
               <span
                 class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('heading_title'); ?></span>
               <span
-                class="col-md-6 text-end"><?php echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_marketplace'), null, $CLICSHOPPING_Upgrade->link('Ipb'), 'danger');  ?>
+                class="col-md-6 text-end"><?php echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_marketplace'), null, $CLICSHOPPING_Upgrade->link('Marketplace'), 'primary');  ?>
               </span>
             </div>
           </div>
@@ -137,6 +137,10 @@
       }
       ?>
   </div>
+  <div class="text-center">
+    <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'marketplace.png', $CLICSHOPPING_Upgrade->getDef('heading_title')); ?>
+  </div>
+
 </div>
 <?php
   unset( $_SESSION['module_apps_name']);

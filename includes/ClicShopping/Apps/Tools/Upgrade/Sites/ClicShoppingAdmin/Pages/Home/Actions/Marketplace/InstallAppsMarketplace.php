@@ -38,8 +38,6 @@
       $this->messageStack = Registry::get('MessageStack');
     }
 
-
-
     /**
      * @return bool
      */
@@ -80,11 +78,11 @@
 
         if ($error === false) {
           $this->messageStack->add($this->app->getDef('text_success_files_installed'), 'success', 'main');
+          $this->app->redirect('Upgrade&MarketplaceSuccess');
         } else {
           $this->messageStack->add($this->app->getDef('error_file_not_installed'), 'error', 'main');
+          $this->app->redirect('Upgrade&Marketplace');
         }
-
-        $this->app->redirect('Marketplace');
       }
     }
   }
