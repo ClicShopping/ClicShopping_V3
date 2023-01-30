@@ -10,9 +10,6 @@
 
   namespace ClicShopping\OM\Module\Hooks\Shop\Footer;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTTP;
-
   class FooterOutputServiceWorker
   {
     /**

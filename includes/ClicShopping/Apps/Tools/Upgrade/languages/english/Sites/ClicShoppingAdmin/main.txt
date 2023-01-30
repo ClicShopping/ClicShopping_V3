@@ -160,3 +160,4 @@ Please select a category to display apps and modules. <p></p>
 
 Text_marketplace_update = categories and applications have been updated. <p> </p>
 Please update your page one last time.
+text_error_api_connection = Error Api :

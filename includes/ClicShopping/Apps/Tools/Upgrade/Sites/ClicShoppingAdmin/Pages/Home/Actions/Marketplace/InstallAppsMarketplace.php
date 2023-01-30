@@ -12,6 +12,8 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\Upload;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\ExtractFile;
   use ClicShopping\Apps\Tools\Upgrade\Upgrade as UpgradeApp;
@@ -37,31 +39,6 @@
     }
 
 
-    /**
-     * @return bool
-     */
-    public function getMarketplaceFile(): bool
-    {
-      $id = HTML::sanitize($_POST['id']);
-      $file_url_download = HTML::sanitize($_POST['file_url_download']);
-
-      $check = $this->extractFile->checkFileFromSite($id);
-
-      if (empty($file_url_download)) {
-        $error = true;
-      }
-
-      if ($check !== false && $error === false && !empty($file_url_download)) {
-        $this->extractFile->getCloseOpenStore('true');
-        $filename_path = $this->extractFile->downloadFile($file_url_download);
-        $this->extractFile->installFiles($filename_path);
-        $this->extractFile->getCloseOpenStore('false');
-
-        return true;
-      } else {
-        return false;
-      }
-    }
 
     /**
      * @return bool
@@ -96,17 +73,18 @@
         if ($check_directory === false) {
           $error = true;
         }
-/*
-        if ($this->getMarketplaceFile() === true && $error === false) {
-          $error = false;
+
+        if ($error === false) {
+          $this->saveFileUpload();
         }
-*/
 
         if ($error === false) {
           $this->messageStack->add($this->app->getDef('text_success_files_installed'), 'success', 'main');
         } else {
           $this->messageStack->add($this->app->getDef('error_file_not_installed'), 'error', 'main');
         }
+
+        $this->app->redirect('Marketplace');
       }
     }
   }

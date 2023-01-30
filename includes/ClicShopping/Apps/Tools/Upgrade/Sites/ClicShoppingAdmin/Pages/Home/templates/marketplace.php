@@ -82,6 +82,8 @@
                             echo '<div>' . $CLICSHOPPING_Upgrade->getDef('text_info_upload') . '</div>';
                             echo '<p></p>';
                             echo HTML::fileField('uploadApp', 'id="uploadApp" accept=".zip"');
+                            echo '<div class="separator"></div>';
+                            echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_update'), null, null, 'success');
                             echo '</form>';
                           ?>
                         </div>

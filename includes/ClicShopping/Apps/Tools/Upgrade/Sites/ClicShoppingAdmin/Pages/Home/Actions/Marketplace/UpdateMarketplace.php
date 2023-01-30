@@ -24,7 +24,7 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
       if (isset($_GET['UpdateMarketplace'], $_GET['Marketplace'])) {
-        $this->app->db->delete('marketplace_categories ');
+        $this->app->db->delete('marketplace_categories');
         $this->app->db->delete('marketplace_files');
         $this->app->db->delete('marketplace_file_informations');
 

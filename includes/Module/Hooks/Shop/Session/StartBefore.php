@@ -24,7 +24,7 @@
         }
 
         if (!empty($user_agent)) {
-          $file_array = file(CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Assets/spiders.txt');
+          $file_array = \file(CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Assets/spiders.txt');
 
           if (\is_array($file_array)) {
             foreach ($file_array as $spider) {
