@@ -106,6 +106,7 @@ text_search = Search
 text_top = -------- Top --------
 text_reset_success = the update had realised with success.
 button_not_free = Buy
+button_free = Free
 button_install = Install
 button_update_start = Start update
 button_more_infos = More Infos
@@ -161,3 +162,4 @@ Please select a category to display apps and modules. <p></p>
 Text_marketplace_update = categories and applications have been updated. <p> </p>
 Please update your page one last time.
 text_error_api_connection = Error Api :
+text_success_files_installed = Apps Installed

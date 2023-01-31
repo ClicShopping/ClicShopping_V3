@@ -50,9 +50,9 @@
       if ($upload_file->check() && $upload_file->save()) {
         $uploadApp = $upload_file->getFilename();
         $file = HTML::removeFileAccents($uploadApp);
+        $filename_path =  CLICSHOPPING::BASE_DIR . 'Work/Temp/' . $uploadApp;
 
         $this->extractFile->getCloseOpenStore('true');
-        $filename_path = $this->extractFile->downloadFile($file);
         $this->extractFile->installFiles($filename_path);
         $this->extractFile->getCloseOpenStore('false');
 
@@ -64,7 +64,7 @@
 
     public function execute()
     {
-      If (isset($_GET['InstallAppsMarketplace']) && isset($_GET['Marketplace'])) {
+      If (isset($_GET['InstallAppsMarketplace'], $_GET['Marketplace'])) {
         $error = false;
         $check_directory = $this->extractFile->checkDirectory();
 
@@ -74,9 +74,7 @@
 
         if ($error === false) {
           $this->saveFileUpload();
-        }
 
-        if ($error === false) {
           $this->messageStack->add($this->app->getDef('text_success_files_installed'), 'success', 'main');
           $this->app->redirect('Upgrade&MarketplaceSuccess');
         } else {

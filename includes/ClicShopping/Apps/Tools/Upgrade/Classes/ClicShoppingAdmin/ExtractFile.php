@@ -152,7 +152,7 @@
       if ($downloaded_file === false) {
         $this->messageStack->add($this->app->getDef('text_file_download_error'), 'error');
 
-        CLICSHOPPING::redirect('ipb_file_install');
+        CLICSHOPPING::redirect('Upgrade&Marketplace');
       } else {
         $path_parts = pathinfo($file_url);
         $file_name = $path_parts['filename'] . '.zip';
@@ -172,6 +172,7 @@
     public function installFiles(string $filename_localisation): void
     {
       $this->getExtractZip($filename_localisation, $this->saveFileFromGithub);
+
 //check if not readme.zip
       $dir = str_replace('.zip', '', $filename_localisation);
 
@@ -179,7 +180,7 @@
 // copy json in cache
         $json_source = $dir . '/' . $this->ModuleInfosJson . '/';
         $json_destination = $this->cacheGithub;
-
+        
         @ModuleDownload::smartCopy($json_source, $json_destination);
 
 // copy files their directories

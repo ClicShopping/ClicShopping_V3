@@ -7,6 +7,7 @@
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
+
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
@@ -66,7 +67,7 @@
               if (empty(CLICSHOPPING_APP_UPGRADE_UP_USERNAME)) {
                 echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_configure'), null, $CLICSHOPPING_Upgrade->link('Configure'), 'primary');
               } else {
-                if (MODE_DEMO === 'false') {
+                if (MODE_DEMO == 'false') {
                   echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_install_app'), null, null, 'primary', ['params' => 'data-bs-toggle="modal" data-bs-target="#modulaInstall"']);
                 ?>
                   <div class="modal fade" id="modulaInstall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -78,7 +79,7 @@
                         </div>
                         <div class="modal-body text-center">
                           <?php
-                            echo HTML::form('installApp', $CLICSHOPPING_Upgrade->link('Marketplace&InstallAppsMarketplace', 'post', 'enctype="multipart/form-data" id="fileUpload"'));
+                            echo HTML::form('installApp', $CLICSHOPPING_Upgrade->link('Marketplace&InstallAppsMarketplace'), 'post', 'enctype="multipart/form-data" id="fileUpload"');
                             echo '<div>' . $CLICSHOPPING_Upgrade->getDef('text_info_upload') . '</div>';
                             echo '<p></p>';
                             echo HTML::fileField('uploadApp', 'id="uploadApp" accept=".zip"');

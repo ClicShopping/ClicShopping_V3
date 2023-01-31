@@ -166,3 +166,4 @@ Veuillez sélectionner une catégories pour afficher les apps et modules.<p></p>
 text_marketplace_update =  Les catégories et les applications ont été mises à jour. <p></p>
 Veuillez actualiser une derniére fois votre page.
 text_error_api_connection = Erreur Api :
+text_success_files_installed = Apps Installée
