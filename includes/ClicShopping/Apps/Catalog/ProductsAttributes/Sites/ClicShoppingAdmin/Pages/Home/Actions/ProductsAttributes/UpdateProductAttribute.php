@@ -29,7 +29,7 @@
     {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-      $CLICSHOPPING_ProductsAttributesAdmin = new ProductsAttributesAdmin;
+      $CLICSHOPPING_ProductsAttributesAdmin = new ProductsAttributesAdmin();
 
 
       $products_id = HTML::sanitize($_POST['products_id']);

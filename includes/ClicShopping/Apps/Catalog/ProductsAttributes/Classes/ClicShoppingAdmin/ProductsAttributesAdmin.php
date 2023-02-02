@@ -29,7 +29,6 @@
       $this->app = Registry::get('ProductsAttributes');
     }
 
-
     /**
      * products options - attributes
      *
@@ -39,13 +38,14 @@
      */
     public function getOptionsName(int $options_id): string
     {
-      $Qoptions = Registry::get('Db')->get('products_options', 'products_options_name', ['products_options_id' => (int)$options_id,
-          'language_id' => (int)$this->lang->getId()
-        ]
-      );
+      $sql_array = [
+        'products_options_id' => (int)$options_id,
+        'language_id' => (int)$this->lang->getId()
+        ];
+
+      $Qoptions = Registry::get('Db')->get('products_options', 'products_options_name', $sql_array);
 
       return $Qoptions->value('products_options_name');
-
     }
 
     /**
@@ -57,10 +57,12 @@
      */
     public function getValuesName(int $values_id): string
     {
-      $Qvalues = Registry::get('Db')->get('products_options_values', 'products_options_values_name', ['products_options_values_id' => (int)$values_id,
-          'language_id' => (int)$this->lang->getId()
-        ]
-      );
+      $sql_array = [
+        'products_options_values_id' => (int)$values_id,
+        'language_id' => (int)$this->lang->getId()
+      ];
+
+      $Qvalues = Registry::get('Db')->get('products_options_values', 'products_options_values_name', $sql_array);
 
       return $Qvalues->value('products_options_values_name');
     }
@@ -121,8 +123,13 @@
      */
     public function setAttributeType(): array
     {
-      $products_options_type = [array('id' => 'select', 'text' => $this->app->getDef('text_select')),
-        array('id' => 'radio', 'text' => $this->app->getDef('text_radio'))
+      $products_options_type = [
+        ['id' => 'select',
+          'text' => $this->app->getDef('text_select')
+        ],
+        ['id' => 'radio',
+         'text' => $this->app->getDef('text_radio')
+        ]
       ];
 
       return $products_options_type;
