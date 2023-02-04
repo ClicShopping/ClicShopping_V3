@@ -63,14 +63,12 @@
       }
     }
 
-    /*
-    * user open or Close the store during the upgrade process
-    * @param $value,true / false
-    * @return
-    */
+    /**
+     * @param string $value true/false
+     * @return void
+     */
     public function getCloseOpenStore(string $value): void
     {
-      if (\defined('STORE_OFFLINE')) {
         $Qupdate = $this->app->db->prepare('update :table_configuration
                                             set configuration_value = :configuration_value,
                                             last_modified = now()
@@ -79,7 +77,6 @@
         $Qupdate->bindValue(':configuration_value', $value);
         $Qupdate->bindValue(':configuration_key', 'STORE_OFFLINE');
         $Qupdate->execute();
-      }
     }
 
     /**
@@ -184,10 +181,8 @@
       }
     }
 
-
-
     /**
-     * @param string $url
+     * @param string $json_file
      * @return bool|int
      */
     public function getJsonInfo(string $json_file): array|bool
