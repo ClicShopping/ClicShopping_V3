@@ -49,11 +49,13 @@
 
       if ($upload_file->check() && $upload_file->save()) {
         $uploadApp = $upload_file->getFilename();
-        $file = HTML::removeFileAccents($uploadApp);
-        $filename_path =  CLICSHOPPING::BASE_DIR . 'Work/Temp/' . $uploadApp;
+        $_SESSION['app_json'] = $uploadApp;
+
+        $dir = HTML::removeFileAccents($uploadApp);
+        $dir_path =  CLICSHOPPING::BASE_DIR . 'Work/Temp/' . $dir;
 
         $this->extractFile->getCloseOpenStore('true');
-        $this->extractFile->installFiles($filename_path);
+        $this->extractFile->installFiles($dir_path);
         $this->extractFile->getCloseOpenStore('false');
 
         return true;

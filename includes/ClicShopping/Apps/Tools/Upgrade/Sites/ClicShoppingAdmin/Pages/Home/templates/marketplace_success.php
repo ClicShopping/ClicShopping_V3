@@ -21,8 +21,6 @@
   $CLICSHOPPING_Github = new Github();
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $cache_directory = CLICSHOPPING::BASE_DIR . 'Work/Cache/Marketplace/';
-
   if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
   }
@@ -56,84 +54,68 @@
     <div class="separator"></div>
 
     <?php
-    if (isset($_SESSION['markeplace_file_id'])) {
-      $id = $_SESSION['markeplace_file_id'];
+    $json_file_directory = CLICSHOPPING::BASE_DIR . 'Work/Temp/' . $_SESSION['app_json'];
 
-      $sql_array = [
-        'file_name',
-        'file_url_download',
-        'is_installed',
-        'file_url_screenshot'
-      ];
-
-      $information = $CLICSHOPPING_Upgrade->db->get('marketplace_file_informations', $sql_array, ['file_id' => $id]);
-
-      $json_name = 'apps_configuration_antispam.json';
+    if (is_file($json_file_directory)){
     ?>
       <div class="row">
         <span class="col-md-6">
           <blockquote>
             <ul>
               <?php
-                if(is_file($cache_directory . $json_name)) {
-                  $get_json_file = file_get_contents($cache_directory . $json_name, true);
-                  $result = json_decode($get_json_file);
+              $json_file = str_replace('.zip', '', $_SESSION['app_json']);
+              $json_file = CLICSHOPPING::BASE_DIR . 'Work/Cache/Marketplace/' . $json_file . '.json';
 
-                  foreach ($result as $key => $value) {
-                    $text = '';
+              if(is_file($json_file)) {
+                $get_json_file = file_get_contents($json_file, true);
 
-                    if (!\is_array($value)) {
-                      $text = $value;
-                    }
+                $result = json_decode($get_json_file);
 
-                    if ($key == 'module_directory') {
-                      $_SESSION['module_directory'] = $value;
-                    }
+                foreach ($result as $key => $value) {
+                  $text = '';
 
-                    if ($key == 'apps_name') {
-                      $_SESSION['module_apps_name'] = $value;
-                    }
-
-                    echo '<li>' . $key . ' : ' . $text . '</li>';
-
-                    if (\is_array($value)) {
-                      echo '<div class="separator"></div>';
-
-                      foreach ($value as $item) {
-                        echo '      -' . $item->name . '<br />';
-                        echo '      -' . $item->company . '<br />';
-                        echo '      -' . $item->email . '<br />';
-                        echo '      -' . $item->website . '<br />';
-                        echo '      -' . $item->Community . '<br />';
-                      }
-                    }
+                  if (!\is_array($value)) {
+                    $text = $value;
                   }
 
-                  if (isset($_SESSION['module_directory'])) {
+                  if ($key == 'module_directory') {
+                    $_SESSION['module_directory'] = $value;
+                  }
+
+                  if ($key == 'apps_name') {
+                    $_SESSION['module_apps_name'] = $value;
+                  }
+
+                  echo '<li>' . $key . ' : ' . $text . '</li>';
+
+                  if (\is_array($value)) {
                     echo '<div class="separator"></div>';
-                    echo '<div class="alert alert-success" role="alert">';
-                    echo '<span class="text-center"><h3>';
-                    echo HTML::link(CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin') . 'index.php?A&' . $_SESSION['module_directory'] . '\\' . $_SESSION['module_apps_name'], $CLICSHOPPING_Upgrade->getDef('text_activate'));
-                    echo '</h3></span>';
-                    echo '</div>';
+
+                    foreach ($value as $item) {
+                      echo '      -' . $item->name . '<br />';
+                      echo '      -' . $item->company . '<br />';
+                      echo '      -' . $item->email . '<br />';
+                      echo '      -' . $item->website . '<br />';
+                      echo '      -' . $item->Community . '<br />';
+                    }
                   }
                 }
+
+                if (isset($_SESSION['module_directory'])) {
+                  echo '<div class="separator"></div>';
+                  echo '<div class="alert alert-success" role="alert">';
+                  echo '<span class="text-center"><h3>';
+                  echo HTML::link(CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin') . 'index.php?A&' . $_SESSION['module_directory'] . '\\' . $_SESSION['module_apps_name'], $CLICSHOPPING_Upgrade->getDef('text_activate'));
+                  echo '</h3></span>';
+                  echo '</div>';
+                }
+              }
               ?>
             </ul>
           </blockquote>
         </span>
-        <span class="col-md-6">
-          <div class="text-center">
-              <img src="<?php echo $information->value('file_url_screenshot'); ?>" class="figure-img img-fluid alt="<?php echo $information->value('file_name'); ?>">
-          </div>
-        </span>
       </div>
       <?php
-        $sql_array = [
-          'is_installed' => 1
-        ];
-
-        $CLICSHOPPING_Upgrade->db->save('marketplace_file_informations', $sql_array, ['file_id' => $id]);
       }
       ?>
   </div>
@@ -143,8 +125,8 @@
 
 </div>
 <?php
-  unset( $_SESSION['module_apps_name']);
+  unset($_SESSION['module_apps_name']);
   unset($_SESSION['module_directory']);
-  unset($_SESSION['markeplace_file_id']);
+  unset($_SESSION['app_json']);
 
 

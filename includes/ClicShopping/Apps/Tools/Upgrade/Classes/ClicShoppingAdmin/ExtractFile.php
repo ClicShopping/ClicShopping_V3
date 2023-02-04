@@ -42,25 +42,7 @@
       $this->ModuleInfosJson = 'ModuleInfosJson';
     }
 
-    /**
-     * @param $id
-     * @return bool
-     */
-    public function checkFileFromSite($id): bool
-    {
-      $check = $this->app->db->get('marketplace_file_informations', 'file_url_download', ['file_id' => $id]);
-
-      if (!empty($check->value('file_url_download'))) {
-        $_SESSION['markeplace_file_id'] = $id;
-        $result = true;
-      } else {
-        $result = false;
-      }
-
-      return $result;
-    }
-
-    /**
+   /**
      * Extract Zip file
      *
      * @param string $source
@@ -199,6 +181,27 @@
       } else {
         $this->messageStack->add($this->app->getDef('error_file_not_installed'), 'error', 'main');
         $this->app->redirect('Marketplace');
+      }
+    }
+
+
+
+    /**
+     * @param string $url
+     * @return bool|int
+     */
+    public function getJsonInfo(string $json_file): array|bool
+    {
+      $cache_directory = CLICSHOPPING::BASE_DIR . 'Work/Cache/Marketplace/';
+
+      if (is_file($cache_directory . $json_file)) {
+        $get_json_file = file_get_contents($cache_directory . $json_file, true);
+        $result = json_decode($get_json_file);
+
+        return $result;
+      } else {
+        $this->messageStack->add($this->app->getDef('error_json_file'), 'error', 'main');
+        return false;
       }
     }
   }

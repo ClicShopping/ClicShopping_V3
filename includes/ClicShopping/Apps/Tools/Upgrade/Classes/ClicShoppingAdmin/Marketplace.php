@@ -368,22 +368,6 @@ class Marketplace
   }
 
   /**
-   * @param string $url
-   * @return bool|int
-   */
-  public function downloadFile(string $url)
-  {
-    $file_url = $url;
-    $downloaded_file = file_get_contents($file_url);
-
-    $path_parts = pathinfo($file_url);
-    $file_name = $path_parts['filename'] . '.zip';
-    $result = file_put_contents($file_name, $downloaded_file);
-
-    return $result;
-  }
-
-  /**
    * @return void
    */
   public static function Cronjob(): void

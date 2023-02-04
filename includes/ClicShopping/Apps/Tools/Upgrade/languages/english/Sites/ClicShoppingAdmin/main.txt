@@ -128,7 +128,7 @@ text_community = Community modules
 text_partner = Partner modules
 
 success_core_installed = The core update has been installed.
-success_file_installed = The update hes been done with success, please activate the module
+success_file_installed = The update has been installed with success, please activate the apps or the module
 
 warning_no_module = No module found
 text_marketplace_username = Please insert the parameters of your account by clicking on the Configure button. <br />
