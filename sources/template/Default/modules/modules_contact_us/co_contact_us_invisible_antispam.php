@@ -15,7 +15,7 @@
 
   class co_contact_us_invisible_antispam {
     public string $code;
-    public $group;
+    public string $group;
     public $title;
     public $description;
     public ?int $sort_order = 0;
@@ -28,14 +28,16 @@
       $this->title = CLICSHOPPING::getDef('modules_contact_us_invisible_antispam_title');
       $this->description = CLICSHOPPING::getDef('modules_contact_us_invisible_antispam_description');
 
-      if (\defined('CLICSHOPPING_APP_ANTISPAM_IN_STATUS')) {
-        if (CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'True' && CLICSHOPPING_APP_ANTISPAM_IN_CONTACT == 'True') {
-          if (\defined('MODULES_CONTACT_US_INVISIBLE_ANTISPAM_STATUS')) {
-            $this->enabled = (MODULES_CONTACT_US_INVISIBLE_ANTISPAM_STATUS  == 'True');
-            $this->sort_order = (int)MODULES_CONTACT_US_INVISIBLE_ANTISPAM_SORT_ORDER ?? 0;
+      if (\defined('CLICSHOPPING_APP_ANTISPAM_STATUS') && CLICSHOPPING_APP_ANTISPAM_STATUS == 'True') {
+        if (\defined('CLICSHOPPING_APP_ANTISPAM_IN_STATUS') && CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'True') {
+          if (\defined('CLICSHOPPING_APP_ANTISPAM_IN_CONTACT') && CLICSHOPPING_APP_ANTISPAM_IN_CONTACT == 'True') {
+            if (\defined('MODULES_CONTACT_US_INVISIBLE_ANTISPAM_STATUS')) {
+              $this->enabled = (MODULES_CONTACT_US_INVISIBLE_ANTISPAM_STATUS == 'True');
+              $this->sort_order = (int)MODULES_CONTACT_US_INVISIBLE_ANTISPAM_SORT_ORDER ?? 0;
+            }
+          } else {
+            $this->enabled = false;
           }
-        } else {
-          $this->enabled = false;
         }
       }
     }

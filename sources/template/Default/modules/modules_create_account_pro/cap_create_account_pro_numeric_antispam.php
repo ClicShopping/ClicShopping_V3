@@ -28,14 +28,16 @@
       $this->title = CLICSHOPPING::getDef('modules_create_account_pro_numeric_antispam_title');
       $this->description = CLICSHOPPING::getDef('modules_create_account_pro_numeric_antispam_description');
 
-      if (\defined('CLICSHOPPING_APP_ANTISPAM_AM_STATUS')) {
-        if (CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT_PRO == 'True' && CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT_PRO == 'True') {
-          if (\defined('MODULES_CREATE_ACCOUNT_NUMERIC_ANTISPAM_STATUS')) {
-            $this->enabled = (MODULES_CREATE_ACCOUNT_PRO_NUMERIC_ANTISPAM_STATUS  == 'True');
-            $this->sort_order = (int)MODULES_CREATE_ACCOUNT_PRO_NUMERIC_ANTISPAM_SORT_ORDER ?? 0;
+      if (\defined('CLICSHOPPING_APP_ANTISPAM_STATUS') && CLICSHOPPING_APP_ANTISPAM_STATUS == 'True') {
+        if (\defined('CLICSHOPPING_APP_ANTISPAM_AM_STATUS') && CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'True') {
+          if (\defined('CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT_PRO') && CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT_PRO == 'True') {
+            if (\defined('MODULES_CREATE_ACCOUNT_NUMERIC_ANTISPAM_STATUS')) {
+              $this->enabled = (MODULES_CREATE_ACCOUNT_PRO_NUMERIC_ANTISPAM_STATUS == 'True');
+              $this->sort_order = (int)MODULES_CREATE_ACCOUNT_PRO_NUMERIC_ANTISPAM_SORT_ORDER ?? 0;
+            }
+          } else {
+            $this->enabled = false;
           }
-        } else {
-          $this->enabled = false;
         }
       }
     }

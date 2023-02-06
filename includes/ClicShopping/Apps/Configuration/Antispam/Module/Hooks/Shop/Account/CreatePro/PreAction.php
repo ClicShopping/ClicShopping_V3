@@ -54,6 +54,8 @@
      */
     private static function checkNumericAntispam() :bool
     {
+      $error = false;
+          
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_STATUS') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
         $error = false;
       } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT_PRO') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
