@@ -14,7 +14,7 @@
 <div class="col-12 col-sm-<?php echo $bootstrap_column; ?> ModulesFrontPageBoostrapColumn5">
   <div class="separator"></div>
   <div class="card">
-    <div class="card-height">
+    <div class="card-height ModulesFrontPageBoostrapColumn5CardHeight">
         <div class="separator"></div>
           <div class="card-img-top ModulesFrontPageBoostrapColumn5Image">
           <?php echo $products_image . $ticker; ?>
