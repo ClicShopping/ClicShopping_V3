@@ -14,7 +14,7 @@
 <div class="col-12 col-md-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?> ModulesProductsFavoritesBoostrapColumn5">
   <div class="separator"></div>
   <div class="card">
-    <div class="card-height">
+    <div class="card-height ModulesProductsFavoritesBoostrapColumn5CardHeight">
         <div class="separator"></div>
           <div class="card-img-top ModulesProductsFavoritesBoostrapColumn5Image">
           <?php echo $products_image . $ticker; ?>

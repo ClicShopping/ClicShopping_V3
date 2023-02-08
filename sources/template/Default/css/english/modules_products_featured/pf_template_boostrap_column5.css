@@ -45,7 +45,6 @@
   padding-top: 0.625rem;
 }
 
-
 .ModulesProductsFeaturedBoostrapColumn5StockImage {
   text-align:center;
   vertical-align:text-top;
@@ -53,15 +52,12 @@
   padding-top: 0.625rem;
 }
 
-
-
 .ModulesProductsFeaturedBoostrapColumn5ImageNewArrival  {
   text-align:center;
   vertical-align:text-top;
   color: #7F736F;
   padding-top: 0.625rem;
 }
-
 
 .ModulesProductsFeaturedBoostrapColumn5QuantityMinOrder {
   text-align:center;
@@ -84,4 +80,8 @@
 .ModulesproductsFeaturedBoostrapColumn5SubmitButton {
   text-align:left;
   text-transform:uppercase;
+}
+
+.ModulesproductsFeaturedBoostrapColumn5CardHeight {
+  height:17rem;
 }

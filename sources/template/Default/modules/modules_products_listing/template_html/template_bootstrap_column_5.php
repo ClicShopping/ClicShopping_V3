@@ -14,6 +14,7 @@
   <div class="separator"></div>
   <div class="card">
     <div class="card-height">
+      <div class="card-height ModulesProductsNewBoostrapColumn5CardHeight">
         <div class="separator"></div>
           <div class="card-img-top ModulesProductsListingBoostrapColumn5Image">
           <?php echo $products_image . $ticker; ?>

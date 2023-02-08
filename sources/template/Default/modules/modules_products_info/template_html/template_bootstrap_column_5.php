@@ -13,7 +13,7 @@
 <div class="col-12 col-sm-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?> ModulesProductsInfoBoostrapColumn5">
   <div class="separator"></div>
   <div class="card">
-    <div class="card-height">
+    <div class="card-height ModulesProductsInfoBoostrapColumn5CardHeight">
         <div class="separator"></div>
           <div class="card-img-top ModulesProductsInfoBoostrapColumn5Image">
           <?php echo $products_image . $ticker; ?>

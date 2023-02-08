@@ -70,7 +70,6 @@ div.ModulesProductsNewBoostrapColumn5ImageNewArrival  {
   padding-bottom:5px;
 }
 
-
 .ModulesProductsNewBoostrapColumn5ProductsQuantityUnit  {
   text-align:center;
   color: #7F736F;
@@ -84,4 +83,8 @@ div.ModulesProductsNewBoostrapColumn5ImageNewArrival  {
 .ModulesProductsNewBoostrapColumn5SubmitButton {
   text-align:center;
   text-transform:uppercase;
+}
+
+.ModulesProductsNewBoostrapColumn5CardHeight {
+  height:17rem;
 }

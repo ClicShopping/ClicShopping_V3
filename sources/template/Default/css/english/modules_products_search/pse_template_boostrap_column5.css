@@ -46,7 +46,6 @@
   padding-top: 0.625rem;
 }
 
-
 .ModulesProductsSearchBoostrapColumn5StockImage {
   text-align:center;
   vertical-align:text-top;
@@ -54,15 +53,12 @@
   padding-top: 0.625rem;
 }
 
-
-
 .ModulesProductsSearchBoostrapColumn5QuantityMinOrder {
   text-align:center;
   color: #7F736F;
   padding-top: 0.625rem;
   padding-bottom:5px;
 }
-
 
 .ModulesProductsSearchBoostrapColumn5ProductsQuantityUnit  {
   text-align:center;
@@ -77,4 +73,8 @@
 .ModulesProductsSearchBoostrapColumn5SubmitButton {
   text-align:center;
   text-transform:uppercase;
+}
+
+.ModulesProductsSearchBoostrapColumn5CardHeight {
+  height:17rem;
 }

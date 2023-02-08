@@ -46,15 +46,12 @@
   padding-top: 0.625rem;
 }
 
-
 div.ModulesProductsSpecialsBoostrapColumn5StockImage {
   text-align:center;
   vertical-align:text-top;
   color: #7F736F;
   padding-top: 0.625rem;
 }
-
-
 
 div.ModulesProductsSpecialsBoostrapColumn5ImageNewArrival  {
   text-align:center;
@@ -70,7 +67,6 @@ div.ModulesProductsSpecialsBoostrapColumn5ImageNewArrival  {
   padding-bottom:5px;
 }
 
-
 .ModulesProductsSpecialsBoostrapColumn5ProductsQuantityUnit  {
   text-align:center;
   color: #7F736F;
@@ -84,4 +80,8 @@ div.ModulesProductsSpecialsBoostrapColumn5ImageNewArrival  {
 .ModulesproductsSpecialsBoostrapColumn5SubmitButton {
   text-align:center;
   text-transform:uppercase;
+}
+
+.ModulesproductsSpecialsBoostrapColumn5CardHeight {
+  height:17rem;
 }

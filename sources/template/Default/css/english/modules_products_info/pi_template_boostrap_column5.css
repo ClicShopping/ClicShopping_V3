@@ -53,8 +53,6 @@
   padding-top: 0.625rem;
 }
 
-
-
 .ModulesProductsInfoBoostrapColumn5ImageNewArrival  {
   text-align:center;
   vertical-align:text-top;
@@ -68,7 +66,6 @@
   padding-top: 0.625rem;
   padding-bottom:5px;
 }
-
 
 .ModulesProductsInfoBoostrapColumn5ProductsQuantityUnit  {
   text-align:center;
@@ -89,4 +86,8 @@
 .ModulesProductsInfoBoostrapColumn5SubmitButton {
   text-align:center;
   text-transform:uppercase;
+}
+
+.ModulesProductsInfoBoostrapColumn5CardHeight {
+  height:17rem;
 }

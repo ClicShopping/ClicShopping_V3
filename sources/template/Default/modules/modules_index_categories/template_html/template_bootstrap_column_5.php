@@ -13,7 +13,7 @@ use ClicShopping\OM\CLICSHOPPING;
 <div class="col-12 col-md-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?> ModulesIndexCategoriesBoostrapColumn5">
   <div class="separator"></div>
   <div class="card">
-    <div class="card-height">
+    <div class="card-height ModulesIndexCategoriesBoostrapColumn5CardHeight">
         <div class="separator"></div>
           <div class="card-img-top ModulesIndexCategoriesBoostrapColumn5Image">
           <?php echo $products_image . $ticker; ?>
