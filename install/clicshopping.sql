@@ -198,7 +198,7 @@ INSERT INTO administrator_menu VALUES(787, 'index.php?A&Orders\\ReturnOrders&Con
 INSERT INTO administrator_menu VALUES(788, 'index.php?A&Tools\\Cronjob&Cronjob', 163, 2, 0, 'return_orders.png', 0, 'app_tools_cronjob', 1);
 INSERT INTO administrator_menu VALUES(789, 'index.php?A&Configuration\\Settings&Settings&gID=46', 13, 11, 0, '', 1, NULL, 1);
 INSERT INTO administrator_menu VALUES(790, 'index.php?A&Configuration\\Api&Api', 14, 14, 0, 'api.png', 0, 'app_configuration_api', 1);
-INSERT INTO administrator_menu VALUES(791, 'index.php?A&Configuration\\Antispam&Configure', 13, 15, 0, 'antispam.png', 0, 'app_configuration_antispam', 1);
+INSERT INTO administrator_menu VALUES(791, 'index.php?A&Configuration\\Antispam&Configure', 13, 15, 0,'antispam.png', 0, 'app_configuration_antispam', 1);
 INSERT INTO administrator_menu VALUES(792, 'index.php?A&Tools\\Upgrade&Upgrade', 644, 5, 1, null, 0, 'app_tools_upgrade', 1);
 INSERT INTO administrator_menu VALUES(793, 'index.php?A&Tools\\Upgrade&Marketplace', 644, 10, 1, null, 0, 'app_tools_upgrade', 1);
 
