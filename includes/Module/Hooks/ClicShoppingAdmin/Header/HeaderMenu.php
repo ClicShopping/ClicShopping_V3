@@ -57,6 +57,38 @@
         ';
   
         if (isset($_SESSION['admin'])) {
+
+          $output .= '
+          <span class="col-md-2 text-end">
+                  <!-- Modal -->
+                  <a href="#chatModal" data-bs-toggle="modal" data-bs-target="#chatModal"><span class="text-white"><i class="bi bi-chat-left-dots-fill" alt="Open the chat"></i><span></a>
+                  <div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="chatModalLabel">What do you want to resolve ?</h5>
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <textarea class="form-control" id="messageGpt" rows="3" placeholder="Write a message (be patient on the response)"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <button type="button" class="btn btn-primary" id="sendGpt">Send</button>
+                          </div>
+                          <div class="separator"></div>
+                          <div class="card">
+                            <div class="chat-box-message">
+                              <div id="chatGpt-output"></div>
+                            </div>
+                          </div>  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </span>
+          ';
+
           if ($_SESSION['admin']['access'] == 1 && \count(glob(ErrorHandler::getDirectory() . 'phpmail_error-*.txt', GLOB_NOSORT)) > 0) {
             $output .= '<span>' . HTML::link(CLICSHOPPING::link(null, 'A&Tools\EditLogError&LogErrorPhpMailer'), '<i class="bi bi-exclamation-circle-fill text-warning" tiltle="Mail"></i>') . '</span> ';
           }

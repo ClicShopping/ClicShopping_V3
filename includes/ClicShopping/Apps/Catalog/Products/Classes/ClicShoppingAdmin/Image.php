@@ -458,8 +458,9 @@
             $sql_data_array['image'] = $dir . $separator . $image->getFilename();
           }
 
-          $this->db->save('products_images', $sql_data_array, ['products_id' => (int)$id,
-              'id' => (int)$matches[1]
+          $this->db->save('products_images', $sql_data_array, [
+            'products_id' => (int)$id,
+            'id' => (int)$matches[1]
             ]
           );
 
@@ -467,7 +468,8 @@
 
         } elseif (preg_match('/^products_image_large_new_([0-9]+)$/', $key, $matches)) {
           // Insert new large product images
-          $sql_data_array = ['products_id' => (int)$id,
+          $sql_data_array = [
+            'products_id' => (int)$id,
             'htmlcontent' => $_POST['products_image_htmlcontent_new_' . $matches[1]]
           ];
 

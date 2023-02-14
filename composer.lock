@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14f5ee8b74c9adc264c3f59927d80ec7",
+    "content-hash": "e6d081744808c585006a2da4726f542c",
     "packages": [
         {
             "name": "darkghosthunter/preloader",
@@ -521,6 +521,87 @@
             "time": "2023-01-10T17:35:32+00:00"
         },
         {
+            "name": "openai-php/client",
+            "version": "v0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/openai-php/client.git",
+                "reference": "8c67360fca906e2f613f11e1839e32905a2ed28c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/openai-php/client/zipball/8c67360fca906e2f613f11e1839e32905a2ed28c",
+                "reference": "8c67360fca906e2f613f11e1839e32905a2ed28c",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.5.0",
+                "php": "^8.1.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.4.1",
+                "nunomaduro/collision": "^7.0.0",
+                "pestphp/pest": "^2.0.0",
+                "pestphp/pest-plugin-arch": "^2.0.0",
+                "pestphp/pest-plugin-mock": "^2.0.0",
+                "phpstan/phpstan": "^1.9.16",
+                "rector/rector": "^0.14.8",
+                "symfony/var-dumper": "^6.2.5"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/OpenAI.php"
+                ],
+                "psr-4": {
+                    "OpenAI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "OpenAI PHP is a supercharged PHP API client that allows you to interact with the Open AI API",
+            "keywords": [
+                "GPT-3",
+                "api",
+                "client",
+                "codex",
+                "dall-e",
+                "language",
+                "natural",
+                "openai",
+                "php",
+                "processing",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/openai-php/client/issues",
+                "source": "https://github.com/openai-php/client/tree/v0.3.1"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/enunomaduro",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/nunomaduro",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2023-02-07T21:22:36+00:00"
+        },
+        {
             "name": "phpmailer/phpmailer",
             "version": "v6.7.1",
             "source": {
@@ -602,21 +683,21 @@
         },
         {
             "name": "phpxmlrpc/phpxmlrpc",
-            "version": "4.9.5",
+            "version": "4.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gggeek/phpxmlrpc.git",
-                "reference": "b61833dbd45deedb366cc78cd3bf95c0e9a89a8b"
+                "reference": "7103864975ca0b930574cabc8b4593093ee4432e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/b61833dbd45deedb366cc78cd3bf95c0e9a89a8b",
-                "reference": "b61833dbd45deedb366cc78cd3bf95c0e9a89a8b",
+                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/7103864975ca0b930574cabc8b4593093ee4432e",
+                "reference": "7103864975ca0b930574cabc8b4593093ee4432e",
                 "shasum": ""
             },
             "require": {
                 "ext-xml": "*",
-                "php": "^5.3.0 || ^7.0 || ^8.0"
+                "php": "^5.4.0 || ^7.0 || ^8.0"
             },
             "conflict": {
                 "phpxmlrpc/extras": "<= 0.6.3"
@@ -633,7 +714,7 @@
                 "ext-curl": "Needed for HTTPS, HTTP2 and HTTP 1.1 support, NTLM Auth etc...",
                 "ext-mbstring": "Needed to allow reception of requests/responses in character sets other than ASCII,LATIN-1,UTF-8",
                 "ext-zlib": "Needed for sending compressed requests and receiving compressed responses, if cURL is not available",
-                "phpxmlrpc/extras": "Adds more featured Server classes and other useful bits",
+                "phpxmlrpc/extras": "Adds more featured Server classes, including self-documenting and ajax-enabled servers",
                 "phpxmlrpc/jsonrpc": "Adds support for the JSON-RPC protocol"
             },
             "type": "library",
@@ -655,9 +736,9 @@
             ],
             "support": {
                 "issues": "https://github.com/gggeek/phpxmlrpc/issues",
-                "source": "https://github.com/gggeek/phpxmlrpc/tree/4.9.5"
+                "source": "https://github.com/gggeek/phpxmlrpc/tree/4.10.0"
             },
-            "time": "2023-01-11T11:15:43+00:00"
+            "time": "2023-02-11T17:10:30+00:00"
         },
         {
             "name": "psr/http-client",

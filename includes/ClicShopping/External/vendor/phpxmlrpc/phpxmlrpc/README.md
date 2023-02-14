@@ -13,27 +13,44 @@ Detailed installation instructions are in the [INSTALL.md](INSTALL.md) file, alo
 Documentation
 -------------
 
-See the documentation page at [gggeek.github.io/phpxmlrpc](https://gggeek.github.io/phpxmlrpc) for a list of the
-library main features and all project related information, including information about online resources such as
-debuggers and demo servers.
+* See the documentation page at [gggeek.github.io/phpxmlrpc](https://gggeek.github.io/phpxmlrpc) for a list of the
+  library main features and all project related information, including information about online resources such as
+  debuggers and demo servers.
 
-The user manual can be found in the doc/manual directory: [phpxmlrpc_manual.adoc](doc/manual/phpxmlrpc_manual.adoc).
-It includes sections about upgrading from previous versions as well as running the library's testing suite and bundled
-debugger.
+* The user manual can be found in the doc/manual directory: [phpxmlrpc_manual.adoc](doc/manual/phpxmlrpc_manual.adoc).
+  It includes sections about upgrading from previous versions and the Backwards compatibility promise as well as about
+  running the library's testing suite and bundled debugger.
 
-The manual is formatted as an asciidoc file - if viewing it locally, it is recommended to either use an IDE which can
-natively render asciidoc, or view it as html with a browser by serving it via a webserver and accessing
-/doc/manual/index.html
+  The manual is formatted as an asciidoc file - if viewing it locally, it is recommended to either use an IDE which can
+  natively render asciidoc, or view it as html with a browser by serving it via a webserver and accessing
+  /doc/manual/index.html
 
-Automatically-generated documentation for the API is available online at [http://gggeek.github.io/phpxmlrpc/doc-4/api/index.html](http://gggeek.github.io/phpxmlrpc/doc-4/api/index.html)
+  The latest version of the manual is also accessible online at https://github.com/gggeek/phpxmlrpc/blob/master/doc/manual/phpxmlrpc_manual.adoc
 
-You are encouraged to look also at the code examples found in the demo/ directory.
+* Automatically-generated documentation for the API is available online at [http://gggeek.github.io/phpxmlrpc/doc-4/api/index.html](http://gggeek.github.io/phpxmlrpc/doc-4/api/index.html)
 
-Note: to reduce the size of the download, the demo files are not part of the default package installed with Composer.
-You can either check them out online at https://github.com/gggeek/phpxmlrpc/tree/master/demo, download them as a separate
-tarball from https://github.com/gggeek/phpxmlrpc/releases or make sure they are available locally by installing the
-library using Composer option `--prefer-install=source`. Whatever the method chosen, make sure that the demo folder is
-not directly accessible from the internet, i.e. it is not within the webserver root directory).
+* You are encouraged to look also at the code examples found in the demo/ directory.
+
+  Note: to reduce the size of the download, the demo files are not part of the default package installed with Composer.
+  You can either check them out online at https://github.com/gggeek/phpxmlrpc/tree/master/demo, download them as a separate
+  tarball from https://github.com/gggeek/phpxmlrpc/releases or make sure they are available locally by installing the
+  library using Composer option `--prefer-install=source`. Whatever the method chosen, make sure that the demo folder is
+  not directly accessible from the internet, i.e. it is not within the webserver root directory).
+
+Extras
+------
+
+* This library does include a visual debugger which can be used to troubleshoot connections to 3rd party xml-rpc servers.
+  In case you'd like to use the debugger but do not have a working PHP installation, you can run it standalone as a
+  Container image. Instructions can be found at https://github.com/gggeek/phpxmlrpc-debugger
+
+* A companion PHP library, which adds support for the JSON-RPC protocol, is available at https://github.com/gggeek/phpxmlrpc-jsonrpc
+
+* A companion PHP library, which adds support for XML-RPC servers to automatically generate API documentation, and more,
+  is available at https://github.com/gggeek/phpxmlrpc-extras
+
+* Lats but not least, a Javascript library, implementing both XML-RPC and JSON-RPC clients using a very similar API, is
+  available at https://github.com/gggeek/jsxmlrpc
 
 License
 -------

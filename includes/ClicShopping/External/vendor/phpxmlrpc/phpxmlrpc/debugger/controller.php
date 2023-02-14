@@ -24,25 +24,28 @@ if ($action == '') {
 
 $haseditor = false;
 $editorurlpath = null;
-// @const JSXMLRPC_BASEURL Url to the visual xmlrpc editing dialog's containing folder. We allow to easily configure this
+// @const JSXMLRPC_BASEURL Url to the visual xml-rpc editing dialog's containing folder. We allow to easily configure this
 if (defined('JSXMLRPC_BASEURL')) {
     $editorurlpath = JSXMLRPC_BASEURL;
     $haseditor = true;
 } else {
     /// @deprecated
-    /// @const JSXMLRPC_PATH Path to the visual xmlrpc editing dialog's containing folder. Can be absolute, or
+    /// @const JSXMLRPC_PATH Path to the visual xml-rpc editing dialog's containing folder. Can be absolute, or
     ///         relative to this debugger's folder.
     if (defined('JSXMLRPC_PATH')) {
         $editorpaths = array(JSXMLRPC_PATH[0] === '/' ? JSXMLRPC_PATH : (__DIR__ . '/' . JSXMLRPC_PATH));
     } else {
         $editorpaths = array(
-            __DIR__ . '/vendor/phpxmlrpc/jsxmlrpc/debugger/', // this package is top-level, jsxmlrpc installed via composer in debugger
-            __DIR__ . '/node_modules/@jsxmlrpc/jsxmlrpc/debugger/', // this package is top-level, jsxmlrpc installed via npm in debugger
-            __DIR__ . '/jsxmlrpc/debugger/', // this package is top-level, jsxmlrpc installed via taskfile in debugger
+            __DIR__ . '/jsxmlrpc/debugger/', // this package is top-level, jsxmlrpc installed via taskfile
+            __DIR__ . '/vendor/phpxmlrpc/jsxmlrpc/debugger/', // this package is top-level, jsxmlrpc installed via composer inside the debugger
+            __DIR__ . '/node_modules/@jsxmlrpc/jsxmlrpc/debugger/', // this package is top-level, jsxmlrpc installed via npm inside the debugger
             __DIR__ . '/../vendor/phpxmlrpc/jsxmlrpc/debugger/', // this package is top-level, jsxmlrpc installed via composer
             __DIR__ . '/../node_modules/@jsxmlrpc/jsxmlrpc/debugger/', // this package is top-level, jsxmlrpc installed via npm
             __DIR__ . '/../../jsxmlrpc/debugger/', // this package is a composer dependency, jsxmlrpc too
-            __DIR__ . '/../../../../web/node_modules/@jsxmlrpc/jsxmlrpc/debugger/', // this package is a composer dependency, jsxmlrpc installed via npm
+            __DIR__ . '/../../../../debugger/jsxmlrpc/debugger/', // this package is a composer dependency, jsxmlrpc installed in the top-level via taskfile (ie. jsonrpc)
+            __DIR__ . '/../../../../debugger/vendor/phpxmlrpc/jsxmlrpc/debugger/', // this package is a composer dependency, jsxmlrpc installed in the top-level debugger via composer
+            __DIR__ . '/../../../../debugger/node_modules/@jsxmlrpc/jsxmlrpc/debugger/', // this package is a composer dependency, jsxmlrpc installed in the top-level debugger via npm
+            __DIR__ . '/../../../../node_modules/@jsxmlrpc/jsxmlrpc/debugger/', // this package is a composer dependency, jsxmlrpc installed via npm in the top-level project
         );
     }
     foreach($editorpaths as $editorpath) {
@@ -54,7 +57,7 @@ if (defined('JSXMLRPC_BASEURL')) {
     if ($haseditor) {
         $controllerRootUrl = str_replace('/controller.php', '', parse_url($_SERVER['REQUEST_URI'],  PHP_URL_PATH));
         $editorurlpath = $controllerRootUrl . '/' . preg_replace('|^' . preg_quote(__DIR__, '|') .'|', '', $editorpath);
-        /// @todo for cases above 4, 5 and up, look at $controllerRootUrl and check if the web root is not pointing directly
+        /// @todo for cases above 4 and up, look at $controllerRootUrl and check if the web root is not pointing directly
         ///       at this folder, as in that case the link to the visualeditor will not
         ///       work, as it will be in the form http(s)://domain/../../jsxmlrpc/debugger/visualeditor.html
     }
@@ -63,13 +66,13 @@ if (defined('JSXMLRPC_BASEURL')) {
 <html lang="en">
 <head>
     <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
-    <title><?php if (defined('DEFAULT_WSTYPE') && DEFAULT_WSTYPE == 1) echo 'JSONRPC'; else echo 'XMLRPC'; ?> Debugger</title>
+    <title><?php if (defined('DEFAULT_WSTYPE') && DEFAULT_WSTYPE == 1) echo 'JSON-RPC'; else echo 'XML-RPC'; ?> Debugger</title>
     <meta name="robots" content="index,nofollow"/>
     <script type="text/javascript" language="Javascript">
         if (window.name != 'frmcontroller')
             top.location.replace('index.php?run=' + escape(self.location));
     </script>
-    <!-- xmlrpc/jsonrpc base library -->
+    <!-- xml-rpc/json-rpc base library -->
     <script type="module">
         import {base64_decode} from 'https://cdn.jsdelivr.net/npm/@jsxmlrpc/jsxmlrpc@0.6/lib/index.js';
         window.base64_decode = base64_decode;
@@ -79,42 +82,42 @@ if (defined('JSXMLRPC_BASEURL')) {
         html {
             overflow: -moz-scrollbars-vertical;
         }
-
         body {
             padding: 0.5em;
             background-color: #EEEEEE;
             font-family: Verdana, Arial, Helvetica, sans-serif;
             font-size: 8pt;
         }
-
         h1 {
             font-size: 12pt;
             margin: 0.5em;
+            display: inline-block;
         }
-
         h2 {
             font-size: 10pt;
             display: inline;
             vertical-align: top;
         }
-
+        h3 {
+            display: inline;
+        }
         table {
             border: 1px solid gray;
             margin-bottom: 0.5em;
             padding: 0.25em;
             width: 100%;
         }
-
         #methodpayload {
             display: inline;
         }
-
+        #idcell {
+            visibility: hidden;
+        }
         td {
             vertical-align: top;
             font-family: Verdana, Arial, Helvetica, sans-serif;
             font-size: 8pt;
         }
-
         .labelcell {
             text-align: right;
         }
@@ -230,7 +233,7 @@ if (defined('JSXMLRPC_BASEURL')) {
         }
 
         function activateeditor() {
-            var url = '<?php echo $editorurlpath; ?>visualeditor.html?params=<?php echo str_replace(array("\\", "'"), array( "\\\\","\\'"), $alt_payload); ?>';
+            var url = '<?php echo $editorurlpath; ?>visualeditor.html?params=<?php echo str_replace(array("\\", "'"), array( "\\\\", "\\'"), $alt_payload); ?>';
             if (document.frmaction.wstype.value == "1")
                 url += '&type=jsonrpc';
             var wnd = window.open(url, '_blank', 'width=750, height=400, location=0, resizable=1, menubar=0, scrollbars=1');
@@ -263,15 +266,19 @@ if (defined('JSXMLRPC_BASEURL')) {
     </script>
 </head>
 <body
-    onload="switchtransport(<?php echo $wstype; ?>); switchaction(); switchssl(); switchauth(); swicthcainfo();<?php if ($run) {
-        echo ' document.forms[2].submit();';
+    onload="<?php if ($hasjsonrpcclient) echo "switchtransport($wstype); " ?>switchaction(); switchssl(); switchauth(); swicthcainfo();<?php if ($run) {
+        echo ' document.frmaction.submit();';
     } ?>">
-<h1>XMLRPC
-    <form name="frmxmlrpc" style="display: inline;" action="."><input name="yes" type="radio" onclick="switchtransport(0);" <?php if (!class_exists('\PhpXmlRpc\Client')) { echo 'disabled="disabled"';} ?>/></form>
-    /
-    <form name="frmjsonrpc" style="display: inline;" action="."><input name="yes" type="radio" onclick="switchtransport(1);" <?php if (!class_exists('\PhpXmlRpc\JsonRpc\Client')) { echo 'disabled="disabled"';} ?>/></form>
-    JSONRPC Debugger (based on the <a href="https://gggeek.github.io/phpxmlrpc/">PHPXMLRPC</a> library)
-</h1>
+<h1>XML-RPC
+<?php if ($hasjsonrpcclient) {
+    echo '<form name="frmxmlrpc" style="display: inline;" action="."><input name="yes" type="radio" onclick="switchtransport(0);"';
+    // q: does this if make sense at all?
+    if (!class_exists('\PhpXmlRpc\Client')) echo ' disabled="disabled"';
+    echo ' /></form> / <form name="frmjsonrpc" style="display: inline;" action="."><input name="yes" type="radio" onclick="switchtransport(1);"/></form>
+    JSON-RPC';
+} ?>
+Debugger</h1><h3>(based on <a href="https://gggeek.github.io/phpxmlrpc/">PHPXMLRPC</a>, ver. <?php echo htmlspecialchars(\PhpXmlRpc\PhpXmlRpc::$xmlrpcVersion)?>
+<?php if (class_exists('\PhpXmlRpc\JsonRpc\PhpJsonRpc')) echo ' and <a href="https://gggeek.github.io/phpxmlrpc-jsonrpc/">PHPJOSNRPC</a>, ver. ' . htmlspecialchars(\PhpXmlRpc\JsonRpc\PhpJsonRpc::$jsonrpcVersion); ?>)</h3>
 <form name="frmaction" method="get" action="action.php" target="frmaction" onSubmit="switchFormMethod();">
 
     <table id="serverblock">

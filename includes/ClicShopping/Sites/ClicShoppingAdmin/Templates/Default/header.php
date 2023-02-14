@@ -61,7 +61,6 @@
         </div>
       </noscript>
     </div>
-    
     <div class="wrapper" id="wrapper">
 <?php
 //**************************************
