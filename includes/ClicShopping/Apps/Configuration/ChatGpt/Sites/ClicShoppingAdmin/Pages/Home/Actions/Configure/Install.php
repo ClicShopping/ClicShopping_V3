@@ -93,10 +93,10 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_chatgpt (
-  gpt_id int NOT NULL,
-  message int(11) NOT NULL,
-  timestamp int(11) NOT NULL,
-  message_type int(11) NOT NULL
+  gpt_id int(11) NOT NULL,
+  question text NOT NULL,
+  response text NOT NULL,
+  date_added date DEFAULT NULL
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 ALTER TABLE :table_chatgpt  ADD PRIMARY KEY (gpt_id);

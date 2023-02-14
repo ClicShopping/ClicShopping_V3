@@ -1,0 +1,8 @@
+CREATE TABLE `clic_chatgpt` (
+  `gpt_id` int(11) NOT NULL,
+  `question` text NOT NULL,
+  `response` text NOT NULL,
+  `date_added` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+ALTER TABLE `clic_chatgpt` ADD PRIMARY KEY (`gpt_id`);

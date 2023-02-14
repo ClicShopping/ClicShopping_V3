@@ -59,7 +59,7 @@
         if (isset($_SESSION['admin'])) {
           if (\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') && CLICSHOPPING_APP_CHATGPT_CH_STATUS =='True') {
           $output .= '
-                <span class="col-md-2 text-end">
+                <span class="col-md-2">
                   <!-- Modal -->
                   <a href="#chatModal" data-bs-toggle="modal" data-bs-target="#chatModal"><span class="text-white"><i class="bi bi-chat-left-dots-fill" alt="Open the chat"></i><span></a>
                   <div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
@@ -78,7 +78,7 @@
                           </div>
                           <div class="separator"></div>
                           <div class="card">
-                            <div class="chat-box-message">
+                            <div class="chat-box-message text-start">
                               <div id="chatGpt-output"></div>
                             </div>
                           </div>  

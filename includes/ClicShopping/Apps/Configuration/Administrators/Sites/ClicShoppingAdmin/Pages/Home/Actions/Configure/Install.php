@@ -30,7 +30,7 @@
       $m->install();
 
       static::installDbMenuAdministration();
-      static::installProductsAdministratorsDb();
+      static::installAdministratorsDb();
 
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Administrators->getDef('alert_module_install_success'), 'success', 'Administrators');
 
@@ -87,7 +87,7 @@
       }
     }
 
-    private static function installProductsAdministratorsDb()
+    private static function installAdministratorsDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
