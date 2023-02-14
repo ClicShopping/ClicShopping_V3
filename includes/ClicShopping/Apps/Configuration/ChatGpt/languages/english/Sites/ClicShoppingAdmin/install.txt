@@ -1,0 +1,3 @@
+title_menu = ChatGpt
+text_error_composer = Composer is not installed, please make this command on your server in your terminal : apt-get install composer
+text_error_exec = exec function is not enabled. You can not update or install any composer library, please this setting in your php.ini or contact your hoster

@@ -57,9 +57,9 @@
         ';
   
         if (isset($_SESSION['admin'])) {
-
+          if (\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') && CLICSHOPPING_APP_CHATGPT_CH_STATUS =='True') {
           $output .= '
-          <span class="col-md-2 text-end">
+                <span class="col-md-2 text-end">
                   <!-- Modal -->
                   <a href="#chatModal" data-bs-toggle="modal" data-bs-target="#chatModal"><span class="text-white"><i class="bi bi-chat-left-dots-fill" alt="Open the chat"></i><span></a>
                   <div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
@@ -87,8 +87,9 @@
                     </div>
                   </div>
                 </span>
-          ';
-
+            ';
+          }
+	  
           if ($_SESSION['admin']['access'] == 1 && \count(glob(ErrorHandler::getDirectory() . 'phpmail_error-*.txt', GLOB_NOSORT)) > 0) {
             $output .= '<span>' . HTML::link(CLICSHOPPING::link(null, 'A&Tools\EditLogError&LogErrorPhpMailer'), '<i class="bi bi-exclamation-circle-fill text-warning" tiltle="Mail"></i>') . '</span> ';
           }
