@@ -67,7 +67,6 @@
         $languages = $CLICSHOPPING_Language->getLanguages();
 
         for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-
           $language_id = $languages[$i]['id'];
 
           $sql_data_array = ['label' => $CLICSHOPPING_Administrators->getDef('title_menu')];

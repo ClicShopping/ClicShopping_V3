@@ -51,7 +51,7 @@
           'link' => 'index.php?A&Configuration\ChatGpt&ChatGpt&Configure',
           'image' => 'chatgpt.gif',
           'b2b_menu' => 0,
-          'access' => 0,
+          'access' => 1,
           'app_code' => 'app_configuration_chatgpt'
         ];
 
