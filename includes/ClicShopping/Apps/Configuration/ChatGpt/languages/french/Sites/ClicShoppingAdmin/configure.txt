@@ -1,1 +1,1 @@
-module_ct_short_title = Chat Gpt
+module_ch_short_title = Chat Gpt

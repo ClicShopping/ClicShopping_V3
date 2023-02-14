@@ -20,9 +20,9 @@
 
     protected function init()
     {
-      $this->title = $this->app->getDef('module_ct_title');
-      $this->short_title = $this->app->getDef('module_ct_short_title');
-      $this->introduction = $this->app->getDef('module_ct_introduction');
+      $this->title = $this->app->getDef('module_ch_title');
+      $this->short_title = $this->app->getDef('module_ch_short_title');
+      $this->introduction = $this->app->getDef('module_ch_introduction');
       $this->is_installed = \defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') && (trim(CLICSHOPPING_APP_CHATGPT_CH_STATUS) != '');
     }
 
