@@ -73,13 +73,13 @@
                           <div class="form-group">
                             <textarea class="form-control" id="messageGpt" rows="3" placeholder="Write a message (be patient on the response)"></textarea>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group text-end">
                             <button type="button" class="btn btn-primary" id="sendGpt">Send</button>
                           </div>
                           <div class="separator"></div>
                           <div class="card">
                             <div class="chat-box-message text-start">
-                              <div id="chatGpt-output"></div>
+                              <div id="chatGpt-output"></div>                                                    
                             </div>
                           </div>  
                         </div>
