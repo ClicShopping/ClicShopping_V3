@@ -10,7 +10,6 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
 
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
@@ -25,7 +24,6 @@
     echo $CLICSHOPPING_MessageStack->get('Manufacturers');
   }
 ?>
-
 <div class="contentBody">
   <div class="row">
     <div class="col-md-12">
@@ -36,12 +34,11 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Manufacturers->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
-<?php
-  echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_manufacturers'), null, $CLICSHOPPING_Manufacturers->link('Manufacturers'), 'success');
-?>
+            <?php echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_manufacturers'), null, $CLICSHOPPING_Manufacturers->link('Manufacturers'), 'success'); ?>
+          </span>
         </div>
       </div>
-    </div>
+    </div>  
   </div>
   <div class="separator"></div>
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="appManufacturersToolbar">
@@ -137,11 +134,11 @@
       <div class="separator"></div>
       <div class="col-md-12">
         <div><?php echo $CLICSHOPPING_Manufacturers->getConfigModuleInfo($current_module, 'introduction'); ?></div>
-        <div class="separator">
-          <div><?php echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_install_title', ['title' => $CLICSHOPPING_Manufacturers->getConfigModuleInfo($current_module, 'title')]), null, $CLICSHOPPING_Manufacturers->link('Configure&Install&module=' . $current_module), 'warning'); ?></div>
-        </div>
+        <div class="separator"></div>
+        <div><?php echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_install_title', ['title' => $CLICSHOPPING_Manufacturers->getConfigModuleInfo($current_module, 'title')]), null, $CLICSHOPPING_Manufacturers->link('Configure&Install&module=' . $current_module), 'warning'); ?></div>
       </div>
     </div>
+  </div>
     <?php
       }
     ?>

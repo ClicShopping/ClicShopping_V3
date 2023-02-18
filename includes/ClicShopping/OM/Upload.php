@@ -75,7 +75,8 @@
         fclose($input);
 
         if (isset($_SERVER['CONTENT_LENGTH']) && ($size == $_SERVER['CONTENT_LENGTH'])) {
-          $this->_upload = ['type' => 'PUT',
+          $this->_upload = [
+            'type' => 'PUT',
             'name' => $_GET[$this->_file],
             'size' => $size,
             'temp_filename' => $temp_filename
@@ -85,7 +86,8 @@
         }
       } elseif (isset($_FILES[$this->_file])) {
         if (isset($_FILES[$this->_file]['tmp_name']) && !empty($_FILES[$this->_file]['tmp_name']) && is_uploaded_file($_FILES[$this->_file]['tmp_name']) && ($_FILES[$this->_file]['size'] > 0)) {
-          $this->_upload = ['type' => 'POST',
+          $this->_upload = [
+            'type' => 'POST',
             'name' => $_FILES[$this->_file]['name'],
             'size' => $_FILES[$this->_file]['size'],
             'tmp_name' => $_FILES[$this->_file]['tmp_name']

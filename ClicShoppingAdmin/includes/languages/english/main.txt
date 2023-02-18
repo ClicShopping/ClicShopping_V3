@@ -24,6 +24,12 @@ header_title_online_catalog = Online Catalog
 header_title_administration = Administration
 header_title_logoff = Log Off
 
+text_chat_send = Ask
+text_chat_save = Save request
+text_chat_message = Write a message (be patient on the response)
+text_chat_close = Close
+text_chat_open = Open the chat
+
 male = Male
 female = Female
 

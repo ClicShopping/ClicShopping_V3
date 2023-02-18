@@ -8,7 +8,7 @@ currently being supported with security updates.
 | PHP Version | ClicShopping Version |
 | ------- | ------------------ |
 | +7.4.3   | 3.2145 |
-| +8.1| > 3.300 beta |
+| +8.1| > 3.300 |
 
 ## Reporting a Vulnerability
 
@@ -20,5 +20,3 @@ https://github.com/ClicShopping/ClicShopping_V3/issues
 - If you know a solution, propose your idea to solve
 
 We will check your post, test and remove.
-
-

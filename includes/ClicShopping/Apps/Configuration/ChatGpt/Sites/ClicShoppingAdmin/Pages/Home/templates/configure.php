@@ -22,8 +22,8 @@
 
   $CLICSHOPPING_ChatGpt_Config = Registry::get('ChatGptAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('main')) {
-    echo $CLICSHOPPING_MessageStack->get('main');
+  if ($CLICSHOPPING_MessageStack->exists('ChatGpt')) {
+    echo $CLICSHOPPING_MessageStack->get('ChatGpt');
   }
 ?>
 <div class="contentBody">
@@ -38,6 +38,7 @@
           <span class="col-md-3 text-end">
             <?php echo HTML::button($CLICSHOPPING_ChatGpt->getDef('button_configure'), null, $CLICSHOPPING_ChatGpt->link('ChatGpt'), 'primary'); ?>
           </span>
+        </div>
       </div>
     </div>
   </div>
@@ -46,7 +47,6 @@
     <li class="nav-item">
       <?php
         foreach ($CLICSHOPPING_ChatGpt->getConfigModules() as $m) {
-
           if ($CLICSHOPPING_ChatGpt->getConfigModuleInfo($m, 'is_installed') === true) {
             echo '<li class="nav-link active" data-module="' . $m . '"><a href="' . $CLICSHOPPING_ChatGpt->link('Configure&module=' . $m) . '">' . $CLICSHOPPING_ChatGpt->getConfigModuleInfo($m, 'short_title') . '</a></li>';
           }
@@ -76,7 +76,7 @@
       echo '<div class="alert alert-warning" role="alert">' . $CLICSHOPPING_ChatGpt->getDef('text_error_exec') . '</div>';
     }
 
-    if ($CLICSHOPPING_ChatGpt_Config->is_installed === true) {
+  if ($CLICSHOPPING_ChatGpt_Config->is_installed === true) {
       ?>
       <form name="ConfigurationChatGptConfigure"
             action="<?php echo $CLICSHOPPING_ChatGpt->link('Configure&Process&module=' . $current_module); ?>"
@@ -87,7 +87,6 @@
         </div>
         <div class="adminformTitle">
           <div class="card-block">
-
             <p class="card-text">
               <?php
                 foreach ($CLICSHOPPING_ChatGpt_Config->getInputParameters() as $cfg) {
@@ -98,12 +97,11 @@
             </p>
           </div>
         </div>
-
         <div class="separator"></div>
+
         <div class="col-md-12">
           <?php
             echo HTML::button($CLICSHOPPING_ChatGpt->getDef('button_save'), null, null, 'success');
-
             if ($CLICSHOPPING_ChatGpt->getConfigModuleInfo($current_module, 'is_uninstallable') === true) {
               echo '<span class="float-end">' . HTML::button($CLICSHOPPING_ChatGpt->getDef('button_dialog_uninstall'), null, '#', 'warning', ['params' => 'data-bs-toggle="modal" data-bs-target="#ppUninstallModal"']) . '</span>';
             }
@@ -137,7 +135,8 @@
     } else {
       ?>
       <div class="col-md-12 mainTitle">
-        <strong><?php echo $CLICSHOPPING_ChatGpt->getConfigModuleInfo($current_module, 'title'); ?></strong></div>
+        <strong><?php echo $CLICSHOPPING_ChatGpt->getConfigModuleInfo($current_module, 'title'); ?></strong>
+      </div>
       <div class="adminformTitle">
         <div class="row">
           <div class="separator"></div>

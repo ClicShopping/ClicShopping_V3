@@ -28,7 +28,7 @@
     {
       $array = [
         ['id' => 'text-davinci-003',
-         'text' =>'Davinci (texte sophistiquées)'
+         'text' =>'Davinci (texte sophistiqué)'
         ],
         ['id' => 'davinci-codex',
          'text' =>'Code (expérimental)'
