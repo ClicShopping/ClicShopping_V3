@@ -36,10 +36,10 @@
 
       $directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/template/' . SITE_THEMA . '/css/' . $CLICSHOPPING_Language->get('directory') . '/';
 
-      if (is_dir($directory)) {
+      if (!is_dir($directory)) {
         $directory_selected = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/template/' . SITE_THEMA . '/css/english/' . $directory_selected;
       } else {
-        $directory_selected = $directory_selected . '/';
+        $directory_selected = $directory . '/' . $directory_selected . '/';
       }
 
       $found = []; //initialize an array for matching files

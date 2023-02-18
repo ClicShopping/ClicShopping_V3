@@ -38,7 +38,6 @@
     $file = CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/css/' . $CLICSHOPPING_Language->get('directory') . '/' . $directory_selected . '/' .  $filename_selected;
   }
 
-
   if (is_file($file)) {
     $code = file_get_contents($file);
 
