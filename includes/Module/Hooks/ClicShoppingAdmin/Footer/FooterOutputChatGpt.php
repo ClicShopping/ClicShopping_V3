@@ -12,7 +12,7 @@
 
   use ClicShopping\OM\CLICSHOPPING;
 
-  class FooterOutputGpt
+  class FooterOutputChatGpt
   {
     /**
      * @return bool|string
@@ -27,7 +27,9 @@
       $output .= '$(document).ready(function() {';
       $output .= '$("#sendGpt").click(function() {';
       $output .= 'let message = $("#messageGpt").val();';
-      $output .= '$.post("' . $url . '", {message: message}, function(data) {';
+      $output .= 'let engine = $("#engine").val();';
+      $output .= 'let saveGpt = $("#saveGpt").val();';
+      $output .= '$.post("' . $url . '", {message: message, engine: engine, saveGpt: saveGpt}, function(data) {';
       $output .= '$("#chatGpt-output").html(data);';
       $output .= '});';
       $output .= '});';

@@ -26,7 +26,6 @@
     echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
-
 <div class="contentBody">
   <div class="row">
     <div class="col-md-12">
@@ -35,7 +34,10 @@
           <span
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/chatgpt.gif', $CLICSHOPPING_ChatGpt->getDef('heading_title'), '40', '40'); ?></span>
           <span
-            class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ChatGpt->getDef('heading_title'); ?></span>
+            class="col-md-8 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ChatGpt->getDef('heading_title'); ?></span>
+          <span class="col-md-3 text-end">
+            <?php echo HTML::button($CLICSHOPPING_ChatGpt->getDef('button_configure'), null, $CLICSHOPPING_ChatGpt->link('ChatGpt'), 'primary'); ?>
+          </span>
       </div>
     </div>
   </div>

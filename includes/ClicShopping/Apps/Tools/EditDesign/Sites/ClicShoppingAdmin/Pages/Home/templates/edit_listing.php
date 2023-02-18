@@ -38,20 +38,6 @@
     $code = null;
   }
   ?>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css"/>
-
-  <style type="text/css">
-      .CodeMirror {
-          background: #f8f8f8;
-          height: auto;
-      }
-
-      .CodeMirror-scroll {
-          overflow-y: hidden;
-          overflow-x: auto;
-      }
-  </style>
-
   <div class="contentBody">
     <div class="row">
       <div class="col-md-12">
@@ -125,19 +111,3 @@
       <div><?php echo $CLICSHOPPING_EditDesign->getDef('text_help_edit_html'); ?></div>
     </div>
   </div>
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/selection/active-line.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/css/css.min.js"></script>
-  <script>
-    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-      styleActiveLine: true,
-      lineNumbers: true,
-      lineWrapping: true,
-      viewportMargin: Infinity,
-      smartInden: true,
-      spellcheck: true,
-      autofocus: true,
-      extraKeys: {"Ctrl-Space": "autocomplete"}
-    });
-  </script>

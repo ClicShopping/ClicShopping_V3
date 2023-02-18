@@ -25,6 +25,7 @@ button_new = New
 button_insert = Insert
 button_reset = Reset
 button_update = Update Status
+button_edit = Edit
 
 dialog_uninstall_title = Uninstall
 dialog_uninstall_body = Do you want to install this App ?
@@ -37,3 +38,9 @@ alert_cfg_saved_success = Configuration parameters have been successfully saved.
 
 text_result_page = Page {{listing_from}} of {{listing_total}}
 text_display_number_of_link = Display <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (on <strong>{{listing_total}}</strong>)
+
+table_heading_chatgpt_id = Id
+table_heading_chatgpt_question = Question
+table_heading_chatgpt_response = Response
+table_heading_chatgpt_date_added = Date Added
+table_heading_action = Actions

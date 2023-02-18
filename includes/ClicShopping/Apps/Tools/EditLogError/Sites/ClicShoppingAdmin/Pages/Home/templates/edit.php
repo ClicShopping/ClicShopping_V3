@@ -65,39 +65,6 @@
   </div>
   <div class="separator"></div>
   <div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css"/>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/css/css.min.js"></script>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/selection/active-line.min.js"></script>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.js"></script>
-
-    <style>.CodeMirror {
-        background: #f8f8f8;
-      }</style>
-    <style type="text/css">
-      .CodeMirror {
-        border-top: 1px solid #eee;
-        border-bottom: 1px solid #eee;
-        height: auto;
-      }
-
-      .CodeMirror-scroll {
-        overflow-y: hidden;
-        overflow-x: auto;
-      }
-    </style>
     <?php echo HTML::textAreaField('code', file_get_contents($log['path']), '', '', 'id="code"'); ?>
   </div>
 </div>
-
-
-<script>
-    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        styleActiveLine: true,
-        lineNumbers: true,
-        lineWrapping: true,
-        viewportMargin: Infinity
-    });
-</script>

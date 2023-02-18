@@ -108,7 +108,6 @@
       $listingTotalRow = $Qmanufacturers->getPageSetTotalRows();
 
       if ($listingTotalRow > 0) {
-
         while ($Qmanufacturers->fetch()) {
           if ((!isset($_GET['mID']) || (isset($_GET['mID']) && ((int)$_GET['mID'] == $Qmanufacturers->valueInt('manufacturers_id')))) && !isset($mInfo)) {
 

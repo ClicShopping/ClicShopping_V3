@@ -32,11 +32,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/page_manager.gif', $CLICSHOPPING_PageManager->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_PageManager->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-end">
-<?php
-  echo HTML::button($CLICSHOPPING_PageManager->getDef('button_new'), null, $CLICSHOPPING_PageManager->link('SelectPage'), 'success');
-?>
-        </div>
+          <span class="col-md-6 text-end"><?php echo HTML::button($CLICSHOPPING_PageManager->getDef('button_new'), null, $CLICSHOPPING_PageManager->link('SelectPage'), 'success'); ?></div>
       </div>
     </div>
   </div>
