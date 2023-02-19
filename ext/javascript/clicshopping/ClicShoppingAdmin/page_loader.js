@@ -9,8 +9,8 @@
 
 window.addEventListener("load", function() {
     // Page Preloader
-    $('#status').fadeOut();
     $('#preloader').delay(100).fadeOut(function(){
         $('body').delay(100);
     });
 });
+

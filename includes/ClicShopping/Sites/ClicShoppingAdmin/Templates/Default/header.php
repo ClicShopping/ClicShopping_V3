@@ -49,10 +49,10 @@
 
 <body onload="SetFocus();">
 <!-- page loader -->
-<div id="preloader">
-    <div id="preloader_status"><i class="fa fa-spinner fa-spin"></i></div>
-</div>
-<!-- / page loader -->
+  <div id="preloader">
+    <div id="preloader_status"><i class="spinner-border" role="status"></i></div>
+  </div>
+
   <div class="container-fluid">
     <div class="col-md-12">
       <noscript>
