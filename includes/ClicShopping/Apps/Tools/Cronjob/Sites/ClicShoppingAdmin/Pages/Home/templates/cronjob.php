@@ -43,15 +43,15 @@
     <div class="card-body">
       <div class="card-text"><?php echo $CLICSHOPPING_Cronjob->getDef('text_info_cronjob'); ?></div>
       <div class="separator"></div>
-       <div class="row">
-         <div class="input-group">
-           <div class="input-group-text">Cron URL</div>
-           <input id="html-code" class="form-control" value="wget <?php echo HTTP::getShopUrlDomain() . 'index.php?cronjob&runall'; ?> --read-timeout=5400">
-           <button class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="click" title="Copied!" onclick="copyHtmlCode()">
-             <i class="bi bi-clipboard" title="Copy HTML Code"></i>
-           </button>
-         </div>
-       </div>
+      <div class="row">
+        <div class="input-group">
+          <span class="input-group-text">Cron URL</span>
+          <input id="cron-code" class="form-control" value="wget <?php echo HTTP::getShopUrlDomain() . 'index.php?cronjob&runall'; ?> --read-timeout=5400">
+          <button class="btn btn-outline-secondary" type="button" data-clipboard-target="#cron-code">
+            <i class="bi bi-clipboard"></i>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="separator"></div>
