@@ -46,8 +46,10 @@
        <div class="row">
          <div class="input-group">
            <div class="input-group-text">Cron URL</div>
-           <input type="text" value="wget <?php echo HTTP::getShopUrlDomain() . 'index.php?cronjob&runall'; ?> --read-timeout=5400" id="input-cron" class="form-control">
-           <button type="button" id="button-copy" data-bs-toggle="tooltip" title="" class="btn btn-light" data-bs-original-title="Copy" aria-label="Copy"><i class="bi bi-clipboard2"></i></button>
+           <input id="html-code" class="form-control" value="wget <?php echo HTTP::getShopUrlDomain() . 'index.php?cronjob&runall'; ?> --read-timeout=5400">
+           <button class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="click" title="Copied!" onclick="copyHtmlCode()">
+             <i class="bi bi-clipboard" title="Copy HTML Code"></i>
+           </button>
          </div>
        </div>
     </div>
