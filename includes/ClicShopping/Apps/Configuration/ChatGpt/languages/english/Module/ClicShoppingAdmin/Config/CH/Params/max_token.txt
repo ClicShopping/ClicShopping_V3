@@ -1,0 +1,4 @@
+cfg_chatgpt_max_token_title = Max Token
+cfg_chatgpt_max_token_description = Please, a number<br />
+davinci-codex : 4000 <br />
+text-davinci-003 : 4000<br />

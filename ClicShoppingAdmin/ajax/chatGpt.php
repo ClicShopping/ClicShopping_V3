@@ -51,7 +51,7 @@
   try {
     $result = $response['choices'][0]['text'];
 
-    if (isset($_POST['save'])) {
+    if (isset($_POST['saveGpt'])) {
       $array_sql = [
         'question' => $prompt,
         'response' => $result,

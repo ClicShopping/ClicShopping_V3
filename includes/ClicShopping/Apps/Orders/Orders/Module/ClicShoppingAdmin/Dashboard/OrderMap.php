@@ -59,7 +59,7 @@
       $output .= '</div>';
       
       $output .= '
-<script type="text/javascript"><!--
+<script>
 $(document).ready(function() {
   $.ajax({
     url:  \'' . $link . '\',
@@ -97,16 +97,14 @@ $(document).ready(function() {
         }
   });
 });
-//--></script>
+</script>
       ';
 
       return $output;
     }
 
-
     public function Install()
     {
-
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want to enable this module ?',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_STATUS',

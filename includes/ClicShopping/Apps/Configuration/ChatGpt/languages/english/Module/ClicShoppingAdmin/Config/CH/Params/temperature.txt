@@ -1,0 +1,2 @@
+cfg_chatgpt_temperature_title = Temperature
+cfg_chatgpt_temperature_description = Please, a number

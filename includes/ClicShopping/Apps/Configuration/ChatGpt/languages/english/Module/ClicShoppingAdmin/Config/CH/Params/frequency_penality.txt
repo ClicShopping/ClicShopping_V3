@@ -1,0 +1,3 @@
+cfg_chatgpt_frequency_penality_title = Frequency penality
+cfg_chatgpt_frequency_penality_description = Please, a number<br />
+Control the model creativity

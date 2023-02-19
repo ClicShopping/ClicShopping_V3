@@ -30,13 +30,6 @@
         ['id' => 'text-davinci-003',
          'text' =>'Davinci (texte sophistiqué)'
         ],
-        ['id' => 'davinci-codex',
-         'text' =>'Code (expérimental)'
-        ],
-
-        ['id' => 'text-curie-001',
-         'text' => 'Curie (texte moins complexes)'
-        ],
 
       ];
 
@@ -79,7 +72,7 @@
                                 <span class="text-slider col-6">' . CLICSHOPPING::getDef('text_chat_save') . '</span>
                                 <li class="list-group-item-slider">
                                   <label class="switch">
-                                    ' . HTML::checkboxField('save', '1', null, 'class="success" id="saveGpt"') . '
+                                    ' . HTML::checkboxField('saveGpt', '1', null, 'class="success" id="saveGpt"') . '
                                     <span class="slider"></span>
                                   </label>
                                 </li>
@@ -92,8 +85,24 @@
                         </div>
                         <div class="separator"></div>
                         <div class="card">
-                          <div class="chat-box-message text-start">
-                            <div id="chatGpt-output" class="text-bg-light"></div>                                                    
+                          <div class="input-group">
+                            <div class="chat-box-message text-start">
+                              <div id="chatGpt-output" class="text-bg-light"></div>
+                              <div class="col-md-12">
+                                <div class="row">
+                                  <span class="col-md-6">
+                                    <button id="copyResultButton" class="btn btn-primary btn-sm d-none" data-clipboard-target="#chatGpt-output">
+                                      <i class="bi bi-clipboard" title="Copy Result"></i> Copy Result
+                                    </button>
+                                  </span>
+                                  <span class="col-md-6 text-end">
+                                    <button id="copyHTMLButton" class="btn btn-primary btn-sm d-none" data-clipboard-target="#chatGpt-output" data-clipboard-action="copy">
+                                      <i class="bi bi-code" title="Copy HTML"></i> Copy HTML
+                                    </button>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>  
                       </div>
