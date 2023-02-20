@@ -30,7 +30,15 @@
         ['id' => 'text-davinci-003',
          'text' =>'Davinci (texte sophistiqué)'
         ],
+/*
+        ['id' => 'davinci-codex',
+         'text' =>'Code (expérimental)'
+        ],
 
+        ['id' => 'text-curie-001',
+         'text' => 'Curie (texte moins complexes)'
+        ],
+*/
       ];
 
       $menu = HTML::selectField('engine', $array, null, 'id="engine"');
@@ -45,7 +53,7 @@
     {
       $menu = '';
 
-      if (\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') && CLICSHOPPING_APP_CHATGPT_CH_STATUS =='True') {
+      if (\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') && CLICSHOPPING_APP_CHATGPT_CH_STATUS =='True' && !empty(CLICSHOPPING_APP_CHATGPT_CH_API_KEY)) {
         $menu .= '
               <span class="col-md-2">
                 <!-- Modal -->
