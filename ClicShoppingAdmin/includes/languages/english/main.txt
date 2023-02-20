@@ -29,6 +29,9 @@ text_chat_save = Save request
 text_chat_message = Write a message (be patient on the response)
 text_chat_close = Close
 text_chat_open = Open the chat
+text_chat_title = What do you want to resolve ?
+text_copy_html = Copy html
+text_copy = Copy text
 
 male = Male
 female = Female

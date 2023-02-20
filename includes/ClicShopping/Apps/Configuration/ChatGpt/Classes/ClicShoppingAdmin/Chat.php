@@ -54,8 +54,8 @@
                   <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="chatModalLabel">What do you want to resolve ?</h5>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">' . CLICSHOPPING::getDef('text_chat_close') . '</button>
+                        <h5 class="modal-title" id="chatModalLabel">' . CLICSHOPPING::getDef('text_chat_title') . '</h5>
+                        ' . HTML::button(CLICSHOPPING::getDef('text_chat_close'), null, null, 'secondary', ['params' => 'data-bs-dismiss="modal"'] ) . '
                       </div>
                       <div class="modal-body">
                         <div class="separator"></div>
@@ -79,7 +79,7 @@
                               </ul>
                             </span>
                             <span class="col-md-6 text-end">                          
-                              <button type="button" class="btn btn-primary btn-sm" id="sendGpt">' . CLICSHOPPING::getDef('text_chat_send') . '</button>
+                               ' . HTML::button(CLICSHOPPING::getDef('text_chat_send'), null, null, 'primary', ['params' => 'id="sendGpt"'], 'sm') . '
                             </span>                         
                           </div>
                         </div>
@@ -88,16 +88,17 @@
                           <div class="input-group">
                             <div class="chat-box-message text-start">
                               <div id="chatGpt-output" class="text-bg-light"></div>
+                              <div class="separator"></div>
                               <div class="col-md-12">
                                 <div class="row">
                                   <span class="col-md-6">
                                     <button id="copyResultButton" class="btn btn-primary btn-sm d-none" data-clipboard-target="#chatGpt-output">
-                                      <i class="bi bi-clipboard" title="Copy Result"></i> Copy Result
+                                      <i class="bi bi-clipboard" title="' . CLICSHOPPING::getDef('text_copy') . '"></i> ' . CLICSHOPPING::getDef('text_copy') . ' Copy Result
                                     </button>
                                   </span>
                                   <span class="col-md-6 text-end">
                                     <button id="copyHTMLButton" class="btn btn-primary btn-sm d-none" data-clipboard-target="#chatGpt-output" data-clipboard-action="copy">
-                                      <i class="bi bi-code" title="Copy HTML"></i> Copy HTML
+                                      <i class="bi bi-code" title="' . CLICSHOPPING::getDef('text_copy_html') . '"></i> ' . CLICSHOPPING::getDef('text_copy_html') . ' Copy HTML
                                     </button>
                                   </span>
                                 </div>
