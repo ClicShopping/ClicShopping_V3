@@ -6,3 +6,17 @@ CREATE TABLE `clic_chatgpt` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 ALTER TABLE `clic_chatgpt` ADD PRIMARY KEY (`gpt_id`);
+
+
+INSERT INTO clic_configuration VALUES(null, 'Parameter [ChatGpt App]', 'MODULE_MODULES_CHATGPT_INSTALLED', ';Configuration\\ChatGpt\\CH', 'Parameter [ChatGpt App]', 6, 0, NULL, '2023-02-11 14:35:21', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Sort Order', 'CLICSHOPPING_APP_CHATGPT_CH_SORT_ORDER', '60', 'The sort order location of the module shown in the available methods listing (lowest is displayed first).', 6, 0, NULL, '2023-02-11 14:41:28', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Status', 'CLICSHOPPING_APP_CHATGPT_CH_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2023-02-11 14:41:28', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Api Key', 'CLICSHOPPING_APP_CHATGPT_CH_API_KEY', '', 'Please, insert the Api Key (https://platform.openai.com/account/api-keys)', 6, 0, NULL, '2023-02-11 14:41:28', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Max response', 'CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE', '1', 'Please, a number<br>\nControl the response to create', 6, 0, NULL, '2023-02-18 14:58:15', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Temperature', 'CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE', '0.5', 'Please, a number', 6, 0, NULL, '2023-02-18 14:58:15', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Frequency penality', 'CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY', '0.5', 'Please, a number<br />\nControl the model creativity', 6, 0, NULL, '2023-02-18 14:58:15', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Max Token', 'CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN', '350', 'Please, a number<br />\ndavinci-codex : 4000 <br />\ntext-davinci-003 : 4000<br />', 6, 0, NULL, '2023-02-18 14:58:15', NULL, NULL);
+
+INSERT INTO clic_administrator_menu (`id`, `link`, `parent_id`, `sort_order`, `access`, `image`, `b2b_menu`, `app_code`, `status`) VALUES (858, 'index.php?A&Configuration\\ChatGpt&ChatGpt', 14, 1, 1, 'chatgpt.gif', 1, 'app_configuration_chatgpt', 1);
+INSERT INTO `clic_administrator_menu_description` VALUES(858, 'ChatGpt', 1);
+INSERT INTO `clic_administrator_menu_description` VALUES(858, 'ChatGpt', 2);

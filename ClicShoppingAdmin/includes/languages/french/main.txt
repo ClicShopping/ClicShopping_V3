@@ -24,7 +24,7 @@ header_title_online_catalog = Catalogue en ligne
 header_title_administration = Administration
 header_title_logoff = Quitter
 
-text_chat_send = Demader
+text_chat_send = Demander
 text_chat_save = Sauver la requête
 text_chat_message = Ecrire un message (Soyer patient pour la réponse)
 text_chat_close = Fermer

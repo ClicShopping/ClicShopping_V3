@@ -1,0 +1,11 @@
+gpt_id int not_null auto_increment,
+question text not_null,
+response text not_null,
+date_added date default null
+
+--
+primary gpt_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci
