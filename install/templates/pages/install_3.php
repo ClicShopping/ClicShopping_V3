@@ -30,7 +30,7 @@
   </div>
   <div class="container">
     <div class="card">
-      <div class="card-header"><i class="fa-solid fa-cogs"></i><?php echo TEXT_END_CONFIGURATION; ?></div>
+      <div class="card-header"><i class="bi bi-sliders"></i><?php echo TEXT_END_CONFIGURATION; ?></div>
       <div class="card-body">
         <div id="mBox"></div>
           <fieldset>

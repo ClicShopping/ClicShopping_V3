@@ -64,7 +64,7 @@
 /*
   if (!empty($pinterest_url)) {
 ?>
-              <li><a aria-label="Pinterest" href="<?php echo $pinterest_url;?>" target="_blank" rel="noopener"><i class="fab fa-pinterest"></i></a></li>
+              <li><a aria-label="Pinterest" href="<?php echo $pinterest_url;?>" target="_blank" rel="noopener"><i class="bi bi-pinterest"></i></a></li>
 <?php
   }
 */

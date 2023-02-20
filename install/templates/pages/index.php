@@ -114,7 +114,7 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
 
   <div class="container">
     <div class="card">
-      <div class="card-header"><i class="fab fa-opencart"></i>Please configure your PHP settings to match requirements listed below.</div>
+      <div class="card-header"><i class="bi bi-sliders"></i>Please configure your PHP settings to match requirements listed below.</div>
       <div class="card-body">
         <br>
         <h5><?php echo TEXT_PHP_SETTINGS; ?></h5>
@@ -303,7 +303,7 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
     ?>
 
         <div id="detectHttps" class="alert alert-info" role="alert">
-          <p><i class="bi bi-arrow-repeat fa-fw"></i> Please wait, detecting web server environment..</p>
+          <p><i class="bi bi-arrow-repeat"></i> Please wait, detecting web server environment..</p>
         </div>
 
         <div id="jsOn" style="display: none;">

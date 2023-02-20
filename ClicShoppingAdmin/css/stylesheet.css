@@ -215,10 +215,6 @@ FORM {
     color: #ff0000;
 }
 
-.fa-power-off {
-    color: #ff0000;
-}
-
 #adminAppMenu {
     float: left;
     width: 150px;
@@ -690,19 +686,6 @@ div.headerCard {
 
 .StatsValue {
     font-size: 0.75rem;
-}
-
-/*********************************
-// Awesome
-********************************/
-
-
-.fa-check {
-    color: #33AC00;
-}
-
-.fa-times {
-    color: #E80000;
 }
 
 /***********************************************/

@@ -40,7 +40,7 @@
   </div>
   <div class="container">
     <div class="card">
-      <div class="card-header"><i class="fa-solid fa-cogs"></i><?php echo TEXT_STEP_INTRO_3; ?></div>
+      <div class="card-header"><i class="bi bi-sliders"></i><?php echo TEXT_STEP_INTRO_3; ?></div>
       <div class="card-body">
           <fieldset>
             <div class="row">
