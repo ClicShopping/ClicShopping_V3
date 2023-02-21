@@ -49,7 +49,7 @@
     /**
      * @return string
      */
-    public static function ChatGptCkeditrParameters(): string
+    public static function ChatGptCkeditorParameters(): string
     {
       $script = '<script>
        var apiKeyGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_API_KEY . '";
@@ -124,11 +124,6 @@
                                   <span class="col-md-6">
                                     <button id="copyResultButton" class="btn btn-primary btn-sm d-none" data-clipboard-target="#chatGpt-output">
                                       <i class="bi bi-clipboard" title="' . CLICSHOPPING::getDef('text_copy') . '"></i> ' . CLICSHOPPING::getDef('text_copy') . ' Copy Result
-                                    </button>
-                                  </span>
-                                  <span class="col-md-6 text-end">
-                                    <button id="copyHTMLButton" class="btn btn-primary btn-sm d-none" data-clipboard-target="#chatGpt-output" data-clipboard-action="copy">
-                                      <i class="bi bi-code" title="' . CLICSHOPPING::getDef('text_copy_html') . '"></i> ' . CLICSHOPPING::getDef('text_copy_html') . ' Copy HTML
                                     </button>
                                   </span>
                                 </div>
