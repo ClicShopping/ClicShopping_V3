@@ -50,17 +50,17 @@
 <?php
   }
 ?>
-          </div>
-          <div>
-            <div class="ModulesProductsListingBoostrapColumn5TextPrice" ><?php echo CLICSHOPPING::getDef('text_price') . ' ' . $product_price; ?></div>
-          </div>
-          <?php echo $form; ?>
-          <div class="form-group form-group-center">
-            <span class="ModulesProductsListingBoostrapColumn5QuantityMinOrder"><?php echo $input_quantity; ?>&nbsp; </span>
-            <span class="ModulesProductsListingBoostrapColumn5ViewDetails"><?php echo $button_small_view_details; ?>&nbsp; </span>
-            <span class="ModulesProductsListingBoostrapColumn5SubmitButton"><label for="ModulesProductsListingBoostrapColumn5SubmitButton"><?php echo $submit_button; ?></label></span>
-          </div>
-          <?php echo $endform; ?>
+        </div>
+
+        <div class="ModulesProductsListingBoostrapColumn5TextPrice" ><?php echo CLICSHOPPING::getDef('text_price') . ' ' . $product_price; ?></div>
+        <?php echo $form; ?>
+        <div class="form-group form-group-center">
+          <span class="ModulesProductsListingBoostrapColumn5QuantityMinOrder"><?php echo $input_quantity; ?>&nbsp; </span>
+          <span class="ModulesProductsListingBoostrapColumn5ViewDetails"><?php echo $button_small_view_details; ?>&nbsp; </span>
+          <span class="ModulesProductsListingBoostrapColumn5SubmitButton"><label for="ModulesProductsListingBoostrapColumn5SubmitButton"><?php echo $submit_button; ?></label></span>
+        </div>
+        <?php echo $endform; ?>
+      </div>
     </div>
   </div>
 </div>

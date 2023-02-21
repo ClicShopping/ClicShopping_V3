@@ -357,7 +357,7 @@
                                                 cd.categories_name
                                         from :table_categories c,
                                              :table_categories_description cd
-                                        where parent_id = :parent_id
+                                        where c.parent_id = :parent_id
                                         and c.categories_id = cd.categories_id
                                         and cd.language_id = :language_id
                                         and c.virtual_categories = 0
