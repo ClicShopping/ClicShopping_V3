@@ -116,7 +116,7 @@
             <td class="text-end">
               <div class="btn-group" role="group" aria-label="buttonGroup">
               <?php
-                echo HTML::link($CLICSHOPPING_ChatGpt->link('Edit&page=' . $page . '&cID=' . $QchatGpt->valueInt('currencies_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_ChatGpt->getDef('icon_edit') . '"></i></h4>');
+                echo HTML::link($CLICSHOPPING_ChatGpt->link('Edit&page=' . $page . '&cID=' . $QchatGpt->valueInt('gpt_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_ChatGpt->getDef('icon_edit') . '"></i></h4>');
                 echo '&nbsp;';
               ?>
               </div>
