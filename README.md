@@ -2,6 +2,12 @@
   <img src="https://www.clicshopping.org/images/logonew.png">
 </p>
 
+# ClicShopping
+ClicShopping(tm) is an Ecommerce OpenSource and powerfull Solution e-commerce B2B / B2C / B2B-B2C using the artificial intelligence to help the shop owner and increrase their competitivity.
+The solution is based on a modern, responsive design that will allow you to have a great website on all mobile device, desktop but also perform at speed !
+Easy to install in just some clicks on a server or on your computer, you can use ClicShopping
+
+
 ## Table of Contents
 
 * [What is ClicShopping](https://github.com/ClicShopping#ClicShopping)
@@ -25,10 +31,6 @@
 * [Images](https://github.com/ClicShopping#Images)
 * [Wiki](https://github.com/ClicShopping/ClicShopping_V3/wiki)
 
-# ClicShopping
-ClicShopping(tm) is an Ecommerce OpenSource and powerfull Solution e-commerce B2B / B2C / B2B-B2C. 
-The solution is based on a modern, responsive design that will allow you to have a great website on all mobile device, desktop but also perform at speed !
-Easy to install in just some clicks on a server or on your computer, you can use ClicShopping 
 
 #Solution
  - The solution is built on modules and APP to have a very big flexibility.
@@ -118,6 +120,7 @@ More information in the Wiki
 - Free modular Apps to create import or to import from osCommerce 2.x, OpenCart, ZenCart, Crealoaded, Prestashop .... database migration available on the marketplace
 - double authentification
 - API REST
+- Artificial intelligence implemented via ChatGpt  
 - Antispam ...
 
 
