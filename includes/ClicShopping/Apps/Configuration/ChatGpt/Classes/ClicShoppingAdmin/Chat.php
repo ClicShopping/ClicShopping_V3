@@ -47,6 +47,28 @@
     }
 
     /**
+     * @return string
+     */
+    public static function ChatGptCkeditrParameters(): string
+    {
+      $script = '<script>
+       var apiKeyGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_API_KEY . '";
+       var modelGpt = "text-davinci-003";
+       var frequency_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY . '");
+       var presence_penalty_gpt = parseInt(" 0");
+       var max_tokens_gpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN . '");
+       var temperatureGpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE . '");
+       var nGpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE . '");
+       var titleGpt = "' . CLICSHOPPING::getDef('text_chat_title') . '"
+      </script>';
+
+      $script .= '<script src="' . CLICSHOPPING::link('Shop/ext/javascript/cKeditor/dialogs/chatgpt.js') .'"></script>';
+
+      return $script;
+    }
+
+
+    /**
      * @return String
      */
     public static function ChatGptModal() : String

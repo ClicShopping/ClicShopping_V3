@@ -43,18 +43,13 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'insert'},
         { name: 'styles' },
         { name: 'colors' },
-        { name: 'tools' },
+        { name: 'tools'},
         { name: 'others' }
     ];
 
 // The default plugins included in the basic setup define some buttons that
 // we don't want too have in a basic editor. We remove them here.
     config.removeButtons = 'Save,Subscript,Superscript,Iframe,PageBreak';
-
-/**
-    config.extraPlugins = 'balloonpanel';
-    config.extraPlugins = 'a11ychecker';
-*/
 
 // Considering that the basic setup doesn't provide pasting cleanup features,
 // it's recommended to force everything to be plain text.
@@ -68,4 +63,24 @@ CKEDITOR.editorConfig = function( config ) {
         [
             ['Source','-','Image']
         ];
+
+// Add ChatGPT plugin to toolbar
+    config.extraPlugins = 'chatgpt';
+
+    config.allowedContent = true;
 };
+
+CKEDITOR.plugins.add('chatgpt', {
+    init: function(editor) {
+        editor.addCommand('chatgptDialog', new CKEDITOR.dialogCommand('chatgptDialog'));
+
+        editor.ui.addButton('chatgpt', {
+            label: titleGpt,
+            command: 'chatgptDialog',
+            toolbar: 'insert,10',
+            icon:  'Iframe', //chatgpt
+        });
+
+        CKEDITOR.dialog.add('chatgptDialog', this.path + 'dialogs/chatgpt.js');
+    }
+});
