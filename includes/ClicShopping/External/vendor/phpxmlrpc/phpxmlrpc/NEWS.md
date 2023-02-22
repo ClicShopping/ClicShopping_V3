@@ -1,3 +1,16 @@
+## XML-RPC for PHP version 4.10.1 - 2023/02/22
+
+* fixed: class autoloading got broken in rel 4.10.0 for users of the legacy API (issue #111)
+
+* fixed: let the Server create Response objects whose class can be overridden by subclasses (this is required by the
+  json-rpc server now that the `xml_header` method has been moved to the `Request` object)
+
+* fixed: let the Client create Requests whose class can be overridden by subclasses, within the `_try_multicall` method,
+  which is called from `multicall`
+
+* fixed: declare the library not to be compatible with old versions of 'phpxmlrpc/extras' and 'phpxmlrpc/jsonrpc'
+
+
 ## XML-RPC for PHP version 4.10.0 - 2023/02/11
 
 * changed: the minimum php version required has been increased to 5.4
@@ -194,6 +207,11 @@
 
   For library extenders:
 
+  - if you subclassed the `Server` class, and dynamically inject/manipulate the dispatch map, be aware that the server
+    will now validate the methodname from the received request as soon as possible during the xml parsing phase, via
+    a new method `methodNameCallback`. You might want to reimplement it and f.e. make it a NOOP to avoid such validation
+  - new method `Response::xml_header` has replaced `Server::xml_header`. Take care if you had overridden the server
+    version - you might need to override `Server::service`
   - the `$options` argument passed to `XMLParser::parse` will now contain both options intended to be passed down to
     the php xml parser, and further options used to tweak the parsing results. If you have subclassed `XMLParser`
     and reimplemented the `parse` methods, or wholesale replaced it, you will have to adapt your code: both for that,
@@ -209,13 +227,12 @@
   - if you had been somehow interacting with private method `Client::_try_multicall`, be warned its returned data has
     changed: it now returns a Response for the cases in which it previously returned false, and an array of Response
     objects for the cases in which it previously returned a string
-  - if you replaced the Logger class, take care that you will have to implement methods `error`, `warning` and `debug`
+  - if you replaced the `Logger` class, take care that you will have to implement methods `error`, `warning` and `debug`
     (all is ok if you subclassed it)
   - calling method `Value::serializeData` is now deprecated
   - traits have been introduced for all classes dealing with Logger, XMLParser and CharsetEncoder; method `setCharsetEncoder`
     is now static
   - new methods in helper classes: `Charset::knownCharsets`, `Http::parseAcceptHeader`, `XMLParser::truncateValueForLog`
-  - new method `Response::xml_header` has replaced `Server::xml_header`
   - protected property `Server::$accepted_charset_encodings` is now deprecated
   - exception `\PhpXmlRpc\Exception\PhpXmlRpcException` is deprecated. Use `\PhpXmlRpc\Exception` instead
 
