@@ -53,7 +53,7 @@ define('TEXT_XML','XML');
 define('TEXT_XML_RPC', 'XML-RPC (webservice)' );
 define('TEXT_CURL','cURL');
 define('TEXT_OPENSSL','OpenSSL');
-define('TEXT_CHECK_RIGHT','Veuillew vérifier si les droits sont corrects (777)');
+define('TEXT_CHECK_RIGHT','Veuillez vérifier si les droits sont corrects (777)');
 
 
 define('TEXT_NOTES','Notes :');
