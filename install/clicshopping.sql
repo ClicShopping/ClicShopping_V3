@@ -1577,7 +1577,7 @@ INSERT INTO configuration VALUES(1573, 'Fréquence de la penalité', 'CLICSHOPPI
 INSERT INTO configuration VALUES(1574, 'Ordre de tri d\'affichage', 'CLICSHOPPING_APP_CHATGPT_CH_SORT_ORDER', '60', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
 INSERT INTO configuration VALUES(1575, 'Max Token', 'CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN', '350', 'Veuillez insérer un nombre<br />\ndavinci-codex : 4000 <br />\ntext-davinci-003 : 4000<br />', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
 INSERT INTO configuration VALUES(1576, 'Statut', 'CLICSHOPPING_APP_CHATGPT_CH_STATUS', 'False', 'Souhaitez vous activer ce module à votre boutique', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
-INSERT INTO configuration VALUES(1577, 'Clef Api', 'CLICSHOPPING_APP_CHATGPT_CH_API_KEY', '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', 'Veuillez insérer la clef API (https://platform.openai.com/account/api-keys)', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
+INSERT INTO configuration VALUES(1577, 'Clef Api', 'CLICSHOPPING_APP_CHATGPT_CH_API_KEY', '', 'Veuillez insérer la clef API (https://platform.openai.com/account/api-keys)', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
