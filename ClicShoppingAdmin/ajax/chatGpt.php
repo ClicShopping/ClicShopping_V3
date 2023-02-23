@@ -30,7 +30,12 @@
   $client = OpenAI::client(CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
 
   $prompt = HTML::sanitize($_POST['message']);
-  $engine = HTML::sanitize($_POST['engine']);
+
+  if(isset($_POST['engine'])) {
+    $engine = HTML::sanitize($_POST['engine']);
+  } else {
+    $engine = 'text-davinci-003';
+  }
 
   $top = ['\n'];
 
