@@ -197,11 +197,11 @@ INSERT INTO administrator_menu VALUES(786, 'index.php?A&Orders\\ReturnOrders&Ret
 INSERT INTO administrator_menu VALUES(787, 'index.php?A&Orders\\ReturnOrders&Configure', 14, 8, 1, '', 1, 'app_orders_return_orders', 1);
 INSERT INTO administrator_menu VALUES(788, 'index.php?A&Tools\\Cronjob&Cronjob', 163, 2, 0, 'return_orders.png', 0, 'app_tools_cronjob', 1);
 INSERT INTO administrator_menu VALUES(789, 'index.php?A&Configuration\\Settings&Settings&gID=46', 13, 11, 0, '', 1, NULL, 1);
-INSERT INTO administrator_menu VALUES(790, 'index.php?A&Configuration\\Api&Api', 14, 14, 0, 'api.png', 0, 'app_configuration_api', 1);
+INSERT INTO administrator_menu VALUES(790, 'index.php?A&Configuration\\Api&Api', 14, 14, 1, 'api.png', 0, 'app_configuration_api', 1);
 INSERT INTO administrator_menu VALUES(791, 'index.php?A&Configuration\\Antispam&Configure', 13, 15, 0,'antispam.png', 0, 'app_configuration_antispam', 1);
 INSERT INTO administrator_menu VALUES(792, 'index.php?A&Tools\\Upgrade&Upgrade', 644, 5, 1, null, 0, 'app_tools_upgrade', 1);
 INSERT INTO administrator_menu VALUES(793, 'index.php?A&Tools\\Upgrade&Marketplace', 644, 10, 1, null, 0, 'app_tools_upgrade', 1);
-INSERT INTO administrator_menu VALUES(794, 'index.php?A&Configuration\\ChatGpt&ChatGpt', 14, 1, 1, 'chatgpt.gif', 1, 'app_configuration_chatgpt', 1);
+INSERT INTO administrator_menu VALUES(794, 'index.php?A&Configuration\\ChatGpt&ChatGpt', 14, 15, 1, 'chatgpt.gif', 1, 'app_configuration_chatgpt', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -1569,6 +1569,15 @@ INSERT INTO configuration VALUES(1566, 'Statut', 'CLICSHOPPING_APP_API_AI_STATUS
 INSERT INTO configuration VALUES(1567, 'Parameter [Api App]', 'MODULE_MODULES_API_INSTALLED', 'Configuration\\Api\\AI', 'Parameter [Api App]', 6, 0, NULL, '2022-11-24 12:03:41', NULL, NULL);
 INSERT INTO configuration VALUES(1568, 'Parameter [Antispam App]', 'MODULE_MODULES_ANTISPAM_INSTALLED', '', 'Parameter [Antispam App]', 6, 0, NULL, '2022-12-18 10:57:34', NULL, NULL);
 INSERT INTO configuration VALUES(1569, 'Status', 'CLICSHOPPING_APP_ANTISPAM_STATUS', 'False', 'Set True to enable or not the module', 6, 0, NULL, '2022-12-18 10:57:37', NULL, NULL);
+
+INSERT INTO configuration VALUES(1570, 'Parameter [ChatGpt App]', 'MODULE_MODULES_CHATGPT_INSTALLED', 'Configuration\\ChatGpt\\CH', 'Parameter [ChatGpt App]', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
+INSERT INTO configuration VALUES(1571, 'Réponse maximale', 'CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE', '1', 'Veuillez insérer un nombre<br />\nContrôle le nombre de rèponse à créer', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
+INSERT INTO configuration VALUES(1572, 'Temperature', 'CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE', '0.5', 'Veuillez insérer un nombre<br />', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
+INSERT INTO configuration VALUES(1573, 'Fréquence de la penalité', 'CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY', '0.5', 'Veuillez insérer un nombre<br />\nContrôle la créativité du modéle', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
+INSERT INTO configuration VALUES(1574, 'Ordre de tri d\'affichage', 'CLICSHOPPING_APP_CHATGPT_CH_SORT_ORDER', '60', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
+INSERT INTO configuration VALUES(1575, 'Max Token', 'CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN', '350', 'Veuillez insérer un nombre<br />\ndavinci-codex : 4000 <br />\ntext-davinci-003 : 4000<br />', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
+INSERT INTO configuration VALUES(1576, 'Statut', 'CLICSHOPPING_APP_CHATGPT_CH_STATUS', 'False', 'Souhaitez vous activer ce module à votre boutique', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
+INSERT INTO configuration VALUES(1577, 'Clef Api', 'CLICSHOPPING_APP_CHATGPT_CH_API_KEY', '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', 'Veuillez insérer la clef API (https://platform.openai.com/account/api-keys)', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);

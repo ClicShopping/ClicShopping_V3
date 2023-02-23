@@ -3,7 +3,7 @@
 </p>
 
 # ClicShopping
-ClicShopping(tm) is an Ecommerce OpenSource and powerfull Solution e-commerce B2B / B2C / B2B-B2C using the artificial intelligence to help the shop owner and increrase their competitivity.
+ClicShopping(tm) is an Ecommerce OpenSource and powerfull Solution e-commerce B2B / B2C / B2B-B2C using the artificial intelligence to help the shop owner and increase their competitivity.
 
 The solution is based on a modern, responsive design that will allow you to have a great website on all mobile device, desktop but also perform at speed !
 
