@@ -1,9 +1,14 @@
-3.411
-
+3.413
+remove api chatgpt obsolete in french db
+little improvement
 
 --------------------
+3.411 - 3.413
+Db fix
 
+--------------------
 3.410
+
 Add ChatGpt
 Libraries updated
 Small fix
