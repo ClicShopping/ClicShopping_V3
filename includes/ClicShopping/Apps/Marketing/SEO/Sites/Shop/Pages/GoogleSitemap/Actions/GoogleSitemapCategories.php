@@ -11,6 +11,7 @@
   namespace ClicShopping\Apps\Marketing\SEO\Sites\Shop\Pages\GoogleSitemap\Actions;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   class GoogleSitemapCategories extends \ClicShopping\OM\PagesActionsAbstract
   {

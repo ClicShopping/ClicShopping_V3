@@ -1,7 +1,7 @@
 3.413
 remove api chatgpt obsolete in french db
 little improvement
-
+small bug fix
 --------------------
 3.411 - 3.413
 Db fix
