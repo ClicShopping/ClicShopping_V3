@@ -9,7 +9,6 @@
  */
 
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTML;
 ?>
 <div class="col-12 col-md-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?> ModulesProductsFeaturedBoostrapColumn5">
   <div class="separator"></div>
