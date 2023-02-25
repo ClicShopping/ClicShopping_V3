@@ -178,7 +178,7 @@
 //Short description
               $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription($products_id, $delete_word, $products_short_description_number);
 // Reviews
-              $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
+                $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
 
 // **************************
 // display the differents buttons before minorder qty
@@ -228,8 +228,10 @@
 
 // See the button more view details
                $button_small_view_details = $CLICSHOPPING_ProductsFunctionTemplate->getButtonViewDetails(MODULE_PRODUCTS_FAVORITES_DELETE_BUY_BUTTON, $products_id);
+
 // Display the image
              $products_image = $CLICSHOPPING_ProductsFunctionTemplate->getImage(MODULE_PRODUCTS_FAVORITES_IMAGE_MEDIUM, $products_id);
+
 // Ticker Image
               $products_image .= $CLICSHOPPING_ProductsFunctionTemplate->getTicker(MODULE_PRODUCTS_FAVORITES_TICKER, $products_id, 'ModulesProductsFavoritesBootstrapTickerSpecial', 'ModulesProductsFavoritesBootstrapTickerFavorite', 'ModulesProductsFavoritesBootstrapTickerFeatured', 'ModulesProductsFavoritesBootstrapTickerNew');
 
@@ -242,11 +244,11 @@
 // products model
               $products_model = $CLICSHOPPING_ProductsFunctionTemplate->getProductsModel($products_id);
 // manufacturer
-                $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
+              $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
 // display the price by kilo
-                $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
+              $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
 // display date available
-                $products_date_available =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsDateAvailable($products_id);
+              $products_date_available =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsDateAvailable($products_id);
 // display products only shop
               $products_only_shop = $CLICSHOPPING_ProductsFunctionTemplate->getProductsOnlyTheShop($products_id);
 // display products only shop
@@ -271,7 +273,7 @@
 // Reviews
             $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
 // Json ltd
-           $jsonLtd = $CLICSHOPPING_ProductsFunctionTemplate->getProductJsonLd($products_id);
+            $jsonLtd = $CLICSHOPPING_ProductsFunctionTemplate->getProductJsonLd($products_id);
 
 //******************************************************************************************************************
 //            End Options -- activate and insert code in template and css
