@@ -40,18 +40,9 @@ body {
 .wrapper_w {
 }
 
-.orderEdit {
-  font-size : 0.625rem;
-  color: #0544d3;
-  text-decoration: underline;
-}
-
 
 form {
   display: inline;
-}
-
-.card-height {
 }
 
 /****************/
@@ -64,6 +55,12 @@ form {
 /****************/
 /* Order Total  */
 /****************/
+.orderEdit {
+  font-size : 0.625rem;
+  color: #0544d3;
+  text-decoration: underline;
+}
+
 .OrderTotalTitle {
   text-align: left;
 }

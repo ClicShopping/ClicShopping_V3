@@ -7,11 +7,6 @@
  *
  */
 
-.ModulesIndexCategoriesBoostrapColumn5 {
-  min-width: 18.75rem;
-  padding-right: 0.5rem;
-}
-
 .ModulesIndexCategoriesBoostrapColumn5Image {
   text-align: center;
 }
@@ -46,15 +41,12 @@
   padding-top: 0.625rem;
 }
 
-
 .ModulesIndexCategoriesBoostrapColumn5StockImage {
   text-align:center;
   vertical-align:text-top;
   color: #7F736F;
   padding-top: 0.625rem;
 }
-
-
 
 .ModulesIndexCategoriesBoostrapColumn5ImageNewArrival  {
   text-align:center;
@@ -70,7 +62,6 @@
   padding-bottom:5px;
 }
 
-
 .ModulesIndexCategoriesBoostrapColumn5ProductsQuantityUnit {
   text-align:center;
   color: #7F736F;
@@ -84,8 +75,4 @@
 .ModulesIndexCategoriesBoostrapColumn5SubmitButton {
   text-align:center;
   text-transform:uppercase;
-}
-
-.ModulesIndexCategoriesBoostrapColumn5CardHeight {
-  height:17rem;
 }

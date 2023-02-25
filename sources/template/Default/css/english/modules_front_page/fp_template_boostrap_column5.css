@@ -7,11 +7,6 @@
  *
  */
 
-.ModulesFrontPageBoostrapColumn5 {
-  min-width: 18.75rem;
-  padding-right: 0.5rem;
-}
-
 .ModulesFrontPageBoostrapColumn5Image {
   text-align: center;
 }
@@ -54,7 +49,6 @@
   padding-top: 0.625rem;
 }
 
-
 .ModulesFrontPageBoostrapColumn5QuantityMinOrder {
   text-align:center;
   color: #7F736F;
@@ -76,8 +70,4 @@
 .ModulesFrontPageBoostrapColumn5SubmitButton {
   text-align:center;
   text-transform:uppercase;
-}
-
-.ModulesFrontPageBoostrapColumn5CardHeight{
-  height:17rem;
 }

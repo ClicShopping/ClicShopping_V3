@@ -11,10 +11,10 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
 ?>
-<div class="col-12 col-sm-<?php echo $bootstrap_column; ?> ModulesFrontPageBoostrapColumn5">
+<div class="col-12 col-sm-<?php echo $bootstrap_column; ?> p-1">
   <div class="separator"></div>
-  <div class="card">
-    <div class="card-height ModulesFrontPageBoostrapColumn5CardHeight">
+  <div class="card card-height">
+    <div class="ModulesFrontPageBoostrapColumn5CardHeight">
         <div class="separator"></div>
           <div class="card-img-top ModulesFrontPageBoostrapColumn5Image">
           <?php echo $products_image . $ticker; ?>

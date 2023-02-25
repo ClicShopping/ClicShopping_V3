@@ -7,11 +7,6 @@
  *
  */
 
-.ModulesProductsSpecialsBoostrapColumn5 {
-  min-width: 18.75rem;
-  padding-right: 0.5rem;
-}
-
 .ModulesProductsSpecialsBoostrapColumn5Image {
   text-align: center;
 }
@@ -46,14 +41,14 @@
   padding-top: 0.625rem;
 }
 
-div.ModulesProductsSpecialsBoostrapColumn5StockImage {
+dModulesProductsSpecialsBoostrapColumn5StockImage {
   text-align:center;
   vertical-align:text-top;
   color: #7F736F;
   padding-top: 0.625rem;
 }
 
-div.ModulesProductsSpecialsBoostrapColumn5ImageNewArrival  {
+.ModulesProductsSpecialsBoostrapColumn5ImageNewArrival  {
   text-align:center;
   vertical-align:text-top;
   color: #7F736F;
@@ -73,15 +68,11 @@ div.ModulesProductsSpecialsBoostrapColumn5ImageNewArrival  {
   padding-top: 0.625rem;
 }
 
-.ModulesproductsSpecialsBoostrapColumn5ViewDetails {
+.ModulesProductsSpecialsBoostrapColumn5ViewDetails {
   text-align:center;
 }
 
-.ModulesproductsSpecialsBoostrapColumn5SubmitButton {
+.ModulesProductsSpecialsBoostrapColumn5SubmitButton {
   text-align:center;
   text-transform:uppercase;
-}
-
-.ModulesproductsSpecialsBoostrapColumn5CardHeight {
-  height:17rem;
 }

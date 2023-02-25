@@ -7,11 +7,6 @@
  *
  */
 
-.ModulesProductsListingBoostrapColumn5 {
-  min-width: 18.75rem;
-  padding-right: 0.5rem;
-}
-
 .ModulesProductsListingBoostrapColumn5Image {
   text-align: center;
 }
@@ -73,8 +68,4 @@
 .ModulesProductsListingBoostrapColumn5SubmitButton {
   text-align:center;
   text-transform:uppercase;
-}
-
-.ModulesProductsListingBoostrapColumn5CardHeight {
-  height:17rem;
 }

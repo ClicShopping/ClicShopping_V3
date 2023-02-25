@@ -174,14 +174,13 @@
             $filename = $CLICSHOPPING_Template-> getTemplateModulesFilename($this->group .'/template_html/' . MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_TEMPLATE);
 
             $new_prods_content = '<!-- New Products start -->' . "\n";
-            $new_prods_content .= '<div class="clearfix"></div>';
+            $new_prods_content .= '<div class="col-md-12 ModuleIndexCategoriesProductsNewContainer5">';
 
             if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_FRONT_TITLE != 'false') {
               $new_prods_content .= '<div class="page-title ModuleIndexCategoriesProductsNewHeading"><h2>' . sprintf(CLICSHOPPING::getDef('module_index_categories_products_heading_title'), DateTime::getNow(CLICSHOPPING::getDef('date_format_long'))) . '</h2></div>';
             }
 
-            $new_prods_content .= '<div class="d-flex flex-wrap ModuleIndexCategoriesboxContainerNewProducts">';
-
+            $new_prods_content .= '<div class="d-flex flex-wrap">';
             $counter = 1;
 
             while ($Qproduct->fetch()) {
@@ -189,7 +188,6 @@
               $_POST['products_id'] = $products_id;
 
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
-
 //product name
               $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
 //Stock (good, alert, out of stock).

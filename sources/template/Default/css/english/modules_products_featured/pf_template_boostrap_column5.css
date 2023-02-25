@@ -6,10 +6,6 @@
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
-.ModulesProductsFeaturedBoostrapColumn5 {
-  min-width: 18.75rem;
-  padding-right: 0.5rem;
-}
 
 .ModulesProductsFeaturedBoostrapColumn5Image {
   text-align: center;
@@ -66,9 +62,8 @@
   padding-bottom:5px;
 }
 
-
 .ModulesProductsFeaturedBoostrapColumn5ProductsQuantityUnit  {
-   text-align:center;
+  text-align:center;
   color: #7F736F;
   padding-top: 0.625rem;
 }
@@ -80,8 +75,4 @@
 .ModulesproductsFeaturedBoostrapColumn5SubmitButton {
   text-align:left;
   text-transform:uppercase;
-}
-
-.ModulesproductsFeaturedBoostrapColumn5CardHeight {
-  height:17rem;
 }

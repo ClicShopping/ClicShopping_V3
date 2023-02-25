@@ -6,10 +6,6 @@
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
-.ModulesProductsFavoritesBoostrapColumn5 {
-  min-width: 18.75rem;
-  padding-right: 0.5rem;
-}
 
 .ModulesProductsFavoritesBoostrapColumn5Image {
   text-align: center;
@@ -79,8 +75,4 @@
 .ModuleProductsFavoritesBoostrapColumn5SubmitButton {
   text-align:center;
   text-transform:uppercase;
-}
-
-.ModuleProductsFavoritesBoostrapColumn5CardHeight {
-  height:17rem;
 }

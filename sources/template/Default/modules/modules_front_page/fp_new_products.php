@@ -159,13 +159,13 @@
             $filename = $CLICSHOPPING_Template->getTemplateModulesFilename($this->group .'/template_html/' . MODULE_FRONT_PAGE_NEW_PRODUCTS_TEMPLATE);
 
             $new_prods_content = '<!-- New Products start -->' . "\n";
-            $new_prods_content .= '<div>';
+            $new_prods_content .= '<div class="col-md-12 ModuleFrontPageNewProductsContainer5">';
 
             if (MODULE_FRONT_PAGE_NEW_PRODUCTS_FRONT_TITLE == 'True') {
               $new_prods_content .= '<div class="ModuleFrontPageProductsNewHeading"><h2>' . CLICSHOPPING::getDef('module_front_page_new_products_heading_title') . '</h2></div>';
             }
 
-            $new_prods_content .= '<div class="d-flex flex-wrap ModuleFrontPageboxContainerNewProducts">';
+            $new_prods_content .= '<div class="d-flex flex-wrap">';
             $counter = 1;
 
             while ($Qproduct->fetch()) {

@@ -2,6 +2,8 @@
 remove api chatgpt obsolete in french db
 little improvement
 small bug fix
+template html updated
+
 --------------------
 3.411 - 3.413
 Db fix

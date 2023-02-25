@@ -225,10 +225,8 @@
 
 // See the button more view details
                $button_small_view_details = $CLICSHOPPING_ProductsFunctionTemplate->getButtonViewDetails(MODULE_PRODUCTS_FEATURED_DELETE_BUY_BUTTON, $products_id);
-
 // Display the image
               $products_image = $CLICSHOPPING_ProductsFunctionTemplate->getImage(MODULE_PRODUCTS_FEATURED_IMAGE_MEDIUM, $products_id);
-
 // Ticker Image
               $products_image .= $CLICSHOPPING_ProductsFunctionTemplate->getTicker(MODULE_PRODUCTS_FEATURED_TICKER, $products_id, 'ModulesProductsFeaturedBootstrapTickerSpecial', 'ModulesProductsFeaturedBootstrapTickerFavorite', 'ModulesProductsFeaturedBootstrapTickerFeatured', 'ModulesProductsFeaturedBootstrapTickerNew');
 

@@ -12,9 +12,8 @@
 ?>
 <div class="col-12 col-sm-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?> ModulesProductsNewBoostrapColumn5">
   <div class="separator"></div>
-  <div class="card">
-    <div class="card-height">
-      <div class="card-height ModulesProductsNewBoostrapColumn5CardHeight">
+  <div class="card card-height">
+      <div class="ModulesProductsNewBoostrapColumn5CardHeight">
         <div class="separator"></div>
           <div class="card-img-top ModulesProductsListingBoostrapColumn5Image">
           <?php echo $products_image . $ticker; ?>
@@ -62,6 +61,5 @@
         <?php echo $endform; ?>
       </div>
     </div>
-  </div>
 </div>
 <?php echo $jsonLtd; ?>

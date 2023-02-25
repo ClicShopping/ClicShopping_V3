@@ -171,6 +171,11 @@ blockquote {
 .card-height {
   height: 100%;
 }
+
+.card card-height {
+  height: 100%;
+}
+
 .card-block {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
