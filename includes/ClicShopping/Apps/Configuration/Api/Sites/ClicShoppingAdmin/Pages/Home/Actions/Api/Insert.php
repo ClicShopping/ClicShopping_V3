@@ -30,6 +30,8 @@
       $username = HTML::sanitize($_POST['username']);
       $api_key = HTML::sanitize($_POST['api_key']);
 
+
+
 // products
       if (isset($_POST['get_product_status'])) {
         $get_product_status = HTML::sanitize($_POST['get_product_status']);
@@ -131,6 +133,54 @@
         $delete_order_status = 0;
       }
 
+      if (isset($_POST['get_manufacturer_status'])) {
+        $get_manufacturer_status = HTML::sanitize($_POST['get_manufacturer_status']);
+      } else {
+        $get_manufacturer_status = 0;
+      }
+
+      if (isset($_POST['update_manufacturer_status'])) {
+        $update_manufacturer_status = HTML::sanitize($_POST['update_manufacturer_status']);
+      } else {
+        $update_manufacturer_status = 0;
+      }
+
+      if (isset($_POST['insert_manufacturer_status'])) {
+        $insert_manufacturer_status = HTML::sanitize($_POST['insert_manufacturer_status']);
+      } else {
+        $insert_manufacturer_status = 0;
+      }
+
+      if (isset($_POST['delete_manufacturer_status'])) {
+        $delete_manufacturer_status = HTML::sanitize($_POST['delete_manufacturer_status']);
+      } else {
+        $delete_manufacturer_status = 0;
+      }
+
+      if (isset($_POST['get_supplier_status'])) {
+        $get_supplier_status = HTML::sanitize($_POST['get_supplier_status']);
+      } else {
+        $get_supplier_status = 0;
+      }
+
+      if (isset($_POST['update_supplier_status'])) {
+        $update_supplier_status = HTML::sanitize($_POST['update_supplier_status']);
+      } else {
+        $update_supplier_status = 0;
+      }
+
+      if (isset($_POST['insert_supplier_status'])) {
+        $insert_supplier_status = HTML::sanitize($_POST['insert_supplier_status']);
+      } else {
+        $insert_supplier_status = 0;
+      }
+
+      if (isset($_POST['delete_supplier_status'])) {
+        $delete_supplier_status = HTML::sanitize($_POST['delete_supplier_status']);
+      } else {
+        $delete_supplier_status = 0;
+      }
+
       $sql_data_array = [
         'username' => $username,
         'api_key' => $api_key,
@@ -153,6 +203,14 @@
         'update_order_status' => $update_order_status,
         'insert_order_status' => $insert_order_status,
         'delete_order_status' => $delete_order_status,
+        'get_manufacturer_status' => $get_manufacturer_status,
+        'update_manufacturer_status' => $update_manufacturer_status,
+        'insert_manufacturer_status' => $insert_manufacturer_status,
+        'delete_manufacturer_status' => $delete_manufacturer_status,
+        'get_supplier_status' => $get_supplier_status,
+        'update_supplier_status' => $update_supplier_status,
+        'insert_supplier_status' => $insert_supplier_status,
+        'delete_supplier_status' => $delete_supplier_status,
       ];
 
       $this->app->db->save('api', $sql_data_array);
