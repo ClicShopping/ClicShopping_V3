@@ -17,7 +17,7 @@
 <?php
   if ($CLICSHOPPING_Template->hasBlocks('boxes_column_left')) {
 ?>
-      <div id="columnLeft" class="row col-12 col-lg-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?> order-xs-2 order-lg-1">
+      <div id="columnLeft" class="row col-12 col-lg-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?> order-xs-2 order-lg-1 m-1">
         <div class="col m-3">
           <?php echo $CLICSHOPPING_Template->getBlocks('boxes_column_left'); ?>
         </div>
