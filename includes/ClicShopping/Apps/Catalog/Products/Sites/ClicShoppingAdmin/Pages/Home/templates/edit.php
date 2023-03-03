@@ -213,7 +213,7 @@
                   <label for="code"
                          class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?> <bold>*</bold></label>
                   <div
-                    class="col-md-5"><?php echo HTML::inputField('products_name[' . $languages[$i]['id'] . ']', ($products_name[$languages[$i]['id']] ?? $CLICSHOPPING_ProductsAdmin->getProductsName($pInfo->products_id, $languages[$i]['id'])), 'required aria-required="true" id="' . 'products_name[' . $languages[$i]['id'] . ']' . '" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_name') . '"', true) . '&nbsp;'; ?></div>
+                    class="col-md-5"><?php echo HTML::inputField('products_name[' . $languages[$i]['id'] . ']', ($products_name[$languages[$i]['id']] ?? $CLICSHOPPING_ProductsAdmin->getProductsName($pInfo->products_id, $languages[$i]['id'])), 'required aria-required="true" id="' . 'products_name[' . $languages[$i]['id'] . ']' . '" id="product_name_' . $i .'" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_name') . '"', true) . '&nbsp;'; ?></div>
                 </div>
                 <?php
               }
@@ -1232,27 +1232,30 @@
             <?php
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
-
-                  <div class="row">
-                      <div class="col-md-12">
-                          <div class="form-group row">
-                              <label for="code"
-                                     class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                          </div>
-                      </div>
-                  </div>
-                <div class="row" id="productsSeoUrl">
+                <div class="row">
                   <div class="col-md-12">
-                      <div class="form-group row">
-                          <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?>"
-                                 class="col-1 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?></label>
-                          <div class="col-md-8">
-                            <?php echo '&nbsp;' . HTML::inputField('products_seo_url[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoUrl($pInfo->products_id, $languages[$i]['id']), 'maxlength="70" size="77" id="default_title_' . $i . '"', false); ?>
-                          </div>
-                      </div>
+                    <div class="form-group row">
+                      <label for="code"
+                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                    </div>
                   </div>
                 </div>
-                <div class="row" id="productsTilte">
+                <div class="row" id="productsSeoUrl<?php echo $i ?>">
+                  <div class="col-md-12">
+                    <div class="form-group row">
+                      <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?>"
+                             class="col-1 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?></label>
+                      <div class="col-md-8">
+                        <?php echo '&nbsp;' . HTML::inputField('products_seo_url[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoUrl($pInfo->products_id, $languages[$i]['id']), 'maxlength="70" size="77" id="seo_url_title_' . $i . '"', false); ?>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="row" id="productsSeoTitle<?php echo $i ?>">
                   <div class="col-md-12">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_page_title'); ?>"
@@ -1264,7 +1267,7 @@
                   </div>
                 </div>
                 <div class="separator"></div>
-                <div class="row" id="productsDescription">
+                <div class="row" id="productsDescription<?php echo $i ?>">
                   <div class="col-md-12">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_header_description'); ?>"
@@ -1276,7 +1279,7 @@
                   </div>
                 </div>
                 <div class="separator"></div>
-                <div class="row" id="productsKeywords">
+                <div class="row" id="productsKeywords<?php echo $i ?>">
                   <div class="col-md-12">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_keywords'); ?>"
@@ -1288,7 +1291,7 @@
                   </div>
                 </div>
                 <div class="separator"></div>
-                <div class="row" id="producrsTag">
+                <div class="row" id="productsTag<?php echo $i ?>">
                   <div class="col-md-12">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_tag'); ?>"

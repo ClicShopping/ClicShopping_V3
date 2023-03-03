@@ -522,16 +522,16 @@
         },
         {
             "name": "openai-php/client",
-            "version": "v0.3.1",
+            "version": "v0.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openai-php/client.git",
-                "reference": "8c67360fca906e2f613f11e1839e32905a2ed28c"
+                "reference": "2e7490421dddd80085af4cde854e597a98395deb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openai-php/client/zipball/8c67360fca906e2f613f11e1839e32905a2ed28c",
-                "reference": "8c67360fca906e2f613f11e1839e32905a2ed28c",
+                "url": "https://api.github.com/repos/openai-php/client/zipball/2e7490421dddd80085af4cde854e597a98395deb",
+                "reference": "2e7490421dddd80085af4cde854e597a98395deb",
                 "shasum": ""
             },
             "require": {
@@ -539,14 +539,14 @@
                 "php": "^8.1.0"
             },
             "require-dev": {
-                "laravel/pint": "^1.4.1",
-                "nunomaduro/collision": "^7.0.0",
+                "laravel/pint": "^1.6.0",
+                "nunomaduro/collision": "^7.0.5",
                 "pestphp/pest": "^2.0.0",
                 "pestphp/pest-plugin-arch": "^2.0.0",
                 "pestphp/pest-plugin-mock": "^2.0.0",
-                "phpstan/phpstan": "^1.9.16",
+                "phpstan/phpstan": "^1.10.3",
                 "rector/rector": "^0.14.8",
-                "symfony/var-dumper": "^6.2.5"
+                "symfony/var-dumper": "^6.2.7"
             },
             "type": "library",
             "autoload": {
@@ -583,7 +583,7 @@
             ],
             "support": {
                 "issues": "https://github.com/openai-php/client/issues",
-                "source": "https://github.com/openai-php/client/tree/v0.3.1"
+                "source": "https://github.com/openai-php/client/tree/v0.3.4"
             },
             "funding": [
                 {
@@ -591,15 +591,15 @@
                     "type": "custom"
                 },
                 {
-                    "url": "https://github.com/nunomaduro",
+                    "url": "https://github.com/gehrisandro",
                     "type": "github"
                 },
                 {
-                    "url": "https://www.patreon.com/nunomaduro",
-                    "type": "patreon"
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
                 }
             ],
-            "time": "2023-02-07T21:22:36+00:00"
+            "time": "2023-03-03T06:57:29+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -1063,16 +1063,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v10.7.0",
+            "version": "v10.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "91876a7dd88148f8b4bac6e3202503312ae5d581"
+                "reference": "0783c59483641452b957f4b75f9e370f1215a803"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/91876a7dd88148f8b4bac6e3202503312ae5d581",
-                "reference": "91876a7dd88148f8b4bac6e3202503312ae5d581",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/0783c59483641452b957f4b75f9e370f1215a803",
+                "reference": "0783c59483641452b957f4b75f9e370f1215a803",
                 "shasum": ""
             },
             "require": {
@@ -1118,9 +1118,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v10.7.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v10.8.0"
             },
-            "time": "2023-02-23T23:30:31+00:00"
+            "time": "2023-03-02T21:27:35+00:00"
         },
         {
             "name": "stymiee/email-validator",
@@ -1181,16 +1181,16 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.2.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "1ee04c65529dea5d8744774d474e7cbd2f1206d3"
+                "reference": "e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/1ee04c65529dea5d8744774d474e7cbd2f1206d3",
-                "reference": "1ee04c65529dea5d8744774d474e7cbd2f1206d3",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e",
+                "reference": "e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e",
                 "shasum": ""
             },
             "require": {
@@ -1228,7 +1228,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.2.0"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.2.1"
             },
             "funding": [
                 {
@@ -1244,20 +1244,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-25T10:21:52+00:00"
+            "time": "2023-03-01T10:25:55+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v5.4.19",
+            "version": "v5.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "6071aebf810ad13fe8200c224f36103abb37cf1f"
+                "reference": "078e9a5e1871fcfe6a5ce421b539344c21afef19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/6071aebf810ad13fe8200c224f36103abb37cf1f",
-                "reference": "6071aebf810ad13fe8200c224f36103abb37cf1f",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/078e9a5e1871fcfe6a5ce421b539344c21afef19",
+                "reference": "078e9a5e1871fcfe6a5ce421b539344c21afef19",
                 "shasum": ""
             },
             "require": {
@@ -1291,7 +1291,7 @@
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/finder/tree/v5.4.19"
+                "source": "https://github.com/symfony/finder/tree/v5.4.21"
             },
             "funding": [
                 {
@@ -1307,7 +1307,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-14T19:14:44+00:00"
+            "time": "2023-02-16T09:33:00+00:00"
         },
         {
             "name": "symfony/polyfill-php80",

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace OpenAI;
 
 use OpenAI\Contracts\Transporter;
+use OpenAI\Resources\Audio;
+use OpenAI\Resources\Chat;
 use OpenAI\Resources\Completions;
 use OpenAI\Resources\Edits;
 use OpenAI\Resources\Embeddings;
@@ -36,6 +38,16 @@ final class Client
     }
 
     /**
+     * Given a chat conversation, the model will return a chat completion response.
+     *
+     * @see https://platform.openai.com/docs/api-reference/chat
+     */
+    public function chat(): Chat
+    {
+        return new Chat($this->transporter);
+    }
+
+    /**
      * Get a vector representation of a given input that can be easily consumed by machine learning models and algorithms.
      *
      * @see https://beta.openai.com/docs/api-reference/embeddings
@@ -43,6 +55,16 @@ final class Client
     public function embeddings(): Embeddings
     {
         return new Embeddings($this->transporter);
+    }
+
+    /**
+     * Learn how to turn audio into text.
+     *
+     * @see https://platform.openai.com/docs/api-reference/audio
+     */
+    public function audio(): Audio
+    {
+        return new Audio($this->transporter);
     }
 
     /**
