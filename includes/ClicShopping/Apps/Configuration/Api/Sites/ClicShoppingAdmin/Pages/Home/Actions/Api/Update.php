@@ -183,7 +183,7 @@
        } else {
          $delete_supplier_status = 0;
        }
-       
+
        $sql_data_array = [
          'username' => $username,
          'api_key' => $api_key,
