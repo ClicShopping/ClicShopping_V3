@@ -198,8 +198,8 @@ INSERT INTO administrator_menu VALUES(787, 'index.php?A&Orders\\ReturnOrders&Con
 INSERT INTO administrator_menu VALUES(788, 'index.php?A&Tools\\Cronjob&Cronjob', 163, 2, 0, 'return_orders.png', 0, 'app_tools_cronjob', 1);
 INSERT INTO administrator_menu VALUES(789, 'index.php?A&Configuration\\Settings&Settings&gID=46', 13, 11, 0, '', 1, NULL, 1);
 INSERT INTO administrator_menu VALUES(790, 'index.php?A&Configuration\\Api&Api', 14, 14, 1, 'api.png', 0, 'app_configuration_api', 1);
-INSERT INTO administrator_menu VALUES(791, 'index.php?A&Configuration\\Antispam&Configure', 13, 15, 0,'antispam.png', 0, 'app_configuration_antispam', 1);
-INSERT INTO administrator_menu VALUES(792, 'index.php?A&Tools\\Upgrade&Upgrade', 644, 5, 1, null, 0, 'app_tools_upgrade', 1);
+INSERT INTO administrator_menu VALUES(791, 'index.php?A&Configuration\\Antispam&Configure', 13, 15, 0, 'antispam.png', 0, 'app_configuration_antispam', 1);
+INSERT INTO administrator_menu VALUES(792, 'index.php?A&Tools\\Upgrade&Upgrade', 644, 5, 1, '', 0, 'app_tools_upgrade', 1);
 INSERT INTO administrator_menu VALUES(793, 'index.php?A&Tools\\Upgrade&Marketplace', 644, 10, 1, null, 0, 'app_tools_upgrade', 1);
 INSERT INTO administrator_menu VALUES(794, 'index.php?A&Configuration\\ChatGpt&ChatGpt', 14, 15, 1, 'chatgpt.gif', 1, 'app_configuration_chatgpt', 1);
 
@@ -1578,7 +1578,10 @@ INSERT INTO configuration VALUES(1574, 'Ordre de tri d\'affichage', 'CLICSHOPPIN
 INSERT INTO configuration VALUES(1575, 'Max Token', 'CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN', '350', 'Veuillez insérer un nombre<br />\ndavinci-codex : 4000 <br />\ntext-davinci-003 : 4000<br />', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
 INSERT INTO configuration VALUES(1576, 'Statut', 'CLICSHOPPING_APP_CHATGPT_CH_STATUS', 'False', 'Souhaitez vous activer ce module à votre boutique', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
 INSERT INTO configuration VALUES(1577, 'Clef Api', 'CLICSHOPPING_APP_CHATGPT_CH_API_KEY', '', 'Veuillez insérer la clef API (https://platform.openai.com/account/api-keys)', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
-
+INSERT INTO configuration VALUES(1578, 'Best of', 'CLICSHOPPING_APP_CHATGPT_CH_BESTOFF', '1', 'Génère le best_of des complétions côté serveur et renvoie le \"meilleur\". Utiliser un entier', 6, 0, NULL, '2023-03-05 12:10:25', NULL, NULL);
+INSERT INTO configuration VALUES(1579, 'Top P', 'CLICSHOPPING_APP_CHATGPT_CH_TOP_P', '1', 'Veuillez insérer un nombre<br />\nUne alternative à l\'échantillonnage avec la température, appelée échantillonnage par noyau, où le modèle considère les résultats des jetons avec une masse de probabilité top_p. Ainsi, 0,1 signifie que seuls les jetons comprenant la masse de probabilité supérieure de 10 % sont pris en compte.', 6, 0, NULL, '2023-03-05 12:10:25', NULL, NULL);
+INSERT INTO configuration VALUES(1580, 'Modéle à appliquer', 'CLICSHOPPING_APP_CHATGPT_CH_MODEL', 'text-davinci-003', 'Please, veuillez sélectionner le modéle par défaut que vous souhaitez appliquer.<br />\nTous les modéles n\'utilisent pas les mêmes paramétres et peuvent générer une erreur dans la rèponse<br />\nLE WYSWIWYG est impacté sur le type de modéle que vous souhaiter utiliser', 6, 0, NULL, '2023-03-05 12:10:25', NULL, NULL);
+INSERT INTO configuration VALUES(1581, 'Présence de la penalité', 'CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY', '0.1', 'Veuillez insérer un nombre<br />\nNombre entre -2.0 et 2.0. Les valeurs positives pénalisent les nouveaux jetons en fonction de leur fréquence existante dans le texte jusqu\'à présent, diminuant ainsi la probabilité que le modèle répète la même phrase exactement.', 6, 0, NULL, '2023-03-05 12:10:25', NULL, NULL);
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
 INSERT INTO configuration_group VALUES(2, 'Gestion de la carte de crédit', 'Valeur minimum pour : fonctions / données', 2, 1);

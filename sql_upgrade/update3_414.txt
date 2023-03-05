@@ -1,1 +1,15 @@
-fix db
+
+
+
+French
+INSERT INTO clic_configuration VALUES(null, 'Best of', 'CLICSHOPPING_APP_CHATGPT_CH_BESTOFF', '1', 'Génère le best_of des complétions côté serveur et renvoie le \"meilleur\". Utiliser un entier', 6, 0, NULL, '2023-03-05 12:10:25', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Top P', 'CLICSHOPPING_APP_CHATGPT_CH_TOP_P', '1', 'Veuillez insérer un nombre<br />\nUne alternative à l\'échantillonnage avec la température, appelée échantillonnage par noyau, où le modèle considère les résultats des jetons avec une masse de probabilité top_p. Ainsi, 0,1 signifie que seuls les jetons comprenant la masse de probabilité supérieure de 10 % sont pris en compte.', 6, 0, NULL, '2023-03-05 12:10:25', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Modéle à appliquer', 'CLICSHOPPING_APP_CHATGPT_CH_MODEL', 'text-davinci-003', 'Please, veuillez sélectionner le modéle par défaut que vous souhaitez appliquer.<br />\nTous les modéles n\'utilisent pas les mêmes paramétres et peuvent générer une erreur dans la rèponse<br />\nLE WYSWIWYG est impacté sur le type de modéle que vous souhaiter utiliser', 6, 0, NULL, '2023-03-05 12:10:25', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Présence de la penalité', 'CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY', '0.1', 'Veuillez insérer un nombre<br />\nNombre entre -2.0 et 2.0. Les valeurs positives pénalisent les nouveaux jetons en fonction de leur fréquence existante dans le texte jusqu\'à présent, diminuant ainsi la probabilité que le modèle répète la même phrase exactement.', 6, 0, NULL, '2023-03-05 12:10:25', NULL, NULL);
+
+English
+INSERT INTO clic_configuration VALUES(null, 'Best of', 'CLICSHOPPING_APP_CHATGPT_CH_BESTOFF', '1', 'Generates best_of completions server-side and returns the \"best\". Use an Integer', 6, 0, NULL, '2023-03-05 11:31:37', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Top P', 'CLICSHOPPING_APP_CHATGPT_CH_TOP_P', '1', 'Veuillez insérer un nombre<br />\nAn alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.', 6, 0, NULL, '2023-03-05 11:31:37', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Default model', 'CLICSHOPPING_APP_CHATGPT_CH_MODEL', 'text-davinci-003', 'Please, please select the model you want to apply. <br />\nAll the models does not have the same parameters and can generate an error on the response. <br />\nThe WYSWIWYG is impacted by the model you want to use', 6, 0, NULL, '2023-03-05 11:31:37', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Presence penality', 'CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY', '0.1', 'Please, insert number<br />\nNumber between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model\'s likelihood to repeat the same line verbatim.', 6, 0, NULL, '2023-03-05 11:31:37', NULL, NULL);
+
