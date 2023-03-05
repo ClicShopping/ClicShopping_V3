@@ -52,6 +52,8 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
                 prompt: conversationState + message,
                 max_tokens: max_tokens_gpt,
                 temperature: temperatureGpt,
+                best_of: best_of_gpt,
+                top_p: top_p_gpt,
                 n: nGpt,
                // stop: '\n',
               }));
