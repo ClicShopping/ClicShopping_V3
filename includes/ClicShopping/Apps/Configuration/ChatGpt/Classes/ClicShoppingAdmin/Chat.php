@@ -30,15 +30,6 @@
         ['id' => 'text-davinci-003',
          'text' =>'Davinci (texte sophistiqué)'
         ],
-/*
-        ['id' => 'davinci-codex',
-         'text' =>'Code (expérimental)'
-        ],
-
-        ['id' => 'text-curie-001',
-         'text' => 'Curie (texte moins complexes)'
-        ],
-*/
       ];
 
       $menu = HTML::selectField('engine', $array, null, 'id="engine"');
@@ -53,13 +44,15 @@
     {
       $script = '<script>
        var apiKeyGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_API_KEY . '";
-       var modelGpt = "text-davinci-003";
+       var modelGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_MODEL . '";
        var frequency_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY . '");
-       var presence_penalty_gpt = parseInt(" 0");
+       var presence_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY . '");
        var max_tokens_gpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN . '");
        var temperatureGpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE . '");
        var nGpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE . '");
-       var titleGpt = "' . CLICSHOPPING::getDef('text_chat_title') . '"
+       var best_of_gpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_BESTOFF . '");
+       var top_p_gpt =  parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P . '");
+       var titleGpt = "' . CLICSHOPPING::getDef('text_chat_title') . '";
       </script>';
 
       $script .= '<script src="' . CLICSHOPPING::link('Shop/ext/javascript/cKeditor/dialogs/chatgpt.js') .'"></script>';
@@ -102,7 +95,7 @@
                                 <span class="text-slider col-6">' . CLICSHOPPING::getDef('text_chat_save') . '</span>
                                 <li class="list-group-item-slider">
                                   <label class="switch">
-                                    ' . HTML::checkboxField('saveGpt', '1', null, 'class="success" id="saveGpt"') . '
+                                    ' . HTML::checkboxField('saveGpt', '1', 0, 'class="success" id="saveGpt"') . '
                                     <span class="slider"></span>
                                   </label>
                                 </li>

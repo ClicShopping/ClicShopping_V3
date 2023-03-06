@@ -1,2 +1,2 @@
-cfg_chatgpt_bestof_title = Best of
-cfg_chatgpt_bestof_description = Génère des complétions best_of côté serveur et renvoie la "meilleure". utiliser un nombre entier.
+cfg_chatgpt_bestoff_title = Best of
+cfg_chatgpt_bestoff_description = Génère des complétions best_of côté serveur et renvoie la "meilleure". utiliser un nombre entier.
