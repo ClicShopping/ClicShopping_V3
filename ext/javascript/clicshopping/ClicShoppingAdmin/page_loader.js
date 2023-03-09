@@ -6,10 +6,12 @@
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
-
-window.addEventListener("load", function() {
+  window.addEventListener("load", function() {
     // Page Preloader
-    $('#preloader').delay(100).fadeOut(function(){
-        $('body').delay(100);
-    });
-});
+    setTimeout(function() {
+        var preloader = document.getElementById("preloader");
+        if (!preloader.classList.contains("hidden")) {
+            preloader.classList.add("hidden");
+        }
+    }, 100);
+  });

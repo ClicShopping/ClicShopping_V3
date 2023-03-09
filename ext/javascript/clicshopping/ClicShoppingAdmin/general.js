@@ -8,49 +8,42 @@
  */
 
 function SetFocus() {
-  if (document.forms.length > 0) {
-    isNotAdminLanguage:
-      for (f=0; f<document.forms.length; f++) {
-        if (document.forms[f].name != "adminlanguage") {
-          const field = document.forms[f];
-          for (i=0; i<field.length; i++) {
-            if ( (field.elements[i].type != "image") &&
-              (field.elements[i].type != "hidden") &&
-              (field.elements[i].type != "reset") &&
-              (field.elements[i].type != "button") &&
-              (field.elements[i].type != "submit") &&
-              (field.elements[i].disabled != true)
-            ) {
+  const forms = document.forms;
 
-              document.forms[f].elements[i].focus();
+  if (forms.length > 0) {
+    for (let f = 0; f < forms.length; f++) {
+      if (forms[f].name !== "adminlanguage") {
+        const field = forms[f];
 
-              if ( (field.elements[i].type == "text") ||
-                (field.elements[i].type == "password")
-              )
-                document.forms[f].elements[i].select();
+        for (let i = 0; i < field.length; i++) {
+          const type = field.elements[i].type;
+          const disabled = field.elements[i].disabled;
 
-              break isNotAdminLanguage;
+          if (
+            type !== "image" &&
+            type !== "hidden" &&
+            type !== "reset" &&
+            type !== "button" &&
+            type !== "submit" &&
+            disabled !== true
+          ) {
+            field.elements[i].focus();
+
+            if (type === "text" || type === "password") {
+              field.elements[i].select();
             }
+
+            break;
           }
         }
       }
+    }
   }
 }
 
+
 function toggleDivBlock(id) {
-  let itm;
-
-  if (document.getElementById) {
-    itm = document.getElementById(id);
-  }
-
-  if (document.all) {
-    itm = document.all[id];
-  }
-
-  if (document.layers){
-    itm = document.layers[id];
-  }
+  const itm = document.getElementById(id) || document.all[id] || document.layers[id];
 
   if (itm) {
     if (itm.style.display != 'none') {

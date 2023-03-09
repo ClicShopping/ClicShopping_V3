@@ -3,7 +3,8 @@ $('#button-generate').on('click', function () {
 
     string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-    for (i = 0; i < 256; i++) {
+    let rand;
+    for (let i = 0; i < 256; i++) {
         rand += string[Math.floor(Math.random() * (string.length - 1))];
     }
 
