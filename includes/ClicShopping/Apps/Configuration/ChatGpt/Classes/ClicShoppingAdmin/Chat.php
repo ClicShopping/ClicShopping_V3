@@ -28,7 +28,7 @@
     {
       $array = [
         ['id' => 'text-davinci-003',
-         'text' =>'Davinci (texte sophistiqué)'
+         'text' =>'Davinci (text-davinci-003)'
         ],
       ];
 
@@ -54,6 +54,8 @@
        var top_p_gpt =  parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P . '");
        var titleGpt = "' . CLICSHOPPING::getDef('text_chat_title') . '";
       </script>';
+
+      $script .= '<!--start wysiwig preloader--><style>.blur {filter: blur(1px);opacity: 0.4;}</style><!--end wysiwzg preloader-->';
 
       $script .= '<script src="' . CLICSHOPPING::link('Shop/ext/javascript/cKeditor/dialogs/chatgpt.js') .'"></script>';
 
