@@ -8,9 +8,9 @@
  "authors": [
   {
    "name": "ClicShopping",
-   "company":  "ClicShopping",
-   "email":  "admin@clicshopping.org",
-   "website":  "https://www.clicshopping.org"
+   "company":	"ClicShopping",
+   "email":	"admin@clicshopping.org",
+   "website":	"https://www.clicshopping.org"
   }
  ],
  "modules": {

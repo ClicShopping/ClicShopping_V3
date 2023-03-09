@@ -20,7 +20,6 @@
 
     public function __construct()
     {
-
       if (!Registry::exists('Customers')) {
         Registry::set('Customers', new CustomersApp());
       }
@@ -73,7 +72,9 @@
       return $statAnalyseCustomersWomen;
     }
 
-
+    /**
+     * @return string
+     */
     public function display() :string
     {
       $output = '

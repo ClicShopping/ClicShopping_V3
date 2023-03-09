@@ -13,4 +13,3 @@ window.addEventListener("load", function() {
         $('body').delay(100);
     });
 });
-

@@ -18,13 +18,18 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
             type: 'textarea',
             id: 'message',
             label: 'Message',
-            rows: 4,
+            rows: 8,
             setup: function(element) {
               this.setValue('');
             },
             commit: function(element) {
               var message = this.getValue();
               var dialog = this.getDialog();
+
+              // Add spinner
+              var preloader = document.getElementById('preloader');
+              preloader.classList.add('blur'); // Add blur class
+              preloader.style.display = 'block';
 
               // Send the message to the GPT bot
               var xhr = new XMLHttpRequest();
@@ -42,9 +47,13 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
 
                   // Clear the message input
                   dialog.getContentElement('tab1', 'message').setValue('');
+
+                  // Remove spinner
+                  preloader.style.display = 'none';
+                  preloader.classList.remove('blur'); // Remove blur class
                 }
               };
-//https://api.openai.com/v1/engines/text-davinci-003/completions
+
               xhr.send(JSON.stringify({
                 model: modelGpt,
                 frequency_penalty: frequency_penalty_gpt,
@@ -55,8 +64,8 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
                 best_of: best_of_gpt,
                 top_p: top_p_gpt,
                 n: nGpt,
-               // stop: '\n',
               }));
+
               conversationState += message + '\n';
             },
           },

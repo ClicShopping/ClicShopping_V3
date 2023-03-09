@@ -1,0 +1,4 @@
+cfg_chatgpt_model_title = Default model
+cfg_chatgpt_model_description = Please, please select the model you want to apply. <br />
+All the models does not have the same parameters and can generate an error on the response. <br />
+The WYSWIWYG is impacted by the model you want to use
