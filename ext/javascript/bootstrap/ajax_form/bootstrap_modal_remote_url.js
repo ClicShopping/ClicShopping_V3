@@ -6,7 +6,18 @@
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
+document.body.addEventListener('click', function(event) {
+  const target = event.target;
+  const toggle = target.dataset.bsToggle;
 
-$('body').on('click', '[data-bs-toggle="modal"]', function(){
-  $($(this).data("target")+' .modal-body').load($(this).data("remote"));
+  if (toggle === 'modal') {
+    const modalId = target.dataset.target;
+    const modalBody = document.querySelector(`${modalId} .modal-body`);
+
+    fetch(target.dataset.remote)
+      .then(response => response.text())
+      .then(html => modalBody.innerHTML = html)
+      .catch(error => console.error(error));
+  }
 });
+

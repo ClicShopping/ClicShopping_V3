@@ -6,29 +6,32 @@
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
+document.addEventListener("DOMContentLoaded", function () {
+  const ajaxform = document.querySelector("#ajaxform");
 
-$(function () {
-
-  $("#ajaxform").submit(function (e) {
+  ajaxform.addEventListener("submit", function (e) {
     e.preventDefault(); //STOP default action do this first in case any errors thrown in code
-    var form = this;
+    const form = this;
 
-    var postData = $(this).serializeArray();
-    var formURL = $(this).attr("action");
+    const postData = new FormData(form);
+    const formURL = form.getAttribute("action");
 
-    $.ajax({
-      url: formURL,
-      type: "POST",
-      data: postData,
-      success: function (data, textStatus, jqXHR) {
-        $("#simple-msg").html('<pre><code class="prettyprint">' + data + '</code></pre>');
-// cleanup now
-//        form.reset()
-       },
-       error: function (jqXHR, textStatus, errorThrown) {
-         $("#simple-msg").html('<pre><code class="prettyprint">AJAX Request Failed<br/> textStatus=' + textStatus + ', errorThrown=' + errorThrown + '</code></pre>');
-       }
-     });
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", formURL, true);
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          const data = xhr.responseText;
+          document.querySelector("#simple-msg").innerHTML = `<pre><code class="prettyprint">${data}</code></pre>`;
+          // cleanup now
+          // form.reset()
+        } else {
+          document.querySelector("#simple-msg").innerHTML = `<pre><code class="prettyprint">AJAX Request Failed<br/> textStatus=${xhr.statusText}, errorThrown=${xhr.status}</code></pre>`;
+        }
+      }
+    };
+
+    xhr.send(postData);
   });
 });
-

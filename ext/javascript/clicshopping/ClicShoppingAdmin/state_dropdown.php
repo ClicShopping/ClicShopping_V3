@@ -33,6 +33,5 @@
     SelectedCountry = theForm.country.options[theForm.country.selectedIndex].value;
 
     <?php echo HTMLOverrideAdmin::getJsZoneList('SelectedCountry', 'theForm', 'state'); ?>
-
   }
 </script>

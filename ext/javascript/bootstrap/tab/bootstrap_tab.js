@@ -7,19 +7,24 @@
  *
  */
 
-$(document).ready(function () {
-
+document.addEventListener("DOMContentLoaded", function() {
   if (location.hash !== '') {
-    $('a[href="' + location.hash + '"]').tab('show');
+    const targetTab = document.querySelector('a[href="' + location.hash + '"]');
+    if (targetTab) {
+      targetTab.click();
+    }
   }
 
-  $("a[data-bs-toggle='tab']").on("shown.bs.tab", function (e) {
-    const hash = $(e.target).prop("href");
-    if (hash.substr(0,1) == "#") {
-      const position = $(window).scrollTop();
-      location.replace("#" + hash.substr(1));
-      $(window).scrollTop(position);
-    }
+  const tabLinks = document.querySelectorAll("a[data-bs-toggle='tab']");
+  tabLinks.forEach(function(link) {
+    link.addEventListener("shown.bs.tab", function(e) {
+      const hash = e.target.getAttribute("href");
+      if (hash && hash.substr(0,1) == "#") {
+        const position = window.scrollY;
+        history.replaceState(null, null, "#" + hash.substr(1));
+        window.scrollTo(0, position);
+      }
+    });
   });
 });
 
