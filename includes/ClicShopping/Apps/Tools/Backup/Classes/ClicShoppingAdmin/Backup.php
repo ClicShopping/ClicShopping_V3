@@ -1,5 +1,12 @@
 <?php
-
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+*/
 
   namespace ClicShopping\Apps\Tools\Backup\Classes\ClicShoppingAdmin;
 
@@ -148,7 +155,9 @@
         $compress = 'gzip';
       }
 
-      define('LOCAL_EXE_GZIP', 'gzip');
+      if (!\defined('LOCAL_EXE_GZIP')) {
+        define('LOCAL_EXE_GZIP', 'gzip');
+      }
 
       if (isset($_POST['download'])) {
         switch ($compress) {
