@@ -21,7 +21,7 @@
 
       if (isset($_SESSION['admin'])) {
         $output .= '<!-- Start Clipboard -->' . "\n";
-        $output .= '<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>' . "\n";
+        $output .= '<script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>' . "\n";
         $output .= '<!-- End Clipboard  -->' . "\n";
       }
 

@@ -23,7 +23,7 @@
 
       if (isset($_SESSION['admin']) && VERTICAL_MENU_CONFIGURATION == 'true') {
         $output .= '<!--Sidebar Vertical Menu Script start-->' . "\n";
-        $output .= '<script>' . "\n";
+        $output .= '<script defer>' . "\n";
         $output .= '$(function() {  $(\'#sidebarCollapse\').on(\'click\', function() { $(\'#sidebar, #content\').toggleClass(\'active\');  }); });' . "\n";
         $output .= '$(function() {  $(\'#sidebarCollapse1\').on(\'click\', function() { $(\'#sidebar, #content\').toggleClass(\'active\');  }); });' . "\n";
         $output .= '</script>' . "\n";

@@ -20,8 +20,6 @@
       $output = '';
 
       if (isset($_SESSION['admin'])) {
-
-
         $output .= '<!--CodeMirror Script start-->' . "\n";
         $output .= '<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>' . "\n";
         $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/css/css.min.js"></script>' . "\n";

@@ -485,18 +485,20 @@
           </div>
           </form>
           <div class="modal-footer">
-            <div class="row col-md-12" style="width:30rem;">
-              <div class="col-md-6">
-                <label for="buttononlineCatalog"><a href="../index.php">
-                  <button class="btn text-start" data-bs-dismiss="modal"
-                          aria-hidden="true"><?php echo CLICSHOPPING::getDef('header_title_online_catalog'); ?></button>
-                  </a></label>
-              </div>
-              <div class="col-md-6">
-                <label for="buttonNewPassword"><a href="<?php echo CLICSHOPPING::link('login.php', 'action=password'); ?>">
-                  <button class="btn text-end" data-bs-dismiss="modal"
-                          aria-hidden="true"><?php echo CLICSHOPPING::getDef('text_new_text_password'); ?></button>
-                  </a></label>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="buttononlineCatalog"><a href="../index.php">
+                    <button class="btn text-start" data-bs-dismiss="modal"
+                            aria-hidden="true"><?php echo CLICSHOPPING::getDef('header_title_online_catalog'); ?></button>
+                    </a></label>
+                </div>
+                <div class="col-md-6">
+                  <label for="buttonNewPassword"><a href="<?php echo CLICSHOPPING::link('login.php', 'action=password'); ?>">
+                    <button class="btn text-end" data-bs-dismiss="modal"
+                            aria-hidden="true"><?php echo CLICSHOPPING::getDef('text_new_text_password'); ?></button>
+                    </a></label>
+                </div>
               </div>
             </div>
           </div>
