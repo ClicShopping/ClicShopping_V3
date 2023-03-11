@@ -46,5 +46,3 @@ document.addEventListener('DOMContentLoaded', function() {
     xhr.send(postData);
   });
 });
-
-
