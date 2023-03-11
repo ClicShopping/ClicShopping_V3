@@ -1285,7 +1285,7 @@
                       <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_keywords'); ?>"
                              class="col-1 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_keywords'); ?></label>
                       <div class="col-md-8">
-                        <?php echo HTML::textAreaField('products_head_keywords_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoKeywords($pInfo->products_id, $languages[$i]['id']), '75', '5'); ?>
+                        <?php echo HTML::textAreaField('products_head_keywords_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoKeywords($pInfo->products_id, $languages[$i]['id']), '75', '2'); ?>
                       </div>
                     </div>
                   </div>

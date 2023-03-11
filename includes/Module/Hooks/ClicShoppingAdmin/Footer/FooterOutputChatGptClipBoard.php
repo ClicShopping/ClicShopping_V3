@@ -12,7 +12,7 @@
 
   use ClicShopping\OM\CLICSHOPPING;
 
-  class FooterOutputChatGpt
+  class FooterOutputChatGptClipBoard
   {
     /**
      * @return bool|string
