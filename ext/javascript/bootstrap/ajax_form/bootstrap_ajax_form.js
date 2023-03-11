@@ -9,7 +9,6 @@
  */
 
 $(function () {
-
   $("#ajaxform").submit(function (e) {
     e.preventDefault(); //STOP default action do this first in case any errors thrown in code
     var form = this;
