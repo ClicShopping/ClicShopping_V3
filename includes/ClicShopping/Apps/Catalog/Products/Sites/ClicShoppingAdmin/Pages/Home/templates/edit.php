@@ -425,9 +425,9 @@
           //*******************************************
 
           $stockable_dopdown = [
-            array('id' => 'product', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_product')),
-            array('id' => 'consu', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_consumable')),
-            array('id' => 'service', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_service')),
+            ['id' => 'product', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_product')],
+            ['id' => 'consu', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_consumable')],
+            ['id' => 'service', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_service')],
           ];
         ?>
         <div class="tab-pane" id="tab3">
