@@ -269,6 +269,7 @@ tab_orders_view = Autoriser la commande du produit pour les clients Grand Public
 tab_options_fields = Champs complémentaires
 tab_other_options = Autres Options
 tab_stock = Stock
+tab_shipping = Expédition
 
 text_edit_default_configuration = Editer la configuration par défaut
 
@@ -343,6 +344,3 @@ text_products_large_image_delete_title = Suppression de l'image
 text_products_large_image_confirm_delete = Etes vous sur ?
 
 text_alert_info_product = Veuillez sélectionner une catégorie pour voir le produit
-
-
-tab_shipping = Expédition

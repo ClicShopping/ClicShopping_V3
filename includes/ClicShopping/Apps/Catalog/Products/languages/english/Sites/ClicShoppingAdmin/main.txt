@@ -270,6 +270,7 @@ tab_orders_view = To authorize the ordering of the product for the customers Gen
 tab_options_fields = Fields options
 tab_other_options = Others Options
 tab_stock = Stock
+tab_shipping = Shipping
 
 text_edit_default_configuration = Edit the default configuration
 
@@ -336,6 +337,3 @@ text_products_large_image_delete_title = Delete image
 text_products_large_image_confirm_delete = Are you sure ?
 
 text_alert_info_product = Please selet a categorie to view a product
-
-
-tab_shipping = Shipping

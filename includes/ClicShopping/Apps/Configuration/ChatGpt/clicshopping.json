@@ -1,10 +1,10 @@
 {
- "title":	"ChatGpt App",
+ "title": "ChatGpt App",
  "app": "ChatGpt",
- "vendor":"Configuration",
- "version":	"1.0.0",
- "req_core_version":	"4.1",
- "license":	"GPL-2",
+ "vendor":"ChatGpt",
+ "version":  "1.0.0",
+ "req_core_version":  "4.1",
+ "license": "GPL-2",
  "authors": [
   {
    "name": "ClicShopping",
@@ -13,6 +13,13 @@
    "website":	"https://www.clicshopping.org"
   }
  ],
+ "modules": {
+   "Hooks": {
+   "ClicShoppingAdmin/Products": {
+    "PageTab":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\SeoTitle"
+   }
+  }
+ },
  "routes": {
   "ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home"
  }
