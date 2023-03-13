@@ -8,16 +8,25 @@
  "authors": [
   {
    "name": "ClicShopping",
-   "company":	"ClicShopping",
+   "company": "ClicShopping",
    "email":	"admin@clicshopping.org",
-   "website":	"https://www.clicshopping.org"
+   "website": "https://www.clicshopping.org"
   }
  ],
  "modules": {
    "Hooks": {
    "ClicShoppingAdmin/Products": {
     "PageTab":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\SeoTitle"
-   }
+   },
+    "ClicShoppingAdmin/Categories": {
+     "CategoriesContentTab3":	"Module\\Hooks\\ClicShoppingAdmin\\Categories\\SeoChatGpt"
+    },
+    "ClicShoppingAdmin/Manufacturers": {
+     "ManufacturersTab4":	"Module\\Hooks\\ClicShoppingAdmin\\Manufacturers\\SeoChatGpt"
+    },
+    "ClicShoppingAdmin/PageManager": {
+     "PageTab":	"Module\\Hooks\\ClicShoppingAdmin\\PageManager\\SeoChatGpt"
+    }
   }
  },
  "routes": {

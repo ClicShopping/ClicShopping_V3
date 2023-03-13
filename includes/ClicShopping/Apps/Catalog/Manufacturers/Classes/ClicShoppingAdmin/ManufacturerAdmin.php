@@ -39,10 +39,30 @@
     }
 
     /**
+     * @param int $id
+     * @return string
+     */
+    public static function getManufacturerNameById(int $id):string
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      $Qmanufacturers = $CLICSHOPPING_Db->prepare('select manufacturers_name
+                                                  from :table_manufacturers
+                                                  where manufacturers_id = :manufacturers_id
+                                                ');
+      $Qmanufacturers->bindInt(':manufacturers_id', $id);
+      $Qmanufacturers->execute();
+
+      $result = $Qmanufacturers->value('manufacturers_name');
+
+      return $result;
+    }
+
+    /**
      * @param int|null $id
      * @return mixed
      */
-    public static function getManufacturerName(?int $id = null)
+    public static function getManufacturerName(?int $id = null) :array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

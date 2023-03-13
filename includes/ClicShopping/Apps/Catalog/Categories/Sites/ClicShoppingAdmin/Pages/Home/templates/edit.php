@@ -223,83 +223,96 @@
         <span><?php echo $CLICSHOPPING_Categories->getDef('text_products_page_seo'); ?></span>
       </div>
       <div class="adminformTitle">
-        <div class="spaceRow"></div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <span class="col-md-3"></span>
-            <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
-                                      rel="noreferrer"><?php echo $CLICSHOPPING_Categories->getDef('keywords_google_trend'); ?></a></span>
-
+        <div class="separator"></div>
+        <div class="col-md-12">
+          <div class="row text-center" id="productsGoogleKeywords">
+            <a href="https://www.google.fr/trends" target="_blank"><?php echo $CLICSHOPPING_Categories->getDef('keywords_google_trend'); ?></a>
           </div>
         </div>
-        <?php
-          for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-            ?>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group row">
-                      <label for="code"
-                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                  </div>
-                </div>
-              </div>
-              <div class="separator"></div>
-              <div class="row">
-                  <div class="col-md-12">
-                      <div class="form-group row">
-                          <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?>"
-                                 class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?></label>
-                          <div class="col-md-8">
-                            <?php echo HTML::inputField('categories_seo_url[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoUrl($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="default_url_' . $i . '"', false); ?>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-             <div class="separator"></div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>"
-                         class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?></label>
-                  <div class="col-md-8">
-                    <?php echo HTML::inputField('categories_head_title_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoTitle($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="default_title_' . $i . '"', false); ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="separator"></div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>"
-                         class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_header_description'); ?></label>
-                  <div class="col-md-8">
-                    <?php echo HTML::textAreaField('categories_head_desc_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoDescription($cInfo->categories_id, $languages[$i]['id']), '75', '2', 'id="default_description_' . $i . '"'); ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="separator"></div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>"
-                         class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_keywords'); ?></label>
-                  <div class="col-md-8">
-                    <?php echo HTML::textAreaField('categories_head_keywords_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoKeywords($cInfo->categories_id, $languages[$i]['id']), '75', '5'); ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <?php
-          }
-        ?>
-      <div class="separator"></div>
-      <div class="alert alert-info" role="alert">
-        <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_submit') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_submit') ?></div>
         <div class="separator"></div>
-        <div><?php echo $CLICSHOPPING_Categories->getDef('help_submit'); ?></div>
-      </div>
+
+
+        <div class="accordion" id="accordionExample">
+          <?php
+          for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+          ?>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading<?php $i; ?>">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+              </button>
+            </h2>
+            <?php
+            if ($i == 0) {
+              $show = ' show';
+            } else {
+              $show = '';
+            }
+            ?>
+            <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+
+                <div class="separator"></div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row">
+                      <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?>"
+                             class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?></label>
+                      <div class="col-md-8">
+                        <?php echo HTML::inputField('categories_seo_url[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoUrl($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="default_url_' . $i . '"', false); ?>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="separator"></div>
+                <div class="row" id="categoriesSeoTitle<?php echo $i; ?>">
+                  <div class="col-md-10">
+                    <div class="form-group row" data-index="<?php echo $i; ?>">
+                      <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?></label>
+                      <div class="col-md-7 input-group" id="categories_head_title_tag<?php echo $i; ?>">
+                        <?php echo '&nbsp;' . HTML::inputField('categories_head_title_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getcategoriesSeoTitle($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="categories_head_title_tag_' . $i . '"', false); ?>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="separator"></div>
+                 <div class="row" id="categoriesSeoDescription<?php echo $i; ?>">
+                  <div class="col-md-6">
+                    <div class="form-group row" data-index="<?php echo $i; ?>">
+                      <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_header_description'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_header_description'); ?></label>
+                      <div class="col-md-8 input-group" id="categories_head_desc_tag<?php echo $i; ?>">
+                        <?php echo HTML::textAreaField('categories_head_desc_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getcategoriesSeoDescription($cInfo->categories_id, $languages[$i]['id']), '110', '5', 'id="categories_head_desc_tag_' . $i . '"'); ?>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="separator"></div>
+                <div class="row" id="categoriesSeoKeywords<?php echo $i; ?>">
+                  <div class="col-md-10">
+                    <div class="form-group row" data-index="<?php echo $i; ?>">
+                      <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_keywords'); ?></label>
+                      <div class="col-md-7 input-group" id="categories_head_keywords_tag<?php echo $i; ?>">
+                        <?php echo HTML::inputField('categories_head_keywords_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoKeywords($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="categories_head_keywords_tag_' . $i . '"', false); ?>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php
+          }
+          ?>
+        </div>
+        <div class="separator"></div>
+        <div class="alert alert-info" role="alert">
+          <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_submit') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_submit') ?></div>
+          <div class="separator"></div>
+          <div><?php echo $CLICSHOPPING_Categories->getDef('help_submit'); ?></div>
+        </div>
      </div>
       <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab3', null, 'display'); ?>
     </div>

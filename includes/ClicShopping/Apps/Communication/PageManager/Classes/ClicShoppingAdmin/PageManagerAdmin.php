@@ -19,13 +19,37 @@
     protected int $language_id;
 
     /**
-     * Title Name of the submit
-     *
-     * @param string $pages_id , $language_id
-     * @return string product['products_head_title_tag'], description name
-     *
+     * @param int $pages_id
+     * @param int|null $language_id
+     * @return string
      */
-    public static function getPageManagerHeadTitleTag(int $pages_id, int $language_id)
+    public static function getPageManagerTitle(int $pages_id, ?int $language_id): string
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Language = Registry::get('Language');
+
+      if ($language_id == 0) $language_id = $CLICSHOPPING_Language->getId();
+
+      $QpageManager = $CLICSHOPPING_Db->prepare('select pages_title
+                                                  from :table_pages_manager_description
+                                                  where pages_id = :pages_id
+                                                  and language_id = :language_id
+                                                 ');
+      $QpageManager->bindInt(':pages_id', (int)$pages_id);
+      $QpageManager->bindInt(':language_id', (int)$language_id);
+
+      $QpageManager->execute();
+
+      return $QpageManager->value('pages_title');
+    }
+
+
+    /**
+     * @param int $pages_id
+     * @param int|null $language_id
+     * @return string
+     */
+    public static function getPageManagerHeadTitleTag(int $pages_id, ?int $language_id): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -46,13 +70,11 @@
     }
 
     /**
-     * Description Name
-     *
-     * @param string $pages_id , $language_id
-     * @return string $page_manager['products_head_desc_tag'], description name
-     *
+     * @param int $pages_id
+     * @param int|null $language_id
+     * @return string
      */
-    public static function getPageManagerHeadDescTag(int $pages_id, int $language_id)
+    public static function getPageManagerHeadDescTag(int $pages_id, ?int $language_id): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -73,13 +95,11 @@
     }
 
     /**
-     * keywords Name
-     *
-     * @param string $pages_id , $language_id
-     * @return string $page_manager['products_head_keywords_tag'], keywords name
-     *
+     * @param int $pages_id
+     * @param int|null $language_id
+     * @return string
      */
-    public static function getPageManagerHeadKeywordsTag(int $pages_id, int $language_id)
+    public static function getPageManagerHeadKeywordsTag(int $pages_id, ?int $language_id): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');

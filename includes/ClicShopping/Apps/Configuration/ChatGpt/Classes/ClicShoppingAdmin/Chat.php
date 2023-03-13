@@ -22,6 +22,21 @@
     }
 
     /**
+     * @param bool $chatGpt
+     * @return string
+     */
+    public static function getAjaxUrl(bool $chatGpt = true) :string
+    {
+      if ($chatGpt === false) {
+        $url = CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin') . 'ajax/chatGptSEO.php';
+      } else {
+        $url = '';
+      }
+
+      return $url;
+    }
+
+    /**
      * @return array
      */
     public static function getModel(): string

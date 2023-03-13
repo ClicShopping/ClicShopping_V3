@@ -12,7 +12,8 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\DateTime;
-
+  use ClicShopping\OM\CLICSHOPPING;
+  
   use ClicShopping\Apps\Communication\PageManager\Classes\ClicShoppingAdmin\PageManagerAdmin;
 
   $CLICSHOPPING_PageManager = Registry::get('PageManager');
@@ -221,12 +222,11 @@
     'text' => $CLICSHOPPING_PageManager->getDef('page_manager_text_yes')
   ];
 ?>
-<script type="text/javascript"><!--
+<script type="text/javascript">
     function popupImageWindow(url) {
         window.open(url, 'popupImageWindow', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=no,width=100,height=100,screenX=150,screenY=150,top=150,left=150')
     }
-
-    //--></script>
+</script>
 
 <script type="text/javascript">
     function disableIt(a) {
@@ -644,66 +644,82 @@
             <div class="tab-pane" id="tab4">
               <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('text_products_page_seo'); ?></div>
               <div class="adminformTitle">
-                <div class="row">
-                  <div class="col-md-12 text-center">
-                    <span class="col-md-6 text-center"><a href="https://www.google.fr/trends" target="_blank"
-                                                             rel="noreferrer"><?php echo $CLICSHOPPING_PageManager->getDef('keywords_google_trend'); ?></a></span>
+                <div class="col-md-12">
+                  <div class="row text-center" id="productsGoogleKeywords">
+                    <a href="https://www.google.fr/trends" target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
                   </div>
                 </div>
-              </div>
-              <div class="adminformTitle">
-<?php
-    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-      if (isset($bID)) {
-        $title_tag = PageManagerAdmin::getPageManagerHeadTitleTag($bID, $languages[$i]['id']);
-        $descrition_tag = PageManagerAdmin::getPageManagerHeadDescTag($bID, $languages[$i]['id']);
-        $keywords_tag = PageManagerAdmin::getPageManagerHeadKeywordsTag($bID, $languages[$i]['id']);
-      } else {
-        $title_tag = null;
-        $descrition_tag = null;
-        $keywords_tag = null;
-      }
-?>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group row">
-                          <label for="<?php echo $CLICSHOPPING_PageManager->getDef('text_products_page_title'); ?>"
-                                 class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']) . '&nbsp ' . $CLICSHOPPING_PageManager->getDef('text_products_page_title'); ?></label>
-                          <div class="col-md-7">
-                            <?php echo HTML::inputField('page_manager_head_title_tag_' . $languages[$i]['id'], $title_tag, 'maxlength="70" size="77" id="default_title_' . $i . '"', false); ?>
+                <div class="separator"></div>
+                <div class="accordion" id="accordionExample">
+                  <?php
+                    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                      if (isset($bID)) {
+                        $title_tag = PageManagerAdmin::getPageManagerHeadTitleTag($bID, $languages[$i]['id']);
+                        $descrition_tag = PageManagerAdmin::getPageManagerHeadDescTag($bID, $languages[$i]['id']);
+                        $keywords_tag = PageManagerAdmin::getPageManagerHeadKeywordsTag($bID, $languages[$i]['id']);
+                      } else {
+                        $title_tag = null;
+                        $descrition_tag = null;
+                        $keywords_tag = null;
+                      }
+                    ?>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading<?php $i; ?>">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                      </button>
+                    </h2>
+                    <?php
+                    if ($i == 0) {
+                      $show = ' show';
+                    } else {
+                      $show = '';
+                    }
+                    ?>
+                    <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <div class="row" id="pageManagerSeoTitle<?php echo $i; ?>">
+                          <div class="col-md-10">
+                            <div class="form-group row" data-index="<?php echo $i; ?>">
+                              <label for="<?php echo $CLICSHOPPING_PageManager->getDef('text_products_page_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_PageManager->getDef('text_products_page_title'); ?></label>
+                              <div class="col-md-7 input-group" id="page_manager_head_title_tag<?php echo $i; ?>">
+                                <?php echo HTML::inputField('page_manager_head_title_tag_' . $languages[$i]['id'], $title_tag, 'maxlength="70" size="77" id="page_manager_head_title_tag_' . $i . '"', false); ?>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
+                        <div class="separator"></div>
+                        <div class="row" id="pageManagerSeoDescription<?php echo $i; ?>">
+                          <div class="col-md-6">
+                            <div class="form-group row" data-index="<?php echo $i; ?>">
+                              <label for="<?php echo $CLICSHOPPING_PageManager->getDef('text_products_header_description'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_PageManager->getDef('text_products_header_description'); ?></label>
+                              <div class="col-md-8 input-group" id="page_manager_head_desc_tag<?php echo $i; ?>">
+                                <?php echo HTML::textAreaField('page_manager_head_desc_tag_' . $languages[$i]['id'], $descrition_tag, '110', '5', 'id="page_manager_head_desc_tag_' . $i . '"'); ?>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="separator"></div>
+                        <div class="row" id="pageManagerSeoKeywords<?php echo $i; ?>">
+                          <div class="col-md-10">
+                            <div class="form-group row" data-index="<?php echo $i; ?>">
+                              <label for="<?php echo $CLICSHOPPING_PageManager->getDef('text_products_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_PageManager->getDef('text_products_keywords'); ?></label>
+                              <div class="col-md-7 input-group" id="page_manager_head_keywords_tag<?php echo $i; ?>">
+                                <?php echo HTML::inputField('page_manager_head_keywords_tag_' . $languages[$i]['id'], $keywords_tag, 'maxlength="70" size="77" id="page_manager_head_keywords_tag_' . $i . '"', false); ?>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="separator"></div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group row">
-                          <label
-                            for="<?php echo $CLICSHOPPING_PageManager->getDef('text_products_header_description'); ?>"
-                            class="col-2 col-form-label"><?php echo $CLICSHOPPING_PageManager->getDef('text_products_header_description'); ?></label>
-                          <div class="col-md-5">
-                            <?php echo HTML::textAreaField('page_manager_head_desc_tag_' . $languages[$i]['id'], $descrition_tag, '75', '2', 'id="default_description_' . $i . '"'); ?>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="separator"></div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group row">
-                          <label for="<?php echo $CLICSHOPPING_PageManager->getDef('text_products_keywords'); ?>"
-                                 class="col-2 col-form-label"><?php echo $CLICSHOPPING_PageManager->getDef('text_products_keywords'); ?></label>
-                          <div class="col-md-5">
-                            <?php echo HTML::textAreaField('page_manager_head_keywords_tag_' . $languages[$i]['id'], $keywords_tag, '75', '2'); ?>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-<?php
-    }
-?>
+                  <?php
+                      }
+                    }
+                  ?>
+                  </div>
+                </div>
               </div>
               <div class="separator"></div>
               <div class="alert alert-info" role="alert">
@@ -712,11 +728,9 @@
                 <div><?php echo $CLICSHOPPING_PageManager->getDef('help_submit'); ?></div>
               </div>
             </div>
-<?php
-  }
-?>
-      </div>
-      <div class="separator"></div>
+          </div>
+
+          <div class="separator"></div>
 <?php
   //***********************************
   // extension
