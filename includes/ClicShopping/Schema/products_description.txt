@@ -5,10 +5,10 @@ products_description text
 products_url varchar(255)
 products_viewed int(5) default(0)
 products_seo_url varchar(255)
-products_head_title_tag varchar(255)
-products_head_desc_tag varchar(255)
-products_head_keywords_tag varchar(255)
-products_head_tag varchar(255)
+products_head_title_tag text null
+products_head_desc_tag text null
+products_head_keywords_tag text null
+products_head_tag text null
 products_shipping_delay text
 products_description_summary text
 --

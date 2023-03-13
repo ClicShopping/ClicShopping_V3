@@ -3,9 +3,9 @@ pages_title varchar(255) not_null
 pages_html_text longtext
 externallink varchar(255)
 language_id int default(1) not_null
-page_manager_head_title_tag varchar(255)
-page_manager_head_desc_tag varchar(255)
-page_manager_head_keywords_tag varchar(255)
+page_manager_head_title_tag text null
+page_manager_head_desc_tag text null
+page_manager_head_keywords_tag text null
 --
 primary pages_id language_id
 idx_pages_title pages_title

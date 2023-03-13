@@ -3,9 +3,9 @@ language_id int default(1) not_null
 categories_name varchar(255) not_null
 categories_description text
 categories_seo_url varchar(255)
-categories_head_title_tag varchar(255)
-categories_head_desc_tag varchar(255)
-categories_head_keywords_tag varchar(255)
+categories_head_title_tag text null
+categories_head_desc_tag text null
+categories_head_keywords_tag text null
 --
 primary categories_id language_id
 idx_categories_name categories_name
