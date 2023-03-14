@@ -177,4 +177,4 @@ titre : le titre du champs, le nom de votre produit (ex blouson cuir)<br />
 description : le champs description, le nom du produit (blouson cuir), le nom du produit découpé (blouson, cuir), le nom de la catégorie<br />
 mots clefs : le champs mots clefs, le nom du produit (blouson cuir), le nom du produit découpé (blouson, cuir), le nom de la catégorie<br />
 </blockquote></li>
-<li><strong>veuillez à ne pas mettre trop de mots clefs (maximum 10)</strong> et établissez une cohérence entre chaque champs afin de retourver les mots les plus importants en premier</li>
+<li><strong>veuillez à ne pas mettre trop de mots clefs (maximum 10)</strong> et établissez une cohérence entre chaque champs afin de retrouver les mots les plus importants en premier</li>

@@ -63,6 +63,7 @@ $output = <<<EOD
 <!------------------>
 <!-- ChatGpt start tag-->
 <!------------------>
+<!-- product seo meta tilte  -->
 <script defer>
 $('[id^="page_manager_head_title_tag"]').each(function(index) {
   let button = '{$content}';
