@@ -64,7 +64,7 @@
                                                   submit_language_products_new_title,
                                                   submit_language_products_new_keywords,
                                                   submit_language_products_new_description
-                                          from :table_submit_description
+                                          from :table_seo
                                           where submit_id = 1
                                           and language_id = :language_id
                                         ');

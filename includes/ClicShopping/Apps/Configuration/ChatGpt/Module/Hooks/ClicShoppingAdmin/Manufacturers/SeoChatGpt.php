@@ -46,8 +46,8 @@
       }
 
       $question = $this->app->getDef('text_seo_page_title_question');
-      $questionKeywordsTag = $this->app->getDef('text_seo_page_keywords_question');
-      $questionDescriptionTag = $this->app->getDef('text_seo_page_description_question');
+      $questionKeywords = $this->app->getDef('text_seo_page_keywords_question');
+      $questionDescription = $this->app->getDef('text_seo_page_description_question');
 
       $manufacturer_name = ManufacturerAdmin::getManufacturerNameById($id);
 
@@ -96,7 +96,7 @@ $('[id^="manufacturer_seo_description"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idManufacturerSeoDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescriptionTag}' + ' ' + '{$manufacturer_name}';
+    let questionResponse = '{$questionDescription}' + ' ' + '{$manufacturer_name}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI
@@ -128,7 +128,7 @@ $('[id^="manufacturer_seo_keyword"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let idManufacturerSeoKeywords = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywordsTag}' + ' ' + '{$manufacturer_name}';
+  let questionResponse = '{$questionKeywords}' + ' ' + '{$manufacturer_name}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI

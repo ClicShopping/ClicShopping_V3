@@ -91,11 +91,11 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_submit_description"');
+      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_seo"');
 
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
-CREATE TABLE :table_submit_description (
+CREATE TABLE :table_seo (
 submit_id int NOT NULL defautl(1),
 language_id int NOT NULL defautl(1),
 submit_defaut_language_title varchar(255),

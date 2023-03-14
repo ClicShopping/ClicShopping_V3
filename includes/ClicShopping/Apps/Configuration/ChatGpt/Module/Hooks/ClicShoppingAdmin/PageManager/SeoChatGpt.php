@@ -48,8 +48,8 @@
       }
 
       $question = $this->app->getDef('text_seo_page_title_question');
-      $questionKeywordsTag = $this->app->getDef('text_seo_page_keywords_question');
-      $questionDescriptionTag = $this->app->getDef('text_seo_page_description_question');
+      $questionKeywords = $this->app->getDef('text_seo_page_keywords_question');
+      $questionDescription = $this->app->getDef('text_seo_page_description_question');
 
       $page_manager_name = PageManagerAdmin::getPageManagerTitle($id, $CLICSHOPPING_Language->getId());
 
@@ -95,7 +95,7 @@ $('[id^="page_manager_head_keywords_tag"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let idPageManagerSeoKeywords = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywordsTag}' + ' ' + '{$page_manager_name}';
+  let questionResponse = '{$questionKeywords}' + ' ' + '{$page_manager_name}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
@@ -121,7 +121,7 @@ $('[id^="page_manager_head_desc_tag"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idPageManagerSeoDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescriptionTag}' + ' ' + '{$page_manager_name}';
+    let questionResponse = '{$questionDescription}' + ' ' + '{$page_manager_name}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI

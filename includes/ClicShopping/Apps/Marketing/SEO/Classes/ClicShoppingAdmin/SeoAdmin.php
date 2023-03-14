@@ -27,7 +27,7 @@
      */
     public static function getSeoDefaultLanguageTitleH1(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_defaut_language_title_h1', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_defaut_language_title_h1', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_defaut_language_title_h1');
     }
@@ -40,7 +40,7 @@
      */
     public static function getSeoDefaultLanguageTitle(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_defaut_language_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_defaut_language_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_defaut_language_title');
     }
@@ -53,7 +53,7 @@
      */
     public static function getSeoDefaultLanguageDescription(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_defaut_language_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_defaut_language_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_defaut_language_description');
     }
@@ -66,7 +66,7 @@
      */
     public static function getSeoDefaultLanguageKeywords(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_defaut_language_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_defaut_language_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_defaut_language_keywords');
     }
@@ -79,7 +79,7 @@
      */
     public static function getSeoDefaultLanguageFooter(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_defaut_language_footer', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_defaut_language_footer', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_defaut_language_footer');
     }
@@ -92,7 +92,7 @@
      */
     public static function getSeoProductsInfoTitle(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_products_info_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_products_info_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_products_info_title');
     }
@@ -106,7 +106,7 @@
      */
     public static function getSeoProductsInfoDescription(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_products_info_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_products_info_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_products_info_description');
     }
@@ -119,7 +119,7 @@
      */
     public static function getSeoProductsInfoKeywords(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_products_info_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_products_info_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_products_info_keywords');
     }
@@ -132,7 +132,7 @@
      */
     public static function getSeoProductsNewTitle(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_products_new_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_products_new_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_products_new_title');
     }
@@ -145,7 +145,7 @@
      */
     public static function getSeoProductsNewDescription(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_products_new_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_products_new_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_products_new_description');
     }
@@ -159,7 +159,7 @@
      */
     public static function getSeoProductsNewKeywords(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_products_new_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_products_new_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_products_new_keywords');
     }
@@ -172,7 +172,7 @@
      */
     public static function getSeoProductsSpecialsTitle(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_special_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_special_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_special_title');
     }
@@ -185,7 +185,7 @@
      */
     public static function getSeoProductsSpecialsDescription(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_special_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_special_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_special_description');
     }
@@ -198,7 +198,7 @@
      */
     public static function getSeoProductsSpecialskeywords(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_special_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_special_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_special_keywords');
     }
@@ -211,7 +211,7 @@
      */
     public static function getSeoProductsReviewsTitle(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_reviews_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_reviews_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_reviews_title');
     }
@@ -224,7 +224,7 @@
      */
     public static function getSeoProductsReviewsDescription(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_reviews_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_reviews_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_reviews_description');
     }
@@ -237,7 +237,7 @@
      */
     public static function getSeoProductsReviewsKeywords(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_reviews_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_reviews_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_reviews_keywords');
     }
@@ -251,7 +251,7 @@
      */
     public static function getSeoFavoritesTitle(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_favorites_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_favorites_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_favorites_title');
     }
@@ -264,7 +264,7 @@
      */
     public static function getSeoFavoritesDescription(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_favorites_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_favorites_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_favorites_description');
     }
@@ -277,7 +277,7 @@
      */
     public static function getSeoFavoritesKeywords(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_favorites_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_favorites_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_favorites_keywords');
     }
@@ -290,7 +290,7 @@
      */
     public static function getSeoFeaturedTitle(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_featured_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_featured_title', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_featured_title');
     }
@@ -303,7 +303,7 @@
      */
     public static function getSeoFeaturedDescription(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_featured_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_featured_description', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_featured_description');
     }
@@ -317,7 +317,7 @@
      */
     public static function getSeoFeaturedkeywords(int $submit_id, int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_language_featured_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_language_featured_keywords', ['submit_id' => $submit_id, 'language_id' => $language_id]);
 
       return $Qseo->value('submit_language_featured_keywords');
     }

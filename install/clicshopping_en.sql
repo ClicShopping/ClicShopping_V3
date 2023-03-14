@@ -2011,8 +2011,8 @@ INSERT INTO sec_directory_whitelist VALUES(6, 'pub');
 INSERT INTO sec_directory_whitelist VALUES(7, 'includes/Work');
 
 
-INSERT INTO submit_description VALUES(1, 1, 'ClicShopping B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping B2B B2C Solution');
-INSERT INTO submit_description VALUES(1, 2, 'ClicShopping B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping B2B B2C Solution');
+INSERT INTO seo VALUES(1, 1, 'ClicShopping B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping B2B B2C Solution');
+INSERT INTO seo VALUES(1, 2, 'ClicShopping B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping B2B B2C Solution');
 
 
 INSERT INTO tax_class VALUES(1, 'TVA 20', 'TVA France 20', '2015-02-09 16:13:40', '2006-04-09 16:13:48');

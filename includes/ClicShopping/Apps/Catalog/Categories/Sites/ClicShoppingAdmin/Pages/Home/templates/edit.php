@@ -230,8 +230,6 @@
           </div>
         </div>
         <div class="separator"></div>
-
-
         <div class="accordion" id="accordionExample">
           <?php
           for ($i = 0, $n = \count($languages); $i < $n; $i++) {

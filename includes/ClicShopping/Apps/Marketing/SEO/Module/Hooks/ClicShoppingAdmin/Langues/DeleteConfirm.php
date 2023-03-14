@@ -31,7 +31,7 @@
     private function delete($id)
     {
       if (!\is_null($id)) {
-        $this->app->db->delete('submit_description', ['language_id' => $id]);
+        $this->app->db->delete('seo', ['language_id' => $id]);
       }
     }
 

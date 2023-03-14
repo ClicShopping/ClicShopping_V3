@@ -132,7 +132,7 @@
       $Qsubmit = $this->db->prepare('select submit_id,
                                             language_id,
                                             submit_defaut_language_title
-                                    from :table_submit_description
+                                    from :table_seo
                                     where submit_id = 1
                                     and language_id = :language_id
                                     limit 1
@@ -158,7 +158,7 @@
       $Qsubmit = $this->db->prepare('select submit_id,
                                             language_id,
                                             submit_defaut_language_description
-                                    from :table_submit_description
+                                    from :table_seo
                                     where submit_id = 1
                                     and language_id = :language_id
                                     limit 1

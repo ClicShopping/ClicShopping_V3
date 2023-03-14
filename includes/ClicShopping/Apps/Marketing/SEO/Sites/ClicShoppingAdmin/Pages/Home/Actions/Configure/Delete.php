@@ -45,7 +45,7 @@
       if ($Qcheck->fetch()) {
 
         $QMenuId = $CLICSHOPPING_Db->prepare('select id
-                                        from :table_submit_description
+                                        from :table_seo
                                         where app_code = :app_code
                                       ');
 
@@ -68,10 +68,10 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_submit_description"');
+      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_seo"');
 
       if ($Qcheck->fetch() !== false) {
-        $Qdelete = $CLICSHOPPING_Db->prepare('delete from :table_submit_description');
+        $Qdelete = $CLICSHOPPING_Db->prepare('delete from :table_seo');
         $Qdelete->execute();
       }
 

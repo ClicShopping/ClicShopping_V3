@@ -33,14 +33,14 @@
     private function insert()
     {
       $insert_language_id = LanguageAdmin::getLatestLanguageID();
-      $QsubmitDescription = $this->app->db->get('submit_description', '*', ['language_id' => $this->lang->getId()]);
+      $QsubmitDescription = $this->app->db->get('seo', '*', ['language_id' => $this->lang->getId()]);
 
       while ($QsubmitDescription->fetch()) {
         $cols = $QsubmitDescription->toArray();
 
         $cols['language_id'] = (int)$insert_language_id;
 
-        $this->app->db->save('submit_description', $cols);
+        $this->app->db->save('seo', $cols);
       }
     }
 

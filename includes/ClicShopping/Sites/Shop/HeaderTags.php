@@ -31,7 +31,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $Qsubmit_footer = $CLICSHOPPING_Db->prepare('select submit_defaut_language_footer
-                                                    from :table_submit_description
+                                                    from :table_seo
                                                     where language_id = :language_id
                                                   ');
       $Qsubmit_footer->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());

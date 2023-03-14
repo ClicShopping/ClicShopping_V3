@@ -81,7 +81,7 @@
           'language_id' => $languages_id
         ];
 
-          $CLICSHOPPING_SEO->db->save('submit_description', $sql_data_array_pages_description, $update_sql);
+          $CLICSHOPPING_SEO->db->save('seo', $sql_data_array_pages_description, $update_sql);
 
           $CLICSHOPPING_Hooks->call('SEO', 'Update');
         }

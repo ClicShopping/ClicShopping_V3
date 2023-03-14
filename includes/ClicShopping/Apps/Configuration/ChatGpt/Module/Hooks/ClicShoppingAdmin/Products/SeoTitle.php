@@ -48,8 +48,8 @@
 
       $question = $this->app->getDef('text_seo_page_title_question');
       $questionTag = $this->app->getDef('text_seo_page_tag_question');
-      $questionKeywordsTag = $this->app->getDef('text_seo_page_keywords_question');
-      $questionDescriptionTag = $this->app->getDef('text_seo_page_description_question');
+      $questionKeywords = $this->app->getDef('text_seo_page_keywords_question');
+      $questionDescription = $this->app->getDef('text_seo_page_description_question');
 
       $product_name = $CLICSHOPPING_ProductsAdmin->getProductsName($id);
 
@@ -74,7 +74,7 @@ $('[id^="SummaryDescription"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idproductsSummaryDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescriptionTag}' + ' ' + '{$product_name}';
+    let questionResponse = '{$questionDescription}' + ' ' + '{$product_name}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI
@@ -125,7 +125,7 @@ $('[id^="products_head_keywords_tag"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let idProductsSeoKeywords = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywordsTag}' + ' ' + '{$product_name}';
+  let questionResponse = '{$questionKeywords}' + ' ' + '{$product_name}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
@@ -176,7 +176,7 @@ $('[id^="products_head_desc_tag"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idproductsSeoDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescriptionTag}' + ' ' + '{$product_name}';
+    let questionResponse = '{$questionDescription}' + ' ' + '{$product_name}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI

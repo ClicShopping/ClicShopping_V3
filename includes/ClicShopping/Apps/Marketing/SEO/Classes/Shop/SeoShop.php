@@ -62,7 +62,7 @@
        $Qseo = $this->db->prepare('select submit_defaut_language_title,
                                           submit_defaut_language_keywords,
                                           submit_defaut_language_description
-                                    from :table_submit_description
+                                    from :table_seo
                                     where submit_id = 1
                                     and language_id = :language_id
                                    ');
@@ -125,7 +125,7 @@
       $Qseo = $this->db->prepare('select submit_language_products_new_title,
                                         submit_language_products_new_keywords,
                                         submit_language_products_new_description
-                                  from :table_submit_description
+                                  from :table_seo
                                   where submit_id = 1
                                   and language_id = :language_id
                                 ');
@@ -190,7 +190,7 @@
       $Qseo = $this->db->prepare('select submit_language_special_title,
                                          submit_language_special_keywords,
                                          submit_language_special_description
-                                  from :table_submit_description
+                                  from :table_seo
                                   where submit_id = 1
                                   and language_id = :language_id
                                 ');
@@ -255,7 +255,7 @@
       $Qseo = $this->db->prepare('select submit_language_reviews_title,
                                          submit_language_reviews_keywords,
                                          submit_language_reviews_description
-                                  from :table_submit_description
+                                  from :table_seo
                                   where submit_id = 1
                                   and language_id = :language_id
                                 ');
@@ -320,7 +320,7 @@
       $Qseo = $this->db->prepare('select submit_language_favorites_title,
                                          submit_language_favorites_keywords,
                                          submit_language_favorites_description
-                                  from :table_submit_description
+                                  from :table_seo
                                   where submit_id = 1
                                   and language_id = :language_id
                                 ');
@@ -385,7 +385,7 @@
       $Qseo = $this->db->prepare('select submit_language_featured_title,
                                          submit_language_featured_keywords,
                                          submit_language_featured_description
-                                  from :table_submit_description
+                                  from :table_seo
                                   where submit_id = 1
                                   and language_id = :language_id
                                 ');

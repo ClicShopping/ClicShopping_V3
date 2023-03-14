@@ -39,7 +39,7 @@
      */
     private static function getSeoDefaultLanguageTitleH1(int $language_id): string
     {
-      $Qseo = Registry::get('Db')->get('submit_description', 'submit_defaut_language_title_h1', ['language_id' => $language_id]);
+      $Qseo = Registry::get('Db')->get('seo', 'submit_defaut_language_title_h1', ['language_id' => $language_id]);
 
       return $Qseo->value('submit_defaut_language_title_h1');
     }

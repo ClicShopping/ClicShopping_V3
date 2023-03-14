@@ -51,7 +51,7 @@
                                                   p.submit_language_featured_keywords,
                                                   p.submit_language_featured_description,
                                                   p.submit_defaut_language_title_h1       
-                                         from :table_submit_description p
+                                         from :table_seo p
                                          where p.submit_id = 1
                                         ');
   $Qseo->execute();
@@ -141,64 +141,62 @@
                 ?>
                 <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-
-
-
-                    <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group row">
-                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_defaut_language_title_h1'); ?>"
-                                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_defaut_language_title_h1'); ?></label>
-                          <div class="col-md-7">
-                            <?php echo HTML::inputField('submit_defaut_language_title_h1_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_title_h1[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageTitleH1($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="default_title_h1_' .$i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_defaut_language_title_h1') . '"', true) . '&nbsp;'; ?>
+                    <div class="separator"></div>
+                    <div class="row" id="seoDefaultTitleH<?php echo $i; ?>">
+                      <div class="col-md-10">
+                        <div class="form-group row" data-index="<?php echo $i; ?>">
+                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_defaut_language_title_h1'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_defaut_language_title_h1'); ?></label>
+                          <div class="col-md-7 input-group" id="seo_default_title_h<?php echo $i; ?>">
+                            <?php echo '&nbsp;' . HTML::inputField('submit_defaut_language_title_h1_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_title[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageTitleH1($seo->submit_id, $languages[$i]['id'])), 'maxlength="70" size="77" id="seo_default_title_h_' . $i . '"', false); ?>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group row">
-                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_title'); ?>"
-                                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_title'); ?></label>
-                          <div class="col-md-7">
-                            <?php echo HTML::inputField('submit_defaut_language_title_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_title[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageTitle($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="default_title_' .$i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_default_language_title') . '"', true) . '&nbsp;'; ?>
+                    <div class="separator"></div>
+                    <div class="row" id="seoDefaultLanguageTitle<?php echo $i; ?>">
+                      <div class="col-md-10">
+                        <div class="form-group row" data-index="<?php echo $i; ?>">
+                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_title'); ?></label>
+                          <div class="col-md-7 input-group" id="seo_default_title_tag<?php echo $i; ?>">
+                            <?php echo '&nbsp;' . HTML::inputField('submit_defaut_language_title_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_title[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageTitle($seo->submit_id, $languages[$i]['id'])), 'maxlength="70" size="77" id="seo_default_title_tag_' . $i . '"', false); ?>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group row">
-                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_description'); ?>"
-                                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_description'); ?></label>
-                          <div class="col-md-7">
-                            <?php echo HTML::textAreaField('submit_defaut_language_description_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_description[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageDescription($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="default_description_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_default_language_description') . '"') . '&nbsp;'; ?>
+                    <div class="separator"></div>
+                    <div class="separator"></div>
+                    <div class="row" id="seoDefaultDescription<?php echo $i; ?>">
+                      <div class="col-md-6">
+                        <div class="form-group row" data-index="<?php echo $i; ?>">
+                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_description'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_description'); ?></label>
+                          <div class="col-md-8 input-group" id="seo_default_desc_tag<?php echo $i; ?>">
+                            <?php echo HTML::textAreaField('submit_defaut_language_description_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_description[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageDescription($seo->submit_id, $languages[$i]['id'])), '110', '5', 'id="seo_default_desc_tag_' . $i . '"'); ?>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group row">
-                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_keywords'); ?>"
-                                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_keywords'); ?></label>
-                          <div class="col-md-7">
-                            <?php echo HTML::inputField('submit_defaut_language_keywords_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_keywords[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageKeywords($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="submit_defaut_language_keywords' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_default_language_keywords') . '"', true) . '&nbsp;'; ?>
+                    <div class="separator"></div>
+                    <div class="row" id="seoDefautLanguageKeywords<?php echo $i; ?>">
+                      <div class="col-md-10">
+                        <div class="form-group row" data-index="<?php echo $i; ?>">
+                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_keywords'); ?></label>
+                          <div class="col-md-7 input-group" id="seo_defaut_language_keywords<?php echo $i; ?>">
+                            <?php echo '&nbsp;' . HTML::inputField('submit_defaut_language_keywords_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_keywords[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageKeywords($seo->submit_id, $languages[$i]['id'])), 'maxlength="70" size="77" id="seo_defaut_language_keywords_' . $i . '"', false); ?>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group row">
-                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_footer'); ?>"
-                                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_footer'); ?></label>
-                          <div class="col-md-7">
-                            <?php echo HTML::inputField('submit_defaut_language_footer_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_footer[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageFooter($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="submit_defaut_language_footer' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_default_language_footer') . '"', true) . '&nbsp;'; ?>
+                    <div class="separator"></div>
+                    <div class="row" id="seoDefautLanguageFooter<?php echo $i; ?>">
+                      <div class="col-md-10">
+                        <div class="form-group row" data-index="<?php echo $i; ?>">
+                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_footer'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_footer'); ?></label>
+                          <div class="col-md-7 input-group" id="seo_defaut_language_footer<?php echo $i; ?>">
+                            <?php echo '&nbsp;' . HTML::inputField('submit_defaut_language_footer_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_footer[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageFooter($seo->submit_id, $languages[$i]['id'])), 'maxlength="70" size="77" id="seo_defaut_language_footer_' . $i . '"', false); ?>
                           </div>
                         </div>
                       </div>
@@ -206,7 +204,6 @@
 
                   </div>
                 </div>
-
               </div>
             <?php
             }

@@ -99,7 +99,9 @@
               //pb when the english when the status is off
               //      if ($Qlanguages->valueInt('languages_id') != 1 && DEFAULT_LANGUAGE != $Qlanguages->value('code')) {
               if ($Qlanguages->valueInt('status') == 1) {
-                echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=0&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="bi-check text-success"></i>');
+                if (DEFAULT_LANGUAGE != $Qlanguages->value('code')) {
+                  echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=0&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="bi-check text-success"></i>');
+                }
               } else {
                 echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=1&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="bi bi-x text-danger"></i>');
               }

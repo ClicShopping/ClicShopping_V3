@@ -68,7 +68,7 @@
                                                     submit_defaut_language_title,
                                                     submit_defaut_language_keywords,
                                                     submit_defaut_language_description
-                                             from :table_submit_description
+                                             from :table_seo
                                              where submit_id = 1
                                              and language_id = :language_id
                                              ');
