@@ -2,6 +2,7 @@
 Gppt improved
 Update librairies
 Small fix
+Submit description BD renamed in seo
 
 --------------------
 3.413

@@ -101,6 +101,8 @@
               if ($Qlanguages->valueInt('status') == 1) {
                 if (DEFAULT_LANGUAGE != $Qlanguages->value('code')) {
                   echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=0&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="bi-check text-success"></i>');
+                } else {
+                  echo '<i class="bi-check text-success"></i>';
                 }
               } else {
                 echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=1&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="bi bi-x text-danger"></i>');
