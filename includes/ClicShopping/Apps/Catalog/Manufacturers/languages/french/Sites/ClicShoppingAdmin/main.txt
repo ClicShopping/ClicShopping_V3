@@ -98,8 +98,8 @@ text_manufacturer_seo_title = Titre
 title_manufacturer_seo_description = Description
 title_manufacturer_seo_keywords = Mots clés
 
-title_help_submit = Notes sur la gestion des métadonnées
-help_submit = <li>Le système gère automatiquement la gestion des métadonnées.<br />
+title_help_seo = Notes sur la gestion des métadonnées
+help_seo = <li>Le système gère automatiquement la gestion des métadonnées.<br />
 <blockquote>il inscrit automatiquement les éléments dans l'ordre suivant si les champs ne sont pas renseignées:<br />
 titre : le nom de votre produit (ex blouson cuir)<br />
 description : le nom du produit (blouson cuir), le nom du produit découpé (blouson, cuir), le nom de la catégorie,)<br />

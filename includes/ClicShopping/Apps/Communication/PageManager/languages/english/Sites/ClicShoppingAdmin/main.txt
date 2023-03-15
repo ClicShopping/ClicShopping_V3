@@ -124,8 +124,8 @@ text_products_tag_product = Products tag
 text_products_tag_blog = Tags blog
 text_products_page_seo = SEO
 
-title_help_submit = Note on the search engine optimization management
-help_submit = <li>The system automatically manages the search engine optimization.<br />
+title_help_seo = Note on the search engine optimization management
+help_seo = <li>The system automatically manages the search engine optimization.<br />
 <blockquote>it automatically included elements in the following order if the fields are not filled:<br />
 title : the name of your product (ex leather jacket)<br />
 description: The product name (leather jacket), the product name cut (jacket, leather), the category name<br />

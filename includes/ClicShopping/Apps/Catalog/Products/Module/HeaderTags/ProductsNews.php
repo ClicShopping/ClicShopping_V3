@@ -56,16 +56,16 @@
       }
 
       if (isset($_GET['Products'], $_GET['ProductsNew'])) {
-        $Qsubmit = $this->app->db->prepare('select submit_id,
+        $Qsubmit = $this->app->db->prepare('select seo_id,
                                                   language_id,
-                                                  submit_defaut_language_title,
-                                                  submit_defaut_language_keywords,
-                                                  submit_defaut_language_description,
-                                                  submit_language_products_new_title,
-                                                  submit_language_products_new_keywords,
-                                                  submit_language_products_new_description
+                                                  seo_defaut_language_title,
+                                                  seo_defaut_language_keywords,
+                                                  seo_defaut_language_description,
+                                                  seo_language_products_new_title,
+                                                  seo_language_products_new_keywords,
+                                                  seo_language_products_new_description
                                           from :table_seo
-                                          where submit_id = 1
+                                          where seo_id = 1
                                           and language_id = :language_id
                                         ');
         $Qsubmit->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
@@ -73,22 +73,22 @@
 
         $store_name = HTML::sanitize(STORE_NAME);
 
-        if (empty($Qsubmit->value('submit_language_products_new_title'))) {
-          $title = HTML::sanitize($Qsubmit->value('submit_defaut_language_title')) . ', ' . $CLICSHOPPING_Template->getTitle();
+        if (empty($Qsubmit->value('seo_language_products_new_title'))) {
+          $title = HTML::sanitize($Qsubmit->value('seo_defaut_language_title')) . ', ' . $CLICSHOPPING_Template->getTitle();
         } else {
-          $title = HTML::sanitize($Qsubmit->value('submit_language_products_new_title')) . ', ' . $CLICSHOPPING_Template->getTitle();
+          $title = HTML::sanitize($Qsubmit->value('seo_language_products_new_title')) . ', ' . $CLICSHOPPING_Template->getTitle();
         }
         
-        if (empty($Qsubmit->value('submit_language_products_new_description'))) {
-          $description = HTML::sanitize($Qsubmit->value('submit_defaut_language_description')) . ', ' . $CLICSHOPPING_Template->getDescription() . ', ' . $store_name;
+        if (empty($Qsubmit->value('seo_language_products_new_description'))) {
+          $description = HTML::sanitize($Qsubmit->value('seo_defaut_language_description')) . ', ' . $CLICSHOPPING_Template->getDescription() . ', ' . $store_name;
         } else {
-          $description = HTML::sanitize($Qsubmit->value('submit_language_products_new_description')) . ', ' . $CLICSHOPPING_Template->getDescription() . ', ' . $store_name;
+          $description = HTML::sanitize($Qsubmit->value('seo_language_products_new_description')) . ', ' . $CLICSHOPPING_Template->getDescription() . ', ' . $store_name;
         }
 
-        if (empty($Qsubmit->value('submit_language_products_new_keywords'))) {
-          $keywords = HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords')) . ', ' . $CLICSHOPPING_Template->getKeywords() . ', ' . $store_name;
+        if (empty($Qsubmit->value('seo_language_products_new_keywords'))) {
+          $keywords = HTML::sanitize($Qsubmit->value('seo_defaut_language_keywords')) . ', ' . $CLICSHOPPING_Template->getKeywords() . ', ' . $store_name;
         } else {
-          $keywords = HTML::sanitize($Qsubmit->value('submit_language_products_new_keywords')) . ', ' . $CLICSHOPPING_Template->getKeywords() . ', ' . $store_name;
+          $keywords = HTML::sanitize($Qsubmit->value('seo_language_products_new_keywords')) . ', ' . $CLICSHOPPING_Template->getKeywords() . ', ' . $store_name;
         }
 
         $output =

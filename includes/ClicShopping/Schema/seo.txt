@@ -1,31 +1,31 @@
-submit_id int not_null default(1)
+seo_id int not_null default(1)
 language_id int not_null default(1)
-submit_defaut_language_title text null
-submit_defaut_language_keywords text null
-submit_defaut_language_description text null
-submit_defaut_language_footer text null
-submit_language_products_info_title text null
-submit_language_products_info_keywords text null
-submit_language_products_info_description text null
-submit_language_products_new_title text null
-submit_language_products_new_keywords text null
-submit_language_products_new_description text null
-submit_language_special_title text null
-submit_language_special_keywords text null
-submit_language_special_description text null
-submit_language_reviews_title text null
-submit_language_reviews_keywords text null
-submit_language_reviews_description text null
-submit_language_favorites_title text null
-submit_language_favorites_keywords text null
-submit_language_favorites_description text null
-submit_language_featured_title text null
-submit_language_featured_keywords text null
-submit_language_featured_description text null
-submit_defaut_language_title_h1 text null
+seo_defaut_language_title text null
+seo_defaut_language_keywords text null
+seo_defaut_language_description text null
+seo_defaut_language_footer text null
+seo_language_products_info_title text null
+seo_language_products_info_keywords text null
+seo_language_products_info_description text null
+seo_language_products_new_title text null
+seo_language_products_new_keywords text null
+seo_language_products_new_description text null
+seo_language_special_title text null
+seo_language_special_keywords text null
+seo_language_special_description text null
+seo_language_reviews_title text null
+seo_language_reviews_keywords text null
+seo_language_reviews_description text null
+seo_language_favorites_title text null
+seo_language_favorites_keywords text null
+seo_language_favorites_description text null
+seo_language_featured_title text null
+seo_language_featured_keywords text null
+seo_language_featured_description text null
+seo_defaut_language_title_h1 text null
 
 --
-primary submit_id language_id
+primary seo_id language_id
 ##
 engine innodb
 character_set utf8mb4

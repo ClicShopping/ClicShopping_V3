@@ -333,9 +333,9 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Manufacturers->getDef('title_help_submit') . '"></i></h4>' . $CLICSHOPPING_Manufacturers->getDef('title_help_submit') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Manufacturers->getDef('title_help_seo') . '"></i></h4>' . $CLICSHOPPING_Manufacturers->getDef('title_help_seo') ?></div>
             <div class="separator"></div>
-            <div><?php echo $CLICSHOPPING_Manufacturers->getDef('help_submit'); ?></div>
+            <div><?php echo $CLICSHOPPING_Manufacturers->getDef('help_seo'); ?></div>
           </div>
         </div>
         <div class="separator"></div>

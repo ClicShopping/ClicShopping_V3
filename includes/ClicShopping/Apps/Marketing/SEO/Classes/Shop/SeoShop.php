@@ -59,20 +59,20 @@
      */
      public function getDefaultSeo()
      {
-       $Qseo = $this->db->prepare('select submit_defaut_language_title,
-                                          submit_defaut_language_keywords,
-                                          submit_defaut_language_description
+       $Qseo = $this->db->prepare('select seo_defaut_language_title,
+                                          seo_defaut_language_keywords,
+                                          seo_defaut_language_description
                                     from :table_seo
-                                    where submit_id = 1
+                                    where seo_id = 1
                                     and language_id = :language_id
                                    ');
 
        $Qseo->bindInt(':language_id', $this->lang->getId());
        $Qseo->execute();
 
-       $this->seoDefaultTitle = $Qseo->value('submit_defaut_language_title');
-       $this->seoDefaultDescription = $Qseo->value('submit_defaut_language_description');
-       $this->seoDefaultKeywords = $Qseo->value('submit_defaut_language_keywords');
+       $this->seoDefaultTitle = $Qseo->value('seo_defaut_language_title');
+       $this->seoDefaultDescription = $Qseo->value('seo_defaut_language_description');
+       $this->seoDefaultKeywords = $Qseo->value('seo_defaut_language_keywords');
      }
 
     /**
@@ -122,19 +122,19 @@
      */
     public function getDefaultSeoProductsNew()
     {
-      $Qseo = $this->db->prepare('select submit_language_products_new_title,
-                                        submit_language_products_new_keywords,
-                                        submit_language_products_new_description
+      $Qseo = $this->db->prepare('select seo_language_products_new_title,
+                                        seo_language_products_new_keywords,
+                                        seo_language_products_new_description
                                   from :table_seo
-                                  where submit_id = 1
+                                  where seo_id = 1
                                   and language_id = :language_id
                                 ');
       $Qseo->bindInt(':language_id', $this->lang->getId());
       $Qseo->execute();
 
-      $this->seoDefaultProductsNewTitle = $Qseo->value('submit_language_products_new_title');
-      $this->seoDefaultProductsNewDescription = $Qseo->value('submit_language_products_new_description');
-      $this->seoDefaultProductsNewKeywords = $Qseo->value('submit_language_products_new_keywords');
+      $this->seoDefaultProductsNewTitle = $Qseo->value('seo_language_products_new_title');
+      $this->seoDefaultProductsNewDescription = $Qseo->value('seo_language_products_new_description');
+      $this->seoDefaultProductsNewKeywords = $Qseo->value('seo_language_products_new_keywords');
     }
 
     /**
@@ -187,19 +187,19 @@
      */
     public function getDefaultSeoSpecials()
     {
-      $Qseo = $this->db->prepare('select submit_language_special_title,
-                                         submit_language_special_keywords,
-                                         submit_language_special_description
+      $Qseo = $this->db->prepare('select seo_language_special_title,
+                                         seo_language_special_keywords,
+                                         seo_language_special_description
                                   from :table_seo
-                                  where submit_id = 1
+                                  where seo_id = 1
                                   and language_id = :language_id
                                 ');
       $Qseo->bindInt(':language_id', $this->lang->getId());
       $Qseo->execute();
 
-      $this->getSeoSpecialsTitle = $Qseo->value('submit_language_special_title');
-      $this->seoDefaultSpecialsKeywords = $Qseo->value('submit_language_special_keywords');
-      $this->seoDefaultSpecialsDescription = $Qseo->value('submit_language_special_description');
+      $this->getSeoSpecialsTitle = $Qseo->value('seo_language_special_title');
+      $this->seoDefaultSpecialsKeywords = $Qseo->value('seo_language_special_keywords');
+      $this->seoDefaultSpecialsDescription = $Qseo->value('seo_language_special_description');
     }
 
     /**
@@ -252,19 +252,19 @@
      */
     public function getDefaultSeoReviews()
     {
-      $Qseo = $this->db->prepare('select submit_language_reviews_title,
-                                         submit_language_reviews_keywords,
-                                         submit_language_reviews_description
+      $Qseo = $this->db->prepare('select seo_language_reviews_title,
+                                         seo_language_reviews_keywords,
+                                         seo_language_reviews_description
                                   from :table_seo
-                                  where submit_id = 1
+                                  where seo_id = 1
                                   and language_id = :language_id
                                 ');
       $Qseo->bindInt(':language_id', $this->lang->getId());
       $Qseo->execute();
 
-      $this->seoDefaultReviewsTitle = $Qseo->value('submit_language_reviews_title');
-      $this->seoDefaultReviewsDescription = $Qseo->value('submit_language_reviews_description');
-      $this->seoDefaultReviewsKeywords = $Qseo->value('submit_language_reviews_keywords');
+      $this->seoDefaultReviewsTitle = $Qseo->value('seo_language_reviews_title');
+      $this->seoDefaultReviewsDescription = $Qseo->value('seo_language_reviews_description');
+      $this->seoDefaultReviewsKeywords = $Qseo->value('seo_language_reviews_keywords');
     }
 
     /**
@@ -317,19 +317,19 @@
      */
     public function getDefaultSeoFavorites()
     {
-      $Qseo = $this->db->prepare('select submit_language_favorites_title,
-                                         submit_language_favorites_keywords,
-                                         submit_language_favorites_description
+      $Qseo = $this->db->prepare('select seo_language_favorites_title,
+                                         seo_language_favorites_keywords,
+                                         seo_language_favorites_description
                                   from :table_seo
-                                  where submit_id = 1
+                                  where seo_id = 1
                                   and language_id = :language_id
                                 ');
       $Qseo->bindInt(':language_id', $this->lang->getId());
       $Qseo->execute();
 
-      $this->seoDefaultSeoFavoritesTitle = $Qseo->value('submit_language_favorites_title');
-      $this->seoDefaultFavoritesDescription = $Qseo->value('submit_language_favorites_description');
-      $this->seoDefaultFavoritesKeywords = $Qseo->value('submit_language_favorites_keywords');
+      $this->seoDefaultSeoFavoritesTitle = $Qseo->value('seo_language_favorites_title');
+      $this->seoDefaultFavoritesDescription = $Qseo->value('seo_language_favorites_description');
+      $this->seoDefaultFavoritesKeywords = $Qseo->value('seo_language_favorites_keywords');
     }
 
     /**
@@ -382,19 +382,19 @@
      */
     public function getDefaultSeoFeatured()
     {
-      $Qseo = $this->db->prepare('select submit_language_featured_title,
-                                         submit_language_featured_keywords,
-                                         submit_language_featured_description
+      $Qseo = $this->db->prepare('select seo_language_featured_title,
+                                         seo_language_featured_keywords,
+                                         seo_language_featured_description
                                   from :table_seo
-                                  where submit_id = 1
+                                  where seo_id = 1
                                   and language_id = :language_id
                                 ');
       $Qseo->bindInt(':language_id', $this->lang->getId());
       $Qseo->execute();
 
-      $this->seoDefaultSeoFeaturedTitle = $Qseo->value('submit_language_featured_title');
-      $this->seoDefaultFeaturedDescription = $Qseo->value('submit_language_featured_description');
-      $this->seoDefaultFeaturedKeywords = $Qseo->value('submit_language_featured_keywords');
+      $this->seoDefaultSeoFeaturedTitle = $Qseo->value('seo_language_featured_title');
+      $this->seoDefaultFeaturedDescription = $Qseo->value('seo_language_featured_description');
+      $this->seoDefaultFeaturedKeywords = $Qseo->value('seo_language_featured_keywords');
     }
 
 

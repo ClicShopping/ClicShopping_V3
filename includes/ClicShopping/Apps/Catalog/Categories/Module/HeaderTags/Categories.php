@@ -63,13 +63,13 @@
 // $categories is set in application_top.php to add the category to the breadcrumb
 // $categories is not set so a database query is needed
         if ($current_category_id > 0) {
-          $Qsubmit = $this->app->db->prepare('select submit_id,
+          $Qsubmit = $this->app->db->prepare('select seo_id,
                                                     language_id,
-                                                    submit_defaut_language_title,
-                                                    submit_defaut_language_keywords,
-                                                    submit_defaut_language_description
+                                                    seo_defaut_language_title,
+                                                    seo_defaut_language_keywords,
+                                                    seo_defaut_language_description
                                               from :table_seo
-                                              where submit_id = 1
+                                              where seo_id = 1
                                               and language_id = :language_id
                                             ');
           $Qsubmit->bindInt(':language_id', (int)$this->lang->getId());
@@ -93,30 +93,30 @@
             $categories_name_clean = HTML::sanitize($Qcategories->value('categories_name'));
 
             if (empty($Qcategories->value('categories_head_title_tag'))) {
-              if (empty($Qsubmit->value('submit_defaut_language_title'))) {
+              if (empty($Qsubmit->value('seo_defaut_language_title'))) {
                 $title = $categories_name_clean . ', ' . HTML::outputProtected(STORE_NAME);
               } else {
-                $title = $categories_name_clean . ',  ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_title')) . ', ' . HTML::outputProtected(STORE_NAME);
+                $title = $categories_name_clean . ',  ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_title')) . ', ' . HTML::outputProtected(STORE_NAME);
               }
             } else {
               $title = HTML::sanitize($Qcategories->value('categories_head_title_tag')) . ', ' . $categories_name_clean . ', ' . HTML::outputProtected(STORE_NAME);
             }
 
             if (empty($Qcategories->value('categories_head_desc_tag'))) {
-              if (empty($Qsubmit->value('submit_defaut_language_description'))) {
+              if (empty($Qsubmit->value('seo_defaut_language_description'))) {
                 $description = $categories_name_clean . ', ' . HTML::outputProtected(STORE_NAME);
               } else {
-                $description = $categories_name_clean . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_description')) . ', ' . HTML::outputProtected(STORE_NAME);
+                $description = $categories_name_clean . ', ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_description')) . ', ' . HTML::outputProtected(STORE_NAME);
               }
             } else {
               $description = HTML::sanitize($Qcategories->value('categories_head_desc_tag')) . ', ' . $categories_name_clean . ', ' . HTML::outputProtected(STORE_NAME);
             }
 
             if (empty($Qcategories->value('categories_head_keywords_tag'))) {
-              if (empty($Qsubmit->value('submit_defaut_language_keywords'))) {
+              if (empty($Qsubmit->value('seo_defaut_language_keywords'))) {
                 $keywords = $categories_name_clean;
               } else {
-                $keywords = $categories_name_clean . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+                $keywords = $categories_name_clean . ', ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_keywords'));
               }
             } else {
               $keywords = $Qcategories->value('categories_head_keywords_tag') . ', ' . $categories_name_clean;

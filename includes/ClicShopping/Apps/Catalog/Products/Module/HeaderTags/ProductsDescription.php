@@ -60,16 +60,16 @@
         if ($CLICSHOPPING_ProductsCommon->getID()) {
           $products_id = $CLICSHOPPING_ProductsCommon->getID();
 
-          $Qsubmit = $this->app->db->prepare('select submit_id,
+          $Qsubmit = $this->app->db->prepare('select seo_id,
                                                     language_id,
-                                                    submit_defaut_language_title,
-                                                    submit_defaut_language_keywords,
-                                                    submit_defaut_language_description,
-                                                    submit_language_products_info_title,
-                                                    submit_language_products_info_keywords,
-                                                    submit_language_products_info_description
+                                                    seo_defaut_language_title,
+                                                    seo_defaut_language_keywords,
+                                                    seo_defaut_language_description,
+                                                    seo_language_products_info_title,
+                                                    seo_language_products_info_keywords,
+                                                    seo_language_products_info_description
                                               from :table_seo
-                                              where submit_id = 1
+                                              where seo_id = 1
                                               and language_id = :language_id
                                             ');
           $Qsubmit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
@@ -109,33 +109,33 @@
 
           $store_name = HTML::sanitize(STORE_NAME);
 
-          $submit_language_products_info_title = HTML::sanitize($Qsubmit->value('submit_language_products_info_title')) . ', ';
+          $seo_language_products_info_title = HTML::sanitize($Qsubmit->value('seo_language_products_info_title')) . ', ';
 
           if (empty($QproductInfo->value('products_head_title_tag'))) {
-            if (empty($submit_language_products_info_title)) {
-              $title = $products_name_clean . $categories_name_clean . HTML::sanitize($Qsubmit->value('submit_defaut_language_title')) . ', ' . $store_name;
+            if (empty($seo_language_products_info_title)) {
+              $title = $products_name_clean . $categories_name_clean . HTML::sanitize($Qsubmit->value('seo_defaut_language_title')) . ', ' . $store_name;
             } else {
-              $title = $CLICSHOPPING_ProductsCommon->getProductsName($products_id) . $categories_name_clean . $submit_language_products_info_title . $store_name;
+              $title = $CLICSHOPPING_ProductsCommon->getProductsName($products_id) . $categories_name_clean . $seo_language_products_info_title . $store_name;
             }
           } else {
-            $title = $products_name_replace . ', ' . $categories_name_clean . $submit_language_products_info_title . $store_name;
+            $title = $products_name_replace . ', ' . $categories_name_clean . $seo_language_products_info_title . $store_name;
           }
 
           if (empty($QproductInfo->value('products_head_desc_tag'))) {
-            if (empty($Qsubmit->value('submit_language_products_info_description'))) {
-              $description = $products_name_clean . $products_name_replace . $categories_name_clean . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+            if (empty($Qsubmit->value('seo_language_products_info_description'))) {
+              $description = $products_name_clean . $products_name_replace . $categories_name_clean . HTML::sanitize($Qsubmit->value('seo_defaut_language_description'));
             } else {
-              $description = $products_name_clean . $products_name_replace . $categories_name_clean . HTML::sanitize($Qsubmit->value('submit_language_products_info_description'));
+              $description = $products_name_clean . $products_name_replace . $categories_name_clean . HTML::sanitize($Qsubmit->value('seo_language_products_info_description'));
             }
           } else {
             $description = $QproductInfo->value('products_head_desc_tag') . ', ' . $products_name_clean . $products_name_replace . $categories_name_clean;
           }
 
           if (empty($QproductInfo->value('products_head_keywords_tag'))) {
-            if (empty($Qsubmit->value('submit_language_products_info_keywords'))) {
-              $keywords = $products_name_clean . $products_name_replace . $categories_name_clean . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+            if (empty($Qsubmit->value('seo_language_products_info_keywords'))) {
+              $keywords = $products_name_clean . $products_name_replace . $categories_name_clean . HTML::sanitize($Qsubmit->value('seo_defaut_language_keywords'));
             } else {
-              $keywords = $products_name_clean . $products_name_replace . $categories_name_clean . HTML::sanitize($Qsubmit->value('submit_language_products_info_keywords'));
+              $keywords = $products_name_clean . $products_name_replace . $categories_name_clean . HTML::sanitize($Qsubmit->value('seo_language_products_info_keywords'));
             }
           } else {
             $keywords = $QproductInfo->value('products_head_keywords_tag') . ', ' . $products_name_clean . $products_name_replace . $categories_name_clean;

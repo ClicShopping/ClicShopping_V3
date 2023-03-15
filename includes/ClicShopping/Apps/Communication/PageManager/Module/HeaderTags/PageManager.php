@@ -57,13 +57,13 @@
       if (isset($_GET['Info'], $_GET['Content'], $_GET['pagesId'])) {
         $this->template = Registry::get('Template');
 
-        $Qsubmit = $this->app->db->prepare('select submit_id,
+        $Qsubmit = $this->app->db->prepare('select seo_id,
                                                     language_id,
-                                                    submit_defaut_language_title,
-                                                    submit_defaut_language_keywords,
-                                                    submit_defaut_language_description
+                                                    seo_defaut_language_title,
+                                                    seo_defaut_language_keywords,
+                                                    seo_defaut_language_description
                                              from :table_seo
-                                             where submit_id = 1
+                                             where seo_id = 1
                                              and language_id = :language_id
                                              ');
 
@@ -95,32 +95,32 @@
 
         if (empty($QpageManager->value('page_manager_head_title_tag'))) {
           if (empty($Qsubmit->value('page_manager_head_title_tag'))) {
-            $title = $pages_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
+            $title = $pages_title . ', ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_title'));
           } else {
             $title = $pages_title;
           }
         } else {
-          $title = $pages_title  . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
+          $title = $pages_title  . ', ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_title'));
         }
 
         if (empty($QpageManager->value('page_manager_head_desc_tag'))) {
           if (empty($Qsubmit->value('page_manager_head_desc_tag'))) {
-            $description = $pages_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+            $description = $pages_title . ', ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_description'));
           } else {
             $description = $pages_title . ', ' . $QpageManager->value('page_manager_head_desc_tag');
           }
         } else {
-          $description = $pages_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+          $description = $pages_title . ', ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_description'));
         }
 
         if (empty($QpageManager->value('page_manager_head_keywords_tag'))) {
           if (empty($Qsubmit->value('page_manager_head_keywords_tag'))) {
-            $keywords = $pages_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+            $keywords = $pages_title . ', ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_keywords'));
           } else {
             $keywords = $pages_title . ', ' . $QpageManager->value('page_manager_head_keywords_tag');
           }
         } else {
-          $keywords = $pages_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+          $keywords = $pages_title . ', ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_keywords'));
         }
 
         $title = $this->template->setTitle($title) . ' ' . $this->template->getTitle();

@@ -82,13 +82,13 @@
           $QmetaInfo->bindInt(':language_id', $this->lang->getId());
           $QmetaInfo->execute();
 
-          $Qsubmit = $CLICSHOPPING_Db->prepare('select submit_id,
+          $Qsubmit = $CLICSHOPPING_Db->prepare('select seo_id,
                                                         language_id,
-                                                        submit_defaut_language_title,
-                                                        submit_defaut_language_keywords,
-                                                        submit_defaut_language_description
+                                                        seo_defaut_language_title,
+                                                        seo_defaut_language_keywords,
+                                                        seo_defaut_language_description
                                                from :table_seo
-                                               where submit_id = 1
+                                               where seo_id = 1
                                                and language_id = :language_id
                                               ');
 
@@ -96,24 +96,24 @@
 
           if (!empty($QmetaInfo->value('manufacturer_seo_title'))) {
             $title = $manufacturers_title . ', ' . $QmetaInfo->value('manufacturer_seo_title') . ', ' . HTML::outputProtected(STORE_NAME);
-          } elseif (!empty($Qsubmit->value('submit_defaut_language_title'))) {
-            $title = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_title')) . ', ' . HTML::outputProtected(STORE_NAME);
+          } elseif (!empty($Qsubmit->value('seo_defaut_language_title'))) {
+            $title = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_title')) . ', ' . HTML::outputProtected(STORE_NAME);
           } else {
             $title = $manufacturers_title . ', ' . HTML::outputProtected(STORE_NAME);
           }
 
           if (!empty($QmetaInfo->value('manufacturer_seo_description'))) {
             $description = $manufacturers_title . ', ' . $QmetaInfo->value('manufacturer_seo_description') . ', ' . HTML::outputProtected(STORE_NAME);
-          } elseif (!empty($Qsubmit->value('submit_defaut_language_description'))) {
-            $description = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_description')) . ', ' . HTML::outputProtected(STORE_NAME);
+          } elseif (!empty($Qsubmit->value('seo_defaut_language_description'))) {
+            $description = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_description')) . ', ' . HTML::outputProtected(STORE_NAME);
           } else {
             $description = $manufacturers_title . ',' . HTML::outputProtected(STORE_NAME);
           }
 
           if (!empty($QmetaInfo->value('manufacturer_seo_keyword'))) {
             $keywords = $manufacturers_title . ', ' . $QmetaInfo->value('manufacturer_seo_keyword');
-          } elseif (!empty($Qsubmit->value('submit_defaut_language_keywords'))) {
-            $keywords = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+          } elseif (!empty($Qsubmit->value('seo_defaut_language_keywords'))) {
+            $keywords = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('seo_defaut_language_keywords'));
           } else {
             $keywords = $manufacturers_title .  ',' . HTML::outputProtected(STORE_NAME);
           }

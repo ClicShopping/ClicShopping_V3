@@ -37,97 +37,97 @@ alert_cfg_saved_success = les paramètres de configuration ont été mises à jo
 
 heading_title = Gestion des métadonnées
 
-tab_submit_default = Défaut
-tab_submit_categories = Catégories
-tab_submit_products_info = Description produits
-tab_submit_products_new = Nouveautés
-tab_submit_specials = Promotions
-tab_submit_reviews = Commentaires
-tab_submit_favorites = Coups de coeur
-tab_submit_featured = Sélections
-tab_submit_sitemap = Cartes du site
+tab_seo_default = Défaut
+tab_seo_categories = Catégories
+tab_seo_products_info = Description produits
+tab_seo_products_new = Nouveautés
+tab_seo_specials = Promotions
+tab_seo_reviews = Commentaires
+tab_seo_favorites = Coups de coeur
+tab_seo_featured = Sélections
+tab_seo_sitemap = Cartes du site
 
-text_submit_defaut_language_title_h1 = Titre page Index H1
+text_seo_defaut_language_title_h1 = Titre page Index H1
 
 keywords_google_trend = Tendance des mots clefs selon Google
 
 success_page_updated = Succès
 
 title_help_image = Note
-text_pages_submit_information_default = Gestion des Métadonnées du site par défaut
+text_pages_seo_information_default = Gestion des Métadonnées du site par défaut
 display_title_default = Afficher le titre par défaut
 display_default = Afficher les mots clefs par défaut
 display_description_default = Afficher la description par défaut
-text_submit_default_language_title = Titre
-text_submit_default_language_keywords = Mots clefs
-text_submit_default_language_description = Description
-text_submit_default_language_footer = Pied de page
+text_seo_default_language_title = Titre
+text_seo_default_language_keywords = Mots clefs
+text_seo_default_language_description = Description
+text_seo_default_language_footer = Pied de page
 
-text_pages_submit_information_categories = Gestion des Métadonnées du site par défaut de la section catégories
+text_pages_seo_information_categories = Gestion des Métadonnées du site par défaut de la section catégories
 display_title_categories = Afficher le titre de la catégorie par défaut
 display_categories = Afficher les mots clefs des catégories par défaut
 display_description_categories = Afficher la description des catégories par défaut
-text_submit_language_categories_title = Titre des catégories
-text_submit_language_categories_keywords = Mots clefs des catégories
-text_submit_language_categories_description = Description des catégories
+text_seo_language_categories_title = Titre des catégories
+text_seo_language_categories_keywords = Mots clefs des catégories
+text_seo_language_categories_description = Description des catégories
 
-text_pages_submit_information_product_info = Gestion des Métadonnées du site par défaut de la section description des produits
+text_pages_seo_information_product_info = Gestion des Métadonnées du site par défaut de la section description des produits
 display_title_product_info = Afficher le titre de la description des produits par défaut
 display_product_info = Afficher les mots clefs de la description des produits par défaut
 display_description_product_info = Afficher la description  des produits par défaut
-text_submit_language_products_info_title = Titre de la description
-text_submit_language_products_info_keywords = Mots clefs de description
-text_submit_language_products_info_description = Description
+text_seo_language_products_info_title = Titre de la description
+text_seo_language_products_info_keywords = Mots clefs de description
+text_seo_language_products_info_description = Description
 
-text_pages_submit_information_products_new = Gestion des Métadonnées du site par défaut de la section nouveautés
+text_pages_seo_information_products_new = Gestion des Métadonnées du site par défaut de la section nouveautés
 display_title_products_new = Afficher le titre de la description des nouveautés par défaut
 display_description_products_new = Afficher la description  des nouveautés par défaut
 display_products_new = Afficher les mots clefs de la description des nouveautés par défaut
 
-text_submit_language_products_new_title = Titre des nouveautés
-text_submit_language_products_new_keywords = Mots clefs des nouveautés
-text_submit_language_products_new_description = Description des nouveautés
+text_seo_language_products_new_title = Titre des nouveautés
+text_seo_language_products_new_keywords = Mots clefs des nouveautés
+text_seo_language_products_new_description = Description des nouveautés
 
-text_pages_submit_information_special = Gestion des Métadonnées du site par défaut de la section promotions
+text_pages_seo_information_special = Gestion des Métadonnées du site par défaut de la section promotions
 display_title_special = Afficher le titre de la description des promotions par défaut
 display_special = Afficher les mots clefs de la description des promotions par défaut
 display_description_special = Afficher la description  des promotions par défaut
 
-text_submit_language_specials_title = Titre des promotions
-text_submit_language_specials_keywords = Mots clefs des promotions
-text_submit_language_specials_description = Description des promotions
+text_seo_language_specials_title = Titre des promotions
+text_seo_language_specials_keywords = Mots clefs des promotions
+text_seo_language_specials_description = Description des promotions
 
-text_pages_submit_information_reviews = Gestion des Métadonnées du site par défaut de la section commentaires
+text_pages_seo_information_reviews = Gestion des Métadonnées du site par défaut de la section commentaires
 display_title_reviews = Afficher le titre de la description des commentaires par défaut
 display_reviews = Afficher les mots clefs de la description des commentaires par défaut
 display_description_reviews = Afficher la description  des commentaires par défaut
 
-text_submit_language_reviews_title = Titre des commentaires
-text_submit_language_reviews_keywords = Mots clefs des commentaires
-text_submit_language_reviews_description = Description des commentaires
+text_seo_language_reviews_title = Titre des commentaires
+text_seo_language_reviews_keywords = Mots clefs des commentaires
+text_seo_language_reviews_description = Description des commentaires
 
-text_pages_submit_information_favorites = Gestion des Métadonnées du site par défaut de la section coups de coeur
+text_pages_seo_information_favorites = Gestion des Métadonnées du site par défaut de la section coups de coeur
 display_title_favorites = Afficher le titre de la description des coups de coeur par défaut
 display_favorites = Afficher les mots clefs de la description des coups de coeur par défaut
 display_description_favorites = Afficher la description  des coups de coeur par défaut
 
-text_submit_language_favorites_title = Titre des coups de coeur
-text_submit_language_favorites_keywords = Mots clefs des coups de coeur
-text_submit_language_favorites_description = Description des coups de coeur
+text_seo_language_favorites_title = Titre des coups de coeur
+text_seo_language_favorites_keywords = Mots clefs des coups de coeur
+text_seo_language_favorites_description = Description des coups de coeur
 
-text_pages_submit_information_featured = Gestion des Métadonnées du site par défaut de la section coups de coeur
+text_pages_seo_information_featured = Gestion des Métadonnées du site par défaut de la section coups de coeur
 display_title_featured = Afficher le titre de la description des produits sélectionnés par défaut
 display_featured = Afficher les mots clefs de la description des produits sélectionnés par défaut
 display_description_featured = Afficher la description des produits sélectionnés par défaut
 
-text_submit_language_featured_title = Titre des coups des produits sélectionnés
-text_submit_language_featured_keywords = Mots clefs des produits sélectionnés
-text_submit_language_featured_description = Description des produits sélectionnés
+text_seo_language_featured_title = Titre des coups des produits sélectionnés
+text_seo_language_featured_keywords = Mots clefs des produits sélectionnés
+text_seo_language_featured_description = Description des produits sélectionnés
 
 text_products_page_seo = SEO
 
-title_help_submit = Notes sur la gestion des métadonnées
-help_submit = <li>Le système gère automatiquement la gestion des métadonnées.<br />
+title_help_seo = Notes sur la gestion des métadonnées
+help_seo = <li>Le système gère automatiquement la gestion des métadonnées.<br />
 <blockquote>il inscrit automatiquement les éléments dans l'ordre suivant si les champs ne sont pas renseignées:<br />
 titre : le nom de votre produit (ex blouson cuir)<br />
 description : le nom du produit (blouson cuir), le nom du produit découpé (blouson, cuir), le nom de la catégorie,)<br />

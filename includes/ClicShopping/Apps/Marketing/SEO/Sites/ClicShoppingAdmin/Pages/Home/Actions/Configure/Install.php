@@ -96,26 +96,26 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_seo (
-submit_id int NOT NULL defautl(1),
-language_id int NOT NULL defautl(1),
-submit_defaut_language_title varchar(255),
-submit_defaut_language_keywords text,
-submit_defaut_language_description varchar(255),
-submit_defaut_language_footer text,
-submit_language_products_info_title varchar(255),
-submit_language_products_info_keywords text,
-submit_language_products_info_description varchar(255),
-submit_language_products_new_title varchar(255),
-submit_language_products_new_keywords text,
-submit_language_products_new_description varchar(255),
-submit_language_special_title varchar(255),
-submit_language_special_keywords text,
-submit_language_special_description varchar(255),
-submit_language_reviews_title varchar(255),
-submit_language_reviews_keywords text,
-submit_language_reviews_description varchar(255)
-  PRIMARY KEY submit_id (language_id),
-  KEY idx_seo_submit_id
+seo_id int NOT NULL default(1),
+language_id int NOT NULL default(1),
+seo_defaut_language_title varchar(255),
+seo_defaut_language_keywords text,
+seo_defaut_language_description varchar(255),
+seo_defaut_language_footer text,
+seo_language_products_info_title varchar(255),
+seo_language_products_info_keywords text,
+seo_language_products_info_description varchar(255),
+seo_language_products_new_title varchar(255),
+seo_language_products_new_keywords text,
+seo_language_products_new_description varchar(255),
+seo_language_special_title varchar(255),
+seo_language_special_keywords text,
+seo_language_special_description varchar(255),
+seo_language_reviews_title varchar(255),
+seo_language_reviews_keywords text,
+seo_language_reviews_description varchar(255)
+  PRIMARY KEY seo_id (language_id),
+  KEY idx_seo_seo_id
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);

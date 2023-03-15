@@ -129,11 +129,11 @@
      */
     private function setTitle() :string
     {
-      $Qsubmit = $this->db->prepare('select submit_id,
+      $Qsubmit = $this->db->prepare('select seo_id,
                                             language_id,
-                                            submit_defaut_language_title
+                                            seo_defaut_language_title
                                     from :table_seo
-                                    where submit_id = 1
+                                    where seo_id = 1
                                     and language_id = :language_id
                                     limit 1
                                     ');
@@ -143,7 +143,7 @@
       if ($Qsubmit->fetch() !== false) {
         $title = STORE_NAME;
       } else {
-        $title = HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
+        $title = HTML::sanitize($Qsubmit->value('seo_defaut_language_title'));
       }
 
       return $title;
@@ -155,11 +155,11 @@
      */
     private function setDescription() :string
     {
-      $Qsubmit = $this->db->prepare('select submit_id,
+      $Qsubmit = $this->db->prepare('select seo_id,
                                             language_id,
-                                            submit_defaut_language_description
+                                            seo_defaut_language_description
                                     from :table_seo
-                                    where submit_id = 1
+                                    where seo_id = 1
                                     and language_id = :language_id
                                     limit 1
                                     ');
@@ -169,7 +169,7 @@
       if ($Qsubmit->fetch() !== false) {
         $description = STORE_NAME;
       } else {
-        $description = HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+        $description = HTML::sanitize($Qsubmit->value('seo_defaut_language_description'));
       }
 
       return $description;

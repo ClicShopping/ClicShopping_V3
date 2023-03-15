@@ -307,9 +307,9 @@
         </div>
         <div class="separator"></div>
         <div class="alert alert-info" role="alert">
-          <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_submit') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_submit') ?></div>
+          <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_seo') ?></div>
           <div class="separator"></div>
-          <div><?php echo $CLICSHOPPING_Categories->getDef('help_submit'); ?></div>
+          <div><?php echo $CLICSHOPPING_Categories->getDef('help_seo'); ?></div>
         </div>
      </div>
       <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab3', null, 'display'); ?>

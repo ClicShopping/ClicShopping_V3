@@ -30,7 +30,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $Qsubmit_footer = $CLICSHOPPING_Db->prepare('select submit_defaut_language_footer
+      $Qsubmit_footer = $CLICSHOPPING_Db->prepare('select seo_defaut_language_footer
                                                     from :table_seo
                                                     where language_id = :language_id
                                                   ');
@@ -38,7 +38,7 @@
       $Qsubmit_footer->execute();
 
       if ($Qsubmit_footer->fetch()) {
-        $footer = HTML::outputProtected($Qsubmit_footer->value('submit_defaut_language_footer'));
+        $footer = HTML::outputProtected($Qsubmit_footer->value('seo_defaut_language_footer'));
 
         $delimiter = ',';
         $footer = trim(preg_replace('|\\s*(?:' . preg_quote($delimiter) . ')\\s*|', $delimiter, $footer));
