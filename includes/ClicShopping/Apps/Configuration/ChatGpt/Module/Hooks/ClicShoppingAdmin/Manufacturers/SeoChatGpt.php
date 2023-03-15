@@ -51,7 +51,6 @@
 
       $manufacturer_name = ManufacturerAdmin::getManufacturerNameById($id);
 
-var_dump($manufacturer_name);
       $url = Chat::getAjaxUrl(false);
 
       $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
