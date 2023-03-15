@@ -46,9 +46,9 @@
 
       $store_name = HTML::sanitize(STORE_NAME);
       $question_title = $this->app->getDef('text_seo_page_title_question');
-      $questionKeywords = $this->app->getDef('text_seo_page_keywords_question');
-      $questionDescription = $this->app->getDef('text_seo_page_description_question');
-      $questionTag = $this->app->getDef('text_seo_page_tag_question');
+      $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
+      $question_description = $this->app->getDef('text_seo_page_description_question');
+      $question_tag = $this->app->getDef('text_seo_page_tag_question');
 
       $text_tag_specials = $this->app->getDef('text_tag_specials');
       $text_tag_favorite = $this->app->getDef('text_tag_favorite');
@@ -126,7 +126,7 @@ $('[id^="seo_default_desc_tag"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idSeoDefaultDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescription}' + ' ' + '{$store_name}';
+    let questionResponse = '{$question_description}' + ' ' + '{$store_name}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI
@@ -152,7 +152,7 @@ $('[id^="seo_defaut_language_keywords"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let IdSeoDefautLanguageKeywords = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywords}' + ' ' + '{$store_name}';
+  let questionResponse = '{$question_keywords}' + ' ' + '{$store_name}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
@@ -176,7 +176,7 @@ $('[id^="seo_defaut_language_footer"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let IdSeoDefautLanguageFooter = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionTag}' + ' ' + '{$store_name}';
+  let questionResponse = '{$question_tag}' + ' ' + '{$store_name}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
@@ -229,7 +229,7 @@ $('[id^="seo_product_description"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idSeoProductDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescription}' + ' ' + '{$store_name}';
+    let questionResponse = '{$question_description}' + ' ' + '{$store_name}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI
@@ -254,7 +254,7 @@ $('[id^="seo_product_description_keywords"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let IdSeoProductDescriptionKeywords = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywords}' + ' ' + '{$store_name}';
+  let questionResponse = '{$question_keywords}' + ' ' + '{$store_name}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
@@ -308,7 +308,7 @@ $('[id^="seo_product_new_description"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idSeoProductNewDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescription}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
+    let questionResponse = '{$question_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI
@@ -333,7 +333,7 @@ $('[id^="seo_product_new_keywords"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let IdSeoproductNewKeywords = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
+  let questionResponse = '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
@@ -387,7 +387,7 @@ $('[id^="seo_special_description"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idSeoSpecialDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescription}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
+    let questionResponse = '{$question_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI
@@ -412,7 +412,7 @@ $('[id^="seo_special_keywords"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let IdSeoSpecialKeywords = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
+  let questionResponse = '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
@@ -465,7 +465,7 @@ $('[id^="seo_review_description"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idSeoReviewDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescription}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
+    let questionResponse = '{$question_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI
@@ -490,7 +490,7 @@ $('[id^="seo_review_keywords"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let IdSeoReviewKeywords = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
+  let questionResponse = '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
@@ -517,7 +517,7 @@ $('[id^="seo_favorite_title_tag"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let IdSeoFavoriteTitle = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
+  let questionResponse = '{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
@@ -543,7 +543,7 @@ $('[id^="seo_favorite_description"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idSeoFavoriteDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescription}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
+    let questionResponse = '{$question_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI
@@ -569,7 +569,7 @@ $('[id^="seo_favorite_keywords"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let IdSeoFavoriteKeywords = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
+  let questionResponse = '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
@@ -597,7 +597,7 @@ $('[id^="seo_featured_title_tag"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let IdSeoFeaturedTitle = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
+  let questionResponse = '{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
@@ -624,7 +624,7 @@ $('[id^="seo_featured_description"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idSeoFeaturedDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescription}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
+    let questionResponse = '{$question_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI
@@ -650,7 +650,7 @@ $('[id^="seo_featured_keywords"]').each(function(index) {
   let inputId = $(this).attr('id'); // Récupérer l'id de l'input pour l'itération actuelle
   let regex = /(\d+)/g; // Expression régulière pour extraire l'id
   let IdSeoFeaturedKeywords = regex.exec(inputId)[0]; // Extraire l'id de l'input   
-  let questionResponse = '{$questionKeywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
+  let questionResponse = '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
   
   newButton.click(function() { // Ajouter un listener pour chaque bouton
     let message = questionResponse; // Valeur envoyée à Open AI
