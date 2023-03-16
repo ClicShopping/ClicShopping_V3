@@ -1,3 +1,8 @@
+3.415
+fix fucntion error return getManufacturerName
+
+--------------------
+
 3.414
 Gppt improved
 Update librairies
