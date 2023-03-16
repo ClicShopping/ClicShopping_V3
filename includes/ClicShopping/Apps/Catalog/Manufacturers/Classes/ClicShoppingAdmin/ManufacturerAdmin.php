@@ -62,7 +62,7 @@
      * @param int|null $id
      * @return mixed
      */
-    public static function getManufacturerName(?int $id = null) :array
+    public static function getManufacturerName(?int $id = null):array|string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

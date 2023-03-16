@@ -1,5 +1,5 @@
 version3.415
-
+fix error on getManufacturerName return check
 
 --------------------
 
