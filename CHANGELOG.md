@@ -1,11 +1,13 @@
+3.417
+
+
+--------------------
 3.416
 
 fix manufacturer
 update librairies
 
-
 --------------------
-
 3.415
 fix fucntion error return getManufacturerName
 
