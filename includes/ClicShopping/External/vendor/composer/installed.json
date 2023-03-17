@@ -1102,17 +1102,17 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v10.9.1",
-            "version_normalized": "10.9.1.0",
+            "version": "v10.10.0",
+            "version_normalized": "10.10.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "be1de500a70b9eada6dbe72b0c8e21c845570903"
+                "reference": "2c641079093167c2e448d82bd0bd02160e20fec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/be1de500a70b9eada6dbe72b0c8e21c845570903",
-                "reference": "be1de500a70b9eada6dbe72b0c8e21c845570903",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/2c641079093167c2e448d82bd0bd02160e20fec1",
+                "reference": "2c641079093167c2e448d82bd0bd02160e20fec1",
                 "shasum": ""
             },
             "require": {
@@ -1128,7 +1128,7 @@
                 "phpunit/phpunit": "^5.7 || ^9.0",
                 "squizlabs/php_codesniffer": "^3.3"
             },
-            "time": "2023-03-14T19:16:20+00:00",
+            "time": "2023-03-17T01:59:34+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1160,7 +1160,7 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v10.9.1"
+                "source": "https://github.com/stripe/stripe-php/tree/v10.10.0"
             },
             "install-path": "../stripe/stripe-php"
         },

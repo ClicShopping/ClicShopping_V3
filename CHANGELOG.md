@@ -1,6 +1,7 @@
 3.416
 
-
+fix manufacturer
+update librairies
 
 
 --------------------
