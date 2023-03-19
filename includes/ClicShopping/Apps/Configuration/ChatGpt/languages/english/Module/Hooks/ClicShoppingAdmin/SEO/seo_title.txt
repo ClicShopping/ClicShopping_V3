@@ -7,5 +7,7 @@ text_seo_page_description_question = Give me in less 50 words a very short descr
 text_tag_specials = special products
 text_tag_favorite = favorites products
 text_tag_featured = featured products
-text_tag_products_new = products new products
+text_tag_products_new = new products
 text_tag_review = review products
+
+text_seo_page_translate_language = Can you translate in :

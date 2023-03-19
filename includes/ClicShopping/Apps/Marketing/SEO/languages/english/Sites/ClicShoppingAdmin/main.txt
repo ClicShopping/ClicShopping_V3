@@ -116,7 +116,7 @@ display_title_reviews = Title
 display_reviews = Display default reviews
 display_description_reviews = Displays default reviews description
 
-text_seo_language_products_reviews_title = Title
+text_seo_language_reviews_title = Title
 text_seo_language_reviews_keywords = Keywords
 text_seo_language_reviews_description = Description
 

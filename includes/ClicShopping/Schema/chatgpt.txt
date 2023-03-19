@@ -2,6 +2,7 @@ gpt_id int not_null auto_increment
 question text not_null
 response text not_null
 date_added date default null
+user_admin varchar(255) default null
 
 --
 primary gpt_id

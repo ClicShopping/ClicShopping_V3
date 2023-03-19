@@ -22,18 +22,22 @@
       $url = Chat::getAjaxUrl(true);
 
       $output = '<!-- Start gpt -->' . "\n";
-
       $output .= '<script defer>';
-      $output .= '$(document).ready(function() {';
-      $output .= '$("#sendGpt").click(function() {';
-      $output .= 'let message = $("#messageGpt").val();';
-      $output .= '$.post("' . $url . '", {message: message}, function(data) {';
-      $output .= '$("#chatGpt-output").html(data);';
-      $output .= '});';
-      $output .= '});';
-      $output .= '});';
+      $output .='document.addEventListener("DOMContentLoaded", function() {';
+      $output .='document.querySelector("#sendGpt").addEventListener("click", function() {';
+      $output .='let message = document.querySelector("#messageGpt").value;';
+      $output .='let xhr = new XMLHttpRequest();';
+      $output .='xhr.open("POST", "' . $url . '");';
+      $output .='xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");';
+      $output .='xhr.onreadystatechange = function() {';
+      $output .='if (xhr.readyState === 4 && xhr.status === 200) {';
+      $output .='document.querySelector("#chatGpt-output").innerHTML = xhr.responseText;';
+      $output .='}';
+      $output .='};';
+      $output .='xhr.send("message=" + message);';
+      $output .='});';
+      $output .='});';
       $output .= '</script>';
-
       $output .= '<!-- End gpt  -->' . "\n";
 
       return $output;

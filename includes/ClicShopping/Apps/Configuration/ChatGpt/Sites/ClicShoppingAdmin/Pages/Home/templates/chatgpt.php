@@ -32,7 +32,11 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ChatGpt->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
-          <?php echo HTML::button($CLICSHOPPING_ChatGpt->getDef('button_configure'), null, $CLICSHOPPING_ChatGpt->link('Configure'), 'primary'); ?>
+          <?php
+          if (MODE_DEMO == 'false') {
+            echo HTML::button($CLICSHOPPING_ChatGpt->getDef('button_configure'), null, $CLICSHOPPING_ChatGpt->link('Configure'), 'primary');
+          }
+          ?>
           </span>
         </div>
       </div>
@@ -85,6 +89,7 @@
       <th data-field="question" class="text-center"  data-sortable="true"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_chatgpt_question'); ?></th>
       <th data-field="response" class="text-center"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_chatgpt_response'); ?></th>
       <th data-field="date_added" data-sortable="true"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_chatgpt_date_added'); ?></th>
+      <th data-field="user_admin" data-sortable="true"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_chatgpt_user_admin'); ?></th>
       <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_action'); ?>&nbsp;</th>
     </tr>
     </thead>
@@ -93,7 +98,8 @@
       $QchatGpt = $CLICSHOPPING_ChatGpt->db->prepare('select SQL_CALC_FOUND_ROWS gpt_id,
                                                                                  question,
                                                                                  response,
-                                                                                 date_added
+                                                                                 date_added,
+                                                                                 user_admin
                                                       from :table_chatgpt
                                                       order by date_added
                                                       limit :page_set_offset, :page_set_max_results
@@ -113,6 +119,7 @@
             <td class="text-start"><?php echo $QchatGpt->value('question'); ?></td>
             <td class="text-start"><?php echo substr($QchatGpt->value('response'), 0, 200) . "..."; ?></td>
             <td><?php echo DateTime::toShort($QchatGpt->value('date_added')); ?></td>
+            <td><?php echo $QchatGpt->value('user_admin'); ?></td>
             <td class="text-end">
               <div class="btn-group" role="group" aria-label="buttonGroup">
               <?php

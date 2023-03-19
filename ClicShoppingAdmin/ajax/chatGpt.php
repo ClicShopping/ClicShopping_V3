@@ -11,6 +11,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
+  use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
   use OpenAI;
   use OpenAI\Exceptions\ErrorException;
@@ -61,7 +62,8 @@
       $array_sql = [
         'question' => $prompt,
         'response' => $result,
-        'date_added' => 'now()'
+        'date_added' => 'now()',
+        'user_admin' => AdministratorAdmin::getUserAdmin()
       ];
 
       $CLICSHOPPING_Db->save('chatgpt', $array_sql);

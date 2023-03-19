@@ -37,6 +37,16 @@
     }
 
     /**
+     * @return string
+     */
+    public static function getAjaxSeoMultilanguageUrl() :string
+    {
+      $url = CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin') . 'ajax/chatGptMultiLanguage.php';
+
+      return $url;
+    }
+
+    /**
      * @return array
      */
     public static function getModel(): string

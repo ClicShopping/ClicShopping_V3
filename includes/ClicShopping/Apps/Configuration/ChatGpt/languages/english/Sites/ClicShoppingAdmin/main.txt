@@ -44,6 +44,7 @@ table_heading_chatgpt_question = Question
 table_heading_chatgpt_response = Response
 table_heading_chatgpt_date_added = Date Added
 table_heading_action = Actions
+table_heading_chatgpt_user_admin = User admin
 
 tab_general = General
 text_description = Description
