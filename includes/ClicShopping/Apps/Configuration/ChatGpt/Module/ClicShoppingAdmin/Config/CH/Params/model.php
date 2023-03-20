@@ -28,7 +28,10 @@
     {
       $array = [
         ['id' => 'text-davinci-003',
-          'text' =>'Davinci'
+          'text' =>'gpt-3 Davinci 003'
+        ],
+        ['id' => 'gpt-4',
+         'text' =>'gpt-4'
         ],
       ];
 

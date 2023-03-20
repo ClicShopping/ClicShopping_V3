@@ -653,10 +653,12 @@
                 <div class="accordion" id="accordionExample">
                   <?php
                     for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                      if (isset($bID)) {
-                        $title_tag = PageManagerAdmin::getPageManagerHeadTitleTag($bID, $languages[$i]['id']);
-                        $descrition_tag = PageManagerAdmin::getPageManagerHeadDescTag($bID, $languages[$i]['id']);
-                        $keywords_tag = PageManagerAdmin::getPageManagerHeadKeywordsTag($bID, $languages[$i]['id']);
+                     $languages_id = $languages[$i]['id'];
+
+                     if (isset($bID)) {
+                        $title_tag = PageManagerAdmin::getPageManagerHeadTitleTag($bID, $languages_id);
+                        $descrition_tag = PageManagerAdmin::getPageManagerHeadDescTag($bID, $languages_id);
+                        $keywords_tag = PageManagerAdmin::getPageManagerHeadKeywordsTag($bID, $languages_id);
                       } else {
                         $title_tag = null;
                         $descrition_tag = null;
@@ -678,36 +680,37 @@
                     ?>
                     <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <div class="row" id="pageManagerSeoTitle<?php echo $i; ?>">
+
+                        <div class="row" id="pageManagerSeoTitle<?php echo $languages_id; ?>">
                           <div class="col-md-10">
-                            <div class="form-group row" data-index="<?php echo $i; ?>">
+                            <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                               <label for="<?php echo $CLICSHOPPING_PageManager->getDef('text_products_page_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_PageManager->getDef('text_products_page_title'); ?></label>
-                              <div class="col-md-7 input-group" id="page_manager_head_title_tag<?php echo $i; ?>">
-                                <?php echo HTML::inputField('page_manager_head_title_tag_' . $languages[$i]['id'], $title_tag, 'maxlength="70" size="77" id="page_manager_head_title_tag_' . $i . '"', false); ?>
+                              <div class="col-md-7 input-group" id="page_manager_head_title_tag<?php echo $languages_id; ?>">
+                                <?php echo HTML::inputField('page_manager_head_title_tag_' . $languages_id, $title_tag, 'maxlength="70" size="77" id="page_manager_head_title_tag_' . $languages_id . '"', false); ?>
                               </div>
                             </div>
                           </div>
                         </div>
 
                         <div class="separator"></div>
-                        <div class="row" id="pageManagerSeoDescription<?php echo $i; ?>">
+                        <div class="row" id="pageManagerSeoDescription<?php echo $languages_id; ?>">
                           <div class="col-md-6">
-                            <div class="form-group row" data-index="<?php echo $i; ?>">
+                            <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                               <label for="<?php echo $CLICSHOPPING_PageManager->getDef('text_products_header_description'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_PageManager->getDef('text_products_header_description'); ?></label>
-                              <div class="col-md-8 input-group" id="page_manager_head_desc_tag<?php echo $i; ?>">
-                                <?php echo HTML::textAreaField('page_manager_head_desc_tag_' . $languages[$i]['id'], $descrition_tag, '110', '5', 'id="page_manager_head_desc_tag_' . $i . '"'); ?>
+                              <div class="col-md-8 input-group" id="page_manager_head_desc_tag<?php echo $languages_id; ?>">
+                                <?php echo HTML::textAreaField('page_manager_head_desc_tag_' . $languages_id, $descrition_tag, '110', '5', 'id="page_manager_head_desc_tag_' . $languages_id . '"'); ?>
                               </div>
                             </div>
                           </div>
                         </div>
 
                         <div class="separator"></div>
-                        <div class="row" id="pageManagerSeoKeywords<?php echo $i; ?>">
+                        <div class="row" id="pageManagerSeoKeywords<?php echo $languages_id; ?>">
                           <div class="col-md-10">
-                            <div class="form-group row" data-index="<?php echo $i; ?>">
+                            <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                               <label for="<?php echo $CLICSHOPPING_PageManager->getDef('text_products_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_PageManager->getDef('text_products_keywords'); ?></label>
-                              <div class="col-md-7 input-group" id="page_manager_head_keywords_tag<?php echo $i; ?>">
-                                <?php echo HTML::inputField('page_manager_head_keywords_tag_' . $languages[$i]['id'], $keywords_tag, 'maxlength="70" size="77" id="page_manager_head_keywords_tag_' . $i . '"', false); ?>
+                              <div class="col-md-7 input-group" id="page_manager_head_keywords_tag<?php echo $languages_id; ?>">
+                                <?php echo HTML::inputField('page_manager_head_keywords_tag_' . $languages_id, $keywords_tag, 'maxlength="70" size="77" id="page_manager_head_keywords_tag_' . $languages_id . '"', false); ?>
                               </div>
                             </div>
                           </div>

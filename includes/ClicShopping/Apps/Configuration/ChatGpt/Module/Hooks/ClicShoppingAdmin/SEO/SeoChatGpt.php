@@ -33,13 +33,11 @@
 
       public function display()
     {
-      $CLICSHOPPING_Language = Registry::get('Language');
-
       if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False') {
         return false;
       }
 
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/SEO/seo_title');
+      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/SEO/seo_chat_gpt');
 
       if(empty(STORE_NAME)) {
         return false;

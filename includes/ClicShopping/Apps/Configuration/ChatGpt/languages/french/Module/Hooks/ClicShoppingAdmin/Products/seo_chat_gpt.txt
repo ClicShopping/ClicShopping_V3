@@ -2,4 +2,5 @@ text_seo_page_title = SEO Page de Titre
 text_seo_page_title_question = Donne moi en moins de 50 mots le SEO Titre concernant ce produit :
 text_seo_page_tag_question = Donne moi en moins de 70 mots, 5 tag sèparès par une virgule concernant ce produit :
 text_seo_page_keywords_question = Donne moi 7 mots clefs sèparès par une virgule concernant ce produit :
-text_seo_page_description_question = Done moi en moins de 50 mots une description trés courte concernant ce produit :
+text_seo_page_description_question = Donne moi en moins de 50 mots une description trés courte concernant ce produit :
+text_seo_page_translate_language = Peux tu traduire en

@@ -1,5 +1,6 @@
 3.417
 Improve Chatgpt
+Fix manufacturer bug
 
 --------------------
 3.416

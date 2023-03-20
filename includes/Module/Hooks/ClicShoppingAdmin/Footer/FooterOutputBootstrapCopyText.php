@@ -28,9 +28,11 @@
       $output = '';
 
       if (isset($_SESSION['admin'])) {
-        $output .= '<!--Copy text start-->' . "\n";
-        $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/tooltip_copy_text.js') . '"></script>' . "\n";
-        $output .= '<!--Copy text end -->' . "\n";
+        if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'True') {
+          $output .= '<!--Copy text start-->' . "\n";
+          $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/tooltip_copy_text.js') . '"></script>' . "\n";
+          $output .= '<!--Copy text end -->' . "\n";
+        }
       } else {
         return false;
       }

@@ -902,6 +902,7 @@
             <div class="accordion" id="accordionExample">
               <?php
                 for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                  $languages_id = $languages[$i]['id'];
                   ?>
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="heading<?php $i; ?>">
@@ -919,18 +920,18 @@
                     <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
                         <?php
-                        $name = 'products_description[' . $languages[$i]['id'] . ']';
+                        $name = 'products_description[' . $languages_id . ']';
                         $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                        echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($products_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                        echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($products_description[$languages_id]) ? str_replace('& ', '&amp; ', trim($products_description[$languages_id])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages_id)), 'id="' . $ckeditor_id . '"');
                         ?>
                         <div class="separator"></div>
-                        <div class="row" id="DescriptionSummaryTitle<?php echo $i; ?>">
+                        <div class="row" id="DescriptionSummaryTitle<?php echo $languages_id; ?>">
                           <div class="col-md-6">
-                            <div class="form-group row" data-index="<?php echo $i; ?>">
+                            <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                               <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_description_summary'); ?>" class="col-12 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_description_summary'); ?></label>
-                              <div class="col-md-8 input-group" id="SummaryDescription<?php echo $i; ?>">
-                                <?php echo HTML::textAreaField('products_description_summary[' . $languages[$i]['id'] . ']', (isset($products_description_summary[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description_summary[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescriptionSummary($pInfo->products_id, $languages[$i]['id'])), '120', '5', 'id="SummaryDescription_' . $i . '"'); ?>
+                              <div class="col-md-8 input-group" id="SummaryDescription<?php echo $languages_id; ?>">
+                                <?php echo HTML::textAreaField('products_description_summary[' . $languages_id . ']', (isset($products_description_summary[$languages_id]) ? str_replace('& ', '&amp; ', trim($products_description_summary[$languages_id])) : $CLICSHOPPING_ProductsAdmin->getProductsDescriptionSummary($pInfo->products_id, $languages_id)), '120', '5', 'id="SummaryDescription_' . $languages_id . '"'); ?>
                               </div>
                             </div>
                           </div>
@@ -1230,6 +1231,7 @@
             <div class="accordion" id="accordionExample">
               <?php
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                $languages_id = $languages[$i]['id'];
               ?>
               <div class="accordion-item">
                 <h2 class="accordion-header" id="heading<?php $i; ?>">
@@ -1251,55 +1253,55 @@
                         <div class="form-group row">
                           <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?></label>
                           <div class="col-md-7 input-group">
-                            <?php echo '&nbsp;' . HTML::inputField('products_seo_url[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoUrl($pInfo->products_id, $languages[$i]['id']), 'maxlength="70" size="77" id="seo_url_title_' . $i . '"', false); ?>
+                            <?php echo '&nbsp;' . HTML::inputField('products_seo_url[' . $languages_id . ']', SeoAdmin::getProductsSeoUrl($pInfo->products_id, $languages_id), 'maxlength="70" size="77" id="seo_url_title_' . $i . '"', false); ?>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div class="separator"></div>
-                    <div class="row" id="productsSeoTitle<?php echo $i; ?>">
+                    <div class="row" id="productsSeoTitle<?php echo $languages_id; ?>">
                       <div class="col-md-10">
-                        <div class="form-group row" data-index="<?php echo $i; ?>">
+                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                           <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_page_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_page_title'); ?></label>
-                          <div class="col-md-7 input-group" id="products_head_title_tag<?php echo $i; ?>">
-                            <?php echo '&nbsp;' . HTML::inputField('products_head_title_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoTitle($pInfo->products_id, $languages[$i]['id']), 'maxlength="70" size="77" id="products_head_title_tag_' . $i . '"', false); ?>
+                          <div class="col-md-7 input-group" id="products_head_title_tag<?php echo $languages_id; ?>">
+                            <?php echo '&nbsp;' . HTML::inputField('products_head_title_tag[' . $languages_id . ']', SeoAdmin::getProductsSeoTitle($pInfo->products_id, $languages_id), 'maxlength="70" size="77" id="products_head_title_tag_' . $languages_id . '"', false); ?>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div class="separator"></div>
-                    <div class="row" id="productsSeoDescription<?php echo $i; ?>">
+                    <div class="row" id="productsSeoDescription<?php echo $languages_id; ?>">
                       <div class="col-md-6">
-                        <div class="form-group row" data-index="<?php echo $i; ?>">
+                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                           <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_header_description'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_header_description'); ?></label>
-                          <div class="col-md-8 input-group" id="products_head_desc_tag<?php echo $i; ?>">
-                            <?php echo HTML::textAreaField('products_head_desc_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoDescription($pInfo->products_id, $languages[$i]['id']), '110', '5', 'id="products_head_desc_tag_' . $i . '"'); ?>
+                          <div class="col-md-8 input-group" id="products_head_desc_tag<?php echo $languages_id; ?>">
+                            <?php echo HTML::textAreaField('products_head_desc_tag[' . $languages_id . ']', SeoAdmin::getProductsSeoDescription($pInfo->products_id, $languages_id), '110', '5', 'id="products_head_desc_tag_' . $languages_id . '"'); ?>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div class="separator"></div>
-                    <div class="row" id="productsSeoKeywords<?php echo $i; ?>">
+                    <div class="row" id="productsSeoKeywords<?php echo $languages_id; ?>">
                       <div class="col-md-10">
-                        <div class="form-group row" data-index="<?php echo $i; ?>">
+                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                           <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_keywords'); ?></label>
-                          <div class="col-md-7 input-group" id="products_head_keywords_tag<?php echo $i; ?>">
-                            <?php echo HTML::inputField('products_head_keywords_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoKeywords($pInfo->products_id, $languages[$i]['id']), 'maxlength="70" size="77" id="products_head_keywords_tag_' . $i . '"', false); ?>
+                          <div class="col-md-7 input-group" id="products_head_keywords_tag<?php echo $languages_id; ?>">
+                            <?php echo HTML::inputField('products_head_keywords_tag[' . $languages_id . ']', SeoAdmin::getProductsSeoKeywords($pInfo->products_id, $languages_id), 'maxlength="70" size="77" id="products_head_keywords_tag_' . $languages_id . '"', false); ?>
                           </div>
                         </div>
                       </div>
                     </div>
 
                       <div class="separator"></div>
-                      <div class="row" id="productsSeoTag<?php echo $i; ?>">
+                      <div class="row" id="productsSeoTag<?php echo $languages_id; ?>">
                         <div class="col-md-10">
-                          <div class="form-group row" data-index="<?php echo $i; ?>">
+                          <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                             <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_tag'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_tag'); ?></label>
-                            <div class="col-md-7 input-group" id="products_head_tag<?php echo $i; ?>">
-                              <?php echo '&nbsp;' . HTML::inputField('products_head_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoTag($pInfo->products_id, $languages[$i]['id']), 'maxlength="70" size="77" id="products_head_tag_' . $i . '"', false); ?>
+                            <div class="col-md-7 input-group" id="products_head_tag<?php echo $languages_id; ?>">
+                              <?php echo '&nbsp;' . HTML::inputField('products_head_tag[' . $languages_id . ']', SeoAdmin::getProductsSeoTag($pInfo->products_id, $languages_id), 'maxlength="70" size="77" id="products_head_tag_' . $languages_id . '"', false); ?>
                             </div>
                           </div>
                         </div>

@@ -272,6 +272,7 @@
               echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              $languages_id = $languages[$i]['id'];
               ?>
               <div class="accordion-item">
                 <h2 class="accordion-header" id="heading<?php $i; ?>">
@@ -290,36 +291,36 @@
                 <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <div class="separator"></div>
-                    <div class="row" id="manufacturerSeoTitle<?php echo $i; ?>">
+                    <div class="row" id="manufacturerSeoTitle<?php echo $languages_id; ?>">
                       <div class="col-md-10">
-                        <div class="form-group row" data-index="<?php echo $i; ?>">
+                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                           <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_title'); ?></label>
-                          <div class="col-md-7 input-group" id="manufacturer_seo_title<?php echo $i; ?>">
-                            <?php echo HTML::inputField('manufacturer_seo_title[' . $languages[$i]['id'] . ']', SeoAdmin::getManufacturerSeoTitle($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages[$i]['id']), 'maxlength="70" size="77" id="manufacturer_seo_title_' . $i . '"', false); ?>
+                          <div class="col-md-7 input-group" id="manufacturer_seo_title<?php echo $languages_id; ?>">
+                            <?php echo HTML::inputField('manufacturer_seo_title[' . $languages_id . ']', SeoAdmin::getManufacturerSeoTitle($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages_id), 'maxlength="70" size="77" id="manufacturer_seo_title_' . $languages_id . '"', false); ?>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div class="separator"></div>
-                    <div class="row" id="manufacturerSeoDescription<?php echo $i; ?>">
+                    <div class="row" id="manufacturerSeoDescription<?php echo $languages_id; ?>">
                       <div class="col-md-6">
-                        <div class="form-group row" data-index="<?php echo $i; ?>">
+                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                           <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_description'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_description'); ?></label>
-                          <div class="col-md-8 input-group" id="manufacturer_seo_description<?php echo $i; ?>">
-                            <?php echo HTML::textAreaField('manufacturer_seo_description[' . $languages[$i]['id'] . ']', SeoAdmin::getManufacturerSeoDescription($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages[$i]['id']), '110', '5', 'id="manufacturer_seo_description_' . $i . '"'); ?>
+                          <div class="col-md-8 input-group" id="manufacturer_seo_description<?php echo $languages_id; ?>">
+                            <?php echo HTML::textAreaField('manufacturer_seo_description[' . $languages_id . ']', SeoAdmin::getManufacturerSeoDescription($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages_id), '110', '5', 'id="manufacturer_seo_description_' . $languages_id . '"'); ?>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div class="separator"></div>
-                    <div class="row" id="manufacturerSeoKeywords<?php echo $i; ?>">
+                    <div class="row" id="manufacturerSeoKeywords<?php echo $languages_id; ?>">
                       <div class="col-md-10">
-                        <div class="form-group row" data-index="<?php echo $i; ?>">
+                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                           <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_keywords'); ?></label>
-                          <div class="col-md-7 input-group" id="manufacturer_seo_keyword<?php echo $i; ?>">
-                            <?php echo HTML::inputField('manufacturer_seo_keyword[' . $languages[$i]['id'] . ']', SeoAdmin::getManufacturerSeoKeyword($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages[$i]['id']), 'maxlength="70" size="77" id="manufacturer_seo_keyword_' . $i . '"', false); ?>
+                          <div class="col-md-7 input-group" id="manufacturer_seo_keyword<?php echo $languages_id; ?>">
+                            <?php echo HTML::inputField('manufacturer_seo_keyword[' . $languages_id . ']', SeoAdmin::getManufacturerSeoKeyword($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages_id), 'maxlength="70" size="77" id="manufacturer_seo_keyword_' . $languages_id . '"', false); ?>
                           </div>
                         </div>
                       </div>

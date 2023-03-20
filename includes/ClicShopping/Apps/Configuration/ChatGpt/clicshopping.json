@@ -16,7 +16,7 @@
  "modules": {
    "Hooks": {
    "ClicShoppingAdmin/Products": {
-    "PageTab":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\SeoTitle"
+    "PageTab":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\SeoChatGpt"
    },
     "ClicShoppingAdmin/Categories": {
      "CategoriesContentTab3":	"Module\\Hooks\\ClicShoppingAdmin\\Categories\\SeoChatGpt"
