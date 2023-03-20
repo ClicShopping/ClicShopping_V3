@@ -55,6 +55,10 @@
         ['id' => 'text-davinci-003',
          'text' =>'Davinci (text-davinci-003)'
         ],
+
+        ['id' => 'gpt-4',
+         'text' =>'gpt-4'
+        ],
       ];
 
       $menu = HTML::selectField('engine', $array, null, 'id="engine"');
