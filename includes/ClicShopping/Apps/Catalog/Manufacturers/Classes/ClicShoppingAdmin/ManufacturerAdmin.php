@@ -42,7 +42,7 @@
      * @param int $id
      * @return string
      */
-    public static function getManufacturerNameById(int $id):string
+    public static function getManufacturerNameById(int $id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -86,6 +86,8 @@
         $result = $Qmanufacturers->fetchAll();
 
         return $result;
+      } else {
+        return '';
       }
     }
   
