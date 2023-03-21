@@ -11,7 +11,6 @@
   namespace ClicShopping\Apps\Catalog\Manufacturers\Module\Hooks\ClicShoppingAdmin\Products;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
   use ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin\ManufacturerAdmin;

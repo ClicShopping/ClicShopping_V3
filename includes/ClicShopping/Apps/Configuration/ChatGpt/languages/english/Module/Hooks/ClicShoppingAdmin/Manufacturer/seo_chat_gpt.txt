@@ -4,3 +4,12 @@ text_seo_page_tag_question = Give me in less 70 words 5 tag separated by a comma
 text_seo_page_keywords_question = Give me 7 keywords tag separated by a comma about this brand :
 text_seo_page_summary_description_question = Give me in less 50 words a very short description about this brand :
 text_seo_page_translate_language = Can you translate in
+
+tab_gpt_options = ChatGpt Options
+text_gpt_options = ChatGpt Options
+text_options_gpt_description = Authorize the AI to generate your content automatically ?
+text_options_gpt_seo_title = Authorize the AI to generate the SEO title of this brand ?
+text_options_gpt_seo_description = Authorize the AI to generate the SEO description of this brand ?
+text_options_gpt_seo_keywords = Authorize the AI to generate the SEO keywords of this brand ?
+
+text_categories_description = Write me a long description about this brand :

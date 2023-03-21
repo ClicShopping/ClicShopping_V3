@@ -54,18 +54,18 @@
         $Qcheck->execute();
 
         if ($Qcheck->valueInt('categories_id') !== null) {
-          $Qproducts = $this->app->db->prepare('select categories_id,
+          $Qcategories = $this->app->db->prepare('select categories_id,
                                                        categories_name,
                                                        language_id
                                                 from :table_categories_description
                                                 where categories_id = :categories_id
                                               ');
-          $Qproducts->bindInt(':categories_id', $Qcheck->valueInt('categories_id'));
-          $Qproducts->execute();
+          $Qcategories->bindInt(':categories_id', $Qcheck->valueInt('categories_id'));
+          $Qcategories->execute();
 
-          $products_array = $Qproducts->fetchAll();
+          $categories_array = $Qcategories->fetchAll();
 
-          foreach ($products_array as $item) {
+          foreach ($categories_array as $item) {
             $categories_name = $CLICSHOPPING_CategoriesAdmin->getCategoryName($item['categories_id'], $item['language_id']);
             $language_name = $CLICSHOPPING_Language->getLanguagesName($item['language_id']);
 

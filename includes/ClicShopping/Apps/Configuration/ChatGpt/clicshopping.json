@@ -24,7 +24,8 @@
      "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Categories\\Insert"
     },
     "ClicShoppingAdmin/Manufacturers": {
-     "ManufacturersTab4":	"Module\\Hooks\\ClicShoppingAdmin\\Manufacturers\\SeoChatGpt"
+     "ManufacturersTab4":	"Module\\Hooks\\ClicShoppingAdmin\\Manufacturers\\SeoChatGpt",
+     "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Manufacturers\\Insert"
     },
     "ClicShoppingAdmin/PageManager": {
      "PageTab":	"Module\\Hooks\\ClicShoppingAdmin\\PageManager\\SeoChatGpt"

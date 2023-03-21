@@ -36,7 +36,6 @@
 
       $suppliers_id = 0;
 
-// Insertion images des fabricants via l'éditeur FCKeditor (fonctionne sur les nouvelles et éditions des fabricants)
       if (isset($_POST['manufacturers_image']) && !\is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
         $manufacturers_image = $_POST['manufacturers_image'];
         $manufacturers_image = $CLICSHOPPING_Wysiwyg::getWysiwygImageAlone($manufacturers_image);
@@ -82,7 +81,7 @@
         $this->app->db->save('manufacturers_info', $sql_data_array);
       }
 
-      $CLICSHOPPING_Hooks->call('Manufacturers', 'Save');
+      $CLICSHOPPING_Hooks->call('Manufacturers', 'Insert');
 
       $this->app->redirect('Manufacturers&page=' . $page . '&mID=' . $manufacturers_id);
     }
