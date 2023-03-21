@@ -20,7 +20,8 @@
     "Insert": "Module\\Hooks\\ClicShoppingAdmin\\Products\\Insert"
    },
     "ClicShoppingAdmin/Categories": {
-     "CategoriesContentTab3":	"Module\\Hooks\\ClicShoppingAdmin\\Categories\\SeoChatGpt"
+     "CategoriesContentTab3":	"Module\\Hooks\\ClicShoppingAdmin\\Categories\\SeoChatGpt",
+     "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Categories\\Insert"
     },
     "ClicShoppingAdmin/Manufacturers": {
      "ManufacturersTab4":	"Module\\Hooks\\ClicShoppingAdmin\\Manufacturers\\SeoChatGpt"

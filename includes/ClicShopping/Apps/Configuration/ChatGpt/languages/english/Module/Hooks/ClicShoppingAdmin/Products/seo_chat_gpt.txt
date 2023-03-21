@@ -9,9 +9,10 @@ text_question_description = Write me a long description concerning this product 
 text_technical_question = then created me a new paragraph with Bullets points in HTML concerning the technical characteristics
 
 tab_gpt_options = ChatGpt Options
+text_gpt_options = ChatGpt Options
 text_options_gpt_description = Authorize the AI to generate your content automatically?
-text_options_gpt_summary_description = authorize the AI to generate your short description of the product?
-text_options_gpt_seo_title = authorize the AI to generate the SEO title of the product?
-text_options_gpt_seo_description = authorize the AI to generate the SEO description of the product?
-text_options_gpt_seo_keywords = authorize the AI to generate the SEO keywords of the product?
-text_options_gpt_seo_tags = authorize the AI to generate Tags SEO of the product?
+text_options_gpt_summary_description = Authorize the AI to generate your short description of the product?
+text_options_gpt_seo_title = Authorize the AI to generate the SEO title of the product?
+text_options_gpt_seo_description = Authorize the AI to generate the SEO description of the product?
+text_options_gpt_seo_keywords = Authorize the AI to generate the SEO keywords of the product?
+text_options_gpt_seo_tags = Authorize the AI to generate Tags SEO of the product?

@@ -54,7 +54,6 @@
 
       for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $categories_name_array = $_POST['categories_name'];
-
         $language_id = $languages[$i]['id'];
 
         $sql_data_array = [
@@ -65,7 +64,6 @@
           'categories_head_desc_tag' => HTML::sanitize($_POST['categories_head_desc_tag'][$language_id]),
           'categories_head_keywords_tag' => HTML::sanitize($_POST['categories_head_keywords_tag'][$language_id])
         ];
-
 
         $insert_sql_data = [
           'categories_id' => $categories_id,
