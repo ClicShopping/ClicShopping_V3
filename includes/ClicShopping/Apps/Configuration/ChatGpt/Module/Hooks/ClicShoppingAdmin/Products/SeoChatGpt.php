@@ -13,7 +13,6 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
   use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Chat;
@@ -35,7 +34,7 @@
     {
       $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
-      if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False') {
+      if (Chat::checkGotStatus() === false) {
         return false;
       }
 
@@ -43,26 +42,23 @@
 
       if (isset($_GET['pID'])) {
         $id = HTML::sanitize($_GET['pID']);
-      } else {
-        return false;
-      }
 
-      $question = $this->app->getDef('text_seo_page_title_question');
-      $questionTag = $this->app->getDef('text_seo_page_tag_question');
-      $questionKeywords = $this->app->getDef('text_seo_page_keywords_question');
-      $questionDescription = $this->app->getDef('text_seo_page_description_question');
-      $translate_language = $this->app->getDef('text_seo_page_translate_language');
+        $question = $this->app->getDef('text_seo_page_title_question');
+        $question_tag = $this->app->getDef('text_seo_page_tag_question');
+        $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
+        $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
+        $translate_language = $this->app->getDef('text_seo_page_translate_language');
 
-      $product_name = $CLICSHOPPING_ProductsAdmin->getProductsName($id);
+        $product_name = $CLICSHOPPING_ProductsAdmin->getProductsName($id);
 
-      $url = CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin') . 'ajax/chatGptSEO.php';
-      $urlMultilanguage = Chat::getAjaxSeoMultilanguageUrl();
+        $url = Chat::getAjaxUrl();
+        $urlMultilanguage = Chat::getAjaxSeoMultilanguageUrl();
 
-      $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
-      $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_page_title') . '"></i>';
-      $content .= '</button>';
+        $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
+        $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_page_title') . '"></i>';
+        $content .= '</button>';
 
-$output = <<<EOD
+        $output = <<<EOD
 <!------------------>
 <!-- ChatGpt start tag-->
 <!------------------>
@@ -87,7 +83,7 @@ $('[id^="SummaryDescription"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$questionDescription}' + ' ' + '{$product_name}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$product_name}';
         
         newButton.click(function() {
           let message = questionResponse;
@@ -183,7 +179,7 @@ $('[id^="products_head_desc_tag"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$questionDescription}' + ' ' + '{$product_name}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$product_name}';
         
         newButton.click(function() {
           let message = questionResponse;
@@ -229,7 +225,7 @@ $('[id^="products_head_keywords_tag"]').each(function(index) {
     url: '{$urlMultilanguage}',
     data: {id: language_id},
     success: function(language_name) {
-      let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$questionKeywords}' + ' ' + '{$product_name}';
+      let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$product_name}';
       
       newButton.click(function() {
         let message = questionResponse;
@@ -257,10 +253,6 @@ $('[id^="products_head_keywords_tag"]').each(function(index) {
 });
 </script>
 
-
-
-
-
 <!-- product seo tag -->
 <script defer>
 $('[id^="products_head_tag"]').each(function(index) {
@@ -278,7 +270,7 @@ $('[id^="products_head_tag"]').each(function(index) {
     url: '{$urlMultilanguage}',
     data: {id: language_id},
     success: function(language_name) {
-      let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$questionTag}' + ' ' + '{$product_name}';
+      let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_tag}' + ' ' + '{$product_name}';
       
       newButton.click(function() {
         let message = questionResponse;
@@ -306,6 +298,155 @@ $('[id^="products_head_tag"]').each(function(index) {
 });
 </script>
 EOD;
+    } else {
+     $tab_title = $this->app->getDef('tab_gpt_options');
+     $title = $this->app->getDef('text_gpt_options');
+
+     $content = '
+            <div class="separator"></div>     
+            <div class="row" id="productOptionGptDescription">
+              <div class="col-md-9">
+                <div class="form-group row">
+                  <label for="' . $this->app->getDef('text_options_gpt_description') . '"
+                         class="col-7 col-form-label">' . $this->app->getDef('text_options_gpt_description') . '</label>
+                  <div class="col-md-2">
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          ' . HTML::checkboxField('option_gpt_description', '1', true, 'class="success"') . '
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+           <div class="separator"></div>     
+            <div class="row" id="productOptionGptSummary">
+              <div class="col-md-9">
+                <div class="form-group row">
+                  <label for="' . $this->app->getDef('text_options_gpt_summary_description') . '"
+                         class="col-7 col-form-label">' . $this->app->getDef('text_options_gpt_summary_description') . '</label>
+                  <div class="col-md-2">
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          ' . HTML::checkboxField('option_gpt_summary_description', '1', true, 'class="success"') . '
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="separator"></div>     
+            <div class="row" id="productOptionGptSeoTitle">
+              <div class="col-md-9">
+                <div class="form-group row">
+                  <label for="' . $this->app->getDef('text_options_gpt_seo_title') . '"
+                         class="col-7 col-form-label">' . $this->app->getDef('text_options_gpt_seo_title') . '</label>
+                  <div class="col-md-2">
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          ' . HTML::checkboxField('option_gpt_seo_title', '1', true, 'class="success"') . '
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="separator"></div>     
+            <div class="row" id="productOptionGptSeoDescription">
+              <div class="col-md-9">
+                <div class="form-group row">
+                  <label for="' . $this->app->getDef('text_options_gpt_seo_description') . '"
+                         class="col-7 col-form-label">' . $this->app->getDef('text_options_gpt_seo_description') . '</label>
+                  <div class="col-md-2">
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          ' . HTML::checkboxField('option_gpt_seo_description', '1', true, 'class="success"') . '
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="separator"></div>     
+            <div class="row" id="productOptionGptSeokeywords">
+              <div class="col-md-9">
+                <div class="form-group row">
+                  <label for="' . $this->app->getDef('text_options_gpt_seo_keywords') . '"
+                         class="col-7 col-form-label">' . $this->app->getDef('text_options_gpt_seo_keywords') . '</label>
+                  <div class="col-md-2">
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          ' . HTML::checkboxField('option_gpt_seo_keywords', '1', true, 'class="success"') . '
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="separator"></div>     
+            <div class="row" id="productOptionGptSeotags">
+              <div class="col-md-9">
+                <div class="form-group row">
+                  <label for="' . $this->app->getDef('text_options_gpt_seo_tags') . '"
+                         class="col-7 col-form-label">' . $this->app->getDef('text_options_gpt_seo_tags') . '</label>
+                  <div class="col-md-2">
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          ' . HTML::checkboxField('option_gpt_seo_tags', '1', true, 'class="success"') . '
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+     ';
+
+
+
+$output = <<<EOD
+<!-- ######################## -->
+<!--  Start OptionsGptApp  -->
+<!-- ######################## -->
+<div class="tab-pane" id="section_OptionsGptApp_content">
+  <div class="mainTitle">
+    <span class="col-md-2">{$title}</span>
+  </div>
+  {$content}
+</div>
+<script>
+$('#section_OptionsGptApp_content').appendTo('#productsTabs .tab-content');
+$('#productsTabs .nav-tabs').append('    <li class="nav-item"><a data-bs-target="#section_OptionsGptApp_content" role="tab" data-bs-toggle="tab" class="nav-link">{$tab_title}</a></li>');
+</script>
+<!-- ######################## -->
+<!-- End OptionsGptApp  -->
+<!-- ######################## -->
+EOD;
+      }
+
       return $output;
     }
   }

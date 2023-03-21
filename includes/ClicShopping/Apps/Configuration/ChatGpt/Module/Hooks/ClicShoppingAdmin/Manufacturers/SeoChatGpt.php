@@ -33,7 +33,7 @@
 
     public function display()
     {
-      if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False') {
+      if (Chat::checkGotStatus() === false) {
         return false;
       }
 
@@ -46,8 +46,8 @@
       }
 
       $question = $this->app->getDef('text_seo_page_title_question');
-      $questionKeywords = $this->app->getDef('text_seo_page_keywords_question');
-      $questionDescription = $this->app->getDef('text_seo_page_description_question');
+      $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
+      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
       $translate_language = $this->app->getDef('text_seo_page_translate_language');
 
       $manufacturer_name = ManufacturerAdmin::getManufacturerNameById($id);
@@ -118,7 +118,7 @@ $('[id^="manufacturer_seo_description"]').each(function(index) {
   if (textareaId !== undefined) {
     let regex = /(\d+)/g; // Expression régulière pour extraire l'id
     let idManufacturerSeoDescription = textareaId.match(regex)[0]; // Extraire l'id du textarea
-    let questionResponse = '{$questionDescription}' + ' ' + '{$manufacturer_name}';
+    let questionResponse = '{$question_summary_description}' + ' ' + '{$manufacturer_name}';
     
     newButton.click(function() { // Ajouter un listener pour chaque bouton
       let message = questionResponse; // Valeur envoyée à Open AI
@@ -134,13 +134,6 @@ $('[id^="manufacturer_seo_description"]').each(function(index) {
   }
 });
 </script>
-
-
-
-
-
-
-
 
 <!-- manufacturer seo  meta keyword -->
 <script defer>
@@ -159,7 +152,7 @@ $('[id^="manufacturer_seo_keyword"]').each(function(index) {
     url: '{$urlMultilanguage}',
     data: {id: language_id},
     success: function(language_name) {
-      let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$questionKeywords}' + ' ' + '{$manufacturer_name}';
+      let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$manufacturer_name}';
       
       newButton.click(function() {
         let message = questionResponse;

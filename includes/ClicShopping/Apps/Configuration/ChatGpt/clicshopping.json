@@ -2,8 +2,8 @@
  "title": "ChatGpt App",
  "app": "ChatGpt",
  "vendor":"ChatGpt",
- "version":  "1.0.0",
- "req_core_version":  "4.1",
+ "version":  "1.1",
+ "req_core_version":  "3.4",
  "license": "GPL-2",
  "authors": [
   {
@@ -16,7 +16,8 @@
  "modules": {
    "Hooks": {
    "ClicShoppingAdmin/Products": {
-    "PageTab":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\SeoChatGpt"
+    "PageTab": "Module\\Hooks\\ClicShoppingAdmin\\Products\\SeoChatGpt",
+    "Insert": "Module\\Hooks\\ClicShoppingAdmin\\Products\\Insert"
    },
     "ClicShoppingAdmin/Categories": {
      "CategoriesContentTab3":	"Module\\Hooks\\ClicShoppingAdmin\\Categories\\SeoChatGpt"

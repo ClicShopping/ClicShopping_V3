@@ -13,12 +13,20 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
 
-  use OpenAI;
-
   class Chat
   {
      public function __construct()
     {
+    }
+
+    /**
+     * @return bool
+     */
+    public static function checkGotStatus() :bool
+    {
+      if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
+        return false;
+      }
     }
 
     /**

@@ -2,5 +2,13 @@ text_seo_page_title = SEO Page de Titre
 text_seo_page_title_question = Donne moi en moins de 50 mots le SEO Titre concernant ce produit :
 text_seo_page_tag_question = Donne moi en moins de 70 mots, 5 tag sèparès par une virgule concernant ce produit :
 text_seo_page_keywords_question = Donne moi 7 mots clefs sèparès par une virgule concernant ce produit :
-text_seo_page_description_question = Donne moi en moins de 50 mots une description trés courte concernant ce produit :
+text_seo_page_summary_description_question = Donne moi en moins de 50 mots une description trés courte concernant ce produit :
 text_seo_page_translate_language = Peux tu traduire en
+
+tab_gpt_options = Options ChatGpt
+text_options_gpt_description = Autorisez l'IA à générer votre contenu automatiquement ?
+text_options_gpt_summary_description = Autorisez l'IA à générer votre description courte du produit ?
+text_options_gpt_seo_title = Autorisez l'IA à générer le titre SEO du produit ?
+text_options_gpt_seo_description = Autorisez l'IA à générer la description SEO du produit ?
+text_options_gpt_seo_keywords = Autorisez l'IA à générer les mots clefs SEO du produit ?
+text_options_gpt_seo_tags = Autorisez l'IA à générer tags SEO du produit ?

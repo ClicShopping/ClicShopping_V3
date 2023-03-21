@@ -37,6 +37,10 @@
         return false;
       }
 
+      if (empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
+        return false;
+      }
+
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/SEO/seo_chat_gpt');
 
       if(empty(STORE_NAME)) {
@@ -46,7 +50,7 @@
       $store_name = HTML::sanitize(STORE_NAME);
       $question_title = $this->app->getDef('text_seo_page_title_question');
       $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
-      $question_description = $this->app->getDef('text_seo_page_description_question');
+      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
       $question_tag = $this->app->getDef('text_seo_page_tag_question');
 
       $text_tag_specials = $this->app->getDef('text_tag_specials');
@@ -179,7 +183,7 @@ $('[id^="seo_default_desc_tag"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_description}' + ' ' + '{$store_name}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}';
         
         newButton.click(function() {
           let message = questionResponse;
@@ -367,7 +371,7 @@ $('[id^="seo_product_description"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_description}' + ' ' + '{$store_name}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}';
         
         newButton.click(function() {
           let message = questionResponse;
@@ -519,7 +523,7 @@ $('[id^="seo_product_new_description"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
         
         newButton.click(function() {
           let message = questionResponse;
@@ -661,7 +665,7 @@ $('[id^="seo_special_description"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
         
         newButton.click(function() {
           let message = questionResponse;
@@ -803,7 +807,7 @@ $('[id^="seo_review_description"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
         
         newButton.click(function() {
           let message = questionResponse;
@@ -945,7 +949,7 @@ $('[id^="seo_favorite_description"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
         
         newButton.click(function() {
           let message = questionResponse;
@@ -1087,7 +1091,7 @@ $('[id^="seo_featured_description"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
         
         newButton.click(function() {
           let message = questionResponse;

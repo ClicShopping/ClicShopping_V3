@@ -35,7 +35,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False') {
+      if (Chat::checkGotStatus() === false) {
         return false;
       }
 
@@ -48,8 +48,8 @@
       }
 
       $question = $this->app->getDef('text_seo_page_title_question');
-      $questionKeywords = $this->app->getDef('text_seo_page_keywords_question');
-      $questionDescription = $this->app->getDef('text_seo_page_description_question');
+      $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
+      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
       $translate_language = $this->app->getDef('text_seo_page_translate_language');
 
       $page_manager_name = PageManagerAdmin::getPageManagerTitle($id, $CLICSHOPPING_Language->getId());
@@ -131,7 +131,7 @@ $('[id^="page_manager_head_desc_tag"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$questionDescription}' + ' ' + '{$page_manager_name}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$page_manager_name}';
         
         newButton.click(function() {
           let message = questionResponse;
@@ -177,7 +177,7 @@ $('[id^="page_manager_head_keywords_tag"]').each(function(index) {
     url: '{$urlMultilanguage}',
     data: {id: language_id},
     success: function(language_name) {
-      let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$questionKeywords}' + ' ' + '{$page_manager_name}';
+      let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$page_manager_name}';
       
       newButton.click(function() {
         let message = questionResponse;

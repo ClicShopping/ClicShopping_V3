@@ -2,5 +2,14 @@ text_seo_page_title = SEO Page Title
 text_seo_page_title_question = Give me a SEO Title in less 50 characters about this product :
 text_seo_page_tag_question = Give me in less 70 words 5 tag separated by a comma about this product :
 text_seo_page_keywords_question = Give me 7 keywords tag separated by a comma about this product :
-text_seo_page_description_question = Give me in less 50 words a very short description about this product :
+text_seo_page_summary_description_question = Give me in less 50 words a very short description about this product :
 text_seo_page_translate_language = Can you translate in
+
+
+tab_gpt_options = ChatGpt Options
+text_options_gpt_description = Authorize the AI to generate your content automatically?
+text_options_gpt_summary_description = authorize the AI to generate your short description of the product?
+text_options_gpt_seo_title = authorize the AI to generate the SEO title of the product?
+text_options_gpt_seo_description = authorize the AI to generate the SEO description of the product?
+text_options_gpt_seo_keywords = authorize the AI to generate the SEO keywords of the product?
+text_options_gpt_seo_tags = authorize the AI to generate Tags SEO of the product?

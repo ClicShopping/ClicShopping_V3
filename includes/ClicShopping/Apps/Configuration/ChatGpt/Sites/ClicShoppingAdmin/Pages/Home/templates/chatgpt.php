@@ -15,7 +15,6 @@
 
   $CLICSHOPPING_ChatGpt = Registry::get('ChatGpt');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
