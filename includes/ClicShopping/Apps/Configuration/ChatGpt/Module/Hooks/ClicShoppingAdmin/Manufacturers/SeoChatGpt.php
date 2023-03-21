@@ -125,7 +125,7 @@ $('[id^="manufacturer_seo_description"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$categories_name}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$manufacturer_name}';
         
         newButton.click(function() {
           let message = questionResponse;
@@ -276,6 +276,26 @@ EOD;
                         <li class="list-group-item-slider">
                           <label class="switch">
                             ' . HTML::checkboxField('option_gpt_seo_keywords', '1', true, 'class="success"') . '
+                            <span class="slider"></span>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+               <div class="separator"></div>
+              <div class="row" id="productOptionGptSeokeywords">
+                <div class="col-md-9">
+                  <div class="form-group row">
+                    <label for="' . $this->app->getDef('text_options_gpt_image') . '"
+                           class="col-7 col-form-label">' . $this->app->getDef('text_options_gpt_image') . '</label>
+                    <div class="col-md-2">
+                      <ul class="list-group-slider list-group-flush">
+                        <li class="list-group-item-slider">
+                          <label class="switch">
+                            ' . HTML::checkboxField('option_gpt_create_image', '1', true, 'class="success"') . '
                             <span class="slider"></span>
                           </label>
                         </li>

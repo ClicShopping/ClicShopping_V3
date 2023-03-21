@@ -147,6 +147,47 @@
     }
 
     /**
+     * @param string $string
+     * @return array|false
+     */
+    public static function createImageChatGpt(string $name, string $directory = 'products') :string|bool
+    {
+      if (Chat::checkGptStatus() === false) {
+        return false;
+      }
+
+      $template_image_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/images/' . $directory . '/';
+
+      $client = OpenAI::client(CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
+
+      $response = $client->images()->create([
+        'prompt' => $name,
+        'n' => 1,
+        'size' => '512x512',
+        'response_format' => 'url',
+      ]);
+
+      if (!\is_null($response->created)) {
+        foreach ($response->data as $data) {
+          $url_image = file_get_contents($data->url);
+          $image_name = HTML::removeFileAccents($name);
+          $image_name = str_replace(' ', '_', $image_name);
+
+          $directory_image = $template_image_directory . $image_name . '.jpg';
+          file_put_contents($directory_image, $url_image);
+        }
+      }
+
+      if (file_get_contents($template_image_directory . $image_name . '.jpg') !== null) {
+        $save_image =  $directory . '/' . $image_name . '.jpg';
+
+        return $save_image;
+      } else {
+        return false;
+      }
+    }
+
+    /**
      * @return String
      */
     public static function ChatGptModal() : String
@@ -204,6 +245,13 @@
                                       <i class="bi bi-clipboard" title="' . CLICSHOPPING::getDef('text_copy') . '"></i> ' . CLICSHOPPING::getDef('text_copy') . ' Copy Result
                                     </button>
                                   </span>
+<!--
+                                  <span class="col-md-6 text-end">
+                                    <button id="copyHTMLButton" class="btn btn-primary btn-sm d-none" data-clipboard-target="#chatGpt-output" data-clipboard-action="copy">
+                                      <i class="bi bi-code" title="' . CLICSHOPPING::getDef('text_copy_html') . '"></i> ' . CLICSHOPPING::getDef('text_copy_html') . ' Copy HTML
+                                    </button>
+                                  </span>
+-->
                                 </div>
                               </div>
                             </div>

@@ -77,8 +77,7 @@
 // products description
 //-------------------
             if(isset($_POST['option_gpt_description'])) {
-              $question_description = $this->app->getDef('text_manufacturers_info');
-              $manufacturers_description =  $translate_language . ' ' . $language_name . ' : ' .  $question_description . ' ' . $manufacturers_name;
+              $manufacturers_description =  $translate_language . ' ' . $language_name . ' : ' .  $question_summary_description . ' ' . $manufacturers_name;
               $manufacturers_description = Chat::getChatGptResponse($manufacturers_description);
 
               if ($manufacturers_description !== false) {
@@ -135,6 +134,26 @@
                 $this->app->db->save('manufacturers_info', $sql_data_array, $update_sql_data);
               }
             }
+          }
+        }
+
+//-------------------
+//image
+//-------------------
+        if(isset($_POST['option_gpt_create_image'])) {
+          $image = Chat::createImageChatGpt($manufacturers_name, 'manufacturers');
+
+          if (!empty($image) || $image !== false) {
+            $sql_data_array = [
+              'manufacturers_image' => $image ?? '',
+            ];
+
+            $update_sql_data = [
+              'manufacturers_id' => $Qcheck->valueInt('manufacturers_id')
+            ];
+
+
+            $this->app->db->save('manufacturers', $sql_data_array, $update_sql_data);
           }
         }
       }
