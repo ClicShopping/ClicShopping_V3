@@ -35,7 +35,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (Chat::checkGotStatus() === false) {
+      if (Chat::checkGptStatus() === false) {
         return false;
       }
 

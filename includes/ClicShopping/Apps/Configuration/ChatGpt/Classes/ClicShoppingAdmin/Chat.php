@@ -13,6 +13,9 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
 
+  use OpenAI;
+  use OpenAI\Exceptions\ErrorException;
+
   class Chat
   {
      public function __construct()
@@ -22,10 +25,12 @@
     /**
      * @return bool
      */
-    public static function checkGotStatus() :bool
+    public static function checkGptStatus() :bool
     {
       if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
         return false;
+      } else {
+        return true;
       }
     }
 
@@ -99,6 +104,47 @@
       return $script;
     }
 
+    /**
+     * @param string $question
+     * @return bool|string
+     * @throws \Exception
+     */
+    public static function getChatGptResponse(string $question) :bool|string
+    {
+      if (Chat::checkGptStatus() === false) {
+        return false;
+      }
+
+      $client = OpenAI::client(CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
+      $prompt = HTML::sanitize($question);
+      $engine = CLICSHOPPING_APP_CHATGPT_CH_MODEL;
+
+      $top = ['\n'];
+
+      $parameters = [
+        'model' => $engine,  // Spécification du modèle à utiliser
+        'temperature' => (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE, // Contrôle de la créativité du modèle
+        'top_p' => (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P , // Caractère de fin de ligne pour la réponse
+        'frequency_penalty' => (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY, //pénalité de fréquence pour encourager le modèle à générer des réponses plus variées
+        'presence_penalty' => (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY, //pénalité de présence pour encourager le modèle à générer des réponses avec des mots qui n'ont pas été utilisés dans l'amorce
+        'prompt' => $prompt, // Texte d'amorce
+        'max_tokens' => (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN, //nombre maximum de jetons à générer dans la réponse
+        'stop' => $top, //caractères pour arrêter la réponse
+        'n' => (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE, // nombre de réponses à générer
+        'best_of' => (int)CLICSHOPPING_APP_CHATGPT_CH_BESTOFF, //Generates best_of completions server-side and returns the "best"
+      ];
+
+      $response = $client->completions()->create($parameters);
+
+      try {
+        $result = $response['choices'][0]['text'];
+
+        return $result;
+      }catch (\RuntimeException $e) {
+        throw new \Exception('Error appears, please look the console error');
+        return false;
+      }
+    }
 
     /**
      * @return String

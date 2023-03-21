@@ -34,7 +34,7 @@
     {
       $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
-      if (Chat::checkGotStatus() === false) {
+      if (Chat::checkGptStatus() === false) {
         return false;
       }
 

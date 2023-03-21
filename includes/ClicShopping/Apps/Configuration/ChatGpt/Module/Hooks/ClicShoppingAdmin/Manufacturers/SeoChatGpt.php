@@ -33,7 +33,7 @@
 
     public function display()
     {
-      if (Chat::checkGotStatus() === false) {
+      if (Chat::checkGptStatus() === false) {
         return false;
       }
 
