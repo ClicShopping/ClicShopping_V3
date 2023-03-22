@@ -11,5 +11,10 @@ text_options_gpt_description = Authorize the AI to generate your content automat
 text_options_gpt_seo_title = Authorize the AI to generate the SEO title of this category ?
 text_options_gpt_seo_description = Authorize the AI to generate the SEO description of this category ?
 text_options_gpt_seo_keywords = Authorize the AI to generate the SEO keywords of this category ?
+text_options_gpt_image = Authorize the AI to generate an image of this category ?
 
 text_categories_description = Write me a long description about this category :
+
+title_help_seo=Help
+text_help_seo = Please note that if you use AI to generate your content, information may take longer to save due to processing. Please wait.
+

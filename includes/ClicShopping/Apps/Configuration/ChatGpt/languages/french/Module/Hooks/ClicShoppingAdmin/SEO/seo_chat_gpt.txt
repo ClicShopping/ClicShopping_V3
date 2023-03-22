@@ -11,3 +11,6 @@ text_tag_products_new = nouveautés produits
 text_tag_review = commentaires produits
 
 text_seo_page_translate_language = Peux tu traduire en
+
+title_help_seo = Help
+text_help_seo = Veuillez noter que si vous utilisez l'IA pour générer votre contenu, le temps de sauvegarde de l'information peut être plus long du au traitement. Merci de patienter.

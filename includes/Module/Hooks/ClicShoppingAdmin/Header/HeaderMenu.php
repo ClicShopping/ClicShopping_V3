@@ -18,7 +18,7 @@
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
   use ClicShopping\Apps\Tools\WhosOnline\Classes\ClicShoppingAdmin\WhosOnlineAdmin;
   use ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin\AdministratorMenu;
-  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Chat;
+  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
 
   class HeaderMenu
   {
@@ -58,7 +58,7 @@
         ';
 
         if (isset($_SESSION['admin'])) {
-          $output .= Chat::ChatGptModal();
+          $output .= ChatGptAdmin::ChatGptModal();
 
           if ($_SESSION['admin']['access'] == 1 && \count(glob(ErrorHandler::getDirectory() . 'phpmail_error-*.txt', GLOB_NOSORT)) > 0) {
             $output .= '<span>' . HTML::link(CLICSHOPPING::link(null, 'A&Tools\EditLogError&LogErrorPhpMailer'), '<i class="bi bi-exclamation-circle-fill text-warning" tiltle="Mail"></i>') . '</span> ';

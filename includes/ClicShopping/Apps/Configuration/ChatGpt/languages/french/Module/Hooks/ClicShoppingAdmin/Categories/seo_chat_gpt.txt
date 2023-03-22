@@ -11,5 +11,9 @@ text_options_gpt_description = Autorisez l'IA à générer votre contenu automat
 text_options_gpt_seo_title = Autorisez l'IA à générer le titre SEO de cette catégorie ?
 text_options_gpt_seo_description = Autorisez l'IA à générer la description SEO de cette catégorie ?
 text_options_gpt_seo_keywords = Autorisez l'IA à générer les mots clefs SEO de cette catégorie ?
+text_options_gpt_image = Autorisez l'IA à générer une image concernant cette catégorie ?
 
 text_categories_description = Ecris moi une longue description concernant cette categorie :
+
+title_help_seo = Help
+text_help_seo = Veuillez noter que si vous utilisez l'IA pour générer votre contenu, le temps de sauvegarde de l'information peut être plus long du au traitement. Merci de patienter.

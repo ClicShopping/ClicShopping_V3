@@ -16,7 +16,7 @@
   use OpenAI;
   use OpenAI\Exceptions\ErrorException;
 
-  class Chat
+  class ChatGptAdmin
   {
      public function __construct()
     {
@@ -111,7 +111,7 @@
      */
     public static function getChatGptResponse(string $question) :bool|string
     {
-      if (Chat::checkGptStatus() === false) {
+      if (ChatGptAdmin::checkGptStatus() === false) {
         return false;
       }
 
@@ -147,12 +147,15 @@
     }
 
     /**
-     * @param string $string
+     * @param string $name
+     * @param string $directory
+     * @param string $size
+     * @param bool $rename
      * @return array|false
      */
-    public static function createImageChatGpt(string $name, string $directory = 'products') :string|bool
+    public static function createImageChatGpt(string $name, string $directory = 'products', string $size = '256x256', bool $rename = false) :string|bool
     {
-      if (Chat::checkGptStatus() === false) {
+      if (ChatGptAdmin::checkGptStatus() === false) {
         return false;
       }
 
@@ -160,18 +163,27 @@
 
       $client = OpenAI::client(CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
 
-      $response = $client->images()->create([
+      $array = [
         'prompt' => $name,
         'n' => 1,
-        'size' => '512x512',
+        'size' => $size,
         'response_format' => 'url',
-      ]);
+      ];
+      
+      $response = $client->images()->create($array);
 
       if (!\is_null($response->created)) {
         foreach ($response->data as $data) {
           $url_image = file_get_contents($data->url);
           $image_name = HTML::removeFileAccents($name);
-          $image_name = str_replace(' ', '_', $image_name);
+
+          if ($rename === true) {
+            $image_name = str_replace(' ', '_', $image_name);
+            $rand = rand(1,20);
+            $image_name = $image_name . '_' . $rand;
+          } else {
+            $image_name = str_replace(' ', '_', $image_name);
+          }
 
           $directory_image = $template_image_directory . $image_name . '.jpg';
           file_put_contents($directory_image, $url_image);

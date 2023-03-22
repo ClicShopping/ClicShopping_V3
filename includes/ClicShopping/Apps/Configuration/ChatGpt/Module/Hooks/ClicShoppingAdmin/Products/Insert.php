@@ -13,7 +13,8 @@
   use ClicShopping\OM\Registry;
 
   use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
-  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Chat;
+
+  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
 
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -83,7 +84,7 @@
               $technical_question = $this->app->getDef('text_technical_question');
 
               $products_description =  $translate_language . ' ' . $language_name . ' : ' .  $question_description . ' ' . $product_name . ' ' . $technical_question;
-              $products_description = Chat::getChatGptResponse($products_description);
+              $products_description = ChatGptAdmin::getChatGptResponse($products_description);
 
               if ($products_description !== false) {
                 $sql_data_array = [
@@ -98,7 +99,7 @@
 //-------------------
             if(isset($_POST['option_gpt_summary_description'])) {
               $summary_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $product_name;
-              $summary_description = Chat::getChatGptResponse($summary_description);
+              $summary_description = ChatGptAdmin::getChatGptResponse($summary_description);
 
               if ($summary_description !== false) {
                 $sql_data_array = [
@@ -113,7 +114,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_title'])) {
               $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question . ' ' . $product_name;
-              $seo_product_title = Chat::getChatGptResponse($seo_product_title);
+              $seo_product_title = ChatGptAdmin::getChatGptResponse($seo_product_title);
 
               if ($seo_product_title !== false) {
                 $sql_data_array = [
@@ -128,7 +129,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_title'])) {
               $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $product_name;
-              $seo_product_description = Chat::getChatGptResponse($seo_product_description);
+              $seo_product_description = ChatGptAdmin::getChatGptResponse($seo_product_description);
 
               if ($seo_product_description !== false) {
                 $sql_data_array = [
@@ -143,7 +144,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_keywords'])) {
               $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords . ' ' . $product_name;
-              $seo_product_keywords = Chat::getChatGptResponse($seo_product_keywords);
+              $seo_product_keywords = ChatGptAdmin::getChatGptResponse($seo_product_keywords);
 
               if ($seo_product_keywords !== false) {
                 $sql_data_array = [
@@ -158,7 +159,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_tags'])) {
               $seo_product_tag =  $translate_language. ' ' . $language_name . ' : ' .  $question_tag . ' ' . $product_name;
-              $seo_product_tag = Chat::getChatGptResponse($seo_product_tag);
+              $seo_product_tag = ChatGptAdmin::getChatGptResponse($seo_product_tag);
 
               if ($seo_product_tag !== false) {
                 $sql_data_array = [
@@ -167,6 +168,74 @@
 
                 $this->app->db->save('products_description', $sql_data_array, $update_sql_data);
               }
+            }
+          }
+//-------------------
+//image
+//-------------------
+          if(isset($_POST['option_gpt_create_image'])) {
+            $Qproducts = $this->app->db->prepare('select products_name,
+                                                         language_id
+                                                  from :table_products_description
+                                                  where products_id = :products_id
+                                                  and language_id = 1
+                                                ');
+            $Qproducts->bindInt(':products_id', $Qcheck->valueInt('products_id'));
+            $Qproducts->execute();
+
+            $update_sql_data = [
+              'products_id' => $Qcheck->valueInt('products_id')
+            ];
+
+            $products_image = ChatGptAdmin::createImageChatGpt($Qproducts->value('products_name'), 'products', '256x256', true, true);
+
+            if (!empty($products_image) || $products_image !== false) {
+              $sql_data_products_image = [
+                'products_image' => $products_image ?? '',
+                'products_image_small' => $products_image ?? ''
+              ];
+
+              $this->app->db->save('products', $sql_data_products_image, $update_sql_data);
+            }
+
+//zoom
+            $products_image_zoom = ChatGptAdmin::createImageChatGpt($Qproducts->value('products_name'), 'products', '512x512', true);
+
+            if (!empty($products_image_zoom) || $products_image_zoom !== false) {
+              $sql_data_array_products_image_zoom = [
+                'products_image_zoom' => $products_image_zoom ?? '',
+              ];
+
+              $this->app->db->save('products', $sql_data_array_products_image_zoom, $update_sql_data);
+
+              $sql_array = [
+                'products_id' => $Qcheck->valueInt('products_id'),
+                'image' => $products_image_zoom ?? '',
+                'htmlcontent' => '',
+                'sort_order' => 2
+              ];
+
+              $this->app->db->save('products_images', $sql_array);
+            }
+
+// medium
+            $products_image_medium = ChatGptAdmin::createImageChatGpt($Qproducts->value('products_name'), 'products', '512x512', true);
+
+            if (!empty($products_image_medium) || $products_image_medium !== false) {
+              $sql_data_array_products_image_medium = [
+                'products_image_medium' => $products_image_medium ?? '',
+              ];
+
+              $this->app->db->save('products', $sql_data_array_products_image_medium, $update_sql_data);
+
+              $sql_array = [
+                'products_id' => $Qcheck->valueInt('products_id'),
+                'image' => $products_image_medium ?? '',
+                'htmlcontent' => '',
+                'sort_order' => 2
+              ];
+
+              $this->app->db->save('products_images', $sql_array);
             }
           }
         }

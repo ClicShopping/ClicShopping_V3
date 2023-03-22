@@ -16,7 +16,7 @@
 
   use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
 
-  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Chat;
+  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
 
   class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -60,8 +60,8 @@
       $text_tag_review = $this->app->getDef('text_tag_review');
       $translate_language = $this->app->getDef('text_seo_page_translate_language');
 
-      $url = Chat::getAjaxUrl(false);
-      $urlMultilanguage = Chat::getAjaxSeoMultilanguageUrl();
+      $url = ChatGptAdmin::getAjaxUrl(false);
+      $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
 
       $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
       $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_page_title') . '"></i>';

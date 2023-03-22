@@ -13,7 +13,7 @@
   use ClicShopping\OM\Registry;
 
   use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
-  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Chat;
+  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
 
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -34,7 +34,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (Chat::checkGptStatus() === false) {
+      if (ChatGptAdmin::checkGptStatus() === false) {
         return false;
       }
 
@@ -78,7 +78,7 @@
 //-------------------
             if(isset($_POST['option_gpt_description'])) {
               $manufacturers_description =  $translate_language . ' ' . $language_name . ' : ' .  $question_summary_description . ' ' . $manufacturers_name;
-              $manufacturers_description = Chat::getChatGptResponse($manufacturers_description);
+              $manufacturers_description = ChatGptAdmin::getChatGptResponse($manufacturers_description);
 
               if ($manufacturers_description !== false) {
                 $sql_data_array = [
@@ -94,7 +94,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_title'])) {
               $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question . ' ' . $manufacturers_name;
-              $seo_product_title = Chat::getChatGptResponse($seo_product_title);
+              $seo_product_title = ChatGptAdmin::getChatGptResponse($seo_product_title);
 
               if ($seo_product_title !== false) {
                 $sql_data_array = [
@@ -109,7 +109,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_title'])) {
               $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $manufacturers_name;
-              $seo_product_description = Chat::getChatGptResponse($seo_product_description);
+              $seo_product_description = ChatGptAdmin::getChatGptResponse($seo_product_description);
 
               if ($seo_product_description !== false) {
                 $sql_data_array = [
@@ -124,7 +124,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_keywords'])) {
               $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords . ' ' . $manufacturers_name;
-              $seo_product_keywords = Chat::getChatGptResponse($seo_product_keywords);
+              $seo_product_keywords = ChatGptAdmin::getChatGptResponse($seo_product_keywords);
 
               if ($seo_product_keywords !== false) {
                 $sql_data_array = [
@@ -136,12 +136,11 @@
             }
           }
         }
-
 //-------------------
 //image
 //-------------------
         if(isset($_POST['option_gpt_create_image'])) {
-          $image = Chat::createImageChatGpt($manufacturers_name, 'manufacturers');
+          $image = ChatGptAdmin::createImageChatGpt($manufacturers_name, 'manufacturers');
 
           if (!empty($image) || $image !== false) {
             $sql_data_array = [

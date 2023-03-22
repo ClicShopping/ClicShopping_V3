@@ -16,3 +16,7 @@ text_options_gpt_seo_title = Autorisez l'IA à générer le titre SEO du produit
 text_options_gpt_seo_description = Autorisez l'IA à générer la description SEO du produit ?
 text_options_gpt_seo_keywords = Autorisez l'IA à générer les mots clefs SEO du produit ?
 text_options_gpt_seo_tags = Autorisez l'IA à générer tags SEO du produit ?
+text_options_gpt_image = Autorisez l'IA à générer une image concernant ce produit ?
+
+title_help_seo = Help
+text_help_seo = Veuillez noter que si vous utilisez l'IA pour générer votre contenu, le temps de sauvegarde de l'information peut être plus long du au traitement. Merci de patienter.

@@ -15,7 +15,7 @@
   use ClicShopping\OM\Registry;
 
   use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
-  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Chat;
+  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
 
   class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -34,7 +34,7 @@
     {
       $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
-      if (Chat::checkGptStatus() === false) {
+      if (ChatGptAdmin::checkGptStatus() === false) {
         return false;
       }
 
@@ -51,8 +51,8 @@
 
         $product_name = $CLICSHOPPING_ProductsAdmin->getProductsName($id);
 
-        $url = Chat::getAjaxUrl();
-        $urlMultilanguage = Chat::getAjaxSeoMultilanguageUrl();
+        $url = ChatGptAdmin::getAjaxUrl();
+        $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
 
         $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
         $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_page_title') . '"></i>';
@@ -422,9 +422,34 @@ EOD;
                 </div>
               </div>
             </div>
+            
+            <div class="separator"></div>
+            <div class="row" id="productOptionGptCreateImage">
+              <div class="col-md-9">
+                <div class="form-group row">
+                  <label for="' . $this->app->getDef('text_options_gpt_image') . '"
+                         class="col-7 col-form-label">' . $this->app->getDef('text_options_gpt_image') . '</label>
+                  <div class="col-md-2">
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          ' . HTML::checkboxField('option_gpt_create_image', '1', false, 'class="success"') . '
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+            <div class="separator"></div>
+            <div class="alert alert-info" role="alert">
+              <div><h4><i class="bi bi-question-circle" title="' . $this->app->getDef('title_help_seo') . '"></i></h4> ' . $this->app->getDef('title_help_seo') .'</div>
+              <div class="separator"></div>
+              <div>' . $this->app->getDef('text_help_seo') .'</div>
+            </div>
      ';
-
-
 
 $output = <<<EOD
 <!-- ######################## -->
