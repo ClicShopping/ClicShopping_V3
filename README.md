@@ -3,9 +3,13 @@
 </p>
 
 # ClicShopping
-ClicShopping(tm) is an Ecommerce OpenSource and powerfull Solution e-commerce B2B / B2C / B2B-B2C using the artificial intelligence to help the shop owner and increase their competitivity.
+ClicShopping(tm) is a powerful open-source e-commerce solution that supports B2B, B2C, and B2B-B2C. With the integration of ChatGpt, an artificial intelligence system, ClicShopping helps shop owners increase their competitiveness. Best of all, it's completely free!
 
-The solution is based on a modern, responsive design that will allow you to have a great website on all mobile device, desktop but also perform at speed !
+The solution boasts a modern, responsive design that ensures an excellent website experience on all devices, including mobile and desktop, without compromising speed.
+
+Installing ClicShopping is quick and easy, requiring just a few clicks on a server or your computer. Plus, it consumes minimal server resources, making it a lightweight, customizable, and user-friendly solution.
+
+ClicShopping operates on donations, contributions, marketplace, and financial support, which ensures the ongoing development of the platform.
 
 Easy to install in just some clicks on a server or on your computer, you can use ClicShopping
 
@@ -81,7 +85,8 @@ More information in the Wiki
 #Support
 
   - <img align="left" src="https://www.softaculous.com/website/images/softac_products.gif"><br>ClicShopping can now be installed easily with just one click via [Softaculous](https://www.softaculous.com/apps/ecommerce/ClicShopping)  
-  - <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)
+  
+   - <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)
 
 #Analyse
   -  [![SymfonyInsight](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e/big.svg)](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e)
@@ -122,7 +127,7 @@ More information in the Wiki
 - Free modular Apps to create import or to import from osCommerce 2.x, OpenCart, ZenCart, Crealoaded, Prestashop .... database migration available on the marketplace
 - double authentification
 - API REST
-- Artificial intelligence implemented via ChatGpt  
+- Artificial intelligence implemented via ChatGpt and Dall E 
 - Antispam ...
 
 
