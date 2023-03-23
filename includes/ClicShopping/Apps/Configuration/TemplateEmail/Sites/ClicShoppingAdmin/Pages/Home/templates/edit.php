@@ -21,17 +21,17 @@
   $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
   $QtemplateEmailDescription = $CLICSHOPPING_TemplateEmail->db->prepare('select ted.language_id,
-                                                                        ted.template_email_name,
-                                                                        ted.template_email_short_description,
-                                                                        ted.template_email_description,
-                                                                        te.template_email_variable,
-                                                                        te.template_email_id,
-                                                                        te.customers_group_id
-                                                                 from :table_template_email te,
-                                                                      :table_template_email_description ted
-                                                                 where te.template_email_id = :template_email_id
-                                                                 and te.template_email_id = ted.template_email_id
-                                                                ');
+                                                                                ted.template_email_name,
+                                                                                ted.template_email_short_description,
+                                                                                ted.template_email_description,
+                                                                                te.template_email_variable,
+                                                                                te.template_email_id,
+                                                                                te.customers_group_id
+                                                                         from :table_template_email te,
+                                                                              :table_template_email_description ted
+                                                                         where te.template_email_id = :template_email_id
+                                                                         and te.template_email_id = ted.template_email_id
+                                                                        ');
   $QtemplateEmailDescription->bindInt(':template_email_id', (int)$_GET['tID']);
   $QtemplateEmailDescription->execute();
 
@@ -150,36 +150,47 @@
         <div class="tab-pane" id="tab2">
           <div class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_TemplateEmail->getDef('title_message'); ?></div>
           <div class="adminformTitle">
-            <?php
+            <div class="accordion" id="accordionExample">
+              <?php
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              ?>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading<?php $i; ?>">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                  </button>
+                </h2>
+                <?php
+                if ($i == 0) {
+                  $show = ' show';
+                } else {
+                  $show = '';
+                }
                 ?>
-                  <div class="row">
-                      <div class="col-md-12">
-                          <div class="form-group row">
-                              <label for="code"
-                                     class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                          </div>
-                      </div>
-                  </div>
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="code"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                      <div class="col-md-3">
-                        <?php
-                        $name = 'template_email_description[' . $languages[$i]['id'] . ']';
-                        $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                        echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($template_email_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($template_email_description[$languages[$i]['id']])) : TemplateEmailAdmin::getTemplateEmailDescription($tInfo->template_email_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
-                        ?>
+                <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group row">
+                          <div class="col-md-3">
+                            <?php
+                            $name = 'template_email_description[' . $languages[$i]['id'] . ']';
+                            $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
+
+                            echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($template_email_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($template_email_description[$languages[$i]['id']])) : TemplateEmailAdmin::getTemplateEmailDescription($tInfo->template_email_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                            ?>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
                 <?php
               }
             ?>
+            </div>
           </div>
           <div class="separator"></div>
           <div class="alert alert-info">
