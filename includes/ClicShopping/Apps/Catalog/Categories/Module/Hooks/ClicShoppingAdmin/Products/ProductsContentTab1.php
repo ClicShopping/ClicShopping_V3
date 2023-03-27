@@ -33,7 +33,6 @@
 
     public function display()
     {
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
       if (!\defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
@@ -64,10 +63,10 @@
       $content .= '<div class="form-group row">';
       $content .= '<div class="col-md-2">' . $this->app->getDef('text_categories_name') . '</div>';
 
-      if (isset($_GET['Insert'])) {
+      if (isset($_GET['Insert']) && isset($_GET['Products'])) {
         $content .= '<div class="col-md-5">';
         $content .= '<label for="' . $this->app->getDef('text_products_categories') . '" class="col-5 col-form-label"></label>';
-        $content .= '<div id="myAjax">';
+        $content .= '<div id="myCategoriesAjax">';
         $content .= HTML::selectMenu('move_to_category_id[]', $category_tree, $current_category_id, 'id="move_to_category_id"');
         $content .= '</div>';
         $content .= HTML::hiddenField('current_category_id', $current_category_id);
@@ -124,33 +123,34 @@ $('#tab1ContentRow1').append(
 
 <script>
   window.addEventListener("DOMContentLoaded", (event) => {
-   console.log("DOM uploaded and analysed");
-   document.querySelector('#myAjax')
-   document.querySelector("div")
-   .addEventListener('click',function(e){
-     let selectedOptionVal = document.querySelector('#move_to_category_id').value
-     ,options_html="";
-    fetch("{$categories_ajax}?"+selectedOptionVal)
-      .then(function(response) {
-         return response.json();
-      })
-      .then(function(jsonResponse) {
-     // Ajax success
-     console.log("data is :",jsonResponse);
-     for(const index in jsonResponse){
-      let category_id = jsonResponse[index].id;
-      let category_name = jsonResponse[index].text;
-      let selectedString = category_id == selectedOptionVal ? ' selected="selected"' : '';
-      options_html += '<option value="' + category_id + '"' + selectedString + '>' + category_name + '</option>';
-     }
-     $('#move_to_category_id').html(options_html);
-      })
-      .catch(function(err) {
-       // error ajax 
-        alert("error :"+err);
+  console.log("DOM uploaded and analysed");
+  const myCategoriesAjax = document.querySelector('#myCategoriesAjax');
+  if (myCategoriesAjax) {
+    myCategoriesAjax.addEventListener('click', function(e) {
+      const selectedOptionVal = document.querySelector('#move_to_category_id').value;
+      let options_html = "";
+      fetch("{$categories_ajax}?" + selectedOptionVal)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(jsonResponse) {
+          console.log("data is :", jsonResponse);
+          for (const index in jsonResponse) {
+            const category_id = jsonResponse[index].id;
+            const category_name = jsonResponse[index].text;
+            const selectedString = category_id == selectedOptionVal ? ' selected="selected"' : '';
+            options_html += '<option value="' + category_id + '"' + selectedString + '>' + category_name + '</option>';
+          }
+          $('#move_to_category_id').html(options_html);
+        })
+        .catch(function(err) {
+          console.log("error :", err);
+        });
     });
-   });
-  });
+  } else {
+    console.log("myCategoriesAjax not found");
+  }
+});
  </script>
 <!-- ######################## -->
 <!--  End Categories App      -->
