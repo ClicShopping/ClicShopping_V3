@@ -1,1 +1,3 @@
-var clipboard = new ClipboardJS('.btn');
+if (typeof ClipboardJS !== 'undefined') {
+  var clipboard = new ClipboardJS('.btn');
+}
