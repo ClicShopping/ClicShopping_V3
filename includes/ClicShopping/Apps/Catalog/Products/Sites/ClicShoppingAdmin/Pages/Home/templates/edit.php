@@ -374,7 +374,7 @@
                   <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_weight'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_weight'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('products_weight', $pInfo->products_weight, 'id="products_weight" onKeyUp="return calc_poids(\'products_weight\',value)" size="12"'); ?>
+                    <?php echo HTML::inputField('products_weight', $pInfo->products_weight, 'id="products_weight" size="12"'); ?>
                   </div>
                 </div>
               </div>
