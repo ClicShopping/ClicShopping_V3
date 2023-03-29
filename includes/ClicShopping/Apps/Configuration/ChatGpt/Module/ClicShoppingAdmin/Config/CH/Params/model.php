@@ -33,6 +33,9 @@
         ['id' => 'gpt-4',
          'text' =>'gpt-4'
         ],
+        ['id' => 'gpt-4-32k',
+          'text' =>'gpt-4-32k'
+        ],
       ];
 
       $input = HTML::selectField($this->key, $array, $this->getInputValue(), 'id="engine"');

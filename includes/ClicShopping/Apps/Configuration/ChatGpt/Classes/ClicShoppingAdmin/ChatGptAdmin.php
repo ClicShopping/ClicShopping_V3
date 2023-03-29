@@ -68,9 +68,11 @@
         ['id' => 'text-davinci-003',
          'text' =>'Davinci (text-davinci-003)'
         ],
-
         ['id' => 'gpt-4',
          'text' =>'gpt-4'
+        ],
+        ['id' => 'gpt-4-32k',
+          'text' =>'gpt-4-32k'
         ],
       ];
 
@@ -86,6 +88,7 @@
     {
       $script = '<script>
        var apiKeyGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_API_KEY . '";
+       var organizationGpt = "' . CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION . '";
        var modelGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_MODEL . '";
        var frequency_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY . '");
        var presence_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY . '");
@@ -122,6 +125,7 @@
       $top = ['\n'];
 
       $parameters = [
+        'organization' => CLICSHOPPING_APP_CHATGPT_CH_ORGANISATION,
         'model' => $engine,  // Spécification du modèle à utiliser
         'temperature' => (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE, // Contrôle de la créativité du modèle
         'top_p' => (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P , // Caractère de fin de ligne pour la réponse

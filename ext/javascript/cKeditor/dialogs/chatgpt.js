@@ -56,6 +56,7 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
 
               xhr.send(JSON.stringify({
                 model: modelGpt,
+                organization : organizationGpt,
                 frequency_penalty: frequency_penalty_gpt,
                 presence_penalty: presence_penalty_gpt,
                 prompt: conversationState + message,
