@@ -11,8 +11,8 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
     contents: [
       {
         id: 'tab1',
-        label: 'First Tab',
-        title: 'First Tab',
+        label: 'Chat Gpt',
+        title: 'Chat Gpt',
         elements: [
           {
             type: 'textarea',
@@ -56,7 +56,7 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
 
               xhr.send(JSON.stringify({
                 model: modelGpt,
-                organization : organizationGpt,
+/*                organization : organizationGpt,*/ //not recognize actually
                 frequency_penalty: frequency_penalty_gpt,
                 presence_penalty: presence_penalty_gpt,
                 prompt: conversationState + message,

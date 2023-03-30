@@ -87,17 +87,17 @@
     public static function ChatGptCkeditorParameters(): string
     {
       $script = '<script>
-       var apiKeyGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_API_KEY . '";
-       var organizationGpt = "' . CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION . '";
-       var modelGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_MODEL . '";
-       var frequency_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY . '");
-       var presence_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY . '");
-       var max_tokens_gpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN . '");
-       var temperatureGpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE . '");
-       var nGpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE . '");
-       var best_of_gpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_BESTOFF . '");
-       var top_p_gpt =  parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P . '");
-       var titleGpt = "' . CLICSHOPPING::getDef('text_chat_title') . '";
+       let apiKeyGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_API_KEY . '";
+       let organizationGpt = "' . CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION . '";
+       let modelGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_MODEL . '";
+       let frequency_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY . '");
+       let presence_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY . '");
+       let max_tokens_gpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN . '");
+       let temperatureGpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE . '");
+       let nGpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE . '");
+       let best_of_gpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_BESTOFF . '");
+       let top_p_gpt =  parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P . '");
+       let titleGpt = "' . CLICSHOPPING::getDef('text_chat_title') . '";
       </script>';
 
       $script .= '<!--start wysiwig preloader--><style>.blur {filter: blur(1px);opacity: 0.4;}</style><!--end wysiwzg preloader-->';
@@ -106,6 +106,17 @@
 
       return $script;
     }
+
+    /**
+     * @return OpenAI\Client
+     */
+    public static function getClient() :array
+    {
+      $client = OpenAI::client(CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
+
+      return $client;
+    }
+
 
     /**
      * @param string $question
@@ -118,7 +129,8 @@
         return false;
       }
 
-      $client = OpenAI::client(CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
+      $client = static::getClient();
+
       $prompt = HTML::sanitize($question);
       $engine = CLICSHOPPING_APP_CHATGPT_CH_MODEL;
 
@@ -150,6 +162,65 @@
       }
     }
 
+
+    /**
+     * @param string $file
+     * @return array
+     */
+    public static function upLoadFile(string $file, string $purpose = 'fine-tune') :array
+    {
+      $client = static::getClient();
+
+      $array = [
+          'purpose' => $purpose,
+          'file' => fopen($file, 'r'),
+      ];
+
+      $response = $client->files()->upload($array);
+
+      return $response;
+    }
+
+    /**
+     * @param string $file
+     * @return array
+     */
+    public static function deleteFile(string $file) :array
+    {
+      $client = static::getClient();
+
+      $response = $client->files()->delete($file);
+
+      return $response;
+    }
+
+    /**
+     * @param string $file
+     * @return array
+     */
+    public static function retrieveFile(string $file) :array
+    {
+      $client = static::getClient();
+
+      $response = $client->files()->retrieve($file);
+
+      return $response;
+    }
+
+
+    /**
+     * @param string $file
+     * @return array
+     */
+    public static function downloadFile(string $file) :array
+    {
+      $client = static::getClient();
+
+      $response = $client->files()->download($file);
+
+      return $response;
+    }
+
     /**
      * @param string $name
      * @param string $directory
@@ -165,7 +236,7 @@
 
       $template_image_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/images/' . $directory . '/';
 
-      $client = OpenAI::client(CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
+      $client = static::getClient();
 
       $array = [
         'prompt' => $name,
