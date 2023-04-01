@@ -29,7 +29,6 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
     }
 
-
     private function statsCountCustomersNewsletter()
     {
       $QcustomersNewsletter = $this->app->db->prepare('select count(customers_id) as count
@@ -103,6 +102,19 @@
 
       if ($this->statsCountCustomersNewsletter() != 0) {
         $content = '
+         <div class="row">
+          <div class="col-md-11">
+            <div class="form-group row">
+              <label for="' . $this->app->getDef('box_text_newsletter') . '" class="col-9 col-form-label"><a href="' . $this->app->link('Newsletter') . '">' . $this->app->getDef('box_text_newsletter') . '</a></label>
+              <div class="col-md-3">
+                ' . $this->statsCountCustomersNewsletter() . '
+              </div>
+            </div>
+          </div>
+        </div>
+        ';
+
+        $content .= '
          <div class="row">
           <div class="col-md-11">
             <div class="form-group row">

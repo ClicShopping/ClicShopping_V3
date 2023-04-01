@@ -27,9 +27,6 @@
    },
    "ClicShoppingAdmin/CustomersGroup": {
     "Delete":	"Module\\Hooks\\ClicShoppingAdmin\\CustomersGroup\\Delete"
-   },
-   "ClicShoppingAdmin/TopDashboard": {
-    "TopDashboard":	"Module\\Hooks\\ClicShoppingAdmin\\TopDashboard\\DashboardTopNewsletter"
    }
   }
  },

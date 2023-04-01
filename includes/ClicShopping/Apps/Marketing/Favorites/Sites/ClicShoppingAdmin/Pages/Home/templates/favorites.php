@@ -87,9 +87,7 @@
   <!-- //################################################################################################################ -->
   <!-- //                                             LISTING DES COUPS DE COEUR                                             -->
   <!-- //################################################################################################################ -->
-  <?php
-    echo HTML::form('delete_all', $CLICSHOPPING_Favorites->link('Favorites&Favorites&DeleteAll&page=' . $page));
-  ?>
+  <?php echo HTML::form('delete_all', $CLICSHOPPING_Favorites->link('Favorites&Favorites&DeleteAll&page=' . $page)); ?>
 
   <div id="toolbar" class="float-end">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Favorites->getDef('button_delete'); ?></button>
