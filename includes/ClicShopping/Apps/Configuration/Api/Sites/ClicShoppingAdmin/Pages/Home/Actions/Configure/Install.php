@@ -39,7 +39,7 @@
     /**
      *
      */
-    private static function installDbMenuAdministration(): void
+    private static function installDbMenuAdministration() :void: void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Api = Registry::get('Api');

@@ -35,7 +35,7 @@
       $CLICSHOPPING_StatsProductsNotification->redirect('Configure&module=' . $current_module);
     }
 
-    private static function removeMenu()
+    private static function removeMenu() :void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

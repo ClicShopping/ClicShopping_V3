@@ -36,7 +36,7 @@
       $CLICSHOPPING_Backup->redirect('Configure&module=' . $current_module);
     }
 
-    private static function installDbMenuAdministration()
+    private static function installDbMenuAdministration() :void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Backup = Registry::get('Backup');
