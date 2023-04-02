@@ -1,6 +1,7 @@
 3.419
 fix js error
 OpenIA GPt add organization and gpt 4 options
+libraries updated
 
 --------------------
 3.418

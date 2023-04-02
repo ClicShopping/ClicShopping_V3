@@ -36,7 +36,7 @@
       $CLICSHOPPING_DefineLanguage->redirect('Configure&module=' . $current_module);
     }
 
-    private static function removeMenu() :void
+    private static function removeMenu()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

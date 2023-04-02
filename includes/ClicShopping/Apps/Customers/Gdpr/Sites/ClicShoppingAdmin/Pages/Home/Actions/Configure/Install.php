@@ -36,7 +36,7 @@
       $CLICSHOPPING_Gdpr->redirect('Configure&module=' . $current_module);
     }
 
-    private static function installDbMenuAdministration() :void
+    private static function installDbMenuAdministration()
     {
       $CLICSHOPPING_Gdpr = Registry::get('Gdpr');
       $CLICSHOPPING_Language = Registry::get('Language');

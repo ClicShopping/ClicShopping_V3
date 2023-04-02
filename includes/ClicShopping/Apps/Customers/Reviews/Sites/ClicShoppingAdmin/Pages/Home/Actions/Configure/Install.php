@@ -38,7 +38,7 @@
       $CLICSHOPPING_Reviews->redirect('Configure&module=' . $current_module);
     }
 
-    private static function installDbMenuAdministration() :void
+    private static function installDbMenuAdministration()
     {
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
       $CLICSHOPPING_Language = Registry::get('Language');

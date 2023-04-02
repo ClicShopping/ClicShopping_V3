@@ -37,7 +37,7 @@
       $CLICSHOPPING_Categories->redirect('Configure&module=' . $current_module);
     }
 
-    private static function installDbMenuAdministration() :void
+    private static function installDbMenuAdministration()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Categories = Registry::get('Categories');

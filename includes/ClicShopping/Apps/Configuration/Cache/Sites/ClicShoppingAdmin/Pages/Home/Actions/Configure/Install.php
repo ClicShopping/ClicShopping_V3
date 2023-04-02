@@ -36,7 +36,7 @@
       $CLICSHOPPING_Cache->redirect('Configure&module=' . $current_module);
     }
 
-    private static function installDbMenuAdministration() :void
+    private static function installDbMenuAdministration()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Cache = Registry::get('Cache');
