@@ -86,9 +86,13 @@
      */
     public static function ChatGptCkeditorParameters(): string
     {
+      if (!empty(CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION)) {
+        $organization = 'let organizationGpt = "' . CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION . '"';
+      }
+
       $script = '<script>
        let apiKeyGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_API_KEY . '";
-       let organizationGpt = "' . CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION . '";
+       ' . $organization . ';
        let modelGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_MODEL . '";
        let frequency_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY . '");
        let presence_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY . '");
@@ -101,7 +105,6 @@
       </script>';
 
       $script .= '<!--start wysiwig preloader--><style>.blur {filter: blur(1px);opacity: 0.4;}</style><!--end wysiwzg preloader-->';
-
       $script .= '<script src="' . CLICSHOPPING::link('Shop/ext/javascript/cKeditor/dialogs/chatgpt.js') .'"></script>';
 
       return $script;
@@ -136,8 +139,13 @@
 
       $top = ['\n'];
 
+      if (!empty(CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION)) {
+        $parameters = [
+          'organization' => CLICSHOPPING_APP_CHATGPT_CH_ORGANISATION,
+          ];
+      }
+
       $parameters = [
-        'organization' => CLICSHOPPING_APP_CHATGPT_CH_ORGANISATION,
         'model' => $engine,  // Spécification du modèle à utiliser
         'temperature' => (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE, // Contrôle de la créativité du modèle
         'top_p' => (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P , // Caractère de fin de ligne pour la réponse

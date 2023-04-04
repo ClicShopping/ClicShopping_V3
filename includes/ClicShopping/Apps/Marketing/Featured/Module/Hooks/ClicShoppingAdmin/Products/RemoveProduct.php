@@ -50,7 +50,7 @@
         $pID = false;
       }
 
-      if ($pID !==false) {
+      if ($pID !== false) {
         $this->removeProducts($pID);
       }
     }
