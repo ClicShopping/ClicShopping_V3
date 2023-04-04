@@ -127,13 +127,14 @@
 
               if (!empty($customers_id) && !empty($this->messageMail)) {
 // notes clients
-                $this->app->db->save('customers_notes', [
-                   'customers_id' => $customers_id,
-                   'customers_notes' => $this->subject . ' <br />' . $this->messageMail,
-                   'customers_notes_date' => 'now()',
-                   'user_administrator' => AdministratorAdmin::getUserAdmin(),
-                  ]
-                );
+                $insert_array =  [
+                  'customers_id' => $customers_id,
+                  'customers_notes' => $this->subject . ' <br />' . $this->messageMail,
+                  'customers_notes_date' => 'now()',
+                  'user_administrator' => AdministratorAdmin::getUserAdmin(),
+                ];
+
+                $this->app->db->save('customers_notes', $insert_array);
               }
             } else {
               $CLICSHOPPING_MessageStack->add($this->app->getDef('error_email_sent'), 'error', 'email');

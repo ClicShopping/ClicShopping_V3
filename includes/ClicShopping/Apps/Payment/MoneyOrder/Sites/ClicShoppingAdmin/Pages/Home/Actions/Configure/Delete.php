@@ -35,7 +35,7 @@
       $CLICSHOPPING_MoneyOrder->redirect('Configure&module=' . $current_module);
     }
 
-    private static function removeMenu()
+    private static function removeMenu() :void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_payment_moneyorder']);
