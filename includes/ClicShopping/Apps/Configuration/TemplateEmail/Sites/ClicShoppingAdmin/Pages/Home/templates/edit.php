@@ -15,6 +15,8 @@
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\TemplateEmailAdmin;
 
   $CLICSHOPPING_TemplateEmail = Registry::get('TemplateEmail');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Language = Registry::get('Language');
