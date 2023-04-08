@@ -150,9 +150,9 @@
           <div class="row" id="RowContentAccountRegistration8">
             <div class="col-md-12">
               <div class="form-group row">
-                <label for="inputPasswordconfirmation" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_password_confirmation'); ?></label>
+                <label for="inputPasswordConfirmation" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_password_confirmation'); ?></label>
                 <div class="col-sm-6 col-md-6">
-                  <?php echo HTML::inputField('confirmation', null, 'required aria-required="true" id="inputPasswordconfirmation" aria-describedby="' . CLICSHOPPING::getDef('entry_password_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_password_confirmation') . '" minlength="'. (int)ENTRY_PASSWORD_MIN_LENGTH .'"', 'password'); ?>
+                  <?php echo HTML::inputField('confirmation', null, 'required aria-required="true" id="inputPasswordConfirmation" aria-describedby="' . CLICSHOPPING::getDef('entry_password_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_password_confirmation') . '" minlength="'. (int)ENTRY_PASSWORD_MIN_LENGTH .'"', 'password'); ?>
                 </div>
               </div>
             </div>
