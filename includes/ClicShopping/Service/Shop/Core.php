@@ -12,7 +12,7 @@
 
   use ClicShopping\OM\Registry;
 
-  use ClicShopping\Sites\Shop\CustomerShop as CustomerClass;
+  use ClicShopping\Apps\Customers\Customers\Classes\Shop\CustomerShop as CustomerClass;
   use ClicShopping\Sites\Shop\Tax as TaxClass;
   use ClicShopping\Sites\Shop\NavigationHistory as NavigationHistoryClass;
   use ClicShopping\Sites\Shop\ShoppingCart as ShoppingCartClass;

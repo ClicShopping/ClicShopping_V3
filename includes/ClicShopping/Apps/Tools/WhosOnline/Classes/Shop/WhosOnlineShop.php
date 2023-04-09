@@ -14,7 +14,7 @@
   use ClicShopping\OM\HTTP;
   use ClicShopping\OM\HTML;
   
-  use ClicShopping\Sites\Shop\CustomerShop as NewCustomer;
+  use ClicShopping\Apps\Customers\Customers\Classes\Shop\CustomerShop as NewCustomer;
 
   class WhosOnlineShop
   {

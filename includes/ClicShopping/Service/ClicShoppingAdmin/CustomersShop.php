@@ -13,7 +13,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  use ClicShopping\Sites\Shop\CustomerShop as CustomerShopClass;
+  use ClicShopping\Apps\Customers\Customers\Classes\Shop\CustomerShop as CustomerShopClass;
 
   class CustomersShop implements \ClicShopping\OM\ServiceInterface
   {
