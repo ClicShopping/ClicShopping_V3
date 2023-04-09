@@ -56,7 +56,7 @@
       <th data-switchable="false" width="50"></th>
       <th data-field="products" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
       <th data-field="model" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_model'); ?></th>
-      <th data-field="replenishment" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_wahrehouse_time_replenishment'); ?></th>
+      <th data-field="replenishment" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_warehouse_time_replenishment'); ?></th>
       <th data-field="warehouse" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_warehouse'); ?></th>
       <th data-field="warehouse_row" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_warehouse_row'); ?></th>
       <th data-field="warehouse_level" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_warehouse_level'); ?></th>
