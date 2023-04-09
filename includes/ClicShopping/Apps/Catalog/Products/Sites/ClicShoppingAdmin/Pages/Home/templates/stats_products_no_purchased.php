@@ -53,7 +53,6 @@
 
     <thead class="dataTableHeadingRow">
       <tr>
-        <th data-field="id" data-switchable="false" width="20"></th>
         <th data-field="image" data-switchable="false" width="50"></th>
         <th data-field="products_id" data-switchable="false" width="50"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products_id'); ?></th>
         <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
@@ -89,8 +88,6 @@
         while ($Qproducts->fetch()) {
           ?>
           <tr>
-            <th scope="row"
-                width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Products->getDef('text_preview'))); ?></th>
             <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
             <td><?php echo $Qproducts->valueInt('products_id'); ?></td>
             <td><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), $Qproducts->value('products_name')); ?></td>
