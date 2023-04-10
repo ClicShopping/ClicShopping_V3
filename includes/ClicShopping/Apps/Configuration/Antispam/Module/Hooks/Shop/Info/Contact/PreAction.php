@@ -38,17 +38,20 @@
     {
       $error = false;
 
+      if (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_CONTACT') || CLICSHOPPING_APP_ANTISPAM_IN_CONTACT == 'False') {
+        $error = true;
+      }
+
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_STATUS') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
-        $error = false;
-      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_CONTACT') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
-        $error = false;
-      } elseif (!isset($_POST['invisible_clicshopping'])) {
+        $error = true;
+      }
+
+      if (!isset($_POST['invisible_clicshopping'])) {
         $error = true;
       }
 
       return $error;
     }
-
 
     /**
      * @return bool
@@ -56,19 +59,38 @@
     private static function checkNumericAntispam() :bool
     {
       $error = false;
-          
-      if (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_STATUS') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
-        $error = false;
-      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_CONTACT') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
-        $error = false;
-      } else {
-        $error = AntiSpam::checkNumericAntiSpam();
+
+      if (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_CONTACT') || CLICSHOPPING_APP_ANTISPAM_AM_CONTACT == 'False') {
+        $error = true;
       }
+
+      if (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_STATUS') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
+        $error = true;
+      }
+
+      $error = AntiSpam::checkNumericAntiSpam();
+
 
       return $error;
     }
 
+    /**
+     * @return bool
+     */
+    private static function checkGoogleRecaptchaAntispam() :bool
+    {
+      $error = false;
+          
+      if (!\defined('CLICSHOPPING_APP_ANTISPAM_GG_STATUS') || CLICSHOPPING_APP_ANTISPAM_GG_STATUS == 'False') {
+        $error = false;
+      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_GG_CONTACT') || CLICSHOPPING_APP_ANTISPAM_GG_STATUS == 'False') {
+        $error = false;
+      } else {
+        $error = AntiSpam::checkGoogleRecaptchaAntispam();
+      }
 
+      return $error;
+    }
 
     public function execute()
     {
@@ -81,8 +103,9 @@
 
         $error_invisible = static::checkInvisibleAntispam();
         $error_numeric = static::checkNumericAntispam();
+        $error_recaptcha = static::checkGoogleRecaptchaAntispam();
 
-        if ($error_invisible === true || $error_numeric === true) {
+        if ($error_invisible === true || $error_numeric === true || $error_recaptcha === true) {
           $error = true;
         }
 

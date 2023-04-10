@@ -39,11 +39,15 @@
     {
       $error = false;
 
+      if (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_TELL_A_FRIEND') || CLICSHOPPING_APP_ANTISPAM_IN_TELL_A_FRIEND == 'False') {
+        $error = true;
+      }
+
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_STATUS') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
-        $error = false;
-      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_TELL_A_FRIEND') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
-        $error = false;
-      } elseif (!isset($_POST['invisible_clicshopping'])) {
+        $error = true;
+      }
+
+      if (!isset($_POST['invisible_clicshopping'])) {
         $error = true;
       }
 
@@ -57,13 +61,15 @@
     {
       $error = false;
 
-      if (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_STATUS') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
-        $error = false;
-      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_TELL_A_FRIEND') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
-        $error = false;
-      } else {
-        $error = AntiSpam::checkNumericAntiSpam();
+      if (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_TELL_A_FRIEND') || CLICSHOPPING_APP_ANTISPAM_AM_TELL_A_FRIEND == 'False') {
+        $error = true;
       }
+
+      if (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_STATUS') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
+        $error = true;
+      }
+
+      $error = AntiSpam::checkNumericAntiSpam();
 
       return $error;
     }
