@@ -1,4 +1,3 @@
-
 navbar_title = Connexion
 heading_title_login = Ouvrir un compte
 heading_new_customer = Vous êtes un nouveau Client
@@ -8,3 +7,8 @@ Vous pourrez commander rapidement nos produits, suivre vos commandes passées, �
 
 text_login_error =  <strong>ERREUR :</strong></font> Personne ne correspond à cet email et ce mot de passe.
 text_visitors_cart =  <strong>NOTE :</strong></font> Le contenu de votre panier visiteur sera ajouté dès que vous vous serez authentifié dans notre espace client. <a href="javascript:session_win(;">[Plus d'infos]</a>
+
+email_text_warning_login_subject = Connexion à votre espace {{store_name}}
+email_text_warning_login_message = Une nouvelle connexion a été réalisée dans votre espace sur {{store_name}}.<br />
+Si vous n'êtes pas à l'origine de cette connexion, veuillez nous en aviser et changer votre motde passe le plus rapidement possible.<br />
+Merci beaucoup.<br />

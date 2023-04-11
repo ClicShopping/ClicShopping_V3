@@ -2,6 +2,7 @@
 Add stats report product no purchased
 antispam refactoring
 small fix
+Email security login connexion catalog side
 
 --------------------
 3.419

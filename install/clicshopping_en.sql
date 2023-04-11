@@ -1585,6 +1585,7 @@ INSERT INTO configuration VALUES(1579, 'Top P', 'CLICSHOPPING_APP_CHATGPT_CH_TOP
 INSERT INTO configuration VALUES(1580, 'Default model', 'CLICSHOPPING_APP_CHATGPT_CH_MODEL', 'text-davinci-003', 'Please, please select the model you want to apply. <br />\nAll the models does not have the same parameters and can generate an error on the response. <br />\nThe WYSWIWYG is impacted by the model you want to use', 6, 0, NULL, '2023-03-05 11:31:37', NULL, NULL);
 INSERT INTO configuration VALUES(1581, 'Presence penality', 'CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY', '0.1', 'Please, insert number<br />\nNumber between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model\'s likelihood to repeat the same line verbatim.', 6, 0, NULL, '2023-03-05 11:31:37', NULL, NULL);
 INSERT INTO configuration VALUES(1582, 'Organization Key', 'CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION', '', 'Please, insert the organization key  (See OpenAI administration)', 6, 0, NULL, '2023-03-05 12:10:25', NULL, NULL);
+INSERT INTO configuration VALUES(1583, 'Information Email Customer Security login (catalog)', 'CONFIGURATION_EMAIL_CUSTOMER_SECURITY', 'false', 'Send an alert email to the client if a connexion is created in this administration.', 12, 13, '2008-09-16 10:52:38', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);

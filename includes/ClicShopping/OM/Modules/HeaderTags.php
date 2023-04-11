@@ -29,7 +29,6 @@
 
     public function getClass($module)
     {
-
       [$vendor, $app, $code] = explode('\\', $module, 3);
 
       $info = Apps::getInfo($vendor . '\\' . $app);
