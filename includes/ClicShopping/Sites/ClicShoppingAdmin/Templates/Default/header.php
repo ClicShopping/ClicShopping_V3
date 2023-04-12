@@ -48,10 +48,15 @@
 
 <body onload="SetFocus();">
 <!-- page loader -->
+  <?php
+    if (DEBUG_MODE == 'false') {
+   ?>
   <div id="preloader">
     <div id="preloader_status"><i class="spinner-border" role="status"></i></div>
   </div>
-
+  <?php
+    }
+  ?>
   <div class="container-fluid">
     <div class="col-md-12">
       <noscript>
