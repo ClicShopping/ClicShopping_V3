@@ -10,7 +10,7 @@ return array(
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
     'Stripe\\' => array($vendorDir . '/stripe/stripe-php/lib'),
     'RobThree\\Auth\\' => array($vendorDir . '/robthree/twofactorauth/lib'),
-    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
+    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src', $vendorDir . '/psr/http-factory/src'),
     'Psr\\Http\\Client\\' => array($vendorDir . '/psr/http-client/src'),
     'PhpXmlRpc\\' => array($vendorDir . '/phpxmlrpc/phpxmlrpc/src'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
