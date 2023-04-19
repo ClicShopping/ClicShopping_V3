@@ -238,18 +238,16 @@
      * get all language in array
      * @return array
      */
-    public function getAll()
+    public function getAll() :array
     {
       return $this->languages;
     }
 
     /**
-     * Check the language
-     *
-     * @param return the code of the language
-     *
+     * @param string $code
+     * @return bool
      */
-    public function exists($code)
+    public function exists(string $code) :bool
     {
       return isset($this->languages[$code]);
     }

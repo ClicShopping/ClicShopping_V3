@@ -2037,13 +2037,13 @@ INSERT INTO tax_rates VALUES(8, 12, 3, 1, '14.0000', 'Zone fédérale 14%', '201
 INSERT INTO tax_rates VALUES(9, 8, 3, 1, '12.0000', 'Zone Fédérale 12%', '2015-02-09 16:18:46', '2015-02-09 16:17:47', 'TVH12_SALE');
 
 
-INSERT INTO template_email VALUES(1, 'TEMPLATE_EMAIL_WELCOME', 0, 0);
-INSERT INTO template_email VALUES(2, 'TEMPLATE_EMAIL_TEXT_FOOTER', 0, 0);
-INSERT INTO template_email VALUES(3, 'TEMPLATE_EMAIL_WELCOME_ADMIN', 0, 0);
-INSERT INTO template_email VALUES(4, 'TEMPLATE_EMAIL_TEXT_COUPON', 0, 0);
-INSERT INTO template_email VALUES(5, 'TEMPLATE_EMAIL_SIGNATURE', 0, 0);
-INSERT INTO template_email VALUES(6, 'TEMPLATE_EMAIL_INTRO_COMMAND', 0, 0);
-INSERT INTO template_email VALUES(7, 'TEMPLATE_EMAIL_NEWSLETTER_TEXT_FOOTER', 0, 0);
+INSERT INTO template_email VALUES(1, 'TEMPLATE_EMAIL_WELCOME', 0, 0, null);
+INSERT INTO template_email VALUES(2, 'TEMPLATE_EMAIL_TEXT_FOOTER', 0, 0, null);
+INSERT INTO template_email VALUES(3, 'TEMPLATE_EMAIL_WELCOME_ADMIN', 0, 0, null);
+INSERT INTO template_email VALUES(4, 'TEMPLATE_EMAIL_TEXT_COUPON', 0, 0, null);
+INSERT INTO template_email VALUES(5, 'TEMPLATE_EMAIL_SIGNATURE', 0, 0, null);
+INSERT INTO template_email VALUES(6, 'TEMPLATE_EMAIL_INTRO_COMMAND', 0, 0, null);
+INSERT INTO template_email VALUES(7, 'TEMPLATE_EMAIL_NEWSLETTER_TEXT_FOOTER', 0, 0, null);
 
 
 INSERT INTO template_email_description VALUES(1, 1, 'Welcome message on catalogue', 'Catalog - welcome message for a new customer', '<div align=\"justify\"> Thank you for the trust you place in us by registering as a new customer on site {{http_shop}}.</div>\r\n\r\n<div align=\"justify\"> Following your request to open an account on {{store_name}} we confirm its validity. You can now log on {{store_name}}.</div>\r\n\r\n<div align=\"justify\">We are delighted to count you among our new clients and we remain at your service to make shopping easy! !</div>\r\n\r\n<div align=\"justify\"> \'<strong>Your links :</strong>\'</div>\r\n\r\n<div align=\"justify\"> 1) To access your account, change your address, your delivery address and / or billing,  {{http_shop}}index.php?Account&Main</div>\r\n\r\n<div align=\"justify\">2) To go directly to track your orders, {{http_shop}}index.php?Account&History</div>\r\n\r\n<div align=\"justify\">3) Recover lost password : {{http_shop}}index.php?Account&PasswordForgotten</div>\r\n\r\n<div align=\"justify\">To access all the above, you should check before your login..</div>\r\n\r\n<div align=\"justify\"> </div>\r\n\r\n<div align=\"justify\">For assistance on our services, please contact our customer service: {{store_owner_email_address}} :  {{store_owner_email_address}}</div>\r\n');
