@@ -2,7 +2,7 @@
  "title":	"Antispam App",
  "app": "Antispam",
  "vendor":"Configuration",
- "version":	"1.0.3",
+ "version":	"1.0.4",
  "req_core_version":	"3.3",
  "license":	"GPL-2",
  "authors": [
