@@ -1,12 +1,14 @@
+3.421
+
+
+
+-------------------
 3.420
 Add stats report product no purchased
 antispam refactoring
 small fix
 Email security login connexion catalog side
 add constant debug mode to use for development
-
-
-
 
 --------------------
 3.419
