@@ -19,7 +19,7 @@
   {
     public static function start(): bool
     {
-      if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/CustomerShop.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Customers/Customers/Classes/Shop/CustomerShop.php')) {
         Registry::set('Customer', new CustomerShopClass());
         return true;
       } else {

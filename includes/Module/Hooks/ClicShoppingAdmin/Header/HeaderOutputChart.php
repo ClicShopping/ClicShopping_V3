@@ -21,8 +21,8 @@
 
       if (isset($_SESSION['admin'])) {
         $output = '<!-- Start Chart -->' . "\n";
-        $output .= '<link href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css" rel="stylesheet" crossorigin="anonymous">' . "\n";
-        $output .= '<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>' . "\n";
+        $output .= '<link href="https://cdn.jsdelivr.net/npm/chart.css" rel="stylesheet" crossorigin="anonymous">' . "\n";
+        $output .= '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>' . "\n";
         $output .= '<!-- End Chart -->' . "\n";
       } else {
         return false;

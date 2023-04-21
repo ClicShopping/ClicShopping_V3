@@ -21,7 +21,7 @@
 
       if (isset($_SESSION['admin'])) {
         $output .= '<!--Lazyload Script start-->' . "\n";
-        $output .= '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>' . "\n";
+        $output .= '<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>' . "\n";
         $output .= '<script defer>';
         $output .= 'const observer = lozad(); observer.observe();';
         $output .= '</script>' . "\n";
