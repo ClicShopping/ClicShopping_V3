@@ -1,7 +1,7 @@
 3.421
 fix class call 
 update javascript version
-
+fix bug select categories Dropdown (product)
 
 -------------------
 3.420

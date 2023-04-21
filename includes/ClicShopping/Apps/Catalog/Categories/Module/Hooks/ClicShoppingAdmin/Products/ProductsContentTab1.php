@@ -57,6 +57,10 @@
         }
       }
 
+      if(empty($current_category_id)) {
+        $current_category_id = 0;
+      }
+
       $category_tree = $CLICSHOPPING_CategoriesAdmin->getCategoryTree();
 
       $content = '<!-- Categories -->';

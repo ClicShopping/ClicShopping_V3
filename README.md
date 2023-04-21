@@ -86,12 +86,15 @@ More information in the Wiki
 
   - <img align="left" src="https://www.softaculous.com/website/images/softac_products.gif"><br>ClicShopping can now be installed easily with just one click via [Softaculous](https://www.softaculous.com/apps/ecommerce/ClicShopping)  
   
-   - <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)
+  - <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)
 
 #Analyse
   -  [![SymfonyInsight](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e/big.svg)](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e)
+  
   -  [![php](https://img.shields.io/badge/Php-%3E%3D8.1-green])](https://img.shields.io/badge/Php-%3E%3D8.1-green)
+  
   -  ![GitHub repo size](https://img.shields.io/github/repo-size/ClicShopping/ClicShopping_v3)
+  
   -  ![GitHub top language](https://img.shields.io/github/languages/top/ClicShopping/ClicShopping_v3)
 
 #Donation

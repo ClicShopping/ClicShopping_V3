@@ -456,11 +456,12 @@
         $id = $this->getID();
       }
 
-      $Qproducts = $this->db->get('products', ['products_date_available'],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_date_available'], $array);
 
       $products_date_available = HTML::outputProtected($Qproducts->value('products_date_available'));
 
@@ -495,11 +496,12 @@
      */
     private function setProductsEAN()
     {
-      $Qproducts = $this->db->get('products', ['products_ean'],
-        ['products_status' => 1,
-          'products_id' => (int)$this->getID()
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$this->getID()
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_ean'], $array);
 
       $products_ean = HTML::outputProtected($Qproducts->value('products_ean'));
 
@@ -528,11 +530,12 @@
         $id = $this->getID();
       }
 
-      $Qproducts = $this->db->get('products', ['products_sku'],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_sku'], $array);
 
       $products_sku = HTML::outputProtected($Qproducts->value('products_sku'));
 
@@ -547,11 +550,12 @@
      */
     private function setProductsJAN(?int $id): string
     {
-      $Qproducts = $this->db->get('products', ['products_jan'],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_jan'], $array);
 
       $products_jan= HTML::outputProtected($Qproducts->value('products_jan'));
 
@@ -576,11 +580,12 @@
      */
     private function setProductsISBN(?int $id): string
     {
-      $Qproducts = $this->db->get('products', ['products_isbn'],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_isbn'], $array);
 
       $products_isbn = HTML::outputProtected($Qproducts->value('products_isbn'));
 
@@ -605,11 +610,12 @@
      */
     private function setProductsMNP(?int $id): string
     {
-      $Qproducts = $this->db->get('products', ['products_mpn'],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_mpn'], $array );
 
       $products_mpn = HTML::outputProtected($Qproducts->value('products_mpn'));
 
@@ -634,11 +640,12 @@
      */
     private function setProductsUPC(?int $id): string
     {
-      $Qproducts = $this->db->get('products', ['products_upc'],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_upc'], $array);
 
       $products_upc = HTML::outputProtected($Qproducts->value('products_upc'));
 
@@ -674,11 +681,12 @@
      */
     private function setProductsBarCode()
     {
-      $Qproducts = $this->db->get('products', ['products_barcode'],
-        ['products_status' => 1,
-          'products_id' => (int)$this->getID()
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$this->getID()
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_barcode'], $array);
 
       $products_barcode = HTML::outputProtected($Qproducts->value('products_barcode'));
 
@@ -962,11 +970,12 @@
         $id = $this->getID();
       }
 
-      $Qproducts = $this->db->get('products', ['products_only_shop'],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_only_shop'], $array);
 
       $products_only_shop = $Qproducts->value('products_only_shop');
 
@@ -994,11 +1003,12 @@
         $id = $this->getID();
       }
 
-      $Qproducts = $this->db->get('products', ['products_only_online'],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_only_online'], $array);
 
       $products_only_online = $Qproducts->value('products_only_online');
 
@@ -1027,11 +1037,12 @@
         $id = $this->getID();
       }
 
-      $Qproducts = $this->db->get('products', ['products_packaging'],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_packaging'], $array);
 
       $products_packaging = HTML::outputProtected($Qproducts->value('products_packaging'));
 
@@ -1258,13 +1269,12 @@
         $id = $this->getID();
       }
 
-      $Qproducts = $this->db->get('products', ['products_only_shop',
-        'products_only_online'
-      ],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_only_shop',  'products_only_online'], $array);
 
       if ($Qproducts->value('products_only_shop') != 1 && $Qproducts->value('products_only_online') != 1) {
         $products_web = '';
@@ -1291,11 +1301,12 @@
      */
     private function setproductsVolume()
     {
-      $Qproducts = $this->db->get('products', ['products_volume'],
-        ['products_status' => 1,
-          'products_id' => (int)$this->getID()
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$this->getID()
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_volume'], $array);
 
       $products_volume = HTML::outputProtected($Qproducts->value('products_volume'));
 
@@ -1325,14 +1336,12 @@
         $id = $this->getID();
       }
 
-      $Qproducts = $this->db->get('products', [
-        'products_weight',
-        'products_weight_class_id'
-      ],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$this->getID()
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_weight', 'products_weight_class_id'], $array);
 
       $products_weight = $Qproducts->value('products_weight');
       $products_weight_class_id = $Qproducts->value('products_weight_class_id');
@@ -1370,13 +1379,12 @@
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Tax = Registry::get('Tax');
 
-      $Qproducts = $this->db->get('products', ['products_price',
-        'products_price_kilo'
-      ],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_price', 'products_price_kilo'], $array);
 
       if ($this->customer->getCustomersGroupID() != 0) {
         $products_price = $this->getCustomersGroupPrice();
@@ -1961,10 +1969,10 @@
       $product_sold_out = '';
 
       $QproductSoldOut = $this->db->prepare('select products_quantity
-                                                from :table_products
-                                                where products_id = :products_id
-                                                and products_quantity < 1
-                                               ');
+                                              from :table_products
+                                              where products_id = :products_id
+                                              and products_quantity < 1
+                                             ');
 
       $QproductSoldOut->bindInt(':products_id', $id);
       $QproductSoldOut->execute();
@@ -2265,7 +2273,6 @@
 
     public function getCheckStock($id, $products_quantity)
     {
-
       $stock_left = $this->getProductsStock($id) - $products_quantity;
       $out_of_stock = '';
 

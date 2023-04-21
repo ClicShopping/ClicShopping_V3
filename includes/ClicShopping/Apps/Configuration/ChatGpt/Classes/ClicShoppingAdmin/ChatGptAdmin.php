@@ -88,6 +88,8 @@
     {
       if (!empty(CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION)) {
         $organization = 'let organizationGpt = "' . CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION . '"';
+      } else {
+        $organization = '';
       }
 
       $script = '<script>
@@ -139,12 +141,6 @@
 
       $top = ['\n'];
 
-      if (!empty(CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION)) {
-        $parameters = [
-          'organization' => CLICSHOPPING_APP_CHATGPT_CH_ORGANISATION,
-          ];
-      }
-
       $parameters = [
         'model' => $engine,  // Spécification du modèle à utiliser
         'temperature' => (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE, // Contrôle de la créativité du modèle
@@ -157,6 +153,12 @@
         'n' => (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE, // nombre de réponses à générer
         'best_of' => (int)CLICSHOPPING_APP_CHATGPT_CH_BESTOFF, //Generates best_of completions server-side and returns the "best"
       ];
+
+      if (!empty(CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION)) {
+        $parameters = [
+          'organization' => CLICSHOPPING_APP_CHATGPT_CH_ORGANISATION,
+        ];
+      }
 
       $response = $client->completions()->create($parameters);
 

@@ -1264,7 +1264,6 @@
      */
     public function getProductsInCategoryCount(int $products_id, bool $include_deactivated = false): int
     {
-
       if ($include_deactivated) {
         $Qproducts = $this->products->get([
           'products p',
