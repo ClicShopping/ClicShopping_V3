@@ -142,8 +142,7 @@
 
     $installed_modules = [];
   ?>
-
-  <table
+    <table
     id="table"
     data-toggle="table"
     data-icons-prefix="bi"
@@ -161,7 +160,6 @@
         <th data-field="modules" data-sortable="true"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_modules'); ?></th>
         <th data-field="group" data-sortable="true"class="text-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_group'); ?></th>
         <th data-field="sort_order" data-sortable="true"class="text-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_sort_order'); ?></th>
-
         <th data-field="status" data-sortable="true"class="text-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_status'); ?></th>
         <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
@@ -201,60 +199,65 @@
       }
     }
 
-    if (isset($module)) {
-    if ($module->check() > 0) {
-      if (($module->sort_order > 0) && !isset($installed_modules[$module->sort_order])) {
-        $installed_modules[$module->sort_order] = $file;
-      } else {
-        $installed_modules[] = $file;
-      }
-    }
+      if (isset($module)) {
+        if ($module->check() > 0) {
+          if ($module->sort_order > 0 && !isset($installed_modules[$module->sort_order])) {
+            $installed_modules[$module->sort_order] = $file;
+          } else {
+            $installed_modules[] = $file;
+          }
+        }
 
-    if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module'] === $class))) && !isset($mInfo)) {
-      $module_info = [
-        'code' => $module->code,
-        'title' => $module->title,
-        'description' => $module->description,
-        'group' => $module->group,
-        'status' => $module->check(),
-        'signature' => $module->signature ?? null,
-        'api_version' => $module->api_version ?? null
-      ];
+        if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module'] === $class))) && !isset($mInfo)) {
+          $module_info = [
+            'code' => $module->code,
+            'title' => $module->title,
+            'description' => $module->description,
+            'group' => $module->group,
+            'status' => $module->check(),
+            'signature' => $module->signature ?? null,
+            'api_version' => $module->api_version ?? null
+          ];
 
-      $module_keys = $module->keys();
+          $module_keys = $module->keys();
 
-      $keys_extra = [];
+          $keys_extra = [];
 
-      for ($j = 0, $k = \count($module_keys); $j < $k; $j++) {
+          for ($j = 0, $k = \count($module_keys); $j < $k; $j++) {
 
-        $Qkeys = $CLICSHOPPING_Db->get('configuration', [
-          'configuration_title',
-          'configuration_value',
-          'configuration_description',
-          'use_function',
-          'set_function'
-        ], [
-            'configuration_key' => $module_keys[$j]
-          ]
-        );
+            $Qkeys = $CLICSHOPPING_Db->get('configuration', [
+              'configuration_title',
+              'configuration_value',
+              'configuration_description',
+              'use_function',
+              'set_function'
+            ], [
+                'configuration_key' => $module_keys[$j]
+              ]
+            );
 
-        $keys_extra[$module_keys[$j]]['title'] = $Qkeys->value('configuration_title');
-        $keys_extra[$module_keys[$j]]['value'] = $Qkeys->value('configuration_value');
-        $keys_extra[$module_keys[$j]]['description'] = $Qkeys->value('configuration_description');
-        $keys_extra[$module_keys[$j]]['use_function'] = $Qkeys->value('use_function');
-        $keys_extra[$module_keys[$j]]['set_function'] = $Qkeys->value('set_function');
-      }
+            $keys_extra[$module_keys[$j]]['title'] = $Qkeys->value('configuration_title');
+            $keys_extra[$module_keys[$j]]['value'] = $Qkeys->value('configuration_value');
+            $keys_extra[$module_keys[$j]]['description'] = $Qkeys->value('configuration_description');
+            $keys_extra[$module_keys[$j]]['use_function'] = $Qkeys->value('use_function');
+            $keys_extra[$module_keys[$j]]['set_function'] = $Qkeys->value('set_function');
+          }
 
-      $module_info['keys'] = $keys_extra;
+          $module_info['keys'] = $keys_extra;
 
-      $mInfo = new \ArrayObject($module_info, \ArrayObject::ARRAY_AS_PROPS);
-    }
+          $mInfo = new \ArrayObject($module_info, \ArrayObject::ARRAY_AS_PROPS);
+        }
     ?>
       <tr>
         <td><?php echo $module->title; ?></td>
         <td class="text-start"><?php echo $module->group; ?></td>
-        <td
-          class="text-end"><?php if (\in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
+        <td class="text-end">
+          <?php
+          if (\in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) {
+              echo $module->sort_order;
+          }
+           ?>
+        </td>
         <td class="text-center">
           <?php
             if ($module->enabled == 'True') {
@@ -297,7 +300,6 @@
           );
         }
       } else {
-
         $CLICSHOPPING_Db->save('configuration', [
             'configuration_title' => 'Installed Modules',
             'configuration_key' => $module_key,
