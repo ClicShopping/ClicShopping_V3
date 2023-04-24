@@ -130,7 +130,7 @@
 
     <thead class="dataTableHeadingRow">
       <tr>
-        <th data-field="image" data-switchable="false"></th>
+        <th data-field="directory" data-switchable="false"></th>
         <th data-field="id" data-sortable="true"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_categories_products'); ?></th>
         <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_status'); ?></th>
         <th data-field="last_modified" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_last_modified'); ?></th>
@@ -196,7 +196,7 @@
         <td>
           <?php
           if (!\is_null($Qcategories->value('last_modified'))) {
-            echo  DateTime::toShort($Qcategories->value('last_modified'));
+            echo DateTime::toShort($Qcategories->value('last_modified'));
           }
           ?>
         </td>

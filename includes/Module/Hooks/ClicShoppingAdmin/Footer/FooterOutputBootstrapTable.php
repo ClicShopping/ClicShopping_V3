@@ -24,6 +24,7 @@
       if (isset($_SESSION['admin'])) {
         $output .= '<! -- Start BootStrap Table -->' . "\n";
         $output .= '<script defer src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>' . "\n";
+//checkbox
         $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/bootstrapTable/table_checkbox.js') . '"></script>' . "\n";
 //export
         $output .= '<script defer src="https://unpkg.com/bootstrap-table@1.21.4/dist/extensions/export/bootstrap-table-export.min.js"></script>' . "\n";
