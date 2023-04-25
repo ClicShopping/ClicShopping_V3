@@ -18,9 +18,10 @@
     {
       $CLICSHOPPING_Featured = Registry::get('Featured');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+
       if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
-
           $Qdelete = $CLICSHOPPING_Featured->db->prepare('delete
                                             from :table_products_featured
                                             where products_featured_id = :products_featured_id
@@ -30,6 +31,6 @@
         }
       }
 
-      $CLICSHOPPING_Featured->redirect('Featured', 'page=' . $_GET['page']);
+      $CLICSHOPPING_Featured->redirect('Featured', 'page=' . $page);
     }
   }

@@ -19,6 +19,8 @@
       $CLICSHOPPING_Favorites = Registry::get('Favorites');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+
       if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
           $Qdelete = $CLICSHOPPING_Favorites->db->prepare('delete
@@ -32,6 +34,6 @@
         }
       }
 
-      $CLICSHOPPING_Favorites->redirect('Favorites', (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'sID=' . (int)$_GET['id']);
+      $CLICSHOPPING_Favorites->redirect('Favorites', 'page=' . $page);
     }
   }
