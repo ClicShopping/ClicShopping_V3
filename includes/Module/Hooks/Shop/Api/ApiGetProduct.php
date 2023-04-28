@@ -67,6 +67,7 @@
           'products_model'    	  => $value['products_model'],
           'products_quantity'     => $value['products_quantity'],
           'products_weight'       => $value['products_weight'],
+          'products_quantity_alert' => $value['products_quantity_alert'],
           'products_sku'          => $value['products_sku'],
           'products_upc'          => $value['products_upc'],
           'products_ean'          => $value['products_ean'],

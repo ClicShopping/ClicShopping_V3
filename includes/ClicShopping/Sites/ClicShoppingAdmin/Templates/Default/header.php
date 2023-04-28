@@ -89,12 +89,9 @@
   
   if (isset($_SESSION['admin'])) {
 ?>
-        <div class="col-md-12 contentBody dashboard">
-            <div class="row">
-              <div class="col-md-12">
-                <?php echo $CLICSHOPPING_Hooks->output('Header', 'HeaderInfo', null, 'display'); ?>
-              </div>
-            </div>
+        <div class="contentBody dashboard">
+          <?php echo $CLICSHOPPING_Hooks->output('Header', 'HeaderInfo', null, 'display'); ?>
+        </div>
       <?php
   }
 

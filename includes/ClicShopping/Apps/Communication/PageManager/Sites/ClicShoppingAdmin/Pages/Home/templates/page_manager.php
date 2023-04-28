@@ -108,7 +108,8 @@
                                                        :table_pages_manager_description s
                                                   where s.language_id= :language_id
                                                   and p.pages_id = s.pages_id
-                                                  order by  p.pages_id
+                                                  order by p.sort_order, 
+                                                           p.page_type
                                                   limit :page_set_offset,
                                                         :page_set_max_results
                                                   ');

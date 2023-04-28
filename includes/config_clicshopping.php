@@ -7,12 +7,7 @@
    * @Info : https://www.clicshopping.org/forum/trademark/
    *
    */
-//-------------------- //
-//  Partie generale   //
-//-------------------//
 
-
-// Configuration mode normal B2B / B2C
   define('MODE_B2B_B2C', 'true'); // true ou false
   define('MODE_DEMO' , 'false'); // only demo mode
-  define('DEBUG_MODE', 'false'); // inly for development
+  define('DEBUG_MODE', 'false'); // only for development

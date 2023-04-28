@@ -60,23 +60,23 @@
       if ($this->statsOrderAverage() > 0) {
         $output = '
 <div class="col-md-2 col-12">
-    <div class="card bg-success">
-     <div class="card-body">
+  <div class="card bg-success">
+    <div class="card-body">
       <h6 class="card-title text-white">' . $this->app->getDef('title_orders_average_turn_over') . '</h6>
       <div class="card-text">
         <div class="col-sm-12">
           <span class="float-start">
-            <i class="bi bi-truck fs-4 text-white"></i>
+            <i class="bi bi-truck text-white"></i>
           </span>
           <span class="float-end">
             <div class="text-white">' . $this->statsOrderAverage() . '</div>
-            <div class="separator"></div>   
+            <div class="text-white"><br></div>
           </span>
         </div>
       </div>
     </div>
   </div>
-</div>  
+</div>
       ';
       }
 
