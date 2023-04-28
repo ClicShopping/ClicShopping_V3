@@ -11,3 +11,18 @@
     width: 15px !important;
     height: 15px !important;
 }
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%; /* Set the aspect ratio of the map container */
+}
+
+#vmap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

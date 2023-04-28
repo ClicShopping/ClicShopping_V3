@@ -59,3 +59,52 @@ résolution 1050
 // Extra large devices (large desktops, 75em and up)
 @media (min-width: 75em) { ... }
 */
+
+@media screen and (max-width: 767px) {
+    #TotalMonth {
+        height: 150px;
+    }
+}
+@media screen and (min-width: 768px) {
+    #TotalMonth {
+        height: 215px;
+    }
+}
+@media screen and (min-width: 992px) {
+    #TotalMonth {
+        height: 250px;
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    #TotalRevenue {
+        height: 150px;
+    }
+}
+@media screen and (min-width: 768px) {
+    #TotalRevenue {
+        height: 215px;
+    }
+}
+@media screen and (min-width: 992px) {
+    #TotalRevenue {
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #d_total_ca_by_year {
+        height: 150px;
+    }
+}
+@media screen and (min-width: 768px) {
+    #d_total_ca_by_year {
+        height: 215px;
+    }
+}
+@media screen and (min-width: 992px) {
+    #d_total_ca_by_year {
+        height: 250px;
+    }
+}
