@@ -82,7 +82,7 @@
           <h6 class="card-title"><i class="bi bi-graph-up"></i></i> {$chart_label_link}</h6>
           <p class="card-text">
             <div class="col-md-12">
-              <canvas id="d_total_ca_by_year" class="col-md-12" style="display: block; width:100%; height: 215px;"></canvas>
+              <canvas id="d_total_ca_by_year" class="col-md-12" style="display: block; min-width:200px; height: 215px;"></canvas>
             </div>
           </p>
         </div>
@@ -98,53 +98,52 @@ var myChart = new Chart(ctx, {
         labels: $data_labels,
         datasets: [{
             label: 'Turnover on 1 year',
-            data: $data,
-            backgroundColor: [                
-               'rgba(180, 180, 180, 0.2)',
-               'rgba(180, 180, 180, 0.2)',
-               'rgba(140, 140, 140, 0.2)',
-               'rgba(100, 100, 100, 0.2)',
-               'rgba(54, 162, 235, 0.2)'                                  
-            ],
-            borderWidth: 0
-        }]
-    },
-    options: {
+              data: $data,
+              backgroundColor: [                
+                 'rgba(180, 180, 180, 0.2)',
+                 'rgba(180, 180, 180, 0.2)',
+                 'rgba(140, 140, 140, 0.2)',
+                 'rgba(100, 100, 100, 0.2)',
+                 'rgba(54, 162, 235, 0.2)'                                  
+              ],
+              borderWidth: 0
+          }]
+      },
+      options: {
         maintainAspectRatio: true,
+        responsive: true,
         legend: {
           display: false
-        },        
-        scales: {
-            y: {
-                beginAtZero: true
-            }
         },
-        xAxes: [{
-          reverse: true,
-          gridLines: {
-            color: "rgba(0,0,0,0.05)"
-          }
-        }],
-        yAxes: [{
-          ticks: {
-            stepSize: 100
+        scales: {
+          x: {
+            reverse: false,
+            grid: {
+              color: "rgba(0,0,0,0.05)"
+            }
           },
-          display: true,
-          borderDash: [5, 5],
-          gridLines: {
-            color: "rgba(0,0,0,0.050)",
-            fontColor: "#fff"
+          y: {
+            ticks: {
+              stepSize: 100
+            },
+            display: true,
+            borderDash: [5, 5],
+            grid: {
+              color: "rgba(0,0,0,0.050)",
+              borderColor: "#fff"
+            },
+            beginAtZero: true
           }
-        }]
-    }
-});
-
-function beforePrintHandler () {
-    for (var id in Chart.instances) {
-        Chart.instances[id].resize();
-    }
-}
-</script>
+        }
+      } 
+  });
+  
+  function beforePrintHandler () {
+      for (var id in Chart.instances) {
+          Chart.instances[id].resize();
+      }
+  }
+  </script>
 EOD;
       return $output;
     }

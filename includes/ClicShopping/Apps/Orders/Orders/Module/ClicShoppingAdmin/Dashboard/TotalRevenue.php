@@ -94,7 +94,7 @@
           <h6 class="card-title"><i class="bi bi-graph-up"></i> {$chart_label_link}</h6>
           <p class="card-text">
             <div class="col-md-12">
-              <canvas id="TotalRevenue" class="col-md-12" style="display: block; width:100%; height: 215px;"></canvas>
+              <canvas id="TotalRevenue" class="col-md-12" style="display: block; min-width:200px; height: 215px;"></canvas>
             </div>
           </p>
         </div>
@@ -132,32 +132,39 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
-        maintainAspectRatio: true,
+      maintainAspectRatio: true,
+      responsive: true,
+      plugins: {
         legend: {
           display: false
         },
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+        tooltip: {
+          intersect: false
         },
-        xAxes: [{
-          reverse: true,
-          gridLines: {
+        filler: {
+          propagate: true
+        }
+      },
+      scales: {
+        x: {
+          reverse: false,
+          grid: {
             color: "rgba(0,0,0,0.05)"
           }
-        }],
-        yAxes: [{
+        },
+        y: {
           ticks: {
             stepSize: 100
           },
           display: true,
           borderDash: [5, 5],
-          gridLines: {
+          grid: {
             color: "rgba(0,0,0,0.050)",
-            fontColor: "#fff"
-          }
-        }]
+            borderColor: "#fff"
+          },
+          beginAtZero: true
+        }
+      }
     }
 });
 

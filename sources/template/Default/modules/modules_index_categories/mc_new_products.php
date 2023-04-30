@@ -174,10 +174,10 @@
             $filename = $CLICSHOPPING_Template-> getTemplateModulesFilename($this->group .'/template_html/' . MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_TEMPLATE);
 
             $new_prods_content = '<!-- New Products start -->' . "\n";
-	    $new_prods_content .= '<div class="clearfix"></div>';
+            $new_prods_content .= '<div class="clearfix"></div>';
             $new_prods_content .= '<div class="col-md-12 ModuleIndexCategoriesProductsNewContainer5">';
 
-            if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_FRONT_TITLE != 'false') {
+            if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_FRONT_TITLE != 'False') {
               $new_prods_content .= '<div class="page-title ModuleIndexCategoriesProductsNewHeading"><h2>' . sprintf(CLICSHOPPING::getDef('module_index_categories_products_heading_title'), DateTime::getNow(CLICSHOPPING::getDef('date_format_long'))) . '</h2></div>';
             }
 

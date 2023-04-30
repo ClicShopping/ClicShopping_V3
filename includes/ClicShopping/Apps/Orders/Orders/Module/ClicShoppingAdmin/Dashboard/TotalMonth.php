@@ -91,7 +91,7 @@
           <h6 class="card-title"><i class="bi bi-graph-up"></i> {$chart_label_link}</h6>
           <p class="card-text">
             <div class="col-md-12">
-            <canvas id="TotalMonth" class="col-md-12" style="display: block; width:100%; height: 215px;"></canvas>
+            <canvas id="TotalMonth" class="col-md-12" style="display: block; min-width:200px; height: 215px;"></canvas>
             </div>
           </p>
         </div>
@@ -117,42 +117,40 @@ document.addEventListener("DOMContentLoaded", function() {
               }
       }]
     },
-    options: {
-      maintainAspectRatio: true,
-      legend: {
-        display: false
-      },
-      tooltips: {
-        intersect: false
-      },
-      hover: {
-        intersect: true
-      },
-      plugins: {
-        filler: {
-          propagate: true
-        }
-      },
-      scales: {
-        xAxes: [{
-          reverse: true,
-          gridLines: {
-            color: "rgba(0,0,0,0.05)"
-          }
-        }],
-        yAxes: [{
-          ticks: {
-            stepSize: 500
+      options: {
+        maintainAspectRatio: true,
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
           },
-          display: true,
-          borderDash: [5, 5],
-          gridLines: {
-            color: "rgba(0,0,0,0.050)",
-            fontColor: "#fff"
+          tooltip: {
+            intersect: false
+          },
+          filler: {
+            propagate: true
           }
-        }]
-      }
-    }
+        },
+        scales: {
+          x: {
+            reverse: false,
+            grid: {
+              color: "rgba(0,0,0,0.05)"
+            }
+          },
+          y: {
+            ticks: {
+              stepSize: 500
+            },
+            display: true,
+            borderDash: [5, 5],
+            grid: {
+              color: "rgba(0,0,0,0.050)",
+              borderColor: "#fff"
+            }
+          }
+        }
+      }    
   });
 });
 

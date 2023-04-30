@@ -76,9 +76,7 @@
             $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
             $Qproducts->bindInt(':limit', MODULE_PRODUCTS_INFO_ALSO_PURCHASED_MAX_DISPLAY);
             $Qproducts->execute();
-
           } else { // mode B2B
-
            $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id,
                                                    p.products_image,
                                                    p.products_image_medium,

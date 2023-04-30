@@ -18,12 +18,11 @@
     /**
      * Recursive Directory list file with all css under a drop down
      *
-     * @param string $filename : name of the file
-     * @return string c $filename_array, the file name in the  css subdirectory
+     * @return array $filename_array, the file name in the  css subdirectory
      * @access public
      */
 
-    public static function getFilenameHtml()
+    public static function getFilenameHtml() :array
     {
       if (isset($_POST['directory_html'])) {
         $directory_selected = HTML::sanitize($_POST['directory_html']) . '/';
@@ -65,20 +64,19 @@
           ];
         }
       }
+
       return $filename_array;
     }
 
-    /*
-      * HTML Directory list
-      *
-      * @param string $filename : name of the file
-      * @return string $directory_array, the directories name in css directory
-      * @access public
-    */
+    /**
+     * HTML Directory list
+     *
+     * @return array $directory_array, the directories name in css directory
+     * @access public
+     */
 
-    public static function getDirectoryHtml()
+    public static function getDirectoryHtml() :array
     {
-
       $template_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/template/' . SITE_THEMA . '/modules/';
 
       $exclude = ['.', '..', '_notes', 'customers_address', 'download', 'index.php', '_htaccess', '.htaccess'];
@@ -91,7 +89,8 @@
 
       foreach ($directories as $directory) {
         if (is_dir($template_directory . $directory)) {
-          $directory_array[] = ['id' => $directory,
+          $directory_array[] = [
+            'id' => $directory,
             'text' => $directory
           ];
         }

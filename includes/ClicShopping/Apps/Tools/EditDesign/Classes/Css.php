@@ -19,11 +19,8 @@
     /**
      * Recursive Directory list file with all css under a drop down
      *
-     * @param string $filename : name of the file
-     * @return string c $filename_array, the file name in the  css subdirectory
-     *
+     * @return array c $filename_array, the file name in the  css subdirectory
      */
-
     public static function getFilenameCss(): array
     {
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -78,11 +75,8 @@
     /**
      * CSS Directory list
      *
-     * @param string $filename : name of the file
-     * @return string $directory_array, the directories name in css directory
-     *
+     * @return array $directory_array, the directories name in css directory
      */
-
     public static function getDirectoryCss() :array
     {
       $CLICSHOPPING_Language = Registry::get('Language');

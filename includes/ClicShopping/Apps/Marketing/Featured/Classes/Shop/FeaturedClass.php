@@ -22,7 +22,8 @@
 
       if ($status == '1') {
 
-        return $CLICSHOPPING_Db->save('products_featured', ['status' => 1,
+        return $CLICSHOPPING_Db->save('products_featured', [
+          'status' => 1,
           'date_status_change' => 'now()',
           'scheduled_date' => 'null'
         ],
@@ -31,7 +32,8 @@
 
       } elseif ($status == '0') {
 
-        return $CLICSHOPPING_Db->save('products_featured', ['status' => 0,
+        return $CLICSHOPPING_Db->save('products_featured', [
+          'status' => 0,
           'date_status_change' => 'now()',
           'scheduled_date' => 'null'
         ],

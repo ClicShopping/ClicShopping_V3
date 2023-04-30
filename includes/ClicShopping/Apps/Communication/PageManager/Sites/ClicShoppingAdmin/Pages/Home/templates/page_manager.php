@@ -22,7 +22,6 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 ?>
-
 <div class="contentBody">
   <div class="row">
     <div class="col-md-12">
@@ -76,7 +75,7 @@
 <?php
   if (MODE_B2B_B2C == 'true') {
 ?>
-          <th data-field="GROUP" data-sortable="group" class="text-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_customers_group'); ?></th>
+      <th data-field="group" data-sortable="group" class="text-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_customers_group'); ?></th>
 <?php
   }
 ?>
