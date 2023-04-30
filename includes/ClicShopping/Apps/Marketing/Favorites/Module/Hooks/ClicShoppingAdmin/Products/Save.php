@@ -28,20 +28,27 @@
       $this->app = Registry::get('Favorites');
     }
 
-    private function saveProductsFavorites($id)
+    /**
+     * @param int $id
+     */
+    private function saveProductsFavorites(int $id) :void
     {
       if (!empty($_POST['products_favorites'])) {
-        $this->app->db->save('products_favorites', [
+        $inset_array = [
           'products_id' => (int)$id,
           'products_favorites_date_added' => 'now()',
           'status' => 1,
           'customers_group_id' => 0
-          ]
-        );
+        ];
+
+        $this->app->db->save('products_favorites', $inset_array);
       }
     }
 
-    private function save($id)
+    /**
+     * @param int $id
+     */
+    private function save(int $id)
     {
       $this->saveProductsFavorites($id);
     }
@@ -55,6 +62,24 @@
       if (isset($_GET['pID'])) {
         $id = HTML::sanitize($_GET['pID']);
         $this->save($id);
+      } else {
+        if (!empty($_POST['products_favorites'])) {
+          $Qproducts = $this->app->db->prepare('select products_id
+                                                from :table_products
+                                                order by products_id desc
+                                                limit 1
+                                               ');
+          $Qproducts->execute();
+
+          $inset_array = [
+            'products_id' => (int)$Qproducts->valueInt('products_id'),
+            'products_favorites_date_added' => 'now()',
+            'status' => 1,
+            'customers_group_id' => 0
+          ];
+
+          $this->app->db->save('products_favorites', $inset_array);
+        }
       }
     }
   }

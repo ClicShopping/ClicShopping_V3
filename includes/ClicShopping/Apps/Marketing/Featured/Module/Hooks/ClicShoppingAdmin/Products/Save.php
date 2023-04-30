@@ -28,17 +28,20 @@
       $this->app = Registry::get('Featured');
     }
 
+    /**
+     * @param int $id
+     */
     private function saveProductsFeatured(int $id) :void
     {
-      $CLICSHOPPING_Db = Registry::get('Db');
-
       if (!empty($_POST['products_featured'])) {
-        $CLICSHOPPING_Db->save('products_featured', ['products_id' => (int)$id,
-            'products_featured_date_added' => 'now()',
-            'status' => 1,
-            'customers_group_id' => 0
-          ]
-        );
+        $insert_array =  [
+          'products_id' => (int)$id,
+          'products_featured_date_added' => 'now()',
+          'status' => 1,
+          'customers_group_id' => 0
+        ];
+
+        $this->app->db->save('products_featured', $insert_array);
       }
     }
 
@@ -56,6 +59,24 @@
       if (isset($_GET['pID'])) {
         $id = HTML::sanitize($_GET['pID']);
         $this->save($id);
+      } else {
+        if (!empty($_POST['products_featured'])) {
+          $Qproducts = $this->app->db->prepare('select products_id
+                                                from :table_products
+                                                order by products_id desc
+                                                limit 1
+                                               ');
+          $Qproducts->execute();
+
+          $insert_array =  [
+            'products_id' => $Qproducts->valueInt('products_id'),
+            'products_featured_date_added' => 'now()',
+            'status' => 1,
+            'customers_group_id' => 0
+          ];
+
+          $this->app->db->save('products_featured', $insert_array);
+        }
       }
     }
   }
