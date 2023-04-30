@@ -754,8 +754,12 @@
      * @param $categories_id - category id
       @return void
      */
-    public function cloneProductsInOtherCategory(int $id, int $categories_id): void
+    public function cloneProductsInOtherCategory(int $id, $categories_id): void
     {
+      if (is_string($categories_id)) {
+        $categories_id = 0;
+      }
+
       $multi_clone_categories_id_to = [];
 
       $multi_clone_categories_id_to[] = $categories_id;
@@ -822,7 +826,8 @@
         $QproductImage->execute();
 
         while ($QproductImage->fetch()) {
-          $sql_array = ['products_id' => (int)$dup_products_id,
+          $sql_array = [
+            'products_id' => (int)$dup_products_id,
             'image' => $QproductImage->value('image'),
             'htmlcontent' => $QproductImage->value('htmlcontent'),
             'sort_order' => $QproductImage->valueInt('sort_order')
@@ -945,7 +950,7 @@
               $products_quantity_unit_id_group = 0;
               $products_model_group = '';
               $products_quantity_fixed_group = 1;
-            } //end MODE_B2B_B2C
+            }
 
             $Qupdate = $this->db->prepare('update :table_products_groups
                                             set price_group_view = :price_group_view,
@@ -969,8 +974,7 @@
             $Qupdate->execute();
 
 // Prix TTC B2B ----------
-            if (($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] <> $Qattributes->valueDecimal('customers_group_price')) && ($Qattributes->valueInt('customers_group_id') == $QcustomersGroup->valueInt('customers_group_id'))) {
-
+            if ($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] <> $Qattributes->valueDecimal('customers_group_price') && $Qattributes->valueInt('customers_group_id') == $QcustomersGroup->valueInt('customers_group_id')) {
               $Qupdate = $this->db->prepare('update :table_products_groups
                                              set customers_group_price = :customers_group_price,
                                                  products_price = :products_price
@@ -983,12 +987,11 @@
               $Qupdate->bindInt(':products_id', (int)$clone_products_id);
 
               $Qupdate->execute();
-
-            } elseif (($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] == $Qattributes->valueInt('customers_group_id'))) {
+            } elseif($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] == $Qattributes->valueInt('customers_group_id')) {
 //              $attributes = $Qattributes->fetch();
             }
 // Prix + Afficher Prix public + Afficher Produit + Autoriser Commande
-          } elseif ($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] != '') {
+          } elseif (is_array($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')]) && $_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] != '') {
             $sql_array = [
               'products_id' => (int)$clone_products_id,
               'products_price' => (float)$_POST['products_price'],

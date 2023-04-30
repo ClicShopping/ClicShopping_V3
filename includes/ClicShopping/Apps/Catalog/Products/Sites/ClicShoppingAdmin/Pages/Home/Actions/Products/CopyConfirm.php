@@ -28,6 +28,7 @@
     public function __construct()
     {
       $this->app = Registry::get('Products');
+      $this->messageStack = Registry::get('MessageStack');
 
       $this->ID = HTML::sanitize($_POST['products_id']);
       $this->categoriesId = HTML::sanitize($_POST['categories_id']);
@@ -37,17 +38,24 @@
       $this->productsAdmin = new ProductsAdmin();
     }
 
-    private function Link()
+    /**
+     *
+     */
+    private function Link() :void
     {
       if ($this->categoriesId != $this->currentCategoryId) {
         $new_category = $this->categoriesId;
 
         if (\is_array($new_category) && isset($new_category)) {
           foreach ($new_category as $value_id) {
-            $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', ['products_id' => (int)$this->ID,
-                'categories_id' => (int)$value_id
-              ]
-            );
+
+            $update_array = [
+              'products_id' => (int)$this->ID,
+              'categories_id' => (int)$value_id
+            ];
+
+            $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', $update_array);
+
             if ($Qcheck->fetch() === false) {
               if ($value_id != $this->currentCategoryId) {
                 $count = $this->productsAdmin->getCountProductsToCategory($this->ID, $value_id);
@@ -65,7 +73,10 @@
       }
     }
 
-    private function productsDuplicate()
+    /**
+     *
+     */
+    private function productsDuplicate() :void
     {
       $new_category = $this->categoriesId;
 
@@ -78,15 +89,16 @@
       }
     }
 
-    private function productsLink()
+    /**
+     *
+     */
+    private function productsLink() :void
     {
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-
       if ($this->copyAs == 'link') {
         if ($this->categoriesId != $this->currentCategoryId) {
           $this->Link();
         } else {
-          $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_link_to_same_category'), 'error');
+          $this->messageStack->add($this->app->getDef('error_cannot_link_to_same_category'), 'error');
         }
       }
     }
@@ -106,6 +118,8 @@
         Cache::clear('upcoming');
 
         $CLICSHOPPING_Hooks->call('Products', 'CopyConfirm');
+
+        $this->messageStack->add($this->app->getDef('alert_message_b2b_update'), 'warning');
 
         $this->app->redirect('Products&cPath=' . $this->categoriesId . '&pID=' . $this->ID);
       }
