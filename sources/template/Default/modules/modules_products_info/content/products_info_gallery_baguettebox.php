@@ -16,7 +16,7 @@
   $CLICSHOPPING_Template = Registry::get('Template');
   $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 ?>
-<div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
+<div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?> baguettebox">
 
   <ul class="thumbnails gallery">
 <?php
