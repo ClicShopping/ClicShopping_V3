@@ -42,8 +42,7 @@
         detailOpen: \'bi-plus\',
         detailClose: \'bi-minus\'
   }
-</script>
-' . "\n";
+</script>' . "\n";
 
         $output .= '<!-- End bootstrap Table -->' . "\n";
       } else {

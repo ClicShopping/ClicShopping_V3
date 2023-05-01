@@ -1,0 +1,2 @@
+INSERT INTO clic_configuration VALUES(null, 'Marketplace Username', 'CLICSHOPPING_APP_UPGRADE_UP_USERNAME', '', 'The username is our username on ClicShopping Forum (subscription is manadatory)', 6, 0, NULL, '2018-07-30 10:35:50', NULL, NULL);
+INSERT INTO clic_configuration VALUES(null, 'Marketplace Password', 'CLICSHOPPING_APP_UPGRADE_UP_PASSWORD', '', 'The password is our password on ClicShopping Forum (subscription is manadatory)', 6, 0, NULL, '2018-07-30 10:35:50', NULL, NULL);

@@ -205,7 +205,6 @@
               }
 
               if (((!isset($_GET['pID']) && !isset($_GET['cID'])) || (isset($_GET['pID']) && ((int)$_GET['pID'] === $Qproducts->valueInt('products_id')))) && !isset($pInfo) && !isset($cInfo)) {
-// find   the rating average from customer reviews
                 $Qreviews = $CLICSHOPPING_Products->db->get('reviews', '(avg(reviews_rating) / 5 * 100) as average_rating', ['products_id' => $Qproducts->valueInt('products_id')]);
 
                 $pInfo_array = array_merge($Qproducts->toArray(), $Qreviews->toArray());
@@ -216,13 +215,11 @@
               <td></td>
               <td><?php echo $Qproducts->valueInt('products_id'); ?></td>
               <td class="dataTableContent">
-<?php
-  if ($Qproducts->valueInt('products_status') == 1) {
-?>
-                <?php echo '<a href="' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' . $Qproducts->valueInt('products_id') . '" target="_blank" rel="noreferrer"><h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_Products->getDef('icon_preview') . '"></i></h4></a>'; ?>
-<?php
-  }
-?>
+                <?php
+                  if ($Qproducts->valueInt('products_status') == 1) {
+                    echo '<a href="' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' . $Qproducts->valueInt('products_id') . '" target="_blank" rel="noreferrer"><h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_Products->getDef('icon_preview') . '"></i></h4></a>';
+                  }
+                ?>
                <?php echo HTML::link($CLICSHOPPING_Products->link('Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page . '&cPath=' . $cPath), '<h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_Products->getDef('icon_preview') . '"></i></h4>'); ?>
                <?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?>
               </td>

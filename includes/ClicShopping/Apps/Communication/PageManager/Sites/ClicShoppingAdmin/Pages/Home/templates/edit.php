@@ -554,23 +554,24 @@
             <div class="tab-pane" id="tab2">
               <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_link'); ?></div>
               <div class="adminformTitle">
-<?php
-  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-?>
-                    <div class="row">
+                <?php
+                  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                ?>
+                <div class="row">
+                  <div class="col-md-5">
+                    <div class="form-group row">
+                      <label for="Lang"
+                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']) . ' ' . $CLICSHOPPING_PageManager->getDef('text_pages_external_link'); ?></label>
                       <div class="col-md-5">
-                        <div class="form-group row">
-                          <label for="Lang"
-                                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']) . ' ' . $CLICSHOPPING_PageManager->getDef('text_pages_external_link'); ?></label>
-                          <div class="col-md-5">
-                            <?php echo HTML::inputField('externallink_' . $languages[$i]['id'], $externallink[$languages[$i]['id']] ?? '', 'placeholder="https://www."'); ?>
-                          </div>
-                        </div>
+                        <?php echo HTML::inputField('externallink_' . $languages[$i]['id'], $externallink[$languages[$i]['id']] ?? '', 'placeholder="https://www."'); ?>
                       </div>
+                      <div class="separator"></div>
                     </div>
-<?php
-  }
-?>
+                  </div>
+                </div>
+                <?php
+                  }
+                ?>
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">

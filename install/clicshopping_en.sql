@@ -203,6 +203,7 @@ INSERT INTO administrator_menu VALUES(792, 'index.php?A&Tools\\Upgrade&Upgrade',
 INSERT INTO administrator_menu VALUES(793, 'index.php?A&Tools\\Upgrade&Marketplace', 644, 10, 1, null, 0, 'app_tools_upgrade', 1);
 INSERT INTO administrator_menu VALUES(794, 'index.php?A&Configuration\\ChatGpt&ChatGpt', 14, 15, 1, 'chatgpt.gif', 1, 'app_configuration_chatgpt', 1);
 INSERT INTO administrator_menu VALUES(795, 'index.php?A&Catalog\\Products&StatsProductsNoPurchased', 98, 3, 0, 'stats_products_purchased.gif', 0, 'app_catalog_products', 1);
+INSERT INTO administrator_menu VALUES(796, 'index.php?A&Shipping\\Item&Configure&module=IT', 449, 4, 1, 'modules_shipping.gif', 0, 'app_shipping_item', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -566,9 +567,23 @@ INSERT INTO api_ip VALUES(1, 1, '127.0.0.1', 'localhost');
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo', NULL);
 
-INSERT INTO categories VALUES (1, '', 0, 0, '2022-02-24 10:00:18', NULL, 0, 1, 99);
-INSERT INTO categories_description VALUES (1, 1, 'Monitor', '', '', '', '', '');
-INSERT INTO categories_description VALUES (1, 2, 'Moniteur', '',	'', '', '', '');
+
+INSERT INTO categories VALUES(1, '', 0, 0, '2022-02-24 10:00:18', '2023-04-30 14:39:48', 0, 1, 99);
+INSERT INTO categories VALUES(2, '', 0, 0, '2023-04-30 14:40:14', NULL, 0, 1, 99);
+INSERT INTO categories VALUES(3, '', 0, 0, '2023-04-30 14:51:50', '2023-04-30 15:28:26', 0, 1, 99);
+INSERT INTO categories VALUES(4, '', 3, 0, '2023-04-30 14:52:09', NULL, 0, 1, 99);
+INSERT INTO categories VALUES(5, '', 3, 0, '2023-04-30 15:01:18', NULL, 0, 1, 99);
+
+INSERT INTO categories_description VALUES(1, 1, 'Glasses', '', '', '', '', '');
+INSERT INTO categories_description VALUES(1, 2, 'Verres', '', '', '', '', '');
+INSERT INTO categories_description VALUES(2, 1, 'Table linens', '', '', '', '', '');
+INSERT INTO categories_description VALUES(2, 2, 'Linges de table', '', '', '', '', '');
+INSERT INTO categories_description VALUES(3, 1, 'Dinning & Bar', '<img alt=\"\" src=\"/Github/ClicShopping_V3/sources/images/categories/art-de-la-table_bandeau.jpg\" style=\"width: 1200px; height: 300px;\" />', '', '', '', '');
+INSERT INTO categories_description VALUES(3, 2, 'Art de la table & bar', '<img alt=\"\" src=\"/Github/ClicShopping_V3/sources/images/categories/art-de-la-table_bandeau.jpg\" style=\"width: 1200px; height: 300px;\" />', '', '', '', '');
+INSERT INTO categories_description VALUES(4, 1, 'Bar', '', '', '', '', '');
+INSERT INTO categories_description VALUES(4, 2, 'Bar', '', '', '', '', '');
+INSERT INTO categories_description VALUES(5, 1, ' Flatware', '', '', '', '', '');
+INSERT INTO categories_description VALUES(5, 2, ' Coutellerie', '', '', '', '', '');
 
 
 INSERT INTO configuration VALUES(1, 'What is your the store Name', 'STORE_NAME', '', 'Please specify the name of your store.<br /><br /><font color="#FF0000"><b>Note :</b> This name will appear in the content of e-mails</font><br>', 1, 1, '2007-06-02 15:39:18', '2006-04-09 16:13:47', NULL, NULL);
@@ -639,6 +654,7 @@ INSERT INTO configuration VALUES(118, 'Storage runtime', 'STORE_PAGE_PARSE_TIME'
 INSERT INTO configuration VALUES(119, 'File location for the execution stores', 'STORE_PAGE_PARSE_TIME_LOG', '/home/www/site/shop/includes/Work/Log/admin.log', 'Path and file name of the runtime.', 10, 2, '2008-09-15 10:07:36', '2006-04-09 16:13:48', NULL, NULL);
 INSERT INTO configuration VALUES(120, 'Date format executions', 'STORE_PARSE_DATE_TIME_FORMAT', '%d/%m/%Y %H:%M:%S', 'Date format executions.', 10, 3, NULL, '2006-04-09 16:13:48', NULL, NULL);
 INSERT INTO configuration VALUES(121, 'Display runtime', 'DISPLAY_PAGE_PARSE_TIME', 'false', 'displays the execution time of a page (storage runtime must be enabled and the selected location in the file for the execution storage).<br />', 10, 4, '2007-06-03 16:58:14', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+INSERT INTO configuration VALUES(123, 'Use the cache', 'USE_CACHE', 'false', 'Use the cache functionnalities', 11, 1, '2006-07-18 00:13:26', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO configuration VALUES(125, 'Method of transmission of email', 'EMAIL_TRANSPORT', 'sendmail', 'Specifies whether the server uses a local connection to sendmail or SMTP connection via TCP / IP. For Windows Servers and MacOS, you should select SMTP.', 12, 1, NULL, '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'sendmail\', \'gmail\', \'smtp\'))');
 INSERT INTO configuration VALUES(126, 'Newline header emails', 'EMAIL_LINEFEED', 'LF', 'Set the characters used to separate headers emails.', 12, 2, NULL, '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'LF\', \'CRLF\'))');
 INSERT INTO configuration VALUES(127, 'Use MIME HTML for sending emails', 'EMAIL_USE_HTML', 'false', 'Send emails in html or plain text.<br />', 12, 3, '2008-09-15 22:57:14', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
@@ -719,7 +735,7 @@ INSERT INTO configuration VALUES(356, 'Please enter your delivery time by defaul
 INSERT INTO configuration VALUES(357, 'Default state for an edition of invoice / order PDF', 'DEFAULT_ORDERS_STATUS_INVOICE_ID', '1', 'When a new generation editing invoice / order PDF is created, his order status will be assigned to it.', 6, 0, NULL, '2006-04-09 16:13:48', NULL, NULL);
 INSERT INTO configuration VALUES(376, 'Installed Modules', 'MODULE_PAYMENT_INSTALLED', 'Payment\\COD\\CO', 'This is automatically updated. No need to edit.', 6, 0, '2016-10-12 17:47:24', '2008-09-16 16:13:41', NULL, NULL);
 INSERT INTO configuration VALUES(377, 'Specify the minimum quantity that the customer can insert in his basket', 'MAX_MIN_IN_CART', '1', 'Insert a minimum default quantity that the customer must put in the basket for an order.<br><br><i> - 1 : for a default quantity</i></br><br><i> - 0 : prevents all orders made ​​on the site by users (not recommended)</i>', 3, 19, NULL, '2008-08-30 10:21:58', NULL, NULL);
-INSERT INTO configuration VALUES(399, 'Installed Modules', 'MODULE_SHIPPING_INSTALLED', '', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-30 08:58:19', '2008-12-05 19:09:42', NULL, NULL);
+INSERT INTO configuration VALUES(399, 'Installed Modules', 'MODULE_SHIPPING_INSTALLED', ';Shipping\\Item\\IT', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-30 08:58:19', '2008-12-05 19:09:42', NULL, NULL);
 INSERT INTO configuration VALUES(433, 'Installed Modules', 'MODULE_ORDER_TOTAL_INSTALLED', 'OrderTotal\\SubTotal\\ST;OrderTotal\\TotalShipping\\SH;OrderTotal\\TotalTax\\TX;OrderTotal\\Total\\TO', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-30 08:57:47', '2008-12-05 19:10:43', NULL, NULL);
 INSERT INTO configuration VALUES(445, 'Coupon number assigned to the customer during the account creation', 'COUPON_CUSTOMER', '', 'For any change in the coupon code, please refer to the Marketing / coupon section of your menu', 0, NULL, NULL, '1000-01-01 00:00:00', ' ', NULL);
 INSERT INTO configuration VALUES(446, 'Coupon number assigned to the customer during the account creation B2B', 'COUPON_CUSTOMER_B2B', '', 'For any change in the coupon code, please refer to the Marketing / coupon section of your menu', 0, NULL, NULL, '1000-01-01 00:00:00', ' ', NULL);
@@ -754,7 +770,7 @@ INSERT INTO configuration VALUES(599, 'Installed Modules', 'MODULE_MODULES_PRODU
 INSERT INTO configuration VALUES(601, 'Do you want to display the price if it is equal to 0', 'NOT_DISPLAY_PRICE_ZERO', 'true', 'Display or not the price of the product if it is equal to 0.<br />', 22, 2, NULL, '2006-04-09 16:13:47', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO configuration VALUES(602, 'Please indicate the maximum number of scores you want to display', 'MAX_DISPLAY_NEW_REVIEWS', '5', 'Please enter a numeric value.', 3, 8, '2007-06-02 15:39:18', '2006-04-09 16:13:47', NULL, NULL);
 
-INSERT INTO configuration VALUES(603, 'Installed Modules', 'MODULE_ADMIN_DASHBOARD_INSTALLED', '', 'This is automatically updated. No need to edit.', 6, 0, '2016-10-15 14:46:08', '2013-12-16 18:11:51', NULL, NULL);
+INSERT INTO configuration VALUES(603, 'Installed Modules', 'MODULE_ADMIN_DASHBOARD_INSTALLED', 'Orders\\Orders\\TotalMonth;Orders\\Orders\\TotalCaByYear;Orders\\Orders\\TotalRevenue;Customers\\Customers\\TotalCustomers;Orders\\Orders\\Orders', 'This is automatically updated. No need to edit.', 6, 0, '2023-04-30 14:22:34', '2013-12-16 18:11:51', NULL, NULL);
 INSERT INTO configuration VALUES(623, 'Installed Modules', 'MODULE_MODULES_HEADER_INSTALLED', 'he_header_noscript.php;he_header_message_stack.php;he_header_multi_template.php;he_header_page_manager_header_menu.php', 'This is automatically updated. No need to edit.', 6, 0, '2019-01-16 19:07:19', '2014-02-07 20:01:18', NULL, NULL);
 INSERT INTO configuration VALUES(624, 'Installed Modules', 'MODULE_MODULES_FOOTER_INSTALLED', 'fo_footer_page_manager.php;fo_footer_multi_template.php', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-31 09:33:37', '2014-02-07 20:01:20', NULL, NULL);
 INSERT INTO configuration VALUES(625, 'Installed Modules', 'MODULE_MODULES_ADVANCED_SEARCH_INSTALLED', 'as_advanced_search_criteria.php;as_advanced_search_categories.php;as_advanced_search_manufacturers.php;as_advanced_search_price.php;as_advanced_search_date.php', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-31 08:52:02', '2014-02-07 20:01:23', NULL, NULL);
@@ -987,7 +1003,7 @@ INSERT INTO configuration VALUES(912, 'Do you want to activate this module ?', '
 INSERT INTO configuration VALUES(913, 'Please, indicate where the boxe must be displayed', 'MODULE_BOXES_SPECIALS_CONTENT_PLACEMENT', 'Left Column', 'Select the column where the boxe must be displayed', 6, 2, NULL, '2018-07-30 12:12:09', NULL, 'clic_cfg_set_boolean_value(array(\'Left Column\', \'Right Column\'),');
 INSERT INTO configuration VALUES(914, 'Please, select the banner group to display a banner image', 'MODULE_BOXES_SPECIALS_BANNER_GROUP', 'Default_boxe_specials', 'Indicate the banner group to display a banner image. You must create a banner with this group to display the banner image : Marketing - Banner Management', 6, 3, NULL, '2018-07-30 12:12:09', NULL, '');
 INSERT INTO configuration VALUES(915, 'Do you want to display the detail button ?', 'MODULE_BOXES_SPECIAL_DETAIL_BUTTON', 'False', 'Display the detail button  ?', 6, 1, NULL, '2018-07-30 12:12:09', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
-INSERT INTO configuration VALUES(916, 'How many product do you want to display ?', 'MODULE_BOXES_SPECIALS_MAX_DISPLAY_LIMIT', '1', 'Display a product number inside the boxe.', 6, 4, NULL, '2018-07-30 12:12:09', NULL, '');
+INSERT INTO configuration VALUES(916, 'How many product do you want to display ?', 'MODULE_BOXES_SPECIALS_MAX_DISPLAY_LIMIT', '2', 'Display a product number inside the boxe.', 6, 4, NULL, '2018-07-30 12:12:09', NULL, '');
 INSERT INTO configuration VALUES(917, 'Do you want to display a message News / Specials / Featured / Selected product?', 'MODULE_BOXES_SPECIALS_TICKER', 'False', 'Display a specific mssage for the product. The time must configured in Configuration menu', 6, 9, NULL, '2018-07-30 12:12:09', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(918, 'Do you want to display a discount poucentage (specials) ?', 'MODULE_BOXES_SPECIALS_POURCENTAGE_TICKER', 'False', 'Display a discount poucentage (specials)', 6, 9, NULL, '2018-07-30 12:12:09', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(919, 'Sort Order', 'MODULE_BOXES_SPECIALS_SORT_ORDER', '20', 'Sort Order (Lowest is displayed in first)', 6, 5, NULL, '2018-07-30 12:12:09', NULL, '');
@@ -1007,13 +1023,13 @@ INSERT INTO configuration VALUES(932, 'Do you want to activate this module ?', '
 INSERT INTO configuration VALUES(933, 'Please, select a template', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_TEMPLATE', 'template_bootstrap_column_5.php', 'Please choose the template than you want to display', 6, 2, NULL, '2018-07-30 18:48:50', NULL, 'clic_cfg_set_multi_template_pull_down');
 INSERT INTO configuration VALUES(934, 'Do you want to display the title ?', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_FRONT_TITLE', 'True', 'Display the title', 6, 3, NULL, '2018-07-30 18:48:50', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(935, 'Please Indicate a number to display the products', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_MAX_DISPLAY', '6', 'Indicate a number to display the products', 6, 5, NULL, '2018-07-30 18:48:50', NULL, '');
-INSERT INTO configuration VALUES(936, 'Please Indicate the column number to display the content', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_COLUMNS', '6', 'Select a number between 1 and 12', 6, 6, NULL, '2018-07-30 18:48:50', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO configuration VALUES(936, 'Please Indicate the column number to display the content', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_COLUMNS', '4', 'Select a number between 1 and 12', 6, 6, NULL, '2018-07-30 18:48:50', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(937, 'Do you want to display a short description ?', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_SHORT_DESCRIPTION', '0', 'Indicate a number to display the summary description (caracters)', 6, 7, NULL, '2018-07-30 18:48:50', NULL, '');
 INSERT INTO configuration VALUES(938, 'Do you want to remove words in the summary description', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_SHORT_DESCRIPTION_DELETE_WORLDS', '0', 'Indicate a number to remove the words at the left of the summary description', 6, 8, NULL, '2018-07-30 18:48:50', NULL, '');
 INSERT INTO configuration VALUES(939, 'Do you want to display a message News / Specials / Featured / Selected product?', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_TICKER', 'False', 'Display a message on product image. The time can be change in the configuration menu', 6, 9, NULL, '2018-07-30 18:48:50', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(940, 'Do you want to display a discount poucentage (specials) ?', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_POURCENTAGE_TICKER', 'False', 'Display a discount poucentage (specials)', 6, 9, NULL, '2018-07-30 18:48:50', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(941, 'Do you want to display the stock ?', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_DISPLAY_STOCK', 'none', 'Display an information In Stock,  Sold Out, out of stock ?', 6, 10, NULL, '2018-07-30 18:48:50', NULL, 'clic_cfg_set_boolean_value(array(\'none\', \'image\', \'number\'))');
-INSERT INTO configuration VALUES(942, 'Please choose the image size', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_IMAGE_MEDIUM', 'Small', 'Indicate the size than you want', 6, 11, NULL, '2018-07-30 18:48:50', NULL, 'clic_cfg_set_boolean_value(array(\'Small\', \'Medium\'))');
+INSERT INTO configuration VALUES(942, 'Please choose the image size', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_IMAGE_MEDIUM', 'Medium', 'Indicate the size than you want', 6, 11, NULL, '2018-07-30 18:48:50', NULL, 'clic_cfg_set_boolean_value(array(\'Small\', \'Medium\'))');
 INSERT INTO configuration VALUES(943, 'Do you want to remove Details / buy button', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_DELETE_BUY_BUTTON', 'False', 'Remove betails / buy button', 6, 11, NULL, '2018-07-30 18:48:50', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(944, 'Sort Order', 'MODULE_FRONT_PAGE_NEW_PRODUCTS_SORT_ORDER', '110', 'Sort Order (Lowest is displayed in first)', 6, 12, NULL, '2018-07-30 18:48:50', NULL, '');
 INSERT INTO configuration VALUES(945, 'Do you want to activate this module ?', 'MODULE_FRONT_PAGE_PAGE_MANAGER_STATUS', 'True', 'Activate this module in your shop', 6, 1, NULL, '2018-07-30 18:48:54', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
@@ -1032,7 +1048,7 @@ INSERT INTO configuration VALUES(957, 'Do you want to remove words in the summar
 INSERT INTO configuration VALUES(958, 'Do you want to display a message News / Specials / Featured / Selected product?', 'MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_TICKER', 'False', 'Display a message on product image. The time can be change in the configuration menu', 6, 9, NULL, '2018-07-30 21:35:37', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(959, 'Do you want to display a discount poucentage (specials) ?', 'MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_POURCENTAGE_TICKER', 'False', 'Display a discount poucentage (specials)', 6, 9, NULL, '2018-07-30 21:35:37', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(960, 'Do you want to display the stock ?', 'MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_DISPLAY_STOCK', 'none', 'Display an information In Stock,  Sold Out, out of stock ?', 6, 10, NULL, '2018-07-30 21:35:37', NULL, 'clic_cfg_set_boolean_value(array(\'none\', \'image\', \'number\'))');
-INSERT INTO configuration VALUES(961, 'Please choose the image size', 'MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_IMAGE_MEDIUM', 'Small', 'Indicate the size than you want', 6, 11, NULL, '2018-07-30 21:35:37', NULL, 'clic_cfg_set_boolean_value(array(\'Small\', \'Medium\'))');
+INSERT INTO configuration VALUES(961, 'Please choose the image size', 'MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_IMAGE_MEDIUM', 'Medium', 'Indicate the size than you want', 6, 11, NULL, '2018-07-30 21:35:37', NULL, 'clic_cfg_set_boolean_value(array(\'Small\', \'Medium\'))');
 INSERT INTO configuration VALUES(962, 'Do you want to remove Details / buy button', 'MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_DELETE_BUY_BUTTON', 'False', 'Remove betails / buy button', 6, 11, NULL, '2018-07-30 21:35:37', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(963, 'Sort Order', 'MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_SORT_ORDER', '80', 'Sort Order (Lowest is displayed in first)', 6, 12, NULL, '2018-07-30 21:35:37', NULL, '');
 INSERT INTO configuration VALUES(964, 'Installed Modules', 'MODULE_MODULES_PRODUCTS_LISTING_INSTALLED', 'pl_products_listing_categories_name.php;pl_products_listing_filter.php;pl_products_listing.php', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-30 21:38:35', '2018-07-30 21:38:19', NULL, NULL);
@@ -1078,7 +1094,7 @@ INSERT INTO configuration VALUES(1003, 'Sort Order', 'MODULE_PRODUCTS_SEARCH_SOR
 INSERT INTO configuration VALUES(1004, 'Do you want to activate this module ?', 'MODULE_PRODUCTS_NEW_STATUS', 'True', 'Activate this module in your shop', 6, 1, NULL, '2018-07-30 22:46:27', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1005, 'Please choose the template than you want to display ?', 'MODULE_PRODUCTS_NEW_TEMPLATE', 'template_bootstrap_column_5.php', 'Choose the template than you want to display', 6, 2, NULL, '2018-07-30 22:46:27', NULL, 'clic_cfg_set_multi_template_pull_down');
 INSERT INTO configuration VALUES(1006, 'Please indicate the product number to display', 'MODULE_PRODUCTS_NEW_MAX_DISPLAY', '6', 'Indicate a maximum number to display products.', 6, 3, NULL, '2018-07-30 22:46:27', NULL, '');
-INSERT INTO configuration VALUES(1007, 'Please Indicate the column number to display the content ?', 'MODULE_PRODUCTS_NEW_COLUMNS', '6', 'Select a number between 1 and 12', 6, 3, NULL, '2018-07-30 22:46:27', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO configuration VALUES(1007, 'Please Indicate the column number to display the content ?', 'MODULE_PRODUCTS_NEW_COLUMNS', '4', 'Select a number between 1 and 12', 6, 3, NULL, '2018-07-30 22:46:27', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1008, 'Do you want to display a short description ?', 'MODULE_PRODUCTS_NEW_SHORT_DESCRIPTION', '0', 'Indicate a number to display the summary description (caracters)', 6, 4, NULL, '2018-07-30 22:46:27', NULL, '');
 INSERT INTO configuration VALUES(1009, 'Do you want to remove words in the summary description ?', 'MODULE_PRODUCTS_NEW_SHORT_DESCRIPTION_DELETE_WORLDS', '0', 'Remove words at the left in the summary description', 6, 4, NULL, '2018-07-30 22:46:27', NULL, '');
 INSERT INTO configuration VALUES(1010, 'Do you want to display a message News / Specials / Featured / Selected product?', 'MODULE_PRODUCTS_NEW_TICKER', 'False', 'Display a message on product image. The time can be change in the configuration menu', 6, 1, NULL, '2018-07-30 22:46:27', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
@@ -1106,7 +1122,7 @@ INSERT INTO configuration VALUES(1031, 'Please indicate a sort order number for 
 INSERT INTO configuration VALUES(1032, 'Please indicate a sort order number for product model', 'MODULE_PRODUCTS_SPECIAL_LIST_MODEL', '0', 'This option allow customer to choose a product display sorder : 0 for nothing. Lowest display in first', 6, 7, NULL, '2018-07-30 22:48:57', NULL, '');
 INSERT INTO configuration VALUES(1033, 'Please indicate a sort order number for product stock quantity', 'MODULE_PRODUCTS_SPECIAL_LIST_QUANTITY', '0', 'This option allow customer to choose a product display sorder : 0 for nothing. Lowest display in first', 6, 8, NULL, '2018-07-30 22:48:57', NULL, '');
 INSERT INTO configuration VALUES(1034, 'Please indicate a sort order number for product weight', 'MODULE_PRODUCTS_SPECIAL_LIST_WEIGHT', '0', 'This option allow customer to choose a product display sorder : 0 for nothing. Lowest display in first', 6, 9, NULL, '2018-07-30 22:48:57', NULL, '');
-INSERT INTO configuration VALUES(1035, 'Please choose the image size', 'MODULE_PRODUCTS_SPECIAL_IMAGE_MEDIUM', 'Small', 'Indicate the size than you want', 6, 10, NULL, '2018-07-30 22:48:57', NULL, 'clic_cfg_set_boolean_value(array(\'Small\', \'Medium\'),');
+INSERT INTO configuration VALUES(1035, 'Please choose the image size', 'MODULE_PRODUCTS_SPECIAL_IMAGE_MEDIUM', 'Medium', 'Indicate the size than you want', 6, 10, NULL, '2018-07-30 22:48:57', NULL, 'clic_cfg_set_boolean_value(array(\'Small\', \'Medium\'),');
 INSERT INTO configuration VALUES(1036, 'Do you want to remove Details / buy button', 'MODULE_PRODUCTS_SPECIAL_DELETE_BUY_BUTTON', 'False', 'Remove betails / buy button', 6, 11, NULL, '2018-07-30 22:48:57', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1037, 'Sort Order', 'MODULE_PRODUCTS_SPECIAL_SORT_ORDER', '100', 'Sort Order (Lowest is displayed in first)', 6, 4, NULL, '2018-07-30 22:48:57', NULL, '');
 INSERT INTO configuration VALUES(1038, 'Do you want to activate this module ?', 'MODULE_ADVANCED_SEARCH_CATEGORIES_STATUS', 'True', 'Activate this module in your shop', 6, 1, NULL, '2018-07-31 08:24:37', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
@@ -1297,7 +1313,7 @@ INSERT INTO configuration VALUES(1234, 'Please select the width for this modules
 INSERT INTO configuration VALUES(1235, 'Sort Order', 'MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_SORT_ORDER', '300', 'Sort Order (Lowest is displayed in first)', 6, 4, NULL, '2018-07-31 15:09:43', NULL, '');
 INSERT INTO configuration VALUES(1236, 'Do you want to activate this module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS', 'True', 'Activate this module in your shop', 6, 1, NULL, '2018-07-31 15:09:53', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1237, 'Please select the width for this modules', 'MODULES_PRODUCTS_REVIEWS_WRITE_RATING_CONTENT_WIDTH', '12', 'Indicate a number between 1 and 12', 6, 1, NULL, '2018-07-31 15:09:53', NULL, 'clic_cfg_set_content_module_width_pull_down');
-INSERT INTO configuration VALUES(1238, 'Veuillez selectionner la couleur des étoiles ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_RATING_COLOR', '#A0A0A0', 'Veuillez indiquer une couleur de type #A0A0A0 (hexadecimal)', 6, 3, NULL, '2018-07-31 15:09:53', NULL, '');
+INSERT INTO configuration VALUES(1238, 'Please,select the stars color', 'MODULES_PRODUCTS_REVIEWS_WRITE_RATING_COLOR', '#A0A0A0', 'Veuillez indiquer une couleur de type #A0A0A0 (hexadecimal)', 6, 3, NULL, '2018-07-31 15:09:53', NULL, '');
 INSERT INTO configuration VALUES(1239, 'Sort Order', 'MODULES_PRODUCTS_REVIEWS_WRITE_RATING_SORT_ORDER', '500', 'Sort Order (Lowest is displayed in first)', 6, 4, NULL, '2018-07-31 15:09:53', NULL, '');
 INSERT INTO configuration VALUES(1240, 'Do you want to activate this module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_STATUS', 'True', 'Activate this module in your shop', 6, 1, NULL, '2018-07-31 15:09:59', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1241, 'Please select the width for this modules', 'MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_CONTENT_WIDTH', '5', 'Indicate a number between 1 and 12', 6, 1, NULL, '2018-07-31 15:09:59', NULL, 'clic_cfg_set_content_module_width_pull_down');
@@ -1586,6 +1602,26 @@ INSERT INTO configuration VALUES(1580, 'Default model', 'CLICSHOPPING_APP_CHATGP
 INSERT INTO configuration VALUES(1581, 'Presence penality', 'CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY', '0.1', 'Please, insert number<br />\nNumber between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model\'s likelihood to repeat the same line verbatim.', 6, 0, NULL, '2023-03-05 11:31:37', NULL, NULL);
 INSERT INTO configuration VALUES(1582, 'Organization Key', 'CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION', '', 'Please, insert the organization key  (See OpenAI administration)', 6, 0, NULL, '2023-03-05 12:10:25', NULL, NULL);
 INSERT INTO configuration VALUES(1583, 'Information Email Customer Security login (catalog)', 'CONFIGURATION_EMAIL_CUSTOMER_SECURITY', 'false', 'Send an alert email to the client if a connexion is created in this administration.', 12, 13, '2008-09-16 10:52:38', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+
+INSERT INTO configuration VALUES(1584, 'Do you want to enable this Module ?', 'MODULE_ADMIN_DASHBOARD_TOTAL_CA_BY_YEAR_APP_STATUS', 'True', 'Do you want to enable this Module ?', 6, 1, NULL, '2023-04-30 14:22:10', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1585, 'Select the width to display', 'MODULE_ADMIN_DASHBOARD_TOTAL_CA_BY_YEAR_APP_CONTENT_WIDTH', '6', 'Select a number between 1 to 12', 6, 1, NULL, '2023-04-30 14:22:10', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO configuration VALUES(1586, 'Sort Order', 'MODULE_ADMIN_DASHBOARD_TOTAL_CA_BY_YEAR_APP_SORT_ORDER', '30', 'Sort order of display. Lowest is displayed first.', 6, 2, NULL, '2023-04-30 14:22:10', NULL, '');
+INSERT INTO configuration VALUES(1587, 'Do you want to enable this module ?', 'MODULE_ADMIN_DASHBOARD_ORDERS_APP_STATUS', 'True', 'Do you want to display the latest orders ?', 6, 1, NULL, '2023-04-30 14:22:17', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1588, 'How many orders do you want to display ?', 'MODULE_ADMIN_DASHBOARD_ORDERS_APP_LIMIT', '10', 'Please specify the number of orders to display', 6, 1, NULL, '2023-04-30 14:22:17', NULL, '');
+INSERT INTO configuration VALUES(1589, 'Select the width to display', 'MODULE_ADMIN_DASHBOARD_ORDERS_APP_CONTENT_WIDTH', '12', 'Select a number between 1 to 12', 6, 1, NULL, '2023-04-30 14:22:17', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO configuration VALUES(1590, 'Sort Order', 'MODULE_ADMIN_DASHBOARD_ORDERS_APP_SORT_ORDER', '60', 'Sort order of display. Lowest is displayed first', 6, 1, NULL, '2023-04-30 14:22:17', NULL, '');
+INSERT INTO configuration VALUES(1591, 'Do you want to enable this Module ?', 'MODULE_ADMIN_DASHBOARD_TOTAL_MONTH_APP_STATUS', 'True', 'Do you want to enable this Module ?', 6, 1, NULL, '2023-04-30 14:22:21', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1592, 'Select the width to display', 'MODULE_ADMIN_DASHBOARD_TOTAL_MONTH_APP_CONTENT_WIDTH', '6', 'Select a number between 1 to 12', 6, 1, NULL, '2023-04-30 14:22:21', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO configuration VALUES(1593, 'Sort Order', 'MODULE_ADMIN_DASHBOARD_TOTAL_MONTH_APP_SORT_ORDER', '20', 'Sort order of display. Lowest is displayed first.', 6, 2, NULL, '2023-04-30 14:22:21', NULL, '');
+INSERT INTO configuration VALUES(1594, 'Do you want to enable this Module ?', 'MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_STATUS', 'True', 'Do you want to enable this Module ?', 6, 1, NULL, '2023-04-30 14:22:25', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1595, 'Select the width to display', 'MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_CONTENT_WIDTH', '6', 'Select a number between 1 to 12', 6, 1, NULL, '2023-04-30 14:22:25', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO configuration VALUES(1596, 'Sort Order', 'MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_SORT_ORDER', '40', 'Sort order of display. Lowest is displayed first.', 6, 2, NULL, '2023-04-30 14:22:25', NULL, '');
+INSERT INTO configuration VALUES(1597, 'Do you want to enable this Module ?', 'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_STATUS', 'True', 'Do you want to enable this Module ?', 6, 1, NULL, '2023-04-30 14:22:33', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1598, 'Select the width to display', 'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_CONTENT_WIDTH', '6', 'Select a number between 1 to 12', 6, 1, NULL, '2023-04-30 14:22:33', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO configuration VALUES(1599, 'Choose your analyse interval ?', 'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_INTERVAL', '30 Day', 'Analyse interval', 6, 1, NULL, '2023-04-30 14:22:33', NULL, 'clic_cfg_set_boolean_value(array(\'7 Day\', \'14 Day\', \'30 Day\', \'90 Day\', \'182 Day\', \'365 Day\'))');
+INSERT INTO configuration VALUES(1600, 'Sort Order', 'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_SORT_ORDER', '45', 'Sort order of display. Lowest is displayed first.', 6, 2, NULL, '2023-04-30 14:22:33', NULL, '');
+INSERT INTO configuration VALUES(1601, 'Marketplace Username', 'CLICSHOPPING_APP_UPGRADE_UP_USERNAME', '', 'The username is our username on ClicShopping Forum (subscription is manadatory)', 6, 0, NULL, '2018-07-30 10:35:50', NULL, NULL);
+INSERT INTO configuration VALUES(1602, 'Marketplace Password', 'CLICSHOPPING_APP_UPGRADE_UP_PASSWORD', '', 'The password is our password on ClicShopping Forum (subscription is manadatory)', 6, 0, NULL, '2018-07-30 10:35:50', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
@@ -1893,9 +1929,25 @@ INSERT INTO geo_zones VALUES(14, 'Zone fédérale 7%', 'Zone fédérale 7%', '20
 INSERT INTO geo_zones VALUES(15, 'Taxe hamonisée Québec', 'Taxe hamonisée Québec', '2016-12-03 11:35:05', '2015-02-09 16:59:28');
 
 
-
 INSERT INTO languages VALUES(1, 'Anglais', 'en', 'gb', 'english', 1, 1, 'en_US.UTF-8;en_US.UTF8;enu_usa');
 INSERT INTO languages VALUES(2, 'Francais', 'fr', 'fr', 'french', 2, 1,'fr_FR.UTF-8;fr_FR.UTF8;enu_fra');
+
+INSERT INTO manufacturers VALUES(1, 'Duralex', '', '2023-04-30 14:34:30', NULL, 0, 0);
+INSERT INTO manufacturers VALUES(2, 'Danica Heirloom', '', '2023-04-30 14:41:33', NULL, 0, 0);
+INSERT INTO manufacturers VALUES(3, 'Trudeau', '', '2023-04-30 14:53:21', NULL, 0, 0);
+INSERT INTO manufacturers VALUES(4, 'ZWILLING', '', '2023-04-30 15:02:20', NULL, 0, 0);
+INSERT INTO manufacturers VALUES(5, 'Josef Strauss', '', '2023-04-30 15:07:08', NULL, 0, 0);
+
+INSERT INTO manufacturers_info VALUES(1, 1, '', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO manufacturers_info VALUES(1, 2, '', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO manufacturers_info VALUES(2, 1, '', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO manufacturers_info VALUES(2, 2, '', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO manufacturers_info VALUES(3, 1, '', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO manufacturers_info VALUES(3, 2, '', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO manufacturers_info VALUES(4, 1, '', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO manufacturers_info VALUES(4, 2, '', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO manufacturers_info VALUES(5, 1, '', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO manufacturers_info VALUES(5, 2, '', 0, NULL, NULL, NULL, NULL, NULL);
 
 INSERT INTO orders_status VALUES(1, 1, 'Pending', 1, 0, 0, 1);
 INSERT INTO orders_status VALUES(1, 2, 'En instance', 1, 0, 0, 1);
@@ -1917,14 +1969,110 @@ INSERT INTO orders_status_invoice VALUES(4, 1, 'Have a bill');
 INSERT INTO orders_status_invoice VALUES(4, 2, 'Avoir');
 
 
-INSERT INTO orders_status_support  VALUES(1, 2, '-- Aucune demande --');
 INSERT INTO orders_status_support  VALUES(1, 1, '-- No request --');
-INSERT INTO orders_status_support  VALUES(2, 2, 'Demande de support');
+INSERT INTO orders_status_support  VALUES(1, 2, '-- Aucune demande --');
 INSERT INTO orders_status_support  VALUES(2, 1, 'Support request');
-INSERT INTO orders_status_support  VALUES(3, 2, 'Traitement du support');
+INSERT INTO orders_status_support  VALUES(2, 2, 'Demande de support');
 INSERT INTO orders_status_support  VALUES(3, 1, 'Support Treatment');
-INSERT INTO orders_status_support  VALUES(4, 2, 'Support terminé');
+INSERT INTO orders_status_support  VALUES(3, 2, 'Traitement du support');
 INSERT INTO orders_status_support  VALUES(4, 1, 'Support realised');
+INSERT INTO orders_status_support  VALUES(4, 2, 'Support terminé');
+
+
+INSERT INTO pages_manager VALUES(1, '', 0, 1, 1, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2008-09-08 15:39:50', '2008-09-03 20:38:09', 0, 0);
+INSERT INTO pages_manager VALUES(2, '', 1, 1, 2, 0, '0', NULL, NULL, '1000-01-01 00:00:00', '2018-11-23 18:13:03', NULL, 0, 0);
+INSERT INTO pages_manager VALUES(3, '', 2, 1, 3, 0, '', NULL, NULL, '1000-01-01 00:00:00', NULL, NULL, 0, 0);
+INSERT INTO pages_manager VALUES(4, '_self', 3, 1, 4, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2014-02-07 20:14:00', NULL, 0, 1);
+INSERT INTO pages_manager VALUES(5, '', 4, 1, 4, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2008-09-16 14:55:26', NULL, 0, 0);
+INSERT INTO pages_manager VALUES(7, '_self', 5, 1, 4, 0, '0', NULL, NULL, '2008-09-02 10:36:53', '2018-07-27 20:39:03', NULL, 0, 0);
+INSERT INTO pages_manager VALUES(8, '_self', 6, 1, 4, 0, '0', NULL, NULL, '2008-09-16 14:48:16', '2018-07-27 20:39:29', NULL, 0, 0);
+INSERT INTO pages_manager VALUES(10, '_self', 8, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:40:45', NULL, NULL, 0, 0);
+INSERT INTO pages_manager VALUES(11, '_self', 9, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:41:34', '2018-07-27 20:45:22', NULL, 0, 0);
+INSERT INTO pages_manager VALUES(13, '_self', 10, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:04:35', NULL, NULL, 99, 0);
+INSERT INTO pages_manager VALUES(14, '_self', 11, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:06:23', '2018-12-19 11:07:11', NULL, 99, 0);
+INSERT INTO pages_manager VALUES(15, '_self', 7, 1, 5, 3, '0', NULL, NULL, '2018-07-31 09:23:54', NULL, NULL, 0, 0);
+
+INSERT INTO pages_manager_description VALUES(1, 'Intro Page', '', '', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(1, 'page intro', '', '', 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(2, 'MainPage', 'ClicShopping is an easy-to-install and use modular e-commerce solution. Start with a basic setup and customize it to fit your needs and business with additional modules.<br />\r\n<br />\r\nClicShopping, leverages Artificial Intelligence (AI) with chatGpt to optimize productivity, SEO, and more.<br />\r\n<br />\r\nProgrammers and shop owners can work together to contribute solutions to the community via GitHub or the marketplace. If you have any questions, please post them on the <a href=\"https://clicshopping.org\">forum</a><br />\r\n \r\n<div style=\"text-align: center;\"><a href=\"https://demo.clicshopping.org/ClicShoppingAdmin835/index.php\">Administration Access</a></div>\r\n', NULL, 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(2, 'Page Accueil', '<div style=\"text-align: center;\">CLICSHOPPING DEMO</div>\r\n <br />\r\nClicshopping est une solution de commerce électronique entièrement modulaire, facile à installer et à utiliser. Pour commencer, vous avez une solution simple, après avoir pu ajouter facilement un module pour personnaliser comme vous voulez clicshopping. Objectif d\'avoir une solution dans la fonction de vos besoins et de votre entreprise<br />\r\n<br />\r\nPar exemple, il est possible d\'inclure de nouveaux modules tels que l\'alerte Web ou la carrousel ou de nouvelles fonctionnalités. Vous pouvez partager votre contribution via GitHub ou à l\'intérieur du marché.<br />\r\n<br />\r\nLe programmeur et le propriétaire de l\'atelier collaborent ensemble et proposent une solution pour la communauté. Si vous avez une question, vous  pouvez laisser un message sur le <a href=\"https://clicshopping.org\">forum</a>.<br />\r\n \r\n<div style=\"text-align: center;\"><a href=\"https://demo.clicshopping.org/ClicShoppingAdmin835/index.php\">Accéder à l\'administration</a></div>\r\n', NULL, 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(3, 'Contact Us', '<p><strong>(Specify the name of your website or company)</strong></p>', '', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(3, 'Nous Contacter', '<p><strong>(indiquer le nom de votre site ou votre société) </strong></p>', '', 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(4, 'General Conditions', 'General Conditions', '', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(4, 'Conditions Générales', 'Conditions générales', '', 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(5, 'Confidential politics', 'Confidential politics', '', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(5, 'Politiques de Confidentialité', 'Politiques de Confidentialité', '', 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(8, 'Sitemap', '', 'index.php?Info&SiteMap', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(8, 'Cartographie du site', '', 'index.php?Info&SiteMap', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(10, 'Specials', '', 'Products&Specials', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(10, 'Promotions', '', 'Products&Specials', 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(11, 'News', '', 'Products&ProductsNew', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(11, 'Nouveautés', '', 'Products&ProductsNew', 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(13, 'Featured', '', 'Products&Featured', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(13, 'Nos sélections', '', 'Products&Featured', 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(14, 'Favorites', '', 'Products&Favorites', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(14, 'Nos Coups de coeur', '', 'Products&Favorites', 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 2, '', '', '');
+
+
+INSERT INTO products VALUES(2, 0, 0, 200, 'REF-1526836441', 'products/cook/130_nV3zTbD22w_ricardo-ricardo-set-of-2-double-wall-glasses.png', 'REF-1992541414', 'REF-436224673', '', '', '', '', 'products/cook/640_nV3zTbD22w_ricardo-ricardo-set-of-2-double-wall-glasses.png', 50.0000, '2023-04-30 14:31:12', '2023-04-30 14:32:55', NULL, 1.0000, '', 1, 1, 0, 0, 1, '1', '1', 0, 0, 1, 0, 0.00, 0.00, 0.00, 2, 'admin admin', '0.00', 0, 0, 'products/cook/250_nV3zTbD22w_ricardo-ricardo-set-of-2-double-wall-glasses.png', 'products/cook/70_nV3zTbD22w_ricardo-ricardo-set-of-2-double-wall-glasses.png', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
+INSERT INTO products VALUES(3, 0, 0, 250, 'REF-1147524128', 'products/cook/130_VjdFCDRZB5_duralex-set-of-6-picardie-clear-glass.png', 'REF-1965171787', 'REF-1677516273', '', '', '', '', 'products/cook/640_VjdFCDRZB5_duralex-set-of-6-picardie-clear-glass.png', 80.0000, '2023-04-30 14:38:46', NULL, NULL, 3.0000, '', 1, 1, 1, 0, 1, '1', '1', 1, 0, 1, 0, 0.00, 0.00, 0.00, 2, 'admin admin', '0.00', 0, 0, 'products/cook/250_VjdFCDRZB5_duralex-set-of-6-picardie-clear-glass.png', 'products/cook/70_VjdFCDRZB5_duralex-set-of-6-picardie-clear-glass.png', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
+INSERT INTO products VALUES(4, 0, 0, 50, 'REF-186302276', 'products/cook/130_2cHjuSorUJ_danica-heirloom-danica-heirloom-olives-swedish.jpg', 'REF-1420977306', 'REF-411608752', '', '', '', '', 'products/cook/640_2cHjuSorUJ_danica-heirloom-danica-heirloom-olives-swedish.jpg', 10.0000, '2023-04-30 14:44:12', NULL, NULL, 0.5000, '', 1, 1, 2, 0, 1, '1', '1', 2, 0, 1, 0, 0.00, 0.00, 0.00, 2, 'admin admin', '0.00', 0, 0, 'products/cook/250_2cHjuSorUJ_danica-heirloom-danica-heirloom-olives-swedish.jpg', 'products/cook/70_2cHjuSorUJ_danica-heirloom-danica-heirloom-olives-swedish.jpg', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
+INSERT INTO products VALUES(5, 0, 0, 50, 'REF-186302276', 'products/cook/130_xSAITa13xo_danica-heirloom-danica-heirloom-peppers-swedish.jpg', 'REF-1420977306', 'REF-411608752', '', '', '', '', 'products/cook/640_xSAITa13xo_danica-heirloom-danica-heirloom-peppers-swedish.jpg', 10.0000, '2023-04-30 14:45:37', '2023-04-30 14:47:29', NULL, 0.5000, '', 1, 1, 2, 0, 1, '1', '1', 2, 0, 1, 0, 0.00, 0.00, 0.00, 2, 'admin admin', '0.00', 0, 0, 'products/cook/250_xSAITa13xo_danica-heirloom-danica-heirloom-peppers-swedish.jpg', 'products/cook/70_xSAITa13xo_danica-heirloom-danica-heirloom-peppers-swedish.jpg', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
+INSERT INTO products VALUES(6, 0, 0, 200, 'REF-735105857', 'products/cook/130_eaWKTRL9nD_trudeau-trudeau-blink-wine-chiller.jpg', 'REF-1974356263', 'REF-682500556', '', '', '', '', 'products/cook/640_eaWKTRL9nD_trudeau-trudeau-blink-wine-chiller.jpg', 50.0000, '2023-04-30 14:56:27', NULL, NULL, 2.0000, '', 1, 1, 3, 0, 1, '1', '1', 3, 0, 1, 0, 0.00, 0.00, 0.00, 2, 'admin admin', '0.00', 0, 0, 'products/cook/250_eaWKTRL9nD_trudeau-trudeau-blink-wine-chiller.jpg', 'products/cook/70_eaWKTRL9nD_trudeau-trudeau-blink-wine-chiller.jpg', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
+INSERT INTO products VALUES(7, 0, 0, 30, 'REF-167383567', 'products/cook/130_fIYPoeQI68_trudeau-pompe-a-vin-avec-2-bouchons-de-trudeau.jpg', 'REF-1245114511', 'REF-1405575828', '', '', '', '', 'products/cook/640_fIYPoeQI68_trudeau-pompe-a-vin-avec-2-bouchons-de-trudeau.jpg', 50.0000, '2023-04-30 14:59:55', NULL, NULL, 1.0000, '', 1, 1, 3, 0, 1, '1', '1', 3, 0, 1, 0, 0.00, 0.00, 0.00, 2, 'admin admin', '0.00', 0, 0, 'products/cook/250_fIYPoeQI68_trudeau-pompe-a-vin-avec-2-bouchons-de-trudeau.jpg', 'products/cook/70_fIYPoeQI68_trudeau-pompe-a-vin-avec-2-bouchons-de-trudeau.jpg', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
+INSERT INTO products VALUES(8, 0, 0, 200, 'REF-381129254', 'products/cook/130_8VN7eHef7Y_zwilling-zwilling-twin-4-piece-eckbert-children.png', 'REF-748783096', 'REF-489165095', '', '', '', '', 'products/cook/640_8VN7eHef7Y_zwilling-zwilling-twin-4-piece-eckbert-children.png', 200.0000, '2023-04-30 15:06:23', NULL, NULL, 1.0000, '', 1, 1, 4, 0, 1, '1', '1', 4, 0, 1, 0, 0.00, 0.00, 0.00, 2, 'admin admin', '0.00', 0, 0, 'products/cook/250_8VN7eHef7Y_zwilling-zwilling-twin-4-piece-eckbert-children.png', 'products/cook/70_8VN7eHef7Y_zwilling-zwilling-twin-4-piece-eckbert-children.png', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
+INSERT INTO products VALUES(9, 0, 0, 150, 'REF-1068978741', 'products/cook/130_ZmPHCiPEWk_josef-strauss-ensemble-dustensiles.jpg', 'REF-608085741', 'REF-784842224', '', '', '', '', 'products/cook/640_ZmPHCiPEWk_josef-strauss-ensemble-dustensiles.jpg', 350.0000, '2023-04-30 15:10:14', NULL, NULL, 2.0000, '', 1, 1, 5, 0, 1, '1', '1', 5, 0, 1, 0, 0.00, 0.00, 0.00, 2, 'admin admin', '0.00', 0, 0, 'products/cook/250_ZmPHCiPEWk_josef-strauss-ensemble-dustensiles.jpg', 'products/cook/70_ZmPHCiPEWk_josef-strauss-ensemble-dustensiles.jpg', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
+INSERT INTO products VALUES(10, 0, 0, 200, 'REF-608054608', 'products/cook/130_SAFKKdCYV8_lot_plat.jpg', 'REF-74387683', 'REF-1559731276', '', '', '', '', 'products/cook/640_SAFKKdCYV8_lot_plat.jpg', 80.0000, '2023-04-30 15:53:36', NULL, NULL, 1.0000, '', 1, 1, 0, 0, 1, '1', '1', 0, 0, 1, 0, 0.00, 0.00, 0.00, 2, 'admin admin', '0.00', 0, 0, 'products/cook/250_SAFKKdCYV8_lot_plat.jpg', 'products/cook/70_SAFKKdCYV8_lot_plat.jpg', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
+
+INSERT INTO products_description VALUES(2, 1, 'Ricardo Set of 2 Double Wall Glasses', 'Ideal for juices, cocktails, iced teas and coffees, beers and much more.\r\n<ul>\r\n	<li>Made of durable borosilicate glass</li>\r\n	<li>Double wall construction maintains beverages hot or cold longer</li>\r\n	<li>Ideal for juices, cocktails, iced teas and coffees, beers and much more</li>\r\n	<li>14 oz/420 ml capacity</li>\r\n	<li>Dishwasher safe</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', 'Made of durable borosilicate glass');
+INSERT INTO products_description VALUES(2, 2, 'verres à double paroi de Ricardo', 'Idéal pour jus, cocktails, thé glacé, café, bière et plus encore.\r\n<ul>\r\n	<li>Fabriqué de verre borosilicate durable</li>\r\n	<li>Construction à double paroi afin de maintenir les breuvages chauds ou froids plus longtemps</li>\r\n	<li>Idéal pour jus, cocktails, thé glacé, café, bière et plus encore</li>\r\n	<li>Capacité de 14 oz / 420 ml</li>\r\n	<li>Va au lave-vaisselle</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', 'Fabriqué de verre borosilicate durable');
+INSERT INTO products_description VALUES(3, 1, 'Set of 6 Duralex Picardie glasses', 'The original tempered (toughened) Picardie glasses are known as the \"original French tumblers.\"\r\n<ul>\r\n	<li>Shock Resistant tempered glass</li>\r\n	<li>Thermal shock resistant</li>\r\n	<li>100% Hygienic non-porous glass</li>\r\n	<li>100% Safe non-cutting glass</li>\r\n	<li>Can withstand sudden thermal shock from -4 F to 212 F</li>\r\n	<li>Products maintain the original look for years</li>\r\n	<li>Dishwasher safe, Microwave safe, Freezer safe</li>\r\n	<li>Stackable</li>\r\n	<li>Made in France</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', 'Shock Resistant tempered glass');
+INSERT INTO products_description VALUES(3, 2, 'Ensemble de 6 verres Picardie Duralex', 'Les verres originaux trempés (durcis) de Picardie sont connus comme les \"gobelets français originaux\".\r\n<ul>\r\n	<li>Verre trempé résistant aux chocs</li>\r\n	<li>Résistant aux chocs thermiques</li>\r\n	<li>Verre non poreux 100% hygiénique</li>\r\n	<li>Verre non coupant 100% sûr</li>\r\n	<li>Peut résister à un choc thermique soudain de -4 F à 212 F</li>\r\n	<li>Les produits conservent leur aspect original pendant des années</li>\r\n	<li>Lavable au lave-vaisselle, au micro-ondes et au congélateur.</li>\r\n	<li>Empilable</li>\r\n	<li>Fabriqué en France</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', 'Verre trempé résistant aux chocs');
+INSERT INTO products_description VALUES(4, 1, ' Swedish Compostable Cloth \'Olives\'', 'Made from cotton and plant-based cellulose fibers, these compostable cloths are an established must-have in Scandinavia. They offer a sustainable alternative to sponges, dishcloths and paper towels and become soft and pliable when wet for easy clean-up.\r\n<ul>\r\n	<li>8x6.5x0.1</li>\r\n	<li>70% Cellulose / 30% Cotton</li>\r\n	<li>Machine wash warm, lay flat to dry</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', 'Made from cotton and plant-based cellulose fibers');
+INSERT INTO products_description VALUES(4, 2, 'Lavette Compostable Suédoise \"Olives\"', 'Fabriqués à partir de coton et de fibres cellulosiques d\'origine végétale, ces chiffons compostables sont devenus incontournables en Scandinavie. Ils offrent une alternative durable aux éponges, aux torchons et aux serviettes en papier et deviennent doux et souples lorsqu\'ils sont mouillés, ce qui facilite le nettoyage.\r\n<ul>\r\n	<li>8x6.5x0.1</li>\r\n	<li>70% Cellulose / 30% Coton</li>\r\n	<li>Lavage en machine à chaud, séchage à plat</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', 'Fabriqués à partir de coton et de fibres cellulosiques d\'origine végétale,');
+INSERT INTO products_description VALUES(5, 1, 'Peppers Swedish Compostable Wipes', 'Made from cotton and plant-based cellulose fibers, these compostable cloths are an established must-have in Scandinavia. They offer a sustainable alternative to sponges, dishcloths and paper towels and become soft and pliable when wet for easy clean-up.\r\n<ul>\r\n	<li>8x6.5x0.1</li>\r\n	<li>70% Cellulose / 30% Cotton</li>\r\n	<li>Machine wash warm, lay flat to dry</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', 'Made from cotton and plant-based cellulose fibers');
+INSERT INTO products_description VALUES(5, 2, 'Lavette Compostable Suédoise Piments', 'Fabriqués à partir de coton et de fibres cellulosiques d\'origine végétale, ces chiffons compostables sont devenus incontournables en Scandinavie. Ils offrent une alternative durable aux éponges, aux torchons et aux serviettes en papier et deviennent doux et souples lorsqu\'ils sont mouillés, ce qui facilite le nettoyage.\r\n<ul>\r\n	<li>8x6.5x0.1</li>\r\n	<li>70% Cellulose / 30% Coton</li>\r\n	<li>Lavage en machine à chaud, séchage à plat</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', 'Fabriqués à partir de coton et de fibres cellulosiques d\'origine végétale,');
+INSERT INTO products_description VALUES(6, 1, 'TRUDEAU BLINK WINE CHILLER', 'Cooldown your drink of choice in the blink of an eye with our Blink wine chiller! A clever alternative to the classic ice bucket, this patented wine accessory that can fit any kind of bottle is essential to fine dining. The Blink Wine Chiller features two integrated freezing packs that maintain the temperature of your wine for hours without condensation. From 1L bottles of white wine for picnics with friends to champagne bottles for bigger occasions, we got your need for chilled beverages covered with this sleek accessory. The auto-closure system ensures a wine that is chilled to perfection every time. Enjoy it to the last drop!', '', 0, '', '', '', '', '', '', 'Cooldown your drink of choice in the blink of an eye with our Blink wine chiller! ');
+INSERT INTO products_description VALUES(6, 2, 'Refroidisseur à vin Blink de Trudeau', '<br />\r\n<br />\r\nRafraîchissez votre vin en un instant avec notre rafraîchisseur à vin Blink. Cet accessoire breveté s\'adapte à toutes les bouteilles et offre une alternative intelligente au classique seau à glace. Le rafraîchisseur à vin Blink est doté de deux éléments réfrigérants intégrés qui maintiennent la température de votre vin durant des heures sans condensation. Des bouteilles de vin blanc de 1L pour vos pique-niques au parc, au champagne pour les grandes occasions, nous avons ce qu\'il vous faut avec cet accessoire simple. La fermeture automatique assure du vin refroidi à perfection à chaque fois. Savourez-le jusqu\'à la dernière coupe!', '', 0, '', '', '', '', '', '', 'Rafraîchissez votre vin en un instant avec notre rafraîchisseur à vin Blink. Cet accessoire breveté s\'adapte à toutes les bouteilles et offre une alternative intelligente au classique seau à glace. ');
+INSERT INTO products_description VALUES(7, 1, 'Trudeau Wine Pump and 2 Stoppers', '', '', 0, '', '', '', '', '', '', '');
+INSERT INTO products_description VALUES(7, 2, 'Pompe à vin avec 2 bouchons de Trudeau', 'Conservez les restes de vin avec notre pompe à préserver le vin au design original Trudeau. Pratique et efficace, elle empêche l\'oxydation et les changements de pression à l\'intérieur de la bouteille durant une semaine. Simplement pomper jusqu\'à ce que l\'indicateur blanc sur le bouchon s\'abaisse. De plus, les bouchons sont anti-fuites, même à l\'horizontale. Vous pouvez ainsi limiter les dégâts et les pertes et prolonger le plaisir!<br />\r\n<br />\r\nCouleur/fini : Argent & Noir chromé<br />\r\nDimension/capacité : 14 cm<br />\r\nEmballage : Boîte cadeau', '', 14, '', '', '', '', '', '', 'Conservez les restes de vin avec notre pompe à préserver le vin au design original Trudeau. Pratique et efficace, elle empêche l\'oxydation et les changements de pression à l\'intérieur de la bouteille durant une semaine. ');
+INSERT INTO products_description VALUES(8, 1, 'Eckbert Children Cutlery Set', 'Kid-sized flatware set is perfect for children\'s small hands. Adorable designs keep children engaged and delighed for many meals to come.Since 1731 Henckels have been developing leading edge products that combine advanced technology, premium materials and the artistry of craftsmanship into functional forms. They have become a global symbol of excellence representing the best in German culinary design and precision manufacturing.\r\n<ul>\r\n	<li>18/10 Stainless steel</li>\r\n	<li>Eckbert the Knight, his two mischievous friends and a cheerful dragon are depicted on the tip of the handle</li>\r\n	<li>Set includes child\'s fork, knife, soup/cereal spoon and small spoon</li>\r\n	<li>For ages 3 and up</li>\r\n	<li>Dishwasher safe</li>\r\n	<li>Use and Care : Dishwasher safe</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', ' Kid-sized flatware set is perfect for children\'s small hands. Adorable designs keep children engaged and delighed for many meals to come. ');
+INSERT INTO products_description VALUES(8, 2, 'Ustensiles Eckbert par ZWILLING', 'Cette coutelerie de petite taille est parfaite pour les mains d\'enfants. Les motifs adorables garderont les enfants excités de manger pendant les repas.Depuis 1731, Henckels a développé des produits de pointe qui combinent la technologie avancée, les matériaux haut de gamme et l\'artisanat dans des formes fonctionnelles. Ils sont devenus un symbol global d\'excellence représentant le meilleur design culinaire et la meilleure fabrication de précision en Allemagne.\r\n<ul>\r\n	<li>Parfait pour les petites mains</li>\r\n	<li>Eckbert le chevalier, ses deux amis malicieux et un dragon joyeux dessinés sur les poignées</li>\r\n	<li>L\'ensemble contient : fourchette pour enfant, couteau, cuillère à soupe/céréale et petite cuillère</li>\r\n	<li>Pour 3 ans et plus</li>\r\n	<li>Peut être placé dans le lave-vaisselleEntretien : Peut être placé dans le lave-vaisselle.</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', 'Cette coutelerie de petite taille est parfaite pour les mains d\'enfants. Les motifs adorables garderont les enfants excités de manger pendant les repas. ');
+INSERT INTO products_description VALUES(9, 1, 'Josef Strauss Prestige Cutlery Set', 'This beautiful set will enhance any dinner table, whether for entertaining, or casual dining.\r\n<ul>\r\n	<li>18/10 stainless steel</li>\r\n	<li>Gaby - 20 pc set</li>\r\n</ul>\r\n\r\n<ol>\r\n	<li>Includes: 4 dinner forks, 4 salad forks, 4 knives, 4 soup spoons, 4 tea spoons</li>\r\n</ol>\r\n', '', 0, '', '', '', '', '', '', 'This beautiful set will enhance any dinner table, whether for entertaining, or casual dining.');
+INSERT INTO products_description VALUES(9, 2, 'Ustensiles de Josef Strauss Prestige', 'Ce magnifique ensemble rehaussera toute table, qu\'il s\'agisse d\'une réception ou d\'un repas décontracté.\r\n<ul>\r\n	<li>Acier inoxydable 18/10</li>\r\n	<li>Gaby - Ensemble de 20 pièces</li>\r\n	<li>Comprend 4 fourchettes à dîner, 4 fourchettes à salade, 4 couteaux, 4 cuillères à soupe, 4 cuillères à thé.</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', 'Ce magnifique ensemble rehaussera toute table, qu\'il s\'agisse d\'une réception ou d\'un repas décontracté.');
+INSERT INTO products_description VALUES(10, 1, 'Stainless steel cutlery', 'Beautifully created from a higher quality stainless steel material, our dishes are exquisitely designed. This unique and elegant design has a durable, well balanced and easy to grasp set. The whole is affordable as well as elegant and it is a judicious investment that will enrich your daily experience. Rust resistant, dishwasher, easy to wash and maintain.<br />\r\n<br />\r\n<strong>Available color </strong>:- or<br />\r\n<strong>Available size:- </strong><br />\r\n4 x Dinner fork 7.5 PO-<br />\r\n4 x tablespoon 7.5 in<br />\r\n4 x 6 -po tea spoon<br />\r\n4 x Dinner knife 8.5 POF<br />\r\n<br />\r\n<strong>features: </strong><br />\r\nRust resistant<br />\r\nDishwasher<br />\r\nEasy to wash and maintain.', '', 0, '', '', '', '', '', '', 'Beautifully created from a higher quality stainless steel material, our dishes are exquisitely designed. ');
+INSERT INTO products_description VALUES(10, 2, 'Coutellerie en acier inoxidable', 'Magnifiquement créés à partir d\'un matériau en acier inoxydable de qualité supérieure, nos ensembles de vaisselle sont conçus de manière exquise. Ce design unique et élégant présente un ensemble durable, bien équilibré et facile à saisir. L\'ensemble est abordable ainsi que élégant et c\'est un investissement judicieux qui enrichira votre expérience quotidienne. Résistant à la rouille, au lave-vaisselle, facile à laver et à entretenir.<br />\r\n<br />\r\n<strong>Couleur disponible</strong>:- Or<br />\r\n<strong>Taille disponible:- </strong><br />\r\n4 x fourchette à dîner 7.5 po-<br />\r\n4 x cuillère à soupe 7.5 po<br />\r\n4 x cuillère à thé 6 po<br />\r\n4 x couteau à dîner 8.5 poF<br />\r\n<br />\r\n<strong>Fonctionnalités:</strong><br />\r\n Résistant à la rouille<br />\r\nLave-vaisselle<br />\r\nFacile à laver et à entretenir.', '', 0, '', '', '', '', '', '', ' matériau en acier inoxydable de qualité supérieure');
+
+INSERT INTO products_favorites VALUES(1, 5, '2023-04-30 15:19:03', NULL, NULL, NULL, NULL, 1, 0);
+INSERT INTO products_favorites VALUES(2, 4, '2023-04-30 15:19:13', NULL, NULL, NULL, NULL, 1, 0);
+INSERT INTO products_favorites VALUES(3, 7, '2023-04-30 15:19:35', NULL, NULL, NULL, NULL, 1, 0);
+
+INSERT INTO products_featured VALUES(1, 2, '2023-04-30 15:18:10', NULL, NULL, NULL, NULL, 1, 0);
+INSERT INTO products_featured VALUES(2, 8, '2023-04-30 15:18:21', NULL, NULL, NULL, NULL, 1, 0);
+INSERT INTO products_featured VALUES(3, 6, '2023-04-30 15:18:34', NULL, NULL, NULL, NULL, 1, 0);
+INSERT INTO products_featured VALUES(4, 5, '2023-04-30 15:18:44', NULL, NULL, NULL, NULL, 1, 0);
+
+INSERT INTO products_groups VALUES(1, 47.5000, 2, 50.0000, '1', '1', '1', 0, '', 1);
+INSERT INTO products_groups VALUES(1, 76.0000, 3, 80.0000, '1', '1', '1', 0, '', 1);
+INSERT INTO products_groups VALUES(1, 9.5000, 4, 10.0000, '1', '1', '1', 0, '', 1);
+INSERT INTO products_groups VALUES(1, 47.5000, 6, 50.0000, '1', '1', '1', 0, '', 1);
+INSERT INTO products_groups VALUES(1, 47.5000, 7, 50.0000, '1', '1', '1', 0, '', 1);
+INSERT INTO products_groups VALUES(1, 190.0000, 8, 200.0000, '1', '1', '1', 0, '', 1);
+INSERT INTO products_groups VALUES(1, 332.5000, 9, 350.0000, '1', '1', '1', 0, '', 1);
+INSERT INTO products_groups VALUES(1, 76.0000, 10, 80.0000, '1', '1', '1', 0, '', 1);
+
+
+INSERT INTO products_images VALUES(2, 2, 'products/cook/ricardo-ricardo-set-of-2-double-wall-glasses1.png', '', 1);
+INSERT INTO products_images VALUES(3, 3, 'products/cook/duralex-set-of-6-picardie-clear-glass1.png', '', 1);
+INSERT INTO products_images VALUES(4, 3, 'products/cook/duralex-set-of-6-picardie-clear-glass2.png', '', 2);
+INSERT INTO products_images VALUES(5, 6, 'products/cook/trudeau-trudeau-blink-wine-chiller1.jpg', '', 1);
+INSERT INTO products_images VALUES(6, 6, 'products/cook/trudeau-trudeau-blink-wine-chiller2.jpg', '', 2);
+INSERT INTO products_images VALUES(7, 7, 'products/cook/trudeau-pompe-a-vin-avec-2-bouchons-de-trudeau1.jpg', '', 1);
+
 
 INSERT INTO products_length_classes VALUES(1, 'mm', 1, 'Millimeter(s)');
 INSERT INTO products_length_classes VALUES(1, 'mm', 2, 'millimètre(s)');
@@ -1948,65 +2096,26 @@ INSERT INTO products_length_classes_rules VALUES(4, 1, '25.40000');
 INSERT INTO products_length_classes_rules VALUES(4, 2, '2.54000');
 INSERT INTO products_length_classes_rules VALUES(4, 3, '0.02540');
 
-INSERT INTO pages_manager VALUES(1, '', 0, 1, 1, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2008-09-08 15:39:50', '2008-09-03 20:38:09', 0, 0);
-INSERT INTO pages_manager VALUES(2, '', 1, 1, 2, 0, '0', NULL, NULL, '1000-01-01 00:00:00', '2018-11-23 18:13:03', NULL, 0, 0);
-INSERT INTO pages_manager VALUES(3, '', 2, 1, 3, 0, '', NULL, NULL, '1000-01-01 00:00:00', NULL, NULL, 0, 0);
-INSERT INTO pages_manager VALUES(4, '_self', 3, 1, 4, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2014-02-07 20:14:00', NULL, 0, 1);
-INSERT INTO pages_manager VALUES(5, '', 4, 1, 4, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2008-09-16 14:55:26', NULL, 0, 0);
-INSERT INTO pages_manager VALUES(7, '_self', 5, 1, 4, 0, '0', NULL, NULL, '2008-09-02 10:36:53', '2018-07-27 20:39:03', NULL, 0, 0);
-INSERT INTO pages_manager VALUES(8, '_self', 6, 1, 4, 0, '0', NULL, NULL, '2008-09-16 14:48:16', '2018-07-27 20:39:29', NULL, 0, 0);
-INSERT INTO pages_manager VALUES(10, '_self', 8, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:40:45', NULL, NULL, 0, 0);
-INSERT INTO pages_manager VALUES(11, '_self', 9, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:41:34', '2018-07-27 20:45:22', NULL, 0, 0);
-INSERT INTO pages_manager VALUES(13, '_self', 10, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:04:35', NULL, NULL, 99, 0);
-INSERT INTO pages_manager VALUES(14, '_self', 11, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:06:23', '2018-12-19 11:07:11', NULL, 99, 0);
-INSERT INTO pages_manager VALUES(15, '_self', 7, 1, 5, 3, '0', NULL, NULL, '2018-07-31 09:23:54', NULL, NULL, 0, 0);
-
-INSERT INTO pages_manager_description VALUES(1, 'Intro Page', '', '', 1, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(1, 'page intro', '', '', 2, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(2, 'MainPage', '', '', 1, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(2, 'Page Accueil', '', '', 2, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(3, 'Contact Us', '<p><strong>(Specify the name of your website or company)</strong></p>', '', 1, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(3, 'Nous Contacter', '<p><strong>(indiquer le nom de votre site ou votre société) </strong></p>', '', 2, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(4, 'General Conditions', 'General Conditions', '', 1, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(4, 'Conditions Générales', 'Conditions générales', '', 2, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(5, 'Confidential politics', 'Confidential politics', '', 1, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(5, 'Politiques de Confidentialité', 'Politiques de Confidentialité', '', 2, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 2, '', '', '');
-INSERT INTO pages_manager_description VALUES(8, 'Sitemap', '', 'index.php?Info&SiteMap', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(8, 'Cartographie du site', '', 'index.php?Info&SiteMap', 2, '', '', '');
-INSERT INTO pages_manager_description VALUES(10, 'Specials', '', 'index.php/Products/Specials', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(10, 'Promotions', '', 'index.php/Products/Specials', 2, '', '', '');
-INSERT INTO pages_manager_description VALUES(11, 'News', '', 'index.php/Products/ProductsNew', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(11, 'Nouveautés', '', 'index.php/Products/ProductsNew', 2, '', '', '');
-INSERT INTO pages_manager_description VALUES(13, 'Featured', '', 'index.php?Products&Featured', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(13, 'Nos sélections', '', 'index.php?Products&Featured', 2, '', '', '');
-INSERT INTO pages_manager_description VALUES(14, 'Favorites', '', 'index.php?Products&Favorites', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(14, 'Nos Coups de coeur', '', 'index.php?Products&Favorites', 2, '', '', '');
-INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 2, '', '', '');
-
-INSERT INTO products VALUES (1, 0, 0, 10, 'REF-1399712127', 'products/demo/130_H9BIPqG26z_imac_1-500x500.jpg', 'REF-2092687104', 'REF-777702931', '', '', '', '', 'products/demo/640_H9BIPqG26z_imac_1-500x500.jpg', 2500.0000,	'2022-02-24 10:05:06',	'2022-02-24 10:14:15',	NULL,	1.0000,	'',	1,	1,	0,	0,	1,	'1',	'1',	0,	0,	1,	0,	0.00,	0.00,	0.00,	2,	'admin admin',	'0.00',	0,	0,	'products/demo/250_H9BIPqG26z_imac_1-500x500.jpg',	'products/demo/70_H9BIPqG26z_imac_1-500x500.jpg', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
-
-INSERT INTO products_description VALUES (1, 1, 'IMac Monitor', 'Introducing the new 15.4-inch MacBook Pro. The state-of-the-art quad-core Intel i7 processor delivers up to 2x faster performance (over the previous generation of MacBook Pro). New Thunderbolt technology lets you connect high-performance peripherals and high-resolution displays to a single port, and transfer files at lightning speeds. And with the new built-in FaceTime HD camera, you can make astonishingly crisp HD video calls. <br />\r\n<br />\r\nWith the revolutionary Thunderbolt technology, you\'ll be able to achieve bi-directional channels with transfer speeds to peripherals like external hard drives and servers up to an amazing 10 Gbps--while also connecting to a DisplayPort-compatible high-resolution display. <br />\r\n<br />\r\nAs with previous models, the MacBook Pro features a precision unibody enclosure crafted from a single block of aluminum, creating a thin and light mobile computing workhorse (less than 1 inch thin and just 5.6 pounds) that\'s also highly durable. It includes a 15.4-inch, LED-backlit glass display as well as a glass trackpad that doesn\'t include a button (for larger tracking area) that features Apple\'s Multi-Touch technology. And it comes standard with automatic graphics switching that provides performance when you need it and energy efficiency when you don\'t. You\'ll also get up to 9 hours of battery life while on the go. <br />\r\n<br />\r\nThis version of the 15.4-inch MacBook Pro features a 2.2 GHz Core i7 \"Haswell/Crystalwell\" quad-core processor, 256 GB solid state hard drive, and 16 GB of installed RAM. other features include ultra fast connectivity includes 802.11ac Wi-Fi, Bluetooth 4.0, two USB 3.0 ports, two \"Thunderbolt 2\" ports, an HDMI port, an audio in/out port, and an SDXC card slot. It also comes with the Mac OS X El Capitan operating system as well as the iLife software suite, which includes the latest versions of iPhoto, iMovie, and GarageBand.', '', 0, '', '',	'', '', '', '', '');
-INSERT INTO products_description VALUES (1, 2, 'Moniteur IMac', 'Introducing the new 15.4-inch MacBook Pro. The state-of-the-art quad-core Intel i7 processor delivers up to 2x faster performance (over the previous generation of MacBook Pro). New Thunderbolt technology lets you connect high-performance peripherals and high-resolution displays to a single port, and transfer files at lightning speeds. And with the new built-in FaceTime HD camera, you can make astonishingly crisp HD video calls. <br />\r\n<br />\r\nWith the revolutionary Thunderbolt technology, you\'ll be able to achieve bi-directional channels with transfer speeds to peripherals like external hard drives and servers up to an amazing 10 Gbps--while also connecting to a DisplayPort-compatible high-resolution display. <br />\r\n<br />\r\nAs with previous models, the MacBook Pro features a precision unibody enclosure crafted from a single block of aluminum, creating a thin and light mobile computing workhorse (less than 1 inch thin and just 5.6 pounds) that\'s also highly durable. It includes a 15.4-inch, LED-backlit glass display as well as a glass trackpad that doesn\'t include a button (for larger tracking area) that features Apple\'s Multi-Touch technology. And it comes standard with automatic graphics switching that provides performance when you need it and energy efficiency when you don\'t. You\'ll also get up to 9 hours of battery life while on the go. <br />\r\n<br />\r\nThis version of the 15.4-inch MacBook Pro features a 2.2 GHz Core i7 \"Haswell/Crystalwell\" quad-core processor, 256 GB solid state hard drive, and 16 GB of installed RAM. other features include ultra fast connectivity includes 802.11ac Wi-Fi, Bluetooth 4.0, two USB 3.0 ports, two \"Thunderbolt 2\" ports, an HDMI port, an audio in/out port, and an SDXC card slot. It also comes with the Mac OS X El Capitan operating system as well as the iLife software suite, which includes the latest versions of iPhoto, iMovie, and GarageBand.', '', 0, '', '',	'', '', '', '', '');
-
-INSERT INTO products_groups VALUES (1, 2375.0000, 1, 2500.0000, '1','1', '1', 0, '', 1);
-
-INSERT INTO products_images VALUES (1, 1, 'products/demo/imac_2-500x500.jpg', '', 1);
-
-INSERT INTO products_quantity_unit VALUES(4, 2, 'douzaine');
-INSERT INTO products_quantity_unit VALUES(4, 1, 'dozen');
-INSERT INTO products_quantity_unit VALUES(2, 2, 'kg');
-INSERT INTO products_quantity_unit VALUES(2, 1, 'kg');
-INSERT INTO products_quantity_unit VALUES(3, 2, 'litre');
-INSERT INTO products_quantity_unit VALUES(3, 1, 'liter');
-INSERT INTO products_quantity_unit VALUES(5, 2, 'pcs');
-INSERT INTO products_quantity_unit VALUES(5, 1, 'pièces');
-INSERT INTO products_quantity_unit VALUES(1, 2, 'unité');
 INSERT INTO products_quantity_unit VALUES(1, 1, 'unit');
+INSERT INTO products_quantity_unit VALUES(1, 2, 'unité');
+INSERT INTO products_quantity_unit VALUES(2, 1, 'kg');
+INSERT INTO products_quantity_unit VALUES(2, 2, 'kg');
+INSERT INTO products_quantity_unit VALUES(3, 1, 'liter');
+INSERT INTO products_quantity_unit VALUES(3, 2, 'litre');
+INSERT INTO products_quantity_unit VALUES(4, 1, 'dozen');
+INSERT INTO products_quantity_unit VALUES(4, 2, 'douzaine');
+INSERT INTO products_quantity_unit VALUES(5, 1, 'pièces');
+INSERT INTO products_quantity_unit VALUES(5, 2, 'pcs');
 
-INSERT INTO products_to_categories VALUES (1, 1);
+INSERT INTO products_to_categories VALUES(2, 1);
+INSERT INTO products_to_categories VALUES(3, 1);
+INSERT INTO products_to_categories VALUES(4, 2);
+INSERT INTO products_to_categories VALUES(5, 2);
+INSERT INTO products_to_categories VALUES(6, 4);
+INSERT INTO products_to_categories VALUES(7, 4);
+INSERT INTO products_to_categories VALUES(8, 0);
+INSERT INTO products_to_categories VALUES(9, 0);
+INSERT INTO products_to_categories VALUES(10, 5);
 
 INSERT INTO sec_directory_whitelist VALUES(1, 'includes/ClicShopping/Work/Backups');
 INSERT INTO sec_directory_whitelist VALUES(2, 'ext/images');
@@ -2019,6 +2128,27 @@ INSERT INTO sec_directory_whitelist VALUES(7, 'includes/Work');
 INSERT INTO seo VALUES(1, 1, 'ClicShopping B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping B2B B2C Solution');
 INSERT INTO seo VALUES(1, 2, 'ClicShopping B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping B2B B2C Solution');
 
+INSERT INTO specials VALUES(1, 3, 76.0000, '2023-04-30 15:17:35', NULL, NULL, NULL, 1, NULL, 0, 0);
+INSERT INTO specials VALUES(2, 6, 47.5000, '2023-04-30 15:17:51', NULL, NULL, NULL, 1, NULL, 0, 0);
+
+
+INSERT INTO suppliers VALUES(1, 'Duralex', '', '2023-04-30 14:34:44', NULL, '', '', '', '', '', '', '', '', '', 0, '', 0);
+INSERT INTO suppliers VALUES(2, 'Danica Heirloom', '', '2023-04-30 14:41:43', NULL, '', '', '', '', '', '', '', '', '', 0, '', 0);
+INSERT INTO suppliers VALUES(3, 'Trudeau', '', '2023-04-30 14:53:26', NULL, '', '', '', '', '', '', '', '', '', 0, '', 0);
+INSERT INTO suppliers VALUES(4, 'ZWILLING', '', '2023-04-30 15:02:29', NULL, '', '', '', '', '', '', '', '', '', 0, '', 0);
+INSERT INTO suppliers VALUES(5, 'Josef Strauss', '', '2023-04-30 15:07:16', NULL, '', '', '', '', '', '', '', '', '', 0, '', 0);
+
+
+INSERT INTO suppliers_info VALUES(1, 1, '', 0, NULL);
+INSERT INTO suppliers_info VALUES(1, 2, '', 0, NULL);
+INSERT INTO suppliers_info VALUES(2, 1, '', 0, NULL);
+INSERT INTO suppliers_info VALUES(2, 2, '', 0, NULL);
+INSERT INTO suppliers_info VALUES(3, 1, '', 0, NULL);
+INSERT INTO suppliers_info VALUES(3, 2, '', 0, NULL);
+INSERT INTO suppliers_info VALUES(4, 1, '', 0, NULL);
+INSERT INTO suppliers_info VALUES(4, 2, '', 0, NULL);
+INSERT INTO suppliers_info VALUES(5, 1, '', 0, NULL);
+INSERT INTO suppliers_info VALUES(5, 2, '', 0, NULL);
 
 INSERT INTO tax_class VALUES(1, 'TVA 20', 'TVA France 20', '2015-02-09 16:13:40', '2006-04-09 16:13:48');
 INSERT INTO tax_class VALUES(2, 'TVA 5.5', 'TVA France 5.5', '2008-09-03 13:33:35', '2006-04-16 00:30:06');

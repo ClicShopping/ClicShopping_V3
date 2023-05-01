@@ -13,7 +13,6 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Cache;
 
   class ArchiveConfirm extends \ClicShopping\OM\PagesActionsAbstract
@@ -59,6 +58,5 @@
       $CLICSHOPPING_Hooks->call('Products', 'Archive');
 
       $this->app->redirect('Products&cPath=' . $this->cPath);
-
     }
   }

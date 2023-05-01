@@ -82,7 +82,6 @@
             <div for="demo"><h3>Install Demo Database</h3></div>
             <?php
             $demo = [
-              ['id' => 'demo', 'text' => 'Demo'],
               ['id' => 'normal', 'text' => 'Normal'],
             ];
 

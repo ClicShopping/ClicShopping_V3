@@ -3,7 +3,7 @@ small fix
 librairies updated
 copy confirm improvment
 fix category tree
-
+fix url page manager
 
 
 -------------------

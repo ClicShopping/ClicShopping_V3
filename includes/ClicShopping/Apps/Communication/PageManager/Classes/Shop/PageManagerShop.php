@@ -405,15 +405,20 @@
         }
 
         if (!empty($QPage->value('externallink'))) {
-          $search = strpos($QPage->value('externallink'), 'index.php');
+          $search = (str_contains($QPage->value('externallink'), 'index.php'));
+          $search1 = (str_contains($QPage->value('externallink'), 'http'));
 
-          if ($search === false) {
+          if ($search === true) {
             $page_menu_header .= $start_class . $separ;
-            $page_menu_header .= HTML::link(CLICSHOPPING::link(null, $QPage->value('externallink')), $QPage->value('pages_title'), 'target="' . $QPage->value('links_target') . '" class="menuHeaderPageManager" rel="noreferrer"  title="' . $QPage->value('pages_title') . '"  id="' . $QPage->value('pages_title') . '"');
+            $page_menu_header .= HTML::link(CLICSHOPPING::link(null, null), $QPage->value('pages_title'), 'target="' . $QPage->value('links_target') . '" class="menuHeaderPageManager" rel="noreferrer"  title="' . $QPage->value('pages_title') . '"  id="' . $QPage->value('pages_title') . '"');
+            $page_menu_header .= $end_class;
+          } elseif ($search1 === true) {
+            $page_menu_header .= $start_class . $separ;
+            $page_menu_header .= HTML::link($QPage->value('externallink'), $QPage->value('pages_title'), 'class="menuHeaderPageManager" target="' . $QPage->value('links_target') . '" title="' . $QPage->value('pages_title') . '"  id="' . $QPage->value('pages_title') . '"');
             $page_menu_header .= $end_class;
           } else {
             $page_menu_header .= $start_class . $separ;
-            $page_menu_header .= HTML::link(CLICSHOPPING::link(null, $QPage->value('externallink')), $QPage->value('pages_title'), 'class="menuHeaderPageManager" target="' . $QPage->value('links_target') . '" title="' . $QPage->value('pages_title') . '"  id="' . $QPage->value('pages_title') . '"');
+            $page_menu_header .= HTML::link(CLICSHOPPING::link(null, $QPage->value('externallink')), $QPage->value('pages_title'), 'target="' . $QPage->value('links_target') . '" class="menuHeaderPageManager" rel="noreferrer"  title="' . $QPage->value('pages_title') . '"  id="' . $QPage->value('pages_title') . '"');
             $page_menu_header .= $end_class;
           }
         }

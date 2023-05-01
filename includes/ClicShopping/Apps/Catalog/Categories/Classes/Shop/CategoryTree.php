@@ -21,22 +21,11 @@
 
     /**
      * Flag to control if the total number of products in a category should be calculated
-     *
-     * @var boolean
      * @access protected
      */
 
     protected $_show_total_products = false;
-
-    /**
-     * Array containing the category structure relationship data
-     *
-     * @var array
-     * @access protected
-     */
-
     protected $_data = [];
-
     protected $root_category_id = 0;
     protected $max_level = 0;
     protected $root_start_string = '';
@@ -117,6 +106,11 @@
           ];
         }
 
+
+        if ( $this->_show_total_products === true ) {
+          $this->_calculateProductTotals();
+        }
+
         $_category_tree_data = $this->_data;
       }
 
@@ -165,7 +159,6 @@
       $this->cpath_array = [];
       $this->cpath_start_string = '';
       $this->cpath_end_string = '';
-//      $this->_show_total_products = (SERVICES_CATEGORY_PATH_CALCULATE_PRODUCT_COUNT == '1') ? true : false;
       $this->category_product_count_start_string = '&nbsp;(';
       $this->category_product_count_end_string = ')';
     }
