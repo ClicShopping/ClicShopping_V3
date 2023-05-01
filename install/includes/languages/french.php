@@ -167,7 +167,7 @@ define('TEXT_STORE_FIRST_NAME','Prénom  de l\'administrateur*');
 define('TEXT_STORE_FIRST_NAME_HELP','Indiquer le prénom  de l\'administrateur de la boutique.');
 define('TEXT_STORE_OWNER_EMAIL','L\'adresse email du propriétaire*');
 define('TEXT_STORE_OWNER_EMAIL_HELP','Indiquer votre adresse email');
-define('TEXT_STORE_EMAIL_ADMIN','Email de l\'administrateur (Votre nom d\'utilisateur)*');
+define('TEXT_STORE_EMAIL_ADMIN','Email de l\'administrateur*');
 define('TEXT_STORE_EMAIL_ADMIN_HELP','Indiquer votre email de connexion à l\'administration de la boutique.');
 define('TEXT_STORE_PASSWORD','Mot de passe de l\'administrateur*');
 define('TEXT_STORE_PASSWORD_HELP','Indiquer le mot de passe de l\'administrateur de la boutique (ex : UiO/J-4). un mot de passe compliqué assurera une meilleure protection');

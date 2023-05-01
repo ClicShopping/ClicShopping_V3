@@ -162,7 +162,7 @@ define('TEXT_STORE_OWNER','Owner Name*');
 define('TEXT_STORE_OWNER_HELP','Enter the name of the store owner.');
 define('TEXT_STORE_OWNER_EMAIL','The email address of the owner*');
 define('TEXT_STORE_OWNER_EMAIL_HELP','Enter your email address');
-define('TEXT_STORE_EMAIL_ADMIN','Email Administrator (Your username)*');
+define('TEXT_STORE_EMAIL_ADMIN','Access email administrator/');
 define('TEXT_STORE_EMAIL_ADMIN_HELP','Enter your email to access at ClicShopping administration.');
 define('TEXT_STORE_PASSWORD','Administrator password*');
 define('TEXT_STORE_PASSWORD_HELP','The password must be strong (ex : UiO/J-4). Better the administration security will be it');
