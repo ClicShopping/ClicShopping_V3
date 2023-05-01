@@ -61,12 +61,6 @@
     protected $rewriteUrl;
     protected mixed $db;
     protected mixed $lang;
-    
-    /**
-     * Constructor; load the category structure relationship data from the database
-     *
-     *
-     */
 
     public function __construct()
     {
@@ -78,7 +72,6 @@
       if (isset($_category_tree_data)) {
         $this->_data = $_category_tree_data;
       } else {
-
         if (CLICSHOPPING::getSite() === 'Shop') {
           $Qcategories = $this->db->prepare('select c.categories_id,
                                                      c.parent_id,
@@ -180,14 +173,13 @@
     /**
      * Return a formated string representation of a category and its subcategories
      *
-     * @param int $parent_id The parent ID of the category to build from
+     * @param int|string $parent_id The parent ID of the category to build from
      * @param int $level Internal flag to note the depth of the category structure
-     * @access protected
      * @return string
+     * @access protected
      */
     protected function _buildBranch(int|string $parent_id, int $level = 0) :string
     {
-
       $result = ((($level === 0) && ($this->parent_group_apply_to_root === true)) || ($level > 0)) ? $this->parent_group_start_string : null;
 
       if (isset($this->_data[$parent_id])) {
@@ -212,7 +204,7 @@
 
           $categories_url = $this->getCategoryTreeUrl($category_link);
 
-          if (($this->follow_cpath === true) && \in_array($category_id, $this->cpath_array, true)) {
+          if (($this->follow_cpath === true) && \in_array($category_id, $this->cpath_array)) {
             $link_title = $this->cpath_start_string . $category_name . $this->cpath_end_string;
           } else {
             $link_title = $category_name;
@@ -221,6 +213,7 @@
           $result .= str_repeat($this->spacer_string, $this->spacer_multiplier * $level);
 
           $result .= HTML::link($categories_url, $link_title);
+	  
           if ($this->_show_total_products === true) {
             $result .= $this->category_product_count_start_string . $category['count'] . $this->category_product_count_end_string;
           }
@@ -235,7 +228,7 @@
 
           if (isset($this->_data[$category_id]) && (($this->max_level == '0') || ($this->max_level > $level + 1))) {
             if ($this->follow_cpath === true) {
-              if (\in_array($category_id, $this->cpath_array, true)) {
+              if (\in_array($category_id, $this->cpath_array)) {
                 $result .= $this->_buildBranch($category_id, $level + 1);
               }
             } else {
@@ -293,9 +286,9 @@
     }
 
     /**
-     * @param $category_id
+     * @param string|null $category_id
      * @param int $level
-     * @return int|string
+     * @return string
      */
     public function buildBreadcrumb(?string $category_id, int $level = 0) :string
     {
@@ -331,7 +324,6 @@
     }
 
     /**
-     *
      * Magic function; return a formated string representation of the category structure relationship data
      * This is used when echoing the class object, eg:
      *
@@ -352,7 +344,7 @@
     }
 
     /**
-     * @param $id
+     * @param string $id
      * @return bool
      */
     public function exists(string $id) :bool
@@ -390,10 +382,9 @@
     /**
      * Return category information
      *
-     * @param int $id The category ID to return information of
-     * @param string $key The key information to return (since v3.0.2)
-     * @return mixed
-     * @since v3.0.0
+     * @param string $id The category ID to return information of
+     * @param null $key The key information to return (since v3.0.2)
+     * @return array|bool
      */
 
     public function getData(string $id, $key = null) :array | bool
@@ -421,9 +412,8 @@
     /**
      * Return the parent ID of a category
      *
-     * @param int $id The category ID to return the parent ID of
-     * @return int
-     * @since v3.0.2
+     * @param string $id The category ID to return the parent ID of
+     * @return array
      */
 
     public function getParentID(string $id) :array
@@ -517,7 +507,7 @@
     /**
      * @param $max_level
      */
-    public function setMaximumLevel($max_level) :void
+    public function setMaximumLevel(int $max_level) :void
     {
       $this->max_level = $max_level;
     }
@@ -642,8 +632,8 @@
     }
 
     /**
-     * @param $category_product_count_start_string
-     * @param $category_product_count_end_string
+     * @param string $category_product_count_start_string
+     * @param string $category_product_count_end_string
      */
     public function setCategoryProductCountString(string $category_product_count_start_string, string $category_product_count_end_string) :void
     {
@@ -653,7 +643,7 @@
 
     /**
      * Rewrite categories Name
-     * @param $categories_name
+     * @param string $categories_name
      * @return string
      */
     public function getCategoryTreeTitle(string $categories_name) :string
@@ -665,10 +655,10 @@
 
     /**
      * Rewrite link of category
-     * @param int $categories_id
+     * @param string $categories_id
      * @return mixed
      */
-    public function getCategoryTreeUrl(int $categories_id) :string
+    public function getCategoryTreeUrl(string $categories_id) :string
     {
       $categories_url = $this->rewriteUrl->getCategoryTreeUrl($categories_id);
 
@@ -677,10 +667,10 @@
 
     /**
      * Rewrite link of Image
-     * @param int $categories_id
+     * @param string $categories_id
      * @return mixed
      */
-    public function getCategoryTreeImageUrl(int $categories_id) :string
+    public function getCategoryTreeImageUrl(string $categories_id) :string
     {
       $categories_url = $this->rewriteUrl->getCategoryImageUrl($categories_id);
 
@@ -689,10 +679,10 @@
 
     /**
      * Rewrite link of Image
-     * @param int $categories_id
+     * @param string $categories_id
      * @return mixed
      */
-    public function getCategoryImageUrl(int $categories_id) :string
+    public function getCategoryImageUrl(string $categories_id) :string
     {
       $category = $this->getPathCategories($categories_id);
 
@@ -718,7 +708,10 @@
       }
       
       if ((\count($category_tree_array) < 1) && ($exclude != '0')) {
-        $category_tree_array[] = ['id' => '0', 'text' => CLICSHOPPING::getDef('text_selected')];
+        $category_tree_array[] = [
+          'id' => '0',
+          'text' => CLICSHOPPING::getDef('text_selected')
+        ];
       }
 
       if ($include_itself) {
