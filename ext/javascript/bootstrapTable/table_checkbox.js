@@ -19,9 +19,10 @@ function initializeTable() {
   new BootstrapTable(table, options);
 }
 
-button.addEventListener('click', function() {
-  document.querySelector('form').addEventListener('submit', confirmFormSubmission);
-});
+if (button !== null && button !== undefined) {
+  button.addEventListener('click', function() {
+    document.querySelector('form').addEventListener('submit', confirmFormSubmission);
+  });
+}
 
 initializeTable();
-
