@@ -16,7 +16,7 @@ function initializeTable() {
     exportTypes: exportTypes
   };
 
-  let bootstrapTable = new BootstrapTable(table, options);
+  new BootstrapTable(table, options);
 }
 
 button.addEventListener('click', function() {
@@ -24,3 +24,4 @@ button.addEventListener('click', function() {
 });
 
 initializeTable();
+
