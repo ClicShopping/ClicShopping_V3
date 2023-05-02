@@ -51,15 +51,14 @@
   
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_CONTENT_WIDTH;
 
-      $output = '<div class="col-12 ' . $content_width . ' d-flex" style="padding-right:0.5rem; padding-top:0.5rem">';
+      $output = '<div class="col-12 ' . $content_width . ' d-flex" style="padding-right:0.5rem; padding-top:0.5rem; height:310px;">';
       $output .= '<div class="card flex-fill w-100">';
-      $output .= '<div class="map-container">';
       $output .= '<div id="vmap"></div>';
-      $output .= '</div>';
-      $output .= '</div>';
-      $output .= '</div>';
       $output .= '<div class="separator"></div>';
-      
+      $output .= '</div>';
+      $output .= '</div>';
+      $output .= '</div>';
+
       $output .= '
 <script>
 $(document).ready(function() {
