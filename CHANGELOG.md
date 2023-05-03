@@ -4,6 +4,10 @@ fix order map chart dashboard
 
 
 -------------------
+3.424
+add missing products_no_purchased files
+fix order map chart dashboard
+-------------------
 3.423
 add image forgotten
 
