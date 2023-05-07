@@ -15,6 +15,6 @@ text_options_gpt_image = Authorize the AI to generate an image of this category 
 
 text_categories_description = Write me a long description about this category :
 
-title_help_seo=Help
+title_help_seo = Help
 text_help_seo = Please note that if you use AI to generate your content, information may take longer to save due to processing. Please wait.
 

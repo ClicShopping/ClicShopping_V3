@@ -15,5 +15,5 @@ text_options_gpt_image =  Autorisez l'IA à générer une image concernant cette
 
 text_categories_description = Ecris moi une longue description concernant cette marque :
 
-title_help_seo = Help
+title_help_seo = Aide
 text_help_seo = Veuillez noter que si vous utilisez l'IA pour générer votre contenu, le temps de sauvegarde de l'information peut être plus long du au traitement. Merci de patienter.
