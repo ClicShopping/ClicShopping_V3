@@ -35,6 +35,8 @@
 
       $this->code = (new \ReflectionClass($this))->getShortName();
 
+      $this->app->loadDefinitions('Module/' . $this->code . '/' . $this->code);
+
       $this->init();
     }
 
