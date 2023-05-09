@@ -1794,4 +1794,189 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
 
       return $script;
     }
+
+//*********************
+// Page Manager
+//*********************
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question
+     * @param string $page_manager_name
+     * @param string $url
+     * @return string
+     */
+    public static function getPageManagerSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $page_manager_name, string $url)
+    {
+      $script = "
+      <script defer>    
+        $('[id^=\"page_manager_head_title_tag\"]').each(function(index) {
+          let inputId = $(this).attr('id');
+          let regex = /(\d+)/g;
+          let idPageManagerSeoTitle = regex.exec(inputId)[0];
+        
+          let language_id = parseInt(idPageManagerSeoTitle);
+          let button = '{$content}';
+          let newButton = $(button).attr('data-index', index);
+        
+          // Envoi d'une requête AJAX pour récupérer le nom de la langue
+          let self = this;
+          $.ajax({
+            url: '{$urlMultilanguage}',
+            data: {id: language_id},
+            success: function(language_name) {
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question}' + ' ' + '{$page_manager_name}';
+              
+              newButton.click(function() {
+                let message = questionResponse;
+                let engine = $('#engine').val();
+        
+                $.ajax({
+                  url: '{$url}',
+                  type: 'POST',
+                  data: {message: message, engine: engine},
+                  success: function(data) {
+                    $('#chatGpt-output-input').val(data);
+                    $('#page_manager_head_title_tag_' + idPageManagerSeoTitle).val(data);
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                  }
+                });
+              });
+        
+              if (newButton) {
+                $(self).append(newButton);
+              }
+            }
+          });
+        });
+      </script>";
+
+      return $script;
+    }
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_summary_description
+     * @param string $page_manager_name
+     * @param string $url
+     * @return string
+     */
+    public static function getPageManagerSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $page_manager_name, string $url)
+    {
+      $script = "
+      <script defer> 
+        $('[id^=\"page_manager_head_desc_tag\"]').each(function(index) {
+          let button = '{$content}';
+          let newButton = $(button).attr('data-index', index);
+        
+          let textareaId = $(this).find('textarea').attr('id'); // Récupérer l'id du textarea pour l'itération actuelle
+          // Vérifier si le textarea a été trouvé
+          if (textareaId !== undefined) {
+            let regex = /(\d+)/g;
+            let idPageManagerSeoDescription = regex.exec(textareaId)[0];
+          
+            let language_id = parseInt(idPageManagerSeoDescription);
+          
+            // Envoi d'une requête AJAX pour récupérer le nom de la langue
+            let self = this;
+            $.ajax({
+              url: '{$urlMultilanguage}',
+              data: {id: language_id},
+              success: function(language_name) {
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$page_manager_name}';
+                
+                newButton.click(function() {
+                  let message = questionResponse;
+                  let engine = $('#engine').val();
+          
+                  $.ajax({
+                    url: '{$url}',
+                    type: 'POST',
+                    data: {message: message, engine: engine},
+                    success: function(data) {
+                      $('#chatGpt-output-input').val(data);
+                      $('#page_manager_head_desc_tag_' + idPageManagerSeoDescription).val(data);
+                    },
+                    error: function(xhr, status, error) {
+                      console.log(xhr.responseText);
+                    }
+                  });
+                });
+          
+                if (newButton) {
+                  $(self).append(newButton);
+                }
+              }
+            });
+          }
+        });
+      </script>";
+
+      return $script;
+    }
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_keywords
+     * @param string $page_manager_name
+     * @param string $url
+     * @return string
+     */
+    public static function getPageManagerSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $page_manager_name, string $url)
+    {
+      $script = "
+      <script defer> 
+        $('[id^=\"page_manager_head_keywords_tag\"]').each(function(index) {
+          let inputId = $(this).attr('id');
+          let regex = /(\d+)/g;
+          let idPageManagerSeoKeywords = regex.exec(inputId)[0];
+        
+          let language_id = parseInt(idPageManagerSeoKeywords);
+          let button = '{$content}';
+          let newButton = $(button).attr('data-index', index);
+        
+          // Envoi d'une requête AJAX pour récupérer le nom de la langue
+          let self = this;
+          $.ajax({
+            url: '{$urlMultilanguage}',
+            data: {id: language_id},
+            success: function(language_name) {
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$page_manager_name}';
+              
+              newButton.click(function() {
+                let message = questionResponse;
+                let engine = $('#engine').val();
+        
+                $.ajax({
+                  url: '{$url}',
+                  type: 'POST',
+                  data: {message: message, engine: engine},
+                  success: function(data) {
+                    $('#chatGpt-output-input').val(data);
+                    $('#page_manager_head_keywords_tag_' + idPageManagerSeoKeywords).val(data);
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                  }
+                });
+              });
+        
+              if (newButton) {
+                $(self).append(newButton);
+              }
+            }
+          });
+        });
+      </script>";
+
+      return $script;
+    }
   }
