@@ -80,7 +80,6 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_title'])) {
               $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question . ' ' . $categories_name;
-              $seo_product_title = $this->getTitle($seo_product_title);
 
               if ($seo_product_title !== false) {
                 $sql_data_array = [
