@@ -71,8 +71,6 @@
 
       if (ChatGptAdmin::checkGptStatus() === true) {
         $url = ChatGptAdmin::getAjaxUrl(false);
-      } else {
-        $url = HuggingChatAdmin::getAjaxUrl(false);
       }
 
         $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
