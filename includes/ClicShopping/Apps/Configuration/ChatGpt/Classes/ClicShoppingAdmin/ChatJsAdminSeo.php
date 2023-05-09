@@ -1,11 +1,11 @@
 <?php
   /**
- *
- * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
- * @Licence GPL 2 & MIT
- * @Info : https://www.clicshopping.org/forum/trademark/
- *
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
    */
 
   namespace ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin;
@@ -1367,12 +1367,11 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       return $script;
     }
 
-
     /**
      * @param string $content
      * @param string $urlMultilanguage
      * @param string $translate_language
-     * @param string $question_title
+     * @param string $question_keywords
      * @param string $store_name
      * @param string $text_tag_featured
      * @param string $url
@@ -1428,5 +1427,371 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       return $script;
     }
 
+//**************************************
+// Categories
+//**************************************
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question
+     * @param string $categories_name
+     * @param string $url
+     * @return string
+     */
+    public static function getCategoriesSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $categories_name, string $url)
+    {
+      $script = "
+      <script defer>
+      $('[id^=\"categories_head_title_tag\"]').each(function(index) {
+        let inputId = $(this).attr('id');
+        let regex = /(\d+)/g;
+        let idCategoriesHeadTitleTag = regex.exec(inputId)[0];
+      
+        let language_id = parseInt(idCategoriesHeadTitleTag);
+        let button = '{$content}';
+        let newButton = $(button).attr('data-index', index);
+      
+        // Envoi d'une requête AJAX pour récupérer le nom de la langue
+        let self = this;
+        $.ajax({
+          url: '{$urlMultilanguage}',
+          data: {id: language_id},
+          success: function(language_name) {
+            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question}' + ' ' + '{$categories_name}';
+            
+            newButton.click(function() {
+              let message = questionResponse;
+              let engine = $('#engine').val();
+      
+              $.ajax({
+                url: '{$url}',
+                type: 'POST',
+                data: {message: message, engine: engine},
+                success: function(data) {
+                  $('#chatGpt-output-input').val(data);
+                  $('#categories_head_title_tag_' + idCategoriesHeadTitleTag).val(data);
+                },
+                error: function(xhr, status, error) {
+                  console.log(xhr.responseText);
+                }
+              });
+            });
+      
+            if (newButton) {
+              $(self).append(newButton);
+            }
+          }
+        });
+      });
+       </script>";
 
+      return $script;
+    }
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_summary_description
+     * @param string $categories_name
+     * @param string $url
+     * @return string
+     */
+    public static function getCategoriesSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $categories_name, string $url)
+    {
+      $script = "
+      <script defer>
+      $('[id^=\"categories_head_desc_tag\"]').each(function(index) {
+        let button = '{$content}';
+        let newButton = $(button).attr('data-index', index);
+      
+        let textareaId = $(this).find('textarea').attr('id'); // Récupérer l'id du textarea pour l'itération actuelle
+        // Vérifier si le textarea a été trouvé
+        if (textareaId !== undefined) {
+          let regex = /(\d+)/g;
+          let idCategoriesSeoDescription = regex.exec(textareaId)[0];
+        
+          let language_id = parseInt(idCategoriesSeoDescription);
+        
+          // Envoi d'une requête AJAX pour récupérer le nom de la langue
+          let self = this;
+          $.ajax({
+            url: '{$urlMultilanguage}',
+            data: {id: language_id},
+            success: function(language_name) {
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$categories_name}';
+              
+              newButton.click(function() {
+                let message = questionResponse;
+                let engine = $('#engine').val();
+        
+                $.ajax({
+                  url: '{$url}',
+                  type: 'POST',
+                  data: {message: message, engine: engine},
+                  success: function(data) {
+                    $('#chatGpt-output-input').val(data);
+                    $('#categories_head_desc_tag_' + idCategoriesSeoDescription).val(data);
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                  }
+                });
+              });
+        
+              if (newButton) {
+                $(self).append(newButton);
+              }
+            }
+          });
+        }
+      });
+      </script>";
+
+      return $script;
+    }
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_keywords
+     * @param string $categories_name
+     * @param string $url
+     * @return string
+     */
+    public static function getCategoriesSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $categories_name, string $url)
+    {
+      $script = "
+      <script defer>    
+      $('[id^=\"categories_head_keywords_tag\"]').each(function(index) {
+        let inputId = $(this).attr('id');
+        let regex = /(\d+)/g;
+        let idCategoriesSeoKeywords = regex.exec(inputId)[0];
+      
+        let language_id = parseInt(idCategoriesSeoKeywords);
+        let button = '{$content}';
+        let newButton = $(button).attr('data-index', index);
+      
+        // Envoi d'une requête AJAX pour récupérer le nom de la langue
+        let self = this;
+        $.ajax({
+          url: '{$urlMultilanguage}',
+          data: {id: language_id},
+          success: function(language_name) {
+            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$categories_name}';
+            
+            newButton.click(function() {
+              let message = questionResponse;
+              let engine = $('#engine').val();
+      
+              $.ajax({
+                url: '{$url}',
+                type: 'POST',
+                data: {message: message, engine: engine},
+                success: function(data) {
+                  $('#chatGpt-output-input').val(data);
+                  $('#categories_head_keywords_tag_' + idCategoriesSeoKeywords).val(data);
+                },
+                error: function(xhr, status, error) {
+                  console.log(xhr.responseText);
+                }
+              });
+            });
+      
+            if (newButton) {
+              $(self).append(newButton);
+            }
+          }
+        });
+      });
+      </script>";
+
+      return $script;
+    }
+
+//*********************
+// Manufacturer
+//*********************
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question
+     * @param string $manufacturer_name
+     * @param string $url
+     * @return string
+     */
+    public static function getManufacturerSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $manufacturer_name, string $url)
+    {
+      $script = "
+      <script defer>    
+        $('[id^=\"manufacturer_seo_title\"]').each(function(index) {
+          let inputId = $(this).attr('id');
+          let regex = /(\d+)/g;
+          let idManufacturerSeoTitle = regex.exec(inputId)[0];
+        
+          let language_id = parseInt(idManufacturerSeoTitle);
+          let button = '{$content}';
+          let newButton = $(button).attr('data-index', index);
+        
+          // Envoi d'une requête AJAX pour récupérer le nom de la langue
+          let self = this;
+          $.ajax({
+            url: '{$urlMultilanguage}',
+            data: {id: language_id},
+            success: function(language_name) {
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question}' + ' ' + '{$manufacturer_name}';
+              
+              newButton.click(function() {
+                let message = questionResponse;
+                let engine = $('#engine').val();
+        
+                $.ajax({
+                  url: '{$url}',
+                  type: 'POST',
+                  data: {message: message, engine: engine},
+                  success: function(data) {
+                    $('#chatGpt-output-input').val(data);
+                    $('#manufacturer_seo_title_' + idManufacturerSeoTitle).val(data);
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                  }
+                });
+              });
+        
+              if (newButton) {
+                $(self).append(newButton);
+              }
+            }
+          });
+        });    
+      </script>";
+
+      return $script;
+    }
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_summary_description
+     * @param string $manufacturer_name
+     * @param string $url
+     * @return string
+     */
+    public static function getManufacturerSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $manufacturer_name, string $url)
+    {
+      $script = "
+      <script defer>
+        $('[id^=\"manufacturer_seo_description\"]').each(function(index) {
+          let button = '{$content}';
+          let newButton = $(button).attr('data-index', index);
+        
+          let textareaId = $(this).find('textarea').attr('id'); // Récupérer l'id du textarea pour l'itération actuelle
+          // Vérifier si le textarea a été trouvé
+          if (textareaId !== undefined) {
+            let regex = /(\d+)/g;
+            let idManufacturerSeoDescription = regex.exec(textareaId)[0];
+          
+            let language_id = parseInt(idManufacturerSeoDescription);
+          
+            // Envoi d'une requête AJAX pour récupérer le nom de la langue
+            let self = this;
+            $.ajax({
+              url: '{$urlMultilanguage}',
+              data: {id: language_id},
+              success: function(language_name) {
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$manufacturer_name}';
+                
+                newButton.click(function() {
+                  let message = questionResponse;
+                  let engine = $('#engine').val();
+          
+                  $.ajax({
+                    url: '{$url}',
+                    type: 'POST',
+                    data: {message: message, engine: engine},
+                    success: function(data) {
+                      $('#chatGpt-output-input').val(data);
+                      $('#manufacturer_seo_description_' + idManufacturerSeoDescription).val(data);
+                    },
+                    error: function(xhr, status, error) {
+                      console.log(xhr.responseText);
+                    }
+                  });
+                });
+          
+                if (newButton) {
+                  $(self).append(newButton);
+                }
+              }
+            });
+          }
+        });
+      </script>";
+
+      return $script;
+    }
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_keywords
+     * @param string $manufacturer_name
+     * @param string $url
+     * @return string
+     */
+    public static function getManufacturerSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $manufacturer_name, string $url)
+    {
+      $script = "
+      <script defer>    
+      $('[id^=\"manufacturer_seo_keyword\"]').each(function(index) {
+        let inputId = $(this).attr('id');
+        let regex = /(\d+)/g;
+        let idManufacturerSeoKeywords = regex.exec(inputId)[0];
+      
+        let language_id = parseInt(idManufacturerSeoKeywords);
+        let button = '{$content}';
+        let newButton = $(button).attr('data-index', index);
+      
+        // Envoi d'une requête AJAX pour récupérer le nom de la langue
+        let self = this;
+        $.ajax({
+          url: '{$urlMultilanguage}',
+          data: {id: language_id},
+          success: function(language_name) {
+            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$manufacturer_name}';
+            
+            newButton.click(function() {
+              let message = questionResponse;
+              let engine = $('#engine').val();
+      
+              $.ajax({
+                url: '{$url}',
+                type: 'POST',
+                data: {message: message, engine: engine},
+                success: function(data) {
+                  $('#chatGpt-output-input').val(data);
+                  $('#manufacturer_seo_keyword_' + idManufacturerSeoKeywords).val(data);
+                },
+                error: function(xhr, status, error) {
+                  console.log(xhr.responseText);
+                }
+              });
+            });
+      
+            if (newButton) {
+              $(self).append(newButton);
+            }
+          }
+        });
+      });   
+      </script>";
+
+      return $script;
+    }
   }

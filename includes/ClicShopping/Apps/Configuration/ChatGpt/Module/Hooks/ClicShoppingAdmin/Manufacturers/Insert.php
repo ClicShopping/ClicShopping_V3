@@ -151,7 +151,6 @@
               'manufacturers_id' => $Qcheck->valueInt('manufacturers_id')
             ];
 
-
             $this->app->db->save('manufacturers', $sql_data_array, $update_sql_data);
           }
         }
