@@ -128,7 +128,7 @@
      * @return bool|string
      * @throws \Exception
      */
-    public static function getChatGptResponse(string $question) :bool|string
+    public static function getChatResponse(string $question) :bool|string
     {
       if (ChatGptAdmin::checkGptStatus() === false) {
         return false;

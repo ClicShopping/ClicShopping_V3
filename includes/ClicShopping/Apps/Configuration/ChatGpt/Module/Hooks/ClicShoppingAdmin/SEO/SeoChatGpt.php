@@ -17,7 +17,9 @@
   use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
 
   use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
-  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdminSeo;
+  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatJsAdminSeo;
+
+
 
   class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -61,42 +63,49 @@
       $text_tag_products_new = $this->app->getDef('text_tag_products_new');
       $text_tag_review = $this->app->getDef('text_tag_review');
 
-      $url = ChatGptAdmin::getAjaxUrl(false);
-      $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
-
       $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
       $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_page_title') . '"></i>';
       $content .= '</button>';
 
-      $getInfoSeoDefaultTitleH1 = ChatGptAdminSeo::getInfoSeoDefaultTitleH1($content, $urlMultilanguage,  $translate_language,  $question_title,  $store_name,  $url);
-      $getInfoSeoDefaultTitle = ChatGptAdminSeo::getInfoSeoDefaultTitle($content, $urlMultilanguage,  $translate_language,  $question_title,  $store_name,  $url);
-      $getInfoSeoDefaultDescription = ChatGptAdminSeo::getInfoSeoDefaultDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $url);
-      $getInfoSeoDefaultKeywords = ChatGptAdminSeo::getInfoSeoDefaultKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $url);
-      $getInfoSeoDefaultFooter = ChatGptAdminSeo::getInfoSeoDefaultFooter($content, $urlMultilanguage, $translate_language, $question_tag, $store_name, $url);
+      $output = '';
 
-      $getInfoSeoProductDescriptionTitle = ChatGptAdminSeo::getInfoSeoProductDescriptionTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);
-      $getInfoSeoProductDescription = ChatGptAdminSeo::getInfoSeoProductDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $url);
-      $getInfoSeoProductKeywords = ChatGptAdminSeo::getInfoSeoProductkeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $url);
+      if (ChatGptAdmin::checkGptStatus() === true) {
+        $url = ChatGptAdmin::getAjaxUrl(false);
+      } else {
+        $url = HuggingChatAdmin::getAjaxUrl(false);
+      }
 
-      $getInfoSeoProductsNewTitle = ChatGptAdminSeo::getInfoSeoProductsNewTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $text_tag_products_new, $url);
-      $getInfoSeoProductsNewDescription = ChatGptAdminSeo::getInfoSeoProductsNewDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $text_tag_products_new, $url);
-      $getInfoSeoProductsNewKeywords = ChatGptAdminSeo::getInfoSeoProductsNewKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_products_new, $url);
+        $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
 
-      $getInfoSeoSpecialsTitle = ChatGptAdminSeo::getInfoSeoSpecialsTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $text_tag_specials, $url);
-      $getInfoSeoSpecialsDescription = ChatGptAdminSeo::getInfoSeoSpecialsDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $text_tag_specials, $url);
-      $getInfoSeoSpecialsKeywords = ChatGptAdminSeo::getInfoSeoSpecialsKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_specials, $url);
+        $getInfoSeoDefaultTitleH1 = ChatJsAdminSeo::getInfoSeoDefaultTitleH1($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);
+        $getInfoSeoDefaultTitle = ChatJsAdminSeo::getInfoSeoDefaultTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);
+        $getInfoSeoDefaultDescription = ChatJsAdminSeo::getInfoSeoDefaultDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $url);
+        $getInfoSeoDefaultKeywords = ChatJsAdminSeo::getInfoSeoDefaultKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $url);
+        $getInfoSeoDefaultFooter = ChatJsAdminSeo::getInfoSeoDefaultFooter($content, $urlMultilanguage, $translate_language, $question_tag, $store_name, $url);
 
-      $getInfoSeoReviewsTitle = ChatGptAdminSeo::getInfoSeoReviewsTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $text_tag_review, $url);
-      $getInfoSeoReviewsDescription = ChatGptAdminSeo::getInfoSeoReviewsDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $text_tag_review, $url);
-      $getInfoSeoReviewsKeywords = ChatGptAdminSeo::getInfoSeoReviewskeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_review, $url);
+        $getInfoSeoProductDescriptionTitle = ChatJsAdminSeo::getInfoSeoProductDescriptionTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);
+        $getInfoSeoProductDescription = ChatJsAdminSeo::getInfoSeoProductDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $url);
+        $getInfoSeoProductKeywords = ChatJsAdminSeo::getInfoSeoProductkeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $url);
 
-      $getInfoFavoritesTitle = ChatGptAdminSeo::getInfoFavoritesTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $text_tag_favorite, $url);
-      $getInfoFavoritesDescription = ChatGptAdminSeo::getInfoFavoritesDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $text_tag_favorite, $url);
-      $getInfoFavoritesKeywords = ChatGptAdminSeo::getInfoFavoritesKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_favorite, $url);
+        $getInfoSeoProductsNewTitle = ChatJsAdminSeo::getInfoSeoProductsNewTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $text_tag_products_new, $url);
+        $getInfoSeoProductsNewDescription = ChatJsAdminSeo::getInfoSeoProductsNewDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $text_tag_products_new, $url);
+        $getInfoSeoProductsNewKeywords = ChatJsAdminSeo::getInfoSeoProductsNewKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_products_new, $url);
 
-      $getInfoFeaturedTitle = ChatGptAdminSeo::getInfoFeaturedTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $text_tag_featured, $url);
-      $getInfoFeaturedDescription = ChatGptAdminSeo::getInfoFeaturedDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $text_tag_featured, $url);
-      $getInfoFeaturedKeywords = ChatGptAdminSeo::getInfoFeaturedKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_featured, $url);
+        $getInfoSeoSpecialsTitle = ChatJsAdminSeo::getInfoSeoSpecialsTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $text_tag_specials, $url);
+        $getInfoSeoSpecialsDescription = ChatJsAdminSeo::getInfoSeoSpecialsDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $text_tag_specials, $url);
+        $getInfoSeoSpecialsKeywords = ChatJsAdminSeo::getInfoSeoSpecialsKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_specials, $url);
+
+        $getInfoSeoReviewsTitle = ChatJsAdminSeo::getInfoSeoReviewsTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $text_tag_review, $url);
+        $getInfoSeoReviewsDescription = ChatJsAdminSeo::getInfoSeoReviewsDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $text_tag_review, $url);
+        $getInfoSeoReviewsKeywords = ChatJsAdminSeo::getInfoSeoReviewskeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_review, $url);
+
+        $getInfoFavoritesTitle = ChatJsAdminSeo::getInfoFavoritesTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $text_tag_favorite, $url);
+        $getInfoFavoritesDescription = ChatJsAdminSeo::getInfoFavoritesDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $text_tag_favorite, $url);
+        $getInfoFavoritesKeywords = ChatJsAdminSeo::getInfoFavoritesKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_favorite, $url);
+
+        $getInfoFeaturedTitle = ChatJsAdminSeo::getInfoFeaturedTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $text_tag_featured, $url);
+        $getInfoFeaturedDescription = ChatJsAdminSeo::getInfoFeaturedDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $text_tag_featured, $url);
+        $getInfoFeaturedKeywords = ChatJsAdminSeo::getInfoFeaturedKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_featured, $url);
 
       $output = <<<EOD
 <!------------------>

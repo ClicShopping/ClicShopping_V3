@@ -10,13 +10,7 @@
 
   namespace ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin;
 
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTML;
-
-  use OpenAI;
-  use OpenAI\Exceptions\ErrorException;
-
-  class ChatGptAdminSeo
+  class ChatJsAdminSeo
   {
     /**
      * @param string $content
@@ -28,49 +22,49 @@
      */
     public static function getInfoSeoDefaultTitleH1(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $url)
     {
-$script = "
-      <script defer>
-    $('[id^=\"seo_default_title_h\"]').each(function(index) {
-      let inputId = $(this).attr('id');
-      let regex = /(\d+)/g;
-      let idSeoDefaultTitleH = regex.exec(inputId)[0];
-    
-      let language_id = parseInt(idSeoDefaultTitleH);
-      let button = '{$content}';
-      let newButton = $(button).attr('data-index', index);
-    
-      // Envoi d'une requête AJAX pour récupérer le nom de la langue
-      let self = this;
-      $.ajax({
-        url: '{$urlMultilanguage}',
-        data: {id: language_id},
-        success: function(language_name) {
-            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_title}' + ' ' + '{$store_name}';
-          newButton.click(function() {
-            let message = questionResponse;
-            let engine = $('#engine').val();
-    
+      $script = "
+        <script defer>
+          $('[id^=\"seo_default_title_h\"]').each(function(index) {
+            let inputId = $(this).attr('id');
+            let regex = /(\d+)/g;
+            let idSeoDefaultTitleH = regex.exec(inputId)[0];
+          
+            let language_id = parseInt(idSeoDefaultTitleH);
+            let button = '{$content}';
+            let newButton = $(button).attr('data-index', index);
+          
+            // Envoi d'une requête AJAX pour récupérer le nom de la langue
+            let self = this;
             $.ajax({
-              url: '{$url}',
-              type: 'POST',
-              data: {message: message, engine: engine},
-              success: function(data) {
-              $('#chatGpt-output-input').val(data);
-              $('#seo_default_title_h_' + idSeoDefaultTitleH).val(data);
-            },
-              error: function(xhr, status, error) {
-              console.log(xhr.responseText);
-            }
+              url: '{$urlMultilanguage}',
+              data: {id: language_id},
+              success: function(language_name) {
+                  let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_title}' + ' ' + '{$store_name}';
+                newButton.click(function() {
+                  let message = questionResponse;
+                  let engine = $('#engine').val();
+          
+                  $.ajax({
+                    url: '{$url}',
+                    type: 'POST',
+                    data: {message: message, engine: engine},
+                    success: function(data) {
+                    $('#chatGpt-output-input').val(data);
+                    $('#seo_default_title_h_' + idSeoDefaultTitleH).val(data);
+                  },
+                    error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                  }
+                  });
+                });
+          
+                if (newButton) {
+                  $(self).append(newButton);
+                }
+              }
             });
           });
-    
-          if (newButton) {
-            $(self).append(newButton);
-          }
-        }
-      });
-    });
-</script>";
+        </script>";
 
       return $script;
     }

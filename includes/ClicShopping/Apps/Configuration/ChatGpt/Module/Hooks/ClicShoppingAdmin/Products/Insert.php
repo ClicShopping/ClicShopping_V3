@@ -84,7 +84,7 @@
               $technical_question = $this->app->getDef('text_technical_question');
 
               $products_description =  $translate_language . ' ' . $language_name . ' : ' .  $question_description . ' ' . $product_name . ' ' . $technical_question;
-              $products_description = ChatGptAdmin::getChatGptResponse($products_description);
+              $products_description = ChatGptAdmin::getChatResponse($products_description);
 
               if ($products_description !== false) {
                 $sql_data_array = [
@@ -99,7 +99,7 @@
 //-------------------
             if(isset($_POST['option_gpt_summary_description'])) {
               $summary_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $product_name;
-              $summary_description = ChatGptAdmin::getChatGptResponse($summary_description);
+              $summary_description = ChatGptAdmin::getChatResponse($summary_description);
 
               if ($summary_description !== false) {
                 $sql_data_array = [
@@ -114,7 +114,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_title'])) {
               $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question . ' ' . $product_name;
-              $seo_product_title = ChatGptAdmin::getChatGptResponse($seo_product_title);
+              $seo_product_title = ChatGptAdmin::getChatResponse($seo_product_title);
 
               if ($seo_product_title !== false) {
                 $sql_data_array = [
@@ -129,7 +129,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_title'])) {
               $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $product_name;
-              $seo_product_description = ChatGptAdmin::getChatGptResponse($seo_product_description);
+              $seo_product_description = ChatGptAdmin::getChatResponse($seo_product_description);
 
               if ($seo_product_description !== false) {
                 $sql_data_array = [
@@ -144,7 +144,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_keywords'])) {
               $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords . ' ' . $product_name;
-              $seo_product_keywords = ChatGptAdmin::getChatGptResponse($seo_product_keywords);
+              $seo_product_keywords = ChatGptAdmin::getChatResponse($seo_product_keywords);
 
               if ($seo_product_keywords !== false) {
                 $sql_data_array = [
@@ -159,7 +159,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_tags'])) {
               $seo_product_tag =  $translate_language. ' ' . $language_name . ' : ' .  $question_tag . ' ' . $product_name;
-              $seo_product_tag = ChatGptAdmin::getChatGptResponse($seo_product_tag);
+              $seo_product_tag = ChatGptAdmin::getChatResponse($seo_product_tag);
 
               if ($seo_product_tag !== false) {
                 $sql_data_array = [
