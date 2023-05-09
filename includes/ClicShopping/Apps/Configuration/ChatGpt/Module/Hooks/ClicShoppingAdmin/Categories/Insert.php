@@ -82,8 +82,6 @@
               $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question . ' ' . $categories_name;
               $seo_product_title = $this->getTitle($seo_product_title);
 
-              var_dump($seo_product_title);
-
               if ($seo_product_title !== false) {
                 $sql_data_array = [
                   'categories_head_title_tag' => $seo_product_title ?? '',
