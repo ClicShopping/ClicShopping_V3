@@ -1798,7 +1798,6 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
 //*********************
 // Page Manager
 //*********************
-
     /**
      * @param string $content
      * @param string $urlMultilanguage
@@ -1975,6 +1974,313 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
             }
           });
         });
+      </script>";
+
+      return $script;
+    }
+
+//*********************
+// Products
+//*********************
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question
+     * @param string $product_name
+     * @param string $url
+     * @return string
+     */
+    public static function getProductsSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $product_name, string $url)
+    {
+      $script = "
+      <script defer>    
+        $('[id^=\"products_head_title_tag\"]').each(function(index) {
+          let inputId = $(this).attr('id');
+          let regex = /(\d+)/g;
+          let idProductsHeadTitleTag = regex.exec(inputId)[0];
+        
+          let language_id = parseInt(idProductsHeadTitleTag);
+          let button = '{$content}';
+          let newButton = $(button).attr('data-index', index);
+        
+          // Envoi d'une requête AJAX pour récupérer le nom de la langue
+          let self = this;
+          $.ajax({
+            url: '{$urlMultilanguage}',
+            data: {id: language_id},
+            success: function(language_name) {
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question}' + ' ' + '{$product_name}';
+              
+              newButton.click(function() {
+                let message = questionResponse;
+                let engine = $('#engine').val();
+        
+                $.ajax({
+                  url: '{$url}',
+                  type: 'POST',
+                  data: {message: message, engine: engine},
+                  success: function(data) {
+                    $('#chatGpt-output-input').val(data);
+                    $('#products_head_title_tag_' + idProductsHeadTitleTag).val(data);
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                  }
+                });
+              });
+        
+              if (newButton) {
+                $(self).append(newButton);
+              }
+            }
+          });
+        });
+      </script>";
+
+      return $script;
+    }
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_summary_description
+     * @param string $product_name
+     * @param string $url
+     * @return string
+     */
+    public static function getProductsSummaryDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $product_name, string $url)
+    {
+      $script = "
+      <script defer>    
+        $('[id^=\"SummaryDescription\"]').each(function(index) {
+          let button = '{$content}';
+          let newButton = $(button).attr('data-index', index);
+        
+          let textareaId = $(this).find('textarea').attr('id'); // Récupérer l'id du textarea pour l'itération actuelle
+          // Vérifier si le textarea a été trouvé
+          if (textareaId !== undefined) {
+            let regex = /(\d+)/g;
+            let idproductsSummaryDescription = regex.exec(textareaId)[0];
+          
+            let language_id = parseInt(idproductsSummaryDescription);
+          
+            // Envoi d'une requête AJAX pour récupérer le nom de la langue
+            let self = this;
+            $.ajax({
+              url: '{$urlMultilanguage}',
+              data: {id: language_id},
+              success: function(language_name) {
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$product_name}';
+                
+                newButton.click(function() {
+                  let message = questionResponse;
+                  let engine = $('#engine').val();
+          
+                  $.ajax({
+                    url: '{$url}',
+                    type: 'POST',
+                    data: {message: message, engine: engine},
+                    success: function(data) {
+                      $('#chatGpt-output-input').val(data);
+                      $('#SummaryDescription_' + idproductsSummaryDescription).val(data);
+                    },
+                    error: function(xhr, status, error) {
+                      console.log(xhr.responseText);
+                    }
+                  });
+                });
+          
+                if (newButton) {
+                  $(self).append(newButton);
+                }
+              }
+            });
+          }
+        });    
+      </script>";
+
+      return $script;
+    }
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_summary_description
+     * @param string $product_name
+     * @param string $url
+     * @return string
+     */
+    public static function getProductsSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $product_name, string $url)
+    {
+      $script = "
+      <script defer>    
+        $('[id^=\"products_head_desc_tag\"]').each(function(index) {
+          let button = '{$content}';
+          let newButton = $(button).attr('data-index', index);
+        
+          let textareaId = $(this).find('textarea').attr('id'); // Récupérer l'id du textarea pour l'itération actuelle
+          // Vérifier si le textarea a été trouvé
+          if (textareaId !== undefined) {
+            let regex = /(\d+)/g;
+            let idproductsSummaryDescription = regex.exec(textareaId)[0];
+          
+            let language_id = parseInt(idproductsSummaryDescription);
+          
+            // Envoi d'une requête AJAX pour récupérer le nom de la langue
+            let self = this;
+            $.ajax({
+              url: '{$urlMultilanguage}',
+              data: {id: language_id},
+              success: function(language_name) {
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$product_name}';
+                
+                newButton.click(function() {
+                  let message = questionResponse;
+                  let engine = $('#engine').val();
+          
+                  $.ajax({
+                    url: '{$url}',
+                    type: 'POST',
+                    data: {message: message, engine: engine},
+                    success: function(data) {
+                      $('#chatGpt-output-input').val(data);
+                      $('#SummaryDescription_' + idproductsSummaryDescription).val(data);
+                    },
+                    error: function(xhr, status, error) {
+                      console.log(xhr.responseText);
+                    }
+                  });
+                });
+          
+                if (newButton) {
+                  $(self).append(newButton);
+                }
+              }
+            });
+          }
+        });    
+      </script>";
+
+      return $script;
+    }
+
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_keywords
+     * @param string $product_name
+     * @param string $url
+     * @return string
+     */
+    public static function getProductsSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $product_name, string $url)
+    {
+      $script = "
+      <script defer> 
+        $('[id^=\"products_head_keywords_tag\"]').each(function(index) {
+          let inputId = $(this).attr('id');
+          let regex = /(\d+)/g;
+          let idProductsSeoKeywords = regex.exec(inputId)[0];
+        
+          let language_id = parseInt(idProductsSeoKeywords);
+          let button = '{$content}';
+          let newButton = $(button).attr('data-index', index);
+        
+          // Envoi d'une requête AJAX pour récupérer le nom de la langue
+          let self = this;
+          $.ajax({
+            url: '{$urlMultilanguage}',
+            data: {id: language_id},
+            success: function(language_name) {
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$product_name}';
+              
+              newButton.click(function() {
+                let message = questionResponse;
+                let engine = $('#engine').val();
+        
+                $.ajax({
+                  url: '{$url}',
+                  type: 'POST',
+                  data: {message: message, engine: engine},
+                  success: function(data) {
+                    $('#chatGpt-output-input').val(data);
+                    $('#products_head_keywords_tag_' + idProductsSeoKeywords).val(data);
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                  }
+                });
+              });
+        
+              if (newButton) {
+                $(self).append(newButton);
+              }
+            }
+          });
+        });      
+      </script>";
+
+      return $script;
+    }
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_tag
+     * @param string $product_name
+     * @param string $url
+     * @return string
+     */
+    public static function getProductsSeoTags(string $content, string $urlMultilanguage, string $translate_language, string $question_tag, string $product_name, string $url)
+    {
+      $script = "
+      <script defer> 
+        $('[id^=\"products_head_tag\"]').each(function(index) {
+          let inputId = $(this).attr('id');
+          let regex = /(\d+)/g;
+          let idProductsSeoTag = regex.exec(inputId)[0];
+        
+          let language_id = parseInt(idProductsSeoTag);
+          let button = '{$content}';
+          let newButton = $(button).attr('data-index', index);
+        
+          // Envoi d'une requête AJAX pour récupérer le nom de la langue
+          let self = this;
+          $.ajax({
+            url: '{$urlMultilanguage}',
+            data: {id: language_id},
+            success: function(language_name) {
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_tag}' + ' ' + '{$product_name}';
+              
+              newButton.click(function() {
+                let message = questionResponse;
+                let engine = $('#engine').val();
+        
+                $.ajax({
+                  url: '{$url}',
+                  type: 'POST',
+                  data: {message: message, engine: engine},
+                  success: function(data) {
+                    $('#chatGpt-output-input').val(data);
+                    $('#products_head_tag_' + idProductsSeoTag).val(data);
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                  }
+                });
+              });
+        
+              if (newButton) {
+                $(self).append(newButton);
+              }
+            }
+          });
+        });      
       </script>";
 
       return $script;
