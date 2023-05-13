@@ -10,22 +10,13 @@
 
   namespace ClicShopping\Apps\Tools\Backup\Module\Hooks\ClicShoppingAdmin\Cronjob;
 
-  use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  use ClicShopping\Apps\Customers\Gdpr\Gdpr as GdprApp;
   use ClicShopping\Apps\Tools\Cronjob\Classes\ClicShoppingAdmin\Cron;
   use ClicShopping\Apps\Tools\Backup\Classes\ClicShoppingAdmin\Backup;
 
   class Process implements \ClicShopping\OM\Modules\HooksInterface
   {
-    public function __construct()
-    {
-    }
-
-    /**
-     *
-     */
     private static function cronJob() :void
     {
       $cron_id_gdpr = Cron::getCronCode('backup');

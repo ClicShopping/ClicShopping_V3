@@ -68,6 +68,9 @@
         ['id' => 'text-davinci-003',
          'text' =>'Davinci (text-davinci-003)'
         ],
+        ['id' => 'gpt-3.5-turbo',
+          'text' =>'gpt-3.5-turbo'
+        ],
         ['id' => 'gpt-4',
          'text' =>'gpt-4'
         ],
