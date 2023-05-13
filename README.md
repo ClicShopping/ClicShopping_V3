@@ -97,6 +97,8 @@ More information in the Wiki
   
   -  ![GitHub top language](https://img.shields.io/github/languages/top/ClicShopping/ClicShopping_v3)
 
+  -  [![CodeFactor](https://www.codefactor.io/repository/github/clicshopping/clicshopping_v3/badge)](https://www.codefactor.io/repository/github/clicshopping/clicshopping_v3)
+
 #Donation
  - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a> or use the button below.
     - Via the forum https://www.clicshopping.org/forum/clients/donations/ 
