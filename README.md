@@ -3,7 +3,9 @@
 </p>
 
 # ClicShopping
-ClicShopping(tm) is a powerful open-source e-commerce solution that supports B2B, B2C, and B2B-B2C. With the integration of ChatGpt, an artificial intelligence system, ClicShopping helps shop owners increase their competitiveness. Best of all, it's completely free!
+ClicShopping(tm) is a powerful open-source e-commerce solution that supports B2B, B2C, and B2B-B2C. With the integration of ChatGpt, Bard (soon), an artificial intelligence system.
+
+ClicShopping helps shop owners increase their competitiveness. Best of all, it's completely free!
 
 The solution boasts a modern, responsive design that ensures an excellent website experience on all devices, including mobile and desktop, without compromising speed.
 
