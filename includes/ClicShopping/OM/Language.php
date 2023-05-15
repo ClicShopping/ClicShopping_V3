@@ -511,7 +511,7 @@
       if ((filesize($filename)) > 2) {
         $bom = fread($handle, 3);
 
-        if ($bom == b"\xEF\xBB\xBF") {
+        if ($bom == "\xEF\xBB\xBF") {
           $response_bom = '-BOM';
         }
 
