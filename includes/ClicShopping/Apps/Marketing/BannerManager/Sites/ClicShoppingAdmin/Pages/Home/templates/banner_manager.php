@@ -44,15 +44,19 @@
             <?php echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_BannerManager->getDef('heading_title_search') . '"'); ?>
             </form>
           </span>
-<?php
-  if (isset($_POST['search']) && !\is_null($_POST['search'])) {
-    ?>
-          <span class="col-md-1"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_reset'), null, $CLICSHOPPING_BannerManager->link('BannerManager'), 'warning'); ?></span>
-    <?php
-  }
-?>
-          <span
-            class="col-md-3 text-end"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_new_banner'), null, $CLICSHOPPING_BannerManager->link('Insert'), 'success'); ?></span>
+          <?php
+            if (isset($_POST['search']) && !\is_null($_POST['search'])) {
+            ?>
+              <span class="col-md-1"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_reset'), null, $CLICSHOPPING_BannerManager->link('BannerManager'), 'warning'); ?></span>
+            <?php
+            }
+
+            if (MODE_DEMO == 'false') {
+          ?>
+              <span class="col-md-3 text-end"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_new_banner'), null, $CLICSHOPPING_BannerManager->link('Insert'), 'success'); ?></span>
+          <?php
+            }
+          ?>
         </div>
       </div>
     </div>
