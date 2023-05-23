@@ -332,7 +332,6 @@
 
     /**
      * Select a default template
-     * to make : relation with the page and database
      * @param string|null $thema_directory
      * @return string
      */
@@ -341,16 +340,8 @@
       if (\is_null($thema_directory)) {
         $thema_directory = $this->_directoryTemplateSources . $this->_directoryTemplate . $this->_dynamicTemplate; //sources/template/SITE_THEMA
       } else {
-// Use for multi template demonstration
-
-        if (\defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
-          if (MODULE_HEADER_SELECT_TEMPLATE_STATUS == 'True') {
-            if ((isset($_POST['TemplateCustomerSelected']))) {
-              $thema_directory = $this->_directoryTemplateSources . $this->_directoryTemplate . HTML::sanitize($_POST['TemplateCustomerSelected']);
-            }
-          } else {
-            $thema_directory = $this->_directoryTemplateSources . $this->_directoryTemplate . $thema_directory;
-          }
+        if (!empty($this->getPathTemplateDemo())) {
+          $thema_directory = $this->getPathTemplateDemo();
         }
       }
 
@@ -359,10 +350,8 @@
 
     /**
      * Select the language directory
-     *
      * @param string
-     * DIR_WS_LANGUAGES - sources/langauges
-     *
+     * DIR_WS_LANGUAGES - sources/languages
      */
 
     public function getSiteTemplateLanguageDirectory(): string
@@ -386,9 +375,7 @@
     /**
      * get path download
      *
-     * @param string $modules_directory ,directory of the module
-     *
-     * define('DIR_FS_DOWNLOAD_PUBLIC', $this->getPathRoot() . 'sources/public/');
+     * @param null $directory
      * @return string
      */
     public function getPathDownloadShopDirectory($directory = null) :string
@@ -420,8 +407,7 @@
     /**
      * Select the default template and verify if it exist
      *
-     * @param string $thema
-     *
+     * @return string
      */
 
     public function getPathDirectoryTemplateThema(): string
@@ -435,11 +421,34 @@
         clearstatcache();
       }
 
-// Use for multi template demonstration
+      if (!empty($this->getPathTemplateDemo())) {
+        $thema = $this->getPathTemplateDemo();
+      }
+
+      return $thema;
+    }
+
+    /**
+     * Demo approach
+     * @return string
+     */
+    public function getPathTemplateDemo() {
+      $thema = '';
+
       if (\defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
         if (MODULE_HEADER_SELECT_TEMPLATE_STATUS == 'True') {
-          if ((isset($_POST['TemplateCustomerSelected']))) {
-            $thema = $this->_directoryTemplateSources . $this->_directoryTemplate . HTML::sanitize($_POST['TemplateCustomerSelected']) . '/';
+          if (isset($_POST['TemplateCustomerSelected'])) {
+            if($_SESSION['TemplateCustomerSelected'] != $_POST['TemplateCustomerSelected']) {
+              $_SESSION['TemplateCustomerSelected'] = HTML::sanitize($_POST['TemplateCustomerSelected']);
+              $thema = $this->_directoryTemplateSources . $this->_directoryTemplate . $_SESSION['TemplateCustomerSelected'] . '/';
+            } else {
+              unset($_SESSION['TemplateCustomerSelected']);
+              $thema = $this->_directoryTemplateSources . $this->_directoryTemplate . HTML::sanitize($_POST['TemplateCustomerSelected']) . '/';
+            }
+          }
+        } else {
+          if(isset($_SESSION['TemplateCustomerSelected'])) {
+            unset($_SESSION['TemplateCustomerSelected']);
           }
         }
       }
@@ -727,9 +736,8 @@
     /**
      * Select the the file in this directory Files
      *
-     * @param string $themaGraphism , file in this directory Files
-     * sources/template/Default/modules/index_listing
-     *
+     * @param string $name
+     * @return string
      */
     public function getTemplateFiles(string $name): string
     {
@@ -745,9 +753,8 @@
     /**
      * Select the the file in this directory module
      *
-     * @param string $themaGraphism , file in this directory module
-     * sources/template/Default/modules/modules_header/content/header_page_manager_header_menu"
-     *
+     * @param string $name
+     * @return string
      */
     public function getTemplateModules(string $name): string
     {
@@ -783,8 +790,8 @@
     /**
      * Select the file language in function the the file for the template
      *
-     * @param string $languagefiles , file language in function the the file for the template
-     *
+     * @param string $name
+     * @return string
      */
 
     public function getPathDirectoryTemplatetLanguageFiles(string $name): string
