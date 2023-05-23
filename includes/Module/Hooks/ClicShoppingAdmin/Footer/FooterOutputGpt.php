@@ -29,20 +29,24 @@
           $output .= '<!-- Start gpt -->' . "\n";
           $output .= '<script defer>';
           $output .= 'document.addEventListener("DOMContentLoaded", function() {';
-          $output .= 'document.querySelector("#sendGpt").addEventListener("click", function() {';
-          $output .= 'let message = document.querySelector("#messageGpt").value;';
-          $output .= 'let xhr = new XMLHttpRequest();';
-          $output .= 'xhr.open("POST", "' . $url . '");';
-          $output .= 'xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");';
-          $output .= 'xhr.onreadystatechange = function() {';
-          $output .= 'if (xhr.readyState === 4 && xhr.status === 200) {';
-          $output .= 'document.querySelector("#chatGpt-output").innerHTML = xhr.responseText;';
+          $output .= 'var sendGptButton = document.querySelector("#sendGpt");';
+          $output .= 'if (sendGptButton) {';
+          $output .= '  sendGptButton.addEventListener("click", function() {';
+          $output .= '    let message = document.querySelector("#messageGpt").value;';
+          $output .= '    let xhr = new XMLHttpRequest();';
+          $output .= '    xhr.open("POST", "' . $url . '");';
+          $output .= '    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");';
+          $output .= '    xhr.onreadystatechange = function() {';
+          $output .= '      if (xhr.readyState === 4 && xhr.status === 200) {';
+          $output .= '        document.querySelector("#chatGpt-output").innerHTML = xhr.responseText;';
+          $output .= '      }';
+          $output .= '    };';
+          $output .= '    xhr.send("message=" + message);';
+          $output .= '  });';
           $output .= '}';
-          $output .= '};';
-          $output .= 'xhr.send("message=" + message);';
           $output .= '});';
-          $output .= '});';
-          $output .= '</script>';
+          $output .= '</script>' . "\n";
+
           $output .= '<!-- End gpt  -->' . "\n";
         }
       }

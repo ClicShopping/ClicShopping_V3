@@ -61,17 +61,26 @@
       </div>
     </div>
   </div>
-
   <div class="separator"></div>
+  <!-- //################################################################################################################ -->
+  <!-- //                                             Banner listing                                                                                                         -->
+  <!-- //################################################################################################################ -->
+  <?php echo HTML::form('delete_all', $CLICSHOPPING_BannerManager->link('BannerManager&BannerManager&DeleteAll&page=' . $page)); ?>
+  <div id="toolbar" class="float-end">
+    <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_BannerManager->getDef('button_delete'); ?></button>
+  </div>
 
   <table
     id="table"
     data-toggle="table"
     data-icons-prefix="bi"
     data-icons="icons"
-    data-toolbar="#toolbar"
-    data-sort-name="groupe"
+    data-id-field="selected"
+    data-select-item-name="selected[]"
+    data-click-to-select="true"
+    data-sort-name="selected"
     data-sort-order="asc"
+    data-toolbar="#toolbar"
     data-buttons-class="primary"
     data-show-toggle="true"
     data-show-columns="true"
@@ -79,6 +88,8 @@
 
     <thead class="dataTableHeadingRow">
     <tr>
+      <th data-checkbox="true" data-field="state"></th>
+      <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_BannerManager->getDef('id'); ?></th>
       <th data-field="admin"><?php echo $CLICSHOPPING_BannerManager->getDef('table_heading_banners_admin'); ?></th>
       <th data-field="banners"><?php echo $CLICSHOPPING_BannerManager->getDef('table_heading_banners'); ?></th>
       <th data-field="groupe" data-sortable="true"><?php echo $CLICSHOPPING_BannerManager->getDef('table_heading_groups'); ?></th>
@@ -212,6 +223,8 @@
           $banners_clicked = (!\is_null($Qinfo->valueInt('banners_clicked'))) ? $Qinfo->valueInt('banners_clicked') : '0';
           ?>
           <tr>
+            <td></td>
+            <td><?php echo $Qbanner->valueInt('banners_id'); ?></td>
             <td scope="row"><?php echo $Qbanner->value('banners_title_admin'); ?></td>
             <td><?php echo $Qbanner->value('banners_title'); ?></td>
             <td><?php echo $Qbanner->value('banners_group'); ?></td>
@@ -261,7 +274,7 @@
     ?>
     </tbody>
   </table>
-
+  </form>
   <?php
     if ($listingTotalRow > 0) {
       ?>
