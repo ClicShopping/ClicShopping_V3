@@ -1,11 +1,16 @@
+3.426
+Little refactoring
+librairies updated
+small fix
+
+-------------------
 3.425
 add missing products_no_purchased files
 fix order map chart dashboard
 fix backup cron error
-fix js chapgpt when is not used
-Banner delete improvment
+fix js Chapgpt when is not used
+Banner delete improvement
 
--------------------
 3.424
 add missing products_no_purchased files
 fix order map chart dashboard
