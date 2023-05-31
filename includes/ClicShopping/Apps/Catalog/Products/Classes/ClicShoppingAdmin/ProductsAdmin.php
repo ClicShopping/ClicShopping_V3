@@ -1013,12 +1013,12 @@
       } //End for
     }
 
-    /**
-     * Search products
-     * @param, $keywords, keyword to search
-     * @return $Qproducts, result of search
-     *
-     */
+      /**
+       * Search products
+       * @param null $keywords
+       * @param $current_category_id
+       * @return mixed $Qproducts, result of search
+       */
 
     public function getSearch($keywords = null, $current_category_id = 0)
     {
@@ -1115,8 +1115,9 @@
 
     public function save(string|int|null $id, $action)
     {
+      $products_date_available = HTML::sanitize($_POST['products_date_available']);
+
       if (isset($products_date_available)) {
-        $products_date_available = HTML::sanitize($_POST['products_date_available']);
         $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
       } else {
         $products_date_available = null;
@@ -1313,12 +1314,7 @@
      */
     public function checkProductStatus(?int $products_id) :bool
     {
-      $Qstatus = $this->db->prepare('select products_status 
-                                    from :table_products 
-                                    where products_id = :products_id
-                                   ');
-      $Qstatus->bindInt(':products_id', $products_id);
-      $Qstatus->execute();
+      $Qstatus = $this->db->prepare->get('products', 'products_status', ['products_id' => $products_id]);
 
       if ($Qstatus->fetch()) {
         if ($Qstatus->valueInt('products_status') == 0) {
