@@ -243,7 +243,7 @@
               <div class="adminformTitle">
                 <div class="row" id="tab1ContentRow1">
                   <?php
-                  if (MODE_B2B_B2C == 'false') {
+                  if (MODE_B2B_B2C == 'False') {
                     ?>
                     <div class="col-md-12" id="siret">
                       <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_order_siret'); ?></span>

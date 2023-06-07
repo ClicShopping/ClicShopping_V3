@@ -51,7 +51,7 @@
            <div>
              <div>
 <?php
-  if (MODE_B2B_B2C == 'true') {
+  if (MODE_B2B_B2C == 'True') {
     echo HTML::form('grouped', $CLICSHOPPING_Specials->link('Specials'), 'post', '');
 
     if (isset($_POST['customers_group_id'])) {
@@ -69,7 +69,7 @@
          </span>
           <span class="col-md-3">
 <?php
-  if (MODE_B2B_B2C == 'true' && isset($_POST['customers_group_id'])) {
+  if (MODE_B2B_B2C == 'True' && isset($_POST['customers_group_id'])) {
     echo HTML::button($CLICSHOPPING_Specials->getDef('button_reset'), null, $CLICSHOPPING_Specials->link('Specials'), 'warning');
   }
 ?>
@@ -119,7 +119,7 @@
       <th data-switchable="false"></th>
       <th data-field="heading_products" data-sortable="true"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_products'); ?></th>
       <?php
-        if (MODE_B2B_B2C == 'true') {
+        if (MODE_B2B_B2C == 'True') {
           ?>
           <th data-field="group" data-sortable="true"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_products_group'); ?></th>
           <?php
@@ -238,7 +238,7 @@
           <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qspecials->valueInt('products_id')); ?></td>
           <td><?php echo $Qspecials->value('products_name') . ' ['. $Qspecials->value('products_model') . ']'; ?></td>
           <?php
-          if (MODE_B2B_B2C == 'true') {
+          if (MODE_B2B_B2C == 'True') {
             if ($Qspecials->valueInt('customers_group_id') != 0 && $Qspecials->valueInt('customers_group_id') != 99) {
               $all_groups_name_special = GroupsB2BAdmin::getCustomersGroupName($Qspecials->valueInt('customers_group_id'));
             } elseif ($Qspecials->valueInt('customers_group_id') == 99) {

@@ -127,7 +127,7 @@
         </div>
         ';
 
-        if (MODE_B2B_B2C == 'true' || MODE_B2B == 'true') {
+        if (MODE_B2B_B2C == 'True' || MODE_B2B == 'true') {
           $content .= '
            <div class="row">
             <div class="col-md-11">

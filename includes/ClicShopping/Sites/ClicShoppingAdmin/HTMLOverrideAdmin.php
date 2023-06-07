@@ -86,7 +86,7 @@
       $Qproducts->execute();
 
       while ($Qproducts->fetch()) {
-        if (MODE_B2B_B2C == 'true') {
+        if (MODE_B2B_B2C == 'True') {
           if (!\in_array($Qproducts->valueInt('products_id'), $exclude)) {
 
             $Qprice = $CLICSHOPPING_Db->prepare('select customers_group_price,

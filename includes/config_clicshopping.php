@@ -8,6 +8,6 @@
    *
    */
 
-  define('MODE_B2B_B2C', 'true'); // true ou false
-  define('MODE_DEMO' , 'false'); // only demo mode
-  define('DEBUG_MODE', 'false'); // only for development
+  define('MODE_B2B_B2C', 'True'); // true ou false
+  define('MODE_DEMO' , 'False'); // only demo mode
+  define('DEBUG_MODE', 'False'); // only for development

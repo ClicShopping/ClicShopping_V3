@@ -634,7 +634,7 @@
 
               <?php
               // Desactivation du module B2B
-              if (MODE_B2B_B2C == 'true') {
+              if (MODE_B2B_B2C == 'True') {
                 $QcustomersGroup = $CLICSHOPPING_Products->db->prepare('select distinct customers_group_id,
                                                                                          customers_group_name,
                                                                                          customers_group_discount
@@ -687,7 +687,7 @@
 
               <?php
               // Desactivation du module B2B
-              if (MODE_B2B_B2C == 'true') {
+              if (MODE_B2B_B2C == 'True') {
                 $QcustomersGroup = $CLICSHOPPING_Products->db->prepare('select distinct customers_group_id,
                                                                                         customers_group_name,
                                                                                         customers_group_discount

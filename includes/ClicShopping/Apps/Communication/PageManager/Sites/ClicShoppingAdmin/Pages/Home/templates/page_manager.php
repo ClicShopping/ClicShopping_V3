@@ -73,7 +73,7 @@
       <th data-field="page"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_pages'); ?></th>
       <th data-field="type_page" data-sortable="true"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_type_page'); ?></th>
 <?php
-  if (MODE_B2B_B2C == 'true') {
+  if (MODE_B2B_B2C == 'True') {
 ?>
       <th data-field="group" data-sortable="group" class="text-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_customers_group'); ?></th>
 <?php
@@ -121,7 +121,7 @@
 
   if ($listingTotalRow > 0) {
     while ($Qpages->fetch()) {
-      if (MODE_B2B_B2C == 'true') {
+      if (MODE_B2B_B2C == 'True') {
         $QcustomersGroup = $CLICSHOPPING_PageManager->db->prepare('select customers_group_name
                                                                   from :table_customers_groups
                                                                   where customers_group_id = :customers_group_id
@@ -177,7 +177,7 @@
 ?>
     <td><?php echo $page_function; ?></td>
 <?php
-    if (MODE_B2B_B2C == 'true') {
+    if (MODE_B2B_B2C == 'True') {
 ?>
       <td><?php echo $customers_group['customers_group_name']; ?></td>
 <?php

@@ -47,7 +47,7 @@
             <?php
               echo HTML::button($CLICSHOPPING_Backup->getDef('button_backup'), null, $CLICSHOPPING_Backup->link('BackupDb'), 'info') . ' ';
 
-              if (MODE_DEMO == 'false') {
+              if (MODE_DEMO == 'False') {
                 echo HTML::button($CLICSHOPPING_Backup->getDef('button_restore_file'), null, $CLICSHOPPING_Backup->link('RestoreLocal'), 'warning');
               }
             ?>

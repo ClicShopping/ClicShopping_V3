@@ -18,7 +18,7 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
   // Permettre l'utilisation de des groupes clients
-  if (MODE_B2B_B2C == 'false') CLICSHOPPING::redirect();
+  if (MODE_B2B_B2C == 'False') CLICSHOPPING::redirect();
 
   $error = false;
 ?>

@@ -921,7 +921,7 @@
           if ($Qattributes->rowCount() > 0) {
 // Definir la position 0 ou 1 pour --> Affichage Prix public + Affichage Produit + Autorisation Commande
 // L'Affichage des produits, autorisation de commander et affichage des prix mis par defaut en valeur 1 dans la cas de la B2B desactive.
-            if (MODE_B2B_B2C == 'true') {
+            if (MODE_B2B_B2C == 'True') {
               if (HTML::sanitize($_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')]) == 1) {
                 $price_group_view = 1;
               } else {
@@ -1171,7 +1171,7 @@
       }
 
 // Affichage des produits, autorisation de commander et mode B2B en automatique mis par defaut en valeur 1 dans la cas de la B2B desactivee.
-      if (MODE_B2B_B2C == 'false') {
+      if (MODE_B2B_B2C == 'False') {
         $products_view = 1;
         $orders_view = 1;
         $products_percentage = 1;

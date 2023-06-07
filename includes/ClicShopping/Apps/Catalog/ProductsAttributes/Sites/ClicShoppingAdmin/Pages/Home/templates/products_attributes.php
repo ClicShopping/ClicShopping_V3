@@ -661,7 +661,7 @@
               <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_value'); ?></td>
 
               <?PHP
-                if (MODE_B2B_B2C == 'true') {
+                if (MODE_B2B_B2C == 'True') {
                   ?>
                   <td
                     class="text-end"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_b2b'); ?></td>
@@ -785,7 +785,7 @@
                       </select>&nbsp;
                     </td>
                     <?php
-                    if (MODE_B2B_B2C == 'true') {
+                    if (MODE_B2B_B2C == 'True') {
                       echo '<td>' . HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $Qvalues->value('customers_group_id')) . '</td>';
                     } else {
                       echo '<td></td>';
@@ -869,7 +869,7 @@
                     ?>
                     <td><strong><?php echo $values_name; ?></strong></td>
                     <?php
-                    if (MODE_B2B_B2C == 'true') {
+                    if (MODE_B2B_B2C == 'True') {
                       if ($Qattributes->valueInt('customers_group_id') != 0 && $Qattributes->valueInt('customers_group_id') != 99) {
                         $all_groups_name_special = GroupsB2BAdmin::getCustomersGroupName($Qattributes->valueInt('customers_group_id'));
                       } elseif ($Qattributes->valueInt('customers_group_id') == 99) {
@@ -925,7 +925,7 @@
                     ?>
                     <td><?php echo $values_name; ?></td>
                     <?php
-                    if (MODE_B2B_B2C == 'true') {
+                    if (MODE_B2B_B2C == 'True') {
                       if ($Qattributes->valueInt('customers_group_id') != 0 && $Qattributes->valueInt('customers_group_id') != 99) {
                         $all_groups_name_special = GroupsB2BAdmin::getCustomersGroupName($Qattributes->valueInt('customers_group_id'));
                       } elseif ($Qattributes->valueInt('customers_group_id') == 99) {
@@ -1047,7 +1047,7 @@
                   </td>
                   <td>
                     <?php
-                      if (MODE_B2B_B2C == 'true') {
+                      if (MODE_B2B_B2C == 'True') {
                         echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups());
                       }
                     ?>

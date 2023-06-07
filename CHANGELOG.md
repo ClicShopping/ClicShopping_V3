@@ -2,6 +2,9 @@
 Little refactoring
 librairies updated
 small fix
+bootstrap 5.3
+update config_clicshopping boolean change
+fix error_documents bug
 
 -------------------
 3.425

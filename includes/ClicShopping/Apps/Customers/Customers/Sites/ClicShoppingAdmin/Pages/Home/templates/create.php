@@ -66,7 +66,7 @@
       <li
         class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_societe'); ?></a></li>
       <?php
-        if (MODE_B2B_B2C == 'true') {
+        if (MODE_B2B_B2C == 'True') {
           ?>
           <li
             class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_orders'); ?></a></li>
@@ -288,7 +288,7 @@
             <div class="text-start"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
             <div class="text-end">
               <?php
-                if (MODE_B2B_B2C == 'true') {
+                if (MODE_B2B_B2C == 'True') {
                   ?>
                   <span
                     class="mainTitleTexteSeul"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('Entry_customers_moodify_company') . '&nbsp;'; ?></span>
@@ -312,7 +312,7 @@
               </div>
             </div>
             <?php
-              if (MODE_B2B_B2C == 'true') {
+              if (MODE_B2B_B2C == 'True') {
                 ?>
                 <div class="separator"></div>
                 <div class="row" id="CreateCustomerEntrySiret">
@@ -365,7 +365,7 @@
           </div>
           <?php
             // Activation du module B2B
-            if (MODE_B2B_B2C == 'true') {
+            if (MODE_B2B_B2C == 'True') {
               ?>
               <div class="separator"></div>
               <div class="alert alert-info" id="CreateCustomerHelCustomersTva">
@@ -379,7 +379,7 @@
         </div>
         <?php
           // Activation du module B2B
-          if (MODE_B2B_B2C == 'true') {
+          if (MODE_B2B_B2C == 'True') {
             ?>
             <!-- ------------------------------------ //-->
             <!--          ONGLET Facturation          //-->

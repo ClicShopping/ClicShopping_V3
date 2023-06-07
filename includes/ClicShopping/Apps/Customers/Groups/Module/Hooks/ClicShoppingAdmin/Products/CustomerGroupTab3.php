@@ -77,7 +77,7 @@
             $products_percentage = $products_array[0]['products_percentage'];
           }
 
-          if (MODE_B2B_B2C == 'true') {
+          if (MODE_B2B_B2C == 'True') {
             if (!isset($products_percentage)) {
               $products_percentage = 1;
             }

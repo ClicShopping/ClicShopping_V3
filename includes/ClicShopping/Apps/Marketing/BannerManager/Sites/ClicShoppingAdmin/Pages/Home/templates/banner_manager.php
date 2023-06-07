@@ -51,7 +51,7 @@
             <?php
             }
 
-            if (MODE_DEMO == 'false') {
+            if (MODE_DEMO == 'False') {
           ?>
               <span class="col-md-3 text-end"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_new_banner'), null, $CLICSHOPPING_BannerManager->link('Insert'), 'success'); ?></span>
           <?php
@@ -97,7 +97,7 @@
       <th data-field="status" data-sortable="true"><?php echo $CLICSHOPPING_BannerManager->getDef('table_heading_status'); ?></th>
       <?php
         // Permettre l'affichage des groupes en mode B2B
-        if (MODE_B2B_B2C == 'true') {
+        if (MODE_B2B_B2C == 'True') {
           ?>
           <th data-field="customers_group" data-sortable="true"><?php echo $CLICSHOPPING_BannerManager->getDef('table_heading_customers_group'); ?></th>
           <?php
@@ -184,7 +184,7 @@
           $Qinfo->execute();
 
 // Permettre l'affichage des groupes en mode B2B
-          if (MODE_B2B_B2C == 'true') {
+          if (MODE_B2B_B2C == 'True') {
             $QcustomersGroup = $CLICSHOPPING_BannerManager->db->prepare('select customers_group_name
                                                                           from :table_customers_groups
                                                                           where customers_group_id = :customers_group_id
@@ -239,7 +239,7 @@
               ?>
             </td>
             <?php
-              if (MODE_B2B_B2C == 'true') {
+              if (MODE_B2B_B2C == 'True') {
                 ?>
                 <td><?php echo $customers_group['customers_group_name']; ?></td>
                 <?php
