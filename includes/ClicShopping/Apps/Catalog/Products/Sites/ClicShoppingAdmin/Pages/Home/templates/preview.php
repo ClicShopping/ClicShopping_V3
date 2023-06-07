@@ -178,7 +178,7 @@
           <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_handling') . ' ' . $products['products_handling'] . ' <strong>' . $CLICSHOPPING_Products->getDef('text_products_price_net') . '</strong>'; ?></div>
 <?php
 // Activation du module B2B
-  if  (MODE_B2B_B2C == 'true') {
+  if  (MODE_B2B_B2C == 'True') {
 //inserer les informations concernant la B2B
 
     $QcustomersGroup = $CLICSHOPPING_Products->db->prepare('select distinct customers_group_id,
@@ -193,7 +193,7 @@
   }
 
 // Activation du module B2B
-  if  (MODE_B2B_B2C == 'true') {
+  if  (MODE_B2B_B2C == 'True') {
   //inserer les informations concernant la B2B
     while ($customers_group = $QcustomersGroup->fetch()) {
       $attributes_price = '';

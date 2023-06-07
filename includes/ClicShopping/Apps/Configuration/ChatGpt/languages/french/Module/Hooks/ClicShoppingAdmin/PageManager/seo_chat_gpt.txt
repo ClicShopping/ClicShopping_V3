@@ -5,5 +5,5 @@ text_seo_page_keywords_question = Donne moi 7 mots clefs sèparès par une virgu
 text_seo_page_summary_description_question = Donne moi en moins de 50 mots une description trés courte concernant cette page :
 text_seo_page_translate_language = Peux tu traduire en
 
-title_help_seo = Help
+title_help_seo = Aide
 text_help_seo = Veuillez noter que si vous utilisez l'IA pour générer votre contenu, le temps de sauvegarde de l'information peut être plus long du au traitement. Merci de patienter.

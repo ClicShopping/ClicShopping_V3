@@ -18,11 +18,10 @@
     /*
       * Recursive Directory list file with all template products under a drop down
       * @param string $filename : name of the file
-      * @return string c $filename_array, the file name in the  template products subdirectory
+      * @return array $filename_array, the file name in the template products subdirectory
       *
     */
-
-    public static function getFilenameTemplateProducts(): array
+    public static function getFilenameTemplateProducts(): ?array
     {
       if (isset($_POST['directory_html'])) {
         $directory_selected = HTML::sanitize($_POST['directory_html']) . '/';
@@ -77,7 +76,6 @@
       * @return string $directory_array, the directories name in css directory
       *
     */
-
     public static function getDirectoryTemplateProducts(): array
     {
       $template_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/template/' . SITE_THEMA . '/modules/';

@@ -32,7 +32,7 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ChatGpt->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
           <?php
-          if (MODE_DEMO == 'false') {
+          if (MODE_DEMO == 'False') {
             echo HTML::button($CLICSHOPPING_ChatGpt->getDef('button_configure'), null, $CLICSHOPPING_ChatGpt->link('Configure'), 'primary');
           }
           ?>

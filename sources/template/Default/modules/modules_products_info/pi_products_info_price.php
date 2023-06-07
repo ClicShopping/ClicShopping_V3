@@ -53,7 +53,7 @@
 
 // display the price/weight
           if (!empty($CLICSHOPPING_ProductsCommon->getProductsPriceByWeight())) {
-            $weight_symbol = $CLICSHOPPING_ProductsCommon->getSymbolbyProducts($CLICSHOPPING_ProductsCommon->getWeightClassIdByProducts($CLICSHOPPING_ProductsCommon->getID()));
+            $weight_symbol = $CLICSHOPPING_ProductsCommon->getSymbolWeightByProducts($CLICSHOPPING_ProductsCommon->getWeightClassIdByProducts($CLICSHOPPING_ProductsCommon->getID()));
             $product_price_kilo = CLICSHOPPING::getDef('text_products_info_price_by_weight') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsPriceByWeight() . ' / ' . $weight_symbol;
           } else {
             $product_price_kilo = '';

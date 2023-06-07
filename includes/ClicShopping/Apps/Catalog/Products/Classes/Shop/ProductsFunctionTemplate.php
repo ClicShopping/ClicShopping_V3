@@ -425,7 +425,7 @@
     public function getProductsWeight($products_id, string $tag = ' / ') :string
     {
       if (!empty($this->productsCommon->getProductsWeight($products_id))) {
-        $weight_symbol = $this->productsCommon->getSymbolbyProducts($this->productsCommon->getWeightClassIdByProducts($products_id));
+        $weight_symbol = $this->productsCommon->getSymbolWeightByProducts($this->productsCommon->getWeightClassIdByProducts($products_id));
         $products_weight = CLICSHOPPING::getDef('text_products_weight') . '  ' . $this->productsCommon->getProductsWeight($products_id) . $tag . $weight_symbol;
 
         return $products_weight;
@@ -568,4 +568,5 @@
       
       return $output;
     }
+
   }

@@ -89,7 +89,7 @@
             <span class="col-md-3 float-start">
 <?php
   // Permettre l'affichage des couleurs des groupes en mode B2B
-  if (MODE_B2B_B2C == 'true') {
+  if (MODE_B2B_B2C == 'True') {
     echo HTML::form('grouped', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"');
     echo HTML::selectField('customers_group_id', GroupsB2BAdmin::getCustomersGroup($CLICSHOPPING_Orders->getDef('visitor_name')), '', 'onchange="this.form.submit();"');
     echo '</form>';
@@ -155,7 +155,7 @@
       <th data-field="support" data-sortable="true"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_support'); ?>&nbsp;</th>
       <th data-field="guest"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_guest'); ?>&nbsp;</th>
       <?php
-        if (MODE_B2B_B2C == 'true') {
+        if (MODE_B2B_B2C == 'True') {
           ?>
           <th data-field="group" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_color_group'); ?></th>
           <?php
@@ -463,7 +463,7 @@
           }
 
 // Permettre l'affichage couleurs du groupe B2B auquel le client ce trouvait au moment de la commande
-          if (MODE_B2B_B2C == 'true') {
+          if (MODE_B2B_B2C == 'True') {
             if ($Qorders->valueInt('customers_group_id') != 0) {
               ?>
               <td class="text-center">

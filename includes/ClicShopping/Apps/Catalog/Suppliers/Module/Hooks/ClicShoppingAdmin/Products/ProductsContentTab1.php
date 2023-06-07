@@ -41,16 +41,8 @@
 
     public function display() :string
     {
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-
       if (!\defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {
         return false;
-      }
-
-      if (isset($_GET['pID'])) {
-        $pId = HTML::sanitize($_GET['pID']);
-      } else {
-        $pId = null;
       }
 
       $suppliers_array = $this->SupplierAdmin->getSupplier();
@@ -96,7 +88,7 @@ $('#tab1ContentRow2').append(
 window.addEventListener("load", function(){
   // Add a keyup event listener to our input element
 	document.getElementById('ajax_suppliers_name').addEventListener("keyup", function(event){hinterSupplier(event)});
-	// create one global XHR object
+  // create one global XHR object
   // so we can abort old requests when a new one is make
 	window.hinterSupplierXHR = new XMLHttpRequest();
 });
@@ -113,8 +105,8 @@ function hinterSupplier(event) {
   if (!isNaN(input.value) || input.value.length < min_characters ) {
     return;
   } else {
-		window.hinterSupplierXHR.abort();
-		window.hinterSupplierXHR.onreadystatechange = function() {
+    window.hinterSupplierXHR.abort();
+    window.hinterSupplierXHR.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var response = JSON.parse( this.responseText );
         
@@ -130,9 +122,9 @@ function hinterSupplier(event) {
       }
     };
 
-		window.hinterSupplierXHR.open("GET", "{$suppliers_ajax}?q=" + input.value, true);
-		window.hinterSupplierXHR.send()
-	}
+     window.hinterSupplierXHR.open("GET", "{$suppliers_ajax}?q=" + input.value, true);
+     window.hinterSupplierXHR.send()
+  }
 }
 </script>
 <!-- ######################## -->

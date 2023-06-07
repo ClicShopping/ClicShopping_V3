@@ -21,7 +21,7 @@
     public static function backupNow()
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-      $CLICSHOPPING_Backup = Registry::get('Backup');
+      $CLICSHOPPING_Db = Registry::get('Db');
 
       set_time_limit(0);
 
@@ -39,10 +39,10 @@
         '# Database: ' . CLICSHOPPING::getConfig('db_database') . "\n" .
         '# Database Server: ' . CLICSHOPPING::getConfig('db_server') . "\n" .
         '#' . "\n" .
-        '# Backup Date: ' . date($CLICSHOPPING_Backup->getDef('php_date_time_format')) . "\n\n";
+        '# Backup Date: ' . date('m/d/Y H:i:s') . "\n\n";
       fputs($fp, $schema);
 
-      $Qtables = $CLICSHOPPING_Backup->db->get(['INFORMATION_SCHEMA.TABLES t',
+      $Qtables = $CLICSHOPPING_Db->get(['INFORMATION_SCHEMA.TABLES t',
         'INFORMATION_SCHEMA.COLLATION_CHARACTER_SET_APPLICABILITY ccsa'
       ],
         ['t.TABLE_NAME',
@@ -66,7 +66,7 @@
 
         $table_list = [];
 
-        $Qfields = $CLICSHOPPING_Backup->db->query('show fields from ' . $table);
+        $Qfields = $CLICSHOPPING_Db->query('show fields from ' . $table);
 
         while ($Qfields->fetch()) {
           $table_list[] = $Qfields->value('Field');
@@ -87,7 +87,7 @@
   // add the keys
         $index = [];
 
-        $Qkeys = $CLICSHOPPING_Backup->db->query('show keys from ' . $table);
+        $Qkeys = $CLICSHOPPING_Db->query('show keys from ' . $table);
 
         while ($Qkeys->fetch()) {
           $kname = $Qkeys->value('Key_name');
@@ -123,7 +123,7 @@
 
   // dump the data
         if (($table != CLICSHOPPING::getConfig('db_table_prefix') . 'sessions') && ($table != CLICSHOPPING::getConfig('db_table_prefix') . 'whos_online')) {
-          $Qrows = $CLICSHOPPING_Backup->db->get($table, $table_list, null, null, null, null, ['prefix_tables' => false]);
+          $Qrows = $CLICSHOPPING_Db->get($table, $table_list, null, null, null, null, ['prefix_tables' => false]);
 
           while ($Qrows->fetch()) {
             $schema = 'insert into ' . $table . ' (' . implode(', ', $table_list) . ') values (';
@@ -188,7 +188,7 @@
             unlink($backup_directory . $backup_file);
         }
 
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Backup->getDef('success_database_saved'), 'success');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_database_saved'), 'success');
       }
     }
   }

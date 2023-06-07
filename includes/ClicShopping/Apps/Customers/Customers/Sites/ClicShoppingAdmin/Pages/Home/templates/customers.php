@@ -56,7 +56,7 @@
 
           <div class="col-md-3 text-end">
 <?php
-  if ((MODE_B2B_B2C == 'true')) {
+  if ((MODE_B2B_B2C == 'True')) {
     echo HTML::button($CLICSHOPPING_Customers->getDef('button_create_account'), null, $CLICSHOPPING_Customers->link('Create'), 'success');
   }
 ?>
@@ -111,7 +111,7 @@
         <th data-field="company"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_entry_company'); ?></th>
         <?php
           // Permettre le changement de groupe en mode B2B
-          if ((MODE_B2B_B2C == 'true')) {
+          if ((MODE_B2B_B2C == 'True')) {
             ?>
             <th data-field="company_b2b"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_entry_company_b2b'); ?></th>
             <th data-field="group_name" data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_entry_groups_name'); ?></th>
@@ -270,7 +270,7 @@
         <td><?php echo $Qcustomers->value('entry_company'); ?></td>
         <?php
 // Permettre le changement de groupe en mode B2B
-        if ((MODE_B2B_B2C == 'true')) {
+        if ((MODE_B2B_B2C == 'True')) {
           ?>
           <td><?php echo $Qcustomers->value('customers_company'); ?></td>
           <td><?php echo $cust_ret['customers_group_name']; ?></td>

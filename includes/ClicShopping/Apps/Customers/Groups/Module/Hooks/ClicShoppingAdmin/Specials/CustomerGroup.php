@@ -55,7 +55,7 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/CustomerGroup/customer_group');
 
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True' && !empty(CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS)) {
-        if (MODE_B2B_B2C == 'true') {
+        if (MODE_B2B_B2C == 'True') {
 
           $content = '<div class="row">';
           $content .= '<div class="col-md-5">';

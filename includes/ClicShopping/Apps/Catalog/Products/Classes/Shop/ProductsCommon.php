@@ -1457,7 +1457,7 @@
 
     /**
      * the products quantity unit title
-     * @param string $products_quantity_unit_id , $language_id
+     * @param null $id
      * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
      */
     public function getProductsQuantityByUnit($id = null)
@@ -1476,7 +1476,7 @@
      * @return string $products_model, model of the product
      */
 
-    private function setProductsModel(?int $id = null)
+    private function setProductsModel(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -1526,7 +1526,7 @@
      * @param int
      * @return string $products_model, model of the product
      */
-    public function getProductsModel(?int $id = null)
+    public function getProductsModel(?int $id = null) :string
     {
       return $this->setProductsModel($id);
     }
@@ -1537,7 +1537,7 @@
      * @return string $flash_discount, the product flash discount based on end special end date
      * @access private
      */
-    private function setProductsFlashDiscount(?int $id = null)
+    private function setProductsFlashDiscount(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -1687,8 +1687,8 @@
 
     /**
      * Display the product quantity unit title of the customer group
-     * @param string
-     * @return $products_group_quantity_unit_title,, the title of the product unit group
+     * @param null $id
+     * @return string $products_group_quantity_unit_title,, the title of the product unit group
      * @access private
      */
     public function getProductQuantityUnitTypeCustomersGroup($id = null)
@@ -1712,9 +1712,7 @@
       $customers_group_id = $this->customer->getCustomersGroupID();
 
       if ($customers_group_id == 0) {
-        $QproductMinOrder = $this->db->get('products', ['products_min_qty_order'],
-          ['products_id' => (int)$id]
-        );
+        $QproductMinOrder = $this->db->get('products', ['products_min_qty_order'], ['products_id' => (int)$id]);
 
         if ($QproductMinOrder->valueInt('products_min_qty_order') > 0.1) {
           $min_quantity_order = $QproductMinOrder->valueInt('products_min_qty_order');
@@ -1725,13 +1723,9 @@
           }
         }
       } else {
-        $QcustomersGroupMinOrder = $this->db->get('customers_groups', ['customers_group_quantity_default'],
-          ['customers_group_id' => (int)$customers_group_id]
-        );
+        $QcustomersGroupMinOrder = $this->db->get('customers_groups', ['customers_group_quantity_default'], ['customers_group_id' => (int)$customers_group_id]);
 
-        $QcustomersProductsGroupMinOrder = $this->db->get('products_groups', ['products_quantity_fixed_group'],
-          ['customers_group_id' => (int)$customers_group_id]
-        );
+        $QcustomersProductsGroupMinOrder = $this->db->get('products_groups', ['products_quantity_fixed_group'], ['customers_group_id' => (int)$customers_group_id]);
 
         if ($QcustomersProductsGroupMinOrder->valueInt('products_quantity_fixed_group') > 1) {
           $min_quantity_order = $QcustomersProductsGroupMinOrder->valueInt('products_quantity_fixed_group');
@@ -1840,7 +1834,8 @@
 
     /**
      * Display the quantity for the customer
-     * @param string $input_quantity , the price of the product or not
+     * @param null $id
+     * @return string
      */
     public function getProductsAllowingToInsertQuantity($id = null)
     {
@@ -1853,11 +1848,11 @@
 
     /**
      * Display a message in function the customer group applied
-     * @param string $product_price_d , the price of the product or not
+     * @return string
      * @access private
      */
 
-    private function setProductsAllowingTakeAnOrderMessage()
+    private function setProductsAllowingTakeAnOrderMessage() :string
     {
       $submit_button_view = '';
 
@@ -1873,7 +1868,7 @@
 
     /**
      * Display a message in function the customer group applied
-     * @param string $product_price_d , the price of the product or not
+     * @return string
      */
     public function getProductsAllowingTakeAnOrderMessage()
     {
@@ -1887,16 +1882,17 @@
     public function getBuyButton($button)
     {
       $this->button = $button;
+
       return $button;
     }
 
     /**
      * Button buy now
-     * @param string $submit_button , the button
+     * @return string
      * @access private
      */
 
-    public function setProductsBuyButton()
+    public function setProductsBuyButton() :string
     {
       $buy_button = $this->button;
 
@@ -1929,20 +1925,22 @@
 
     /**
      * Button buy now
-     * @param string $submit_button , the button
+     * @return string
      */
-    public function getProductsBuyButton()
+    public function getProductsBuyButton() :string
     {
       return $this->setProductsBuyButton();
     }
 
     /**
      * Return a products button sold out
-     * @param string $product_button_sold_out
-     * @return $product_button_sold_out,the bootstrap item
+     * @param null $button_type
+     * @return string $product_button_sold_out,the bootstrap item
      */
-    private function getProductButtonSoldOut($button_type = null)
+    private function getProductButtonSoldOut($button_type = null) :string
     {
+      $product_button_sold_out = '';
+
       if (\is_null($button_type)) {
         $button_type = 'btn-warning btn-sm';
       }
@@ -1950,15 +1948,16 @@
       if (PRE_ORDER_AUTORISATION == 'false') {
         $product_button_sold_out = '<button type="button" class="btn ' . $button_type . '">' . CLICSHOPPING::getDef('button_sold_out') . '</button>';
       }
+
       return $product_button_sold_out;
     }
 
     /**
      * Products sold out
      * Check if the required stock is available for display a button Product sold out
-     * If insufficent stock is available return a products sold out image
-     * @param string $product_sold_out , the button
-     * @param $button_type , bootstrap button bootstrap item
+     * @param $id
+     * @param null $button_type , bootstrap button bootstrap item
+     * @return string
      */
 
     private function setProductsSoldOut($id, $button_type = null): string
@@ -1994,10 +1993,11 @@
 
     /**
      * Display Products sold out
-     * @param string $product_sold_out , the button
-     * @param string $button_type : bootstrap button bootstrap item
+     * @param null $id
+     * @param null $button_type : bootstrap button bootstrap item
+     * @return string
      */
-    public function getProductsSoldOut($id = null, $button_type = null)
+    public function getProductsSoldOut($id = null, $button_type = null) :string
     {
       return $this->setProductsSoldOut($id, $button_type);
     }
@@ -2009,7 +2009,8 @@
 
     /**
      * Display the price in different mode B2B or not
-     * @param string $product_price_d , the price of the product or not
+     * @param null $id
+     * @return float|string
      * @access private
      */
 
@@ -2035,7 +2036,8 @@
 
     /**
      * Display the price in different mode B2B or not
-     * @param string $product_price_d , the price of the product or not
+     * @param null $id
+     * @return float|string
      */
     public function getCustomersPrice($id = null)
     {
@@ -2044,14 +2046,13 @@
 
     /**
      * Return a product's special price B2B (returns nothing if there is no offer
-     * @param string $product_id
-     * @return $product['specials_new_products_price'] the special price
+     * @param null $id
+     * @return float $product['specials_new_products_price'] the special price
      * TABLES: products B2B
      */
 
     private function setSpecialPriceGroup($id = null)
     {
-
       if (\is_null($id)) {
         $id = $this->getID();
       }
@@ -2084,8 +2085,8 @@
 
     /**
      * Product price and price groupwithouth taxe and symbol
-     * @param string $product_id , id of the procduct
-     * @return $products_price, the product group price
+     * @param null $id
+     * @return float $products_price, the product group price
      */
 
     private function setPrice($id = null)
@@ -2135,8 +2136,8 @@
 
     /**
      * Product group price with taxe and symbol (if authorize)
-     * @param
-     * @return $products_price, the product price
+     * @param null $id
+     * @return float $products_price, the product price
      */
     public function setDisplayPriceGroup($id = null)
     {
@@ -2152,11 +2153,10 @@
       return $products_price;
     }
 
-
     /**
      * Product group price withiout taxe
-     * @param string
-     * @return $products_price, the product price
+     * @param null $id
+     * @return float $products_price, the product price
      */
 
     public function getDisplayPriceGroupWithoutCurrencies($id = null): float
@@ -2166,16 +2166,16 @@
       }
 
       $products_price = $this->setPrice($id);
+
       return $products_price;
     }
 
-
     /**
      * Calcul the different price in function the group
-     * @param string $products_price , the price of the product
+     * @param null $id
+     * @return float
      * @access private
      */
-
     private function setCalculPrice($id = null)
     {
       if (\is_null($id)) {
@@ -2233,7 +2233,8 @@
 
     /**
      * Display the price in function the group
-      * @param string $products_price , the price of the product
+     * @param null $id
+     * @return float|string
      * @access private
      */
     public function getCalculPrice($id = null)
@@ -2243,11 +2244,11 @@
 
     /**
      * Return a product's stock
-     * @param string $id , id product
-     * @return the $stock_values['products_quantity']
+     * @param null $id , id product
+     * @return int $stock_values['products_quantity']
      */
 
-    public function getProductsStock($id = null): string
+    public function getProductsStock($id = null): int
     {
       $CLICSHOPPING_Prod = Registry::get('Prod');
 
@@ -2268,10 +2269,10 @@
      * If insufficent stock is available return an out of stock message
      * @param string $id , id product
      * @param string $products_quantity
-     * @return $out_of_stock
+     * @return string $out_of_stock
      */
 
-    public function getCheckStock($id, $products_quantity)
+    public function getCheckStock($id, $products_quantity) :string
     {
       $stock_left = $this->getProductsStock($id) - $products_quantity;
       $out_of_stock = '';
@@ -2292,9 +2293,9 @@
     /**
      * Return an image concerning the stock
      * @param string $id , id product
-     * @return the $display_stock_values, the image value of stock
+     * @return string the $display_stock_values, the image value of stock
      */
-    public function getDisplayProductsStock($id)
+    public function getDisplayProductsStock($id) :string
     {
       $display_products_stock = $this->getProductsStock($id);
 
@@ -2305,6 +2306,7 @@
       } else {
         $display_stock_values = HTML::tickerImage(CLICSHOPPING::getDef('text_out_of_stock'), 'ModulesTickerBootstrapTickerStockDanger', true);
       }
+
       return $display_stock_values;
     }
 
@@ -2339,6 +2341,10 @@
       return $products_attributes['total'];
     }
 
+    /**
+     * @param null $id
+     * @return string
+     */
     Public function getCountProductsAttributes($id = null)
     {
       return $this->SetCountProductsAttributes($id);
@@ -2370,8 +2376,8 @@
 
     /**
      *  Return a product's special price (returns nothing if there is no offer)
-     * @param int $product_id the id of product
-     * @param string $specials price, The specialprice  of the product
+     * @param null $id
+     * @return mixed
      */
     private function setProductsSpecialPrice($id = null)
     {
@@ -2393,14 +2399,15 @@
 
       if ($Qproduct->fetch() !== false) {
         $result = $Qproduct->valueDecimal('specials_new_products_price');
+
         return $result;
       }
     }
 
     /**
      *  Return a product's special price (returns nothing if there is no offer)
-     * @param int $product_id the id of product
-     * @param string $specials price, The specialprice  of the product
+     * @param null $id
+     * @return mixed
      */
     public function getProductsSpecialPrice($id = null)
     {
@@ -2411,7 +2418,7 @@
 
     /**
      * Display the name of manufacturer
-     * @param string $manufacturers ['manufacturer_name'], The name of manufacturer
+     * @return string
      * @access private
      */
     private function setManufacturersName(): string
@@ -2432,17 +2439,17 @@
     }
 
     /**
-     * Display the name of manufacturer
-     * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
+     * @return array
      */
-    public function getManufacturersName()
+    public function getManufacturersName() :array
     {
       $this->setManufacturersName();
     }
 
     /**
      * Display a description of manufacturer
-     * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
+     * @param $id
+     * @return string
      * @access private
      */
     private function setManufacturersDescription($id): string
@@ -2462,9 +2469,13 @@
       return $Qmanufacturers->value('manufacturer_description');
     }
 
-    public function getManufacturersDescription()
+    /**
+     * @return string
+     */
+    public function getManufacturersDescription() :string
     {
       $id = HTML::sanitize($_GET['manufacturersId']);
+
       return $this->setManufacturersDescription($id);
     }
 
@@ -2490,19 +2501,19 @@
 
     /**
      * Display a description of manufacturer
-     * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
+     * @return string
      */
-    public function getManufacturersImage()
+    public function getManufacturersImage() :string
     {
       return $this->setManufacturersImage();
     }
 
     /**
      * Display a  manufacturers under an array
-     * @param string $manufacturers_array , an array of manufacturer
+     * @return array
      */
 
-    public function setManufacturersDropDown()
+    public function setManufacturersDropDown() :array
     {
       $manufacturers_array = [];
       
@@ -2533,8 +2544,7 @@
 
     /**
      * Display a manufacturer in dropdown
-     * @param int $_GET ['manufacturers_id']) the id of manufacturer
-     * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
+     * @return array
      */
     public function getManufacturersDropDown(): array
     {
@@ -2543,10 +2553,10 @@
 
     /**
      * Display a a ticker on products new (text)
-     * @param int products_id, id of the product
-     * @return  $ticker (true or false)
+     * @param null $id
+     * @return bool $ticker (true or false)
      */
-    private function setProductsTickerProductsNew($id = null)
+    private function setProductsTickerProductsNew($id = null) :bool
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -2580,20 +2590,20 @@
 
     /**
      * display a ticker css for new price
-     * @param string
-     * @return string $ticker, product new procust price ticker
+     * @param null $id
+     * @return bool $ticker, product new procust price ticker
      */
-    public function getProductsTickerProductsNew($id = null)
+    public function getProductsTickerProductsNew($id = null) :bool
     {
       return $this->setProductsTickerProductsNew($id);
     }
 
     /**
      * Display a ticker on special price (text)
-     * @param int products_id, id of the product
-     * @return  $ticker (true or false)
+     * @param null $id
+     * @return bool $ticker (true or false)
      */
-    private function setProductsTickerSpecials($id = null)
+    private function setProductsTickerSpecials($id = null) :bool
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -2621,7 +2631,7 @@
       $Qproducts->execute();
 
 // 2592000 = 30 days in the unix timestamp format
-      $day_new_products = 86400 * DAY_NEW_PRODUCTS_ARRIVAL;
+      $day_new_products = 86400 * (int)DAY_NEW_PRODUCTS_ARRIVAL;
       $today_time = time();
 
       if (($today_time - strtotime($Qproducts->value('specials_date_added'))) < $day_new_products) {
@@ -2646,15 +2656,17 @@
     /**
      * Display a ticker on special price (pourcentage)
      * @param int products_id, id of the product
-     * @return  $ticker (true or false)
+     * @return
      */
-    private function setProductsTickerSpecialsPourcentage($id, $tag = ' %')
+    private function setProductsTickerSpecialsPourcentage($id, string $tag = ' %')
     {
       if ($this->setSpecialPriceGroup($id) != 0 && $this->setPrice($id) != 0) {
         $pourcentage_price = (round((($this->setSpecialPriceGroup($id) / $this->setPrice($id))), 2));
         $pourcentage_price = ((1 - $pourcentage_price) * (-100)) . $tag;
 
         return $pourcentage_price;
+      } else {
+        return '';
       }
     }
 
@@ -2662,21 +2674,21 @@
      * display a ticker pourcentage css
      *
      * @param string
-     * @return string $ticker, specials price ticker
+     * @return bool $ticker, specials price ticker
      *
      */
-    public function getProductsTickerSpecialsPourcentage($id)
+    public function getProductsTickerSpecialsPourcentage($id) :bool
     {
       return $this->setProductsTickerSpecialsPourcentage($id);
     }
 
     /**
      * Display a a ticker on product favorites
-     * @param int products_id, id of the product
-     * @return  $ticker (true or false)
+     * @param null $id
+     * @return bool $ticker (true or false)
      * @access private
      */
-    private function setProductsTickerFavorites($id = null)
+    private function setProductsTickerFavorites($id = null) :bool
     {
      if (\is_null($id)) {
         $id = $this->getID();
@@ -2705,21 +2717,11 @@
     }
 
     /**
-     * display a ticker css for specials price
-     * @param string
-     * @return string $ticker, favorites ticker
-     */
-    public function getProductsTickerFavorites($id = null)
-    {
-      return $this->setProductsTickerFavorites($id);
-    }
-
-    /**
      * Display a a ticker on product featured
-     * @param int products_id, id of the product
-     * @return  $ticker (true or false)
+     * @param null $id
+     * @return bool $ticker (true or false)
      */
-    private function setProductsTickerFeatured($id = null)
+    private function setProductsTickerFeatured($id = null) :bool
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -2746,6 +2748,16 @@
       }
 
       return $ticker;
+    }
+
+    /**
+     * display a ticker css for specials price
+     * @param string
+     * @return bool $ticker, favorites ticker
+     */
+    public function getProductsTickerFavorites($id = null)
+    {
+      return $this->setProductsTickerFavorites($id);
     }
 
     /**
@@ -2818,7 +2830,7 @@
 
       $new_discount_price = null;
 
-      $i = $nb_discount - 1; // 0,1,2 pour les indices des tableaux de ton exemple
+      $i = $nb_discount - 1; // 0,1,2 pour les indices des tableaux de ton example
 
       for ($i; $i > -1; $i--) {
         if ($qty >= $discount_quantity[$i]) {
@@ -2939,7 +2951,7 @@
      * @param int $weight_class_id
      * @return string
      */
-    private function setSymbolByProducts(int $weight_class_id) :string
+    private function setSymbolWeightByProducts(int $weight_class_id) :string
     {
       $QweightSymbol = $this->db->prepare('select weight_class_key
                                            from :table_weight_classes
@@ -2957,10 +2969,11 @@
      * @param int $weight_class_id
      * @return mixed
      */
-    public function getSymbolbyProducts(int $weight_class_id)
+    public function getSymbolWeightByProducts(int $weight_class_id)
     {
       $weight_class_id = HTML::sanitize($weight_class_id);
 
-      return $this->setSymbolByProducts($weight_class_id);
+      return $this->setSymbolWeightByProducts($weight_class_id);
     }
+
   } // end class

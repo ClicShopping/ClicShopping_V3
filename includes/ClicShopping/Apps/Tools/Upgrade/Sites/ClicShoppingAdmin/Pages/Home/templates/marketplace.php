@@ -67,7 +67,7 @@
               if (empty(CLICSHOPPING_APP_UPGRADE_UP_USERNAME)) {
                 echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_configure'), null, $CLICSHOPPING_Upgrade->link('Configure'), 'primary');
               } else {
-                if (MODE_DEMO == 'false') {
+                if (MODE_DEMO == 'False') {
                   echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_install_app'), null, null, 'primary', ['params' => 'data-bs-toggle="modal" data-bs-target="#modulaInstall"']);
                 ?>
                   <div class="modal fade" id="modulaInstall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

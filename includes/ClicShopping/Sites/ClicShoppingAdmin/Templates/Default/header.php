@@ -49,7 +49,7 @@
 <body onload="SetFocus();">
 <!-- page loader -->
   <?php
-    if (DEBUG_MODE == 'false') {
+    if (DEBUG_MODE == 'False') {
    ?>
   <div id="preloader">
     <div id="preloader_status"><i class="spinner-border" role="status"></i></div>

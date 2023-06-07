@@ -146,11 +146,9 @@
 
     /**
      * Count the total rows
-     *
      * @return int : total row
-     *
      */
-    public function getPageSetTotalRows()
+    public function getPageSetTotalRows() :int
     {
       return $this->getPageSetTotalRows;
     }
@@ -204,9 +202,9 @@
     /**
      * Get rewiews with specific reviews id
      * @param int|null $id
-     * @return false
+     * @return bool|array
      */
-    public function getDataReviews(?int $id = null)
+    public function getDataReviews(?int $id = null): bool|array
     {
       $reviews_id = HTML::sanitize($id);
 
@@ -262,9 +260,8 @@
      * @return string
      *
      */
-    public function saveEntry()
+    public function saveEntry() :void
     {
-
       if ($this->customer->getCustomersGroupID() == 0) {
         $array_sql = [
           'products_id' => (int)$this->productsCommon->getID(),

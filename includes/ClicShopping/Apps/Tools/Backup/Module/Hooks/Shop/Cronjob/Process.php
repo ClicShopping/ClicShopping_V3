@@ -10,10 +10,8 @@
 
   namespace ClicShopping\Apps\Tools\Backup\Module\Hooks\Shop\Cronjob;
 
-  use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  use ClicShopping\Apps\Customers\Gdpr\Gdpr as GdprApp;
   use ClicShopping\Apps\Tools\Cronjob\Classes\ClicShoppingAdmin\Cron;
   use ClicShopping\Apps\Tools\Backup\Classes\ClicShoppingAdmin\Backup;
 

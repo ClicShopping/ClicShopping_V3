@@ -67,7 +67,7 @@
               </span>
               <span class="col-md-5 text-end">
                 <?php
-                  if (MODE_DEMO == 'false') {
+                  if (MODE_DEMO == 'False') {
                     echo HTML::form('areafile', $CLICSHOPPING_EditDesign->link('EditDesign&UpdateGabari'), 'post', 'enctype="multipart/form-data"');
                     echo HTML::button($CLICSHOPPING_EditDesign->getDef('button_update'), null, null, 'success') . ' ';
                   }

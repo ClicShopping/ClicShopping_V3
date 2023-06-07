@@ -44,11 +44,14 @@
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Backup->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-end">
-<?php
-  echo HTML::button($CLICSHOPPING_Backup->getDef('button_backup'), null, $CLICSHOPPING_Backup->link('BackupDb'), 'info') . ' ';
-  echo HTML::button($CLICSHOPPING_Backup->getDef('button_restore_file'), null, $CLICSHOPPING_Backup->link('RestoreLocal'), 'warning');
-?>
-            </span>
+            <?php
+              echo HTML::button($CLICSHOPPING_Backup->getDef('button_backup'), null, $CLICSHOPPING_Backup->link('BackupDb'), 'info') . ' ';
+
+              if (MODE_DEMO == 'False') {
+                echo HTML::button($CLICSHOPPING_Backup->getDef('button_restore_file'), null, $CLICSHOPPING_Backup->link('RestoreLocal'), 'warning');
+              }
+            ?>
+          </span>
         </div>
       </div>
     </div>

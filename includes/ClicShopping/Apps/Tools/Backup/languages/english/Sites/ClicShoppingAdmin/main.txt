@@ -82,3 +82,5 @@ button_restore_file = Restore
 icon_delete = Delete
 icon_restore = Restore
 icon_file_downlad = Download
+
+php_date_time_format = m/d/Y H:i:s

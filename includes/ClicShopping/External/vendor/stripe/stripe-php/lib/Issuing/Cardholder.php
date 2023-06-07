@@ -5,12 +5,9 @@
 namespace Stripe\Issuing;
 
 /**
- * An Issuing <code>Cardholder</code> object represents an individual or business
- * entity who is <a href="https://stripe.com/docs/issuing">issued</a> cards.
+ * An Issuing <code>Cardholder</code> object represents an individual or business entity who is <a href="https://stripe.com/docs/issuing">issued</a> cards.
  *
- * Related guide: <a
- * href="https://stripe.com/docs/issuing/cards#create-cardholder">How to create a
- * Cardholder</a>
+ * Related guide: <a href="https://stripe.com/docs/issuing/cards#create-cardholder">How to create a cardholder</a>
  *
  * @property string $id Unique identifier for the object.
  * @property string $object String representing the object's type. Objects of the same type share the same value.
@@ -26,7 +23,7 @@ namespace Stripe\Issuing;
  * @property \Stripe\StripeObject $requirements
  * @property null|\Stripe\StripeObject $spending_controls Rules that control spending across this cardholder's cards. Refer to our <a href="https://stripe.com/docs/issuing/controls/spending-controls">documentation</a> for more details.
  * @property string $status Specifies whether to permit authorizations on this cardholder's cards.
- * @property string $type One of <code>individual</code> or <code>company</code>.
+ * @property string $type One of <code>individual</code> or <code>company</code>. See <a href="https://stripe.com/docs/issuing/other/choose-cardholder">Choose a cardholder type</a> for more details.
  */
 class Cardholder extends \Stripe\ApiResource
 {

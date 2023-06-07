@@ -46,7 +46,7 @@
       $CLICSHOPPING_BannerManager->db->delete('banners', ['banners_id' => (int)$banners_id]);
       $CLICSHOPPING_BannerManager->db->delete('banners_history', ['banners_id' => (int)$banners_id]);
 
-      $CLICSHOPPING_Hooks->call('DeleteConfirm', 'BannerManager');
+      $CLICSHOPPING_Hooks->call('BannerManager', 'RemoveBanner');
 
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_BannerManager->getDef('success_banner_removed'), 'success');
 

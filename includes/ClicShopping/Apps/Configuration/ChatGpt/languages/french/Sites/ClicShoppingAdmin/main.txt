@@ -11,7 +11,6 @@ text_intro = Cette app vous permet d'inclure une gestion des pays <br /><br />
 - Poser une question en fonction de ce que vous souhaitez résoudre
 
 module_ch_introduction = Le processus d'installation installe la base de données et le menu
-module_ch_short_title = ChatGpt
 
 button_install_title = Installer
 button_configure = Configurer

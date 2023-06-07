@@ -90,7 +90,7 @@
       <th data-field="language" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_language'); ?></th>
       <?php
         // Permettre l'affichage des groupes en mode B2B
-        if (MODE_B2B_B2C == 'true') {
+        if (MODE_B2B_B2C == 'True') {
           ?>
           <th data-field="b2b" data-sortable="true"  class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_b2b'); ?></th>
           <?PHP
@@ -156,7 +156,7 @@
           <td class="text-center"><?php echo $newsletters_language['name']; ?></td>
           <?php
 // Permettre l'affichage des groupes en mode B2B
-          if (MODE_B2B_B2C == 'true') {
+          if (MODE_B2B_B2C == 'True') {
             $QcustomersGroup = $CLICSHOPPING_Newsletter->db->prepare('select customers_group_name
                                                                       from :table_customers_groups
                                                                       where customers_group_id = :customers_group_id

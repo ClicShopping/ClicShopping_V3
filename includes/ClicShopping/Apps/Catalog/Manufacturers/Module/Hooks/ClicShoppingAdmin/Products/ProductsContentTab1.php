@@ -35,8 +35,6 @@
 
     public function display() :string
     {
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-
       if (!\defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
         return false;
       }

@@ -93,7 +93,8 @@
 
         if ($current_page != 'login.php') {
           if (!isset($_SESSION['redirect_origin'])) {
-            $_SESSION['redirect_origin'] = ['page' => $current_page,
+            $_SESSION['redirect_origin'] = [
+              'page' => $current_page,
               'get' => []
             ];
           }

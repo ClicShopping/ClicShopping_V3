@@ -51,7 +51,7 @@
            <div>
              <div>
 <?php
-  if (MODE_B2B_B2C == 'true') {
+  if (MODE_B2B_B2C == 'True') {
 
     if (isset($_POST['customers_group_id'])) {
       $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
@@ -69,7 +69,7 @@
          </span>
           <span class="col-md-3">
 <?php
-  if (MODE_B2B_B2C == 'true' && isset($_POST['customers_group_id'])) {
+  if (MODE_B2B_B2C == 'True' && isset($_POST['customers_group_id'])) {
     echo HTML::button($CLICSHOPPING_Favorites->getDef('button_reset'), null, $CLICSHOPPING_Favorites->link('Favorites'), 'warning');
   }
 ?>
@@ -118,7 +118,7 @@
         <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_products'); ?></th>
           <?php
             // Permettre le changement de groupe en mode B2B
-            if (MODE_B2B_B2C == 'true') {
+            if (MODE_B2B_B2C == 'True') {
               ?>
               <th><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_products_group'); ?></th>
               <?php
@@ -214,7 +214,7 @@
       <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qfavorites->valueInt('products_id')); ?></td>
       <td><?php echo $Qfavorites->value('products_name') . ' [' . $Qfavorites->value('products_model') . ']'; ?></td>
       <?php
-      if (MODE_B2B_B2C == 'true') {
+      if (MODE_B2B_B2C == 'True') {
         if ($Qfavorites->valueInt('customers_group_id') != 0 && $Qfavorites->valueInt('customers_group_id') != 99) {
           $all_groups_name_products_favorites = GroupsB2BAdmin::getCustomersGroupName($Qfavorites->valueInt('customers_group_id'));
         } elseif ($Qfavorites->valueInt('customers_group_id') == 99) {

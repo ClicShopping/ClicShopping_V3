@@ -5,6 +5,6 @@ text_seo_page_keywords_question = Give me 7 keywords tag separated by a comma ab
 text_seo_page_summary_description_question = Give me in less 50 words a very short description about this page :
 text_seo_page_translate_language = Can you translate in
 
-title_help_seo=Help
+title_help_seo = Help
 text_help_seo = Please note that if you use AI to generate your content, information may take longer to save due to processing. Please wait.
 

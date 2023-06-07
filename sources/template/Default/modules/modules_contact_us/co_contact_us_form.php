@@ -207,13 +207,19 @@
         }
 
         if (!empty(CONTACT_DEPARTMENT_LIST)) {
+          if (is_array($_POST['send_to_array'])) {
+            $contact = HTML::selectMenu('send_to', $_POST['send_to_array'], null, null, false, 'inputContacUsPullDownMenu');
+          } else {
+            $contact = '';
+          }
+
           $contact_us_form .= '
             <div class="row" id="companyDepartement">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="CompanyDepartment" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('send_department_company') . '</label>
                   <div class="col-sm-6 col-md-4">
-                    ' . HTML::selectMenu('send_to', $_POST['send_to_array'], null, null, false, 'inputContacUsPullDownMenu') . '
+                    ' . $contact .'
                   </div>
                 </div>
               </div>

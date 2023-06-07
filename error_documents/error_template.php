@@ -1,5 +1,5 @@
 <?php
-/**
+  /**
  *
  * @copyright 2008 - https://www.clicshopping.org
  * @Brand : ClicShopping(Tm) at Inpi all right Reserved
@@ -8,8 +8,14 @@
  *
  */
 
-  use ClicShopping\OM\HTTP;
-  use ClicShopping\OM\CLICSHOPPING;
+  define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../includes/ClicShopping/') . '/');
+
+  require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+  spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
+
+  CLICSHOPPING::initialize();
+
+  CLICSHOPPING::loadSite('Shop');
 
   http_response_code(404);
 ?>

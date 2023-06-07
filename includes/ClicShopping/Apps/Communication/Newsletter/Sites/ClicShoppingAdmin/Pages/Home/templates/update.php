@@ -184,7 +184,7 @@
             </div>
             <?php
               // Permettre l'affichage des groupes en mode B2B
-              if (MODE_B2B_B2C == 'true') {
+              if (MODE_B2B_B2C == 'True') {
                 ?>
                 <div class="row">
                   <div class="col-md-5">

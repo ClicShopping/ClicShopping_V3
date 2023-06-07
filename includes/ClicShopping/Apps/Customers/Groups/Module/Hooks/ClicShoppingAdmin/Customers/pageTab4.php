@@ -84,7 +84,7 @@
             $status_order_no_taxe = false;
         }
 
-        if (MODE_B2B_B2C == 'true') {
+        if (MODE_B2B_B2C == 'True') {
           $content = '<div class="adminformTitle">';
           $content .= '<div class="row">';
           $content .= '<div class="col-md-12">';

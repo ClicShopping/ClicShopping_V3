@@ -921,7 +921,7 @@
           if ($Qattributes->rowCount() > 0) {
 // Definir la position 0 ou 1 pour --> Affichage Prix public + Affichage Produit + Autorisation Commande
 // L'Affichage des produits, autorisation de commander et affichage des prix mis par defaut en valeur 1 dans la cas de la B2B desactive.
-            if (MODE_B2B_B2C == 'true') {
+            if (MODE_B2B_B2C == 'True') {
               if (HTML::sanitize($_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')]) == 1) {
                 $price_group_view = 1;
               } else {
@@ -1013,12 +1013,12 @@
       } //End for
     }
 
-    /**
-     * Search products
-     * @param, $keywords, keyword to search
-     * @return $Qproducts, result of search
-     *
-     */
+      /**
+       * Search products
+       * @param null $keywords
+       * @param $current_category_id
+       * @return mixed $Qproducts, result of search
+       */
 
     public function getSearch($keywords = null, $current_category_id = 0)
     {
@@ -1115,8 +1115,9 @@
 
     public function save(string|int|null $id, $action)
     {
+      $products_date_available = HTML::sanitize($_POST['products_date_available']);
+
       if (isset($products_date_available)) {
-        $products_date_available = HTML::sanitize($_POST['products_date_available']);
         $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
       } else {
         $products_date_available = null;
@@ -1170,7 +1171,7 @@
       }
 
 // Affichage des produits, autorisation de commander et mode B2B en automatique mis par defaut en valeur 1 dans la cas de la B2B desactivee.
-      if (MODE_B2B_B2C == 'false') {
+      if (MODE_B2B_B2C == 'False') {
         $products_view = 1;
         $orders_view = 1;
         $products_percentage = 1;
@@ -1313,12 +1314,7 @@
      */
     public function checkProductStatus(?int $products_id) :bool
     {
-      $Qstatus = $this->db->prepare('select products_status 
-                                    from :table_products 
-                                    where products_id = :products_id
-                                   ');
-      $Qstatus->bindInt(':products_id', $products_id);
-      $Qstatus->execute();
+      $Qstatus = $this->db->prepare->get('products', 'products_status', ['products_id' => $products_id]);
 
       if ($Qstatus->fetch()) {
         if ($Qstatus->valueInt('products_status') == 0) {

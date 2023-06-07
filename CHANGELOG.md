@@ -1,8 +1,22 @@
+3.426
+Little refactoring
+librairies updated
+small fix
+bootstrap 5.3
+update config_clicshopping boolean change
+fix error_documents bug
+
+-------------------
+3.425
+add missing products_no_purchased files
+fix order map chart dashboard
+fix backup cron error
+fix js Chapgpt when is not used
+Banner delete improvement
+
 3.424
 add missing products_no_purchased files
 fix order map chart dashboard
-
-
 -------------------
 3.423
 add image forgotten

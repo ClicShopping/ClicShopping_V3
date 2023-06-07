@@ -3,7 +3,9 @@
 </p>
 
 # ClicShopping
-ClicShopping(tm) is a powerful open-source e-commerce solution that supports B2B, B2C, and B2B-B2C. With the integration of ChatGpt, an artificial intelligence system, ClicShopping helps shop owners increase their competitiveness. Best of all, it's completely free!
+ClicShopping(tm) is a powerful open-source e-commerce solution that supports B2B, B2C, and B2B-B2C. With the integration of ChatGpt, Bard (soon), an artificial intelligence system.
+
+ClicShopping helps shop owners increase their competitiveness. Best of all, it's completely free!
 
 The solution boasts a modern, responsive design that ensures an excellent website experience on all devices, including mobile and desktop, without compromising speed.
 
@@ -96,6 +98,8 @@ More information in the Wiki
   -  ![GitHub repo size](https://img.shields.io/github/repo-size/ClicShopping/ClicShopping_v3)
   
   -  ![GitHub top language](https://img.shields.io/github/languages/top/ClicShopping/ClicShopping_v3)
+
+  -  [![CodeFactor](https://www.codefactor.io/repository/github/clicshopping/clicshopping_v3/badge)](https://www.codefactor.io/repository/github/clicshopping/clicshopping_v3)
 
 #Donation
  - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a> or use the button below.
