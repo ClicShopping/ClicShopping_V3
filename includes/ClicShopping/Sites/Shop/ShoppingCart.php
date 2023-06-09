@@ -1140,7 +1140,6 @@
                     $this->content_type = 'mixed';
 
                     return $this->content_type;
-                    break;
                   default:
                     $this->content_type = 'virtual';
                     break;
@@ -1151,7 +1150,6 @@
                     $this->content_type = 'mixed';
 
                     return $this->content_type;
-                    break;
                   default:
                     $this->content_type = 'physical';
                     break;
@@ -1162,8 +1160,8 @@
             switch ($this->content_type) {
               case 'virtual':
                 $this->content_type = 'mixed';
+
                 return $this->content_type;
-                break;
               default:
                 $this->content_type = 'physical';
                 break;
