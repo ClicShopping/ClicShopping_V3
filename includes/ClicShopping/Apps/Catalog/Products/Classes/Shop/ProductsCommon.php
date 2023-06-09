@@ -2351,11 +2351,11 @@
     }
 
     /**
-     * Display a ticker on special price (pourcentage)
-     * @param int products_id, id of the product
-     * @return
+     * display a ticker pourcentage css
+     * @param string
+     * @return bool|string $ticker, specials price ticker
      */
-    private function setProductsTickerSpecialsPourcentage($id, string $tag = ' %')
+    public function getProductsTickerSpecialsPourcentage($id, string $tag = ' %') :bool|string
     {
       if ($this->setSpecialPriceGroup($id) != 0 && $this->setPrice($id) != 0) {
         $pourcentage_price = (round((($this->setSpecialPriceGroup($id) / $this->setPrice($id))), 2));
@@ -2365,18 +2365,6 @@
       } else {
         return '';
       }
-    }
-
-    /**
-     * display a ticker pourcentage css
-     *
-     * @param string
-     * @return bool $ticker, specials price ticker
-     *
-     */
-    public function getProductsTickerSpecialsPourcentage($id) :bool
-    {
-      return $this->setProductsTickerSpecialsPourcentage($id);
     }
 
     /**

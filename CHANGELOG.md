@@ -5,6 +5,7 @@ small fix
 productCommon Class refactoring
 Currency, Does not allow to delete default status
 Product unit qty little improvment
+fix bug display discount
 
 -------------------
 
