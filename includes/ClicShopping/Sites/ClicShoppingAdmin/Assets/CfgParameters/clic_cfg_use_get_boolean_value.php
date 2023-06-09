@@ -16,20 +16,16 @@
       case -1:
       case '-1':
         return false;
-        break;
 
       case 0:
       case '0':
         return 'optional';
-        break;
 
       case 1:
       case '1':
         return true;
-        break;
 
       default:
         return $string;
-        break;
     }
   }
