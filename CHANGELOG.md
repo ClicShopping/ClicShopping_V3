@@ -1,4 +1,7 @@
 3.426
+librairies updated
+Currency, Does not allow to delete default status
+Product unit qty little improvment
 
 -------------------
 

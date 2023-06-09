@@ -45,7 +45,7 @@ table_heading_action = Action
 text_info_edit_intro = Editer le statut
 text_info_products_unit_quantity_name = Statut :
 
-text_info_products_unit_quantity_delete = Etes vous sur de vouloir supprimer ce statut ?
+text_info_heading_products_unit_quantity_delete = Etes vous sur de vouloir supprimer ce statut ?
 text_info_delete_intro = Souhaitez vous supprimer ce type de quantité ?
 text_info_delete_intro = Supprimer ce statut
 

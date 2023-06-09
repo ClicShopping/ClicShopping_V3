@@ -113,7 +113,11 @@
           <td class="text-center">
             <?php
               if ($Qcurrency->valueInt('status') == 1) {
-                echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=0&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $page), '<i class="bi-check text-success"></i>');
+                if (DEFAULT_CURRENCY == $Qcurrency->value('code')) {
+                  echo '<i class="bi-check text-success"></i>';
+                } else {
+                  echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=0&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $page), '<i class="bi-check text-success"></i>');
+                }
               } else {
                 echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=1&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $page), '<i class="bi bi-x text-danger"></i>');
               }
