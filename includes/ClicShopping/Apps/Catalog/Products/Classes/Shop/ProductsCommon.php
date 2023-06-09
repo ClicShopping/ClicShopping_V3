@@ -295,10 +295,9 @@
 
     /**
      * Number of products
-     * @return string $product_check['total'], products total
-     * @access private
+     * @return float $product_check['total'], products total
      */
-    private function setProductsCount()
+    public function getProductsCount() :float
     {
       $QproductCheck = $this->db->prepare('select count(*) as total
                                           from :table_products p,
@@ -318,22 +317,12 @@
     }
 
     /**
-     * Number of products
-     * @return string $product_check['total'], products total
-     *
-     */
-    public function getProductsCount()
-    {
-      return $this->setProductsCount();
-    }
-
-    /**
-     * products name
+     * Display products name
      * @param int|null $id
      * @return string $products_name, name of the product
-     * @access private
+     *
      */
-    private function setProductsName(?int $id = null)
+    public function getProductsName(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -359,33 +348,23 @@
     }
 
     /**
-     * Display products name
-     * @param int|null $id
-     * @return string $products_name, name of the product
-     *
-     */
-    public function getProductsName(?int $id = null)
-    {
-      return $this->setProductsName($id);
-    }
-
-    /**
      * products image
      * @param int|null $id
      * @return string $products_image, image of the product
      * @access private
      */
-    private function setProductsImage(?int $id = null)
+    private function setProductsImage(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
       }
 
-      $Qproducts = $this->db->get('products', ['products_image'],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_image'], $array);
 
       $products_image = HTML::outputProtected($Qproducts->value('products_image'));
 
@@ -413,17 +392,18 @@
      * @return string $products_image_medium, image medium of the product
      * @access private
      */
-    private function setProductsImageMedium(?int $id = null)
+    private function setProductsImageMedium(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
       }
 
-      $Qproducts = $this->db->get('products', ['products_image_medium'],
-        ['products_status' => 1,
-          'products_id' => (int)$id
-        ]
-      );
+      $array = [
+        'products_status' => 1,
+        'products_id' => (int)$id
+      ];
+
+      $Qproducts = $this->db->get('products', ['products_image_medium'], $array);
 
       $products_image_medium = HTML::outputProtected($Qproducts->value('products_image_medium'));
 
@@ -447,10 +427,9 @@
     /**
      * display date available
      * @param int|null $id
-     * @return string $products_date_available,  product date available
-     * @access private
+     * @return string
      */
-    private function setProductsDateAvailable(?int $id = null)
+    public function getProductsDateAvailable(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -469,32 +448,11 @@
     }
 
     /**
-     * display date available
-     * @param int|null $id
-     * @return string
-     */
-    public function getProductsDateAvailable(?int $id = null)
-    {
-      return $this->setProductsDateAvailable($id);
-    }
-
-    /**
      * display products ean
      * @param string
      * @return string
      */
-    public function getProductsEAN()
-    {
-      return $this->setProductsEAN();
-    }
-
-    /**
-     * display products ean
-     * @param string
-     * @return string
-     * @access private
-     */
-    private function setProductsEAN()
+    public function getProductsEAN() :string
     {
       $array = [
         'products_status' => 1,
@@ -515,17 +473,6 @@
      */
     public function getProductsSKU(?int $id = null): string
     {
-      return $this->setProductsSKU($id);
-    }
-
-    /**
-     * display products sku
-     * @param int|null $id
-     * @return string
-     * @access private
-     */
-    private function setProductsSKU(?int $id): string
-    {
       if (\is_null($id)) {
         $id = $this->getID();
       }
@@ -545,10 +492,9 @@
     /**
      * display products jan
      * @param int|null $id
-     * @return string
-     * @access private
+     * @return string $products_name, name of the product
      */
-    private function setProductsJAN(?int $id): string
+    public function getProductsJAN(?int $id = null): string
     {
       $array = [
         'products_status' => 1,
@@ -563,22 +509,11 @@
     }
 
     /**
-     * display products jan
-     * @param int|null $id
-     * @return string $products_name, name of the product
-     */
-    public function getProductsJAN(?int $id = null): string
-    {
-      return $this->setProductsJAN($id);
-    }
-
-    /**
      * display products isbn
      * @param int|null $id
      * @return string
-     * @access private
      */
-    private function setProductsISBN(?int $id): string
+    public function getProductsISBN(?int $id = null): string
     {
       $array = [
         'products_status' => 1,
@@ -593,22 +528,11 @@
     }
 
     /**
-     * display products isbn
+     * display products mnp
      * @param int|null $id
      * @return string
      */
-    public function getProductsISBN(?int $id = null): string
-    {
-      return $this->setProductsISBN($id);
-    }
-
-    /**
-     * display products MNP
-     * @param int|null $id
-     * @return string
-     * @access private
-     */
-    private function setProductsMNP(?int $id): string
+    public function getProductsMNP(?int $id = null): string
     {
       $array = [
         'products_status' => 1,
@@ -623,22 +547,11 @@
     }
 
     /**
-     * display products mnp
+     * display products upc
      * @param int|null $id
      * @return string
      */
-    public function getProductsMNP(?int $id = null): string
-    {
-      return $this->setProductsMNP($id);
-    }
-
-    /**
-     * display products UPC
-     * @param int|null $id
-     * @return string
-     * @access private
-     */
-    private function setProductsUPC(?int $id): string
+    public function getProductsUPC(?int $id = null): string
     {
       $array = [
         'products_status' => 1,
@@ -652,34 +565,13 @@
       return $products_upc;
     }
 
-    /**
-     * display products upc
-     * @param int|null $id
-     * @return string
-     */
-    public function getProductsUPC(?int $id = null): string
-    {
-      return $this->setProductsUPC($id);
-    }
-
 
     /**
      * display products barcode
      * @param string
      * @return string bar code
      */
-    public function getProductsBarCode()
-    {
-      return $this->setProductsBarCode();
-    }
-
-    /**
-     * display products barcode
-     * @param string
-     * @return string $products_barcode,  bar code
-     * @access private
-     */
-    private function setProductsBarCode()
+    public function getProductsBarCode() :string
     {
       $array = [
         'products_status' => 1,
@@ -694,12 +586,12 @@
     }
 
     /**
-     * products description
+     * display products description
      * @param int|null $id
-     * @return string description
-     * @access private
+     * @return string $products_description, description of the product
+     *
      */
-    private function setProductsDescription(?int $id): string
+    public function getProductsDescription(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -714,8 +606,8 @@
                                         and pd.language_id = :language_id
                                        ');
 
-      $Qproducts->bindInt(':products_id', $this->getID());
-      $Qproducts->bindInt(':language_id', (int)$this->language->getId());
+      $Qproducts->bindInt(':products_id', $id);
+      $Qproducts->bindInt(':language_id', $this->language->getId());
 
       $Qproducts->execute();
 
@@ -723,30 +615,20 @@
     }
 
     /**
-     * display products description
-     * @param int|null $id
-     * @return string $products_description, description of the product
-     *
-     */
-    public function getProductsDescription(?int $id = null)
-    {
-      return $this->setProductsDescription($id);
-    }
-
-
-    /**
      * Display Short Description
-     * @param int|null $id , id of the products
-     * @param $delete_word , number of the words to delete
-     * @param $delete_word , number of the short description
-     * @return $short_description , short description
-     * @access private
+     * @param int|null $id
+     * @param int $delete_word , number of the words to delete
+     * @param int $products_short_description_number
+     * @return string $short_description , short description
      */
-    private function setProductsShortDescription(?int $id = null, $delete_word, $products_short_description_number)
+    public function getProductsShortDescription(?int $id = null, int $delete_word = 0, int $products_short_description_number = 0) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
       }
+
+      $delete_word = HTML::sanitize($delete_word);
+      $products_short_description_number = HTML::sanitize($products_short_description_number);
 
       $Qproducts = $this->db->prepare('select pd.products_description_summary
                                         from :table_products p,
@@ -775,28 +657,12 @@
     }
 
     /**
-     * Display Short Description
-     * @param int|null $id
-     * @param $delete_word , number of the words to delete
-     * @param $products_short_description_number
-     * @return string $short_description , short description
-     */
-    public function getProductsShortDescription(?int $id = null, $delete_word, $products_short_description_number)
-    {
-      $delete_word = HTML::sanitize($delete_word);
-      $products_short_description_number = HTML::sanitize($products_short_description_number);
-
-      return $this->setProductsShortDescription($id, $delete_word, $products_short_description_number);
-    }
-
-    /**
-     * products dimension
+     * display products dimension
      * @param int|null $id
      * @param string
      * @return string $products_dimension, dimension of the product
-     * @access private
      */
-    private function setProductsDimension(?int $id = null, string $separator) :string
+    public function getProductsDimension(?int $id = null, string $separator = ' x ') :string
     {
       $CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
 
@@ -835,23 +701,11 @@
     }
 
     /**
-     * display products dimension
+     * display products manufacturer
      * @param int|null $id
-     * @param string
-     * @return string $products_dimension, dimension of the product
+     * @return string $products_manufacturer, manufacturer of the product
      */
-    public function getProductsDimension(?int $id = null, string $separator = ' x ') :string
-    {
-      return $this->setProductsDimension($id,$separator);
-    }
-
-    /**
-     * products Manufacturer
-     * @param int|null $id
-     * @return string $products_manuacturer, manufacturer of the product
-     * @access private
-     */
-    private function setProductsManufacturer(?int $id): string
+    public function getProductsManufacturer(?int $id = null)
     {
       $manufacturer_search = '';
 
@@ -887,16 +741,6 @@
     }
 
     /**
-     * display products manufacturer
-     * @param int|null $id
-     * @return string $products_manufacturer, manufacturer of the product
-     */
-    public function getProductsManufacturer(?int $id = null)
-    {
-      return $this->setProductsManufacturer($id);
-    }
-
-    /**
      * display the button in function the boostrap size
      * @param string $size_button , size could be sm, md ...
      */
@@ -908,18 +752,17 @@
     }
 
     /**
-     * display an message for the product new arrival
+     * display image ou button type products new arrival (news)
      * @param int|null $id
-     * @param null $size_button
-     * @return string
-     * @access private
+     * @return string $icon_new_arrival_products, product new arrival
      */
-
-    private function setProductsNewArrival(?int $id = null, $size_button = null)
+    public function getProductsNewArrival(?int $id = null, $size_button = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
       }
+
+      $size_button = $this->getSizeButton($size_button);
 
       $Qproducts = $this->db->get('products', ['products_date_added'],
         ['products_status' => 1,
@@ -943,28 +786,17 @@
         $icon_new_arrival_products = '&nbsp' . $product_button_new_arrival;
 
         return $icon_new_arrival_products;
+      } else {
+        return '';
       }
     }
 
     /**
-     * display image ou button type products new arrival (news)
+     * display sell only the shop
      * @param int|null $id
-     * @return string $icon_new_arrival_products, product new arrival
+     * @return string $products_only_shop, sell only the shop
      */
-    public function getProductsNewArrival(?int $id = null, $size_button = null)
-    {
-      $size_button = HTML::sanitize($size_button);
-
-      return $this->setProductsNewArrival($id, $size_button);
-    }
-
-    /**
-     * products only shop in product info
-     * @param int|null $id
-     * @return string $products_only_shop, only shop concerning the product
-     * @access private
-     */
-    private function setProductsOnlyTheShop(?int $id = null)
+    public function getProductsOnlyTheShop(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -985,19 +817,9 @@
     /**
      * display sell only the shop
      * @param int|null $id
-     * @return string $products_only_shop, sell only the shop
-     */
-    public function getProductsOnlyTheShop(?int $id = null)
-    {
-      return $this->setProductsOnlyTheShop($id);
-    }
-
-    /**
-     * products only on the web site
-     * @param int|null $id
      * @return string $products_only_online, products only on the web site
      */
-    public function setProductsOnlyOnTheWebSite(?int $id = null)
+    public function getProductsOnlyOnTheWebSite(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -1016,22 +838,11 @@
     }
 
     /**
-     * display sell only the shop
-     * @param int|null $id
-     * @return string $products_only_online, products only on the web site
-     */
-    public function getProductsOnlyOnTheWebSite(?int $id = null)
-    {
-      return $this->setProductsOnlyOnTheWebSite($id);
-    }
-
-    /**
-     * products packaging
+     * display products packaging
      * @param null|int
-     * @return string $products_packaging, packaging concerning the product
-     * @access private
+     * @return string $products_packaging, products packaging
      */
-    private function setProductsPackaging(?int $id)
+    public function getProductsPackaging(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -1050,22 +861,11 @@
     }
 
     /**
-     * display products packaging
-     * @param null|int
+     * display products  Date Added
+     * @param int|null $id
      * @return string $products_packaging, products packaging
      */
-    public function getProductsPackaging(?int $id = null)
-    {
-      return $this->setProductsPackaging($id);
-    }
-
-    /**
-     * products products Date Added
-     * @param int|null $id
-     * @return string $products_packaging, packaging concerning the product
-     * @access private
-     */
-    private function setProductsDateAdded(?int $id = null)
+    public function getProductsDateAdded(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -1086,23 +886,11 @@
     }
 
     /**
-     * display products  Date Added
-     * @param string
-     * @return string $products_packaging, products packaging
-     */
-    public function getProductsDateAdded(?int $id = null)
-    {
-      return $this->setProductsDateAdded($id);
-    }
-
-    /**
-     * the products quantity unit type
+     * display products quantity unit type
      * @param int|null $id
-     * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
-     * @access private
+     * @return string $products_quantity_unit['products_quantity_unit_title'], products quantity unit type
      */
-
-    private function setProductQuantityUnitType(?int $id = null)
+    public function getProductQuantityUnitType(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -1127,22 +915,11 @@
     }
 
     /**
-     * display products quantity unit type
-     * @param int|null $id
-     * @return string $products_quantity_unit['products_quantity_unit_title'], products quantity unit type
-     */
-    public function getProductQuantityUnitType(?int $id = null)
-    {
-      return $this->setProductQuantityUnitType($id);
-    }
-
-    /**
      * products_shipping_delay in product info
      * @return string $products_shipping_delay, delay of the shipping
      * @access private
      */
-
-    private function setProductsShippingDelay()
+    public function getProductsShippingDelay() :string
     {
       $language_id = $this->language->getId();
 
@@ -1170,22 +947,10 @@
 
     /**
      * products_shipping_delay in product info
-     * @param string
      * @return string $products_shipping_delay, delay of the shipping
-     * @access private
+     *
      */
-    public function getProductsShippingDelay()
-    {
-      return $this->setProductsShippingDelay();
-    }
-
-    /**
-     * products_head_tag
-     * @param string
-     * @return string $products_head_tag, tag of the product
-     * @access private
-     */
-    private function setProductsHeadTag()
+    public function getProductsHeadTag() :string
     {
       $language_id = $this->language->getId();
 
@@ -1209,23 +974,11 @@
     }
 
     /**
-     * products_shipping_delay in product info
-     * @param string
-     * @return string $products_shipping_delay, delay of the shipping
-     *
-     */
-    public function getProductsHeadTag()
-    {
-      return $this->setProductsHeadTag();
-    }
-
-    /**
-     * products_url in product info
-     * @param string
+     * Display products_url in product info
      * @return string $products_url, url of the product (manufacturer)
      * @access private
      */
-    public function setProductsURLManufacturer()
+    public function getProductsURLManufacturer() :string
     {
       $language_id = $this->language->getId();
 
@@ -1247,23 +1000,11 @@
     }
 
     /**
-     * Display products_url in product info
-     * @param string
-     * @return string $products_url, url of the product (manufacturer)
-     * @access private
-     */
-    public function getProductsURLManufacturer()
-    {
-      return $this->setProductsURLManufacturer();
-    }
-
-    /**
-     * products in shop and web
+     * Display products in shop and web
      * @param int|null $id
-     * @return string $products_web, sell web and shop
-     * @access private
+     * @return string $products_web, sell web and in the shop
      */
-    private function sepProductsWebAndShop(?int $id = null)
+    public function getProductsWebAndShop(?int $id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -1279,27 +1020,16 @@
       if ($Qproducts->value('products_only_shop') != 1 && $Qproducts->value('products_only_online') != 1) {
         $products_web = '';
       }
+
       return $products_web;
     }
 
     /**
-     * Display products in shop and web
-     * @param int|null $id
-     * @return string $products_web, sell web and in the shop
-     *
-     */
-    public function getProductsWebAndShop(?int $id = null)
-    {
-      return $this->sepProductsWebAndShop($id);
-    }
-
-    /**
-     * products_volume
+     * Display products_volume
      * @param string
      * @return string $products_volume, volume of the product
-     * @access private
      */
-    private function setproductsVolume()
+    public function getProductsVolume() :string
     {
       $array = [
         'products_status' => 1,
@@ -1314,17 +1044,7 @@
     }
 
     /**
-     * Display products_volume
-     * @param string
-     * @return string $products_volume, volume of the product
-     */
-    public function getProductsVolume()
-    {
-      return $this->setproductsVolume();
-    }
-
-    /**
-     * products_weight
+     * Display products_weight
      * @param int|null $id
      * @return string $products_weight, weight of the product
      */
@@ -1338,7 +1058,7 @@
 
       $array = [
         'products_status' => 1,
-        'products_id' => (int)$this->getID()
+        'products_id' => (int)$id
       ];
 
       $Qproducts = $this->db->get('products', ['products_weight', 'products_weight_class_id'], $array);
@@ -1429,11 +1149,10 @@
 
     /**
      * the products quantity unit title
-     * @param int|null $id
+     * @param null $id
      * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
-     * @access private
      */
-    private function setProductsQuantityByUnit(?int $id = null)
+    public function getProductsQuantityByUnit($id = null) :string
     {
       if (\is_null($id)) {
         $id = $this->getID();
@@ -1453,16 +1172,6 @@
       $QproductsQuantityUnit->execute();
 
       return $QproductsQuantityUnit->value('products_quantity_unit_title');
-    }
-
-    /**
-     * the products quantity unit title
-     * @param null $id
-     * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
-     */
-    public function getProductsQuantityByUnit($id = null)
-    {
-      return $this->setProductsQuantityByUnit($id);
     }
 
 
@@ -1849,10 +1558,8 @@
     /**
      * Display a message in function the customer group applied
      * @return string
-     * @access private
      */
-
-    private function setProductsAllowingTakeAnOrderMessage() :string
+    public function getProductsAllowingTakeAnOrderMessage() :string
     {
       $submit_button_view = '';
 
@@ -1863,16 +1570,6 @@
       }
 
       return $submit_button_view;
-    }
-
-
-    /**
-     * Display a message in function the customer group applied
-     * @return string
-     */
-    public function getProductsAllowingTakeAnOrderMessage()
-    {
-      return $this->setProductsAllowingTakeAnOrderMessage();
     }
 
     /**

@@ -1,5 +1,8 @@
 3.426
+Little refactoring
 librairies updated
+small fix
+productCommon Class refactoring
 Currency, Does not allow to delete default status
 Product unit qty little improvment
 
