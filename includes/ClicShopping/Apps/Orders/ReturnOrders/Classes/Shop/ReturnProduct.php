@@ -29,8 +29,6 @@
       $dropdown =  HTML::selectField('return_reason_opened', $return_opened_array);
 
       return $dropdown;
-
-      return $dropdown;
     }
 
     /**
