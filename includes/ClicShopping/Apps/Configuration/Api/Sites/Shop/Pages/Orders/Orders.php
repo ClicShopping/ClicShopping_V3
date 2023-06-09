@@ -70,7 +70,7 @@
               $response = ApiShop::notFoundResponse();
               Registry::get('Session')->kill();
             } else {
-              $response = static::saveOrder();  //@todo
+              $response = static::saveOrder();
             }
           } elseif (isset($_GET['update'])) {
             $check = $this->statusCheck('insert_order_status', $token);
@@ -79,7 +79,7 @@
               $response = ApiShop::notFoundResponse();
               Registry::get('Session')->kill();
             } else {
-              $response = static::saveOrder();  //@todo
+              $response = static::saveOrder();
             }
           }
           break;

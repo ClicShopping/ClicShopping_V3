@@ -70,7 +70,7 @@
               $response = ApiShop::notFoundResponse();
               Registry::get('Session')->kill();
             } else {
-              $response = static::saveManufacturer();  //@todo
+              $response = static::saveManufacturer();
             }
           } elseif (isset($_GET['update'])) {
             $check = $this->statusCheck('insert_manufacturer_status', $token);
@@ -79,7 +79,7 @@
               $response = ApiShop::notFoundResponse();
               Registry::get('Session')->kill();
             } else {
-              $response = static::saveManufacturer();  //@todo
+              $response = static::saveManufacturer();
             }
           }
           break;

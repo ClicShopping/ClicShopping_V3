@@ -69,7 +69,7 @@
               $response = ApiShop::notFoundResponse();
               Registry::get('Session')->kill();
             } else {
-              $response = static::saveCategories();  //@todo
+              $response = static::saveCategories();
             }
           } elseif (isset($_GET['update'])) {
             $check = $this->statusCheck('insert_categories_status', $token);
@@ -78,7 +78,7 @@
               $response = ApiShop::notFoundResponse();
               Registry::get('Session')->kill();
             } else {
-              $response = static::saveCategories();  //@todo
+              $response = static::saveCategories();
             }
           }
           break;
