@@ -41,7 +41,6 @@
     padding-right:20px;
 }
 
-/**/
 .nav-link[data-bs-toggle].collapsed:before {
     content: " ";
 }
