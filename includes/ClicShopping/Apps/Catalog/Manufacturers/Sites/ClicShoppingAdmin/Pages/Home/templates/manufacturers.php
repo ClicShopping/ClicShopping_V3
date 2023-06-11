@@ -85,6 +85,7 @@
         <th data-switchable="false"></th>
         <th data-field="manufacturer" data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_manufacturers'); ?></th>
         <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_status'); ?></th>
+        <th data-field="suppliers" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_suppliers'); ?></th>
         <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
@@ -94,6 +95,7 @@
                                                                                              manufacturers_name,
                                                                                              manufacturers_image,
                                                                                              date_added,
+                                                                                             suppliers_id,
                                                                                              last_modified,
                                                                                              manufacturers_status
                                                                     from :table_manufacturers
@@ -130,10 +132,17 @@
           <td scope="row"><?php echo $Qmanufacturers->value('manufacturers_name'); ?></td>
           <td class="text-center">
             <?php
-              if ($Qmanufacturers->value('manufacturers_status') == '0') {
+              if ($Qmanufacturers->valueInt('manufacturers_status') === 0) {
                 echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Manufacturers&SetFlag&page=' . $page . '&flag=1&id=' . $Qmanufacturers->valueInt('manufacturers_id')) . '"><i class="bi-check text-success"></i></a>';
               } else {
                 echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Manufacturers&SetFlag&page=' . $page . '&flag=0&id=' . $Qmanufacturers->valueInt('manufacturers_id')) . '"><i class="bi bi-x text-danger"></i></a>';
+              }
+            ?>
+          </td>
+          <td class="text-center">
+            <?php
+              if ($Qmanufacturers->valueInt('suppliers_id') !== 0) {
+                echo '<i class="bi-check text-success"></i>';
               }
             ?>
           </td>

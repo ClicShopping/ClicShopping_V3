@@ -44,6 +44,7 @@ table_heading_new_manufacturer = New brand
 table_heading_edit_manufacturer = Edit brand
 table_heading_delete_manufacturer = Delete brand
 table_heading_status = Status
+table_heading_suppliers = Supplier affiliated
 
 table_heading_products_model = Model
 table_heading_products_name = Products name
