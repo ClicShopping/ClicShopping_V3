@@ -59,7 +59,7 @@ text_info_heading_delete_orders_status = Supprimer statut de commande
 text_set_public_status = Montre la commande au client en fonction du niveau du statut de la commande
 text_set_downloads_status = Permettre le téléchargement de produits virtuels en fonction du statut de la commande
 text_set_support_orders_flag = Supprime la génération de la commande PDF au client (A appliquer uniquement sur la gestion du statut du support)
-text_set_authorize_to_delete_status = Autoriser l'administrateur à supprimer les commande
+text_set_authorize_to_delete_status = Autoriser l'administrateur à supprimer les commandes
 
 table_heading_public_status_download = Statut Public des commandes :
 text_info_edit_public_status_view = Visible
