@@ -116,6 +116,7 @@ text_product_more_information = <a href="https://%s" target="blank"><span class=
 text_products_date_added = Product added our catalog on:
 text_products_date_available = Product in stock on:
 text_products_shipping_delay = Specific delivery (other than by default) :
+text_products_shipping_delay_out_of_stock = Specific delivery out of stock (other than by default) :
 text_products_option = Optional fields
 text_products_sort_order = Sort order
 

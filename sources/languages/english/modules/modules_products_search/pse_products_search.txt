@@ -22,6 +22,7 @@ text_products_packaging_new = new
 text_products_packaging_repackaged = Repackaged
 text_products_packaging_used = Used
 text_display_shipping_delay = Shipping delay
+text_display_shipping_delay_out_of_stock = Shipping delay out of Stock
 text_products_volume = Volume
 text_display_products_weight = Kg
 text_price =

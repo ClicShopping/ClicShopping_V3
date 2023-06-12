@@ -38,6 +38,7 @@
     protected $products_only_web;
     protected $products_packaging;
     protected $products_shipping_delay;
+    protected $products_shipping_delay_out_of_stock;
     protected $products_tag;
     protected $products_volume;
     protected $products_weight;
@@ -946,8 +947,38 @@
     }
 
     /**
-     * products_shipping_delay in product info
-     * @return string $products_shipping_delay, delay of the shipping
+     * products_shipping_delay_out_of_stock in product info
+     * @return string $products_shipping_delay_out_of_stock, delay of the shipping
+     * @access private
+     */
+    public function getProductsShippingDelayOutOfStock() :string
+    {
+      $language_id = $this->language->getId();
+
+      $Qproducts = $this->db->prepare('select pd.products_shipping_delay_out_of_stock
+                                        from :table_products p,
+                                             :table_products_description pd
+                                        where p.products_status = 1
+                                        and p.products_id = :products_id
+                                        and pd.products_id = p.products_id
+                                        and pd.language_id = :language_id
+                                       ');
+
+      $Qproducts->bindInt(':products_id', $this->getID());
+      $Qproducts->bindInt(':language_id', (int)$language_id);
+      $Qproducts->execute();
+
+      $products_shipping_delay_out_of_stock = $Qproducts->value('products_shipping_delay_out_of_stock');
+
+      if (empty($products['products_shipping_delay_out_of_stock'])) {
+        $products_shipping_delay_out_of_stock = HTML::outputProtected(DISPLAY_SHIPPING_DELAY_OUT_OF_STOCK);
+      }
+
+      return $products_shipping_delay_out_of_stock;
+    }
+
+    /**
+     * @return string
      *
      */
     public function getProductsHeadTag() :string

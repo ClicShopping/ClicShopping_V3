@@ -22,6 +22,7 @@ text_products_packaging_new = neuf
 text_products_packaging_repackaged = reconditionné
 text_products_packaging_used = utilisé
 text_display_shipping_delay = Délais expédition
+text_display_shipping_delay_out_of_stock = Délais expédition produit hors stock
 text_products_volume = Volume produit
 text_display_products_weight = Poids kg
 text_price =

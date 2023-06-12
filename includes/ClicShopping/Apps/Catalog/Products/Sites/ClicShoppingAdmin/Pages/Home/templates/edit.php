@@ -84,6 +84,7 @@
     'products_download_filename' => '',
     'products_download_public' => '',
     'products_description_summary' => '',
+    'products_shipping_delay_out_of_stock' => '',
     'products_type' => '',
   ];
 
@@ -381,43 +382,82 @@
             </div>
             <div class="separator"></div>
             <div class="row" id="tab2Shipping"></div>
-            <div class="separator"></div>
-            <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelay">
-              <span
-                class="col-sm-4"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay'); ?></span>
-              <span>
-                <a
-                  href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=DISPLAY_SHIPPING_DELAY'); ?>"
-                  data-bs-toggle="modal" data-refresh="true"
-                  data-bs-target="#myModal1"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>'; ?></a>
-                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-body"><div class="te"></div></div>
-                    </div> <!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-              </span>
-            </div>
-
-            <?php
-            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-              ?>
-              <div class="form-group row">
-                <label for="code"
-                       class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                <div
-                  class="col-md-5"><?php echo HTML::inputField('products_shipping_delay[' . $languages[$i]['id'] . ']', (isset($products_shipping_delay[$languages[$i]['id']]) ? $products_shipping_delay[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsShippingDelay($pInfo->products_id, $languages[$i]['id'])), 'size="90"'); ?></div>
-              </div>
-              <?php
-            }
-            ?>
-            <div class="separator"></div>
-            <div class="row" id="tab2ShippingAdd"></div>
-            <div class="separator"></div>
           </div>
-        </div>
+
+            <div class="separator"></div>
+              <div class="col-md-12 mainTitle"><span</span></div>
+              <div class="adminformTitle">
+                <div class="separator"></div>
+                <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelay">
+                  <div class="btn-group" role="group" aria-label="buttonGroup">
+                    <span
+                      class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay'); ?></span>
+                    <span>
+                      <a
+                        href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=DISPLAY_SHIPPING_DELAY'); ?>"
+                        data-bs-toggle="modal" data-refresh="true"
+                        data-bs-target="#myModal1"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>'; ?></a>
+                      <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                           aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-body"><div class="te"></div></div>
+                          </div> <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                      </div><!-- /.modal -->
+                    </span>
+                  </div>
+                </div>
+                <?php
+                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                  ?>
+                  <div class="form-group row">
+                    <label for="code"
+                           class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                    <div
+                      class="col-md-5"><?php echo HTML::inputField('products_shipping_delay[' . $languages[$i]['id'] . ']', (isset($products_shipping_delay[$languages[$i]['id']]) ? $products_shipping_delay[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsShippingDelay($pInfo->products_id, $languages[$i]['id'])), 'size="90"'); ?></div>
+                  </div>
+                  <?php
+                }
+                ?>
+                <div class="separator"></div>
+                <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelayOutOfStock">
+                  <div class="btn-group" role="group" aria-label="buttonGroup">
+                    <span class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay_out_of_stock'); ?></span>
+                    <span>
+                      <a  href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=DISPLAY_SHIPPING_DELAY_OUT_OF_STOCK'); ?>"
+                          data-bs-toggle="modal" data-refresh="true"
+                          data-bs-target="#myModal1"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>'; ?></a>
+                      <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                           aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-body"><div class="te"></div></div>
+                          </div> <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                      </div><!-- /.modal -->
+                    </span>
+                  </div>
+                </div>
+
+                <?php
+                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                  ?>
+                    <div class="form-group row">
+                      <label for="code"
+                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                      <div
+                              class="col-md-5"><?php echo HTML::inputField('products_shipping_delay_out_of_stock[' . $languages[$i]['id'] . ']', (isset($products_shipping_delay[$languages[$i]['id']]) ? $products_shipping_delay[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsShippingDelay($pInfo->products_id, $languages[$i]['id'])), 'size="90"'); ?></div>
+                    </div>
+                  <?php
+                }
+                ?>
+              </div>
+              <div class="separator"></div>
+
+              <div class="row" id="tab2ShippingAdd"></div>
+              <div class="separator"></div>
+            </div>
 
         <?php
           // ******************************************

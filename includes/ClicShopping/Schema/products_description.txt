@@ -9,8 +9,9 @@ products_head_title_tag text null
 products_head_desc_tag text null
 products_head_keywords_tag text null
 products_head_tag text null
-products_shipping_delay text
+products_shipping_delay varchar(255)
 products_description_summary text
+products_shipping_delay_out_of_stock varchar(255)
 --
 primary products_id language_id
 products_name products_name

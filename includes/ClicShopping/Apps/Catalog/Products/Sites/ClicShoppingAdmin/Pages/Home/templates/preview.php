@@ -161,6 +161,7 @@
             <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_min_order_quantity') . ' ' . $products['products_min_qty_order']; ?></div>
             <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_date_available') . ' ' . $products['products_date_available']; ?></div>
             <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay') . ' ' . $products['products_shipping_delay']; ?></div>
+            <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay_out_of_stock') . ' ' . $products['products_shipping_delay_out_of_stock']; ?></div>
 
         </div>
       </div>

@@ -385,6 +385,23 @@
 
     /**
      * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getProductsShippingDelayOutOfStock($products_id, string $tag = ' ') :string
+    {
+      if (!empty($this->productsCommon->getProductsShippingDelayOutOfStock($products_id))) {
+        $products_shipping_delay_out_of_stock = CLICSHOPPING::getDef('text_display_shipping_delay_out_of_stock') . $tag . $this->productsCommon->getProductsShippingDelayOutOfStock($products_id);
+
+        return $products_shipping_delay_out_of_stock;
+      } else {
+        return '';
+      }
+    }
+
+
+    /**
+     * @param $products_id
      * @return string
      */
     public function getProductsHeadTag($products_id)

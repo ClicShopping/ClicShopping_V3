@@ -7,6 +7,7 @@ Currency, Does not allow to delete default status
 Product unit qty little improvment
 fix bug display discount
 Manufacturers improvment
+Add shipping Delay out of stock
 
 -------------------
 

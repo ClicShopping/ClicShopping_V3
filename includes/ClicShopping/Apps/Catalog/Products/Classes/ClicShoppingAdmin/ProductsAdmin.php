@@ -86,6 +86,7 @@
           'products_url' => isset($_POST['products_url'][$language_id]) ? HTML::sanitize($_POST['products_url'][$language_id]) : '',
           'products_head_tag' => isset($_POST['products_head_tag'][$language_id]) ? HTML::sanitize($_POST['products_head_tag'][$language_id]) : '',
           'products_shipping_delay' => isset($_POST['products_shipping_delay'][$language_id]) ? HTML::sanitize($_POST['products_shipping_delay'][$language_id]) : '',
+          'products_shipping_delay_out_of_stock' => isset($_POST['products_shipping_delay_out_of_stock'][$language_id]) ? HTML::sanitize($_POST['products_shipping_delay_out_of_stock'][$language_id]) : '',
           'products_description_summary' => isset($_POST['products_description_summary'][$language_id]) ? HTML::sanitize($_POST['products_description_summary'][$language_id]) : '',
         ];
 
@@ -291,7 +292,7 @@
      * Shipping delay of the product
      *
      * @param string|int|null $product_id , $language_id
-     * @return string|bool $product['products_shipping_delay'], url of the product
+     * @return string|bool $product['products_shipping_delay']
      *
      */
     public function getProductsShippingDelay(string|int|null $id = null, int $language_id) :string|bool
@@ -308,6 +309,32 @@
         $Qproduct->execute();
   
         return $Qproduct->value('products_shipping_delay');
+      } else {
+        return false;
+      }
+    }
+
+    /**
+     * Shipping delay of the product out of stock
+     *
+     * @param string|int|null $product_id , $language_id
+     * @return string|bool $product['products_shipping_delay_out_of_stock']
+     *
+     */
+    public function getProductsShippingDelayOutOfStock(string|int|null $id = null, int $language_id) :string|bool
+    {
+      if (!\is_null($id)) {
+        $Qproduct = $this->db->prepare('select products_shipping_delay_out_of_stock
+                                       from :table_products_description
+                                       where products_id = :products_id
+                                       and language_id = :language_id
+                                     ');
+        $Qproduct->bindInt(':products_id', $id);
+        $Qproduct->bindInt(':language_id', $language_id);
+
+        $Qproduct->execute();
+
+        return $Qproduct->value('products_shipping_delay_out_of_stock');
       } else {
         return false;
       }
@@ -849,7 +876,8 @@
                                                     products_head_keywords_tag,
                                                     products_url,
                                                     products_head_tag,
-                                                    products_shipping_delay
+                                                    products_shipping_delay,
+                                                    products_shipping_delay_out_of_stock
                                              from :table_products_description
                                              where products_id = :products_id
                                             ');
@@ -871,6 +899,7 @@
             'products_viewed' => 0,
             'products_head_tag' => $Qdescription->value('products_head_tag'),
             'products_shipping_delay' => $Qdescription->value('products_shipping_delay'),
+            'products_shipping_delay_out_of_stock' => $Qdescription->value('products_shipping_delay_out_of_stock'),
             'products_description_summary' => $Qdescription->value('products_description_summary')
           ];
 

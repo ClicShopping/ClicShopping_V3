@@ -1,0 +1,8 @@
+ALTER TABLE `clic_products_description` ADD `products_shipping_delay_out_of_stock` VARCHAR(255) NULL AFTER `products_description_summary`;
+
+#french
+INSERT INTO clic_configuration VALUES(null, 'Veuillez insérer vos délais de livraison par défaut à indiquer à vos clients (produits hors stock)', 'DISPLAY_SHIPPING_DELAY_OUT_OF_STOCK', '10 jours', 'Veuillez indiquer vos délais de livraison des produits par défaut à vos client (produits hors stock)<br><br>.<b>Note :</b><i> Pour la France cette information est obligatoire (lois Chatel)</i>', 25, 14, '2006-10-23 22:49:44', '2006-04-09 16:13:47', NULL, NULL);
+
+
+#english
+INSERT INTO clic_configuration VALUES(null, 'Please enter your delivery time (out of stock) by defaults to indicate at your customers', 'DISPLAY_SHIPPING_DELAY_OUT_OF_STOCK', '4 days', 'Please indicate your delivery time products (out of stock) to your customer by default<br><br>.<b>Note :</b><br /><i>- For France this information is mandatory (laws Chatel)</i>', 25, 14, '2006-10-23 22:49:44', '2006-04-09 16:13:47', NULL, NULL);
