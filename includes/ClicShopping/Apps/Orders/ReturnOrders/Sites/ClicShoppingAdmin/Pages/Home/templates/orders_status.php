@@ -62,7 +62,7 @@
       <thead class="dataTableHeadingRow">
       <tr>
         <th data-field="status"><?php echo $CLICSHOPPING_ReturnOrders->getDef('table_heading_orders_status'); ?></th>
-        <th data-switchable="false"class="text-end"><?php echo $CLICSHOPPING_ReturnOrders->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-switchable="false"class="text-end"><?php echo $CLICSHOPPING_ReturnOrders->getDef('table_heading_return_orders_action'); ?>&nbsp;</th>
       </tr>
       </thead>
       <tbody>
