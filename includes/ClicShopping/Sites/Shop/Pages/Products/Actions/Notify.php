@@ -12,7 +12,6 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTML;
 
   class Notify extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -53,6 +52,7 @@
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success');
+
         CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
     }

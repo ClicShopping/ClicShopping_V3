@@ -1,5 +1,18 @@
 ALTER TABLE `clic_products_description` ADD `products_shipping_delay_out_of_stock` VARCHAR(255) NULL AFTER `products_description_summary`;
 
+CREATE TABLE `clic_products_recommendations` (
+  `id` int(11) NOT NULL,
+  `customers_id` int(11) NOT NULL,
+  `products_id` int(11) NOT NULL,
+  `score` float DEFAULT NULL,
+  `recommendation_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `clic_products_recommendations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `products_id` (`products_id`),
+  ADD KEY `customers_id` (`customers_id`);
+
 #french
 INSERT INTO clic_configuration VALUES(null, 'Veuillez insérer vos délais de livraison par défaut à indiquer à vos clients (produits hors stock)', 'DISPLAY_SHIPPING_DELAY_OUT_OF_STOCK', '10 jours', 'Veuillez indiquer vos délais de livraison des produits par défaut à vos client (produits hors stock)<br><br>.<b>Note :</b><i> Pour la France cette information est obligatoire (lois Chatel)</i>', 25, 14, '2006-10-23 22:49:44', '2006-04-09 16:13:47', NULL, NULL);
 

@@ -8,6 +8,7 @@ Product unit qty little improvment
 fix bug display discount
 Manufacturers improvment
 Add shipping Delay out of stock
+Add products recommendations class
 
 -------------------
 
