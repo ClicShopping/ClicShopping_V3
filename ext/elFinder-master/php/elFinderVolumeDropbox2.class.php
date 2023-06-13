@@ -544,7 +544,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
         }
 
         // normalize root path
-        $this->options['path'] = mb_strtolower($this->options['path']);
+        $this->options['path'] = strtolower($this->options['path']);
         if ($this->options['path'] == 'root') {
             $this->options['path'] = '/';
         }
@@ -976,7 +976,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
      **/
     protected function _joinPath($dir, $name)
     {
-        return rtrim($dir, '/') . '/' . mb_strtolower($name);
+        return rtrim($dir, '/') . '/' . strtolower($name);
     }
 
     /**

@@ -431,7 +431,7 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 		if ($res && isset($_REQUEST['init'])) {
 			// check is index(nameidx) UNIQUE?
 			$chk = $this->query('SELECT sql FROM sqlite_master WHERE type=\'index\' and name=\'nameidx\'');
-			if (!$chk || strpos(mb_strtoupper($chk[0]), 'UNIQUE') === false) {
+			if (!$chk || strpos(strtoupper($chk[0]), 'UNIQUE') === false) {
 				// remake
 				$this->DB->exec('DROP TABLE '.$this->DB_TableName);
 				$res = false;
@@ -471,7 +471,7 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 	 * @return array dropbox metadata
 	 */
 	private function getDBdat($path) {
-		if ($res = $this->query('select dat from '.$this->DB_TableName.' where path='.$this->DB->quote(mb_strtolower($this->_dirname($path))).' and fname='.$this->DB->quote(mb_strtolower($this->_basename($path))).' limit 1')) {
+		if ($res = $this->query('select dat from '.$this->DB_TableName.' where path='.$this->DB->quote(strtolower($this->_dirname($path))).' and fname='.$this->DB->quote(strtolower($this->_basename($path))).' limit 1')) {
 			return unserialize($res[0]);
 		} else {
 			return array();
@@ -488,7 +488,7 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 	private function updateDBdat($path, $dat) {
 		return $this->query('update '.$this->DB_TableName.' set dat='.$this->DB->quote(serialize($dat))
 				. ', isdir=' . ($dat['is_dir']? 1 : 0)
-				. ' where path='.$this->DB->quote(mb_strtolower($this->_dirname($path))).' and fname='.$this->DB->quote(mb_strtolower($this->_basename($path))));
+				. ' where path='.$this->DB->quote(strtolower($this->_dirname($path))).' and fname='.$this->DB->quote(strtolower($this->_basename($path))));
 	}
 	/*********************************************************************/
 	/*                               FS API                              */
@@ -550,11 +550,11 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 				$cursor = $_info['cursor'];
 				
 				foreach($_info['entries'] as $entry) {
-					$key = mb_strtolower($entry[0]);
-					$pkey = mb_strtolower($this->_dirname($key));
+					$key = strtolower($entry[0]);
+					$pkey = strtolower($this->_dirname($key));
 					
 					$path = $this->DB->quote($pkey);
-					$fname = $this->DB->quote(mb_strtolower($this->_basename($key)));
+					$fname = $this->DB->quote(strtolower($this->_basename($key)));
 					$where = 'where path='.$path.' and fname='.$fname;
 					
 					if (empty($entry[1])) {
@@ -588,7 +588,7 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 						$_update = true;
 					}
 					if ($_update) {
-						$pwhere = 'where path='.$this->DB->quote(mb_strtolower($this->_dirname($_p))).' and fname='.$this->DB->quote(mb_strtolower($this->_basename($_p)));
+						$pwhere = 'where path='.$this->DB->quote(strtolower($this->_dirname($_p))).' and fname='.$this->DB->quote(strtolower($this->_basename($_p)));
 						$this->DB->exec('update '.$this->DB_TableName.' set dat='.$this->DB->quote(serialize($praw)).' '.$pwhere);
 					}
 				}
@@ -626,7 +626,7 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 		                (isset($raw['modified'])? strtotime($raw['modified']) : $_SERVER['REQUEST_TIME']);
 		$stat['dirs'] = 0;
 		if ($raw['is_dir']) {
-			$stat['dirs'] = (int)(bool)$this->query('select path from '.$this->DB_TableName.' where isdir=1 and path='.$this->DB->quote(mb_strtolower($raw['path'])));
+			$stat['dirs'] = (int)(bool)$this->query('select path from '.$this->DB_TableName.' where isdir=1 and path='.$this->DB->quote(strtolower($raw['path'])));
 		}
 		
 		if (!empty($raw['url'])) {
@@ -651,7 +651,7 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 		$this->dirsCache[$path] = array();
 		$hasDir = false;
 		
-		$res = $this->query('select dat from '.$this->DB_TableName.' where path='.$this->DB->quote(mb_strtolower($path)));
+		$res = $this->query('select dat from '.$this->DB_TableName.' where path='.$this->DB->quote(strtolower($path)));
 		
 		if ($res) {
 			foreach($res as $raw) {
@@ -687,7 +687,7 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 	protected function doSearch($path, $q, $mimes) {
 		$result = array();
 		$sth = $this->DB->prepare('select dat from '.$this->DB_TableName.' WHERE path LIKE ? AND fname LIKE ?');
-		$sth->execute(array((($path === '/')? '' : mb_strtolower($path)).'%', '%'.mb_strtolower($q).'%'));
+		$sth->execute(array((($path === '/')? '' : strtolower($path)).'%', '%'.strtolower($q).'%'));
 		$res = $sth->fetchAll(PDO::FETCH_COLUMN);
 		$timeout = $this->options['searchTimeout']? $this->searchStart + $this->options['searchTimeout'] : 0;
 		

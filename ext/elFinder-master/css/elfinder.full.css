@@ -1,9 +1,9 @@
 /*!
  * elFinder - file manager for web
- * Version 2.1.61 (2.1-src Nightly: 1733024) (2022-03-15)
+ * Version 2.1.62 (2023-06-14)
  * http://elfinder.org
  * 
- * Copyright 2009-2022, Studio 42
+ * Copyright 2009-2023, Studio 42
  * Licensed under a 3-clauses BSD license
  */
 
@@ -986,7 +986,6 @@ div.elfinder {
     visibility: visible;
     font-size: 18px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    z-index: 9999;
 }
 
 /* prevent auto zoom on iOS */

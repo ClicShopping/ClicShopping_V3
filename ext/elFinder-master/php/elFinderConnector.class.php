@@ -55,7 +55,7 @@ class elFinderConnector
     {
 
         $this->elFinder = $elFinder;
-        $this->reqMethod = mb_strtoupper($_SERVER["REQUEST_METHOD"]);
+        $this->reqMethod = strtoupper($_SERVER["REQUEST_METHOD"]);
         if ($debug) {
             self::$contentType = 'Content-Type: text/plain; charset=utf-8';
         }
@@ -246,7 +246,7 @@ class elFinderConnector
                             header('Content-Range: bytes ' . $start . '-' . $end . '/' . $size);
 
                             // Apache mod_xsendfile dose not support range request
-                            if (isset($data['info']['xsendfile']) && mb_strtolower($data['info']['xsendfile']) === 'x-sendfile') {
+                            if (isset($data['info']['xsendfile']) && strtolower($data['info']['xsendfile']) === 'x-sendfile') {
                                 if (function_exists('header_remove')) {
                                     header_remove($data['info']['xsendfile']);
                                 } else {
