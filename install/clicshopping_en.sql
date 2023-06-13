@@ -1623,6 +1623,11 @@ INSERT INTO configuration VALUES(1600, 'Sort Order', 'MODULE_ADMIN_DASHBOARD_TOT
 INSERT INTO configuration VALUES(1601, 'Marketplace Username', 'CLICSHOPPING_APP_UPGRADE_UP_USERNAME', '', 'The username is our username on ClicShopping Forum (subscription is manadatory)', 6, 0, NULL, '2018-07-30 10:35:50', NULL, NULL);
 INSERT INTO configuration VALUES(1602, 'Marketplace Password', 'CLICSHOPPING_APP_UPGRADE_UP_PASSWORD', '', 'The password is our password on ClicShopping Forum (subscription is manadatory)', 6, 0, NULL, '2018-07-30 10:35:50', NULL, NULL);
 
+INSERT INTO configuration VALUES(1603, 'Parameter [Return Orders App]', 'MODULE_MODULES_PRODUCTS_RETURN_ORDERS_INSTALLED', ';Orders\\ReturnOrders\\RO', 'Parameter [Return Orders App]', 6, 0, NULL, '2023-06-13 18:02:40', NULL, NULL);
+INSERT INTO configuration VALUES(1604, 'Status', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2023-06-13 18:06:17', NULL, NULL);
+INSERT INTO configuration VALUES(1605, 'Customer withdrawal period', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_WITHDRAWAL', '14', 'Please indicate the withdrawal period that the customer may use to return the product purchased', 6, 0, NULL, '2023-06-13 18:06:17', NULL, NULL);
+INSERT INTO configuration VALUES(1606, 'Sort Order', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_SORT_ORDER', '30', 'The sort order location of the module shown in the available methods listing (lowest is displayed first).', 6, 0, NULL, '2023-06-13 18:06:17', NULL, NULL);
+
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
 INSERT INTO configuration_group VALUES(2, 'Setup credit card', 'Minimum value: functions / data', 2, 1);

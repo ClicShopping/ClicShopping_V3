@@ -1623,6 +1623,11 @@ INSERT INTO configuration VALUES(1600, 'Sort Order', 'MODULE_ADMIN_DASHBOARD_TOT
 INSERT INTO configuration VALUES(1601, 'Marketplace Username', 'CLICSHOPPING_APP_UPGRADE_UP_USERNAME', '', 'Le nom d\'utilisateur est votre Le nom d\'utilisateur du Forum ClicShopping (souscription obligatoire)', 6, 0, NULL, '2018-07-30 10:35:50', NULL, NULL);
 INSERT INTO configuration VALUES(1602, 'Marketplace Password', 'CLICSHOPPING_APP_UPGRADE_UP_PASSWORD', '', 'Le motdepasseest votre mot de passe du Forum ClicShopping (souscription obligatoire)', 6, 0, NULL, '2018-07-30 10:35:50', NULL, NULL);
 
+INSERT INTO configuration VALUES(1603, 'Parameter [Return Orders App]', 'MODULE_MODULES_PRODUCTS_RETURN_ORDERS_INSTALLED', 'Orders\\ReturnOrders\\RO', 'Parameter [Return Orders App]', 6, 0, NULL, '2023-06-13 18:02:40', NULL, NULL);
+INSERT INTO configuration VALUES(1604, 'Statut', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique', 6, 0, NULL, '2023-06-13 18:02:40', NULL, NULL);
+INSERT INTO configuration VALUES(1605, 'Délai de rétractation du client', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_WITHDRAWAL', '14', 'Veuillez indiquer le délai de rétractation que le client pourra utiliser pour retourner le produit acheté', 6, 0, NULL, '2023-06-13 18:02:40', NULL, NULL);
+INSERT INTO configuration VALUES(1606, 'Ordre de tri d\'affichage', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_SORT_ORDER', '30', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2023-06-13 18:02:40', NULL, NULL);
+
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
 INSERT INTO configuration_group VALUES(2, 'Gestion de la carte de crédit', 'Valeur minimum pour : fonctions / données', 2, 1);
