@@ -2,6 +2,7 @@ module_account_product_return_title = Product return
 module_account_product_return_order_title = order information
 
 module_account_product_return_heading_title = Back product information
+module_account_product_return_product_return_title = Product return
 
 text_name = name
 text_email_address = email
