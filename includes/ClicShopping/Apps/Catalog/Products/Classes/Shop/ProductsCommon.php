@@ -2691,5 +2691,4 @@
 
       return $this->setSymbolWeightByProducts($weight_class_id);
     }
-
   } // end class

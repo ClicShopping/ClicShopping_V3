@@ -13,13 +13,13 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  use ClicShopping\Sites\Shop\ProductsRecommendations as Recommendation;
+  use ClicShopping\Apps\Catalog\Products\Classes\Shop\ProductsRecommendations as Recommendation;
 
   class ProductsRecommendations implements \ClicShopping\OM\ServiceInterface
   {
     public static function start(): bool
     {
-      if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/ProductsRecommendations.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Products/Classes/Shop/ProductsRecommendations.php')) {
         Registry::set('ProductsRecommendations', new Recommendation());
 
         return true;

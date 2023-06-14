@@ -8,7 +8,7 @@
    *
    */
 
-  namespace ClicShopping\Sites\Shop;
+  namespace ClicShopping\Apps\Catalog\Products\Classes\Shop;
 
   use ClicShopping\OM\Registry;
 
