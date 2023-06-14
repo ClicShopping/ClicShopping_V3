@@ -76,7 +76,11 @@
         $purchased_date = DateTime::toShort($info_customer['date_purchased']);
 
         $reason_return = ReturnProduct::getDropDownReason();
-        $withdrawal = CLICSHOPPING_APP_RETURN_ORDERS_RO_WITHDRAWAL;
+        if(\is_defined('CLICSHOPPING_APP_RETURN_ORDERS_RO_WITHDRAWAL')) {
+          $withdrawal = (int)CLICSHOPPING_APP_RETURN_ORDERS_RO_WITHDRAWAL;
+        } else {
+          $withdrawal = '';
+        }
         $reason_opened = ReturnProduct::getDropDownReasonOpened();
 
         $return_product = '<!-- Start account_product_return --> ' . "\n";
