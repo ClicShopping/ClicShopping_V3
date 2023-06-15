@@ -59,7 +59,10 @@
 
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_products_out_of_stock');
 
-      $output = '
+      if ($this->getOutOfStock() == 0 && $this->getProductsOffLine() == 0) {
+        $output = '';
+      } else {
+        $output = '
  <div class="col-md-2 col-12">
     <div class="card bg-danger">
      <div class="card-body">
@@ -78,8 +81,8 @@
     </div>
   </div>
 </div>  
-
       ';
+      }
 
       return $output;
     }

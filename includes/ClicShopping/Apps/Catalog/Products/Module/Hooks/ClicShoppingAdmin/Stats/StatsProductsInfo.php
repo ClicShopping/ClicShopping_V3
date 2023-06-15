@@ -57,7 +57,10 @@
 
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_products_info');
 
-      $output = '
+      if ($this->getProductsArchive() == 0 && $this->getNumberOfProducts() == 0) {
+        $output = '';
+      } else {
+        $output = '
 <div class="col-md-2 col-12">
     <div class="card bg-info">
      <div class="card-body">
@@ -77,6 +80,7 @@
   </div>
 </div>   
       ';
+      }
 
       return $output;
     }

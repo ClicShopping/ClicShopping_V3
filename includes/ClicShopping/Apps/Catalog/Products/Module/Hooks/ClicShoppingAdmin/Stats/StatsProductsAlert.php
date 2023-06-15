@@ -60,7 +60,10 @@
 
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_products_alert');
 
-      $output = '
+      if ($this->getProductsAlert() == 0 && $this->getProductsNotView() == 0) {
+        $output = '';
+      } else {
+        $output = '
 <div class="col-md-2 col-12">
     <div class="card bg-warning">
      <div class="card-body">
@@ -80,6 +83,7 @@
   </div>
 </div>  
       ';
+      }
 
       return $output;
     }

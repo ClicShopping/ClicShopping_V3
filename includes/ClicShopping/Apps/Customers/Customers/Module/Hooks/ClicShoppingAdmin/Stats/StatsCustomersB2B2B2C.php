@@ -65,7 +65,10 @@
      */
     public function display() :string
     {
-      $output = '
+      if ($this->statsCustomersB2C() == 0 && $this->statCustomersB2B() == 0) {
+        $output = '';
+      } else {
+        $output = '
 <div class="col-md-2 col-12">
     <div class="card bg-success">
      <div class="card-body">
@@ -85,6 +88,7 @@
   </div>
 </div>
       ';
+      }
 
       return $output;
     }

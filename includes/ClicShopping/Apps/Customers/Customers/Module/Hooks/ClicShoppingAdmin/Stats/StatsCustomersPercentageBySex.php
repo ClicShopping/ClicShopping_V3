@@ -77,7 +77,10 @@
      */
     public function display() :string
     {
-      $output = '
+      if ($this->statsAverageCustomersMen() == 0 && $this->statsAverageCustomersWomen() == 0) {
+        $output = '';
+      } else {
+        $output = '
 <div class="col-md-2 col-12">
     <div class="card bg-primary">
      <div class="card-body">
@@ -97,6 +100,7 @@
   </div>
 </div>
       ';
+      }
 
       return $output;
     }

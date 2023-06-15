@@ -63,7 +63,10 @@
         return false;
       }
 
-      $output = '
+      if ($this->getCategoriesOn() == 0 && $this->getCategoriesOff() == 0) {
+        $output = '';
+      } else {
+        $output = '
 <div class="col-md-2 col-12">
     <div class="card bg-warning">
      <div class="card-body">
@@ -83,6 +86,7 @@
   </div>
 </div>  
       ';
+      }
 
       return $output;
     }
