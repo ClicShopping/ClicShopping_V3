@@ -1,3 +1,7 @@
+3.427
+
+
+-------------------
 3.426
 Little refactoring
 librairies updated
@@ -12,7 +16,6 @@ Add products recommendations class
 Librairies Elfinder updated
 
 -------------------
-
 3.425
 Little refactoring
 librairies updated
