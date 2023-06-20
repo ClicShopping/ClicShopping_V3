@@ -8,8 +8,8 @@ text_seo_page_translate_language = Peux tu traduire en
 text_question_description = Ecris moi une longue description concernant ce produit :
 text_technical_question = puis créés moi un nouveau paragraphe avec des bullets points en html concernant les caractéristiques techniques
 
-tab_gpt_options = Options ChatGpt
-text_gpt_options = Options ChatGpt
+tab_gpt_options = Gpt
+text_gpt_options = Gpt
 text_options_gpt_description = Autorisez l'IA à générer votre contenu automatiquement ?
 text_options_gpt_summary_description = Autorisez l'IA à générer votre description courte du produit ?
 text_options_gpt_seo_title = Autorisez l'IA à générer le titre SEO du produit ?

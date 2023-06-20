@@ -1,8 +1,8 @@
-heading_title = Chat Gpt
-module_ch_title = Chat Gpt
-module_ch_short_title = Chat Gpt
+heading_title = Gpt
+module_ch_title = Gpt
+module_ch_short_title = Gpt
 
-text_chatgpt = Chat Gpt
+text_chatgpt = Gpt
 text_configure =  Configurer App Module
 
 text_intro = Cette app vous permet d'inclure une gestion des pays <br /><br />
@@ -18,7 +18,7 @@ button_save = Sauver
 button_dialog_uninstall =  Désinstaller
 button_uninstall =  Désinstaller
 button_delete = Supprimer
-button_chatgpt = Chat Gpt
+button_chatgpt = Gpt
 button_cancel = Annuler
 button_new = Nouveau
 button_insert =  Insérer

@@ -1,1 +1,1 @@
-title_menu = ChatGpt
+title_menu = Gpt

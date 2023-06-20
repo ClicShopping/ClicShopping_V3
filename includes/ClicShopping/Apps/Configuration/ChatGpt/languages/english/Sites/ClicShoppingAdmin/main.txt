@@ -1,11 +1,11 @@
-heading_title = ChatGpt
-module_ch_title = ChatGpt
-module_ch_short_title = ChatGpt
+heading_title = Gpt
+module_ch_title = Gpt
+module_ch_short_title = Gpt
 
-text_chatgpt = ChatGpt
+text_chatgpt = Gpt
 text_configure = Configure App Module
 
-text_intro = This app allow you to include a chatgpt page and a shortcut in products page. <br /><br />
+text_intro = This app allow you to include a Gpt page and a shortcut in products page. <br /><br />
 - Activate this module located in the Configuration menu
 - Configure you API Key OpenAI
 - Ask request as you want to help you
@@ -19,7 +19,7 @@ button_save = Save
 button_dialog_uninstall =  Uninstall
 button_uninstall =  Uninstall
 button_delete = Delete
-button_chatgpt = ChatGpt
+button_chatgpt = Gpt
 button_cancel = Cancel
 button_new = New
 button_insert = Insert
