@@ -84,6 +84,7 @@
         <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Manufacturers->getDef('id'); ?></th>
         <th data-switchable="false"></th>
         <th data-field="manufacturer" data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_manufacturers'); ?></th>
+        <th data-field="products" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_products'); ?></th>
         <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_status'); ?></th>
         <th data-field="suppliers" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_suppliers'); ?></th>
         <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_action'); ?>&nbsp;</th>
@@ -130,6 +131,19 @@
             ?>
           </td>
           <td scope="row"><?php echo $Qmanufacturers->value('manufacturers_name'); ?></td>
+          <td>
+            <?php
+              $Qproducts = $CLICSHOPPING_Manufacturers->db->prepare('select count(products_id) as count
+                                                                     from :table_products
+                                                                     where manufacturers_id = :manufacturers_id
+                                                                   ');
+              $Qproducts->bindInt(':manufacturers_id', $Qmanufacturers->valueInt('manufacturers_id'));
+
+              $Qproducts->execute();
+
+              echo $Qproducts->valueInt('count');
+            ?>
+          </td>
           <td class="text-center">
             <?php
               if ($Qmanufacturers->valueInt('manufacturers_status') === 0) {

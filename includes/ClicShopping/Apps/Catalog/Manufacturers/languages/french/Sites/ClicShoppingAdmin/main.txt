@@ -45,6 +45,7 @@ table_heading_edit_manufacturer = Editer marque
 table_heading_delete_manufacturer = Supprimer marque
 table_heading_status = Statut
 table_heading_suppliers = Fournisseur affilié
+table_heading_products = Nbr de produits affiliés
 
 table_heading_products_model = Model
 table_heading_products_name = Products name

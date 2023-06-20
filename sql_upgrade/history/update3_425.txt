@@ -1,0 +1,9 @@
+CREATE TABLE `clic_recommendations` (
+  `customers_id` int(11) NOT NULL,
+  `products_id` int(11) NOT NULL,
+  'products_rate' int(11) NOT NULL,
+  `score` float DEFAULT NULL,
+  `recommendation_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `clic_recommendations` ADD PRIMARY KEY (`customers_id`,`products_id`);

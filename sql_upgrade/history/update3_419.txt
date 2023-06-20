@@ -1,0 +1,2 @@
+
+ALTER TABLE `clic_template_email` ADD `template_app_code` VARCHAR(255) NULL DEFAULT NULL AFTER `template_email_type`;
