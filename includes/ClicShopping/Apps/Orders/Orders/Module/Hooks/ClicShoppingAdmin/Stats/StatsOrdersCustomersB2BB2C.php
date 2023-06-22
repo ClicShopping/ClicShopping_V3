@@ -63,7 +63,10 @@
 
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_orders_customers_b2b_b2c');
 
-      $output = '
+      if ($this->statsOrdersCustomersB2C() == 0 && $this->statsOrdersCustomersB2B() == 0) {
+        $output = '';
+      } else {
+        $output = '
 <div class="col-md-2 col-12">
     <div class="card bg-primary">
      <div class="card-body">
@@ -83,6 +86,7 @@
   </div>
 </div>
       ';
+      }
 
       return $output;
     }
