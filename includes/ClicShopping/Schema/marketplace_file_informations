@@ -6,7 +6,7 @@ date_updated date default null
 file_version varchar(255) default null
 file_downloads int(11) default null
 file_rating int(11) default null
-file_prices decimal(154) default null
+file_prices decimal(15,4) default null
 file_date_added date default null
 file_url_screenshot text default null
 file_url_download text default null
