@@ -272,6 +272,15 @@
   <div><?php echo $CLICSHOPPING_Products->getDef('text_products') . '&nbsp;' . $products_count; ?></div>
 
   <?php
+  if (empty($cPath)) {
+    ?>
+    <div class="separator"></div>
+    <div class="alert alert-info text-center" role="alert">
+      <?php echo $CLICSHOPPING_Products->getDef('text_warning_info_display'); ?>
+    </div>
+    <?php
+  }
+
   if ($listingTotalRow > 0 && !isset($_POST['search']))  {
     ?>
     <div class="row">
