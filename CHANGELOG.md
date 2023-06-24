@@ -1,5 +1,6 @@
 3.427
 Manufacturers improvment
+sql fix marketplace db
 
 -------------------
 3.426
