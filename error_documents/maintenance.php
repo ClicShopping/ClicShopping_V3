@@ -21,7 +21,7 @@
 
   http_response_code(404);
 ?>
-<!DOCTYPE htgitaddml>
+<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <title>404 - Error - Page Not Found</title>
