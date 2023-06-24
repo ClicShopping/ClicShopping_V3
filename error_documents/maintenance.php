@@ -8,6 +8,8 @@
  *
  */
 
+  use ClicShopping\OM\CLICSHOPPING;
+
   define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../includes/ClicShopping/') . '/');
 
   require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
