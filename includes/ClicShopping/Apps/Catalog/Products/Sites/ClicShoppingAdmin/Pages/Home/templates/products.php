@@ -75,38 +75,34 @@
           <span
             class="col-md-1 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
           <span class="col-sm-2 text-center">
-             <div>
-               <div>
-<?php
-  echo HTML::form('search', $CLICSHOPPING_Products->link('Products'), 'post', null, ['session_id' => true]);
-  echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Products->getDef('heading_title_search') . '"');
-?>
-               </form>
-             </div>
+            <div>
+              <?php
+                echo HTML::form('search', $CLICSHOPPING_Products->link('Products'), 'post', null, ['session_id' => true]);
+                echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Products->getDef('heading_title_search') . '"');
+              ?>
+             </form>
             </div>
           </span>
           <span class="col-sm-2 text-center">
-             <div>
-               <div>
-<?php
-  echo HTML::form('goto', $CLICSHOPPING_Products->link('Products'), 'post', '', ['session_id' => true]);
-  echo HTML::selectField('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
-?>
-               </form>
-              </div>
+            <div>
+            <?php
+              echo HTML::form('goto', $CLICSHOPPING_Products->link('Products'), 'post', '', ['session_id' => true]);
+              echo HTML::selectField('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
+            ?>
+             </form>
             </div>
           </span>
 
           <span class="col-md-6 text-end">
-<?php
-  if (isset($_GET['search']) || $current_category_id) {
-    echo HTML::button($CLICSHOPPING_Products->getDef('button_back'), null, $CLICSHOPPING_Products->link('Products&' . $cPath_back . 'cID=' . $current_category_id), 'primary') . '&nbsp;';
-  }
+            <?php
+              if (isset($_GET['search']) || $current_category_id) {
+                echo HTML::button($CLICSHOPPING_Products->getDef('button_back'), null, $CLICSHOPPING_Products->link('Products&' . $cPath_back . 'cID=' . $current_category_id), 'primary') . '&nbsp;';
+              }
 
-  if (!isset($_GET['search'])) {
-    echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, $CLICSHOPPING_Products->link('Edit&Insert&cPath=' . $current_category_id), 'success') . '&nbsp;';
-  }
-?>
+              if (!isset($_GET['search'])) {
+                echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, $CLICSHOPPING_Products->link('Edit&Insert&cPath=' . $current_category_id), 'success') . '&nbsp;';
+              }
+            ?>
           </span>
         </div>
       </div>

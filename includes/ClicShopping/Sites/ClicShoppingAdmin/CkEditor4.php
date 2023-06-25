@@ -152,7 +152,7 @@
           height : ' . $height . ',
           filebrowserBrowseUrl : "' . $url . '",
        });
-              </script>';
+       </script>';
 
       return $field;
     }

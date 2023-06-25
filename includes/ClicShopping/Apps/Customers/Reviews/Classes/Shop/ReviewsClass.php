@@ -539,10 +539,10 @@
     public function getCount(int $products_id): int
     {
       $Qcount = $this->db->prepare('select count(r.reviews_id) as reviews_total
-                                from :table_reviews r
-                                where r.products_id = :products_id
-                                and r.status = 1
-                               ');
+                                    from :table_reviews r
+                                    where r.products_id = :products_id
+                                    and r.status = 1
+                                   ');
       $Qcount->bindInt(':products_id', $products_id);
       $Qcount->execute();
 
@@ -554,4 +554,4 @@
 
       return $count;
     }
-  }
+ }

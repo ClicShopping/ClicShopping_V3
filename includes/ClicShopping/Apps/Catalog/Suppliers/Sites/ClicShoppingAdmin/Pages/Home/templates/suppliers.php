@@ -82,6 +82,7 @@
         <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Suppliers->getDef('id'); ?></th>
         <th data-switchable="false"></th>
         <th data-field="suppliers" data-sortable="true"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_suppliers'); ?></th>
+        <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_products_suppliers'); ?></th>
         <th data-field="manager"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_manager'); ?></th>
         <th data-field="phone"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_phone'); ?></th>
         <th data-field="fax"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_fax'); ?></th>
@@ -125,6 +126,19 @@
           ?>
       </td>
       <td scope="row"><?php echo $Qsuppliers->value('suppliers_name'); ?></td>
+      <td>
+        <?php
+        $Qproducts = $CLICSHOPPING_Suppliers->db->prepare('select count(products_id) as count
+                                                                     from :table_products
+                                                                     where suppliers_id = :suppliers_id
+                                                                   ');
+        $Qproducts->bindInt(':suppliers_id', $Qsuppliers->valueInt('suppliers_id'));
+
+        $Qproducts->execute();
+
+        echo $Qproducts->valueInt('count');
+        ?>
+      </td>
       <td><?php echo $Qsuppliers->value('suppliers_manager'); ?></td>
       <td><?php echo $Qsuppliers->value('suppliers_phone'); ?></td>
       <td><?php echo $Qsuppliers->value('suppliers_fax'); ?></td>

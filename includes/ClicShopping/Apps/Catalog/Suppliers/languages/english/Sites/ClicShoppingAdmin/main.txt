@@ -38,7 +38,7 @@ text_display_number_of_link = Display <strong>{{listing_from}}</strong> to <stro
 icon_edit = Edit
 
 table_heading_suppliers = Supplier name
-
+table_heading_products_suppliers = Products Nbr
 table_heading_manager = Manager name
 table_heading_phone = Telephone
 table_heading_fax = FAX
