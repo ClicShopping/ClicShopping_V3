@@ -21,7 +21,7 @@
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-      if (!\is_null($_POST['selected']) &isset($_GET['DeleteAll'])) {
+      if (!\is_null($_POST['selected']) && isset($_GET['DeleteAll'])) {
         foreach ($_POST['selected'] as $id) {
           $CLICSHOPPING_ChatGpt->db->delete('chatgpt', ['gpt_id' => (int)$id]);
 

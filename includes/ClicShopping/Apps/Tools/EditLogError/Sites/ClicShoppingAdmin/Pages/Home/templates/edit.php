@@ -45,18 +45,18 @@
           <span
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/log.png', $CLICSHOPPING_EditLogError->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-5 pageHeading">
-<?php
-  echo '&nbsp;' . $CLICSHOPPING_EditLogError->getDef('heading_title') . ' -  ';
-  echo HTML::outputProtected($log['date']);
-?>
-            </span>
+            <?php
+              echo '&nbsp;' . $CLICSHOPPING_EditLogError->getDef('heading_title') . ' -  ';
+              echo HTML::outputProtected($log['date']);
+            ?>
+          </span>
           <span class="col-md-6 text-end">
-<?php
-  echo HTML::button($CLICSHOPPING_EditLogError->getDef('button_back'), null, $CLICSHOPPING_EditLogError->link('LogError'), 'primary') . ' ';
+            <?php
+              echo HTML::button($CLICSHOPPING_EditLogError->getDef('button_back'), null, $CLICSHOPPING_EditLogError->link('LogError'), 'primary') . ' ';
 
-  echo HTML::form('delete', $CLICSHOPPING_EditLogError->link('LogError&Delete&log=' . $log['key']));
-  echo HTML::button($CLICSHOPPING_EditLogError->getDef('button_delete'), null, null, 'danger');
-?>
+              echo HTML::form('delete', $CLICSHOPPING_EditLogError->link('LogError&Delete&log=' . $log['key']));
+              echo HTML::button($CLICSHOPPING_EditLogError->getDef('button_delete'), null, null, 'danger');
+            ?>
             </form>
            </span>
         </div>
@@ -65,6 +65,10 @@
   </div>
   <div class="separator"></div>
   <div>
-    <?php echo HTML::textAreaField('code', file_get_contents($log['path']), '', '', 'id="code"'); ?>
+    <?php
+    if(isset($log['path'])) {
+      echo HTML::textAreaField('code', file_get_contents($log['path']), '', '', 'id="code"');
+    }
+    ?>
   </div>
 </div>
