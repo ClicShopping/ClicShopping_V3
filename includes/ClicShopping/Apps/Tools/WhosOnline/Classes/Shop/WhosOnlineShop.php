@@ -89,7 +89,11 @@
       if (isset($_SERVER['HTTP_REFERER'])) {
         $referer = HTML::sanitize($_SERVER['HTTP_REFERER']);
       } else {
-        $referer = 'localhost or not defined';
+        if (!empty(gethostbyaddr( $wo_ip_address))) {
+          echo gethostbyaddr( $wo_ip_address);
+        } else {
+          $referer = 'localhost or not defined';
+        }
       }
 
       if (isset($_SERVER['HTTP_USER_AGENT'])) {
@@ -99,7 +103,8 @@
       }
 
       if ($Qsession->fetch() !== false) {
-        $sql_array = ['customer_id' => $wo_customer_id,
+        $sql_array = [
+          'customer_id' => $wo_customer_id,
           'full_name' => $wo_full_name,
           'ip_address' => $wo_ip_address,
           'time_last_click' => $current_time,
@@ -110,7 +115,8 @@
 
         $CLICSHOPPING_Db->save('whos_online', $sql_array, ['session_id' => $wo_session_id]);
       } else {
-        $sql_array = ['customer_id' => $wo_customer_id,
+        $sql_array = [
+	  'customer_id' => $wo_customer_id,
           'full_name' => $wo_full_name,
           'session_id' => $wo_session_id,
           'ip_address' => $wo_ip_address,

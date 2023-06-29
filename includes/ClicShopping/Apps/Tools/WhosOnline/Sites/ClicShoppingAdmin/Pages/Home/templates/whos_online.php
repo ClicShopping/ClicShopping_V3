@@ -18,6 +18,7 @@
   $CLICSHOPPING_WhosOnline = Registry::get('WhosOnline');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_ShoppingCartAdmin = Registry::get('ShoppingCartAdmin');
+  $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
 // remove entries that have expired
