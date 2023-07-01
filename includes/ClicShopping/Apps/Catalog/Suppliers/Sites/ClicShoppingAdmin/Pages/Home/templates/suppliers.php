@@ -129,9 +129,9 @@
       <td>
         <?php
         $Qproducts = $CLICSHOPPING_Suppliers->db->prepare('select count(products_id) as count
-                                                                     from :table_products
-                                                                     where suppliers_id = :suppliers_id
-                                                                   ');
+                                                       from :table_products
+                                                       where suppliers_id = :suppliers_id
+                                                     ');
         $Qproducts->bindInt(':suppliers_id', $Qsuppliers->valueInt('suppliers_id'));
 
         $Qproducts->execute();

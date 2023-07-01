@@ -40,6 +40,10 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $code = $CLICSHOPPING_Language->getCode();
 
+      if (empty($code)) {
+        $code = DEFAULT_LANGUAGE;
+      }
+      
       return $code;
     }
 

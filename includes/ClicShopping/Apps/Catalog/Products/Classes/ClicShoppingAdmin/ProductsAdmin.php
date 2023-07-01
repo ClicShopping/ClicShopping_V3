@@ -1317,8 +1317,8 @@
         ], [
           'count(*) as total'
         ], [
-            'p.products_id' => [
-              'rel' => 'p2c.products_id'
+             'p.products_id' => [
+             'rel' => 'p2c.products_id'
             ],
             'p.products_status' => '1',
             'p2c.products_id' => $products_id
