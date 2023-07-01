@@ -1,8 +1,8 @@
 text_seo_page_title = SEO Page Title
-text_seo_page_title_question = Give me a SEO Title in less 50 characters about this product :
-text_seo_page_tag_question = Give me in less 70 words 5 tag separated by a comma about this product :
-text_seo_page_keywords_question = Give me 7 keywords tag separated by a comma about this product :
-text_seo_page_summary_description_question = Give me in less 50 words a very short description about this product :
+text_seo_page_title_question = and give me a SEO Title in less 50 characters about this product :
+text_seo_page_tag_question = and give me in less 70 words 5 tag separated by a comma about this product :
+text_seo_page_keywords_question = and give me 7 keywords tag separated by a comma about this product :
+text_seo_page_summary_description_question = and give me in less 50 words a very short description about this product :
 text_seo_page_translate_language = Can you translate in
 
 text_question_description = Write me a long description concerning this product :
