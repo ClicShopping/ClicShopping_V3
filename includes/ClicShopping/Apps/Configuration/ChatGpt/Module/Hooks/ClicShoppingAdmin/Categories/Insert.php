@@ -96,7 +96,7 @@
             if(isset($_POST['option_gpt_description'])) {
               $question_description = $this->app->getDef('text_categories_description');
               $categories_description =  $translate_language . ' ' . $language_name . ' : ' .  $question_description . ' ' . $categories_name;
-              $categories_description = ChatGptAdmin::getChatResponse($categories_description);
+              $categories_description = ChatGptAdmin::getGptResponse($categories_description);
 
               if ($categories_description !== false) {
                 $sql_data_array = [
@@ -112,7 +112,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_title'])) {
               $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $categories_name;
-              $seo_product_description = ChatGptAdmin::getChatResponse($seo_product_description);
+              $seo_product_description = ChatGptAdmin::getGptResponse($seo_product_description);
 
               if ($seo_product_description !== false) {
                 $sql_data_array = [
@@ -127,7 +127,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_keywords'])) {
               $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords . ' ' . $categories_name;
-              $seo_product_keywords = ChatGptAdmin::getChatResponse($seo_product_keywords);
+              $seo_product_keywords = ChatGptAdmin::getGptResponse($seo_product_keywords);
 
               if ($seo_product_keywords !== false) {
                 $sql_data_array = [

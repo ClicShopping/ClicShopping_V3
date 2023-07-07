@@ -19,8 +19,6 @@
   use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
   use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatJsAdminSeo;
 
-
-
   class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected mixed $app;
@@ -34,15 +32,12 @@
       $this->app = Registry::get('ChatGpt');
     }
 
-      public function display()
+    public function display()
     {
-      if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False') {
-        return false;
-      }
 
-      if (empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
+     if (ChatGptAdmin::checkGptStatus() === false) {
         return false;
-      }
+     }
 
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/SEO/seo_chat_gpt');
 
@@ -64,7 +59,7 @@
       $text_tag_review = $this->app->getDef('text_tag_review');
 
       $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
-      $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_page_title') . '"></i>';
+      $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';
       $content .= '</button>';
 
       $output = '';

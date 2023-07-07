@@ -11,9 +11,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
-
-  use OpenAI;
-  use OpenAI\Exceptions\ErrorException;
+  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
 
   define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/ClicShopping/') . '/');
 
@@ -27,36 +25,9 @@
   $CLICSHOPPING_Db = Registry::get('Db');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  $client = OpenAI::client(CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
-
   $prompt = HTML::sanitize($_POST['message']);
+  $result = ChatGptAdmin::getGptResponse($prompt);
 
-  if(isset($_POST['engine'])) {
-    $engine = HTML::sanitize($_POST['engine']);
-  } else {
-    $engine = 'text-davinci-003';
-  }
-
-  $top = ['\n'];
-
-  $parameters = [
-    'model' => $engine,  // Spécification du modèle à utiliser
-    'temperature' => (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE, // Contrôle de la créativité du modèle
-    'top_p' => 1, // Caractère de fin de ligne pour la réponse
-    'frequency_penalty' => (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY,
-    'presence_penalty' => 0,
-    'prompt' => $prompt, // Texte d'amorce
-    'max_tokens' => (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN,
-    'stop' => $top,
-    'n' => (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE, // Nombre de réponses à générer
-  ];
-
-  $response = $client->completions()->create($parameters);
-
-  try {
-    $result = $response['choices'][0]['text'];
-  } catch (\RuntimeException $e) {
-    throw new \Exception('Error appears, please look the console error');
-  }
+  //$result = ChatGptAdmin::removeQuestionText($result);
 
   echo $result;

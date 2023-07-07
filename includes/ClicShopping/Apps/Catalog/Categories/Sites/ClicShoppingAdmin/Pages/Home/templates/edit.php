@@ -82,16 +82,16 @@
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Categories->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-end">
-<?php
-  echo HTML::hiddenField('categories_date_added', (($cInfo->date_added) ? $cInfo->date_added : date('Y-m-d'))) . HTML::hiddenField('parent_id', $cInfo->parent_id) . HTML::button($CLICSHOPPING_Categories->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLICSHOPPING_Categories->link('Categories&cPath=' . $_GET['cPath'] . '&cID=' . $_GET['cID']), 'warning');
-?>
-            </span>
+            <?php
+              echo HTML::hiddenField('categories_date_added', (($cInfo->date_added) ? $cInfo->date_added : date('Y-m-d'))) . HTML::hiddenField('parent_id', $cInfo->parent_id) . HTML::button($CLICSHOPPING_Categories->getDef('button_update'), null, null, 'success') . ' ';
+              echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLICSHOPPING_Categories->link('Categories&cPath=' . $_GET['cPath'] . '&cID=' . $_GET['cID']), 'warning');
+            ?>
+          </span>
         </div>
       </div>
     </div>
   </div>
-<div class="separator"></div>
+  <div class="separator"></div>
 
 <div id="categoriesTabs" style="overflow: auto;">
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">

@@ -27,7 +27,7 @@
     public static function getWysiwyg(): string
     {
       $script = '<script src="//cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>';
-      $script .= ChatGptAdmin::ChatGptCkeditorParameters();
+      $script .= ChatGptAdmin::gptCkeditorParameters();
 
       return $script;
     }
@@ -93,7 +93,7 @@
      * @param boolean $override Override the default value with the value found in the GET or POST scope
      *
      */
-    public static function textAreaCkeditor(string $name, ?string $value = null, int $width = 750, int $height = 200, ?string $text = null, ?string $parameters = null, bool $override = true): string
+    public static function textAreaCkeditor(string $name, ?string $value = null, ?int $width = 750, ?int $height = 200, ?string $text = null, ?string $parameters = null, bool $override = true): string
     {
       $field = '<textarea name="' . HTML::output($name) . '"';
 

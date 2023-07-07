@@ -53,11 +53,11 @@
 
         $product_name = $CLICSHOPPING_ProductsAdmin->getProductsName($id);
 
-        $url = ChatGptAdmin::getAjaxUrl();
+        $url = ChatGptAdmin::getAjaxUrl(false);
         $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
 
         $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
-        $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_page_title') . '"></i>';
+        $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';
         $content .= '</button>';
 
         $getProductsSeoTitle = ChatJsAdminSeo::getProductsSeoTitle($content, $urlMultilanguage, $translate_language, $question, $product_name, $url);

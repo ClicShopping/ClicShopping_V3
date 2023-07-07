@@ -12,10 +12,11 @@
   namespace ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\CH\Params;
 
   use ClicShopping\OM\HTML;
+  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
 
   class model extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
-    public $default = 'text-davinci-003';
+    public $default = 'gpt-3.5-turbo';
     public ?int $sort_order = 15;
 
     protected function init()
@@ -26,20 +27,7 @@
 
     public function getInputField()
     {
-      $array = [
-        ['id' => 'text-davinci-003',
-          'text' =>'gpt-3 Davinci 003'
-        ],
-        ['id' => 'gpt-3.5-turbo',
-          'text' =>'gpt-3.5-turbo'
-        ],
-        ['id' => 'gpt-4',
-         'text' =>'gpt-4'
-        ],
-        ['id' => 'gpt-4-32k',
-          'text' =>'gpt-4-32k'
-        ],
-      ];
+      $array = ChatGptAdmin::getGptModel();
 
       $input = HTML::selectField($this->key, $array, $this->getInputValue(), 'id="engine"');
 

@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace OpenAI\Responses\Files;
 
-use OpenAI\Contracts\Response;
+use OpenAI\Contracts\ResponseContract;
 use OpenAI\Responses\Concerns\ArrayAccessible;
+use OpenAI\Testing\Responses\Concerns\Fakeable;
 
 /**
- * @implements Response<array{id: string, object: string, deleted: bool}>
+ * @implements ResponseContract<array{id: string, object: string, deleted: bool}>
  */
-final class DeleteResponse implements Response
+final class DeleteResponse implements ResponseContract
 {
     /**
      * @use ArrayAccessible<array{id: string, object: string, deleted: bool}>
      */
     use ArrayAccessible;
+
+    use Fakeable;
 
     private function __construct(
         public readonly string $id,

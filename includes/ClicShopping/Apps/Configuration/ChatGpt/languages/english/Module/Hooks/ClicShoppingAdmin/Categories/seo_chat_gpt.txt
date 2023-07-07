@@ -1,8 +1,12 @@
 text_seo_page_title = SEO Page Title
+text_seo_action = Click to get Gpt answer
+
 text_seo_page_title_question = and give me a SEO Title in less 50 characters about this category :
-text_seo_page_tag_question = and give me in less 70 words 5 tag separated by a comma about this category :
-text_seo_page_keywords_question = and give me 7 keywords tag separated by a comma about this category :
-text_seo_page_summary_description_question = and give me in less 50 words a very short description about this category :
+text_seo_page_tag_question = and give me in less 70 words 5 SEO tag separated by a comma (tableware, glasses, cutlery...) about this category :
+text_seo_page_keywords_question = and give me 7 keywords SEO tag separated by a comma (#tableware, #glasses, #cutlery...) about this category :
+text_seo_page_summary_description_question = and give me in less 50 words a very short SEO description about this category :
+text_seo_page_categories_question = and give a SEO description about this category :
+
 text_seo_page_translate_language = Can you translate in
 
 tab_gpt_options = ChatGpt Options

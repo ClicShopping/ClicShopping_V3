@@ -1,6 +1,9 @@
 3.428
 Suppliers imporvement (Stats)
 who s online improvment
+Gpt refactoring to use gpt3.5 turbo
+small fix
+
 
 
 -------------------

@@ -1,10 +1,11 @@
 text_seo_page_title = SEO Page de Titre
-text_seo_page_title_question = et donnes moi en moins de 50 mots le SEO Titre concernant :
-text_seo_page_tag_question = et donnes moi en moins de 70 mots, 5 tag sèparès par une virgule concernant :
-text_seo_page_keywords_question = et donnes moi 7 mots clefs sèparès par une virgule concernant :
-text_seo_page_summary_description_question = et donnes moi en moins de 50 mots une description trés courte concernant :
+text_seo_action = Cliquez pour avoir une réponse de Gpt
+text_seo_page_title_question = et donnes moi uniquement en moins de 50 mots le SEO Titre concernant :
+text_seo_page_tag_question = et donnes moi uniquement en moins de 70 mots, 5 tags sèparès par une virgule concernant :
+text_seo_page_keywords_question = , me donner uniquement les 7 mots clefs les plus représentatifs sèparès par une virgule concernant :
+text_seo_page_summary_description_question = et donnes moi uniquement en moins de 50 mots une description trés courte concernant :
 
-text_seo_page_translate_language = Peux tu me traduire en
+text_seo_page_translate_language = Sans répéter la question, peux tu me traduire en
 
 text_tag_specials = produits promotionnels
 text_tag_favorite = produits coup de coeur

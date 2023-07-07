@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace OpenAI\Responses\Completions;
 
-use OpenAI\Contracts\Response;
+use OpenAI\Contracts\ResponseContract;
 use OpenAI\Responses\Concerns\ArrayAccessible;
+use OpenAI\Testing\Responses\Concerns\Fakeable;
 
 /**
- * @implements Response<array{id: string, object: string, created: int, model: string, choices: array<int, array{text: string, index: int, logprobs: array{tokens: array<int, string>, token_logprobs: array<int, float>, top_logprobs: array<int, string>|null, text_offset: array<int, int>}|null, finish_reason: string|null}>, usage: array{prompt_tokens: int, completion_tokens: int|null, total_tokens: int}}>
+ * @implements ResponseContract<array{id: string, object: string, created: int, model: string, choices: array<int, array{text: string, index: int, logprobs: array{tokens: array<int, string>, token_logprobs: array<int, float>, top_logprobs: array<int, string>|null, text_offset: array<int, int>}|null, finish_reason: string|null}>, usage: array{prompt_tokens: int, completion_tokens: int|null, total_tokens: int}}>
  */
-final class CreateResponse implements Response
+final class CreateResponse implements ResponseContract
 {
     /**
      * @use ArrayAccessible<array{id: string, object: string, created: int, model: string, choices: array<int, array{text: string, index: int, logprobs: array{tokens: array<int, string>, token_logprobs: array<int, float>, top_logprobs: array<int, string>|null, text_offset: array<int, int>}|null, finish_reason: string|null}>, usage: array{prompt_tokens: int, completion_tokens: int|null, total_tokens: int}}>
      */
     use ArrayAccessible;
+
+    use Fakeable;
 
     /**
      * @param  array<int, CreateResponseChoice>  $choices
@@ -47,7 +50,7 @@ final class CreateResponse implements Response
             $attributes['created'],
             $attributes['model'],
             $choices,
-            CreateResponseUsage::from($attributes['usage'])
+            CreateResponseUsage::from($attributes['usage']),
         );
     }
 

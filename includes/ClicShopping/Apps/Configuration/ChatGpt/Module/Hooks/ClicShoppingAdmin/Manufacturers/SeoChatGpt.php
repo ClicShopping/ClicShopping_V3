@@ -55,7 +55,7 @@
         $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
 
         $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
-        $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_page_title') . '"></i>';
+        $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';
         $content .= '</button>';
 
         $getManufacturerSeoTitle = ChatJsAdminSeo::getManufacturerSeoTitle($content, $urlMultilanguage, $translate_language, $question, $manufacturer_name, $url);

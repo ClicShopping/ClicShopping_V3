@@ -78,7 +78,7 @@
 //-------------------
             if(isset($_POST['option_gpt_description'])) {
               $manufacturers_description =  $translate_language . ' ' . $language_name . ' : ' .  $question_summary_description . ' ' . $manufacturers_name;
-              $manufacturers_description = ChatGptAdmin::getChatResponse($manufacturers_description);
+              $manufacturers_description = ChatGptAdmin::getGptResponse($manufacturers_description);
 
               if ($manufacturers_description !== false) {
                 $sql_data_array = [
@@ -94,7 +94,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_title'])) {
               $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question . ' ' . $manufacturers_name;
-              $seo_product_title = ChatGptAdmin::getChatResponse($seo_product_title);
+              $seo_product_title = ChatGptAdmin::getGptResponse($seo_product_title);
 
               if ($seo_product_title !== false) {
                 $sql_data_array = [
@@ -109,7 +109,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_title'])) {
               $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $manufacturers_name;
-              $seo_product_description = ChatGptAdmin::getChatResponse($seo_product_description);
+              $seo_product_description = ChatGptAdmin::getGptResponse($seo_product_description);
 
               if ($seo_product_description !== false) {
                 $sql_data_array = [
@@ -124,7 +124,7 @@
 //-------------------
             if(isset($_POST['option_gpt_seo_keywords'])) {
               $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords . ' ' . $manufacturers_name;
-              $seo_product_keywords = ChatGptAdmin::getChatResponse($seo_product_keywords);
+              $seo_product_keywords = ChatGptAdmin::getGptResponse($seo_product_keywords);
 
               if ($seo_product_keywords !== false) {
                 $sql_data_array = [

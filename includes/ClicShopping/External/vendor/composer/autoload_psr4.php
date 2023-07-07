@@ -15,6 +15,8 @@ return array(
     'PhpXmlRpc\\' => array($vendorDir . '/phpxmlrpc/phpxmlrpc/src'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'OpenAI\\' => array($vendorDir . '/openai-php/client/src'),
+    'Http\\Message\\MultipartStream\\' => array($vendorDir . '/php-http/multipart-stream-builder/src'),
+    'Http\\Discovery\\' => array($vendorDir . '/php-http/discovery/src'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),

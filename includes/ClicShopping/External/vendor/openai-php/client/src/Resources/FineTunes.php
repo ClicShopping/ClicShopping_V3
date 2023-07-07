@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace OpenAI\Resources;
 
+use OpenAI\Contracts\Resources\FineTunesContract;
 use OpenAI\Responses\FineTunes\ListEventsResponse;
 use OpenAI\Responses\FineTunes\ListResponse;
 use OpenAI\Responses\FineTunes\RetrieveResponse;
+use OpenAI\Responses\FineTunes\RetrieveStreamedResponseEvent;
+use OpenAI\Responses\StreamResponse;
 use OpenAI\ValueObjects\Transporter\Payload;
 
-final class FineTunes
+final class FineTunes implements FineTunesContract
 {
     use Concerns\Transportable;
 
@@ -90,5 +93,21 @@ final class FineTunes
         $result = $this->transporter->requestObject($payload);
 
         return ListEventsResponse::from($result);
+    }
+
+    /**
+     * Get streamed fine-grained status updates for a fine-tune job.
+     *
+     * @see https://beta.openai.com/docs/api-reference/fine-tunes/events
+     *
+     * @return StreamResponse<RetrieveStreamedResponseEvent>
+     */
+    public function listEventsStreamed(string $fineTuneId): StreamResponse
+    {
+        $payload = Payload::retrieve('fine-tunes', $fineTuneId, '/events?stream=true');
+
+        $response = $this->transporter->requestStream($payload);
+
+        return new StreamResponse(RetrieveStreamedResponseEvent::class, $response);
     }
 }

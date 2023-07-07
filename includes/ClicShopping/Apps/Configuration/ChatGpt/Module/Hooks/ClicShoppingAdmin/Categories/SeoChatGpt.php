@@ -50,6 +50,7 @@
         $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
         $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
         $translate_language = $this->app->getDef('text_seo_page_translate_language');
+        $question_description = $this->app->getDef('text_seo_page_categories_question');
 
         $categories_name = $CLICSHOPPING_CategoriesAdmin->getCategoryName($id, $CLICSHOPPING_Language->getId());
 
@@ -57,22 +58,28 @@
         $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
 
         $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
-        $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_page_title') . '"></i>';
+        $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';
         $content .= '</button>';
 
         $getCategoriesSeoTitle = ChatJsAdminSeo::getCategoriesSeoTitle($content, $urlMultilanguage, $translate_language, $question, $categories_name, $url);
         $getCategoriesSeoDescription = ChatJsAdminSeo::getCategoriesSeoDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $categories_name, $url);
         $getCategoriesSeoKeywords = ChatJsAdminSeo::getCategoriesSeoKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $categories_name, $url);
+        $getCategoriesDescription = ChatJsAdminSeo::getCategoriesDescription($content, $urlMultilanguage, $translate_language, $question_description, $categories_name, $url);
 
 $output = <<<EOD
 <!------------------>
 <!-- ChatGpt start tag-->
 <!------------------>
+<!--categories description -->
+     {$getCategoriesDescription}
+     
+     
+     
 <!-- categories seo meta title -->
     {$getCategoriesSeoTitle}
 <!-- categories meta description -->
     {$getCategoriesSeoDescription}
-<!-- categoires seo meta keyword -->
+<!-- categories seo meta keyword -->
     {$getCategoriesSeoKeywords}
 EOD;
       } else {
@@ -80,6 +87,15 @@ EOD;
         $title = $this->app->getDef('text_gpt_options');
 
         $content = '
+
+
+
+
+
+
+
+
+
             <div class="separator"></div>     
             <div class="row" id="productOptionGptDescription">
               <div class="col-md-9">

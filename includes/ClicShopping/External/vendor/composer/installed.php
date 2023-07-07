@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => '3.428.x-dev',
         'version' => '3.428.9999999.9999999-dev',
-        'reference' => '30a2f5c9db5bd5a95e399ef73d837480d2a9e20d',
+        'reference' => 'c820179f5a887689f2ddcf3ae6a81ae61bf1b250',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => '3.428.x-dev',
             'version' => '3.428.9999999.9999999-dev',
-            'reference' => '30a2f5c9db5bd5a95e399ef73d837480d2a9e20d',
+            'reference' => 'c820179f5a887689f2ddcf3ae6a81ae61bf1b250',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -74,11 +74,41 @@
             'dev_requirement' => false,
         ),
         'openai-php/client' => array(
-            'pretty_version' => 'v0.3.5',
-            'version' => '0.3.5.0',
-            'reference' => '0bb01e93fbd1f155af1c5a70caa53252dd13478f',
+            'pretty_version' => 'v0.6.2',
+            'version' => '0.6.2.0',
+            'reference' => 'aca5cfcfdc7effa1418f4b6997c3510826786b25',
             'type' => 'library',
             'install_path' => __DIR__ . '/../openai-php/client',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'php-http/async-client-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '*',
+            ),
+        ),
+        'php-http/client-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '*',
+            ),
+        ),
+        'php-http/discovery' => array(
+            'pretty_version' => '1.19.0',
+            'version' => '1.19.0.0',
+            'reference' => '1856a119a0b0ba8da8b5c33c080aa7af8fac25b4',
+            'type' => 'composer-plugin',
+            'install_path' => __DIR__ . '/../php-http/discovery',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'php-http/multipart-stream-builder' => array(
+            'pretty_version' => '1.3.0',
+            'version' => '1.3.0.0',
+            'reference' => 'f5938fd135d9fa442cc297dc98481805acfe2b6a',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../php-http/multipart-stream-builder',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -113,6 +143,7 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0',
+                1 => '*',
             ),
         ),
         'psr/http-factory' => array(
@@ -128,6 +159,7 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0',
+                1 => '*',
             ),
         ),
         'psr/http-message' => array(
@@ -143,6 +175,7 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0',
+                1 => '*',
             ),
         ),
         'ralouphie/getallheaders' => array(

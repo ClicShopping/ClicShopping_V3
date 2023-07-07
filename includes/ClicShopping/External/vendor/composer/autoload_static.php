@@ -36,6 +36,11 @@ class ComposerStaticInit559d5c9b702bf740c3f0e192226eea14
         array (
             'OpenAI\\' => 7,
         ),
+        'H' => 
+        array (
+            'Http\\Message\\MultipartStream\\' => 29,
+            'Http\\Discovery\\' => 15,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
@@ -92,6 +97,14 @@ class ComposerStaticInit559d5c9b702bf740c3f0e192226eea14
         'OpenAI\\' => 
         array (
             0 => __DIR__ . '/..' . '/openai-php/client/src',
+        ),
+        'Http\\Message\\MultipartStream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/multipart-stream-builder/src',
+        ),
+        'Http\\Discovery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/discovery/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
