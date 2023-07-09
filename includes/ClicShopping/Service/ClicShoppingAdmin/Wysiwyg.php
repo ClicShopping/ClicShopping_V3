@@ -12,13 +12,13 @@
 
   use ClicShopping\OM\Registry;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\CkEditor4 as WysiwygClass;
+  use ClicShopping\Sites\ClicShoppingAdmin\CkEditor4 as CkEditor4;
 
   class Wysiwyg implements \ClicShopping\OM\ServiceInterface
   {
     public static function start(): bool
     {
-      Registry::set('Wysiwyg', new WysiwygClass());
+        Registry::set('Wysiwyg', new CkEditor4());
 
       return true;
     }

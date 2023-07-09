@@ -44,7 +44,7 @@
                                                            question,
                                                            response,
                                                            date_added
-                                                    from :table_chatgpt
+                                                    from :table_gpt
                                                     where gpt_id = :gpt_id
                                                   ');
     $QchatGpt->bindInt('gpt_id', $gpt_id);

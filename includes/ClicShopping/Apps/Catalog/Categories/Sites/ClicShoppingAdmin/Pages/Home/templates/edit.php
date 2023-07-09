@@ -93,106 +93,106 @@
   </div>
   <div class="separator"></div>
 
-<div id="categoriesTabs" style="overflow: auto;">
-  <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
-    <li
-      class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Categories->getDef('tab_general') . '</a>'; ?></li>
-    <li
-      class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Categories->getDef('tab_description') . '</a>'; ?></li>
-    <li
-      class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Categories->getDef('tab_ref') . '</a>'; ?></li>
-    <li
-      class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Categories->getDef('tab_img') . '</a>'; ?></li>
-  </ul>
-  <div class="tabsClicShopping">
-    <div class="tab-content">
-      <?php
-        // -------------------------------------------------------------------
-        //          ONGLET General sur la description de la categorie
-        // -------------------------------------------------------------------
-      ?>
-      <div class="tab-pane active" id="tab1">
-        <div class="col-md-12 mainTitle">
-          <div class="float-start"><?php echo $CLICSHOPPING_Categories->getDef('text_products_name'); ?></div>
-          <div
-            class="float-end"><?php echo $CLICSHOPPING_Categories->getDef('text_user_name') . AdministratorAdmin::getUserAdmin(); ?></div>
-        </div>
-        <div class="adminformTitle" id="categoriesLanguage">
-          <?php
-            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-              ?>
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="form-group row">
-                    <label for="code"
-                           class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                    <div class="col-md-5">
-                      <?php echo HTML::inputField('categories_name[' . $languages[$i]['id'] . ']', ($categories_name[$languages[$i]['id']] ?? $CLICSHOPPING_CategoriesAdmin->getCategoryName($cInfo->categories_id, $languages[$i]['id'])), 'class="form-control" required aria-required="true" id="' . 'categories_name[' . $languages[$i]['id'] . ']' . '" placeholder="' . $CLICSHOPPING_Categories->getDef('text_edit_categories_name') . '"', true) . '&nbsp;'; ?>
+  <div id="categoriesTabs" style="overflow: auto;">
+    <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
+      <li
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Categories->getDef('tab_general') . '</a>'; ?></li>
+      <li
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Categories->getDef('tab_description') . '</a>'; ?></li>
+      <li
+        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Categories->getDef('tab_ref') . '</a>'; ?></li>
+      <li
+        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Categories->getDef('tab_img') . '</a>'; ?></li>
+    </ul>
+    <div class="tabsClicShopping">
+      <div class="tab-content">
+        <?php
+          // -------------------------------------------------------------------
+          //          ONGLET General sur la description de la categorie
+          // -------------------------------------------------------------------
+        ?>
+        <div class="tab-pane active" id="tab1">
+          <div class="col-md-12 mainTitle">
+            <div class="float-start"><?php echo $CLICSHOPPING_Categories->getDef('text_products_name'); ?></div>
+            <div
+              class="float-end"><?php echo $CLICSHOPPING_Categories->getDef('text_user_name') . AdministratorAdmin::getUserAdmin(); ?></div>
+          </div>
+          <div class="adminformTitle" id="categoriesLanguage">
+            <?php
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                ?>
+                <div class="row">
+                  <div class="col-md-5">
+                    <div class="form-group row">
+                      <label for="code"
+                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                      <div class="col-md-5">
+                        <?php echo HTML::inputField('categories_name[' . $languages[$i]['id'] . ']', ($categories_name[$languages[$i]['id']] ?? $CLICSHOPPING_CategoriesAdmin->getCategoryName($cInfo->categories_id, $languages[$i]['id'])), 'class="form-control" required aria-required="true" id="' . 'categories_name[' . $languages[$i]['id'] . ']' . '" placeholder="' . $CLICSHOPPING_Categories->getDef('text_edit_categories_name') . '"', true) . '&nbsp;'; ?>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <?php
-            }
-          ?>
-
-          <div class="row" id="categoriesName">
-            <div class="col-md-5">
-              <div class="form-group row">
-                <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?>"
-                       class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?></label>
-                <div class="col-md-5">
-                  <?php echo HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $cPath) . HTML::hiddenField('current_category_id', $current_category_id); ?>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="separator"></div>
-        <div class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_Categories->getDef('text_divers_title'); ?></div>
-        <div class="adminformTitle" id="categoriesSortOrder">
-          <div class="row">
-            <div class="col-md-5">
-              <div class="form-group row">
-                <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_edit_sort_order'); ?>"
-                       class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_edit_sort_order'); ?></label>
-                <div class="col-md-5">
-                  <?php echo HTML::inputField('sort_order', $cInfo->sort_order, 'size="2"'); ?>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab1', null, 'display'); ?>
-      </div>
-      <?php
-        // ----------------------------------------------------------- //-->
-          //          categories description                              //-->
-        // ----------------------------------------------------------- //-->
-      ?>
-      <div class="tab-pane" id="tab2">
-        <div class="col-md-12 mainTitle">
-          <span><?php echo $CLICSHOPPING_Categories->getDef('text_description_categories'); ?></span>
-        </div>
-        <div class="adminformTitle">
-          <div class="accordion" id="accordionExample">
-            <?php
-            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-              ?>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="heading<?php $i; ?>">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
-                  </button>
-                </h2>
                 <?php
-                if ($i == 0) {
-                  $show = ' show';
-                } else {
-                  $show = '';
-                }
+              }
+            ?>
+
+            <div class="row" id="categoriesName">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?></label>
+                  <div class="col-md-5">
+                    <?php echo HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $cPath) . HTML::hiddenField('current_category_id', $current_category_id); ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="separator"></div>
+          <div class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_Categories->getDef('text_divers_title'); ?></div>
+          <div class="adminformTitle" id="categoriesSortOrder">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_edit_sort_order'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_edit_sort_order'); ?></label>
+                  <div class="col-md-5">
+                    <?php echo HTML::inputField('sort_order', $cInfo->sort_order, 'size="2"'); ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab1', null, 'display'); ?>
+        </div>
+        <?php
+          // ----------------------------------------------------------- //-->
+            //          categories description                              //-->
+          // ----------------------------------------------------------- //-->
+        ?>
+        <div class="tab-pane" id="tab2">
+          <div class="col-md-12 mainTitle">
+            <span><?php echo $CLICSHOPPING_Categories->getDef('text_description_categories'); ?></span>
+          </div>
+          <div class="adminformTitle">
+            <div class="accordion" id="accordionExample">
+              <?php
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading<?php $i; ?>">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                    </button>
+                  </h2>
+                  <?php
+                  if ($i == 0) {
+                    $show = ' show';
+                  } else {
+                    $show = '';
+                  }
+                  ?>
 
                 <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
@@ -250,126 +250,125 @@
             ?>
             <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-
-                <div class="separator"></div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?>"
-                             class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?></label>
-                      <div class="col-md-8">
-                        <?php echo HTML::inputField('categories_seo_url[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoUrl($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="default_url_' . $i . '"', false); ?>
+                  <div class="separator"></div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group row">
+                        <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?>"
+                               class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?></label>
+                        <div class="col-md-8">
+                          <?php echo HTML::inputField('categories_seo_url[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoUrl($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="default_url_' . $i . '"', false); ?>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="separator"></div>
-                <div class="row" id="categoriesSeoTitle<?php echo $languages_id; ?>">
-                  <div class="col-md-10">
-                    <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                      <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?></label>
-                      <div class="col-md-7 input-group" id="categories_head_title_tag<?php echo $languages_id; ?>">
-                        <?php echo HTML::inputField('categories_head_title_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getcategoriesSeoTitle($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="categories_head_title_tag_' . $languages_id . '"', false); ?>
+                  <div class="separator"></div>
+                  <div class="row" id="categoriesSeoTitle<?php echo $languages_id; ?>">
+                    <div class="col-md-10">
+                      <div class="form-group row" data-index="<?php echo $languages_id; ?>">
+                        <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?></label>
+                        <div class="col-md-7 input-group" id="categories_head_title_tag<?php echo $languages_id; ?>">
+                          <?php echo HTML::inputField('categories_head_title_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getcategoriesSeoTitle($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="categories_head_title_tag_' . $languages_id . '"', false); ?>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="separator"></div>
-                <div class="row" id="categoriesSeoDescription<?php echo $languages_id; ?>">
-                  <div class="col-md-6">
-                    <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                      <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_header_description'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_header_description'); ?></label>
-                      <div class="col-md-8 input-group" id="categories_head_desc_tag<?php echo $languages_id; ?>">
-                        <?php echo HTML::textAreaField('categories_head_desc_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getcategoriesSeoDescription($cInfo->categories_id, $languages[$i]['id']), '110', '5', 'id="categories_head_desc_tag_' . $languages_id . '"'); ?>
+                  <div class="separator"></div>
+                  <div class="row" id="categoriesSeoDescription<?php echo $languages_id; ?>">
+                    <div class="col-md-6">
+                      <div class="form-group row" data-index="<?php echo $languages_id; ?>">
+                        <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_header_description'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_header_description'); ?></label>
+                        <div class="col-md-8 input-group" id="categories_head_desc_tag<?php echo $languages_id; ?>">
+                          <?php echo HTML::textAreaField('categories_head_desc_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getcategoriesSeoDescription($cInfo->categories_id, $languages[$i]['id']), '110', '5', 'id="categories_head_desc_tag_' . $languages_id . '"'); ?>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="separator"></div>
-                <div class="row" id="categoriesSeoKeywords<?php echo $languages_id; ?>">
-                  <div class="col-md-10">
-                    <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                      <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_keywords'); ?></label>
-                      <div class="col-md-7 input-group" id="categories_head_keywords_tag<?php echo $languages_id; ?>">
-                        <?php echo HTML::inputField('categories_head_keywords_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoKeywords($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="categories_head_keywords_tag_' . $languages_id . '"', false); ?>
+                  <div class="separator"></div>
+                  <div class="row" id="categoriesSeoKeywords<?php echo $languages_id; ?>">
+                    <div class="col-md-10">
+                      <div class="form-group row" data-index="<?php echo $languages_id; ?>">
+                        <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_keywords'); ?></label>
+                        <div class="col-md-7 input-group" id="categories_head_keywords_tag<?php echo $languages_id; ?>">
+                          <?php echo HTML::inputField('categories_head_keywords_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoKeywords($cInfo->categories_id, $languages[$i]['id']), 'maxlength="70" size="77" id="categories_head_keywords_tag_' . $languages_id . '"', false); ?>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <?php
+            }
+            ?>
           </div>
-          <?php
-          }
-          ?>
+          <div class="separator"></div>
+          <div class="alert alert-info" role="alert">
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_seo') ?></div>
+            <div class="separator"></div>
+            <div><?php echo $CLICSHOPPING_Categories->getDef('help_seo'); ?></div>
+          </div>
+       </div>
+        <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab3', null, 'display'); ?>
+      </div>
+      <?php
+        // -----------------------------------------------------//-->
+        //          ONGLET sur l'image de la categorie          //-->
+        // ---------------------------------------------------- //-->
+      ?>
+      <div class="tab-pane" id="tab4">
+        <div class="mainTitle">
+          <span><?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_title'); ?></span>
+        </div>
+        <div class="adminformTitle">
+          <div class="row">
+            <div class="col-md-12">
+              <span
+                class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/banner_manager.gif', $CLICSHOPPING_Categories->getDef('text_categories_image_vignette'), '40', '40'); ?></span>
+              <span
+                class="col-md-3 main"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_vignette'); ?></span>
+              <span
+                class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_categories.gif', $CLICSHOPPING_Categories->getDef('text_categories_image_visuel'), '40', '40'); ?></span>
+              <span
+                class="col-md-7 main"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_visuel'); ?></span>
+            </div>
+            <div class="col-md-12">
+              <div class="adminformAide">
+                <div class="row">
+                  <span
+                    class="col-md-4 text-center float-start"><?php echo $CLICSHOPPING_Wysiwyg::fileFieldImageCkEditor('categories_image', null, '300', '300'); ?></span>
+                  <span class="col-md-8 text-center float-end">
+                    <div class="col-md-12">
+                      <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($cInfo->categories_image, $CLICSHOPPING_Categories->getDef('text_categories_image_vignette')); ?>
+                    </div>
+                    <div class="col-md-12 text-end">
+                      <?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_delete') . HTML::checkboxField('delete_image', 'yes', false); ?>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="separator"></div>
         <div class="alert alert-info" role="alert">
-          <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_seo') ?></div>
+          <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_image') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_image') ?></div>
           <div class="separator"></div>
-          <div><?php echo $CLICSHOPPING_Categories->getDef('help_seo'); ?></div>
+          <div><?php echo $CLICSHOPPING_Categories->getDef('help_image_categories'); ?></div>
         </div>
-     </div>
-      <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab3', null, 'display'); ?>
-    </div>
-    <?php
-      // -----------------------------------------------------//-->
-      //          ONGLET sur l'image de la categorie          //-->
-      // ---------------------------------------------------- //-->
-    ?>
-    <div class="tab-pane" id="tab4">
-      <div class="mainTitle">
-        <span><?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_title'); ?></span>
+       <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab4', null, 'display'); ?>
       </div>
-      <div class="adminformTitle">
-        <div class="row">
-          <div class="col-md-12">
-            <span
-              class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/banner_manager.gif', $CLICSHOPPING_Categories->getDef('text_categories_image_vignette'), '40', '40'); ?></span>
-            <span
-              class="col-md-3 main"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_vignette'); ?></span>
-            <span
-              class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_categories.gif', $CLICSHOPPING_Categories->getDef('text_categories_image_visuel'), '40', '40'); ?></span>
-            <span
-              class="col-md-7 main"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_visuel'); ?></span>
-          </div>
-          <div class="col-md-12">
-            <div class="adminformAide">
-              <div class="row">
-                <span
-                  class="col-md-4 text-center float-start"><?php echo $CLICSHOPPING_Wysiwyg::fileFieldImageCkEditor('categories_image', null, '300', '300'); ?></span>
-                <span class="col-md-8 text-center float-end">
-                  <div class="col-md-12">
-                    <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($cInfo->categories_image, $CLICSHOPPING_Categories->getDef('text_categories_image_vignette')); ?>
-                  </div>
-                  <div class="col-md-12 text-end">
-                    <?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_delete') . HTML::checkboxField('delete_image', 'yes', false); ?>
-                  </div>
-                </span>
-              </div>
-            </div>
-          </div>
+      <?php
+        //***********************************
+        // extension
+        //***********************************
+        echo $CLICSHOPPING_Hooks->output('Categories', 'PageContent', null, 'display');
+      ?>
         </div>
-      </div>
-      <div class="separator"></div>
-      <div class="alert alert-info" role="alert">
-        <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_image') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_image') ?></div>
-        <div class="separator"></div>
-        <div><?php echo $CLICSHOPPING_Categories->getDef('help_image_categories'); ?></div>
-      </div>
-     <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab4', null, 'display'); ?>
-    </div>
-    <?php
-      //***********************************
-      // extension
-      //***********************************
-      echo $CLICSHOPPING_Hooks->output('Categories', 'PageContent', null, 'display');
-    ?>
       </div>
     </div>
   </div>
-</div>
-</form>
+  </form>

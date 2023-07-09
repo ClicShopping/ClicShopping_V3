@@ -11,12 +11,12 @@
   namespace ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin;
 
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
+
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
-  use ClicShopping\OM\Registry;
   use OpenAI;
-  use OpenAI\Exceptions\ErrorException;
   use GuzzleHttp\Client as GuzzleHttpClient;
 
   class ChatGptAdmin
@@ -79,7 +79,7 @@
     /**
      * @return array
      */
-    public static function getgptModalMenu(): string
+    public static function getGptModalMenu(): string
     {
       $array = static::getGptModel();
 
@@ -385,7 +385,7 @@
                       </div>
                       <div class="modal-body">
                         <div class="separator"></div>
-                        <div class="row">' . static::getgptModalMenu() .'</div>
+                        <div class="row">' . static::getGptModalMenu() .'</div>
                         <div class="separator"></div>
                         <div class="form-group">
                           <textarea class="form-control" id="messageGpt" rows="3" placeholder="' . CLICSHOPPING::getDef('text_chat_message') . '"></textarea>

@@ -1,0 +1,14 @@
+usage_id
+gpt_id int not_null auto_increment
+promptTokens int null
+completionTokens int null
+totalTokens int null
+ia_type varchar(255) default null
+model varchar(255) default null
+
+--
+primary gpt_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

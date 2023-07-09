@@ -1,5 +1,6 @@
 CKEDITOR.dialog.add('chatgptDialog', function(editor) {
-  var botUrl = 'https://api.openai.com/v1/completions';
+  var botUrl = 'https://api.openai.com/v1/chat/completions'; // for gpt3.5
+
   var apiKey = apiKeyGpt; // Replace with your own API key
   var conversationState = '';
 
@@ -40,7 +41,22 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
               xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                   var response = JSON.parse(xhr.responseText);
-                  var text = response.choices[0].text;
+                  // Check if choices array exists and has at least one item
+                  if (
+                    response.choices &&
+                    Array.isArray(response.choices) &&
+                    response.choices.length > 0 &&
+                    response.choices[0].message &&
+                    response.choices[0].message.content
+                  ) {
+                    var text = response.choices[0].message.content;
+
+                    // Append the response to the editor
+                    editor.editable().insertHtml(`<p>${text}</p>`);
+                  } else {
+                    // Handle the case when response is empty or invalid
+                    console.error('Invalid response from the API');
+                  }
 
                   // Append the response to the editor
                   editor.editable().insertHtml(`<p>${text}</p>`);
@@ -55,16 +71,23 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
               };
 
               xhr.send(JSON.stringify({
-                model: modelGpt,
-/*                organization : organizationGpt,*/ //not recognize actually
+                model: 'gpt-3.5-turbo',
                 frequency_penalty: frequency_penalty_gpt,
                 presence_penalty: presence_penalty_gpt,
-                prompt: conversationState + message,
                 max_tokens: max_tokens_gpt,
                 temperature: temperatureGpt,
-                best_of: best_of_gpt,
                 top_p: top_p_gpt,
                 n: nGpt,
+                messages: [
+                  {
+                    role: 'system',
+                    content: "\n\nYou are the assistant."
+                  },
+                  {
+                    role: 'user',
+                    content: conversationState + message,
+                  }
+                ]
               }));
 
               conversationState += message + '\n';

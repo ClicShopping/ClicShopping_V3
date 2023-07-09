@@ -11,13 +11,10 @@ CKEDITOR.editorConfig = function( config ) {
 
 //Language spell
     config.scayt_autoStartup = true;
-
-
-//  config.filebrowserBrowseUrl = '/boutique/ClicShoppingAdmin/ext/kfm-1.4.7/';
-//  config.filebrowserBrowseUrl = '/clicshopping_test_ui/boutique/ClicShoppingAdmin/ext/elfinder_master/elfinder.html'; // eg. 'includes/elFinder/elfinder.html'
-
     config.enterMode = CKEDITOR.ENTER_BR;
-    config.font_names ='Arial/Arial;' +
+
+    config.font_names =
+        'Arial/Arial;' +
         'Century Gothic;' +
         'Comic Sans MS;' +
         'Courrier New;' +
@@ -78,7 +75,7 @@ CKEDITOR.plugins.add('chatgpt', {
             label: titleGpt,
             command: 'chatgptDialog',
             toolbar: 'insert,10',
-            icon:  'Iframe', //chatgpt
+            icon:  'Iframe', //chatGpt
         });
 
         CKEDITOR.dialog.add('chatgptDialog', this.path + 'dialogs/chatgpt.js');

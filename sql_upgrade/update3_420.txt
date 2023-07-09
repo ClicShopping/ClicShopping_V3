@@ -1,0 +1,11 @@
+CREATE TABLE `clic_gpt_usage` (
+  `usage_id` int(11) NOT NULL,
+  `gpt_id` int(11) NOT NULL,
+  `promptTokens` int(11) DEFAULT NULL,
+  `completionTokens` int(11) DEFAULT NULL,
+  `totalTokens` int(11) DEFAULT NULL,
+  `ia_type` varchar(255) DEFAULT NULL,
+  `model` varchar(255) DEFAULT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ RENAME TABLE `clicshopping_test`.`clic_chatgpt` TO `clicshopping_test`.`clic_gpt`;

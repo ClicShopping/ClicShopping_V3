@@ -99,7 +99,7 @@
                                                                                  response,
                                                                                  date_added,
                                                                                  user_admin
-                                                      from :table_chatgpt
+                                                      from :table_gpt
                                                       order by date_added
                                                       limit :page_set_offset, :page_set_max_results
                                                     ');

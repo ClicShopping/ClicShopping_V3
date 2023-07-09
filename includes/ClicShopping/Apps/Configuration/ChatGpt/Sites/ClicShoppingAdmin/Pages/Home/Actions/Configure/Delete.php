@@ -66,10 +66,10 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_chatgpt"');
+      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_gpt"');
 
       if ($Qcheck->fetch() !== false) {
-        $Qdelete = $CLICSHOPPING_Db->prepare('delete from :table_chatgpt');
+        $Qdelete = $CLICSHOPPING_Db->prepare('delete from :table_gpt');
         $Qdelete->execute();
       }
     }
