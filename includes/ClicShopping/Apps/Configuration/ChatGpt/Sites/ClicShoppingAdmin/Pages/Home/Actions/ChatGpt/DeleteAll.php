@@ -23,9 +23,9 @@
 
       if (!\is_null($_POST['selected']) && isset($_GET['DeleteAll'])) {
         foreach ($_POST['selected'] as $id) {
-          $CLICSHOPPING_ChatGpt->db->delete('chatgpt', ['gpt_id' => (int)$id]);
+          $CLICSHOPPING_ChatGpt->db->delete('gpt', ['gpt_id' => (int)$id]);
 
-          $CLICSHOPPING_Hooks->call('ChatGpt', 'DeleteAll');
+          $CLICSHOPPING_Hooks->call('Gpt', 'DeleteAll');
         }
       }
 

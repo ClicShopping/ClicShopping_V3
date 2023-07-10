@@ -14,6 +14,9 @@
   }
  ],
  "modules": {
+   "AdminDashboard": {
+   "TotalToken": "Module\\ClicShoppingAdmin\\Dashboard\\TotalToken"
+  },
    "Hooks": {
    "ClicShoppingAdmin/Products": {
     "PageTab": "Module\\Hooks\\ClicShoppingAdmin\\Products\\SeoChatGpt",

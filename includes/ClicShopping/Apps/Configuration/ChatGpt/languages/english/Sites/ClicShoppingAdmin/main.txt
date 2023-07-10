@@ -2,6 +2,12 @@ heading_title = Gpt
 module_ch_title = Gpt
 module_ch_short_title = Gpt
 
+module_bd_title = Bard
+module_bd_short_title = Bard
+
+module_ma_title = Language
+module_ma_short_title = Language
+
 text_chatgpt = Gpt
 text_configure = Configure App Module
 
@@ -10,7 +16,9 @@ text_intro = This app allow you to include a Gpt page and a shortcut in products
 - Configure you API Key OpenAI
 - Ask request as you want to help you
 
-module_ch_introduction = The install process create the database settings for this module and the access menu
+module_ch_introduction = The install process create the database settings for this module and the access menu. You must have account on https://openai.com/
+module_bs_introduction = The install process create the database settings for this module and the access menu. You must have account on https://Bard.ai/
+module_ma_introduction = The install process allow to change the request for AI.
 
 button_back = Back
 button_install_title = Install
@@ -45,6 +53,10 @@ table_heading_chatgpt_response = Response
 table_heading_chatgpt_date_added = Date Added
 table_heading_action = Actions
 table_heading_chatgpt_user_admin = User admin
+
+stat_total_tokens = Total tokens on 1 year
+stat_completion_tokens = Total completion tokens on 1 year
+stat_prompt_tokens = Total prompt tokens on 1 year
 
 tab_general = General
 text_description = Description

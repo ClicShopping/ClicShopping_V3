@@ -13,6 +13,8 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
+  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+
   $CLICSHOPPING_ChatGpt = Registry::get('ChatGpt');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
@@ -49,7 +51,77 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsGpt', null, 'display'); ?>
+          <?php
+            $stat_result = ChatGptAdmin::getTotalTokenOnYear();
+
+            if ($stat_result['promptTokens'] > 0) {
+          ?>
+              <div class="col-md-3 col-12">
+                <div class="card bg-danger">
+                  <div class="card-body">
+                    <h6 class="card-title text-white"><?php echo $CLICSHOPPING_ChatGpt->getDef('stat_prompt_tokens'); ?></h6>
+                    <div class="card-text">
+                      <div class="col-sm-12">
+                        <span class="float-start">
+                          <i class="bi bi-clipboard2-pulse-fill text-white"></i>
+                        </span>
+                        <span class="float-end">
+                        <div class="col-sm-12 text-white"><?php echo $stat_result['promptTokens']; ?></div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <?php
+          }
+
+            if($stat_result['completionTokens'] > 0) {
+          ?>
+              <div class="col-md-3 col-12">
+                <div class="card bg-success">
+                  <div class="card-body">
+                    <h6 class="card-title text-white"><?php echo $CLICSHOPPING_ChatGpt->getDef('stat_completion_tokens'); ?></h6>
+                    <div class="card-text">
+                      <div class="col-sm-12">
+                        <span class="float-start">
+                          <i class="bi bi-bar-chart-fill text-white"></i>
+                        </span>
+                        <span class="float-end">
+                        <div class="col-sm-12 text-white"><?php echo $stat_result['completionTokens']; ?></div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <?php
+            }
+
+            if($stat_result['totalTokens'] > 0) {
+          ?>
+              <div class="col-md-3 col-12">
+                <div class="card bg-primary">
+                  <div class="card-body">
+                    <h6 class="card-title text-white"><?php echo $CLICSHOPPING_ChatGpt->getDef('stat_total_tokens'); ?></h6>
+                    <div class="card-text">
+                      <div class="col-sm-12">
+                        <span class="float-start">
+                          <i class="bi bi-graph-up text-white"></i>
+                        </span>
+                        <span class="float-end">
+                        <div class="col-sm-12 text-white"><?php echo $stat_result['totalTokens']; ?></div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <?php
+            }
+
+            echo $CLICSHOPPING_Hooks->output('Stats', 'StatsGpt', null, 'display');
+          ?>
         </div>
       </div>
     </div>

@@ -191,7 +191,13 @@
       try {
         $result = $response['choices'][0]['message']['content'];
 
-       // static::saveData($prompt, $result, $response);
+        $array_usage = [
+          'promptTokens' => $response->usage->promptTokens,
+          'completionTokens' => $response->usage->completionTokens,
+          'totalTokens' => $response->usage->totalTokens,
+        ];
+
+        static::saveData($prompt, $result, $array_usage);
 
         return $result;
       }catch (\RuntimeException $e) {
@@ -202,10 +208,11 @@
     }
 
     /**
+     * @param string $prompt
      * @param string $result
-     * @param array $responss
+     * @param array $usage
      */
-    public static function saveData(string $prompt, string $result, array $response) :void
+    public static function saveData(string $prompt, string $result, array $usage) :void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -219,22 +226,66 @@
       $CLICSHOPPING_Db->save('gpt', $array_sql);
 
       $QlastId = $CLICSHOPPING_Db->prepare('select gpt_id
-                                               from :table_gpt
-                                               order by gpt_id asc
-                                               limit 1
-                                              ');
+                                           from :table_gpt
+                                           order by gpt_id desc
+                                           limit 1
+                                          ');
       $QlastId->execute();
 
       $array_usage_sql = [
         'gpt_id' => $QlastId->valueInt('gpt_id'),
-        'promptTokens' => $response->usage->promptTokens,
-        'completionTokens' => $response->usage->completionTokens,
-        'totalTokens' => $response->usage->totalTokens,
+        'promptTokens' => $usage['promptTokens'],
+        'completionTokens' => $usage['completionTokens'],
+        'totalTokens' => $usage['totalTokens'],
         'ia_type' => 'GPT',
         'model' => CLICSHOPPING_APP_CHATGPT_CH_MODEL,
+        'date_added' => 'now()'
       ];
 
       $CLICSHOPPING_Db->save('gpt_usage', $array_usage_sql);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getTotalTokenOnYear() :array
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      $Qtotal = $CLICSHOPPING_Db->prepare('select sum(promptTokens) as promptTokens,
+                                                  sum(completionTokens) as completionTokens,
+                                                  sum(totalTokens) as totalTokens,
+                                                  date_added
+                                           from :table_gpt_usage
+                                           where DATE_SUB(NOW(), INTERVAL 1 YEAR)
+                                          ');
+      $Qtotal->execute();
+
+      $result = $Qtotal->fetch();
+
+      return $result;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getTokenbyId(int $id) :array
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      $Qtotal = $CLICSHOPPING_Db->prepare('select sum(promptTokens) as promptTokens,
+                                                  sum(completionTokens) as completionTokens,
+                                                  sum(totalTokens) as totalTokens,
+                                                  date_added
+                                           from :table_gpt_usage
+                                           where gpt_id = :gpt_id
+                                          ');
+      $Qtotal->binInt(':gtp_id', $id);
+      $Qtotal->execute();
+
+      $result = $Qtotal->fetch();
+
+      return $result;
     }
 
     /**
