@@ -2,7 +2,7 @@ heading_title = Produits Hors stocks
 
 table_heading_products = Nom du produit
 table_heading_model = Référence
-table_heading_qty_left = Quantiés restantes
+table_heading_qty_left = Quantités restantes
 table_heading_action = Action
 table_heading_warehouse_time_replenishment = Délais de réaprovisionnement
 table_heading_warehouse = Nom de l'entrepot

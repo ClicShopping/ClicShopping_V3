@@ -2,12 +2,12 @@ text_seo_page_title = SEO Page Title
 text_seo_action = Click to get Gpt answer
 
 text_seo_page_title_question = and give me a SEO Title in less 50 characters about this category :
-text_seo_page_tag_question = and give me in less 70 words 5 SEO tag separated by a comma (tableware, glasses, cutlery...) about this category :
-text_seo_page_keywords_question = and give me 7 keywords SEO tag separated by a comma (#tableware, #glasses, #cutlery...) about this category :
-text_seo_page_summary_description_question = and give me in less 50 words a very short SEO description about this category :
-text_seo_page_categories_question = and give a SEO description about this category :
+text_seo_page_keywords_question = and give me 7 top-performing keywords SEO tag separated by a comma (example : tableware, glasses, cutlery...) about this category :
+text_seo_page_summary_description_question = and give me in less 50 words a short SEO description about this category :
+text_seo_page_categories_question = and write me a long description about this category :
+text_categories_description = Write me a long description about this category :
 
-text_seo_page_translate_language = Can you translate in
+text_seo_page_translate_language = Without to repeat the question inside the answer, can you translate in
 
 tab_gpt_options = ChatGpt Options
 text_gpt_options = ChatGpt Options
@@ -17,7 +17,6 @@ text_options_gpt_seo_description = Authorize the AI to generate the SEO descript
 text_options_gpt_seo_keywords = Authorize the AI to generate the SEO keywords of this category ?
 text_options_gpt_image = Authorize the AI to generate an image of this category ?
 
-text_categories_description = Write me a long description about this category :
 
 title_help_seo = Help
 text_help_seo = Please note that if you use AI to generate your content, information may take longer to save due to processing. Please wait.
