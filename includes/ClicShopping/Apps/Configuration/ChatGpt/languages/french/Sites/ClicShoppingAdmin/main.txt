@@ -46,9 +46,9 @@ table_heading_chatgpt_date_added = Dates ajout
 table_heading_action = Actions
 table_heading_chatgpt_user_admin = Administrateur
 
-stat_total_tokens = Total jetons utilisés
-stat_completion_tokens = Total jetons d'achévement utilisés
-stat_prompt_tokens = Total jetons du prompt utilisés
+stat_total_tokens = Jetons total utilisés sur 1 an
+stat_completion_tokens = Jetons d'achévement utilisés  sur 1 an
+stat_prompt_tokens = Jetons du prompt utilisés  sur 1 an
 
 tab_general = Général
 text_description = Description

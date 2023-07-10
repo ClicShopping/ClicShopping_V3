@@ -87,15 +87,6 @@ EOD;
         $title = $this->app->getDef('text_gpt_options');
 
         $content = '
-
-
-
-
-
-
-
-
-
             <div class="separator"></div>     
             <div class="row" id="productOptionGptDescription">
               <div class="col-md-9">

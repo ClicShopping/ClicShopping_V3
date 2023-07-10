@@ -405,7 +405,7 @@
      */
     public static function removeQuestionText(string $text) :?string
    {
-     $position = strpos($text, '|');
+     $position = strpos($text, '||');
 
      if ($position !== false) {
        $result = substr($text, $position + 1);
