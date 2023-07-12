@@ -39,7 +39,7 @@
               url: '{$urlMultilanguage}',
               data: {id: language_id},
               success: function(language_name) {
-                  let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_title}' + ' ' + '{$store_name}';
+                  let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_title}' + ' ' + '{$store_name}';
                 newButton.click(function() {
                   let message = questionResponse;
                   let engine = $('#engine').val();
@@ -96,7 +96,7 @@
         url: '{$urlMultilanguage}',
         data: {id: language_id},
         success: function(language_name) {
-          let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_title}' + ' ' + '{$store_name}';
+          let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_title}' + ' ' + '{$store_name}';
           
           newButton.click(function() {
             let message = questionResponse;
@@ -158,7 +158,7 @@
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$store_name}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -218,7 +218,7 @@
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_keywords}' + ' ' + '{$store_name}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$store_name}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -277,7 +277,7 @@
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_tag}' + ' ' + '{$store_name}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_tag}' + ' ' + '{$store_name}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -338,7 +338,7 @@
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_title}' + ' ' + '{$store_name}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_title}' + ' ' + '{$store_name}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -401,7 +401,7 @@
               url: '{$urlMultilanguage}',
               data: {id: language_id},
               success: function(language_name) {
-                let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$store_name}';
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}';
                 
                 newButton.click(function() {
                   let message = questionResponse;
@@ -461,7 +461,7 @@
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_keywords}' + ' ' + '{$store_name}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$store_name}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -524,7 +524,7 @@
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +'{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +'{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -587,7 +587,7 @@
               url: '{$urlMultilanguage}',
               data: {id: language_id},
               success: function(language_name) {
-                let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
                 
                 newButton.click(function() {
                   let message = questionResponse;
@@ -648,7 +648,7 @@
           url: '{$urlMultilanguage}',
           data: {id: language_id},
           success: function(language_name) {
-            let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
+            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_products_new}';
             
             newButton.click(function() {
               let message = questionResponse;
@@ -711,7 +711,7 @@
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -774,7 +774,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       url: '{$urlMultilanguage}',
       data: {id: language_id},
       success: function(language_name) {
-        let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
+        let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
         
         newButton.click(function() {
           let message = questionResponse;
@@ -835,7 +835,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
           url: '{$urlMultilanguage}',
           data: {id: language_id},
           success: function(language_name) {
-            let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
+            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_specials}';
             
             newButton.click(function() {
               let message = questionResponse;
@@ -898,7 +898,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
           url: '{$urlMultilanguage}',
           data: {id: language_id},
           success: function(language_name) {
-            let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
+            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
             
             newButton.click(function() {
               let message = questionResponse;
@@ -961,7 +961,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
               url: '{$urlMultilanguage}',
               data: {id: language_id},
               success: function(language_name) {
-                let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
                 
                 newButton.click(function() {
                   let message = questionResponse;
@@ -1022,7 +1022,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_review}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -1085,7 +1085,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
           url: '{$urlMultilanguage}',
           data: {id: language_id},
           success: function(language_name) {
-            let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
+            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
             
             newButton.click(function() {
               let message = questionResponse;
@@ -1148,7 +1148,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -1209,7 +1209,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_favorite}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -1272,7 +1272,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_title}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -1335,7 +1335,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
               url: '{$urlMultilanguage}',
               data: {id: language_id},
               success: function(language_name) {
-                let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
                 
                 newButton.click(function() {
                   let message = questionResponse;
@@ -1396,7 +1396,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$store_name}' + ' ' + '{$text_tag_featured}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -1434,172 +1434,6 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
      * @param string $content
      * @param string $urlMultilanguage
      * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $product_name
-     * @param string $url
-     * @return string
-     */
-    public static function getCategoriesDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $categories_name, string $url)
-    {
-      $script = '';
-
-      if (defined('DEFAULT_WYSIWYG') && DEFAULT_WYSIWYG == 'CkEditor5') {
-
-        $script = "
-          <script>
-/*          
-            $('[id^=\"categories_description\"]').each(function(index) {
-  let textareaId = $(this).attr('id');
-  let regex = /(\d+)/g;
-  let idCategoriesDescription = regex.exec(textareaId)[0];
-
-  let language_id = parseInt(idCategoriesDescription);
-  let button = '{$content}';
-  let newButton = $(button).attr('data-index', index);
-
-  // Envoi d'une requête AJAX pour récupérer le nom de la langue
-  let self = this;
-  $.ajax({
-    url: '{$urlMultilanguage}',
-    data: {id: language_id},
-    success: function(language_name) {
-      let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_summary_description}' + ' ' + '{$categories_name}';
-
-      newButton.click(function() {
-        let message = questionResponse;
-        let engine = $('#engine').val();
-
-        $.ajax({
-          url: '{$url}',
-          type: 'POST',
-          data: {message: message, engine: engine},
-          success: function(data) {
-            $('#chatGpt-output-input').val(data);
-            let editor = ClassicEditor.instances['categories_description' + idCategoriesDescription];
-            if (editor) {
-              editor.setData(data);
-            } else {
-              ClassicEditor.create(document.querySelector('#categories_description' + idCategoriesDescription))
-                .then(newEditor => {
-                  newEditor.setData(data);
-                })
-                .catch(error => {
-                  console.error(error);
-                });
-            }
-          },
-          error: function(xhr, status, error) {
-            console.log(xhr.responseText);
-          }
-        });
-      });
-
-      if (newButton) {
-        $(self).append(newButton);
-      }
-    }
-  });
-});
-*/
-
-$('[id^=\"categories_description\"]').each(function(index) {
-  let textareaId = $(this).attr('id');
-  let regex = /(\d+)/g;
-  let idCategoriesDescription = regex.exec(textareaId)[0];
-
-  let language_id = parseInt(idCategoriesDescription);
-  let button = '{$content}';
-  let newButton = $(button).attr('data-index', index);
-
-  // Send an AJAX request to retrieve the language name
-  let self = this;
-  $.ajax({
-    url: '{$urlMultilanguage}',
-    data: {id: language_id},
-    success: function(language_name) {
-      let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_summary_description}' + ' ' + '{$categories_name}' + ' ||';
-
-      newButton.click(function() {
-        let message = questionResponse;
-        let engine = $('#engine').val();
-
-        $.ajax({
-          url: '{$url}',
-          type: 'POST',
-          data: {message: message, engine: engine},
-          success: function(data) {
-            $('#chatGpt-output-input').val(data);
-            let editor = ClassicEditor.instances['categories_description' + idCategoriesDescription];
-            if (editor) {
-              editor.setData(data);
-            } else {
-              ClassicEditor
-                .create(document.querySelector('#categories_description' + idCategoriesDescription))
-                .then(newEditor => {
-                  newEditor.setData(data);
-                })
-                .catch(error => {
-                  console.error(error);
-                });
-            }
-          },
-          error: function(xhr, status, error) {
-            console.log(xhr.responseText);
-          }
-        });
-      });
-
-      if (newButton) {
-        $(self).append(newButton);
-      }
-    }
-  });
-});
-
-   
-        </script>";
-      }
-
-      return $script;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
      * @param string $question
      * @param string $categories_name
      * @param string $url
@@ -1624,7 +1458,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
           url: '{$urlMultilanguage}',
           data: {id: language_id},
           success: function(language_name) {
-            let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question}' + ' ' + '{$categories_name}' + ' ||';
+            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question}' + ' ' + '{$categories_name}';
             
             newButton.click(function() {
               let message = questionResponse;
@@ -1686,7 +1520,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$categories_name}' + ' ||';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$categories_name}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -1746,7 +1580,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
           url: '{$urlMultilanguage}',
           data: {id: language_id},
           success: function(language_name) {
-            let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_keywords}' + ' ' + '{$categories_name}' + ' ||';
+            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$categories_name}';
             
             newButton.click(function() {
               let message = questionResponse;
@@ -1808,7 +1642,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question}' + ' ' + '{$manufacturer_name}'+ ' ||';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question}' + ' ' + '{$manufacturer_name}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -1870,7 +1704,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
               url: '{$urlMultilanguage}',
               data: {id: language_id},
               success: function(language_name) {
-                let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$manufacturer_name}' + ' ||';
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$manufacturer_name}';
                 
                 newButton.click(function() {
                   let message = questionResponse;
@@ -1930,7 +1764,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
           url: '{$urlMultilanguage}',
           data: {id: language_id},
           success: function(language_name) {
-            let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_keywords}' + ' ' + '{$manufacturer_name}' + ' ||';
+            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$manufacturer_name}';
             
             newButton.click(function() {
               let message = questionResponse;
@@ -1992,7 +1826,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question}' + ' ' + '{$page_manager_name}' + ' ||';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question}' + ' ' + '{$page_manager_name}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -2054,7 +1888,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
               url: '{$urlMultilanguage}',
               data: {id: language_id},
               success: function(language_name) {
-                let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$page_manager_name}' + ' ||';
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$page_manager_name}';
                 
                 newButton.click(function() {
                   let message = questionResponse;
@@ -2114,7 +1948,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_keywords}' + ' ' + '{$page_manager_name}' + ' ||';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$page_manager_name}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -2176,7 +2010,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question}' + ' ' + '{$product_name}' + ' ||';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question}' + ' ' + '{$product_name}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -2238,7 +2072,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
               url: '{$urlMultilanguage}',
               data: {id: language_id},
               success: function(language_name) {
-                let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$product_name}' + ' ||';
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$product_name}';
                 
                 newButton.click(function() {
                   let message = questionResponse;
@@ -2291,9 +2125,9 @@ $('[id^=\"categories_description\"]').each(function(index) {
           // Vérifier si le textarea a été trouvé
           if (textareaId !== undefined) {
             let regex = /(\d+)/g;
-            let idproductsSummaryDescription = regex.exec(textareaId)[0];
+            let idproductsSeoDescription = regex.exec(textareaId)[0];
           
-            let language_id = parseInt(idproductsSummaryDescription);
+            let language_id = parseInt(idproductsSeoDescription);
           
             // Envoi d'une requête AJAX pour récupérer le nom de la langue
             let self = this;
@@ -2301,7 +2135,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
               url: '{$urlMultilanguage}',
               data: {id: language_id},
               success: function(language_name) {
-                let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' +  '{$question_summary_description}' + ' ' + '{$product_name}' + ' ||';
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$product_name}';
                 
                 newButton.click(function() {
                   let message = questionResponse;
@@ -2313,7 +2147,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
                     data: {message: message, engine: engine},
                     success: function(data) {
                       $('#chatGpt-output-input').val(data);
-                      $('#products_head_desc_tag_' + idproductsSummaryDescription).val(data);
+                      $('#products_head_desc_tag_' + idproductsSeoDescription).val(data);
                     },
                     error: function(xhr, status, error) {
                       console.log(xhr.responseText);
@@ -2362,7 +2196,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_keywords}' + ' ' + '{$product_name}' + ' ||';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$product_name}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -2421,7 +2255,7 @@ $('[id^=\"categories_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' ' + '{$question_tag}' + ' ' + '{$product_name}' + ' ||';
+              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_tag}' + ' ' + '{$product_name}';
               
               newButton.click(function() {
                 let message = questionResponse;

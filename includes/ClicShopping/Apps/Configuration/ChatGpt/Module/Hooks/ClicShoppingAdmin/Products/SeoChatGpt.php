@@ -53,7 +53,7 @@
 
         $product_name = $CLICSHOPPING_ProductsAdmin->getProductsName($id);
 
-        $url = ChatGptAdmin::getAjaxUrl(false);
+        $url = ChatGptAdmin::getAjaxUrl();
         $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
 
         $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';

@@ -16,7 +16,7 @@
 
   class model extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
-    public $default = 'gpt-3.5-turbo';
+    public $default = 'text-davinci-003';
     public ?int $sort_order = 15;
 
     protected function init()

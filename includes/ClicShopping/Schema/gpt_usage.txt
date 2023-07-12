@@ -5,6 +5,7 @@ completionTokens int null
 totalTokens int null
 ia_type varchar(255) default null
 model varchar(255) default null
+date_added date default null
 
 --
 primary gpt_id

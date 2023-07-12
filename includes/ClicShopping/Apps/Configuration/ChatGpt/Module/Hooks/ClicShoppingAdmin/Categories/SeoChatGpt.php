@@ -50,7 +50,6 @@
         $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
         $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
         $translate_language = $this->app->getDef('text_seo_page_translate_language');
-        $question_description = $this->app->getDef('text_seo_page_categories_question');
 
         $categories_name = $CLICSHOPPING_CategoriesAdmin->getCategoryName($id, $CLICSHOPPING_Language->getId());
 
@@ -64,16 +63,11 @@
         $getCategoriesSeoTitle = ChatJsAdminSeo::getCategoriesSeoTitle($content, $urlMultilanguage, $translate_language, $question, $categories_name, $url);
         $getCategoriesSeoDescription = ChatJsAdminSeo::getCategoriesSeoDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $categories_name, $url);
         $getCategoriesSeoKeywords = ChatJsAdminSeo::getCategoriesSeoKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $categories_name, $url);
-        $getCategoriesDescription = ChatJsAdminSeo::getCategoriesDescription($content, $urlMultilanguage, $translate_language, $question_description, $categories_name, $url);
 
 $output = <<<EOD
 <!------------------>
 <!-- ChatGpt start tag-->
 <!------------------>
-<!--categories description -->
-     {$getCategoriesDescription}
-     
-     
      
 <!-- categories seo meta title -->
     {$getCategoriesSeoTitle}

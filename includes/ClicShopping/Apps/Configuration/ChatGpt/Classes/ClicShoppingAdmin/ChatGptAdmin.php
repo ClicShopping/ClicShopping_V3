@@ -17,7 +17,6 @@
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
   use OpenAI;
-  use GuzzleHttp\Client as GuzzleHttpClient;
 
   class ChatGptAdmin
   {
@@ -68,8 +67,8 @@
     public static function getGptModel(): array
     {
       $array = [
-        ['id' => 'gpt-3.5-turbo',
-          'text' =>'gpt-3.5-turbo'
+        ['id' => 'text-davinci-003',
+         'text' =>'Davinci (text-davinci-003)'
         ],
       ];
 
@@ -102,13 +101,13 @@
       $script = '<script>
        let apiKeyGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_API_KEY . '";
        ' . $organization . ';
-       let modelConfGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_MODEL . '";
+       let modelGpt = "' .  CLICSHOPPING_APP_CHATGPT_CH_MODEL . '";
        let frequency_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY . '");
        let presence_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY . '");
        let max_tokens_gpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN . '");
        let temperatureGpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE . '");
        let nGpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE . '");
- //      let best_of_gpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_BESTOFF . '");
+       let best_of_gpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_BESTOFF . '");
        let top_p_gpt =  parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P . '");
        let titleGpt = "' . CLICSHOPPING::getDef('text_chat_title') . '";
       </script>';
@@ -124,19 +123,7 @@
      */
     public static function getClient()
     {
-      $client = OpenAI::factory()
-        ->withApiKey(CLICSHOPPING_APP_CHATGPT_CH_API_KEY)
-//        ->withOrganization('your-organization') // default: null
-        ->withBaseUri('api.openai.com/v1') // default: api.openai.com/v1
-        ->withHttpClient($client = new GuzzleHttpClient()) // default: HTTP client found using PSR-18 HTTP Client Discovery
-        ->withHttpHeader('X-My-Header', 'ClicShopping')
-//        ->withQueryParam('my-param', 'ClicShopping')
-
-        ->withStreamHandler(fn (RequestInterface $request): ResponseInterface => $client->send($request, [
-          'stream' => true // Allows to provide a custom stream handler for the http client.
-        ]))
-
-        ->make();
+      $client = OpenAI::client(CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
 
       return $client;
     }
@@ -155,7 +142,7 @@
       $client = static::getClient();
 
       $prompt = HTML::sanitize($question);
-      $engine = HTML::sanitize(CLICSHOPPING_APP_CHATGPT_CH_MODEL);
+      $engine = CLICSHOPPING_APP_CHATGPT_CH_MODEL;
 
       $top = ['\n'];
 
@@ -165,31 +152,27 @@
         'top_p' => (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P , // Caractère de fin de ligne pour la réponse
         'frequency_penalty' => (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY, //pénalité de fréquence pour encourager le modèle à générer des réponses plus variées
         'presence_penalty' => (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY, //pénalité de présence pour encourager le modèle à générer des réponses avec des mots qui n'ont pas été utilisés dans l'amorce
+        'prompt' => $prompt, // Texte d'amorce
         'max_tokens' => (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN, //nombre maximum de jetons à générer dans la réponse
         'stop' => $top, //caractères pour arrêter la réponse
         'n' => (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE, // nombre de réponses à générer
-        'messages' => [
-          [
-            'role' => 'system',
-            'content' => 'You are the assistant.'
-          ],
-          [
-            'role' => 'user',
-            'content' => $prompt
-          ]
-        ],
+        'best_of' => (int)CLICSHOPPING_APP_CHATGPT_CH_BESTOFF, //Generates best_of completions server-side and returns the "best"
       ];
 
       if (!empty(CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION)) {
         $parameters = [
-          'organization' => HTML::sanitize(CLICSHOPPING_APP_CHATGPT_CH_ORGANISATION),
+          'organization' => CLICSHOPPING_APP_CHATGPT_CH_ORGANISATION,
         ];
       }
 
-      $response = $client->chat()->create($parameters);
+      $response = $client->completions()->create($parameters);
+
+
+
+
 
       try {
-        $result = $response['choices'][0]['message']['content'];
+        $result = $response['choices'][0]['text'];
 
         $array_usage = [
           'promptTokens' => $response->usage->promptTokens,
@@ -400,22 +383,6 @@
     }
 
     /**
-     * @param string $text
-     * @return string|null
-     */
-    public static function removeQuestionText(string $text) :?string
-   {
-     $position = strpos($text, '||');
-
-     if ($position !== false) {
-       $result = substr($text, $position + 1);
-     }
-
-     return $result;
-   }
-
-
-    /**
      * @return String
      */
     public static function gptModalMenu() : String
@@ -436,7 +403,7 @@
                       </div>
                       <div class="modal-body">
                         <div class="separator"></div>
-                        <div class="row">' . static::getGptModalMenu() .'</div>
+
                         <div class="separator"></div>
                         <div class="form-group">
                           <textarea class="form-control" id="messageGpt" rows="3" placeholder="' . CLICSHOPPING::getDef('text_chat_message') . '"></textarea>
@@ -444,6 +411,17 @@
                         <div class="separator"></div>
                         <div class="form-group text-end">
                           <div class="row">
+                            <span class="col-md-6 text-start">
+                              <ul class="list-group-slider list-group-flush">
+                                <span class="text-slider col-6">' . CLICSHOPPING::getDef('text_chat_save') . '</span>
+                                <li class="list-group-item-slider">
+                                  <label class="switch">
+                                    ' . HTML::checkboxField('saveGpt', '1', 0, 'class="success" id="saveGpt"') . '
+                                    <span class="slider"></span>
+                                  </label>
+                                </li>
+                              </ul>
+                            </span>
                             <span class="col-md-6 text-end">                          
                                ' . HTML::button(CLICSHOPPING::getDef('text_chat_send'), null, null, 'primary', ['params' => 'id="sendGpt"'], 'sm') . '
                             </span>                         

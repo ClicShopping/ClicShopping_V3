@@ -2,12 +2,6 @@ heading_title = Gpt
 module_ch_title = Gpt
 module_ch_short_title = Gpt
 
-module_bd_title = Bard
-module_bd_short_title = Bard
-
-module_ma_title = Language
-module_ma_short_title = Language
-
 text_chatgpt = Gpt
 text_configure = Configure App Module
 
@@ -16,9 +10,7 @@ text_intro = This app allow you to include a Gpt page and a shortcut in products
 - Configure you API Key OpenAI
 - Ask request as you want to help you
 
-module_ch_introduction = The install process create the database settings for this module and the access menu. You must have account on https://openai.com/
-module_bs_introduction = The install process create the database settings for this module and the access menu. You must have account on https://Bard.ai/
-module_ma_introduction = The install process allow to change the request for AI.
+module_ch_introduction = The install process create the database settings for this module and the access menu
 
 button_back = Back
 button_install_title = Install
@@ -54,12 +46,12 @@ table_heading_chatgpt_date_added = Date Added
 table_heading_action = Actions
 table_heading_chatgpt_user_admin = User admin
 
-stat_total_tokens = Total tokens on 1 year
-stat_completion_tokens = Total completion tokens on 1 year
-stat_prompt_tokens = Total prompt tokens on 1 year
-
 tab_general = General
 text_description = Description
+
+stat_total_tokens =Total tokens used in 1 an
+stat_completion_tokens = Total tokens completions used on 1 an
+stat_prompt_tokens = Prompt token used on 1 an
 
 text_error_composer = Composer is not installed, please make this command on your server in your terminal : apt-get install composer
 text_error_exec = exec function is not enabled. You can not update or install any composer library, please this setting in your php.ini or contact your hoster

@@ -1,10 +1,10 @@
 text_seo_page_title = SEO Page de Titre
 text_seo_action = Cliquez pour avoir une réponse de Gpt
-text_seo_page_title_question = et donnes moi uniquement en moins de 50 mots le SEO Titre concernant ce produit :
-text_seo_page_tag_question = et donnes moi uniquement en moins de 70 mots, 5 tags sèparès par une virgule concernant ce produit :
-text_seo_page_keywords_question = , me donner uniquement les 7 mots clefs les plus représentatifs sèparès par une virgule concernant ce produit :
-text_seo_page_summary_description_question = et donnes moi uniquement en moins de 50 mots une description trés courte concernant ce produit :
-text_seo_page_translate_language = Sans répéter la question, peux tu me traduire en
+text_seo_page_title_question = Donnes moi en moins de 50 mots le SEO Titre concernant ce produit :
+text_seo_page_tag_question = Donnes moi en moins de 70 mots, 5 tag sèparès par une virgule concernant ce produit :
+text_seo_page_keywords_question = Donnes moi 7 mots clefs sèparès par une virgule concernant ce produit :
+text_seo_page_summary_description_question = Donnes moi en moins de 50 mots une description trés courte concernant ce produit :
+text_seo_page_translate_language = Peux tu traduire en
 
 text_question_description = Ecris moi une longue description concernant ce produit :
 text_technical_question = puis créés moi un nouveau paragraphe avec des bullets points en html concernant les caractéristiques techniques

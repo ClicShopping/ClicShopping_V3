@@ -56,11 +56,11 @@
 
         if ($Qcheck->valueInt('categories_id') !== null) {
           $Qcategories = $this->app->db->prepare('select categories_id,
-                                                         categories_name,
-                                                         language_id
-                                                  from :table_categories_description
-                                                  where categories_id = :categories_id
-                                                ');
+                                                   categories_name,
+                                                   language_id
+                                             from :table_categories_description
+                                             where categories_id = :categories_id
+                                            ');
           $Qcategories->bindInt(':categories_id', $Qcheck->valueInt('categories_id'));
           $Qcategories->execute();
 
@@ -75,24 +75,19 @@
               'categories_id' => $item['categories_id']
             ];
 
-////-------------------
-// Seo Title
-//-------------------
-            if(isset($_POST['option_gpt_seo_title'])) {
-              $seo_product_title = $translate_language . ' ' . $language_name . '  ' . $question . ' ' . $categories_name;
-              $seo_product_title = ChatGptAdmin::getGptResponse($seo_product_title);
 
-              if ($seo_product_title !== false) {
-                $sql_data_array = [
-                  'categories_head_title_tag' => $seo_product_title ?? '',
-                ];
 
-                $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
-              }
-            }
+
+
+
+
+
+
+
+
 
 //-------------------
-// products description
+// categories description
 //-------------------
             if(isset($_POST['option_gpt_description'])) {
               $question_description = $this->app->getDef('text_categories_description');
@@ -107,12 +102,26 @@
                 $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
               }
             }
+////-------------------
+// Seo Title
+//-------------------
+            if(isset($_POST['option_gpt_seo_title'])) {
+              $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question . ' ' . $categories_name;
+              $seo_product_title = ChatGptAdmin::getGptResponse($seo_product_title);
 
+              if ($seo_product_title !== false) {
+                $sql_data_array = [
+                  'categories_head_title_tag' => $seo_product_title ?? '',
+                ];
+
+                $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
+              }
+            }
 //-------------------
 // Seo description
 //-------------------
             if(isset($_POST['option_gpt_seo_title'])) {
-              $seo_product_description = $translate_language . ' ' . $language_name . ' ' . $question_summary_description . ' ' . $categories_name;
+              $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $categories_name;
               $seo_product_description = ChatGptAdmin::getGptResponse($seo_product_description);
 
               if ($seo_product_description !== false) {
@@ -127,10 +136,10 @@
 // Seo keywords
 //-------------------
             if(isset($_POST['option_gpt_seo_keywords'])) {
-              $seo_product_keywords = $translate_language . ' ' . $language_name . ' ' . $question_keywords . ' ' . $categories_name;
+              $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords . ' ' . $categories_name;
               $seo_product_keywords = ChatGptAdmin::getGptResponse($seo_product_keywords);
 
-               if ($seo_product_keywords !== false) {
+              if ($seo_product_keywords !== false) {
                 $sql_data_array = [
                   'categories_head_keywords_tag' => $seo_product_keywords ?? '',
                 ];
