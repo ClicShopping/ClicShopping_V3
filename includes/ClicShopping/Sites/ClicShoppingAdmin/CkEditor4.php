@@ -26,7 +26,7 @@
       */
     public static function getWysiwyg(): string
     {
-      $script = '<script src="//cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>';
+      $script = '<script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>';
       $script .= ChatGptAdmin::gptCkeditorParameters();
 
       return $script;
