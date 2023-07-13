@@ -1,12 +1,11 @@
-$('#button-generate').on('click', function () {
-    rand = '';
+document.getElementById('button-generate').addEventListener('click', function () {
+    let rand = '';
 
-    string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-    let rand;
     for (let i = 0; i < 256; i++) {
-        rand += string[Math.floor(Math.random() * (string.length - 1))];
+        rand += string.charAt(Math.floor(Math.random() * string.length));
     }
 
-    $('#input-key').val(rand);
+    document.getElementById('input-key').value = rand;
 });
