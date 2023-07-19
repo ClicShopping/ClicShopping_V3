@@ -1627,6 +1627,7 @@ INSERT INTO configuration VALUES(1603, 'Parameter [Return Orders App]', 'MODULE_
 INSERT INTO configuration VALUES(1604, 'Statut', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique', 6, 0, NULL, '2023-06-13 18:02:40', NULL, NULL);
 INSERT INTO configuration VALUES(1605, 'Délai de rétractation du client', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_WITHDRAWAL', '14', 'Veuillez indiquer le délai de rétractation que le client pourra utiliser pour retourner le produit acheté', 6, 0, NULL, '2023-06-13 18:02:40', NULL, NULL);
 INSERT INTO configuration VALUES(1606, 'Ordre de tri d\'affichage', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_SORT_ORDER', '30', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2023-06-13 18:02:40', NULL, NULL);
+INSERT INTO configuration VALUES(1607, 'Quel wysiwyg par défaut souhaitez-vous ?', 'DEFAULT_WYSIWYG', 'CkEditor4', 'Veuillez choisir votre wysiwygpar défaut.', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'CkEditor4\', \'CkEditor5\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);

@@ -75,7 +75,7 @@ CKEDITOR.plugins.add('chatgpt', {
             label: titleGpt,
             command: 'chatgptDialog',
             toolbar: 'insert,10',
-            icon:  'Iframe', //chatGpt
+            icon:  'Iframe', //Gpt
         });
 
         CKEDITOR.dialog.add('chatgptDialog', this.path + 'dialogs/chatgpt.js');

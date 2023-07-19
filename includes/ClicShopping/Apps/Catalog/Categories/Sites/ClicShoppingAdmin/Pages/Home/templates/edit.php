@@ -250,6 +250,7 @@
             ?>
             <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
               <div class="accordion-body">
+
                   <div class="separator"></div>
                   <div class="row">
                     <div class="col-md-12">

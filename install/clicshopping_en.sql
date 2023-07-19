@@ -1627,6 +1627,7 @@ INSERT INTO configuration VALUES(1603, 'Parameter [Return Orders App]', 'MODULE_
 INSERT INTO configuration VALUES(1604, 'Status', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2023-06-13 18:06:17', NULL, NULL);
 INSERT INTO configuration VALUES(1605, 'Customer withdrawal period', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_WITHDRAWAL', '14', 'Please indicate the withdrawal period that the customer may use to return the product purchased', 6, 0, NULL, '2023-06-13 18:06:17', NULL, NULL);
 INSERT INTO configuration VALUES(1606, 'Sort Order', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_SORT_ORDER', '30', 'The sort order location of the module shown in the available methods listing (lowest is displayed first).', 6, 0, NULL, '2023-06-13 18:06:17', NULL, NULL);
+INSERT INTO configuration VALUES(1607, 'Witch Default wysiwyg do you want ?', 'DEFAULT_WYSIWYG', 'CkEditor4', 'Please choose your default wysiwyg', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'CkEditor4\', \'CkEditor5\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
