@@ -58,8 +58,7 @@
     {
       if (isset($_GET['sId'], $_GET['suppliers'])) {
         $id = HTML::sanitize($_GET['sId']);
-
-        return static::deleteSupplier($id);
+        static::deleteSupplier($id);
       } else {
         return false;
       }

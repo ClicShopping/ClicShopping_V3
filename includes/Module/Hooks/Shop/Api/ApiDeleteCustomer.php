@@ -51,8 +51,7 @@
     {
       if (isset($_GET['cId'], $_GET['customer'])) {
         $id = HTML::sanitize($_GET['cId']);
-
-        return static::deleteCustomer($id);
+        static::deleteCustomer($id);
       } else {
         return false;
       }

@@ -92,7 +92,7 @@
     {
       if (isset($_GET['cId'], $_GET['categories'])) {
         $id = HTML::sanitize($_GET['cId']);
-        return static::deleteCategories($id);
+        static::deleteCategories($id);
       } else {
         return false;
       }
