@@ -28,6 +28,4 @@
   $prompt = HTML::sanitize($_POST['message']);
   $result = ChatGptAdmin::getGptResponse($prompt);
 
-  //$result = ChatGptAdmin::removeQuestionText($result);
-
   echo $result;

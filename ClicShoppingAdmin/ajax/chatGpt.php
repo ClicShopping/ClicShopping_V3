@@ -25,4 +25,3 @@
   $result = ChatGptAdmin::getGptResponse($prompt);
 
   echo $result;
-
