@@ -3,7 +3,9 @@ Suppliers imporvement (Stats)
 who s online improvment
 Gpt refactoring
 New stats and dashboard graph for Gpt
+Add ckeditor 5 as admin option
 small fix
+Librairies updated
 
 
 
