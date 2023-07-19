@@ -89,12 +89,15 @@
       if (isset($_SERVER['HTTP_REFERER'])) {
         $referer = HTML::sanitize($_SERVER['HTTP_REFERER']);
       } else {
-        if (!empty(gethostbyaddr( $wo_ip_address))) {
-          echo gethostbyaddr( $wo_ip_address);
-        } else {
-          $referer = 'localhost or not defined';
-        }
+        $referer = 'Unknown';
       }
+
+      if (!empty(gethostbyaddr( $wo_ip_address))) {
+        $referer =  gethostbyaddr( $wo_ip_address);
+      } else {
+        $referer = 'localhost or not defined';
+      }
+
 
       if (isset($_SERVER['HTTP_USER_AGENT'])) {
         $user_agent = HTML::sanitize($_SERVER['HTTP_USER_AGENT']);

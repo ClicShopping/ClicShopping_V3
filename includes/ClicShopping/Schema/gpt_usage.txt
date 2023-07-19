@@ -1,5 +1,5 @@
-usage_id
-gpt_id int not_null auto_increment
+usage_id int not_null auto_increment
+gpt_id int null
 promptTokens int null
 completionTokens int null
 totalTokens int null
@@ -8,7 +8,7 @@ model varchar(255) default null
 date_added date default null
 
 --
-primary gpt_id
+primary usage_id
 ##
 engine innodb
 character_set utf8mb4
