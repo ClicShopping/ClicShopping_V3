@@ -1,5 +1,5 @@
 CREATE TABLE `clic_gpt_usage` (
-  `usage_id` int(11) NOT NULL,
+  `usage_id` int(11) NOT NULL autoincrement,
   `gpt_id` int(11) NOT NULL,
   `promptTokens` int(11) DEFAULT NULL,
   `completionTokens` int(11) DEFAULT NULL,
@@ -9,3 +9,12 @@ CREATE TABLE `clic_gpt_usage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
  RENAME TABLE `clicshopping_test`.`clic_chatgpt` TO `clicshopping_test`.`clic_gpt`;
+
+
+ #english
+ INSERT INTO clic_configuration VALUES(null, 'Witch Default wysiwyg do you want ?', 'DEFAULT_WYSIWYG', 'CkEditor4', 'Please choose your default wysiwyg', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'CkEditor4\', \'CkEditor5\'))');
+
+
+ #french
+ INSERT INTO clic_configuration VALUES(null, 'Quel wysiwyg par défaut souhaitez-vous ?', 'DEFAULT_WYSIWYG', 'CkEditor4', 'Veuillez choisir votre wysiwygpar défaut.', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'CkEditor4\', \'CkEditor5\'))');
+
