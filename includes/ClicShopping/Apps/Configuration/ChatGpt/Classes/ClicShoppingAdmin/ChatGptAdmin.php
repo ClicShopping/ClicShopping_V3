@@ -125,6 +125,7 @@
     {
       if (!empty(CLICSHOPPING_APP_CHATGPT_CH_API_KEY)) {
         $client = OpenAI::client(CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
+
         return $client;
       }  else {
         return false;
