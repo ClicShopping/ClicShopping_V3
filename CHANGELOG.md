@@ -1,17 +1,19 @@
+3.429
+
+
+-------------------
 3.428
-Suppliers imporvement (Stats)
-who s online improvment
+Suppliers improvement (Stats)
+who s online improvement
 Gpt refactoring
 New stats and dashboard graph for Gpt
 Add ckeditor 5 as admin option
 small fix
 Librairies updated
 
-
-
--------------------
+------------------
 3.427
-Manufacturers improvment
+Manufacturers improvement
 sql fix marketplace db
 
 -------------------
