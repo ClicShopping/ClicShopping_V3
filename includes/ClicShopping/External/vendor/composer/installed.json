@@ -528,17 +528,17 @@
         },
         {
             "name": "openai-php/client",
-            "version": "v0.6.3",
-            "version_normalized": "0.6.3.0",
+            "version": "v0.6.4",
+            "version_normalized": "0.6.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openai-php/client.git",
-                "reference": "b703dba3bee84c68f14d454f6e30170774d11734"
+                "reference": "6e0738a3f052fb0d27bd57136fff47db96248f65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openai-php/client/zipball/b703dba3bee84c68f14d454f6e30170774d11734",
-                "reference": "b703dba3bee84c68f14d454f6e30170774d11734",
+                "url": "https://api.github.com/repos/openai-php/client/zipball/6e0738a3f052fb0d27bd57136fff47db96248f65",
+                "reference": "6e0738a3f052fb0d27bd57136fff47db96248f65",
                 "shasum": ""
             },
             "require": {
@@ -563,7 +563,7 @@
                 "rector/rector": "^0.16.0",
                 "symfony/var-dumper": "^6.3.1"
             },
-            "time": "2023-07-07T12:49:58+00:00",
+            "time": "2023-07-18T22:59:43+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -603,7 +603,7 @@
             ],
             "support": {
                 "issues": "https://github.com/openai-php/client/issues",
-                "source": "https://github.com/openai-php/client/tree/v0.6.3"
+                "source": "https://github.com/openai-php/client/tree/v0.6.4"
             },
             "funding": [
                 {
