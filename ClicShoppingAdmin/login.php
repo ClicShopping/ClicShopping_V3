@@ -385,11 +385,20 @@
   $ip = HTTP::getIpAddress();
 
   if (Is::IpAddress($ip) && (!empty($ip) || !\is_null($ip))) {
-    $details = file_get_contents("https://ipinfo.io/{$ip}/geo");
+    $url = "https://ipinfo.io/{$ip}/geo";
+    $options = [
+      'http' => [
+        'ignore_errors' => true, // Ignore HTTP errors and fetch the response
+      ],
+    ];
+
+    $context = stream_context_create($options);
+
+    $details = file_get_contents($url, false, $context);
 
     if ($details !== false) {
-      $details = json_decode($details);
-      if(isset($details->country)) {
+      $details = json_decode($details, true);
+      if ($details !== null && isset($details->country)) {
         $country = $details->country;
         echo "<script>$('svg path[data-country-code={$country}]').attr('fill', '#197ac6').attr('fill-opacity', '0.15');</script>";
       }
