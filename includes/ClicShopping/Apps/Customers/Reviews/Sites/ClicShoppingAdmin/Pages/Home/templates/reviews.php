@@ -91,7 +91,6 @@
         <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_products'); ?></th>
         <th data-field="rating" data-sortable="true"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_rating'); ?></th>
         <th data-field="author" class="text-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_review_author'); ?></th>
-        <th data-field="average_rating" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_products_average_rating'); ?></th>
         <th data-field="review_read" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_review_read'); ?></th>
         <th data-field="review_group" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_review_group'); ?></th>
         <th data-field="last_modified" class="text-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_last_modified'); ?></th>
@@ -190,7 +189,6 @@
           <td><strong<?php echo HTML::link($CLICSHOPPING_Reviews->link('&Edit&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')), $CLICSHOPPING_ProductsAdmin->getProductsName($Qreviews->valueInt('products_id'))); ?></strong></td>
           <td><?php echo '<i>' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i>'; ?></td>
           <td class="text-center"><?php echo $Qreviews->value('customers_name'); ?></td>
-          <td class="text-center"><?php echo number_format($Qreviews->valueDecimal('average_rating'), 2) . '%'; ?></td>
           <td class="text-center"><?php echo number_format($Qreviews->valueInt('reviews_read', 2)); ?></td>
           <td class="text-center"><?php echo $customer_group['customers_group_name']; ?></td>
           <td class="text-center"><?php echo DateTime::toLong($Qreviews->value('last_modified')); ?></td>
@@ -204,7 +202,7 @@
             ?>
           <td class="text-end"><?php echo '<a href="' . $CLICSHOPPING_Reviews->link('Edit&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Reviews->getDef('icon_edit') . '"></i></h4></a>'; ?></td>
           </td>
-          </tr>
+        </tr>
           <?php
         } //end while
       } //end $listingTotalRow
