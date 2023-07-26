@@ -113,4 +113,3 @@ entry_customers_add_address = Autoriser le client à ajouter une autre adresse
 tva_intracom_verify = Verifer TVA
 title_help_customers_tva = Note sur TVA Intracom
 title_help_tva_customers = Ceuillez valider le document avant de vérifier le code de TVA de la société
-

@@ -112,5 +112,3 @@ entry_customers_add_address = To authorize the customer to add other addresses
 tva_intracom_verify = Verify VAT
 title_help_customers_tva = Note on VAT Intracom
 title_help_tva_customers = Please, valid the document before to verify the society VAT
-
-

@@ -20,9 +20,9 @@
       $output = '';
 
       if (isset($_SESSION['admin'])) {
-        $output = '<!-- Start Bootstrap table -->' . "\n";
+        $output = '<!-- Start BootStrap Table -->' . "\n";
         $output .= '<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css">' . "\n";
-        $output .= '<!-- Start Bootstrap table -->' . "\n";
+        $output .= '<!-- Start BootStrap Table -->' . "\n";
       } else {
         return false;
       }

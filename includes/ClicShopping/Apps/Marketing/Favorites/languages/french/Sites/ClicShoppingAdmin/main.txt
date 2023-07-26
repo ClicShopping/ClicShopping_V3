@@ -6,7 +6,7 @@ text_products_favorites =  Coups de coeur
 text_configure =  Configurer App Module
 
 text_intro = Cette app vous permet d'inclure de créer des coups de coeur. <br /><br />
-- Ce module is fournt avec le module coup de coeur pour la boutique.<br />
+- Ce module est fournit avec le module coup de coeur pour la boutique.<br />
 - Active ce module de gestion et celui du catalogue qui est localisé dans le Listing des Produits
 - N'oubliez pas de créer un lien pour y accéder à partir du catalogue
 

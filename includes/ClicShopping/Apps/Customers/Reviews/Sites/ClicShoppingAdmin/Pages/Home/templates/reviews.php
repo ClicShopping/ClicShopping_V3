@@ -46,11 +46,39 @@
   <!-- ################# -->
   <!-- Hooks Stats - just use execute function to display the hook-->
   <!-- ################# -->
+  <?php
+  $QavgReviews = $CLICSHOPPING_Reviews->db->prepare('select count(reviews_id) as count,
+                                                            avg(reviews_rating) as avg
+                                                    from :table_reviews
+                                                   ');
+
+  $QavgReviews->execute();
+
+  if ($QavgReviews->valueInt('count') > 0) {
+  ?>
   <div class="row">
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <?php echo $CLICSHOPPING_Hooks->output('Reviews', 'StatsReviews'); ?>
+          <div class="col-md-2 col-12">
+            <div class="card bg-primary">
+              <div class="card-body">
+                <h6 class="card-title text-white"><i class="bi bi-bar-chart text-white"></i> <?php echo '&nbsp;' . $CLICSHOPPING_Reviews->getDef('text_statistics'); ?></h6>
+                <div class="card-text">
+                  <div class="col-sm-12">
+                  <span class="float-end">
+                    <div class="col-sm-12 text-white"><?php echo $CLICSHOPPING_Reviews->getDef('text_count_reviews') . '  ' . $QavgReviews->valueInt('count'); ?></div>
+                    <div class="col-sm-12 text-white"><?php echo $CLICSHOPPING_Reviews->getDef('text_average_reviews') . '  ' . $QavgReviews->valueDecimal('avg'); ?></div>
+                  </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  <?php
+  }
+
+   echo $CLICSHOPPING_Hooks->output('Reviews', 'StatsReviews'); ?>
         </div>
       </div>
     </div>

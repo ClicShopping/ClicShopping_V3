@@ -82,8 +82,8 @@
       } else {
         $output = '
 <div class="col-md-2 col-12">
-    <div class="card bg-info">
-     <div class="card-body">
+  <div class="card bg-info">
+    <div class="card-body">
       <h6 class="card-title text-white">' . $this->app->getDef('text_average_age') . '</h6>
       <div class="card-text">
         <div class="col-sm-12">
