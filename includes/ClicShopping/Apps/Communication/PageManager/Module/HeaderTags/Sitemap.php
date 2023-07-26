@@ -167,7 +167,7 @@ EOD;
           'configuration_title' => 'Display sort order',
           'configuration_key' => 'MODULE_HEADER_TAGS_SITEMAP_SORT_ORDER',
           'configuration_value' => '158',
-          'configuration_description' => 'Display sort order (The lower is displayd in first)',
+          'configuration_description' => 'Display sort order (The lower is displayed in first)',
           'configuration_group_id' => '6',
           'sort_order' => '2',
           'set_function' => '',

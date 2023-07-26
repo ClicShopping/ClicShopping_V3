@@ -99,7 +99,7 @@ EOD;
           'configuration_title' => 'Display sort order',
           'configuration_key' => 'MODULE_HEADER_TAGS_PRODUCT_REVIEWS_SORT_ORDER',
           'configuration_value' => '185',
-          'configuration_description' => 'Display sort order (The lower is displayd in first)',
+          'configuration_description' => 'Display sort order (The lower is displayed in first)',
           'configuration_group_id' => '6',
           'sort_order' => '215',
           'set_function' => '',
