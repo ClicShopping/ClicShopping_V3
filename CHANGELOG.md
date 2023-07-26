@@ -1,5 +1,9 @@
 3.429
-
+Add new stats for reviews
+small fix
+Librairies updated
+product recommendations report
+fix access error documents directory
 
 -------------------
 3.428
@@ -11,7 +15,7 @@ Add ckeditor 5 as admin option
 small fix
 Librairies updated
 
-------------------
+-------------------
 3.427
 Manufacturers improvement
 sql fix marketplace db
@@ -23,9 +27,9 @@ librairies updated
 small fix
 productCommon Class refactoring
 Currency, Does not allow to delete default status
-Product unit qty little improvment
+Product unit qty little improvement
 fix bug display discount
-Manufacturers improvment
+Manufacturers improvement
 Add shipping Delay out of stock
 Add products recommendations class
 Librairies Elfinder updated
