@@ -30,7 +30,6 @@
 
     public function display()
     {
-
       if (!\defined('CLICSHOPPING_APP_SPECIALS_SP_STATUS') || CLICSHOPPING_APP_SPECIALS_SP_STATUS == 'False') {
         return false;
       }

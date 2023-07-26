@@ -1,0 +1,12 @@
+CREATE TABLE clic_products_recommendations_to_categories (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  products_id INT(11) NOT NULL,
+  categories_id INT(11) NOT NULL,
+  PRIMARY KEY (id),
+  INDEX idx_products_id (products_id),
+  INDEX idx_categories_id (categories_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `clic_products_recommendations` ADD `product_tag` VARCHAR(255) Default NULL AFTER `recommendation_date`;
+ALTER TABLE `clic_products_recommendations` ADD `customers_group_id` INT(11) NOT NULL DEFAULT '0' AFTER `product_tag`;
+ALTER TABLE `clic_products_recommendations` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;

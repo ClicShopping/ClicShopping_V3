@@ -20,7 +20,6 @@
 
     protected function init()
     {
-
       if (!Registry::exists('Specials')) {
         Registry::set('Specials', new SpecialsApp());
       }

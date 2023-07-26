@@ -14,6 +14,8 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
+  use ClicShopping\Apps\Marketing\ProductRecommendations\Classes\Shop\ProductRecommendationsShop;
+
   class ReviewsClass
   {
     protected mixed $productsCommon;
@@ -299,6 +301,10 @@
       ];
 
       $this->db->save('reviews_description', $array_sql);
+      
+      if (\defined('CLICSHOPPING_APP_PRODUCT_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_PRODUCT_RECOMMENDATIONS_PR_STATUS == 'True') {
+        ProductRecommendationsShop::saveProductRecommendations($this->productsCommon->getID(), (int)$_POST['rating']);
+      }
     }
 
     /**

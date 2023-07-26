@@ -8,7 +8,6 @@
    *
    */
 
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
