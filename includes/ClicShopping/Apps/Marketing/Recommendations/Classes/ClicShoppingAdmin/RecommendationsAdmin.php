@@ -248,34 +248,6 @@
     }
 
     /**
-     * Get reviews for a specific product from the database.
-     *
-     * @param int $products_id The ID of the product.
-     * @return array An array of review data for the product.
-     */
-    private function getReviewsForProduct(int $products_id): array
-    {
-      $Qcheck = $this->db->prepare('select products_id,
-                                           reviews_rating
-                                  from :table_reviews r
-                                  where r.products_id = :products_id
-                                  ');
-      $Qcheck->bindInt(':products_id', $products_id);
-      $Qcheck->execute();
-
-      $reviews = array();
-
-      while ($Qcheck->fetch()) {
-        $reviews[] = array(
-          'id' => $Qcheck->valueint('products_id'),
-          'rating' => $Qcheck->valueDecimal('reviews_rating'),
-        );
-      }
-
-      return $reviews;
-    }
-
-    /**
      * Calculate the productsRateWeight for a specific product based on reviews and ratings.
      *
      * @param int $products_id The ID of the product.
