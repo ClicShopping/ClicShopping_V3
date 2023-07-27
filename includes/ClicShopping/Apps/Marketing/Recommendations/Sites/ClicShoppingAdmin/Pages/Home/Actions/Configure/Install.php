@@ -85,7 +85,6 @@
         $sql_data_array = [
           'sort_order' => 1,
           'link' => 'index.php?A&Marketing\Recommendations&Recommendations',
-          'link' => 'index.php?A&Configuration\Modules&Modules&set=modules_products_recommendations',
           'image' => 'products_recommendations.png',
           'b2b_menu' => 0,
           'access' => 0,
