@@ -29,6 +29,5 @@
       $CLICSHOPPING_Language->loadDefinitions('products_favorites');
 
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Products&Favorites'));
-
     }
   }

@@ -14,13 +14,12 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
-  use ClicShopping\Apps\Marketing\ProductRecommendations\Classes\Shop\ProductRecommendationsShop;
-
   class ReviewsClass
   {
     protected mixed $productsCommon;
     protected mixed $db;
     protected mixed $lang;
+    protected mixed $hooks;
     protected mixed $customer;
     protected int $reviews_number_comments;
     protected int $reviews_number_word;
@@ -31,6 +30,7 @@
       $this->db = Registry::get('Db');
       $this->lang = Registry::get('Language');
       $this->customer = Registry::get('Customer');
+      $this->hooks = Registry::get('Hooks');
 
       if (\defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS')) {
         $this->reviews_number_word = (int)MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS;
@@ -301,10 +301,8 @@
       ];
 
       $this->db->save('reviews_description', $array_sql);
-      
-      if (\defined('CLICSHOPPING_APP_PRODUCT_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_PRODUCT_RECOMMENDATIONS_PR_STATUS == 'True') {
-        ProductRecommendationsShop::saveProductRecommendations($this->productsCommon->getID(), (int)$_POST['rating']);
-      }
+
+      $this->hooks->call('Reviews', 'SaveEntry');
     }
 
     /**

@@ -56,7 +56,7 @@
     <div class="card bg-success">
       <div class="card-body">
         <div class="row">
-          <h6 class="card-title text-white"><i class="bi bi-info-circle-fill"></i> ' . $text . '</h6>
+          <h6 class="card-title text-white"><i class="bi bi-list"></i> ' . $text . '</h6>
         </div>
         <div class="col-md-12">
           <span class="text-white"><strong>' . $number_of_reviews . '</strong></span>
