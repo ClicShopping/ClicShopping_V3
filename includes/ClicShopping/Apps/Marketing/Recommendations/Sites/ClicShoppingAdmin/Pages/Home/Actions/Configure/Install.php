@@ -44,7 +44,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Recommendations = Registry::get('Recommendations');
       $CLICSHOPPING_Language = Registry::get('Language');
-      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_marketing_product_recommandations']);
+      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_marketing_recommendations']);
 
       if ($Qcheck->fetch() === false) {
 
@@ -54,7 +54,7 @@
           'image' => 'products_recommendations.png',
           'b2b_menu' => 0,
           'access' => 0,
-          'app_code' => 'app_marketing_product_recommandations'
+          'app_code' => 'app_marketing_recommendations'
         ];
 
         $insert_sql_data = ['parent_id' => 107];
@@ -88,7 +88,7 @@
           'image' => 'products_recommendations.png',
           'b2b_menu' => 0,
           'access' => 0,
-          'app_code' => 'app_marketing_product_recommandations'
+          'app_code' => 'app_marketing_recommendations'
         ];
 
         $insert_sql_data = ['parent_id' => 117];

@@ -153,7 +153,7 @@
                     and g.products_group_view = 1
                     and p.products_archive = 0
                     and pf.products_id = p.products_id
-                    and (pf.customers_group_id = :customers_group_id or  pf.customers_group_id = 99)
+                    and (pf.customers_group_id = :customers_group_id or pf.customers_group_id = 99)
                     and p.products_id = p2c.products_id
                     and p2c.categories_id = c.categories_id
                     and c.virtual_categories = 0
@@ -180,7 +180,6 @@
       }
 
       if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > \count($count_column))) {
-
         for ($i = 0, $n = \count($count_column); $i < $n; $i++) {
           if ($count_column[$i] == 'MODULE_PRODUCTS_FEATURED_LIST_DATE_ADDED') {
             $_GET['sort'] = $i + 1 . 'a';
@@ -215,6 +214,7 @@
       $Qlisting .= ' limit :page_set_offset,
                            :page_set_max_results
                    ';
+
       return $Qlisting;
     }
 

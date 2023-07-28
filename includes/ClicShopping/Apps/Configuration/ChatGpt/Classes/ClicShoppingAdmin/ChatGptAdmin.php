@@ -137,7 +137,7 @@
      * @return bool|string
      * @throws \Exception
      */
-    public static function getGptResponse(string $question) :bool|string
+    public static function getGptResponse(string $question, ?int $max_tokens = null) :bool|string
     {
       if (ChatGptAdmin::checkGptStatus() === false) {
         return false;
@@ -150,6 +150,10 @@
 
       $top = ['\n'];
 
+      if (is_null()) {
+        $max_tokens = (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN;
+      }
+
       $parameters = [
         'model' => $engine,  // Spécification du modèle à utiliser
         'temperature' => (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE, // Contrôle de la créativité du modèle
@@ -157,7 +161,7 @@
         'frequency_penalty' => (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY, //pénalité de fréquence pour encourager le modèle à générer des réponses plus variées
         'presence_penalty' => (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY, //pénalité de présence pour encourager le modèle à générer des réponses avec des mots qui n'ont pas été utilisés dans l'amorce
         'prompt' => $prompt, // Texte d'amorce
-        'max_tokens' => (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN, //nombre maximum de jetons à générer dans la réponse
+        'max_tokens' => $max_tokens, //nombre maximum de jetons à générer dans la réponse
         'stop' => $top, //caractères pour arrêter la réponse
         'n' => (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE, // nombre de réponses à générer
         'best_of' => (int)CLICSHOPPING_APP_CHATGPT_CH_BESTOFF, //Generates best_of completions server-side and returns the "best"

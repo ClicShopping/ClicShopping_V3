@@ -95,7 +95,6 @@
       return $score;
     }
 
-
 //********************************************
 //Analytics
 //********************************************
@@ -256,9 +255,6 @@
     public function calculateProductsRateWeight(int $products_id): float
     {
       $averageRating = $this->calculateAverageRating($products_id);
-
-      // Optionally, apply a weighting factor if needed.
-      // $weightedRating = applyWeightingFactor($averageRating);
 
       return $averageRating;
     }

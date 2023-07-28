@@ -138,7 +138,7 @@
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
         $Qlisting .= '  p.products_id,
                         p.products_quantity
-                   from :table_products p left join :table_products_groups g on p.products_id = g.products_id,
+                   from :table_products p join :table_products_groups g on p.products_id = g.products_id,
                         :table_specials s,
                         :table_products_to_categories p2c,
                         :table_categories c
@@ -154,7 +154,6 @@
                    and p2c.categories_id = c.categories_id
                    and c.status = 1
                    ';
-
       } else {
         $Qlisting .= '   p.products_id,
                          p.products_quantity
@@ -208,7 +207,7 @@
 
       $Qlisting .= ' limit :page_set_offset,
                            :page_set_max_results
-                    ';
+                  ';
       return $Qlisting;
     }
 

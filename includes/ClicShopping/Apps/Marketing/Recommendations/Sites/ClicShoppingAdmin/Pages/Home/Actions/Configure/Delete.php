@@ -41,7 +41,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_marketing_product_recommandations']);
+      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_marketing_recommendations']);
 
       if ($Qcheck->fetch()) {
         $QMenuId = $CLICSHOPPING_Db->prepare('select id
@@ -49,7 +49,7 @@
                                               where app_code = :app_code
                                             ');
 
-        $QMenuId->bindValue(':app_code', 'app_marketing_product_recommandations');
+        $QMenuId->bindValue(':app_code', 'app_marketing_recommendations');
         $QMenuId->execute();
 
         $menu = $QMenuId->fetchAll();
@@ -60,7 +60,7 @@
           $CLICSHOPPING_Db->delete('administrator_menu_description', ['id' => (int)$menu[$i]['id']]);
         }
 
-        $CLICSHOPPING_Db->delete('administrator_menu', ['app_code' => 'app_marketing_product_recommandations']);
+        $CLICSHOPPING_Db->delete('administrator_menu', ['app_code' => 'app_marketing_recommendations']);
       }
     }
 
