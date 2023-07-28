@@ -15,7 +15,7 @@
 
   class status extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
-    public $default = 'True';
+    public $default = 'False';
     public ?int $sort_order = 10;
 
     protected function init()

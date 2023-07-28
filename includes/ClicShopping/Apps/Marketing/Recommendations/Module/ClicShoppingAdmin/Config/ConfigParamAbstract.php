@@ -17,7 +17,7 @@
     protected mixed $app;
     protected $config_module;
 
-    protected string $key_prefix = 'clicshopping_app_product_recommandations_';
+    protected string $key_prefix = 'clicshopping_app_recommendations_';
     public bool $app_configured = true;
 
     public function __construct($config_module)
