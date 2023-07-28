@@ -137,7 +137,7 @@
      * @return bool|string
      * @throws \Exception
      */
-    public static function getGptResponse(string $question, ?int $max_tokens = null) :bool|string
+    public static function getGptResponse(string $question, ?int $max_tokens = null, ?float $temperature = null) :bool|string
     {
       if (ChatGptAdmin::checkGptStatus() === false) {
         return false;
@@ -150,13 +150,17 @@
 
       $top = ['\n'];
 
-      if (is_null()) {
+      if (is_null($max_tokens)) {
         $max_tokens = (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN;
+      }
+
+      if (is_null($temperature)) {
+        $temperature = (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE;
       }
 
       $parameters = [
         'model' => $engine,  // Spécification du modèle à utiliser
-        'temperature' => (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE, // Contrôle de la créativité du modèle
+        'temperature' => $temperature, // Contrôle de la créativité du modèle
         'top_p' => (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P , // Caractère de fin de ligne pour la réponse
         'frequency_penalty' => (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY, //pénalité de fréquence pour encourager le modèle à générer des réponses plus variées
         'presence_penalty' => (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY, //pénalité de présence pour encourager le modèle à générer des réponses avec des mots qui n'ont pas été utilisés dans l'amorce
@@ -174,10 +178,6 @@
       }
 
       $response = $client->completions()->create($parameters);
-
-
-
-
 
       try {
         $result = $response['choices'][0]['text'];

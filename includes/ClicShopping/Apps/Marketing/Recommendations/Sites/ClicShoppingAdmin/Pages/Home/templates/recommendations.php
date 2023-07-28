@@ -54,7 +54,7 @@
   if(isset($_POST['score'])){
     $rejection_score = HTML::sanitize($_POST['score']);
   }else {
-    $rejection_score = 0.5;
+    $rejection_score = (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_SCORE;
   }
 
   If (isset($_POST['date'])) {
@@ -103,7 +103,7 @@
                 <div class="col-md-2">
                   <?php
                   echo $CLICSHOPPING_Recommendations->getDef('text_rejection_score');
-                  echo HTML::inputField('score', $rejection_score, 'id="score"');
+                  echo HTML::inputField('score', $rejection_score, 'id="score" min="-1.0" max="1.0" step="0.1"', 'number');
                   ?>
                 </div>
                 <div class="col-md-2">
