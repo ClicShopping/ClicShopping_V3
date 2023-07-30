@@ -36,7 +36,7 @@
           <span
             class="col-md-8 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ChatGpt->getDef('heading_title'); ?></span>
           <span class="col-md-3 text-end">
-            <?php echo HTML::button($CLICSHOPPING_ChatGpt->getDef('button_configure'), null, $CLICSHOPPING_ChatGpt->link('ChatGpt'), 'primary'); ?>
+            <?php echo HTML::button($CLICSHOPPING_ChatGpt->getDef('module_ch_short_title'), null, $CLICSHOPPING_ChatGpt->link('ChatGpt'), 'primary'); ?>
           </span>
         </div>
       </div>

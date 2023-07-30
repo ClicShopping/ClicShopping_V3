@@ -35,8 +35,12 @@
           <span class="col-md-7 text-end">
           <?php
           if (MODE_DEMO == 'False') {
-            echo HTML::button($CLICSHOPPING_ChatGpt->getDef('button_configure'), null, $CLICSHOPPING_ChatGpt->link('Configure'), 'primary');
+            echo HTML::button($CLICSHOPPING_ChatGpt->getDef('button_configure'), null, $CLICSHOPPING_ChatGpt->link('Configure'), 'primary') . ' ';
           }
+
+          echo HTML::form('delete_everything', $CLICSHOPPING_ChatGpt->link('ChatGpt&DeleteEverything'));
+          echo HTML::button($CLICSHOPPING_ChatGpt->getDef('button_delete'), null, null, 'danger');
+          echo'</form>'
           ?>
           </span>
         </div>
