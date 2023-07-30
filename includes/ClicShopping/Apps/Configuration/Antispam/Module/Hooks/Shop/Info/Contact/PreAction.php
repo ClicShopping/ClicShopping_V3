@@ -83,7 +83,6 @@
 
         $error_invisible = static::checkInvisibleAntispam();
         $error_numeric = static::checkNumericAntispam();
-        $error_recaptcha = static::checkGoogleRecaptchaAntispam();
 
         if ($error_invisible === true || $error_numeric === true || $error_recaptcha === true) {
           $error = true;
