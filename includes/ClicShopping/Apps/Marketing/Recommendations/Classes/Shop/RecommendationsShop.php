@@ -174,7 +174,6 @@
       return $QproductCategory->valueInt('categories_id');
     }
 
-
     /**
      * @return array
      */
@@ -243,7 +242,7 @@
                     :table_products p,
                     :table_products_to_categories p2c,
                     :table_categories c                                              
-                  where pr.score > ' . (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_Min_SCORE . '
+                  where pr.score > ' . (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MIN_SCORE . '
                   and p.products_status = 1
                     and g.price_group_view = 1                 
                     and p.products_id = pr.products_id
@@ -265,7 +264,7 @@
                          :table_products p,
                          :table_products_to_categories p2c,
                          :table_categories c                                     
-                    where pr.score > ' . (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_Min_SCORE . '
+                    where pr.score > ' . (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MIN_SCORE . '
                     and p.products_id = pr.products_id
                     and p.products_status = 1
                     and p.products_view = 1

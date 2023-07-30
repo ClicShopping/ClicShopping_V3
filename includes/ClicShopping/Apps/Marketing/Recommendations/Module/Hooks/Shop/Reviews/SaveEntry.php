@@ -22,6 +22,7 @@
     {
       $this->productsCommon = Registry::get('ProductsCommon');
       Registry::set('RecommendationsShop', new RecommendationsShop());
+
       $this->recommendationsShop = Registry::get('RecommendationsShop');
     }
 

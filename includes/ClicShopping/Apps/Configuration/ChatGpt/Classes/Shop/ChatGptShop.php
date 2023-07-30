@@ -36,7 +36,7 @@
      * @param array $apiResponse The GPT-3 API response.
      * @return float The sentiment score (-1 to 1) extracted from the response.
      */
-    public static function extractSentimentScore(array $apiResponse): float
+    public static function extractSentimentScore(array $sentimentLabel): float
     {
       $text = $apiResponse['choices'][0]['text'];
       $sentimentScore = float($text);
@@ -46,7 +46,6 @@
 
       return $sentimentScore;
     }
-
 
     /**
      * Perform sentiment prediction on user comments using GPT-3 API (davinci engine).
@@ -60,6 +59,7 @@
 
       foreach ($userComments as $comment) {
         $prompt = "Give me the sentiment of the following comment: '{$comment}' is: ";
+
         $apiResponse = ChatGptAdmin::getGptResponse($prompt, $max_token, $temperature);
 
         $sentimentScore = self::extractSentimentScore($apiResponse);
