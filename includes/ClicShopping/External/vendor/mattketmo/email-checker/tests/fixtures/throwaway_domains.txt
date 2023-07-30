@@ -1,6 +1,0 @@
-# FIstures used for test; this is a comment line
-jetable.org
-mailjet.org
-  dummy-space.ext
-#comment.ext
-Yopmail.com

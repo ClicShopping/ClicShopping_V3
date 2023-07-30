@@ -458,17 +458,17 @@
         },
         {
             "name": "mattketmo/email-checker",
-            "version": "2.1.2",
-            "version_normalized": "2.1.2.0",
+            "version": "v2.1.3",
+            "version_normalized": "2.1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MattKetmo/EmailChecker.git",
-                "reference": "2d3c78e221297c67efd9cd3940e515dc8721599f"
+                "reference": "b5dfae9c4a04676b1be315eca000f0534357c4aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MattKetmo/EmailChecker/zipball/2d3c78e221297c67efd9cd3940e515dc8721599f",
-                "reference": "2d3c78e221297c67efd9cd3940e515dc8721599f",
+                "url": "https://api.github.com/repos/MattKetmo/EmailChecker/zipball/b5dfae9c4a04676b1be315eca000f0534357c4aa",
+                "reference": "b5dfae9c4a04676b1be315eca000f0534357c4aa",
                 "shasum": ""
             },
             "require": {
@@ -485,7 +485,7 @@
                 "knplabs/gaufrette": "Use filesystem abstraction layer to read data",
                 "symfony/validator": "Add validation constraints"
             },
-            "time": "2023-01-10T17:35:32+00:00",
+            "time": "2023-04-17T07:24:45+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -522,7 +522,7 @@
             ],
             "support": {
                 "issues": "https://github.com/MattKetmo/EmailChecker/issues",
-                "source": "https://github.com/MattKetmo/EmailChecker/tree/2.1.2"
+                "source": "https://github.com/MattKetmo/EmailChecker/tree/v2.1.3"
             },
             "install-path": "../mattketmo/email-checker"
         },
@@ -1441,17 +1441,17 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v5.4.21",
-            "version_normalized": "5.4.21.0",
+            "version": "v5.4.26",
+            "version_normalized": "5.4.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "078e9a5e1871fcfe6a5ce421b539344c21afef19"
+                "reference": "01ef6b2391a59bb4c5d3c59e2ef9b99c7d335d17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/078e9a5e1871fcfe6a5ce421b539344c21afef19",
-                "reference": "078e9a5e1871fcfe6a5ce421b539344c21afef19",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/01ef6b2391a59bb4c5d3c59e2ef9b99c7d335d17",
+                "reference": "01ef6b2391a59bb4c5d3c59e2ef9b99c7d335d17",
                 "shasum": ""
             },
             "require": {
@@ -1459,7 +1459,7 @@
                 "symfony/deprecation-contracts": "^2.1|^3",
                 "symfony/polyfill-php80": "^1.16"
             },
-            "time": "2023-02-16T09:33:00+00:00",
+            "time": "2023-07-09T13:55:15+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1487,7 +1487,7 @@
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/finder/tree/v5.4.21"
+                "source": "https://github.com/symfony/finder/tree/v5.4.26"
             },
             "funding": [
                 {

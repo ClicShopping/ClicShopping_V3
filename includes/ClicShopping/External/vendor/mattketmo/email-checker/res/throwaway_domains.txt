@@ -886,6 +886,7 @@ guerrillamail.info
 guerrillamail.net
 guerrillamail.org
 guerrillamailblock.com
+gufum.com
 gustr.com
 gynzi.co.uk
 gynzi.es
@@ -1246,6 +1247,7 @@ mailfs.com
 mailguard.me
 mailhazard.com
 mailhazard.us
+mailhole.de
 mailhz.me
 mailimate.com
 mailin8r.com

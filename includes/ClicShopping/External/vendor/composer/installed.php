@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => '3.428.x-dev',
-        'version' => '3.428.9999999.9999999-dev',
-        'reference' => 'aa17df426333515556c1bb148fa9fbfcaabb33cb',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => 'aa84ca74112910e57a1837970c04ca817263ca9e',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '3.428.x-dev',
-            'version' => '3.428.9999999.9999999-dev',
-            'reference' => 'aa17df426333515556c1bb148fa9fbfcaabb33cb',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'aa84ca74112910e57a1837970c04ca817263ca9e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -65,9 +65,9 @@
             'dev_requirement' => false,
         ),
         'mattketmo/email-checker' => array(
-            'pretty_version' => '2.1.2',
-            'version' => '2.1.2.0',
-            'reference' => '2d3c78e221297c67efd9cd3940e515dc8721599f',
+            'pretty_version' => 'v2.1.3',
+            'version' => '2.1.3.0',
+            'reference' => 'b5dfae9c4a04676b1be315eca000f0534357c4aa',
             'type' => 'library',
             'install_path' => __DIR__ . '/../mattketmo/email-checker',
             'aliases' => array(),
@@ -233,9 +233,9 @@
             'dev_requirement' => false,
         ),
         'symfony/finder' => array(
-            'pretty_version' => 'v5.4.21',
-            'version' => '5.4.21.0',
-            'reference' => '078e9a5e1871fcfe6a5ce421b539344c21afef19',
+            'pretty_version' => 'v5.4.26',
+            'version' => '5.4.26.0',
+            'reference' => '01ef6b2391a59bb4c5d3c59e2ef9b99c7d335d17',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/finder',
             'aliases' => array(),
