@@ -36,18 +36,23 @@
 
     public function Display(): string
     {
-      $Qrecommendations = $this->app->db->prepare('select count(id) as good_recommendations 
+      $Qrecommendations = $this->app->db->prepare('select count(id) as good_recommendations      
                                                    from :table_products_recommendations 
-                                                   where score >= 0.5                                                    
+                                                   where score >= :score 
+                                                   group by products_id
+
                                                   ');
       $Qrecommendations->execute();
-      $good_recommendations = $Qrecommendations->valueInt('good_recommendations');
+      $Qrecommendations->bindDecimal(':score', (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MIN_SCORE);
 
+      $good_recommendations = $Qrecommendations->valueInt('good_recommendations');
 
       $QbRecommendations = $this->app->db->prepare('select count(id) as bad_recommendation 
                                                     from :table_products_recommendations 
-                                                    where score < 0.5 
+                                                    where score < :score
                                                     ');
+      $Qrecommendations->bindDecimal(':score', (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MAX_SCORE);
+
       $QbRecommendations->execute();
 
       $bad_recommendations = $QbRecommendations->valueInt('bad_recommendation');

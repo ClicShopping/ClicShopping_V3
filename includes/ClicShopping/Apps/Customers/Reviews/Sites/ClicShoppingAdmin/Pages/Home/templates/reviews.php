@@ -53,13 +53,15 @@
                                                    ');
 
   $QavgReviews->execute();
-
-  if ($QavgReviews->valueInt('count') > 0) {
   ?>
   <div class="row">
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
+          <?php
+            if ($QavgReviews->valueInt('count') > 0) {
+          ?>
+
           <div class="col-md-2 col-12">
             <div class="card bg-primary">
               <div class="card-body">
@@ -75,15 +77,15 @@
               </div>
             </div>
           </div>
-  <?php
-  }
+          <?php
+            }
 
-   echo $CLICSHOPPING_Hooks->output('Reviews', 'StatsReviews'); ?>
+           echo $CLICSHOPPING_Hooks->output('Reviews', 'StatsReviews');
+          ?>
         </div>
       </div>
     </div>
   </div>
-
   <div class="separator"></div>
   <!-- //################################################################################################################ -->
   <!-- //                                            LISTING DES AVIS CLIENTS                                             -->
@@ -211,8 +213,7 @@
           ?>
           <td></td>
           <td><?php echo $Qreviews->valueInt('reviews_id'); ?></td>
-          <td scope="row"
-              width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qreviews->valueInt('products_id') . '?page=' . $page), '<h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_Reviews->getDef('icon_preview_comment') . '"></i></h4>'); ?></td>
+          <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qreviews->valueInt('products_id') . '?page=' . $page), '<h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_Reviews->getDef('icon_preview_comment') . '"></i></h4>'); ?></td>
           <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qreviews->value('products_image'), $Qreviews->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
           <td><strong<?php echo HTML::link($CLICSHOPPING_Reviews->link('&Edit&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')), $CLICSHOPPING_ProductsAdmin->getProductsName($Qreviews->valueInt('products_id'))); ?></strong></td>
           <td><?php echo '<i>' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i>'; ?></td>
