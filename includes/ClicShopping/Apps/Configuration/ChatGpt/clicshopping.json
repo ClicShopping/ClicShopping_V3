@@ -21,7 +21,7 @@
    "ClicShoppingAdmin/Products": {
     "PageTab": "Module\\Hooks\\ClicShoppingAdmin\\Products\\SeoChatGpt",
     "Insert": "Module\\Hooks\\ClicShoppingAdmin\\Products\\Insert"
-   },
+    },
     "ClicShoppingAdmin/Categories": {
      "CategoriesContentTab3":	"Module\\Hooks\\ClicShoppingAdmin\\Categories\\SeoChatGpt",
      "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Categories\\Insert"
@@ -36,7 +36,7 @@
     "ClicShoppingAdmin/SEO": {
      "PageTab":	"Module\\Hooks\\ClicShoppingAdmin\\SEO\\SeoChatGpt"
     }
-  }
+   }
  },
  "routes": {
   "ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home"

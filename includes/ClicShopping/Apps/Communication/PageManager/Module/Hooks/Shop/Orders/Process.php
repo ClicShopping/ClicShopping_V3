@@ -14,7 +14,6 @@
 
   class Process implements \ClicShopping\OM\Modules\HooksInterface
   {
-
     protected mixed $app;
 
     /*
@@ -23,10 +22,8 @@
       * @return array and save general condition
       * @access private
      */
-// insert the general condition of sales
     private function getPageManagerGeneralConditons()
     {
-
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');

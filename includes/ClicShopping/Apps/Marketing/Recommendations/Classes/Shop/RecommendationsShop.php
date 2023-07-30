@@ -11,17 +11,41 @@
   namespace ClicShopping\Apps\Marketing\Recommendations\Classes\Shop;
 
   use ClicShopping\Apps\Marketing\Recommendations\Classes\ClicShoppingAdmin\RecommendationsAdmin;
+  use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\ChatGptShop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
 
-  class RecommendationsShop
-  {
+  class RecommendationsShop {
+    /**
+     * get the customer sentiment about the comment
+     * @return mixed
+     * Must be improved by hook inside the App Chatgpt
+     */
+   public static function getGptSentiment()
+   {
+     if (ChatGptShop::checkGptStatus() === false) {
+       return null;
+     } else {
+       $userComments = HTML::sanitize($_POST['review']);
+       $userComments = [$userComments];
+
+
+       var_dump($userComments);
+       exit;
+
+       $sentiment = ChatGptShop::performSentimentPrediction($userComments);
+
+       return $sentiment;
+     }
+   }
+
     /**
      * Save the recommendation about a specific product and the customer
      * @param int $products_id
      * @param float $reviewRate
      */
-    public static function saveRecommendations(int $products_id, float $reviewRate = 0): void
+    public function saveRecommendations(int $products_id, float $reviewRate = 0): void
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -29,13 +53,14 @@
       Registry::set('RecommendationsAdmin', new RecommendationsAdmin());
       $CLICSHOPPING_RecommendationsAdmin = Registry::get('RecommendationsAdmin');
 
+      $sentiment = self::getGptSentiment();
+
       $products_rate_weight = $CLICSHOPPING_RecommendationsAdmin->calculateProductsRateWeight($products_id);
 
       $customer_id = $CLICSHOPPING_Customer->getID();
       $customer_group_id = $CLICSHOPPING_Customer->getCustomersGroupID();
 
-      //to improve with strategy
-      $score = $CLICSHOPPING_RecommendationsAdmin->calculateRecommendationScore($products_rate_weight, $reviewRate, null, CLICSHOPPING_APP_RECOMMENDATIONS_PR_STRATEGY);
+      $score = $CLICSHOPPING_RecommendationsAdmin->calculateRecommendationScore($products_rate_weight, $reviewRate, null, CLICSHOPPING_APP_RECOMMENDATIONS_PR_STRATEGY, $sentiment);
 
       if ($score != 0) {
         $sql_data_array = [
@@ -213,7 +238,7 @@
                     :table_products p,
                     :table_products_to_categories p2c,
                     :table_categories c                                              
-                  where pr.score > ' . (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_SCORE . '
+                  where pr.score > ' . (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_Min_SCORE . '
                   and p.products_status = 1
                     and g.price_group_view = 1                 
                     and p.products_id = pr.products_id
@@ -235,7 +260,7 @@
                          :table_products p,
                          :table_products_to_categories p2c,
                          :table_categories c                                     
-                    where pr.score > ' . (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_SCORE . '
+                    where pr.score > ' . (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_Min_SCORE . '
                     and p.products_id = pr.products_id
                     and p.products_status = 1
                     and p.products_view = 1

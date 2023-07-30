@@ -319,6 +319,7 @@
         'Products&ProductsNew',
         'Products&Specials',
         'Products&TellAFriend',
+        'Products&Recommendations',
         'search&AdvancedSearch',
         'search&Q',
       ];
@@ -333,7 +334,6 @@
 
       return $file_array;
     }
-
 
     /**
      *  Dynamic Template System

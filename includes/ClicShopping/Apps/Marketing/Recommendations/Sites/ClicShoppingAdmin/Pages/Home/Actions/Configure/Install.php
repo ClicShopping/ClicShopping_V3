@@ -117,6 +117,45 @@
           $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
         }
 
+
+
+/*
+        $sql_data_array = [
+          'sort_order' => 5,
+          'link' => 'index.php?A&Configuration\Modules&Modules&set=modules_products_recommendations',
+          'image' => 'blog.png',
+          'b2b_menu' => 0,
+          'access' => 0,
+          'app_code' => 'app_marketing_recommendations'
+        ];
+
+        $insert_sql_data = ['parent_id' => 122];
+
+        $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+        $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+
+        $id = $CLICSHOPPING_Db->lastInsertId();
+
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+          $language_id = $languages[$i]['id'];
+
+          $sql_data_array = ['label' => $CLICSHOPPING_Blog->getDef('title_menu_products_recommendations_content')];
+
+          $insert_sql_data = [
+            'id' => (int)$id,
+            'language_id' => (int)$language_id
+          ];
+
+          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+          $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
+        }
+*/
+
+
+
+
         Cache::clear('menu-administrator');
       }
     }

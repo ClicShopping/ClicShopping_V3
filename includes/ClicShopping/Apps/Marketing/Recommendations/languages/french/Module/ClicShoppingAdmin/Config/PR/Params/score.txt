@@ -1,3 +1,0 @@
-cfg_products_recommendations_score_title = Score
-cfg_products_recommendations_score_description = Sélectionner le score pour analyser les bonnes ou mauvaises recommandations (doit être compris entre -1 and 1)
-

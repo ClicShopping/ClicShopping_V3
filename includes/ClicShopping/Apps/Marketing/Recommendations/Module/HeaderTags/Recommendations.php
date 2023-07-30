@@ -14,6 +14,8 @@
 
   use ClicShopping\Apps\Marketing\Recommendations\Recommendations as RecommendationsApp;
 
+  use ClicShopping\Apps\Marketing\SEO\Classes\Shop\SeoShop as SeoShopRecommendations;
+
   class Recommendations extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
     protected mixed $lang;
@@ -50,6 +52,21 @@
     {
       if (isset($_GET['Products'], $_GET['Recommendations'])) {
         $this->template = Registry::get('Template');
+/*
+        if (!Registry::exists('SeoShopRecommendations')) {
+          Registry::set('SeoShopRecommendations', new SeoShopRecommendations());
+        }
+
+        $CLICSHOPPING_SEOShop = Registry::get('SeoShopRecommendations');
+
+        $title = $CLICSHOPPING_SEOShop->getSeoRecommendationsTitle();
+        $description = $CLICSHOPPING_SEOShop->getSeoRecommendationsDescription();
+        $keywords = $CLICSHOPPING_SEOShop->getSeoRecommendationsKeywords();
+
+        $title = $this->template->setTitle($title) . ' ' . $this->template->getTitle();
+        $description = $this->template->setDescription($description) . ' ' . $this->template->getDescription();
+        $keywords = $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords();
+*/
         $title = $this->template->getTitle();
         $description = $this->template->getDescription();
         $keywords = $this->template->getKeywords();

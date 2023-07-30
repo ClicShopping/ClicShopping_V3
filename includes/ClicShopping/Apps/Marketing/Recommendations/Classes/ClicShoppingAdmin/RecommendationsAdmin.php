@@ -29,10 +29,15 @@
      * @param float|null $userFeedback
      * @return float
      */
-    private static function calculateRecommendationScoreWithMultipleSources(float $productsRateWeight = 0.8, float $reviewRate = 0, ?float $userFeedback = 0): float
+    private static function calculateRecommendationScoreWithMultipleSources(float $productsRateWeight = 0.8, float $reviewRate = 0, ?float $userFeedback = 0, ?float $sentimentScore = null): float
     {
       // Normalize the user feedback to a value between -1 and 1
       $userFeedback = static::calculateUserFeedbackScore($userFeedback);
+
+      // If a sentiment score is provided, adjust it to be between -1 and 1
+      if (!is_null($sentimentScore)) {
+        $sentimentScore = max(-1, min(1, $sentimentScore));
+      }
 
       // Get scores from other recommendation sources (e.g., sales data, external recommendations)
       $salesDataScore = 0.9; // Example: get the score from sales data
@@ -48,6 +53,11 @@
         ($externalRecommendationScore * $externalRecommendationWeight) +
         ($userFeedback * 0.2); // Adjust the weight of user feedback as needed
 
+      // If a sentiment score is available, incorporate it into the combined score calculation
+      if (!is_null($sentimentScore)) {
+        $combinedScore = ($combinedScore + $sentimentScore) / 2; // You can adjust the weighting between the sentiment and other factors as needed
+      }
+
       return $combinedScore;
     }
 
@@ -58,16 +68,20 @@
      * @param float|null $feedbackWeight
      * @return float
      */
-    private static function calculateRecommendationScoreBasedOnRange(float $productsRateWeight = 0.8, float $reviewRate = 0, ?float $userFeedback = 0, ?float $feedbackWeight = 0.2) :float
+    private static function calculateRecommendationScoreBasedOnRange(float $productsRateWeight = 0.8, float $reviewRate = 0, ?float $userFeedback = 0, ?float $feedbackWeight = 0.2,  ?float $sentimentScore = null) :float
     {
-      // Normalize the user feedback to a value between -1 and 1
-      $userFeedback = static::calculateUserFeedbackScore($userFeedback);
+      // If a sentiment score is provided, adjust it to be between -1 and 1
+      if (!is_null($sentimentScore)) {
+        $sentimentScore = max(-1, min(1, $sentimentScore));
+      }
 
-      // Calculate the final recommendation score using a weighted average of review rate and user feedback
+      // Calculate the final recommendation score using a weighted average of review rate, user feedback, and sentiment score (if available)
       $score = ($reviewRate * (1 - $feedbackWeight)) + ($userFeedback * $feedbackWeight);
 
-    // Apply the products rate weight (from reviews) to the final score
-      $score *= $productsRateWeight;
+      // If a sentiment score is available, incorporate it into the final score calculation
+      if (!is_null($sentimentScore)) {
+        $score = ($score + $sentimentScore) / 2; // You can adjust the weighting between the sentiment and other factors as needed
+      }
 
       return $score;
     }
@@ -80,29 +94,34 @@
      * @return float
      * Function to calculate the score for product recommendations
      */
-    public function calculateRecommendationScore(?float $productsRateWeight = 0.8, ?float $reviewRate = 0, ?int $userFeedback = 0, ?string $strategy = 'Range'): float
+    public function calculateRecommendationScore(?float $productsRateWeight = 0.8, ?float $reviewRate = 0, ?int $userFeedback = 0, ?string $strategy = 'Range', ?float $sentimentScore = null): float
     {
       // Adjust the review rate to be between 0 and 1
       $maxReviewRate = 5; // Maximum possible review rate
       $reviewRate = $reviewRate / $maxReviewRate;
 
+      // Normalize the user feedback to a value between -1 and 1
+      $userFeedback = static::calculateUserFeedbackScore($userFeedback);
+
+      // Adjust the sentiment score to be between -1 and 1 (if provided)
+      if (!is_null($sentimentScore)) {
+        $sentimentScore = max(-1, min(1, $sentimentScore));
+      }
+
       if ($strategy == 'Range') {
-        $score = static::calculateRecommendationScoreBasedOnRange($productsRateWeight, $reviewRate, $userFeedback);
+        $score = static::calculateRecommendationScoreBasedOnRange($productsRateWeight, $reviewRate, $userFeedback, $sentimentScore);
       } else {
-        $score = static::calculateRecommendationScoreWithMultipleSources($productsRateWeight, $reviewRate, $userFeedback);
+        $score = static::calculateRecommendationScoreWithMultipleSources($productsRateWeight, $reviewRate, $userFeedback, $sentimentScore);
       }
 
       return $score;
     }
 
-//********************************************
-//Analytics
-//********************************************
     /**
      * @param int $limit
      * @return array
      */
-    public function getMostRecommendedProducts(int $limit = 10, float $score = 0.5, string|int $customers_group_id = 99, string $date): array
+    public function getMostRecommendedProducts(int $limit = 10, string|int $customers_group_id = 99, float $minRecommendedScore = 0.5, ?string $date): array
     {
       if ($customers_group_id == 99) {
         $customers_group = 'AND customers_group_id >= 0';
@@ -122,9 +141,9 @@
       $QmostRecommended = $this->db->prepare('SELECT products_id, 
                                               COUNT(*) as recommendation_count,
                                               recommendation_date,
-                                              score
+                                              MAX(score) as score
                                              FROM :table_products_recommendations
-                                             WHERE score >= :score
+                                             WHERE score >= :minRecommendedScore
                                              ' . $customers_group . '
                                              ' . $date_analyse . '
                                              GROUP BY products_id
@@ -133,7 +152,7 @@
                                              ');
 
       $QmostRecommended->bindInt(':limit', $limit);
-      $QmostRecommended->bindDecimal(':score', $score);
+      $QmostRecommended->bindDecimal(':minRecommendedScore', $minRecommendedScore);
 
       $QmostRecommended->execute();
 
@@ -147,7 +166,7 @@
      * @param int $limit (Optional) Limit the number of products to retrieve
      * @return array
      */
-    public function getRejectedProducts(int $limit = 10, float $score = 0.5, string|int $customers_group_id = 99, string $date): array
+    public function getRejectedProducts(int $limit = 10, string|int $customers_group_id = 99, float $maxRejectedScore = 0.50, ?string  $date): array
     {
       if ($customers_group_id == 99) {
         $customers_group = '';
@@ -165,26 +184,27 @@
       }
 
       $QrejectedProducts = $this->db->prepare('SELECT products_id, 
-                                              COUNT(*) as rejection_count,
-                                              recommendation_date as recommendation_date,
-                                              MAX(score) as score
-                                              FROM :table_products_recommendations
-                                              WHERE score < :score
-                                              ' . $customers_group . '
-                                              ' . $date_analyse . '
-                                              GROUP BY products_id
-                                              ORDER BY rejection_count DESC
-                                              LIMIT :limit
-                                              ');
+                                          COUNT(*) as rejection_count,
+                                          recommendation_date as recommendation_date,
+                                          MAX(score) as score
+                                          FROM :table_products_recommendations
+                                          WHERE score <= :maxRejectedScore
+                                          ' . $customers_group . '
+                                          ' . $date_analyse . '
+                                          GROUP BY products_id
+                                          ORDER BY rejection_count DESC
+                                          LIMIT :limit
+                                          ');
 
       $QrejectedProducts->bindInt(':limit', $limit);
-      $QrejectedProducts->bindDecimal(':score', $score);
+      $QrejectedProducts->bindDecimal(':maxRejectedScore', $maxRejectedScore);
       $QrejectedProducts->execute();
 
       $rejectedProducts = $QrejectedProducts->fetchAll();
 
       return $rejectedProducts;
     }
+
 
     /**
      * subjective measure that reflects the user's opinion or sentiment about the product, between -1 and 1.
@@ -255,6 +275,9 @@
     public function calculateProductsRateWeight(int $products_id): float
     {
       $averageRating = $this->calculateAverageRating($products_id);
+
+      // Optionally, apply a weighting factor if needed.
+      // $weightedRating = applyWeightingFactor($averageRating);
 
       return $averageRating;
     }

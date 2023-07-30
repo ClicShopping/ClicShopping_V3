@@ -157,7 +157,7 @@
      * @return array $QaddressesBook, list of address_format_id's
      *
      */
-    public static function getListingAdmin(int $id)
+    public static function getListingAdmin(int $id): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

@@ -86,7 +86,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Please select the width of the module',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_CONTENT_WIDTH',
-          'configuration_value' => '8',
+          'configuration_value' => '4',
           'configuration_description' => 'Select a number between 1 and 12',
           'configuration_group_id' => '6',
           'sort_order' => '1',

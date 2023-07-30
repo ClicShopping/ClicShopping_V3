@@ -15,9 +15,14 @@
 
   class saveEntry implements \ClicShopping\OM\Modules\HooksInterface
   {
+    protected mixed $productsCommon;
+    protected mixed $recommendationsShop;
+
     public function __construct()
     {
       $this->productsCommon = Registry::get('ProductsCommon');
+      Registry::set('RecommendationsShop', new RecommendationsShop());
+      $this->recommendationsShop = Registry::get('RecommendationsShop');
     }
 
     public function execute()
@@ -26,6 +31,6 @@
         return false;
       }
 
-      RecommendationsShop::saveRecommendations($this->productsCommon->getID(), (int)$_POST['rating']);
+      $this->recommendationsShop->saveRecommendations($this->productsCommon->getID(), (int)$_POST['rating']);
     }
   }
