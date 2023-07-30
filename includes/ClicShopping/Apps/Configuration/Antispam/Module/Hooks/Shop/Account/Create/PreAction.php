@@ -39,14 +39,14 @@
       $error = false;
 
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_CREATE_ACCOUNT') || CLICSHOPPING_APP_ANTISPAM_IN_CREATE_ACCOUNT == 'False') {
-        $error = true;
+        return false;
       }
 
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_IN_STATUS') || CLICSHOPPING_APP_ANTISPAM_IN_STATUS == 'False') {
-        $error = true;
+        return false;
       }
 
-      if (!isset($_POST['invisible_clicshopping'])) {
+      if (CLICSHOPPING_APP_ANTISPAM_IN_CREATE_ACCOUNT == 'True' && !isset($_POST['invisible_clicshopping'])) {
         $error = true;
       }
 
@@ -58,14 +58,12 @@
      */
     private static function checkNumericAntispam() :bool
     {
-      $error = false;
-
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT') || CLICSHOPPING_APP_ANTISPAM_AM_CREATE_ACCOUNT == 'False') {
-        $error = true;
+        return false;
       }
 
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_AM_STATUS') || CLICSHOPPING_APP_ANTISPAM_AM_STATUS == 'False') {
-        $error = true;
+        return false;
       }
 
       $error = AntiSpam::checkNumericAntiSpam();

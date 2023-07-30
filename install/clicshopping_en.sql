@@ -369,7 +369,7 @@ INSERT INTO administrator_menu_description VALUES(146, 'Nous contacter', 2);
 INSERT INTO administrator_menu_description VALUES(150, 'Tell a friend', 1);
 INSERT INTO administrator_menu_description VALUES(150, 'Envoyer à  un ami', 2);
 INSERT INTO administrator_menu_description VALUES(152, 'Reviews modules', 1);
-INSERT INTO administrator_menu_description VALUES(152, 'Modules Commentaires', 2);
+INSERT INTO administrator_menu_description VALUES(152, 'Commentaires', 2);
 INSERT INTO administrator_menu_description VALUES(154, 'Advanced search', 1);
 INSERT INTO administrator_menu_description VALUES(154, 'Recherche avancées', 2);
 INSERT INTO administrator_menu_description VALUES(155, 'Sitemap', 1);
