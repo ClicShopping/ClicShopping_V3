@@ -96,15 +96,15 @@
       $currentProductCategory = self::getProductCategoryID($products_id);
 
       $Qrecommendations = $CLICSHOPPING_Customer->prepare('SELECT pr.products_id,
-                                                     pr.score,
-                                                     pr.recommendation_date
-                                              FROM :table_products_recommendations pr
-                                              INNER JOIN :table_products_to_categories pc
-                                              ON pr.products_id = pc.products_id
-                                              WHERE pr.customers_id = :customers_id
-                                              AND pc.categories_id = :category_id
-                                              ORDER BY pr.score DESC
-                                             ');
+                                                                   pr.score,
+                                                                   pr.recommendation_date
+                                                            FROM :table_products_recommendations pr
+                                                            INNER JOIN :table_products_to_categories pc
+                                                            ON pr.products_id = pc.products_id
+                                                            WHERE pr.customers_id = :customers_id
+                                                            AND pc.categories_id = :category_id
+                                                            ORDER BY pr.score DESC
+                                                           ');
 
       $Qrecommendations->bindInt(':customers_id', $this->customer->getID());
       $Qrecommendations->bindInt(':category_id', $currentProductCategory);
@@ -114,48 +114,7 @@
 
       return $recommendations;
     }
-
-    /**
-     * Function to generate product recommendations listing
-     * @param $products_id
-     * @return array
-     */
-    private function getRecommendations(int $products_id): array
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-
-      $recommendation_array = self::generateCustomerRecommendations($products_id);
-
-      $result = [];
-
-      foreach ($recommendation_array as $recommendation) {
-        $Qproducts = $CLICSHOPPING_Db->prepare('select products_id
-                                                 products_price p,
-                                                 products_name pd,
-                                                 products_description pd
-                                          from :table_products p,
-                                               :table_products_description pd
-                                          where p.products_id = :products_id
-                                          and  p.products_id = pd.products_id
-                                          and  pd.language_id = :language_id
-                                         ');
-        $Qproducts->bindInt(':products_id', $products_id);
-        $Qproducts->bindInt(':language_id', $this->language->getId());
-        $Qproducts->execute();
-
-        $recommendations = $Qproducts->fetch();
-
-        $result = [
-          'products_id' => $recommendation['products_id'],
-          'score' => $recommendation['score']
-        ];
-
-        $result = array_merge($recommendations, $result);
-      }
-
-      return $result;
-    }
-
+    
     /**
      * Get the category ID of the current product
      * @return int
@@ -181,7 +140,7 @@
     /**
      * @return array
      */
-    public static function getCountColumnList()
+    public static function getCountColumnList(): array
     {
 // create column list
       $define_list = [
@@ -204,9 +163,9 @@
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    private static function Listing()
+    private static function Listing(): mixed
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
@@ -319,7 +278,7 @@
     /**
      * @return mixed
      */
-    public static function getListing()
+    public static function getListing(): mixed
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
