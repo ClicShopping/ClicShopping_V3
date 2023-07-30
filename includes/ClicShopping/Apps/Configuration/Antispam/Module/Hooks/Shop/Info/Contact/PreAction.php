@@ -72,24 +72,6 @@
       return $error;
     }
 
-    /**
-     * @return bool
-     */
-    private static function checkGoogleRecaptchaAntispam() :bool
-    {
-      $error = false;
-          
-      if (!\defined('CLICSHOPPING_APP_ANTISPAM_GG_STATUS') || CLICSHOPPING_APP_ANTISPAM_GG_STATUS == 'False') {
-        $error = false;
-      } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_GG_CONTACT') || CLICSHOPPING_APP_ANTISPAM_GG_STATUS == 'False') {
-        $error = false;
-      } else {
-        $error = AntiSpam::checkGoogleRecaptchaAntispam();
-      }
-
-      return $error;
-    }
-
     public function execute()
     {
       if (!\defined('CLICSHOPPING_APP_ANTISPAM_STATUS') || CLICSHOPPING_APP_ANTISPAM_STATUS == 'False') {
