@@ -24,26 +24,31 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      $username = array($_SESSION['admin']);
-      $username = $username[0]['username'];
+      if(isset($_SESSION['admin'])) {
+        $username = array($_SESSION['admin']);
+        $username = $username[0]['username'];
 
-      $Qlogins = $CLICSHOPPING_Db->prepare('select a.name,
-                                             a.first_name
-                                      from :table_action_recorder ar,
-                                           :table_administrators a
-                                      where  ar.user_id = a.id
-                                      and ar.module = :module
-                                      and ar.user_name = :user_name
-                                      limit 1
-                                     ');
+        $Qlogins = $CLICSHOPPING_Db->prepare('select a.name,
+                                                     a.first_name
+                                              from :table_action_recorder ar,
+                                                   :table_administrators a
+                                              where  ar.user_id = a.id
+                                              and ar.module = :module
+                                              and ar.user_name = :user_name
+                                              limit 1
+                                             ');
 
-      $Qlogins->bindValue(':module', 'ar_admin_login');
-      $Qlogins->bindValue(':user_name', $username);
+        $Qlogins->bindValue(':module', 'ar_admin_login');
+        $Qlogins->bindValue(':user_name', $username);
 
-      $Qlogins->execute();
+        $Qlogins->execute();
 
-      $administrator = HTML::output($Qlogins->value('first_name') . ' ' . $Qlogins->value('name'));
+        $administrator = HTML::output($Qlogins->value('first_name') . ' ' . $Qlogins->value('name'));
 
+      } else {
+        $administrator = 'Shop action';
+      }
+      
       return $administrator;
     }
 

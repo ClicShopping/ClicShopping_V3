@@ -51,11 +51,7 @@
      $limit = 10;
    }
 
-  if(isset($_POST['score'])){
-    $rejection_score = HTML::sanitize($_POST['score']);
-  }else {
-    $rejection_score = (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_SCORE;
-  }
+   $rejection_score = (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MAX_SCORE;
 
   If (isset($_POST['date'])) {
     $date = HTML::sanitize($_POST['date']);
@@ -102,14 +98,8 @@
                 </div>
                 <div class="col-md-2">
                   <?php
-                  echo $CLICSHOPPING_Recommendations->getDef('text_rejection_score');
-                  echo HTML::inputField('score', $rejection_score, 'id="score" min="-1.0" max="1.0" step="0.1"', 'number');
-                  ?>
-                </div>
-                <div class="col-md-2">
-                  <?php
                   echo $CLICSHOPPING_Recommendations->getDef('text_start_date_analysis');
-                  echo HTML::inputField('date', null, 'id="score"', 'date');
+                  echo HTML::inputField('date', null, 'id="date"', 'date');
                   ?>
                 </div>
                 <div class="col-md-1 form-group text-end">
@@ -189,7 +179,7 @@
                         </thead>
                         <tbody>
                       <?php
-                      $mostRecommendedProducts = $CLICSHOPPING_RecommendationsAdmin->getMostRecommendedProducts($limit, $rejection_score, $customers_group_id, $date);
+                      $mostRecommendedProducts = $CLICSHOPPING_RecommendationsAdmin->getMostRecommendedProducts($limit, $customers_group_id, $date);
 
                       foreach ($mostRecommendedProducts as $product) {
                         $productId = $product['products_id'];
@@ -218,7 +208,7 @@
                       </thead>
                       <tbody>
                       <?php
-                      $rejectedProducts = $CLICSHOPPING_RecommendationsAdmin->getRejectedProducts($limit, $rejection_score, $customers_group_id, $date);
+                      $rejectedProducts = $CLICSHOPPING_RecommendationsAdmin->getRejectedProducts($limit, $customers_group_id, $date);
 
                       foreach ($rejectedProducts as $product) {
                         $productId = $product['products_id'];

@@ -30,10 +30,6 @@
        $userComments = HTML::sanitize($_POST['review']);
        $userComments = [$userComments];
 
-
-       var_dump($userComments);
-       exit;
-
        $sentiment = ChatGptShop::performSentimentPrediction($userComments);
 
        return $sentiment;
@@ -95,9 +91,11 @@
      */
     private function generateCustomerRecommendations($products_id): array
     {
+      $CLICSHOPPING_Customer = Registry::get('Customer');
+
       $currentProductCategory = self::getProductCategoryID($products_id);
 
-      $Qrecommendations = $this->db->prepare('SELECT pr.products_id,
+      $Qrecommendations = $CLICSHOPPING_Customer->prepare('SELECT pr.products_id,
                                                      pr.score,
                                                      pr.recommendation_date
                                               FROM :table_products_recommendations pr
@@ -124,12 +122,14 @@
      */
     private function getRecommendations(int $products_id): array
     {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
       $recommendation_array = self::generateCustomerRecommendations($products_id);
 
       $result = [];
 
       foreach ($recommendation_array as $recommendation) {
-        $Qproducts = $this->db->prepare('select products_id
+        $Qproducts = $CLICSHOPPING_Db->prepare('select products_id
                                                  products_price p,
                                                  products_name pd,
                                                  products_description pd
@@ -179,7 +179,9 @@
      * @return array
      */
 
-
+    /**
+     * @return array
+     */
     public static function getCountColumnList()
     {
 // create column list
@@ -202,6 +204,9 @@
       return $column_list;
     }
 
+    /**
+     * @return string
+     */
     private static function Listing()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -312,6 +317,9 @@
       return $Qlisting;
     }
 
+    /**
+     * @return mixed
+     */
     public static function getListing()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');

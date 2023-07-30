@@ -121,7 +121,7 @@
      * @param int $limit
      * @return array
      */
-    public function getMostRecommendedProducts(int $limit = 10, string|int $customers_group_id = 99, float $minRecommendedScore = 0.5, ?string $date): array
+    public function getMostRecommendedProducts(int $limit = 10, string|int $customers_group_id = 99, ?string $date): array
     {
       if ($customers_group_id == 99) {
         $customers_group = 'AND customers_group_id >= 0';
@@ -130,6 +130,8 @@
       } else {
         $customers_group = 'AND customers_group_id = 0';
       }
+
+      $minRecommendedScore = (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MIN_SCORE;
 
       $currentDate = date('Y-m-d');
       if (empty($date)) {
@@ -166,7 +168,7 @@
      * @param int $limit (Optional) Limit the number of products to retrieve
      * @return array
      */
-    public function getRejectedProducts(int $limit = 10, string|int $customers_group_id = 99, float $maxRejectedScore = 0.50, ?string  $date): array
+    public function getRejectedProducts(int $limit = 10, string|int $customers_group_id = 99, ?string  $date): array
     {
       if ($customers_group_id == 99) {
         $customers_group = '';
@@ -175,6 +177,8 @@
       } else {
         $customers_group = ' AND customers_group_id = 0';
       }
+
+      $maxRejectedScore = (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MAX_SCORE;
 
       $currentDate = date('Y-m-d');
       if (empty($date)) {
@@ -188,7 +192,7 @@
                                           recommendation_date as recommendation_date,
                                           MAX(score) as score
                                           FROM :table_products_recommendations
-                                          WHERE score <= :maxRejectedScore
+                                          WHERE score < :maxRejectedScore
                                           ' . $customers_group . '
                                           ' . $date_analyse . '
                                           GROUP BY products_id
