@@ -36,14 +36,17 @@
 
     public function Display(): string
     {
+      if (!\defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS == 'False') {
+        return false;
+      }
+
       $Qrecommendations = $this->app->db->prepare('select count(id) as good_recommendations      
                                                    from :table_products_recommendations 
-                                                   where score >= :score 
-                                                   group by products_id
-
+                                                   where score >= :score
                                                   ');
-      $Qrecommendations->execute();
       $Qrecommendations->bindDecimal(':score', (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MIN_SCORE);
+
+      $Qrecommendations->execute();
 
       $good_recommendations = $Qrecommendations->valueInt('good_recommendations');
 
@@ -51,7 +54,7 @@
                                                     from :table_products_recommendations 
                                                     where score < :score
                                                     ');
-      $Qrecommendations->bindDecimal(':score', (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MAX_SCORE);
+      $QbRecommendations->bindDecimal(':score', (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MAX_SCORE);
 
       $QbRecommendations->execute();
 

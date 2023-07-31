@@ -10,10 +10,6 @@
 
   namespace ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop;
 
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-
   use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
 
   class ChatGptShop
@@ -33,18 +29,28 @@
     /**
      * Extract the sentiment score from the GPT-3 API response.
      *
-     * @param array $apiResponse The GPT-3 API response.
-     * @return float The sentiment score (-1 to 1) extracted from the response.
+     * @param array|string $sentimentLabel The sentiment label from the GPT-3 API response (e.g., "positive", "neutral", "negative").
+     * @return float|null The sentiment score (-1 to 1) extracted from the response.
      */
-    public static function extractSentimentScore(array $sentimentLabel): float
+    public static function extractSentimentScore(array $sentimentLabel): ?float
     {
-      $text = $apiResponse['choices'][0]['text'];
-      $sentimentScore = float($text);
+      self::checkGptStatus();
+/// The iPhone 14 Pro Max's camera quality is out of this world! It captures every detail with stunning clarity.
+      if (is_array($sentimentLabel)) {
+        $sentimentLabel = $sentimentLabel[0] ?? null;
+        $sentimentLabel = strtolower(trim($sentimentLabel));
 
-      // Make sure the sentiment score is within the range -1 to 1
-      $sentimentScore = max(-1.0, min(1.0, $sentimentScore));
+        $match = match ($sentimentLabel) {
+          'positive' => 1.0,
+          'neutral' => 0.0,
+          'negative' => -1.0,
+          default => null,
+        };
 
-      return $sentimentScore;
+        return $match;
+      } else {
+        return 0.0;
+      }
     }
 
     /**
@@ -62,9 +68,16 @@
 
         $apiResponse = ChatGptAdmin::getGptResponse($prompt, $max_token, $temperature);
 
-        $sentimentScore = self::extractSentimentScore($apiResponse);
+        if (isset($apiResponse)) {
+          $replace = str_replace(' ', '',$apiResponse);
+          $sentimentLabel[] = $replace;
 
-        $sentimentScores[] = $sentimentScore;
+
+          $sentimentScores = self::extractSentimentScore($sentimentLabel);
+
+        } else {
+          $sentimentScores[] = 0.0;
+        }
       }
 
       return $sentimentScores;

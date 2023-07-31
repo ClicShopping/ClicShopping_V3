@@ -114,7 +114,7 @@
 
       return $recommendations;
     }
-    
+
     /**
      * Get the category ID of the current product
      * @return int
