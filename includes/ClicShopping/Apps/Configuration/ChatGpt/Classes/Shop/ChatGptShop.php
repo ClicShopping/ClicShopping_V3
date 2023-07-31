@@ -29,7 +29,7 @@
     /**
      * Extract the sentiment score from the GPT-3 API response.
      *
-     * @param array|string $sentimentLabel The sentiment label from the GPT-3 API response (e.g., "positive", "neutral", "negative").
+     * @param array $sentimentLabel The sentiment label from the GPT-3 API response (e.g., "positive", "neutral", "negative").
      * @return float|null The sentiment score (-1 to 1) extracted from the response.
      */
     public static function extractSentimentScore(array $sentimentLabel): ?float

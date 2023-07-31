@@ -2467,6 +2467,44 @@
     }
 
     /**
+     * Display a a ticker on product recommendations
+     * @param null $id
+     * @return bool $ticker (true or false)
+     */
+    private function setProductsTickerRecommendations($id = null) :bool
+    {
+      if (\is_null($id)) {
+        $id = $this->getID();
+      }
+
+      $Qproducts = $this->db->prepare('select distinct pr.id,
+                                                       p.products_id 
+                                        from  :table_products_recommendations pr,
+                                              :table_products p
+                                        where p.products_status = 1
+                                        and pr.score > ' . (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MIN_SCORE . ' 
+                                        and p.products_id = :products_id
+                                        and p.products_id = pr.products_id
+                                       ');
+
+      $Qproducts->bindInt(':products_id', $id);
+
+      $Qproducts->execute();
+
+// 2592000 = 30 days in the unix timestamp format
+      $day_new_products = 86400 * DAY_NEW_PRODUCTS_ARRIVAL;
+      $today_time = time();
+
+      if (($today_time - strtotime($Qproducts->value('date_added'))) < $day_new_products) {
+        $ticker = true;
+      } else {
+        $ticker = false;
+      }
+
+      return $ticker;
+    }
+
+    /**
      * display a ticker css for specials price
      * @param string
      * @return bool $ticker, favorites ticker
@@ -2484,6 +2522,16 @@
     public function getProductsTickerFeatured($id = null)
     {
       return $this->setProductsTickerFeatured($id);
+    }
+
+    /**
+     * display a ticker css for featured
+     * @param string
+     * @return string $ticker, product price ticker
+     */
+    public function getProductsTickerRecommendations($id = null)
+    {
+      return $this->setProductsTickerRecommendations($id);
     }
 
 
