@@ -282,7 +282,7 @@
 // Reviews
             $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
 // Json ltd
-              $jsonLtd = $CLICSHOPPING_ProductsFunctionTemplate->getProductJsonLd($products_id);
+            $jsonLtd = $CLICSHOPPING_ProductsFunctionTemplate->getProductJsonLd($products_id);
 
 //******************************************************************************************************************
 //            End Options -- activate and insert code in template and css

@@ -35,7 +35,7 @@
 ?>
             </li>
           </ol>
-	      </nav>
+        </nav>
       </div>
 <?php
       if (!CLICSHOPPING::getBaseNameIndex() && $CLICSHOPPING_ProductsCommon->getID()) {
