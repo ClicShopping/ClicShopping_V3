@@ -86,36 +86,6 @@
     }
 
     /**
-     * Function to generate product recommendations for a specific customer
-     * @return array
-     */
-    private function generateCustomerRecommendations($products_id): array
-    {
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-
-      $currentProductCategory = self::getProductCategoryID($products_id);
-
-      $Qrecommendations = $CLICSHOPPING_Customer->prepare('SELECT pr.products_id,
-                                                                   pr.score,
-                                                                   pr.recommendation_date
-                                                            FROM :table_products_recommendations pr
-                                                            INNER JOIN :table_products_to_categories pc
-                                                            ON pr.products_id = pc.products_id
-                                                            WHERE pr.customers_id = :customers_id
-                                                            AND pc.categories_id = :category_id
-                                                            ORDER BY pr.score DESC
-                                                           ');
-
-      $Qrecommendations->bindInt(':customers_id', $this->customer->getID());
-      $Qrecommendations->bindInt(':category_id', $currentProductCategory);
-      $Qrecommendations->execute();
-
-      $recommendations = $Qrecommendations->fetchAll();
-
-      return $recommendations;
-    }
-
-    /**
      * Get the category ID of the current product
      * @return int
      */
