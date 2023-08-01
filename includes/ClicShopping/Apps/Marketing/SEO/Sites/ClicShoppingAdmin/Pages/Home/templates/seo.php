@@ -26,33 +26,36 @@
     echo $CLICSHOPPING_MessageStack->get('SEO');
   }
 
-  $Qseo = $CLICSHOPPING_SEO->db->prepare('select  p.seo_id,
-                                                  p.language_id,
-                                                  p.seo_defaut_language_title,
-                                                  p.seo_defaut_language_keywords,
-                                                  p.seo_defaut_language_description,
-                                                  p.seo_defaut_language_footer,
-                                                  p.seo_language_products_info_title,
-                                                  p.seo_language_products_info_keywords,
-                                                  p.seo_language_products_info_description,
-                                                  p.seo_language_products_new_title,
-                                                  p.seo_language_products_new_keywords,
-                                                  p.seo_language_products_new_description,
-                                                  p.seo_language_special_title,
-                                                  p.seo_language_special_keywords,
-                                                  p.seo_language_special_description,
-                                                  p.seo_language_reviews_title,
-                                                  p.seo_language_reviews_keywords,
-                                                  p.seo_language_reviews_description,
-                                                  p.seo_language_favorites_title,
-                                                  p.seo_language_favorites_keywords,
-                                                  p.seo_language_favorites_description,
-                                                  p.seo_language_featured_title,
-                                                  p.seo_language_featured_keywords,
-                                                  p.seo_language_featured_description,
-                                                  p.seo_defaut_language_title_h1       
-                                         from :table_seo p
-                                         where p.seo_id = 1
+  $Qseo = $CLICSHOPPING_SEO->db->prepare('select  seo_id,
+                                                  language_id,
+                                                  seo_defaut_language_title,
+                                                  seo_defaut_language_keywords,
+                                                  seo_defaut_language_description,
+                                                  seo_defaut_language_footer,
+                                                  seo_language_products_info_title,
+                                                  seo_language_products_info_keywords,
+                                                  seo_language_products_info_description,
+                                                  seo_language_products_new_title,
+                                                  seo_language_products_new_keywords,
+                                                  seo_language_products_new_description,
+                                                  seo_language_special_title,
+                                                  seo_language_special_keywords,
+                                                  seo_language_special_description,
+                                                  seo_language_reviews_title,
+                                                  seo_language_reviews_keywords,
+                                                  seo_language_reviews_description,
+                                                  seo_language_favorites_title,
+                                                  seo_language_favorites_keywords,
+                                                  seo_language_favorites_description,
+                                                  seo_language_featured_title,
+                                                  seo_language_featured_keywords,
+                                                  seo_language_featured_description,
+                                                  seo_defaut_language_title_h1,
+                                                  seo_language_recommendations_title,
+                                                  seo_language_recommendations_description,
+                                                  seo_language_recommendations_keywords
+                                         from :table_seo
+                                         where seo_id = 1
                                         ');
   $Qseo->execute();
 
@@ -83,7 +86,7 @@
   <!-- ############################################################# //-->
   <!--          ONGLET Information General de la Page Accueil          //-->
   <!-- ############################################################# //-->
-  <div id="pagesSubmitTabs" style="overflow: auto;">
+  <div id="pagesSeoTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
         class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_SEO->getDef('tab_seo_default') . '</a>'; ?></li>
@@ -100,7 +103,9 @@
       <li
          class="nav-item"><?php echo '<a href="#tab7" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_seo_featured'); ?></a></li>
       <li
-         class="nav-item"><?php echo '<a href="#tab8" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_seo_sitemap'); ?></a></li>
+         class="nav-item"><?php echo '<a href="#tab8" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_seo_recommendations'); ?></a></li>
+      <li
+         class="nav-item"><?php echo '<a href="#tab9" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_seo_sitemap'); ?></a></li>
     </ul>
 
 
@@ -207,12 +212,12 @@
             <?php
             }
             ?>
-
             </div>
           </div>
+	  
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
           </div>
@@ -299,7 +304,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
           </div>
@@ -387,7 +392,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
           </div>
@@ -474,7 +479,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
           </div>
@@ -725,17 +730,107 @@
 
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
+            <div class="separator"></div>
+            <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
+          </div>
+        </div>
+          <!-- ############################################################# //-->
+          <!--          ONGLET Information  Recommendations                    //-->
+          <!-- ############################################################# //-->
+
+
+        <div class="tab-pane" id="tab8">
+          <div class="col-md-12 mainTitle">
+            <div
+              class="float-start"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_seo_recommendations'); ?></div>
+          </div>
+          <div class="adminformTitle">
+            <div class="col-md-12">
+              <div class="row text-center" id="productsGoogleKeywords">
+                <a href="https://www.google.fr/trends" target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
+              </div>
+            </div>
+
+            <div class="separator"></div>
+            <div class="accordion" id="accordionExample">
+              <?php
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                $languages_id = $languages[$i]['id'];
+              ?>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading<?php $i; ?>">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                  </button>
+                </h2>
+                <?php
+                if ($i == 0) {
+                  $show = ' show';
+                } else {
+                  $show = '';
+                }
+                ?>
+
+                <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php echo $languages_id; ?>" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <div class="separator"></div>
+                    <div class="row" id="seoRecommendationsLanguageTitle<?php echo $languages_id; ?>">
+                      <div class="col-md-10">
+                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
+                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_title'); ?></label>
+                          <div class="col-md-7 input-group" id="seo_recommendations_title_tag<?php echo $languages_id; ?>">
+                            <?php echo '&nbsp;' . HTML::inputField('seo_recommendations_language_title_[' . $languages_id . ']', ($seo_recommendations_language_title[$languages_id] ?? SeoAdmin::getSeoRecommendationsLanguageTitle($seo->seo_id, $languages_id)), 'maxlength="70" size="77" id="seo_recommendations_title_tag_' . $languages_id . '"', false); ?>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="separator"></div>
+                    <div class="row" id="seoRecommendationsDescription<?php echo $languages_id; ?>">
+                      <div class="col-md-6">
+                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
+                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_description'); ?>'" class="col-1 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_description'); ?></label>
+                          <div class="col-md-8 input-group" id="seo_recommendations_desc_tag<?php echo $languages_id; ?>">
+                            <?php echo HTML::textAreaField('seo_recommendations_language_description_[' . $languages_id . ']', ($seo_recommendations_language_description[$languages_id] ?? SeoAdmin::getSeoRecommendationsLanguageDescription($seo->seo_id, $languages_id)), '110', '5', 'id="seo_recommendations_language_description_' . $languages_id . '"'); ?>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="separator"></div>
+                    <div class="row" id="seoRecommendationsLanguageKeywords<?php echo $languages_id; ?>">
+                      <div class="col-md-10">
+                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
+                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_keywords'); ?></label>
+                          <div class="col-md-7 input-group" id="seo_recommendations_language_keywords<?php echo $languages_id; ?>">
+                            <?php echo '&nbsp;' . HTML::inputField('seo_recommendations_language_keywords_[' . $languages_id . ']', ($seo_recommendations_language_keywords[$languages_id] ?? SeoAdmin::getSeoRecommendationstLanguageKeywords($seo->seo_id, $languages_id)), 'maxlength="70" size="77" id="seo_recommendations_language_keywords_' . $languages_id . '"', false); ?>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <?php
+              }
+              ?>
+            </div>
+          </div>
+
+          <div class="separator"></div>
+          <div class="alert alert-info" role="alert">
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
           </div>
         </div>
 
         <!-- ############################################################# //-->
-        <!--          ONGLET Information  featured                    //-->
+        <!--          ONGLET Information Sitemap                           //-->
         <!-- ############################################################# //-->
 
-        <div class="tab-pane" id="tab8">
+        <div class="tab-pane" id="tab9">
           <div class="adminformTitle">
              <div class="row">
                 <table border="0" width="100%" cellspacing="0" cellpadding="2">

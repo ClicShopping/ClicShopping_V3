@@ -23,6 +23,9 @@ seo_language_featured_title text null
 seo_language_featured_keywords text null
 seo_language_featured_description text null
 seo_defaut_language_title_h1 text null
+seo_language_recommendations_title text null
+seo_language_recommendations_description text null
+seo_language_recommendations_keywords text null
 
 --
 primary seo_id language_id

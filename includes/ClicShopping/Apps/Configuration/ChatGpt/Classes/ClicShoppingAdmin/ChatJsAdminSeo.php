@@ -2285,4 +2285,224 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
 
       return $script;
     }
+
+    /**
+     * Get the default title
+     * @param int $seo_id
+     * @param int $language_id
+     * @return string
+     */
+    public static function getSeoRecommendationsLanguageTitle(int $seo_id, int $language_id): string
+    {
+      $Qseo = Registry::get('Db')->get('seo', 'seo_language_recommendations_title', ['seo_id' => $seo_id, 'language_id' => $language_id]);
+
+      return $Qseo->value('seo_language_recommendations_title');
+    }
+
+    /**
+     * Get the Recommendations Description
+     * @param int $seo_id
+     * @param int $language_id
+     * @return string
+     */
+    public static function getSeoRecommendationsLanguageDescription(int $seo_id, int $language_id): string
+    {
+      $Qseo = Registry::get('Db')->get('seo', 'seo_language_recommendations_description', ['seo_id' => $seo_id, 'language_id' => $language_id]);
+
+      return $Qseo->value('seo_language_recommendations_description');
+    }
+
+    /**
+     * Get the Recommendations keywords
+     * @param int $seo_id
+     * @param int $language_id
+     * @return string
+     */
+    public static function getSeoDefaultLanguageKeywords(int $seo_id, int $language_id): string
+    {
+      $Qseo = Registry::get('Db')->get('seo', 'seo_language_recommendations_keywords', ['seo_id' => $seo_id, 'language_id' => $language_id]);
+
+      return $Qseo->value('seo_language_recommendations_keywords');
+    }
+
+//**************************************
+//Recommendations
+//**************************************
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_title
+     * @param string $store_name
+     * @param string $url
+     */
+    public static function getInfoSeoRecommendationsTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $url): string
+    {
+      $script = "
+        <script defer>
+      $('[id^=\"seo_recommendations_title_tag\"]').each(function(index) {
+        let inputId = $(this).attr('id');
+        let regex = /(\d+)/g;
+        let idSeoRecommendationsLanguageTitle = regex.exec(inputId)[0];
+      
+        let language_id = parseInt(idSeoRecommendationsLanguageTitle);
+        let button = '{$content}';
+        let newButton = $(button).attr('data-index', index);
+      
+        let self = this;
+        $.ajax({
+          url: '{$urlMultilanguage}',
+          data: {id: language_id},
+          success: function(language_name) {
+            let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_title}' + ' ' + '{$store_name}';
+            
+            newButton.click(function() {
+              let message = questionResponse;
+              let engine = $('#engine').val();
+      
+              $.ajax({
+                url: '{$url}',
+                type: 'POST',
+                data: {message: message, engine: engine},
+                success: function(data) {
+                  $('#chatGpt-output-input').val(data);
+                  $('#seo_recommendations_title_tag_' + idSeoRecommendationsLanguageTitle).val(data);
+                },
+                error: function(xhr, status, error) {
+                  console.log(xhr.responseText);
+                }
+              });
+            });
+      
+            if (newButton) {
+              $(self).append(newButton);
+            }
+          }
+        });
+      });            
+  </script>";
+
+      return $script;
+    }
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_summary_description
+     * @param string $store_name
+     * @param string $url
+     * @return string
+     */
+    public static function getInfoSeoRecommendationsDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $url): string
+    {
+      $script = "
+        <script defer>
+        $('[id^=\"seo_recommendations_desc_tag\"]').each(function(index) {
+          let button = '{$content}';
+          let newButton = $(button).attr('data-index', index);
+        
+          let textareaId = $(this).find('textarea').attr('id'); // Récupérer l'id du textarea pour l'itération actuelle
+          // Vérifier si le textarea a été trouvé
+          if (textareaId !== undefined) {
+            let regex = /(\d+)/g;
+            let idSeoRecommendationsDescription = regex.exec(textareaId)[0];
+          
+            let language_id = parseInt(idSeoRecommendationsDescription);
+          
+            let self = this;
+            $.ajax({
+              url: '{$urlMultilanguage}',
+              data: {id: language_id},
+              success: function(language_name) {
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$store_name}';
+                
+                newButton.click(function() {
+                  let message = questionResponse;
+                  let engine = $('#engine').val();
+          
+                  $.ajax({
+                    url: '{$url}',
+                    type: 'POST',
+                    data: {message: message, engine: engine},
+                    success: function(data) {
+                      $('#chatGpt-output-input').val(data);
+                      $('#seo_Recommendations_language_description_' + idSeoRecommendationsDescription).val(data);
+                    },
+                    error: function(xhr, status, error) {
+                      console.log(xhr.responseText);
+                    }
+                  });
+                });
+          
+                if (newButton) {
+                  $(self).append(newButton);
+                }
+              }
+            });
+          }
+        });
+        </script>";
+
+      return $script;
+    }
+
+    /**
+     * @param string $content
+     * @param string $urlMultilanguage
+     * @param string $translate_language
+     * @param string $question_keywords
+     * @param string $store_name
+     * @param string $url
+     * @return string
+     */
+    public static function getInfoSeoRecommendationsKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $url): string
+    {
+      $script = "
+        <script defer>    
+          $('[id^=\"seo_recommendations_language_keywords\"]').each(function(index) {
+            let inputId = $(this).attr('id');
+            let regex = /(\d+)/g;
+            let IdSeoRecommendationsLanguageKeywords = regex.exec(inputId)[0];
+          
+            let language_id = parseInt(IdSeoRecommendationsLanguageKeywords);
+            let button = '{$content}';
+            let newButton = $(button).attr('data-index', index);
+          
+            let self = this;
+            $.ajax({
+              url: '{$urlMultilanguage}',
+              data: {id: language_id},
+              success: function(language_name) {
+                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$store_name}';
+                
+                newButton.click(function() {
+                  let message = questionResponse;
+                  let engine = $('#engine').val();
+          
+                  $.ajax({
+                    url: '{$url}',
+                    type: 'POST',
+                    data: {message: message, engine: engine},
+                    success: function(data) {
+                      $('#chatGpt-output-input').val(data);
+                      $('#seo_Recommendations_language_keywords_' + IdSeoRecommendationsLanguageKeywords).val(data);
+                    },
+                    error: function(xhr, status, error) {
+                      console.log(xhr.responseText);
+                    }
+                  });
+                });
+          
+                if (newButton) {
+                  $(self).append(newButton);
+                }
+              }
+            });
+          });      
+         </script>";
+
+      return $script;
+    }
   }

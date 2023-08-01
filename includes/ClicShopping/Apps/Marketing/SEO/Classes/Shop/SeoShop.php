@@ -31,10 +31,10 @@
     protected string $seoDefaultReviewsTitle;
     protected string $seoDefaultReviewsDescription;
     protected string $seoDefaultReviewsKeywords;
-    protected string $seoDefaultSeofeaturedTitle;
+    protected string $seoDefaultFavoritesTitle;
     protected string $seoDefaultFavoritesdDescription;
     protected string $seoDefaultFavoritesKeywords;
-    protected string $seoDefaultSeoFeaturedTitle;
+    protected string $seoDefaultFeaturedTitle;
     protected string $seoDefaultFeaturedDescription;
     protected string $seoDefaultFeaturedKeywords;
     protected string $keywordsAdvancedPage;

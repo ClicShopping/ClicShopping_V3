@@ -58,6 +58,7 @@ tab_seo_reviews = Reviews
 tab_seo_favorites = Favorites
 tab_seo_featured = Featured
 tab_seo_sitemap = Sitemap
+tab_seo_recommendations = Recommendations
 
 keywords_google_trend =  Google trend
 
@@ -139,6 +140,11 @@ text_seo_language_featured_keywords = Keywords
 text_seo_language_featured_description = Description
 
 text_products_page_seo = SEO
+
+text_pages_seo_recommendations = Recommendations
+text_seo_recommendations_language_title = Title
+text_seo_recommendations_language_description = Description
+text_seo_recommendations_language_keywords = Keywords
 
 title_help_seo = Note on the search engine optimization management
 help_seo = <li>The system automatically manages the search engine optimization.<br />

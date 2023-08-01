@@ -10,3 +10,8 @@ CREATE TABLE clic_products_recommendations_to_categories (
 ALTER TABLE `clic_products_recommendations` ADD `product_tag` VARCHAR(255) Default NULL AFTER `recommendation_date`;
 ALTER TABLE `clic_products_recommendations` ADD `customers_group_id` INT(11) NOT NULL DEFAULT '0' AFTER `product_tag`;
 ALTER TABLE `clic_products_recommendations` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+## seo recommendations
+ALTER TABLE `clic_seo` ADD `seo_language_recommendations_title` TEXT NULL DEFAULT NULL AFTER `seo_defaut_language_title_h1`,
+ADD `seo_language_recommendations_description` TEXT NULL DEFAULT NULL AFTER `seo_language_recommendations_title`,
+ADD `seo_language_recommendations_keywords` TEXT NULL DEFAULT NULL AFTER `seo_language_recommendations_description`;

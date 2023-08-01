@@ -35,6 +35,9 @@
     },
     "ClicShoppingAdmin/SEO": {
      "PageTab":	"Module\\Hooks\\ClicShoppingAdmin\\SEO\\SeoChatGpt"
+    },
+    "ClicShoppingAdmin/Recommendations": {
+     "PageTab":	"Module\\Hooks\\ClicShoppingAdmin\\SEO\\SeoChatGpt"
     }
    }
  },

@@ -242,7 +242,6 @@
       return $Qseo->value('seo_language_reviews_keywords');
     }
 
-
     /**
      * Get the poducts fqvorites title
      * @param int $seo_id
@@ -372,7 +371,6 @@
       return $Qmanufacturers->value('manufacturer_seo_title');
     }
 
-
     /**
      * the manufacturer seo keyword
      *
@@ -396,7 +394,6 @@
 
       return $Qmanufacturers->value('manufacturer_seo_keyword');
     }
-
 
     /**
      * Title Name of the submit
@@ -470,7 +467,6 @@
       return $Qproduct->value('products_head_keywords_tag');
     }
 
-
     /**
      * Tag Name
      *
@@ -520,7 +516,6 @@
 
       return $Qseo->value('products_seo_url');
     }
-
 
     /**
      * SEO URl
@@ -621,5 +616,44 @@
       $Qseo->execute();
 
       return $Qseo->value('categories_head_keywords_tag');
+    }
+
+    /**
+     * Get the default title
+     * @param int $seo_id
+     * @param int $language_id
+     * @return string
+     */
+    public static function getSeoRecommendationsLanguageTitle(int $seo_id, int $language_id): string
+    {
+      $Qseo = Registry::get('Db')->get('seo', 'seo_language_recommendations_title', ['seo_id' => $seo_id, 'language_id' => $language_id]);
+
+      return $Qseo->value('seo_language_recommendations_title');
+    }
+
+    /**
+     * Get the Recommendations Description
+     * @param int $seo_id
+     * @param int $language_id
+     * @return string
+     */
+    public static function getSeoRecommendationsLanguageDescription(int $seo_id, int $language_id): string
+    {
+      $Qseo = Registry::get('Db')->get('seo', 'seo_language_recommendations_description', ['seo_id' => $seo_id, 'language_id' => $language_id]);
+
+      return $Qseo->value('seo_language_recommendations_description');
+    }
+
+    /**
+     * Get the Recommendations keywords
+     * @param int $seo_id
+     * @param int $language_id
+     * @return string
+     */
+    public static function getSeoRecommendationstLanguageKeywords(int $seo_id, int $language_id): string
+    {
+      $Qseo = Registry::get('Db')->get('seo', 'seo_language_recommendations_keywords', ['seo_id' => $seo_id, 'language_id' => $language_id]);
+
+      return $Qseo->value('seo_language_recommendations_keywords');
     }
   }

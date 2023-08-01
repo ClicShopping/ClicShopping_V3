@@ -46,6 +46,7 @@ tab_seo_reviews = Commentaires
 tab_seo_favorites = Coups de coeur
 tab_seo_featured = Sélections
 tab_seo_sitemap = Cartes du site
+tab_seo_recommendations = Recommandations
 
 text_seo_defaut_language_title_h1 = Titre page Index H1
 
@@ -125,6 +126,11 @@ text_seo_language_featured_keywords = Mots clefs des produits sélectionnés
 text_seo_language_featured_description = Description des produits sélectionnés
 
 text_products_page_seo = SEO
+
+text_pages_seo_recommendations = Recommandations
+text_seo_recommendations_language_title = Titre
+text_seo_recommendations_language_description = Description
+text_seo_recommendations_language_keywords = Mots clefs
 
 title_help_seo = Notes sur la gestion des métadonnées
 help_seo = <li>Le système gère automatiquement la gestion des métadonnées.<br />

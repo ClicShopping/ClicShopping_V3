@@ -84,7 +84,7 @@
         $CLICSHOPPING_Db->save('products_recommendations_to_categories', $insert_sql_data);
       }
     }
-
+    
     /**
      * Get the category ID of the current product
      * @return int

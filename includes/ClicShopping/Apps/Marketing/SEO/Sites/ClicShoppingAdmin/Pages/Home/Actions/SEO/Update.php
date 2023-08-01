@@ -52,13 +52,16 @@
         $seo_language_featured_keywords = HTML::sanitize($_POST['seo_language_featured_keywords_']);
         $seo_language_featured_description = HTML::sanitize($_POST['seo_language_featured_description_']);
 
+        $seo_language_recommendations_title = HTML::sanitize($_POST['seo_language_recommendations_title']);
+        $seo_language_recommendations_description = HTML::sanitize($_POST['seo_language_recommendations_description']);
+        $seo_language_recommendations_keywords = HTML::sanitize($_POST['seo_language_recommendations_keywords']);
+
         $sql_data_array_pages_description = [
           'seo_defaut_language_title' => $seo_defaut_language_title[$language_id],
           'seo_defaut_language_keywords' => $seo_defaut_language_keywords[$language_id],
           'seo_defaut_language_description' => $seo_defaut_language_description[$language_id],
           'seo_defaut_language_footer' => $seo_defaut_language_footer[$language_id],
           'seo_defaut_language_title_h1' =>  $seo_defaut_language_title_h1[$language_id],
-
           'seo_language_products_info_title' => $seo_language_products_info_title[$language_id],
           'seo_language_products_info_keywords' => $seo_language_products_info_keywords[$language_id],
           'seo_language_products_info_description' => $seo_language_products_info_description[$language_id],
@@ -76,7 +79,10 @@
           'seo_language_favorites_description' => $seo_language_favorites_description[$language_id],
           'seo_language_featured_title' => $seo_language_featured_title[$language_id],
           'seo_language_featured_keywords' => $seo_language_featured_keywords[$language_id],
-          'seo_language_featured_description' => $seo_language_featured_description[$language_id]
+          'seo_language_featured_description' => $seo_language_featured_description[$language_id],
+          'seo_language_recommendations_title' => $seo_language_recommendations_title[$language_id],
+          'seo_language_recommendations_description' => $seo_language_recommendations_description[$language_id],
+          'seo_language_recommendations_keywords' => $seo_language_recommendations_keywords[$language_id]
         ];
 
         $update_sql = [

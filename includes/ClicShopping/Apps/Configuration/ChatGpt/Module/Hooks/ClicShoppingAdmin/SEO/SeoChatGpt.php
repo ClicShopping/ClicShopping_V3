@@ -100,6 +100,15 @@
         $getInfoFeaturedDescription = ChatJsAdminSeo::getInfoFeaturedDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $text_tag_featured, $url);
         $getInfoFeaturedKeywords = ChatJsAdminSeo::getInfoFeaturedKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_featured, $url);
 
+// Recommendations
+        $question_title = $this->app->getDef('text_seo_page_recommendations_title_question');
+        $question_summary_description = $this->app->getDef('text_seo_page_recommendations_description_question');
+        $question_keywords = $this->app->getDef('text_seo_page_recommendations_keywords_question');
+
+        $getInfoSeoRecommendationsTitle = ChatJsAdminSeo::getInfoSeoRecommendationsTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);
+        $getInfoSeoRecommendationsDescription = ChatJsAdminSeo::getInfoSeoRecommendationsDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $url);
+        $getInfoSeoRecommendationsKeywords = ChatJsAdminSeo::getInfoSeoRecommendationsKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $url);
+
       $output = <<<EOD
 <!------------------>
 <!-- ChatGpt start tag-->
@@ -149,11 +158,16 @@
 <!-- product seo featured description -->  
        {$getInfoFeaturedDescription}
 <!-- product seo featured keywords -->         
-       {$getInfoFeaturedKeywords}       
+       {$getInfoFeaturedKeywords}
+<!-- recommendations seo meta title -->
+       {$getInfoSeoRecommendationsTitle}
+<!-- recommendation seo meta description -->       
+       {$getInfoSeoRecommendationsDescription}
+<!-- recommendations seo meta keywords -->       
+       {$getInfoSeoRecommendationsKeywords}
 <!------------------>
 <!-- ChatGpt end tag-->
 <!------------------>
-
 EOD;
       return $output;
     }
