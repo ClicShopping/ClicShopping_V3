@@ -51,10 +51,9 @@
         $seo_language_featured_title = HTML::sanitize($_POST['seo_language_featured_title_']);
         $seo_language_featured_keywords = HTML::sanitize($_POST['seo_language_featured_keywords_']);
         $seo_language_featured_description = HTML::sanitize($_POST['seo_language_featured_description_']);
-
-        $seo_language_recommendations_title = HTML::sanitize($_POST['seo_language_recommendations_title']);
-        $seo_language_recommendations_description = HTML::sanitize($_POST['seo_language_recommendations_description']);
-        $seo_language_recommendations_keywords = HTML::sanitize($_POST['seo_language_recommendations_keywords']);
+        $seo_language_recommendations_title = HTML::sanitize($_POST['seo_recommendations_language_title_']);
+        $seo_language_recommendations_description = HTML::sanitize($_POST['seo_recommendations_language_description_']);
+        $seo_language_recommendations_keywords = HTML::sanitize($_POST['seo_recommendations_language_keywords_']);
 
         $sql_data_array_pages_description = [
           'seo_defaut_language_title' => $seo_defaut_language_title[$language_id],
