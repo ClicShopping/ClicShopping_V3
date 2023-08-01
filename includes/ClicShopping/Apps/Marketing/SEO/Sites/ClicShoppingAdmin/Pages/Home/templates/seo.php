@@ -787,15 +787,15 @@
                     </div>
 
                     <div class="separator"></div>
-                    <div class="row" id="seoRecommendationsDescription<?php echo $languages_id; ?>">
-                      <div class="col-md-6">
+                     <div class="row" id="seoRecommendationsLanguageDescription<?php echo $languages_id; ?>">
+                       <div class="col-md-6">
                         <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_description'); ?>'" class="col-1 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_description'); ?></label>
-                          <div class="col-md-8 input-group" id="seo_recommendations_desc_tag<?php echo $languages_id; ?>">
-                            <?php echo HTML::textAreaField('seo_recommendations_language_description_[' . $languages_id . ']', ($seo_recommendations_language_description[$languages_id] ?? SeoAdmin::getSeoRecommendationsLanguageDescription($seo->seo_id, $languages_id)), '110', '5', 'id="seo_recommendations_language_description_' . $languages_id . '"'); ?>
+                          <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_description'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_description'); ?></label>
+                          <div class="col-md-9 input-group" id="seo_recommendations_description_tag<?php echo $languages_id; ?>">
+                            <?php echo HTML::textAreaField('seo_recommendations_language_description_[' . $languages_id . ']', ($seo_language_favorites_description[$languages_id] ?? SeoAdmin::getSeoRecommendationsLanguageDescription($seo->seo_id, $languages_id)), '110', '5', 'id="seo_recommendations_description_tag_' . $languages_id . '"'); ?>
                           </div>
                         </div>
-                      </div>
+                       </div>
                     </div>
 
                     <div class="separator"></div>
@@ -803,8 +803,8 @@
                       <div class="col-md-10">
                         <div class="form-group row" data-index="<?php echo $languages_id; ?>">
                           <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_seo_recommendations_language_keywords'); ?></label>
-                          <div class="col-md-7 input-group" id="seo_recommendations_language_keywords<?php echo $languages_id; ?>">
-                            <?php echo '&nbsp;' . HTML::inputField('seo_recommendations_language_keywords_[' . $languages_id . ']', ($seo_recommendations_language_keywords[$languages_id] ?? SeoAdmin::getSeoRecommendationstLanguageKeywords($seo->seo_id, $languages_id)), 'maxlength="70" size="77" id="seo_recommendations_language_keywords_' . $languages_id . '"', false); ?>
+                          <div class="col-md-7 input-group" id="seo_recommendations_keywords_tag<?php echo $languages_id; ?>">
+                            <?php echo '&nbsp;' . HTML::inputField('seo_recommendations_language_keywords_[' . $languages_id . ']', ($seo_recommendations_language_title[$languages_id] ?? SeoAdmin::getSeoRecommendationstLanguageKeywords($seo->seo_id, $languages_id)), 'maxlength="70" size="77" id="seo_recommendations_keywords_tag_' . $languages_id . '"', false); ?>
                           </div>
                         </div>
                       </div>

@@ -2399,7 +2399,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
     {
       $script = "
         <script defer>
-        $('[id^=\"seo_recommendations_desc_tag\"]').each(function(index) {
+        $('[id^=\"seo_recommendations_description_tag\"]').each(function(index) {
           let button = '{$content}';
           let newButton = $(button).attr('data-index', index);
         
@@ -2428,7 +2428,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
                     data: {message: message, engine: engine},
                     success: function(data) {
                       $('#chatGpt-output-input').val(data);
-                      $('#seo_Recommendations_language_description_' + idSeoRecommendationsDescription).val(data);
+                      $('#seo_recommendations_description_tag_' + idSeoRecommendationsDescription).val(data);
                     },
                     error: function(xhr, status, error) {
                       console.log(xhr.responseText);
@@ -2461,12 +2461,12 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
     {
       $script = "
         <script defer>    
-          $('[id^=\"seo_recommendations_language_keywords\"]').each(function(index) {
+          $('[id^=\"seo_recommendations_keywords_tag\"]').each(function(index) {
             let inputId = $(this).attr('id');
             let regex = /(\d+)/g;
-            let IdSeoRecommendationsLanguageKeywords = regex.exec(inputId)[0];
+            let IdSeoRecommendationsKeywords = regex.exec(inputId)[0];
           
-            let language_id = parseInt(IdSeoRecommendationsLanguageKeywords);
+            let language_id = parseInt(IdSeoRecommendationsKeywords);
             let button = '{$content}';
             let newButton = $(button).attr('data-index', index);
           
@@ -2487,7 +2487,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
                     data: {message: message, engine: engine},
                     success: function(data) {
                       $('#chatGpt-output-input').val(data);
-                      $('#seo_Recommendations_language_keywords_' + IdSeoRecommendationsLanguageKeywords).val(data);
+                      $('#seo_recommendations_keywords_tag_' + IdSeoRecommendationsKeywords).val(data);
                     },
                     error: function(xhr, status, error) {
                       console.log(xhr.responseText);
