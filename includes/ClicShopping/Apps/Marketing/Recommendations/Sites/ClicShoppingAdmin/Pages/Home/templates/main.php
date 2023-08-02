@@ -36,7 +36,7 @@
   <div class="separator"></div>
   <div class="alert alert-warning" role="alert">
     <?php echo $CLICSHOPPING_Recommendations->getDef('text_intro_fa'); ?>
-    <?php echo $CLICSHOPPING_Recommendations->getDef('return_url', ['return_url_fa' => CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Products&Recommendations']); ?>
+    <?php echo $CLICSHOPPING_Recommendations->getDef('return_url', ['return_url_pr' => CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Products&Recommendations']); ?>
   </div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Recommendations->getDef('text_products_recommendations'); ?></strong></div>

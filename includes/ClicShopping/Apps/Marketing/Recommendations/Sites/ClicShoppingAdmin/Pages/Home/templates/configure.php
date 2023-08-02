@@ -14,6 +14,7 @@
 
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Recommendations = Registry::get('Recommendations');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $current_module = $CLICSHOPPING_Page->data['current_module'];
@@ -35,7 +36,7 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Recommendations->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
-            <?php echo HTML::button($CLICSHOPPING_Recommendations->getDef('button_product_recommandations'), null, $CLICSHOPPING_Recommendations->link('Recommendations'), 'success'); ?>
+            <?php echo HTML::button($CLICSHOPPING_Recommendations->getDef('button_product_recommendations'), null, $CLICSHOPPING_Recommendations->link('Recommendations'), 'success'); ?>
         </div>
       </div>
     </div>

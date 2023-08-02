@@ -17,12 +17,20 @@
   use ClicShopping\OM\HTML;
 
   class RecommendationsShop {
+
+    public function __construct()
+    {
+      Registry::set('RecommendationsAdmin', new RecommendationsAdmin());
+      $this->RecommendationsAdmin = Registry::get('RecommendationsAdmin');
+    }
+
     /**
      * get the customer sentiment about the comment
-     * @return mixed
+     * @return mixed Must be improved by hook inside the App Chatgpt
      * Must be improved by hook inside the App Chatgpt
+     * @throws \Exception
      */
-   public static function getGptSentiment()
+   public static function getGptSentiment(): mixed
    {
      if (ChatGptShop::checkGptStatus() === false) {
        return null;
@@ -46,17 +54,14 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      Registry::set('RecommendationsAdmin', new RecommendationsAdmin());
-      $CLICSHOPPING_RecommendationsAdmin = Registry::get('RecommendationsAdmin');
-
       $sentiment = self::getGptSentiment();
 
-      $products_rate_weight = $CLICSHOPPING_RecommendationsAdmin->calculateProductsRateWeight($products_id);
+      $products_rate_weight = $this->RecommendationsAdmin->calculateProductsRateWeight($products_id);
 
       $customer_id = $CLICSHOPPING_Customer->getID();
       $customer_group_id = $CLICSHOPPING_Customer->getCustomersGroupID();
 
-      $score = $CLICSHOPPING_RecommendationsAdmin->calculateRecommendationScore($products_rate_weight, $reviewRate, null, CLICSHOPPING_APP_RECOMMENDATIONS_PR_STRATEGY, $sentiment);
+      $score = $this->RecommendationsAdmin->calculateRecommendationScore($products_rate_weight, $reviewRate, null, CLICSHOPPING_APP_RECOMMENDATIONS_PR_STRATEGY, $sentiment);
 
       if ($score != 0) {
         $sql_data_array = [

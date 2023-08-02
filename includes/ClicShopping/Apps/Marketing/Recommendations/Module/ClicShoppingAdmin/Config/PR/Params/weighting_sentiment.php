@@ -10,16 +10,16 @@
 
   namespace ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\PR\Params;
 
-  class min_score extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
+  class weighting_sentiment extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
 
-    public $default = 0.4;
-    public ?int $sort_order = 55;
+    public $default = 1.0;
+    public ?int $sort_order = 70;
     public bool $app_configured = true;
 
     protected function init()
     {
-      $this->title = $this->app->getDef('cfg_products_recommendations_min_score_title');
-      $this->description = $this->app->getDef('cfg_products_recommendations_min_score_description');
+      $this->title = $this->app->getDef('cfg_products_recommendations_weighting_sentiment_title');
+      $this->description = $this->app->getDef('cfg_products_recommendations_weighting_sentiment_description');
     }
   }

@@ -47,7 +47,7 @@
           default => null,
         };
       } else {
-        $result = 0.0;
+        $result = null;
       }
 
       return $result;
@@ -77,7 +77,7 @@
 
           $sentimentScores = self::extractSentimentScore($sentimentLabel);
         } else {
-          $sentimentScores[] = 0.0;
+          $sentimentScores = 0.0;
         }
       }
 

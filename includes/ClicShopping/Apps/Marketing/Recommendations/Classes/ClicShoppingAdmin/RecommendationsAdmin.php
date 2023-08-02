@@ -53,9 +53,10 @@
         ($externalRecommendationScore * $externalRecommendationWeight) +
         ($userFeedback * 0.2); // Adjust the weight of user feedback as needed
 
-      // If a sentiment score is available, incorporate it into the combined score calculation
+      // If a sentiment score is available, incorporate it into the combined score calculation with a specific weight
       if (!is_null($sentimentScore)) {
-        $combinedScore = ($combinedScore + $sentimentScore) / 2; // You can adjust the weighting between the sentiment and other factors as needed
+        $sentimentWeight = (float) CLICSHOPPING_APP_RECOMMENDATIONS_PR_WEIGHTING_SENTIMENT;
+        $combinedScore = $combinedScore + ($sentimentScore * $sentimentWeight);
       }
 
       return $combinedScore;
@@ -70,18 +71,31 @@
      */
     private static function calculateRecommendationScoreBasedOnRange(float $productsRateWeight = 0.8, float $reviewRate = 0, ?float $userFeedback = 0, ?float $feedbackWeight = 0.2,  ?float $sentimentScore = null) :float
     {
-      // If a sentiment score is provided, adjust it to be between -1 and 1
+      // Normalize the review rate to be between 0 and 1
+      $maxReviewRate = 5;
+      $reviewRate = $reviewRate / $maxReviewRate;
+
+      // Adjust the sentiment score to be between -1 and 1 (if provided)
       if (!is_null($sentimentScore)) {
         $sentimentScore = max(-1, min(1, $sentimentScore));
+      }
+
+      // If the review rate is low (e.g., 1), give more weight to the sentiment score
+      if ($reviewRate <= 0.2) {
+        $feedbackWeight = 0.7; // You can adjust this weight to your preference
       }
 
       // Calculate the final recommendation score using a weighted average of review rate, user feedback, and sentiment score (if available)
       $score = ($reviewRate * (1 - $feedbackWeight)) + ($userFeedback * $feedbackWeight);
 
-      // If a sentiment score is available, incorporate it into the final score calculation
+      // If a sentiment score is available, incorporate it into the final score calculation with a specific weight
       if (!is_null($sentimentScore)) {
-        $score = ($score + $sentimentScore) / 2; // You can adjust the weighting between the sentiment and other factors as needed
+        $sentimentWeight = (float) CLICSHOPPING_APP_RECOMMENDATIONS_PR_WEIGHTING_SENTIMENT;
+        $score = $score + ($sentimentScore * $sentimentWeight);
       }
+
+      // Apply the products rate weight (from reviews) to the final score
+      $score *= $productsRateWeight;
 
       return $score;
     }
@@ -103,15 +117,10 @@
       // Normalize the user feedback to a value between -1 and 1
       $userFeedback = static::calculateUserFeedbackScore($userFeedback);
 
-      // Adjust the sentiment score to be between -1 and 1 (if provided)
-      if (!is_null($sentimentScore)) {
-        $sentimentScore = max(-1, min(1, $sentimentScore));
-      }
-
       if ($strategy == 'Range') {
-        $score = static::calculateRecommendationScoreBasedOnRange($productsRateWeight, $reviewRate, $userFeedback, $sentimentScore);
+        return static::calculateRecommendationScoreBasedOnRange($productsRateWeight, $reviewRate, $userFeedback, null, $sentimentScore);
       } else {
-        $score = static::calculateRecommendationScoreWithMultipleSources($productsRateWeight, $reviewRate, $userFeedback, $sentimentScore);
+        return static::calculateRecommendationScoreWithMultipleSources($productsRateWeight, $reviewRate, $userFeedback, $sentimentScore);
       }
 
       return $score;
