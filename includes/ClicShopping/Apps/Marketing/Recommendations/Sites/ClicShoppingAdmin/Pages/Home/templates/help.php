@@ -40,28 +40,36 @@
   </div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Recommendations->getDef('text_products_recommendations'); ?></strong></div>
-  <div class="adminformTitle">
-    <div class="row">
-      <div class="separator"></div>
-
-      <div class="col-md-12">
-        <div>
-          <div class="col-md-12">
-            <?php echo $CLICSHOPPING_Recommendations->getDef('text_intro'); ?>
-          </div>
-        </div>
+    <div class="adminformTitle">
+      <div class="row">
         <div class="separator"></div>
         <div class="col-md-12">
-          <div>
-            <div class="col-md-12 text-center">
-              <?php
-                echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Marketing\Recommendations&Configure'));
-                echo HTML::button($CLICSHOPPING_Recommendations->getDef('button_configure'), null, null, 'primary');
-                echo '</form>';
-              ?>
+        <div class="card card-block headerCard">
+          <div class="row">
+            <div class="col-md-12">
+              <?php echo $CLICSHOPPING_Recommendations->getDef('text_strategy'); ?>
             </div>
           </div>
         </div>
+        <div class="separator"></div>
+
+        <div class="card card-block headerCard">
+        <div class="row">
+          <div class="col-md-12">
+            <?php echo $CLICSHOPPING_Recommendations->getDef('text_range'); ?>
+          </div>
+        </div>
+        </div>
+        <div class="separator"></div>
+
+        <div class="card card-block headerCard">
+        <div class="row">
+          <div class="col-md-12">
+            <?php echo $CLICSHOPPING_Recommendations->getDef('text_multiple'); ?>
+          </div>
+        </div>
+        </div>
+        <div class="separator"></div>
       </div>
     </div>
   </div>

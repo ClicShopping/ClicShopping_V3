@@ -13,7 +13,7 @@
   class weighting_sentiment extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
 
-    public $default = 1.0;
+    public $default = 1.5;
     public ?int $sort_order = 70;
     public bool $app_configured = true;
 

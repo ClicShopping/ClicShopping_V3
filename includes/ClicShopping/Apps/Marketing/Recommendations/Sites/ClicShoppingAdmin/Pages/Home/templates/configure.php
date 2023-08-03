@@ -36,7 +36,14 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Recommendations->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
+            <?php
+              echo HTML::form('seo', $CLICSHOPPING_Recommendations->link('Recommendations&DeleteData'));
+              echo HTML::button($CLICSHOPPING_Recommendations->getDef('button_delete_all'), null, null, 'danger');
+            ?>
+            </form>
+            <?php echo HTML::button($CLICSHOPPING_Recommendations->getDef('button_help'), null, $CLICSHOPPING_Recommendations->link('Help'), 'info'); ?>
             <?php echo HTML::button($CLICSHOPPING_Recommendations->getDef('button_product_recommendations'), null, $CLICSHOPPING_Recommendations->link('Recommendations'), 'success'); ?>
+          </span>
         </div>
       </div>
     </div>

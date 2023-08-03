@@ -13,7 +13,7 @@
   class max_score extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
   {
 
-    public $default = 0.4;
+    public $default = 1.1;
     public ?int $sort_order = 60;
     public bool $app_configured = true;
 

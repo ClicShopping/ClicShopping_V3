@@ -26,6 +26,8 @@ button_insert =  Insérer
 button_back = Retour
 button_reset = Réinitialiser
 button_update = Mettre à jour
+button_help = Aide
+button_delete_all = Supprimer les données
 
 dialog_uninstall_title = Désinstaller
 dialog_uninstall_body = Souhaitez-vous installer cette App ?

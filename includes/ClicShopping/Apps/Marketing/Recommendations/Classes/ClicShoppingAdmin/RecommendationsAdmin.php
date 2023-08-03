@@ -35,7 +35,7 @@
       $userFeedback = static::calculateUserFeedbackScore($userFeedback);
 
       // If a sentiment score is provided, adjust it to be between -1 and 1
-      if (!is_null($sentimentScore)) {
+      if (!\is_null($sentimentScore)) {
         $sentimentScore = max(-1, min(1, $sentimentScore));
       }
 
@@ -54,7 +54,7 @@
         ($userFeedback * 0.2); // Adjust the weight of user feedback as needed
 
       // If a sentiment score is available, incorporate it into the combined score calculation with a specific weight
-      if (!is_null($sentimentScore)) {
+      if (!\is_null($sentimentScore)) {
         $sentimentWeight = (float) CLICSHOPPING_APP_RECOMMENDATIONS_PR_WEIGHTING_SENTIMENT;
         $combinedScore = $combinedScore + ($sentimentScore * $sentimentWeight);
       }
@@ -69,16 +69,19 @@
      * @param float|null $feedbackWeight
      * @return float
      */
-    private static function calculateRecommendationScoreBasedOnRange(float $productsRateWeight = 0.8, float $reviewRate = 0, ?float $userFeedback = 0, ?float $feedbackWeight = 0.2,  ?float $sentimentScore = null) :float
+    public static function calculateRecommendationScoreBasedOnRange(float $productsRateWeight = 0.8, float $reviewRate = 0, ?float $userFeedback = 0, ?float $feedbackWeight, ?float $sentimentScore = null): float
     {
-      // Normalize the review rate to be between 0 and 1
-      $maxReviewRate = 5;
-      $reviewRate = $reviewRate / $maxReviewRate;
+      if (\is_null($feedbackWeight)) {
+        $feedbackWeight = 0.2;
+      }
 
       // Adjust the sentiment score to be between -1 and 1 (if provided)
-      if (!is_null($sentimentScore)) {
+      if (!\is_null($sentimentScore)) {
         $sentimentScore = max(-1, min(1, $sentimentScore));
       }
+
+      // Normalize the user feedback to a value between -1 and 1
+      $userFeedback = static::calculateUserFeedbackScore($userFeedback);
 
       // If the review rate is low (e.g., 1), give more weight to the sentiment score
       if ($reviewRate <= 0.2) {
@@ -90,8 +93,8 @@
 
       // If a sentiment score is available, incorporate it into the final score calculation with a specific weight
       if (!is_null($sentimentScore)) {
-        $sentimentWeight = (float) CLICSHOPPING_APP_RECOMMENDATIONS_PR_WEIGHTING_SENTIMENT;
-        $score = $score + ($sentimentScore * $sentimentWeight);
+        $sentimentWeight = (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_WEIGHTING_SENTIMENT;
+        $score = ($score + ($sentimentScore * $sentimentWeight)) / 2; // Adjust the weighting between the sentiment and other factors as needed
       }
 
       // Apply the products rate weight (from reviews) to the final score
@@ -150,16 +153,16 @@
       }
 
       $QmostRecommended = $this->db->prepare('SELECT products_id, 
-                                              COUNT(*) as recommendation_count,
-                                              recommendation_date,
-                                              MAX(score) as score
-                                             FROM :table_products_recommendations
-                                             WHERE score >= :minRecommendedScore
-                                             ' . $customers_group . '
-                                             ' . $date_analyse . '
-                                             GROUP BY products_id
-                                             ORDER BY recommendation_count DESC
-                                             LIMIT :limit
+                                                     COUNT(*) as recommendation_count,
+                                                     recommendation_date,
+                                                     MAX(score) as score
+                                              FROM :table_products_recommendations
+                                              WHERE score >= :minRecommendedScore
+                                                    ' . $customers_group . '
+                                                    ' . $date_analyse . '
+                                              GROUP BY products_id
+                                              ORDER BY recommendation_count DESC
+                                              LIMIT :limit
                                              ');
 
       $QmostRecommended->bindInt(':limit', $limit);
@@ -197,17 +200,17 @@
       }
 
       $QrejectedProducts = $this->db->prepare('SELECT products_id, 
-                                          COUNT(*) as rejection_count,
-                                          recommendation_date as recommendation_date,
-                                          MAX(score) as score
-                                          FROM :table_products_recommendations
-                                          WHERE score < :maxRejectedScore
-                                          ' . $customers_group . '
-                                          ' . $date_analyse . '
-                                          GROUP BY products_id
-                                          ORDER BY rejection_count DESC
-                                          LIMIT :limit
-                                          ');
+                                                      COUNT(*) as rejection_count,
+                                                      recommendation_date as recommendation_date,
+                                                      MAX(score) as score
+                                              FROM :table_products_recommendations
+                                              WHERE score < :maxRejectedScore
+                                                    ' . $customers_group . '
+                                                    ' . $date_analyse . '
+                                              GROUP BY products_id
+                                              ORDER BY rejection_count DESC
+                                              LIMIT :limit
+                                              ');
 
       $QrejectedProducts->bindInt(':limit', $limit);
       $QrejectedProducts->bindDecimal(':maxRejectedScore', $maxRejectedScore);
@@ -217,7 +220,6 @@
 
       return $rejectedProducts;
     }
-
 
     /**
      * subjective measure that reflects the user's opinion or sentiment about the product, between -1 and 1.
@@ -236,61 +238,27 @@
 // Review calculation
 //********************************************
     /**
-     * Calculate the average rating based on an array of review ratings.
+     * Calculate the average rating weight  of review ratings.
      *
      * @param int $products_id
      * @return float The average rating.
      */
-    private function calculateAverageRating(int $products_id): float
+    public function calculateProductsRateWeight(int $products_id): float
     {
-      $Qcheck = $this->db->prepare('select reviews_rating
-                                    from :table_reviews
-                                    where products_id = :products_id
-                                  ');
+      $Qcheck = $this->db->prepare('select avg(reviews_rating) as average
+                                from :table_reviews
+                                where products_id = :products_id
+                              ');
       $Qcheck->bindInt(':products_id', $products_id);
       $Qcheck->execute();
 
-      $reviews = $Qcheck->fetchAll();
+      $review = $Qcheck->fetch();
 
-      if (!array($reviews)) {
+      if (!$review || $review['average'] === null) {
         return 0;
       }
 
-      $totalRating = 0;
-      $numReviews = count($reviews);
-
-      foreach ($reviews as $review) {
-        $totalRating += $this->normalizeRating($review['reviews_rating']);
-      }
-
-      $result = $totalRating / $numReviews;
-
-      return $result;
-    }
-
-    /**
-     * Normalize the rating to a value between 0 and 5.
-     *
-     * @param float $rating The original rating.
-     * @return float The normalized rating.
-     */
-    private function normalizeRating(int $rating): float
-    {
-      return ($rating - 1) / 4;
-    }
-
-    /**
-     * Calculate the productsRateWeight for a specific product based on reviews and ratings.
-     *
-     * @param int $products_id The ID of the product.
-     * @return float The productsRateWeight for the product.
-     */
-    public function calculateProductsRateWeight(int $products_id): float
-    {
-      $averageRating = $this->calculateAverageRating($products_id);
-
-      // Optionally, apply a weighting factor if needed.
-      // $weightedRating = applyWeightingFactor($averageRating);
+      $averageRating = $review['average'];
 
       return $averageRating;
     }
