@@ -26,7 +26,7 @@
 //Content
       $this->page->data['content'] = $CLICSHOPPING_Template->getTemplateFiles('products_recommendations');
 //language
-      $CLICSHOPPING_Language->loadDefinitions('recommendations');
+      $CLICSHOPPING_Language->loadDefinitions('products_recommendations');
 
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Products&Recommendations'));
     }
