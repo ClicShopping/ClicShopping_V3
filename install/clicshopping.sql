@@ -204,6 +204,8 @@ INSERT INTO administrator_menu VALUES(793, 'index.php?A&Tools\\Upgrade&Marketpla
 INSERT INTO administrator_menu VALUES(794, 'index.php?A&Configuration\\ChatGpt&ChatGpt', 14, 15, 1, 'chatgpt.gif', 1, 'app_configuration_chatgpt', 1);
 INSERT INTO administrator_menu VALUES(795, 'index.php?A&Catalog\\Products&StatsProductsNoPurchased', 98, 3, 0, 'stats_products_purchased.gif', 0, 'app_catalog_products', 1);
 INSERT INTO administrator_menu VALUES(796, 'index.php?A&Shipping\\Item&Configure&module=IT', 449, 4, 1, 'modules_shipping.gif', 0, 'app_shipping_item', 1);
+INSERT INTO administrator_menu VALUES(797, 'index.php?A&Marketing\\Recommendations&Recommendations', 107, 1, 0, 'products_recommendations.png', 0, 'app_marketing_recommendations', 1);
+INSERT INTO administrator_menu VALUES(798, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_recommendations', 117, 1, 0, 'products_recommendations.png', 0, 'app_marketing_recommendations', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -561,6 +563,13 @@ INSERT INTO administrator_menu_description VALUES(794, 'ChatGpt', 1);
 INSERT INTO administrator_menu_description VALUES(794, 'ChatGpt', 2);
 INSERT INTO administrator_menu_description VALUES(795, 'Products no purchased', 1);
 INSERT INTO administrator_menu_description VALUES(795, 'Produits non achetés', 2);
+INSERT INTO administrator_menu_description VALUES(796, 'Shipping by item', 1);
+INSERT INTO administrator_menu_description VALUES(796, 'Expédition par produit', 2);
+INSERT INTO administrator_menu_description VALUES(796, 'Customers recommendations', 1);
+INSERT INTO administrator_menu_description VALUES(797, 'Recommandations clients', 2);
+INSERT INTO administrator_menu_description VALUES(798, 'Customers recommendations', 1);
+INSERT INTO administrator_menu_description VALUES(798, 'Recommandations clients', 2);
+
 
 INSERT INTO api VALUES(1, 'Default', 'd0a36b839700b60727fe13998e22aa0af197c61d8b371e26114c133ca51c4864bd0da73ad6d1e5090b02b55cff42b8a0cd23866e64e78fc8884eb6228d32f5e9d76bed468869dd89ee6bb8a3208c5077e88560d0bc238f67cfc732efcf5313a0cb361e297c29c8d82d050d770ed7dee972af6445e801fa9af12e3d478bf5346a', 0, '2022-09-18 14:25:54', '2022-09-18 14:25:54', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO api_ip VALUES(1, 1, '127.0.0.1', 'localhost');
@@ -2037,10 +2046,10 @@ INSERT INTO pages_manager_description VALUES(4, 'General Conditions', 'General C
 INSERT INTO pages_manager_description VALUES(4, 'Conditions Générales', 'Conditions générales', '', 2, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(5, 'Confidential politics', 'Confidential politics', '', 1, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(5, 'Politiques de Confidentialité', 'Politiques de Confidentialité', '', 2, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 2, '', '', '');
-INSERT INTO pages_manager_description VALUES(8, 'Sitemap', '', 'index.php?Info&SiteMap', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(8, 'Cartographie du site', '', 'index.php?Info&SiteMap', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(8, 'Sitemap', '', 'index.php?Info&SiteMap', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(8, 'Cartographie du site', '', 'index.php?Info&SiteMap', 2, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(10, 'Specials', '', 'Products&Specials', 1, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(10, 'Promotions', '', 'Products&Specials', 2, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(11, 'News', '', 'Products&ProductsNew', 1, NULL, NULL, NULL);
@@ -2082,7 +2091,7 @@ INSERT INTO products_description VALUES(8, 2, 'Ustensiles Eckbert par ZWILLING',
 INSERT INTO products_description VALUES(9, 1, 'Josef Strauss Prestige Cutlery Set', 'This beautiful set will enhance any dinner table, whether for entertaining, or casual dining.\r\n<ul>\r\n	<li>18/10 stainless steel</li>\r\n	<li>Gaby - 20 pc set</li>\r\n</ul>\r\n\r\n<ol>\r\n	<li>Includes: 4 dinner forks, 4 salad forks, 4 knives, 4 soup spoons, 4 tea spoons</li>\r\n</ol>\r\n', '', 0, '', '', '', '', '', '', 'This beautiful set will enhance any dinner table, whether for entertaining, or casual dining.', '');
 INSERT INTO products_description VALUES(9, 2, 'Ustensiles de Josef Strauss Prestige', 'Ce magnifique ensemble rehaussera toute table, qu\'il s\'agisse d\'une réception ou d\'un repas décontracté.\r\n<ul>\r\n	<li>Acier inoxydable 18/10</li>\r\n	<li>Gaby - Ensemble de 20 pièces</li>\r\n	<li>Comprend 4 fourchettes à dîner, 4 fourchettes à salade, 4 couteaux, 4 cuillères à soupe, 4 cuillères à thé.</li>\r\n</ul>\r\n', '', 0, '', '', '', '', '', '', 'Ce magnifique ensemble rehaussera toute table, qu\'il s\'agisse d\'une réception ou d\'un repas décontracté.', '');
 INSERT INTO products_description VALUES(10, 1, 'Stainless steel cutlery', 'Beautifully created from a higher quality stainless steel material, our dishes are exquisitely designed. This unique and elegant design has a durable, well balanced and easy to grasp set. The whole is affordable as well as elegant and it is a judicious investment that will enrich your daily experience. Rust resistant, dishwasher, easy to wash and maintain.<br />\r\n<br />\r\n<strong>Available color </strong>:- or<br />\r\n<strong>Available size:- </strong><br />\r\n4 x Dinner fork 7.5 PO-<br />\r\n4 x tablespoon 7.5 in<br />\r\n4 x 6 -po tea spoon<br />\r\n4 x Dinner knife 8.5 POF<br />\r\n<br />\r\n<strong>features: </strong><br />\r\nRust resistant<br />\r\nDishwasher<br />\r\nEasy to wash and maintain.', '', 0, '', '', '', '', '', '', 'Beautifully created from a higher quality stainless steel material, our dishes are exquisitely designed.', '');
-INSERT INTO products_description VALUES(10, 2, 'Coutellerie en acier inoxidable', 'Magnifiquement créés à partir d\'un matériau en acier inoxydable de qualité supérieure, nos ensembles de vaisselle sont conçus de manière exquise. Ce design unique et élégant présente un ensemble durable, bien équilibré et facile à saisir. L\'ensemble est abordable ainsi que élégant et c\'est un investissement judicieux qui enrichira votre expérience quotidienne. Résistant à la rouille, au lave-vaisselle, facile à laver et à entretenir.<br />\r\n<br />\r\n<strong>Couleur disponible</strong>:- Or<br />\r\n<strong>Taille disponible:- </strong><br />\r\n4 x fourchette à dîner 7.5 po-<br />\r\n4 x cuillère à soupe 7.5 po<br />\r\n4 x cuillère à thé 6 po<br />\r\n4 x couteau à dîner 8.5 poF<br />\r\n<br />\r\n<strong>Fonctionnalités:</strong><br />\r\nRésistant à la rouille<br />\r\nLave-vaisselle<br />\r\nFacile à laver et à entretenir.', '', 0, '', '', '', '', '', '', ' matériau en acier inoxydable de qualité supérieure', '');
+INSERT INTO products_description VALUES(10, 2, 'Coutellerie en acier inoxidable', 'Magnifiquement créés à partir d\'un matériau en acier inoxydable de qualité supérieure, nos ensembles de vaisselle sont conçus de manière exquise. Ce design unique et élégant présente un ensemble durable, bien équilibré et facile à saisir. L\'ensemble est abordable ainsi que élégant et c\'est un investissement judicieux qui enrichira votre expérience quotidienne. Résistant à la rouille, au lave-vaisselle, facile à laver et à entretenir.<br />\r\n<br />\r\n<strong>Couleur disponible</strong>:- Or<br />\r\n<strong>Taille disponible:- </strong><br />\r\n4 x fourchette à dîner 7.5 po-<br />\r\n4 x cuillère à soupe 7.5 po<br />\r\n4 x cuillère à thé 6 po<br />\r\n4 x couteau à dîner 8.5 poF<br />\r\n<br />\r\n<strong>Fonctionnalités:</strong><br />\r\n Résistant à la rouille<br />\r\nLave-vaisselle<br />\r\nFacile à laver et à entretenir.', '', 0, '', '', '', '', '', '', ' matériau en acier inoxydable de qualité supérieure', '');
 
 INSERT INTO products_favorites VALUES(1, 5, '2023-04-30 15:19:03', NULL, NULL, NULL, NULL, 1, 0);
 INSERT INTO products_favorites VALUES(2, 4, '2023-04-30 15:19:13', NULL, NULL, NULL, NULL, 1, 0);
@@ -2162,7 +2171,7 @@ INSERT INTO sec_directory_whitelist VALUES(6, 'pub');
 INSERT INTO sec_directory_whitelist VALUES(7, 'includes/Work');
 
 
-INSERT INTO seo VALUES(1, 1, 'ClicShopping B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping AI B2B B2C Solution', '', '', '');
+INSERT INTO seo VALUES(1, 1, 'ClicShopping AI B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping AI B2B B2C Solution', '', '', '');
 INSERT INTO seo VALUES(1, 2, 'ClicShopping AI B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping AI B2B B2C Solution', '', '', '');
 
 INSERT INTO specials VALUES(1, 3, 76.0000, '2023-04-30 15:17:35', NULL, NULL, NULL, 1, NULL, 0, 0);

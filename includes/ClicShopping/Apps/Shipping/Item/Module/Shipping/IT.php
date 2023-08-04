@@ -92,11 +92,12 @@
       if (($this->enabled === true) && ((int)CLICSHOPPING_APP_ITEM_IT_ZONE > 0)) {
         $check_flag = false;
 
-        $Qcheck = $this->app->db->get('zones_to_geo_zones', 'zone_id', ['geo_zone_id' => (int)CLICSHOPPING_APP_ITEM_IT_ZONE,
+        $array =[
+          'geo_zone_id' => (int)CLICSHOPPING_APP_ITEM_IT_ZONE,
           'zone_country_id' => $CLICSHOPPING_Order->delivery['country']['id']
-        ],
-          'zone_id'
-        );
+        ];
+
+        $Qcheck = $this->app->db->get('zones_to_geo_zones', 'zone_id', $array, 'zone_id');
 
         while ($Qcheck->fetch()) {
           if (($Qcheck->valueInt('zone_id') < 1) || ($Qcheck->valueInt('zone_id') === $CLICSHOPPING_Order->delivery['zone_id'])) {
@@ -121,11 +122,13 @@
 
       $this->quotes = ['id' => $this->app->vendor . '\\' . $this->app->code . '\\' . $this->code,
         'module' => $this->app->getDef('module_item_text_title'),
-        'methods' => array(array('id' => $this->code,
+        'methods' => [
+          [
+          'id' => $this->code,
           'title' => $this->app->getDef('module_item_text_way'),
           'cost' => ((float)CLICSHOPPING_APP_ITEM_IT_COST * (int)$number_of_items) + (float)CLICSHOPPING_APP_ITEM_IT_HANDLING
-          )
-        )
+          ]
+        ]
       ];
 
       if ($this->tax_class > 0) {
@@ -181,12 +184,12 @@
           if (isset($CLICSHOPPING_Order->products[$i]['attributes'])) {
             foreach ($CLICSHOPPING_Order->products[$i]['attributes'] as $option => $value) {
               $Qcheck = $CLICSHOPPING_Db->prepare('select pa.products_id
-                                            from :table_products_attributes pa,
-                                                 :table_products_attributes_download pad
-                                            where pa.products_id = :products_id
-                                            and pa.options_values_id = :options_values_id
-                                            and pa.products_attributes_id = pad.products_attributes_id
-                                            ');
+                                                  from :table_products_attributes pa,
+                                                       :table_products_attributes_download pad
+                                                  where pa.products_id = :products_id
+                                                  and pa.options_values_id = :options_values_id
+                                                  and pa.products_attributes_id = pad.products_attributes_id
+                                                  ');
               $Qcheck->bindInt(':products_id', $CLICSHOPPING_Order->products[$i]['id']);
               $Qcheck->bindInt(':options_values_id', $value['value_id']);
               $Qcheck->execute();

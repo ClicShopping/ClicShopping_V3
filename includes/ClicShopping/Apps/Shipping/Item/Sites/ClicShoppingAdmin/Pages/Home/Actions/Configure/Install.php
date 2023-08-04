@@ -48,7 +48,8 @@
 
       if ($Qcheck->fetch() === false) {
 
-        $sql_data_array = ['sort_order' => 4,
+        $sql_data_array = [
+          'sort_order' => 4,
           'link' => 'index.php?A&Shipping\Item&Configure&module=IT',
           'image' => 'modules_shipping.gif',
           'b2b_menu' => 0,
@@ -67,11 +68,9 @@
         $languages = $CLICSHOPPING_Language->getLanguages();
 
         for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-
           $language_id = $languages[$i]['id'];
 
           $sql_data_array = ['label' => $CLICSHOPPING_Item->getDef('title_menu')];
-
           $insert_sql_data = [
             'id' => (int)$id,
             'language_id' => (int)$language_id
@@ -80,7 +79,6 @@
           $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
           $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-
         }
 
         Cache::clear('menu-administrator');
