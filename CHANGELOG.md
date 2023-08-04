@@ -2,7 +2,7 @@
 Add new stats for reviews
 small fix
 Librairies updated
-product recommendations report
+product recommendations added
 fix access error documents directory
 
 -------------------

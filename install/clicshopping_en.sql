@@ -746,7 +746,7 @@ INSERT INTO configuration VALUES(462, 'Specify the number of days you want to se
 INSERT INTO configuration VALUES(503, 'Small image height for administration', 'SMALL_IMAGE_HEIGHT_ADMIN', '70', 'Number of pixels for the height of the small images articles.', 23, 8, '2018-07-31 16:45:06', '2006-04-09 16:13:48', NULL, NULL);
 INSERT INTO configuration VALUES(504, 'Small Image width administration', 'SMALL_IMAGE_WIDTH_ADMIN', '70', 'The number of pixels for the width of the header image.', 23, 9, '2018-07-31 16:45:11', '2006-04-09 16:13:48', NULL, NULL);
 INSERT INTO configuration VALUES(505, 'Modules installed', 'MODULE_ACTION_RECORDER_INSTALLED', 'ar_admin_login.php;ar_contact_us.php;ar_create_account.php;ar_create_account_pro.php;ar_reset_password.php;ar_tell_a_friend.php', 'liste des actions enregistrées concernant les modules (séparés par des points virgules). Mise à jour automatique. Ce n\'est pas utile de l\'editer.', 6, 0, '2019-01-16 19:05:53', '2010-07-21 19:21:01', NULL, NULL);
-INSERT INTO configuration VALUES(531, 'Installed Template Block Groups', 'TEMPLATE_BLOCK_GROUPS', 'header_tags;modules_account_customers;modules_advanced_search;modules_boxes;modules_checkout_confirmation;modules_checkout_payment;modules_checkout_shipping;modules_checkout_success;modules_contact_us;modules_create_account;modules_create_account_pro;modules_footer;modules_footer_suffix;modules_front_page;modules_header;modules_index_categories;modules_login;modules_products_favorites;modules_products_featured;modules_products_info;modules_products_listing;modules_products_new;modules_products_reviews;modules_products_search;modules_products_special;modules_shopping_cart;modules_sitemap;modules_tell_a_friend', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-31 15:43:58', '2010-11-12 21:28:47', NULL, NULL);
+INSERT INTO configuration VALUES(531, 'Installed Template Block Groups', 'TEMPLATE_BLOCK_GROUPS', 'header_tags;modules_account_customers;modules_advanced_search;modules_boxes;modules_checkout_confirmation;modules_checkout_payment;modules_checkout_shipping;modules_checkout_success;modules_contact_us;modules_create_account;modules_create_account_pro;modules_footer;modules_footer_suffix;modules_front_page;modules_header;modules_index_categories;modules_login;modules_products_favorites;modules_products_featured;modules_products_info;modules_products_listing;modules_products_new;modules_products_reviews;modules_products_search;modules_products_special;modules_shopping_cart;modules_sitemap;modules_tell_a_friend;modules_products_recommendations', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-31 15:43:58', '2010-11-12 21:28:47', NULL, NULL);
 INSERT INTO configuration VALUES(534, 'Installed Modules', 'MODULE_BOXES_INSTALLED', '', 'List of box module filenames separated by a semi-colon. This is automatically updated. No need to edit.', 6, 0, NULL, '2011-01-17 19:45:47', NULL, NULL);
 INSERT INTO configuration VALUES(536, 'Please indicate the type of default prefix for the model of the product', 'CONFIGURATION_PREFIX_MODEL', 'REF-', 'Please indicate the type of default prefix that you want on the product number.<br /><br /><i>ex : product model : <b>REF-</b>product number ', 7, 7, NULL, '2011-01-17 19:45:47', NULL, NULL);
 INSERT INTO configuration VALUES(538, 'Do you want to show mobile phone', 'ACCOUNT_CELLULAR_PHONE', 'false', 'Display the the field cell phone number in the "My Account" and the registration form.<br />', 5, 6, '2006-10-23 01:16:20', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
@@ -1628,6 +1628,33 @@ INSERT INTO configuration VALUES(1604, 'Status', 'CLICSHOPPING_APP_RETURN_ORDERS
 INSERT INTO configuration VALUES(1605, 'Customer withdrawal period', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_WITHDRAWAL', '14', 'Please indicate the withdrawal period that the customer may use to return the product purchased', 6, 0, NULL, '2023-06-13 18:06:17', NULL, NULL);
 INSERT INTO configuration VALUES(1606, 'Sort Order', 'CLICSHOPPING_APP_RETURN_ORDERS_RO_SORT_ORDER', '30', 'The sort order location of the module shown in the available methods listing (lowest is displayed first).', 6, 0, NULL, '2023-06-13 18:06:17', NULL, NULL);
 INSERT INTO configuration VALUES(1607, 'Witch Default wysiwyg do you want ?', 'DEFAULT_WYSIWYG', 'CkEditor4', 'Please choose your default wysiwyg', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'CkEditor4\', \'CkEditor5\'))');
+INSERT INTO configuration VALUES(1608, 'Analysis strategy', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_STRATEGY', 'Range', 'Please choose your strategy', 6, 0, NULL, '2023-08-04 09:50:46', NULL, NULL);
+INSERT INTO configuration VALUES(1609, 'Sentiment score weighting', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_WEIGHTING_SENTIMENT', '1.5', 'It is the ability to refine or modify the relative importance or influence of the sentiment score. <br />\n<strong>The neutral value</strong> considered positive is 0.8 for a sentiment weight of 1.5', 6, 0, NULL, '2023-08-04 09:50:46', NULL, NULL);
+INSERT INTO configuration VALUES(1610, 'Sort Order', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_SORT_ORDER', '30', 'Sort Order (Lowest is displayed in first)', 6, 0, NULL, '2023-08-04 09:50:46', NULL, NULL);
+INSERT INTO configuration VALUES(1611, 'Max Score', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_MAX_SCORE', '0.5', 'Show products frequently rejected by customer recommendations (must be between -1 and 1)<br />\nMust be equal to or less than min score', 6, 0, NULL, '2023-08-04 09:50:46', NULL, NULL);
+INSERT INTO configuration VALUES(1612, 'Min Score', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_MIN_SCORE', '0.5', 'Show frequently accepted products for customer recommendations (must be between -1 and 1)', 6, 0, NULL, '2023-08-04 09:50:46', NULL, NULL);
+INSERT INTO configuration VALUES(1613, 'Status', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS', 'True', 'Do you want to activate this module ?', 6, 0, NULL, '2023-08-04 09:50:46', NULL, NULL);
+INSERT INTO configuration VALUES(1614, 'Parameter [Recommendations Products App]', 'MODULE_MODULES_PRODUCTS_PRODUCT_RECOMMENDATIONS_INSTALLED', 'Marketing\\Recommendations\\PR', 'Parameter [Recommendations Products App]', 6, 0, NULL, '2023-08-04 09:50:46', NULL, NULL);
+INSERT INTO configuration VALUES(1615, 'Installed Modules', 'MODULE_MODULES_PRODUCTS_RECOMMENDATIONS_INSTALLED', 'pre_products_recommendations.php', 'This is automatically updated. No need to edit.', 6, 0, '2023-08-04 09:56:35', '2023-08-04 09:56:21', NULL, NULL);
+INSERT INTO configuration VALUES(1616, 'Do you want to enable this module ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_STATUS', 'True', 'Do you want to enable this module in your shop ?', 6, 1, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1617, 'Please select your template ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_TEMPLATE', 'template_bootstrap_column_5.php', 'Select your template', 6, 2, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_multi_template_pull_down');
+INSERT INTO configuration VALUES(1618, 'Please indicate the number of product do you want to display', 'MODULE_PRODUCTS_RECOMMENDATIONS_MAX_DISPLAY', '6', 'Indicate the number of product do you want to display', 6, 3, NULL, '2023-08-04 09:56:35', NULL, '');
+INSERT INTO configuration VALUES(1619, 'Please indicate the number of column that you want to display ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_COLUMNS', '4', 'Choose a number between 1 and 12', 6, 3, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO configuration VALUES(1620, 'Do you want to display a short description ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_SHORT_DESCRIPTION', '', 'Please indicate a number of your short description', 6, 4, NULL, '2023-08-04 09:56:35', NULL, '');
+INSERT INTO configuration VALUES(1621, 'Do you want to remove words of your short description ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_SHORT_DESCRIPTION_DELETE_WORLDS', '', 'Indicate Remove words of your short description for the first caracters', 6, 4, NULL, '2023-08-04 09:56:35', NULL, '');
+INSERT INTO configuration VALUES(1622, 'Do you want to display a message News / Specials / Favorites / Featured ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_TICKER', 'False', 'Display a message News / Specials / Favorites / Featured', 6, 1, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1623, 'Do you want to display the discount pourcentage (specials) ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_POURCENTAGE_TICKER', 'False', 'Display the discount pourcentage (specials)', 6, 1, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1624, 'Do you want to display the stock ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_DISPLAY_STOCK', 'none', 'Display the stock (in stock, sold out, out of stock) ?', 6, 6, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_boolean_value(array(\'none\', \'image\', \'number\'))');
+INSERT INTO configuration VALUES(1625, 'Please indicate a arrival date sort order', 'MODULE_PRODUCTS_RECOMMENDATIONS_LIST_DATE_ADDED', '1', 'This option allow to choose an order to display the product. Lowest is displayed in first; 0 for nothing', 6, 5, NULL, '2023-08-04 09:56:35', NULL, '');
+INSERT INTO configuration VALUES(1626, 'Please indicate a price sort order', 'MODULE_PRODUCTS_RECOMMENDATIONS_LIST_PRICE', '', 'This option allow to choose an order to display the product. Lowest is displayed in first; 0 for nothing', 6, 6, NULL, '2023-08-04 09:56:35', NULL, '');
+INSERT INTO configuration VALUES(1627, 'Please indicate a model sort order', 'MODULE_PRODUCTS_RECOMMENDATIONS_LIST_MODEL', '', 'This option allow to choose an order to display the product. Lowest is displayed in first; 0 for nothing', 6, 7, NULL, '2023-08-04 09:56:35', NULL, '');
+INSERT INTO configuration VALUES(1628, 'Please indicate a quantity sort order', 'MODULE_PRODUCTS_RECOMMENDATIONS_LIST_QUANTITY', '', 'This option allow to choose an order to display the product. Lowest is displayed in first; 0 for nothing', 6, 8, NULL, '2023-08-04 09:56:35', NULL, '');
+INSERT INTO configuration VALUES(1629, 'Please indicate a weight sort order', 'MODULE_PRODUCTS_RECOMMENDATIONS_LIST_WEIGHT', '', 'This option allow to choose an order to display the product. Lowest is displayed in first; 0 for nothing', 6, 9, NULL, '2023-08-04 09:56:35', NULL, '');
+INSERT INTO configuration VALUES(1630, 'Please choose the image size', 'MODULE_PRODUCTS_RECOMMENDATIONS_IMAGE_MEDIUM', 'Small', 'What image size do you want to display?', 6, 10, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_boolean_value(array(\'Small\', \'Medium\'))');
+INSERT INTO configuration VALUES(1631, 'Do you want to remove the details button ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_DELETE_BUY_BUTTON', 'False', 'Remove the button details', 6, 11, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1632, 'Sort order', 'MODULE_PRODUCTS_RECOMMENDATIONS_SORT_ORDER', '100', 'Sort order of display. Lowest is displayed first. The sort order must be different on every module', 6, 12, NULL, '2023-08-04 09:56:35', NULL, '');
+
+
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
@@ -1996,7 +2023,8 @@ INSERT INTO pages_manager VALUES(10, '_self', 8, 1, 5, 3, '0', NULL, NULL, '2018
 INSERT INTO pages_manager VALUES(11, '_self', 9, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:41:34', '2018-07-27 20:45:22', NULL, 0, 0);
 INSERT INTO pages_manager VALUES(13, '_self', 10, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:04:35', NULL, NULL, 99, 0);
 INSERT INTO pages_manager VALUES(14, '_self', 11, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:06:23', '2018-12-19 11:07:11', NULL, 99, 0);
-INSERT INTO pages_manager VALUES(15, '_self', 7, 1, 5, 3, '0', NULL, NULL, '2018-07-31 09:23:54', NULL, NULL, 0, 0);
+INSERT INTO pages_manager VALUES(15, '_self', 1, 1, 5, 3, '0', NULL, NULL, '2018-07-31 09:23:54', NULL, NULL, 99, 0);
+INSERT INTO pages_manager VALUES(16, '_self', 12, 1, 5, 3, '0', NULL, NULL, '2018-07-31 09:23:54', NULL, NULL, 99, 0);
 
 INSERT INTO pages_manager_description VALUES(1, 'Intro Page', '', '', 1, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(1, 'page intro', '', '', 2, NULL, NULL, NULL);
@@ -2008,10 +2036,10 @@ INSERT INTO pages_manager_description VALUES(4, 'General Conditions', 'General C
 INSERT INTO pages_manager_description VALUES(4, 'Conditions Générales', 'Conditions générales', '', 2, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(5, 'Confidential politics', 'Confidential politics', '', 1, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(5, 'Politiques de Confidentialité', 'Politiques de Confidentialité', '', 2, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 2, '', '', '');
-INSERT INTO pages_manager_description VALUES(8, 'Sitemap', '', 'index.php?Info&SiteMap', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(8, 'Cartographie du site', '', 'index.php?Info&SiteMap', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(8, 'Sitemap', '', 'index.php?Info&SiteMap', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(8, 'Cartographie du site', '', 'index.php?Info&SiteMap', 2, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(10, 'Specials', '', 'Products&Specials', 1, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(10, 'Promotions', '', 'Products&Specials', 2, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(11, 'News', '', 'Products&ProductsNew', 1, NULL, NULL, NULL);
@@ -2020,8 +2048,10 @@ INSERT INTO pages_manager_description VALUES(13, 'Featured', '', 'Products&Featu
 INSERT INTO pages_manager_description VALUES(13, 'Nos sélections', '', 'Products&Featured', 2, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(14, 'Favorites', '', 'Products&Favorites', 1, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(14, 'Nos Coups de coeur', '', 'Products&Favorites', 2, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 2, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(16, 'Customers recommendations', '', 'Products&Recommendations', 1, NULL, NULL, NULL);
+INSERT INTO pages_manager_description VALUES(16, 'Recommandations clients', '', 'Products&Recommendations', 2, NULL, NULL, NULL);
 
 
 INSERT INTO products VALUES(2, 0, 0, 200, 'REF-1526836441', 'products/cook/130_nV3zTbD22w_ricardo-ricardo-set-of-2-double-wall-glasses.png', 'REF-1992541414', 'REF-436224673', '', '', '', '', 'products/cook/640_nV3zTbD22w_ricardo-ricardo-set-of-2-double-wall-glasses.png', 50.0000, '2023-04-30 14:31:12', '2023-04-30 14:32:55', NULL, 1.0000, '', 1, 1, 0, 0, 1, '1', '1', 0, 0, 1, 0, 0.00, 0.00, 0.00, 2, 'admin admin', '0.00', 0, 0, 'products/cook/250_nV3zTbD22w_ricardo-ricardo-set-of-2-double-wall-glasses.png', 'products/cook/70_nV3zTbD22w_ricardo-ricardo-set-of-2-double-wall-glasses.png', 2, 0.00, 0.00, 0, 0, 0, 0, NULL, 0, 'product');
@@ -2131,8 +2161,8 @@ INSERT INTO sec_directory_whitelist VALUES(6, 'pub');
 INSERT INTO sec_directory_whitelist VALUES(7, 'includes/Work');
 
 
-INSERT INTO seo VALUES(1, 1, 'ClicShopping B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping B2B B2C Solution');
-INSERT INTO seo VALUES(1, 2, 'ClicShopping B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping B2B B2C Solution');
+INSERT INTO seo VALUES(1, 1, 'ClicShopping AI B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping AI B2B B2C Solution', '', '', '');
+INSERT INTO seo VALUES(1, 2, 'ClicShopping AI B2B B2C Solution', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ClicShopping AI B2B B2C Solution', '', '', '');
 
 INSERT INTO specials VALUES(1, 3, 76.0000, '2023-04-30 15:17:35', NULL, NULL, NULL, 1, NULL, 0, 0);
 INSERT INTO specials VALUES(2, 6, 47.5000, '2023-04-30 15:17:51', NULL, NULL, NULL, 1, NULL, 0, 0);
