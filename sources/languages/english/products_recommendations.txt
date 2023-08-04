@@ -1,4 +1,5 @@
 navbar_title = Customers recommendations
+
 heading_title = Customers recommendations
 
 text_products_news_seo_title = Customers recommendations
