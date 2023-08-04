@@ -2286,45 +2286,6 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       return $script;
     }
 
-    /**
-     * Get the default title
-     * @param int $seo_id
-     * @param int $language_id
-     * @return string
-     */
-    public static function getSeoRecommendationsLanguageTitle(int $seo_id, int $language_id): string
-    {
-      $Qseo = Registry::get('Db')->get('seo', 'seo_language_recommendations_title', ['seo_id' => $seo_id, 'language_id' => $language_id]);
-
-      return $Qseo->value('seo_language_recommendations_title');
-    }
-
-    /**
-     * Get the Recommendations Description
-     * @param int $seo_id
-     * @param int $language_id
-     * @return string
-     */
-    public static function getSeoRecommendationsLanguageDescription(int $seo_id, int $language_id): string
-    {
-      $Qseo = Registry::get('Db')->get('seo', 'seo_language_recommendations_description', ['seo_id' => $seo_id, 'language_id' => $language_id]);
-
-      return $Qseo->value('seo_language_recommendations_description');
-    }
-
-    /**
-     * Get the Recommendations keywords
-     * @param int $seo_id
-     * @param int $language_id
-     * @return string
-     */
-    public static function getSeoDefaultLanguageKeywords(int $seo_id, int $language_id): string
-    {
-      $Qseo = Registry::get('Db')->get('seo', 'seo_language_recommendations_keywords', ['seo_id' => $seo_id, 'language_id' => $language_id]);
-
-      return $Qseo->value('seo_language_recommendations_keywords');
-    }
-
 //**************************************
 //Recommendations
 //**************************************
