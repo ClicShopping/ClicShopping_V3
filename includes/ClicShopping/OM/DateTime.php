@@ -114,7 +114,7 @@
         $date = new DateTime($raw_datetime, true, $strict);
 
         if ($date->isValid()) {
-          $pattern = ($with_time === false) ? CLICSHOPPING::getDef('date_format_short') : CLICSHOPPING::getDef('date_time_format');
+          $pattern = ($with_time === false) ? CLICSHOPPING::getDef('date_format_short') : CLICSHOPPING::getDef('date_format_long');
 
           $result = date($pattern, $date->getTimestamp());
         }

@@ -78,4 +78,4 @@ Analysis example :<br />
 <br /><br />
 <br /><br />
 
-<strong>In summary, to find the good balance, the best is to test sans see the result.The default parameters are tested and works fine.</strong>
+<strong>In summary, to find the good balance, the best is to test and see the result.The default parameters are tested and works fine.</strong>
