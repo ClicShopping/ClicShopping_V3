@@ -1,1 +1,1 @@
-module_pr_short_title = Produits recommandés
+module_pr_short_title = Recommendations clients

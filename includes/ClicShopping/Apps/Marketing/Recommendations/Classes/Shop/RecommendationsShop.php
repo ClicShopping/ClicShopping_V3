@@ -189,6 +189,7 @@
                     and p2c.categories_id = c.categories_id
                     and c.virtual_categories = 0
                     and c.status = 1
+                    group by pr.products_id
                    ';
       } else {
         $Qlisting .= '   p.products_id,                      
@@ -208,6 +209,7 @@
                     and p2c.categories_id = c.categories_id
                     and c.virtual_categories = 0
                     and c.status = 1
+                    group by pr.products_id
                    ';
       }
 

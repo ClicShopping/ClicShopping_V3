@@ -1,1 +1,1 @@
-title_menu = Produits recommandés
+title_menu = Recommendations clients

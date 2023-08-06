@@ -1,14 +1,14 @@
-heading_title = Products Recommendations
-module_pr_title = Products Recommendations
-module_pr_short_title = Products Recommendations
+heading_title = Customers recommendations
+module_pr_title = Customers recommendations
+module_pr_short_title = Customers recommendations
 
-text_products_product_Recommendations =  Products Recommendations
+text_products_product_Recommendations =  Customers recommendations
 text_configure = Configure App Module
 
-text_intro = This app allow you to include products Recommendations pages and a shortcut in products page. <br /><br />
+text_intro = This app allow you to include customers recommendations pages and a shortcut in products page. <br /><br />
 - Activate this module and select your straegy<br />
 
-text_intro_pr =  Please create in your shop this link to products products Recommendations access<br />
+text_intro_pr =  Please create in your shop this link to products customers recommendations access<br />
 return_url = Shop Url : {{return_url_pr}}<br />
 
 module_pr_introduction = The install process create the database settings for this module and the access menu
@@ -19,7 +19,7 @@ button_save = Save
 button_dialog_uninstall =  Uninstall
 button_uninstall =  Uninstall
 button_delete = Delete
-button_product_recommendations = Products recommendations
+button_product_recommendations = Customers recommendations
 button_cancel = Cancel
 button_new = New
 button_insert = Insert

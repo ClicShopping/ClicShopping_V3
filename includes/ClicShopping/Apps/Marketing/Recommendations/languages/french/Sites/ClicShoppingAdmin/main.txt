@@ -1,14 +1,14 @@
-heading_title = Produits recommandés
-module_pr_title = Produits recommandés
-module_pr_short_title = Produits recommandés
+heading_title = Recommendations clients
+module_pr_title = Recommendations clients
+module_pr_short_title = Recommendations clients
 
-text_products_recommendations =  Produits recommandés
+text_products_recommendations =  Recommendations clients
 text_configure =  Configurer App Module
 
-text_intro = Cette app vous permet d'inclure de créer des produits recommandés. <br /><br />
+text_intro = Cette app vous permet d'inclure de créer des recommendations clients. <br /><br />
 - Active ce module et sélectonner votre stratégie
 
-text_intro_pr =  Veuillez créer ce lien dans votre boutique pour accéder aux produits recommandés<br />
+text_intro_pr =  Veuillez créer ce lien dans votre boutique pour accéder aux recommendations clients<br />
 return_url = Lien Url : {{return_url_pr}}<br />
 
 module_pr_introduction = Le processus d'installation installe la base de données et le menu
@@ -19,7 +19,7 @@ button_save = Sauver
 button_dialog_uninstall =  Désinstaller
 button_uninstall =  Désinstaller
 button_delete = Supprimer
-button_product_recommendations = Produits recommandés
+button_product_recommendations = Recommendations clients
 button_cancel = Annuler
 button_new = Nouveau
 button_insert =  Insérer
@@ -57,7 +57,7 @@ text_ok = Ok
 text_range = <strong> - stratégie sélectionnée: </strong> recommandation basée sur une plage
 text_multiple = <strong> - Stratégie sélectionnée: </strong> Recommandation de plusieurs sources <br>
 
-text_most_recommended_products = la plupart des produits recommandés
+text_most_recommended_products = la plupart des Recommendations clients
 text_most_rejected_products = la plupart des produits rejetés
 
 text_help = <strong> aide </strong> <br /> <br />

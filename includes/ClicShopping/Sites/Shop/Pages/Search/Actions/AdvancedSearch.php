@@ -30,8 +30,6 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('advanced_search');
 
-
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Search&AdvancedSearch'));
-
     }
   }
