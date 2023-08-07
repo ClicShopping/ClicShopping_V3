@@ -21,21 +21,8 @@
 
   class Stock
   {
-    private $id;
-    private mixed $db;
-    private mixed $template;
-    private mixed $hooks;
-    private mixed $lang;
-    private mixed $productsAdmin;
-
     public function __construct()
     {
-      $this->db = Registry::get('Db');
-      $this->template = Registry::get('TemplateAdmin');
-      $this->hooks = Registry::get('Hooks');
-      $this->lang = Registry::get('Language');
-      $this->image = Registry::get('Image');
-      $this->productsAdmin = Registry::get('ProductsAdmin');
     }
 
     /**
@@ -61,7 +48,7 @@
       $standardDeviation = sqrt($standardDeviation / count($historicalDemand));
 
       // Calculate the safety stock using the formula: Safety Stock = (Z-score * Standard Deviation * sqrt(Lead Time)) + Mean Demand
-      $zScore = abs(static::norMinv((1 - $serviceLevel) / 2, 0, 1)); // Calculate the Z-score for the desired service level
+      $zScore = abs(static::norMinv((1 - $serviceLevel) / 2, 0, 1));
       $safetyStock = ($zScore * $standardDeviation * sqrt($leadTime)) + $meanDemand;
 
       return $safetyStock;
@@ -102,7 +89,7 @@
      * @param int $leadTime
      * @return float|false
      */
-    public static function getHistoricalCustomerDemandByProducts(int|string $products_id, ?int $leadTime = null): float|false
+    public static function getHistoricalCustomerDemandByProducts(int|string $products_id, ?int $leadTime): float|false
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

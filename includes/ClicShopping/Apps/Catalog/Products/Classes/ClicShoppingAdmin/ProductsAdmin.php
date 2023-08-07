@@ -38,7 +38,7 @@
 
     /**
      * Get all products information
-     * @param $id products_id
+     * @param int $id
      * @return array, table data
      *
      */
@@ -202,9 +202,8 @@
     /**
      * Select the product packaging
      *
-     * @param string
-     * @return $product_packaging, the packaging selected
-     *
+     * @param int $id
+     * @return string $product_packaging, the packaging selected
      */
     public function getproductPackaging(int $id): string
     {
@@ -372,7 +371,6 @@
      * @return string  image of the product
      *
      */
-
     public function getProductsImage(string $product_id = ''): string
     {
       $Qproduct = Registry::get('Db')->get('products', 'products_image', ['products_id' => (int)$product_id]);
@@ -462,9 +460,7 @@
     /**
      * Supplier DropDown
      *
-     * @param string
-     * @return string $supplier, elements of supplier in dropdown
-     *
+     * @return array $supplier, elements of supplier in dropdown
      */
 
     public function supplierDropDown(): array
@@ -510,7 +506,6 @@
       $Qimage->bindInt(':products_id', $id);
       $Qimage->execute();
 
-// Controle si l'image est utilisee le visuel d'un autre produit
       $QduplicateImage = $this->db->prepare('select count(*) as total
                                            from :table_products
                                            where products_image = :products_image
@@ -527,7 +522,6 @@
 
       $duplicate_image = $QduplicateImage->fetch();
 
-// Controle si l'image est utilisee sur une categorie
       $QduplicateImageCategories = $this->db->prepare('select count(*) as total
                                                        from :table_categories
                                                        where categories_image = :products_image
@@ -544,7 +538,6 @@
 
       $duplicate_image_categories = $QduplicateImageCategories->fetch();
 
-// Controle si l'image est utiliee sur les descriptions d'un produit
       $QduplicateImageProductDescription = $this->db->prepare('select count(*) as total
                                                                from :table_products_description
                                                                where products_description like :products_description
@@ -561,7 +554,6 @@
 
       $duplicate_image_product_description = $QduplicateImageProductDescription->fetch();
 
-// Controle si l'image est utilisee sur une banniere
       $QduplicateImageBanners = $this->db->prepare('select count(*) as total
                                                      from :table_banners
                                                      where banners_image = :products_image
@@ -579,7 +571,6 @@
 
       $duplicate_image_banners = $QduplicateImageBanners->fetch();
 
-// Controle si l'image est utilisee sur les fabricants
       $QduplicateImageManufacturers = $this->db->prepare('select count(*) as total
                                                          from :table_manufacturers
                                                          where manufacturers_image = :products_image
@@ -596,8 +587,6 @@
 
       $duplicate_image_manufacturers = $QduplicateImageManufacturers->fetch();
 
-
-// Controle si l'image est utilisee sur les fabricants
       $QduplicateImageSuppliers = $this->db->prepare('select count(*) as total
                                                      from :table_suppliers
                                                      where suppliers_image  = :products_image
@@ -620,7 +609,7 @@
         ($duplicate_image_banners['total'] == 0) &&
         ($duplicate_image_manufacturers['total'] == 0) &&
         ($duplicate_image_suppliers['total'] == 0)) {
-// delete product image and product image zoom
+
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image'))) {
           unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image'));
         }
@@ -700,8 +689,7 @@
      *
      * @param int|string $product_id , $language_id
      * @param int $language_id
-     * @return string $Qproduct->value('products_url'), url of the product
-     *
+     * @return string|bool
      */
     public function getProductsUrl(int|string $product_id, int $language_id): string|bool
     {
@@ -720,8 +708,8 @@
      * Return the manufacturers URL in the needed language
      *
      * @param string|int|null $manufacturer_id , $language_id
-     * @return string $Qmanufacturer->value('manufacturers_url'), url of manufacturers
-     *
+     * @param int $language_id
+     * @return string|bool
      */
     public function getManufacturerUrl(string|int|null $manufacturer_id, int $language_id): string|bool
     {
@@ -1134,9 +1122,9 @@
 
     /**
      * save products
+     * @param string|int|null $id
      * @param, $id, id of the products, $action, insert or update products
-     * @return
-     *
+     * @return void
      */
 
     public function save(string|int|null $id, $action)
@@ -1196,7 +1184,6 @@
         $products_percentage = 1;
       }
 
-// Affichage des produits, autorisation de commander et mode B2B en automatique mis par defaut en valeur 1 dans la cas de la B2B desactivee.
       if (MODE_B2B_B2C == 'False') {
         $products_view = 1;
         $orders_view = 1;
@@ -1332,24 +1319,5 @@
       }
 
       return $products_count;
-    }
-
-    /**
-     * @param int $products_id
-     * @return bool
-     */
-    public function checkProductStatus(?int $products_id) :bool
-    {
-      $Qstatus = $this->db->prepare->get('products', 'products_status', ['products_id' => $products_id]);
-
-      if ($Qstatus->fetch()) {
-        if ($Qstatus->valueInt('products_status') == 0) {
-          return false;
-        } else {
-          return true;
-        }
-      } else {
-        return false;
-      }
     }
   }

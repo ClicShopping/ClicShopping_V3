@@ -365,10 +365,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Please indicate the number of product do you want to display',
+          'configuration_title' => 'Please indicate the number of product Do you want to display',
           'configuration_key' => 'MODULE_PRODUCTS_RECOMMENDATIONS_MAX_DISPLAY',
           'configuration_value' => '6',
-          'configuration_description' => 'Indicate the number of product do you want to display',
+          'configuration_description' => 'Indicate the number of product Do you want to display',
           'configuration_group_id' => '6',
           'sort_order' => '3',
           'set_function' => '',
@@ -512,7 +512,7 @@
           'configuration_title' => 'Please choose the image size',
           'configuration_key' => 'MODULE_PRODUCTS_RECOMMENDATIONS_IMAGE_MEDIUM',
           'configuration_value' => 'Small',
-          'configuration_description' => 'What image size do you want to display?',
+          'configuration_description' => 'What image size Do you want to display?',
           'configuration_group_id' => '6',
           'sort_order' => '10',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'Small\', \'Medium\'))',

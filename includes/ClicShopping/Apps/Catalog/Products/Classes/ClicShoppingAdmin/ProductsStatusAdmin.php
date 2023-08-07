@@ -44,4 +44,25 @@
         return -1;
       }
     }
+
+    /**
+     * @param int|null $products_id
+     * @return bool
+     */
+    public static function checkProductStatus(?int $products_id) :bool
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      $Qstatus = $CLICSHOPPING_Db->get('products', 'products_status', ['products_id' => $products_id]);
+
+      if ($Qstatus->fetch()) {
+        if ($Qstatus->valueInt('products_status') == 0) {
+          return false;
+        } else {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    }
   }
