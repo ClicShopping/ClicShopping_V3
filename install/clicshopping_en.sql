@@ -206,7 +206,7 @@ INSERT INTO administrator_menu VALUES(795, 'index.php?A&Catalog\\Products&StatsP
 INSERT INTO administrator_menu VALUES(796, 'index.php?A&Shipping\\Item&Configure&module=IT', 449, 4, 1, 'modules_shipping.gif', 0, 'app_shipping_item', 1);
 INSERT INTO administrator_menu VALUES(797, 'index.php?A&Marketing\\Recommendations&Recommendations', 107, 1, 0, 'products_recommendations.png', 0, 'app_marketing_recommendations', 1);
 INSERT INTO administrator_menu VALUES(798, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_recommendations', 117, 1, 0, 'products_recommendations.png', 0, 'app_marketing_recommendations', 1);
-INSERT INTO administrator_menu VALUES(799, 'index.php?A&Catalog\\Products&StatsProductsSafetyStock', 107, 0, 0, '', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(799, 'index.php?A&Catalog\\Products&StatsProductsSafetyStock', 107, 0, 0, '', 0, 'app_catalog_products', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);

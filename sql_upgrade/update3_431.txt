@@ -1,5 +1,5 @@
 
-INSERT INTO `clic_administrator_menu` VALUES(821, 'index.php?A&Catalog\\Products&StatsProductsSafetyStock', 107, 0, 0, '', 0, NULL, 1);
+INSERT INTO `clic_administrator_menu` VALUES(821, 'index.php?A&Catalog\\Products&StatsProductsSafetyStock', 107, 0, 0, 'app_catalog_products', 0, NULL, 1);
 
 INSERT INTO `clic_administrator_menu_description` VALUES(821, 'Preditive security stock', 1);
 INSERT INTO `clic_administrator_menu_description` VALUES(821, 'Stock de sécurité prédictif', 2);
