@@ -19,7 +19,7 @@
 
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
-  class Stock
+  class ProductStock
   {
     public function __construct()
     {
@@ -86,7 +86,7 @@
 
     /**
      * @param int|string $products_id
-     * @param int $leadTime
+     * @param int|null $leadTime
      * @return float|false
      */
     public static function getHistoricalCustomerDemandByProducts(int|string $products_id, ?int $leadTime): float|false
