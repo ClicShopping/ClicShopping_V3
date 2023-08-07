@@ -1,3 +1,4 @@
+INSERT INTO `clic_configuration` VALUES(null, 'Lead time for safety predictive stock ', 'SAFETY_STOCK_TIME', '7', 'Please insert the time in  days for the analysis', 9, 5, NULL, '2006-04-09 16:13:48', NULL, NULL);
 
 INSERT INTO `clic_administrator_menu` VALUES(821, 'index.php?A&Catalog\\Products&StatsProductsSafetyStock', 107, 0, 0, 'app_catalog_products', 0, NULL, 1);
 

@@ -1665,7 +1665,7 @@ INSERT INTO configuration VALUES(1629, 'Veuillez indiquer un ordre de tri de poi
 INSERT INTO configuration VALUES(1630, 'Veuillez choisir la taille de l\'image', 'MODULE_PRODUCTS_RECOMMENDATIONS_IMAGE_MEDIUM', 'Small', 'Quelle taille d\'image voulez-vous afficher ?', 6, 10, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_boolean_value(array(\'Small\', \'Medium\'))');
 INSERT INTO configuration VALUES(1631, 'Voulez-vous supprimer le bouton Détails ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_DELETE_BUY_BUTTON', 'False', 'Supprimer le bouton', 6, 11, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1632, 'Ordre de tri d\'affichage', 'MODULE_PRODUCTS_RECOMMENDATIONS_SORT_ORDER', '100', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier). L\'ordre de tri doit être différent pour chaque module', 6, 12, NULL, '2023-08-04 09:56:35', NULL, '');
-
+INSERT INTO configuration VALUES(1633, 'Délai pour le stock de sauvegarde prédictif', 'SAFETY_STOCK_TIME', '7', 'Veuillez insérer le délai d\'analyse en jours', 9, 5, NULL, '2006-04-09 16:13:48', NULL, NULL);
 
 
 
