@@ -102,9 +102,13 @@
      * @param int $leadTime
      * @return float|false
      */
-    public static function getHistoricalCustomerDemandByProducts(int|string $products_id, int $leadTime = 7): float|false
+    public static function getHistoricalCustomerDemandByProducts(int|string $products_id, ?int $leadTime = null): float|false
     {
       $CLICSHOPPING_Db = Registry::get('Db');
+
+      if (\is_null($leadTime)) {
+        $leadTime = (int)SAFETY_STOCK_TIME;
+      }
 
       if (isset($products_id)) {
         $QhistoricalDemand = $CLICSHOPPING_Db->get('orders_products', ['products_id', 'products_quantity'], ['products_id' => (int)$products_id]);
