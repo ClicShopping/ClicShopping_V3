@@ -970,10 +970,6 @@
             }
           }
         }
-	
-//recommendations
-       $ProductsRecommendations = Registry::get('ProductsRecommendations');
-       $ProductsRecommendations->saveProductRecommendations((int)$CLICSHOPPING_Prod::getProductID($this->products[$i]['id']));
       } // end for
 
       $this->saveGdpr($this->insertID, $CLICSHOPPING_Customer->getID());

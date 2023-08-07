@@ -270,9 +270,8 @@
     /**
      * Products model
      *
-     * @param string $product_id
+     * @param string $id
      * @return string $product['products_model'], products model
-     *
      */
     public function getProductsModel($id = ''): string
     {
@@ -291,9 +290,9 @@
     /**
      * Shipping delay of the product
      *
-     * @param string|int|null $product_id , $language_id
+     * @param string|int|null $id
+     * @param int $language_id
      * @return string|bool $product['products_shipping_delay']
-     *
      */
     public function getProductsShippingDelay(string|int|null $id = null, int $language_id) :string|bool
     {
@@ -317,9 +316,9 @@
     /**
      * Shipping delay of the product out of stock
      *
-     * @param string|int|null $product_id , $language_id
+     * @param string|int|null $id
+     * @param int $language_id
      * @return string|bool $product['products_shipping_delay_out_of_stock']
-     *
      */
     public function getProductsShippingDelayOutOfStock(string|int|null $id = null, int $language_id) :string|bool
     {
@@ -384,9 +383,7 @@
     /**
      * Directory of image
      *
-     * @param string $filename : name of the file
-     * @return string $directory_array, the directories name in css directory
-     *
+     * @return array $directory_array, the directories name in css directory
      */
 
     public function getDirectoryProducts(): array
