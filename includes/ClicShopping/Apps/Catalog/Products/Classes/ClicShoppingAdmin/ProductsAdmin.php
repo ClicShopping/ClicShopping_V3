@@ -373,7 +373,7 @@
      *
      */
 
-    public function getProductsImage($product_id = ''): string
+    public function getProductsImage(string $product_id = ''): string
     {
       $Qproduct = Registry::get('Db')->get('products', 'products_image', ['products_id' => (int)$product_id]);
 

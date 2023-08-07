@@ -20,6 +20,7 @@
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
   use ClicShopping\Sites\ClicShoppingAdmin\Tax;
+  use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\Stock;
 
   $CLICSHOPPING_Products = Registry::get('Products');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
@@ -492,6 +493,17 @@
                   </div>
                 </div>
               </div>
+              <?php
+                if (Stock::getHistoricalCustomerDemandByProducts($pInfo->products_id) > 0) {
+              ?>
+                <div class="col-md-5">
+                  <div class="alert alert-danger" role="alert">
+                     <?php echo $CLICSHOPPING_Products->getDef('text_products_safety_stock'). ' ' . Stock::getHistoricalCustomerDemandByProducts($pInfo->products_id); ?>
+                  </div>
+                </div>
+              <?php
+               }
+              ?>
             </div>
             
             <div class="separator"></div>

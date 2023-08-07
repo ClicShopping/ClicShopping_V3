@@ -263,6 +263,7 @@ text_copy_as_link = Lien produit
 text_copy_as_duplicate = Dupliquer produit
 
 text_products_view = Autoriser la visualisation du produit
+text_products_safety_stock = Évaluation prédictive du stock de sécurité :
 
 tab_products_view = Autoriser l'affichage du produit pour les clients Grand Public
 products_view = Options d'affichage :

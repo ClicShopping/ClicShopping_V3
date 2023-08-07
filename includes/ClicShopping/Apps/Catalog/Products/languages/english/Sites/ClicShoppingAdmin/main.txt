@@ -263,6 +263,7 @@ text_copy_as_link = Link product
 text_copy_as_duplicate = Duplicate product
 
 text_products_view = Authorize to display the product
+text_products_safety_stock = Safety stock evaluation predicitive :
 
 tab_products_group_view = To post the product for the customers of the group
 tab_products_view = To post the product for the customers general public
