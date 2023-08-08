@@ -494,11 +494,13 @@
                 </div>
               </div>
               <?php
-                if (ProductStock::getHistoricalCustomerDemandByProducts($pInfo->products_id) > 0) {
+                $historical = ProductStock::getHistoricalCustomerDemandByProducts($pInfo->products_id);
+
+                if ($historical > 0) {
               ?>
                 <div class="col-md-5">
                   <div class="alert alert-danger" role="alert">
-                     <?php echo $CLICSHOPPING_Products->getDef('text_products_safety_stock'). ' ' . ProductStock::getHistoricalCustomerDemandByProducts($pInfo->products_id); ?>
+                     <?php echo $CLICSHOPPING_Products->getDef('text_products_safety_stock'). ' ' . $historical; ?>
                   </div>
                 </div>
               <?php

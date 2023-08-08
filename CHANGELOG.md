@@ -1,5 +1,8 @@
 version 3.431
 Preditive security stock report
+small fix
+Librairies updated
+product recommendations updated
 
 
 

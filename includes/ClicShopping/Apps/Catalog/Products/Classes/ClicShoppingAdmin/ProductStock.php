@@ -21,10 +21,6 @@
 
   class ProductStock
   {
-    public function __construct()
-    {
-    }
-
     /**
      * Calculate safety stock levels based on historical demand variability, lead time, and desired service level.
      *
@@ -34,8 +30,7 @@
      * @param float $standardDeviationFactor The factor used to adjust the influence of standard deviation (default is 1.65).
      * @return float|int The calculated safety stock level.
      */
-
-    public static function calculateSafetyStock(array $historicalDemand, int $leadTime, float $serviceLevel = 0.95, float $standardDeviationFactor = 1.65): float|int
+    private static function calculateSafetyStock(array $historicalDemand, int $leadTime, float $serviceLevel = 0.95, float $standardDeviationFactor = 1.65): float|int
     {
       // Calculate the mean (average) of historical demand
       $meanDemand = array_sum($historicalDemand) / count($historicalDemand);
@@ -61,7 +56,7 @@
      * @return float|int calculate the inverse of the standard normal cumulative distribution function
      * calculate the inverse of the standard normal cumulative distribution function
      */
-    public static function norMinv($p, $mean, $stddev):  float|int
+    private static function norMinv($p, $mean, $stddev):  float|int
     {
       $b1 = 0.319381530;
       $b2 = -0.356563782;
@@ -85,11 +80,11 @@
     }
 
     /**
-     * @param int|string $products_id
+     * @param int|string|null $products_id
      * @param int|null $leadTime
      * @return float|false
      */
-    public static function getHistoricalCustomerDemandByProducts(int|string $products_id, ?int $leadTime): float|false
+    public static function getHistoricalCustomerDemandByProducts(int|string $products_id = null, int $leadTime = null): float|false
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -97,12 +92,12 @@
         $leadTime = (int)SAFETY_STOCK_TIME;
       }
 
-      if (isset($products_id)) {
+      if (isset($products_id) && !\is_null($products_id)) {
         $QhistoricalDemand = $CLICSHOPPING_Db->get('orders_products', ['products_id', 'products_quantity'], ['products_id' => (int)$products_id]);
 
         $historicalDemand = $QhistoricalDemand->toArray();
 
-        if(is_array($historicalDemand)) {
+        if (is_array($historicalDemand)) {
           $safetyStock = self::calculateSafetyStock($historicalDemand, $leadTime);
 
           return round($safetyStock, 2);
