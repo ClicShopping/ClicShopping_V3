@@ -462,12 +462,14 @@
      *
      * @return array $supplier, elements of supplier in dropdown
      */
-
     public function supplierDropDown(): array
     {
-      $supplier = array(array('id' => '',
-        'text' => CLICSHOPPING::getDef('text_none'))
-      );
+      $supplier = [
+        [
+        'id' => '',
+        'text' => CLICSHOPPING::getDef('text_none')
+        ]
+      ];
 
       $Qsupplier = $this->db->prepare('select suppliers_id,
                                               suppliers_name
