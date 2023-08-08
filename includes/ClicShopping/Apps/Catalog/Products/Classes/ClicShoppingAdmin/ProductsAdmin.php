@@ -489,12 +489,10 @@
     }
 
     /**
-     * product : remove product
-     *
      * @param int $id
-     * @return void
+     * @return mixed
      */
-    public function removeProduct(int $id): void
+    public function getImage(int $id): mixed
     {
       $Qimage = $this->db->prepare('select products_image,
                                           products_image_zoom,
@@ -508,21 +506,43 @@
       $Qimage->bindInt(':products_id', $id);
       $Qimage->execute();
 
+      $result = $Qimage->fetch();
+
+      return $result;
+    }
+
+    /**
+     * @param int $id
+     * @return int
+     */
+    public function checkProductImage(int $id): int
+    {
+      $Qimage = $this->getImage($id);
+
       $QduplicateImage = $this->db->prepare('select count(*) as total
-                                           from :table_products
-                                           where products_image = :products_image
-                                           or products_image_zoom = :products_image_zoom
-                                           or products_image_medium = :products_image_medium
-                                           or products_image_small = :products_image_small
-                                          ');
-      $QduplicateImage->bindValue(':products_image', $Qimage->value('products_image'));
-      $QduplicateImage->bindValue(':products_image_zoom', $Qimage->value('products_image_zoom'));
-      $QduplicateImage->bindValue(':products_image_medium', $Qimage->value('products_image_medium'));
-      $QduplicateImage->bindValue(':products_image_small', $Qimage->value('products_image_small'));
+                                             from :table_products
+                                             where products_image = :products_image
+                                             or products_image_zoom = :products_image_zoom
+                                             or products_image_medium = :products_image_medium
+                                             or products_image_small = :products_image_small
+                                            ');
+      $QduplicateImage->bindValue(':products_image', $Qimage['products_image']);
+      $QduplicateImage->bindValue(':products_image_zoom', $Qimage['products_image_zoom']);
+      $QduplicateImage->bindValue(':products_image_medium', $Qimage['products_image_medium']);
+      $QduplicateImage->bindValue(':products_image_small', $Qimage['products_image_small']);
 
       $QduplicateImage->execute();
 
-      $duplicate_image = $QduplicateImage->fetch();
+      return $QduplicateImage->valueInt('total');;
+    }
+
+    /**
+     * @param int $id
+     * @return int
+     */
+    public function checkCategoriesImage(int $id): int
+    {
+      $Qimage = $this->getImage($id);
 
       $QduplicateImageCategories = $this->db->prepare('select count(*) as total
                                                        from :table_categories
@@ -531,14 +551,23 @@
                                                        or categories_image = :products_image_medium
                                                        or categories_image = :products_image_small
                                                       ');
-      $QduplicateImageCategories->bindValue(':products_image', $Qimage->value('products_image'));
-      $QduplicateImageCategories->bindValue(':products_image_zoom', $Qimage->value('products_image_zoom'));
-      $QduplicateImageCategories->bindValue(':products_image_medium', $Qimage->value('products_image_medium'));
-      $QduplicateImageCategories->bindValue(':products_image_small', $Qimage->value('products_image_small'));
+      $QduplicateImageCategories->bindValue(':products_image', $Qimage['products_image']);
+      $QduplicateImageCategories->bindValue(':products_image_zoom', $Qimage['products_image_zoom']);
+      $QduplicateImageCategories->bindValue(':products_image_medium', $Qimage['products_image_medium']);
+      $QduplicateImageCategories->bindValue(':products_image_small', $Qimage['products_image_small']);
 
       $QduplicateImageCategories->execute();
 
-      $duplicate_image_categories = $QduplicateImageCategories->fetch();
+      return $QduplicateImageCategories->valueint('total');;
+    }
+
+    /**
+     * @param $id
+     * @return int
+     */
+    public function checkImagesDescription($id): int
+    {
+      $Qimage = $this->getImage($id);
 
       $QduplicateImageProductDescription = $this->db->prepare('select count(*) as total
                                                                from :table_products_description
@@ -547,14 +576,23 @@
                                                                or products_description like :products_description2
                                                                or products_description like :products_description3
                                                               ');
-      $QduplicateImageProductDescription->bindValue(':products_description', '%' . $Qimage->value('products_image') . '%');
-      $QduplicateImageProductDescription->bindValue(':products_description1', '%' . $Qimage->value('products_image_zoom') . '%');
-      $QduplicateImageProductDescription->bindValue(':products_description2', '%' . $Qimage->value('products_image_medium') . '%');
-      $QduplicateImageProductDescription->bindValue(':products_description3', '%' . $Qimage->value('products_image_small') . '%');
+      $QduplicateImageProductDescription->bindValue(':products_description', '%' . $Qimage['products_image'] . '%');
+      $QduplicateImageProductDescription->bindValue(':products_description1', '%' . $Qimage['products_image_zoom'] . '%');
+      $QduplicateImageProductDescription->bindValue(':products_description2', '%' . $Qimage['products_image_medium'] . '%');
+      $QduplicateImageProductDescription->bindValue(':products_description3', '%' . $Qimage['products_image_small'] . '%');
 
       $QduplicateImageProductDescription->execute();
 
-      $duplicate_image_product_description = $QduplicateImageProductDescription->fetch();
+      return $QduplicateImageProductDescription->valueInt('total');;
+    }
+
+    /**
+     * @param $id
+     * @return int
+     */
+    public function checkBannerImages($id): int
+    {
+      $Qimage = $this->getImage($id);
 
       $QduplicateImageBanners = $this->db->prepare('select count(*) as total
                                                      from :table_banners
@@ -564,14 +602,23 @@
                                                      or banners_image = :products_image_small
                                                     ');
 
-      $QduplicateImageBanners->bindValue(':products_image', $Qimage->value('products_image'));
-      $QduplicateImageBanners->bindValue(':products_image_zoom', $Qimage->value('products_image_zoom'));
-      $QduplicateImageBanners->bindValue(':products_image_medium', $Qimage->value('products_image_medium'));
-      $QduplicateImageBanners->bindValue(':products_image_small', $Qimage->value('products_image_small'));
+      $QduplicateImageBanners->bindValue(':products_image', $Qimage['products_image']);
+      $QduplicateImageBanners->bindValue(':products_image_zoom', $Qimage['products_image_zoom']);
+      $QduplicateImageBanners->bindValue(':products_image_medium', $Qimage['products_image_medium']);
+      $QduplicateImageBanners->bindValue(':products_image_small', $Qimage['products_image_small']);
 
       $QduplicateImageBanners->execute();
 
-      $duplicate_image_banners = $QduplicateImageBanners->fetch();
+      return $QduplicateImageBanners->valueInt('total');;
+    }
+
+    /**
+     * @param $id
+     * @return int
+     */
+    public function checkManufacturerImages($id): int
+    {
+      $Qimage = $this->getImage($id);
 
       $QduplicateImageManufacturers = $this->db->prepare('select count(*) as total
                                                          from :table_manufacturers
@@ -580,14 +627,25 @@
                                                          or manufacturers_image = :products_image_medium
                                                          or manufacturers_image = :products_image_small
                                                         ');
-      $QduplicateImageManufacturers->bindValue(':products_image', $Qimage->value('products_image'));
-      $QduplicateImageManufacturers->bindValue(':products_image_zoom', $Qimage->value('products_image_zoom'));
-      $QduplicateImageManufacturers->bindValue(':products_image_medium', $Qimage->value('products_image_medium'));
-      $QduplicateImageManufacturers->bindValue(':products_image_small', $Qimage->value('products_image_small'));
+      $QduplicateImageManufacturers->bindValue(':products_image', $Qimage['products_image']);
+      $QduplicateImageManufacturers->bindValue(':products_image_zoom', $Qimage['products_image_zoom']);
+      $QduplicateImageManufacturers->bindValue(':products_image_medium', $Qimage['products_image_medium']);
+      $QduplicateImageManufacturers->bindValue(':products_image_small', $Qimage['products_image_small']);
 
       $QduplicateImageManufacturers->execute();
 
       $duplicate_image_manufacturers = $QduplicateImageManufacturers->fetch();
+
+      return $QduplicateImageManufacturers->valueInt('total');
+    }
+
+    /**
+     * @param $id
+     * @return int
+     */
+    public function checkSupplierImages($id): int
+    {
+      $Qimage = $this->getImage($id);
 
       $QduplicateImageSuppliers = $this->db->prepare('select count(*) as total
                                                      from :table_suppliers
@@ -596,36 +654,54 @@
                                                      or suppliers_image  = :products_image_medium
                                                      or suppliers_image  = :products_image_small
                                                     ');
-      $QduplicateImageSuppliers->bindValue(':products_image', $Qimage->value('products_image'));
-      $QduplicateImageSuppliers->bindValue(':products_image_zoom', $Qimage->value('products_image_zoom'));
-      $QduplicateImageSuppliers->bindValue(':products_image_medium', $Qimage->value('products_image_medium'));
-      $QduplicateImageSuppliers->bindValue(':products_image_small', $Qimage->value('products_image_small'));
+      $QduplicateImageSuppliers->bindValue(':products_image', $Qimage['products_image']);
+      $QduplicateImageSuppliers->bindValue(':products_image_zoom', $Qimage['products_image_zoom']);
+      $QduplicateImageSuppliers->bindValue(':products_image_medium', $Qimage['products_image_medium']);
+      $QduplicateImageSuppliers->bindValue(':products_image_small', $Qimage['products_image_small']);
 
       $QduplicateImageSuppliers->execute();
 
-      $duplicate_image_suppliers = $QduplicateImageSuppliers->fetch();
+      return $QduplicateImageSuppliers->valueInt('total');
+    }
 
-      if (($duplicate_image['total'] < 2) &&
-        ($duplicate_image_categories['total'] == 0) &&
-        ($duplicate_image_product_description['total'] == 0) &&
-        ($duplicate_image_banners['total'] == 0) &&
-        ($duplicate_image_manufacturers['total'] == 0) &&
-        ($duplicate_image_suppliers['total'] == 0)) {
+    /**
+     * product : remove product
+     *
+     * @param int $id
+     * @return void
+     */
+    public function removeProduct(int $id): void
+    {
+      $Qimage = $this->getImage($id);
 
-        if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image'))) {
-          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image'));
+      $duplicate_image_total = $this->checkProductImage($id);
+      $duplicate_image_categories_total = $this->checkCategoriesImage($id);
+      $duplicate_image_product_description_total = $this->checkImagesDescription($id);
+      $duplicate_image_banners_total = $this->checkBannerImages($id);
+      $duplicate_image_manufacturers_total = $this->checkManufacturerImages($id);
+      $duplicate_image_suppliers_total = $this->checkSupplierImages($id);
+
+      if (($duplicate_image_total < 2) &&
+        ($duplicate_image_categories_total == 0) &&
+        ($duplicate_image_product_description_total == 0) &&
+        ($duplicate_image_banners_total == 0) &&
+        ($duplicate_image_manufacturers_total == 0) &&
+        ($duplicate_image_suppliers_total == 0)) {
+
+        if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage['products_image'])) {
+          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage['products_image']);
         }
 
-        if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_zoom'))) {
-          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_zoom'));
+        if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage['products_image_zoom'])) {
+          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage['products_image_zoom']);
         }
 
-        if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_medium'))) {
-          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_medium'));
+        if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage['products_image_medium'])) {
+          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage['products_image_medium']);
         }
 
-        if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_small'))) {
-          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_small'));
+        if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage['products_image_small'])) {
+          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage['products_image_small']);
         }
       }
 
