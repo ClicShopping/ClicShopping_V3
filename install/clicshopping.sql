@@ -570,7 +570,7 @@ INSERT INTO administrator_menu_description VALUES(796, 'Customers recommendation
 INSERT INTO administrator_menu_description VALUES(797, 'Recommandations clients', 2);
 INSERT INTO administrator_menu_description VALUES(798, 'Customers recommendations', 1);
 INSERT INTO administrator_menu_description VALUES(798, 'Recommandations clients', 2);
-INSERT INTO administrator_menu_description VALUES(799, 'Preditive security stock', 1);
+INSERT INTO administrator_menu_description VALUES(799, 'Predictive safety stock', 1);
 INSERT INTO administrator_menu_description VALUES(799, 'Stock de sécurité prédictif', 2);
 
 

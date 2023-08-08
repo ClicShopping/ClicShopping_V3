@@ -46,7 +46,6 @@ tab_img = Images
 
 keywords_google_trend = Keywords Google trends
 
-
 heading_title_search = Search
 heading_title_goto = Go To:
 

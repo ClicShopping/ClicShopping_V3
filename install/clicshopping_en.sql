@@ -570,7 +570,7 @@ INSERT INTO administrator_menu_description VALUES(797, 'Customers recommendation
 INSERT INTO administrator_menu_description VALUES(797, 'Recommandations clients', 2);
 INSERT INTO administrator_menu_description VALUES(798, 'Customers recommendations', 1);
 INSERT INTO administrator_menu_description VALUES(798, 'Recommandations clients', 2);
-INSERT INTO administrator_menu_description VALUES(799, 'Preditive security stock', 1);
+INSERT INTO administrator_menu_description VALUES(799, 'Predictive safety stock', 1);
 INSERT INTO administrator_menu_description VALUES(799, 'Stock de sécurité prédictif', 2);
 
 
@@ -1665,7 +1665,7 @@ INSERT INTO configuration VALUES(1629, 'Please indicate a weight sort order', 'M
 INSERT INTO configuration VALUES(1630, 'Please choose the image size', 'MODULE_PRODUCTS_RECOMMENDATIONS_IMAGE_MEDIUM', 'Small', 'What image size do you want to display?', 6, 10, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_boolean_value(array(\'Small\', \'Medium\'))');
 INSERT INTO configuration VALUES(1631, 'Do you want to remove the details button ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_DELETE_BUY_BUTTON', 'False', 'Remove the button details', 6, 11, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1632, 'Sort order', 'MODULE_PRODUCTS_RECOMMENDATIONS_SORT_ORDER', '100', 'Sort order of display. Lowest is displayed first. The sort order must be different on every module', 6, 12, NULL, '2023-08-04 09:56:35', NULL, '');
-INSERT INTO configuration VALUES(1633, 'Lead time for safety predictive stock ', 'SAFETY_STOCK_TIME', '7', 'Please insert the time in  days for the analyse', 9, 5, NULL, '2006-04-09 16:13:48', NULL, NULL);
+INSERT INTO configuration VALUES(1633, 'Lead time for Predictive safety stock', 'SAFETY_STOCK_TIME', '7', 'Please insert the time in days for the analyse', 9, 5, NULL, '2006-04-09 16:13:48', NULL, NULL);
 
 
 

@@ -1,10 +1,10 @@
-heading_title = Évaluation prédictive du stock de sécurité
+heading_title = Stock de sécurité prédicitif
 
 table_heading_products = Nom du produit
 table_heading_model = Référence
 table_heading_qty = Quantités restantes
 table_heading_qty_alert = Alerte Quantité
-table_heading_safety_stock = Stock de sécurité évalué
+table_heading_safety_stock = Stock de sécurité prédictif
 table_heading_action = Action
 
 icon_edit = Editer

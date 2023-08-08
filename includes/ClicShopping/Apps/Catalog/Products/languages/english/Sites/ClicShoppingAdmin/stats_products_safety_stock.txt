@@ -1,10 +1,10 @@
-heading_title = Safety stock evaluation predicitive
+heading_title = Predictive safety stock
 
 table_heading_products = Product name
 table_heading_model = Model
 table_heading_qty_left = Quantity left
 table_heading_qty_alert = quantity alert
-table_heading_safety_stock = afety stock evaluation
+table_heading_safety_stock = Predictive safety stock
 
 table_heading_action = Action
 
