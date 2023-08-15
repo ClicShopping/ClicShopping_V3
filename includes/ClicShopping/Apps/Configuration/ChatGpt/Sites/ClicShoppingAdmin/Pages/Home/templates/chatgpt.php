@@ -56,7 +56,7 @@
       <div class="card card-block headerCard">
         <div class="row">
           <?php
-            $stat_result = ChatGptAdmin::getTotalTokenOnYear();
+            $stat_result = ChatGptAdmin::getTotalTokenByMonth();
 
             if ($stat_result['promptTokens'] > 0) {
           ?>

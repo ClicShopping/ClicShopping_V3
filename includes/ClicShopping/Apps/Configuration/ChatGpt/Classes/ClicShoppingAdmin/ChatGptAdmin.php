@@ -239,7 +239,7 @@
     /**
      * @return array
      */
-    public static function getTotalTokenOnYear() :array
+    public static function getTotalTokenByMonth() :array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -248,7 +248,7 @@
                                                   sum(totalTokens) as totalTokens,
                                                   date_added
                                            from :table_gpt_usage
-                                           where DATE_SUB(NOW(), INTERVAL 1 YEAR)
+                                           where DATE_SUB(NOW(), INTERVAL 1 MONTH)
                                           ');
       $Qtotal->execute();
 
