@@ -280,6 +280,42 @@
     }
 
     /**
+     * @return bool|float
+     */
+    public static function getErrorRateGpt(): bool|float
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      $Qtotal = $CLICSHOPPING_Db->prepare('select count(gpt_id) as total_id
+                                           from :table_gpt
+                                          ');
+      $Qtotal->execute();
+
+      $result_total_chat = $Qtotal->valueInt('avg');
+
+      $QtotalResponse = $CLICSHOPPING_Db->prepare('select count(response) as total
+                                                   from :table_gpt
+                                                   where response like :response
+                                                   and user_admin like :user_admin
+                                                  ');
+      $QtotalResponse->bindValue(':response', '%I\'m sorry but I do not find%');
+      $QtotalResponse->bindValue(':user_admin', '%Chatbot Front Office%');
+
+      $QtotalResponse->execute();
+
+      $result_no_response = $QtotalResponse->valueDecimal('total');
+
+      if ($result_no_response > 0) {
+        $result = ($result_no_response / $result_total_chat) * 100 . '%';
+      } else {
+        $result = false;
+      }
+
+      return $result;
+    }
+
+
+    /**
      * @param string $file
      * @return array
      */

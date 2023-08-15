@@ -49,6 +49,8 @@ table_heading_chatgpt_user_admin = Administrateur
 stat_total_tokens = Jetons total utilisés sur 1 mois
 stat_completion_tokens = Jetons d'achévement utilisés sur 1 mois
 stat_prompt_tokens = Jetons du prompt utilisés sur 1 mois
+stat_total_no_response = Erreur Gpt réponses
+text_rate_error_gpt = Taux d'erreurs
 
 tab_general = Général
 text_description = Description

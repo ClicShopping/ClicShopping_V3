@@ -124,6 +124,28 @@
           <?php
             }
 
+            if (ChatGptAdmin::getErrorRateGpt() !== false) {
+          ?>
+            <div class="col-md-3 col-12">
+                <div class="card bg-warning">
+                    <div class="card-body">
+                        <h6 class="card-title text-white"><?php echo $CLICSHOPPING_ChatGpt->getDef('stat_total_no_response'); ?></h6>
+                        <div class="card-text">
+                            <div class="col-sm-12">
+                                <span class="float-start">
+                                  <i class="bi bi-graph-up text-white"></i>
+                                </span>
+                                <span class="float-end">
+                                <div class="col-sm-12 text-white"><?php echo $CLICSHOPPING_ChatGpt->getDef('text_rate_error_gpt') . ' ' . ChatGptAdmin::getErrorRateGpt(); ?></div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <?php
+            }
+
             echo $CLICSHOPPING_Hooks->output('Stats', 'StatsGpt', null, 'display');
           ?>
         </div>
@@ -155,14 +177,15 @@
     data-buttons-class="primary"
     data-show-toggle="true"
     data-show-columns="true"
-    data-mobile-responsive="true">
+    data-mobile-responsive="true"
+    data-show-export="true">
 
     <thead class="dataTableHeadingRow">
     <tr>
       <th data-checkbox="true" data-field="state"></th>
       <th data-field="selected" data-sortable="true"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_chatgpt_id'); ?></th>
       <th data-field="question" class="text-center"  data-sortable="true"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_chatgpt_question'); ?></th>
-      <th data-field="response" class="text-center"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_chatgpt_response'); ?></th>
+      <th data-field="response" class="text-center" data-sortable="true"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_chatgpt_response'); ?></th>
       <th data-field="date_added" data-sortable="true"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_chatgpt_date_added'); ?></th>
       <th data-field="user_admin" data-sortable="true"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_chatgpt_user_admin'); ?></th>
       <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_ChatGpt->getDef('table_heading_action'); ?>&nbsp;</th>

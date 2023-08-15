@@ -4,8 +4,7 @@ small fix
 Librairies updated
 product recommendations updated
 generative product search info chatbot for frontpage
-
-
+Gpt stats improved
 
 --------------------
 version 3.430

@@ -494,7 +494,7 @@
                 </div>
               </div>
               <?php
-                $historical = ProductStock::getHistoricalCustomerDemandByProducts($pInfo->products_id);
+                $historical = ProductStock::getHistoricalCustomerDemandByProducts($pInfo->products_id, null);
 
                 if ($historical > 0) {
               ?>
