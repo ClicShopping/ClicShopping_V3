@@ -295,10 +295,11 @@
 
       $QtotalResponse = $CLICSHOPPING_Db->prepare('select count(response) as total
                                                    from :table_gpt
-                                                   where response like :response
+                                                   where (response like :response or response like :response1)
                                                    and user_admin like :user_admin
                                                   ');
       $QtotalResponse->bindValue(':response', '%I\'m sorry but I do not find%');
+      $QtotalResponse->bindValue(':response1', '%Je suis désolé mais je n\'ai pas trouvé d\'informations%');
       $QtotalResponse->bindValue(':user_admin', '%Chatbot Front Office%');
 
       $QtotalResponse->execute();
