@@ -295,6 +295,10 @@ text_add_discount_message_shopping_cart = . Il sera appliqué au récapitulatif 
 text_error_antispam = Erreur sur l'antispam
 pull_down_default_manufacturer = Nos marques
 
+text_chatbot_ok = Merci, Voici les informations concernant votre question : <strong>{{question}}</strong><br /><br />
+text_chatbot_not_ok = Je suis désolé mais je n'ai pas trouvé d'informations à propos de votre demande. Veuillez reformuler votre questionen incluant le nom du produit<br /><br />
+link_chatbot_page_general_condition = <br /><br /> ==> Pour des informations complémentaires, je vous invite à consulter cette page :
+
 text_install =
    <div style="text-align:center; padding-top: 50px;"><a href="https://www.clicshopping.org" target="_blank" rel="noopener"><img src="images/logo_clicshopping_1.png" border="0" height="105" width="284" alt="Market Place"></a><br />
    <div style="padding-top: 120px;">Félicitation, vous avez compl&egrave;t&egrave; le processus d'installation, veuillez lire les informations ci-dessous</div>

@@ -3,7 +3,7 @@ Preditive security stock report
 small fix
 Librairies updated
 product recommendations updated
-
+generative product search info chatbot for frontpage
 
 
 
