@@ -19,10 +19,6 @@
 
   class ChatGptShop35
   {
-     public function __construct()
-    {
-    }
-
     /**
      * @return bool
      */

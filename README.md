@@ -3,26 +3,26 @@
 </p>
 
 # ClicShopping
-Unlock the potential of your online business with ClicShoppingAI(tm), a powerful open-source Ecommerce solution that supports B2B, B2C, and B2B-B2C. Now integrated with cutting-edge artificial intelligence systems like ChatGpt and Bard (coming soon), ClicShopping takes your store to new heights!
+Unlock the potential of your online business with ClicShopping AI(tm), a powerful open-source Ecommerce solution that supports B2B, B2C, and B2B-B2C. Now integrated with cutting-edge artificial intelligence systems like ChatGpt and Bard (coming soon), ClicShopping takes your store to new heights!
 
 Boost Your Competitiveness - Absolutely Free!
 ClicShoppingAI helps shop owners elevate their game, and the best part is, it's completely free! With AI on your side, you can optimize inventory, offer personalized recommendations, and provide top-notch customer service, all without breaking the bank.
 
 Seamless, Responsive Design for All Devices:
-Say goodbye to website worries with ClicShoppingAI's modern, responsive design. Customers will enjoy a delightful shopping experience across all devices, including mobile and desktop, without sacrificing speed or performance.
+Say goodbye to website worries with ClicShopping AI's modern, responsive design. Customers will enjoy a delightful shopping experience across all devices, including mobile and desktop, without sacrificing speed or performance.
 
 Lightweight, User-Friendly Installation:
-Don't waste time on complicated setups! Installing ClicShoppingAI is a breeze - just a few clicks on your server or computer, and you're good to go. It's a lightweight, customizable, and user-friendly solution, consuming minimal server resources.
+Don't waste time on complicated setups! Installing ClicShopping AI is a breeze - just a few clicks on your server or computer, and you're good to go. It's a lightweight, customizable, and user-friendly solution, consuming minimal server resources.
 
 Empowering Ongoing Development:
 At ClicShoppingAI, we thrive on community support. By operating on donations, contributions, and financial backing, we ensure continuous platform development, guaranteeing you stay ahead of the competition.
 
 Embrace the Future of Ecommerce - Today!
-Take the leap into the future of Ecommerce with ClicShoppingAI. With AI-driven capabilities and an easy installation process, you can revolutionize your online store in no time. Don't wait - seize the opportunity with ClicShopping now!
+Take the leap into the future of Ecommerce with ClicShopping AI. With AI-driven capabilities and an easy installation process, you can revolutionize your online store in no time. Don't wait - seize the opportunity with ClicShopping now!
 
 ## Table of Contents
 
-* [What is ClicShopping](https://github.com/ClicShopping#ClicShopping)
+* [What is ClicShopping AI](https://github.com/ClicShopping#ClicShopping)
   - [Demo Site](https://www.clicshopping.org)
 * [Solution](https://github.com/ClicShopping#Solution) 
 * [Marketplace](https://github.com/ClicShopping#Marketplace)  
@@ -114,7 +114,7 @@ More information in the Wiki
 
 #Trademark
 - License GPL2 - MIT
-- ClicShopping(tm) has a trademark deposed : https://www.clicshopping.org/forum/trademark/
+- ClicShopping( AItm) has a trademark deposed : https://www.clicshopping.org/forum/trademark/
 
 #Functionnalities (some)
 - B2B - B2C  full functionalities
@@ -139,7 +139,12 @@ More information in the Wiki
 - double authentification
 - API REST
 - Artificial intelligence implemented via ChatGpt and Dall E 
-- Antispam ...
+- Antispam
+- Custommers recommendation with artificial intelligence sentiment Analysis (GPT)
+- Generative AI for content, SEO for the back office (GPT)
+- Generative AI via chatbot for Product informations (GPT)
+- Some dynamics reports
+ ...
 
 
 #Images

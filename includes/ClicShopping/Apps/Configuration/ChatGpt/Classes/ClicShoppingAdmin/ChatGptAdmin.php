@@ -20,10 +20,6 @@
 
   class ChatGptAdmin
   {
-     public function __construct()
-    {
-    }
-
     /**
      * @return bool
      */
@@ -76,7 +72,7 @@
     }
 
     /**
-     * @return array
+     * @return string
      */
     public static function getGptModalMenu(): string
     {
@@ -121,7 +117,7 @@
     /**
      * @return OpenAI\Client
      */
-    public static function getClient()
+    private static function getClient()
     {
       if (!empty(CLICSHOPPING_APP_CHATGPT_CH_API_KEY)) {
         $client = OpenAI::client(CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
@@ -134,16 +130,18 @@
 
     /**
      * @param string $question
+     * @param int|null $max_tokens
+     * @param float|null $temperature
      * @return bool|string
      * @throws \Exception
      */
     public static function getGptResponse(string $question, ?int $max_tokens = null, ?float $temperature = null) :bool|string
     {
-      if (ChatGptAdmin::checkGptStatus() === false) {
+      if (self::checkGptStatus() === false) {
         return false;
       }
 
-      $client = static::getClient();
+      $client = self::getClient();
 
       $prompt = HTML::sanitize($question);
       $engine = CLICSHOPPING_APP_CHATGPT_CH_MODEL;
@@ -203,7 +201,7 @@
      * @param string $result
      * @param array $usage
      */
-    public static function saveData(string $prompt, string $result, array $usage) :void
+    private static function saveData(string $prompt, string $result, array $usage) :void
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -315,14 +313,13 @@
       return $result;
     }
 
-
     /**
      * @param string $file
      * @return array
      */
     public static function upLoadFile(string $file, string $purpose = 'fine-tune') :array
     {
-      $client = static::getClient();
+      $client = self::getClient();
 
       $array = [
           'purpose' => $purpose,
@@ -340,7 +337,7 @@
      */
     public static function deleteFile(string $file) :array
     {
-      $client = static::getClient();
+      $client = self::getClient();
 
       $response = $client->files()->delete($file);
 
@@ -353,13 +350,12 @@
      */
     public static function retrieveFile(string $file) :array
     {
-      $client = static::getClient();
+      $client = self::getClient();
 
       $response = $client->files()->retrieve($file);
 
       return $response;
     }
-
 
     /**
      * @param string $file
@@ -367,7 +363,7 @@
      */
     public static function downloadFile(string $file) :array
     {
-      $client = static::getClient();
+      $client = self::getClient();
 
       $response = $client->files()->download($file);
 
@@ -389,7 +385,7 @@
 
       $template_image_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/images/' . $directory . '/';
 
-      $client = static::getClient();
+      $client = self::getClient();
 
       $array = [
         'prompt' => $name,
