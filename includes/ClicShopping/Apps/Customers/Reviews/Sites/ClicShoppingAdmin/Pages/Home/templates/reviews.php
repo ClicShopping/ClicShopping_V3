@@ -61,7 +61,6 @@
           <?php
             if ($QavgReviews->valueInt('count') > 0) {
           ?>
-
           <div class="col-md-2 col-12">
             <div class="card bg-primary">
               <div class="card-body">

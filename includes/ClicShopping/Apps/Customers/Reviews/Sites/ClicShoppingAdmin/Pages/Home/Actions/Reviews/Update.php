@@ -24,8 +24,6 @@
       if (isset($_GET['rID'])) {
         $reviews_id = HTML::sanitize($_GET['rID']);
 
-
-
         if (isset($_POST['reviews_text'])) {
           $reviews_text = HTML::sanitize($_POST['reviews_text']);
         }

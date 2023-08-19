@@ -9,6 +9,7 @@
  */
 
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\Registry;
 
   $CLICSHOPPING_Template = Registry::get('Template');
 

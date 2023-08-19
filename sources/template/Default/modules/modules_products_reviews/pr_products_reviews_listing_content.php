@@ -39,16 +39,15 @@
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      $Qreviews = $CLICSHOPPING_Reviews->getData();
-
-      $content_width = (int)MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_WIDTH;
-      $text_position = MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_POSITION;
-
       if (isset($_GET['Products'], $_GET['Reviews'])) {
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-        $data = '<!-- pr_products_reviews_listing_content start -->' . "\n";
+        $Qreviews = $CLICSHOPPING_Reviews->getData();
 
+        $content_width = (int)MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_WIDTH;
+        $text_position = MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_POSITION;
+
+        $data = '<!-- pr_products_reviews_listing_content start -->' . "\n";
         $data .= '<div class="col-md-' . $content_width . '">';
         $data .= '<div class="contentText">';
         $data .= '<div class="separator"></div>';
@@ -88,6 +87,9 @@
 
           $review_text = HTML::breakString(HTML::outputProtected($Qreviews->value('reviews_text')), 60, '-<br />') . ((\strlen($Qreviews->value('reviews_text')) >= 100) ? '..' : '');
           $review_star = HTML::stars($Qreviews->valueInt('reviews_rating'));
+
+          $customer_tag = $Qreviews->value('customers_tag');
+          $customer_tag = explode(',', $customer_tag);
 
           ob_start();
           require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_listing_content'));

@@ -98,7 +98,8 @@
                                                  r.date_added,
                                                  r.status,
                                                  r.customers_name,
-                                                 r.customers_id
+                                                 r.customers_id,
+                                                 r.customers_tag
                                           from :table_reviews r,
                                                :table_reviews_description rd
                                           where r.products_id = :products_id
@@ -122,7 +123,8 @@
                                                  r.date_added,
                                                  r.status,
                                                  r.customers_name,
-                                                 r.customers_id
+                                                 r.customers_id,
+                                                 r.customers_tag
                                          from :table_reviews r,
                                               :table_reviews_description rd
                                          where r.products_id = :products_id
@@ -206,7 +208,7 @@
      * @param int|null $id
      * @return bool|array
      */
-    public function getDataReviews(?int $id = null): bool|array
+    public function getDataReviews(?int $id): bool|array
     {
       $reviews_id = HTML::sanitize($id);
 
@@ -217,7 +219,8 @@
                                                 r.reviews_rating,
                                                 r.date_added,
                                                 r.customers_name,
-                                                r.customers_id
+                                                r.customers_id,
+                                                r.customers_tag
                                           from :table_reviews r,
                                                :table_reviews_description rd
                                           where r.reviews_id = :reviews_id
@@ -235,7 +238,8 @@
                                                   r.reviews_rating,
                                                   r.date_added,
                                                   r.customers_name,
-                                                  r.customers_id
+                                                  r.customers_id,
+                                                  r.customers_tag
                                           from :table_reviews r,
                                                :table_reviews_description rd
                                           where r.reviews_id = :reviews_id

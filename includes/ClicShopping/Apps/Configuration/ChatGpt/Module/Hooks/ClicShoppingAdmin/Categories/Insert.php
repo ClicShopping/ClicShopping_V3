@@ -75,17 +75,6 @@
               'categories_id' => $item['categories_id']
             ];
 
-
-
-
-
-
-
-
-
-
-
-
 //-------------------
 // categories description
 //-------------------

@@ -103,10 +103,11 @@ CREATE TABLE :table_reviews (
   last_modified datetime DEFAULT NULL,
   reviews_read int(5) NOT NULL DEFAULT (0),
   status tinyint(1) NOT NULL DEFAULT (0),
-  customers_group_id int(11) NOT NULL DEFAULT (0)
-  PRIMARY KEY (reviews_id),
-  KEY idx_reviews_products_id (products_id)
-      idx_reviews_customers_id (customers_id)
+  customers_group_id int(11) NOT NULL DEFAULT (0),
+  customers_tag varchar(255) DEFAULT NULL
+  PRIMARY KEY reviews_id
+  KEY idx_reviews_products_id products_id
+      idx_reviews_customers_id customers_id
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Reviews->db->exec($sql);

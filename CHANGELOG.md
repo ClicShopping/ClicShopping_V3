@@ -2,8 +2,9 @@ version 3.431
 Preditive security stock report
 small fix
 Librairies updated
-product recommendations updated
-generative product search info chatbot for frontpage
+generative AI product recommendations updated
+generative AI product search info chatbot for frontpage
+genrative AI reviews tag
 Gpt stats improved
 
 --------------------

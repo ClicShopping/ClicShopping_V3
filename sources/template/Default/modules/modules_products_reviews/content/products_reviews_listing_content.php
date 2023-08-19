@@ -1,3 +1,7 @@
+<?php
+ use ClicShopping\OM\CLICSHOPPING;
+?>
+
 <div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
   <div class="row">
@@ -15,6 +19,16 @@
       }
     ?>
   </div>
+    <div class="row">
+        <span class="col-md-10 productsReviewsListingContentTag">
+          <?php
+          echo CLICSHOPPING::getDef('modules_products_reviews_listing_content_text_sentiment') . ' ';
+          foreach ($customer_tag as $value) {
+            echo ' <span class="badge text-bg-primary">' . $value . '</span> ';
+          }
+          ?>
+        </span>
+    </div>
   <div class="separator"></div>
   <div class="hr"></div>
   <div class="separator"></div>

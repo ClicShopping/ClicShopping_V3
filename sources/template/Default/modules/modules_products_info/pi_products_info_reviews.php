@@ -53,12 +53,13 @@
                                                        r.reviews_rating,
                                                        r.date_added,
                                                        r.status,
-                                                       r.customers_name
+                                                       r.customers_name,
+                                                       r.customers_tag
                                                from :table_reviews r,
                                                     :table_reviews_description rd
                                                where r.products_id = :products_id
                                                and r.reviews_id = rd.reviews_id
-                                               and rd.languages_id =:languages_id
+                                               and rd.languages_id = :languages_id
                                                and r.status = 1
                                                order by r.reviews_rating desc,
                                                         r.date_added desc
@@ -66,16 +67,16 @@
                                            ');
         $Qreviews->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
         $Qreviews->bindInt(':languages_id', $CLICSHOPPING_Language->getId());
-        $Qreviews->bindInt(':limitText', MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS);
-        $Qreviews->bindInt(':limit', MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS);
+        $Qreviews->bindInt(':limitText', (int)MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS);
+        $Qreviews->bindInt(':limit', (int)MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS);
 
         $Qreviews->execute();
 
         $count_review = $Qreviews->rowCount();
+
 //*******************************************
 // customers_feedback
 //********************************************
-
         $QorderProducts = $CLICSHOPPING_Db->prepare('select products_id,
                                                             orders_id
                                                      from :table_orders_products
@@ -90,8 +91,7 @@
         $products_reviews_content .= '<hr>';
         $products_reviews_content .= '<div class="separator"></div>';
 
-         if ($count_review >= 1 || $QorderProducts->rowCount() >= 1) {
-
+        if ($count_review > 0) {
           $products_reviews_content .= '<div class="moduleProductsInfoReviewsRow">';
           $products_reviews_content .= '<div class="moduleProductsInfoReviewsTitle">';
           $products_reviews_content .= '<span class="page-title moduleProductsInfoReviewsTitle"><h3>' . CLICSHOPPING::getDef('heading_rewiews')  . ' ' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</h3></span>';
@@ -103,13 +103,11 @@
           $products_reviews_content .= '<hr>';
           $products_reviews_content .= '<div class="d-flex flex-wrap">';
 
-          if ($Qreviews->rowCount() >= 1) {
-            $count = 0;
-
             while ($Qreviews->fetch()) {
-              $count = $count + 1;
-              $customer_name  = '*** ' . HTML::outputProtected(substr($Qreviews->value('customers_name') . ' ' , 4, -4 )) . ' ***';
+              $customer_tag = $Qreviews->value('customers_tag');
+              $customer_tag = explode(',', $customer_tag);
 
+              $customer_name  = '*** ' . HTML::outputProtected(substr($Qreviews->value('customers_name') . ' ' , 4, -4 )) . ' ***';
               $products_reviews_content .= '<div class="col-md-12">';
               $products_reviews_content .= '<span class="moduleProductsInfoTextReviewByName" itemprop="author">';
               $products_reviews_content .= '<a href="' . CLICSHOPPING::link(null, 'Products&ReviewsInfo&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $Qreviews->valueInt('reviews_id')) . '">' . CLICSHOPPING::getDef('text_review_by', ['customer_name' => $customer_name]) . '</a>';
@@ -119,17 +117,32 @@
               $products_reviews_content .= '<span class="col-md-12 productsInfoReviewsRating" itemprop="ratingValue">' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</span>';
               $products_reviews_content .= '</span>';
               $products_reviews_content .= '</div>';
-              $products_reviews_content .= '<div class="col-md-12 moduleProductsInfoDateReviewAdded" itemprop="datePublished" content="' . DateTime::toLong($Qreviews->value('date_added')) . '">';
-              $products_reviews_content .= '<span class="moduleProductsInfoDateReviewAdded">' . CLICSHOPPING::getDef('text_review_date_added', ['date' => DateTime::toLong($Qreviews->value('date_added'))] ) . '</span>';
+              $products_reviews_content .= '<div class="col-md-12 moduleProductsInfoDateReviewAdded" itemprop="datePublished" content="' . DateTime::toShort($Qreviews->value('date_added')) . '">';
+              $products_reviews_content .= '<span class="moduleProductsInfoDateReviewAdded">' . CLICSHOPPING::getDef('text_review_date_added') . ' ' . DateTime::toShort($Qreviews->value('date_added')) . '</span>';
               $products_reviews_content .= '</div>';
               $products_reviews_content .= '<div class="col-md-12">';
               $products_reviews_content .= '<div class="moduleProductsInfoReviewText" itemprop="description">';
-              $products_reviews_content .= HTML::breakString(HTML::outputProtected($Qreviews->value('reviews_text')), 60, '-<br />') . ((\strlen($Qreviews->value('reviews_text')) >= MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS) ? '..' : '') . '<br />';
+              $products_reviews_content .=  HTML::breakString(HTML::outputProtected($Qreviews->value('reviews_text')), 60, '-<br />') . ((\strlen($Qreviews->value('reviews_text')) >= MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS) ? '..' : '') . '<br />';
+              $products_reviews_content .= '</div>';
+
+              $products_reviews_content .= '<div class="moduleProductsInfoReviewCustomersBadge">';
+
+              $products_reviews_content .= '<div class="row">';
+
+              $products_reviews_content .=  '<span class="col-md-11 module_products_info_reviews_customerTag">';
+              $products_reviews_content .=   CLICSHOPPING::getDef('modules_products_reviews_text_customers_badge');
+
+              foreach ($customer_tag as $value) {
+               $products_reviews_content .= ' <span class="badge text-bg-primary">' . $value . '</span> ';
+              }
+
+              $products_reviews_content .= '</span>';
+              $products_reviews_content .= '<div class="separator"></div>';
+              $products_reviews_content .= '</div>';
               $products_reviews_content .= '</div>';
               $products_reviews_content .= '</div>';
               $products_reviews_content .= '<hr>';
             }
-          }
 
 //*******************************************
 // customers_feedback
@@ -140,12 +153,16 @@
 
              $products_reviews_content .= '<div class="clearfix"></div>';
              $products_reviews_content .= '<div class="separator"></div>';
+             $products_reviews_content .= '<div class="row col-md-12">';
              $products_reviews_content .= '<span class="col-md-6">' . $details_button . '</span>';
              $products_reviews_content .= '<span class="col-md-6 text-end">' . $write_button . '</span>';
+             $products_reviews_content .= '</div>';
+             $products_reviews_content .= '<div class="separator"></div>';
+             $products_reviews_content .= '<div class="separator"></div>';
            }
          }
 
-        if($count_review === 0) {
+        if($count_review == 0) {
           $write_button = HTML::button(CLICSHOPPING::getDef('button_write_review'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'info');
           $products_reviews_content .= '<div class="separator"></div>';
           $products_reviews_content .= '<div class="col-md-12">';
@@ -154,7 +171,9 @@
           $products_reviews_content .= '<div>';
         }
 
+        $products_reviews_content .= '<div class="separator"></div>';
         $products_reviews_content .= '</div>' . "\n";
+        $products_reviews_content .= '<div class="separator"></div>';
         $products_reviews_content .= '<!-- end products_REVIEWS -->' . "\n";
 
         $CLICSHOPPING_Template->addBlock($products_reviews_content, $this->group);

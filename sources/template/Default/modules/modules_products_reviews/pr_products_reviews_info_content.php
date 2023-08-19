@@ -36,18 +36,15 @@
     }
 
     public function execute() {
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      $content_width = (int)MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_WIDTH;
-
       if (isset($_GET['Products'], $_GET['ReviewsInfo'], $_GET['reviews_id'])) {
-
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
         $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
+        $content_width = (int)MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_WIDTH;
         $reviews_id = HTML::sanitize($_GET['reviews_id']);
         $reviews = $CLICSHOPPING_Reviews->getDataReviews($reviews_id);
 
@@ -60,9 +57,13 @@
 
         $delete_reviews = '';
 
+
         if ($reviews !== false) {
           $reviews_text = $reviews['reviews_text'];
           $reviews_rating = $reviews['reviews_rating'];
+
+          $customer_tag = $reviews['customers_tag'];
+          $customer_tag = explode(',', $customer_tag);
 
           if ($reviews['customers_id'] == $CLICSHOPPING_Customer->getID()) {
             $delete_reviews .= HTML::form('reviews', CLICSHOPPING::link(null, 'Products&ReviewsInfo&Delete&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $reviews_id), 'post', 'id="Reviews"', ['tokenize' => true, 'action' => 'process']);
@@ -70,7 +71,7 @@
             $delete_reviews .= '</form>';
           }
 
-          $customer_name  = '*** ' . HTML::outputProtected(substr($reviews['customers_name'], 4, -4)) . ' ***';
+          $customer_name  = '<h5>*** ' . HTML::outputProtected(substr($reviews['customers_name'], 4, -4)) . ' ***</h5>';
           $date_added  = DateTime::toLong($reviews['date_added']);
           $customer_text = HTML::breakString(nl2br(HTML::outputProtected($reviews_text)), 60, '-<br />');
           $customer_rating = '<span class="productsInfoReviewsContentRating" itemprop="ratingValue">' . HTML::stars($reviews_rating) . '</span>';

@@ -4,3 +4,4 @@ INSERT INTO `clic_administrator_menu` VALUES(821, 'index.php?A&Catalog\\Products
 
 INSERT INTO `clic_administrator_menu_description` VALUES(821, 'Preditive security stock', 1);
 INSERT INTO `clic_administrator_menu_description` VALUES(821, 'Stock de sécurité prédictif', 2);
+ALTER TABLE `clic_reviews` ADD `customers_tag` VARCHAR(255) NULL AFTER `customers_group_id`;

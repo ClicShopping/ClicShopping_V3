@@ -56,6 +56,7 @@ visitor_name = Client normal
 text_statistics = Statistiques
 text_count_reviews = Total commentaires :
 text_average_reviews = Moyennes commentaires :
+entry_customer_sentiment_tag = Sentiment client : 
 
 text_result_page = Page {{listing_from}}  sur{{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)

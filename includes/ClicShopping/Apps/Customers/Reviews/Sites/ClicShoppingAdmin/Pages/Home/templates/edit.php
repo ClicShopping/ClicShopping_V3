@@ -34,6 +34,7 @@
                                                           r.reviews_read,
                                                           r.status,
                                                           r.reviews_rating,
+                                                          r.customers_tag,
                                                           rd.reviews_text,
                                                           rd.languages_id
                                                    from :table_reviews r,
@@ -81,11 +82,11 @@
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Reviews->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-end">
-<?php
-  echo HTML::button($CLICSHOPPING_Reviews->getDef('button_cancel'), null, $CLICSHOPPING_Reviews->link('Reviews&page=' . $page . '&rID=' . $rInfo->reviews_id), 'warning') . '&nbsp;';
-  echo HTML::hiddenField('language_id', $rInfo->languages_id);
-  echo HTML::button($CLICSHOPPING_Reviews->getDef('button_update'), null, null, 'success');
-?>
+            <?php
+              echo HTML::button($CLICSHOPPING_Reviews->getDef('button_cancel'), null, $CLICSHOPPING_Reviews->link('Reviews&page=' . $page . '&rID=' . $rInfo->reviews_id), 'warning') . '&nbsp;';
+              echo HTML::hiddenField('language_id', $rInfo->languages_id);
+              echo HTML::button($CLICSHOPPING_Reviews->getDef('button_update'), null, null, 'success');
+            ?>
           </span>
         </div>
       </div>
@@ -188,7 +189,7 @@
         <div class="col-md-12 mainTitle">
           <div class="float-start"><?php echo $CLICSHOPPING_Reviews->getDef('title_reviews_rating'); ?></div>
         </div>
-        <div class="adminformTitle">
+        <div class="adminformTitle" id="rating">
           <div class="row">
             <div class="col-md-12">
               <span class="col-md-2"><?php echo $CLICSHOPPING_Reviews->getDef('entry_rating'); ?></span>
@@ -197,6 +198,23 @@
               </span>
             </div>
           </div>
+            <div class="row" id="custimer_sentiment">
+                <div class="col-md-12">
+                  <span class="col-md-2"><?php echo $CLICSHOPPING_Reviews->getDef('entry_customer_sentiment_tag'); ?></span>
+                  <?php
+                    $customer_tag = $rInfo->customers_tag;
+                    $customer_tag = explode(',', $customer_tag);
+
+                    if (\count($customer_tag) > 0) {
+                      foreach ($customer_tag as $value) {
+                  ?>
+                        <span class="badge text-bg-primary"><?php echo ' <i>' . $value . '</i>'; ?></span>
+                  <?php
+                      }
+                    }
+                  ?>
+                </div>
+            </div>
         </div>
       </div>
     </div>
