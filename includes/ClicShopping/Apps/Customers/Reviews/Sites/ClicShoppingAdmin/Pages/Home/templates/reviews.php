@@ -38,6 +38,14 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/reviews.gif', $CLICSHOPPING_Reviews->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Reviews->getDef('heading_title'); ?></span>
+          <?php
+            if (MODE_DEMO == 'False') {
+          ?>
+            <span
+              class="col-md-6 text-md-end"><?php echo HTML::button($CLICSHOPPING_Reviews->getDef('button_configure'), null, CLICSHOPPING::link(null, 'A&Customers\Reviews&Configure'), 'primary'); ?></span>
+          <?php
+            }
+          ?>
         </div>
       </div>
     </div>
@@ -48,6 +56,7 @@
   <!-- ################# -->
   <?php
   $QavgReviews = $CLICSHOPPING_Reviews->db->prepare('select count(reviews_id) as count,
+                                                            count(customers_tag) as count_customers_tag,
                                                             avg(reviews_rating) as avg
                                                     from :table_reviews
                                                    ');
@@ -79,6 +88,30 @@
           <?php
             }
 
+          if ($QavgReviews->valueInt('count_customers_tag') > 0) {
+            ?>
+              <div class="col-md-2 col-12">
+                <div class="card bg-success">
+                  <div class="card-body">
+                    <h6 class="card-title text-white"><i class="bi bi-bar-chart text-white"></i> <?php echo '&nbsp;' . $CLICSHOPPING_Reviews->getDef('text_statistics'); ?></h6>
+                    <div class="card-text">
+                      <div class="col-sm-12">
+                        <span class="float-end">
+                          <div class="col-sm-12 text-white">
+                            <?php
+                              $total = $QavgReviews->valueInt('count_customers_tag') * 6;
+                              echo $CLICSHOPPING_Reviews->getDef('text_count_customers_tag') . '  ' . $total;
+                              ?>
+                          </div>
+                          <br />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+             </div>
+            <?php
+          }
            echo $CLICSHOPPING_Hooks->output('Reviews', 'StatsReviews');
           ?>
         </div>
