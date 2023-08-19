@@ -125,21 +125,22 @@
               $products_reviews_content .=  HTML::breakString(HTML::outputProtected($Qreviews->value('reviews_text')), 60, '-<br />') . ((\strlen($Qreviews->value('reviews_text')) >= MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS) ? '..' : '') . '<br />';
               $products_reviews_content .= '</div>';
 
-              $products_reviews_content .= '<div class="moduleProductsInfoReviewCustomersBadge">';
+              if (MODULE_PRODUCTS_INFO_REVIEWS_CUSTOMERS_SENTIMENT_TAG == 'True') {
+                $products_reviews_content .= '<div class="moduleProductsInfoReviewCustomersBadge">';
+                $products_reviews_content .= '<div class="row">';
+                $products_reviews_content .=  '<span class="col-md-11 module_products_info_reviews_customerTag">';
+                $products_reviews_content .=   CLICSHOPPING::getDef('modules_products_reviews_text_customers_badge');
 
-              $products_reviews_content .= '<div class="row">';
+                foreach ($customer_tag as $value) {
+                  $products_reviews_content .= ' <span class="badge text-bg-primary">' . $value . '</span> ';
+                }
 
-              $products_reviews_content .=  '<span class="col-md-11 module_products_info_reviews_customerTag">';
-              $products_reviews_content .=   CLICSHOPPING::getDef('modules_products_reviews_text_customers_badge');
-
-              foreach ($customer_tag as $value) {
-               $products_reviews_content .= ' <span class="badge text-bg-primary">' . $value . '</span> ';
+                $products_reviews_content .= '</span>';
+                $products_reviews_content .= '<div class="separator"></div>';
+                $products_reviews_content .= '</div>';
+                $products_reviews_content .= '</div>';
               }
 
-              $products_reviews_content .= '</span>';
-              $products_reviews_content .= '<div class="separator"></div>';
-              $products_reviews_content .= '</div>';
-              $products_reviews_content .= '</div>';
               $products_reviews_content .= '</div>';
               $products_reviews_content .= '<hr>';
             }
@@ -227,7 +228,6 @@
         ]
       );
 
-
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'How many words do you want to display ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS',
@@ -240,6 +240,17 @@
         ]
       );
 
+      $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Do you want to display the customer sentiment tage ?',
+          'configuration_key' => 'MODULE_PRODUCTS_INFO_REVIEWS_CUSTOMERS_SENTIMENT_TAG',
+          'configuration_value' => 'True',
+          'configuration_description' => 'Do you want to enable this option in your shop ?',
+          'configuration_group_id' => '6',
+          'sort_order' => '1',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
+          'date_added' => 'now()'
+        ]
+      );
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
@@ -264,6 +275,7 @@
         'MODULE_PRODUCTS_INFO_REVIEWS_CONTENT_WIDTH',
         'MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS',
         'MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS',
+        'MODULE_PRODUCTS_INFO_REVIEWS_CUSTOMERS_SENTIMENT_TAG',
         'MODULE_PRODUCTS_INFO_REVIEWS_SORT_ORDER'
       );
     }

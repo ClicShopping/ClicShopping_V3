@@ -62,9 +62,6 @@
           $reviews_text = $reviews['reviews_text'];
           $reviews_rating = $reviews['reviews_rating'];
 
-          $customer_tag = $reviews['customers_tag'];
-          $customer_tag = explode(',', $customer_tag);
-
           if ($reviews['customers_id'] == $CLICSHOPPING_Customer->getID()) {
             $delete_reviews .= HTML::form('reviews', CLICSHOPPING::link(null, 'Products&ReviewsInfo&Delete&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $reviews_id), 'post', 'id="Reviews"', ['tokenize' => true, 'action' => 'process']);
             $delete_reviews .= HTML::button(null, 'bi bi-trash2-fill', null, 'danger', null, 'md');
@@ -75,6 +72,11 @@
           $date_added  = DateTime::toLong($reviews['date_added']);
           $customer_text = HTML::breakString(nl2br(HTML::outputProtected($reviews_text)), 60, '-<br />');
           $customer_rating = '<span class="productsInfoReviewsContentRating" itemprop="ratingValue">' . HTML::stars($reviews_rating) . '</span>';
+
+          if (MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_SENTIMENT_TAG == 'True') {
+            $customer_tag = $reviews['customers_tag'];
+            $customer_tag = explode(',', $customer_tag);
+          }
 
           $data = '<!-- pr_products_reviews_info_content start -->' . "\n";
 
@@ -151,6 +153,19 @@
         ]
       );
 
+
+      $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Do you want to display the customer sentiment tage ?',
+          'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_SENTIMENT_TAG',
+          'configuration_value' => 'True',
+          'configuration_description' => 'Do you want to enable this option in your shop ?',
+          'configuration_group_id' => '6',
+          'sort_order' => '1',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
+          'date_added' => 'now()'
+        ]
+      );
+
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_SORT_ORDER',
@@ -173,6 +188,7 @@
                    'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_WIDTH',
                    'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_POSITION',
                    'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_DELETE_COMMENT',
+                   'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_SENTIMENT_TAG',
                    'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_SORT_ORDER'
                   );
     }

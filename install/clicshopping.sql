@@ -1666,8 +1666,10 @@ INSERT INTO configuration VALUES(1630, 'Veuillez choisir la taille de l\'image',
 INSERT INTO configuration VALUES(1631, 'Voulez-vous supprimer le bouton Détails ?', 'MODULE_PRODUCTS_RECOMMENDATIONS_DELETE_BUY_BUTTON', 'False', 'Supprimer le bouton', 6, 11, NULL, '2023-08-04 09:56:35', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1632, 'Ordre de tri d\'affichage', 'MODULE_PRODUCTS_RECOMMENDATIONS_SORT_ORDER', '100', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier). L\'ordre de tri doit être différent pour chaque module', 6, 12, NULL, '2023-08-04 09:56:35', NULL, '');
 INSERT INTO configuration VALUES(1633, 'Délai pour le stock de sauvegarde prédictif', 'SAFETY_STOCK_TIME', '7', 'Veuillez insérer le délai d\'analyse en jours', 9, 5, NULL, '2006-04-09 16:13:48', NULL, NULL);
-
-
+INSERT INTO configuration VALUES(1734, 'Souhaitez-vous afficher les tags de sentiments du client ?', 'MODULE_PRODUCTS_INFO_REVIEWS_CUSTOMERS_SENTIMENT_TAG', 'False', 'Affiche des tags générés par l\'IA générative en fonction du commentaire de client (GPT doit etre activé)', 6, 1, NULL, '2023-08-19 10:59:58', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1735, 'Souhaitez-vous afficher les tags de sentiments du client ?', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_SENTIMENT_TAG', 'False', 'Affiche des tags générés par l\'IA générative en fonction du commentaire de client (GPT doit etre activé)', 6, 1, NULL, '2023-08-19 11:19:45', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1736, 'Souhaitez-vous afficher les tags de sentiments du client ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SENTIMENT_TAG', 'True', 'Affiche des tags générés par l\'IA générative en fonction du commentaire de client (GPT doit etre activé)', 6, 1, NULL, '2023-08-19 11:27:50', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1737, 'Souhaitez-vous enregister les tags de sentiments du client lors de la création d\'un commentaire ?', 'CLICSHOPPING_APP_REVIEWS_RV_SENTIMENT_TAG', 'False', 'Enregistre des tags générés par l\'IA générative en fonction du commentaire de client (GPT doit etre activé)', 6, 0, NULL, '2023-08-19 11:41:33', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);

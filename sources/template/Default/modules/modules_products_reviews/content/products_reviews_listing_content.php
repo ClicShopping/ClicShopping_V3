@@ -19,16 +19,22 @@
       }
     ?>
   </div>
+  <?php
+    if (MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SENTIMENT_TAG == 'True') {
+  ?>
     <div class="row">
         <span class="col-md-10 productsReviewsListingContentTag">
           <?php
-          echo CLICSHOPPING::getDef('modules_products_reviews_listing_content_text_sentiment') . ' ';
-          foreach ($customer_tag as $value) {
-            echo ' <span class="badge text-bg-primary">' . $value . '</span> ';
-          }
+            echo CLICSHOPPING::getDef('modules_products_reviews_listing_content_text_sentiment') . ' ';
+            foreach ($customer_tag as $value) {
+              echo ' <span class="badge text-bg-primary">' . $value . '</span> ';
+            }
           ?>
         </span>
     </div>
+  <?php
+    }
+  ?>
   <div class="separator"></div>
   <div class="hr"></div>
   <div class="separator"></div>

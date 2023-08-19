@@ -110,6 +110,10 @@
         return false;
       }
 
+      if (CLICSHOPPING_APP_REVIEWS_RV_SENTIMENT_TAG == 'False') {
+        return false;
+      }
+
       $customer_review = self::getCustomerReviews();
 
       if($customer_review === false) {

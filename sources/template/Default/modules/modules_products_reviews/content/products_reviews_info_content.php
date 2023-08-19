@@ -38,7 +38,10 @@
     <span class="col-md-11 productsReviewInfoContentCustomerText"><?php echo $customer_text; ?></span>
   </div>
   <div class="separator"></div>
-  <div class="row">
+  <?php
+    if (MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_SENTIMENT_TAG == 'True') {
+  ?>
+    <div class="row">
       <span class="col-md-11 productsReviewInfoContentCustomerTag">
        <?php
         echo CLICSHOPPING::getDef('modules_products_reviews_info_content_text_customers_tag');
@@ -47,7 +50,10 @@
           echo ' <span class="badge text-bg-primary">' . $value . '</span> ';
         }
       ?>
-    </span>
-  </div>
-  <div class="separator"></div>
+      </span>
+    </div>
+    <div class="separator"></div>
+  <?php
+    }
+  ?>
 </div>

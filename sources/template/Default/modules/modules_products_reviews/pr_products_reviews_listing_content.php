@@ -88,8 +88,10 @@
           $review_text = HTML::breakString(HTML::outputProtected($Qreviews->value('reviews_text')), 60, '-<br />') . ((\strlen($Qreviews->value('reviews_text')) >= 100) ? '..' : '');
           $review_star = HTML::stars($Qreviews->valueInt('reviews_rating'));
 
-          $customer_tag = $Qreviews->value('customers_tag');
-          $customer_tag = explode(',', $customer_tag);
+          if (MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SENTIMENT_TAG == 'True') {
+            $customer_tag = $Qreviews->value('customers_tag');
+            $customer_tag = explode(',', $customer_tag);
+          }
 
           ob_start();
           require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_listing_content'));
@@ -185,6 +187,18 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Do you want to display the customer sentiment tage ?',
+          'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SENTIMENT_TAG',
+          'configuration_value' => 'True',
+          'configuration_description' => 'Do you want to enable this option in your shop ?',
+          'configuration_group_id' => '6',
+          'sort_order' => '1',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
+          'date_added' => 'now()'
+        ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SORT_ORDER',
           'configuration_value' => '30',
@@ -206,7 +220,8 @@
                    'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_WIDTH',
                    'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_POSITION',
                    'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_DELETE_COMMENT',
-                   'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SORT_ORDER'
+                   'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SENTIMENT_TAG',
+                   'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SORT_ORDER',
                   );
     }
   }
