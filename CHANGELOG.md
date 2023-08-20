@@ -6,6 +6,7 @@ generative AI product recommendations updated
 generative AI product search info chatbot for frontpage
 genrative AI reviews tag
 Gpt stats improved
+Stripe V12$
 
 --------------------
 version 3.430

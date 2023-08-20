@@ -14,6 +14,8 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
 
+  use ClicShopping\Apps\Customers\Reviews\Classes\ClicShoppingAdmin\ReviewsAdmin;
+
   $CLICSHOPPING_Reviews = Registry::get('Reviews');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -88,7 +90,7 @@
           <?php
             }
 
-          if ($QavgReviews->valueInt('count_customers_tag') > 0) {
+          if (ReviewsAdmin::countCustomersTags() > 0) {
             ?>
               <div class="col-md-2 col-12">
                 <div class="card bg-success">
@@ -99,7 +101,7 @@
                         <span class="float-end">
                           <div class="col-sm-12 text-white">
                             <?php
-                              $total = $QavgReviews->valueInt('count_customers_tag') * 6;
+                              $total = ReviewsAdmin::countCustomersTags();
                               echo $CLICSHOPPING_Reviews->getDef('text_count_customers_tag') . '  ' . $total;
                               ?>
                           </div>

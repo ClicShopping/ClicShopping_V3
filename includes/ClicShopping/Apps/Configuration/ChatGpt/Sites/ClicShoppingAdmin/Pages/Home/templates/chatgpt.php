@@ -199,7 +199,7 @@
                                                                                  date_added,
                                                                                  user_admin
                                                       from :table_gpt
-                                                      order by date_added
+                                                      order by date_added DESC
                                                       limit :page_set_offset, :page_set_max_results
                                                     ');
 
@@ -214,8 +214,8 @@
           <tr>
             <td></td>
             <td><?php echo $QchatGpt->valueInt('gpt_id'); ?></td>
-            <td class="text-start"><?php echo $QchatGpt->value('question'); ?></td>
-            <td class="text-start"><?php echo substr($QchatGpt->value('response'), 0, 200) . "..."; ?></td>
+            <td class="test-start"><?php echo substr($QchatGpt->value('question'), 0, 200) . "..."; ?></td>
+            <td class="test-start"><?php echo substr($QchatGpt->value('response'), 0, 200) . "..."; ?></td>
             <td><?php echo DateTime::toShort($QchatGpt->value('date_added')); ?></td>
             <td><?php echo $QchatGpt->value('user_admin'); ?></td>
             <td class="text-end">

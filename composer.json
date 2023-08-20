@@ -17,8 +17,8 @@
         "darkghosthunter/preloader": "^2.2",
         "stymiee/email-validator": "^1.1",
         "robthree/twofactorauth": "^1.8",
-        "stripe/stripe-php": "^10.5",
-        "openai-php/client": "^0.6.2"
+        "openai-php/client": "^0.6.2",
+        "stripe/stripe-php": "^12.0"
     },
     "support": {
         "wiki": "https://github.com/ClicShopping/ClicShopping_V3/wiki",

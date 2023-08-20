@@ -8,13 +8,12 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Customers\Reviews\Sites\ClicShoppingAdmin\Pages\Home\Actions\Reviews;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  use ClicShopping\Apps\Customers\Reviews\Classes\ClicShoppingAdmin\Status;
+  use ClicShopping\Apps\Customers\Reviews\Classes\ClicShoppingAdmin\ReviewsAdmin;
 
   class SetFlag extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -25,7 +24,7 @@
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       if (isset($_GET['id'])) {
-        Status::getReviewsStatus(HTML::sanitize($_GET['id']), HTML::sanitize($_GET['flag']));
+        ReviewsAdmin::getReviewsStatus((int)$_GET['id'], (int)$_GET['flag']);
       }
 
       $CLICSHOPPING_Reviews->redirect('Reviews&Reviews&page=' . $page . '&rID=' . (int)$_GET['id']);

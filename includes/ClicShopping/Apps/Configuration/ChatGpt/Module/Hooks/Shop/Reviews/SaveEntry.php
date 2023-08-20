@@ -32,7 +32,7 @@
     /**
      * @return int|bool
      */
-    private static function getReviewsId() :int|bool
+    private static function getReviewsId(): int|bool
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -57,9 +57,9 @@
     }
 
     /**
-     * @return int|bool
+     * @return string|bool
      */
-    private static function getCustomerReviews() :int|bool
+    private static function getCustomerReviews(): string|bool
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -102,6 +102,8 @@
 
     public function execute()
     {
+      $CLICSHOPPING_Language = Registry::get('Language');
+
       if (!\defined('CLICSHOPPING_APP_REVIEWS_RV_STATUS') || CLICSHOPPING_APP_REVIEWS_RV_STATUS == 'False') {
         return false;
       }
@@ -120,8 +122,9 @@
         return false;
       }
 
-      $question = 'Give 6 tags maximum separated by a coma about the sentiment concerning the customer review.
-       Remove the prompt response and all other information. The customer review : ' . $customer_review;
+      $language_name = $CLICSHOPPING_Language->getLanguagesName($CLICSHOPPING_Language->getId());
+
+      $question = 'Provide up in ' . $language_name . ' to 6 comma-separated tags indicating the sentiment of the customer review. Please exclude the prompt\'s response and any other unrelated information. The customer review : ' . $customer_review;
 
       $tag = ChatGptShop35::getGptResponse($question, 15, 0.7);
 
