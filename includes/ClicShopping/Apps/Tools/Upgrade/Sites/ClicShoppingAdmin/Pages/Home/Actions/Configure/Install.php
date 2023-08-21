@@ -95,7 +95,7 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_marketplace_categories (
-  Id int(11) NOT NULL,
+ id int(11) NOT NULL,
  categories_id int(11) NOT NULL,
  parent_id int(11) NOT NULL DEFAULT 0,
  categories_name text DEFAULT NULL,
@@ -142,7 +142,7 @@ CREATE TABLE :table_marketplace_file_informations (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 ALTER TABLE :table_marketplace_file_informations ADD PRIMARY KEY (id), ADD KEY index_file_id (file_id);
-ALTER TABLE :table_marketplace_file_informations MODIFY id int(11) NOT NULL AUTO_INCREMENT
+ALTER TABLE :table_marketplace_file_informations MODIFY id int(11) NOT NULL AUTO_INCREMENT;
 
 EOD;
 
