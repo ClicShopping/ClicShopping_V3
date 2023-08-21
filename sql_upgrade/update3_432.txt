@@ -1,1 +1,1 @@
-update gpt
+ALTER TABLE `clic_marketplace_categories` CHANGE `Id` `id` INT(11) NOT NULL AUTO_INCREMENT;
