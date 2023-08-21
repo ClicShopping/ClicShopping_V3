@@ -1,6 +1,5 @@
 CKEDITOR.dialog.add('chatgptDialog', function(editor) {
   var botUrl = 'https://api.openai.com/v1/completions'; // Davinci
-  var botUrl = 'https://api.openai.com/v1/chat/completions'; // for gpt3.5
   var apiKey = apiKeyGpt; // Replace with your own API key
   var conversationState = '';
 
@@ -41,17 +40,26 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
               xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                   var response = JSON.parse(xhr.responseText);
-                  var text = response.choices[0].text;
+                  if (
+                    response.choices &&
+                    Array.isArray(response.choices) &&
+                    response.choices.length > 0 &&
+                    response.choices[0].message &&
+                    response.choices[0].message.content
+                  ) {
+                    var text = response.choices[0].message.content; // Use the correct property
+                    editor.editable().insertHtml(`<p>${text}</p>`);
 
-                  // Append the response to the editor
-                  editor.editable().insertHtml(`<p>${text}</p>`);
+                    // Clear the message input
+                    dialog.getContentElement('tab1', 'message').setValue('');
 
-                  // Clear the message input
-                  dialog.getContentElement('tab1', 'message').setValue('');
-
-                  // Remove spinner
-                  preloader.style.display = 'none';
-                  preloader.classList.remove('blur'); // Remove blur class
+                    // Remove spinner
+                    preloader.style.display = 'none';
+                    preloader.classList.remove('blur'); // Remove blur class
+                  } else {
+                    // Handle the case when response is empty or invalid
+                    console.error('Invalid response from the API');
+                  }
                 }
               };
 
