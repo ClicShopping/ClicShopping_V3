@@ -21,7 +21,8 @@
     public ?int $sort_order = 0;
     public bool $enabled = false;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
@@ -34,7 +35,8 @@
       }
      }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Order = Registry::get('Order');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -60,15 +62,18 @@
       }
     } // public function execute
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function check() {
+    public function check()
+    {
       return \defined('MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_STATUS');
     }
 
-    public function install() {
+    public function install()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
@@ -109,11 +114,13 @@
       );
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return array(
         'MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_STATUS',
         'MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_CONTENT_WIDTH',

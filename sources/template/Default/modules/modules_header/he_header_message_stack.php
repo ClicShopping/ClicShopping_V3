@@ -21,7 +21,8 @@
     public bool $enabled = false;
     public $pages;
 
-    public function __construct() {
+    public function __construct()
+    {
 
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
@@ -35,7 +36,8 @@
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Template = Registry::get('Template');
 
@@ -70,15 +72,18 @@
 
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function check() {
+    public function check()
+    {
       return \defined('MODULE_HEADER_MESSAGE_STACK_STATUS');
     }
 
-    public function install() {
+    public function install()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
 
@@ -120,11 +125,13 @@
 
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return array('MODULE_HEADER_MESSAGE_STACK_STATUS',
                    'MODULE_HEADER_MESSAGE_STACK_CONTENT_WIDTH',
                    'MODULE_HEADER_MESSAGE_STACK_SORT_ORDER',

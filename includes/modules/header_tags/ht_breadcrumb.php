@@ -54,6 +54,7 @@
 
     public function check()
     {
+    {
       return \defined('MODULE_HEADER_TAGS_BREADCRUMB_STATUS');
     }
 

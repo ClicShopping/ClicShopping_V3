@@ -19,7 +19,8 @@
     public ?int $sort_order = 0;
     public bool $enabled = false;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
@@ -32,7 +33,8 @@
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if (isset($_GET['Info'], $_GET['Contact']) && !isset($_GET['Success'])) {
@@ -51,15 +53,18 @@
       }
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function check() {
+    public function check()
+    {
       return \defined('MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS');
     }
 
-    public function install() {
+    public function install()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
 
@@ -101,11 +106,13 @@
       );
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS',
               'MODULES_CONTACT_US_FORM_BUTTON_PROCESS_CONTENT_WIDTH',
               'MODULES_CONTACT_US_FORM_BUTTON_PROCESS_SORT_ORDER'

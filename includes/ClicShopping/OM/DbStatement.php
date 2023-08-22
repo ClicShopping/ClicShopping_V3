@@ -211,7 +211,8 @@
     /**
      * @return bool
      */
-    public function check() :bool
+    public function check()
+    { :bool
     {
       if (!isset($this->result)) {
         $this->fetch();

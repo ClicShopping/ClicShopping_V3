@@ -36,7 +36,8 @@
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_CategoryTree = Registry::get('CategoryTree');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -113,11 +114,13 @@
       $CLICSHOPPING_Template->addBlock($header_template, $this->group);
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function check() {
+    public function check()
+    {
       return \defined('MODULES_HEADER_MULTI_TEMPLATE_STATUS');
     }
 
@@ -209,11 +212,13 @@
       );
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return array('MODULES_HEADER_MULTI_TEMPLATE_STATUS',
                     'MODULES_HEADER_MULTI_TEMPLATE_TEMPLATE_CONTENT_WIDTH',
                     'MODULES_HEADER_MULTI_TEMPLATE_FILES',

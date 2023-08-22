@@ -49,6 +49,7 @@
 
     public function check()
     {
+    {
       return \defined('MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS');
     }
 

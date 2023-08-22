@@ -57,7 +57,8 @@
     /**
      * @return bool
      */
-    public function check(): bool
+    public function check()
+    {: bool
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 

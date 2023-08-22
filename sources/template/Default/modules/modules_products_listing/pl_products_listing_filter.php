@@ -34,7 +34,8 @@
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -207,15 +208,18 @@
     }
 
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function check() {
+    public function check()
+    {
       return \defined('MODULE_PRODUCTS_LISTING_FILTER_STATUS');
     }
 
-    public function install() {
+    public function install()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
@@ -267,11 +271,13 @@
       );
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return array('MODULE_PRODUCTS_LISTING_FILTER_STATUS',
                    'MODULE_PRODUCTS_LISTING_FILTER_DISPLAY_FILTER',
                    'MODULE_PRODUCTS_LISTING_FILTER_COLUMNS',

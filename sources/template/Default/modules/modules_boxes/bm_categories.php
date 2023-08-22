@@ -72,11 +72,13 @@
       return $this->enabled;
     }
 
-    public function check() {
+    public function check()
+    {
       return \defined('MODULE_BOXES_CATEGORIES_STATUS');
     }
 
-    public function install() {
+    public function install()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [

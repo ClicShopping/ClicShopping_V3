@@ -14,7 +14,8 @@
 
   class Help extends \ClicShopping\OM\PagesActionsAbstract {
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Stripe = Registry::get('Stripe');
 
       $this->page->setFile('help.php');

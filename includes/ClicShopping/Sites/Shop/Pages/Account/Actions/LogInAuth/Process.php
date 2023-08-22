@@ -24,7 +24,8 @@
     private mixed $Customer;
     private mixed $Db;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->Db = Registry::get('Db');
       $this->Customer = Registry::get('Customer');
     }

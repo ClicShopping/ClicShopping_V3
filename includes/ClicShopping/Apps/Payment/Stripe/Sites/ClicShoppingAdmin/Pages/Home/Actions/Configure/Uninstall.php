@@ -14,7 +14,8 @@
 
   class Uninstall extends \ClicShopping\OM\PagesActionsAbstract {
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Stripe = Registry::get('Stripe');

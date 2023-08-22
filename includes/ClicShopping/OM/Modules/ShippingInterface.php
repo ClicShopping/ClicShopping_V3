@@ -15,7 +15,8 @@
   {
     public function quote();
 
-    public function check();
+    public function check()
+    {;
 
     public function install();
 

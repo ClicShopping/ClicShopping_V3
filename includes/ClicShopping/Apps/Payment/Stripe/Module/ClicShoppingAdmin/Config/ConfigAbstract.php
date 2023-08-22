@@ -29,7 +29,8 @@
 
     abstract protected function init();
 
-    final public function __construct() {
+    final public function __construct()
+    {
       $this->app = Registry::get('Stripe');
 
       $this->code = (new \ReflectionClass($this))->getShortName();
@@ -37,7 +38,8 @@
       $this->init();
     }
 
-    public function install() {
+    public function install()
+    {
       $cut_length = \strlen('CLICSHOPPING_APP_STRIPE_' . $this->code . '_');
 
       foreach ($this->getParameters() as $key) {

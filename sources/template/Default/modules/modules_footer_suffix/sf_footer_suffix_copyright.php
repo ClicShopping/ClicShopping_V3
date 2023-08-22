@@ -20,7 +20,8 @@
     public ?int $sort_order = 0;
     public bool $enabled = false;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
@@ -33,7 +34,8 @@
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $logo = '<img width="24" height="24" alt="ClicShopping, Free E-commerce Open Source Solution B2B - B2C for everybody" title="ClicShopping, Free E-commerce Open Source Solution B2B - B2C for everybody" src="' . HTTP::getShopUrlDomain() .'images/logo_clicshopping_24.webp">';
@@ -52,15 +54,18 @@
       $CLICSHOPPING_Template->addBlock($footer_copyright, $this->group);
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function check() {
+    public function check()
+    {
       return \defined('MODULES_FOOTER_SUFFIX_COPYRIGHT_STATUS');
     }
 
-    public function install() {
+    public function install()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
@@ -88,11 +93,13 @@
       );
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return array('MODULES_FOOTER_SUFFIX_COPYRIGHT_STATUS',
                    'MODULES_FOOTER_SUFFIX_COPYRIGHT_SORT_ORDER'
                   );

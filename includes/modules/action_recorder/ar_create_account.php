@@ -99,6 +99,7 @@
 
     public function check()
     {
+    {
       return \defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES');
     }
 

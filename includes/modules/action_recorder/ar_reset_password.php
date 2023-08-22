@@ -89,6 +89,7 @@
 
     public function check()
     {
+    {
       return \defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES');
     }
 

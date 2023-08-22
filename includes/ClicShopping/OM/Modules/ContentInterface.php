@@ -17,7 +17,8 @@
 
     public function isEnabled();
 
-    public function check();
+    public function check()
+    {;
 
     public function install();
 

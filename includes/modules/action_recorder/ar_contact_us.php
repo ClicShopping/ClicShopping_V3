@@ -98,6 +98,7 @@
 
     public function check()
     {
+    {
       return \defined('MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES');
     }
 

@@ -23,7 +23,8 @@
     public ?int $sort_order = 0;
     public bool $enabled = false;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
@@ -36,7 +37,8 @@
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if (isset($_GET['Account']) && isset($_GET['Newsletters'])) {
@@ -64,15 +66,18 @@
       } // php_self
     } // function execute
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function check() {
+    public function check()
+    {
       return \defined('MODULE_ACCOUNT_CUSTOMERS_NEWSLETTER_TITLE_STATUS');
     }
 
-    public function install() {
+    public function install()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
@@ -112,11 +117,13 @@
       );
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return array(
         'MODULE_ACCOUNT_CUSTOMERS_NEWSLETTER_TITLE_STATUS',
         'MODULE_ACCOUNT_CUSTOMERS_NEWSLETTER_CONTENT_WIDTH',

@@ -137,6 +137,7 @@
 
     public function check()
     {
+    {
       return \defined('MODULE_FOOTER_MULTI_TEMPLATE_STATUS');
     }
 
