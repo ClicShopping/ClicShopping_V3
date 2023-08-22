@@ -17,10 +17,6 @@
 
   class Topt
   {
-    public function __construct()
-    {
-    }
-
     /**
      * @return mixed
      */

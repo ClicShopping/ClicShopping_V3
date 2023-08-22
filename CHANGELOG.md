@@ -1,5 +1,6 @@
 version 3.434
 Does not allow to access elfinder without session connexion
+Brace function updated
 
 --------------------
 version 3.433 and 3.4331

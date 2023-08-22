@@ -102,7 +102,7 @@
 
           return $connector;
         } else {
-          HTTP::redirect();
+          CLICSHOPPING::redirect();
         }
       }
 
