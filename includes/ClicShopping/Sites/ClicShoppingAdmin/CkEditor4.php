@@ -13,6 +13,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTTP;
 
   use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
 
@@ -63,11 +64,15 @@
     /**
      * @return string
      */
-    private static function getElFinderConnector() :string
+    private static function getElFinderConnector(): string
     {
-      $connector = CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.php?Admin=ClicShoppingAdmin');
+      if (isset($_SESSION['admin'])) {
+        $connector = CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.php?Admin=ClicShoppingAdmin');
 
-      return $connector;
+        return $connector;
+      } else {
+        HTTP::redirect();
+      }
     }
 
     /**

@@ -1,3 +1,11 @@
+version 3.434
+Does not allow to access elfinder without session connexion
+
+--------------------
+version 3.433 and 3.4331
+fix version confusion
+
+--------------------
 version 3.432
 fix db import markeplace_file_information
 

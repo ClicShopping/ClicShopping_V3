@@ -97,9 +97,13 @@
        */
       public static function getElFinderConnector(): string
       {
-        $connector = HTTP::getShopUrlDomain() . 'ext/elFinder-master/php/connector.minimal.php';
+        if (isset($_SESSION['admin'])) {
+          $connector = HTTP::getShopUrlDomain() . 'ext/elFinder-master/php/connector.minimal.php';
 
-        return $connector;
+          return $connector;
+        } else {
+          HTTP::redirect();
+        }
       }
 
 /*
