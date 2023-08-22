@@ -180,7 +180,6 @@
 
     public function check()
     {
-    {
       return \defined('CLICSHOPPING_APP_COD_CO_STATUS') && (trim(CLICSHOPPING_APP_COD_CO_STATUS) != '');
     }
 

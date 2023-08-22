@@ -129,7 +129,6 @@
 
     public function check()
     {
-    {
       return \defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS) != '');
     }
 

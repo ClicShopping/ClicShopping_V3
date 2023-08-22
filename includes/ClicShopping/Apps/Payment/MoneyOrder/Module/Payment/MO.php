@@ -183,7 +183,6 @@
 
     public function check()
     {
-    {
       return \defined('CLICSHOPPING_APP_MONEYORDER_MO_STATUS') && (trim(CLICSHOPPING_APP_MONEYORDER_MO_STATUS) != '');
     }
 

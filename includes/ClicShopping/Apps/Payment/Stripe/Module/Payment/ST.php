@@ -366,7 +366,6 @@ pre_confirmation_check()
 
     public function check()
     {
-    {
       return \defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && (trim(CLICSHOPPING_APP_STRIPE_ST_STATUS) != '');
     }
 

@@ -103,7 +103,6 @@
 
     public function check()
     {
-    {
       return \defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES');
     }
 

@@ -260,7 +260,6 @@
 
     public function check()
     {
-    {
       return \defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS) != '');
     }
 

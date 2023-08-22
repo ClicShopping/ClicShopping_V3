@@ -69,7 +69,6 @@
 
     public function check()
     {
-    {
       return \defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS) != '');
     }
 

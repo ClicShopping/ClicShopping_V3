@@ -14,8 +14,7 @@
   {
     public function process();
 
-    public function check()
-    {;
+    public function check();
 
     public function install();
 

@@ -30,8 +30,7 @@
 
     public function get_error();
 
-    public function check()
-    {;
+    public function check();
 
     public function install();
 

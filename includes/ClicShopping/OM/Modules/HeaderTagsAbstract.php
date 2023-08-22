@@ -46,7 +46,6 @@
 
     public function check()
     {
-    {
       return isset($this->sort_order);
     }
 

@@ -149,7 +149,6 @@
 
     public function check()
     {
-    {
       return \defined('CLICSHOPPING_APP_ITEM_IT_STATUS') && (trim(CLICSHOPPING_APP_ITEM_IT_STATUS) != '');
     }
 

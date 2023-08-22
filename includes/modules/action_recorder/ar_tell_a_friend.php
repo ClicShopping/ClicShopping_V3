@@ -101,7 +101,6 @@
 
     public function check()
     {
-    {
       return \defined('MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES');
     }
 
