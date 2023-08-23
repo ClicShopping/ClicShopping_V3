@@ -48,6 +48,12 @@ class Marketplace
       $this->upgrade->redirect('Marketplace');
     }
 
+    $text = CLICSHOPPING_APP_UPGRADE_UP_USERNAME;
+    if (stripos($text, "@") === false) {
+      $this->messageStack->add($this->upgrade->getDef('text_error_username'), 'error');
+      $this->upgrade->redirect('Upgrade&Configure');
+    }
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL,  $this->communityUrl . 'oauth/token/');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -66,6 +72,7 @@ class Marketplace
 
     // execute cURL
     $result = curl_exec($ch);
+
     curl_close($ch);
 
     // decode JSON response

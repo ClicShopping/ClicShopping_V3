@@ -97,13 +97,9 @@
        */
       public static function getElFinderConnector(): string
       {
-        if (isset($_SESSION['admin'])) {
           $connector = HTTP::getShopUrlDomain() . 'ext/elFinder-master/php/connector.minimal.php';
 
           return $connector;
-        } else {
-          CLICSHOPPING::redirect();
-        }
       }
 
 /*

@@ -10,7 +10,7 @@ file_prices decimal(15,4) DEFAULT NULL
 file_date_added date DEFAULT NULL
 file_url_screenshot text DEFAULT NULL
 file_url_download text DEFAULT NULL
-is_installed tinyint(4) default 0
+is_installed tinyint(4) not_null default(0)
 --
 primary id
 index_file_id file_id

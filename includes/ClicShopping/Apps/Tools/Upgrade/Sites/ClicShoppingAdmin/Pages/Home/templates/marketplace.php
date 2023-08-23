@@ -131,7 +131,12 @@
       <div style="height: 700px;">
         <div class="col-md-12">
           <div class="row">
-            <div class="alert alert-warning text-center" role="alert"><?php echo $CLICSHOPPING_Upgrade->getDef('text_marketplace_update'); ?></div>
+            <div class="alert alert-warning text-center" role="alert">
+              <?php
+                echo $CLICSHOPPING_Upgrade->getDef('text_marketplace_update') . ' ';
+                echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_refresh'), null, $CLICSHOPPING_Upgrade->link('Marketplace'), 'success', null, 'sm');
+              ?>
+            </div>
           </div>
           <div class="text-center">
             <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'marketplace.png', $CLICSHOPPING_Upgrade->getDef('heading_title')); ?>
@@ -204,6 +209,7 @@
         <div class="row">
         <?php
         $i = 0;
+
         foreach ($result_files as $value) {
           $CLICSHOPPING_Marketplace->getFilesInformations($value['file_id']);
 

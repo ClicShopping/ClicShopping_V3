@@ -144,6 +144,7 @@ error_fopen_file = Error open file
 error_project_not_writable_on_server = Project not writable on the server
 error_link_not_allowed = Link not allowed
 text_file_download_error = Download error
+text_error_username = Please add your forum email as username
 
 text_result_install = Installation result
 error_result = We do not find the json file. Check in your cache

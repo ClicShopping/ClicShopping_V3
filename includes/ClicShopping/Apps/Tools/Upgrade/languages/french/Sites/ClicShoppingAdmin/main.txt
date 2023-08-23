@@ -137,7 +137,7 @@ success_file_installed = L'installation où la mise jour été faite avec succè
 warning_no_module = Aucun module trouvé
 text_marketplace_username = Veuillez insérer les paramétres de votre compte en cliquant sur le bouton Configurer.<br />
 Pour utiliser la marketplace, vous devez nécessairement être inscrit sur le forum<br />
-Veuillez noter que vos connexions sont enregistrées ainsi que votre adress IP et votre site internet.
+Veuillez noter que vos connexions sont enregistrées ainsi que votre address IP et votre site internet.
 En cas d'abus, votre adresse IP peut être radiée définitvement.
 text_success_files_installed = le fichier a été installé
 error_file_not_installed = Une erreur s'est produite durant la procédure
@@ -148,6 +148,7 @@ error_fopen_file = Erreur ouverture fichier
 error_project_not_writable_on_server =  Le projet ne peut pas être sauvegarder sur le serveur
 error_link_not_allowed = Lien non accepté
 text_file_download_error = Erreur téléchargement
+text_error_username = Veuillez insérer votre email du forum comme username
 
 text_result_install = Résultat Installation
 error_result = Nou n'avouspas trouvé le fichier json. Veuillez vérifier le cache et l'installation

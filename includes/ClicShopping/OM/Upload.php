@@ -31,7 +31,7 @@
      * @param null $extensions
      * @param bool $replace
      */
-    public function __construct($file, $destination, $permissions = null, $extensions = null, $replace = false)
+    public function __construct($file, $destination, $permissions = null, $extensions = null, bool $replace = false)
     {
 // Remove trailing directory separator
       if (substr($destination, -1) == '/') {

@@ -66,13 +66,9 @@
      */
     private static function getElFinderConnector(): string
     {
-      if (isset($_SESSION['admin'])) {
         $connector = CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.php?Admin=ClicShoppingAdmin');
 
         return $connector;
-      } else {
-        CLICSHOPPING::redirect();
-      }
     }
 
     /**
