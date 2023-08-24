@@ -375,8 +375,6 @@
 
     /**
      * Redirect to a page
-     *
-     * @param string $v get the clicshopping_verion
      * @return string $url, url to redirect
      */
     public static function redirect(): string

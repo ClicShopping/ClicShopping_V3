@@ -116,7 +116,7 @@ button_marketplace = Marketplace
 button_setting = Configurer
 button_uninstallable = Non installable
 button_install_app = Installe App
-
+button_refresh = Actualiser
 
 text_search_limit = Limite recherche github :
 text_core_limit = Limite core github :

@@ -11,7 +11,6 @@
   namespace ClicShopping\Apps\Customers\Reviews\Sites\ClicShoppingAdmin\Pages\Home\Actions\Reviews;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Customers\Reviews\Classes\ClicShoppingAdmin\ReviewsAdmin;
 

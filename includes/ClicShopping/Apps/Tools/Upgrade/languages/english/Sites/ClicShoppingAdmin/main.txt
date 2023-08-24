@@ -115,7 +115,7 @@ button_marketplace = Marketplace
 button_setting = Setting
 button_uninstallable = Uninstallable
 button_install_app = App install
-
+button_refresh = Refresh
 
 text_search_limit = Seach github limit :
 text_core_limit = Core github limit :
@@ -160,7 +160,7 @@ Please select a category to display apps and modules. <p></p>
 <strong> Note: </strong>: - Depending on the configuration of your server and its authorizations, the automatic installation will not be able to work, you will have to do it manually. <br />
   - You can also update the marketplace to have the last new features or configure a cronjob (see Cronjob menu).
 
-Text_marketplace_update = categories and applications have been updated. <p> </p>
+Text_marketplace_update = Categories and applications have been updated. <p> </p>
 Please update your page one last time.
 text_error_api_connection = Error Api :
 text_success_files_installed = Apps Installed
