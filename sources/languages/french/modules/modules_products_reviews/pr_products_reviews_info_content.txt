@@ -5,4 +5,4 @@ modules_products_reviews_info_content_text_review_date_added = Date : {{date_add
 modules_products_reviews_info_content_text_review_text_review_by = {{customer_name}}
 modules_products_reviews_info_content_text_no_review = Aucun commentaire
 modules_products_reviews_info_content_text_no_review = Supprimer votre commentaire
-modules_products_reviews_info_content_text_customers_tag = Sentiment clients
+modules_products_reviews_info_content_text_customers_tag = IA sentiments client

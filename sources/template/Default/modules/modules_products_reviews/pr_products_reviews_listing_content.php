@@ -192,7 +192,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want to display the customer sentiment tage ?',
+          'configuration_title' => 'Do you want to display the AI customer sentiment tage ?',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SENTIMENT_TAG',
           'configuration_value' => 'True',
           'configuration_description' => 'Do you want to enable this option in your shop ?',
