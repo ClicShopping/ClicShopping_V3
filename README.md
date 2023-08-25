@@ -118,6 +118,12 @@ More information in the Wiki
 
 #Functionnalities (some)
 - B2B - B2C  full functionalities
+- Generative artificial Intelligence included with Gpt and Dall E
+- Generative artificial products customers recommendations
+- Generative artficial intelligence for All content (product,categories...)
+- Generative artificial intelligence  for SEO
+- Real time safety stock predictive (AI)
+- Generative artificial intelligence for tag sentiment analysis for review
 - WYSIWYG to create your products description, content with CKeditor
 - Image Editor management with El-Finder 2.x - drag and drop - webp
 - Full SEO functionalities optimization and url
@@ -138,11 +144,7 @@ More information in the Wiki
 - Free modular Apps to create import or to import from osCommerce 2.x, OpenCart, ZenCart, Crealoaded, Prestashop .... database migration available on the marketplace
 - double authentification
 - API REST
-- Artificial intelligence implemented via ChatGpt and Dall E 
 - Antispam
-- Custommers recommendation with artificial intelligence sentiment Analysis (GPT)
-- Generative AI for content, SEO for the back office (GPT)
-- Generative AI via chatbot for Product informations (GPT)
 - Some dynamics reports
  ...
 
