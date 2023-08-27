@@ -3,10 +3,10 @@
 </p>
 
 # ClicShopping
-Unlock the potential of your online business with ClicShopping AI(tm), a powerful open-source Ecommerce solution that supports B2B, B2C, and B2B-B2C. Now integrated with cutting-edge artificial intelligence systems like ChatGpt and Bard (coming soon), ClicShopping takes your store to new heights!
+Unlock the potential of your online business with ClicShopping AI(tm), a powerful open-source Ecommerce solution that supports B2B, B2C, and B2B-B2C. Now integrated with cutting-edge artificial intelligence systems like Gpt and Bard (coming soon), ClicShopping AI takes your store to new heights!
 
 Boost Your Competitiveness - Absolutely Free!
-ClicShoppingAI helps shop owners elevate their game, and the best part is, it's completely free! With AI on your side, you can optimize inventory, offer personalized recommendations, and provide top-notch customer service, all without breaking the bank.
+ClicShoppingAI helps merchants increase their turnover and competitiveness and the best part is, it's completely free! With AI on your side, you can optimize inventory, offer personalized recommendations, and provide top-notch customer service, all without breaking the bank.
 
 Seamless, Responsive Design for All Devices:
 Say goodbye to website worries with ClicShopping AI's modern, responsive design. Customers will enjoy a delightful shopping experience across all devices, including mobile and desktop, without sacrificing speed or performance.
@@ -91,7 +91,7 @@ More information in the Wiki
 #Support
 
   - <img align="left" src="https://www.softaculous.com/website/images/softac_products.gif"><br>ClicShopping can now be installed easily with just one click via [Softaculous](https://www.softaculous.com/apps/ecommerce/ClicShopping)  
-  
+    
   - <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)
 
 #Analyse
