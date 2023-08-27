@@ -140,13 +140,4 @@
     </div>
   </div>
   <div class="separator"></div>
-  <div class="alert alert-info" role="alert">
-      <?php
-      echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Upgrade->getDef('title_help') . '"></i></h4>' . $CLICSHOPPING_Upgrade->getDef('title_help') . '<br />';
-      echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_site') . '<br />';
-      echo '- <a href=https://github.com/ClicShopping/ClicShopping_V3/releases" target="_blank" rel="noreferrer">ClicShopping Release</a><br />';
-      echo '- <a href="https://github.com/ClicShoppingOfficialModulesV3" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_official') . '</a><br />';
-      echo '- <a href="https://github.com/ClicShoppingV3Community" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_community') . '</a><br />';
-      ?>
-  </div>
 </div>
