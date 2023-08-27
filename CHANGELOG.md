@@ -1,4 +1,8 @@
 version 3.435
+Allow to the admin to change the products recommend status
+
+
+
 
 --------------------
 version 3.434

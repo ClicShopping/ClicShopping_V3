@@ -60,6 +60,15 @@ text_multiple = <strong>- Strategy selected:</strong> Multiple-Sources Recommend
 text_most_recommended_products = Most Recommended Products
 text_most_rejected_products = Most Rejected Products
 
+table_heading_products_price = Products price
+table_heading_status = Status
+table_heading_action = Action
+table_heading_products_group = Customer group
+
+text_result_page = Page {{listing_from}} of {{listing_total}}
+text_display_number_of_link = Displaying <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (of <strong>{{listing_total}}</strong>)
+
+
 text_help = <strong>Help</strong><br /><br />
 text_help_description =
 - You can select only one strategy. If you want to change, yu must delete all your data<br />

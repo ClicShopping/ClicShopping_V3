@@ -60,6 +60,14 @@ text_multiple = <strong> - Stratégie sélectionnée: </strong> Recommandation d
 text_most_recommended_products = la plupart des Recommendations clients
 text_most_rejected_products = la plupart des produits rejetés
 
+table_heading_products_price = Prix
+table_heading_status = Statut
+table_heading_action = Action
+table_heading_products_group = Groupe client
+
+text_result_page = Page {{listing_from}} sur {{listing_total}}
+text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
+
 text_help = <strong> aide </strong> <br /> <br />
 text_help_description =
 - Vous pouvez sélectionner qu'une seule stratégie. Si vous souhaitez changer, vous devez supprimer toutes vos données<br />

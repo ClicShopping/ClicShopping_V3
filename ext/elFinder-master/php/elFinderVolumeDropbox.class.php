@@ -84,7 +84,7 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 	 * @author Cem (DiscoFever)
 	 */
 	public function __construct()
-    {
+        {
 
 		// check with composer
 		$this->dropbox_phpFound = class_exists('Dropbox_API');

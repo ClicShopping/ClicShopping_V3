@@ -5,6 +5,7 @@ score float DEFAULT NULL
 recommendation_date date DEFAULT NULL
 product_tag VARCHAR(255) DEFAULT NULL
 customers_group_id int(11) DEFAULT(0) not_null
+status int(1) not_null default(1)
 --
 primary id
 idx_products_id products_id

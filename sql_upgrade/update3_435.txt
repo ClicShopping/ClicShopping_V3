@@ -1,0 +1,1 @@
+ALTER TABLE `clic_products_recommendations` ADD `status` INT(11) NOT NULL DEFAULT '1' AFTER `customers_group_id`;

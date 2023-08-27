@@ -121,7 +121,7 @@ More information in the Wiki
 - Generative artificial Intelligence included with Gpt and Dall E
 - Generative artificial products customers recommendations
 - Generative artficial intelligence for All content (product,categories...)
-- Generative artificial intelligence  for SEO
+- Generative artificial intelligence for SEO
 - Real time safety stock predictive (AI)
 - Generative artificial intelligence for tag sentiment analysis for review
 - WYSIWYG to create your products description, content with CKeditor

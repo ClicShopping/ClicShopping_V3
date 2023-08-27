@@ -178,19 +178,20 @@
                     :table_categories c                                              
                   where pr.score > ' . (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MIN_SCORE . '
                   and p.products_status = 1
-                    and g.price_group_view = 1                 
-                    and p.products_id = pr.products_id
-                    and g.customers_group_id = :customers_group_id
-                    and g.products_group_view = 1
-                    and p.products_archive = 0
-                    and pr.products_id = p.products_id
-                    and (pr.customers_group_id = :customers_group_id or pr.customers_group_id = 99)
-                    and p.products_id = p2c.products_id
-                    and p2c.categories_id = c.categories_id
-                    and c.virtual_categories = 0
-                    and c.status = 1
-                    group by pr.products_id
-                   ';
+                  and g.price_group_view = 1                 
+                  and p.products_id = pr.products_id
+                  and g.customers_group_id = :customers_group_id
+                  and g.products_group_view = 1
+                  and p.products_archive = 0
+                  and pr.products_id = p.products_id
+                  and (pr.customers_group_id = :customers_group_id or pr.customers_group_id = 99)
+                  and p.products_id = p2c.products_id
+                  and p2c.categories_id = c.categories_id
+                  and c.virtual_categories = 0
+                  and c.status = 1
+                  and pr.status = 1
+                  group by pr.products_id
+                 ';
       } else {
         $Qlisting .= '   p.products_id,                      
                          p.products_quantity,
@@ -209,6 +210,7 @@
                     and p2c.categories_id = c.categories_id
                     and c.virtual_categories = 0
                     and c.status = 1
+                    and pr.status = 1
                     group by pr.products_id
                    ';
       }
