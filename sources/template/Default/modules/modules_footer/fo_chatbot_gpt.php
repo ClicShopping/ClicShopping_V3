@@ -14,7 +14,7 @@
 
   use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\ChatGptShop35;
 
-class fo_chatbot_gpt {
+  class fo_chatbot_gpt {
     public string $code;
     public string $group;
     public $title;
@@ -40,6 +40,10 @@ class fo_chatbot_gpt {
         if (ChatGptShop35::checkMaxTokenPerDay(MODULES_FOOTER_CHATBOT_GPT_MAX_TOKEN) === false) {
           $this->enabled = false;
         }
+      }
+
+      if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
+        $this->enabled = false;
       }
     }
 

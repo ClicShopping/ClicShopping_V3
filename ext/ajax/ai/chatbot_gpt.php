@@ -33,14 +33,16 @@
     return false;
   }
 
-  $question = HTML::sanitize($_POST['message']);
-  $prompt = "Could you extract all the products name you can identified. 
-  Remove the prompt, remove the product term, characteristics term and all other words.
-  Include only the products name identified and select the best product name you can find inside the result.
-  After that, explode every product name word inside an array. There an array example ['word1', 'word2', 'word3'] about the result expected.
-  Just give the result without anything other information, just the array.
-  The request to analyse : " . $question;
+  if (isset($_POST['message'])) {
+    $question = HTML::sanitize($_POST['message']);
+    $prompt = "Could you extract all the products name you can identified. 
+    Remove the prompt, remove the product term, characteristics term and all other words.
+    Include only the products name identified and select the best product name you can find inside the result.
+    After that, explode every product name word inside an array. There an array example ['word1', 'word2', 'word3'] about the result expected.
+    Just give the result without anything other information, just the array.
+    The request to analyse : " . $question;
 
-  $result = ChatGptShop35::getGptResponse($prompt, $max_token = 20, $temperature = 0);
+    $result = ChatGptShop35::getGptResponse($prompt, $max_token = 20, $temperature = 0);
 
-  echo ChatGptShop35::productSearch($question, $result);
+    echo ChatGptShop35::productSearch($question, $result);
+  }
