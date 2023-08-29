@@ -1,1 +1,11 @@
 ALTER TABLE `clic_products_recommendations` ADD `status` INT(11) NOT NULL DEFAULT '1' AFTER `customers_group_id`;
+
+
+INSERT INTO `clic_administrator_menu` VALUES(827, 'index.php?A&Marketing\\Recommendations&ProductsRecommendation', 5, 1, 0, 'products_recommendations.png', 1, 'app_marketing_recommendations', 1);
+
+
+#english
+INSERT INTO `clic_administrator_menu_description` VALUES(827, 'Customers Recommendations', 1);
+
+#french
+INSERT INTO `clic_administrator_menu_description` VALUES(827, 'Recommendations clients', 2);
