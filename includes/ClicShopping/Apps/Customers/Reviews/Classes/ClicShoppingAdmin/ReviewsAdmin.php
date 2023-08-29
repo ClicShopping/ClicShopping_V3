@@ -27,6 +27,7 @@
         $Qreviews->execute();
 
         $reviews_array = $Qreviews->fetchAll();
+        $total = 0;
 
         foreach($reviews_array as $value) {
           $customer_tag_array = explode(',', $value['customers_tag']);
