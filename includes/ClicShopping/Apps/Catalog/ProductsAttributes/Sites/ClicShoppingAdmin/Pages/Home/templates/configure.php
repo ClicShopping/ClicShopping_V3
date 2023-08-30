@@ -1,29 +1,28 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-  $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $current_module = $CLICSHOPPING_Page->data['current_module'];
+$current_module = $CLICSHOPPING_Page->data['current_module'];
 
-  $CLICSHOPPING_ProductsAttributes_Config = Registry::get('ProductsAttributesAdminConfig' . $current_module);
+$CLICSHOPPING_ProductsAttributes_Config = Registry::get('ProductsAttributesAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('ProductsAttributes')) {
-    echo $CLICSHOPPING_MessageStack->get('ProductsAttributes');
-  }
+if ($CLICSHOPPING_MessageStack->exists('ProductsAttributes')) {
+  echo $CLICSHOPPING_MessageStack->get('ProductsAttributes');
+}
 ?>
 
 <div class="contentBody">
@@ -37,7 +36,7 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsAttributes->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
 <?php
-  echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_products_attributes'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes'), 'success');
+echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_products_attributes'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes'), 'success');
 ?>
         </div>
       </div>
@@ -47,12 +46,12 @@
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="appProductsAttributesToolbar">
     <li class="nav-item">
       <?php
-        foreach ($CLICSHOPPING_ProductsAttributes->getConfigModules() as $m) {
+      foreach ($CLICSHOPPING_ProductsAttributes->getConfigModules() as $m) {
 
-          if ($CLICSHOPPING_ProductsAttributes->getConfigModuleInfo($m, 'is_installed') === true) {
-            echo '<li class="nav-link active" data-module="' . $m . '"><a href="' . $CLICSHOPPING_ProductsAttributes->link('Configure&module=' . $m) . '">' . $CLICSHOPPING_ProductsAttributes->getConfigModuleInfo($m, 'short_title') . '</a></li>';
-          }
+        if ($CLICSHOPPING_ProductsAttributes->getConfigModuleInfo($m, 'is_installed') === true) {
+          echo '<li class="nav-link active" data-module="' . $m . '"><a href="' . $CLICSHOPPING_ProductsAttributes->link('Configure&module=' . $m) . '">' . $CLICSHOPPING_ProductsAttributes->getConfigModuleInfo($m, 'short_title') . '</a></li>';
         }
+      }
       ?>
     </li>
     <li class="nav-item dropdown">
@@ -60,17 +59,17 @@
          aria-expanded="false">Install</a>
       <div class="dropdown-menu">
         <?php
-          foreach ($CLICSHOPPING_ProductsAttributes->getConfigModules() as $m) {
-            if ($CLICSHOPPING_ProductsAttributes->getConfigModuleInfo($m, 'is_installed') === false) {
-              echo '<a class="dropdown-item" href="' . $CLICSHOPPING_ProductsAttributes->link('Configure&module=' . $m) . '">' . $CLICSHOPPING_ProductsAttributes->getConfigModuleInfo($m, 'title') . '</a>';
-            }
+        foreach ($CLICSHOPPING_ProductsAttributes->getConfigModules() as $m) {
+          if ($CLICSHOPPING_ProductsAttributes->getConfigModuleInfo($m, 'is_installed') === false) {
+            echo '<a class="dropdown-item" href="' . $CLICSHOPPING_ProductsAttributes->link('Configure&module=' . $m) . '">' . $CLICSHOPPING_ProductsAttributes->getConfigModuleInfo($m, 'title') . '</a>';
           }
+        }
         ?>
       </div>
     </li>
   </ul>
   <?php
-    if ($CLICSHOPPING_ProductsAttributes_Config->is_installed === true) {
+  if ($CLICSHOPPING_ProductsAttributes_Config->is_installed === true) {
     ?>
     <form name="CustomersCustomersConfigure"
           action="<?php echo $CLICSHOPPING_ProductsAttributes->link('Configure&Process&module=' . $current_module); ?>"
@@ -84,10 +83,10 @@
 
           <p class="card-text">
             <?php
-              foreach ($CLICSHOPPING_ProductsAttributes_Config->getInputParameters() as $cfg) {
-                echo '<div>' . $cfg . '</div>';
-                echo '<div class="separator"></div>';
-              }
+            foreach ($CLICSHOPPING_ProductsAttributes_Config->getInputParameters() as $cfg) {
+              echo '<div>' . $cfg . '</div>';
+              echo '<div class="separator"></div>';
+            }
             ?>
           </p>
         </div>
@@ -96,11 +95,11 @@
       <div class="separator"></div>
       <div class="col-md-12">
         <?php
-          echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_save'), null, null, 'success');
+        echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_save'), null, null, 'success');
 
-          if ($CLICSHOPPING_ProductsAttributes->getConfigModuleInfo($current_module, 'is_uninstallable') === true) {
-            echo '<span class="float-end">' . HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_dialog_uninstall'), null, '#', 'warning', ['params' => 'data-bs-toggle="modal" data-bs-target="#ppUninstallModal"']) . '</span>';
-          }
+        if ($CLICSHOPPING_ProductsAttributes->getConfigModuleInfo($current_module, 'is_uninstallable') === true) {
+          echo '<span class="float-end">' . HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_dialog_uninstall'), null, '#', 'warning', ['params' => 'data-bs-toggle="modal" data-bs-target="#ppUninstallModal"']) . '</span>';
+        }
         ?>
       </div>
     </form>
@@ -145,6 +144,6 @@
       </div>
     </div>
     <?php
-      }
+    }
     ?>
   </div>

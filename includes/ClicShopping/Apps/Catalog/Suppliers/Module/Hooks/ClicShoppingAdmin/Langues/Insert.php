@@ -1,70 +1,70 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Catalog\Suppliers\Module\Hooks\ClicShoppingAdmin\Langues;
+namespace ClicShopping\Apps\Catalog\Suppliers\Module\Hooks\ClicShoppingAdmin\Langues;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Catalog\Suppliers\Suppliers as SuppliersApp;
+use ClicShopping\Apps\Catalog\Suppliers\Suppliers as SuppliersApp;
 
-  class Insert implements \ClicShopping\OM\Modules\HooksInterface
+class Insert implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+  protected $insert_language_id;
+
+  public function __construct()
   {
-    protected mixed $app;
-    protected $insert_language_id;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Suppliers')) {
-        Registry::set('Suppliers', new SuppliersApp());
-      }
-
-      $this->app = Registry::get('Suppliers');
-      $this->lang = Registry::get('Language');
+    if (!Registry::exists('Suppliers')) {
+      Registry::set('Suppliers', new SuppliersApp());
     }
 
-    private function insert()
-    {
-      if (isset($this->insert_language_id, $_GET['Langues'], $_GET['Insert'])) {
-        $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
+    $this->app = Registry::get('Suppliers');
+    $this->lang = Registry::get('Language');
+  }
 
-        $Qsuppliers = $this->app->db->prepare('select m.suppliers_id as orig_suppliers_id,
+  private function insert()
+  {
+    if (isset($this->insert_language_id, $_GET['Langues'], $_GET['Insert'])) {
+      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
+
+      $Qsuppliers = $this->app->db->prepare('select m.suppliers_id as orig_suppliers_id,
                                                       mi.*
                                               from :table_suppliers m left join :table_suppliers_info mi on m.suppliers_id = mi.suppliers_id
                                               where mi.languages_id = :languages_id
                                              ');
 
-        $Qsuppliers->bindInt(':languages_id', $this->lang->getId());
-        $Qsuppliers->execute();
+      $Qsuppliers->bindInt(':languages_id', $this->lang->getId());
+      $Qsuppliers->execute();
 
-        while ($Qsuppliers->fetch()) {
-          $cols = $Qsuppliers->toArray();
+      while ($Qsuppliers->fetch()) {
+        $cols = $Qsuppliers->toArray();
 
-          $cols['suppliers_id'] = $cols['orig_suppliers_id'];
-          $cols['languages_id'] = $this->insert_language_id;
+        $cols['suppliers_id'] = $cols['orig_suppliers_id'];
+        $cols['languages_id'] = $this->insert_language_id;
 
-          unset($cols['orig_suppliers_id']);
+        unset($cols['orig_suppliers_id']);
 
-          $this->app->db->save('suppliers_info', $cols);
-        }
-      }
-    }
-
-    public function execute()
-    {
-      if (!\defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {
-        return false;
-      }
-
-      if (isset($_GET['Insert'])) {
-        $this->insert();
+        $this->app->db->save('suppliers_info', $cols);
       }
     }
   }
+
+  public function execute()
+  {
+    if (!\defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {
+      return false;
+    }
+
+    if (isset($_GET['Insert'])) {
+      $this->insert();
+    }
+  }
+}

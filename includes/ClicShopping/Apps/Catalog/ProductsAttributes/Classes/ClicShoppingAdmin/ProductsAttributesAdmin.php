@@ -1,137 +1,137 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Catalog\ProductsAttributes\Classes\ClicShoppingAdmin;
+
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+use ClicShopping\OM\Upload;
+
+use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ImageResample;
+
+class ProductsAttributesAdmin
+{
+  protected mixed $lang;
+  protected mixed $db;
+  protected mixed $app;
+
+  public function __construct()
+  {
+    $this->lang = Registry::get('Language');
+    $this->db = Registry::get('Db');
+    $this->app = Registry::get('ProductsAttributes');
+  }
+
   /**
+   * products options - attributes
    *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
+   * @param string $options_id
+   * @return string $values_values['products_options_values_name'], the value of the option name
    *
    */
-
-  namespace ClicShopping\Apps\Catalog\ProductsAttributes\Classes\ClicShoppingAdmin;
-
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Upload;
-
-  use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ImageResample;
-
-  class ProductsAttributesAdmin
+  public function getOptionsName(int $options_id): string
   {
-    protected mixed $lang;
-    protected mixed $db;
-    protected mixed $app;
+    $sql_array = [
+      'products_options_id' => (int)$options_id,
+      'language_id' => (int)$this->lang->getId()
+    ];
 
-    public function __construct()
-    {
-      $this->lang = Registry::get('Language');
-      $this->db = Registry::get('Db');
-      $this->app = Registry::get('ProductsAttributes');
-    }
+    $Qoptions = Registry::get('Db')->get('products_options', 'products_options_name', $sql_array);
 
-    /**
-     * products options - attributes
-     *
-     * @param string $options_id
-     * @return string $values_values['products_options_values_name'], the value of the option name
-     *
-     */
-    public function getOptionsName(int $options_id): string
-    {
-      $sql_array = [
-        'products_options_id' => (int)$options_id,
-        'language_id' => (int)$this->lang->getId()
-        ];
+    return $Qoptions->value('products_options_name');
+  }
 
-      $Qoptions = Registry::get('Db')->get('products_options', 'products_options_name', $sql_array);
+  /**
+   * products options name - attributes
+   *
+   * @param string $values_id
+   * @return string $values_values['products_options_values_name'], the name value of the option name
+   *
+   */
+  public function getValuesName(int $values_id): string
+  {
+    $sql_array = [
+      'products_options_values_id' => (int)$values_id,
+      'language_id' => (int)$this->lang->getId()
+    ];
 
-      return $Qoptions->value('products_options_name');
-    }
+    $Qvalues = Registry::get('Db')->get('products_options_values', 'products_options_values_name', $sql_array);
 
-    /**
-     * products options name - attributes
-     *
-     * @param string $values_id
-     * @return string $values_values['products_options_values_name'], the name value of the option name
-     *
-     */
-    public function getValuesName(int $values_id): string
-    {
-      $sql_array = [
-        'products_options_values_id' => (int)$values_id,
-        'language_id' => (int)$this->lang->getId()
-      ];
+    return $Qvalues->value('products_options_values_name');
+  }
 
-      $Qvalues = Registry::get('Db')->get('products_options_values', 'products_options_values_name', $sql_array);
+  public function uploadImage()
+  {
+    $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-      return $Qvalues->value('products_options_values_name');
-    }
+    Registry::set('ImageResampleNew', new ImageResample());
+    $CLICSHOPPING_ImageResample = Registry::get('ImageResampleNew');
 
-    public function uploadImage()
-    {
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+    $CLICSHOPPING_Image = Registry::get('Image');
 
-      Registry::set('ImageResampleNew', new ImageResample());
-      $CLICSHOPPING_ImageResample = Registry::get('ImageResampleNew');
+    $dir_products_image = 'attributes_options/';
 
-      $CLICSHOPPING_Image = Registry::get('Image');
-
-      $dir_products_image = 'attributes_options/';
-
-      $error = true;
+    $error = true;
 
 // load originale image
-      $image = new Upload('products_image_resize', $CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg', 'webp']);
+    $image = new Upload('products_image_resize', $CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg', 'webp']);
 
 // When the image is updated
-      if ($image->check() && $image->save()) {
-        $error = false;
-      } else {
-        $error = true;
-      }
+    if ($image->check() && $image->save()) {
+      $error = false;
+    } else {
+      $error = true;
+    }
 
-      if ($error === false && $image->check()) {
-        $filename_image_name = $image->getFilename();
-        $CLICSHOPPING_ImageResample->load($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name);
+    if ($error === false && $image->check()) {
+      $filename_image_name = $image->getFilename();
+      $CLICSHOPPING_ImageResample->load($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name);
 
-        $CLICSHOPPING_ImageResample->resizeToWidth(50);
+      $CLICSHOPPING_ImageResample->resizeToWidth(50);
 
-        $image_name = HTML::removeFileAccents($filename_image_name);
-        $image_name = HTML::replaceString(' ', '', $image_name);
+      $image_name = HTML::removeFileAccents($filename_image_name);
+      $image_name = HTML::replaceString(' ', '', $image_name);
 
-        $image_ext = 'opt';
-        $rand_image = $CLICSHOPPING_Image->getGenerateRandomString();
+      $image_ext = 'opt';
+      $rand_image = $CLICSHOPPING_Image->getGenerateRandomString();
 
-        $image = $dir_products_image . $image_ext . '_' . $rand_image . '_' . $image_name;
+      $image = $dir_products_image . $image_ext . '_' . $rand_image . '_' . $image_name;
 
-        $CLICSHOPPING_ImageResample->save($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $image);
+      $CLICSHOPPING_ImageResample->save($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $image);
 
 // delete the orginal files
-        if (file_exists($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name)) {
-          unlink($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name);
-        }
-
-        $products_image_name = $CLICSHOPPING_Image->CleanImageName($image);
-
-        return $products_image_name;
+      if (file_exists($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name)) {
+        unlink($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name);
       }
-    }
 
-    /**
-     * Set attribut option type
-     * @return array
-     */
-    public function setAttributeType(): array
-    {
-      $products_options_type = [
-        ['id' => 'select',
-          'text' => $this->app->getDef('text_select')
-        ],
-        ['id' => 'radio',
-         'text' => $this->app->getDef('text_radio')
-        ]
-      ];
+      $products_image_name = $CLICSHOPPING_Image->CleanImageName($image);
 
-      return $products_options_type;
+      return $products_image_name;
     }
   }
+
+  /**
+   * Set attribut option type
+   * @return array
+   */
+  public function setAttributeType(): array
+  {
+    $products_options_type = [
+      ['id' => 'select',
+        'text' => $this->app->getDef('text_select')
+      ],
+      ['id' => 'radio',
+        'text' => $this->app->getDef('text_radio')
+      ]
+    ];
+
+    return $products_options_type;
+  }
+}

@@ -1,47 +1,47 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Catalog\ProductsAttributes\Classes\Shop;
+namespace ClicShopping\Apps\Catalog\ProductsAttributes\Classes\Shop;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  class ProductsAttributesShop
+class ProductsAttributesShop
+{
+  protected mixed $lang;
+  protected mixed $app;
+  protected $productsCommon;
+  protected $customer;
+
+  public function __construct()
   {
-    protected mixed $lang;
-    protected mixed $app;
-    protected $productsCommon;
-    protected $customer;
+    $this->lang = Registry::get('Language');
+    $this->db = Registry::get('Db');
+    $this->productsCommon = Registry::get('ProductsCommon');
+    $this->customer = Registry::get('Customer');
+  }
 
-    public function __construct()
-    {
-      $this->lang = Registry::get('Language');
-      $this->db = Registry::get('Db');
-      $this->productsCommon = Registry::get('ProductsCommon');
-      $this->customer = Registry::get('Customer');
+  /**
+   * Count the number of attributes on product
+   * @param null $id
+   * @return mixed
+   */
+  private function setCountProductsAttributes($id = null)
+  {
+    if (\is_null($id)) {
+      $id = $this->productsCommon->getID();
     }
 
-    /**
-     * Count the number of attributes on product
-     * @param null $id
-     * @return mixed
-     */
-    private function setCountProductsAttributes($id = null)
-    {
-      if (\is_null($id)) {
-        $id = $this->productsCommon->getID();
-      }
+    $language_id = $this->lang->getId();
 
-      $language_id = $this->lang->getId();
-
-      if ($this->customer->getCustomersGroupID() != 0) {
-        $QproductsAttributes = $this->db->prepare('select count(*) as total
+    if ($this->customer->getCustomersGroupID() != 0) {
+      $QproductsAttributes = $this->db->prepare('select count(*) as total
                                                    from :table_products_options popt,
                                                         :table_products_attributes patrib
                                                    where patrib.products_id = :products_id
@@ -51,13 +51,13 @@
                                                    and patrib.status = 1
                                                  ');
 
-        $QproductsAttributes->bindInt(':products_id', $id);
-        $QproductsAttributes->bindInt(':language_id', $language_id);
-        $QproductsAttributes->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+      $QproductsAttributes->bindInt(':products_id', $id);
+      $QproductsAttributes->bindInt(':language_id', $language_id);
+      $QproductsAttributes->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
-        $QproductsAttributes->execute();
-      } else {
-        $QproductsAttributes = $this->db->prepare('select count(*) as total
+      $QproductsAttributes->execute();
+    } else {
+      $QproductsAttributes = $this->db->prepare('select count(*) as total
                                                    from :table_products_options popt,
                                                         :table_products_attributes patrib
                                                    where patrib.products_id = :products_id
@@ -67,61 +67,61 @@
                                                    and patrib.status = 1
                                                   ');
 
-        $QproductsAttributes->bindInt(':products_id', $id);
-        $QproductsAttributes->bindInt(':language_id', $language_id);
+      $QproductsAttributes->bindInt(':products_id', $id);
+      $QproductsAttributes->bindInt(':language_id', $language_id);
 
-        $QproductsAttributes->execute();
-      }
-
-      return $QproductsAttributes->valueDecimal('total');
+      $QproductsAttributes->execute();
     }
 
-    /**
-     * @param null $id
-     * @return int
-     */
-    Public function getCountProductsAttributes($id = null)
-    {
-      return $this->setCountProductsAttributes($id);
+    return $QproductsAttributes->valueDecimal('total');
+  }
+
+  /**
+   * @param null $id
+   * @return int
+   */
+  public function getCountProductsAttributes($id = null)
+  {
+    return $this->setCountProductsAttributes($id);
+  }
+
+  /**
+   * Check if product has attributes
+   * @param null $id
+   * @return bool
+   */
+  public function getHasProductAttributes($id = null)
+  {
+    if (\is_null($id)) {
+      $id = $this->productsCommon->getID();
     }
 
-    /**
-     * Check if product has attributes
-     * @param null $id
-     * @return bool
-     */
-    public function getHasProductAttributes($id = null)
-    {
-      if (\is_null($id)) {
-        $id = $this->productsCommon->getID();
-      }
-
-      $Qattributes = $this->db->prepare('select products_id
+    $Qattributes = $this->db->prepare('select products_id
                                          from :table_products_attributes
                                          where products_id = :products_id
                                          and status = 1
                                          limit 1
                                         ');
-      $Qattributes->bindInt(':products_id', $id);
+    $Qattributes->bindInt(':products_id', $id);
 
-      $Qattributes->execute();
+    $Qattributes->execute();
 
-      return $Qattributes->fetch() !== false;
-    }
+    return $Qattributes->fetch() !== false;
+  }
 
-    /**
-     * Get attributes Information
-     * @param $products_id
-     * @param int $option_id
-     * @param int|null $options_values_id
-     * @param int $language_id
-     * @return mixed
-     */
-    public function getProductsAttributesInfo($products_id, $option_id, ?int $options_values_id = null, ?int $language_id)
-    {
-      if (!\is_null($options_values_id)) {
-        if ($this->customer->getCustomersGroupID() != 0) {
-          $Qattributes = $this->db->prepare('select distinct popt.products_options_name,
+  /**
+   * Get attributes Information
+   * @param $products_id
+   * @param int $option_id
+   * @param int|null $options_values_id
+   * @param int $language_id
+   * @return mixed
+   */
+  public function getProductsAttributesInfo($products_id, $option_id, ?int $options_values_id = null, ?int $language_id)
+  {
+    if (!\is_null($options_values_id)) {
+      if ($this->customer->getCustomersGroupID() != 0) {
+        $Qattributes = $this->db->prepare('select distinct popt.products_options_name,
                                                              poval.products_options_values_name,
                                                              pa.options_values_price,
                                                              pa.price_prefix,
@@ -140,15 +140,15 @@
                                             and (pa.customers_group_id = :customers_group_id or pa.customers_group_id = 99)
                                             and pa.status = 1
                                            ');
-          $Qattributes->bindInt(':products_id', $products_id);
-          $Qattributes->bindInt(':options_id', $option_id);
-          $Qattributes->bindInt(':options_values_id', $options_values_id);
-          $Qattributes->bindInt(':language_id', $language_id);
-          $Qattributes->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+        $Qattributes->bindInt(':products_id', $products_id);
+        $Qattributes->bindInt(':options_id', $option_id);
+        $Qattributes->bindInt(':options_values_id', $options_values_id);
+        $Qattributes->bindInt(':language_id', $language_id);
+        $Qattributes->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
-          $Qattributes->execute();
-        } else {
-          $Qattributes = $this->db->prepare('select distinct popt.products_options_name,
+        $Qattributes->execute();
+      } else {
+        $Qattributes = $this->db->prepare('select distinct popt.products_options_name,
                                                              poval.products_options_values_name,
                                                              pa.options_values_price,
                                                              pa.price_prefix,
@@ -167,16 +167,16 @@
                                             and (pa.customers_group_id = 0 or pa.customers_group_id = 99)
                                             and pa.status = 1
                                            ');
-          $Qattributes->bindInt(':products_id', $products_id);
-          $Qattributes->bindInt(':options_id', $option_id);
-          $Qattributes->bindInt(':options_values_id', $options_values_id);
-          $Qattributes->bindInt(':language_id', $language_id);
+        $Qattributes->bindInt(':products_id', $products_id);
+        $Qattributes->bindInt(':options_id', $option_id);
+        $Qattributes->bindInt(':options_values_id', $options_values_id);
+        $Qattributes->bindInt(':language_id', $language_id);
 
-          $Qattributes->execute();
-        }
-      } else {
-        if ($this->customer->getCustomersGroupID() != 0) {
-          $Qattributes = $this->db->prepare('select distinct pov.products_options_values_id,
+        $Qattributes->execute();
+      }
+    } else {
+      if ($this->customer->getCustomersGroupID() != 0) {
+        $Qattributes = $this->db->prepare('select distinct pov.products_options_values_id,
                                                               pov.products_options_values_name,
                                                               pa.options_values_price,
                                                               pa.price_prefix,
@@ -193,14 +193,14 @@
                                              order by pa.products_options_sort_order
                                             ');
 
-          $Qattributes->bindInt(':products_id', $products_id);
-          $Qattributes->bindInt(':options_id', $option_id);
-          $Qattributes->bindInt(':language_id', $language_id);
-          $Qattributes->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+        $Qattributes->bindInt(':products_id', $products_id);
+        $Qattributes->bindInt(':options_id', $option_id);
+        $Qattributes->bindInt(':language_id', $language_id);
+        $Qattributes->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
-          $Qattributes->execute();
-        } else {
-          $Qattributes = $this->db->prepare('select distinct pov.products_options_values_id,
+        $Qattributes->execute();
+      } else {
+        $Qattributes = $this->db->prepare('select distinct pov.products_options_values_id,
                                                               pov.products_options_values_name,
                                                               pa.options_values_price,
                                                               pa.price_prefix,
@@ -217,47 +217,47 @@
                                              order by pa.products_options_sort_order
                                             ');
 
-          $Qattributes->bindInt(':products_id', $products_id);
-          $Qattributes->bindInt(':options_id', $option_id);
-          $Qattributes->bindInt(':language_id', $language_id);
-          $Qattributes->execute();
-        }
+        $Qattributes->bindInt(':products_id', $products_id);
+        $Qattributes->bindInt(':options_id', $option_id);
+        $Qattributes->bindInt(':language_id', $language_id);
+        $Qattributes->execute();
       }
-
-      return $Qattributes;
     }
 
-    /**
-     *
-     * @param int $id
-     * @return bool
-     */
-    public function getCheckProductsStatus(int $id)
-    {
-      $Qcheck = $this->db->prepare('select products_id
+    return $Qattributes;
+  }
+
+  /**
+   *
+   * @param int $id
+   * @return bool
+   */
+  public function getCheckProductsStatus(int $id)
+  {
+    $Qcheck = $this->db->prepare('select products_id
                                     from :table_products
                                     where products_id = :products_id
                                     and products_status = 1
                                     and products_archive = 0
                                   ');
 
-      $Qcheck->bindInt(':products_id', $id);
-      $Qcheck->execute();
+    $Qcheck->bindInt(':products_id', $id);
+    $Qcheck->execute();
 
-      return $Qcheck->fetch();
-    }
+    return $Qcheck->fetch();
+  }
 
-    /**
-     * Check products attributes
-     * @param int $products_id
-     * @param int $option_id
-     * @param int $options_values_id
-     * @return bool
-     */
-    public function getCheckProductsAttributes(int $products_id, int $option_id, int $options_values_id)
-    {
-      if ($this->customer->getCustomersGroupID() != 0) {
-        $Qcheck = $this->db->prepare('select products_attributes_id
+  /**
+   * Check products attributes
+   * @param int $products_id
+   * @param int $option_id
+   * @param int $options_values_id
+   * @return bool
+   */
+  public function getCheckProductsAttributes(int $products_id, int $option_id, int $options_values_id)
+  {
+    if ($this->customer->getCustomersGroupID() != 0) {
+      $Qcheck = $this->db->prepare('select products_attributes_id
                                       from :table_products_attributes
                                       where products_id = :products_id
                                       and options_id = :options_id
@@ -267,14 +267,14 @@
                                       limit 1
                                      ');
 
-        $Qcheck->bindInt(':products_id', $products_id);
-        $Qcheck->bindInt(':options_id', $option_id);
-        $Qcheck->bindInt(':options_values_id', $options_values_id);
-        $Qcheck->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+      $Qcheck->bindInt(':products_id', $products_id);
+      $Qcheck->bindInt(':options_id', $option_id);
+      $Qcheck->bindInt(':options_values_id', $options_values_id);
+      $Qcheck->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
-        $Qcheck->execute();
-      } else {
-        $Qcheck = $this->db->prepare('select products_attributes_id
+      $Qcheck->execute();
+    } else {
+      $Qcheck = $this->db->prepare('select products_attributes_id
                                       from :table_products_attributes
                                       where products_id = :products_id
                                       and options_id = :options_id
@@ -284,30 +284,30 @@
                                       limit 1
                                      ');
 
-        $Qcheck->bindInt(':products_id', $products_id);
-        $Qcheck->bindInt(':options_id', $option_id);
-        $Qcheck->bindInt(':options_values_id', $options_values_id);
+      $Qcheck->bindInt(':products_id', $products_id);
+      $Qcheck->bindInt(':options_id', $option_id);
+      $Qcheck->bindInt(':options_values_id', $options_values_id);
 
-        $Qcheck->execute();
-      }
-
-      return $Qcheck->fetch();
+      $Qcheck->execute();
     }
+
+    return $Qcheck->fetch();
+  }
 
 //******************************************************
 // Download
 ///******************************************************
 
-    /**
-     * Check products download
-     * @param int $products_id
-     * @param int $options_values_id
-     * @return bool
-     */
-    public function getCheckProductsDownload(int $products_id, int $options_values_id)
-    {
-      if ($this->customer->getCustomersGroupID() != 0) {
-        $Qcheck = $this->db->prepare('select pa.products_attributes_id
+  /**
+   * Check products download
+   * @param int $products_id
+   * @param int $options_values_id
+   * @return bool
+   */
+  public function getCheckProductsDownload(int $products_id, int $options_values_id)
+  {
+    if ($this->customer->getCustomersGroupID() != 0) {
+      $Qcheck = $this->db->prepare('select pa.products_attributes_id
                                       from :table_products_attributes pa,
                                            :table_products_attributes_download pad
                                       where pa.products_id = :products_id
@@ -317,14 +317,14 @@
                                       and pa.status = 1
                                       limit 1
                                      ');
-        $Qcheck->bindInt(':products_id', $products_id);
-        $Qcheck->bindInt(':options_values_id', $options_values_id);
-        $Qcheck->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
-        $Qcheck->execute();
+      $Qcheck->bindInt(':products_id', $products_id);
+      $Qcheck->bindInt(':options_values_id', $options_values_id);
+      $Qcheck->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+      $Qcheck->execute();
 
-        $check = $Qcheck->rowCount();
-      } else {
-        $Qcheck = $this->db->prepare('select pa.products_attributes_id
+      $check = $Qcheck->rowCount();
+    } else {
+      $Qcheck = $this->db->prepare('select pa.products_attributes_id
                                       from :table_products_attributes pa,
                                            :table_products_attributes_download pad
                                       where pa.products_id = :products_id
@@ -334,29 +334,29 @@
                                       and pa.status = 1
                                       limit 1
                                      ');
-        $Qcheck->bindInt(':products_id', $products_id);
-        $Qcheck->bindInt(':options_values_id', $options_values_id);
-        $Qcheck->execute();
+      $Qcheck->bindInt(':products_id', $products_id);
+      $Qcheck->bindInt(':options_values_id', $options_values_id);
+      $Qcheck->execute();
 
-        $check = $Qcheck->rowCount();
-      }
-
-      return $check;
+      $check = $Qcheck->rowCount();
     }
 
-    /**
-     * get the attributes download - used payment
-     * @param int $products_id
-     * @param int $options_id
-     * @param int $options_values_id
-     * @param int $language_id
-     * @return mixed
-     */
-    public function getAttributesDownloaded(int|string $products_id, int $options_id, int $options_values_id, int $language_id)
-    {
-      if (DOWNLOAD_ENABLED == 'true') {
-        if ($this->customer->getCustomersGroupID() != 0) {
-          $Qattributes = $this->db->prepare('select popt.products_options_name,
+    return $check;
+  }
+
+  /**
+   * get the attributes download - used payment
+   * @param int $products_id
+   * @param int $options_id
+   * @param int $options_values_id
+   * @param int $language_id
+   * @return mixed
+   */
+  public function getAttributesDownloaded(int|string $products_id, int $options_id, int $options_values_id, int $language_id)
+  {
+    if (DOWNLOAD_ENABLED == 'true') {
+      if ($this->customer->getCustomersGroupID() != 0) {
+        $Qattributes = $this->db->prepare('select popt.products_options_name,
                                                     poval.products_options_values_name,
                                                     pa.options_values_price,
                                                     pa.price_prefix,
@@ -380,15 +380,15 @@
                                             and pa.status = 1
                                          ');
 
-          $Qattributes->bindInt(':products_id', $products_id);
-          $Qattributes->bindInt(':options_id', $options_id);
-          $Qattributes->bindInt(':options_values_id', $options_values_id);
-          $Qattributes->bindInt(':language_id', $language_id);
-          $Qattributes->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+        $Qattributes->bindInt(':products_id', $products_id);
+        $Qattributes->bindInt(':options_id', $options_id);
+        $Qattributes->bindInt(':options_values_id', $options_values_id);
+        $Qattributes->bindInt(':language_id', $language_id);
+        $Qattributes->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
-          $Qattributes->execute();
-        } else {
-          $Qattributes = $this->db->prepare('select popt.products_options_name,
+        $Qattributes->execute();
+      } else {
+        $Qattributes = $this->db->prepare('select popt.products_options_name,
                                                     poval.products_options_values_name,
                                                     pa.options_values_price,
                                                     pa.price_prefix,
@@ -412,16 +412,16 @@
                                             and pa.status = 1
                                          ');
 
-          $Qattributes->bindInt(':products_id', $products_id);
-          $Qattributes->bindInt(':options_id', $options_id);
-          $Qattributes->bindInt(':options_values_id', $options_values_id);
-          $Qattributes->bindInt(':language_id', $language_id);
+        $Qattributes->bindInt(':products_id', $products_id);
+        $Qattributes->bindInt(':options_id', $options_id);
+        $Qattributes->bindInt(':options_values_id', $options_values_id);
+        $Qattributes->bindInt(':language_id', $language_id);
 
-          $Qattributes->execute();
-        }
-      } else {
-        if ($this->customer->getCustomersGroupID() != 0) {
-          $Qattributes = $this->db->prepare('select popt.products_options_name,
+        $Qattributes->execute();
+      }
+    } else {
+      if ($this->customer->getCustomersGroupID() != 0) {
+        $Qattributes = $this->db->prepare('select popt.products_options_name,
                                                    poval.products_options_values_name,
                                                    pa.options_values_price,
                                                    pa.price_prefix,
@@ -441,14 +441,14 @@
                                               and pa.status = 1
                                             ');
 
-          $Qattributes->bindInt(':products_id', $products_id);
-          $Qattributes->bindInt(':options_id', $options_id);
-          $Qattributes->bindInt(':options_values_id', $options_values_id);
-          $Qattributes->bindInt(':language_id', $language_id);
-          $Qattributes->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
-          $Qattributes->execute();
-        } else {
-          $Qattributes = $this->db->prepare('select popt.products_options_name,
+        $Qattributes->bindInt(':products_id', $products_id);
+        $Qattributes->bindInt(':options_id', $options_id);
+        $Qattributes->bindInt(':options_values_id', $options_values_id);
+        $Qattributes->bindInt(':language_id', $language_id);
+        $Qattributes->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+        $Qattributes->execute();
+      } else {
+        $Qattributes = $this->db->prepare('select popt.products_options_name,
                                                    poval.products_options_values_name,
                                                    pa.options_values_price,
                                                    pa.price_prefix,
@@ -468,15 +468,15 @@
                                               and pa.status = 1
                                             ');
 
-          $Qattributes->bindInt(':products_id', $products_id);
-          $Qattributes->bindInt(':options_id', $options_id);
-          $Qattributes->bindInt(':options_values_id', $options_values_id);
-          $Qattributes->bindInt(':language_id', $language_id);
+        $Qattributes->bindInt(':products_id', $products_id);
+        $Qattributes->bindInt(':options_id', $options_id);
+        $Qattributes->bindInt(':options_values_id', $options_values_id);
+        $Qattributes->bindInt(':language_id', $language_id);
 
-          $Qattributes->execute();
-        }
+        $Qattributes->execute();
       }
-
-      return $Qattributes;
     }
+
+    return $Qattributes;
   }
+}

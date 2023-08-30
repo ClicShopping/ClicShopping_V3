@@ -1,33 +1,32 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
 
-  use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Address = Registry::get('Address');
+$CLICSHOPPING_Suppliers = Registry::get('Suppliers');
+$CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Address = Registry::get('Address');
-  $CLICSHOPPING_Suppliers = Registry::get('Suppliers');
-  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
+Registry::set('SupplierAdmin', new SupplierAdmin());
+$CLICSHOPPING_SupplierAdmin = Registry::get('SupplierAdmin');
 
-  Registry::set('SupplierAdmin', new SupplierAdmin());
-  $CLICSHOPPING_SupplierAdmin = Registry::get('SupplierAdmin');
+$supplier_inputs_string = '';
+$languages = $CLICSHOPPING_Language->getLanguages();
 
-  $supplier_inputs_string = '';
-  $languages = $CLICSHOPPING_Language->getLanguages();
-
-  echo HTML::form('ajaxform', $CLICSHOPPING_Suppliers->link('SuppliersPopUp&Save'), 'post', 'id="ajaxform"');
+echo HTML::form('ajaxform', $CLICSHOPPING_Suppliers->link('SuppliersPopUp&Save'), 'post', 'id="ajaxform"');
 ?>
 <div class="row">
   <div class="col-md-12">
@@ -59,9 +58,9 @@
   <div class="tabsClicShopping">
     <div class="tab-content">
       <?php
-        // -- ------------------------------------------------------------ //
-        // --          ONGLET Information General du fournisseur          //
-        // -- ------------------------------------------------------------ //
+      // -- ------------------------------------------------------------ //
+      // --          ONGLET Information General du fournisseur          //
+      // -- ------------------------------------------------------------ //
       ?>
       <div class="tab-pane active" id="tab30">
         <div class="col-md-12 mainTitle">
@@ -195,20 +194,20 @@
           </div>
 
           <?php
-            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-              ?>
-              <div class="col-md-12">
-                <div class="form-group row">
-                  <label for="lang>"
-                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                  <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_SupplierAdmin->GetSupplierUrl(null, $languages[$i]['id'])) ?>
-                  </div>
+          for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+            ?>
+            <div class="col-md-12">
+              <div class="form-group row">
+                <label for="lang>"
+                       class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                <div class="col-md-5">
+                  <?php echo HTML::inputField('suppliers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_SupplierAdmin->GetSupplierUrl(null, $languages[$i]['id'])) ?>
                 </div>
               </div>
+            </div>
 
-              <?php
-            }
+            <?php
+          }
           ?>
         </div>
       </div>

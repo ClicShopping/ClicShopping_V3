@@ -1,43 +1,43 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
+use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
 
-  $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Address = Registry::get('Address');
-  $CLICSHOPPING_Suppliers = Registry::get('Suppliers');
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
+$CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Address = Registry::get('Address');
+$CLICSHOPPING_Suppliers = Registry::get('Suppliers');
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $form_action = 'Insert';
-  $variable = '';
+$form_action = 'Insert';
+$variable = '';
 
-  if ((isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID']))) {
-    $form_action = 'Update';
-    $variable = '&mID=' . HTML::sanitize($_GET['mID']);
-  }
+if ((isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID']))) {
+  $form_action = 'Update';
+  $variable = '&mID=' . HTML::sanitize($_GET['mID']);
+}
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
+echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 
-  Registry::set('SupplierAdmin', new SupplierAdmin());
-  $CLICSHOPPING_SupplierAdmin = Registry::get('SupplierAdmin');
+Registry::set('SupplierAdmin', new SupplierAdmin());
+$CLICSHOPPING_SupplierAdmin = Registry::get('SupplierAdmin');
 ?>
 <div class="contentBody">
   <div class="row">
@@ -50,11 +50,11 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Suppliers->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
 <?php
-  echo HTML::form('suppliers', $CLICSHOPPING_Suppliers->link('Suppliers&' . $form_action . $variable));
-  if ($form_action == 'Update') echo HTML::hiddenField('suppliers_id', HTML::sanitize($_GET['mID']));
+echo HTML::form('suppliers', $CLICSHOPPING_Suppliers->link('Suppliers&' . $form_action . $variable));
+if ($form_action == 'Update') echo HTML::hiddenField('suppliers_id', HTML::sanitize($_GET['mID']));
 
-  echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_cancel'), null, $CLICSHOPPING_Suppliers->link('Suppliers&page=' . $page . $variable), 'warning') . '&nbsp;';
-  echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Suppliers->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Suppliers->getDef('button_update'), null, null, 'success'));
+echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_cancel'), null, $CLICSHOPPING_Suppliers->link('Suppliers&page=' . $page . $variable), 'warning') . '&nbsp;';
+echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Suppliers->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Suppliers->getDef('button_update'), null, null, 'success'));
 ?>
             </span>
         </div>
@@ -63,20 +63,20 @@
   </div>
   <div class="separator"></div>
   <?php
-    if (isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID'])) {
-      $Qsuppliers = $CLICSHOPPING_Suppliers->db->prepare('select *
+  if (isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID'])) {
+    $Qsuppliers = $CLICSHOPPING_Suppliers->db->prepare('select *
                                                         from :table_suppliers
                                                         where suppliers_id = :suppliers_id
                                                       ');
-      $Qsuppliers->bindInt(':suppliers_id', (int)$_GET['mID']);
-      $Qsuppliers->execute();
+    $Qsuppliers->bindInt(':suppliers_id', (int)$_GET['mID']);
+    $Qsuppliers->execute();
 
-      $suppliers = $Qsuppliers->fetch();
+    $suppliers = $Qsuppliers->fetch();
 
-      $mInfo = new ObjectInfo($Qsuppliers->toArray());
-    } else {
-      $mInfo = new ObjectInfo([]);
-    }
+    $mInfo = new ObjectInfo($Qsuppliers->toArray());
+  } else {
+    $mInfo = new ObjectInfo([]);
+  }
   ?>
   <div id="suppliersTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
@@ -91,9 +91,9 @@
     <div class="tabsClicShopping">
       <div class="tab-content">
         <?php
-          // -- ------------------------------------------------------------ //
-          // --          ONGLET Information Général de la Marque          //
-          // -- ------------------------------------------------------------ //
+        // -- ------------------------------------------------------------ //
+        // --          ONGLET Information Général de la Marque          //
+        // -- ------------------------------------------------------------ //
         ?>
         <div class="tab-pane active" id="tab1">
           <div class="col-md-12 mainTitle">
@@ -226,19 +226,19 @@
             </div>
 
             <?php
-              $languages = $CLICSHOPPING_Language->getLanguages();
+            $languages = $CLICSHOPPING_Language->getLanguages();
 
-              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                ?>
-                <div class="form-group row">
-                  <label for="code"
-                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                  <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_SupplierAdmin->getSupplierUrl($mInfo->suppliers_id ?? null, $languages[$i]['id'])) ?>
-                  </div>
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              ?>
+              <div class="form-group row">
+                <label for="code"
+                       class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                <div class="col-md-5">
+                  <?php echo HTML::inputField('suppliers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_SupplierAdmin->getSupplierUrl($mInfo->suppliers_id ?? null, $languages[$i]['id'])) ?>
                 </div>
-                <?php
-              }
+              </div>
+              <?php
+            }
             ?>
           </div>
         </div>
@@ -300,7 +300,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_Suppliers->getDef('title_help_image') . '"></i></h4> '  . $CLICSHOPPING_Suppliers->getDef('title_help_image') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Suppliers->getDef('title_help_image') . '"></i></h4> ' . $CLICSHOPPING_Suppliers->getDef('title_help_image') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Suppliers->getDef('help_image_suppliers'); ?></div>
           </div>
