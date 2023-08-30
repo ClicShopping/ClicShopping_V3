@@ -1,29 +1,27 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\OM\Module\Hooks\Shop\Account;
+
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+
+class AccountGdprDeleteActionsRecorder
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return string
    */
-
-  namespace ClicShopping\OM\Module\Hooks\Shop\Account;
-
-  use ClicShopping\OM\CLICSHOPPING;
-
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-
-  class AccountGdprDeleteActionsRecorder
+  public function display(): string
   {
-    /**
-     * @return string
-     */
-    public function display(): string
-    {
-      $output = '';
-      $output .= '<div>
+    $output = '';
+    $output .= '<div>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">
                         <div class="separator"></div>
@@ -37,6 +35,6 @@
                   </div>
                  ';
 
-      return $output;
-    }
+    return $output;
   }
+}

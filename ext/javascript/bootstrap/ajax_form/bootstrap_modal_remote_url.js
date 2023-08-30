@@ -7,6 +7,6 @@
  *
  */
 
-$('body').on('click', '[data-bs-toggle="modal"]', function(){
-  $($(this).data("target")+' .modal-body').load($(this).data("remote"));
+$('body').on('click', '[data-bs-toggle="modal"]', function () {
+  $($(this).data("target") + ' .modal-body').load($(this).data("remote"));
 });

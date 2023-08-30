@@ -20,7 +20,7 @@ function initializeTable() {
 }
 
 if (button !== null && button !== undefined) {
-  button.addEventListener('click', function() {
+  button.addEventListener('click', function () {
     document.querySelector('form').addEventListener('submit', confirmFormSubmission);
   });
 }

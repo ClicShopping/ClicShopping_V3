@@ -10,11 +10,11 @@
 function SetFocus() {
   if (document.forms.length > 0) {
     isNotAdminLanguage:
-      for (f=0; f<document.forms.length; f++) {
+      for (f = 0; f < document.forms.length; f++) {
         if (document.forms[f].name != "adminlanguage") {
           const field = document.forms[f];
-          for (i=0; i<field.length; i++) {
-            if ( (field.elements[i].type != "image") &&
+          for (i = 0; i < field.length; i++) {
+            if ((field.elements[i].type != "image") &&
               (field.elements[i].type != "hidden") &&
               (field.elements[i].type != "reset") &&
               (field.elements[i].type != "button") &&
@@ -24,7 +24,7 @@ function SetFocus() {
 
               document.forms[f].elements[i].focus();
 
-              if ( (field.elements[i].type == "text") ||
+              if ((field.elements[i].type == "text") ||
                 (field.elements[i].type == "password")
               )
                 document.forms[f].elements[i].select();
@@ -48,7 +48,7 @@ function toggleDivBlock(id) {
     itm = document.all[id];
   }
 
-  if (document.layers){
+  if (document.layers) {
     itm = document.layers[id];
   }
 

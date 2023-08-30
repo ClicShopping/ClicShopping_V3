@@ -1,27 +1,28 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+
 ?>
 <form name="install" id="installForm" action="install.php?step=2" method="post">
-<div id="content">
-  <div class="page-header">
-    <div class="container">
-      <div></div>
-      <h1><?php echo TEXT_DATABASE_SERVER; ?></h1>
+  <div id="content">
+    <div class="page-header">
+      <div class="container">
+        <div></div>
+        <h1><?php echo TEXT_DATABASE_SERVER; ?></h1>
+      </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="card">
-      <div class="card-header"><i class="bi bi-sliders"></i><?php echo TEXT_STEP_INTRO_1; ?></div>
-      <div class="card-body">
+    <div class="container">
+      <div class="card">
+        <div class="card-header"><i class="bi bi-sliders"></i><?php echo TEXT_STEP_INTRO_1; ?></div>
+        <div class="card-body">
           <fieldset>
             <div class="row">
               <div class="col-md-4  order-md-2">
@@ -34,7 +35,9 @@
                   <div class="card-body">
                     <p><?php echo TEXT_STEP_INTRO_2; ?></p>
                     <div class="progress">
-                      <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%</div>
+                      <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar"
+                           aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">25%
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -63,21 +66,22 @@
 
                 <div class="form-row">
                   <div class="form-group col-6 required">
-                   <label for="dbName"><?php echo TEXT_DATABASE_NAME; ?></label>
+                    <label for="dbName"><?php echo TEXT_DATABASE_NAME; ?></label>
                     <?php echo HTML::inputField('DB_DATABASE', null, 'required aria-required="true" id="dbName"'); ?>
                     <span class="help-block"><?php echo TEXT_DATABASE_HELP; ?></span>
                   </div>
                   <div class="form-group col-3">
                     <label for="input-db-prefix" class="col-form-label">Table Prefix</label>
                     <?php echo HTML::inputField('DB_TABLE_PREFIX', 'clic_', 'id="dbTablePrefix"'); ?>
-                    <span class="help-block"><?php echo 'Prefix all table names in the database with this value'; ?></span>
+                    <span
+                      class="help-block"><?php echo 'Prefix all table names in the database with this value'; ?></span>
                   </div>
                 </div>
               </div>
             </div>
           </fieldset>
 
-          <br /><br />
+          <br/><br/>
           <div class="row mt-3">
             <div for="demo"><h3>Install Demo Database</h3></div>
             <?php
@@ -85,9 +89,9 @@
               ['id' => 'normal', 'text' => 'Normal'],
             ];
 
-            echo '<div class="col-md-3">' . HTML::selectMenu('demo', $demo, 'demo', 'id="demo"') .'</div>';
+            echo '<div class="col-md-3">' . HTML::selectMenu('demo', $demo, 'demo', 'id="demo"') . '</div>';
             ?>
-            <br />
+            <br/>
 
             <div class="help-block"><?php echo '(Load the demo data, recommended for test)'; ?></div>
 
@@ -101,12 +105,12 @@
               ?>
             </div>
           </div>
+        </div>
       </div>
+      <br/>
+      <br/>
     </div>
-    <br />
-    <br />
   </div>
-</div>
 </form>
 
 <!-- Modal -->
@@ -124,148 +128,148 @@
 </div>
 
 <script>
-$(function() {
-  var formSubmited = false;
-  var formSuccess = false;
-  var dbNameToCreate;
-  var doImport = true;
+  $(function () {
+    var formSubmited = false;
+    var formSuccess = false;
+    var dbNameToCreate;
+    var doImport = true;
 
-  function prepareDB() {
-    if (formSubmited == true) {
-      return false;
-    }
+    function prepareDB() {
+      if (formSubmited == true) {
+        return false;
+      }
 
-    formSubmited = true;
+      formSubmited = true;
 
       $('#installModal .modal-body').html('<p><i class="bi bi-arrow-repeat"></i> Testing database connection..</p>');
 
-    $('#installModal').modal({
-      keyboard: false,
-      show: true
-    });
+      $('#installModal').modal({
+        keyboard: false,
+        show: true
+      });
 
-    var dbParams = {
-      server: $('#dbServer').val(),
-      username: $('#username').val(),
-      password: $('#password').val(),
-      name: $('#dbName').val(),
-      prefix: $('#dbTablePrefix').val(),
-      demo: $('#demo').val()
-    };
+      var dbParams = {
+        server: $('#dbServer').val(),
+        username: $('#username').val(),
+        password: $('#password').val(),
+        name: $('#dbName').val(),
+        prefix: $('#dbTablePrefix').val(),
+        demo: $('#demo').val()
+      };
 
-    var dbCheckUrl = 'rpc.php?action=dbCheck';
+      var dbCheckUrl = 'rpc.php?action=dbCheck';
 
-    if (dbParams.name == dbNameToCreate) {
-      dbCheckUrl = dbCheckUrl + '&createDb=true';
-    }
+      if (dbParams.name == dbNameToCreate) {
+        dbCheckUrl = dbCheckUrl + '&createDb=true';
+      }
 
-    $.post(dbCheckUrl, dbParams, function (response) {
-      if (('status' in response) && ('message' in response)) {
-        if ((response.status == '1') && (response.message == 'success')) {
-          if (doImport === true) {
-            $('#installModal .modal-body').html('<p><i class="bi bi-arrow-repeat"></i> The database structure is now being imported. Please be patient during this procedure.</p>');
+      $.post(dbCheckUrl, dbParams, function (response) {
+        if (('status' in response) && ('message' in response)) {
+          if ((response.status == '1') && (response.message == 'success')) {
+            if (doImport === true) {
+              $('#installModal .modal-body').html('<p><i class="bi bi-arrow-repeat"></i> The database structure is now being imported. Please be patient during this procedure.</p>');
 
-            $.post('rpc.php?action=dbImport', dbParams, function (response2) {
-              if (('status' in response2) && ('message' in response2)) {
-                if ((response2.status == '1') && (response2.message == 'success')) {
-                  $('#installModal .modal-body').html('<div class="alert alert-success" role="alert"><i class="bi bi-hand-thumbs-up"></i> Database imported successfully. Proceeding to next step..</div>');
+              $.post('rpc.php?action=dbImport', dbParams, function (response2) {
+                if (('status' in response2) && ('message' in response2)) {
+                  if ((response2.status == '1') && (response2.message == 'success')) {
+                    $('#installModal .modal-body').html('<div class="alert alert-success" role="alert"><i class="bi bi-hand-thumbs-up"></i> Database imported successfully. Proceeding to next step..</div>');
 
-                  formSuccess = true;
+                    formSuccess = true;
 
-                  setTimeout(function() {
-                    $('#installForm').submit();
-                  }, 2000);
+                    setTimeout(function () {
+                      $('#installForm').submit();
+                    }, 2000);
+                  } else {
+                    $('#installModal').modal('hide');
+
+                    $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem importing the database. The following error had occured:<br><br><strong>%s</strong><br><br>Please verify the connection parameters and try again.</div>'.replace('%s', response2.message));
+
+                    formSubmited = false;
+                  }
                 } else {
                   $('#installModal').modal('hide');
 
-                  $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem importing the database. The following error had occured:<br><br><strong>%s</strong><br><br>Please verify the connection parameters and try again.</div>'.replace('%s', response2.message));
+                  $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem importing the database. Please verify the connection parameters and try again.</div>');
 
                   formSubmited = false;
                 }
-              } else {
+              }, 'json').fail(function () {
                 $('#installModal').modal('hide');
 
                 $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem importing the database. Please verify the connection parameters and try again.</div>');
 
                 formSubmited = false;
-              }
-            }, 'json').fail(function() {
-              $('#installModal').modal('hide');
+              });
+            } else {
+              $('#installModal .modal-body').html('<div class="alert alert-success" role="alert"><i class="bi bi-hand-thumbs-up"></i> Database connection made successfully. Proceeding to next step..</div>');
 
-              $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem importing the database. Please verify the connection parameters and try again.</div>');
+              formSuccess = true;
 
-              formSubmited = false;
-            });
+              setTimeout(function () {
+                $('#installForm').submit();
+              }, 2000);
+            }
           } else {
-            $('#installModal .modal-body').html('<div class="alert alert-success" role="alert"><i class="bi bi-hand-thumbs-up"></i> Database connection made successfully. Proceeding to next step..</div>');
+            $('#installModal').modal('hide');
 
-            formSuccess = true;
+            if ((response.status == '1049') && (dbParams.name != dbNameToCreate)) {
+              dbNameToCreate = dbParams.name;
 
-            setTimeout(function() {
-              $('#installForm').submit();
-            }, 2000);
+              var result_error = 'The database name of \'' + dbParams.name.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '\' does not exist. If you submit the form again with the same database name, an attempt will be made to create it.';
+
+              $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> <strong>%s</strong></div>'.replace('%s', result_error));
+            } else {
+              $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem connecting to the database server. The following error had occured:<br><br><strong>%s</strong><br><br>Please verify the connection parameters and try again.</div>'.replace('%s', response.message));
+            }
+
+            formSubmited = false;
           }
         } else {
           $('#installModal').modal('hide');
 
-          if ((response.status == '1049') && (dbParams.name != dbNameToCreate)) {
-            dbNameToCreate = dbParams.name;
-
-            var result_error = 'The database name of \'' + dbParams.name.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '\' does not exist. If you submit the form again with the same database name, an attempt will be made to create it.';
-
-            $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> <strong>%s</strong></div>'.replace('%s', result_error));
-          } else {
-            $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem connecting to the database server. The following error had occured:<br><br><strong>%s</strong><br><br>Please verify the connection parameters and try again.</div>'.replace('%s', response.message));
-          }
+          $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem connecting to the database server. Please verify the connection parameters and try again.</div>');
 
           formSubmited = false;
         }
-      } else {
+      }, 'json').fail(function () {
         $('#installModal').modal('hide');
 
         $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem connecting to the database server. Please verify the connection parameters and try again.</div>');
 
         formSubmited = false;
+      });
+    }
+
+    // disable ENTER and force click on continue buttons
+    $('#installForm').on('keyup keypress', function (e) {
+      var keyCode = e.keyCode || e.which;
+
+      if (keyCode === 13) {
+        e.preventDefault();
+
+        return false;
       }
-    }, 'json').fail(function() {
-      $('#installModal').modal('hide');
-
-      $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem connecting to the database server. Please verify the connection parameters and try again.</div>');
-
-      formSubmited = false;
     });
-  }
 
-  // disable ENTER and force click on continue buttons
-  $('#installForm').on('keyup keypress', function(e) {
-    var keyCode = e.keyCode || e.which;
+    $('#installForm').submit(function (e) {
+      if (formSuccess == false) {
+        e.preventDefault();
 
-    if (keyCode === 13) {
-      e.preventDefault();
-
-      return false;
-    }
-  });
-
-  $('#installForm').submit(function(e) {
-    if (formSuccess == false) {
-      e.preventDefault();
-
-      prepareDB();
-    } else {
-      if (doImport !== true) {
-        $('#installForm').append('<input type="hidden" name="DB_SKIP_IMPORT" value="true">');
+        prepareDB();
+      } else {
+        if (doImport !== true) {
+          $('#installForm').append('<input type="hidden" name="DB_SKIP_IMPORT" value="true">');
+        }
       }
-    }
-  });
+    });
 
-  $('#buttonDoImport').on('click', function(e) {
-    doImport = true;
-  });
+    $('#buttonDoImport').on('click', function (e) {
+      doImport = true;
+    });
 
-  $('#buttonSkipImport').on('click', function(e) {
-    doImport = false;
+    $('#buttonSkipImport').on('click', function (e) {
+      doImport = false;
+    });
   });
-});
 </script>
 

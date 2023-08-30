@@ -1,27 +1,27 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Categories = Registry::get('Categories');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-  $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
+$CLICSHOPPING_Categories = Registry::get('Categories');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
-  $Qcategories = $CLICSHOPPING_Categories->db->prepare('select c.categories_id,
+$Qcategories = $CLICSHOPPING_Categories->db->prepare('select c.categories_id,
                                                                cd.categories_name,
                                                                c.parent_id
                                                         from :table_categories c,
@@ -30,23 +30,23 @@
                                                         and cd.language_id = :language_id
                                                         and c.categories_id = :categories_id
                                                         ');
-  $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-  $Qcategories->bindInt(':categories_id', $_GET['cID']);
+$Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+$Qcategories->bindInt(':categories_id', $_GET['cID']);
 
-  $Qcategories->execute();
+$Qcategories->execute();
 
-  $category_childs = ['childs_count' => $CLICSHOPPING_CategoriesAdmin->getChildsInCategoryCount($Qcategories->valueInt('categories_id'))];
-  $category_products = ['products_count' => $CLICSHOPPING_CategoriesAdmin->getCatalogInCategoryCount($Qcategories->valueInt('categories_id'))];
+$category_childs = ['childs_count' => $CLICSHOPPING_CategoriesAdmin->getChildsInCategoryCount($Qcategories->valueInt('categories_id'))];
+$category_products = ['products_count' => $CLICSHOPPING_CategoriesAdmin->getCatalogInCategoryCount($Qcategories->valueInt('categories_id'))];
 
 
-  $cInfo_array = array_merge($Qcategories->toArray(), $category_childs, $category_products);
-  $cInfo = new ObjectInfo($cInfo_array);
+$cInfo_array = array_merge($Qcategories->toArray(), $category_childs, $category_products);
+$cInfo = new ObjectInfo($cInfo_array);
 
-  $cPath = 0;
+$cPath = 0;
 
-  if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
+if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
 
-  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
+echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 <div class="contentBody">
   <div class="row">

@@ -1,23 +1,23 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
 
-  namespace ClicShopping\OM\Module\Hooks\Shop\Session;
+namespace ClicShopping\OM\Module\Hooks\Shop\Session;
 
-  use ClicShopping\OM\Hash;
+use ClicShopping\OM\Hash;
 
-  class Recreated
+class Recreated
+{
+  public function execute($parameters)
   {
-    public function execute($parameters)
-    {
 // reset session token
-      $_SESSION['sessiontoken'] = md5(Hash::getRandomInt() . Hash::getRandomInt() . Hash::getRandomInt() . Hash::getRandomInt());
-    }
+    $_SESSION['sessiontoken'] = md5(Hash::getRandomInt() . Hash::getRandomInt() . Hash::getRandomInt() . Hash::getRandomInt());
   }
+}

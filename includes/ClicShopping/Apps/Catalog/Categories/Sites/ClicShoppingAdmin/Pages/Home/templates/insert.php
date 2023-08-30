@@ -1,57 +1,56 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\FileSystem;
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+use ClicShopping\OM\FileSystem;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+$CLICSHOPPING_Categories = Registry::get('Categories');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
+$CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
-  $CLICSHOPPING_Categories = Registry::get('Categories');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-  $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
-  $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
+$CLICSHOPPING_Hooks->call('Categories', 'PreAction');
 
-  $CLICSHOPPING_Hooks->call('Categories', 'PreAction');
+// check if the catalog image directory exists
+if (is_dir($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) {
+  if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Categories->getDef('error_catalog_image_directory_not_writeable'), 'error');
+} else {
+  $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Categories->getDef('error_catalog_image_directory_does_not_exist'), 'error');
+}
 
-  // check if the catalog image directory exists
-  if (is_dir($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) {
-    if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Categories->getDef('error_catalog_image_directory_not_writeable'), 'error');
-  } else {
-    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Categories->getDef('error_catalog_image_directory_does_not_exist'), 'error');
-  }
-
-  $languages = $CLICSHOPPING_Language->getLanguages();
-
-
-  if (isset($_GET['cPath'])) {
-    $cPath = $_GET['cPath'];
-  } else {
-    $cPath = '';
-  }
-
-  if (isset($_GET['cID'])) {
-    $cID = $_GET['cID'];
-  } else {
-    $cID = '';
-  }
+$languages = $CLICSHOPPING_Language->getLanguages();
 
 
-  echo HTML::form('new_category', $CLICSHOPPING_Categories->link('Categories&Insert&cPath=' . $cPath . '&cID=' . $cID), 'post', 'enctype="multipart/form-data"');
+if (isset($_GET['cPath'])) {
+  $cPath = $_GET['cPath'];
+} else {
+  $cPath = '';
+}
 
-  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
+if (isset($_GET['cID'])) {
+  $cID = $_GET['cID'];
+} else {
+  $cID = '';
+}
+
+
+echo HTML::form('new_category', $CLICSHOPPING_Categories->link('Categories&Insert&cPath=' . $cPath . '&cID=' . $cID), 'post', 'enctype="multipart/form-data"');
+
+echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 
 <div class="contentBody">
@@ -65,8 +64,8 @@
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Categories->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-end">
 <?php
-  echo HTML::hiddenField('categories_date_added', date('Y-m-d')) . HTML::button($CLICSHOPPING_Categories->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLICSHOPPING_Categories->link('Categories&cPath=' . $cPath . '&cID=' . $cID), 'warning');
+echo HTML::hiddenField('categories_date_added', date('Y-m-d')) . HTML::button($CLICSHOPPING_Categories->getDef('button_update'), null, null, 'success') . ' ';
+echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLICSHOPPING_Categories->link('Categories&cPath=' . $cPath . '&cID=' . $cID), 'warning');
 ?>
             </span>
         </div>
@@ -89,9 +88,9 @@
     <div class="tabsClicShopping">
       <div class="tab-content">
         <?php
-          // -------------------------------------------------------------------
-          //          ONGLET General sur la description de la categorie
-          // -------------------------------------------------------------------
+        // -------------------------------------------------------------------
+        //          ONGLET General sur la description de la categorie
+        // -------------------------------------------------------------------
         ?>
         <div class="tab-pane active" id="tab1">
           <div class="col-md-12 mainTitle">
@@ -101,21 +100,21 @@
           </div>
           <div class="adminformTitle" id="categoriesLanguage">
             <?php
-              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                ?>
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="code"
-                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                      <div class="col-md-5">
-                        <?php echo HTML::inputField('categories_name[' . $languages[$i]['id'] . ']', null, 'class="form-control" required aria-required="true" Authentificator id="' . 'categories_name[' . $languages[$i]['id'] . ']' . '" placeholder="' . $CLICSHOPPING_Categories->getDef('text_edit_categories_name') . '"', true) . '&nbsp;'; ?>
-                      </div>
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              ?>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group row">
+                    <label for="code"
+                           class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                    <div class="col-md-5">
+                      <?php echo HTML::inputField('categories_name[' . $languages[$i]['id'] . ']', null, 'class="form-control" required aria-required="true" Authentificator id="' . 'categories_name[' . $languages[$i]['id'] . ']' . '" placeholder="' . $CLICSHOPPING_Categories->getDef('text_edit_categories_name') . '"', true) . '&nbsp;'; ?>
                     </div>
                   </div>
                 </div>
-                <?php
-              }
+              </div>
+              <?php
+            }
             ?>
             <div class="row" id="categoriesName">
               <div class="col-md-5">
@@ -148,9 +147,9 @@
           <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab1', null, 'display'); ?>
         </div>
         <?php
-          // ----------------------------------------------------------- //-->
-          //          categories description                              //-->
-          // ----------------------------------------------------------- //-->
+        // ----------------------------------------------------------- //-->
+        //          categories description                              //-->
+        // ----------------------------------------------------------- //-->
         ?>
         <div class="tab-pane" id="tab2">
           <div class="col-md-12 mainTitle">
@@ -158,45 +157,47 @@
           </div>
           <div class="adminformTitle">
             <div class="accordion" id="accordionExample">
-            <?php
-            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-              ?>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="heading<?php $i; ?>">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
-                  </button>
-                </h2>
-                <?php
+              <?php
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                ?>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading<?php $i; ?>">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                    </button>
+                  </h2>
+                  <?php
                   if ($i == 0) {
                     $show = ' show';
                   } else {
                     $show = '';
                   }
-                ?>
-                <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <?php
-                    $name = 'categories_description[' . $languages[$i]['id'] . ']';
-                    $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
+                  ?>
+                  <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>"
+                       aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <?php
+                      $name = 'categories_description[' . $languages[$i]['id'] . ']';
+                      $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                    echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', null, 'id="' . $ckeditor_id . '"');
-                    ?>
+                      echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', null, 'id="' . $ckeditor_id . '"');
+                      ?>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <?php
+                <?php
               }
-            ?>
+              ?>
             </div>
           </div>
           <div class="separator"></div>
           <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab2', null, 'display'); ?>
         </div>
         <?php
-          // -----------------------------------------------------//-->
-      //          categories SEO      //-->
-          // ---------------------------------------------------- //-->
+        // -----------------------------------------------------//-->
+        //          categories SEO      //-->
+        // ---------------------------------------------------- //-->
         ?>
         <div class="tab-pane" id="tab3">
           <div class="col-md-12 mainTitle">
@@ -213,66 +214,66 @@
               </div>
             </div>
             <?php
-              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                ?>
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              ?>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group row">
-                      <label for="code"
-                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                    <label for="code"
+                           class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                   </div>
                 </div>
               </div>
               <div class="separator"></div>
               <div class="row">
-                  <div class="col-md-12">
-                      <div class="form-group row">
-                          <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?>"
-                                 class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?></label>
-                          <div class="col-md-8">
-                            <?php echo HTML::inputField('categories_seo_url[' . $languages[$i]['id'] . ']', null, 'maxlength="70" size="77" id="default_url_' . $i . '"', false); ?>
-                          </div>
-                      </div>
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?>"
+                           class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_seo_url'); ?></label>
+                    <div class="col-md-8">
+                      <?php echo HTML::inputField('categories_seo_url[' . $languages[$i]['id'] . ']', null, 'maxlength="70" size="77" id="default_url_' . $i . '"', false); ?>
+                    </div>
                   </div>
+                </div>
               </div>
-             <div class="separator"></div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>"
-                             class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?></label>
-                      <div class="col-md-8">
-                        <?php echo HTML::inputField('categories_head_title_tag[' . $languages[$i]['id'] . ']', null, 'maxlength="70" size="77" id="default_title_' . $i . '"', false); ?>
-                      </div>
+              <div class="separator"></div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>"
+                           class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?></label>
+                    <div class="col-md-8">
+                      <?php echo HTML::inputField('categories_head_title_tag[' . $languages[$i]['id'] . ']', null, 'maxlength="70" size="77" id="default_title_' . $i . '"', false); ?>
                     </div>
                   </div>
                 </div>
-            <div class="separator"></div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>"
-                             class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_header_description'); ?></label>
-                      <div class="col-md-8">
-                        <?php echo HTML::textAreaField('categories_head_desc_tag[' . $languages[$i]['id'] . ']', null, '75', '2', 'id="default_description_' . $i . '"'); ?>
-                      </div>
+              </div>
+              <div class="separator"></div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>"
+                           class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_header_description'); ?></label>
+                    <div class="col-md-8">
+                      <?php echo HTML::textAreaField('categories_head_desc_tag[' . $languages[$i]['id'] . ']', null, '75', '2', 'id="default_description_' . $i . '"'); ?>
                     </div>
                   </div>
                 </div>
-                <div class="separator"></div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>"
-                             class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_keywords'); ?></label>
-                      <div class="col-md-8">
-                        <?php echo HTML::textAreaField('categories_head_keywords_tag[' . $languages[$i]['id'] . ']', null, '75', '5'); ?>
-                      </div>
+              </div>
+              <div class="separator"></div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>"
+                           class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_keywords'); ?></label>
+                    <div class="col-md-8">
+                      <?php echo HTML::textAreaField('categories_head_keywords_tag[' . $languages[$i]['id'] . ']', null, '75', '5'); ?>
                     </div>
                   </div>
                 </div>
-                <?php
-              }
+              </div>
+              <?php
+            }
             ?>
             <div class="separator"></div>
             <div class="alert alert-info" role="alert">
@@ -284,9 +285,9 @@
           <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab3', null, 'display'); ?>
         </div>
         <?php
-          // -----------------------------------------------------//-->
-          //          ONGLET sur l'image de la categorie          //-->
-          // ---------------------------------------------------- //-->
+        // -----------------------------------------------------//-->
+        //          ONGLET sur l'image de la categorie          //-->
+        // ---------------------------------------------------- //-->
         ?>
         <div class="tab-pane" id="tab4">
           <div class="mainTitle">
@@ -331,10 +332,10 @@
           <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab4', null, 'display'); ?>
         </div>
         <?php
-          //***********************************
-          // extension
-          //***********************************
-          echo $CLICSHOPPING_Hooks->output('Categories', 'PageContent', null, 'display');
+        //***********************************
+        // extension
+        //***********************************
+        echo $CLICSHOPPING_Hooks->output('Categories', 'PageContent', null, 'display');
         ?>
       </div>
     </div>

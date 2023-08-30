@@ -1,29 +1,29 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Sites\Shop\Pages\Account\Classes;
+
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+
+class HistoryInfo
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return mixed
    */
-
-  namespace ClicShopping\Sites\Shop\Pages\Account\Classes;
-
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-
-  class HistoryInfo
+  public static function getHistoryInfoCheck()
   {
-    /**
-     * @return mixed
-     */
-    public static function getHistoryInfoCheck()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Language = Registry::get('Language');
 
-      $Qcheck = $CLICSHOPPING_Db->prepare('select o.customers_id
+    $Qcheck = $CLICSHOPPING_Db->prepare('select o.customers_id
                                            from :table_orders o,
                                                 :table_orders_status s
                                            where o.orders_id = :orders_id
@@ -31,65 +31,65 @@
                                            and s.language_id = :language_id
                                            and s.public_flag = 1
                                           ');
-      $Qcheck->bindInt(':orders_id', (int)$_GET['order_id']);
-      $Qcheck->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+    $Qcheck->bindInt(':orders_id', (int)$_GET['order_id']);
+    $Qcheck->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
 
-      $Qcheck->execute();
+    $Qcheck->execute();
 
-      $check = $Qcheck->fetch();
+    $check = $Qcheck->fetch();
 
-      return $check;
-    }
+    return $check;
+  }
 
-    /**
-     * @return int
-     */
-    public static function getHistoryInfoCount(): int
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
+  /**
+   * @return int
+   */
+  public static function getHistoryInfoCount(): int
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qcount = $CLICSHOPPING_Db->prepare('select count(orders_status_id) as count
+    $Qcount = $CLICSHOPPING_Db->prepare('select count(orders_status_id) as count
                                            from :table_orders_status_history
                                            where orders_id = :orders_id
                                           ');
-      $Qcount->bindInt(':orders_id', $_GET['order_id']);
+    $Qcount->bindInt(':orders_id', $_GET['order_id']);
 
-      $Qcount->execute();
+    $Qcount->execute();
 
-      $count = $Qcount->valueInt('count');
+    $count = $Qcount->valueInt('count');
 
-      return $count;
-    }
+    return $count;
+  }
 
-    /**
-     * @return mixed
-     */
-    public static function getDisplayHistoryInfoSupport()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
+  /**
+   * @return mixed
+   */
+  public static function getDisplayHistoryInfoSupport()
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qsupport = $CLICSHOPPING_Db->prepare('select support_orders_flag
+    $Qsupport = $CLICSHOPPING_Db->prepare('select support_orders_flag
                                               from :table_orders_status
                                               where support_orders_flag = 0
                                               and orders_status_id = 5
                                              ');
 
-      $Qsupport->execute();
+    $Qsupport->execute();
 
-      $support = $Qsupport->valueInt('support_orders_flag');
+    $support = $Qsupport->valueInt('support_orders_flag');
 
-      return $support;
-    }
+    return $support;
+  }
 
-    /**
-     * @return array
-     */
-    public static function getHistoryInfoDisplay(): array
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
+  /**
+   * @return array
+   */
+  public static function getHistoryInfoDisplay(): array
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Language = Registry::get('Language');
 
-      $Qstatuse = $CLICSHOPPING_Db->prepare('select distinct os.orders_status_name,
+    $Qstatuse = $CLICSHOPPING_Db->prepare('select distinct os.orders_status_name,
                                                               osh.date_added,
                                                               osh.comments,
                                                               osh.orders_tracking_number,
@@ -102,24 +102,24 @@
                                             and os.public_flag = 1
                                             order by osh.date_added
                                             ');
-      $Qstatuse->bindInt(':orders_id', $_GET['order_id']);
-      $Qstatuse->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    $Qstatuse->bindInt(':orders_id', $_GET['order_id']);
+    $Qstatuse->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 
-      $Qstatuse->execute();
+    $Qstatuse->execute();
 
-      $statuse = $Qstatuse->fetchAll();
+    $statuse = $Qstatuse->fetchAll();
 
-      return $statuse;
-    }
+    return $statuse;
+  }
 
-    /**
-     * @return mixed
-     */
-    public static function getHistoryInfoDownloadFiles()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
+  /**
+   * @return mixed
+   */
+  public static function getHistoryInfoDownloadFiles()
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
 
-      $QdonwloadProductsFiles = $CLICSHOPPING_Db->prepare('select distinct p.products_id,
+    $QdonwloadProductsFiles = $CLICSHOPPING_Db->prepare('select distinct p.products_id,
                                                                             p.products_download_filename,
                                                                             op.products_id,
                                                                             op.orders_id,
@@ -138,25 +138,25 @@
                                                              and p2c.categories_id = c.categories_id
                                                              and c.status = 1
                                                             ');
-      $QdonwloadProductsFiles->bindInt(':orders_id', $_GET['order_id']);
+    $QdonwloadProductsFiles->bindInt(':orders_id', $_GET['order_id']);
 
-      $QdonwloadProductsFiles->execute();
+    $QdonwloadProductsFiles->execute();
 
-      $download = $QdonwloadProductsFiles->fetch();
+    $download = $QdonwloadProductsFiles->fetch();
 
-      return $download;
-    }
+    return $download;
+  }
 
-    /**
-     * @param int $orders_status_support_id
-     * @return mixed
-     */
-    public static function getHistoryInfoSupportCustomer(int $orders_status_support_id)
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
+  /**
+   * @param int $orders_status_support_id
+   * @return mixed
+   */
+  public static function getHistoryInfoSupportCustomer(int $orders_status_support_id)
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Language = Registry::get('Language');
 
-      $QCustomerSupport = $CLICSHOPPING_Db->prepare('select oss.orders_status_support_name
+    $QCustomerSupport = $CLICSHOPPING_Db->prepare('select oss.orders_status_support_name
                                                      from :table_orders_status_history osh,
                                                           :table_orders_status_support oss
                                                      where osh.orders_status_support_id = :orders_status_support_id
@@ -166,61 +166,61 @@
                                                      limit 1
                                                     ');
 
-      $QCustomerSupport->bindInt(':orders_status_support_id', $orders_status_support_id);
-      $QCustomerSupport->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $QCustomerSupport->execute();
+    $QCustomerSupport->bindInt(':orders_status_support_id', $orders_status_support_id);
+    $QCustomerSupport->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    $QCustomerSupport->execute();
 
-      $support = $QCustomerSupport->fetch();
+    $support = $QCustomerSupport->fetch();
 
-      return $support;
-    }
+    return $support;
+  }
 
 
-    /**
-     * Get the tracking number
-     *
-     * @param string $tracking , $CLICSHOPPING_Language->getId()
-     * @return string tracking_url, the url of the tracking
-     *
-     */
-    public static function getTrackingLink(): string
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
+  /**
+   * Get the tracking number
+   *
+   * @param string $tracking , $CLICSHOPPING_Language->getId()
+   * @return string tracking_url, the url of the tracking
+   *
+   */
+  public static function getTrackingLink(): string
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Language = Registry::get('Language');
 
-      $QordersTracking = $CLICSHOPPING_Db->prepare('select orders_status_tracking_id,
+    $QordersTracking = $CLICSHOPPING_Db->prepare('select orders_status_tracking_id,
                                                            orders_status_tracking_link
                                                     from :table_orders_status_tracking
                                                     where  language_id = :language_id
                                                   ');
 
-      $QordersTracking->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    $QordersTracking->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 
-      $QordersTracking->execute();
-      $orders_tracking = $QordersTracking->fetch();
+    $QordersTracking->execute();
+    $orders_tracking = $QordersTracking->fetch();
 
 
-      if (empty($QordersTracking->value('orders_status_tracking_link')) || (empty($QordersTracking->value('orders_tracking_number')))) {
-        $tracking_url = ' (<a href="http://www.track-trace.com/" target="_blank">http://www.track-trace.com/</a>)';
-      } else {
-        $tracking_url = ' (<a href="' . $QordersTracking->value('orders_status_tracking_link') . $QordersTracking->value('orders_tracking_number') . '" target="_blank" rel="noreferrer">' . $orders_tracking->value('orders_status_tracking_link') . $QordersTracking->value('orders_tracking_number') . '</a>)';
-      }
-      return $tracking_url;
+    if (empty($QordersTracking->value('orders_status_tracking_link')) || (empty($QordersTracking->value('orders_tracking_number')))) {
+      $tracking_url = ' (<a href="http://www.track-trace.com/" target="_blank">http://www.track-trace.com/</a>)';
+    } else {
+      $tracking_url = ' (<a href="' . $QordersTracking->value('orders_status_tracking_link') . $QordersTracking->value('orders_tracking_number') . '" target="_blank" rel="noreferrer">' . $orders_tracking->value('orders_status_tracking_link') . $QordersTracking->value('orders_tracking_number') . '</a>)';
     }
+    return $tracking_url;
+  }
 
-    /**
-     * @return mixed
-     */
-    public static function getDownloadFilesPurchased()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Language = Registry::get('Language');
+  /**
+   * @return mixed
+   */
+  public static function getDownloadFilesPurchased()
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
+    $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_GET['order'])) {
-        $orders_id = HTML::sanitize($_GET['order']);
+    if (isset($_GET['order'])) {
+      $orders_id = HTML::sanitize($_GET['order']);
 
-        $Qdownload = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
+      $Qdownload = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
                                                        opd.download_maxdays,
                                                        opd.download_count,
                                                        opd.download_maxdays,
@@ -241,17 +241,17 @@
                                                 and os.downloads_flag = "1"
                                                 and os.language_id = :language_id
                                               ');
-        $Qdownload->bindInt(':orders_id', $orders_id);
-        $Qdownload->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-        $Qdownload->bindInt(':orders_products_download_id', $_GET['id']);
-        $Qdownload->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-        $Qdownload->execute();
-      } else {
+      $Qdownload->bindInt(':orders_id', $orders_id);
+      $Qdownload->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+      $Qdownload->bindInt(':orders_products_download_id', $_GET['id']);
+      $Qdownload->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+      $Qdownload->execute();
+    } else {
 
-        $Qorders = $CLICSHOPPING_Db->get('orders', 'orders_id', ['customers_id' => $CLICSHOPPING_Customer->getID()], 'orders_id desc', 1);
-        $last_order = $Qorders->valueInt('orders_id');
+      $Qorders = $CLICSHOPPING_Db->get('orders', 'orders_id', ['customers_id' => $CLICSHOPPING_Customer->getID()], 'orders_id desc', 1);
+      $last_order = $Qorders->valueInt('orders_id');
 
-        $Qdownload = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
+      $Qdownload = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
                                                        opd.download_maxdays,
                                                        opd.download_count,
                                                        opd.download_maxdays,
@@ -272,12 +272,12 @@
                                                 and os.language_id = :language_id
                                               ');
 
-        $Qdownload->bindInt(':orders_id', $last_order);
-        $Qdownload->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-        $Qdownload->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-        $Qdownload->execute();
-      }
-
-      return $Qdownload;
+      $Qdownload->bindInt(':orders_id', $last_order);
+      $Qdownload->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+      $Qdownload->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+      $Qdownload->execute();
     }
+
+    return $Qdownload;
   }
+}

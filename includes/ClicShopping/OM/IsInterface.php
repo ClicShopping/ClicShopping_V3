@@ -8,9 +8,9 @@
  *
  */
 
-  namespace ClicShopping\OM;
+namespace ClicShopping\OM;
 
-  interface IsInterface
-  {
-    public static function execute($value): bool;
-  }
+interface IsInterface
+{
+  public static function execute($value): bool;
+}

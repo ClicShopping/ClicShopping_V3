@@ -1,35 +1,32 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\OM\Module\Hooks\Shop\Account;
+namespace ClicShopping\OM\Module\Hooks\Shop\Account;
 
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+class AccountGdprCallDeleteCustomerBirth
+{
 
-  class AccountGdprCallDeleteCustomerBirth
+  public function execute()
   {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
 
-    public function execute()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-
-      if (isset($_POST['delete_customers_birth'])) {
-        $Qdelete = $CLICSHOPPING_Db->prepare('update :table_customers
+    if (isset($_POST['delete_customers_birth'])) {
+      $Qdelete = $CLICSHOPPING_Db->prepare('update :table_customers
                                               set customers_dob = null
                                               where customers_id = :customers_id
                                              ');
-        $Qdelete->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-        $Qdelete->execute();
-      }
+      $Qdelete->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+      $Qdelete->execute();
     }
   }
+}

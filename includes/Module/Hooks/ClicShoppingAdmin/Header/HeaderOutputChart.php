@@ -1,33 +1,33 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Header;
+
+class HeaderOutputChart
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return string|bool
    */
-
-  namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Header;
-
-  class HeaderOutputChart
+  public function display(): string|bool
   {
-    /**
-     * @return string|bool
-     */
-    public function display(): string|bool
-    {
-      $output = '';
+    $output = '';
 
-      if (isset($_SESSION['admin'])) {
-        $output = '<!-- Start Chart -->' . "\n";
-        $output .= '<link href="https://cdn.jsdelivr.net/npm/chart.css" rel="stylesheet" crossorigin="anonymous">' . "\n";
-        $output .= '<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0"></script>' . "\n";
-        $output .= '<!-- End Chart -->' . "\n";
-      } else {
-        return false;
-      }
-
-      return $output;
+    if (isset($_SESSION['admin'])) {
+      $output = '<!-- Start Chart -->' . "\n";
+      $output .= '<link href="https://cdn.jsdelivr.net/npm/chart.css" rel="stylesheet" crossorigin="anonymous">' . "\n";
+      $output .= '<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0"></script>' . "\n";
+      $output .= '<!-- End Chart -->' . "\n";
+    } else {
+      return false;
     }
+
+    return $output;
   }
+}

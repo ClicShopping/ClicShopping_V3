@@ -1,31 +1,30 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Registry;
 
-  class CfgmShipping
+class CfgmShipping
+{
+  public string $code = 'shipping';
+  public string $directory;
+  public $language_directory;
+  public string $site = 'Shop';
+  public string $key = 'MODULE_SHIPPING_INSTALLED';
+  public $title;
+  public bool $template_integration = false;
+
+  public function __construct()
   {
-    public string $code = 'shipping';
-    public string $directory;
-    public $language_directory;
-    public string $site = 'Shop';
-    public string $key = 'MODULE_SHIPPING_INSTALLED';
-    public $title;
-    public bool $template_integration = false;
+    $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-    public function __construct()
-    {
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-
-      $this->directory = $CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/shipping/';
-      $this->language_directory = $CLICSHOPPING_Template->getPathLanguageShopDirectory();
-    }
+    $this->directory = $CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/shipping/';
+    $this->language_directory = $CLICSHOPPING_Template->getPathLanguageShopDirectory();
   }
+}

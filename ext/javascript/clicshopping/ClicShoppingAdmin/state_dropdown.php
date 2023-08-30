@@ -1,15 +1,16 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
+
 ?>
 <script>
   function resetZoneSelected(theForm) {
@@ -22,10 +23,10 @@
   }
 
   function update_zone(theForm) {
-      let NumState = theForm.state.options.length;
-      let SelectedCountry = "";
+    let NumState = theForm.state.options.length;
+    let SelectedCountry = "";
 
-      while(NumState > 0) {
+    while (NumState > 0) {
       NumState--;
       theForm.state.options[NumState] = null;
     }

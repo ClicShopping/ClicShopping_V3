@@ -1,32 +1,32 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Header;
+
+class HeaderOutputBootstrapTable
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return string
    */
-
-  namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Header;
-
-  class HeaderOutputBootstrapTable
+  public function display(): string|bool
   {
-    /**
-     * @return string
-     */
-    public function display(): string|bool
-    {
-      $output = '';
+    $output = '';
 
-      if (isset($_SESSION['admin'])) {
-        $output = '<!-- Start BootStrap Table -->' . "\n";
-        $output .= '<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css">' . "\n";
-        $output .= '<!-- Start BootStrap Table -->' . "\n";
-      } else {
-        return false;
-      }
-
-      return $output;
+    if (isset($_SESSION['admin'])) {
+      $output = '<!-- Start BootStrap Table -->' . "\n";
+      $output .= '<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css">' . "\n";
+      $output .= '<!-- Start BootStrap Table -->' . "\n";
+    } else {
+      return false;
     }
+
+    return $output;
   }
+}

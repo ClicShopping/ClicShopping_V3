@@ -1,33 +1,33 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\OM;
+
+class ObjectInfo
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * ObjectInfo constructor.
+   * @param array $object_array
    */
-
-  namespace ClicShopping\OM;
-
-  class ObjectInfo
+  public function __construct(array $object_array)
   {
-    /**
-     * ObjectInfo constructor.
-     * @param array $object_array
-     */
-    public function __construct(array $object_array)
-    {
-      $this->objectInfo($object_array);
-    }
+    $this->objectInfo($object_array);
+  }
 
-    /**
-     * @param array $object_array
-     */
-    public function objectInfo(array $object_array)
-    {
-      foreach ($object_array as $key => $value) {
-        $this->$key = $value;
-      }
+  /**
+   * @param array $object_array
+   */
+  public function objectInfo(array $object_array)
+  {
+    foreach ($object_array as $key => $value) {
+      $this->$key = $value;
     }
   }
+}

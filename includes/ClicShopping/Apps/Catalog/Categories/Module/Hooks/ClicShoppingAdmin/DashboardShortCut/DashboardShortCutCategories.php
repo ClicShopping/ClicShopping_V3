@@ -1,44 +1,43 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Catalog\Categories\Module\Hooks\ClicShoppingAdmin\DashboardShortCut;
+namespace ClicShopping\Apps\Catalog\Categories\Module\Hooks\ClicShoppingAdmin\DashboardShortCut;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\Apps\Catalog\Categories\Categories as categoriesApp;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Catalog\Categories\Categories as categoriesApp;
+class DashboardShortCutCategories implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
 
-  class DashboardShortCutCategories implements \ClicShopping\OM\Modules\HooksInterface
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Categories')) {
-        Registry::set('Categories', new categoriesApp());
-      }
-
-      $this->app = Registry::get('Categories');
-
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/DashboardShortCut/dashboard_shortcut_categories');
+    if (!Registry::exists('Categories')) {
+      Registry::set('Categories', new categoriesApp());
     }
 
-    public function display(): string
-    {
-      if (!\defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
-        return false;
-      }
+    $this->app = Registry::get('Categories');
 
-      $output = HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Categories&Categories'), null, 'class="btn btn-primary btn-sm" role="button"></i><span class="bi bi-list-ul" title="' . $this->app->getDef('heading_short_categories') . '"') . ' ';
-
-      return $output;
-    }
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/DashboardShortCut/dashboard_shortcut_categories');
   }
+
+  public function display(): string
+  {
+    if (!\defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
+      return false;
+    }
+
+    $output = HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Categories&Categories'), null, 'class="btn btn-primary btn-sm" role="button"></i><span class="bi bi-list-ul" title="' . $this->app->getDef('heading_short_categories') . '"') . ' ';
+
+    return $output;
+  }
+}

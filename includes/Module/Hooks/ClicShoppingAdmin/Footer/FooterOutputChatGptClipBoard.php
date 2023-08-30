@@ -1,34 +1,35 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
+
+use ClicShopping\OM\CLICSHOPPING;
+use function defined;
+
+class FooterOutputChatGptClipBoard
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return bool|string
    */
-
-  namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
-
-  use ClicShopping\OM\CLICSHOPPING;
-
-  class FooterOutputChatGptClipBoard
+  public function display(): string
   {
-    /**
-     * @return bool|string
-     */
-    public function display(): string
-    {
-      $output = '';
+    $output = '';
 
-      if (isset($_SESSION['admin'])) {
-        $output = '<!-- Start Clipboard -->' . "\n";
+    if (isset($_SESSION['admin'])) {
+      $output = '<!-- Start Clipboard -->' . "\n";
 
-        if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'True') {
-          $url = CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin') . 'ajax/chatGpt.php';
+      if (!defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'True') {
+        $url = CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin') . 'ajax/chatGpt.php';
 
-          $output .= '<script defer>';
-          $output .= '
+        $output .= '<script defer>';
+        $output .= '
          $(document).ready(function() {
           // Initialize the clipboard for result button
           var clipboardResult = new ClipboardJS("#copyResultButton");
@@ -80,6 +81,6 @@
       }
     }
 
-      return $output;
-    }
+    return $output;
   }
+}

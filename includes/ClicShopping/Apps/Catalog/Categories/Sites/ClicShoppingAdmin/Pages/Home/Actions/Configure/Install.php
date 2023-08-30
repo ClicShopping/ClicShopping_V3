@@ -1,100 +1,100 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Catalog\Categories\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
+namespace ClicShopping\Apps\Catalog\Categories\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\Cache;
+use ClicShopping\OM\Cache;
+use ClicShopping\OM\Registry;
 
-  class Install extends \ClicShopping\OM\PagesActionsAbstract
+class Install extends \ClicShopping\OM\PagesActionsAbstract
+{
+
+  public function execute()
   {
 
-    public function execute()
-    {
+    $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    $CLICSHOPPING_Categories = Registry::get('Categories');
 
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-      $CLICSHOPPING_Categories = Registry::get('Categories');
+    $current_module = $this->page->data['current_module'];
 
-      $current_module = $this->page->data['current_module'];
+    $CLICSHOPPING_Categories->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
-      $CLICSHOPPING_Categories->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    $m = Registry::get('CategoriesAdminConfig' . $current_module);
+    $m->install();
 
-      $m = Registry::get('CategoriesAdminConfig' . $current_module);
-      $m->install();
+    static::installDbMenuAdministration();
+    static::installDb();
 
-      static::installDbMenuAdministration();
-      static::installDb();
+    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Categories->getDef('alert_module_install_success'), 'success', 'Categories');
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Categories->getDef('alert_module_install_success'), 'success', 'Categories');
+    $CLICSHOPPING_Categories->redirect('Configure&module=' . $current_module);
+  }
 
-      $CLICSHOPPING_Categories->redirect('Configure&module=' . $current_module);
-    }
+  private static function installDbMenuAdministration(): void
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Categories = Registry::get('Categories');
+    $CLICSHOPPING_Language = Registry::get('Language');
 
-    private static function installDbMenuAdministration() :void
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Categories = Registry::get('Categories');
-      $CLICSHOPPING_Language = Registry::get('Language');
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_catalog_categories']);
 
-      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_catalog_categories']);
+    if ($Qcheck->fetch() === false) {
 
-      if ($Qcheck->fetch() === false) {
+      $sql_data_array = ['sort_order' => 0,
+        'link' => 'index.php?A&Catalog\Categories&Categories',
+        'image' => 'categorie.gif',
+        'b2b_menu' => 0,
+        'access' => 0,
+        'app_code' => 'app_catalog_categories'
+      ];
 
-        $sql_data_array = ['sort_order' => 0,
-          'link' => 'index.php?A&Catalog\Categories&Categories',
-          'image' => 'categorie.gif',
-          'b2b_menu' => 0,
-          'access' => 0,
-          'app_code' => 'app_catalog_categories'
+      $insert_sql_data = ['parent_id' => 3];
+
+      $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+      $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+
+      $id = $CLICSHOPPING_Db->lastInsertId();
+
+      $languages = $CLICSHOPPING_Language->getLanguages();
+
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+
+        $language_id = $languages[$i]['id'];
+
+        $sql_data_array = ['label' => $CLICSHOPPING_Categories->getDef('title_menu')];
+
+        $insert_sql_data = [
+          'id' => (int)$id,
+          'language_id' => (int)$language_id
         ];
-
-        $insert_sql_data = ['parent_id' => 3];
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-        $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+        $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
 
-        $id = $CLICSHOPPING_Db->lastInsertId();
-
-        $languages = $CLICSHOPPING_Language->getLanguages();
-
-        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-
-          $language_id = $languages[$i]['id'];
-
-          $sql_data_array = ['label' => $CLICSHOPPING_Categories->getDef('title_menu')];
-
-          $insert_sql_data = [
-            'id' => (int)$id,
-            'language_id' => (int)$language_id
-          ];
-
-          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-
-          $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-
-        }
-
-        Cache::clear('menu-administrator');
       }
+
+      Cache::clear('menu-administrator');
     }
+  }
 
 
-    private static function installDb()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
+  private static function installDb()
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_categories"');
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_categories"');
 
-      if ($Qcheck->fetch() === false) {
-        $sql = <<<EOD
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
 CREATE TABLE :table_categories (
   categories_id int NOT NULL auto_increment,
   categories_image varchar(255),
@@ -109,13 +109,13 @@ CREATE TABLE :table_categories (
   KEY idx_categories_parent_id parent_id)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
-        $CLICSHOPPING_Db->exec($sql);
-      }
+      $CLICSHOPPING_Db->exec($sql);
+    }
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_categories_description"');
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_categories_description"');
 
-      if ($Qcheck->fetch() === false) {
-        $sql = <<<EOD
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
 CREATE TABLE :table_categories_description (
   categories_id int default(0) NOT NULL,
   language_id int default(1) NOT NULL,
@@ -130,8 +130,8 @@ CREATE TABLE :table_categories_description (
  KEY idx_categories_name (categories_name)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
-        $CLICSHOPPING_Db->exec($sql);
-      }
-
+      $CLICSHOPPING_Db->exec($sql);
     }
+
   }
+}

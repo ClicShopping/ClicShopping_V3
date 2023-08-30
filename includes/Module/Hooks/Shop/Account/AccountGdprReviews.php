@@ -1,55 +1,55 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\OM\Module\Hooks\Shop\Account;
+
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+
+class AccountGdprReviews
+{
+
+  protected $countMyFeedback;
+  protected $deleteMyFeedback;
+  protected $count;
+
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return mixed
    */
-
-  namespace ClicShopping\OM\Module\Hooks\Shop\Account;
-
-  use ClicShopping\OM\CLICSHOPPING;
-
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-
-  class AccountGdprReviews
+  private function getCheck()
   {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
 
-    protected $countMyFeedback;
-    protected $deleteMyFeedback;
-    protected $count;
-    /**
-     * @return mixed
-     */
-    private function getCheck()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-
-      $QReviews = $CLICSHOPPING_Db->prepare('select count(reviews_id) as count
+    $QReviews = $CLICSHOPPING_Db->prepare('select count(reviews_id) as count
                                               from :table_reviews
                                               where customers_id = :customers_id
                                              ');
-      $QReviews->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $QReviews->execute();
+    $QReviews->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+    $QReviews->execute();
 
-      $this->count = $QReviews->valueInt('count');
+    $this->count = $QReviews->valueInt('count');
 
-      return $QReviews->fetch();
-    }
+    return $QReviews->fetch();
+  }
 
-    /**
-     * @return string
-     */
-    public function display(): string
-    {
-      $output = '';
+  /**
+   * @return string
+   */
+  public function display(): string
+  {
+    $output = '';
 
-      if ($this->getCheck() === true) {
-        $output .= '<div>
+    if ($this->getCheck() === true) {
+      $output .= '<div>
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                           <div class="separator"></div>
@@ -62,8 +62,8 @@
                       </ul>
                     </div>
                   ';
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

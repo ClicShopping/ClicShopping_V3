@@ -1,40 +1,40 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\OM\Modules;
+namespace ClicShopping\OM\Modules;
 
-  interface PaymentInterface
-  {
-    public function update_status();
+interface PaymentInterface
+{
+  public function update_status();
 
-    public function javascript_validation();
+  public function javascript_validation();
 
-    public function selection();
+  public function selection();
 
-    public function pre_confirmation_check();
+  public function pre_confirmation_check();
 
-    public function confirmation();
+  public function confirmation();
 
-    public function process_button();
+  public function process_button();
 
-    public function before_process();
+  public function before_process();
 
-    public function after_process();
+  public function after_process();
 
-    public function get_error();
+  public function get_error();
 
-    public function check();
+  public function check();
 
-    public function install();
+  public function install();
 
-    public function remove();
+  public function remove();
 
-    public function keys();
-  }
+  public function keys();
+}

@@ -7,29 +7,33 @@
  *
  */
 
-$(function() {
+$(function () {
   $('#main-menu').smartmenus({
     subMenusSubOffsetX: 6,
     subMenusSubOffsetY: 0,
-    showOnClick:false,
+    showOnClick: false,
   });
 });
 
 // SmartMenus mobile menu toggle button
-$(function() {
+$(function () {
   const $mainMenuState = $('#main-menu-state');
   if ($mainMenuState.length) {
     // animate mobile menu
-    $mainMenuState.change(function(e) {
+    $mainMenuState.change(function (e) {
       var $menu = $('#main-menu');
       if (this.checked) {
-        $menu.hide().slideDown(250, function() { $menu.css('display', ''); });
+        $menu.hide().slideDown(250, function () {
+          $menu.css('display', '');
+        });
       } else {
-        $menu.show().slideUp(250, function() { $menu.css('display', ''); });
+        $menu.show().slideUp(250, function () {
+          $menu.css('display', '');
+        });
       }
     });
     // hide mobile menu beforeunload
-    $(window).bind('beforeunload unload', function() {
+    $(window).bind('beforeunload unload', function () {
       if ($mainMenuState[0].checked) {
         $mainMenuState[0].click();
       }

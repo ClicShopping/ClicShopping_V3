@@ -1,45 +1,45 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Marketing\SEO\Classes\ClicShoppingAdmin\SeoAdmin;
-  use ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin\ManufacturerAdmin;
+use ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin\ManufacturerAdmin;
+use ClicShopping\Apps\Marketing\SEO\Classes\ClicShoppingAdmin\SeoAdmin;
 
-  $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
-  $CLICSHOPPING_Template= Registry::get('TemplateAdmin');
+$CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $form_action = 'Insert';
-  $variable = '';
+$form_action = 'Insert';
+$variable = '';
 
-  if ((isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID']))) {
-    $form_action = 'Update';
-    $variable = '&mID=' . HTML::sanitize($_GET['mID']);
-  }
+if ((isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID']))) {
+  $form_action = 'Update';
+  $variable = '&mID=' . HTML::sanitize($_GET['mID']);
+}
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
+echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 
-  echo HTML::form('manufacturers', $CLICSHOPPING_Manufacturers->link('Manufacturers&' . $form_action . $variable));
+echo HTML::form('manufacturers', $CLICSHOPPING_Manufacturers->link('Manufacturers&' . $form_action . $variable));
 
-  if ($form_action == 'Update') {
-    echo HTML::hiddenField('manufacturers_id', HTML::sanitize($_GET['mID']));
-  }
+if ($form_action == 'Update') {
+  echo HTML::hiddenField('manufacturers_id', HTML::sanitize($_GET['mID']));
+}
 ?>
 <div class="contentBody">
   <div class="row">
@@ -52,8 +52,8 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Manufacturers->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
 <?php
-  echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_cancel'), null, $CLICSHOPPING_Manufacturers->link('Manufacturers&page=' . $page . $variable), 'warning') . '&nbsp;';
-  echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Manufacturers->getDef('button_update'), null, null, 'success'));
+echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_cancel'), null, $CLICSHOPPING_Manufacturers->link('Manufacturers&page=' . $page . $variable), 'warning') . '&nbsp;';
+echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Manufacturers->getDef('button_update'), null, null, 'success'));
 ?>
             </span>
         </div>
@@ -62,13 +62,13 @@
   </div>
   <div class="separator"></div>
   <?php
-    if (isset($_GET['mID'])) {
-      $mId = $_GET['mID'];
-    } else {
-      $mId = null;
-    }
+  if (isset($_GET['mID'])) {
+    $mId = $_GET['mID'];
+  } else {
+    $mId = null;
+  }
 
-      $Qmanufacturers = $CLICSHOPPING_Manufacturers->db->prepare('select m.manufacturers_id,
+  $Qmanufacturers = $CLICSHOPPING_Manufacturers->db->prepare('select m.manufacturers_id,
                                                                          m.manufacturers_name,
                                                                          m.manufacturers_image,
                                                                          m.date_added,
@@ -86,9 +86,9 @@
                                                                   and md.languages_id = :languages_id
                                                                   and m.manufacturers_id = :manufacturers_id
                                                                 ');
-      $Qmanufacturers->bindValue(':languages_id', (int)$CLICSHOPPING_Language->getId());
-      $Qmanufacturers->bindInt(':manufacturers_id', $mId);
-      $Qmanufacturers->execute();
+  $Qmanufacturers->bindValue(':languages_id', (int)$CLICSHOPPING_Language->getId());
+  $Qmanufacturers->bindInt(':manufacturers_id', $mId);
+  $Qmanufacturers->execute();
 
   ?>
   <div id="manufacturersTabs" style="overflow: auto;">
@@ -106,9 +106,9 @@
     <div class="tabsClicShopping">
       <div class="tab-content">
         <?php
-          // -- ------------------------------------------------------------ //
-          // --          ONGLET Information Général de la Marque          //
-          // -- ------------------------------------------------------------ //
+        // -- ------------------------------------------------------------ //
+        // --          ONGLET Information Général de la Marque          //
+        // -- ------------------------------------------------------------ //
         ?>
         <div class="tab-pane active" id="tab1">
           <div class="col-md-12 mainTitle">
@@ -139,19 +139,19 @@
 
             <div id="manufacturersLanguage">
               <?php
-                $languages = $CLICSHOPPING_Language->getLanguages();
-                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                  ?>
-                  <div class="separator"></div>
-                  <div class="form-group row">
-                    <label for="code"
-                           class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                    <div class="col-md-5">
-                      <?php echo HTML::inputField('manufacturers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_ProductsAdmin->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages[$i]['id'])); ?>
-                    </div>
+              $languages = $CLICSHOPPING_Language->getLanguages();
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                ?>
+                <div class="separator"></div>
+                <div class="form-group row">
+                  <label for="code"
+                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                  <div class="col-md-5">
+                    <?php echo HTML::inputField('manufacturers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_ProductsAdmin->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages[$i]['id'])); ?>
                   </div>
-                  <?php
-                }
+                </div>
+                <?php
+              }
               ?>
             </div>
           </div>
@@ -166,14 +166,15 @@
           </div>
           <div class="adminformTitle" id="manufactuerDescription">
             <div class="accordion" id="accordionExample">
-            <?php
+              <?php
               echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="heading<?php $i; ?>">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                       <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
                     </button>
                   </h2>
@@ -185,7 +186,8 @@
                   }
                   ?>
 
-                  <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+                  <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>"
+                       aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <?php
                       $name = 'manufacturer_description[' . $languages[$i]['id'] . ']';
@@ -198,7 +200,7 @@
                 </div>
                 <?php
               }
-            ?>
+              ?>
             </div>
           </div>
           <div class="separator"></div>
@@ -262,7 +264,8 @@
             <div class="separator"></div>
             <div class="col-md-12">
               <div class="row text-center" id="productsGoogleKeywords">
-                <a href="https://www.google.fr/trends" target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
+                <a href="https://www.google.fr/trends"
+                   target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
               </div>
             </div>
             <div class="separator"></div>
@@ -271,12 +274,15 @@
               <?php
               echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 
-              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages);
+              $i < $n;
+              $i++) {
               $languages_id = $languages[$i]['id'];
               ?>
               <div class="accordion-item">
                 <h2 class="accordion-header" id="heading<?php $i; ?>">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                          aria-expanded="true" aria-controls="collapseOne">
                     <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
                   </button>
                 </h2>
@@ -288,13 +294,15 @@
                 }
                 ?>
 
-                <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>"
+                     aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <div class="separator"></div>
                     <div class="row" id="manufacturerSeoTitle<?php echo $languages_id; ?>">
                       <div class="col-md-10">
                         <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                          <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_title'); ?></label>
+                          <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_title'); ?>"
+                                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_title'); ?></label>
                           <div class="col-md-7 input-group" id="manufacturer_seo_title<?php echo $languages_id; ?>">
                             <?php echo HTML::inputField('manufacturer_seo_title[' . $languages_id . ']', SeoAdmin::getManufacturerSeoTitle($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages_id), 'maxlength="70" size="77" id="manufacturer_seo_title_' . $languages_id . '"', false); ?>
                           </div>
@@ -306,8 +314,11 @@
                     <div class="row" id="manufacturerSeoDescription<?php echo $languages_id; ?>">
                       <div class="col-md-6">
                         <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                          <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_description'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_description'); ?></label>
-                          <div class="col-md-8 input-group" id="manufacturer_seo_description<?php echo $languages_id; ?>">
+                          <label
+                            for="<?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_description'); ?>"
+                            class="col-1 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_description'); ?></label>
+                          <div class="col-md-8 input-group"
+                               id="manufacturer_seo_description<?php echo $languages_id; ?>">
                             <?php echo HTML::textAreaField('manufacturer_seo_description[' . $languages_id . ']', SeoAdmin::getManufacturerSeoDescription($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages_id), '110', '5', 'id="manufacturer_seo_description_' . $languages_id . '"'); ?>
                           </div>
                         </div>
@@ -318,7 +329,9 @@
                     <div class="row" id="manufacturerSeoKeywords<?php echo $languages_id; ?>">
                       <div class="col-md-10">
                         <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                          <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_keywords'); ?></label>
+                          <label
+                            for="<?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_keywords'); ?>"
+                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_keywords'); ?></label>
                           <div class="col-md-7 input-group" id="manufacturer_seo_keyword<?php echo $languages_id; ?>">
                             <?php echo HTML::inputField('manufacturer_seo_keyword[' . $languages_id . ']', SeoAdmin::getManufacturerSeoKeyword($Qmanufacturers->valueInt('manufacturers_id') ?? null, $languages_id), 'maxlength="70" size="77" id="manufacturer_seo_keyword_' . $languages_id . '"', false); ?>
                           </div>
@@ -327,23 +340,23 @@
                     </div>
                   </div>
                 </div>
-                    <?php
-                  }
+                <?php
+                }
                 ?>
               </div>
+            </div>
+            <div class="separator"></div>
+            <div class="alert alert-info" role="alert">
+              <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Manufacturers->getDef('title_help_seo') . '"></i></h4>' . $CLICSHOPPING_Manufacturers->getDef('title_help_seo') ?></div>
+              <div class="separator"></div>
+              <div><?php echo $CLICSHOPPING_Manufacturers->getDef('help_seo'); ?></div>
+            </div>
           </div>
           <div class="separator"></div>
-          <div class="alert alert-info" role="alert">
-            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Manufacturers->getDef('title_help_seo') . '"></i></h4>' . $CLICSHOPPING_Manufacturers->getDef('title_help_seo') ?></div>
-            <div class="separator"></div>
-            <div><?php echo $CLICSHOPPING_Manufacturers->getDef('help_seo'); ?></div>
-          </div>
+          <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ManufacturersTab4', null, 'display'); ?>
         </div>
-        <div class="separator"></div>
-        <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ManufacturersTab4', null, 'display'); ?>
       </div>
+      <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'PageContent', null, 'display'); ?>
     </div>
-    <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'PageContent', null, 'display'); ?>
+    </form>
   </div>
-</form>
-</div>

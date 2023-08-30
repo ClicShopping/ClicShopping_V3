@@ -1,48 +1,47 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Catalog\Manufacturers\Module\Hooks\ClicShoppingAdmin\Products;
+namespace ClicShopping\Apps\Catalog\Manufacturers\Module\Hooks\ClicShoppingAdmin\Products;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin\ManufacturerAdmin;
+use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
 
-  use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
-  use ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin\ManufacturerAdmin;
+class Update implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
 
-  class Update implements \ClicShopping\OM\Modules\HooksInterface
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Manufacturers')) {
-        Registry::set('Manufacturers', new ManufacturersApp());
-      }
-
-      $this->app = Registry::get('Manufacturers');
+    if (!Registry::exists('Manufacturers')) {
+      Registry::set('Manufacturers', new ManufacturersApp());
     }
 
-    public function execute()
-    {
-      if (!\defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
-        return false;
-      }
+    $this->app = Registry::get('Manufacturers');
+  }
 
-      if (isset($_GET['Update'], $_GET['Products'])) {
-        $id = HTML::sanitize($_GET['pID']);
+  public function execute()
+  {
+    if (!\defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
+      return false;
+    }
 
-        $manufacturers_id = ManufacturerAdmin::getManufacturerId($_POST['manufacturers_name']);
+    if (isset($_GET['Update'], $_GET['Products'])) {
+      $id = HTML::sanitize($_GET['pID']);
 
-        $sql_data_array = ['manufacturers_id' => (int)$manufacturers_id];
-        
-        $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
-      }
+      $manufacturers_id = ManufacturerAdmin::getManufacturerId($_POST['manufacturers_name']);
+
+      $sql_data_array = ['manufacturers_id' => (int)$manufacturers_id];
+
+      $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
     }
   }
+}

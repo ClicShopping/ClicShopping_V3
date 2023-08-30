@@ -1,72 +1,72 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Catalog\Manufacturers\Classes\Shop;
+namespace ClicShopping\Apps\Catalog\Manufacturers\Classes\Shop;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  class Manufacturers
+class Manufacturers
+{
+  protected mixed $db;
+  protected mixed $lang;
+  protected ?int $Id;
+
+  protected $rewriteUrl;
+
+  public function __construct()
   {
-    protected mixed $db;
-    protected mixed $lang;
-    protected ?int $Id;
+    $this->db = Registry::get('Db');
+    $this->lang = Registry::get('Language');
 
-    protected $rewriteUrl;
-
-    public function __construct()
-    {
-      $this->db = Registry::get('Db');
-      $this->lang = Registry::get('Language');
-
-      if (isset($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId']) && !empty(HTML::sanitize($_GET['manufacturersId']))) {
-        $this->Id = HTML::sanitize($_GET['manufacturersId']);
-      } elseif (isset($_POST['manufacturersId']) && is_numeric($_POST['manufacturersId']) && !empty(HTML::sanitize($_POST['manufacturersId']))) {
-        $this->Id = HTML::sanitize($_POST['manufacturersId']);
-      } else {
-        $this->Id = null;
-      }
-
-      $this->rewriteUrl = Registry::get('RewriteUrl');
+    if (isset($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId']) && !empty(HTML::sanitize($_GET['manufacturersId']))) {
+      $this->Id = HTML::sanitize($_GET['manufacturersId']);
+    } elseif (isset($_POST['manufacturersId']) && is_numeric($_POST['manufacturersId']) && !empty(HTML::sanitize($_POST['manufacturersId']))) {
+      $this->Id = HTML::sanitize($_POST['manufacturersId']);
+    } else {
+      $this->Id = null;
     }
 
-    /**
-     * manufacturer id
-     * @return int
-     */
-    public function getID()
-    {
-      $id = $this->Id;
+    $this->rewriteUrl = Registry::get('RewriteUrl');
+  }
 
-      return $id;
-    }
+  /**
+   * manufacturer id
+   * @return int
+   */
+  public function getID()
+  {
+    $id = $this->Id;
 
-    /**
-     * manufacturer url
-     * @return bool|mixed
-     */
-    public function getManufacturerUrlRewrited()
-    {
-      return $this->rewriteUrl;
-    }
+    return $id;
+  }
 
-    /**
-     * manufacturer name
-     * @param $id
-     * @return mixed
-     */
-    public function getTitle($id)
-    {
-      $name = '';
+  /**
+   * manufacturer url
+   * @return bool|mixed
+   */
+  public function getManufacturerUrlRewrited()
+  {
+    return $this->rewriteUrl;
+  }
 
-      $Qmanufacturer = $this->db->prepare('select m.manufacturers_name as name
+  /**
+   * manufacturer name
+   * @param $id
+   * @return mixed
+   */
+  public function getTitle($id)
+  {
+    $name = '';
+
+    $Qmanufacturer = $this->db->prepare('select m.manufacturers_name as name
                                             from :table_manufacturers m,
                                                  :table_manufacturers_info mi
                                             where m.manufacturers_id = :manufacturers_id
@@ -74,51 +74,51 @@
                                             and mi.languages_id = :languages_id
                                             and m.manufacturers_status = 0
                                             ');
-      $Qmanufacturer->bindInt(':manufacturers_id', $id);
-      $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
-      $Qmanufacturer->execute();
+    $Qmanufacturer->bindInt(':manufacturers_id', $id);
+    $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
+    $Qmanufacturer->execute();
 
-      if ($Qmanufacturer->fetch()) {
-        $name = $Qmanufacturer->value('name');
-      }
-
-      return $name;
+    if ($Qmanufacturer->fetch()) {
+      $name = $Qmanufacturer->value('name');
     }
 
-    /**
-     * manufacturer image
-     * @param $id
-     * @return mixed
-     */
-    public function getImage($id)
-    {
-      $image = '';
+    return $name;
+  }
 
-      $Qmanufacturer = $this->db->prepare('select manufacturers_image as image
+  /**
+   * manufacturer image
+   * @param $id
+   * @return mixed
+   */
+  public function getImage($id)
+  {
+    $image = '';
+
+    $Qmanufacturer = $this->db->prepare('select manufacturers_image as image
                                       from :table_manufacturers
                                       where manufacturers_id = :manufacturers_id
                                       and manufacturers_status = 0
                                       ');
-      $Qmanufacturer->bindInt(':manufacturers_id', $id);
-      $Qmanufacturer->execute();
+    $Qmanufacturer->bindInt(':manufacturers_id', $id);
+    $Qmanufacturer->execute();
 
-      if ($Qmanufacturer->fetch()) {
-        $image = $Qmanufacturer->valueInt('image');
-      }
-
-      return $image;
+    if ($Qmanufacturer->fetch()) {
+      $image = $Qmanufacturer->valueInt('image');
     }
 
-    /**
-     * manufacturer description
-     * @param $id
-     * @return mixed
-     */
-    public function getDescription($id)
-    {
-      $description = '';
+    return $image;
+  }
 
-      $Qmanufacturer = $this->db->prepare('select mi.manufacturer_description as description
+  /**
+   * manufacturer description
+   * @param $id
+   * @return mixed
+   */
+  public function getDescription($id)
+  {
+    $description = '';
+
+    $Qmanufacturer = $this->db->prepare('select mi.manufacturer_description as description
                                             from :table_manufacturers m,
                                                  :table_manufacturers_info mi
                                             where m.manufacturers_id = :manufacturers_id
@@ -126,22 +126,22 @@
                                             and mi.languages_id = :languages_id
                                             and m.manufacturers_status = 0
                                             ');
-      $Qmanufacturer->bindInt(':manufacturers_id', $id);
-      $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
-      $Qmanufacturer->execute();
+    $Qmanufacturer->bindInt(':manufacturers_id', $id);
+    $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
+    $Qmanufacturer->execute();
 
-      if ($Qmanufacturer->fetch()) {
-        $description = $Qmanufacturer->valueInt('description');
-      }
-
-      return $description;
+    if ($Qmanufacturer->fetch()) {
+      $description = $Qmanufacturer->valueInt('description');
     }
 
-    public function getUrl($id)
-    {
-      $url = '';
+    return $description;
+  }
 
-      $Qmanufacturer = $this->db->prepare('select mi.manufacturers_url as url
+  public function getUrl($id)
+  {
+    $url = '';
+
+    $Qmanufacturer = $this->db->prepare('select mi.manufacturers_url as url
                                             from :table_manufacturers m,
                                                  :table_manufacturers_info mi
                                             where m.manufacturers_id = :manufacturers_id
@@ -149,21 +149,21 @@
                                             and mi.languages_id = :languages_id
                                             and m.manufacturers_status = 0
                                             ');
-      $Qmanufacturer->bindInt(':manufacturers_id', $id);
-      $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
-      $Qmanufacturer->execute();
+    $Qmanufacturer->bindInt(':manufacturers_id', $id);
+    $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
+    $Qmanufacturer->execute();
 
-      if ($Qmanufacturer->fetch()) {
-        $url = $Qmanufacturer->valueInt('url');
-      }
-
-      return $url;
+    if ($Qmanufacturer->fetch()) {
+      $url = $Qmanufacturer->valueInt('url');
     }
 
-    public function getAll($id = null)
-    {
-      if (!\is_null($id)) {
-        $Qmanufacturer = $this->db->prepare('select m.manufacturers_id as id,
+    return $url;
+  }
+
+  public function getAll($id = null)
+  {
+    if (!\is_null($id)) {
+      $Qmanufacturer = $this->db->prepare('select m.manufacturers_id as id,
                                                      m.manufacturers_name as name,
                                                      m.manufacturers_image as image,
                                                      mi.languages_id,
@@ -176,11 +176,11 @@
                                               and mi.languages_id = :languages_id
                                               and m.manufacturers_status = 0
                                               ');
-        $Qmanufacturer->bindInt(':manufacturers_id', $id);
-        $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
-        $Qmanufacturer->execute();
-      } else {
-        $Qmanufacturer = $this->db->prepare('select m.manufacturers_id as id,
+      $Qmanufacturer->bindInt(':manufacturers_id', $id);
+      $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
+      $Qmanufacturer->execute();
+    } else {
+      $Qmanufacturer = $this->db->prepare('select m.manufacturers_id as id,
                                                      m.manufacturers_name as name,
                                                      m.manufacturers_image as image,
                                                      mi.languages_id,
@@ -192,19 +192,19 @@
                                               and mi.languages_id = :languages_id
                                               and m.manufacturers_status = 0
                                               ');
-        $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
-        $Qmanufacturer->execute();
-      }
-
-      return $Qmanufacturer->fetchAll();
+      $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
+      $Qmanufacturer->execute();
     }
 
-    public function setManufacturersByCategories()
-    {
-      $CLICSHOPPING_Category = Registry::get('Category');
-      $manufacturer_name_array = array();
+    return $Qmanufacturer->fetchAll();
+  }
 
-      $Qmanufacturer = $this->db->prepare('select distinct m.manufacturers_id as id,
+  public function setManufacturersByCategories()
+  {
+    $CLICSHOPPING_Category = Registry::get('Category');
+    $manufacturer_name_array = array();
+
+    $Qmanufacturer = $this->db->prepare('select distinct m.manufacturers_id as id,
                                                   m.manufacturers_name as name
                                       from :table_products p,
                                       :table_products_to_categories p2c,
@@ -220,22 +220,22 @@
                                       order by m.manufacturers_name
                                       ');
 
-      $Qmanufacturer->bindInt(':categories_id', $CLICSHOPPING_Category->getID());
-      $Qmanufacturer->execute();
+    $Qmanufacturer->bindInt(':categories_id', $CLICSHOPPING_Category->getID());
+    $Qmanufacturer->execute();
 
-      while ($Qmanufacturer->fetch() !== false) {
-        $manufacturer_name_array[] = [
-          'id' => $Qmanufacturer->valueInt('id'),
-          'text' => $Qmanufacturer->value('name')
-        ];
-      }
-
-      return $manufacturer_name_array;
+    while ($Qmanufacturer->fetch() !== false) {
+      $manufacturer_name_array[] = [
+        'id' => $Qmanufacturer->valueInt('id'),
+        'text' => $Qmanufacturer->value('name')
+      ];
     }
 
-
-    public function getManufacturersByCategories()
-    {
-      return $this->setManufacturersByCategories();
-    }
+    return $manufacturer_name_array;
   }
+
+
+  public function getManufacturersByCategories()
+  {
+    return $this->setManufacturersByCategories();
+  }
+}

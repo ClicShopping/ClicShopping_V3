@@ -1,27 +1,26 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-  $languages = $CLICSHOPPING_Language->getLanguages();
+$languages = $CLICSHOPPING_Language->getLanguages();
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <div class="contentBody">
   <div class="row">
@@ -56,36 +55,42 @@
   <!-- //################################################################################################################ -->
   <!-- //                                            Listing                                                               -->
   <!-- //################################################################################################################ -->
-  <?php  echo HTML::form('delete_all', $CLICSHOPPING_Manufacturers->link('Manufacturers&DeleteAll&page=' . $page)); ?>
+  <?php echo HTML::form('delete_all', $CLICSHOPPING_Manufacturers->link('Manufacturers&DeleteAll&page=' . $page)); ?>
   <table
-          id="table"
-          data-toggle="table"
-          data-icons-prefix="bi"
-          data-icons="icons"
-          data-sort-name="number"
-          data-sort-order="asc"
-          data-toolbar="#toolbar"
-          data-buttons-class="primary"
-          data-show-toggle="true"
-          data-show-columns="true"
-          data-mobile-responsive="true"
-          data-show-export="true">
+    id="table"
+    data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
+    data-sort-name="number"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true"
+    data-show-export="true">
 
     <thead class="dataTableHeadingRow">
-      <tr>
-        <th data-switchable="true"></th>
-        <th data-field="manufacturer" data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_manufacturers'); ?></th>
-        <th data-field="products_model" data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_products_model'); ?></th>
-        <th data-field="products_name" data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_products_name'); ?></th>
-        <th data-field="products_quantity" data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_products_quantity'); ?></th>
-        <th data-field="products_suppliers_cost" data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_products_suppliers_cost'); ?></th>
-        <th data-field="total_cost" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_total_cost'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-end"></th>
-      </tr>
+    <tr>
+      <th data-switchable="true"></th>
+      <th data-field="manufacturer"
+          data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_manufacturers'); ?></th>
+      <th data-field="products_model"
+          data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_products_model'); ?></th>
+      <th data-field="products_name"
+          data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_products_name'); ?></th>
+      <th data-field="products_quantity"
+          data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_products_quantity'); ?></th>
+      <th data-field="products_suppliers_cost"
+          data-sortable="true"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_products_suppliers_cost'); ?></th>
+      <th data-field="total_cost" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_total_cost'); ?></th>
+      <th data-field="action" data-switchable="false" class="text-end"></th>
+    </tr>
     </thead>
     <tbody>
     <?php
-      $Qmanufacturers = $CLICSHOPPING_Manufacturers->db->prepare('select DISTINCT SQL_CALC_FOUND_ROWS m.manufacturers_id,
+    $Qmanufacturers = $CLICSHOPPING_Manufacturers->db->prepare('select DISTINCT SQL_CALC_FOUND_ROWS m.manufacturers_id,
                                                                                                       m.manufacturers_name,
                                                                                                       m.manufacturers_image,
                                                                                                       p.products_id,
@@ -106,21 +111,21 @@
                                                                           :page_set_max_results
                                                                    ');
 
-      $Qmanufacturers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-      $Qmanufacturers->execute();
+    $Qmanufacturers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+    $Qmanufacturers->execute();
 
-      $listingTotalRow = $Qmanufacturers->getPageSetTotalRows();
+    $listingTotalRow = $Qmanufacturers->getPageSetTotalRows();
 
-      if ($listingTotalRow > 0) {
+    if ($listingTotalRow > 0) {
 
-        while ($Qmanufacturers->fetch()) {
+      while ($Qmanufacturers->fetch()) {
         ?>
         <tr>
           <td>
             <?php
-              if (!empty($Qmanufacturers->value('products_image'))) {
-                echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qmanufacturers->value('products_image'), $Qmanufacturers->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN);
-              }
+            if (!empty($Qmanufacturers->value('products_image'))) {
+              echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qmanufacturers->value('products_image'), $Qmanufacturers->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN);
+            }
             ?>
           </td>
           <td scope="row"><?php echo $Qmanufacturers->value('manufacturers_name'); ?></td>
@@ -128,29 +133,30 @@
           <td scope="row"><?php echo $Qmanufacturers->value('products_name'); ?></td>
           <td scope="row"><?php echo $Qmanufacturers->value('products_quantity'); ?></td>
           <td scope="row"><?php echo $Qmanufacturers->value('products_cost'); ?></td>
-          <td scope="row"><?php echo $Qmanufacturers->value('products_cost') * $Qmanufacturers->value('products_quantity'); ?></td>
+          <td
+            scope="row"><?php echo $Qmanufacturers->value('products_cost') * $Qmanufacturers->value('products_quantity'); ?></td>
           <td scope="row"></td>
 
         </tr>
-            <?php
-          } //end while
-        } // end $listingTotalRow
-      ?>
-      </tbody>
-    </table>
-    </form><!-- end form delete all -->
-  <?php
-    if ($listingTotalRow > 0) {
-      ?>
-      <div class="row">
-        <div class="col-md-12">
-          <div
-            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qmanufacturers->getPageSetLabel($CLICSHOPPING_Manufacturers->getDef('text_display_number_of_link')); ?></div>
-          <div
-            class="float-end text-end"><?php echo $Qmanufacturers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
-        </div>
-      </div>
-      <?php
+        <?php
+      } //end while
     } // end $listingTotalRow
+    ?>
+    </tbody>
+  </table>
+  </form><!-- end form delete all -->
+  <?php
+  if ($listingTotalRow > 0) {
+    ?>
+    <div class="row">
+      <div class="col-md-12">
+        <div
+          class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qmanufacturers->getPageSetLabel($CLICSHOPPING_Manufacturers->getDef('text_display_number_of_link')); ?></div>
+        <div
+          class="float-end text-end"><?php echo $Qmanufacturers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+      </div>
+    </div>
+    <?php
+  } // end $listingTotalRow
   ?>
 </div>

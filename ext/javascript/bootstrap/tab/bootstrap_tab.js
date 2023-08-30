@@ -15,7 +15,7 @@ $(document).ready(function () {
 
   $("a[data-bs-toggle='tab']").on("shown.bs.tab", function (e) {
     const hash = $(e.target).prop("href");
-    if (hash.substr(0,1) == "#") {
+    if (hash.substr(0, 1) == "#") {
       const position = $(window).scrollTop();
       location.replace("#" + hash.substr(1));
       $(window).scrollTop(position);

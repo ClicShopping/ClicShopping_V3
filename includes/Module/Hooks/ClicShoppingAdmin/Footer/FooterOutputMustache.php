@@ -1,33 +1,33 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
+
+class FooterOutputMustache
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return string|bool
    */
-
-  namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
-
-  class FooterOutputMustache
+  public function display(): string|bool
   {
-    /**
-     * @return string|bool
-     */
-    public function display(): string|bool
-    {
-      $output = '';
+    $output = '';
 
-      if (isset($_SESSION['admin'])) {
-        $output .= '<!-- Mustache Script start-->' . "\n";
-        $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js"></script>' . "\n";
+    if (isset($_SESSION['admin'])) {
+      $output .= '<!-- Mustache Script start-->' . "\n";
+      $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js"></script>' . "\n";
 
-        $output .= '<!--Mustache end -->' . "\n";
-      } else {
-        return false;
-      }
-
-      return $output;
+      $output .= '<!--Mustache end -->' . "\n";
+    } else {
+      return false;
     }
+
+    return $output;
   }
+}

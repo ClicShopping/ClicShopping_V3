@@ -1,33 +1,33 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
+
+class FooterOutputBootstrapLinkTab
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return string|bool
    */
-
-  namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
-
-  class FooterOutputBootstrapLinkTab
+  public function display(): string|bool
   {
-    /**
-     * @return string|bool
-     */
-    public function display(): string|bool
-    {
-      $params = $_SERVER['QUERY_STRING'];
+    $params = $_SERVER['QUERY_STRING'];
 
-      if (empty($params)) {
-        return false;
-      }
+    if (empty($params)) {
+      return false;
+    }
 
-      $output = '';
+    $output = '';
 
-      if (isset($_SESSION['admin'])) {
-        $output .= '<!-- Bootstrap Link tab Script start-->' . "\n";
-        $output .= '
+    if (isset($_SESSION['admin'])) {
+      $output .= '<!-- Bootstrap Link tab Script start-->' . "\n";
+      $output .= '
   <!-- if the page request contains a link to a tab, open that tab on page load -->
   <script>
       $(function () {
@@ -41,11 +41,11 @@
       });
   </script>
           ' . "\n";
-        $output .= '<!--Bootstrap Link tab end -->' . "\n";
-      } else {
-        return false;
-      }
-      
-      return $output;
+      $output .= '<!--Bootstrap Link tab end -->' . "\n";
+    } else {
+      return false;
     }
+
+    return $output;
   }
+}

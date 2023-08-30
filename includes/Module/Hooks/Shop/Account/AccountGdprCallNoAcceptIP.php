@@ -1,50 +1,51 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\OM\Module\Hooks\Shop\Account;
+namespace ClicShopping\OM\Module\Hooks\Shop\Account;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
+use function is_null;
 
-  class AccountGdprCallNoAcceptIP
+class AccountGdprCallNoAcceptIP
+{
+  public function execute()
   {
-    public function execute()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Customer = Registry::get('Customer');
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      $Qcheck = $CLICSHOPPING_Db->prepare('select customers_id,
+    $Qcheck = $CLICSHOPPING_Db->prepare('select customers_id,
                                                   no_ip_address
                                            from :table_customers_gdpr
                                            where customers_id = :customers_id
                                          ');
-      $Qcheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qcheck->execute();
+    $Qcheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+    $Qcheck->execute();
 
-      if ($Qcheck->fetch() === false) {
-        $CLICSHOPPING_Db->save('customers_gdpr', ['customers_id' => $CLICSHOPPING_Customer->getID(), 'date_added' => 'now()']);
+    if ($Qcheck->fetch() === false) {
+      $CLICSHOPPING_Db->save('customers_gdpr', ['customers_id' => $CLICSHOPPING_Customer->getID(), 'date_added' => 'now()']);
+    } else {
+      if (!is_null($_POST['no_ip_address'])) {
+        $no_ip_address = 1;
       } else {
-        if (!\is_null($_POST['no_ip_address'])) {
-          $no_ip_address = 1;
-        } else {
-          $no_ip_address = 0;
-        }
+        $no_ip_address = 0;
+      }
 
-        $Qupdate = $CLICSHOPPING_Db->prepare('update :table_customers_gdpr
+      $Qupdate = $CLICSHOPPING_Db->prepare('update :table_customers_gdpr
                                               set no_ip_address = :no_ip_address,
                                               customers_id = :customers_id,
                                               date_added = now()
                                             ');
-        $Qupdate->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-        $Qupdate->bindInt(':no_ip_address', $no_ip_address);
+      $Qupdate->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+      $Qupdate->bindInt(':no_ip_address', $no_ip_address);
 
-        $Qupdate->execute();
-      }
+      $Qupdate->execute();
     }
   }
+}

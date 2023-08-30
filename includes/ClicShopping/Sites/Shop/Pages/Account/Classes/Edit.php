@@ -1,37 +1,37 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Sites\Shop\Pages\Account\Classes;
+namespace ClicShopping\Sites\Shop\Pages\Account\Classes;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  class Edit
+class Edit
+{
+  protected mixed $db;
+  protected $customer;
+
+  public function __construct()
   {
-    protected mixed $db;
-    protected $customer;
+    $this->db = Registry::get('Db');
+    $this->customer = Registry::get('Customer');
+  }
 
-    public function __construct()
-    {
-      $this->db = Registry::get('Db');
-      $this->customer = Registry::get('Customer');
-    }
+  /**
+   * @return array
+   */
+  public static function getAccountEdit(): array
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
 
-    /**
-     * @return array
-     */
-    public static function getAccountEdit(): array
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-
-      $Qaccount = $CLICSHOPPING_Db->prepare('select customers_gender,
+    $Qaccount = $CLICSHOPPING_Db->prepare('select customers_gender,
                                                     customers_firstname,
                                                     customers_lastname,
                                                     customers_dob,
@@ -46,79 +46,79 @@
                                              from :table_customers
                                              where customers_id = :customers_id
                                             ');
-      $Qaccount->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qaccount->execute();
+    $Qaccount->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+    $Qaccount->execute();
 
-      $account = $Qaccount->fetch();
+    $account = $Qaccount->fetch();
 
-      return $account;
-    }
+    return $account;
+  }
 
-    /**
-     * @param string $email_address
-     * @return int
-     */
-    public static function getCountEmail(string $email_address): int
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Customer = Registry::get('Customer');
+  /**
+   * @param string $email_address
+   * @return int
+   */
+  public static function getCountEmail(string $email_address): int
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      $QcheckEmail = $CLICSHOPPING_Db->prepare('select count(*) as total
+    $QcheckEmail = $CLICSHOPPING_Db->prepare('select count(*) as total
                                          from :table_customers
                                          where customers_email_address = :customers_email_address
                                          and customers_id != :customers_id
                                         ');
-      $QcheckEmail->bindValue(':customers_email_address', $email_address);
-      $QcheckEmail->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $QcheckEmail->execute();
+    $QcheckEmail->bindValue(':customers_email_address', $email_address);
+    $QcheckEmail->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+    $QcheckEmail->execute();
 
-      $check_email = $QcheckEmail->valueInt('total');
+    $check_email = $QcheckEmail->valueInt('total');
 
-      return $check_email;
-    }
+    return $check_email;
+  }
 
-    /**
-     * @param string $email_address
-     * @return bool
-     */
-    public static function getCustomerAddressEmail(string $email_address): bool
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Customer = Registry::get('Customer');
+  /**
+   * @param string $email_address
+   * @return bool
+   */
+  public static function getCustomerAddressEmail(string $email_address): bool
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      $Qcheck = $CLICSHOPPING_Db->prepare('select customers_id
+    $Qcheck = $CLICSHOPPING_Db->prepare('select customers_id
                                             from :table_customers
                                             where customers_email_address = :customers_email_address
                                             and customers_id != :customers_id
                                             limit 1
                                             ');
-      $Qcheck->bindValue(':customers_email_address', $email_address);
-      $Qcheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qcheck->execute();
+    $Qcheck->bindValue(':customers_email_address', $email_address);
+    $Qcheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+    $Qcheck->execute();
 
-      $check = $Qcheck->fetch();
+    $check = $Qcheck->fetch();
 
-      return $check;
-    }
+    return $check;
+  }
 
-    /**
-     * @param int $country_id
-     * @return int
-     */
-    public static function getCheckCountryIsoCode2(int $country_id): int
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
+  /**
+   * @param int $country_id
+   * @return int
+   */
+  public static function getCheckCountryIsoCode2(int $country_id): int
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qcheck = $CLICSHOPPING_Db->prepare('select countries_id
+    $Qcheck = $CLICSHOPPING_Db->prepare('select countries_id
                                           from :table_countries
                                           where countries_iso_code_2 = :countries_iso_code_2
                                           limit 1
                                           ');
-      $Qcheck->bindValue(':countries_iso_code_2', $country_id);
-      $Qcheck->execute();
+    $Qcheck->bindValue(':countries_iso_code_2', $country_id);
+    $Qcheck->execute();
 
-      $country_id = $Qcheck->valueInt('countries_id');
+    $country_id = $Qcheck->valueInt('countries_id');
 
-      return $country_id;
-    }
+    return $country_id;
   }
+}

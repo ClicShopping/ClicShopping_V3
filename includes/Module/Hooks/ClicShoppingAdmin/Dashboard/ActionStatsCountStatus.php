@@ -1,56 +1,58 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Dashboard;
+namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Dashboard;
 
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Registry;
+use function is_array;
+use function is_null;
 
-  class ActionStatsCountStatus
+class ActionStatsCountStatus
+{
+
+  public function __construct()
   {
 
-    public function __construct()
-    {
-
-      if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-        CLICSHOPPING::redirect();
-      }
+    if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
+      CLICSHOPPING::redirect();
     }
+  }
 
-    public function execute()
-    {
+  public function execute()
+  {
 
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Language = Registry::get('Language');
 
-      $QordersStatus = $CLICSHOPPING_Db->prepare('select orders_status_name,
+    $QordersStatus = $CLICSHOPPING_Db->prepare('select orders_status_name,
                                                          orders_status_id
                                                   from :table_orders_status
                                                   where language_id = :language_id
                                                   order by orders_status_id
                                                 ');
-      $QordersStatus->bindint(':language_id', $CLICSHOPPING_Language->getId());
-      $QordersStatus->execute();
+    $QordersStatus->bindint(':language_id', $CLICSHOPPING_Language->getId());
+    $QordersStatus->execute();
 
-      $result = null;
+    $result = null;
 
-      while ($QordersStatus->fetch()) {
-        $QordersPending = $CLICSHOPPING_Db->prepare('select count(orders_id) as count
+    while ($QordersStatus->fetch()) {
+      $QordersPending = $CLICSHOPPING_Db->prepare('select count(orders_id) as count
                                                      from :table_orders
                                                      where orders_status = :orders_status
                                                    ');
-        $QordersPending->bindInt(':orders_status', $QordersStatus->valueInt('orders_status_id'));
-        $QordersPending->execute();
+      $QordersPending->bindInt(':orders_status', $QordersStatus->valueInt('orders_status_id'));
+      $QordersPending->execute();
 
-        if ($QordersPending->valueInt('count') > 0) {
-          $result[] = '
+      if ($QordersPending->valueInt('count') > 0) {
+        $result[] = '
              <div class="row">
                 <div class="col-md-11 mainTable">
                   <div class="form-group row">
@@ -62,13 +64,13 @@
                 </div>
               </div>
             ';
-        }
       }
+    }
 
-      if (!\is_null($result) && \is_array($result)) {
-        foreach ($result as $value) {
-          echo $value;
-        }
+    if (!is_null($result) && is_array($result)) {
+      foreach ($result as $value) {
+        echo $value;
       }
     }
   }
+}

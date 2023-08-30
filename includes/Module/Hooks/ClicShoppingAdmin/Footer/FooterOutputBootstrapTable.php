@@ -1,35 +1,35 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
+
+use ClicShopping\OM\CLICSHOPPING;
+
+class FooterOutputBootstrapTable
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return bool|string
    */
-
-  namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
-
-  use ClicShopping\OM\CLICSHOPPING;
-
-  class FooterOutputBootstrapTable
+  public function display(): string|bool
   {
-    /**
-     * @return bool|string
-     */
-    public function display(): string|bool
-    {
-      $output = '';
+    $output = '';
 
-      if (isset($_SESSION['admin'])) {
-        $output .= '<! -- Start BootStrap Table -->' . "\n";
-        $output .= '<script defer src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>' . "\n";
+    if (isset($_SESSION['admin'])) {
+      $output .= '<! -- Start BootStrap Table -->' . "\n";
+      $output .= '<script defer src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>' . "\n";
 //checkbox
-        $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/bootstrapTable/table_checkbox.js') . '"></script>' . "\n";
+      $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/bootstrapTable/table_checkbox.js') . '"></script>' . "\n";
 //export
-        $output .= '<script defer src="https://unpkg.com/bootstrap-table@1.22.1/dist/extensions/export/bootstrap-table-export.min.js"></script>' . "\n";
-        $output .= '<script defer src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>' . "\n";
-        $output .='
+      $output .= '<script defer src="https://unpkg.com/bootstrap-table@1.22.1/dist/extensions/export/bootstrap-table-export.min.js"></script>' . "\n";
+      $output .= '<script defer src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>' . "\n";
+      $output .= '
 <script defer>
   window.icons = {
         paginationSwitchDown: \'bi-arrow-bar-down\',
@@ -44,11 +44,11 @@
   }
 </script>' . "\n";
 
-        $output .= '<!-- End bootstrap Table -->' . "\n";
-      } else {
-        return false;
-      }
-
-      return $output;
+      $output .= '<!-- End bootstrap Table -->' . "\n";
+    } else {
+      return false;
     }
+
+    return $output;
   }
+}

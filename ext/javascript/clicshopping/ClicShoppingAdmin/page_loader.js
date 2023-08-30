@@ -8,9 +8,9 @@
  */
 
 
-window.addEventListener("load", function() {
-    // Page Preloader
-    $('#preloader').delay(100).fadeOut(function(){
-        $('body').delay(100);
-    });
+window.addEventListener("load", function () {
+  // Page Preloader
+  $('#preloader').delay(100).fadeOut(function () {
+    $('body').delay(100);
+  });
 });

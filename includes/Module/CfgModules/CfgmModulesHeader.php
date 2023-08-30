@@ -1,33 +1,33 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Registry;
 
-  class CfgmModulesHeader
+class CfgmModulesHeader
+{
+  public string $code = 'modules_header';
+  public string $directory;
+  public $language_directory;
+  public string $site = 'Shop';
+  public string $key = 'MODULE_MODULES_HEADER_INSTALLED';
+  public $title;
+  public bool $template_integration = true;
+
+  public function __construct()
   {
-    public string $code = 'modules_header';
-    public string $directory;
-    public $language_directory;
-    public string $site = 'Shop';
-    public string $key = 'MODULE_MODULES_HEADER_INSTALLED';
-    public $title;
-    public bool $template_integration = true;
+    $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-    public function __construct()
-    {
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+    $this->directory = $CLICSHOPPING_Template->getDirectoryPathShopDefaultTemplateHtml() . '/modules/modules_header/';
+    $this->language_directory = $CLICSHOPPING_Template->getPathLanguageShopDirectory();
 
-      $this->directory = $CLICSHOPPING_Template->getDirectoryPathShopDefaultTemplateHtml() . '/modules/modules_header/';
-      $this->language_directory = $CLICSHOPPING_Template->getPathLanguageShopDirectory();
-
-      $this->title = CLICSHOPPING::getDef('module_cfg_module_header_title');
-    }
+    $this->title = CLICSHOPPING::getDef('module_cfg_module_header_title');
   }
+}

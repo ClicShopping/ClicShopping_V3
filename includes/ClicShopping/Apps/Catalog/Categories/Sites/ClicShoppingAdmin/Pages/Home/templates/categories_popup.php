@@ -1,35 +1,33 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+$CLICSHOPPING_Categories = Registry::get('Categories');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
 
-  use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+$supplier_inputs_string = '';
+$languages = $CLICSHOPPING_Language->getLanguages();
 
-  $CLICSHOPPING_Categories = Registry::get('Categories');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
+echo HTML::form('ajaxform', $CLICSHOPPING_Categories->link('CategoriesPopUp&Save'), 'post', 'id="ajaxform"');
 
-  $supplier_inputs_string = '';
-  $languages = $CLICSHOPPING_Language->getLanguages();
-
-  echo HTML::form('ajaxform', $CLICSHOPPING_Categories->link('CategoriesPopUp&Save'), 'post', 'id="ajaxform"');
-
-    if (isset($_GET['cPath'])) {
-      $current_category_id = HTML::sanitize($_GET['cPath']);
-    } else {
-      $current_category_id = 0;
-    }
+if (isset($_GET['cPath'])) {
+  $current_category_id = HTML::sanitize($_GET['cPath']);
+} else {
+  $current_category_id = 0;
+}
 ?>
 
 
@@ -58,9 +56,9 @@
   <div class="tabsClicShopping">
     <div class="tab-content">
       <?php
-        // -- ------------------------------------------------------------ //
-        // --          ONGLET Information General du fabricant           //
-        // -- ------------------------------------------------------------ //
+      // -- ------------------------------------------------------------ //
+      // --          ONGLET Information General du fabricant           //
+      // -- ------------------------------------------------------------ //
       ?>
       <div class="tab-pane active" id="tab20">
         <div class="col-md-12 mainTitle">
@@ -72,21 +70,21 @@
           <div class="col-md-12">
             <div class="form-group row">
               <?php
-                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                  ?>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group row">
-                        <label for="code"
-                               class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                        <div class="col-md-9">
-                          <?php echo HTML::inputField('categories_name[' . $languages[$i]['id'] . ']', null, 'class="form-control" required aria-required="true" Authentificator id="categories_name" placeholder="' . $CLICSHOPPING_Categories->getDef('text_edit_categories_name') . '"', true) . '&nbsp;'; ?>
-                        </div>
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                ?>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row">
+                      <label for="code"
+                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                      <div class="col-md-9">
+                        <?php echo HTML::inputField('categories_name[' . $languages[$i]['id'] . ']', null, 'class="form-control" required aria-required="true" Authentificator id="categories_name" placeholder="' . $CLICSHOPPING_Categories->getDef('text_edit_categories_name') . '"', true) . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
-                  <?php
-                }
+                </div>
+                <?php
+              }
               ?>
             </div>
           </div>

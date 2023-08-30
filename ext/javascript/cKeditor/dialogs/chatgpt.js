@@ -1,4 +1,4 @@
-CKEDITOR.dialog.add('chatgptDialog', function(editor) {
+CKEDITOR.dialog.add('chatgptDialog', function (editor) {
   var botUrl = 'https://api.openai.com/v1/completions'; // Davinci
   var apiKey = apiKeyGpt; // Replace with your own API key
   var conversationState = '';
@@ -19,10 +19,10 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
             id: 'message',
             label: 'Message',
             rows: 8,
-            setup: function(element) {
+            setup: function (element) {
               this.setValue('');
             },
-            commit: function(element) {
+            commit: function (element) {
               var message = this.getValue();
               var dialog = this.getDialog();
 
@@ -36,8 +36,8 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
               xhr.open('POST', botUrl, true);
               xhr.setRequestHeader('Accept', 'application/json');
               xhr.setRequestHeader('Content-Type', 'application/json');
-              xhr.setRequestHeader('Authorization',  'Bearer ' + apiKey);
-              xhr.onreadystatechange = function() {
+              xhr.setRequestHeader('Authorization', 'Bearer ' + apiKey);
+              xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                   var response = JSON.parse(xhr.responseText);
                   if (
@@ -65,7 +65,7 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
 
               xhr.send(JSON.stringify({
                 model: modelGpt,
-/*                organization : organizationGpt,*/ //not recognize actually
+                /*                organization : organizationGpt,*/ //not recognize actually
                 frequency_penalty: frequency_penalty_gpt,
                 presence_penalty: presence_penalty_gpt,
                 prompt: conversationState + message,
@@ -83,7 +83,7 @@ CKEDITOR.dialog.add('chatgptDialog', function(editor) {
       },
     ],
 
-    onOk: function() {
+    onOk: function () {
       this.commitContent(editor);
     },
   };

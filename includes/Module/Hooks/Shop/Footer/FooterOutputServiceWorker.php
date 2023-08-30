@@ -1,23 +1,23 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\OM\Module\Hooks\Shop\Footer;
+
+class FooterOutputServiceWorker
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return bool|string
    */
-
-  namespace ClicShopping\OM\Module\Hooks\Shop\Footer;
-
-  class FooterOutputServiceWorker
+  public function display(): string
   {
-    /**
-     * @return bool|string
-     */
-    public function display() :string
-    {
-      $output = '<script defer>
+    $output = '<script defer>
 // This is the "Offline page" service worker
 // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
 
@@ -38,6 +38,6 @@ if ("serviceWorker" in navigator) {
 }
       </script>' . "\n";
 
-      return $output;
-    }
+    return $output;
   }
+}

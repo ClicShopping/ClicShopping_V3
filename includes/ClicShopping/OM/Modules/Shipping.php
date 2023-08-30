@@ -1,43 +1,43 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
 
-  namespace ClicShopping\OM\Modules;
+namespace ClicShopping\OM\Modules;
 
-  use ClicShopping\OM\Apps;
+use ClicShopping\OM\Apps;
 
-  class Shipping extends \ClicShopping\OM\ModulesAbstract
+class Shipping extends \ClicShopping\OM\ModulesAbstract
+{
+  public function getInfo($app, $key, $data)
   {
-    public function getInfo($app, $key, $data)
-    {
-      $result = [];
+    $result = [];
 
-      $class = $this->ns . $app . '\\' . $data;
+    $class = $this->ns . $app . '\\' . $data;
 
-      if (is_subclass_of($class, 'ClicShopping\OM\Modules\\' . $this->code . 'Interface')) {
-        $result[$app . '\\' . $key] = $class;
-      }
-
-      return $result;
+    if (is_subclass_of($class, 'ClicShopping\OM\Modules\\' . $this->code . 'Interface')) {
+      $result[$app . '\\' . $key] = $class;
     }
 
-    public function getClass($module)
-    {
-      [$vendor, $app, $code] = explode('\\', $module, 3);
+    return $result;
+  }
 
-      $info = Apps::getInfo($vendor . '\\' . $app);
+  public function getClass($module)
+  {
+    [$vendor, $app, $code] = explode('\\', $module, 3);
 
-      if (isset($info['modules'][$this->code][$code])) {
-        return $this->ns . $vendor . '\\' . $app . '\\' . $info['modules'][$this->code][$code];
-      } else {
-        return false;
-      }
+    $info = Apps::getInfo($vendor . '\\' . $app);
+
+    if (isset($info['modules'][$this->code][$code])) {
+      return $this->ns . $vendor . '\\' . $app . '\\' . $info['modules'][$this->code][$code];
+    } else {
+      return false;
     }
   }
+}

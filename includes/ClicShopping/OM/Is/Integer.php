@@ -8,22 +8,22 @@
  *
  */
 
-  namespace ClicShopping\OM\Is;
+namespace ClicShopping\OM\Is;
 
-  class Integer implements \ClicShopping\OM\IsInterface
+class Integer implements \ClicShopping\OM\IsInterface
+{
+  public static function execute($value, int $min = null, int $max = null): bool
   {
-      public static function execute($value, int $min = null, int $max = null): bool
-      {
-          $options = [];
+    $options = [];
 
-          if (isset($min)) {
-              $options['options']['min_range'] = $min;
-          }
+    if (isset($min)) {
+      $options['options']['min_range'] = $min;
+    }
 
-          if (isset($max)) {
-              $options['options']['max_range'] = $max;
-          }
+    if (isset($max)) {
+      $options['options']['max_range'] = $max;
+    }
 
-          return filter_var($value, \FILTER_VALIDATE_INT, $options) !== false;
-      }
+    return filter_var($value, \FILTER_VALIDATE_INT, $options) !== false;
   }
+}

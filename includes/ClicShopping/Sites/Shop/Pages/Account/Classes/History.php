@@ -1,29 +1,29 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Sites\Shop\Pages\Account\Classes;
+
+use ClicShopping\OM\Registry;
+
+class History
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return mixed
    */
-
-  namespace ClicShopping\Sites\Shop\Pages\Account\Classes;
-
-  use ClicShopping\OM\Registry;
-
-  class History
+  public static function getOrderHistory()
   {
-    /**
-     * @return mixed
-     */
-    public static function getOrderHistory()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Language = Registry::get('Language');
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
+    $CLICSHOPPING_Language = Registry::get('Language');
 
-      $Qorders = $CLICSHOPPING_Db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
+    $Qorders = $CLICSHOPPING_Db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
                                                                        o.date_purchased,
                                                                        o.delivery_name,
                                                                        o.billing_name,
@@ -43,25 +43,25 @@
                                                      :page_set_max_results
                                               ');
 
-      $Qorders->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $Qorders->bindValue(':class', 'ot_total');
-      $Qorders->bindValue(':class1', 'TO');
-      $Qorders->setPageSet(MAX_DISPLAY_ORDER_HISTORY);
-      $Qorders->execute();
+    $Qorders->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+    $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    $Qorders->bindValue(':class', 'ot_total');
+    $Qorders->bindValue(':class1', 'TO');
+    $Qorders->setPageSet(MAX_DISPLAY_ORDER_HISTORY);
+    $Qorders->execute();
 
-      return $Qorders;
-    }
-
-    /**
-     * @return int
-     */
-    public static function getOrderTotalRows(): int
-    {
-      $orders = static::getOrderHistory();
-
-      $ordersTotalRow = $orders->getPageSetTotalRows();
-
-      return $ordersTotalRow;
-    }
+    return $Qorders;
   }
+
+  /**
+   * @return int
+   */
+  public static function getOrderTotalRows(): int
+  {
+    $orders = static::getOrderHistory();
+
+    $ordersTotalRow = $orders->getPageSetTotalRows();
+
+    return $ordersTotalRow;
+  }
+}

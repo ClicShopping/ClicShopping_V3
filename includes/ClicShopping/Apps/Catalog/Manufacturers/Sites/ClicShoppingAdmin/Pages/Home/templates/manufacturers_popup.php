@@ -1,29 +1,28 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+use ClicShopping\Sites\ClicShoppingAdmin\ManufacturersAdmin;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\ManufacturersAdmin;
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_ManufacturersAdmin = Registry::get('ProductsAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
+$CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_ManufacturersAdmin = Registry::get('ProductsAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
-  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
+$supplier_inputs_string = '';
+$languages = $CLICSHOPPING_Language->getLanguages();
 
-  $supplier_inputs_string = '';
-  $languages = $CLICSHOPPING_Language->getLanguages();
-
-  echo HTML::form('ajaxform', $CLICSHOPPING_Manufacturers->link('ManufacturersPopUp&Save'), 'post', 'id="ajaxform"');
+echo HTML::form('ajaxform', $CLICSHOPPING_Manufacturers->link('ManufacturersPopUp&Save'), 'post', 'id="ajaxform"');
 ?>
 
 <div class="row">
@@ -53,9 +52,9 @@
   <div class="tabsClicShopping">
     <div class="tab-content">
       <?php
-        // -- ------------------------------------------------------------ //
-        // --          ONGLET Information General du fabricant           //
-        // -- ------------------------------------------------------------ //
+      // -- ------------------------------------------------------------ //
+      // --          ONGLET Information General du fabricant           //
+      // -- ------------------------------------------------------------ //
       ?>
       <div class="tab-pane active" id="tab20">
         <div class="col-md-12 mainTitle">
@@ -82,19 +81,19 @@
           </div>
 
           <?php
-            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-              ?>
-              <div class="col-md-12">
-                <div class="form-group row">
-                  <label for="lang"
-                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                  <div class="col-md-5">
-                    <?php echo HTML::inputField('manufacturers_url[' . $languages[$i]['id'] . ']'); ?>
-                  </div>
+          for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+            ?>
+            <div class="col-md-12">
+              <div class="form-group row">
+                <label for="lang"
+                       class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                <div class="col-md-5">
+                  <?php echo HTML::inputField('manufacturers_url[' . $languages[$i]['id'] . ']'); ?>
                 </div>
               </div>
-              <?php
-            }
+            </div>
+            <?php
+          }
           ?>
 
         </div>

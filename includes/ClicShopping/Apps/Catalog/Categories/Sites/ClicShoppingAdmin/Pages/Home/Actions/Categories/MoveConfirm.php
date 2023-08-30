@@ -1,86 +1,86 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
 
-  namespace ClicShopping\Apps\Catalog\Categories\Sites\ClicShoppingAdmin\Pages\Home\Actions\Categories;
+namespace ClicShopping\Apps\Catalog\Categories\Sites\ClicShoppingAdmin\Pages\Home\Actions\Categories;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Cache;
+use ClicShopping\OM\Cache;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  class MoveConfirm extends \ClicShopping\OM\PagesActionsAbstract
+class MoveConfirm extends \ClicShopping\OM\PagesActionsAbstract
+{
+  protected mixed $app;
+  protected $ID;
+  protected $cPath;
+  protected $moveToCategoryID;
+  protected $categoriesAdmin;
+
+  public function __construct()
   {
-    protected mixed $app;
-    protected $ID;
-    protected $cPath;
-    protected $moveToCategoryID;
-    protected $categoriesAdmin;
+    $this->app = Registry::get('Categories');
 
-    public function __construct()
-    {
-      $this->app = Registry::get('Categories');
+    $this->categoriesAdmin = Registry::get('CategoriesAdmin');
 
-      $this->categoriesAdmin = Registry::get('CategoriesAdmin');
-
-      if (isset($_GET['categories_id'])) {
-        $this->Id = HTML::sanitize($_GET['categories_id']); // insert
-      } elseif (isset($_POST['categories_id'])) {
-        $this->Id = HTML::sanitize($_POST['categories_id']); // update
-      }
-
-      $this->moveToCategoryID = HTML::sanitize($_POST['move_to_category_id']);
-
-      if (isset($_GET['cPath'])) {
-        $this->cPath = HTML::sanitize($_GET['cPath']);
-      } else {
-        $this->cPath = 0;
-      }
+    if (isset($_GET['categories_id'])) {
+      $this->Id = HTML::sanitize($_GET['categories_id']); // insert
+    } elseif (isset($_POST['categories_id'])) {
+      $this->Id = HTML::sanitize($_POST['categories_id']); // update
     }
 
-    public function execute()
-    {
-      $CLICSHOPPING_Hooks = Registry::get('Hooks');
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    $this->moveToCategoryID = HTML::sanitize($_POST['move_to_category_id']);
 
-      if (isset($this->Id) && ($this->Id != $this->moveToCategoryID)) {
-        $categories_id = HTML::sanitize($this->Id);
-        $new_parent_id = HTML::sanitize($this->moveToCategoryID);
+    if (isset($_GET['cPath'])) {
+      $this->cPath = HTML::sanitize($_GET['cPath']);
+    } else {
+      $this->cPath = 0;
+    }
+  }
 
-        $path = explode('_', $this->categoriesAdmin->getGeneratedCategoryPathIds($new_parent_id));
+  public function execute()
+  {
+    $CLICSHOPPING_Hooks = Registry::get('Hooks');
+    $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-        if (\in_array($this->Id, $path)) {
-          $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_move_directory_to_parent'), 'error');
+    if (isset($this->Id) && ($this->Id != $this->moveToCategoryID)) {
+      $categories_id = HTML::sanitize($this->Id);
+      $new_parent_id = HTML::sanitize($this->moveToCategoryID);
 
-          $this->app->redirect('Categories&cPath=' . $this->cPath . '&cID=' . $categories_id);
-        } else {
-          $sql_array = [
-            'parent_id' => (int)$new_parent_id,
-            'last_modified' => 'now()'
-          ];
+      $path = explode('_', $this->categoriesAdmin->getGeneratedCategoryPathIds($new_parent_id));
 
-          $insert_array = [
-            'categories_id' => (int)$categories_id
-          ];
+      if (\in_array($this->Id, $path)) {
+        $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_move_directory_to_parent'), 'error');
 
-          $this->app->db->save('categories', $sql_array, $insert_array);
+        $this->app->redirect('Categories&cPath=' . $this->cPath . '&cID=' . $categories_id);
+      } else {
+        $sql_array = [
+          'parent_id' => (int)$new_parent_id,
+          'last_modified' => 'now()'
+        ];
 
-          Cache::clear('categories');
-          Cache::clear('products-also_purchased');
-          Cache::clear('products_related');
-          Cache::clear('products_cross_sell');
-          Cache::clear('upcoming');
+        $insert_array = [
+          'categories_id' => (int)$categories_id
+        ];
 
-          $CLICSHOPPING_Hooks->call('Categories', 'Insert');
+        $this->app->db->save('categories', $sql_array, $insert_array);
 
-          $this->app->redirect('Categories&cPath=' . $new_parent_id);
-        }
+        Cache::clear('categories');
+        Cache::clear('products-also_purchased');
+        Cache::clear('products_related');
+        Cache::clear('products_cross_sell');
+        Cache::clear('upcoming');
+
+        $CLICSHOPPING_Hooks->call('Categories', 'Insert');
+
+        $this->app->redirect('Categories&cPath=' . $new_parent_id);
       }
     }
   }
+}

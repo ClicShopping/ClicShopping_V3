@@ -1,22 +1,20 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-  use ClicShopping\OM\CLICSHOPPING;
+$languages_array = [['id' => 'english', 'text' => 'English'],
+  ['id' => 'french', 'text' => 'Francais'],
+];
 
-  $languages_array = [['id' => 'english', 'text' => 'English'],
-                    ['id' => 'french', 'text' => 'Francais'],
-                   ];
+require_once('includes/languages/' . $language . '.php');
 
- require_once('includes/languages/' . $language . '.php');
-
-  $template = 'main_page';
+$template = 'main_page';
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,8 +26,9 @@
   <meta name="generator" content="ClicShopping, Social E-Commerce B2B/B2C Open Source Solutions /">
   <meta name="robots" content="noindex,nofollow">
   <title>ClicShopping, Social E-Commerce B2B/B2C Open Source Solutions</title>
-  <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="templates/main_page/stylesheet.css">
 
@@ -37,30 +36,31 @@
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="row" style="margin-top: 10px; margin-bottom: 20px;" id="storeLogo">
-      <div class="col-sm-6">
-        <a href="index.php"><img src="../images/logo_clicshopping_1.png" border="0" width="200" height="90" title="ClicShopping" alt="ClicShopping" style="margin: 10px 10px 0px 10px;" /></a>
-      </div>
-
-      <div id="headerShortcuts" class="col-sm-6 text-end">
-        <ul class="list-unstyled list-inline">
-          <li><a href="https://www.clicshopping.org" target="_blank">ClicShopping Website</a></li>
-          <li><a href="https://www.clicshopping.org" target="_blank">Support</a></li>
-          <li><a href="https://clicshopping.org" target="_blank">Documentation</a></li>
-        </ul>
-      </div>
+<div class="container-fluid">
+  <div class="row" style="margin-top: 10px; margin-bottom: 20px;" id="storeLogo">
+    <div class="col-sm-6">
+      <a href="index.php"><img src="../images/logo_clicshopping_1.png" border="0" width="200" height="90"
+                               title="ClicShopping" alt="ClicShopping" style="margin: 10px 10px 0px 10px;"/></a>
     </div>
 
-    <?php require_once('templates/pages/' . $page_contents); ?>
+    <div id="headerShortcuts" class="col-sm-6 text-end">
+      <ul class="list-unstyled list-inline">
+        <li><a href="https://www.clicshopping.org" target="_blank">ClicShopping Website</a></li>
+        <li><a href="https://www.clicshopping.org" target="_blank">Support</a></li>
+        <li><a href="https://clicshopping.org" target="_blank">Documentation</a></li>
+      </ul>
+    </div>
+  </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <footer>
-          <div  style="padding-top:1rem;">
-            <div class="card">
-              <div class="card-footer">
-                <div class="text-center">
+  <?php require_once('templates/pages/' . $page_contents); ?>
+
+  <div class="row">
+    <div class="col-md-12">
+      <footer>
+        <div style="padding-top:1rem;">
+          <div class="card">
+            <div class="card-footer">
+              <div class="text-center">
                   <small>Copyright &copy; 2008-<?php echo date('Y'); ?> <a href="http://www.clicshopping.org" target="_blank" rel="noreferrer">ClicShopping(TM)</a> - Brand deposed at INPI</small>
                 </div>
               </div>

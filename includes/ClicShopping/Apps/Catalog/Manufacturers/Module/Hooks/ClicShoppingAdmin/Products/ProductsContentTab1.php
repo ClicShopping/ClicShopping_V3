@@ -1,80 +1,80 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Catalog\Manufacturers\Module\Hooks\ClicShoppingAdmin\Products;
+namespace ClicShopping\Apps\Catalog\Manufacturers\Module\Hooks\ClicShoppingAdmin\Products;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
-  use ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin\ManufacturerAdmin;
+use ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin\ManufacturerAdmin;
+use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
 
-  class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
+class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+  protected $manufacturerAdmin;
+
+  public function __construct()
   {
-    protected mixed $app;
-    protected $manufacturerAdmin;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Manufacturers')) {
-        Registry::set('Manufacturers', new ManufacturersApp());
-      }
-
-      $this->app = Registry::get('Manufacturers');
-
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
+    if (!Registry::exists('Manufacturers')) {
+      Registry::set('Manufacturers', new ManufacturersApp());
     }
 
-    public function display() :string
-    {
-      if (!\defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
-        return false;
-      }
+    $this->app = Registry::get('Manufacturers');
 
-      if (isset($_GET['pID'])) {
-        $pId = HTML::sanitize($_GET['pID']);
-      } else {
-        $pId = null;
-      }
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
+  }
 
-      $manufacturer_array = ManufacturerAdmin::getManufacturerName($pId);
+  public function display(): string
+  {
+    if (!\defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
+      return false;
+    }
 
-      if (\is_array($manufacturer_array) && \count($manufacturer_array) > 0) {
-        $manufacturers_name = $manufacturer_array[0]['manufacturers_name'];
-      } else {
-        $manufacturers_name = '';
-      }
+    if (isset($_GET['pID'])) {
+      $pId = HTML::sanitize($_GET['pID']);
+    } else {
+      $pId = null;
+    }
 
-      $content = '<!-- Link trigger modal -->';
-      $content .= '<div class="col-md-5">';
-      $content .= '<div class="form-group row">';
-      $content .= '<label for="' . $this->app->getDef('text_products_manufacturer') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_manufacturer') . '</label>';
-      $content .= '<div class="col-md-5">';
-      $content .= HTML::inputField('manufacturers_name', $manufacturers_name, 'id="ajax_manufacturers_name" list="manufacturer_list" class="form-control"');
-      $content .= '<datalist id="manufacturer_list"></datalist>';
-      $content .= '<a href="' . $this->app->link('ManufacturersPopUp') . '"  data-bs-toggle="modal" data-refresh="true" data-bs-target="#myModal"><h4><i class="bi bi-plus-circle" title="' . $this->app->getDef('icon_create') . '"></i></h4></a>';
-      $content .= '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
-      $content .= '<div class="modal-dialog">';
-      $content .= '<div class="modal-content">';
-      $content .= '<div class="modal-body"><div class="te"></div></div>';
-      $content .= '</div> <!-- /.modal-content -->';
-      $content .= '</div><!-- /.modal-dialog -->';
-      $content .= '</div><!-- /.modal -->';
-      $content .= '</div>';
-      $content .= '</div>';
-      $content .= '</div>';
+    $manufacturer_array = ManufacturerAdmin::getManufacturerName($pId);
 
-      $smanufacturers_ajax = CLICSHOPPING::link('ajax/manufacturers.php');
+    if (\is_array($manufacturer_array) && \count($manufacturer_array) > 0) {
+      $manufacturers_name = $manufacturer_array[0]['manufacturers_name'];
+    } else {
+      $manufacturers_name = '';
+    }
 
-      $output = <<<EOD
+    $content = '<!-- Link trigger modal -->';
+    $content .= '<div class="col-md-5">';
+    $content .= '<div class="form-group row">';
+    $content .= '<label for="' . $this->app->getDef('text_products_manufacturer') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_manufacturer') . '</label>';
+    $content .= '<div class="col-md-5">';
+    $content .= HTML::inputField('manufacturers_name', $manufacturers_name, 'id="ajax_manufacturers_name" list="manufacturer_list" class="form-control"');
+    $content .= '<datalist id="manufacturer_list"></datalist>';
+    $content .= '<a href="' . $this->app->link('ManufacturersPopUp') . '"  data-bs-toggle="modal" data-refresh="true" data-bs-target="#myModal"><h4><i class="bi bi-plus-circle" title="' . $this->app->getDef('icon_create') . '"></i></h4></a>';
+    $content .= '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
+    $content .= '<div class="modal-dialog">';
+    $content .= '<div class="modal-content">';
+    $content .= '<div class="modal-body"><div class="te"></div></div>';
+    $content .= '</div> <!-- /.modal-content -->';
+    $content .= '</div><!-- /.modal-dialog -->';
+    $content .= '</div><!-- /.modal -->';
+    $content .= '</div>';
+    $content .= '</div>';
+    $content .= '</div>';
+
+    $smanufacturers_ajax = CLICSHOPPING::link('ajax/manufacturers.php');
+
+    $output = <<<EOD
 <!-- ######################## -->
 <!--  Start Manufacturer Hooks      -->
 <!-- ######################## -->
@@ -132,6 +132,6 @@ function hinterManufacturer(event) {
 <!-- ######################## -->
 EOD;
 
-      return $output;
-    }
+    return $output;
   }
+}
