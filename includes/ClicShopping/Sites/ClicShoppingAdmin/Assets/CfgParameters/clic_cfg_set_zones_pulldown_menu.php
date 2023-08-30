@@ -1,36 +1,36 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  /*
-   * List all zones or specific zone by Country and Zones country
-   *
-   */
+/*
+ * List all zones or specific zone by Country and Zones country
+ *
+ */
 
 // clic_cfg_pull_down_zone_classes
-  function clic_cfg_set_zones_pulldown_menu($default, $key = null)
-  {
-    $CLICSHOPPING_Address = Registry::get('Address');
+function clic_cfg_set_zones_pulldown_menu($default, $key = null)
+{
+  $CLICSHOPPING_Address = Registry::get('Address');
 
-    $name = (!empty($key) ? 'configuration[' . $key . ']' : 'configuration_value');
+  $name = (!empty($key) ? 'configuration[' . $key . ']' : 'configuration_value');
 
-    $zones_array = [];
+  $zones_array = [];
 
-    foreach ($CLICSHOPPING_Address->getZones() as $zone) {
-      $zones_array[] = ['id' => $zone['id'],
-        'text' => $zone['name'],
-        'group' => $zone['country_name']
-      ];
-    }
-
-    return HTML::selectMenu($name, $zones_array, $default);
+  foreach ($CLICSHOPPING_Address->getZones() as $zone) {
+    $zones_array[] = ['id' => $zone['id'],
+      'text' => $zone['name'],
+      'group' => $zone['country_name']
+    ];
   }
+
+  return HTML::selectMenu($name, $zones_array, $default);
+}

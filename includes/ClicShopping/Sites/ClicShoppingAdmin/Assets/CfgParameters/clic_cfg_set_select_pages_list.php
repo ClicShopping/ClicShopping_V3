@@ -1,52 +1,52 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
 // Alias function for module [boxes] configuration value
 // template system
-  function clic_cfg_set_select_pages_list($key_value, $key = null)
-  {
-    $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+function clic_cfg_set_select_pages_list($key_value, $key = null)
+{
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-    $name = ((!\is_null($key)) ? 'configuration[' . $key . '][]' : 'configuration_value');
-    $select_array = $CLICSHOPPING_Template->getListCatalogFilesNotIncluded();
-    sort($select_array);
+  $name = ((!\is_null($key)) ? 'configuration[' . $key . '][]' : 'configuration_value');
+  $select_array = $CLICSHOPPING_Template->getListCatalogFilesNotIncluded();
+  sort($select_array);
 
-    $selected_array = explode(';', $key_value);
+  $selected_array = explode(';', $key_value);
 
-    if ($key_value === 'all') {
-      $checkall = "CHECKED";
-    } else {
-      $checkall = "UNCHECKED";
-    }
+  if ($key_value === 'all') {
+    $checkall = "CHECKED";
+  } else {
+    $checkall = "UNCHECKED";
+  }
 
-    $string = '<fieldset>';
-    $string .= HTML::radioField($name, 'all', $checkall, 'class="AllPages"') . CLICSHOPPING::getDef('text_all_pages') . '<br />';
+  $string = '<fieldset>';
+  $string .= HTML::radioField($name, 'all', $checkall, 'class="AllPages"') . CLICSHOPPING::getDef('text_all_pages') . '<br />';
 
-    $string .= '<p><strong>&nbsp;&nbsp;' . CLICSHOPPING::getDef('text_one_by_one') . '</strong><br />';
-    $string .= HTML::checkboxField('CheckAll', null, null, 'id="CheckAll" class="CheckAll"') . '<label id="CheckAllLabel" for="CheckAll">' . CLICSHOPPING::getDef('text_chek_all') . '</label></p>';
+  $string .= '<p><strong>&nbsp;&nbsp;' . CLICSHOPPING::getDef('text_one_by_one') . '</strong><br />';
+  $string .= HTML::checkboxField('CheckAll', null, null, 'id="CheckAll" class="CheckAll"') . '<label id="CheckAllLabel" for="CheckAll">' . CLICSHOPPING::getDef('text_chek_all') . '</label></p>';
 
-    for ($i = 0, $n = \count($select_array); $i < $n; $i++) {
-      $string .= '&nbsp;&nbsp;<input type="checkbox" id="file_' . $i . '" class="ThisPage" name="' . $name . '" value="' . $select_array[$i] . ';"';
-      if (isset($selected_array)) {
-        foreach ($selected_array as $value) {
-          if ($select_array[$i] == $value) $string .= ' CHECKED';
-        }
+  for ($i = 0, $n = \count($select_array); $i < $n; $i++) {
+    $string .= '&nbsp;&nbsp;<input type="checkbox" id="file_' . $i . '" class="ThisPage" name="' . $name . '" value="' . $select_array[$i] . ';"';
+    if (isset($selected_array)) {
+      foreach ($selected_array as $value) {
+        if ($select_array[$i] == $value) $string .= ' CHECKED';
       }
-      $string .= '><label class="ThisPage" for="file_' . $i . '">' . $select_array[$i] . '</label><br />';
     }
-    $string .= '</fieldset>';
-    $string .= "<script type=\"text/javascript\">
+    $string .= '><label class="ThisPage" for="file_' . $i . '">' . $select_array[$i] . '</label><br />';
+  }
+  $string .= '</fieldset>';
+  $string .= "<script type=\"text/javascript\">
     jQuery(document).ready(function () {
       $('.AllPages').click(
         function() {
@@ -79,5 +79,5 @@
     });
   </script>";
 
-    return $string;
-  }
+  return $string;
+}

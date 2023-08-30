@@ -1,11 +1,11 @@
 .bi-power::before {
   color: #f80404;
   font-weight: bold;
-  padding-bottom:0.2rem;
+  padding-bottom: 0.2rem;
 }
 
 .bi-exclamation-circle-fill::before {
-  padding-bottom:0.2rem;
+  padding-bottom: 0.2rem;
 }
 
 .bi-layout-three-columns::before {
@@ -13,12 +13,12 @@
 }
 
 .bi-check::before {
-  font-weight: bold!important;
+  font-weight: bold !important;
   font-size: 2rem;
 }
 
 .bi-x::before {
-  font-weight: bold!important;
+  font-weight: bold !important;
   font-size: 2rem;
 }
 
@@ -56,12 +56,12 @@
 
 .bi-plus-circle-fill {
   font-size: 1.2rem;
-  padding-bottom:0.2rem;
+  padding-bottom: 0.2rem;
 }
 
 .bi bi-dash-circle-fill {
   font-size: 1.2rem;
-  padding-bottom:0.2rem;
+  padding-bottom: 0.2rem;
 }
 
 .bi-arrow-up-right-square::before {
@@ -89,5 +89,5 @@
 }
 
 .bi-info-circle::before {
-   font-size: 1.5rem;
- }
+  font-size: 1.5rem;
+}

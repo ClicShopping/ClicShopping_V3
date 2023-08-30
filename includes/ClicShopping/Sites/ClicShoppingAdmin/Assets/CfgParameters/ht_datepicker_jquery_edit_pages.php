@@ -1,37 +1,36 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  function ht_datepicker_jquery_edit_pages($values, $key)
-  {
-    $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+function ht_datepicker_jquery_edit_pages($values, $key)
+{
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-    $select_array = $CLICSHOPPING_Template->getListCatalogFilesNotIncluded();
-    sort($select_array);
-    $values_array = explode(';', $values);
+  $select_array = $CLICSHOPPING_Template->getListCatalogFilesNotIncluded();
+  sort($select_array);
+  $values_array = explode(';', $values);
 
-    $output = '';
-    foreach ($select_array as $file) {
-      $output .= HTML::checkboxField('ht_datepicker_jquery_file[]', $file, \in_array($file, $values_array)) . '&nbsp;' . HTML::outputProtected($file) . '<br />';
-    }
+  $output = '';
+  foreach ($select_array as $file) {
+    $output .= HTML::checkboxField('ht_datepicker_jquery_file[]', $file, \in_array($file, $values_array)) . '&nbsp;' . HTML::outputProtected($file) . '<br />';
+  }
 
-    if (!empty($output)) {
-      $output = '<br />' . substr($output, 0, -6);
-    }
+  if (!empty($output)) {
+    $output = '<br />' . substr($output, 0, -6);
+  }
 
-    $output .= HTML::hiddenField('configuration[' . $key . ']', '', 'id="htrn_files"');
+  $output .= HTML::hiddenField('configuration[' . $key . ']', '', 'id="htrn_files"');
 
-    $output .= '<script>
+  $output .= '<script>
                    function htrn_update_cfg_value() {
                     var htrn_selected_files = \'\';
 
@@ -59,5 +58,5 @@
                   });
                   </script>';
 
-    return $output;
-  }
+  return $output;
+}

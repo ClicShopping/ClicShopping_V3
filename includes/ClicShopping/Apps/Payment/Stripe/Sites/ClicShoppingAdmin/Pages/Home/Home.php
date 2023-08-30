@@ -1,28 +1,30 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-  namespace ClicShopping\Apps\Payment\Stripe\Sites\ClicShoppingAdmin\Pages\Home;
+namespace ClicShopping\Apps\Payment\Stripe\Sites\ClicShoppingAdmin\Pages\Home;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Payment\Stripe\Stripe;
+use ClicShopping\Apps\Payment\Stripe\Stripe;
 
-  class Home extends \ClicShopping\OM\PagesAbstract {
-    public mixed $app;
+class Home extends \ClicShopping\OM\PagesAbstract
+{
+  public mixed $app;
 
-    protected function init() {
-      $CLICSHOPPING_Stripe = new Stripe();
-      Registry::set('Stripe', $CLICSHOPPING_Stripe);
+  protected function init()
+  {
+    $CLICSHOPPING_Stripe = new Stripe();
+    Registry::set('Stripe', $CLICSHOPPING_Stripe);
 
-      $this->app = $CLICSHOPPING_Stripe;
+    $this->app = $CLICSHOPPING_Stripe;
 
-      $this->app->loadDefinitions('Sites/ClicShoppingAdmin/main');
-    }
+    $this->app->loadDefinitions('Sites/ClicShoppingAdmin/main');
   }
+}

@@ -11,36 +11,36 @@
 résolution 1050
 ****************************/
 @media (max-width: 74rem) {
-    div.InfosHeaderAdmin {
-        display: none;
-        float: left;
-    }
+  div.InfosHeaderAdmin {
+    display: none;
+    float: left;
+  }
 
-    span.footerHelp {
-        display: none;
-    }
+  span.footerHelp {
+    display: none;
+  }
 }
 
 @media (max-width: 85rem) {
-    div.MenuHeaderAdmin {
-        display: none;
-    }
+  div.MenuHeaderAdmin {
+    display: none;
+  }
 }
 
 @media (max-width: 40rem) {
-    .logoHeading {
-        display: none;
-    }
+  .logoHeading {
+    display: none;
+  }
 
-    #footer {
-        display: none;
-    }
+  #footer {
+    display: none;
+  }
 }
 
 @media (max-width: 512px) {
-    span.infoHeader {
-        display: none;
-    }
+  span.infoHeader {
+    display: none;
+  }
 }
 
 /*

@@ -1,398 +1,397 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Payment\Stripe\Module\Payment;
+namespace ClicShopping\Apps\Payment\Stripe\Module\Payment;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Payment\Stripe\Stripe as StripeApp;
-  use ClicShopping\Sites\Common\B2BCommon;
+use ClicShopping\Apps\Payment\Stripe\Stripe as StripeApp;
+use ClicShopping\Sites\Common\B2BCommon;
+use Stripe\PaymentIntent;
+use Stripe\Stripe as StripeAPI;
 
-  use Stripe\Stripe as StripeAPI;
+class ST implements \ClicShopping\OM\Modules\PaymentInterface
+{
+  public string $code;
+  public $title;
+  public $description;
+  public $enabled = false;
+  public mixed $app;
+  protected $currency;
+  public $signature;
+  public $public_title;
+  public ?int $sort_order = 0;
+  protected $api_version;
+  public $group;
 
-  use Stripe\PaymentIntent;
+  public $intent;
+  public $private_key;
+  public $public_key;
 
-  class ST implements \ClicShopping\OM\Modules\PaymentInterface
+  public function __construct()
   {
-    public string $code;
-    public $title;
-    public $description;
-    public $enabled = false;
-    public mixed $app;
-    protected $currency;
-    public $signature;
-    public $public_title;
-    public ?int $sort_order = 0;
-    protected $api_version;
-    public $group;
+    $CLICSHOPPING_Customer = Registry::get('Customer');
 
-    public $intent;
-    public $private_key;
-    public $public_key;
+    if (Registry::exists('Order')) {
+      $CLICSHOPPING_Order = Registry::get('Order');
+    }
 
-    public function __construct()
-    {
-      $CLICSHOPPING_Customer = Registry::get('Customer');
+    if (!Registry::exists('Stripe')) {
+      Registry::set('Stripe', new StripeApp());
+    }
 
-      if (Registry::exists('Order')) {
-        $CLICSHOPPING_Order = Registry::get('Order');
-      }
+    $this->app = Registry::get('Stripe');
+    $this->app->loadDefinitions('Module/Shop/ST/ST');
 
-      if (!Registry::exists('Stripe')) {
-        Registry::set('Stripe', new StripeApp());
-      }
+    $this->signature = 'Stripe|' . $this->app->getVersion() . '|1.0';
+    $this->api_version = $this->app->getApiVersion();
 
-      $this->app = Registry::get('Stripe');
-      $this->app->loadDefinitions('Module/Shop/ST/ST');
-
-      $this->signature = 'Stripe|' . $this->app->getVersion() . '|1.0';
-      $this->api_version = $this->app->getApiVersion();
-
-      $this->code = 'ST';
-      $this->title = $this->app->getDef('module_stripe_title');
-      $this->public_title = $this->app->getDef('module_stripe_public_title');
+    $this->code = 'ST';
+    $this->title = $this->app->getDef('module_stripe_title');
+    $this->public_title = $this->app->getDef('module_stripe_public_title');
 
 // Activation module du paiement selon les groupes B2B
-      if (\defined('CLICSHOPPING_APP_STRIPE_ST_STATUS')) {
-        if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-          if (B2BCommon::getPaymentUnallowed($this->code)) {
+    if (\defined('CLICSHOPPING_APP_STRIPE_ST_STATUS')) {
+      if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+        if (B2BCommon::getPaymentUnallowed($this->code)) {
+          if (CLICSHOPPING_APP_STRIPE_ST_STATUS == 'True') {
+            $this->enabled = true;
+          } else {
+            $this->enabled = false;
+          }
+        }
+      } else {
+        if (CLICSHOPPING_APP_STRIPE_ST_NO_AUTHORIZE == 'True' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
+          if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
             if (CLICSHOPPING_APP_STRIPE_ST_STATUS == 'True') {
               $this->enabled = true;
             } else {
               $this->enabled = false;
             }
           }
-        } else {
-          if (CLICSHOPPING_APP_STRIPE_ST_NO_AUTHORIZE == 'True' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
-            if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
-              if (CLICSHOPPING_APP_STRIPE_ST_STATUS == 'True') {
-                $this->enabled = true;
-              } else {
-                $this->enabled = false;
-              }
-            }
-          }
-        }
-
-        if ((int)CLICSHOPPING_APP_STRIPE_ST_PREPARE_ORDER_STATUS_ID > 0) {
-          $this->order_status = CLICSHOPPING_APP_STRIPE_ST_PREPARE_ORDER_STATUS_ID;
-        }
-
-        if ( $this->enabled === true ) {
-          if ( isset($CLICSHOPPING_Order) && \is_object($CLICSHOPPING_Order)) {
-            $this->update_status();
-          }
-        }
-
-        if (CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD == 'True') {
-          $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY;
-          $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY;
-        } else {
-          $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY_TEST;
-          $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY_TEST;
-        }
-
-        $this->sort_order = \defined('CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER') ? CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER : 0;
-      }
-    }
-
-    public function update_status() {
-      $CLICSHOPPING_Order = Registry::get('Order');
-
-      if ( ($this->enabled === true) && ((int)CLICSHOPPING_APP_STRIPE_ST_ZONE > 0)) {
-        $check_flag = false;
-
-        $sql_array = [
-          'geo_zone_id' => CLICSHOPPING_APP_STRIPE_ST_ZONE,
-          'zone_country_id' => $CLICSHOPPING_Order->delivery['country']['id']
-        ];
-
-        $Qcheck = $this->app->db->get('zones_to_geo_zones', 'zone_id', $sql_array, 'zone_id');
-
-        while ($Qcheck->fetch()) {
-          if (($Qcheck->valueInt('zone_id') < 1) || ($Qcheck->valueInt('zone_id') === $CLICSHOPPING_Order->delivery['zone_id'])) {
-            $check_flag = true;
-            break;
-          }
-        }
-
-        if ($check_flag === false) {
-          $this->enabled = false;
-        }
-      }
-    }
-
-    public function javascript_validation()
-    {
-      return false;
-    }
-
-    public function selection()
-    {
-      $CLICSHOPPING_Template = Registry::get('Template');
-
-      if (!empty(CLICSHOPPING_APP_STRIPE_ST_LOGO)) {
-        if (!empty(CLICSHOPPING_APP_STRIPE_ST_LOGO) && is_file($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'logos/payment/' . CLICSHOPPING_APP_STRIPE_ST_LOGO)) {
-          $this->public_title = $this->public_title . '&nbsp;&nbsp;&nbsp;' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'logos/payment/' . CLICSHOPPING_APP_STRIPE_ST_LOGO);
-        } else {
-          $this->public_title = $this->public_title;
         }
       }
 
-      return [
-        'id' => $this->app->vendor . '\\' . $this->app->code . '\\' . $this->code,
-        'module' => $this->public_title
+      if ((int)CLICSHOPPING_APP_STRIPE_ST_PREPARE_ORDER_STATUS_ID > 0) {
+        $this->order_status = CLICSHOPPING_APP_STRIPE_ST_PREPARE_ORDER_STATUS_ID;
+      }
+
+      if ($this->enabled === true) {
+        if (isset($CLICSHOPPING_Order) && \is_object($CLICSHOPPING_Order)) {
+          $this->update_status();
+        }
+      }
+
+      if (CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD == 'True') {
+        $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY;
+        $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY;
+      } else {
+        $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY_TEST;
+        $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY_TEST;
+      }
+
+      $this->sort_order = \defined('CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER') ? CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER : 0;
+    }
+  }
+
+  public function update_status()
+  {
+    $CLICSHOPPING_Order = Registry::get('Order');
+
+    if (($this->enabled === true) && ((int)CLICSHOPPING_APP_STRIPE_ST_ZONE > 0)) {
+      $check_flag = false;
+
+      $sql_array = [
+        'geo_zone_id' => CLICSHOPPING_APP_STRIPE_ST_ZONE,
+        'zone_country_id' => $CLICSHOPPING_Order->delivery['country']['id']
       ];
+
+      $Qcheck = $this->app->db->get('zones_to_geo_zones', 'zone_id', $sql_array, 'zone_id');
+
+      while ($Qcheck->fetch()) {
+        if (($Qcheck->valueInt('zone_id') < 1) || ($Qcheck->valueInt('zone_id') === $CLICSHOPPING_Order->delivery['zone_id'])) {
+          $check_flag = true;
+          break;
+        }
+      }
+
+      if ($check_flag === false) {
+        $this->enabled = false;
+      }
+    }
+  }
+
+  public function javascript_validation()
+  {
+    return false;
+  }
+
+  public function selection()
+  {
+    $CLICSHOPPING_Template = Registry::get('Template');
+
+    if (!empty(CLICSHOPPING_APP_STRIPE_ST_LOGO)) {
+      if (!empty(CLICSHOPPING_APP_STRIPE_ST_LOGO) && is_file($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'logos/payment/' . CLICSHOPPING_APP_STRIPE_ST_LOGO)) {
+        $this->public_title = $this->public_title . '&nbsp;&nbsp;&nbsp;' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'logos/payment/' . CLICSHOPPING_APP_STRIPE_ST_LOGO);
+      } else {
+        $this->public_title = $this->public_title;
+      }
     }
 
-/**
-pre_confirmation_check()
-**/
-    public function pre_confirmation_check()
-    {
+    return [
+      'id' => $this->app->vendor . '\\' . $this->app->code . '\\' . $this->code,
+      'module' => $this->public_title
+    ];
+  }
+
+  /**
+   * pre_confirmation_check()
+   **/
+  public function pre_confirmation_check()
+  {
 //      $CLICSHOPPING_Template = Registry::get(('Template'));
 //      $result = $CLICSHOPPING_Template->addBlock($this->getSubmitCardDetailsJavascript(), 'footer_scripts');
-      return false;
+    return false;
+  }
+
+  public function confirmation()
+  {
+    $CLICSHOPPING_Order = Registry::get('Order');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
+    $CLICSHOPPING_Address = Registry::get('Address');
+
+    StripeAPI::setApiKey($this->private_key);
+
+    $customer_id = $CLICSHOPPING_Customer->getId();
+    $currency = mb_strtoupper($CLICSHOPPING_Order->info['currency']);
+    $total_amount = $CLICSHOPPING_Order->info['total'] * 100;
+    $total_amount = str_replace('.', '', $total_amount);  // Chargeable amount
+
+    $metadata = ['customer_id' => (int)$customer_id,
+      'customer_name' => $CLICSHOPPING_Customer->getName(),
+      'customer_laster_name' => $CLICSHOPPING_Customer->getLastName(),
+      'company' => HTML::output($CLICSHOPPING_Order->customer['company'])
+    ];
+
+    $i = 0;
+
+    if (\count($CLICSHOPPING_Order->products) < 7) {
+      foreach ($CLICSHOPPING_Order->products as $product) {
+        $i++;
+
+        $metadata['product_' . $i . '_name'] = $product['name'];
+        $metadata['product_' . $i . '_model'] = $product['model'];
+        $metadata['product_' . $i . '_id'] = $product['id'];
+        $metadata['product_' . $i . '_qty'] = $product['qty'];
+        $metadata['product_' . $i . '_price'] = $product['price'];
+        $metadata['product_' . $i . '_tax'] = $product['tax'];
+      }
     }
 
-    public function confirmation()
-    {
-      $CLICSHOPPING_Order = Registry::get('Order');
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Address = Registry::get('Address');
-
-      StripeAPI::setApiKey($this->private_key);
-
-      $customer_id = $CLICSHOPPING_Customer->getId();
-      $currency = mb_strtoupper($CLICSHOPPING_Order->info['currency']);
-      $total_amount = $CLICSHOPPING_Order->info['total'] * 100;
-      $total_amount = str_replace('.','', $total_amount);  // Chargeable amount
-
-      $metadata = ['customer_id' => (int)$customer_id,
-                   'customer_name' => $CLICSHOPPING_Customer->getName(),
-                   'customer_laster_name' => $CLICSHOPPING_Customer->getLastName(),
-                   'company' => HTML::output($CLICSHOPPING_Order->customer['company'])
-                  ];
-
-      $i = 0;
-
-      if (\count($CLICSHOPPING_Order->products) < 7) {
-        foreach ($CLICSHOPPING_Order->products as $product) {
-          $i++;
-
-          $metadata['product_' . $i . '_name'] = $product['name'];
-          $metadata['product_' . $i . '_model'] = $product['model'];
-          $metadata['product_' . $i . '_id'] = $product['id'];
-          $metadata['product_' . $i . '_qty'] = $product['qty'];
-          $metadata['product_' . $i . '_price'] = $product['price'];
-          $metadata['product_' . $i . '_tax'] = $product['tax'];
-        }
-      }
-      
-      if (CLICSHOPPING_APP_STRIPE_ST_TRANSACTION_METHOD == 'automatic') {
-        $capture_method = 'automatic';
-      } else {
-        $capture_method = 'manual';
-      }
+    if (CLICSHOPPING_APP_STRIPE_ST_TRANSACTION_METHOD == 'automatic') {
+      $capture_method = 'automatic';
+    } else {
+      $capture_method = 'manual';
+    }
 
 // have to create intent before loading the javascript because it needs the intent id
-      if (isset($_SESSION['stripe_payment_intent_id'])) {
-        $stripe_payment_intent_id = HTML::sanitize($_SESSION['stripe_payment_intent_id']);
+    if (isset($_SESSION['stripe_payment_intent_id'])) {
+      $stripe_payment_intent_id = HTML::sanitize($_SESSION['stripe_payment_intent_id']);
 
-        try {
-          $this->intent = PaymentIntent::retrieve(retrieve(['id' => $stripe_payment_intent_id]));
-         // $this->event_log($customer_id, 'page retrieve intent', $stripe_payment_intent_id, $this->intent);
-          $this->intent->amount = $total_amount; //$CLICSHOPPING_Order->info['total'],
-          $this->intent->currency = $currency;
-          $this->intent->metadata = $metadata;
+      try {
+        $this->intent = PaymentIntent::retrieve(retrieve(['id' => $stripe_payment_intent_id]));
+        // $this->event_log($customer_id, 'page retrieve intent', $stripe_payment_intent_id, $this->intent);
+        $this->intent->amount = $total_amount; //$CLICSHOPPING_Order->info['total'],
+        $this->intent->currency = $currency;
+        $this->intent->metadata = $metadata;
 
-          $this->intent->save();
+        $this->intent->save();
 //          $response = $this->intent->save();
 
-        } catch (exception $err) {
-          //$this->event_log($customer_id, 'page create intent', $stripe_payment_intent_id, $err->getMessage());
+      } catch (exception $err) {
+        //$this->event_log($customer_id, 'page create intent', $stripe_payment_intent_id, $err->getMessage());
 // failed to save existing intent, so create new one
-          unset($stripe_payment_intent_id);
-        }
+        unset($stripe_payment_intent_id);
       }
+    }
 
-      if (!isset($stripe_payment_intent_id)) {
-        $description = STORE_NAME . ' - Order date time : ' . date('Y-m-d H:i:s');
-        $token = $_POST['stripeToken'] ?? [];
+    if (!isset($stripe_payment_intent_id)) {
+      $description = STORE_NAME . ' - Order date time : ' . date('Y-m-d H:i:s');
+      $token = $_POST['stripeToken'] ?? [];
 
-        $params = [
-            'amount' => $total_amount,
-            'currency' => $currency,
-            'source' => $token,
-            'setup_future_usage' => 'off_session',
-            'description' => $description,
-            'capture_method' => $capture_method,
-            'metadata' => $metadata,
-            'payment_method_types' => ['card'],
-        ];
+      $params = [
+        'amount' => $total_amount,
+        'currency' => $currency,
+        'source' => $token,
+        'setup_future_usage' => 'off_session',
+        'description' => $description,
+        'capture_method' => $capture_method,
+        'metadata' => $metadata,
+        'payment_method_types' => ['card'],
+      ];
 
-        $this->intent = PaymentIntent::create($params);
+      $this->intent = PaymentIntent::create($params);
 
-       // $this->event_log($customer_id, "page create intent", json_encode($params), $this->intent);
-        $stripe_payment_intent_id = $this->intent->id;
+      // $this->event_log($customer_id, "page create intent", json_encode($params), $this->intent);
+      $stripe_payment_intent_id = $this->intent->id;
 
-        unset($_SESSION['stripe_payment_intent_id']);
-      }
+      unset($_SESSION['stripe_payment_intent_id']);
+    }
 
-      $content = '';
+    $content = '';
 
-      if (CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD == 'False') {
-        $content .= '<div class="alert alert-warning"> '. $this->app->getDef('text_stripe_alert_mode_test') . '</div>';
-      }
+    if (CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD == 'False') {
+      $content .= '<div class="alert alert-warning"> ' . $this->app->getDef('text_stripe_alert_mode_test') . '</div>';
+    }
 
-      $content .= $this->app->getDef('text_stripe_title');
-      $content .= '<div class="separator"></div>';
+    $content .= $this->app->getDef('text_stripe_title');
+    $content .= '<div class="separator"></div>';
 // have to create intent before loading the javascript because it needs the intent id
-      $content .= '<input type="hidden" id="intent_id" value="' . HTML::output($stripe_payment_intent_id) . '" />' .
-                  '<input type="hidden" id="secret" value="' . HTML::output($this->intent->client_secret) . '" />';
-      $content .= '<div id="stripe_table_new_card">' .
-                  '<div><label for="cardholder-name" class="control-label">' . $this->app->getDef('text_stripe_credit_card_owner') . '</label>' .
-                  '<div><input type="text" id="cardholder-name" class="form-control" value="' . HTML::output($CLICSHOPPING_Order->billing['firstname'] . ' ' . $CLICSHOPPING_Order->billing['lastname']) . '" required></text></div>
+    $content .= '<input type="hidden" id="intent_id" value="' . HTML::output($stripe_payment_intent_id) . '" />' .
+      '<input type="hidden" id="secret" value="' . HTML::output($this->intent->client_secret) . '" />';
+    $content .= '<div id="stripe_table_new_card">' .
+      '<div><label for="cardholder-name" class="control-label">' . $this->app->getDef('text_stripe_credit_card_owner') . '</label>' .
+      '<div><input type="text" id="cardholder-name" class="form-control" value="' . HTML::output($CLICSHOPPING_Order->billing['firstname'] . ' ' . $CLICSHOPPING_Order->billing['lastname']) . '" required></text></div>
                   </div>' .
-                  '<div class="separator"></div>' .
-                  '<div><label for="card-element" class="control-label">' . $this->app->getDef('text_stripe_credit_card_type') . '</label>' .
-                  '<div id="card-element" class="col-md-5"></div>
+      '<div class="separator"></div>' .
+      '<div><label for="card-element" class="control-label">' . $this->app->getDef('text_stripe_credit_card_type') . '</label>' .
+      '<div id="card-element" class="col-md-5"></div>
                   </div>';
 
-/*
-      if (MODULE_PAYMENT_STRIPE_SCA_TOKENS == 'True') {
-        $content .= '<div class="form-check">' .
-            '<div>' . tep_draw_checkbox_field('card-save', 'true', null, 'class="form-check-input') . '<label class="form-check-label">' . MODULE_PAYMENT_STRIPE_SCA_CREDITCARD_SAVE . '</label></div></div>';
-      }
-*/
+    /*
+          if (MODULE_PAYMENT_STRIPE_SCA_TOKENS == 'True') {
+            $content .= '<div class="form-check">' .
+                '<div>' . tep_draw_checkbox_field('card-save', 'true', null, 'class="form-check-input') . '<label class="form-check-label">' . MODULE_PAYMENT_STRIPE_SCA_CREDITCARD_SAVE . '</label></div></div>';
+          }
+    */
 
-      $content .= '<div id="card-errors" role="alert" class="messageStackError payment-errors"></div></div>';
-      $content .= '<input type="hidden" id="city" value="' . $CLICSHOPPING_Order->billing['city'] . '" />';
-      $content .= '<input type="hidden" id="line1" value="' . HTML::output($CLICSHOPPING_Order->customer['street_address']) . '" />';
-      $content .= '<input type="hidden" id="line2" value="' . HTML::output($CLICSHOPPING_Order->billing['suburb']) . '" />';
-      $content .= '<input type="hidden" id="postal_code" value="' . HTML::output($CLICSHOPPING_Order->customer['postcode']) . '" />';
-      $content .= '<input type="hidden" id="state" value="' . $CLICSHOPPING_Address->getZoneName($CLICSHOPPING_Order->billing['country']['id'], $CLICSHOPPING_Order->billing['zone_id'], $CLICSHOPPING_Order->billing['state']) . '" />';
-      $content .= '<input type="hidden" id="country" value="' . $CLICSHOPPING_Order->billing['country']['iso_code_2'] . '" />';
-      $content .= '<input type="hidden" id="email_address" value="' . HTML::output($CLICSHOPPING_Order->customer['email_address']) . '" />';
-      $content .= '<input type="hidden" id="customer_id" value="' . HTML::output($customer_id) . '" />';
+    $content .= '<div id="card-errors" role="alert" class="messageStackError payment-errors"></div></div>';
+    $content .= '<input type="hidden" id="city" value="' . $CLICSHOPPING_Order->billing['city'] . '" />';
+    $content .= '<input type="hidden" id="line1" value="' . HTML::output($CLICSHOPPING_Order->customer['street_address']) . '" />';
+    $content .= '<input type="hidden" id="line2" value="' . HTML::output($CLICSHOPPING_Order->billing['suburb']) . '" />';
+    $content .= '<input type="hidden" id="postal_code" value="' . HTML::output($CLICSHOPPING_Order->customer['postcode']) . '" />';
+    $content .= '<input type="hidden" id="state" value="' . $CLICSHOPPING_Address->getZoneName($CLICSHOPPING_Order->billing['country']['id'], $CLICSHOPPING_Order->billing['zone_id'], $CLICSHOPPING_Order->billing['state']) . '" />';
+    $content .= '<input type="hidden" id="country" value="' . $CLICSHOPPING_Order->billing['country']['iso_code_2'] . '" />';
+    $content .= '<input type="hidden" id="email_address" value="' . HTML::output($CLICSHOPPING_Order->customer['email_address']) . '" />';
+    $content .= '<input type="hidden" id="customer_id" value="' . HTML::output($customer_id) . '" />';
 
-      $content .= $this->getSubmitCardDetailsJavascript();
+    $content .= $this->getSubmitCardDetailsJavascript();
 
-      $confirmation = ['title' => $content];
+    $confirmation = ['title' => $content];
 
-      return $confirmation;
-    }
+    return $confirmation;
+  }
 
-    public function process_button()
-    {
-      return false;
-    }
+  public function process_button()
+  {
+    return false;
+  }
 
-    /***********************************************************
-     * before_process
-     ***********************************************************/
-    public function before_process()
-    {
-      return false;
-    }
+  /***********************************************************
+   * before_process
+   ***********************************************************/
+  public function before_process()
+  {
+    return false;
+  }
 
-    public function after_process()
-    {
-      $CLICSHOPPING_Order = Registry::get('Order');
+  public function after_process()
+  {
+    $CLICSHOPPING_Order = Registry::get('Order');
 
-      $orders_id = $CLICSHOPPING_Order->getLastOrderId();
+    $orders_id = $CLICSHOPPING_Order->getLastOrderId();
 
-      if (empty($orders_id) || $orders_id == 0 || \is_null($orders_id)) {
-        $Qorder = $CLICSHOPPING_Order->db->prepare('select orders_id
+    if (empty($orders_id) || $orders_id == 0 || \is_null($orders_id)) {
+      $Qorder = $CLICSHOPPING_Order->db->prepare('select orders_id
                                                     from :table_orders                                                    
                                                     order by orders_id desc
                                                     limit 1
                                                    ');
-        $Qorder->execute();
+      $Qorder->execute();
 
-        $orders_id = $Qorder->valueInt('orders_id');
+      $orders_id = $Qorder->valueInt('orders_id');
+    }
+
+    $comment = $this->app->getDef('text_reference_transaction');
+
+    if (CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID == 0 || empty(CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID)) {
+      $new_order_status = DEFAULT_ORDERS_STATUS_ID;
+    } else {
+      $new_order_status = CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID;
+    }
+
+    $sql_data_array = [
+      'orders_id' => $orders_id,
+      'orders_status_id' => (int)$new_order_status,
+      'date_added' => 'now()',
+      'customer_notified' => '0',
+      'comments' => $comment
+    ];
+
+    $this->app->db->save('orders_status_history', $sql_data_array);
+
+    $sql_data_array = ['orders_status' => (int)$new_order_status];
+    $sql_insert = ['orders_id' => (int)$orders_id];
+
+    $this->app->db->save('orders', $sql_data_array, $sql_insert);
+  }
+
+  public function get_error()
+  {
+    $message = $this->app->getDef('module_stripe_error_general');
+
+    if (isset($_GET['error']) && !empty($_GET['error'])) {
+      switch ($_GET['error']) {
+        case 'cardstored':
+          $message = $this->app->getDef('module_stripe_error_stripe');
+          break;
       }
-
-      $comment = $this->app->getDef('text_reference_transaction');
-
-      if (CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID == 0 || empty(CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID)) {
-        $new_order_status = DEFAULT_ORDERS_STATUS_ID;
-      } else {
-        $new_order_status = CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID;
-      }
-
-      $sql_data_array = [
-        'orders_id' => $orders_id,
-        'orders_status_id' => (int)$new_order_status,
-        'date_added' => 'now()',
-        'customer_notified' => '0',
-        'comments' => $comment
-      ];
-
-      $this->app->db->save('orders_status_history', $sql_data_array);
-
-      $sql_data_array = ['orders_status' => (int)$new_order_status];
-      $sql_insert = ['orders_id' => (int)$orders_id];
-
-      $this->app->db->save('orders', $sql_data_array, $sql_insert);
     }
 
-    public function get_error()
-    {
-      $message = $this->app->getDef('module_stripe_error_general');
+    $error = ['title' => $this->app->getDef('module_stripe_error_title'),
+      'error' => $message
+    ];
 
-      if (isset($_GET['error']) && !empty($_GET['error'])) {
-        switch ($_GET['error']) {
-          case 'cardstored':
-            $message = $this->app->getDef('module_stripe_error_stripe');
-            break;
-        }
-      }
+    return $error;
+  }
 
-      $error = ['title' => $this->app->getDef('module_stripe_error_title'),
-                'error' => $message
-               ];
+  public function check()
+  {
+    return \defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && (trim(CLICSHOPPING_APP_STRIPE_ST_STATUS) != '');
+  }
 
-      return $error;
-    }
+  public function install()
+  {
+    $this->app->redirect('Configure&Install&module=Stripe');
+  }
 
-    public function check()
-    {
-      return \defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && (trim(CLICSHOPPING_APP_STRIPE_ST_STATUS) != '');
-    }
+  public function remove()
+  {
+    $this->app->redirect('Configure&Uninstall&module=Stripe');
+  }
 
-    public function install() 
-    {
-      $this->app->redirect('Configure&Install&module=Stripe');
-    }
-
-    public function remove() 
-    {
-      $this->app->redirect('Configure&Uninstall&module=Stripe');
-    }
-
-    public function keys() 
-    {
-      return array('CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER');
-    }
+  public function keys()
+  {
+    return array('CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER');
+  }
 
 
-    public function getSubmitCardDetailsJavascript($intent = null) 
-    {
-      $stripe_publishable_key = $this->public_key;
+  public function getSubmitCardDetailsJavascript($intent = null)
+  {
+    $stripe_publishable_key = $this->public_key;
 
 //        $intent_url = tep_href_link("ext/modules/payment/stripe_sca/payment_intent.php", '', 'SSL', false, false);
-      $intent_url = ''; // return url
+    $intent_url = ''; // return url
 
-      $js = <<<EOD
+    $js = <<<EOD
 <style>
 #stripe_table_new_card #card-element {
   background-color: #fff;
@@ -566,6 +565,6 @@ $(function() {
 </script>
 EOD;
 
-      return $js;
-    }
+    return $js;
   }
+}

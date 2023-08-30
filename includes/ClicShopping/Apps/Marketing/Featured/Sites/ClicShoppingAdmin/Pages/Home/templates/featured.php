@@ -132,7 +132,7 @@ if (MODE_B2B_B2C == 'True' && isset($_POST['customers_group_id'])) {
       <th data-field="scheduled_date" data-sortable="true"
           class="text-center"><?php echo $CLICSHOPPING_Featured->getDef('table_heading_scheduled_date'); ?></th>
       <th data-field="expires_date" data-sortable="true"
-          class="text-center"><?php echo $CLICSHOPPING_Featured->getDef('table_heading_expires_date'); ?></td>
+          class="text-center"><?php echo $CLICSHOPPING_Featured->getDef('table_heading_expires_date'); ?></th>
       <th data-field="archive" data-sortable="true"
           class="text-center"><?php echo $CLICSHOPPING_Featured->getDef('table_heading_archive'); ?></th>
       <th data-field="status" data-sortable="true"

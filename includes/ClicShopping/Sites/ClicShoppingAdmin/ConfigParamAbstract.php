@@ -1,62 +1,62 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Sites\ClicShoppingAdmin;
+namespace ClicShopping\Sites\ClicShoppingAdmin;
 
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
 
-  abstract class ConfigParamAbstract
+abstract class ConfigParamAbstract
+{
+  protected string $code;
+  protected string $key_prefix;
+  protected string $key;
+  public $title;
+  public $description;
+  public $default;
+  public ?int $sort_order = 0;
+
+  abstract protected function init();
+
+  public function __construct()
   {
-    protected string $code;
-    protected string $key_prefix;
-    protected string $key;
-    public $title;
-    public $description;
-    public $default;
-    public ?int $sort_order = 0;
+    $this->code = (new \ReflectionClass($this))->getShortName();
 
-    abstract protected function init();
+    $this->key = $this->key_prefix . $this->code;
 
-    public function __construct()
-    {
-      $this->code = (new \ReflectionClass($this))->getShortName();
+    $this->init();
+  }
 
-      $this->key = $this->key_prefix . $this->code;
+  protected function getInputValue()
+  {
+    $key = mb_strtoupper($this->key);
+    $value = \defined($key) ? \constant($key) : null;
 
-      $this->init();
+    if (!isset($value) && isset($this->default)) {
+      $value = $this->default;
     }
 
-    protected function getInputValue()
-    {
-      $key = mb_strtoupper($this->key);
-      $value = \defined($key) ? \constant($key) : null;
+    return $value;
+  }
 
-      if (!isset($value) && isset($this->default)) {
-        $value = $this->default;
-      }
+  public function getInputField()
+  {
+    $input = HTML::inputField($this->key, $this->getInputValue());
 
-      return $value;
-    }
+    return $input;
+  }
 
-    public function getInputField()
-    {
-      $input = HTML::inputField($this->key, $this->getInputValue());
+  public function getSetField()
+  {
+    $input = $this->getInputField();
 
-      return $input;
-    }
-
-    public function getSetField()
-    {
-      $input = $this->getInputField();
-
-      $result = <<<EOT
+    $result = <<<EOT
   <div class="row">
     <div class="col-md-7">
       <strong>{$this->title} : </strong>
@@ -68,6 +68,6 @@
   </div>
 EOT;
 
-      return $result;
-    }
+    return $result;
   }
+}

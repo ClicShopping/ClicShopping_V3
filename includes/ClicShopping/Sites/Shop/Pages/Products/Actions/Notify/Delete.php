@@ -1,50 +1,50 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Sites\Shop\Pages\Products\Actions\Notify;
+namespace ClicShopping\Sites\Shop\Pages\Products\Actions\Notify;
 
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Registry;
 
-  class Delete extends \ClicShopping\OM\PagesActionsAbstract
+class Delete extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
   {
-    public function execute()
-    {
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
-      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
-      $CLICSHOPPING_Hooks = Registry::get('Hooks');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
+    $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+    $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if ($CLICSHOPPING_Customer->isLoggedOn() && $CLICSHOPPING_ProductsCommon->getID()) {
-        $Qcheck = $CLICSHOPPING_Db->get('products_notifications', 'products_id', [
+    if ($CLICSHOPPING_Customer->isLoggedOn() && $CLICSHOPPING_ProductsCommon->getID()) {
+      $Qcheck = $CLICSHOPPING_Db->get('products_notifications', 'products_id', [
           'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
           'products_id' => $CLICSHOPPING_ProductsCommon->getID()
-          ]
-        );
+        ]
+      );
 
-        if ($Qcheck->fetch() !== false) {
-          $CLICSHOPPING_Db->delete('products_notifications', [
+      if ($Qcheck->fetch() !== false) {
+        $CLICSHOPPING_Db->delete('products_notifications', [
             'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
             'products_id' => $CLICSHOPPING_ProductsCommon->getID()
-            ]
-          );
-        }
-
-        $CLICSHOPPING_Hooks->call('Products', 'Delete');
-
-        CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID());
-
-      } else {
-        $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect(null, 'Account&LogIn');
+          ]
+        );
       }
+
+      $CLICSHOPPING_Hooks->call('Products', 'Delete');
+
+      CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID());
+
+    } else {
+      $CLICSHOPPING_NavigationHistory->setSnapshot();
+      CLICSHOPPING::redirect(null, 'Account&LogIn');
     }
   }
+}

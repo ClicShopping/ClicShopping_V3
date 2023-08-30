@@ -1,5 +1,5 @@
 <?php
-  /**
+/**
  *
  * @copyright 2008 - https://www.clicshopping.org
  * @Brand : ClicShopping(Tm) at Inpi all right Reserved
@@ -8,7 +8,8 @@
  *
  */
 
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -16,8 +17,8 @@
   <title>404 - Error - Page Not Found</title>
   <meta name="description" content="404">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <?php echo '<link rel="stylesheet" href="' . CLICSHOPPING::link('error_documents/css/base.css')  . '" media="screen, print">'; ?>
-  <?php echo '<link rel="stylesheet" href="' . CLICSHOPPING::link('error_documents/css/main.css')  . '" media="screen, print">'; ?>
+  <?php echo '<link rel="stylesheet" href="' . CLICSHOPPING::link('error_documents/css/base.css') . '" media="screen, print">'; ?>
+  <?php echo '<link rel="stylesheet" href="' . CLICSHOPPING::link('error_documents/css/main.css') . '" media="screen, print">'; ?>
   <link rel="shortcut icon" href="../images/favicon.png">
 </head>
 <body>
@@ -40,6 +41,6 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
-<?php echo '<script src="' . CLICSHOPPING::link('error_documents/js/main.js')  . '"></script>'; ?>
+<?php echo '<script src="' . CLICSHOPPING::link('error_documents/js/main.js') . '"></script>'; ?>
 </body>
 </html>

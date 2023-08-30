@@ -1,23 +1,23 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Payment\MoneyOrder\Module\ClicShoppingAdmin\Config\MO\Params;
+namespace ClicShopping\Apps\Payment\MoneyOrder\Module\ClicShoppingAdmin\Config\MO\Params;
 
-  class logo extends \ClicShopping\Apps\Payment\MoneyOrder\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
+class logo extends \ClicShopping\Apps\Payment\MoneyOrder\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
+{
+  public $default = 'cheque.gif';
+  public ?int $sort_order = 30;
+
+  protected function init()
   {
-    public $default = 'cheque.gif';
-    public ?int $sort_order = 30;
-
-    protected function init()
-    {
-      $this->title = $this->app->getDef('cfg_moneyorder_title');
-      $this->description = $this->app->getDef('cfg_moneyorder_desc');
-    }
+    $this->title = $this->app->getDef('cfg_moneyorder_title');
+    $this->description = $this->app->getDef('cfg_moneyorder_desc');
   }
+}

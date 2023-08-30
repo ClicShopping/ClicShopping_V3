@@ -1,35 +1,35 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Service\Shop;
+namespace ClicShopping\Service\Shop;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\Weight\Classes\Shop\Weight as WeightShop;
+use ClicShopping\Apps\Configuration\Weight\Classes\Shop\Weight as WeightShop;
 
-  class Weight implements \ClicShopping\OM\ServiceInterface
+class Weight implements \ClicShopping\OM\ServiceInterface
+{
+  public static function start(): bool
   {
-    public static function start(): bool
-    {
-      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Configuration/Weight/Classes/Shop/Weight.php')) {
-        Registry::set('Weight', new WeightShop());
+    if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Configuration/Weight/Classes/Shop/Weight.php')) {
+      Registry::set('Weight', new WeightShop());
 
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    public static function stop(): bool
-    {
       return true;
+    } else {
+      return false;
     }
   }
+
+  public static function stop(): bool
+  {
+    return true;
+  }
+}

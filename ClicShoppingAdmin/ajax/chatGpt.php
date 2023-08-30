@@ -1,27 +1,28 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
 
-  define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/ClicShopping/') . '/');
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
 
-  require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
-  spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
+define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/ClicShopping/') . '/');
 
-  CLICSHOPPING::initialize();
+require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
 
-  CLICSHOPPING::loadSite('ClicShoppingAdmin');
+CLICSHOPPING::initialize();
 
-  $prompt = HTML::sanitize($_POST['message']);
-  $result = ChatGptAdmin::getGptResponse($prompt);
+CLICSHOPPING::loadSite('ClicShoppingAdmin');
 
-  echo $result;
+$prompt = HTML::sanitize($_POST['message']);
+$result = ChatGptAdmin::getGptResponse($prompt);
+
+echo $result;

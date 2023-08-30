@@ -1,34 +1,33 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_BannerManager = Registry::get('BannerManager');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  $Qbanner = $CLICSHOPPING_BannerManager->db->get('banners', ['banners_title',
-    'banners_id',
-    'languages_id'
-  ],
-    [
-      'banners_id' => (int)$_GET['bID']
-    ]
-  );
+$Qbanner = $CLICSHOPPING_BannerManager->db->get('banners', ['banners_title',
+  'banners_id',
+  'languages_id'
+],
+  [
+    'banners_id' => (int)$_GET['bID']
+  ]
+);
 
-  $bInfo = new ObjectInfo($Qbanner->toArray());
+$bInfo = new ObjectInfo($Qbanner->toArray());
 ?>
 
 <div class="contentBody">

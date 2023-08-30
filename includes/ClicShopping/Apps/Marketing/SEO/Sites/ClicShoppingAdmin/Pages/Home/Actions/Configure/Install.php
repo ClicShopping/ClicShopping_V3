@@ -1,100 +1,99 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Marketing\SEO\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
+namespace ClicShopping\Apps\Marketing\SEO\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Cache;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\Cache;
+class Install extends \ClicShopping\OM\PagesActionsAbstract
+{
 
-  class Install extends \ClicShopping\OM\PagesActionsAbstract
+  public function execute()
   {
 
-    public function execute()
-    {
+    $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    $CLICSHOPPING_SEO = Registry::get('SEO');
 
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-      $CLICSHOPPING_SEO = Registry::get('SEO');
+    $current_module = $this->page->data['current_module'];
 
-      $current_module = $this->page->data['current_module'];
+    $CLICSHOPPING_SEO->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
-      $CLICSHOPPING_SEO->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    $m = Registry::get('SEOAdminConfig' . $current_module);
+    $m->install();
 
-      $m = Registry::get('SEOAdminConfig' . $current_module);
-      $m->install();
+    static::installDbMenuAdministration();
+    static::installDb();
 
-      static::installDbMenuAdministration();
-      static::installDb();
+    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_SEO->getDef('alert_module_install_success'), 'success', 'SEO');
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_SEO->getDef('alert_module_install_success'), 'success', 'SEO');
+    $CLICSHOPPING_SEO->redirect('Configure&module=' . $current_module);
+  }
 
-      $CLICSHOPPING_SEO->redirect('Configure&module=' . $current_module);
-    }
+  private static function installDbMenuAdministration(): void
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_SEO = Registry::get('SEO');
+    $CLICSHOPPING_Language = Registry::get('Language');
 
-    private static function installDbMenuAdministration() :void
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_SEO = Registry::get('SEO');
-      $CLICSHOPPING_Language = Registry::get('Language');
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_marketing_seo']);
 
-      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_marketing_seo']);
+    if ($Qcheck->fetch() === false) {
 
-      if ($Qcheck->fetch() === false) {
+      $sql_data_array = ['sort_order' => 7,
+        'link' => 'index.php?A&Marketing\SEO&SEO',
+        'image' => 'referencement.gif',
+        'b2b_menu' => 0,
+        'access' => 0,
+        'app_code' => 'app_marketing_seo'
+      ];
 
-        $sql_data_array = ['sort_order' => 7,
-          'link' => 'index.php?A&Marketing\SEO&SEO',
-          'image' => 'referencement.gif',
-          'b2b_menu' => 0,
-          'access' => 0,
-          'app_code' => 'app_marketing_seo'
+      $insert_sql_data = ['parent_id' => 5];
+
+      $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+      $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+
+      $id = $CLICSHOPPING_Db->lastInsertId();
+
+      $languages = $CLICSHOPPING_Language->getLanguages();
+
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+
+        $language_id = $languages[$i]['id'];
+
+        $sql_data_array = ['label' => $CLICSHOPPING_SEO->getDef('title_menu')];
+
+        $insert_sql_data = [
+          'id' => (int)$id,
+          'language_id' => (int)$language_id
         ];
-
-        $insert_sql_data = ['parent_id' => 5];
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-        $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+        $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
 
-        $id = $CLICSHOPPING_Db->lastInsertId();
-
-        $languages = $CLICSHOPPING_Language->getLanguages();
-
-        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-
-          $language_id = $languages[$i]['id'];
-
-          $sql_data_array = ['label' => $CLICSHOPPING_SEO->getDef('title_menu')];
-
-          $insert_sql_data = [
-            'id' => (int)$id,
-            'language_id' => (int)$language_id
-          ];
-
-          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-
-          $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-
-        }
-
-        Cache::clear('menu-administrator');
       }
+
+      Cache::clear('menu-administrator');
     }
+  }
 
-    private static function installDb()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
+  private static function installDb()
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_seo"');
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_seo"');
 
-      if ($Qcheck->fetch() === false) {
-        $sql = <<<EOD
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
 CREATE TABLE :table_seo (
 seo_id int NOT NULL default(1),
 language_id int NOT NULL default(1),
@@ -118,7 +117,7 @@ seo_language_reviews_description varchar(255)
   KEY idx_seo_seo_id
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
-        $CLICSHOPPING_Db->exec($sql);
-      }
+      $CLICSHOPPING_Db->exec($sql);
     }
   }
+}

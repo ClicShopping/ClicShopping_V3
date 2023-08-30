@@ -1,23 +1,25 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-  namespace ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ST\Params;
+namespace ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ST\Params;
 
-  class sort_order extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract {
+class sort_order extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
+{
 
-    public ?int $sort_order = 1000;
-    public $default = '300';
-    public bool $app_configured = false;
+  public ?int $sort_order = 1000;
+  public $default = '300';
+  public bool $app_configured = false;
 
-    protected function init() {
-        $this->title = $this->app->getDef('cfg_stripe_sort_order_title');
-        $this->description = $this->app->getDef('cfg_stripe_sort_order_description');
-    }
+  protected function init()
+  {
+    $this->title = $this->app->getDef('cfg_stripe_sort_order_title');
+    $this->description = $this->app->getDef('cfg_stripe_sort_order_description');
   }
+}

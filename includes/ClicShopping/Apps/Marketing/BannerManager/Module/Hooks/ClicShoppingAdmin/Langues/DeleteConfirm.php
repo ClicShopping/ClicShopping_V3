@@ -1,45 +1,45 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Marketing\BannerManager\Module\Hooks\ClicShoppingAdmin\Langues;
+namespace ClicShopping\Apps\Marketing\BannerManager\Module\Hooks\ClicShoppingAdmin\Langues;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Marketing\BannerManager\BannerManager as BannerManagerApp;
+use ClicShopping\Apps\Marketing\BannerManager\BannerManager as BannerManagerApp;
 
-  class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
+class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('BannerManager')) {
-        Registry::set('BannerManager', new BannerManagerApp());
-      }
-
-      $this->app = Registry::get('BannerManager');
+    if (!Registry::exists('BannerManager')) {
+      Registry::set('BannerManager', new BannerManagerApp());
     }
 
-    private function delete($id)
-    {
-      if (!\is_null($id)) {
-        $this->app->db->delete('banners', ['languages_id' => $id]);
-      }
-    }
+    $this->app = Registry::get('BannerManager');
+  }
 
-    public function execute()
-    {
-      if (isset($_GET['DeleteConfirm'])) {
-        $id = HTML::sanitize($_GET['lID']);
-        $this->delete($id);
-      }
+  private function delete($id)
+  {
+    if (!\is_null($id)) {
+      $this->app->db->delete('banners', ['languages_id' => $id]);
     }
   }
+
+  public function execute()
+  {
+    if (isset($_GET['DeleteConfirm'])) {
+      $id = HTML::sanitize($_GET['lID']);
+      $this->delete($id);
+    }
+  }
+}

@@ -8,138 +8,137 @@
  *
  */
 
-  namespace ClicShopping\Sites\ClicShoppingAdmin;
+namespace ClicShopping\Sites\ClicShoppingAdmin;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTTP;
-  use  ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTTP;
+use ClicShopping\OM\Registry;
 
-  class CkEditor5 extends HTML
+class CkEditor5 extends HTML
+{
+  /**
+   * @return string
+   */
+  public static function getWysiwyg(): string
   {
-      /**
-       * @return string
-       */
-      public static function getWysiwyg(): string
-      {
-          $output = static::getJsCkEditor();
-          $output .= static::getJsElFinder();
+    $output = static::getJsCkEditor();
+    $output .= static::getJsElFinder();
 
-          return $output;
+    return $output;
+  }
+
+  /**
+   * @return string
+   */
+  public static function getJsCkEditor(): string
+  {
+    $code = static::getWysiwygLanguage();
+
+    $script = '<script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script><br />' . "\n";
+    // $script .= ChatGptAdmin::gptCkeditorParameters();
+
+    if ($code != 'en') {
+      if (!empty($code)) {
+        $script .= '<script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/translations/' . $code . '.js"></script><br />' . "\n";
       }
+    }
 
-      /**
-       * @return string
-       */
-      public static function getJsCkEditor(): string
-      {
-        $code = static::getWysiwygLanguage();
+    return $script;
+  }
 
-        $script = '<script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script><br />' . "\n";
-       // $script .= ChatGptAdmin::gptCkeditorParameters();
-
-        if ($code != 'en') {
-          if (!empty($code)) {
-            $script .= '<script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/translations/' . $code . '.js"></script><br />' . "\n";
-          }
-        }
-
-        return $script;
-      }
-
-      /**
-       * @return string
-       */
-      public static function getJsElFinder(): string
-      {
-        $script = '
+  /**
+   * @return string
+   */
+  public static function getJsElFinder(): string
+  {
+    $script = '
             <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
             <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.min.css"/>
             <link rel="stylesheet" type="text/css" href="' . HTTP::getShopUrlDomain() . 'ext/elFinder-master/css/elfinder.min.css"/>
             <link rel="stylesheet" type="text/css" href="' . HTTP::getShopUrlDomain() . 'ext/elFinder-master/css/theme.css"/>
         ';
-          $script .= '<script src="' . HTTP::getShopUrlDomain() . 'ext/elFinder-master/js/elfinder.min.js"></script>' . "\n";
+    $script .= '<script src="' . HTTP::getShopUrlDomain() . 'ext/elFinder-master/js/elfinder.min.js"></script>' . "\n";
 
-          return $script;
+    return $script;
+  }
+
+
+  /**
+   * @return string
+   */
+  public static function getWysiwygLanguage(): string
+  {
+    $CLICSHOPPING_Language = Registry::get('Language');
+    $code = $CLICSHOPPING_Language->getCode();
+
+    if (empty($code)) {
+      $code = DEFAULT_LANGUAGE;
+    }
+
+    return $code;
+  }
+
+  /**
+   * @param string $name
+   * @return string
+   */
+  public static function getWysiwygId(string $name): string
+  {
+    $result = str_replace('[', '', $name);
+    $result = str_replace(']', '', $result);
+
+    return $result;
+  }
+
+  /**
+   * @return string
+   */
+  public static function getElFinderConnector(): string
+  {
+    $connector = HTTP::getShopUrlDomain() . 'ext/elFinder-master/php/connector.minimal.php';
+
+    return $connector;
+  }
+
+  /*
+   * Outputs a form textarea field with ckeditor
+   *
+   * @param string $name The name and ID of the textarea field
+   * @param string $value The default value for the textarea field
+   * @param int $width The width of the textarea field
+   * @param int $height The height of the textarea field
+   * @param string $parameters Additional parameters for the textarea field
+   * @param boolean $override Override the default value with the value found in the GET or POST scope
+   *
+   */
+
+  public static function textAreaCkeditor(string $name, ?string $value = null, ?int $width = 750, ?int $height = 200, ?string $text = null, ?string $parameters = null, bool $override = true): string
+  {
+    $ckeditor_id = str_replace('[', '', $name);
+    $ckeditor_id = str_replace(']', '', $ckeditor_id);
+    $connector = static::getElFinderConnector();
+    $language_code = static::getWysiwygLanguage();
+
+    $field = '<textarea name="' . $name . '"  id="' . $ckeditor_id . '"';
+
+    if (!\is_null($parameters)) $field .= ' ' . $parameters;
+    $field .= ' />';
+
+    if (($override === true) && ((isset($_GET[$name]) && \is_string($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name])))) {
+      if (isset($_GET[$name]) && \is_string($_GET[$name])) {
+        $field .= HTML::outputProtected($_GET[$name]);
+      } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
+        $field .= HTML::outputProtected($_POST[$name]);
       }
+    } elseif (!\is_null($text)) {
+      $field .= HTML::outputProtected($text);
+    }
 
-
-      /**
-       * @return string
-       */
-      public static function getWysiwygLanguage(): string
-      {
-          $CLICSHOPPING_Language = Registry::get('Language');
-          $code = $CLICSHOPPING_Language->getCode();
-
-          if (empty($code)) {
-              $code = DEFAULT_LANGUAGE;
-          }
-
-          return $code;
-      }
-
-      /**
-       * @param string $name
-       * @return string
-       */
-      public static function getWysiwygId(string $name): string
-      {
-          $result = str_replace('[', '', $name);
-          $result = str_replace(']', '', $result);
-
-          return $result;
-      }
-
-      /**
-       * @return string
-       */
-      public static function getElFinderConnector(): string
-      {
-          $connector = HTTP::getShopUrlDomain() . 'ext/elFinder-master/php/connector.minimal.php';
-
-          return $connector;
-      }
-
-/*
- * Outputs a form textarea field with ckeditor
- *
- * @param string $name The name and ID of the textarea field
- * @param string $value The default value for the textarea field
- * @param int $width The width of the textarea field
- * @param int $height The height of the textarea field
- * @param string $parameters Additional parameters for the textarea field
- * @param boolean $override Override the default value with the value found in the GET or POST scope
- *
- */
-
-      public static function textAreaCkeditor(string $name, ?string $value = null, ?int $width = 750, ?int $height = 200, ?string $text = null, ?string $parameters = null, bool $override = true): string
-      {
-          $ckeditor_id = str_replace('[', '', $name);
-          $ckeditor_id = str_replace(']', '', $ckeditor_id);
-          $connector = static::getElFinderConnector();
-          $language_code = static::getWysiwygLanguage();
-
-          $field = '<textarea name="' . $name . '"  id="' . $ckeditor_id . '"';
-
-          if (!\is_null($parameters)) $field .= ' ' . $parameters;
-          $field .= ' />';
-
-          if (($override === true) && ((isset($_GET[$name]) && \is_string($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name])))) {
-              if (isset($_GET[$name]) && \is_string($_GET[$name])) {
-                $field .= HTML::outputProtected($_GET[$name]);
-            } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
-                $field .= HTML::outputProtected($_POST[$name]);
-            }
-            } elseif (!\is_null($text)) {
-                $field .= HTML::outputProtected($text);
-            }
-
-            $field .= '</textarea>';
+    $field .= '</textarea>';
 
 //elfinder connector declaration
-            $field .= "<script async>
+    $field .= "<script async>
               // elfinder folder hash of the destination folder to be uploaded in this CKeditor 5
               const uploadTargetHash{$ckeditor_id} = 'l2_Q0stRmlsZXM_{$ckeditor_id}';
               // elFinder connector URL
@@ -358,26 +357,26 @@
           </script>
            ";
 
-          return $field;
-      }
+    return $field;
+  }
 
-    /*
-     * Create form textarea field with ckeditor for image icon and source only
-     *
-     * @param string $name The name and ID of the textarea field
-     *
-     */
+  /*
+   * Create form textarea field with ckeditor for image icon and source only
+   *
+   * @param string $name The name and ID of the textarea field
+   *
+   */
 
-    public static function fileFieldImageCkEditor(string $name, ?string $value = null, ?int $width = null, ?int $height = null): string
-    {
-      $ckeditor_id = str_replace('[', '', $name);
-      $ckeditor_id = str_replace(']', '', $ckeditor_id);
-      $connector = static::getElFinderConnector();
-      $language_code = static::getWysiwygLanguage();
+  public static function fileFieldImageCkEditor(string $name, ?string $value = null, ?int $width = null, ?int $height = null): string
+  {
+    $ckeditor_id = str_replace('[', '', $name);
+    $ckeditor_id = str_replace(']', '', $ckeditor_id);
+    $connector = static::getElFinderConnector();
+    $language_code = static::getWysiwygLanguage();
 
-      $field = '<textarea name="' . $name . '"  id="' . $ckeditor_id . '" /></textarea>';
+    $field = '<textarea name="' . $name . '"  id="' . $ckeditor_id . '" /></textarea>';
 
-      $field .= "<script>
+    $field .= "<script>
               // elfinder folder hash of the destination folder to be uploaded in this CKeditor 5
               const uploadTargetHash{$ckeditor_id} = 'l2_Q0stRmlsZXM_{$ckeditor_id}';
               // elFinder connector URL
@@ -574,40 +573,40 @@
             } );
           </script>";
 
-      return $field;
-    }
-
-    /**
-     * Clean html code image
-     *
-     * @param string $image
-     * @return string $image, without html
-     *
-     */
-    public static function getWysiwygImageAlone(string $image): string
-    {
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-
-      if (!empty($image)) {
-        $doc = new \DOMDocument();
-        libxml_use_internal_errors(true);
-
-        $doc->loadHTML($image);
-        $xpath = new \DOMXPath($doc);
-
-        $image = $xpath->evaluate("string(//img/@src)");
-        $image = CLICSHOPPING::getConfig('http_server', 'Shop') . $image;
-
-        $image = htmlspecialchars($image, ENT_QUOTES | ENT_HTML5);
-        $image = strstr($image, $CLICSHOPPING_Template->getDirectoryShopTemplateImages());
-        $image = str_replace($CLICSHOPPING_Template->getDirectoryShopTemplateImages(), '', $image);
-        $image_end = strstr($image, '&quot;');
-        $image = str_replace($image_end, '', $image);
-        $image = str_replace($CLICSHOPPING_Template->getDirectoryShopSources(), '', $image);
-
-        libxml_clear_errors();
-      }
-
-      return $image;
-    }
+    return $field;
   }
+
+  /**
+   * Clean html code image
+   *
+   * @param string $image
+   * @return string $image, without html
+   *
+   */
+  public static function getWysiwygImageAlone(string $image): string
+  {
+    $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+
+    if (!empty($image)) {
+      $doc = new \DOMDocument();
+      libxml_use_internal_errors(true);
+
+      $doc->loadHTML($image);
+      $xpath = new \DOMXPath($doc);
+
+      $image = $xpath->evaluate("string(//img/@src)");
+      $image = CLICSHOPPING::getConfig('http_server', 'Shop') . $image;
+
+      $image = htmlspecialchars($image, ENT_QUOTES | ENT_HTML5);
+      $image = strstr($image, $CLICSHOPPING_Template->getDirectoryShopTemplateImages());
+      $image = str_replace($CLICSHOPPING_Template->getDirectoryShopTemplateImages(), '', $image);
+      $image_end = strstr($image, '&quot;');
+      $image = str_replace($image_end, '', $image);
+      $image = str_replace($CLICSHOPPING_Template->getDirectoryShopSources(), '', $image);
+
+      libxml_clear_errors();
+    }
+
+    return $image;
+  }
+}

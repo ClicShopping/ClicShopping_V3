@@ -1,42 +1,42 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Service\Shop;
+
+use ClicShopping\OM\CLICSHOPPING;
+
+use ClicShopping\Apps\Tools\SecurityCheck\Classes\IpRestriction as Reject;
+
+class IpRestriction implements \ClicShopping\OM\ServiceInterface
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @return bool
    */
-
-  namespace ClicShopping\Service\Shop;
-
-  use ClicShopping\OM\CLICSHOPPING;
-
-  use ClicShopping\Apps\Tools\SecurityCheck\Classes\IpRestriction as Reject;
-
-  class IpRestriction implements \ClicShopping\OM\ServiceInterface
+  public static function start(): bool
   {
-    /**
-     * @return bool
-     */
-    public static function start(): bool
-    {
-      $ip_restriction = Reject::checkAllIpShopRestriction();
-      Reject::saveIpRestriction ();
+    $ip_restriction = Reject::checkAllIpShopRestriction();
+    Reject::saveIpRestriction();
 
-      if ($ip_restriction === true) {
-        CLICSHOPPING::redirect('offline.php');
-      }
-
-      return true;
+    if ($ip_restriction === true) {
+      CLICSHOPPING::redirect('offline.php');
     }
 
-    /**
-     * @return bool
-     */
-    public static function stop(): bool
-    {
-      return true;
-    }
+    return true;
   }
+
+  /**
+   * @return bool
+   */
+  public static function stop(): bool
+  {
+    return true;
+  }
+}
 

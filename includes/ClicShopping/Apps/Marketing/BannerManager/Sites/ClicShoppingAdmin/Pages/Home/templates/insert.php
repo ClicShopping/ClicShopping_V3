@@ -1,54 +1,54 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_BannerManager = Registry::get('BannerManager');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  $languages = $CLICSHOPPING_Language->getLanguages();
+$languages = $CLICSHOPPING_Language->getLanguages();
 
-  $values_languages_id[0] = ['id' => '0',
-    'text' => $CLICSHOPPING_BannerManager->getDef('text_all_languages')
+$values_languages_id[0] = ['id' => '0',
+  'text' => $CLICSHOPPING_BannerManager->getDef('text_all_languages')
+];
+
+for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+  $values_languages_id[$i + 1] = ['id' => $languages[$i]['id'],
+    'text' => $languages[$i]['name']
   ];
+}
 
-  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-    $values_languages_id[$i + 1] = ['id' => $languages[$i]['id'],
-      'text' => $languages[$i]['name']
-    ];
-  }
+$groups_array = [];
 
-  $groups_array = [];
+$Qgroups = $CLICSHOPPING_BannerManager->db->get('banners', 'distinct banners_group', null, 'banners_group');
 
-  $Qgroups = $CLICSHOPPING_BannerManager->db->get('banners', 'distinct banners_group', null, 'banners_group');
+while ($Qgroups->fetch()) {
+  $groups_array[] = [
+    'id' => $Qgroups->value('banners_group'),
+    'text' => $Qgroups->value('banners_group')
+  ];
+}
 
-  while ($Qgroups->fetch()) {
-    $groups_array[] = [
-      'id' => $Qgroups->value('banners_group'),
-      'text' => $Qgroups->value('banners_group')
-    ];
-  }
+// reactions au niveau du clique
+$banners_target_array = array(array('id' => '_self', 'text' => $CLICSHOPPING_BannerManager->getDef('text_banners_same_windows')),
+  array('id' => '_blank', 'text' => $CLICSHOPPING_BannerManager->getDef('text_banners_new_windows')));
 
-  // reactions au niveau du clique
-  $banners_target_array = array(array('id' => '_self', 'text' => $CLICSHOPPING_BannerManager->getDef('text_banners_same_windows')),
-    array('id' => '_blank', 'text' => $CLICSHOPPING_BannerManager->getDef('text_banners_new_windows')));
-
-  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
+echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 <div class="contentBody">
   <div class="row">
@@ -61,9 +61,9 @@
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_BannerManager->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-end">
 <?php
-  echo HTML::form('new_banner', $CLICSHOPPING_BannerManager->link('BannerManager&Insert', (isset($page) ? 'page=' . $page . '&' : '')), 'post', 'enctype="multipart/form-data"');
-  echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_cancel'), null, $CLICSHOPPING_BannerManager->link('BannerManager&BannerManager' . (isset($page) ? 'page=' . $page . '&' : '') . (isset($_GET['bID']) ? 'bID=' . $_GET['bID'] : '')), 'warning') . ' ';
-  echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_insert'), null, null, 'success');
+echo HTML::form('new_banner', $CLICSHOPPING_BannerManager->link('BannerManager&Insert', (isset($page) ? 'page=' . $page . '&' : '')), 'post', 'enctype="multipart/form-data"');
+echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_cancel'), null, $CLICSHOPPING_BannerManager->link('BannerManager&BannerManager' . (isset($page) ? 'page=' . $page . '&' : '') . (isset($_GET['bID']) ? 'bID=' . $_GET['bID'] : '')), 'warning') . ' ';
+echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_insert'), null, null, 'success');
 ?>
           </span>
         </div>
@@ -187,7 +187,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_theme'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_theme'); ?></label>
                   <div class="col-md-5">
-                    <?php echo $CLICSHOPPING_Template->getAllTemplate('banners_theme',  $CLICSHOPPING_BannerManager->getDef('text_banners_all_themes'), false); ?>
+                    <?php echo $CLICSHOPPING_Template->getAllTemplate('banners_theme', $CLICSHOPPING_BannerManager->getDef('text_banners_all_themes'), false); ?>
                   </div>
                 </div>
               </div>
@@ -277,7 +277,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_BannerManager->getDef('text_help_banners_image') . '"></i></h4> ' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') . '"></i></h4> ' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_insert_note'); ?></div>
           </div>
@@ -302,7 +302,7 @@
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
-            <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_BannerManager->getDef('text_help_banners_image') . '"></i></h4> ' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') ?></div>
+            <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') . '"></i></h4> ' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_banner_note'); ?></div>
           </div>

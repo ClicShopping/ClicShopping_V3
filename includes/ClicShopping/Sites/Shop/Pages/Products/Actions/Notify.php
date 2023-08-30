@@ -1,32 +1,32 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Sites\Shop\Pages\Products\Actions;
+namespace ClicShopping\Sites\Shop\Pages\Products\Actions;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Registry;
 
-  class Notify extends \ClicShopping\OM\PagesActionsAbstract
+class Notify extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
   {
-    public function execute()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
-      $CLICSHOPPING_Language = Registry::get('Language');
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+    $CLICSHOPPING_Language = Registry::get('Language');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
+    $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
+    $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      $products_id = $CLICSHOPPING_ProductsCommon->getId();
+    $products_id = $CLICSHOPPING_ProductsCommon->getId();
 
-      $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id
+    $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id
                                              from :table_products p,
                                                   :table_products_description pd,
                                                   :table_products_to_categories p2c,
@@ -38,23 +38,23 @@
                                              and p2c.categories_id = c.categories_id
                                              and c.status = 1
                                             ');
-      $Qproduct->bindInt(':products_id', $products_id);
-      $Qproduct->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $Qproduct->execute();
+    $Qproduct->bindInt(':products_id', $products_id);
+    $Qproduct->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    $Qproduct->execute();
 
-      $product_exists = ($Qproduct->fetch() !== false);
+    $product_exists = ($Qproduct->fetch() !== false);
 
-      if ($product_exists === false) {
-        CLICSHOPPING::redirect();
-      }
+    if ($product_exists === false) {
+      CLICSHOPPING::redirect();
+    }
 
 // if the customer is not logged on, redirect them to the login page
-      if (!$CLICSHOPPING_Customer->isLoggedOn()) {
-        $CLICSHOPPING_NavigationHistory->setSnapshot();
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success');
+    if (!$CLICSHOPPING_Customer->isLoggedOn()) {
+      $CLICSHOPPING_NavigationHistory->setSnapshot();
+      $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success');
 
-        CLICSHOPPING::redirect(null, 'Account&LogIn');
-      }
+      CLICSHOPPING::redirect(null, 'Account&LogIn');
     }
   }
+}
 

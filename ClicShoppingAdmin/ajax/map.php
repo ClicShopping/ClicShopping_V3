@@ -1,5 +1,5 @@
 <?php
-  /**
+/**
  *
  * @copyright 2008 - https://www.clicshopping.org
  * @Brand : ClicShopping(Tm) at Inpi all right Reserved
@@ -8,24 +8,24 @@
  *
  */
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Registry;
 
-  define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/ClicShopping/') . '/');
+define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/ClicShopping/') . '/');
 
-  require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
-  spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
+require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
 
-  CLICSHOPPING::initialize();
+CLICSHOPPING::initialize();
 
-  CLICSHOPPING::loadSite('ClicShoppingAdmin');
+CLICSHOPPING::loadSite('ClicShoppingAdmin');
 
-  $CLICSHOPPING_Db = Registry::get('Db');
-  $CLICSHOPPING_Currencies = Registry::get('Currencies');
+$CLICSHOPPING_Db = Registry::get('Db');
+$CLICSHOPPING_Currencies = Registry::get('Currencies');
 
-  $json = [];
+$json = [];
 
-  $Qorders = $CLICSHOPPING_Db->prepare('select count(o.orders_id) AS total, 
+$Qorders = $CLICSHOPPING_Db->prepare('select count(o.orders_id) AS total, 
                                               SUM(ot.value) AS amount, 
                                               c.countries_iso_code_2 
                                         from :table_orders o,
@@ -37,22 +37,22 @@
                                         and o.orders_id = ot.orders_id
                                         group by o.billing_country
                                      ');
-  $Qorders->bindValue('class', 'ST');
-  $Qorders->execute();
+$Qorders->bindValue('class', 'ST');
+$Qorders->execute();
 
-  $results = $Qorders->fetchAll();
+$results = $Qorders->fetchAll();
 
-  if (\is_array($results)) {
-    foreach ($results as $result) {
-      $json[mb_strtolower($result['countries_iso_code_2'])] = [
-        'total' => $result['total'],
-        'amount' => $result['amount'],
-      ];
-    }
+if (\is_array($results)) {
+  foreach ($results as $result) {
+    $json[mb_strtolower($result['countries_iso_code_2'])] = [
+      'total' => $result['total'],
+      'amount' => $result['amount'],
+    ];
   }
+}
 
 # JSON-encode the response
-  $json_response = json_encode($json); //Return the JSON Array
+$json_response = json_encode($json); //Return the JSON Array
 
 # Return the response
-  echo $json_response;
+echo $json_response;

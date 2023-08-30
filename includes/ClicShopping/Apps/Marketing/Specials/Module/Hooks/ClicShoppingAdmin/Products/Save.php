@@ -1,67 +1,67 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Marketing\Specials\Module\Hooks\ClicShoppingAdmin\Products;
+namespace ClicShopping\Apps\Marketing\Specials\Module\Hooks\ClicShoppingAdmin\Products;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Marketing\Specials\Specials as SpecialsApp;
+use ClicShopping\Apps\Marketing\Specials\Specials as SpecialsApp;
 
-  class Save implements \ClicShopping\OM\Modules\HooksInterface
+class Save implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Specials')) {
-        Registry::set('Specials', new SpecialsApp());
-      }
-
-      $this->app = Registry::get('Specials');
+    if (!Registry::exists('Specials')) {
+      Registry::set('Specials', new SpecialsApp());
     }
 
-    private function saveProductsSpecials($id)
-    {
-      if (!empty($_POST['products_specials']) && !empty($_POST['percentage_products_specials'])) {
-        if (isset($_POST['percentage_products_specials'])) {
-          if (substr($_POST['percentage_products_specials'], -1) == '%') {
-            $specials_price = str_replace('%', '', $_POST['percentage_products_specials']);
-            $specials_price = ($_POST['products_price'] - (($specials_price / 100) * $_POST['products_price']));
-          } else {
-            $specials_price = $_POST['products_price'] - $_POST['percentage_products_specials'];
-          }
+    $this->app = Registry::get('Specials');
+  }
 
-          if (is_float($specials_price)) {
-            $this->app->db->save('specials', ['products_id' => (int)$id,
-                'specials_new_products_price' => (float)$specials_price,
-                'specials_date_added' => 'now()',
-                'status' => 1,
-                'customers_group_id' => 0
-              ]
-            );
-          } // end is_numeric
-        } // $_POST['percentage_products_specials']
-      } // $_POST['products_specials']
-    }
+  private function saveProductsSpecials($id)
+  {
+    if (!empty($_POST['products_specials']) && !empty($_POST['percentage_products_specials'])) {
+      if (isset($_POST['percentage_products_specials'])) {
+        if (substr($_POST['percentage_products_specials'], -1) == '%') {
+          $specials_price = str_replace('%', '', $_POST['percentage_products_specials']);
+          $specials_price = ($_POST['products_price'] - (($specials_price / 100) * $_POST['products_price']));
+        } else {
+          $specials_price = $_POST['products_price'] - $_POST['percentage_products_specials'];
+        }
 
-    private function save($id)
-    {
-      $this->saveProductsSpecials($id);
-    }
+        if (is_float($specials_price)) {
+          $this->app->db->save('specials', ['products_id' => (int)$id,
+              'specials_new_products_price' => (float)$specials_price,
+              'specials_date_added' => 'now()',
+              'status' => 1,
+              'customers_group_id' => 0
+            ]
+          );
+        } // end is_numeric
+      } // $_POST['percentage_products_specials']
+    } // $_POST['products_specials']
+  }
 
-    public function execute()
-    {
-      if (isset($_GET['pID'])) {
-        $id = HTML::sanitize($_GET['pID']);
-        $this->save($id);
-      }
+  private function save($id)
+  {
+    $this->saveProductsSpecials($id);
+  }
+
+  public function execute()
+  {
+    if (isset($_GET['pID'])) {
+      $id = HTML::sanitize($_GET['pID']);
+      $this->save($id);
     }
   }
+}

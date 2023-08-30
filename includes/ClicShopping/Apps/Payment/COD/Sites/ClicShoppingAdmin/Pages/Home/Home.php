@@ -1,30 +1,30 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Payment\COD\Sites\ClicShoppingAdmin\Pages\Home;
+namespace ClicShopping\Apps\Payment\COD\Sites\ClicShoppingAdmin\Pages\Home;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Payment\COD\COD;
+use ClicShopping\Apps\Payment\COD\COD;
 
-  class Home extends \ClicShopping\OM\PagesAbstract
+class Home extends \ClicShopping\OM\PagesAbstract
+{
+  public mixed $app;
+
+  protected function init()
   {
-    public mixed $app;
+    $CLICSHOPPING_COD = new COD();
+    Registry::set('COD', $CLICSHOPPING_COD);
 
-    protected function init()
-    {
-      $CLICSHOPPING_COD = new COD();
-      Registry::set('COD', $CLICSHOPPING_COD);
+    $this->app = $CLICSHOPPING_COD;
 
-      $this->app = $CLICSHOPPING_COD;
-
-      $this->app->loadDefinitions('Sites/ClicShoppingAdmin/main');
-    }
+    $this->app->loadDefinitions('Sites/ClicShoppingAdmin/main');
   }
+}
