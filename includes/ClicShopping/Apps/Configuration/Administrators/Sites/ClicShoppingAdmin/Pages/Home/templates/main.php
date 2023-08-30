@@ -1,24 +1,23 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTTP;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-  $CLICSHOPPING_Administrators = Registry::get('Administrators');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Administrators = Registry::get('Administrators');
 
-  if ($CLICSHOPPING_MessageStack->exists('Administrators')) {
-    echo $CLICSHOPPING_MessageStack->get('Administrators');
-  }
+if ($CLICSHOPPING_MessageStack->exists('Administrators')) {
+  echo $CLICSHOPPING_MessageStack->get('Administrators');
+}
 ?>
 <div class="contentBody">
   <div class="row">
@@ -52,9 +51,9 @@
           <div>
             <div class="col-md-12 text-center">
               <?php
-                echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Configuration\Administrators&Configure'));
-                echo HTML::button($CLICSHOPPING_Administrators->getDef('button_configure'), null, null, 'primary');
-                echo '</form>';
+              echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Configuration\Administrators&Configure'));
+              echo HTML::button($CLICSHOPPING_Administrators->getDef('button_configure'), null, null, 'primary');
+              echo '</form>';
               ?>
             </div>
           </div>

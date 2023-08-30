@@ -1,22 +1,22 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\DateTime;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\DateTime;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_ChatGpt = Registry::get('ChatGpt');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_ChatGpt = Registry::get('ChatGpt');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -38,36 +38,36 @@
   <div class="separator"></div>
   <div class="separator"></div>
   <?php
-    $gpt_id = HTML::sanitize($_GET['cID']);
+  $gpt_id = HTML::sanitize($_GET['cID']);
 
-    $QchatGpt = $CLICSHOPPING_ChatGpt->db->prepare('select gpt_id,
+  $QchatGpt = $CLICSHOPPING_ChatGpt->db->prepare('select gpt_id,
                                                            question,
                                                            response,
                                                            date_added
                                                     from :table_gpt
                                                     where gpt_id = :gpt_id
                                                   ');
-    $QchatGpt->bindInt('gpt_id', $gpt_id);
-    $QchatGpt->execute();
-    ?>
+  $QchatGpt->bindInt('gpt_id', $gpt_id);
+  $QchatGpt->execute();
+  ?>
   <div id="categoriesTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
-    <li
-      class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_ChatGpt->getDef('tab_general') . '</a>'; ?></li>
+      <li
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_ChatGpt->getDef('tab_general') . '</a>'; ?></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
-<?php
-// -------------------------------------------------------------------
-//          ONGLET General sur la description
-// -------------------------------------------------------------------
-?>
+        <?php
+        // -------------------------------------------------------------------
+        //          ONGLET General sur la description
+        // -------------------------------------------------------------------
+        ?>
         <div class="tab-pane active" id="tab1">
           <div class="col-md-12 mainTitle">
             <div class="float-start"><?php echo $CLICSHOPPING_ChatGpt->getDef('text_description'); ?></div>
           </div>
           <div class="adminformTitle" id="categoriesLanguage">
-          <div class="col-md-12" id="geptDateAdded">
+            <div class="col-md-12" id="geptDateAdded">
               <?php echo DateTime::toShort($QchatGpt->value('date_added')); ?>
             </div>
             <div class="separator"></div>
@@ -80,8 +80,8 @@
             </div>
           </div>
           <div class="separator">
-          <?php echo $CLICSHOPPING_Hooks->output('chatGpt', 'chatGptContent', null, 'display'); ?>
+            <?php echo $CLICSHOPPING_Hooks->output('chatGpt', 'chatGptContent', null, 'display'); ?>
+          </div>
         </div>
       </div>
     </div>
-  </div>

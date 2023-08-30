@@ -1,72 +1,70 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+namespace ClicShopping\Apps\Configuration\ChatGpt\Module\Hooks\ClicShoppingAdmin\Products;
 
-  namespace ClicShopping\Apps\Configuration\ChatGpt\Module\Hooks\ClicShoppingAdmin\Products;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatJsAdminSeo;
 
-  use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
+class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
 
-  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
-  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatJsAdminSeo;
-
-  class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('ChatGpt')) {
-        Registry::set('ChatGpt', new ChatGptApp());
-      }
-
-      $this->app = Registry::get('ChatGpt');
+    if (!Registry::exists('ChatGpt')) {
+      Registry::set('ChatGpt', new ChatGptApp());
     }
 
-    public function display()
-    {
-      $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+    $this->app = Registry::get('ChatGpt');
+  }
 
-      if (ChatGptAdmin::checkGptStatus() === false) {
-        return false;
-      }
+  public function display()
+  {
+    $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/seo_chat_gpt');
+    if (ChatGptAdmin::checkGptStatus() === false) {
+      return false;
+    }
 
-      if (isset($_GET['pID'])) {
-        $id = HTML::sanitize($_GET['pID']);
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/seo_chat_gpt');
 
-        $question = $this->app->getDef('text_seo_page_title_question');
-        $question_tag = $this->app->getDef('text_seo_page_tag_question');
-        $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
-        $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
-        $translate_language = $this->app->getDef('text_seo_page_translate_language');
+    if (isset($_GET['pID'])) {
+      $id = HTML::sanitize($_GET['pID']);
 
-        $product_name = $CLICSHOPPING_ProductsAdmin->getProductsName($id);
+      $question = $this->app->getDef('text_seo_page_title_question');
+      $question_tag = $this->app->getDef('text_seo_page_tag_question');
+      $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
+      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
+      $translate_language = $this->app->getDef('text_seo_page_translate_language');
 
-        $url = ChatGptAdmin::getAjaxUrl();
-        $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
+      $product_name = $CLICSHOPPING_ProductsAdmin->getProductsName($id);
 
-        $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
-        $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';
-        $content .= '</button>';
+      $url = ChatGptAdmin::getAjaxUrl();
+      $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
 
-        $getProductsSeoTitle = ChatJsAdminSeo::getProductsSeoTitle($content, $urlMultilanguage, $translate_language, $question, $product_name, $url);
-        $getProductsSeoSummaryDescription = ChatJsAdminSeo::getProductsSummaryDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $product_name, $url);
-        $getProductsSeoDescription = ChatJsAdminSeo::getProductsSeoDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $product_name, $url);
-        $getProductsSeoKeywords = ChatJsAdminSeo::getProductsSeoKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $product_name, $url);
-        $getProductsSeoTags = ChatJsAdminSeo::getProductsSeoTags($content, $urlMultilanguage, $translate_language, $question_tag, $product_name, $url);
+      $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
+      $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';
+      $content .= '</button>';
 
-        $output = <<<EOD
+      $getProductsSeoTitle = ChatJsAdminSeo::getProductsSeoTitle($content, $urlMultilanguage, $translate_language, $question, $product_name, $url);
+      $getProductsSeoSummaryDescription = ChatJsAdminSeo::getProductsSummaryDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $product_name, $url);
+      $getProductsSeoDescription = ChatJsAdminSeo::getProductsSeoDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $product_name, $url);
+      $getProductsSeoKeywords = ChatJsAdminSeo::getProductsSeoKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $product_name, $url);
+      $getProductsSeoTags = ChatJsAdminSeo::getProductsSeoTags($content, $urlMultilanguage, $translate_language, $question_tag, $product_name, $url);
+
+      $output = <<<EOD
 <!------------------>
 <!-- ChatGpt start tag-->
 <!------------------>
@@ -85,10 +83,10 @@ ion -->
 
 EOD;
     } else {
-     $tab_title = $this->app->getDef('tab_gpt_options');
-     $title = $this->app->getDef('text_gpt_options');
+      $tab_title = $this->app->getDef('tab_gpt_options');
+      $title = $this->app->getDef('text_gpt_options');
 
-     $content = '
+      $content = '
             <div class="separator"></div>     
             <div class="row" id="productOptionGptDescription">
               <div class="col-md-9">
@@ -231,13 +229,13 @@ EOD;
            
             <div class="separator"></div>
             <div class="alert alert-info" role="alert">
-              <div><h4><i class="bi bi-question-circle" title="' . $this->app->getDef('title_help_seo') . '"></i></h4> ' . $this->app->getDef('title_help_seo') .'</div>
+              <div><h4><i class="bi bi-question-circle" title="' . $this->app->getDef('title_help_seo') . '"></i></h4> ' . $this->app->getDef('title_help_seo') . '</div>
               <div class="separator"></div>
-              <div>' . $this->app->getDef('text_help_seo') .'</div>
+              <div>' . $this->app->getDef('text_help_seo') . '</div>
             </div>
      ';
 
-$output = <<<EOD
+      $output = <<<EOD
 <!-- ######################## -->
 <!--  Start OptionsGptApp  -->
 <!-- ######################## -->
@@ -255,8 +253,8 @@ $('#productsTabs .nav-tabs').append('    <li class="nav-item"><a data-bs-target=
 <!-- End OptionsGptApp  -->
 <!-- ######################## -->
 EOD;
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

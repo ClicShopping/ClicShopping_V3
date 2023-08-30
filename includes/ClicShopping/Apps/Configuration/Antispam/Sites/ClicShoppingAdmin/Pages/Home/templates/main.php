@@ -1,25 +1,23 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTTP;
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Antispam = Registry::get('Antispam');
 
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-  $CLICSHOPPING_Antispam = Registry::get('Antispam');
-
-  if ($CLICSHOPPING_MessageStack->exists('Antispam')) {
-    echo $CLICSHOPPING_MessageStack->get('Antispam');
-  }
+if ($CLICSHOPPING_MessageStack->exists('Antispam')) {
+  echo $CLICSHOPPING_MessageStack->get('Antispam');
+}
 ?>
 <div class="contentBody">
   <div class="row">
@@ -52,9 +50,9 @@
           <div>
             <div class="col-md-12 text-center">
               <?php
-                echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Configuration\Antispam&Configure'));
-                echo HTML::button($CLICSHOPPING_Antispam->getDef('button_configure'), null, null, 'primary');
-                echo '</form>';
+              echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Configuration\Antispam&Configure'));
+              echo HTML::button($CLICSHOPPING_Antispam->getDef('button_configure'), null, null, 'primary');
+              echo '</form>';
               ?>
             </div>
           </div>

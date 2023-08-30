@@ -1,39 +1,38 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+namespace ClicShopping\Apps\Configuration\Antispam\Module\ClicShoppingAdmin\Config;
 
-  namespace ClicShopping\Apps\Configuration\Antispam\Module\ClicShoppingAdmin\Config;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\Registry;
+abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin\ConfigParamAbstract
+{
+  protected mixed $app;
+  protected $config_module;
+  protected string $key_prefix = 'clicshopping_app_antispam_';
+  public bool $app_configured = true;
 
-  abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin\ConfigParamAbstract
+  public function __construct($config_module)
   {
-    protected mixed $app;
-    protected $config_module;
-    protected string $key_prefix = 'clicshopping_app_antispam_';
-    public bool $app_configured = true;
+    $this->app = Registry::get('Antispam');
 
-    public function __construct($config_module)
-    {
-      $this->app = Registry::get('Antispam');
-
-      if ($config_module != 'GE') {
-        $this->key_prefix .= mb_strtolower($config_module) . '_';
-      }
-
-      $this->config_module = $config_module;
-
-      $this->code = (new \ReflectionClass($this))->getShortName();
-
-      $this->app->loadDefinitions('Module/ClicShoppingAdmin/Config/' . $config_module . '/Params/' . $this->code);
-
-      parent::__construct();
+    if ($config_module != 'GE') {
+      $this->key_prefix .= mb_strtolower($config_module) . '_';
     }
+
+    $this->config_module = $config_module;
+
+    $this->code = (new \ReflectionClass($this))->getShortName();
+
+    $this->app->loadDefinitions('Module/ClicShoppingAdmin/Config/' . $config_module . '/Params/' . $this->code);
+
+    parent::__construct();
   }
+}

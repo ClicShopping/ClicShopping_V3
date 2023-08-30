@@ -1,39 +1,39 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\FileSystem;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\Cache;
+use ClicShopping\OM\Cache;
+use ClicShopping\OM\FileSystem;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Cache = Registry::get('Cache');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Cache = Registry::get('Cache');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  // check if the cache directory exists
-  if (is_dir(Cache::getPath())) {
-    if (!FileSystem::isWritable(Cache::getPath())) $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Cache->getDef('error_cache_directory_not_writeable'), 'error');
+// check if the cache directory exists
+if (is_dir(Cache::getPath())) {
+  if (!FileSystem::isWritable(Cache::getPath())) $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Cache->getDef('error_cache_directory_not_writeable'), 'error');
+} else {
+  $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Cache->getDef('error_cache_directory_does_not_exist'), 'error');
+}
+
+$cache_files = [];
+
+foreach (glob(Cache::getPath() . '*.cache') as $c) {
+  $key = basename($c, '.cache');
+
+  if (($pos = strpos($key, '-')) !== false) {
+    $cache_files[substr($key, 0, $pos)][] = $key;
   } else {
-    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Cache->getDef('error_cache_directory_does_not_exist'), 'error');
+    $cache_files[$key][] = $key;
   }
-
-  $cache_files = [];
-
-  foreach (glob(Cache::getPath() . '*.cache') as $c) {
-    $key = basename($c, '.cache');
-
-    if (($pos = strpos($key, '-')) !== false) {
-      $cache_files[substr($key, 0, $pos)][] = $key;
-    } else {
-      $cache_files[$key][] = $key;
-    }
-  }
+}
 
 ?>
 <div class="contentBody">
@@ -70,24 +70,26 @@
     data-mobile-responsive="true">
 
     <thead class="dataTableHeadingRow">
-      <tr>
-        <th data-field="cache"><?php echo $CLICSHOPPING_Cache->getDef('table_heading_cache'); ?></th>
-        <th data-field="number" data-sortable="true" class="text-end"><?php echo $CLICSHOPPING_Cache->getDef('table_heading_cache_number_of_files'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Cache->getDef('table_heading_action'); ?></th>
-      </tr>
+    <tr>
+      <th data-field="cache"><?php echo $CLICSHOPPING_Cache->getDef('table_heading_cache'); ?></th>
+      <th data-field="number" data-sortable="true"
+          class="text-end"><?php echo $CLICSHOPPING_Cache->getDef('table_heading_cache_number_of_files'); ?></th>
+      <th data-field="action" data-switchable="false"
+          class="text-end"><?php echo $CLICSHOPPING_Cache->getDef('table_heading_action'); ?></th>
+    </tr>
     </thead>
     <tbody>
     <?php
-      foreach (array_keys($cache_files) as $key) {
-        ?>
-        <tr>
-          <th scope="row"><?php echo $key; ?></th>
-          <td class="text-end"><?php echo \count($cache_files[$key]); ?></td>
-          <td
-            class="text-end"><?php echo '<a href="' . $CLICSHOPPING_Cache->link('Cache&Reset&block=' . $key) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Cache->getDef('image_reset') . '"></i></h4></a>'; ?></td>
-        </tr>
-        <?php
-      }
+    foreach (array_keys($cache_files) as $key) {
+      ?>
+      <tr>
+        <th scope="row"><?php echo $key; ?></th>
+        <td class="text-end"><?php echo \count($cache_files[$key]); ?></td>
+        <td
+          class="text-end"><?php echo '<a href="' . $CLICSHOPPING_Cache->link('Cache&Reset&block=' . $key) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Cache->getDef('image_reset') . '"></i></h4></a>'; ?></td>
+      </tr>
+      <?php
+    }
     ?>
     </tbody>
   </table>

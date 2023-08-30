@@ -1,104 +1,103 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Configuration\Api\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
+
+use ClicShopping\OM\Cache;
+use ClicShopping\OM\Registry;
+
+class Install extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
+  {
+    $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    $CLICSHOPPING_Api = Registry::get('Api');
+
+    $current_module = $this->page->data['current_module'];
+
+    $CLICSHOPPING_Api->loadDefinitions('Sites/ClicShoppingAdmin/install');
+
+    $m = Registry::get('ApiAdminConfig' . $current_module);
+    $m->install();
+
+    static::installDbMenuAdministration();
+    static::installApiDb();
+
+    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Api->getDef('alert_module_install_success'), 'success');
+
+    $CLICSHOPPING_Api->redirect('Configure&module=' . $current_module);
+  }
+
   /**
    *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
    */
-
-  namespace ClicShopping\Apps\Configuration\Api\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
-
-  use ClicShopping\OM\Registry;
-
-  use ClicShopping\OM\Cache;
-
-  class Install extends \ClicShopping\OM\PagesActionsAbstract
+  private static function installDbMenuAdministration(): void
   {
-    public function execute()
-    {
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-      $CLICSHOPPING_Api = Registry::get('Api');
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Api = Registry::get('Api');
+    $CLICSHOPPING_Language = Registry::get('Language');
 
-      $current_module = $this->page->data['current_module'];
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_api']);
 
-      $CLICSHOPPING_Api->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    if ($Qcheck->fetch() === false) {
 
-      $m = Registry::get('ApiAdminConfig' . $current_module);
-      $m->install();
+      $sql_data_array = [
+        'sort_order' => 14,
+        'link' => 'index.php?A&Configuration\Api&Api',
+        'image' => 'api.png',
+        'b2b_menu' => 0,
+        'access' => 0,
+        'app_code' => 'app_configuration_api'
+      ];
 
-      static::installDbMenuAdministration();
-      static::installApiDb();
+      $insert_sql_data = ['parent_id' => 14];
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Api->getDef('alert_module_install_success'), 'success');
+      $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-      $CLICSHOPPING_Api->redirect('Configure&module=' . $current_module);
-    }
+      $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
 
-    /**
-     *
-     */
-    private static function installDbMenuAdministration() :void
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Api = Registry::get('Api');
-      $CLICSHOPPING_Language = Registry::get('Language');
+      $id = $CLICSHOPPING_Db->lastInsertId();
 
-      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_api']);
+      $languages = $CLICSHOPPING_Language->getLanguages();
 
-      if ($Qcheck->fetch() === false) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+        $language_id = $languages[$i]['id'];
 
-        $sql_data_array = [
-           'sort_order' => 14,
-          'link' => 'index.php?A&Configuration\Api&Api',
-          'image' => 'api.png',
-          'b2b_menu' => 0,
-          'access' => 0,
-          'app_code' => 'app_configuration_api'
+        $sql_data_array = ['label' => $CLICSHOPPING_Api->getDef('title_menu')];
+
+        $insert_sql_data = [
+          'id' => (int)$id,
+          'language_id' => (int)$language_id
         ];
-
-        $insert_sql_data = ['parent_id' => 14];
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-        $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+        $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
 
-        $id = $CLICSHOPPING_Db->lastInsertId();
-
-        $languages = $CLICSHOPPING_Language->getLanguages();
-
-        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-          $language_id = $languages[$i]['id'];
-
-          $sql_data_array = ['label' => $CLICSHOPPING_Api->getDef('title_menu')];
-
-          $insert_sql_data = [
-              'id' => (int)$id,
-            'language_id' => (int)$language_id
-          ];
-
-          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-
-          $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-
-        }
-
-        Cache::clear('menu-administrator');
       }
+
+      Cache::clear('menu-administrator');
     }
+  }
 
-    /**
-     *
-     */
-    private static function installApiDb(): void
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
+  /**
+   *
+   */
+  private static function installApiDb(): void
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_api"');
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_api"');
 
-      if ($Qcheck->fetch() === false) {
-        $sql = <<<EOD
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
 CREATE TABLE :table_api (
   api_id int NOT NULL auto_increment,
   username varchar(64) NOT NULL,
@@ -152,7 +151,7 @@ CREATE TABLE :table_api_session (
   PRIMARY KEY api_session_id
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
-        $CLICSHOPPING_Db->exec($sql);
-      }
+      $CLICSHOPPING_Db->exec($sql);
     }
   }
+}

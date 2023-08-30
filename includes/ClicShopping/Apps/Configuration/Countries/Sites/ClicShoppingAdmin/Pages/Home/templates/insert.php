@@ -1,21 +1,21 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Address = Registry::get('Address');
-  $CLICSHOPPING_Countries = Registry::get('Countries');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Address = Registry::get('Address');
+$CLICSHOPPING_Countries = Registry::get('Countries');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $address_formats_array = $CLICSHOPPING_Countries->db->get('address_format', 'address_format_id, address_format');
+$address_formats_array = $CLICSHOPPING_Countries->db->get('address_format', 'address_format_id, address_format');
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -29,9 +29,9 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Countries->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
 <?php
-  echo HTML::button($CLICSHOPPING_Countries->getDef('button_cancel'), null, $CLICSHOPPING_Countries->link('Countries'), 'warning') . ' ';
-  echo HTML::form('status_countries', $CLICSHOPPING_Countries->link('Countries&Insert&page=' . (int)$_GET['page']));
-  echo HTML::button($CLICSHOPPING_Countries->getDef('button_insert'), null, null, 'success')
+echo HTML::button($CLICSHOPPING_Countries->getDef('button_cancel'), null, $CLICSHOPPING_Countries->link('Countries'), 'warning') . ' ';
+echo HTML::form('status_countries', $CLICSHOPPING_Countries->link('Countries&Insert&page=' . (int)$_GET['page']));
+echo HTML::button($CLICSHOPPING_Countries->getDef('button_insert'), null, null, 'success')
 ?>
           </span>
         </div>
@@ -96,26 +96,27 @@
     <div class="separator"></div>
     <div class="row">
       <?php
-        foreach ($address_formats_array as $value) {
-          ?>
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">
-                  <div class="col-md-12 custom-control custom-radio">
-                    <?php echo HTML::radioField('address_format_id', $value['address_format_id'], null, 'class="custom-control-input" id="addressLabel' . $value['address_format_id'] . '" name="addressLabel' . $value['address_format_id'] . '"'); ?>
-                    <label class="custom-control-label" for="addressLabel<?php echo $value['address_format_id']; ?>"><?php echo  $CLICSHOPPING_Countries->getDef('text_format') . ' ' . $value['address_format_id']; ?></label>
-                  </div>
-                </h4>
-                <p class="card-text">
-                  <strong><?php echo '<div class="col-md-12">&nbsp;' . $CLICSHOPPING_Address->getAddressFormatRadio($value['address_format_id']) . '</label></div>'; ?></strong>
-                </p>
-              </div>
+      foreach ($address_formats_array as $value) {
+        ?>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">
+                <div class="col-md-12 custom-control custom-radio">
+                  <?php echo HTML::radioField('address_format_id', $value['address_format_id'], null, 'class="custom-control-input" id="addressLabel' . $value['address_format_id'] . '" name="addressLabel' . $value['address_format_id'] . '"'); ?>
+                  <label class="custom-control-label"
+                         for="addressLabel<?php echo $value['address_format_id']; ?>"><?php echo $CLICSHOPPING_Countries->getDef('text_format') . ' ' . $value['address_format_id']; ?></label>
+                </div>
+              </h4>
+              <p class="card-text">
+                <strong><?php echo '<div class="col-md-12">&nbsp;' . $CLICSHOPPING_Address->getAddressFormatRadio($value['address_format_id']) . '</label></div>'; ?></strong>
+              </p>
             </div>
-            <div class="separator"></div>
           </div>
-          <?php
-        }
+          <div class="separator"></div>
+        </div>
+        <?php
+      }
       ?>
     </div>
     <div class="separator"></div>

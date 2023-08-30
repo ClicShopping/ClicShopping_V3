@@ -1,24 +1,24 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Countries = Registry::get('Countries');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Countries = Registry::get('Countries');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -63,19 +63,26 @@
     data-mobile-responsive="true">
 
     <thead class="dataTableHeadingRow">
-      <tr>
-        <th data-checkbox="true" data-field="state"></th>
-        <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Countries->getDef('id'); ?></th>
-        <th data-field="name" data-sortable="true"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_name'); ?></th>
-        <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_status'); ?></th>
-        <th data-field="code2" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_code2'); ?></th>
-        <th data-field="code3" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_code3'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_action'); ?>&nbsp;</th>
-      </tr>
+    <tr>
+      <th data-checkbox="true" data-field="state"></th>
+      <th data-field="selected" data-sortable="true" data-visible="false"
+          data-switchable="false"><?php echo $CLICSHOPPING_Countries->getDef('id'); ?></th>
+      <th data-field="name"
+          data-sortable="true"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_name'); ?></th>
+      <th data-field="status" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_status'); ?></th>
+      <th data-field="code2" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_code2'); ?></th>
+      <th data-field="code3" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_code3'); ?></th>
+      <th data-field="action" data-switchable="false"
+          class="text-end"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_action'); ?>&nbsp;
+      </th>
+    </tr>
     </thead>
     <tbody>
     <?php
-      $Qcountries = $CLICSHOPPING_Countries->db->prepare('select SQL_CALC_FOUND_ROWS countries_id,
+    $Qcountries = $CLICSHOPPING_Countries->db->prepare('select SQL_CALC_FOUND_ROWS countries_id,
                                                                                      countries_name,
                                                                                      countries_iso_code_2,
                                                                                      countries_iso_code_3,
@@ -86,61 +93,61 @@
                                                         limit :page_set_offset, :page_set_max_results
                                                         ');
 
-      $Qcountries->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-      $Qcountries->execute();
+    $Qcountries->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+    $Qcountries->execute();
 
-      $listingTotalRow = $Qcountries->getPageSetTotalRows();
+    $listingTotalRow = $Qcountries->getPageSetTotalRows();
 
-      if ($listingTotalRow > 0) {
-        while ($Qcountries->fetch()) {
-          if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $Qcountries->valueInt('countries_id')))) && !isset($cInfo)) {
-            $cInfo = new ObjectInfo($Qcountries->toArray());
-          }
-          ?>
-          <tr>
-            <td></td>
-            <td><?php echo $Qcountries->valueInt('countries_id'); ?></td>
-            <td><?php echo $Qcountries->value('countries_name'); ?></td>
-            <td class="text-center">
+    if ($listingTotalRow > 0) {
+      while ($Qcountries->fetch()) {
+        if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $Qcountries->valueInt('countries_id')))) && !isset($cInfo)) {
+          $cInfo = new ObjectInfo($Qcountries->toArray());
+        }
+        ?>
+        <tr>
+          <td></td>
+          <td><?php echo $Qcountries->valueInt('countries_id'); ?></td>
+          <td><?php echo $Qcountries->value('countries_name'); ?></td>
+          <td class="text-center">
+            <?php
+            if ($Qcountries->valueInt('status') == 1) {
+              echo HTML::link($CLICSHOPPING_Countries->link('Countries&SetFlag&flag=0&cID=' . $Qcountries->valueInt('countries_id') . '&page=' . $page), '<i class="bi-check text-success"></i>');
+            } else {
+              echo HTML::link($CLICSHOPPING_Countries->link('Countries&SetFlag&flag=1&cID=' . $Qcountries->valueInt('countries_id') . '&page=' . $page), '<i class="bi bi-x text-danger"></i>');
+            }
+            ?>
+          </td>
+          <td class="text-center" width="40"><?php echo $Qcountries->value('countries_iso_code_2'); ?></td>
+          <td class="text-center" width="40"><?php echo $Qcountries->value('countries_iso_code_3'); ?></td>
+          <td class="text-end">
+            <div class="btn-group" role="group" aria-label="buttonGroup">
               <?php
-                if ($Qcountries->valueInt('status') == 1) {
-                  echo HTML::link($CLICSHOPPING_Countries->link('Countries&SetFlag&flag=0&cID=' . $Qcountries->valueInt('countries_id') . '&page=' . $page), '<i class="bi-check text-success"></i>');
-                } else {
-                  echo HTML::link($CLICSHOPPING_Countries->link('Countries&SetFlag&flag=1&cID=' . $Qcountries->valueInt('countries_id') . '&page=' . $page), '<i class="bi bi-x text-danger"></i>');
-                }
+              echo HTML::link($CLICSHOPPING_Countries->link('Edit&page=' . $page . '&cID=' . $Qcountries->valueInt('countries_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Countries->getDef('icon_edit') . '"></i></h4>');
+              echo '&nbsp;';
+              echo HTML::link($CLICSHOPPING_Countries->link('Delete&page=' . $page . '&cID=' . $Qcountries->valueInt('countries_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Countries->getDef('icon_delete') . '"></i></h4>');
               ?>
-            </td>
-            <td class="text-center" width="40"><?php echo $Qcountries->value('countries_iso_code_2'); ?></td>
-            <td class="text-center" width="40"><?php echo $Qcountries->value('countries_iso_code_3'); ?></td>
-            <td class="text-end">
-              <div class="btn-group" role="group" aria-label="buttonGroup">
-              <?php
-                echo HTML::link($CLICSHOPPING_Countries->link('Edit&page=' . $page . '&cID=' . $Qcountries->valueInt('countries_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Countries->getDef('icon_edit') . '"></i></h4>');
-                echo '&nbsp;';
-                echo HTML::link($CLICSHOPPING_Countries->link('Delete&page=' . $page . '&cID=' . $Qcountries->valueInt('countries_id')), '<h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Countries->getDef('icon_delete') . '"></i></h4>');
-              ?>
-              </div>
-            </td>
-          </tr>
+            </div>
+          </td>
+        </tr>
         <?php
-        } // end while
-      } // end $listingTotalRow
+      } // end while
+    } // end $listingTotalRow
     ?>
     </tbody>
   </table>
   </form>
   <?php
-    if ($listingTotalRow > 0) {
-      ?>
-      <div class="row">
-        <div class="col-md-12">
-          <div
-            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcountries->getPageSetLabel($CLICSHOPPING_Countries->getDef('text_display_number_of_link')); ?></div>
-          <div
-            class="float-end text-end"><?php echo $Qcountries->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
-        </div>
+  if ($listingTotalRow > 0) {
+    ?>
+    <div class="row">
+      <div class="col-md-12">
+        <div
+          class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcountries->getPageSetLabel($CLICSHOPPING_Countries->getDef('text_display_number_of_link')); ?></div>
+        <div
+          class="float-end text-end"><?php echo $Qcountries->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
       </div>
-      <?php
-    } // end $listingTotalRow
+    </div>
+    <?php
+  } // end $listingTotalRow
   ?>
 </div>

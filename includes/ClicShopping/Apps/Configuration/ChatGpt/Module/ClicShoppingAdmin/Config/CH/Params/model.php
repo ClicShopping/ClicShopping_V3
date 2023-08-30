@@ -1,36 +1,35 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+namespace ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\CH\Params;
 
-  namespace ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\CH\Params;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\OM\HTML;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+class model extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
+{
+  public $default = 'text-davinci-003';
+  public ?int $sort_order = 15;
 
-  class model extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
+  protected function init()
   {
-    public $default = 'text-davinci-003';
-    public ?int $sort_order = 15;
-
-    protected function init()
-    {
-      $this->title = $this->app->getDef('cfg_chatgpt_model_title');
-      $this->description = $this->app->getDef('cfg_chatgpt_model_description');
-    }
-
-    public function getInputField()
-    {
-      $array = ChatGptAdmin::getGptModel();
-
-      $input = HTML::selectField($this->key, $array, $this->getInputValue(), 'id="engine"');
-
-      return $input;
-    }
+    $this->title = $this->app->getDef('cfg_chatgpt_model_title');
+    $this->description = $this->app->getDef('cfg_chatgpt_model_description');
   }
+
+  public function getInputField()
+  {
+    $array = ChatGptAdmin::getGptModel();
+
+    $input = HTML::selectField($this->key, $array, $this->getInputValue(), 'id="engine"');
+
+    return $input;
+  }
+}

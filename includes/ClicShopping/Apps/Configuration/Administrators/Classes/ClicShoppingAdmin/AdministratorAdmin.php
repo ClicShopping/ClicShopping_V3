@@ -1,34 +1,34 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin;
+
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+
+class AdministratorAdmin
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * get the user administrator
+   * @param string $user_administrator
    */
-
-  namespace ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin;
-
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
-
-  class AdministratorAdmin
+  public static function getUserAdmin(): string
   {
-    /**
-     * get the user administrator
-     * @param string $user_administrator
-     */
-    public static function getUserAdmin(): string
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Db = Registry::get('Db');
 
-      if(isset($_SESSION['admin'])) {
-        $username = array($_SESSION['admin']);
-        $username = $username[0]['username'];
+    if (isset($_SESSION['admin'])) {
+      $username = array($_SESSION['admin']);
+      $username = $username[0]['username'];
 
-        $Qlogins = $CLICSHOPPING_Db->prepare('select a.name,
+      $Qlogins = $CLICSHOPPING_Db->prepare('select a.name,
                                                      a.first_name
                                               from :table_action_recorder ar,
                                                    :table_administrators a
@@ -38,66 +38,66 @@
                                               limit 1
                                              ');
 
-        $Qlogins->bindValue(':module', 'ar_admin_login');
-        $Qlogins->bindValue(':user_name', $username);
+      $Qlogins->bindValue(':module', 'ar_admin_login');
+      $Qlogins->bindValue(':user_name', $username);
 
-        $Qlogins->execute();
+      $Qlogins->execute();
 
-        $administrator = HTML::output($Qlogins->value('first_name') . ' ' . $Qlogins->value('name'));
+      $administrator = HTML::output($Qlogins->value('first_name') . ' ' . $Qlogins->value('name'));
 
-      } else {
-        $administrator = 'Shop action';
-      }
-      
-      return $administrator;
+    } else {
+      $administrator = 'Shop action';
     }
 
-    /**
-     * get the administrator right
-     * @param string $default , default right
-     * @return string $administrator_right_array ,  right selected
-     */
-
-    public static function getAdministratorRight(string $default = ''): array
-    {
-
-      $administrator_right_array = [];
-
-      if ($default) {
-        $administrator_right_array[] = ['id' => '',
-          'text' => $default
-        ];
-      }
-
-      $administrator_right_array[] = array('id' => '1', 'text' => CLICSHOPPING::getDef('text_all_rights_admin'));
-      $administrator_right_array[] = array('id' => '2', 'text' => CLICSHOPPING::getDef('text_rights_employee'));
-      $administrator_right_array[] = array('id' => '3', 'text' => CLICSHOPPING::getDef('text_rights_visitor'));
-
-      return $administrator_right_array;
-    }
-
-    /**
-     * get the administrator menu right right
-     * @param string $default , default menu right
-     * @return string $administrator_right_array , menu right selected
-     */
-
-    public static function getAdministratorMenuRight(string $default = ''): array
-    {
-
-      $administrator_right_array = [];
-
-      if ($default) {
-        $administrator_right_array[] = ['id' => '',
-          'text' => $default
-        ];
-      }
-
-      $administrator_right_array[] = array('id' => '0', 'text' => CLICSHOPPING::getDef('text_all_right'));
-      $administrator_right_array[] = array('id' => '1', 'text' => CLICSHOPPING::getDef('text_all_rights_admin'));
-      $administrator_right_array[] = array('id' => '2', 'text' => CLICSHOPPING::getDef('text_rights_employee'));
-      $administrator_right_array[] = array('id' => '3', 'text' => CLICSHOPPING::getDef('text_rights_visitor'));
-
-      return $administrator_right_array;
-    }
+    return $administrator;
   }
+
+  /**
+   * get the administrator right
+   * @param string $default , default right
+   * @return string $administrator_right_array ,  right selected
+   */
+
+  public static function getAdministratorRight(string $default = ''): array
+  {
+
+    $administrator_right_array = [];
+
+    if ($default) {
+      $administrator_right_array[] = ['id' => '',
+        'text' => $default
+      ];
+    }
+
+    $administrator_right_array[] = array('id' => '1', 'text' => CLICSHOPPING::getDef('text_all_rights_admin'));
+    $administrator_right_array[] = array('id' => '2', 'text' => CLICSHOPPING::getDef('text_rights_employee'));
+    $administrator_right_array[] = array('id' => '3', 'text' => CLICSHOPPING::getDef('text_rights_visitor'));
+
+    return $administrator_right_array;
+  }
+
+  /**
+   * get the administrator menu right right
+   * @param string $default , default menu right
+   * @return string $administrator_right_array , menu right selected
+   */
+
+  public static function getAdministratorMenuRight(string $default = ''): array
+  {
+
+    $administrator_right_array = [];
+
+    if ($default) {
+      $administrator_right_array[] = ['id' => '',
+        'text' => $default
+      ];
+    }
+
+    $administrator_right_array[] = array('id' => '0', 'text' => CLICSHOPPING::getDef('text_all_right'));
+    $administrator_right_array[] = array('id' => '1', 'text' => CLICSHOPPING::getDef('text_all_rights_admin'));
+    $administrator_right_array[] = array('id' => '2', 'text' => CLICSHOPPING::getDef('text_rights_employee'));
+    $administrator_right_array[] = array('id' => '3', 'text' => CLICSHOPPING::getDef('text_rights_visitor'));
+
+    return $administrator_right_array;
+  }
+}

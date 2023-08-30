@@ -1,33 +1,33 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
-  $CLICSHOPPING_Administrators = Registry::get('Administrators');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Administrators = Registry::get('Administrators');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $id = HTML::sanitize($_GET['aID']);
+$id = HTML::sanitize($_GET['aID']);
 
-  $sql_array = [
-    'id',
-    'user_name',
-    'name',
-    'first_name',
-    'access'
-  ];
-  $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', $sql_array, ['id' => (int)$id]);
+$sql_array = [
+  'id',
+  'user_name',
+  'name',
+  'first_name',
+  'access'
+];
+$Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', $sql_array, ['id' => (int)$id]);
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -41,9 +41,9 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Administrators->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
           <?php
-            echo HTML::form('administrator', $CLICSHOPPING_Administrators->link('Administrators&Update&aID=' . $Qadmin->valueInt('id')), 'post', 'autocomplete="off"');
-            echo HTML::button($CLICSHOPPING_Administrators->getDef('button_update'), null, null, 'success') . ' ';
-            echo HTML::button($CLICSHOPPING_Administrators->getDef('button_cancel'), null, $CLICSHOPPING_Administrators->link('Administrators'), 'warning');
+          echo HTML::form('administrator', $CLICSHOPPING_Administrators->link('Administrators&Update&aID=' . $Qadmin->valueInt('id')), 'post', 'autocomplete="off"');
+          echo HTML::button($CLICSHOPPING_Administrators->getDef('button_update'), null, null, 'success') . ' ';
+          echo HTML::button($CLICSHOPPING_Administrators->getDef('button_cancel'), null, $CLICSHOPPING_Administrators->link('Administrators'), 'warning');
           ?>
           </span>
         </div>
@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-   <div class="separator"></div>
+    <div class="separator"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
@@ -109,7 +109,8 @@
           <div class="col-md-5">
             <div class="input-group" role="group" aria-label="buttonGroup">
               <span><?php echo HTML::inputField('password', null, 'id="input-password" required aria-required="true" autocomplete="off" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_password') . '"'); ?></span>
-              <span><button type="button" id="button-generate" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i></button></span>
+              <span><button type="button" id="button-generate" class="btn btn-primary"><i
+                    class="bi bi-arrow-clockwise"></i></button></span>
             </div>
           </div>
         </div>
@@ -130,4 +131,5 @@
   </div>
   </form>
 </div>
-<script defer src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/generate_password.js'); ?>"></script>
+<script defer
+        src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/generate_password.js'); ?>"></script>

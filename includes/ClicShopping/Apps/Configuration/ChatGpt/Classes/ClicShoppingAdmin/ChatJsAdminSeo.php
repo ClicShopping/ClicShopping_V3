@@ -1,28 +1,28 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin;
+
+class ChatJsAdminSeo
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_title
+   * @param string $store_name
+   * @param string $url
    */
-
-  namespace ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin;
-
-  class ChatJsAdminSeo
+  public static function getInfoSeoDefaultTitleH1(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $url)
   {
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_title
-     * @param string $store_name
-     * @param string $url
-     */
-    public static function getInfoSeoDefaultTitleH1(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $url)
-    {
-      $script = "
+    $script = "
         <script defer>
           $('[id^=\"seo_default_title_h\"]').each(function(index) {
             let inputId = $(this).attr('id');
@@ -66,20 +66,20 @@
           });
         </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_title
-     * @param string $store_name
-     * @param string $url
-     */
-    public static function getInfoSeoDefaultTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_title
+   * @param string $store_name
+   * @param string $url
+   */
+  public static function getInfoSeoDefaultTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $url)
+  {
+    $script = "
       <script defer>
     $('[id^=\"seo_default_title_tag\"]').each(function(index) {
       let inputId = $(this).attr('id');
@@ -124,21 +124,21 @@
     });            
 </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $store_name
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoDefaultDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $store_name
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoDefaultDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $url)
+  {
+    $script = "
       <script defer>
       $('[id^=\"seo_default_desc_tag\"]').each(function(index) {
         let button = '{$content}';
@@ -187,21 +187,21 @@
       });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $store_name
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoDefaultKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $store_name
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoDefaultKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $url)
+  {
+    $script = "
       <script defer>    
         $('[id^=\"seo_defaut_language_keywords\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -246,21 +246,21 @@
         });      
        </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_tag
-     * @param string $store_name
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoDefaultFooter(string $content, string $urlMultilanguage, string $translate_language, string $question_tag, string $store_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_tag
+   * @param string $store_name
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoDefaultFooter(string $content, string $urlMultilanguage, string $translate_language, string $question_tag, string $store_name, string $url)
+  {
+    $script = "
       <script defer>   
         $('[id^=\"seo_defaut_language_footer\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -305,23 +305,23 @@
         });     
      </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 //------------------------------------------------------
 // product Description
 //------------------------------------------------------
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_title
-     * @param string $store_name
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoProductDescriptionTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_title
+   * @param string $store_name
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoProductDescriptionTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $url)
+  {
+    $script = "
       <script defer> 
         $('[id^=\"seo_product_description_title_tag\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -367,21 +367,21 @@
 
      </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $store_name
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoProductDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $store_name
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoProductDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $url)
+  {
+    $script = "
       <script defer> 
         $('[id^=\"seo_product_description\"]').each(function(index) {
           let button = '{$content}';
@@ -430,21 +430,21 @@
         });
      </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $store_name
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoProductkeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $store_name
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoProductkeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $url)
+  {
+    $script = "
       <script defer> 
         $('[id^=\"seo_product_description_keywords\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -489,25 +489,25 @@
         });
      </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
 //------------------------------------------------------
 // New
 //------------------------------------------------------
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_title
-     * @param string $store_name
-     * @param string $text_tag_products_new
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoProductsNewTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $text_tag_products_new, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_title
+   * @param string $store_name
+   * @param string $text_tag_products_new
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoProductsNewTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $text_tag_products_new, string $url)
+  {
+    $script = "
       <script defer> 
         $('[id^=\"seo_product_new_title_tag\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -552,22 +552,22 @@
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $store_name
-     * @param string $text_tag_products_new
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoProductsNewDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $text_tag_products_new, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $store_name
+   * @param string $text_tag_products_new
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoProductsNewDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $text_tag_products_new, string $url)
+  {
+    $script = "
       <script defer> 
         $('[id^=\"seo_product_new_description\"]').each(function(index) {
           let button = '{$content}';
@@ -616,22 +616,22 @@
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $store_name
-     * @param string $text_tag_products_new
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoProductsNewKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $text_tag_products_new, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $store_name
+   * @param string $text_tag_products_new
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoProductsNewKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $text_tag_products_new, string $url)
+  {
+    $script = "
       <script defer> 
       $('[id^=\"seo_product_new_keywords\"]').each(function(index) {
         let inputId = $(this).attr('id');
@@ -676,25 +676,25 @@
       });      
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
 //------------------------------------------------------
 // Specials
 //------------------------------------------------------
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_title
-     * @param string $store_name
-     * @param string $text_tag_specials
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoSpecialsTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $text_tag_specials, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_title
+   * @param string $store_name
+   * @param string $text_tag_specials
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoSpecialsTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $text_tag_specials, string $url)
+  {
+    $script = "
       <script defer> 
         $('[id^=\"seo_special_title_tag\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -739,22 +739,22 @@
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $store_name
-     * @param string $text_tag_specials
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoSpecialsDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $text_tag_specials, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $store_name
+   * @param string $text_tag_specials
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoSpecialsDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $text_tag_specials, string $url)
+  {
+    $script = "
       <script defer> 
 $('[id^=\"seo_special_description\"]').each(function(index) {
   let button = '{$content}';
@@ -803,22 +803,22 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
 });
      </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $store_name
-     * @param string $text_tag_specials
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoSpecialsKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $text_tag_specials, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $store_name
+   * @param string $text_tag_specials
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoSpecialsKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $text_tag_specials, string $url)
+  {
+    $script = "
       <script defer> 
       $('[id^=\"seo_special_keywords\"]').each(function(index) {
         let inputId = $(this).attr('id');
@@ -863,25 +863,25 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
 //------------------------------------------------------
 // Reviews
 //------------------------------------------------------
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_title
-     * @param string $store_name
-     * @param string $text_tag_specials
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoReviewsTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $text_tag_review, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_title
+   * @param string $store_name
+   * @param string $text_tag_specials
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoReviewsTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $text_tag_review, string $url)
+  {
+    $script = "
       <script defer>
       $('[id^=\"seo_review_title_tag\"]').each(function(index) {
         let inputId = $(this).attr('id');
@@ -926,22 +926,22 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_title
-     * @param string $store_name
-     * @param string $text_tag_specials
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoReviewsDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $text_tag_review, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_title
+   * @param string $store_name
+   * @param string $text_tag_specials
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoReviewsDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $text_tag_review, string $url)
+  {
+    $script = "
       <script defer>
         $('[id^=\"seo_review_description\"]').each(function(index) {
           let button = '{$content}';
@@ -990,22 +990,22 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $store_name
-     * @param string $text_tag_review
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoReviewsKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $text_tag_review, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $store_name
+   * @param string $text_tag_review
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoReviewsKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $text_tag_review, string $url)
+  {
+    $script = "
       <script defer>
         $('[id^=\"seo_review_keywords\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -1050,25 +1050,25 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
 //------------------------------------------------------
 // Favorites
 //------------------------------------------------------
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_title
-     * @param string $store_name
-     * @param string $text_tag_favorite
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoFavoritesTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $text_tag_favorite, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_title
+   * @param string $store_name
+   * @param string $text_tag_favorite
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoFavoritesTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $text_tag_favorite, string $url)
+  {
+    $script = "
       <script defer>
       $('[id^=\"seo_favorite_title_tag\"]').each(function(index) {
         let inputId = $(this).attr('id');
@@ -1113,22 +1113,22 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       });
      </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $store_name
-     * @param string $text_tag_favorite
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoFavoritesDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $text_tag_favorite, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $store_name
+   * @param string $text_tag_favorite
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoFavoritesDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $text_tag_favorite, string $url)
+  {
+    $script = "
       <script defer>
       $('[id^=\"seo_favorite_description\"]').each(function(index) {
         let button = '{$content}';
@@ -1177,22 +1177,22 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       });
      </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $store_name
-     * @param string $text_tag_favorite
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoFavoritesKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $text_tag_favorite, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $store_name
+   * @param string $text_tag_favorite
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoFavoritesKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $text_tag_favorite, string $url)
+  {
+    $script = "
       <script defer>
         $('[id^=\"seo_favorite_keywords\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -1237,25 +1237,25 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
      </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
 //------------------------------------------------------
 // Favorites
 //------------------------------------------------------
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_title
-     * @param string $store_name
-     * @param string $text_tag_featured
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoFeaturedTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $text_tag_featured, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_title
+   * @param string $store_name
+   * @param string $text_tag_featured
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoFeaturedTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $text_tag_featured, string $url)
+  {
+    $script = "
       <script defer>
         $('[id^=\"seo_featured_title_tag\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -1300,22 +1300,22 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
      </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $store_name
-     * @param string $text_tag_featured
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoFeaturedDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $text_tag_featured, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $store_name
+   * @param string $text_tag_featured
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoFeaturedDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $text_tag_featured, string $url)
+  {
+    $script = "
       <script defer>
         $('[id^=\"seo_featured_description\"]').each(function(index) {
           let button = '{$content}';
@@ -1364,22 +1364,22 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $store_name
-     * @param string $text_tag_featured
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoFeaturedKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $text_tag_featured, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $store_name
+   * @param string $text_tag_featured
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoFeaturedKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $text_tag_featured, string $url)
+  {
+    $script = "
       <script defer>
         $('[id^=\"seo_featured_keywords\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -1424,24 +1424,24 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
 //**************************************
 // Categories
 //**************************************
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question
-     * @param string $categories_name
-     * @param string $url
-     * @return string
-     */
-    public static function getCategoriesSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $categories_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question
+   * @param string $categories_name
+   * @param string $url
+   * @return string
+   */
+  public static function getCategoriesSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $categories_name, string $url)
+  {
+    $script = "
       <script defer>
       $('[id^=\"categories_head_title_tag\"]').each(function(index) {
         let inputId = $(this).attr('id');
@@ -1486,21 +1486,21 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       });
        </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $categories_name
-     * @param string $url
-     * @return string
-     */
-    public static function getCategoriesSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $categories_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $categories_name
+   * @param string $url
+   * @return string
+   */
+  public static function getCategoriesSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $categories_name, string $url)
+  {
+    $script = "
       <script defer>
       $('[id^=\"categories_head_desc_tag\"]').each(function(index) {
         let button = '{$content}';
@@ -1549,21 +1549,21 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $categories_name
-     * @param string $url
-     * @return string
-     */
-    public static function getCategoriesSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $categories_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $categories_name
+   * @param string $url
+   * @return string
+   */
+  public static function getCategoriesSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $categories_name, string $url)
+  {
+    $script = "
       <script defer>    
       $('[id^=\"categories_head_keywords_tag\"]').each(function(index) {
         let inputId = $(this).attr('id');
@@ -1608,24 +1608,24 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
 //*********************
 // Manufacturer
 //*********************
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question
-     * @param string $manufacturer_name
-     * @param string $url
-     * @return string
-     */
-    public static function getManufacturerSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $manufacturer_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question
+   * @param string $manufacturer_name
+   * @param string $url
+   * @return string
+   */
+  public static function getManufacturerSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $manufacturer_name, string $url)
+  {
+    $script = "
       <script defer>    
         $('[id^=\"manufacturer_seo_title\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -1670,21 +1670,21 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });    
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $manufacturer_name
-     * @param string $url
-     * @return string
-     */
-    public static function getManufacturerSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $manufacturer_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $manufacturer_name
+   * @param string $url
+   * @return string
+   */
+  public static function getManufacturerSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $manufacturer_name, string $url)
+  {
+    $script = "
       <script defer>
         $('[id^=\"manufacturer_seo_description\"]').each(function(index) {
           let button = '{$content}';
@@ -1733,21 +1733,21 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $manufacturer_name
-     * @param string $url
-     * @return string
-     */
-    public static function getManufacturerSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $manufacturer_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $manufacturer_name
+   * @param string $url
+   * @return string
+   */
+  public static function getManufacturerSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $manufacturer_name, string $url)
+  {
+    $script = "
       <script defer>    
       $('[id^=\"manufacturer_seo_keyword\"]').each(function(index) {
         let inputId = $(this).attr('id');
@@ -1792,24 +1792,24 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       });   
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
 //*********************
 // Page Manager
 //*********************
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question
-     * @param string $page_manager_name
-     * @param string $url
-     * @return string
-     */
-    public static function getPageManagerSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $page_manager_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question
+   * @param string $page_manager_name
+   * @param string $url
+   * @return string
+   */
+  public static function getPageManagerSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $page_manager_name, string $url)
+  {
+    $script = "
       <script defer>    
         $('[id^=\"page_manager_head_title_tag\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -1854,21 +1854,21 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $page_manager_name
-     * @param string $url
-     * @return string
-     */
-    public static function getPageManagerSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $page_manager_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $page_manager_name
+   * @param string $url
+   * @return string
+   */
+  public static function getPageManagerSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $page_manager_name, string $url)
+  {
+    $script = "
       <script defer> 
         $('[id^=\"page_manager_head_desc_tag\"]').each(function(index) {
           let button = '{$content}';
@@ -1917,21 +1917,21 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $page_manager_name
-     * @param string $url
-     * @return string
-     */
-    public static function getPageManagerSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $page_manager_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $page_manager_name
+   * @param string $url
+   * @return string
+   */
+  public static function getPageManagerSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $page_manager_name, string $url)
+  {
+    $script = "
       <script defer> 
         $('[id^=\"page_manager_head_keywords_tag\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -1976,24 +1976,24 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
 //*********************
 // Products
 //*********************
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question
-     * @param string $product_name
-     * @param string $url
-     * @return string
-     */
-    public static function getProductsSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $product_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question
+   * @param string $product_name
+   * @param string $url
+   * @return string
+   */
+  public static function getProductsSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $product_name, string $url)
+  {
+    $script = "
       <script defer>    
         $('[id^=\"products_head_title_tag\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -2038,21 +2038,21 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $product_name
-     * @param string $url
-     * @return string
-     */
-    public static function getProductsSummaryDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $product_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $product_name
+   * @param string $url
+   * @return string
+   */
+  public static function getProductsSummaryDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $product_name, string $url)
+  {
+    $script = "
       <script defer>    
         $('[id^=\"SummaryDescription\"]').each(function(index) {
           let button = '{$content}';
@@ -2101,21 +2101,21 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });    
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $product_name
-     * @param string $url
-     * @return string
-     */
-    public static function getProductsSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $product_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $product_name
+   * @param string $url
+   * @return string
+   */
+  public static function getProductsSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $product_name, string $url)
+  {
+    $script = "
       <script defer>    
         $('[id^=\"products_head_desc_tag\"]').each(function(index) {
           let button = '{$content}';
@@ -2164,22 +2164,22 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });    
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $product_name
-     * @param string $url
-     * @return string
-     */
-    public static function getProductsSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $product_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $product_name
+   * @param string $url
+   * @return string
+   */
+  public static function getProductsSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $product_name, string $url)
+  {
+    $script = "
       <script defer> 
         $('[id^=\"products_head_keywords_tag\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -2224,21 +2224,21 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });      
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_tag
-     * @param string $product_name
-     * @param string $url
-     * @return string
-     */
-    public static function getProductsSeoTags(string $content, string $urlMultilanguage, string $translate_language, string $question_tag, string $product_name, string $url)
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_tag
+   * @param string $product_name
+   * @param string $url
+   * @return string
+   */
+  public static function getProductsSeoTags(string $content, string $urlMultilanguage, string $translate_language, string $question_tag, string $product_name, string $url)
+  {
+    $script = "
       <script defer> 
         $('[id^=\"products_head_tag\"]').each(function(index) {
           let inputId = $(this).attr('id');
@@ -2283,24 +2283,24 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });      
       </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
 //**************************************
 //Recommendations
 //**************************************
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_title
-     * @param string $store_name
-     * @param string $url
-     */
-    public static function getInfoSeoRecommendationsTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $url): string
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_title
+   * @param string $store_name
+   * @param string $url
+   */
+  public static function getInfoSeoRecommendationsTitle(string $content, string $urlMultilanguage, string $translate_language, string $question_title, string $store_name, string $url): string
+  {
+    $script = "
         <script defer>
       $('[id^=\"seo_recommendations_title_tag\"]').each(function(index) {
         let inputId = $(this).attr('id');
@@ -2344,21 +2344,21 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
       });            
   </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_summary_description
-     * @param string $store_name
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoRecommendationsDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $url): string
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_summary_description
+   * @param string $store_name
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoRecommendationsDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $store_name, string $url): string
+  {
+    $script = "
         <script defer>
         $('[id^=\"seo_recommendations_description_tag\"]').each(function(index) {
           let button = '{$content}';
@@ -2406,21 +2406,21 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
         });
         </script>";
 
-      return $script;
-    }
+    return $script;
+  }
 
-    /**
-     * @param string $content
-     * @param string $urlMultilanguage
-     * @param string $translate_language
-     * @param string $question_keywords
-     * @param string $store_name
-     * @param string $url
-     * @return string
-     */
-    public static function getInfoSeoRecommendationsKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $url): string
-    {
-      $script = "
+  /**
+   * @param string $content
+   * @param string $urlMultilanguage
+   * @param string $translate_language
+   * @param string $question_keywords
+   * @param string $store_name
+   * @param string $url
+   * @return string
+   */
+  public static function getInfoSeoRecommendationsKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $store_name, string $url): string
+  {
+    $script = "
         <script defer>    
           $('[id^=\"seo_recommendations_keywords_tag\"]').each(function(index) {
             let inputId = $(this).attr('id');
@@ -2464,6 +2464,6 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
           });      
          </script>";
 
-      return $script;
-    }
+    return $script;
   }
+}

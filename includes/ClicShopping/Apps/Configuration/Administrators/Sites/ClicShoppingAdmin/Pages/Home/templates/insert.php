@@ -1,23 +1,23 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
-  $CLICSHOPPING_Administrators = Registry::get('Administrators');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Administrators = Registry::get('Administrators');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -31,9 +31,9 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Administrators->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
 <?php
-  echo HTML::button($CLICSHOPPING_Administrators->getDef('button_cancel'), null, $CLICSHOPPING_Administrators->link('Administrators'), 'warning') . ' ';
-  echo HTML::form('administrators', $CLICSHOPPING_Administrators->link('Administrators&Insert&page=' . $page), 'post', 'autocomplete="off"');
-  echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, null, 'success')
+echo HTML::button($CLICSHOPPING_Administrators->getDef('button_cancel'), null, $CLICSHOPPING_Administrators->link('Administrators'), 'warning') . ' ';
+echo HTML::form('administrators', $CLICSHOPPING_Administrators->link('Administrators&Insert&page=' . $page), 'post', 'autocomplete="off"');
+echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, null, 'success')
 ?>
           </span>
         </div>
@@ -97,7 +97,8 @@
           <div class="col-md-5">
             <div class="input-group" role="group" aria-label="buttonGroup">
               <span><?php echo HTML::inputField('password', null, 'id="input-password" required aria-required="true" autocomplete="off" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_password') . '"'); ?></span>
-              <span><button type="button" id="button-generate" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i></button></span>
+              <span><button type="button" id="button-generate" class="btn btn-primary"><i
+                    class="bi bi-arrow-clockwise"></i></button></span>
             </div>
           </div>
         </div>
@@ -118,4 +119,5 @@
   </div>
   </form>
 </div>
-<script defer src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/generate_password.js'); ?>"></script>
+<script defer
+        src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/generate_password.js'); ?>"></script>
