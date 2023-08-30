@@ -16,7 +16,7 @@
       <br/>
       <h1>We apologize for this drawback. We will be back very quickly</h1>
       <p>&nbsp;</p>
-      <p>Regards,<br /> <br />
+      <p>Regards,<br/> <br/>
         The team.
       </p>
       <br/><br/>

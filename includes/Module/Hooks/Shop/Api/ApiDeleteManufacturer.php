@@ -19,7 +19,7 @@ class ApiDeleteManufacturer
    * @param int $id
    * @return void
    */
-  private static function deleteManufacturer(int $id): void
+  private static function deleteManufacturer(int $id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Hooks = Registry::get('Hooks');
