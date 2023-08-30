@@ -1,72 +1,72 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Marketing\Recommendations\Module\Hooks\ClicShoppingAdmin\TopDashboard;
+
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+
+use ClicShopping\Apps\Marketing\Recommendations\Recommendations as RecommendationsApp;
+
+class DashboardTopRecommendations implements \ClicShopping\OM\Modules\HooksInterface
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @var bool|null
    */
+  protected mixed $app;
 
-  namespace ClicShopping\Apps\Marketing\Recommendations\Module\Hooks\ClicShoppingAdmin\TopDashboard;
-
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-
-  use ClicShopping\Apps\Marketing\Recommendations\Recommendations as RecommendationsApp;
-
-  class DashboardTopRecommendations implements \ClicShopping\OM\Modules\HooksInterface
+  public function __construct()
   {
-    /**
-     * @var bool|null
-     */
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Recommendations')) {
-        Registry::set('Recommendations', new RecommendationsApp());
-      }
-
-      $this->app = Registry::get('Recommendations');
-
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_recommendations');
+    if (!Registry::exists('Recommendations')) {
+      Registry::set('Recommendations', new RecommendationsApp());
     }
 
-    public function Display(): string
-    {
-      if (!\defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS == 'False') {
-        return false;
-      }
+    $this->app = Registry::get('Recommendations');
 
-      $Qrecommendations = $this->app->db->prepare('select count(id) as good_recommendations      
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_recommendations');
+  }
+
+  public function Display(): string
+  {
+    if (!\defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS == 'False') {
+      return false;
+    }
+
+    $Qrecommendations = $this->app->db->prepare('select count(id) as good_recommendations      
                                                    from :table_products_recommendations 
                                                    where score >= :score
                                                   ');
-      $Qrecommendations->bindDecimal(':score', (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MIN_SCORE);
+    $Qrecommendations->bindDecimal(':score', (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MIN_SCORE);
 
-      $Qrecommendations->execute();
+    $Qrecommendations->execute();
 
-      $good_recommendations = $Qrecommendations->valueInt('good_recommendations');
+    $good_recommendations = $Qrecommendations->valueInt('good_recommendations');
 
-      $QbRecommendations = $this->app->db->prepare('select count(id) as bad_recommendation 
+    $QbRecommendations = $this->app->db->prepare('select count(id) as bad_recommendation 
                                                     from :table_products_recommendations 
                                                     where score < :score
                                                     ');
-      $QbRecommendations->bindDecimal(':score', (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MAX_SCORE);
+    $QbRecommendations->bindDecimal(':score', (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_MAX_SCORE);
 
-      $QbRecommendations->execute();
+    $QbRecommendations->execute();
 
-      $bad_recommendations = $QbRecommendations->valueInt('bad_recommendation');
+    $bad_recommendations = $QbRecommendations->valueInt('bad_recommendation');
 
-      $text = $this->app->getDef('text_recommendations');
-      $text_view = $this->app->getDef('text_view');
+    $text = $this->app->getDef('text_recommendations');
+    $text_view = $this->app->getDef('text_view');
 
-      $output = '';
+    $output = '';
 
-      if ($good_recommendations > 0 || $bad_recommendations > 0) {
-        $output = '
+    if ($good_recommendations > 0 || $bad_recommendations > 0) {
+      $output = '
 <div class="col-md-2 col-12 m-1">
     <div class="card bg-danger">
       <div class="card-body">
@@ -81,8 +81,8 @@
     </div>
 </div>
 ';
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

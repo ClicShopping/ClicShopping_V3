@@ -1,30 +1,30 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Marketing\Featured\Sites\ClicShoppingAdmin\Pages\Home;
+namespace ClicShopping\Apps\Marketing\Featured\Sites\ClicShoppingAdmin\Pages\Home;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Marketing\Featured\Featured;
+use ClicShopping\Apps\Marketing\Featured\Featured;
 
-  class Home extends \ClicShopping\OM\PagesAbstract
+class Home extends \ClicShopping\OM\PagesAbstract
+{
+  public mixed $app;
+
+  protected function init()
   {
-    public mixed $app;
+    $CLICSHOPPING_Featured = new Featured();
+    Registry::set('Featured', $CLICSHOPPING_Featured);
 
-    protected function init()
-    {
-      $CLICSHOPPING_Featured = new Featured();
-      Registry::set('Featured', $CLICSHOPPING_Featured);
+    $this->app = $CLICSHOPPING_Featured;
 
-      $this->app = $CLICSHOPPING_Featured;
-
-      $this->app->loadDefinitions('Sites/ClicShoppingAdmin/main');
-    }
+    $this->app->loadDefinitions('Sites/ClicShoppingAdmin/main');
   }
+}

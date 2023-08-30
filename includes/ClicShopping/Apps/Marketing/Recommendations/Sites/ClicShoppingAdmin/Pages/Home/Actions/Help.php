@@ -1,26 +1,26 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Marketing\Recommendations\Sites\ClicShoppingAdmin\Pages\Home\Actions;
+namespace ClicShopping\Apps\Marketing\Recommendations\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  class Help extends \ClicShopping\OM\PagesActionsAbstract
+class Help extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
   {
-    public function execute()
-    {
-      $CLICSHOPPING_Recommendations = Registry::get('Recommendations');
+    $CLICSHOPPING_Recommendations = Registry::get('Recommendations');
 
-      $this->page->setFile('help.php');
-      $this->page->data['action'] = 'Help';
+    $this->page->setFile('help.php');
+    $this->page->data['action'] = 'Help';
 
-      $CLICSHOPPING_Recommendations->loadDefinitions('Sites/ClicShoppingAdmin/help');
-    }
+    $CLICSHOPPING_Recommendations->loadDefinitions('Sites/ClicShoppingAdmin/help');
   }
+}

@@ -131,7 +131,7 @@ echo HTML::button($CLICSHOPPING_Favorites->getDef('button_new'), null, $CLICSHOP
       <th data-field="scheduled_date" data-sortable="true"
           class="text-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_scheduled_date'); ?></th>
       <th data-field="expires_date" data-sortable="true"
-          class="text-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_expires_date'); ?></td>
+          class="text-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_expires_date'); ?></th>
       <th data-field="archive" data-sortable="true"
           class="text-center"><?php echo $CLICSHOPPING_Favorites->getDef('table_heading_archive'); ?></th>
       <th data-field="status" data-sortable="true"
