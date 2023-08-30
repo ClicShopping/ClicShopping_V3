@@ -1,38 +1,38 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Stats;
 
-  namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Stats;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
-  use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
-  class StatsOrdersAverageTurnover implements \ClicShopping\OM\Modules\HooksInterface
+class StatsOrdersAverageTurnover implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Orders')) {
-        Registry::set('Orders', new OrdersApp());
-      }
-
-      $this->app = Registry::get('Orders');
+    if (!Registry::exists('Orders')) {
+      Registry::set('Orders', new OrdersApp());
     }
 
-    /**
-     * @return float
-     */
-    public function statsOrderAverage(): float
-    {
-      $QstatOrders = $this->app->db->prepare('select avg(value) as value
+    $this->app = Registry::get('Orders');
+  }
+
+  /**
+   * @return float
+   */
+  public function statsOrderAverage(): float
+  {
+    $QstatOrders = $this->app->db->prepare('select avg(value) as value
                                               from :table_orders_total ot,
                                                    :table_orders o
                                               where ot.class = :class
@@ -40,25 +40,25 @@
                                               and o.orders_id = ot.orders_id
                                               and year(o.date_purchased) >= year(now())
                                              ');
-      $QstatOrders->bindValue(':class', 'TO');
-      $QstatOrders->execute();
+    $QstatOrders->bindValue(':class', 'TO');
+    $QstatOrders->execute();
 
-      $result = $QstatOrders->valueDecimal('value');
+    $result = $QstatOrders->valueDecimal('value');
 
-      return $result;
+    return $result;
+  }
+
+  public function display()
+  {
+    if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
+      return false;
     }
 
-    public function display()
-    {
-      if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
-        return false;
-      }
+    $output = '';
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_orders_average_turn_over');
 
-      $output = '';
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_orders_average_turn_over');
-
-      if ($this->statsOrderAverage() > 0) {
-        $output = '
+    if ($this->statsOrderAverage() > 0) {
+      $output = '
 <div class="col-md-2 col-12">
   <div class="card bg-success">
     <div class="card-body">
@@ -78,8 +78,8 @@
   </div>
 </div>
       ';
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

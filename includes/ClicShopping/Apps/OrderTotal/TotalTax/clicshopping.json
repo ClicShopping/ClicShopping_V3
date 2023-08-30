@@ -1,24 +1,24 @@
 {
-	"title":	"TotalTax App",
-	"app":		"TotalTax",
-	"vendor":	"OrderTotal",
-	"version":	"1.0",
-	"req_core_version":	"3.0",
-	"license":	"GPL-2",
-	"authors": [
-		{
-			"name":		"ClicShopping",
-      "company":	"ClicShopping",
-			"email":	   "admin@clicshopping.org",
-			"website":	"https://www.clicshopping.org"
-		}
-	],
-	"modules": {
-		"OrderTotal": {
-			"TX":	"Module\\Total\\TX"
-		}
-	},
-	"routes": {
-		"ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home"
+  "title": "TotalTax App",
+  "app": "TotalTax",
+  "vendor": "OrderTotal",
+  "version": "1.0",
+  "req_core_version": "3.0",
+  "license": "GPL-2",
+  "authors": [
+    {
+      "name": "ClicShopping",
+      "company": "ClicShopping",
+      "email": "admin@clicshopping.org",
+      "website": "https://www.clicshopping.org"
+    }
+  ],
+  "modules": {
+    "OrderTotal": {
+      "TX": "Module\\Total\\TX"
+    }
+  },
+  "routes": {
+    "ClicShoppingAdmin": "Sites\\ClicShoppingAdmin\\Pages\\Home"
   }
 }

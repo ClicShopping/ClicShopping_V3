@@ -1,55 +1,55 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Report\StatsProductsNotification\Module\Hooks\ClicShoppingAdmin\StatsDashboard;
+namespace ClicShopping\Apps\Report\StatsProductsNotification\Module\Hooks\ClicShoppingAdmin\StatsDashboard;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Report\StatsProductsNotification\StatsProductsNotification as StatsProductsNotificationApp;
+use ClicShopping\Apps\Report\StatsProductsNotification\StatsProductsNotification as StatsProductsNotificationApp;
 
-  class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
+class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('StatsProductsNotification')) {
-        Registry::set('StatsProductsNotification', new StatsProductsNotificationApp());
-      }
-
-      $this->app = Registry::get('StatsProductsNotification');
-
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
+    if (!Registry::exists('StatsProductsNotification')) {
+      Registry::set('StatsProductsNotification', new StatsProductsNotificationApp());
     }
 
-    private function statsCountCustomersNotifications()
-    {
-      $QcustomersTotalNotification = $this->app->db->prepare('select count(products_id) as count
+    $this->app = Registry::get('StatsProductsNotification');
+
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
+  }
+
+  private function statsCountCustomersNotifications()
+  {
+    $QcustomersTotalNotification = $this->app->db->prepare('select count(products_id) as count
                                                               from :table_products_notifications
                                                               limit 1
                                                               ');
-      $QcustomersTotalNotification->execute();
+    $QcustomersTotalNotification->execute();
 
-      $customers_total_notification = $QcustomersTotalNotification->valueInt('count');
+    $customers_total_notification = $QcustomersTotalNotification->valueInt('count');
 
-      return $customers_total_notification;
+    return $customers_total_notification;
+  }
+
+  public function display()
+  {
+    if (!\defined('CLICSHOPPING_APP_STATS_PRODUCTS_NOTIFICATION_PN_STATUS') || CLICSHOPPING_APP_STATS_PRODUCTS_NOTIFICATION_PN_STATUS == 'False') {
+      return false;
     }
 
-    public function display()
-    {
-      if (!\defined('CLICSHOPPING_APP_STATS_PRODUCTS_NOTIFICATION_PN_STATUS') || CLICSHOPPING_APP_STATS_PRODUCTS_NOTIFICATION_PN_STATUS == 'False') {
-        return false;
-      }
-
-      if ($this->statsCountCustomersNotifications() != 0) {
-        $content = '
+    if ($this->statsCountCustomersNotifications() != 0) {
+      $content = '
         <div class="row">
           <div class="col-md-11 mainTable">
             <div class="form-group row">
@@ -62,7 +62,7 @@
         </div>
         ';
 
-        $output = <<<EOD
+      $output = <<<EOD
   <!-- ######################## -->
   <!--  Start Count customer Notification      -->
   <!-- ######################## -->
@@ -71,7 +71,7 @@
   <!--  Start Count customer Notification      -->
   <!-- ######################## -->
 EOD;
-        return $output;
-      }
+      return $output;
     }
   }
+}

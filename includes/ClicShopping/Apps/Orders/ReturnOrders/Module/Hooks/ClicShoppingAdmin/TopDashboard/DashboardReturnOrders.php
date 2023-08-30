@@ -1,52 +1,52 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Orders\ReturnOrders\Module\Hooks\ClicShoppingAdmin\TopDashboard;
+namespace ClicShopping\Apps\Orders\ReturnOrders\Module\Hooks\ClicShoppingAdmin\TopDashboard;
 
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Orders\ReturnOrders\ReturnOrders as ReturnOrdersApp;
+use ClicShopping\Apps\Orders\ReturnOrders\ReturnOrders as ReturnOrdersApp;
 
-  class DashboardReturnOrders implements \ClicShopping\OM\Modules\HooksInterface
+class DashboardReturnOrders implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('ReturnOrders')) {
-        Registry::set('ReturnOrders', new ReturnOrdersApp());
-      }
-
-      $this->app = Registry::get('ReturnOrders');
-
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_return_order');
+    if (!Registry::exists('ReturnOrders')) {
+      Registry::set('ReturnOrders', new ReturnOrdersApp());
     }
 
-    public function Display(): string
-    {
-      $Qreturn = $this->app->db->prepare('select count(return_id) as count 
+    $this->app = Registry::get('ReturnOrders');
+
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_return_order');
+  }
+
+  public function Display(): string
+  {
+    $Qreturn = $this->app->db->prepare('select count(return_id) as count 
                                           from :table_return_orders
                                           where opened = 0
                                          ');
-      $Qreturn->execute();
+    $Qreturn->execute();
 
-      $number_return = $Qreturn->valueInt('count');
-      $output = '';
+    $number_return = $Qreturn->valueInt('count');
+    $output = '';
 
-      if ($number_return > 0) {
-        $text = $this->app->getDef('text_newsletter');
-        $text_view = $this->app->getDef('text_view');
+    if ($number_return > 0) {
+      $text = $this->app->getDef('text_newsletter');
+      $text_view = $this->app->getDef('text_view');
 
-        $output = '
+      $output = '
 <div class="col-md-2 col-12 m-1">
     <div class="card bg-warning">
       <div class="card-body">
@@ -61,8 +61,8 @@
     </div>
 </div>
 ';
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

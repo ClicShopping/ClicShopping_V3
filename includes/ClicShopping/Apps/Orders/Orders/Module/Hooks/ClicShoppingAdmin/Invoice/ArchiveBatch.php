@@ -1,52 +1,52 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Invoice;
+namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Invoice;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
+use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
-  class ArchiveBatch implements \ClicShopping\OM\Modules\HooksInterface
+class ArchiveBatch implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+  protected $Id;
+
+  public function __construct()
   {
-    protected mixed $app;
-    protected $Id;
-
-    public function __construct()
-    {
-      if (isset($_GET['aID'])) {
-        $archive_id = HTML::sanitize($_GET['aID']);
-      } else {
-        $archive_id = 0;
-      }
-
-      if (!Registry::exists('Orders')) {
-        Registry::set('Orders', new OrdersApp());
-      }
-
-      $this->app = Registry::get('Orders');
-
-      $this->Id = HTML::sanitize($archive_id);
+    if (isset($_GET['aID'])) {
+      $archive_id = HTML::sanitize($_GET['aID']);
+    } else {
+      $archive_id = 0;
     }
 
-    public function execute()
-    {
-      if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
-        return false;
-      }
+    if (!Registry::exists('Orders')) {
+      Registry::set('Orders', new OrdersApp());
+    }
 
-      if ($this->Id != 1) {
-        $output = '&nbsp;';
+    $this->app = Registry::get('Orders');
 
-        $output .= '
+    $this->Id = HTML::sanitize($archive_id);
+  }
+
+  public function execute()
+  {
+    if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
+      return false;
+    }
+
+    if ($this->Id != 1) {
+      $output = '&nbsp;';
+
+      $output .= '
               <a data-bs-toggle="modal" data-bs-target="#myModalBatchArchive">' . HTML::button($this->app->getDef('button_archive'), null, null, 'primary') . '</a>
               <div class="modal fade" id="myModalBatchArchive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -76,7 +76,7 @@
               </div>
         ';
 
-        return $output;
-      }
+      return $output;
     }
   }
+}

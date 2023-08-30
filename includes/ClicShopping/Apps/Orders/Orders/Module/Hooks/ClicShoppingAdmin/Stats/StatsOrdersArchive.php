@@ -1,59 +1,58 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
 
+namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Stats;
 
-  namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Stats;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
-  use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
+class StatsOrdersArchive implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
 
-  class StatsOrdersArchive implements \ClicShopping\OM\Modules\HooksInterface
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Orders')) {
-        Registry::set('Orders', new OrdersApp());
-      }
-
-      $this->app = Registry::get('Orders');
+    if (!Registry::exists('Orders')) {
+      Registry::set('Orders', new OrdersApp());
     }
 
-    private function statsOrderArchive()
-    {
-      $QstatArchive = $this->app->db->prepare('select count(orders_archive) as archive
+    $this->app = Registry::get('Orders');
+  }
+
+  private function statsOrderArchive()
+  {
+    $QstatArchive = $this->app->db->prepare('select count(orders_archive) as archive
                                               from :table_orders
                                               where orders_archive = 1
                                              ');
-      $QstatArchive->execute();
+    $QstatArchive->execute();
 
-      $stat_archive = $QstatArchive->valueInt('archive');
+    $stat_archive = $QstatArchive->valueInt('archive');
 
-      return $stat_archive;
+    return $stat_archive;
+  }
+
+  public function display()
+  {
+    if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
+      return false;
     }
 
-    public function display()
-    {
-      if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
-        return false;
-      }
+    $output = '';
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_orders_archive');
 
-      $output = '';
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_orders_archive');
-
-      if ($this->statsOrderArchive() > 0) {
-        $output = '
+    if ($this->statsOrderArchive() > 0) {
+      $output = '
 <div class="col-md-2 col-12">
     <div class="card bg-info">
      <div class="card-body">
@@ -64,7 +63,7 @@
             <i class="bi bi-archive-fill text-white"></i>
           </span>
           <span class="float-end">
-            <div class="text-white">' . $this->statsOrderArchive() . ' - ' .  HTML::link($this->app->link('Orders&aID=1'), $this->app->getDef('text_orders_archive'))  . '</div>
+            <div class="text-white">' . $this->statsOrderArchive() . ' - ' . HTML::link($this->app->link('Orders&aID=1'), $this->app->getDef('text_orders_archive')) . '</div>
             <div class="separator"></div>   
           </span>
         </div>
@@ -73,8 +72,8 @@
   </div>
 </div>
       ';
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

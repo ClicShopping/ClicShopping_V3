@@ -1,37 +1,37 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Orders\Orders\Module\ClicShoppingAdmin\Config;
+namespace ClicShopping\Apps\Orders\Orders\Module\ClicShoppingAdmin\Config;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin\ConfigParamAbstract
+abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin\ConfigParamAbstract
+{
+  protected mixed $app;
+  protected $config_module;
+
+  protected string $key_prefix = 'clicshopping_app_orders_';
+  public bool $app_configured = true;
+
+  public function __construct($config_module)
   {
-    protected mixed $app;
-    protected $config_module;
+    $this->app = Registry::get('Orders');
 
-    protected string $key_prefix = 'clicshopping_app_orders_';
-    public bool $app_configured = true;
+    $this->key_prefix .= mb_strtolower($config_module) . '_';
 
-    public function __construct($config_module)
-    {
-      $this->app = Registry::get('Orders');
+    $this->config_module = $config_module;
 
-      $this->key_prefix .= mb_strtolower($config_module) . '_';
+    $this->code = (new \ReflectionClass($this))->getShortName();
 
-      $this->config_module = $config_module;
+    $this->app->loadDefinitions('Module/ClicShoppingAdmin/Config/' . $config_module . '/Params/' . $this->code);
 
-      $this->code = (new \ReflectionClass($this))->getShortName();
-
-      $this->app->loadDefinitions('Module/ClicShoppingAdmin/Config/' . $config_module . '/Params/' . $this->code);
-
-      parent::__construct();
-    }
+    parent::__construct();
   }
+}

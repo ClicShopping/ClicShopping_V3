@@ -1,29 +1,28 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+use ClicShopping\Apps\Orders\ReturnOrders\Classes\ClicShoppingAdmin\ReturnProduct;
 
-  use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
-  use ClicShopping\Apps\Orders\ReturnOrders\Classes\ClicShoppingAdmin\ReturnProduct;
+$CLICSHOPPING_ReturnOrders = Registry::get('ReturnOrders');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_Currencies = Registry::get('Currencies');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $CLICSHOPPING_ReturnOrders = Registry::get('ReturnOrders');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  $CLICSHOPPING_Currencies = Registry::get('Currencies');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
-
-  $languages = $CLICSHOPPING_Language->getLanguages();
+$languages = $CLICSHOPPING_Language->getLanguages();
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -40,11 +39,11 @@
           ?>
           <span class="col-md-9 text-end">
 <?php
-  echo HTML::form('return', $CLICSHOPPING_ReturnOrders->link('ReturnOrders&Save'));
-  echo HTML::hiddenField('rId', $_GET['rID']);
-  echo HTML::hiddenField('page', $page);
-  echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_cancel'), null, $CLICSHOPPING_ReturnOrders->link('ReturnOrders&page=' . $page . (isset($_GET['rID']) ? '&rID=' . $_GET['rID'] : '')), 'warning', null, null) . '&nbsp;';
-  echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, null, 'success');
+echo HTML::form('return', $CLICSHOPPING_ReturnOrders->link('ReturnOrders&Save'));
+echo HTML::hiddenField('rId', $_GET['rID']);
+echo HTML::hiddenField('page', $page);
+echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_cancel'), null, $CLICSHOPPING_ReturnOrders->link('ReturnOrders&page=' . $page . (isset($_GET['rID']) ? '&rID=' . $_GET['rID'] : '')), 'warning', null, null) . '&nbsp;';
+echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, null, 'success');
 ?>
           </span>
         </div>
@@ -141,8 +140,9 @@
             <div class="row" id="refReturnOrderCustomerfirstName">
               <div class="col-md-7">
                 <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_firstname'); ?>"
-                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_firstname'); ?></label>
+                  <label
+                    for="<?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_firstname'); ?>"
+                    class="col-5 col-form-label"><?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_firstname'); ?></label>
                   <div class="col-md-7">
                     <?php echo HTML::inputField('customer_firstname', $Qreturn->value('customer_firstname'), 'required aria-required="true" id="ref_return_orders_customer_first_name" placeholder="' . $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_firstname') . '"', 'ref_return_orders_customer_first_name'); ?>
                   </div>
@@ -153,8 +153,9 @@
             <div class="row" id="refReturnOrderCustomerlastName">
               <div class="col-md-7">
                 <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_lastname'); ?>"
-                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_lastname'); ?></label>
+                  <label
+                    for="<?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_lastname'); ?>"
+                    class="col-5 col-form-label"><?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_lastname'); ?></label>
                   <div class="col-md-7">
                     <?php echo HTML::inputField('customer_lastname', $Qreturn->value('customer_lastname'), 'required aria-required="true" id="ref_return_orders_customer_last__name" placeholder="' . $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_lastname') . '"', 'ref_return_orders_customer_lastname'); ?>
                   </div>
@@ -166,8 +167,9 @@
             <div class="row" id="refReturnOrderCustomerEmail">
               <div class="col-md-7">
                 <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_email'); ?>"
-                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_email'); ?></label>
+                  <label
+                    for="<?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_email'); ?>"
+                    class="col-5 col-form-label"><?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_email'); ?></label>
                   <div class="col-md-7">
                     <?php echo HTML::inputField('customer_email', $Qreturn->value('customer_email'), 'required aria-required="true" id="ref_return_orders_customer_email" placeholder="' . $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_email') . '"', 'ref_return_orders_customer_customer_email'); ?>
                   </div>
@@ -179,8 +181,9 @@
             <div class="row" id="refReturnOrderCustomerPhone">
               <div class="col-md-7">
                 <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_phone'); ?>"
-                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_phone'); ?></label>
+                  <label
+                    for="<?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_phone'); ?>"
+                    class="col-5 col-form-label"><?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_phone'); ?></label>
                   <div class="col-md-7">
                     <?php echo HTML::inputField('customer_telephone', $Qreturn->value('customer_telephone'), 'required aria-required="true" id="ref_return_orders_customer_phone" placeholder="' . $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_customer_phone') . '"', 'ref_return_orders_customer_customer_phone'); ?>
                   </div>
@@ -227,27 +230,27 @@
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_ReturnOrders->getDef('text_ref_return_orders_return_reason'); ?></label>
                   <div class="col-md-7">
                     <?php
-                      $Qreason = $CLICSHOPPING_ReturnOrders->db->prepare('select return_reason_id,
+                    $Qreason = $CLICSHOPPING_ReturnOrders->db->prepare('select return_reason_id,
                                                                                  language_id,
                                                                                  name
                                                                           from :table_return_orders_reason
                                                                           where language_id = :language_id
                                                                           ');
-                      $Qreason->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-                      $Qreason->execute();
+                    $Qreason->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+                    $Qreason->execute();
 
-                      $return_reason_array = [];
+                    $return_reason_array = [];
 
-                      while ($Qreason->fetch()) {
-                        $return_reason_array[] = [
-                          'id' => $Qreason->valueInt('return_reason_id'),
-                          'text' => $Qreason->value('name')
-                        ];
-                      }
+                    while ($Qreason->fetch()) {
+                      $return_reason_array[] = [
+                        'id' => $Qreason->valueInt('return_reason_id'),
+                        'text' => $Qreason->value('name')
+                      ];
+                    }
 
-                      $return_reason_id = $Qreturn->valueInt('return_reason_id');
+                    $return_reason_id = $Qreturn->valueInt('return_reason_id');
 
-                      echo HTML::selectField('return_reason', $return_reason_array, $return_reason_id);
+                    echo HTML::selectField('return_reason', $return_reason_array, $return_reason_id);
                     ?>
                   </div>
                 </div>
@@ -360,8 +363,8 @@
               </tr>
               </thead>
               <tbody>
-<?php
-      $Qhistory = $CLICSHOPPING_ReturnOrders->db->prepare('select return_history_id,
+              <?php
+              $Qhistory = $CLICSHOPPING_ReturnOrders->db->prepare('select return_history_id,
                                                                  return_id,
                                                                  return_status_id,
                                                                  notify,
@@ -370,42 +373,42 @@
                                                                  admin_user_name
                                                           from :table_return_orders_history                                                        
                                                           ');
-       $Qhistory->execute();
+              $Qhistory->execute();
 
-       while($Qhistory->fetch()) {
-?>
-         <tr>
-           <td><?php echo $Qhistory->value('date_added'); ?></td>
-           <td><?php echo $Qhistory->value('comment'); ?></td>
-           <td>
-             <?php
-               $QhistoryStatus = $CLICSHOPPING_ReturnOrders->db->prepare('select return_status_id,
+              while ($Qhistory->fetch()) {
+                ?>
+                <tr>
+                  <td><?php echo $Qhistory->value('date_added'); ?></td>
+                  <td><?php echo $Qhistory->value('comment'); ?></td>
+                  <td>
+                    <?php
+                    $QhistoryStatus = $CLICSHOPPING_ReturnOrders->db->prepare('select return_status_id,
                                                                                  language_id,
                                                                                  name
                                                                           from :table_return_orders_status
                                                                           where language_id = :language_id
                                                                           and :return_status_id = return_status_id
                                                                          ');
-               $QhistoryStatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-               $QhistoryStatus->bindInt(':return_status_id', $Qhistory->valueInt('return_status_id'));
-               $QhistoryStatus->execute();
+                    $QhistoryStatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+                    $QhistoryStatus->bindInt(':return_status_id', $Qhistory->valueInt('return_status_id'));
+                    $QhistoryStatus->execute();
 
-               echo $QhistoryStatus->value('name');
-             ?>
-           <td>
-             <?php
-               if ($Qhistory->valueInt('notify') === 1) {
-                 echo '<i class="bi-check text-success"></i>' . "\n";
-               } else {
-                 echo '<i class="bi bi-x text-danger"></i>' . "\n";
-               }
-             ?>
-           </td>
-           <td><?php echo $Qhistory->value('admin_user_name'); ?></td>
-         </tr>
-<?php
-       }
-?>
+                    echo $QhistoryStatus->value('name');
+                    ?>
+                  <td>
+                    <?php
+                    if ($Qhistory->valueInt('notify') === 1) {
+                      echo '<i class="bi-check text-success"></i>' . "\n";
+                    } else {
+                      echo '<i class="bi bi-x text-danger"></i>' . "\n";
+                    }
+                    ?>
+                  </td>
+                  <td><?php echo $Qhistory->value('admin_user_name'); ?></td>
+                </tr>
+                <?php
+              }
+              ?>
               </tbody>
             </table>
           </div>

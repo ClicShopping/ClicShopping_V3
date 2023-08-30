@@ -1,72 +1,70 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Stats;
 
-  namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Stats;
+use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
-  use ClicShopping\OM\Registry;
+class StatsOrdersCustomersB2BB2C implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
 
-  use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
-
-  class StatsOrdersCustomersB2BB2C implements \ClicShopping\OM\Modules\HooksInterface
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Orders')) {
-        Registry::set('Orders', new OrdersApp());
-      }
-
-      $this->app = Registry::get('Orders');
+    if (!Registry::exists('Orders')) {
+      Registry::set('Orders', new OrdersApp());
     }
 
-    private function statsOrdersCustomersB2B()
-    {
-      $QstatOrders = $this->app->db->prepare('select count(*) as count
+    $this->app = Registry::get('Orders');
+  }
+
+  private function statsOrdersCustomersB2B()
+  {
+    $QstatOrders = $this->app->db->prepare('select count(*) as count
                                               from :table_orders
                                               where customers_group_id  > 0
                                              ');
-      $QstatOrders->execute();
+    $QstatOrders->execute();
 
-      $statOrders = $QstatOrders->valueInt('count');
+    $statOrders = $QstatOrders->valueInt('count');
 
-      return $statOrders;
-    }
+    return $statOrders;
+  }
 
-    private function statsOrdersCustomersB2C()
-    {
-      $QstatOrders = $this->app->db->prepare('select count(*) as count
+  private function statsOrdersCustomersB2C()
+  {
+    $QstatOrders = $this->app->db->prepare('select count(*) as count
                                               from :table_orders
                                               where customers_group_id  = 0
                                              ');
-      $QstatOrders->execute();
+    $QstatOrders->execute();
 
-      $statOrders = $QstatOrders->valueInt('count');
+    $statOrders = $QstatOrders->valueInt('count');
 
-      return $statOrders;
+    return $statOrders;
+  }
+
+
+  public function display()
+  {
+    if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
+      return false;
     }
 
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_orders_customers_b2b_b2c');
 
-    public function display()
-    {
-      if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
-        return false;
-      }
-
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_orders_customers_b2b_b2c');
-
-      if ($this->statsOrdersCustomersB2C() == 0 && $this->statsOrdersCustomersB2B() == 0) {
-        $output = '';
-      } else {
-        $output = '
+    if ($this->statsOrdersCustomersB2C() == 0 && $this->statsOrdersCustomersB2B() == 0) {
+      $output = '';
+    } else {
+      $output = '
 <div class="col-md-2 col-12">
     <div class="card bg-primary">
      <div class="card-body">
@@ -86,8 +84,8 @@
   </div>
 </div>
       ';
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

@@ -1,139 +1,139 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Orders\ReturnOrders\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
+
+use ClicShopping\OM\Cache;
+use ClicShopping\OM\Registry;
+
+class Install extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
+  {
+    $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    $CLICSHOPPING_ReturnOrders = Registry::get('ReturnOrders');
+
+    $current_module = $this->page->data['current_module'];
+
+    $CLICSHOPPING_ReturnOrders->loadDefinitions('Sites/ClicShoppingAdmin/install');
+
+    $m = Registry::get('ReturnOrdersAdminConfig' . $current_module);
+    $m->install();
+
+    static::installMenuAdministration();
+    static::installDb();
+
+    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_ReturnOrders->getDef('alert_module_install_success'), 'success');
+
+    $CLICSHOPPING_ReturnOrders->redirect('Configure&module=' . $current_module);
+  }
+
   /**
    *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
    */
-
-  namespace ClicShopping\Apps\Orders\ReturnOrders\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
-
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\Cache;
-
-  class Install extends \ClicShopping\OM\PagesActionsAbstract
+  public static function installMenuAdministration(): void
   {
-    public function execute()
-    {
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-      $CLICSHOPPING_ReturnOrders = Registry::get('ReturnOrders');
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_ReturnOrders = Registry::get('ReturnOrders');
+    $CLICSHOPPING_Language = Registry::get('Language');
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_orders_return_orders']);
 
-      $current_module = $this->page->data['current_module'];
+    if ($Qcheck->fetch() === false) {
+      $insert_sql_data = ['parent_id' => 4];
 
-      $CLICSHOPPING_ReturnOrders->loadDefinitions('Sites/ClicShoppingAdmin/install');
+      $sql_data_array = [
+        'sort_order' => 2,
+        'link' => 'index.php?A&Orders\ReturnOrders&ReturnOrders',
+        'image' => 'return_orders.png',
+        'b2b_menu' => 0,
+        'access' => 0,
+        'app_code' => 'app_orders_return_orders'
+      ];
 
-      $m = Registry::get('ReturnOrdersAdminConfig' . $current_module);
-      $m->install();
 
-      static::installMenuAdministration();
-      static::installDb();
+      $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_ReturnOrders->getDef('alert_module_install_success'), 'success');
+      $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
 
-      $CLICSHOPPING_ReturnOrders->redirect('Configure&module=' . $current_module);
-    }
+      $id = $CLICSHOPPING_Db->lastInsertId();
 
-    /**
-     *
-     */
-    public static function installMenuAdministration() :void
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_ReturnOrders = Registry::get('ReturnOrders');
-      $CLICSHOPPING_Language = Registry::get('Language');
-      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_orders_return_orders']);
+      $languages = $CLICSHOPPING_Language->getLanguages();
 
-      if ($Qcheck->fetch() === false) {
-        $insert_sql_data = ['parent_id' => 4];
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+        $language_id = $languages[$i]['id'];
 
-        $sql_data_array = [
-          'sort_order' => 2,
-          'link' => 'index.php?A&Orders\ReturnOrders&ReturnOrders',
-          'image' => 'return_orders.png',
-          'b2b_menu' => 0,
-          'access' => 0,
-          'app_code' => 'app_orders_return_orders'
+        $sql_data_array = ['label' => $CLICSHOPPING_ReturnOrders->getDef('title_menu')];
+
+        $insert_sql_data = [
+          'id' => (int)$id,
+          'language_id' => (int)$language_id
         ];
-
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-        $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
-
-        $id = $CLICSHOPPING_Db->lastInsertId();
-
-        $languages = $CLICSHOPPING_Language->getLanguages();
-
-        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-          $language_id = $languages[$i]['id'];
-
-          $sql_data_array = ['label' => $CLICSHOPPING_ReturnOrders->getDef('title_menu')];
-
-          $insert_sql_data = [
-            'id' => (int)$id,
-            'language_id' => (int)$language_id
-          ];
-
-          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-
-          $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-        }
+        $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
+      }
 
 // 2nd menu
-        $insert_sql_data = ['parent_id' => 14];
+      $insert_sql_data = ['parent_id' => 14];
 
-        $sql_data_array = [
-          'sort_order' => 2,
-          'link' => 'index.php?A&Orders\\ReturnOrders&Configure',
-          'image' => 'return_orders.png',
-          'b2b_menu' => 0,
-          'access' => 0,
-          'app_code' => 'app_orders_return_orders'
+      $sql_data_array = [
+        'sort_order' => 2,
+        'link' => 'index.php?A&Orders\\ReturnOrders&Configure',
+        'image' => 'return_orders.png',
+        'b2b_menu' => 0,
+        'access' => 0,
+        'app_code' => 'app_orders_return_orders'
+      ];
+
+
+      $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+      $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+
+      $id = $CLICSHOPPING_Db->lastInsertId();
+
+      $languages = $CLICSHOPPING_Language->getLanguages();
+
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+        $language_id = $languages[$i]['id'];
+
+        $sql_data_array = ['label' => $CLICSHOPPING_ReturnOrders->getDef('title_menu_return_orders_status')];
+
+        $insert_sql_data = [
+          'id' => (int)$id,
+          'language_id' => (int)$language_id
         ];
-
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-        $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
-
-        $id = $CLICSHOPPING_Db->lastInsertId();
-
-        $languages = $CLICSHOPPING_Language->getLanguages();
-
-        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-          $language_id = $languages[$i]['id'];
-
-          $sql_data_array = ['label' => $CLICSHOPPING_ReturnOrders->getDef('title_menu_return_orders_status')];
-
-          $insert_sql_data = [
-            'id' => (int)$id,
-            'language_id' => (int)$language_id
-          ];
-
-          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-
-          $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-        }
-
-        Cache::clear('menu-administrator');
+        $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
       }
+
+      Cache::clear('menu-administrator');
     }
+  }
 
-    /**
-     * see exemple in comment to create a table
-     * @param string $dbname
-     * @param string $table
-     */
-    public static function installDb() :void
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
+  /**
+   * see exemple in comment to create a table
+   * @param string $dbname
+   * @param string $table
+   */
+  public static function installDb(): void
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_return_orders"');
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_return_orders"');
 
-      if ($Qcheck->fetch() === false) {
-        $sql = <<<EOD
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
 CREATE TABLE :table_return_orders (
   return_id int(11) NOT NULL AUTO_INCREMENT,
   return_ref varchar(32) NOT NULL,
@@ -160,13 +160,13 @@ CREATE TABLE :table_return_orders (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 EOD;
-        $CLICSHOPPING_Db->exec($sql);
-      }
+      $CLICSHOPPING_Db->exec($sql);
+    }
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_return_orders_history"');
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_return_orders_history"');
 
-      if ($Qcheck->fetch() === false) {
-        $sql = <<<EOD
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
 CREATE TABLE :table_return_orders_history (
   return_history_id int(11) NOT NULL AUTO_INCREMENT,
   return_id int(11) NOT NULL,
@@ -179,13 +179,13 @@ CREATE TABLE :table_return_orders_history (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 EOD;
-        $CLICSHOPPING_Db->exec($sql);
-      }
+      $CLICSHOPPING_Db->exec($sql);
+    }
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_return_orders_reason"');
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_return_orders_reason"');
 
-      if ($Qcheck->fetch() === false) {
-        $sql = <<<EOD
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
 CREATE TABLE :table_return_orders_reason (
   return_reason_id int(11) NOT NULL,
   language_id int(11) NOT NULL DEFAULT (0),
@@ -208,13 +208,13 @@ INSERT INTO :table_return_orders_reason VALUES(5, 2, 'Autres');
 ALTER TABLE :table_return_orders_reason MODIFY return_reason_id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 EOD;
 
-                $CLICSHOPPING_Db->exec($sql);
-      }
+      $CLICSHOPPING_Db->exec($sql);
+    }
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_return_orders_status"');
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_return_orders_status"');
 
-      if ($Qcheck->fetch() === false) {
-        $sql = <<<EOD
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
 CREATE TABLE :table_return_orders_status (
   return_status_id int(11) NOT NULL,
   language_id int(11) NOT NULL DEFAULT (0),
@@ -233,13 +233,13 @@ INSERT INTO :table_return_orders_status VALUES(3, 2, 'Complété');
 
 ALTER TABLE :table_return_orders_status MODIFY return_status_id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 EOD;
-        $CLICSHOPPING_Db->exec($sql);
-      }
+      $CLICSHOPPING_Db->exec($sql);
+    }
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_return_orders_action"');
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_return_orders_action"');
 
-      if ($Qcheck->fetch() === false) {
-        $sql = <<<EOD
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
 CREATE TABLE :table_return_orders_action (
   return_action_id int(11) NOT NULL,
   language_id int(11) NOT NULL DEFAULT (0),
@@ -259,7 +259,7 @@ INSERT INTO :table_return_orders_action VALUES(4, 2, 'Remplacement envoyé');
 
 ALTER TABLE :table_return_orders_action MODIFY return_action_id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 EOD;
-        $CLICSHOPPING_Db->exec($sql);
-      }
+      $CLICSHOPPING_Db->exec($sql);
     }
   }
+}

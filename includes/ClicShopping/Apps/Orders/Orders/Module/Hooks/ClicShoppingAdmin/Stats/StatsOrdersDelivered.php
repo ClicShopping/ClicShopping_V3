@@ -1,38 +1,37 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Stats;
 
-  namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Stats;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
-  use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
+class StatsOrdersDelivered implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
 
-  class StatsOrdersDelivered implements \ClicShopping\OM\Modules\HooksInterface
+  public function __construct()
   {
-    protected mixed $app;
 
-    public function __construct()
-    {
-
-      if (!Registry::exists('Orders')) {
-        Registry::set('Orders', new OrdersApp());
-      }
-
-      $this->app = Registry::get('Orders');
+    if (!Registry::exists('Orders')) {
+      Registry::set('Orders', new OrdersApp());
     }
 
-    private function statsOrderDelivered()
-    {
+    $this->app = Registry::get('Orders');
+  }
 
-      $QstatOrders = $this->app->db->prepare('select sum(ot.value) as value
+  private function statsOrderDelivered()
+  {
+
+    $QstatOrders = $this->app->db->prepare('select sum(ot.value) as value
                                               from :table_orders_total ot,
                                                    :table_orders o
                                               where ot.class = :class
@@ -40,18 +39,18 @@
                                               and o.orders_id = ot.orders_id
                                               and year(o.date_purchased) >= year(now())
                                              ');
-      $QstatOrders->bindValue(':class', 'TO');
-      $QstatOrders->execute();
+    $QstatOrders->bindValue(':class', 'TO');
+    $QstatOrders->execute();
 
-      $statOrders = $QstatOrders->valueDecimal('value');
+    $statOrders = $QstatOrders->valueDecimal('value');
 
-      return $statOrders;
-    }
+    return $statOrders;
+  }
 
-    private function statsOrderCancelled()
-    {
+  private function statsOrderCancelled()
+  {
 
-      $QstatOrders = $this->app->db->prepare('select sum(ot.value) as value
+    $QstatOrders = $this->app->db->prepare('select sum(ot.value) as value
                                               from :table_orders_total ot,
                                                    :table_orders o
                                               where ot.class = :class
@@ -59,25 +58,25 @@
                                               and o.orders_id = ot.orders_id
                                               and  year(o.date_purchased) >= year(now())
                                              ');
-      $QstatOrders->bindValue(':class', 'TO');
-      $QstatOrders->execute();
+    $QstatOrders->bindValue(':class', 'TO');
+    $QstatOrders->execute();
 
-      $statOrders = $QstatOrders->valueDecimal('value');
+    $statOrders = $QstatOrders->valueDecimal('value');
 
-      return $statOrders;
+    return $statOrders;
+  }
+
+  public function display()
+  {
+    if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
+      return false;
     }
 
-    public function display()
-    {
-      if (!\defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
-        return false;
-      }
+    $output = '';
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_orders_turn_over');
 
-      $output = '';
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_orders_turn_over');
-
-      if ($this->statsOrderDelivered() > 0 || $this->statsOrderCancelled() > 0) {
-        $output = '
+    if ($this->statsOrderDelivered() > 0 || $this->statsOrderCancelled() > 0) {
+      $output = '
 <div class="col-md-2 col-12">
   <div class="card bg-danger">
     <div class="card-body">
@@ -97,8 +96,8 @@
   </div>
 </div>
         ';
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

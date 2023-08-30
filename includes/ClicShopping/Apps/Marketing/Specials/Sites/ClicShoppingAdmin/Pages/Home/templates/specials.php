@@ -135,9 +135,9 @@ echo HTML::button($CLICSHOPPING_Specials->getDef('button_new'), null, $CLICSHOPP
       <th data-field="scheduled_date'" data-sortable="true"
           class="text-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_scheduled_date'); ?></th>
       <th data-field="expires_date" data-sortable="true"
-          class="text-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_expires_date'); ?></td>
+          class="text-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_expires_date'); ?></th>
       <th data-field="falsh_discount" data-sortable="true"
-          class="text-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_flash_discount'); ?></td>
+          class="text-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_flash_discount'); ?></th>
       <th data-field="archive" data-sortable="true"
           class="text-center"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_archive'); ?></th>
       <th data-field="status" data-sortable="true"

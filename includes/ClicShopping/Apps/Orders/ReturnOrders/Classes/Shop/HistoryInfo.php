@@ -23,7 +23,7 @@ class HistoryInfo
   public static function getHistoryInfoListing(bool $fetch = true, ?int $rId = null)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
-    $CLICSHOPPING_Customer =  Registry::get('Customer');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
 
     if (!is_null($rId)) {
       $sql = 'and return_id = :return_id';
