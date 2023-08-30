@@ -88,9 +88,7 @@ class Github
 
   /**
    * get ClicShopping Core Version from Github
-   * @param
-   * @return $version version of new clicshopping core
-   *
+   * @return array|bool $version version of new clicshopping core
    */
   public function getJsonCoreInformation()
   {
@@ -120,8 +118,8 @@ class Github
   }
 
   /**
-   * @param $source
-   * @param $destination
+   * @param string $source
+   * @param string $destination
    * @return void
    */
   private function getExtractZip(string $source, string $destination)
@@ -151,7 +149,7 @@ class Github
 
   /**
    * get all modules directories for template
-   * @return $module,values of array
+   * @return array $module,values of array
    */
   public function getModuleTemplateDirectory()
   {
@@ -184,9 +182,7 @@ class Github
 
   /**
    * get all modules directories (fix modules)
-   * @param
-   * @return $module,values of array
-   *
+   * @return array $module,values of array
    */
   public function getModuleDirectory(): array
   {
@@ -297,7 +293,7 @@ class Github
   }
 
   /**
-   * get the json file infromation about temporary directory
+   * get the json file information about temporary directory
    * @param string $module_name
    * @return false|mixed
    */
