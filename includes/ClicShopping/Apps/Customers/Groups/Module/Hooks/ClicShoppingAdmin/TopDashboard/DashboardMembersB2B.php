@@ -1,55 +1,55 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\TopDashboard;
+
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+
+use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
+
+class DashboardMembersB2B implements \ClicShopping\OM\Modules\HooksInterface
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @var bool|null
    */
+  protected mixed $app;
 
-  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\TopDashboard;
-
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-
-  use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
-
-  class DashboardMembersB2B implements \ClicShopping\OM\Modules\HooksInterface
+  public function __construct()
   {
-    /**
-     * @var bool|null
-     */
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Groups')) {
-        Registry::set('Groups', new GroupsApp());
-      }
-
-      $this->app = Registry::get('Groups');
-
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_members_B2B');
+    if (!Registry::exists('Groups')) {
+      Registry::set('Groups', new GroupsApp());
     }
 
-    public function Display(): string
-    {
-      $Qmembes = $this->app->db->prepare('select count(customers_id) as count 
+    $this->app = Registry::get('Groups');
+
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_members_B2B');
+  }
+
+  public function Display(): string
+  {
+    $Qmembes = $this->app->db->prepare('select count(customers_id) as count 
                                           from :table_customers
                                           where member_level = 0
                                           ');
-      $Qmembes->execute();
+    $Qmembes->execute();
 
-      $number_members = $Qmembes->valueInt('count');
-      $output = '';
+    $number_members = $Qmembes->valueInt('count');
+    $output = '';
 
-      if ($number_members > 0) {
-        $text = $this->app->getDef('text_number_members_b2b');
-        $text_view = $this->app->getDef('text_view');
+    if ($number_members > 0) {
+      $text = $this->app->getDef('text_number_members_b2b');
+      $text_view = $this->app->getDef('text_view');
 
-        $output = '
+      $output = '
 <div class="col-md-2 col-12 m-1">
   <div class="card bg-secondary">
       <div class="card-body">
@@ -64,8 +64,8 @@
   </div>
 </div>
 ';
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

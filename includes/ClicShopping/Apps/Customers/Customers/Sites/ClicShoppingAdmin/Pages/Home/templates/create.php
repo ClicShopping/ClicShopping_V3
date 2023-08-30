@@ -1,29 +1,29 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
+use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
 
-  $CLICSHOPPING_Customers = Registry::get('Customers');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-  $CLICSHOPPING_Address = Registry::get('Address');
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_Customers = Registry::get('Customers');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Address = Registry::get('Address');
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-  if ($CLICSHOPPING_MessageStack->exists('header')) {
-    echo $CLICSHOPPING_MessageStack->get('header');
-  }
+if ($CLICSHOPPING_MessageStack->exists('header')) {
+  echo $CLICSHOPPING_MessageStack->get('header');
+}
 ?>
 <div class="contentBody">
   <div class="separator"></div>
@@ -37,9 +37,9 @@
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title'); ?></div>
           <div class="col-md-6 text-end" id="CreateCustomerButtonAction">
             <?php
-              echo HTML::form('create_account', $CLICSHOPPING_Customers->link('Customers&Create')) . HTML::hiddenField('action', 'process');
-              echo HTML::button($CLICSHOPPING_Customers->getDef('button_cancel'), null, $CLICSHOPPING_Customers->link('Customers'), 'warning') . '&nbsp;';
-              echo HTML::button($CLICSHOPPING_Customers->getDef('button_insert'), null, null, 'success');
+            echo HTML::form('create_account', $CLICSHOPPING_Customers->link('Customers&Create')) . HTML::hiddenField('action', 'process');
+            echo HTML::button($CLICSHOPPING_Customers->getDef('button_cancel'), null, $CLICSHOPPING_Customers->link('Customers'), 'warning') . '&nbsp;';
+            echo HTML::button($CLICSHOPPING_Customers->getDef('button_insert'), null, null, 'success');
             ?>
           </div>
         </div>
@@ -48,13 +48,13 @@
   </div>
   <div class="separator"></div>
   <?php
-    if (isset($_GET['error'])) {
-      ?>
-      <div class="alert alert-warning" role="alert">
-        <?php echo $CLICSHOPPING_Customers->getDef('warning_edit_customers'); ?><br/>
-      </div>
-      <?php
-    }
+  if (isset($_GET['error'])) {
+    ?>
+    <div class="alert alert-warning" role="alert">
+      <?php echo $CLICSHOPPING_Customers->getDef('warning_edit_customers'); ?><br/>
+    </div>
+    <?php
+  }
   ?>
   <!-- //################################################################################################################ -->
   <!-- //                                               FICHE CLIENT                                                      -->
@@ -66,12 +66,12 @@
       <li
         class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_societe'); ?></a></li>
       <?php
-        if (MODE_B2B_B2C == 'True') {
-          ?>
-          <li
-            class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_orders'); ?></a></li>
-          <?php
-        }
+      if (MODE_B2B_B2C == 'True') {
+        ?>
+        <li
+          class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_orders'); ?></a></li>
+        <?php
+      }
       ?>
       <li
         class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_options'); ?></a></li>
@@ -132,15 +132,15 @@
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?></label>
                   <div class="col-md-5">
                     <?php
-                      if (isset($_GET['error'])) {
-                        if ($entry_date_of_birth_error === true) {
-                          echo HTML::inputField('customers_dob', $cInfo->customers_dob, 'maxlength="10" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_date_of_birth_error');
-                        } else {
-                          echo $cInfo->customers_dob . HTML::hiddenField('customers_dob');
-                        }
+                    if (isset($_GET['error'])) {
+                      if ($entry_date_of_birth_error === true) {
+                        echo HTML::inputField('customers_dob', $cInfo->customers_dob, 'maxlength="10" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_date_of_birth_error');
                       } else {
-                        echo HTML::inputField('customers_dob', null, 'minlength="' . (int)ENTRY_DOB_MIN_LENGTH . '"', 'date');
+                        echo $cInfo->customers_dob . HTML::hiddenField('customers_dob');
                       }
+                    } else {
+                      echo HTML::inputField('customers_dob', null, 'minlength="' . (int)ENTRY_DOB_MIN_LENGTH . '"', 'date');
+                    }
                     ?>
                   </div>
                 </div>
@@ -233,24 +233,24 @@
             </div>
 
             <?php
-              if (ACCOUNT_STATE == 'true') {
-                ?>
-                <div class="separator"></div>
-                <div class="row" id="CreateCustomerInfoCountryZone">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Customers->getDef('text_info_country_zone'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('text_info_country_zone'); ?>
-                      </label>
-                      <div class="col-md-5">
-                        <?php echo HTML::selectMenu('state', $CLICSHOPPING_Address->getPrepareCountryZonesPullDown()); ?>
-                      </div>
+            if (ACCOUNT_STATE == 'true') {
+              ?>
+              <div class="separator"></div>
+              <div class="row" id="CreateCustomerInfoCountryZone">
+                <div class="col-md-5">
+                  <div class="form-group row">
+                    <label for="<?php echo $CLICSHOPPING_Customers->getDef('text_info_country_zone'); ?>"
+                           class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('text_info_country_zone'); ?>
+                    </label>
+                    <div class="col-md-5">
+                      <?php echo HTML::selectMenu('state', $CLICSHOPPING_Address->getPrepareCountryZonesPullDown()); ?>
                     </div>
                   </div>
                 </div>
-                <?php
-                include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');
-              }
+              </div>
+              <?php
+              include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');
+            }
             ?>
 
             <div class="separator"></div>
@@ -288,14 +288,14 @@
             <div class="text-start"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
             <div class="text-end">
               <?php
-                if (MODE_B2B_B2C == 'True') {
-                  ?>
-                  <span
-                    class="mainTitleTexteSeul"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('Entry_customers_moodify_company') . '&nbsp;'; ?></span>
-                  <span
-                    class="mainTitleTexteSeul"><?php echo HTML::checkboxField('customers_modify_company', '1', true); ?></span>
-                  <?php
-                }
+              if (MODE_B2B_B2C == 'True') {
+                ?>
+                <span
+                  class="mainTitleTexteSeul"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('Entry_customers_moodify_company') . '&nbsp;'; ?></span>
+                <span
+                  class="mainTitleTexteSeul"><?php echo HTML::checkboxField('customers_modify_company', '1', true); ?></span>
+                <?php
+              }
               ?>
             </div>
           </div>
@@ -312,98 +312,98 @@
               </div>
             </div>
             <?php
-              if (MODE_B2B_B2C == 'True') {
-                ?>
-                <div class="separator"></div>
-                <div class="row" id="CreateCustomerEntrySiret">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_siret'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_siret'); ?></label>
-                      <div class="col-md-5">
-                        <?php echo HTML::inputField('customers_siret', null, 'placeholder="' . $CLICSHOPPING_Customers->getDef('entry_siret') . '" maxlength="14"') . '&nbsp;<span class="fieldRequired">' . $CLICSHOPPING_Customers->getDef('entry_siret_exemple') . '</span>'; ?>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="separator"></div>
-                <div class="row" id="CreateCustomerEntryApe">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_ape'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_ape'); ?></label>
-                      <div class="col-md-5">
-                        <?php echo HTML::inputField('customers_ape', null, 'placeholder="' . $CLICSHOPPING_Customers->getDef('entry_ape') . '" maxlength="4"') . '&nbsp;<span class="fieldRequired">' . $CLICSHOPPING_Customers->getDef('entry_ape_exemple') . '</span>'; ?>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <?php
-                if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
-                  ?>
-                  <div class="separator"></div>
-                  <div class="row" id="CreateCustomerEntryTva">
-                    <div class="col-md-5">
-                      <div class="form-group row">
-                        <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_tva'); ?>"
-                               class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_tva'); ?></label>
-                        <div class="col-md-5">
-                          <?php
-                            echo HTML::selectMenuIsoList('customers_tva_intracom_code_iso', null, 'onchange="ISO_account_edit();"');
-                            echo '&nbsp;' . HTML::inputField('customers_tva_intracom', null, 'placeholder="Number" maxlength="14"');
-                          ?>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="col-md-4"><span>
-                  </div>
-                  <?php
-                }
-              }
-            ?>
-          </div>
-          <?php
-            // Activation du module B2B
             if (MODE_B2B_B2C == 'True') {
               ?>
               <div class="separator"></div>
-              <div class="alert alert-info" id="CreateCustomerHelCustomersTva">
-                <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') . '"></i></h4> ' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') ?></div>
-                <div class="separator"></div>
-                <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_tva_customers'); ?></div>
+              <div class="row" id="CreateCustomerEntrySiret">
+                <div class="col-md-5">
+                  <div class="form-group row">
+                    <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_siret'); ?>"
+                           class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_siret'); ?></label>
+                    <div class="col-md-5">
+                      <?php echo HTML::inputField('customers_siret', null, 'placeholder="' . $CLICSHOPPING_Customers->getDef('entry_siret') . '" maxlength="14"') . '&nbsp;<span class="fieldRequired">' . $CLICSHOPPING_Customers->getDef('entry_siret_exemple') . '</span>'; ?>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="separator"></div>
+              <div class="row" id="CreateCustomerEntryApe">
+                <div class="col-md-5">
+                  <div class="form-group row">
+                    <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_ape'); ?>"
+                           class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_ape'); ?></label>
+                    <div class="col-md-5">
+                      <?php echo HTML::inputField('customers_ape', null, 'placeholder="' . $CLICSHOPPING_Customers->getDef('entry_ape') . '" maxlength="4"') . '&nbsp;<span class="fieldRequired">' . $CLICSHOPPING_Customers->getDef('entry_ape_exemple') . '</span>'; ?>
+                    </div>
+                  </div>
+                </div>
               </div>
               <?php
+              if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
+                ?>
+                <div class="separator"></div>
+                <div class="row" id="CreateCustomerEntryTva">
+                  <div class="col-md-5">
+                    <div class="form-group row">
+                      <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_tva'); ?>"
+                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_tva'); ?></label>
+                      <div class="col-md-5">
+                        <?php
+                        echo HTML::selectMenuIsoList('customers_tva_intracom_code_iso', null, 'onchange="ISO_account_edit();"');
+                        echo '&nbsp;' . HTML::inputField('customers_tva_intracom', null, 'placeholder="Number" maxlength="14"');
+                        ?>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="col-md-4"><span>
+                </div>
+                <?php
+              }
             }
-          ?>
-        </div>
-        <?php
+            ?>
+          </div>
+          <?php
           // Activation du module B2B
           if (MODE_B2B_B2C == 'True') {
             ?>
-            <!-- ------------------------------------ //-->
-            <!--          ONGLET Facturation          //-->
-            <!-- ------------------------------------ //-->
-            <div class="tab-pane" id="tab3">
-              <div class="col-md-12 mainTitle" style="height:27px;" id="CreateCustomerCategoryCompany">
-                <div class="text-start"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
-              </div>
-              <div class="adminformTitle">
-                <div class="row" id="CreateCustomerGroupName">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_group_name'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_group_name'); ?></label>
-                      <div class="col-md-5">
-                        <?php echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups()); ?>
-                      </div>
+            <div class="separator"></div>
+            <div class="alert alert-info" id="CreateCustomerHelCustomersTva">
+              <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') . '"></i></h4> ' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') ?></div>
+              <div class="separator"></div>
+              <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_tva_customers'); ?></div>
+            </div>
+            <?php
+          }
+          ?>
+        </div>
+        <?php
+        // Activation du module B2B
+        if (MODE_B2B_B2C == 'True') {
+          ?>
+          <!-- ------------------------------------ //-->
+          <!--          ONGLET Facturation          //-->
+          <!-- ------------------------------------ //-->
+          <div class="tab-pane" id="tab3">
+            <div class="col-md-12 mainTitle" style="height:27px;" id="CreateCustomerCategoryCompany">
+              <div class="text-start"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
+            </div>
+            <div class="adminformTitle">
+              <div class="row" id="CreateCustomerGroupName">
+                <div class="col-md-5">
+                  <div class="form-group row">
+                    <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_group_name'); ?>"
+                           class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_group_name'); ?></label>
+                    <div class="col-md-5">
+                      <?php echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups()); ?>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <?php
-          }
+          </div>
+          <?php
+        }
         ?>
         <!-- ------------------------------------ //-->
         <!--          ONGLET Option          //-->
@@ -418,16 +418,16 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default'); ?></label>
-                    <div class="col-md-5">
-                        <ul class="list-group-slider list-group-flush">
-                            <li class="list-group-item-slider">
-                                <label class="switch">
-                                  <?php echo HTML::checkboxField('customers_modify_address_default', 1, true, 'class="success"'); ?>
-                                    <span class="slider"></span>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
+                  <div class="col-md-5">
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          <?php echo HTML::checkboxField('customers_modify_address_default', 1, true, 'class="success"'); ?>
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -437,16 +437,16 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_add_address'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_add_address'); ?></label>
-                    <div class="col-md-5">
-                        <ul class="list-group-slider list-group-flush">
-                            <li class="list-group-item-slider">
-                                <label class="switch">
-                                  <?php echo HTML::checkboxField('customers_add_address',  1, true, 'class="success"'); ?>
-                                    <span class="slider"></span>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
+                  <div class="col-md-5">
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          <?php echo HTML::checkboxField('customers_add_address', 1, true, 'class="success"'); ?>
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -459,7 +459,7 @@
                     <ul class="list-group-slider list-group-flush">
                       <li class="list-group-item-slider">
                         <label class="switch">
-                          <?php echo HTML::checkboxField('customers_email',  1, false, 'class="success"'); ?>
+                          <?php echo HTML::checkboxField('customers_email', 1, false, 'class="success"'); ?>
                           <span class="slider"></span>
                         </label>
                       </li>
@@ -476,16 +476,16 @@
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_newsletter_language'); ?></label>
                   <div class="col-md-5">
                     <?php
-                      $languages = $CLICSHOPPING_Language->getLanguages();
+                    $languages = $CLICSHOPPING_Language->getLanguages();
 
-                      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                        $values_languages_id[$i] = [
-                          'id' => $languages[$i]['id'],
-                          'text' => $languages[$i]['name']
-                        ];
-                      }
+                    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                      $values_languages_id[$i] = [
+                        'id' => $languages[$i]['id'],
+                        'text' => $languages[$i]['name']
+                      ];
+                    }
 
-                      echo HTML::selectMenu('customers_languages_id', $values_languages_id);
+                    echo HTML::selectMenu('customers_languages_id', $values_languages_id);
                     ?>
                   </div>
                 </div>
@@ -500,81 +500,81 @@
   <?php echo $CLICSHOPPING_Hooks->output('Customer', 'CreateAccount', null, 'display'); ?>
 
   <script>
-      function check_form() {
-          var error = 0;
-          var error_message = "<?php echo $CLICSHOPPING_Customers->getDef('js_error'); ?>";
+    function check_form() {
+      var error = 0;
+      var error_message = "<?php echo $CLICSHOPPING_Customers->getDef('js_error'); ?>";
 
-        <?php
-        if (ACCOUNT_GENDER == 'true') {
-        ?>
-          if (document.customers.customers_gender[0].checked || document.customers.customers_gender[1].checked) {
-          } else {
-              error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_gender') . "\n"); ?>;
-              error = 1;
-          }
-        <?php
-        }
-        ?>
+      <?php
+      if (ACCOUNT_GENDER == 'true') {
+      ?>
+      if (document.customers.customers_gender[0].checked || document.customers.customers_gender[1].checked) {
+      } else {
+        error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_gender') . "\n"); ?>;
+        error = 1;
+      }
+      <?php
+      }
+      ?>
 
-          if (customers_firstname.length < <?php echo ENTRY_FIRST_NAME_MIN_LENGTH; ?>) {
-              error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_first_name', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]) . "\n"); ?>;
-              error = 1;
-          }
-
-          if (customers_lastname.length < <?php echo ENTRY_LAST_NAME_MIN_LENGTH; ?>) {
-              error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_last_name', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]) . "\n"); ?>;
-              error = 1;
-          }
-
-
-          if (entry_street_address.length < <?php echo ENTRY_STREET_ADDRESS_MIN_LENGTH; ?>) {
-              error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_address', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]) . "\n"); ?>;
-              error = 1;
-          }
-
-          if (entry_postcode.length < <?php echo ENTRY_POSTCODE_MIN_LENGTH; ?>) {
-              error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_post_code', ['min_length' => ENTRY_POSTCODE_MIN_LENGTH]) . "\n"); ?>;
-              error = 1;
-          }
-
-          if (entry_city.length < <?php echo ENTRY_CITY_MIN_LENGTH; ?>) {
-              error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_city', ['min_length' => ENTRY_CITY_MIN_LENGTH]) . "\n"); ?>;
-              error = 1;
-          }
-
-        <?php
-        if (ACCOUNT_STATE == 'true') {
-        ?>
-          if (document.customers.elements['customers_state'].type != "hidden") {
-              if (document.customers.customers_state.value.length < <?php echo ENTRY_STATE_MIN_LENGTH; ?>) {
-                  error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_state') . "\n"); ?>;
-                  error = 1;
-              }
-          }
-        <?php
-        }
-        ?>
-
-          if (document.customers.elements['entry_country_id'].type != "hidden") {
-              if (document.customers.entry_country_id.value == 0) {
-                  error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_country') . "\n"); ?>;
-                  error = 1;
-              }
-          }
-
-          if (customers_telephone.length < <?php echo ENTRY_TELEPHONE_MIN_LENGTH; ?>) {
-              error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_telephone', ['min_length' => ENTRY_TELEPHONE_MIN_LENGTH]) . "\n"); ?>;
-              error = 1;
-          }
-
-          if (error == 1) {
-              alert(error_message);
-              return false;
-          } else {
-              return true;
-          }
+      if (customers_firstname.length < <?php echo ENTRY_FIRST_NAME_MIN_LENGTH; ?>) {
+        error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_first_name', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]) . "\n"); ?>;
+        error = 1;
       }
 
-      </script>
+      if (customers_lastname.length < <?php echo ENTRY_LAST_NAME_MIN_LENGTH; ?>) {
+        error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_last_name', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]) . "\n"); ?>;
+        error = 1;
+      }
+
+
+      if (entry_street_address.length < <?php echo ENTRY_STREET_ADDRESS_MIN_LENGTH; ?>) {
+        error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_address', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]) . "\n"); ?>;
+        error = 1;
+      }
+
+      if (entry_postcode.length < <?php echo ENTRY_POSTCODE_MIN_LENGTH; ?>) {
+        error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_post_code', ['min_length' => ENTRY_POSTCODE_MIN_LENGTH]) . "\n"); ?>;
+        error = 1;
+      }
+
+      if (entry_city.length < <?php echo ENTRY_CITY_MIN_LENGTH; ?>) {
+        error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_city', ['min_length' => ENTRY_CITY_MIN_LENGTH]) . "\n"); ?>;
+        error = 1;
+      }
+
+      <?php
+      if (ACCOUNT_STATE == 'true') {
+      ?>
+      if (document.customers.elements['customers_state'].type != "hidden") {
+        if (document.customers.customers_state.value.length < <?php echo ENTRY_STATE_MIN_LENGTH; ?>) {
+          error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_state') . "\n"); ?>;
+          error = 1;
+        }
+      }
+      <?php
+      }
+      ?>
+
+      if (document.customers.elements['entry_country_id'].type != "hidden") {
+        if (document.customers.entry_country_id.value == 0) {
+          error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_country') . "\n"); ?>;
+          error = 1;
+        }
+      }
+
+      if (customers_telephone.length < <?php echo ENTRY_TELEPHONE_MIN_LENGTH; ?>) {
+        error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_telephone', ['min_length' => ENTRY_TELEPHONE_MIN_LENGTH]) . "\n"); ?>;
+        error = 1;
+      }
+
+      if (error == 1) {
+        alert(error_message);
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+  </script>
   </form>
 </div>

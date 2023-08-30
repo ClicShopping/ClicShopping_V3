@@ -1,32 +1,32 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\DateTime;
-  use ClicShopping\OM\ObjectInfo;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\DateTime;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Reviews = Registry::get('Reviews');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-  $CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Reviews = Registry::get('Reviews');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Language = Registry::get('Language');
 
-  if ($CLICSHOPPING_MessageStack->exists('main')) {
-    echo $CLICSHOPPING_MessageStack->get('main');
-  }
+if ($CLICSHOPPING_MessageStack->exists('main')) {
+  echo $CLICSHOPPING_MessageStack->get('main');
+}
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  if (isset($_GET['rID'])) $rID = HTML::sanitize($_GET['rID']);
+if (isset($_GET['rID'])) $rID = HTML::sanitize($_GET['rID']);
 
-  $Qreviews = $CLICSHOPPING_Reviews->db->prepare('select r.reviews_id,
+$Qreviews = $CLICSHOPPING_Reviews->db->prepare('select r.reviews_id,
                                                           r.products_id,
                                                           r.customers_name,
                                                           r.date_added,
@@ -42,34 +42,34 @@
                                                    where r.reviews_id = :reviews_id
                                                    and r.reviews_id = rd.reviews_id
                                                   ');
-  $Qreviews->bindValue(':reviews_id', (int)$rID);
-  $Qreviews->execute();
+$Qreviews->bindValue(':reviews_id', (int)$rID);
+$Qreviews->execute();
 
-  $Qproducts = $CLICSHOPPING_Reviews->db->prepare('select products_image
+$Qproducts = $CLICSHOPPING_Reviews->db->prepare('select products_image
                                                    from :table_products
                                                    where products_id = :products_id
                                                   ');
-  $Qproducts->bindValue(':products_id', $Qreviews->valueInt('products_id'));
-  $Qproducts->execute();
+$Qproducts->bindValue(':products_id', $Qreviews->valueInt('products_id'));
+$Qproducts->execute();
 
-  $QproductsName = $CLICSHOPPING_Reviews->db->prepare('select products_name
+$QproductsName = $CLICSHOPPING_Reviews->db->prepare('select products_name
                                                        from :table_products_description
                                                        where products_id = :products_id
                                                        and language_id = :language_id
                                                       ');
-  $QproductsName->bindValue(':products_id', $Qreviews->valueInt('products_id'));
-  $QproductsName->bindValue(':language_id', $CLICSHOPPING_Language->getId());
-  $QproductsName->execute();
+$QproductsName->bindValue(':products_id', $Qreviews->valueInt('products_id'));
+$QproductsName->bindValue(':language_id', $CLICSHOPPING_Language->getId());
+$QproductsName->execute();
 
-  $rInfo_array = array_merge($Qreviews->toArray(), $Qproducts->toArray(), $QproductsName->toArray());
-  $rInfo = new ObjectInfo($rInfo_array);
+$rInfo_array = array_merge($Qreviews->toArray(), $Qproducts->toArray(), $QproductsName->toArray());
+$rInfo = new ObjectInfo($rInfo_array);
 
-  //creation du tableau pour le  dropdown des status des commentaires
-  $status_array = array(array('id' => '1', 'text' => $CLICSHOPPING_Reviews->getDef('entry_status_yes')),
-    array('id' => '0', 'text' => $CLICSHOPPING_Reviews->getDef('entry_status_no'))
-  );
+//creation du tableau pour le  dropdown des status des commentaires
+$status_array = array(array('id' => '1', 'text' => $CLICSHOPPING_Reviews->getDef('entry_status_yes')),
+  array('id' => '0', 'text' => $CLICSHOPPING_Reviews->getDef('entry_status_no'))
+);
 
-  echo HTML::form('update', $CLICSHOPPING_Reviews->link('Reviews&Update&page=' . $page . '&rID=' . $_GET['rID']), 'post', 'enctype="multipart/form-data"');
+echo HTML::form('update', $CLICSHOPPING_Reviews->link('Reviews&Update&page=' . $page . '&rID=' . $_GET['rID']), 'post', 'enctype="multipart/form-data"');
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -83,9 +83,9 @@
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Reviews->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-end">
             <?php
-              echo HTML::button($CLICSHOPPING_Reviews->getDef('button_cancel'), null, $CLICSHOPPING_Reviews->link('Reviews&page=' . $page . '&rID=' . $rInfo->reviews_id), 'warning') . '&nbsp;';
-              echo HTML::hiddenField('language_id', $rInfo->languages_id);
-              echo HTML::button($CLICSHOPPING_Reviews->getDef('button_update'), null, null, 'success');
+            echo HTML::button($CLICSHOPPING_Reviews->getDef('button_cancel'), null, $CLICSHOPPING_Reviews->link('Reviews&page=' . $page . '&rID=' . $rInfo->reviews_id), 'warning') . '&nbsp;';
+            echo HTML::hiddenField('language_id', $rInfo->languages_id);
+            echo HTML::button($CLICSHOPPING_Reviews->getDef('button_update'), null, null, 'success');
             ?>
           </span>
         </div>
@@ -144,7 +144,7 @@
                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_Reviews->getDef('entry_date'); ?></label>
                 <div class="col-md-5">
                   <?php echo '<strong>' . DateTime::toLong($rInfo->date_added);
-                    '</strong>'; ?>
+                  '</strong>'; ?>
                 </div>
               </div>
             </div>
@@ -198,23 +198,23 @@
               </span>
             </div>
           </div>
-            <div class="row" id="custimer_sentiment">
-                <div class="col-md-12">
-                  <span class="col-md-2"><?php echo $CLICSHOPPING_Reviews->getDef('entry_customer_sentiment_tag'); ?></span>
-                  <?php
-                    $customer_tag = $rInfo->customers_tag;
-                    $customer_tag = explode(',', $customer_tag);
+          <div class="row" id="custimer_sentiment">
+            <div class="col-md-12">
+              <span class="col-md-2"><?php echo $CLICSHOPPING_Reviews->getDef('entry_customer_sentiment_tag'); ?></span>
+              <?php
+              $customer_tag = $rInfo->customers_tag;
+              $customer_tag = explode(',', $customer_tag);
 
-                    if (\count($customer_tag) > 0) {
-                      foreach ($customer_tag as $value) {
+              if (\count($customer_tag) > 0) {
+                foreach ($customer_tag as $value) {
                   ?>
-                        <span class="badge text-bg-primary"><?php echo ' <i>' . $value . '</i>'; ?></span>
+                  <span class="badge text-bg-primary"><?php echo ' <i>' . $value . '</i>'; ?></span>
                   <?php
-                      }
-                    }
-                  ?>
-                </div>
+                }
+              }
+              ?>
             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -222,7 +222,7 @@
 </div>
 
 <?php
-  echo HTML::hiddenField('reviews_id', $rInfo->reviews_id) . HTML::hiddenField('products_id', $rInfo->products_id) .
+echo HTML::hiddenField('reviews_id', $rInfo->reviews_id) . HTML::hiddenField('products_id', $rInfo->products_id) .
   HTML::hiddenField('customers_name', $rInfo->customers_name) .
   HTML::hiddenField('products_name', $rInfo->products_name) .
   HTML::hiddenField('products_image', $rInfo->products_image) .

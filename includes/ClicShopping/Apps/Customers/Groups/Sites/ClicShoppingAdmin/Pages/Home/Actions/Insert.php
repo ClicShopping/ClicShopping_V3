@@ -1,26 +1,26 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Customers\Groups\Sites\ClicShoppingAdmin\Pages\Home\Actions;
+namespace ClicShopping\Apps\Customers\Groups\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  class Insert extends \ClicShopping\OM\PagesActionsAbstract
+class Insert extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
   {
-    public function execute()
-    {
-      $CLICSHOPPING_Groups = Registry::get('Groups');
+    $CLICSHOPPING_Groups = Registry::get('Groups');
 
-      $this->page->setFile('insert.php');
-      $this->page->data['action'] = 'Insert';
+    $this->page->setFile('insert.php');
+    $this->page->data['action'] = 'Insert';
 
-      $CLICSHOPPING_Groups->loadDefinitions('Sites/ClicShoppingAdmin/groups');
-    }
+    $CLICSHOPPING_Groups->loadDefinitions('Sites/ClicShoppingAdmin/groups');
   }
+}

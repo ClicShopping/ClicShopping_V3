@@ -1,115 +1,113 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Communication\PageManager\Classes\ClicShoppingAdmin\PageManagerAdmin;
+$CLICSHOPPING_PageManager = Registry::get('PageManager');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
 
-  $CLICSHOPPING_PageManager = Registry::get('PageManager');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$languages = $CLICSHOPPING_Language->getLanguages();
 
-  $languages = $CLICSHOPPING_Language->getLanguages();
+$page_type_contact = 'true';
 
-  $page_type_contact = 'true';
-
-  $Qpages = $CLICSHOPPING_PageManager->db->prepare('select page_type
+$Qpages = $CLICSHOPPING_PageManager->db->prepare('select page_type
                                                      from :table_pages_manager
                                                      where page_type = 3
                                                     ');
 
-  $Qpages->execute();
+$Qpages->execute();
 
-  if ($Qpages->fetch() !== false) {
-    while ($Qpages->fetch()) {
-      if ($Qpages->valueInt('page_type') == '3') {
-        $page_type_contact = 'false';
-      }
+if ($Qpages->fetch() !== false) {
+  while ($Qpages->fetch()) {
+    if ($Qpages->valueInt('page_type') == '3') {
+      $page_type_contact = 'false';
     }
   }
+}
 
-  $page_type_statut = [];
+$page_type_statut = [];
 
-  $page_type_statut[] = ['id' => '0',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_select')
+$page_type_statut[] = ['id' => '0',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_select')
+];
+
+$page_type_statut[] = ['id' => '1',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_introduction_page')
+];
+
+$page_type_statut[] = ['id' => '2',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_main_page')
+];
+
+if ($page_type_contact == 'true') {
+  $page_type_statut[] = ['id' => '3',
+    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_contact_us')
   ];
+}
 
-  $page_type_statut[] = ['id' => '1',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_introduction_page')
-  ];
+$page_type_statut[] = ['id' => '4',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_informations')
+];
 
-  $page_type_statut[] = ['id' => '2',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_main_page')
-  ];
+$page_type_statut[] = ['id' => '5',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_menu_header')
+];
 
-  if ($page_type_contact == 'true') {
-    $page_type_statut[] = ['id' => '3',
-      'text' => $CLICSHOPPING_PageManager->getDef('page_manager_contact_us')
-    ];
-  }
+$page_type_statut[] = ['id' => '6',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_menu_footer')
+];
 
-  $page_type_statut[] = ['id' => '4',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_informations')
-  ];
+// Type de la page demande dans le menu deroulant pour le choix d'affichage du text dans une des 2 boxes
+$page_box_statut = [];
 
-  $page_type_statut[] = ['id' => '5',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_menu_header')
-  ];
+$page_box_statut[] = ['id' => '0',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_main_box')
+];
 
-  $page_type_statut[] = ['id' => '6',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_menu_footer')
-  ];
+$page_box_statut[] = ['id' => '1',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_secondary_box')
+];
 
-  // Type de la page demande dans le menu deroulant pour le choix d'affichage du text dans une des 2 boxes
-  $page_box_statut = [];
+$page_box_statut[] = ['id' => '2',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_landing_page')
+];
 
-  $page_box_statut[] = ['id' => '0',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_main_box')
-  ];
+$page_box_statut[] = ['id' => '3',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_none')
+];
 
-  $page_box_statut[] = ['id' => '1',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_secondary_box')
-  ];
+// Type de lien demande dans le menu deroulant
+$links_target_statut = [];
 
-  $page_box_statut[] = ['id' => '2',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_landing_page')
-  ];
+$links_target_statut[] = ['id' => '_self',
+  'text' => $CLICSHOPPING_PageManager->getDef('text_link_same_windows')
+];
 
-  $page_box_statut[] = ['id' => '3',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_none')
-  ];
+$links_target_statut[] = ['id' => '_blank',
+  'text' => $CLICSHOPPING_PageManager->getDef('text_link_new_windows')
+];
 
-  // Type de lien demande dans le menu deroulant
-  $links_target_statut = [];
+// Select if the page is general condition page or or not
+$page_general_condition_statut = [];
+$page_general_condition_statut[] = ['id' => '0',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_text_no')
+];
 
-  $links_target_statut[] = ['id' => '_self',
-    'text' => $CLICSHOPPING_PageManager->getDef('text_link_same_windows')
-  ];
-
-  $links_target_statut[] = ['id' => '_blank',
-    'text' => $CLICSHOPPING_PageManager->getDef('text_link_new_windows')
-  ];
-
-  // Select if the page is general condition page or or not
-  $page_general_condition_statut = [];
-  $page_general_condition_statut[] = ['id' => '0',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_text_no')
-  ];
-
-  $page_general_condition_statut[] = ['id' => '1',
-    'text' => $CLICSHOPPING_PageManager->getDef('page_manager_text_yes')
-  ];
+$page_general_condition_statut[] = ['id' => '1',
+  'text' => $CLICSHOPPING_PageManager->getDef('page_manager_text_yes')
+];
 ?>
 <div class="contentBody">
   <div class="separator"></div>
@@ -123,9 +121,9 @@
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_PageManager->getDef('heading_title_new'); ?></span>
           <span class="col-md-6 text-end">
 <?php
-  echo HTML::form('page_manager', $CLICSHOPPING_PageManager->link('Edit'), 'post', 'enctype="multipart/form-data"');
-  echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_PageManager->link('PageManager&PageManager' . (isset($page) ? 'page=' . $page . '&' : '') . (!empty($bID) and $bID != '' ? 'bID=' . $bID : '')), 'warning') . '&nbsp;';
-  echo HTML::button(CLICSHOPPING::getDef('button_new'), null, null, 'success', null, null);
+echo HTML::form('page_manager', $CLICSHOPPING_PageManager->link('Edit'), 'post', 'enctype="multipart/form-data"');
+echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_PageManager->link('PageManager&PageManager' . (isset($page) ? 'page=' . $page . '&' : '') . (!empty($bID) and $bID != '' ? 'bID=' . $bID : '')), 'warning') . '&nbsp;';
+echo HTML::button(CLICSHOPPING::getDef('button_new'), null, null, 'success', null, null);
 ?>
          </span>
         </div>
@@ -151,9 +149,9 @@
   </form>
 </div>
 <script>
-    $(document).ready(function () {
-        $('#select').change(function () {
-            location.href = $(this).val();
-        });
+  $(document).ready(function () {
+    $('#select').change(function () {
+      location.href = $(this).val();
     });
+  });
 </script>

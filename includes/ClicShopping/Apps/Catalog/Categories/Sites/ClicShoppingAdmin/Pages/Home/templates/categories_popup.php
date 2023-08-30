@@ -8,10 +8,11 @@
  *
  */
 
-use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
 $CLICSHOPPING_Categories = Registry::get('Categories');
 $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

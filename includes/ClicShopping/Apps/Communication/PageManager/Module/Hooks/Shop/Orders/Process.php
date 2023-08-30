@@ -1,51 +1,51 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Communication\PageManager\Module\Hooks\Shop\Orders;
+
+use ClicShopping\OM\Registry;
+
+class Process implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  /*
+    * getPageManagerGeneralConditons
+    * @param $insert_id, order_id
+    * @return array and save general condition
+    * @access private
    */
-
-  namespace ClicShopping\Apps\Communication\PageManager\Module\Hooks\Shop\Orders;
-
-  use ClicShopping\OM\Registry;
-
-  class Process implements \ClicShopping\OM\Modules\HooksInterface
+  private function getPageManagerGeneralConditons()
   {
-    protected mixed $app;
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
+    $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
+    $CLICSHOPPING_Order = Registry::get('Order');
 
-    /*
-      * getPageManagerGeneralConditons
-      * @param $insert_id, order_id
-      * @return array and save general condition
-      * @access private
-     */
-    private function getPageManagerGeneralConditons()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
-      $CLICSHOPPING_Order = Registry::get('Order');
+    $page_manager_general_condition = $CLICSHOPPING_PageManagerShop->pageManagerGeneralCondition();
 
-      $page_manager_general_condition = $CLICSHOPPING_PageManagerShop->pageManagerGeneralCondition();
+    $sql_data_array = [
+      'orders_id' => (int)$CLICSHOPPING_Order->getLastOrderId(),
+      'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
+      'page_manager_general_condition' => $page_manager_general_condition
+    ];
 
-      $sql_data_array = [
-        'orders_id' => (int)$CLICSHOPPING_Order->getLastOrderId(),
-        'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-        'page_manager_general_condition' => $page_manager_general_condition
-      ];
-
-      $CLICSHOPPING_Db->save('orders_pages_manager', $sql_data_array);
-    }
-
-    public function execute()
-    {
-      if (!\defined('CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS') || CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS == 'False') {
-        return false;
-      }
-
-      $this->getPageManagerGeneralConditons();
-    }
+    $CLICSHOPPING_Db->save('orders_pages_manager', $sql_data_array);
   }
+
+  public function execute()
+  {
+    if (!\defined('CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS') || CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS == 'False') {
+      return false;
+    }
+
+    $this->getPageManagerGeneralConditons();
+  }
+}

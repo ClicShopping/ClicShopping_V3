@@ -1,57 +1,57 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Customers\Reviews\Module\Hooks\ClicShoppingAdmin\StatsDashboard;
+namespace ClicShopping\Apps\Customers\Reviews\Module\Hooks\ClicShoppingAdmin\StatsDashboard;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
+use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
 
-  class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
+class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Reviews')) {
-        Registry::set('Reviews', new ReviewsApp());
-      }
-
-      $this->app = Registry::get('Reviews');
-
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
+    if (!Registry::exists('Reviews')) {
+      Registry::set('Reviews', new ReviewsApp());
     }
 
-    private function statsCountReviews()
-    {
-      $Qreviews = $this->app->db->prepare('select count(reviews_id) as count
+    $this->app = Registry::get('Reviews');
+
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
+  }
+
+  private function statsCountReviews()
+  {
+    $Qreviews = $this->app->db->prepare('select count(reviews_id) as count
                                            from :table_reviews
                                            where status = 0
                                            limit 1
                                           ');
-      $Qreviews->execute();
+    $Qreviews->execute();
 
-      $review_total = $Qreviews->valueInt('count');
+    $review_total = $Qreviews->valueInt('count');
 
-      return $review_total;
+    return $review_total;
+  }
+
+  public function display()
+  {
+
+    if (!\defined('CLICSHOPPING_APP_REVIEWS_RV_STATUS') || CLICSHOPPING_APP_REVIEWS_RV_STATUS == 'False') {
+      return false;
     }
 
-    public function display()
-    {
-
-      if (!\defined('CLICSHOPPING_APP_REVIEWS_RV_STATUS') || CLICSHOPPING_APP_REVIEWS_RV_STATUS == 'False') {
-        return false;
-      }
-
-      if ($this->statsCountReviews() != 0) {
-        $content = '
+    if ($this->statsCountReviews() != 0) {
+      $content = '
           <div class="row">
             <div class="col-md-11 mainTable">
               <div class="form-group row">
@@ -64,7 +64,7 @@
           </div>
          ';
 
-        $output = <<<EOD
+      $output = <<<EOD
   <!-- ######################## -->
   <!--  Start Customer Review      -->
   <!-- ######################## -->
@@ -73,7 +73,7 @@
   <!--  Start Customer Review      -->
   <!-- ######################## -->
 EOD;
-        return $output;
-      }
+      return $output;
     }
   }
+}

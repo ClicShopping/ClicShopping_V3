@@ -1,86 +1,86 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Customers\Customers\Module\Hooks\ClicShoppingAdmin\Stats;
+namespace ClicShopping\Apps\Customers\Customers\Module\Hooks\ClicShoppingAdmin\Stats;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
+use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
 
-  class StatsCustomersPercentageBySex implements \ClicShopping\OM\Modules\HooksInterface
+class StatsCustomersPercentageBySex implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Customers')) {
-        Registry::set('Customers', new CustomersApp());
-      }
-
-      $this->app = Registry::get('Customers');
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/StatsCustomersPercentageBySex');
+    if (!Registry::exists('Customers')) {
+      Registry::set('Customers', new CustomersApp());
     }
 
-    /**
-     * @return float
-     */
-    private function statsAverageCustomersMen() :float
-    {
-      $numberByPerCentMen = '   ';
+    $this->app = Registry::get('Customers');
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/StatsCustomersPercentageBySex');
+  }
 
-      $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent
+  /**
+   * @return float
+   */
+  private function statsAverageCustomersMen(): float
+  {
+    $numberByPerCentMen = '   ';
+
+    $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent
                                                             from :table_customers
                                                             where customers_gender = :customers_gender
                                                            ');
-      $QstatAnalyseCustomersMan->bindValue(':customers_gender', 'm');
+    $QstatAnalyseCustomersMan->bindValue(':customers_gender', 'm');
 
-      $QstatAnalyseCustomersMan->execute();
+    $QstatAnalyseCustomersMan->execute();
 
-      if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent'))) {
-        $numberByPerCentMen = $QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent');
-      }
-
-      return $numberByPerCentMen;
+    if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent'))) {
+      $numberByPerCentMen = $QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent');
     }
 
-    /**
-     * @return float
-     */
-    private function statsAverageCustomersWomen() :float
-    {
-      $numberByPerCentWomen = '   ';
+    return $numberByPerCentMen;
+  }
 
-      $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent
+  /**
+   * @return float
+   */
+  private function statsAverageCustomersWomen(): float
+  {
+    $numberByPerCentWomen = '   ';
+
+    $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent
                                                               from :table_customers
                                                               where customers_gender = :customers_gender
                                                              ');
-      $QstatAnalyseCustomersWomen->bindValue(':customers_gender', 'f');
+    $QstatAnalyseCustomersWomen->bindValue(':customers_gender', 'f');
 
-      $QstatAnalyseCustomersWomen->execute();
+    $QstatAnalyseCustomersWomen->execute();
 
-      if (!\is_null($QstatAnalyseCustomersWomen->valueDecimal('numberByGenderPerCent'))) {
-        $numberByPerCentWomen = $QstatAnalyseCustomersWomen->valueDecimal('numberByGenderPerCent');
-      }
-
-      return $numberByPerCentWomen;
+    if (!\is_null($QstatAnalyseCustomersWomen->valueDecimal('numberByGenderPerCent'))) {
+      $numberByPerCentWomen = $QstatAnalyseCustomersWomen->valueDecimal('numberByGenderPerCent');
     }
 
-    /**
-     * @return string
-     */
-    public function display() :string
-    {
-      if ($this->statsAverageCustomersMen() == 0 && $this->statsAverageCustomersWomen() == 0) {
-        $output = '';
-      } else {
-        $output = '
+    return $numberByPerCentWomen;
+  }
+
+  /**
+   * @return string
+   */
+  public function display(): string
+  {
+    if ($this->statsAverageCustomersMen() == 0 && $this->statsAverageCustomersWomen() == 0) {
+      $output = '';
+    } else {
+      $output = '
 <div class="col-md-2 col-12">
     <div class="card bg-primary">
      <div class="card-body">
@@ -100,8 +100,8 @@
   </div>
 </div>
       ';
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

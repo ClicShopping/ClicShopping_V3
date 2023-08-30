@@ -1,57 +1,57 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Customers\Reviews\Module\Hooks\ClicShoppingAdmin\TopDashboard;
+
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+
+use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
+
+class DashboardTopReviews implements \ClicShopping\OM\Modules\HooksInterface
+{
   /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
+   * @var bool|null
    */
+  protected mixed $app;
 
-  namespace ClicShopping\Apps\Customers\Reviews\Module\Hooks\ClicShoppingAdmin\TopDashboard;
-
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-
-  use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
-
-  class DashboardTopReviews implements \ClicShopping\OM\Modules\HooksInterface
+  public function __construct()
   {
-    /**
-     * @var bool|null
-     */
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Reviews')) {
-        Registry::set('Reviews', new ReviewsApp());
-      }
-
-      $this->app = Registry::get('Reviews');
-
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_reviews');
+    if (!Registry::exists('Reviews')) {
+      Registry::set('Reviews', new ReviewsApp());
     }
 
-    public function Display(): string
-    {
-      $Qreviews = $this->app->db->prepare('select count(reviews_id) as num_reviews 
+    $this->app = Registry::get('Reviews');
+
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_reviews');
+  }
+
+  public function Display(): string
+  {
+    $Qreviews = $this->app->db->prepare('select count(reviews_id) as num_reviews 
                                           from :table_reviews 
                                           where date_added >= (now() - INTERVAL 2 month) 
                                           and status = 0
                                           ');
-      $Qreviews->execute();
+    $Qreviews->execute();
 
-      $number_of_reviews = $Qreviews->valueInt('num_reviews');
+    $number_of_reviews = $Qreviews->valueInt('num_reviews');
 
-      $text = $this->app->getDef('text_number_of_reviews');
-      $text_view = $this->app->getDef('text_view');
+    $text = $this->app->getDef('text_number_of_reviews');
+    $text_view = $this->app->getDef('text_view');
 
-      $output = '';
+    $output = '';
 
-      if ($number_of_reviews > 0) {
-        $output = '
+    if ($number_of_reviews > 0) {
+      $output = '
 <div class="col-md-2 col-12 m-1">
     <div class="card bg-success">
       <div class="card-body">
@@ -66,8 +66,8 @@
     </div>
 </div>
 ';
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

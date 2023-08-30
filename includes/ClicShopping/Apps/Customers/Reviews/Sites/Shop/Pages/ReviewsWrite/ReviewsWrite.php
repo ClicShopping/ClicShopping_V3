@@ -1,32 +1,32 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Customers\Reviews\Sites\Shop\Pages\ReviewsWrite;
+namespace ClicShopping\Apps\Customers\Reviews\Sites\Shop\Pages\ReviewsWrite;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
+use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
 
-  class ReviewsWrite extends \ClicShopping\OM\PagesAbstract
+class ReviewsWrite extends \ClicShopping\OM\PagesAbstract
+{
+  public mixed $app;
+
+  protected function init()
   {
-    public mixed $app;
 
-    protected function init()
-    {
-
-      if (!Registry::exists('ReviewsApp')) {
-        Registry::set('ReviewsApp', new ReviewsApp());
-      }
-
-      $CLICSHOPPING_Reviews = Registry::get('ReviewsApp');
-
-      $CLICSHOPPING_Reviews->loadDefinitions('Sites/Shop/main');
+    if (!Registry::exists('ReviewsApp')) {
+      Registry::set('ReviewsApp', new ReviewsApp());
     }
+
+    $CLICSHOPPING_Reviews = Registry::get('ReviewsApp');
+
+    $CLICSHOPPING_Reviews->loadDefinitions('Sites/Shop/main');
   }
+}

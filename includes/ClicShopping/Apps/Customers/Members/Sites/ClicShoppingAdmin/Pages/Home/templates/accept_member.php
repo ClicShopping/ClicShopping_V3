@@ -1,32 +1,32 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
+use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
 
 
-  $CLICSHOPPING_Members = Registry::get('Members');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Members = Registry::get('Members');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  // Permettre l'utilisation de l'approbation des comptes en mode B2B
-  if (MODE_B2B_B2C == 'False') CLICSHOPPING::redirect();
+// Permettre l'utilisation de l'approbation des comptes en mode B2B
+if (MODE_B2B_B2C == 'False') CLICSHOPPING::redirect();
 
-  if (isset($_GET['cID'])) $cID = HTML::sanitize($_GET['cID']);
+if (isset($_GET['cID'])) $cID = HTML::sanitize($_GET['cID']);
 
-  $Qcustomers = $CLICSHOPPING_Members->db->prepare('select customers_id,
+$Qcustomers = $CLICSHOPPING_Members->db->prepare('select customers_id,
                                                           customers_lastname,
                                                           customers_firstname,
                                                           customers_group_id
@@ -34,18 +34,18 @@
                                                     where customers_id = :customers_id
                                                    ');
 
-  $Qcustomers->bindInt(':customers_id', $cID);
-  $Qcustomers->execute();
+$Qcustomers->bindInt(':customers_id', $cID);
+$Qcustomers->execute();
 
-  $Qreviews = $CLICSHOPPING_Members->db->prepare('select count(*) as number_of_reviews
+$Qreviews = $CLICSHOPPING_Members->db->prepare('select count(*) as number_of_reviews
                                                    from :table_reviews
                                                    where customers_id = :customers_id
                                                   ');
-  $Qreviews->bindInt(':customers_id', $cID);
-  $Qreviews->execute();
+$Qreviews->bindInt(':customers_id', $cID);
+$Qreviews->execute();
 
-  $cInfo_array = array_merge($Qcustomers->toArray(), $Qreviews->toArray());
-  $cInfo = new ObjectInfo($cInfo_array);
+$cInfo_array = array_merge($Qcustomers->toArray(), $Qreviews->toArray());
+$cInfo = new ObjectInfo($cInfo_array);
 ?>
 <div class="contentBody">
 

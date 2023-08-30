@@ -1,123 +1,123 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Customers\Customers\Module\Hooks\ClicShoppingAdmin\StatsDashboard;
+namespace ClicShopping\Apps\Customers\Customers\Module\Hooks\ClicShoppingAdmin\StatsDashboard;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
+use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
 
-  class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
+class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Customers')) {
-        Registry::set('Customers', new CustomersApp());
-      }
-
-      $this->app = Registry::get('Customers');
-
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
+    if (!Registry::exists('Customers')) {
+      Registry::set('Customers', new CustomersApp());
     }
 
-    private function statsCountCustomers($groups = null)
-    {
-      $condition = '';
+    $this->app = Registry::get('Customers');
 
-      if (!\is_null($groups)) {
-        if ($groups == 'B2C') {
-          $condition = 'where customers_group_id = 0';
-        } else {
-          $condition = 'where customers_group_id > 0';
-        }
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
+  }
+
+  private function statsCountCustomers($groups = null)
+  {
+    $condition = '';
+
+    if (!\is_null($groups)) {
+      if ($groups == 'B2C') {
+        $condition = 'where customers_group_id = 0';
+      } else {
+        $condition = 'where customers_group_id > 0';
       }
+    }
 
-      $Qcustomer = $this->app->db->prepare('select count(customers_id) as count
+    $Qcustomer = $this->app->db->prepare('select count(customers_id) as count
                                              from :table_customers
                                              ' . $condition . '
                                              limit 1
                                           ');
-      $Qcustomer->execute();
+    $Qcustomer->execute();
 
-      $customers_total = $Qcustomer->valueInt('count');
+    $customers_total = $Qcustomer->valueInt('count');
 
-      return $customers_total;
-    }
+    return $customers_total;
+  }
 
-    private function statsAverageCustomersMen()
-    {
-      $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent,
+  private function statsAverageCustomersMen()
+  {
+    $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent,
                                                                   ROUND(AVG(TIMESTAMPDIFF(YEAR,(customers_dob), now())),0) AS avgage
                                                           from :table_customers
                                                           where customers_gender = :customers_gender
                                                          ');
-      $QstatAnalyseCustomersMan->bindValue(':customers_gender', 'm');
+    $QstatAnalyseCustomersMan->bindValue(':customers_gender', 'm');
 
-      $QstatAnalyseCustomersMan->execute();
+    $QstatAnalyseCustomersMan->execute();
 
-      if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent'))) {
-        $numberByGenderPerCent = $QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent');
-      } else {
-        $numberByGenderPerCent = '-- ';
-      }
-
-      if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
-        $avgage = $QstatAnalyseCustomersMan->valueDecimal('avgage');
-        $stat_analyse_customers_man = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
-      } else {
-        $stat_analyse_customers_man = 0;
-      }
-
-      return $stat_analyse_customers_man;
+    if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent'))) {
+      $numberByGenderPerCent = $QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent');
+    } else {
+      $numberByGenderPerCent = '-- ';
     }
 
-    private function statsAverageCustomersWomen()
-    {
-       $QstatAnalyseCustomersWoman = $this->app->db->prepare('SELECT ROUND(((COUNT(customers_gender)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent,
+    if (!\is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
+      $avgage = $QstatAnalyseCustomersMan->valueDecimal('avgage');
+      $stat_analyse_customers_man = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
+    } else {
+      $stat_analyse_customers_man = 0;
+    }
+
+    return $stat_analyse_customers_man;
+  }
+
+  private function statsAverageCustomersWomen()
+  {
+    $QstatAnalyseCustomersWoman = $this->app->db->prepare('SELECT ROUND(((COUNT(customers_gender)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent,
                                                                   ROUND(AVG(TIMESTAMPDIFF(YEAR,(customers_dob), now())),0) AS avgage
                                                              from :table_customers
                                                              where customers_gender = :customers_gender
                                                             ');
 
-      $QstatAnalyseCustomersWoman->bindValue(':customers_gender', 'f');
-      $QstatAnalyseCustomersWoman->execute();
-      $stat_analyse_customers_woman = $QstatAnalyseCustomersWoman->fetch();
+    $QstatAnalyseCustomersWoman->bindValue(':customers_gender', 'f');
+    $QstatAnalyseCustomersWoman->execute();
+    $stat_analyse_customers_woman = $QstatAnalyseCustomersWoman->fetch();
 
-      if ($stat_analyse_customers_woman['numberByGenderPerCent'] != 'null') {
-        $numberByGenderPerCent = $stat_analyse_customers_woman['numberByGenderPerCent'];
-      } else {
-        $numberByGenderPerCent = '-- ';
-      }
-
-      if (!\is_null($stat_analyse_customers_woman['avgage'])) {
-        $avgage = $stat_analyse_customers_woman['avgage'];
-        $stat_analyse_customers_woman = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
-      } else {
-        $stat_analyse_customers_woman = 0;
-      }
-
-      return $stat_analyse_customers_woman;
+    if ($stat_analyse_customers_woman['numberByGenderPerCent'] != 'null') {
+      $numberByGenderPerCent = $stat_analyse_customers_woman['numberByGenderPerCent'];
+    } else {
+      $numberByGenderPerCent = '-- ';
     }
 
+    if (!\is_null($stat_analyse_customers_woman['avgage'])) {
+      $avgage = $stat_analyse_customers_woman['avgage'];
+      $stat_analyse_customers_woman = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
+    } else {
+      $stat_analyse_customers_woman = 0;
+    }
 
-    public function display()
-    {
+    return $stat_analyse_customers_woman;
+  }
 
-      if (!\defined('CLICSHOPPING_APP_CUSTOMERS_CS_STATUS') || CLICSHOPPING_APP_CUSTOMERS_CS_STATUS == 'False') {
-        return false;
-      }
 
-      if ($this->statsCountCustomers() != 0) {
-        $content = '
+  public function display()
+  {
+
+    if (!\defined('CLICSHOPPING_APP_CUSTOMERS_CS_STATUS') || CLICSHOPPING_APP_CUSTOMERS_CS_STATUS == 'False') {
+      return false;
+    }
+
+    if ($this->statsCountCustomers() != 0) {
+      $content = '
         <div class="row">
           <div class="col-md-11 mainTable">
             <div class="form-group row">
@@ -130,8 +130,8 @@
         </div>
         ';
 
-        if ($this->statsCountCustomers('B2C') != 0) {
-          $content .= '
+      if ($this->statsCountCustomers('B2C') != 0) {
+        $content .= '
           <div class="row">
             <div class="col-md-11 mainTable">
               <div class="form-group row">
@@ -143,10 +143,10 @@
             </div>
           </div>
          ';
-        }
+      }
 
-        if ($this->statsCountCustomers('B2B') != 0) {
-          $content .= '
+      if ($this->statsCountCustomers('B2B') != 0) {
+        $content .= '
            <div class="row">
             <div class="col-md-11 mainTable">
               <div class="form-group row">
@@ -158,10 +158,10 @@
             </div>
           </div>
           ';
-        }
+      }
 
-        if ($this->statsAverageCustomersMen() != 0) {
-          $content = '
+      if ($this->statsAverageCustomersMen() != 0) {
+        $content = '
           <div class="row">
             <div class="col-md-11 mainTable">
               <div class="form-group row">
@@ -173,10 +173,10 @@
             </div>
           </div>
          ';
-        }
+      }
 
-        if ($this->statsAverageCustomersWomen() != 0) {
-          $content = '
+      if ($this->statsAverageCustomersWomen() != 0) {
+        $content = '
           <div class="row">
             <div class="col-md-11 mainTable">
               <div class="form-group row">
@@ -188,10 +188,10 @@
             </div>
           </div>
           ';
-        }
+      }
 
 
-        $output = <<<EOD
+      $output = <<<EOD
   <!-- ######################## -->
   <!--  Start Customer      -->
   <!-- ######################## -->
@@ -200,7 +200,7 @@
   <!--  Start Customer      -->
   <!-- ######################## -->
 EOD;
-        return $output;
-      }
+      return $output;
     }
   }
+}

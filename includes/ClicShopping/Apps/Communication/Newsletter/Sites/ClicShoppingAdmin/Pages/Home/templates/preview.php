@@ -8,8 +8,8 @@
  *
  */
 
-  use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\Registry;
 
   $CLICSHOPPING_Newsletter = Registry::get('Newsletter');

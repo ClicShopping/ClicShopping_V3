@@ -1,40 +1,38 @@
 {
- "title":	"Gdpr App",
- "app": "Gdpr",
- "vendor":"Customers",
- "version":	"1.0.0",
- "req_core_version":	"3.0",
- "license":	"GPL-2",
- "authors": [
-  {
-   "name": "ClicShopping",
-   "company":	"ClicShopping",
-   "email":	"admin@clicshopping.org",
-   "website":	"https://www.clicshopping.org"
-  }
- ],
-
- "modules": {
-  "HeaderTags": {
-   "Categories":"Module\\HeaderTags\\Gdpr"
+  "title": "Gdpr App",
+  "app": "Gdpr",
+  "vendor": "Customers",
+  "version": "1.0.0",
+  "req_core_version": "3.0",
+  "license": "GPL-2",
+  "authors": [
+    {
+      "name": "ClicShopping",
+      "company": "ClicShopping",
+      "email": "admin@clicshopping.org",
+      "website": "https://www.clicshopping.org"
+    }
+  ],
+  "modules": {
+    "HeaderTags": {
+      "Categories": "Module\\HeaderTags\\Gdpr"
+    },
+    "Hooks": {
+      "Shop/Account": {
+        "Process": "Module\\Hooks\\Shop\\Account\\Process"
+      },
+      "ClicShoppingAdmin/TopDashboard": {
+        "TopDashboard": "Module\\Hooks\\ClicShoppingAdmin\\TopDashboard\\Gdpr"
+      },
+      "ClicShoppingAdmin/Cronjob": {
+        "Process": "Module\\Hooks\\ClicShoppingAdmin\\Cronjob\\Process"
+      },
+      "Shop/Cronjob": {
+        "Process": "Module\\Hooks\\Shop\\Cronjob\\Process"
+      }
+    }
   },
-  "Hooks": {
-   "Shop/Account": {
-    "Process":	"Module\\Hooks\\Shop\\Account\\Process"
-   },
-   "ClicShoppingAdmin/TopDashboard": {
-    "TopDashboard":"Module\\Hooks\\ClicShoppingAdmin\\TopDashboard\\Gdpr"
-   },
-   "ClicShoppingAdmin/Cronjob": {
-    "Process":	"Module\\Hooks\\ClicShoppingAdmin\\Cronjob\\Process"
-   },
-   "Shop/Cronjob": {
-    "Process":	"Module\\Hooks\\Shop\\Cronjob\\Process"
-   }
+  "routes": {
+    "ClicShoppingAdmin": "Sites\\ClicShoppingAdmin\\Pages\\Home"
   }
- },
-
- "routes": {
-  "ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home"
- }
 }

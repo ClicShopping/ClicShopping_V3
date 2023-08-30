@@ -1,49 +1,49 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Communication\Newsletter\Module\ClicShoppingAdmin\Newsletter\Newsletter as NewsletterModule;
+use ClicShopping\Apps\Communication\Newsletter\Module\ClicShoppingAdmin\Newsletter\Newsletter as NewsletterModule;
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Newsletter = Registry::get('Newsletter');
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  $nID = (int)$_GET['nID'];
-  $nlID = (int)$_GET['nlID'];
-  $cgID = (int)$_GET['cgID'];
-  $ac = (int)$_GET['ac'];
+$nID = (int)$_GET['nID'];
+$nlID = (int)$_GET['nlID'];
+$cgID = (int)$_GET['cgID'];
+$ac = (int)$_GET['ac'];
 
-  $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', [
-    'newsletters_id',
-    'title',
-    'content',
-    'module',
-    'languages_id',
-    'customers_group_id',
-    'newsletters_accept_file',
-    'newsletters_twitter',
-    'newsletters_customer_no_account'
-  ], [
-      'newsletters_id' => (int)$nID
-    ]
-  );
+$Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', [
+  'newsletters_id',
+  'title',
+  'content',
+  'module',
+  'languages_id',
+  'customers_group_id',
+  'newsletters_accept_file',
+  'newsletters_twitter',
+  'newsletters_customer_no_account'
+], [
+    'newsletters_id' => (int)$nID
+  ]
+);
 
-  $nInfo = new ObjectInfo($Qnewsletter->toArray());
-  $module_name = $nInfo->module;
-  $module = new NewsletterModule($nInfo->title, $nInfo->content);
+$nInfo = new ObjectInfo($Qnewsletter->toArray());
+$module_name = $nInfo->module;
+$module = new NewsletterModule($nInfo->title, $nInfo->content);
 ?>
 
 <div class="contentBody">
@@ -67,10 +67,9 @@
   <div class="text-center"><strong><?php echo $CLICSHOPPING_Newsletter->getDef('text_please_wait'); ?></strong></div>
 
   <?php
-    // delete the timeout
-    flush();
+  flush();
 
-    $module->sendCkeditor($nInfo->newsletters_id);
+  $module->sendCkeditor($nInfo->newsletters_id);
   ?>
   <meta http-equiv="refresh" content="5; URL=<?php echo $CLICSHOPPING_Newsletter->link('ConfirmSendValid'); ?>">
 </div>

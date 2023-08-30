@@ -1,28 +1,29 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
 
-  namespace ClicShopping\Apps\Customers\Groups\Sites\ClicShoppingAdmin\Pages\Home\Actions\Groups;
+namespace ClicShopping\Apps\Customers\Groups\Sites\ClicShoppingAdmin\Pages\Home\Actions\Groups;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  class Update extends \ClicShopping\OM\PagesActionsAbstract
+class Update extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
   {
-    public function execute()
-    {
-      $CLICSHOPPING_Groups = Registry::get('Groups');
-      $CLICSHOPPING_Hooks = Registry::get('Hooks');
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    $CLICSHOPPING_Groups = Registry::get('Groups');
+    $CLICSHOPPING_Hooks = Registry::get('Hooks');
+    $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      if (isset($_POST['customer_group_id'])) {{
+    if (isset($_POST['customer_group_id'])) {
+      {
         $customers_groups_id = HTML::sanitize($_POST['customer_group_id']);
       }
 
@@ -118,7 +119,7 @@
 
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Groups->getDef('entry_groups_name_success'), 'success');
         $CLICSHOPPING_Groups->redirect('Groups');
-        }
       }
     }
   }
+}

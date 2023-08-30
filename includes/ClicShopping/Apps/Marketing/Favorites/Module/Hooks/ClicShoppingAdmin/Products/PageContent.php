@@ -1,60 +1,60 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Marketing\Favorites\Module\Hooks\ClicShoppingAdmin\Products;
+namespace ClicShopping\Apps\Marketing\Favorites\Module\Hooks\ClicShoppingAdmin\Products;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Marketing\Favorites\Favorites as FavoritesApp;
+use ClicShopping\Apps\Marketing\Favorites\Favorites as FavoritesApp;
 
-  class PageContent implements \ClicShopping\OM\Modules\HooksInterface
+class PageContent implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Favorites')) {
-        Registry::set('Favorites', new FavoritesApp());
-      }
-
-      $this->app = Registry::get('Favorites');
+    if (!Registry::exists('Favorites')) {
+      Registry::set('Favorites', new FavoritesApp());
     }
 
-    public function display()
-    {
-      if (!\defined('CLICSHOPPING_APP_FAVORITES_FA_STATUS') || CLICSHOPPING_APP_FAVORITES_FA_STATUS == 'False') {
-        return false;
-      }
+    $this->app = Registry::get('Favorites');
+  }
 
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/PageContent');
+  public function display()
+  {
+    if (!\defined('CLICSHOPPING_APP_FAVORITES_FA_STATUS') || CLICSHOPPING_APP_FAVORITES_FA_STATUS == 'False') {
+      return false;
+    }
 
-      $content = '<div class="row">';
-      $content .= '<div class="col-md-9">';
-      $content .= '<div class="form-group row">';
-      $content .= '<label for="' . $this->app->getDef('text_products_favorites') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_favorites') . '</label>';
-      $content .= '<div class="col-md-5">';
-      $content .= '<ul class="list-group-slider list-group-flush">';
-      $content .= '<li class="list-group-item-slider">';
-      $content .= '<label class="switch">';
-      $content .= HTML::checkboxField('products_favorites',  'yes', false, 'class="success"');
-      $content .= '<span class="slider"></span>';
-      $content .= '</label>';
-      $content .= '</li>';
-      $content .= '</ul>';
-      $content .= '</div>';
-      $content .= '</div>';
-      $content .= '</div>';
-      $content .= '</div>';
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/PageContent');
 
-      $output = <<<EOD
+    $content = '<div class="row">';
+    $content .= '<div class="col-md-9">';
+    $content .= '<div class="form-group row">';
+    $content .= '<label for="' . $this->app->getDef('text_products_favorites') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_favorites') . '</label>';
+    $content .= '<div class="col-md-5">';
+    $content .= '<ul class="list-group-slider list-group-flush">';
+    $content .= '<li class="list-group-item-slider">';
+    $content .= '<label class="switch">';
+    $content .= HTML::checkboxField('products_favorites', 'yes', false, 'class="success"');
+    $content .= '<span class="slider"></span>';
+    $content .= '</label>';
+    $content .= '</li>';
+    $content .= '</ul>';
+    $content .= '</div>';
+    $content .= '</div>';
+    $content .= '</div>';
+    $content .= '</div>';
+
+    $output = <<<EOD
 <!-- ######################## -->
 <!--  Start FavoritesApp      -->
 <!-- ######################## -->
@@ -68,6 +68,6 @@ $('#tab9Content').prepend(
 <!-- ######################## -->
 
 EOD;
-      return $output;
-    }
+    return $output;
   }
+}

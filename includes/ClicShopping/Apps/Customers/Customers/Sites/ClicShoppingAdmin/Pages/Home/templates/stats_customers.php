@@ -1,24 +1,24 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Customers = Registry::get('Customers');
-  $CLICSHOPPING_Currencies = Registry::get('Currencies');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Customers = Registry::get('Customers');
+$CLICSHOPPING_Currencies = Registry::get('Currencies');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <div class="contentBody">
   <div class="row">
@@ -51,17 +51,20 @@
     data-show-export="true">
 
     <thead class="dataTableHeadingRow">
-      <tr>
-        <th data-field="number"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_number'); ?></th>
-        <th data-field="customer" data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_customers'); ?></th>
-        <th data-field="total_purchased" data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_total_purchased'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-center" width="20"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_action'); ?>&nbsp;
-        </th>
-      </tr>
+    <tr>
+      <th data-field="number"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_number'); ?></th>
+      <th data-field="customer"
+          data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_customers'); ?></th>
+      <th data-field="total_purchased"
+          data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_total_purchased'); ?></th>
+      <th data-field="action" data-switchable="false" class="text-center"
+          width="20"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_action'); ?>&nbsp;
+      </th>
+    </tr>
     </thead>
     <tbody>
     <?php
-      $Qcustomers = $CLICSHOPPING_Customers->db->prepare('select SQL_CALC_FOUND_ROWS  c.customers_firstname,
+    $Qcustomers = $CLICSHOPPING_Customers->db->prepare('select SQL_CALC_FOUND_ROWS  c.customers_firstname,
                                                                                       c.customers_lastname,
                                                                                       c.customers_group_id,
                                                                                       sum(op.products_quantity * op.final_price) as ordersum
@@ -78,51 +81,51 @@
                                                                 :page_set_max_results
                                                           ');
 
-      $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-      $Qcustomers->execute();
+    $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+    $Qcustomers->execute();
 
-      $listingTotalRow = $Qcustomers->getPageSetTotalRows();
+    $listingTotalRow = $Qcustomers->getPageSetTotalRows();
 
-      if ($listingTotalRow > 0) {
+    if ($listingTotalRow > 0) {
 
-        $rows = 0;
+      $rows = 0;
 
-        while ($Qcustomers->fetch()) {
-          $rows++;
+      while ($Qcustomers->fetch()) {
+        $rows++;
 
-          if (\strlen($rows) < 2) {
-            $rows = '0' . $rows;
-          }
-          ?>
-          <tr>
-            <td><?php echo $rows; ?>.</td>
-            <td><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?></td>
-            <td
-              class="text-end"><?php echo $CLICSHOPPING_Currencies->format($Qcustomers->valueInt('ordersum')); ?>&nbsp;
-            </td>
-            <td
-                  class="text-end"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers%5CCustomers&Customers&search=' . $Qcustomers->value('customers_lastname')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Customers->getDef('icon_edit_customer') . '"></i></h4>'); ?>
-            </td>
-          </tr>
-          <?php
-        } // end while
-      } // end $listingTotalRow
+        if (\strlen($rows) < 2) {
+          $rows = '0' . $rows;
+        }
+        ?>
+        <tr>
+          <td><?php echo $rows; ?>.</td>
+          <td><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?></td>
+          <td
+            class="text-end"><?php echo $CLICSHOPPING_Currencies->format($Qcustomers->valueInt('ordersum')); ?>&nbsp;
+          </td>
+          <td
+            class="text-end"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers%5CCustomers&Customers&search=' . $Qcustomers->value('customers_lastname')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Customers->getDef('icon_edit_customer') . '"></i></h4>'); ?>
+          </td>
+        </tr>
+        <?php
+      } // end while
+    } // end $listingTotalRow
     ?>
     </tbody>
   </table>
   <?php
-    if ($listingTotalRow > 0) {
-      ?>
-      <div class="row">
-        <div class="col-md-12">
-          <div
-            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcustomers->getPageSetLabel($CLICSHOPPING_Customers->getDef('text_display_number_of_link')); ?></div>
-          <div
-            class="float-end text-end"><?php echo $Qcustomers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
-        </div>
+  if ($listingTotalRow > 0) {
+    ?>
+    <div class="row">
+      <div class="col-md-12">
+        <div
+          class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcustomers->getPageSetLabel($CLICSHOPPING_Customers->getDef('text_display_number_of_link')); ?></div>
+        <div
+          class="float-end text-end"><?php echo $Qcustomers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
       </div>
-      <?php
-    } // end $listingTotalRow
+    </div>
+    <?php
+  } // end $listingTotalRow
   ?>
 </div>
 

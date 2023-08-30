@@ -1,45 +1,45 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\Featured;
+namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\Featured;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
+use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
 
-  class Update implements \ClicShopping\OM\Modules\HooksInterface
+class Update implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Groups')) {
-        Registry::set('Groups', new GroupsApp());
-      }
-
-      $this->app = Registry::get('Groups');
+    if (!Registry::exists('Groups')) {
+      Registry::set('Groups', new GroupsApp());
     }
 
-    public function execute()
-    {
-      if (isset($_GET['Update'])) {
-        if (isset($_POST['customers_group']) && isset($_POST['products_featured_id'])) {
-          $customers_group_id = HTML::sanitize($_POST['customers_group']);
+    $this->app = Registry::get('Groups');
+  }
 
-          $products_featured_id = HTML::sanitize($_POST['products_featured_id']);
+  public function execute()
+  {
+    if (isset($_GET['Update'])) {
+      if (isset($_POST['customers_group']) && isset($_POST['products_featured_id'])) {
+        $customers_group_id = HTML::sanitize($_POST['customers_group']);
 
-          $sql_data_array = ['customers_group_id' => (int)$customers_group_id];
+        $products_featured_id = HTML::sanitize($_POST['products_featured_id']);
 
-          $this->app->db->save('products_featured', $sql_data_array, ['products_featured_id' => (int)$products_featured_id]);
-        }
+        $sql_data_array = ['customers_group_id' => (int)$customers_group_id];
+
+        $this->app->db->save('products_featured', $sql_data_array, ['products_featured_id' => (int)$products_featured_id]);
       }
     }
   }
+}

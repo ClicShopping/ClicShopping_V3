@@ -1,26 +1,26 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Newsletter = Registry::get('Newsletter');
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  $action = $_GET['action'] ?? '';
+$action = $_GET['action'] ?? '';
 ?>
 
 <div class="contentBody">
@@ -34,7 +34,7 @@
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-end">
 <?php
-  echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_insert'), null, $CLICSHOPPING_Newsletter->link('Update'), 'success') . '&nbsp;';
+echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_insert'), null, $CLICSHOPPING_Newsletter->link('Update'), 'success') . '&nbsp;';
 ?>
            </span>
         </div>
@@ -56,7 +56,7 @@
   <!-- //                                             LISTING                                                            -->
   <!-- //################################################################################################################ -->
   <?php
-    echo HTML::form('delete_all', $CLICSHOPPING_Newsletter->link('Newsletter&DeleteAll&page=' . $page));
+  echo HTML::form('delete_all', $CLICSHOPPING_Newsletter->link('Newsletter&DeleteAll&page=' . $page));
   ?>
 
   <div id="toolbar" class="float-end">
@@ -82,28 +82,37 @@
     <thead class="dataTableHeadingRow">
     <tr>
       <th data-checkbox="true" data-field="state"></th>
-      <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Newsletter->getDef('id'); ?></th>
+      <th data-field="selected" data-sortable="true" data-visible="false"
+          data-switchable="false"><?php echo $CLICSHOPPING_Newsletter->getDef('id'); ?></th>
       <th data-switchable="false"></th>
       <th data-field="newletter"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_newsletters'); ?></th>
-      <th data-field="size" class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_size'); ?></th>
-      <th data-field="module" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_module'); ?></th>
-      <th data-field="language" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_language'); ?></th>
+      <th data-field="size"
+          class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_size'); ?></th>
+      <th data-field="module" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_module'); ?></th>
+      <th data-field="language" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_language'); ?></th>
       <?php
-        // Permettre l'affichage des groupes en mode B2B
-        if (MODE_B2B_B2C == 'True') {
-          ?>
-          <th data-field="b2b" data-sortable="true"  class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_b2b'); ?></th>
-          <?PHP
-        }
+      // Permettre l'affichage des groupes en mode B2B
+      if (MODE_B2B_B2C == 'True') {
+        ?>
+        <th data-field="b2b" data-sortable="true"
+            class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_b2b'); ?></th>
+        <?PHP
+      }
       ?>
-      <th data-field="sent" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_sent'); ?></th>
-      <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_status'); ?></th>
-      <th data-field="action" data-switchable="false" class="text-end" data-width="150"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_action'); ?>&nbsp;</th>
+      <th data-field="sent" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_sent'); ?></th>
+      <th data-field="status" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_status'); ?></th>
+      <th data-field="action" data-switchable="false" class="text-end"
+          data-width="150"><?php echo $CLICSHOPPING_Newsletter->getDef('table_heading_action'); ?>&nbsp;
+      </th>
     </tr>
     </thead>
     <tbody>
     <?php
-      $Qnewsletters = $CLICSHOPPING_Newsletter->db->prepare('select SQL_CALC_FOUND_ROWS newsletters_id,
+    $Qnewsletters = $CLICSHOPPING_Newsletter->db->prepare('select SQL_CALC_FOUND_ROWS newsletters_id,
                                                                                          title,
                                                                                          length(content) as content_length,
                                                                                          module,
@@ -121,41 +130,42 @@
                                                             limit :page_set_offset, :page_set_max_results
                                                             ');
 
-      $Qnewsletters->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-      $Qnewsletters->execute();
+    $Qnewsletters->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+    $Qnewsletters->execute();
 
-      $listingTotalRow = $Qnewsletters->getPageSetTotalRows();
+    $listingTotalRow = $Qnewsletters->getPageSetTotalRows();
 
-      if ($listingTotalRow > 0) {
-        while ($Qnewsletters->fetch()) {
-          if ($Qnewsletters->valueInt('languages_id') != 0) {
-            $QnewslettersLanguages = $CLICSHOPPING_Newsletter->db->prepare('select name
+    if ($listingTotalRow > 0) {
+      while ($Qnewsletters->fetch()) {
+        if ($Qnewsletters->valueInt('languages_id') != 0) {
+          $QnewslettersLanguages = $CLICSHOPPING_Newsletter->db->prepare('select name
                                                                              from :table_languages
                                                                              where languages_id = :language_id
                                                                             ');
-            $QnewslettersLanguages->bindInt(':language_id', $Qnewsletters->valueInt('languages_id'));
-            $QnewslettersLanguages->execute();
+          $QnewslettersLanguages->bindInt(':language_id', $Qnewsletters->valueInt('languages_id'));
+          $QnewslettersLanguages->execute();
 
-            $newsletters_language = $QnewslettersLanguages->fetch();
+          $newsletters_language = $QnewslettersLanguages->fetch();
 
-          } else {
-            $newsletters_language['name'] = $CLICSHOPPING_Newsletter->getDef('text_all_languages');
-          }
+        } else {
+          $newsletters_language['name'] = $CLICSHOPPING_Newsletter->getDef('text_all_languages');
+        }
 
-          if ((!isset($_GET['nID']) || (isset($_GET['nID']) && ((int)$_GET['nID'] === $Qnewsletters->valueInt('newsletters_id')))) && !isset($nInfo)) {
-            $nInfo = new ObjectInfo($Qnewsletters->toArray());
-          }
-          ?>
-         <tr>
-           <td></td>
-           <td><?php echo $Qnewsletters->valueInt('newsletters_id'); ?></td>
-           <td></td>
-          <td scope="row"><?php echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Preview&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . $Qnewsletters->value('title') . '</a>'; ?></td>
+        if ((!isset($_GET['nID']) || (isset($_GET['nID']) && ((int)$_GET['nID'] === $Qnewsletters->valueInt('newsletters_id')))) && !isset($nInfo)) {
+          $nInfo = new ObjectInfo($Qnewsletters->toArray());
+        }
+        ?>
+        <tr>
+          <td></td>
+          <td><?php echo $Qnewsletters->valueInt('newsletters_id'); ?></td>
+          <td></td>
+          <td
+            scope="row"><?php echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Preview&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . $Qnewsletters->value('title') . '</a>'; ?></td>
           <td class="text-center"><?php echo number_format($Qnewsletters->value('content_length')) . ' bytes'; ?></td>
           <td class="text-center"><?php echo $Qnewsletters->value('module'); ?></td>
           <td class="text-center"><?php echo $newsletters_language['name']; ?></td>
           <?php
-// Permettre l'affichage des groupes en mode B2B
+          // Permettre l'affichage des groupes en mode B2B
           if (MODE_B2B_B2C == 'True') {
             $QcustomersGroup = $CLICSHOPPING_Newsletter->db->prepare('select customers_group_name
                                                                       from :table_customers_groups
@@ -187,8 +197,8 @@
             } ?>
           </td>
           <td class="text-end">
-              <div class="btn-group" role="group" aria-label="buttonGroup">
-            <?php
+            <div class="btn-group" role="group" aria-label="buttonGroup">
+              <?php
               if ($Qnewsletters->valueInt('locked') > 0) {
                 echo '<a href="' . $CLICSHOPPING_Newsletter->link('Update&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Newsletter->getDef('icon_edit') . '"></i></h4></a>&nbsp;';
               }
@@ -206,29 +216,29 @@
                 echo '&nbsp;<a href="' . $CLICSHOPPING_Newsletter->link('Send&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id') . '&nlID=' . $Qnewsletters->valueInt('languages_id') . '&cgID=' . $Qnewsletters->valueInt('customers_group_id') . '&ac=' . $Qnewsletters->valueInt('newsletters_accept_file') . '&at=' . $Qnewsletters->valueInt('newsletters_twitter') . '&ana=' . $Qnewsletters->valueInt('newsletters_customer_no_account')) . '"><h4><i class="bi bi-send" title="' . $CLICSHOPPING_Newsletter->getDef('image_send') . '"></i></h4></a>';
               }
               echo '&nbsp;';
-            ?>
-              </div>
+              ?>
+            </div>
           </td>
         </tr>
-          <?php
-        }
-      } // end $listingTotalRow
+        <?php
+      }
+    } // end $listingTotalRow
     ?>
     </tbody>
   </table>
   </form><!-- end form delete all -->
   <?php
-    if ($listingTotalRow > 0) {
-      ?>
-      <div class="row">
-        <div class="col-md-12">
-          <div
-            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qnewsletters->getPageSetLabel($CLICSHOPPING_Newsletter->getDef('text_display_number_of_link')); ?></div>
-          <div
-            class="float-end text-end"><?php echo $Qnewsletters->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
-        </div>
+  if ($listingTotalRow > 0) {
+    ?>
+    <div class="row">
+      <div class="col-md-12">
+        <div
+          class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qnewsletters->getPageSetLabel($CLICSHOPPING_Newsletter->getDef('text_display_number_of_link')); ?></div>
+        <div
+          class="float-end text-end"><?php echo $Qnewsletters->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
       </div>
-      <?php
-    } // end $listingTotalRow
+    </div>
+    <?php
+  } // end $listingTotalRow
   ?>
 </div>

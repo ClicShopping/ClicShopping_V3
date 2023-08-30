@@ -8,27 +8,26 @@
  *
  */
 
-  namespace ClicShopping\Apps\Customers\Customers\Classes\ClicShoppingAdmin;
+namespace ClicShopping\Apps\Customers\Customers\Classes\ClicShoppingAdmin;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Registry;
 
-  class CustomersAdmin
+class CustomersAdmin
+{
+  private mixed $db;
+
+  public function __construct()
   {
-    private mixed $db;
+    $this->db = Registry::get('Db');
+  }
 
-    public function __construct()
-    {
-      $this->db = Registry::get('Db');
-    }
-
-    /**
-     * @param $id , customer id
-     * @return bool
-     */
-    public function getData(int $id): ?array
-    {
-      $Qcustomer = $this->db->prepare('select customers_gender,
+  /**
+   * @param $id , customer id
+   * @return bool
+   */
+  public function getData(int $id): ?array
+  {
+    $Qcustomer = $this->db->prepare('select customers_gender,
                                                customers_firstname,
                                                customers_lastname,
                                                customers_email_address,
@@ -37,39 +36,38 @@
                                         from :table_customers
                                         where customers_id = :customers_id
                                       ');
-      $Qcustomer->bindInt(':customers_id', $id);
-      $Qcustomer->execute();
+    $Qcustomer->bindInt(':customers_id', $id);
+    $Qcustomer->execute();
 
-      return $Qcustomer->fetchAll();
-    }
+    return $Qcustomer->fetchAll();
+  }
 
-    /**
-     * @param int $id
-     * @return string
-     */
-   protected function getCustomerEmail(int $id) :string
-   {
-     $result = $this->getData($id);
+  /**
+   * @param int $id
+   * @return string
+   */
+  protected function getCustomerEmail(int $id): string
+  {
+    $result = $this->getData($id);
 
-     return $result['customers_email_address'];
-   }
+    return $result['customers_email_address'];
+  }
 
-    /**
-     * @param string $email
-     * @return int
-     */
-   public function getCustomerIdByEmail(string $email) :int
-   {
-     $Qcustomer = $this->db->prepare('select customers_id
+  /**
+   * @param string $email
+   * @return int
+   */
+  public function getCustomerIdByEmail(string $email): int
+  {
+    $Qcustomer = $this->db->prepare('select customers_id
                                         from :table_customers
                                         where customer_email = :customer_email
                                       ');
-     $Qcustomer->bindInt(':customer_email', $email);
-     $Qcustomer->execute();
+    $Qcustomer->bindInt(':customer_email', $email);
+    $Qcustomer->execute();
 
-     return $Qcustomer->valueInt('customers_id');
-   }
-
-
-
+    return $Qcustomer->valueInt('customers_id');
   }
+
+
+}
