@@ -1,26 +1,26 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_ServiceAPP = Registry::get('ServiceAPP');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_ServiceAPP = Registry::get('ServiceAPP');
 
-  $directory = CLICSHOPPING::BASE_DIR . 'Service/Shop/';
-  $exclude = ['.', '..', '_htaccess', '.htaccess'];
-  $files = array_diff(scandir($directory), $exclude);
+$directory = CLICSHOPPING::BASE_DIR . 'Service/Shop/';
+$exclude = ['.', '..', '_htaccess', '.htaccess'];
+$files = array_diff(scandir($directory), $exclude);
 
-  $result['entries'] = [];
-  $result['file'] = [];
+$result['entries'] = [];
+$result['file'] = [];
 ?>
 <div class="contentBody">
   <div class="row">
@@ -50,30 +50,30 @@
         </thead>
         <tbody>
         <?php
-          foreach ($files as $sm) {
-            $result['file'][] = ['files_name' => $sm];
+        foreach ($files as $sm) {
+          $result['file'][] = ['files_name' => $sm];
+        }
+        sort($result['file']);
+
+        $i = 0;
+
+        foreach ($result['file'] as &$module) {
+
+          $class = substr($module['files_name'], 0, strrpos($module['files_name'], '.'));
+          $class1[] = $class;
+
+          if (class_exists($class)) {
+            $module = new $class;
           }
-          sort($result['file']);
 
-          $i = 0;
-
-          foreach ($result['file'] as &$module) {
-
-            $class = substr($module['files_name'], 0, strrpos($module['files_name'], '.'));
-            $class1[] = $class;
-
-            if (class_exists($class)) {
-              $module = new $class;
-            }
-
-            if (isset($module)) {
-              ?>
-              <td><?php echo $module['files_name']; ?></td>
-              <td><?php echo $class; ?></td>
-              </tr>
-              <?php
-            }
+          if (isset($module)) {
+            ?>
+            <td><?php echo $module['files_name']; ?></td>
+            <td><?php echo $class; ?></td>
+            </tr>
+            <?php
           }
+        }
         ?>
         </tbody>
       </table>

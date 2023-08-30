@@ -1,24 +1,24 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Cronjob = Registry::get('Cronjob');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  $CLICSHOPPING_Currencies = Registry::get('Currencies');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Template  = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Cronjob = Registry::get('Cronjob');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_Currencies = Registry::get('Currencies');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $languages = $CLICSHOPPING_Language->getLanguages();
+$languages = $CLICSHOPPING_Language->getLanguages();
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -31,19 +31,19 @@
           <span
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Cronjob->getDef('heading_title'); ?></span>
           <?php
-            $form_action = 'Insert';
+          $form_action = 'Insert';
 
-            if (isset($_GET['Update'])) {
-              $cron_id = HTML::sanitize($_GET['cronId']);
-              $form_action = 'Update&cronId=' . $cron_id;
-            }
+          if (isset($_GET['Update'])) {
+            $cron_id = HTML::sanitize($_GET['cronId']);
+            $form_action = 'Update&cronId=' . $cron_id;
+          }
           ?>
           <span class="col-md-9 text-end">
             <?php
-              echo HTML::form('cronjob', $CLICSHOPPING_Cronjob->link('Cronjob&' . $form_action));
+            echo HTML::form('cronjob', $CLICSHOPPING_Cronjob->link('Cronjob&' . $form_action));
 
-              if (isset($_GET['Update'])) {
-                $Qcron = $CLICSHOPPING_Cronjob->db->prepare('select code,
+            if (isset($_GET['Update'])) {
+              $Qcron = $CLICSHOPPING_Cronjob->db->prepare('select code,
                                                                     cycle,
                                                                     action,
                                                                     status
@@ -51,19 +51,19 @@
                                                              where cron_id = :cron_id
                                                             ');
 
-                $Qcron->bindValue('cron_id', $cron_id);
-                $Qcron->execute();
+              $Qcron->bindValue('cron_id', $cron_id);
+              $Qcron->execute();
 
-                $cron = $Qcron->ToArray();
-              }
+              $cron = $Qcron->ToArray();
+            }
 
-              echo HTML::button($CLICSHOPPING_Cronjob->getDef('button_cancel'), null, $CLICSHOPPING_Cronjob->link('Cronjob'), 'primary') . '&nbsp;';
+            echo HTML::button($CLICSHOPPING_Cronjob->getDef('button_cancel'), null, $CLICSHOPPING_Cronjob->link('Cronjob'), 'primary') . '&nbsp;';
 
-              if ($form_action == 'Insert') {
-                echo HTML::button($CLICSHOPPING_Cronjob->getDef('button_insert'), null, null, 'success');
-              } else {
-                echo  HTML::button($CLICSHOPPING_Cronjob->getDef('button_update'), null, null, 'success');
-              }
+            if ($form_action == 'Insert') {
+              echo HTML::button($CLICSHOPPING_Cronjob->getDef('button_insert'), null, null, 'success');
+            } else {
+              echo HTML::button($CLICSHOPPING_Cronjob->getDef('button_update'), null, null, 'success');
+            }
             ?>
           </span>
         </div>
@@ -125,7 +125,7 @@
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="separator"></div>
                 <div class="row">
                   <div class="col-md-5" id="status">
@@ -146,10 +146,10 @@
         <div class="separator"></div>
       </div>
       <?php
-        //***********************************
-        // extension
-        //***********************************
-        echo $CLICSHOPPING_Hooks->output('Cronjob', 'PageTab', null, 'display');
+      //***********************************
+      // extension
+      //***********************************
+      echo $CLICSHOPPING_Hooks->output('Cronjob', 'PageTab', null, 'display');
       ?>
     </div>
   </div>

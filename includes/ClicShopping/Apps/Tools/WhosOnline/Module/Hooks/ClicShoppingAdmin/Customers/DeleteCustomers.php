@@ -1,52 +1,52 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Tools\WhosOnline\Module\Hooks\ClicShoppingAdmin\Customers;
+namespace ClicShopping\Apps\Tools\WhosOnline\Module\Hooks\ClicShoppingAdmin\Customers;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Tools\WhosOnline\WhosOnline as WhosOnlineApp;
+use ClicShopping\Apps\Tools\WhosOnline\WhosOnline as WhosOnlineApp;
 
-  class DeleteCustomers implements \ClicShopping\OM\Modules\HooksInterface
+class DeleteCustomers implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('WhosOnline')) {
-        Registry::set('WhosOnline', new WhosOnlineApp());
-      }
-
-      $this->app = Registry::get('WhosOnline');
+    if (!Registry::exists('WhosOnline')) {
+      Registry::set('WhosOnline', new WhosOnlineApp());
     }
 
-    /**
-     * @param int $group_id
-     */
-    private function deleteCustomer(int $id) :void
-    {
-      $this->app->db->delete('whos_online', ['customer_id' => $id]);
-    }
+    $this->app = Registry::get('WhosOnline');
+  }
 
-    public function execute()
-    {
-      if (isset($_GET['DeleteAll'])) {
-        if (isset($_POST['selected'])) {
-          foreach ($_POST['selected'] as $id) {
-            $this->deleteCustomer($id);
-          }
-        } else {
-          $id = HTML::sanitize($_POST['id']);
+  /**
+   * @param int $group_id
+   */
+  private function deleteCustomer(int $id): void
+  {
+    $this->app->db->delete('whos_online', ['customer_id' => $id]);
+  }
+
+  public function execute()
+  {
+    if (isset($_GET['DeleteAll'])) {
+      if (isset($_POST['selected'])) {
+        foreach ($_POST['selected'] as $id) {
           $this->deleteCustomer($id);
         }
+      } else {
+        $id = HTML::sanitize($_POST['id']);
+        $this->deleteCustomer($id);
       }
     }
   }
+}

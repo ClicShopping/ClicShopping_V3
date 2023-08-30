@@ -55,7 +55,7 @@ class Marketplace
     }
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL,  $this->communityUrl . 'oauth/token/');
+    curl_setopt($ch, CURLOPT_URL, $this->communityUrl . 'oauth/token/');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
 
@@ -90,23 +90,23 @@ class Marketplace
    * @return string
    */
   public function getSessionToken()
-{
-  if (!isset($_SESSION['token'])) {
-    $_SESSION['token'] = $this->getToken();
-    $token = $_SESSION['token'];
-  } else {
-    $token = $_SESSION['token'];
-  }
+  {
+    if (!isset($_SESSION['token'])) {
+      $_SESSION['token'] = $this->getToken();
+      $token = $_SESSION['token'];
+    } else {
+      $token = $_SESSION['token'];
+    }
 
-  return $token;
-}
+    return $token;
+  }
 
   /**
    * @param string $communityUrl
    * @param string $endpoint
    * @return bool|mixed|string
    */
-  public function getResponse($communityUrl,  $endpoint)
+  public function getResponse($communityUrl, $endpoint)
   {
     $token = $this->getSessionToken();
 
@@ -126,7 +126,7 @@ class Marketplace
       if (isset($result['errorCode'])) {
         $_SESSION['error'] = $result['errorMessage'];
 
-        if($result['errorMessage'] == 'REVOKED_ACCESS_TOKEN') {
+        if ($result['errorMessage'] == 'REVOKED_ACCESS_TOKEN') {
           unset($_SESSION['token']);
         }
 
@@ -151,7 +151,7 @@ class Marketplace
     $result = $this->getResponse($this->communityUrl, $this->endpointCategories);
 
     if ($result === true) {
-      $this->messageStack->add($this->upgrade->getDef('text_error_api_connection') . ': ' .  $_SESSION['error'] , 'error');
+      $this->messageStack->add($this->upgrade->getDef('text_error_api_connection') . ': ' . $_SESSION['error'], 'error');
       unset($_SESSION['error']);
       return $this->upgrade->redirect('Marketplace');
     } else {
@@ -183,7 +183,7 @@ class Marketplace
                 'date_added' => 'now()',
               ];
 
-              $insert_sql_data= [
+              $insert_sql_data = [
                 'id' => $i++,
               ];
 
@@ -206,7 +206,7 @@ class Marketplace
    */
   public function getFiles(): bool
   {
-    $result = $this->getResponse($this->communityUrl , $this->endpointFiles);
+    $result = $this->getResponse($this->communityUrl, $this->endpointFiles);
 
     $check = $this->upgrade->db->get('marketplace_files', 'file_id');
 
@@ -231,7 +231,7 @@ class Marketplace
                 'date_added' => 'now()',
               ];
 
-              $insert_sql_data= [
+              $insert_sql_data = [
                 'id' => $i++,
               ];
 
@@ -258,7 +258,7 @@ class Marketplace
 
 //    /downloads/files/{id}/download
     if ($check->rowCount() == 0) {
-      $result = $this->getResponse($this->communityUrl , '/downloads/files?id=' . $id . '&download&perPage=300');
+      $result = $this->getResponse($this->communityUrl, '/downloads/files?id=' . $id . '&download&perPage=300');
 
       $i = 1;
 
@@ -301,7 +301,7 @@ class Marketplace
                 'file_url_download' => $url_download,
               ];
 
-              $insert_sql_data= [
+              $insert_sql_data = [
                 'id' => $i++,
               ];
 

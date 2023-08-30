@@ -1,25 +1,25 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Tools\ModulesHooks\Sites\ClicShoppingAdmin\Pages\Home\Actions;
+namespace ClicShopping\Apps\Tools\ModulesHooks\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  class ModulesHooks extends \ClicShopping\OM\PagesActionsAbstract
+class ModulesHooks extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
   {
-    public function execute()
-    {
-      $CLICSHOPPING_ModulesHooks = Registry::get('ModulesHooks');
+    $CLICSHOPPING_ModulesHooks = Registry::get('ModulesHooks');
 
-      $this->page->setFile('modules_hooks.php');
+    $this->page->setFile('modules_hooks.php');
 
-      $CLICSHOPPING_ModulesHooks->loadDefinitions('Sites/ClicShoppingAdmin/main');
-    }
+    $CLICSHOPPING_ModulesHooks->loadDefinitions('Sites/ClicShoppingAdmin/main');
   }
+}

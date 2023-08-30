@@ -1,26 +1,26 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\FileSystem;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\FileSystem;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Upgrade = Registry::get('Upgrade');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Upgrade = Registry::get('Upgrade');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  if ($CLICSHOPPING_MessageStack->exists('header')) {
-    echo $CLICSHOPPING_MessageStack->get('header');
-  }
+if ($CLICSHOPPING_MessageStack->exists('header')) {
+  echo $CLICSHOPPING_MessageStack->get('header');
+}
 ?>
 <div class="contentBody">
   <div class="row">
@@ -42,17 +42,17 @@
   <div stype="padding-top:5rem"><?php echo $CLICSHOPPING_Upgrade->getDef('text_step_upgrade'); ?></div>
   <div class="separator"></div>
   <?php
-    if (!FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/OnlineUpdates')) {
-      ?>
-      <div class="alert alert-danger" role="alert">
-        <p><?php echo $CLICSHOPPING_Upgrade->getDef('error_directory_not_writable'); ?></p>
-      </div>
-      <?php
-    } else {
-      ?>
-      <div class="separator"></div>
-      <?php
-    }
+  if (!FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/OnlineUpdates')) {
+    ?>
+    <div class="alert alert-danger" role="alert">
+      <p><?php echo $CLICSHOPPING_Upgrade->getDef('error_directory_not_writable'); ?></p>
+    </div>
+    <?php
+  } else {
+    ?>
+    <div class="separator"></div>
+    <?php
+  }
   ?>
 </div>
 

@@ -1,37 +1,37 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\FileSystem;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\FileSystem;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Backup = Registry::get('Backup');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Backup = Registry::get('Backup');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  $backup_directory = CLICSHOPPING::BASE_DIR . 'Work/Backups/';
-  // check if the backup directory exists
-  $dir_ok = false;
+$backup_directory = CLICSHOPPING::BASE_DIR . 'Work/Backups/';
+// check if the backup directory exists
+$dir_ok = false;
 
-  if (is_dir($backup_directory)) {
-    if (FileSystem::isWritable($backup_directory)) {
-      $dir_ok = true;
-    } else {
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Backup->getDef('error_backup_directory_not_writeable'), 'error');
-    }
+if (is_dir($backup_directory)) {
+  if (FileSystem::isWritable($backup_directory)) {
+    $dir_ok = true;
   } else {
-    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Backup->getDef('error_backup_directory_does_not_exist'), 'error');
+    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Backup->getDef('error_backup_directory_not_writeable'), 'error');
   }
+} else {
+  $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Backup->getDef('error_backup_directory_does_not_exist'), 'error');
+}
 
 ?>
 <div class="contentBody">
@@ -45,11 +45,11 @@
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Backup->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-end">
             <?php
-              echo HTML::button($CLICSHOPPING_Backup->getDef('button_backup'), null, $CLICSHOPPING_Backup->link('BackupDb'), 'info') . ' ';
+            echo HTML::button($CLICSHOPPING_Backup->getDef('button_backup'), null, $CLICSHOPPING_Backup->link('BackupDb'), 'info') . ' ';
 
-              if (MODE_DEMO == 'False') {
-                echo HTML::button($CLICSHOPPING_Backup->getDef('button_restore_file'), null, $CLICSHOPPING_Backup->link('RestoreLocal'), 'warning');
-              }
+            if (MODE_DEMO == 'False') {
+              echo HTML::button($CLICSHOPPING_Backup->getDef('button_restore_file'), null, $CLICSHOPPING_Backup->link('RestoreLocal'), 'warning');
+            }
             ?>
           </span>
         </div>
@@ -79,84 +79,84 @@
         <tbody>
         <?php
 
-          if ($dir_ok === true) {
+        if ($dir_ok === true) {
 
-          $dir = dir($backup_directory);
-          $contents = [];
+        $dir = dir($backup_directory);
+        $contents = [];
 
-          while ($file = $dir->read()) {
-            if (!is_dir($backup_directory . $file) && \in_array(substr($file, -3), array('zip', 'sql', '.gz'))) {
-              $contents[] = $file;
-            }
+        while ($file = $dir->read()) {
+          if (!is_dir($backup_directory . $file) && \in_array(substr($file, -3), array('zip', 'sql', '.gz'))) {
+            $contents[] = $file;
           }
+        }
 
-          sort($contents);
+        sort($contents);
 
-          for ($i = 0, $n = \count($contents); $i < $n; $i++) {
-            $entry = $contents[$i];
+        for ($i = 0, $n = \count($contents); $i < $n; $i++) {
+          $entry = $contents[$i];
 
-            if ((!isset($_GET['file']) || (isset($_GET['file']) && ($_GET['file'] == $entry)))) {
-              if (is_file($backup_directory . $file)) {
-                $info = [
-                  'file' => $file,
-                  'date' => date($CLICSHOPPING_Backup->getDef('php_date_time_format'), filemtime($backup_directory . $file)),
-                  'size' => number_format(filesize($backup_directory . $entry)) . ' file',
-                ];
+          if ((!isset($_GET['file']) || (isset($_GET['file']) && ($_GET['file'] == $entry)))) {
+            if (is_file($backup_directory . $file)) {
+              $info = [
+                'file' => $file,
+                'date' => date($CLICSHOPPING_Backup->getDef('php_date_time_format'), filemtime($backup_directory . $file)),
+                'size' => number_format(filesize($backup_directory . $entry)) . ' file',
+              ];
 
-                switch (substr(file, -3)) {
-                  case 'zip':
-                    $info['compression'] = 'ZIP';
-                    break;
-                  case '.gz':
-                    $info['compression'] = 'GZIP';
-                    break;
-                  default:
-                    $info['compression'] = $CLICSHOPPING_Backup->getDef('text_no_extension');
-                    break;
-                }
-
-                $buInfo = new ObjectInfo($info);
-
-                $compression = $buInfo->compression;
-              } else {
-                $compression = '';
+              switch (substr(file, -3)) {
+                case 'zip':
+                  $info['compression'] = 'ZIP';
+                  break;
+                case '.gz':
+                  $info['compression'] = 'GZIP';
+                  break;
+                default:
+                  $info['compression'] = $CLICSHOPPING_Backup->getDef('text_no_extension');
+                  break;
               }
-              ?>
-              <th scope="row"><?php echo $entry; ?></th>
-              <td class="text-center"><?php echo date("m/d/Y", filemtime($backup_directory . $entry)); ?></td>
-              <td class="text-end"><?php echo number_format(filesize($backup_directory . $entry)); ?>
-                bytes
-              </td>
-              <td class="text-center" onclick="document.location.href='<?php $compression; ?>'"></td>
-              <td class="text-end">
-                <div class="btn-group" role="group" aria-label="buttonGroup">
-                <?php
-                  echo '<a href="' . $CLICSHOPPING_Backup->link('Backup&Download&file=' . $entry) . '"><h4><i class="bi bi-cloud-arrow-down" title="' . $CLICSHOPPING_Backup->getDef('icon_file_download') . '"></i></h4></a>';
-                  echo '&nbsp;';
-                  echo '<a href="' . $CLICSHOPPING_Backup->link('Restore&file=' . $entry) . '"><h4><i class="bi bi-cloud-arrow-up" title="' . $CLICSHOPPING_Backup->getDef('icon_restore') . '"></i></h4></a>';
-                  echo '&nbsp;';
-                  echo '<a href="' . $CLICSHOPPING_Backup->link('Delete&file=' . $entry) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Backup->getDef('icon_delete') . '"></i></h4></a>';
-                  echo '&nbsp;';
-                ?>
-                </div>
-              </td>
-              </tr>
-              <?php
-            }
-          }
 
-          $dir->close();
+              $buInfo = new ObjectInfo($info);
+
+              $compression = $buInfo->compression;
+            } else {
+              $compression = '';
+            }
+            ?>
+            <th scope="row"><?php echo $entry; ?></th>
+            <td class="text-center"><?php echo date("m/d/Y", filemtime($backup_directory . $entry)); ?></td>
+            <td class="text-end"><?php echo number_format(filesize($backup_directory . $entry)); ?>
+              bytes
+            </td>
+            <td class="text-center" onclick="document.location.href='<?php $compression; ?>'"></td>
+            <td class="text-end">
+              <div class="btn-group" role="group" aria-label="buttonGroup">
+                <?php
+                echo '<a href="' . $CLICSHOPPING_Backup->link('Backup&Download&file=' . $entry) . '"><h4><i class="bi bi-cloud-arrow-down" title="' . $CLICSHOPPING_Backup->getDef('icon_file_download') . '"></i></h4></a>';
+                echo '&nbsp;';
+                echo '<a href="' . $CLICSHOPPING_Backup->link('Restore&file=' . $entry) . '"><h4><i class="bi bi-cloud-arrow-up" title="' . $CLICSHOPPING_Backup->getDef('icon_restore') . '"></i></h4></a>';
+                echo '&nbsp;';
+                echo '<a href="' . $CLICSHOPPING_Backup->link('Delete&file=' . $entry) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Backup->getDef('icon_delete') . '"></i></h4></a>';
+                echo '&nbsp;';
+                ?>
+              </div>
+            </td>
+            </tr>
+            <?php
+          }
+        }
+
+        $dir->close();
         ?>
         </tbody>
       </table>
     </td>
   </table>
   <?php
-    if (\defined('DB_LAST_RESTORE')) {
-      ?>
-      <div><?php echo $CLICSHOPPING_Backup->getDef('text_last_restoration') . ' ' . DB_LAST_RESTORE . ' <a href="' . $CLICSHOPPING_Backup->link('Backup&Forget') . '">' . $CLICSHOPPING_Backup->getDef('text_forget') . '</a>'; ?></div>
-      <?php
-    }
+  if (\defined('DB_LAST_RESTORE')) {
+    ?>
+    <div><?php echo $CLICSHOPPING_Backup->getDef('text_last_restoration') . ' ' . DB_LAST_RESTORE . ' <a href="' . $CLICSHOPPING_Backup->link('Backup&Forget') . '">' . $CLICSHOPPING_Backup->getDef('text_forget') . '</a>'; ?></div>
+    <?php
+  }
   }
   ?>
 </div>

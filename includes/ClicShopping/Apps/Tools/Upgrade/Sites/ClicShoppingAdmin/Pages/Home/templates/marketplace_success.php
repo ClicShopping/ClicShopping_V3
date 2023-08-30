@@ -1,64 +1,64 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\Github;
+use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\Github;
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Upgrade = Registry::get('Upgrade');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Upgrade = Registry::get('Upgrade');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  $CLICSHOPPING_Github = new Github();
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Github = new Github();
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  if ($CLICSHOPPING_MessageStack->exists('main')) {
-    echo $CLICSHOPPING_MessageStack->get('main');
-  }
+if ($CLICSHOPPING_MessageStack->exists('main')) {
+  echo $CLICSHOPPING_MessageStack->get('main');
+}
 ?>
-<div class="contentBody">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card card-block headerCard">
-        <div class="row col-md-12">
-          <div class="col-md-12">
-            <dic class="row">
+  <div class="contentBody">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-block headerCard">
+          <div class="row col-md-12">
+            <div class="col-md-12">
+              <dic class="row">
               <span
                 class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/apps.png', $CLICSHOPPING_Upgrade->getDef('heading_title'), '40', '40'); ?></span>
-              <span
-                class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('heading_title'); ?></span>
-              <span
-                class="col-md-6 text-end"><?php echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_marketplace'), null, $CLICSHOPPING_Upgrade->link('Marketplace'), 'primary');  ?>
+                <span
+                  class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('heading_title'); ?></span>
+                <span
+                  class="col-md-6 text-end"><?php echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_marketplace'), null, $CLICSHOPPING_Upgrade->link('Marketplace'), 'primary'); ?>
               </span>
             </div>
           </div>
         </div>
       </div>
-  </div>
-  <div class="separator"></div>
-  <div class="col-md-12">
-    <div class="row">
+    </div>
+    <div class="separator"></div>
+    <div class="col-md-12">
+      <div class="row">
         <span class="alert alert-info" role="alert">
           <?php echo $CLICSHOPPING_Upgrade->getDef('text_step_upgrade'); ?>
         </span>
-    </div>
-    <div class="separator"></div>
+      </div>
+      <div class="separator"></div>
 
-    <?php
-    $json_file_directory = CLICSHOPPING::BASE_DIR . 'Work/Temp/' . $_SESSION['app_json'];
+      <?php
+      $json_file_directory = CLICSHOPPING::BASE_DIR . 'Work/Temp/' . $_SESSION['app_json'];
 
-    if (is_file($json_file_directory)){
-    ?>
-      <div class="row">
+      if (is_file($json_file_directory)) {
+        ?>
+        <div class="row">
         <span class="col-md-6">
           <blockquote>
             <ul>
@@ -66,7 +66,7 @@
               $json_file = str_replace('.zip', '', $_SESSION['app_json']);
               $json_file = CLICSHOPPING::BASE_DIR . 'Work/Cache/Marketplace/' . $json_file . '.json';
 
-              if(is_file($json_file)) {
+              if (is_file($json_file)) {
                 $get_json_file = file_get_contents($json_file, true);
 
                 $result = json_decode($get_json_file);
@@ -114,19 +114,19 @@
             </ul>
           </blockquote>
         </span>
-      </div>
-      <?php
+        </div>
+        <?php
       }
       ?>
-  </div>
-  <div class="text-center">
-    <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'marketplace.png', $CLICSHOPPING_Upgrade->getDef('heading_title')); ?>
-  </div>
+    </div>
+    <div class="text-center">
+      <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'marketplace.png', $CLICSHOPPING_Upgrade->getDef('heading_title')); ?>
+    </div>
 
-</div>
+  </div>
 <?php
-  unset($_SESSION['module_apps_name']);
-  unset($_SESSION['module_directory']);
-  unset($_SESSION['app_json']);
+unset($_SESSION['module_apps_name']);
+unset($_SESSION['module_directory']);
+unset($_SESSION['app_json']);
 
 

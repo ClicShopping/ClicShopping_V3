@@ -1,27 +1,27 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\ObjectInfo;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin\AdministratorMenu;
-  use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+use ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin\AdministratorMenu;
 
-  $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-  if (isset($_GET['cID'])) {
-    $Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,
+if (isset($_GET['cID'])) {
+  $Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,
                                                                         a.link,
                                                                         a.parent_id,
                                                                         a.access,
@@ -38,31 +38,31 @@
                                                                   order by a.parent_id,
                                                                            a.sort_order
                                                                   ');
-    $Qcategories->bindInt(':id', (int)$_GET['cID']);
-    $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-    $Qcategories->execute();
+  $Qcategories->bindInt(':id', (int)$_GET['cID']);
+  $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+  $Qcategories->execute();
 
-    $cInfo = new ObjectInfo($Qcategories->toArray());
-  } else {
-    $cInfo = new ObjectInfo(array());
-  }
+  $cInfo = new ObjectInfo($Qcategories->toArray());
+} else {
+  $cInfo = new ObjectInfo(array());
+}
 
-  if (isset($_GET['cPath'])) {
-    $cPath = HTML::sanitize($_GET['cPath']);
-  } else {
-    $cPath = 0;
-  }
+if (isset($_GET['cPath'])) {
+  $cPath = HTML::sanitize($_GET['cPath']);
+} else {
+  $cPath = 0;
+}
 
-  if (isset($_GET['cID'])) {
-    $cID = HTML::sanitize($_GET['cID']);
-  } else {
-    $cID = 0;
-  }
+if (isset($_GET['cID'])) {
+  $cID = HTML::sanitize($_GET['cID']);
+} else {
+  $cID = 0;
+}
 
-  $languages = $CLICSHOPPING_Language->getLanguages();
-  $form_action = (isset($_GET['cID'])) ? 'Update' : 'Insert';
+$languages = $CLICSHOPPING_Language->getLanguages();
+$form_action = (isset($_GET['cID'])) ? 'Update' : 'Insert';
 
-  echo HTML::form('category', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $form_action . '&cPath=' . $cPath . '&cID=' . $cID), 'post');
+echo HTML::form('category', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $form_action . '&cPath=' . $cPath . '&cID=' . $cID), 'post');
 
 ?>
 <!-- body //-->
@@ -96,9 +96,9 @@
     <div class="tabsClicShopping">
       <div class="tab-content">
         <?php
-          // -------------------------------------------------------------------
-          //          ONGLET General sur la description de la categorie
-          // -------------------------------------------------------------------
+        // -------------------------------------------------------------------
+        //          ONGLET General sur la description de la categorie
+        // -------------------------------------------------------------------
         ?>
         <div class="tab-pane active" id="tab1">
           <div class="col-md-12 mainTitle">
@@ -106,21 +106,21 @@
           </div>
           <div class="adminformTitle">
             <?php
-              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                ?>
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="code"
-                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                      <div class="col-md-5">
-                        <?php echo HTML::inputField('label[' . $languages[$i]['id'] . ']', AdministratorMenu::getAdministratorMenuLabel($cInfo->id ?? null, $languages[$i]['id']), 'class="form-control" required aria-required="true" Authentificator id="label" placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_menu') . '"', true) . '&nbsp;'; ?>
-                      </div>
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              ?>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group row">
+                    <label for="code"
+                           class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                    <div class="col-md-5">
+                      <?php echo HTML::inputField('label[' . $languages[$i]['id'] . ']', AdministratorMenu::getAdministratorMenuLabel($cInfo->id ?? null, $languages[$i]['id']), 'class="form-control" required aria-required="true" Authentificator id="label" placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_menu') . '"', true) . '&nbsp;'; ?>
                     </div>
                   </div>
                 </div>
-                <?php
-              }
+              </div>
+              <?php
+            }
             ?>
             <div class="row">
               <div class="col-md-5">
@@ -183,21 +183,21 @@
             </div>
 
             <?php
-              if (isset($_GET['Edit'])) {
-                ?>
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?></label>
-                      <div class="col-md-5">
-                        <?php echo HTML::selectMenu('move_to_category_id', AdministratorMenu::getLabelTree(), $cPath) . HTML::hiddenField('current_category_id', $cPath); ?>
-                      </div>
+            if (isset($_GET['Edit'])) {
+              ?>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group row">
+                    <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?>"
+                           class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?></label>
+                    <div class="col-md-5">
+                      <?php echo HTML::selectMenu('move_to_category_id', AdministratorMenu::getLabelTree(), $cPath) . HTML::hiddenField('current_category_id', $cPath); ?>
                     </div>
                   </div>
                 </div>
-                <?php
-              }
+              </div>
+              <?php
+            }
             ?>
           </div>
         </div>

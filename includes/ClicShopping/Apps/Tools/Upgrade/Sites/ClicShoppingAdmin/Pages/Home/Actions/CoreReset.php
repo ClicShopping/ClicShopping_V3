@@ -8,32 +8,32 @@
  *
  */
 
-  namespace ClicShopping\Apps\Tools\Upgrade\Sites\ClicShoppingAdmin\Pages\Home\Actions;
+namespace ClicShopping\Apps\Tools\Upgrade\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\FileSystem;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\FileSystem;
+use ClicShopping\OM\Registry;
 
-  class CoreReset extends \ClicShopping\OM\PagesActionsAbstract
+class CoreReset extends \ClicShopping\OM\PagesActionsAbstract
+{
+  protected mixed $app;
+
+  public function execute()
   {
-    protected mixed $app;
+    $this->app = Registry::get('Upgrade');
 
-    public function execute()
-    {
-      $this->app = Registry::get('Upgrade');
+    $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/Temp')) {
+      $cache_file = CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/Temp/version.json';
 
-      if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/Temp')) {
-        $cache_file = CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/Temp/version.json';
+      unlink($cache_file);
 
-        unlink($cache_file);
-
-        $CLICSHOPPING_MessageStack->add($this->app->getDef('success_deleted_installed'), 'success', 'update');
-      } else {
-        $CLICSHOPPING_MessageStack->add($this->app->getDef('error_directory_not_writable'), 'danger', 'update');
-      }
-
-      $this->app->redirect('Upgrade');
+      $CLICSHOPPING_MessageStack->add($this->app->getDef('success_deleted_installed'), 'success', 'update');
+    } else {
+      $CLICSHOPPING_MessageStack->add($this->app->getDef('error_directory_not_writable'), 'danger', 'update');
     }
+
+    $this->app->redirect('Upgrade');
   }
+}

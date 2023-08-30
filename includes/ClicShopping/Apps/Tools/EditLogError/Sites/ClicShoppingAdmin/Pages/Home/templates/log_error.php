@@ -1,38 +1,38 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\DateTime;
-  use ClicShopping\OM\ErrorHandler;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\DateTime;
+use ClicShopping\OM\ErrorHandler;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_EditLogError = Registry::get('EditLogError');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_EditLogError = Registry::get('EditLogError');
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $files = [];
+$files = [];
 
-  foreach (glob(ErrorHandler::getDirectory() . 'errors-*.txt') as $f) {
-    $key = basename($f, '.txt');
+foreach (glob(ErrorHandler::getDirectory() . 'errors-*.txt') as $f) {
+  $key = basename($f, '.txt');
 
-    if (preg_match('/^errors-([0-9]{4})([0-9]{2})([0-9]{2})$/', $key, $matches)) {
-      $files[$key] = [
-        'path' => $f,
-        'key' => $key,
-        'date' => DateTime::toShort($matches[1] . '-' . $matches[2] . '-' . $matches[3]),
-        'size' => filesize($f)
-      ];
-    }
+  if (preg_match('/^errors-([0-9]{4})([0-9]{2})([0-9]{2})$/', $key, $matches)) {
+    $files[$key] = [
+      'path' => $f,
+      'key' => $key,
+      'date' => DateTime::toShort($matches[1] . '-' . $matches[2] . '-' . $matches[3]),
+      'size' => filesize($f)
+    ];
   }
+}
 ?>
 <div class="contentBody">
   <div class="row">
@@ -61,16 +61,16 @@
     </thead>
     <tbody>
     <?php
-      foreach ($files as $f) {
-        ?>
-        <tr>
-          <td><?php echo $f['date']; ?></td>
-          <td class="text-end"><?php echo $f['size']; ?></td>
-          <td
-            class="text-end"><?php echo HTML::link($CLICSHOPPING_EditLogError->link('Edit&View&log=' . $f['key']), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_EditLogError->getDef('icon_edit') . '"></i></h4>'); ?></td>
-        </tr>
-        <?php
-      }
+    foreach ($files as $f) {
+      ?>
+      <tr>
+        <td><?php echo $f['date']; ?></td>
+        <td class="text-end"><?php echo $f['size']; ?></td>
+        <td
+          class="text-end"><?php echo HTML::link($CLICSHOPPING_EditLogError->link('Edit&View&log=' . $f['key']), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_EditLogError->getDef('icon_edit') . '"></i></h4>'); ?></td>
+      </tr>
+      <?php
+    }
     ?>
     </tbody>
   </table>

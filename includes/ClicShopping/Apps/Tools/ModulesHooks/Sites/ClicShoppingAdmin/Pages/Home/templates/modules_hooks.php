@@ -1,48 +1,47 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Apps;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Apps;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_ModulesHooks = Registry::get('ModulesHooks');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_ModulesHooks = Registry::get('ModulesHooks');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $hooks = [];
+$hooks = [];
 
-  $directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/';
+$directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/';
 
-  if (is_dir($directory)) {
-    if ($dir = new \DirectoryIterator($directory)) {
-      foreach ($dir as $file) {
-        if (!$file->isDot() && $file->isDir()) {
-          $site = $file->getBasename();
+if (is_dir($directory)) {
+  if ($dir = new \DirectoryIterator($directory)) {
+    foreach ($dir as $file) {
+      if (!$file->isDot() && $file->isDir()) {
+        $site = $file->getBasename();
 
-          if ($sitedir = new \DirectoryIterator($directory . $site)) {
-            foreach ($sitedir as $groupfile) {
-              if (!$groupfile->isDot() && $groupfile->isDir()) {
-                $group = $groupfile->getBasename();
+        if ($sitedir = new \DirectoryIterator($directory . $site)) {
+          foreach ($sitedir as $groupfile) {
+            if (!$groupfile->isDot() && $groupfile->isDir()) {
+              $group = $groupfile->getBasename();
 
-                if ($groupdir = new \DirectoryIterator($directory . $site . '/' . $group)) {
-                  foreach ($groupdir as $hookfile) {
-                    if (!$hookfile->isDot() && !$hookfile->isDir() && ($hookfile->getExtension() == 'php')) {
-                      $hook = $hookfile->getBasename('.php');
-                      $class = 'ClicShopping\OM\Module\Hooks\\' . $site . '\\' . $group . '\\' . $hook;
-                      $h = new \ReflectionClass($class);
+              if ($groupdir = new \DirectoryIterator($directory . $site . '/' . $group)) {
+                foreach ($groupdir as $hookfile) {
+                  if (!$hookfile->isDot() && !$hookfile->isDir() && ($hookfile->getExtension() == 'php')) {
+                    $hook = $hookfile->getBasename('.php');
+                    $class = 'ClicShopping\OM\Module\Hooks\\' . $site . '\\' . $group . '\\' . $hook;
+                    $h = new \ReflectionClass($class);
 
-                      foreach ($h->getMethods(\ReflectionMethod::IS_STATIC | \ReflectionMethod::IS_PUBLIC) as $method) {
-                        if ($method->name != '__construct') {
-                          $hooks[$site . '/' . $group . '\\' . $hook][] = ['method' => $method->name];
-                        }
+                    foreach ($h->getMethods(\ReflectionMethod::IS_STATIC | \ReflectionMethod::IS_PUBLIC) as $method) {
+                      if ($method->name != '__construct') {
+                        $hooks[$site . '/' . $group . '\\' . $hook][] = ['method' => $method->name];
                       }
                     }
                   }
@@ -54,21 +53,22 @@
       }
     }
   }
+}
 
-  foreach (Apps::getModules('Hooks') as $k => $v) {
-    [$vendor, $app, $code] = explode('\\', $k, 3);
+foreach (Apps::getModules('Hooks') as $k => $v) {
+  [$vendor, $app, $code] = explode('\\', $k, 3);
 
-    $h = new \ReflectionClass($v);
+  $h = new \ReflectionClass($v);
 
-    foreach ($h->getMethods(\ReflectionMethod::IS_STATIC | \ReflectionMethod::IS_PUBLIC) as $method) {
-      if ($method->name != '__construct') {
-        $hooks[$code][] = [
-          'app' => $vendor . '\\' . $app,
-          'method' => $method->name
-        ];
-      }
+  foreach ($h->getMethods(\ReflectionMethod::IS_STATIC | \ReflectionMethod::IS_PUBLIC) as $method) {
+    if ($method->name != '__construct') {
+      $hooks[$code][] = [
+        'app' => $vendor . '\\' . $app,
+        'method' => $method->name
+      ];
     }
   }
+}
 ?>
 
 <style>
@@ -106,32 +106,32 @@
       <table class="table table-sm table-hover table-striped">
 
         <?php
-          foreach ($hooks as $code => $data) {
-            $counter = 0;
+        foreach ($hooks as $code => $data) {
+          $counter = 0;
 
-            foreach ($data as $v) {
-              $counter++;
+          foreach ($data as $v) {
+            $counter++;
 
-              [$site, $group] = explode('/', $code, 2);
-              ?>
+            [$site, $group] = explode('/', $code, 2);
+            ?>
 
-              <tr class="dataTableRow">
-
-                <?php
-                  if ($counter === 1) {
-                    ?>
-                    <td
-                      style="padding: 10px;" <?php if (\count($data) > 1) echo 'rowspan="' . \count($data) . '"'; ?>><?php echo '<span class="sitePill">' . $site . '</span> ' . $group; ?></td>
-                    <?php
-                  }
-                ?>
-                <td
-                  style="padding: 10px;"><?php echo (isset($v['app']) ? '<span class="appPill">' . $v['app'] . '</span> ' : '') . $v['method']; ?></td>
-              </tr>
+            <tr class="dataTableRow">
 
               <?php
-            }
+              if ($counter === 1) {
+                ?>
+                <td
+                  style="padding: 10px;" <?php if (\count($data) > 1) echo 'rowspan="' . \count($data) . '"'; ?>><?php echo '<span class="sitePill">' . $site . '</span> ' . $group; ?></td>
+                <?php
+              }
+              ?>
+              <td
+                style="padding: 10px;"><?php echo (isset($v['app']) ? '<span class="appPill">' . $v['app'] . '</span> ' : '') . $v['method']; ?></td>
+            </tr>
+
+            <?php
           }
+        }
         ?>
       </table>
     </td>

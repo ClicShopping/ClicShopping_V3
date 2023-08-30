@@ -1,25 +1,25 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Tools\WhosOnline\Sites\ClicShoppingAdmin\Pages\Home\Actions;
+namespace ClicShopping\Apps\Tools\WhosOnline\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  class WhosOnline extends \ClicShopping\OM\PagesActionsAbstract
+class WhosOnline extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
   {
-    public function execute()
-    {
-      $CLICSHOPPING_WhosOnline = Registry::get('WhosOnline');
+    $CLICSHOPPING_WhosOnline = Registry::get('WhosOnline');
 
-      $this->page->setFile('whos_online.php');
+    $this->page->setFile('whos_online.php');
 
-      $CLICSHOPPING_WhosOnline->loadDefinitions('Sites/ClicShoppingAdmin/main');
-    }
+    $CLICSHOPPING_WhosOnline->loadDefinitions('Sites/ClicShoppingAdmin/main');
   }
+}

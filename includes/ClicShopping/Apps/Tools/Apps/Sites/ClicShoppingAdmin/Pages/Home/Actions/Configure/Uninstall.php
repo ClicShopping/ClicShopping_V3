@@ -1,32 +1,32 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Tools\Apps\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
+namespace ClicShopping\Apps\Tools\Apps\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  class Uninstall extends \ClicShopping\OM\PagesActionsAbstract
+class Uninstall extends \ClicShopping\OM\PagesActionsAbstract
+{
+
+  public function execute()
   {
 
-    public function execute()
-    {
+    $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    $CLICSHOPPING_Apps = Registry::get('Apps');
 
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-      $CLICSHOPPING_Apps = Registry::get('Apps');
+    $current_module = $this->page->data['current_module'];
+    $m = Registry::get('AppsAdminConfig' . $current_module);
+    $m->uninstall();
 
-      $current_module = $this->page->data['current_module'];
-      $m = Registry::get('AppsAdminConfig' . $current_module);
-      $m->uninstall();
+    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Apps->getDef('alert_module_uninstall_success'), 'success');
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Apps->getDef('alert_module_uninstall_success'), 'success');
-
-      $CLICSHOPPING_Apps->redirect('Configure&module=' . $current_module);
-    }
+    $CLICSHOPPING_Apps->redirect('Configure&module=' . $current_module);
   }
+}

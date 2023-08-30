@@ -1,26 +1,26 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Tools\ActionsRecorder\Sites\ClicShoppingAdmin\Pages\Home\Actions;
+namespace ClicShopping\Apps\Tools\ActionsRecorder\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  class ActionsRecorder extends \ClicShopping\OM\PagesActionsAbstract
+class ActionsRecorder extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
   {
-    public function execute()
-    {
-      $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
+    $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
 
-      $this->page->setFile('actions_recorder.php');
-      $this->page->data['action'] = 'ActionsRecorder';
+    $this->page->setFile('actions_recorder.php');
+    $this->page->data['action'] = 'ActionsRecorder';
 
-      $CLICSHOPPING_ActionsRecorder->loadDefinitions('Sites/ClicShoppingAdmin/ActionsRecorder');
-    }
+    $CLICSHOPPING_ActionsRecorder->loadDefinitions('Sites/ClicShoppingAdmin/ActionsRecorder');
   }
+}

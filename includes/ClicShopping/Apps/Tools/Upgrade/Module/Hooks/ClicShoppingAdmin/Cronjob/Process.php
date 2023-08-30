@@ -1,52 +1,52 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Tools\Upgrade\Module\Hooks\ClicShoppingAdmin\Cronjob;
+
+use ClicShopping\OM\HTML;
+
+use ClicShopping\Apps\Tools\Cronjob\Classes\ClicShoppingAdmin\Cron;
+use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\Marketplace;
+
+class Process implements \ClicShopping\OM\Modules\HooksInterface
+{
+  public function __construct()
+  {
+  }
+
   /**
    *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
    */
-
-  namespace ClicShopping\Apps\Tools\Upgrade\Module\Hooks\ClicShoppingAdmin\Cronjob;
-
-  use ClicShopping\OM\HTML;
-
-  use ClicShopping\Apps\Tools\Cronjob\Classes\ClicShoppingAdmin\Cron;
-  use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\Marketplace;
-
-  class Process implements \ClicShopping\OM\Modules\HooksInterface
+  private static function cronJob(): void
   {
-    public function __construct()
-    {
-    }
+    $cron_id_marketplace = Cron::getCronCode('marketplace');
 
-    /**
-     *
-     */
-    private static function cronJob() :void
-    {
-      $cron_id_marketplace = Cron::getCronCode('marketplace');
+    if (isset($_GET['cronId'])) {
+      $cron_id = HTML::sanitize($_GET['cronId']);
 
-      if (isset($_GET['cronId'])) {
-        $cron_id = HTML::sanitize($_GET['cronId']);
+      Cron::updateCron($cron_id);
 
-        Cron::updateCron($cron_id);
+      if (isset($cron_id) && $cron_id_marketplace == $cron_id) {
+        Marketplace::Cronjob();
+      }
+    } else {
+      Cron::updateCron($cron_id_marketplace);
 
-        if (isset($cron_id) && $cron_id_marketplace == $cron_id) {
-          Marketplace::Cronjob();
-        }
-      } else {
-        Cron::updateCron($cron_id_marketplace);
-
-        if (isset($cron_id_marketplace)) {
-          Marketplace::Cronjob();
-        }
+      if (isset($cron_id_marketplace)) {
+        Marketplace::Cronjob();
       }
     }
-
-    public function execute()
-    {
-      static::cronJob();
-    }
   }
+
+  public function execute()
+  {
+    static::cronJob();
+  }
+}

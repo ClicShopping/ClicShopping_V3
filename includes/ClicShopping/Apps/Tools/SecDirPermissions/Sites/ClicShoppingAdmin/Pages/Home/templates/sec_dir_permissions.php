@@ -1,73 +1,73 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\FileSystem;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\FileSystem;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_SecDirPermissions = Registry::get('SecDirPermissions');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  
-  $CLICSHOPPING_Language->loadDefinitions('sec_dir_permissions');
+$CLICSHOPPING_SecDirPermissions = Registry::get('SecDirPermissions');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
 
-  function getOpenDir($path)
-  {
-    $path = rtrim($path, '/') . '/';
+$CLICSHOPPING_Language->loadDefinitions('sec_dir_permissions');
 
-    $exclude_array = ['.', '..', '.DS_Store', 'Thumbs.db', '.htaccess', '_htaccess'];
+function getOpenDir($path)
+{
+  $path = rtrim($path, '/') . '/';
 
-    $result = [];
+  $exclude_array = ['.', '..', '.DS_Store', 'Thumbs.db', '.htaccess', '_htaccess'];
 
-    if ($handle = opendir($path)) {
+  $result = [];
 
-      while (false !== ($filename = readdir($handle))) {
+  if ($handle = opendir($path)) {
 
-        if (!\in_array($filename, $exclude_array)) {
-          $file = ['name' => $path . $filename,
-            'is_dir' => is_dir($path . $filename),
-            'writable' => FileSystem::isWritable($path . $filename)
-          ];
+    while (false !== ($filename = readdir($handle))) {
 
-          $result[] = $file;
+      if (!\in_array($filename, $exclude_array)) {
+        $file = ['name' => $path . $filename,
+          'is_dir' => is_dir($path . $filename),
+          'writable' => FileSystem::isWritable($path . $filename)
+        ];
 
-          if ($file['is_dir'] === true) {
-            $result = array_merge($result, getOpenDir($path . $filename));
-          }
+        $result[] = $file;
+
+        if ($file['is_dir'] === true) {
+          $result = array_merge($result, getOpenDir($path . $filename));
         }
       }
-
-      closedir($handle);
     }
 
-    return $result;
+    closedir($handle);
   }
 
-  $whitelist_array = [];
+  return $result;
+}
 
-  $Qwhitelist = $CLICSHOPPING_SecDirPermissions->db->get('sec_directory_whitelist', 'directory');
+$whitelist_array = [];
 
-  while ($Qwhitelist->fetch()) {
-    $whitelist_array[] = $Qwhitelist->value('directory');
-  }
+$Qwhitelist = $CLICSHOPPING_SecDirPermissions->db->get('sec_directory_whitelist', 'directory');
 
-  $admin_dir = basename(CLICSHOPPING::getConfig('dir_root'));
+while ($Qwhitelist->fetch()) {
+  $whitelist_array[] = $Qwhitelist->value('directory');
+}
 
-  if ($admin_dir != 'ClicShoppingAdmin') {
-    for ($i = 0, $n = \count($whitelist_array); $i < $n; $i++) {
-      if (substr($whitelist_array[$i], 0, 6) == 'ClicShoppingAdmin/') {
-        $whitelist_array[$i] = $admin_dir . substr($whitelist_array[$i], 5);
-      }
+$admin_dir = basename(CLICSHOPPING::getConfig('dir_root'));
+
+if ($admin_dir != 'ClicShoppingAdmin') {
+  for ($i = 0, $n = \count($whitelist_array); $i < $n; $i++) {
+    if (substr($whitelist_array[$i], 0, 6) == 'ClicShoppingAdmin/') {
+      $whitelist_array[$i] = $admin_dir . substr($whitelist_array[$i], 5);
     }
   }
+}
 
 ?>
 <div class="contentBody">
@@ -99,20 +99,20 @@
         <thead>
         <tbody>
         <?php
-          foreach (getOpenDir(CLICSHOPPING::getConfig('dir_root', 'Shop')) as $file) {
-            if ($file['is_dir']) {
-              ?>
-              <tr>
-                <th
-                  scope="row"><?php echo substr($file['name'], \strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))); ?></th>
-                <td
-                  class="text-center"><?php echo $file['writable'] === true ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'; ?></td>
-                <td
-                  class="text-center"><?php echo(\in_array(substr($file['name'], \strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))), $whitelist_array) ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'); ?></td>
-              </tr>
-              <?php
-            }
+        foreach (getOpenDir(CLICSHOPPING::getConfig('dir_root', 'Shop')) as $file) {
+          if ($file['is_dir']) {
+            ?>
+            <tr>
+              <th
+                scope="row"><?php echo substr($file['name'], \strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))); ?></th>
+              <td
+                class="text-center"><?php echo $file['writable'] === true ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'; ?></td>
+              <td
+                class="text-center"><?php echo(\in_array(substr($file['name'], \strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))), $whitelist_array) ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'); ?></td>
+            </tr>
+            <?php
           }
+        }
         ?>
         </tbody>
       </table>

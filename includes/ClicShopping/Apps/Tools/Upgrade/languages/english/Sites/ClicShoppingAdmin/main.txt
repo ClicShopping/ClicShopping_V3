@@ -67,6 +67,7 @@ text_latest_version = Latest version
 text_latest_release_date = Latest release date
 text_changelog = Changelog
 text_uptodate = You are up to date.
+text_upgrade_site = All applications are available at theses address :<br />
 
 text_upgrade_new_version = The new version is :
 text_reload = re-test

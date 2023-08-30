@@ -1,101 +1,100 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Tools\AdministratorMenu\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
+namespace ClicShopping\Apps\Tools\AdministratorMenu\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Cache;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\Cache;
+class Install extends \ClicShopping\OM\PagesActionsAbstract
+{
 
-  class Install extends \ClicShopping\OM\PagesActionsAbstract
+  public function execute()
   {
 
-    public function execute()
-    {
+    $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
 
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-      $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
+    $current_module = $this->page->data['current_module'];
 
-      $current_module = $this->page->data['current_module'];
+    $CLICSHOPPING_AdministratorMenu->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
-      $CLICSHOPPING_AdministratorMenu->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    $m = Registry::get('AdministratorMenuAdminConfig' . $current_module);
+    $m->install();
 
-      $m = Registry::get('AdministratorMenuAdminConfig' . $current_module);
-      $m->install();
+    static::installDbMenuAdministration();
+    static::installProductsAdministratorMenuDb();
 
-      static::installDbMenuAdministration();
-      static::installProductsAdministratorMenuDb();
+    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_AdministratorMenu->getDef('alert_module_install_success'), 'success', 'AdministratorMenu');
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_AdministratorMenu->getDef('alert_module_install_success'), 'success', 'AdministratorMenu');
+    $CLICSHOPPING_AdministratorMenu->redirect('Configure&module=' . $current_module);
+  }
 
-      $CLICSHOPPING_AdministratorMenu->redirect('Configure&module=' . $current_module);
-    }
+  private static function installDbMenuAdministration(): void
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
+    $CLICSHOPPING_Language = Registry::get('Language');
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_administrator_menu']);
 
-    private static function installDbMenuAdministration() :void
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
-      $CLICSHOPPING_Language = Registry::get('Language');
-      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_administrator_menu']);
+    if ($Qcheck->fetch() === false) {
 
-      if ($Qcheck->fetch() === false) {
+      $sql_data_array = [
+        'sort_order' => 1,
+        'link' => 'index.php?A&Tools\AdministratorMenu&AdministratorMenu',
+        'image' => 'menu.gif',
+        'b2b_menu' => 0,
+        'access' => 1,
+        'app_code' => 'app_configuration_administrator_menu'
+      ];
 
-        $sql_data_array = [
-          'sort_order' => 1,
-          'link' => 'index.php?A&Tools\AdministratorMenu&AdministratorMenu',
-          'image' => 'menu.gif',
-          'b2b_menu' => 0,
-          'access' => 1,
-          'app_code' => 'app_configuration_administrator_menu'
+      $insert_sql_data = ['parent_id' => 170];
+
+      $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+      $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+
+      $id = $CLICSHOPPING_Db->lastInsertId();
+
+      $languages = $CLICSHOPPING_Language->getLanguages();
+
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+
+        $language_id = $languages[$i]['id'];
+
+        $sql_data_array = ['label' => $CLICSHOPPING_AdministratorMenu->getDef('title_menu')];
+
+        $insert_sql_data = [
+          'id' => (int)$id,
+          'language_id' => (int)$language_id
         ];
-
-        $insert_sql_data = ['parent_id' => 170];
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-        $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+        $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
 
-        $id = $CLICSHOPPING_Db->lastInsertId();
-
-        $languages = $CLICSHOPPING_Language->getLanguages();
-
-        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-
-          $language_id = $languages[$i]['id'];
-
-          $sql_data_array = ['label' => $CLICSHOPPING_AdministratorMenu->getDef('title_menu')];
-
-          $insert_sql_data = [
-            'id' => (int)$id,
-            'language_id' => (int)$language_id
-          ];
-
-          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-
-          $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-
-        }
-
-        Cache::clear('menu-administrator');
       }
+
+      Cache::clear('menu-administrator');
     }
+  }
 
 
-    private static function installProductsAdministratorMenuDb()
-    {
-      $CLICSHOPPING_Db = Registry::get('Db');
+  private static function installProductsAdministratorMenuDb()
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_administrator_menu"');
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_administrator_menu"');
 
-      if ($Qcheck->fetch() === false) {
-        $sql = <<<EOD
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
 CREATE TABLE :table_administrator_menu (
   administrator_menu_id int NOT NULL auto_increment,
   administrator_menu_variable varchar(250) NOT NULL,
@@ -105,13 +104,13 @@ CREATE TABLE :table_administrator_menu (
   KEY idx_administrator_menu_id (administrator_menu_id)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
-        $CLICSHOPPING_Db->exec($sql);
-      }
+      $CLICSHOPPING_Db->exec($sql);
+    }
 
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_administrator_menu_description"');
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_administrator_menu_description"');
 
-      if ($Qcheck->fetch() === false) {
-        $sql = <<<EOD
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
 CREATE TABLE :table_administrator_menu_description (
   administrator_menu_id int NOT NULL,
   language_id int NOT NULL,
@@ -122,7 +121,7 @@ CREATE TABLE :table_administrator_menu_description (
   KEY idx_administrator_menu_name (idx_administrator_menu_name)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
-        $CLICSHOPPING_Db->exec($sql);
-      }
+      $CLICSHOPPING_Db->exec($sql);
     }
   }
+}

@@ -1,26 +1,27 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
-  use ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin\AdministratorMenu;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
+use ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin\AdministratorMenu;
 
-  $cPath = HTML::sanitize($_GET['cPath']);
+$CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-  $Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,
+$cPath = HTML::sanitize($_GET['cPath']);
+
+$Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,
                                                                       a.link,
                                                                       a.parent_id,
                                                                       a.access,
@@ -36,14 +37,14 @@
                                                                 order by a.parent_id,
                                                                          a.sort_order
                                                                 ');
-  $Qcategories->bindInt(':id', $_GET['cID']);
-  $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-  $Qcategories->execute();
+$Qcategories->bindInt(':id', $_GET['cID']);
+$Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+$Qcategories->execute();
 
-  $category_childs = ['childs_count' => AdministratorMenu::getChildsInMenuCount($Qcategories->valueInt('id'))];
+$category_childs = ['childs_count' => AdministratorMenu::getChildsInMenuCount($Qcategories->valueInt('id'))];
 
-  $cInfo_array = array_merge($Qcategories->toArray(), $category_childs);
-  $cInfo = new ObjectInfo($cInfo_array);
+$cInfo_array = array_merge($Qcategories->toArray(), $category_childs);
+$cInfo = new ObjectInfo($cInfo_array);
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -74,15 +75,15 @@
         <span class="col-md-3"><?php echo $cInfo->label; ?></span>
       </div>
       <?php
-        if ($cInfo->childs_count > 0) {
-          ?>
-          <div class="separator"></div>
-          <div class="col-md-12">
+      if ($cInfo->childs_count > 0) {
+        ?>
+        <div class="separator"></div>
+        <div class="col-md-12">
             <span
               class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_delete_warning_childs', ['delete_child' => $cInfo->childs_count]); ?></span>
-          </div>
-          <?php
-        }
+        </div>
+        <?php
+      }
       ?>
       <div class="separator"></div>
       <div class="col-md-12 text-center">

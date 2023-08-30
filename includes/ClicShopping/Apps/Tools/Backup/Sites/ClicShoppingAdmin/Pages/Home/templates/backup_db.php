@@ -1,37 +1,37 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\FileSystem;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\FileSystem;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Backup = Registry::get('Backup');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Backup = Registry::get('Backup');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $backup_directory = CLICSHOPPING::BASE_DIR . 'Work/Backups/';
+$backup_directory = CLICSHOPPING::BASE_DIR . 'Work/Backups/';
 
-  $dir_ok = false;
+$dir_ok = false;
 
-  if (is_dir($backup_directory)) {
-    if (FileSystem::isWritable($backup_directory)) {
-      $dir_ok = true;
-    } else {
-      $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_backup_directory_not_writeable'), 'error');
-    }
+if (is_dir($backup_directory)) {
+  if (FileSystem::isWritable($backup_directory)) {
+    $dir_ok = true;
   } else {
-    $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_backup_directory_does_not_exist'), 'error');
+    $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_backup_directory_not_writeable'), 'error');
   }
+} else {
+  $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_backup_directory_does_not_exist'), 'error');
+}
 ?>
 <div class="contentBody">
   <div class="row">
@@ -59,9 +59,9 @@
       <div class="separator"></div>
       <div>
         <?php
-          if (is_file(LOCAL_EXE_GZIP)) {
-            $contents[] = ['text' => HTML::radioField('compress', 'gzip') . ' ' . $CLICSHOPPING_Backup->getDef('text_info_use_gzip')];
-          }
+        if (is_file(LOCAL_EXE_GZIP)) {
+          $contents[] = ['text' => HTML::radioField('compress', 'gzip') . ' ' . $CLICSHOPPING_Backup->getDef('text_info_use_gzip')];
+        }
         ?>
       </div>
       <div class="separator"></div>
@@ -87,39 +87,41 @@
           </li>
           <span class="text-slider"><?php echo $CLICSHOPPING_Backup->getDef('text_info_use_zip'); ?></span>
         </ul>
-       </div>
+      </div>
       <?php
-        if ($dir_ok === true) {
-          ?>
-          <div class="separator"></div>
-          <div class="col-md-12">
-            <ul class="list-group-slider list-group-flush">
-              <li class="list-group-item-slider">
-                <label class="switch">
-                  <?php echo HTML::checkboxField('download', 'yes', null, 'class="success"'); ?>
-                  <span class="slider"></span>
-                </label>
-              </li>
-              <span class="text-slider"><?php echo $CLICSHOPPING_Backup->getDef('text_info_download_only') . '<br />*' . $CLICSHOPPING_Backup->getDef('text_info_best_through_https'); ?></span>
-            </ul>
-           </div>
-          <?php
-        } else {
-          ?>
-          <div class="separator"></div>
-          <div class="col-md-12">
-            <ul class="list-group-slider list-group-flush">
-              <li class="list-group-item-slider">
-                <label class="switch">
-                  <?php echo HTML::checkboxField('download', 'yes', true, 'class="success"'); ?>
-                  <span class="slider"></span>
-                </label>
-              </li>
-              <span class="text-slider"><?php echo $CLICSHOPPING_Backup->getDef('text_info_download_only') . '<br />*' . $CLICSHOPPING_Backup->getDef('text_info_best_through_https'); ?></span>
-            </ul>
-          </div>
-          <?php
-        }
+      if ($dir_ok === true) {
+        ?>
+        <div class="separator"></div>
+        <div class="col-md-12">
+          <ul class="list-group-slider list-group-flush">
+            <li class="list-group-item-slider">
+              <label class="switch">
+                <?php echo HTML::checkboxField('download', 'yes', null, 'class="success"'); ?>
+                <span class="slider"></span>
+              </label>
+            </li>
+            <span
+              class="text-slider"><?php echo $CLICSHOPPING_Backup->getDef('text_info_download_only') . '<br />*' . $CLICSHOPPING_Backup->getDef('text_info_best_through_https'); ?></span>
+          </ul>
+        </div>
+        <?php
+      } else {
+        ?>
+        <div class="separator"></div>
+        <div class="col-md-12">
+          <ul class="list-group-slider list-group-flush">
+            <li class="list-group-item-slider">
+              <label class="switch">
+                <?php echo HTML::checkboxField('download', 'yes', true, 'class="success"'); ?>
+                <span class="slider"></span>
+              </label>
+            </li>
+            <span
+              class="text-slider"><?php echo $CLICSHOPPING_Backup->getDef('text_info_download_only') . '<br />*' . $CLICSHOPPING_Backup->getDef('text_info_best_through_https'); ?></span>
+          </ul>
+        </div>
+        <?php
+      }
       ?>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Backup->getDef('button_backup'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Backup->getDef('button_cancel'), null, $CLICSHOPPING_Backup->link('Backup'), 'warning', null, 'sm'); ?></span>

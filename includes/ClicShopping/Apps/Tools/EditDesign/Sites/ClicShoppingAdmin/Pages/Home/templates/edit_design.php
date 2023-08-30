@@ -1,18 +1,18 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_EditDesign = Registry::get('EditDesign');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_EditDesign = Registry::get('EditDesign');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 ?>
 <div class="contentBody">
   <div class="row">
@@ -35,11 +35,11 @@
         <div class="card text-center">
           <div class="card-header">
             <h3><?php echo $CLICSHOPPING_EditDesign->getDef('text_default_template', ['template' => SITE_THEMA]); ?></h3>
-              <?php
-               if (SITE_THEMA == 'Default') {
-                 echo '<h5><p class="text-danger">' . $CLICSHOPPING_EditDesign->getDef('text_warning_template') . '</p></h5>';
-               }
-              ?>
+            <?php
+            if (SITE_THEMA == 'Default') {
+              echo '<h5><p class="text-danger">' . $CLICSHOPPING_EditDesign->getDef('text_warning_template') . '</p></h5>';
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -107,15 +107,15 @@
     </div>
   </div>
 
-    <div class="separator"></div>
-    <div class="col-md-12">
-      <div class="row">
-        <div class="alert alert-info" role="alert">
-          <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_EditDesign->getDef('title_help_edit_html') . '"></i></h4> '  . $CLICSHOPPING_EditDesign->getDef('title_help_edit_html') ?></div>
-          <div class="separator"></div>
-          <div><?php echo $CLICSHOPPING_EditDesign->getDef('text_help_design'); ?></div>
-        </div>
+  <div class="separator"></div>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="alert alert-info" role="alert">
+        <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_EditDesign->getDef('title_help_edit_html') . '"></i></h4> ' . $CLICSHOPPING_EditDesign->getDef('title_help_edit_html') ?></div>
+        <div class="separator"></div>
+        <div><?php echo $CLICSHOPPING_EditDesign->getDef('text_help_design'); ?></div>
       </div>
     </div>
   </div>
+</div>
 </div>
