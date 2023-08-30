@@ -1,54 +1,53 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
-
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\ChatGptShop35;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\ChatGptShop35;
+class fo_chatbot_gpt
+{
+  public string $code;
+  public string $group;
+  public $title;
+  public $description;
+  public ?int $sort_order = 0;
+  public bool $enabled = false;
 
-  class fo_chatbot_gpt {
-    public string $code;
-    public string $group;
-    public $title;
-    public $description;
-    public ?int $sort_order = 0;
-    public bool $enabled = false;
 
+  public function __construct()
+  {
+    $this->code = get_class($this);
+    $this->group = basename(__DIR__);
 
-    public function __construct()
-    {
-      $this->code = get_class($this);
-      $this->group = basename(__DIR__);
+    $this->title = CLICSHOPPING::getDef('module_footer_chatbot_gpt_title');
+    $this->description = CLICSHOPPING::getDef('module_footer_chatbot_gpt_description');
 
-      $this->title = CLICSHOPPING::getDef('module_footer_chatbot_gpt_title');
-      $this->description = CLICSHOPPING::getDef('module_footer_chatbot_gpt_description');
+    if (\defined('MODULES_FOOTER_CHATBOT_GPT_STATUS')) {
+      $this->sort_order = MODULES_FOOTER_CHATBOT_GPT_SORT_ORDER;
+      $this->enabled = (MODULES_FOOTER_CHATBOT_GPT_STATUS == 'True');
+    }
 
-      if (\defined('MODULES_FOOTER_CHATBOT_GPT_STATUS')) {
-        $this->sort_order = MODULES_FOOTER_CHATBOT_GPT_SORT_ORDER;
-        $this->enabled = (MODULES_FOOTER_CHATBOT_GPT_STATUS == 'True');
-      }
-
-      if (\defined('MODULES_FOOTER_CHATBOT_GPT_MAX_TOKEN')) {
-        if (ChatGptShop35::checkMaxTokenPerDay(MODULES_FOOTER_CHATBOT_GPT_MAX_TOKEN) === false) {
-          $this->enabled = false;
-        }
-      }
-
-      if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
+    if (\defined('MODULES_FOOTER_CHATBOT_GPT_MAX_TOKEN')) {
+      if (ChatGptShop35::checkMaxTokenPerDay(MODULES_FOOTER_CHATBOT_GPT_MAX_TOKEN) === false) {
         $this->enabled = false;
       }
     }
 
+    if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
+      $this->enabled = false;
+    }
+  }
+
   public function execute()
-    {
+  {
     $CLICSHOPPING_Template = Registry::get('Template');
 
     $image = CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'sources/images/icons/chat_support.png';
@@ -56,7 +55,7 @@
     $url = ChatGptShop35::getAjaxUrl();
     $promt_text = CLICSHOPPING::getDef('module_footer_chatbot_gpt_prompt_text');
 
-    $footer_tag = '<!--  chatbot start -->'."\n";
+    $footer_tag = '<!--  chatbot start -->' . "\n";
     $footer_tag .= '<script defer>';
     $footer_tag .= '
     var isUserAtBottom = true;
@@ -154,7 +153,7 @@ function sendMessage() {
 ';
 
     $footer_tag .= '</script>';
-    $footer_tag .= '<!--  chatbot end -->'."\n";
+    $footer_tag .= '<!--  chatbot end -->' . "\n";
 
     $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
 
@@ -170,17 +169,17 @@ function sendMessage() {
   }
 
   public function isEnabled()
-    {
+  {
     return $this->enabled;
   }
 
   public function check()
-    {
+  {
     return \defined('MODULES_FOOTER_CHATBOT_GPT_STATUS');
   }
 
   public function install()
-    {
+  {
     $CLICSHOPPING_Db = Registry::get('Db');
 
 
@@ -258,18 +257,18 @@ function sendMessage() {
   }
 
   public function remove()
-    {
-      return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
+  {
+    return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
   public function keys()
-    {
+  {
     return array('MODULES_FOOTER_CHATBOT_GPT_STATUS',
-                 'MODULES_FOOTER_CHATBOT_GPT_TEMPERATURE',
-                 'MODULES_FOOTER_CHATBOT_GPT_TOKEN',
-                 'MODULES_FOOTER_CHATBOT_GPT_NAME',
-                 'MODULES_FOOTER_CHATBOT_GPT_MAX_TOKEN',
-                 'MODULES_FOOTER_CHATBOT_GPT_SORT_ORDER'
+      'MODULES_FOOTER_CHATBOT_GPT_TEMPERATURE',
+      'MODULES_FOOTER_CHATBOT_GPT_TOKEN',
+      'MODULES_FOOTER_CHATBOT_GPT_NAME',
+      'MODULES_FOOTER_CHATBOT_GPT_MAX_TOKEN',
+      'MODULES_FOOTER_CHATBOT_GPT_SORT_ORDER'
     );
   }
 }

@@ -4,10 +4,10 @@
   <div class="clearfix"></div>
   <div class="boxeProductTitleFavorites"><?php echo $products_name_image; ?></div>
   <div>
-   <?php echo $product_price; ?>
+    <?php echo $product_price; ?>
   </div>
   <div class="EndDateFlashDiscountBoxe">
-    <?php echo  $products_flash_discount; ?>
+    <?php echo $products_flash_discount; ?>
   </div>
   <div class="text-center">
     <label for="boxeProductsFavorites"><?php echo $button_small_view_details; ?></label>

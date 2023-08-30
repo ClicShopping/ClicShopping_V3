@@ -1,21 +1,23 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
 use ClicShopping\OM\CLICSHOPPING;
+
 ?>
 <section class="boxe_manufacturers" id="boxe_manufacturers">
   <div class="separator"></div>
   <div class="boxeBannerContentsManufacturer"><?php echo $manufacturer_banner; ?></div>
   <div class="card boxeContainerManufacturer">
     <div class="card-header boxeHeadingManufacturer">
-      <span class="card-title boxeTitleManufacturer"><?php echo CLICSHOPPING::getDef('module_boxes_manufacturers_title'); ?></span>
+      <span
+        class="card-title boxeTitleManufacturer"><?php echo CLICSHOPPING::getDef('module_boxes_manufacturers_title'); ?></span>
     </div>
     <div class="card-body boxeContentArroundManufacturer">
       <div class="separator"></div>

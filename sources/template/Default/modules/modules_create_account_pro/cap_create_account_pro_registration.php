@@ -1,43 +1,43 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+use ClicShopping\Sites\Shop\Pages\Account\Classes\CreateAccount;
 
-  use ClicShopping\Sites\Shop\Pages\Account\Classes\CreateAccount;
+class cap_create_account_pro_registration
+{
+  public string $code;
+  public string $group;
+  public $title;
+  public $description;
+  public ?int $sort_order = 0;
+  public bool $enabled = false;
 
-  class cap_create_account_pro_registration {
-    public string $code;
-    public string $group;
-    public $title;
-    public $description;
-    public ?int $sort_order = 0;
-    public bool $enabled = false;
+  public function __construct()
+  {
+    $this->code = get_class($this);
+    $this->group = basename(__DIR__);
 
-    public function __construct()
-    {
-      $this->code = get_class($this);
-      $this->group = basename(__DIR__);
+    $this->title = CLICSHOPPING::getDef('module_create_account_pro_registration_title');
+    $this->description = CLICSHOPPING::getDef('module_create_account_pro_registration_description');
 
-      $this->title = CLICSHOPPING::getDef('module_create_account_pro_registration_title');
-      $this->description = CLICSHOPPING::getDef('module_create_account_pro_registration_description');
-
-      if (\defined('MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS')) {
-        $this->sort_order = (int)MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_SORT_ORDER;
-        $this->enabled = (MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS == 'True');
-      }
+    if (\defined('MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS')) {
+      $this->sort_order = (int)MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_SORT_ORDER;
+      $this->enabled = (MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS == 'True');
     }
+  }
 
   public function execute()
-    {
+  {
     $CLICSHOPPING_Template = Registry::get('Template');
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -48,21 +48,21 @@
 
       $process = isset($_SESSION['process']);
 
-      if (isset( $_SESSION['entry_state_has_zones'])) {
+      if (isset($_SESSION['entry_state_has_zones'])) {
         $entry_state_has_zones = $_SESSION['entry_state_has_zones'];
       } else {
         $entry_state_has_zones = false;
       }
 
-      if (isset( $_SESSION['entry_state_has_zones'])) {
+      if (isset($_SESSION['entry_state_has_zones'])) {
         if (isset($_SESSION['country'])) {
           $country = HTML::sanitize($_SESSION['country']);
         } else {
-          $country =  0;
+          $country = 0;
         }
       }
 
-      if (isset($_POST['country']))  {
+      if (isset($_POST['country'])) {
         $default_country_pro = HTML::sanitize($_POST['country']);
       } else {
         $default_country_pro = CreateAccount::getCountryPro();
@@ -70,8 +70,8 @@
 
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";
 
-      $form = HTML::form('create_account_pro', CLICSHOPPING::link(null, 'Account&CreatePro&Process'), 'post', 'id="usrForm"',  ['tokenize' => true, 'action' => 'process']);
-      $endform ='</form>';
+      $form = HTML::form('create_account_pro', CLICSHOPPING::link(null, 'Account&CreatePro&Process'), 'post', 'id="usrForm"', ['tokenize' => true, 'action' => 'process']);
+      $endform = '</form>';
 
       $footer_tag = '<!-- password start  -->' . "\n";
       $footer_tag .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/generate_password.js')) . '"></script>' . "\n";
@@ -89,17 +89,17 @@
   }
 
   public function isEnabled()
-    {
+  {
     return $this->enabled;
   }
 
   public function check()
-    {
+  {
     return \defined('MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS');
   }
 
   public function install()
-    {
+  {
     $CLICSHOPPING_Db = Registry::get('Db');
 
     $CLICSHOPPING_Db->save('configuration', [
@@ -127,25 +127,25 @@
     );
 
     $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Sort order',
-          'configuration_key' => 'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_SORT_ORDER',
-          'configuration_value' => '150',
-          'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
-          'configuration_group_id' => '6',
-          'sort_order' => '4',
-          'set_function' => '',
-          'date_added' => 'now()'
-        ]
-      );
-    }
+        'configuration_title' => 'Sort order',
+        'configuration_key' => 'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_SORT_ORDER',
+        'configuration_value' => '150',
+        'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
+        'configuration_group_id' => '6',
+        'sort_order' => '4',
+        'set_function' => '',
+        'date_added' => 'now()'
+      ]
+    );
+  }
 
-    public function remove()
-    {
-      return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
-    }
+  public function remove()
+  {
+    return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
+  }
 
   public function keys()
-    {
+  {
     return array(
       'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS',
       'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_CONTENT_WIDTH',

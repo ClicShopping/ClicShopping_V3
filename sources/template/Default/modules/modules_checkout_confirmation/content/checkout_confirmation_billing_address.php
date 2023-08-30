@@ -1,33 +1,38 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
 use ClicShopping\OM\CLICSHOPPING;
+
 ?>
 <div class="col-md-<?php echo $content_width; ?> m1">
   <div class="separator"></div>
-  <div class="page-title moduleCheckoutConfirmationBillingAddressPageHeader"><h3><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_billing_heading_billing_information'); ?></h3></div>
+  <div class="page-title moduleCheckoutConfirmationBillingAddressPageHeader">
+    <h3><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_billing_heading_billing_information'); ?></h3>
+  </div>
 
   <span class="col-md-6 float-start" style="padding-right:0.5rem;">
     <div class="card moduleCheckoutConfirmationBillingAddressCard">
       <div class="card-header moduleCheckoutConfirmationBillingAddressHeader">
 <?php
 // Controle autorisation au client de modifier son adresse par defaut
-  if ($modify_address == 1) {
-?>
-          <div class="moduleCheckoutConfirmationBillingAddressDeliveryAddress"><strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_delivery_address'); ?></strong><?php echo $edit_payment_address; ?></div>
-<?php
-  } else {
-?>
-          <div class="moduleCheckoutConfirmationBillingAddressBillingTitle"><?php echo '<strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_billing_title') . '</strong>'; ?></div>
-<?php
-  }
+if ($modify_address == 1) {
+  ?>
+  <div
+    class="moduleCheckoutConfirmationBillingAddressDeliveryAddress"><strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_delivery_address'); ?></strong><?php echo $edit_payment_address; ?></div>
+  <?php
+} else {
+  ?>
+  <div
+    class="moduleCheckoutConfirmationBillingAddressBillingTitle"><?php echo '<strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_billing_title') . '</strong>'; ?></div>
+  <?php
+}
 ?>
       </div>
       <div class="card-block moduleCheckoutConfirmationBillingAddressCardBlock">

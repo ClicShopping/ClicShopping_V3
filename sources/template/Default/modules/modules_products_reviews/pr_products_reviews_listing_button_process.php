@@ -1,18 +1,19 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-use ClicShopping\OM\Registry;
-use ClicShopping\OM\HTML;
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-class pr_products_reviews_listing_button_process {
+class pr_products_reviews_listing_button_process
+{
   public string $code;
   public string $group;
   public $title;
@@ -21,7 +22,7 @@ class pr_products_reviews_listing_button_process {
   public bool $enabled = false;
 
   public function __construct()
-    {
+  {
     $this->code = get_class($this);
     $this->group = basename(__DIR__);
 
@@ -35,7 +36,7 @@ class pr_products_reviews_listing_button_process {
   }
 
   public function execute()
-    {
+  {
 
     $CLICSHOPPING_Template = Registry::get('Template');
 
@@ -66,17 +67,17 @@ class pr_products_reviews_listing_button_process {
   } // public function execute
 
   public function isEnabled()
-    {
+  {
     return $this->enabled;
   }
 
   public function check()
-    {
+  {
     return \defined('MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS');
   }
 
   public function install()
-    {
+  {
     $CLICSHOPPING_Db = Registry::get('Db');
 
     $CLICSHOPPING_Db->save('configuration', [
@@ -129,16 +130,16 @@ class pr_products_reviews_listing_button_process {
   }
 
   public function remove()
-    {
+  {
     return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
   public function keys()
-    {
+  {
     return array('MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS',
-                  'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_CONTENT_WIDTH',
-                  'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_POSITION',
-                  'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_SORT_ORDER'
+      'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_CONTENT_WIDTH',
+      'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_POSITION',
+      'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_SORT_ORDER'
     );
   }
 }

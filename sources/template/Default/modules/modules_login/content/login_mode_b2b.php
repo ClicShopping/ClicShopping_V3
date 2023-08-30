@@ -1,15 +1,16 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
+use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
+
 ?>
 <div class="col-md-<?php echo $content_width . ' ' . MODULE_LOGIN_MODE_B2B_POSITION; ?>">
   <div class="card">
@@ -24,7 +25,8 @@ use ClicShopping\OM\HTML;
           <div class="control-group">
             <div class="separator"></div>
             <div>
-              <div class="buttonSet text-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_retailers'), null, CLICSHOPPING::link(null, 'Account&CreatePro'), 'primary'); ?></div>
+              <div
+                class="buttonSet text-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_retailers'), null, CLICSHOPPING::link(null, 'Account&CreatePro'), 'primary'); ?></div>
             </div>
             <div class="separator"></div>
           </div>

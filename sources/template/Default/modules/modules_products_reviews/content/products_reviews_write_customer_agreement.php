@@ -1,6 +1,8 @@
 <?php
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
+
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+
 ?>
 <div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
