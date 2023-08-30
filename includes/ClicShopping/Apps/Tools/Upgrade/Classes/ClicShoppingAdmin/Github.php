@@ -141,7 +141,7 @@ class Github
   }
 
   /**
-   * @return void
+   * @return
    */
   private function checkDirectoryOnlineUpdate()
   {
