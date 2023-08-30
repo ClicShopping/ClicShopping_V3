@@ -1,33 +1,33 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Zones = Registry::get('Zones');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Zones = Registry::get('Zones');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qzones = $CLICSHOPPING_Zones->db->prepare('select *
+$Qzones = $CLICSHOPPING_Zones->db->prepare('select *
                                               from :table_zones z,
                                                    :table_countries c
                                               where z.zone_country_id = c.countries_id
                                               and zone_id = :zone_id
                                              ');
 
-  $Qzones->bindInt(':zone_id', $_GET['cID']);
-  $Qzones->execute();
+$Qzones->bindInt(':zone_id', $_GET['cID']);
+$Qzones->execute();
 
-  $cInfo = new ObjectInfo($Qzones->toArray());
+$cInfo = new ObjectInfo($Qzones->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -41,9 +41,9 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Zones->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
 <?php
-  echo HTML::form('status_zones', $CLICSHOPPING_Zones->link('Zones&Update&page=' . $page . '&cID=' . $cInfo->zone_id));
-  echo HTML::button($CLICSHOPPING_Zones->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_Zones->getDef('button_cancel'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning');
+echo HTML::form('status_zones', $CLICSHOPPING_Zones->link('Zones&Update&page=' . $page . '&cID=' . $cInfo->zone_id));
+echo HTML::button($CLICSHOPPING_Zones->getDef('button_update'), null, null, 'success') . ' ';
+echo HTML::button($CLICSHOPPING_Zones->getDef('button_cancel'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning');
 ?>
           </span>
         </div>

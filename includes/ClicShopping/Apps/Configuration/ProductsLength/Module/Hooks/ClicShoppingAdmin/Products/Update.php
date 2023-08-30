@@ -1,51 +1,51 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Configuration\ProductsLength\Module\Hooks\ClicShoppingAdmin\Products;
+namespace ClicShopping\Apps\Configuration\ProductsLength\Module\Hooks\ClicShoppingAdmin\Products;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\ProductsLength\ProductsLength as ProductsLengthApp;
+use ClicShopping\Apps\Configuration\ProductsLength\ProductsLength as ProductsLengthApp;
 
-  class Update implements \ClicShopping\OM\Modules\HooksInterface
+class Update implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('ProductsLength')) {
-        Registry::set('ProductsLength', new ProductsLengthApp());
-      }
-
-      $this->app = Registry::get('ProductsLength');
+    if (!Registry::exists('ProductsLength')) {
+      Registry::set('ProductsLength', new ProductsLengthApp());
     }
 
-    public function execute()
-    {
-      if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {
-        return false;
-      }
+    $this->app = Registry::get('ProductsLength');
+  }
 
-      if (isset($_GET['Update'], $_GET['pID'])) {
-        $id = HTML::sanitize($_GET['pID']);
+  public function execute()
+  {
+    if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {
+      return false;
+    }
 
-        $sql_data_array = [
-          'products_length_class_id' => (int)HTML::sanitize($_POST['products_length_class_id']),
-          'products_dimension_width' => (float)HTML::sanitize($_POST['products_dimension_width']),
-          'products_dimension_height' => (float)HTML::sanitize($_POST['products_dimension_height']),
-          'products_dimension_depth' => (float)HTML::sanitize($_POST['products_dimension_height']),
-          'products_volume' => HTML::sanitize($_POST['products_volume'])
-        ];
+    if (isset($_GET['Update'], $_GET['pID'])) {
+      $id = HTML::sanitize($_GET['pID']);
 
-        $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
-      }
+      $sql_data_array = [
+        'products_length_class_id' => (int)HTML::sanitize($_POST['products_length_class_id']),
+        'products_dimension_width' => (float)HTML::sanitize($_POST['products_dimension_width']),
+        'products_dimension_height' => (float)HTML::sanitize($_POST['products_dimension_height']),
+        'products_dimension_depth' => (float)HTML::sanitize($_POST['products_dimension_height']),
+        'products_volume' => HTML::sanitize($_POST['products_volume'])
+      ];
+
+      $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
     }
   }
+}

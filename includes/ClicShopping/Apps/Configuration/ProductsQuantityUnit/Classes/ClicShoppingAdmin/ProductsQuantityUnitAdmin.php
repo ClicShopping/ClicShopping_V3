@@ -1,64 +1,64 @@
 <?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Configuration\ProductsQuantityUnit\Classes\ClicShoppingAdmin;
+
+use ClicShopping\OM\Registry;
+
+class ProductsQuantityUnitAdmin
+{
+  protected mixed $app;
+
+  public function __construct()
+  {
+    $this->app = Registry::get('ProductsQuantityUnit');
+  }
+
   /**
+   * productsQuantityUnitDropDown
    *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
+   * @param string
+   * @return string $products_quantity_unit_array, elements of product quantity unit
    *
    */
 
-  namespace ClicShopping\Apps\Configuration\ProductsQuantityUnit\Classes\ClicShoppingAdmin;
-
-  use ClicShopping\OM\Registry;
-
-  class ProductsQuantityUnitAdmin
+  public function productsQuantityUnitDropDown(): array
   {
-    protected mixed $app;
+    $CLICSHOPPING_Language = Registry::get('Language');
 
-    public function __construct()
-    {
-      $this->app = Registry::get('ProductsQuantityUnit');
-    }
+    $products_quantity_unit_array = array(array('id' => '',
+      'text' => $this->app->getDef('text_none'))
+    );
 
-    /**
-     * productsQuantityUnitDropDown
-     *
-     * @param string
-     * @return string $products_quantity_unit_array, elements of product quantity unit
-     *
-     */
-
-    public function productsQuantityUnitDropDown(): array
-    {
-      $CLICSHOPPING_Language = Registry::get('Language');
-
-      $products_quantity_unit_array = array(array('id' => '',
-        'text' => $this->app->getDef('text_none'))
-      );
-
-      $QproductsQuantityUnit = $this->app->db->prepare('select products_quantity_unit_id,
+    $QproductsQuantityUnit = $this->app->db->prepare('select products_quantity_unit_id,
                                                                products_quantity_unit_title
                                                        from :table_products_quantity_unit
                                                        where language_id = :language_id
                                                        order by products_quantity_unit_id
                                                       ');
-      $QproductsQuantityUnit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $QproductsQuantityUnit->execute();
+    $QproductsQuantityUnit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    $QproductsQuantityUnit->execute();
 
-      while ($QproductsQuantityUnit->fetch() !== false) {
-        $products_quantity_unit_array[] = ['id' => $QproductsQuantityUnit->valueInt('products_quantity_unit_id'),
-          'text' => $QproductsQuantityUnit->value('products_quantity_unit_title')
-        ];
-      }
-
-      return $products_quantity_unit_array;
+    while ($QproductsQuantityUnit->fetch() !== false) {
+      $products_quantity_unit_array[] = ['id' => $QproductsQuantityUnit->valueInt('products_quantity_unit_id'),
+        'text' => $QproductsQuantityUnit->value('products_quantity_unit_title')
+      ];
     }
 
-    public function getProductsQuantityUnitTitle(): string
-    {
-      $CLICSHOPPING_Language = Registry::get('Language');
-      $QproductQtyUnit = $this->app->db->prepare('select p.products_quantity_unit_id,
+    return $products_quantity_unit_array;
+  }
+
+  public function getProductsQuantityUnitTitle(): string
+  {
+    $CLICSHOPPING_Language = Registry::get('Language');
+    $QproductQtyUnit = $this->app->db->prepare('select p.products_quantity_unit_id,
                                                         pqt.products_quantity_unit_title
                                                  from :table_products p,
                                                       :table_products_quantity_unit pqt
@@ -66,10 +66,10 @@
                                                  and pqt.language_id = :language_id
                                                  and pqt.products_quantity_unit_id = p.products_quantity_unit_id
                                                 ');
-      $QproductQtyUnit->bindInt(':products_id', $_GET['pID']);
-      $QproductQtyUnit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $QproductQtyUnit->execute();
+    $QproductQtyUnit->bindInt(':products_id', $_GET['pID']);
+    $QproductQtyUnit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    $QproductQtyUnit->execute();
 
-      return $QproductQtyUnit->value('products_quantity_unit_title');
-    }
+    return $QproductQtyUnit->value('products_quantity_unit_title');
   }
+}

@@ -1,22 +1,20 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\AddressAdmin;
+$CLICSHOPPING_TaxClass = Registry::get('TaxClass');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $CLICSHOPPING_TaxClass = Registry::get('TaxClass');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -30,9 +28,9 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxClass->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
 <?php
-  echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_cancel'), null, $CLICSHOPPING_TaxClass->link('TaxClass'), 'warning') . ' ';
-  echo HTML::form('status_tax_class', $CLICSHOPPING_TaxClass->link('TaxClass&Insert&page=' . $page));
-  echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_insert'), null, null, 'success')
+echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_cancel'), null, $CLICSHOPPING_TaxClass->link('TaxClass'), 'warning') . ' ';
+echo HTML::form('status_tax_class', $CLICSHOPPING_TaxClass->link('TaxClass&Insert&page=' . $page));
+echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_insert'), null, null, 'success')
 ?>
           </span>
         </div>

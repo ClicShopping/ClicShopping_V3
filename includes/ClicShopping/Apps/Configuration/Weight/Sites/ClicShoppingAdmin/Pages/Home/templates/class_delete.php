@@ -1,34 +1,34 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Weight = Registry::get('Weight');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Weight = Registry::get('Weight');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qweight = $CLICSHOPPING_Weight->db->prepare('select weight_class_from_id,
+$Qweight = $CLICSHOPPING_Weight->db->prepare('select weight_class_from_id,
                                                        weight_class_to_id,
                                                        weight_class_rule
                                                from :table_weight_classes_rules
                                                where weight_class_from_id = :weight_class_from_id
                                                and weight_class_to_id = :weight_class_to_id
                                               ');
-  $Qweight->bindInt(':weight_class_from_id', HTML::sanitize($_GET['wID']));
-  $Qweight->bindInt(':weight_class_to_id', HTML::sanitize($_GET['tID']));
-  $Qweight->execute();
+$Qweight->bindInt(':weight_class_from_id', HTML::sanitize($_GET['wID']));
+$Qweight->bindInt(':weight_class_to_id', HTML::sanitize($_GET['tID']));
+$Qweight->execute();
 
-  $wInfo = new ObjectInfo($Qweight->toArray());
+$wInfo = new ObjectInfo($Qweight->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">

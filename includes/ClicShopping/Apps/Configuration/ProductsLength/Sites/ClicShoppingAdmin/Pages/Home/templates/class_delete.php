@@ -1,34 +1,34 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qproducts_length = $CLICSHOPPING_ProductsLength->db->prepare('select products_length_class_from_id,
+$Qproducts_length = $CLICSHOPPING_ProductsLength->db->prepare('select products_length_class_from_id,
                                                                         products_length_class_to_id,
                                                                         products_length_class_rule
                                                                 from :table_products_length_classes_rules
                                                                 where products_length_class_from_id = :products_length_class_from_id
                                                                 and products_length_class_to_id = :products_length_class_to_id
                                                                 ');
-  $Qproducts_length->bindInt(':products_length_class_from_id', HTML::sanitize($_GET['wID']));
-  $Qproducts_length->bindInt(':products_length_class_to_id', HTML::sanitize($_GET['tID']));
-  $Qproducts_length->execute();
+$Qproducts_length->bindInt(':products_length_class_from_id', HTML::sanitize($_GET['wID']));
+$Qproducts_length->bindInt(':products_length_class_to_id', HTML::sanitize($_GET['tID']));
+$Qproducts_length->execute();
 
-  $wInfo = new ObjectInfo($Qproducts_length->toArray());
+$wInfo = new ObjectInfo($Qproducts_length->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">

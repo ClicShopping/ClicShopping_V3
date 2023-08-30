@@ -1,24 +1,24 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\ProductsLength\Classes\ClicShoppingAdmin\ProductsLengthAdmin;
+use ClicShopping\Apps\Configuration\ProductsLength\Classes\ClicShoppingAdmin\ProductsLengthAdmin;
 
-  $CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  $Qproducts_length = $CLICSHOPPING_ProductsLength->db->prepare('select wc.products_length_class_id,
+$Qproducts_length = $CLICSHOPPING_ProductsLength->db->prepare('select wc.products_length_class_id,
                                                                            wc.products_length_class_key,
                                                                            wc.language_id,
                                                                            wc.products_length_class_title,
@@ -30,17 +30,17 @@
                                                                   where wc.products_length_class_id = :products_length_class_id
                                                                   and tc.products_length_class_to_id = :products_length_class_to_id
                                                                   ');
-  $Qproducts_length->bindInt(':products_length_class_id', $_GET['wID']);
-  $Qproducts_length->bindInt(':products_length_class_to_id', $_GET['tID']);
-  $Qproducts_length->execute();
+$Qproducts_length->bindInt(':products_length_class_id', $_GET['wID']);
+$Qproducts_length->bindInt(':products_length_class_to_id', $_GET['tID']);
+$Qproducts_length->execute();
 
-  $wInfo = new ObjectInfo($Qproducts_length->toArray());
+$wInfo = new ObjectInfo($Qproducts_length->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  if ($CLICSHOPPING_MessageStack->exists('class_edit')) {
-    echo $CLICSHOPPING_MessageStack->get('class_edit');
-  }
+if ($CLICSHOPPING_MessageStack->exists('class_edit')) {
+  echo $CLICSHOPPING_MessageStack->get('class_edit');
+}
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -54,9 +54,9 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsLength->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
 <?php
-  echo HTML::form('form_product_length', $CLICSHOPPING_ProductsLength->link('ProductsLength&ClassUpdate&page=' . $page . '&wID=' . $_GET['wID'] . '&tID=' . $_GET['tID']));
-  echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_cancel'), null, $CLICSHOPPING_ProductsLength->link('ProductsLength'), 'warning');
+echo HTML::form('form_product_length', $CLICSHOPPING_ProductsLength->link('ProductsLength&ClassUpdate&page=' . $page . '&wID=' . $_GET['wID'] . '&tID=' . $_GET['tID']));
+echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_update'), null, null, 'success') . ' ';
+echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_cancel'), null, $CLICSHOPPING_ProductsLength->link('ProductsLength'), 'warning');
 ?>
           </span>
         </div>

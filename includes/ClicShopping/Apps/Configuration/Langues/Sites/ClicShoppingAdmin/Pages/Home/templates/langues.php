@@ -96,7 +96,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
           echo '                <th scope="row">' . $Qlanguages->value('name') . '</th>' . "\n";
         }
         ?>
-        <th scope="row"><?php echo $Qlanguages->value('code'); ?></td>
+        <th scope="row"><?php echo $Qlanguages->value('code'); ?></th>
         <td class="text-center">
           <?php
           //pb when the english when the status is off

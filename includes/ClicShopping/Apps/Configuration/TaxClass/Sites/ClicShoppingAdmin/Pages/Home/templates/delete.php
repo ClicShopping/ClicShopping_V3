@@ -1,30 +1,30 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_TaxClass = Registry::get('TaxClass');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_TaxClass = Registry::get('TaxClass');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qclasse = $CLICSHOPPING_TaxClass->db->prepare('select *
+$Qclasse = $CLICSHOPPING_TaxClass->db->prepare('select *
                                                  from :table_tax_class
                                                  where tax_class_id = :tax_class_id
                                                 ');
-  $Qclasse->bindInt(':tax_class_id', $_GET['tID']);
-  $Qclasse->execute();
+$Qclasse->bindInt(':tax_class_id', $_GET['tID']);
+$Qclasse->execute();
 
-  $tcInfo = new ObjectInfo($Qclasse->toArray());
+$tcInfo = new ObjectInfo($Qclasse->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">

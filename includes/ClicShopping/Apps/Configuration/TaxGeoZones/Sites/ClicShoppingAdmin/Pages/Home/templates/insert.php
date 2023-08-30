@@ -1,21 +1,21 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
-  $spage = (isset($_GET['spage']) && is_numeric($_GET['spage'])) ? $_GET['spage'] : 1;
+$page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
+$spage = (isset($_GET['spage']) && is_numeric($_GET['spage'])) ? $_GET['spage'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -30,9 +30,9 @@
           <span class="col-md-7 text-end">
 <?php
 
-  echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&InsertZone&zpage=' . $page));
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, null, 'primary') . ' ';
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&zpage=' . $page . '&action=list&spage=' . $spage . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] : '')), 'warning');
+echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&InsertZone&zpage=' . $page));
+echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, null, 'primary') . ' ';
+echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&zpage=' . $page . '&action=list&spage=' . $spage . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] : '')), 'warning');
 ?>
 
           </span>

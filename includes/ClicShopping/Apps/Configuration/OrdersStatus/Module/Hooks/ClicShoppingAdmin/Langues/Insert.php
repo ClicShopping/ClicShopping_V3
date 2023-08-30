@@ -1,58 +1,58 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Configuration\OrdersStatus\Module\Hooks\ClicShoppingAdmin\Langues;
+namespace ClicShopping\Apps\Configuration\OrdersStatus\Module\Hooks\ClicShoppingAdmin\Langues;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Configuration\OrdersStatus\OrdersStatus as OrdersStatusApp;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\OrdersStatus\OrdersStatus as OrdersStatusApp;
-  use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
+use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
 
-  class Insert implements \ClicShopping\OM\Modules\HooksInterface
+class Insert implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+  protected mixed $lang;
+
+  public function __construct()
   {
-    protected mixed $app;
-    protected mixed $lang;
-
-    public function __construct()
-    {
-      if (!Registry::exists('OrdersStatus')) {
-        Registry::set('OrdersStatus', new OrdersStatusApp());
-      }
-
-      $this->app = Registry::get('OrdersStatus');
-      $this->lang = Registry::get('Language');
+    if (!Registry::exists('OrdersStatus')) {
+      Registry::set('OrdersStatus', new OrdersStatusApp());
     }
 
-    private function insert()
-    {
-      $insert_language_id = LanguageAdmin::getLatestLanguageID();
+    $this->app = Registry::get('OrdersStatus');
+    $this->lang = Registry::get('Language');
+  }
 
-        $QordersStatus = $this->app->db->get('orders_status', '*', ['language_id' => $this->lang->getId()]);
+  private function insert()
+  {
+    $insert_language_id = LanguageAdmin::getLatestLanguageID();
 
-        while ($QordersStatus->fetch()) {
-          $cols = $QordersStatus->toArray();
+    $QordersStatus = $this->app->db->get('orders_status', '*', ['language_id' => $this->lang->getId()]);
 
-        $cols['language_id'] = (int)$insert_language_id;
+    while ($QordersStatus->fetch()) {
+      $cols = $QordersStatus->toArray();
 
-          $this->app->db->save('orders_status', $cols);
-      }
-    }
+      $cols['language_id'] = (int)$insert_language_id;
 
-    public function execute()
-    {
-      if (!\defined('CLICSHOPPING_APP_ORDERS_STATUS_OU_STATUS') || CLICSHOPPING_APP_ORDERS_STATUS_OU_STATUS == 'False') {
-       return false;
-     }
-
-      if (isset($_GET['Langues'], $_GET['Insert'])) {
-        $this->insert();
-      }
+      $this->app->db->save('orders_status', $cols);
     }
   }
+
+  public function execute()
+  {
+    if (!\defined('CLICSHOPPING_APP_ORDERS_STATUS_OU_STATUS') || CLICSHOPPING_APP_ORDERS_STATUS_OU_STATUS == 'False') {
+      return false;
+    }
+
+    if (isset($_GET['Langues'], $_GET['Insert'])) {
+      $this->insert();
+    }
+  }
+}

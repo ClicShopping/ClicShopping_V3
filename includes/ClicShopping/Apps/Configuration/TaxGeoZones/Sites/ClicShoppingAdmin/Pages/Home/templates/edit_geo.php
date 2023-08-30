@@ -1,25 +1,24 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
+use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
+$CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
+$CLICSHOPPING_Address = Registry::get('Address');
 
-  $CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
-  $CLICSHOPPING_Address = Registry::get('Address');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-
-  $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select a.association_id,
+$Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select a.association_id,
                                                             a.zone_country_id,
                                                             a.zone_id,
                                                             a.geo_zone_id,
@@ -29,12 +28,12 @@
                                                     where a.association_id = :association_id
                                                     ');
 
-  $Qzones->bindInt('association_id', $_GET['sID']); ///3
-  $Qzones->execute();
+$Qzones->bindInt('association_id', $_GET['sID']); ///3
+$Qzones->execute();
 
-  $sInfo = new ObjectInfo($Qzones->toArray());
+$sInfo = new ObjectInfo($Qzones->toArray());
 
-  $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
+$page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
 ?>
 
 <!-- body //-->
@@ -49,9 +48,9 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxGeoZones->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
 <?php
-  echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&UpdateGeoZone&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $sInfo->association_id));
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('ListGeo&list&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] : '')), 'warning');
+echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&UpdateGeoZone&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $sInfo->association_id));
+echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_update'), null, null, 'success') . ' ';
+echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('ListGeo&list&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] : '')), 'warning');
 ?>
           </span>
         </div>
@@ -100,31 +99,31 @@
 
 
   <script type="text/javascript"><!--
-      function resetZoneSelected(theForm) {
-          if (theForm.state.value != '') {
-              theForm.zone_id.selectedIndex = '0';
-              if (theForm.zone_id.options.length > 0) {
-                  theForm.state.value = '<?php echo $CLICSHOPPING_TaxGeoZones->getDef('js_state_select'); ?>';
-              }
-          }
+    function resetZoneSelected(theForm) {
+      if (theForm.state.value != '') {
+        theForm.zone_id.selectedIndex = '0';
+        if (theForm.zone_id.options.length > 0) {
+          theForm.state.value = '<?php echo $CLICSHOPPING_TaxGeoZones->getDef('js_state_select'); ?>';
+        }
+      }
+    }
+
+    function update_zone(theForm) {
+      var NumState = theForm.zone_id.options.length;
+      var SelectedCountry = "";
+
+      while (NumState > 0) {
+        NumState--;
+        theForm.zone_id.options[NumState] = null;
       }
 
-      function update_zone(theForm) {
-          var NumState = theForm.zone_id.options.length;
-          var SelectedCountry = "";
+      SelectedCountry = theForm.zone_country_id.options[theForm.zone_country_id.selectedIndex].value;
 
-          while (NumState > 0) {
-              NumState--;
-              theForm.zone_id.options[NumState] = null;
-          }
+      <?php echo HTMLOverrideAdmin::getJsZoneList('SelectedCountry', 'theForm', 'zone_id'); ?>
 
-          SelectedCountry = theForm.zone_country_id.options[theForm.zone_country_id.selectedIndex].value;
+    }
 
-        <?php echo HTMLOverrideAdmin::getJsZoneList('SelectedCountry', 'theForm', 'zone_id'); ?>
-
-      }
-
-      //--></script>
+    //--></script>
 
 
   </form>

@@ -1,23 +1,23 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('ProductsLength')) {
-    echo $CLICSHOPPING_MessageStack->get('ProductsLength');
-  }
+if ($CLICSHOPPING_MessageStack->exists('ProductsLength')) {
+  echo $CLICSHOPPING_MessageStack->get('ProductsLength');
+}
 ?>
 <div class="contentBody">
   <div class="row">
@@ -51,9 +51,9 @@
           <div>
             <div class="col-md-12 text-center">
               <?php
-                echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Configuration\ProductsLength&Configure'));
-                echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_configure'), null, null, 'primary');
-                echo '</form>';
+              echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Configuration\ProductsLength&Configure'));
+              echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_configure'), null, null, 'primary');
+              echo '</form>';
               ?>
             </div>
           </div>

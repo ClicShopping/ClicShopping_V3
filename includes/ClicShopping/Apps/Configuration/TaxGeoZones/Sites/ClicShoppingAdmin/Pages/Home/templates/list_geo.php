@@ -1,27 +1,27 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  if (!isset($_GET['spage']) || !is_numeric($_GET['spage'])) {
-    $_GET['spage'] = 1;
-  }
+if (!isset($_GET['spage']) || !is_numeric($_GET['spage'])) {
+  $_GET['spage'] = 1;
+}
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 
 
@@ -37,8 +37,8 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxGeoZones->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
 <?php
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_back'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones'), 'primary') . ' ';
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, $CLICSHOPPING_TaxGeoZones->link('InsertGeo&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage']), 'success');
+echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_back'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones'), 'primary') . ' ';
+echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, $CLICSHOPPING_TaxGeoZones->link('InsertGeo&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage']), 'success');
 ?>
           </span>
         </div>
@@ -64,17 +64,21 @@
     data-mobile-responsive="true">
 
     <thead class="dataTableHeadingRow">
-      <tr>
-        <th data-field="country" data-sortable="true"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country'); ?></th>
-        <th data-field="zone" data-sortable="true"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country_zone'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_action'); ?>&nbsp;</th>
-      </tr>
+    <tr>
+      <th data-field="country"
+          data-sortable="true"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country'); ?></th>
+      <th data-field="zone"
+          data-sortable="true"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country_zone'); ?></th>
+      <th data-field="action" data-switchable="false"
+          class="text-end"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_action'); ?>&nbsp;
+      </th>
+    </tr>
     </thead>
     <tbody>
     <?php
-      $rows = 0;
+    $rows = 0;
 
-      $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select  SQL_CALC_FOUND_ROWS a.association_id,
+    $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select  SQL_CALC_FOUND_ROWS a.association_id,
                                                                                     a.zone_country_id,
                                                                                     c.countries_name,
                                                                                     a.zone_id,
@@ -89,50 +93,50 @@
                                                         limit :page_set_offset,
                                                               :page_set_max_results
                                                         ');
-      $Qzones->bindInt(':geo_zone_id', $_GET['zID']);
-      $Qzones->setPageSet(MAX_DISPLAY_SEARCH_RESULTS_ADMIN, 'spage');
-      $Qzones->execute();
+    $Qzones->bindInt(':geo_zone_id', $_GET['zID']);
+    $Qzones->setPageSet(MAX_DISPLAY_SEARCH_RESULTS_ADMIN, 'spage');
+    $Qzones->execute();
 
-      $listingTotalRow = $Qzones->getPageSetTotalRows();
+    $listingTotalRow = $Qzones->getPageSetTotalRows();
 
-      if ($listingTotalRow > 0) {
+    if ($listingTotalRow > 0) {
 
-        while ($Qzones->fetch()) {
+      while ($Qzones->fetch()) {
 
-          if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ((int)$_GET['sID'] === $Qzones->valueInt('association_id')))) && !isset($sInfo)) {
-            $sInfo = new ObjectInfo($Qzones->toArray());
-            if (\is_null($sInfo->countries_name)) {
-              $sInfo->countries_name = $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries');
-            }
-
-            if (\is_null($sInfo->zone_name)) {
-              $sInfo->zone_name = $CLICSHOPPING_TaxGeoZones->getDef('text_selected');
-            }
+        if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ((int)$_GET['sID'] === $Qzones->valueInt('association_id')))) && !isset($sInfo)) {
+          $sInfo = new ObjectInfo($Qzones->toArray());
+          if (\is_null($sInfo->countries_name)) {
+            $sInfo->countries_name = $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries');
           }
-          ?>
-          <tr>
-            <th
-              scope="row"><?php echo $Qzones->hasValue('countries_name') ? $Qzones->value('countries_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries'); ?></th>
-            <td><?php echo $Qzones->hasValue('zone_name') ? $Qzones->value('zone_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_selected'); ?></td>
-            <td class="text-end">
-              <div class="btn-group" role="group" aria-label="buttonGroup">
+
+          if (\is_null($sInfo->zone_name)) {
+            $sInfo->zone_name = $CLICSHOPPING_TaxGeoZones->getDef('text_selected');
+          }
+        }
+        ?>
+        <tr>
+          <th
+            scope="row"><?php echo $Qzones->hasValue('countries_name') ? $Qzones->value('countries_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries'); ?></th>
+          <td><?php echo $Qzones->hasValue('zone_name') ? $Qzones->value('zone_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_selected'); ?></td>
+          <td class="text-end">
+            <div class="btn-group" role="group" aria-label="buttonGroup">
               <?php
-                echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('EditGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_TaxGeoZones->getDef('icon_edit') . '"></i></h4></a>';
-                echo '&nbsp;';
-                echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('DeleteGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_TaxGeoZones->getDef('icon_delete') . '"></i></h4></a>';
-                echo '&nbsp;';
+              echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('EditGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_TaxGeoZones->getDef('icon_edit') . '"></i></h4></a>';
+              echo '&nbsp;';
+              echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('DeleteGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_TaxGeoZones->getDef('icon_delete') . '"></i></h4></a>';
+              echo '&nbsp;';
               ?>
-              </div>
-            </td>
-          </tr>
-          <?php
-        } // end while
-      } // end $listingTotalRow
+            </div>
+          </td>
+        </tr>
+        <?php
+      } // end while
+    } // end $listingTotalRow
     ?>
     </tbody>
   </table>
   <div class="separator"></div>
-<?php
+  <?php
   if ($listingTotalRow > 0) {
     ?>
     <div class="row">
@@ -145,5 +149,5 @@
     </div>
     <?php
   } // end $listingTotalRow
-?>
+  ?>
 </div>

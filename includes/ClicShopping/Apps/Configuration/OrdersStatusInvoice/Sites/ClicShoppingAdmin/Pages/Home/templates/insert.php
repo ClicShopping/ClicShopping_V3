@@ -1,25 +1,25 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_OrdersStatusInvoice = Registry::get('OrdersStatusInvoice');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_OrdersStatusInvoice = Registry::get('OrdersStatusInvoice');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $orders_status_invoice_inputs_string = '';
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$orders_status_invoice_inputs_string = '';
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  $languages = $CLICSHOPPING_Language->getLanguages();
+$languages = $CLICSHOPPING_Language->getLanguages();
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -33,9 +33,9 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
 <?php
-  echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice'), 'warning') . ' ';
-  echo HTML::form('status_orders_status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&Insert&page=' . $page));
-  echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_insert'), null, null, 'success')
+echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice'), 'warning') . ' ';
+echo HTML::form('status_orders_status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&Insert&page=' . $page));
+echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_insert'), null, null, 'success')
 ?>
           </span>
         </div>
@@ -58,21 +58,21 @@
       </div>
     </div>
     <?php
-      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-        ?>
-        <div class="row">
-          <div class="col-md-5">
-            <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('lang'); ?>"
-                     class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-              <div class="col-md-5">
-                <?php echo HTML::inputField('orders_status_invoice_name[' . $languages[$i]['id'] . ']', '', 'class="form-control" required aria-required="true" Authentificator'); ?>
-              </div>
+    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+      ?>
+      <div class="row">
+        <div class="col-md-5">
+          <div class="form-group row">
+            <label for="<?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('lang'); ?>"
+                   class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+            <div class="col-md-5">
+              <?php echo HTML::inputField('orders_status_invoice_name[' . $languages[$i]['id'] . ']', '', 'class="form-control" required aria-required="true" Authentificator'); ?>
             </div>
           </div>
         </div>
-        <?php
-      }
+      </div>
+      <?php
+    }
     ?>
     <div class="separator"></div>
     <div class="col-md-12">

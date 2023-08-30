@@ -1,26 +1,26 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Configuration\Settings\Sites\ClicShoppingAdmin\Pages\Home\Actions;
+namespace ClicShopping\Apps\Configuration\Settings\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  class SettingsPopUp extends \ClicShopping\OM\PagesActionsAbstract
+class SettingsPopUp extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
   {
-    public function execute()
-    {
-      $CLICSHOPPING_Settings = Registry::get('Settings');
+    $CLICSHOPPING_Settings = Registry::get('Settings');
 
-      $this->page->setUseSiteTemplate(false); //don't display Header / Footer
-      $this->page->setFile('settings_popup.php');
+    $this->page->setUseSiteTemplate(false); //don't display Header / Footer
+    $this->page->setFile('settings_popup.php');
 
-      $CLICSHOPPING_Settings->loadDefinitions('Sites/ClicShoppingAdmin/main');
-    }
+    $CLICSHOPPING_Settings->loadDefinitions('Sites/ClicShoppingAdmin/main');
   }
+}

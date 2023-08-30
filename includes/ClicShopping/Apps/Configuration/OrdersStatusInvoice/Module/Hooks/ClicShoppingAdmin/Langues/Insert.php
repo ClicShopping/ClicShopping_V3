@@ -1,54 +1,54 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Configuration\OrdersStatusInvoice\Module\Hooks\ClicShoppingAdmin\Langues;
+namespace ClicShopping\Apps\Configuration\OrdersStatusInvoice\Module\Hooks\ClicShoppingAdmin\Langues;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\OrdersStatusInvoice\OrdersStatusInvoice as OrdersStatusInvoiceApp;
-  use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
+use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
+use ClicShopping\Apps\Configuration\OrdersStatusInvoice\OrdersStatusInvoice as OrdersStatusInvoiceApp;
 
-  class Insert implements \ClicShopping\OM\Modules\HooksInterface
+class Insert implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+  protected mixed $lang;
+
+  public function __construct()
   {
-    protected mixed $app;
-    protected mixed $lang;
-
-    public function __construct()
-    {
-      if (!Registry::exists('OrdersStatusInvoice')) {
-        Registry::set('OrdersStatusInvoice', new OrdersStatusInvoiceApp());
-      }
-
-      $this->app = Registry::get('OrdersStatusInvoice');
-      $this->lang = Registry::get('Language');
+    if (!Registry::exists('OrdersStatusInvoice')) {
+      Registry::set('OrdersStatusInvoice', new OrdersStatusInvoiceApp());
     }
 
-    private function insert()
-    {
-      $insert_language_id = LanguageAdmin::getLatestLanguageID();
+    $this->app = Registry::get('OrdersStatusInvoice');
+    $this->lang = Registry::get('Language');
+  }
 
-      $QordersStatusInvoice = $this->app->db->get('orders_status_invoice', '*', ['language_id' => $this->lang->getId()]);
+  private function insert()
+  {
+    $insert_language_id = LanguageAdmin::getLatestLanguageID();
 
-      while ($QordersStatusInvoice->fetch()) {
-        $cols = $QordersStatusInvoice->toArray();
+    $QordersStatusInvoice = $this->app->db->get('orders_status_invoice', '*', ['language_id' => $this->lang->getId()]);
 
-        $cols['language_id'] = (int)$insert_language_id;
+    while ($QordersStatusInvoice->fetch()) {
+      $cols = $QordersStatusInvoice->toArray();
 
-        $this->app->db->save('orders_status_invoice', $cols);
-      }
-    }
+      $cols['language_id'] = (int)$insert_language_id;
 
-    public function execute()
-    {
-      if (isset($_GET['Langues'], $_GET['Insert'])) {
-        $this->insert();
-      }
+      $this->app->db->save('orders_status_invoice', $cols);
     }
   }
+
+  public function execute()
+  {
+    if (isset($_GET['Langues'], $_GET['Insert'])) {
+      $this->insert();
+    }
+  }
+}

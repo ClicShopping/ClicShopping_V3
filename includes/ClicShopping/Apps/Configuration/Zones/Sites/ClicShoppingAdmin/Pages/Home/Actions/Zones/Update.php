@@ -1,44 +1,44 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Configuration\Zones\Sites\ClicShoppingAdmin\Pages\Home\Actions\Zones;
+namespace ClicShopping\Apps\Configuration\Zones\Sites\ClicShoppingAdmin\Pages\Home\Actions\Zones;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  class Update extends \ClicShopping\OM\PagesActionsAbstract
+class Update extends \ClicShopping\OM\PagesActionsAbstract
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      $this->app = Registry::get('Zones');
-    }
-
-    public function execute()
-    {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
-      $zone_id = HTML::sanitize($_GET['cID']);
-      $zone_country_id = HTML::sanitize($_POST['zone_country_id']);
-      $zone_code = HTML::sanitize($_POST['zone_code']);
-      $zone_name = HTML::sanitize($_POST['zone_name']);
-
-      $this->app->db->save('zones', [
-        'zone_country_id' => (int)$zone_country_id,
-        'zone_code' => $zone_code,
-        'zone_name' => $zone_name
-      ], [
-          'zone_id' => (int)$zone_id
-        ]
-      );
-
-      $this->app->redirect('Zones&page=' . $page . '&cID=' . $zone_id);
-    }
+    $this->app = Registry::get('Zones');
   }
+
+  public function execute()
+  {
+    $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+    $zone_id = HTML::sanitize($_GET['cID']);
+    $zone_country_id = HTML::sanitize($_POST['zone_country_id']);
+    $zone_code = HTML::sanitize($_POST['zone_code']);
+    $zone_name = HTML::sanitize($_POST['zone_name']);
+
+    $this->app->db->save('zones', [
+      'zone_country_id' => (int)$zone_country_id,
+      'zone_code' => $zone_code,
+      'zone_name' => $zone_name
+    ], [
+        'zone_id' => (int)$zone_id
+      ]
+    );
+
+    $this->app->redirect('Zones&page=' . $page . '&cID=' . $zone_id);
+  }
+}

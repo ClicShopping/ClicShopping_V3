@@ -1,58 +1,58 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Configuration\ProductsQuantityUnit\Module\Hooks\ClicShoppingAdmin\Langues;
+namespace ClicShopping\Apps\Configuration\ProductsQuantityUnit\Module\Hooks\ClicShoppingAdmin\Langues;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Configuration\ProductsQuantityUnit\ProductsQuantityUnit as ProductsQuantityUnitApp;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\ProductsQuantityUnit\ProductsQuantityUnit as ProductsQuantityUnitApp;
-  use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
+use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
 
-  class Insert implements \ClicShopping\OM\Modules\HooksInterface
+class Insert implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+  protected mixed $lang;
+
+  public function __construct()
   {
-    protected mixed $app;
-    protected mixed $lang;
-
-    public function __construct()
-    {
-      if (!Registry::exists('ProductsQuantityUnit')) {
-        Registry::set('ProductsQuantityUnit', new ProductsQuantityUnitApp());
-      }
-
-      $this->app = Registry::get('ProductsQuantityUnit');
-      $this->lang = Registry::get('Language');
+    if (!Registry::exists('ProductsQuantityUnit')) {
+      Registry::set('ProductsQuantityUnit', new ProductsQuantityUnitApp());
     }
 
-    private function insert()
-    {
-      $insert_language_id = LanguageAdmin::getLatestLanguageID();
+    $this->app = Registry::get('ProductsQuantityUnit');
+    $this->lang = Registry::get('Language');
+  }
 
-      $QproductsQuantityUnit = $this->app->db->get('products_quantity_unit', '*', ['language_id' => $this->lang->getId()]);
+  private function insert()
+  {
+    $insert_language_id = LanguageAdmin::getLatestLanguageID();
 
-      while ($QproductsQuantityUnit->fetch()) {
-        $cols = $QproductsQuantityUnit->toArray();
+    $QproductsQuantityUnit = $this->app->db->get('products_quantity_unit', '*', ['language_id' => $this->lang->getId()]);
 
-        $cols['language_id'] = (int)$insert_language_id;
+    while ($QproductsQuantityUnit->fetch()) {
+      $cols = $QproductsQuantityUnit->toArray();
 
-        $this->app->db->save('products_quantity_unit', $cols);
-      }
-    }
+      $cols['language_id'] = (int)$insert_language_id;
 
-    public function execute()
-    {
-      if (!\defined('CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS') || CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS == 'False') {
-        return false;
-      }
-
-      if (isset($_GET['Langues'], $_GET['Insert'])) {
-        $this->insert();
-      }
+      $this->app->db->save('products_quantity_unit', $cols);
     }
   }
+
+  public function execute()
+  {
+    if (!\defined('CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS') || CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS == 'False') {
+      return false;
+    }
+
+    if (isset($_GET['Langues'], $_GET['Insert'])) {
+      $this->insert();
+    }
+  }
+}

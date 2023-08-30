@@ -1,41 +1,41 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin\WeightAdmin;
+use ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin\WeightAdmin;
 
-  $CLICSHOPPING_Weight = Registry::get('Weight');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Weight = Registry::get('Weight');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $CLICSHOPPING_Language = Registry::get('Language');
-  Registry::set('WeightAdmin', new WeightAdmin());
-  $CLICSHOPPING_WeightAdmin = Registry::get('WeightAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+Registry::set('WeightAdmin', new WeightAdmin());
+$CLICSHOPPING_WeightAdmin = Registry::get('WeightAdmin');
 
 
-  $Qweight = $CLICSHOPPING_Weight->db->prepare('select language_id,
+$Qweight = $CLICSHOPPING_Weight->db->prepare('select language_id,
                                                        weight_class_title,
                                                        weight_class_key
                                               from :table_weight_classes
                                               where weight_class_id = :weight_class_id
                                               ');
-  $Qweight->bindInt(':weight_class_id', $_GET['wID']);
-  $Qweight->execute();
+$Qweight->bindInt(':weight_class_id', $_GET['wID']);
+$Qweight->execute();
 
-  $wInfo = new ObjectInfo($Qweight->toArray());
+$wInfo = new ObjectInfo($Qweight->toArray());
 
-  $languages = $CLICSHOPPING_Language->getLanguages();
+$languages = $CLICSHOPPING_Language->getLanguages();
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -49,11 +49,11 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
 <?php
-  echo HTML::form('weight_edit', $CLICSHOPPING_Weight->link('Weight&WeightUpdate&page=' . $page));
-  echo HTML::button($CLICSHOPPING_Weight->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight'), 'warning');
+echo HTML::form('weight_edit', $CLICSHOPPING_Weight->link('Weight&WeightUpdate&page=' . $page));
+echo HTML::button($CLICSHOPPING_Weight->getDef('button_update'), null, null, 'success') . ' ';
+echo HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight'), 'warning');
 
-  echo HTML::hiddenField('weight_class_id', HTML::sanitize($_GET['wID']));
+echo HTML::hiddenField('weight_class_id', HTML::sanitize($_GET['wID']));
 ?>
           </span>
         </div>
@@ -81,21 +81,21 @@
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title'); ?></label>
           <div class="col-md-5">
             <?php
-              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                ?>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group row">
-                      <label for="code"
-                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                      <div class="col-md-10">
-                        <?php echo HTML::inputField('weight_class_title[' . $languages[$i]['id'] . ']', (isset($weight_class_title[$languages[$i]['id']]) ? $weight_class_title[$languages[$i]['id']] : $CLICSHOPPING_WeightAdmin->getTitle($_GET['wID'], $languages[$i]['id'])), 'class="form-control" required aria-required="true" Authentificator id="weight_class_title" placeholder="' . $CLICSHOPPING_Weight->getDef('text_weight_class_title') . '"', true) . '&nbsp;'; ?>
-                      </div>
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              ?>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label for="code"
+                           class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                    <div class="col-md-10">
+                      <?php echo HTML::inputField('weight_class_title[' . $languages[$i]['id'] . ']', (isset($weight_class_title[$languages[$i]['id']]) ? $weight_class_title[$languages[$i]['id']] : $CLICSHOPPING_WeightAdmin->getTitle($_GET['wID'], $languages[$i]['id'])), 'class="form-control" required aria-required="true" Authentificator id="weight_class_title" placeholder="' . $CLICSHOPPING_Weight->getDef('text_weight_class_title') . '"', true) . '&nbsp;'; ?>
                     </div>
                   </div>
                 </div>
-                <?php
-              }
+              </div>
+              <?php
+            }
             ?>
           </div>
         </div>

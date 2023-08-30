@@ -1,24 +1,24 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin\WeightAdmin;
+use ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin\WeightAdmin;
 
-  $CLICSHOPPING_Weight = Registry::get('Weight');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Weight = Registry::get('Weight');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  $Qweight = $CLICSHOPPING_Weight->db->prepare('select wc.weight_class_id,
+$Qweight = $CLICSHOPPING_Weight->db->prepare('select wc.weight_class_id,
                                                        wc.weight_class_key,
                                                        wc.language_id,
                                                        wc.weight_class_title,
@@ -30,17 +30,17 @@
                                               where wc.weight_class_id = :weight_class_id
                                               and tc.weight_class_to_id = :weight_class_to_id
                                               ');
-  $Qweight->bindInt(':weight_class_id', $_GET['wID']);
-  $Qweight->bindInt(':weight_class_to_id', $_GET['tID']);
-  $Qweight->execute();
+$Qweight->bindInt(':weight_class_id', $_GET['wID']);
+$Qweight->bindInt(':weight_class_to_id', $_GET['tID']);
+$Qweight->execute();
 
-  $wInfo = new ObjectInfo($Qweight->toArray());
+$wInfo = new ObjectInfo($Qweight->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  if ($CLICSHOPPING_MessageStack->exists('class_edit')) {
-    echo $CLICSHOPPING_MessageStack->get('class_edit');
-  }
+if ($CLICSHOPPING_MessageStack->exists('class_edit')) {
+  echo $CLICSHOPPING_MessageStack->get('class_edit');
+}
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -54,9 +54,9 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
 <?php
-  echo HTML::form('status_tax_class', $CLICSHOPPING_Weight->link('Weight&ClassUpdate&page=' . $page . '&wID=' . $_GET['wID'] . '&tID=' . $_GET['tID']));
-  echo HTML::button($CLICSHOPPING_Weight->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight'), 'warning');
+echo HTML::form('status_tax_class', $CLICSHOPPING_Weight->link('Weight&ClassUpdate&page=' . $page . '&wID=' . $_GET['wID'] . '&tID=' . $_GET['tID']));
+echo HTML::button($CLICSHOPPING_Weight->getDef('button_update'), null, null, 'success') . ' ';
+echo HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight'), 'warning');
 ?>
           </span>
         </div>

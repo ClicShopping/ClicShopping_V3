@@ -1,33 +1,33 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Zones = Registry::get('Zones');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Zones = Registry::get('Zones');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qzones = $CLICSHOPPING_Zones->db->prepare('select *
+$Qzones = $CLICSHOPPING_Zones->db->prepare('select *
                                               from :table_zones z,
                                                    :table_countries c
                                               where z.zone_country_id = c.countries_id
                                               and zone_id = :zone_id
                                              ');
 
-  $Qzones->bindInt(':zone_id', $_GET['cID']);
-  $Qzones->execute();
+$Qzones->bindInt(':zone_id', $_GET['cID']);
+$Qzones->execute();
 
-  $cInfo = new ObjectInfo($Qzones->toArray());
+$cInfo = new ObjectInfo($Qzones->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">

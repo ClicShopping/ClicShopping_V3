@@ -1,24 +1,22 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+use ClicShopping\Sites\ClicShoppingAdmin\AddressAdmin;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\AddressAdmin;
+$CLICSHOPPING_TaxRates = Registry::get('TaxRates');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Tax = Registry::get('Tax');
 
-  $CLICSHOPPING_TaxRates = Registry::get('TaxRates');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Tax = Registry::get('Tax');
-
-  $Qrates = $CLICSHOPPING_TaxRates->db->prepare('select tax_rates_id,
+$Qrates = $CLICSHOPPING_TaxRates->db->prepare('select tax_rates_id,
                                                         tax_zone_id,
                                                         tax_class_id,
                                                         tax_priority,
@@ -30,10 +28,10 @@
                                                  from :table_tax_rates
                                                  where tax_rates_id = :tax_rates_id
                                                 ');
-  $Qrates->bindInt(':tax_rates_id', $_GET['tID']);
-  $Qrates->execute();
+$Qrates->bindInt(':tax_rates_id', $_GET['tID']);
+$Qrates->execute();
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -47,9 +45,9 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxRates->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
 <?php
-  echo HTML::form('tax_class', $CLICSHOPPING_TaxRates->link('TaxRates&Update&page=' . $page . '&tID=' . $Qrates->valueInt('tax_rates_id')));
-  echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_cancel'), null, $CLICSHOPPING_TaxRates->link('TaxRates'), 'warning');
+echo HTML::form('tax_class', $CLICSHOPPING_TaxRates->link('TaxRates&Update&page=' . $page . '&tID=' . $Qrates->valueInt('tax_rates_id')));
+echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_update'), null, null, 'success') . ' ';
+echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_cancel'), null, $CLICSHOPPING_TaxRates->link('TaxRates'), 'warning');
 ?>
           </span>
         </div>
@@ -89,7 +87,7 @@
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_zone_name'); ?></label>
           <div class="col-md-5">
             <?php
-              echo AddressAdmin::getGeoZonesPullDown('tax_zone_id', $Qrates->valueInt('tax_zone_id')); ?>
+            echo AddressAdmin::getGeoZonesPullDown('tax_zone_id', $Qrates->valueInt('tax_zone_id')); ?>
           </div>
         </div>
       </div>

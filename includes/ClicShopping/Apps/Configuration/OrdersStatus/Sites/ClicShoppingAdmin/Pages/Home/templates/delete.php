@@ -1,51 +1,51 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_OrdersStatus = Registry::get('OrdersStatus');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_OrdersStatus = Registry::get('OrdersStatus');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qstatus = $CLICSHOPPING_OrdersStatus->db->prepare('select *
+$Qstatus = $CLICSHOPPING_OrdersStatus->db->prepare('select *
                                               from :table_orders_status
                                               where language_id = :language_id
                                               and orders_status_id = :orders_status_id
                                               ');
 
-  $Qstatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-  $Qstatus->bindInt(':orders_status_id', $_GET['oID']);
-  $Qstatus->execute();
+$Qstatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+$Qstatus->bindInt(':orders_status_id', $_GET['oID']);
+$Qstatus->execute();
 
-  $oInfo = new ObjectInfo($Qstatus->toArray());
+$oInfo = new ObjectInfo($Qstatus->toArray());
 
-  $oID = HTML::sanitize($_GET['oID']);
+$oID = HTML::sanitize($_GET['oID']);
 
-  $Qstatus = $CLICSHOPPING_OrdersStatus->db->get('orders', 'orders_status', ['orders_status' => (int)$oID], null, 1);
+$Qstatus = $CLICSHOPPING_OrdersStatus->db->get('orders', 'orders_status', ['orders_status' => (int)$oID], null, 1);
 
-  $remove_status = true;
-  if ($oID == DEFAULT_ORDERS_STATUS_ID) {
+$remove_status = true;
+if ($oID == DEFAULT_ORDERS_STATUS_ID) {
+  $remove_status = false;
+  $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatus->getDef('error_remove_default_order_status'), 'error');
+} elseif ($Qstatus->fetch() !== false) {
+  $remove_status = false;
+  $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatus->getDef('error_status_used_in_orders'), 'error');
+} else {
+  $Qhistory = $CLICSHOPPING_OrdersStatus->db->get('orders_status_history', 'orders_status_id', ['orders_status_id' => (int)$oID], null, 1);
+
+  if ($Qhistory->fetch() !== false) {
     $remove_status = false;
-    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatus->getDef('error_remove_default_order_status'), 'error');
-  } elseif ($Qstatus->fetch() !== false) {
-    $remove_status = false;
-    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatus->getDef('error_status_used_in_orders'), 'error');
-  } else {
-    $Qhistory = $CLICSHOPPING_OrdersStatus->db->get('orders_status_history', 'orders_status_id', ['orders_status_id' => (int)$oID], null, 1);
-
-    if ($Qhistory->fetch() !== false) {
-      $remove_status = false;
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatus->getDef('error_status_used_in_history'), 'error');
-    }
+    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatus->getDef('error_status_used_in_history'), 'error');
   }
+}
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -72,15 +72,15 @@
       <div class="col-md-12"><?php echo '<strong>' . $oInfo->orders_status_name . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-center">
         <?php
-          if ($remove_status) {
-            ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
-            <?php
-          } else {
-            ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
-            <?php
-          }
+        if ($remove_status) {
+          ?>
+          <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
+          <?php
+        } else {
+          ?>
+          <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
+          <?php
+        }
         ?>
       </div>
     </div>

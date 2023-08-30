@@ -1,26 +1,25 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\OM\Registry;
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_OrdersStatus = Registry::get('OrdersStatus');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_OrdersStatus = Registry::get('OrdersStatus');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$orders_status_inputs_string = '';
+$languages = $CLICSHOPPING_Language->getLanguages();
 
-  $orders_status_inputs_string = '';
-  $languages = $CLICSHOPPING_Language->getLanguages();
-
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -34,9 +33,9 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatus->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
 <?php
-  echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus'), 'warning') . ' ';
-  echo HTML::form('status_orders_status', $CLICSHOPPING_OrdersStatus->link('OrdersStatus&Insert&page=' . $page));
-  echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_insert'), null, null, 'success')
+echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus'), 'warning') . ' ';
+echo HTML::form('status_orders_status', $CLICSHOPPING_OrdersStatus->link('OrdersStatus&Insert&page=' . $page));
+echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_insert'), null, null, 'success')
 ?>
           </span>
         </div>
@@ -65,21 +64,21 @@
     </div>
 
     <?php
-      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-        ?>
-        <div class="row">
-          <div class="col-md-5">
-            <div class="form-group row">
-              <label for="code"
-                     class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-              <div class="col-md-5">
-                <?php echo HTML::inputField('orders_status_name[' . $languages[$i]['id'] . ']', '', 'required aria-required="true"'); ?>
-              </div>
+    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+      ?>
+      <div class="row">
+        <div class="col-md-5">
+          <div class="form-group row">
+            <label for="code"
+                   class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+            <div class="col-md-5">
+              <?php echo HTML::inputField('orders_status_name[' . $languages[$i]['id'] . ']', '', 'required aria-required="true"'); ?>
             </div>
           </div>
         </div>
-        <?php
-      }
+      </div>
+      <?php
+    }
     ?>
     <div class="separator"></div>
     <div class="col-md-12" id="public_flag">
@@ -115,22 +114,24 @@
             <span class="slider"></span>
           </label>
         </li>
-        <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_support_orders_flag'); ?></span>
+        <span
+          class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_support_orders_flag'); ?></span>
       </ul>
     </div>
 
-      <div class="col-md-12" id="authorize_to_delete_order">
-          <span class="col-md-3"></span>
-          <ul class="list-group-slider list-group-flush">
-              <li class="list-group-item-slider">
-                  <label class="switch">
-                    <?php echo HTML::checkboxField('authorize_to_delete_order', '0', null, 'class="success"'); ?>
-                      <span class="slider"></span>
-                  </label>
-              </li>
-              <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_authorize_to_delete_status'); ?></span>
-          </ul>
-      </div>
+    <div class="col-md-12" id="authorize_to_delete_order">
+      <span class="col-md-3"></span>
+      <ul class="list-group-slider list-group-flush">
+        <li class="list-group-item-slider">
+          <label class="switch">
+            <?php echo HTML::checkboxField('authorize_to_delete_order', '0', null, 'class="success"'); ?>
+            <span class="slider"></span>
+          </label>
+        </li>
+        <span
+          class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_authorize_to_delete_status'); ?></span>
+      </ul>
+    </div>
 
     <div class="col-md-12" id="default">
       <span class="col-md-3"></span>

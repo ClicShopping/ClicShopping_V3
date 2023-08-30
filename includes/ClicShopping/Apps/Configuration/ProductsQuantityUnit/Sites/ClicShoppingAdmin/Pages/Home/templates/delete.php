@@ -1,58 +1,58 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_ProductsQuantityUnit = Registry::get('ProductsQuantityUnit');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_ProductsQuantityUnit = Registry::get('ProductsQuantityUnit');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $oID = HTML::sanitize($_GET['oID']);
+$oID = HTML::sanitize($_GET['oID']);
 
-  $Qstatus = $CLICSHOPPING_ProductsQuantityUnit->db->prepare('select count(*) as count
+$Qstatus = $CLICSHOPPING_ProductsQuantityUnit->db->prepare('select count(*) as count
                                                              from :table_products
                                                              where products_quantity_unit_id = :products_quantity_unit_id
                                                             ');
-  $Qstatus->bindValue(':products_quantity_unit_id', (int)$oID);
-  $Qstatus->execute();
+$Qstatus->bindValue(':products_quantity_unit_id', (int)$oID);
+$Qstatus->execute();
 
-  $status = $Qstatus->fetch();
+$status = $Qstatus->fetch();
 
-  $remove_status = true;
+$remove_status = true;
 
-  if ($oID == DEFAULT_PRODUCTS_QUANTITY_UNIT_STATUS_ID) {
-    $remove_status = false;
-    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_ProductsQuantityUnit->getDef('error_remove_default_products_unit_quantity_status'), 'error');
-  } elseif ($status['count'] > 0) {
-    $remove_status = false;
-    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_ProductsQuantityUnit->getDef('error_status_used_in_products_unit_quantity'), 'error');
-  }
+if ($oID == DEFAULT_PRODUCTS_QUANTITY_UNIT_STATUS_ID) {
+  $remove_status = false;
+  $CLICSHOPPING_MessageStack->add($CLICSHOPPING_ProductsQuantityUnit->getDef('error_remove_default_products_unit_quantity_status'), 'error');
+} elseif ($status['count'] > 0) {
+  $remove_status = false;
+  $CLICSHOPPING_MessageStack->add($CLICSHOPPING_ProductsQuantityUnit->getDef('error_status_used_in_products_unit_quantity'), 'error');
+}
 
-  $QproductsQquantityUnit = $CLICSHOPPING_ProductsQuantityUnit->db->prepare('select  *
+$QproductsQquantityUnit = $CLICSHOPPING_ProductsQuantityUnit->db->prepare('select  *
                                                                             from :table_products_quantity_unit
                                                                             where language_id = :language_id
                                                                             and products_quantity_unit_id = :products_quantity_unit_id
                                                                             order by products_quantity_unit_id
                                                                           ');
 
-  $QproductsQquantityUnit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-  $QproductsQquantityUnit->bindInt(':products_quantity_unit_id', $_GET['oID']);
+$QproductsQquantityUnit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+$QproductsQquantityUnit->bindInt(':products_quantity_unit_id', $_GET['oID']);
 
-  $QproductsQquantityUnit->execute();
+$QproductsQquantityUnit->execute();
 
-  $oInfo = new ObjectInfo($QproductsQquantityUnit->toArray());
+$oInfo = new ObjectInfo($QproductsQquantityUnit->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -85,15 +85,15 @@
       </div>
       <div class="col-md-12 text-center">
         <?php
-          if ($remove_status) {
-            ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
-            <?php
-          } else {
-            ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_cancel'), null, CLICSHOPPING::link('ProductsQuantityUnit&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
-            <?php
-          }
+        if ($remove_status) {
+          ?>
+          <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
+          <?php
+        } else {
+          ?>
+          <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_cancel'), null, CLICSHOPPING::link('ProductsQuantityUnit&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
+          <?php
+        }
         ?>
       </div>
     </div>

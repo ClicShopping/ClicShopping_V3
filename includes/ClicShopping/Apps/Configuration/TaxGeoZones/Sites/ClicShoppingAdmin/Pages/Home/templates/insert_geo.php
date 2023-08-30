@@ -1,23 +1,23 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
-  $CLICSHOPPING_Address = Registry::get('Address');
+$CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
+$CLICSHOPPING_Address = Registry::get('Address');
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
+$page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
 ?>
   <!-- body //-->
   <div class="contentBody">
@@ -31,9 +31,9 @@
               class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxGeoZones->getDef('heading_title'); ?></span>
             <span class="col-md-4 text-end">
 <?php
-  echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&InsertGeoZone&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] . '&' : '')));
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('ListGeo&zpage=' . $page . '&zID=' . $_GET['zID'] . 'spage=' . $_GET['spage'] . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] : '')), 'warning');
+echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&InsertGeoZone&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] . '&' : '')));
+echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, null, 'success') . ' ';
+echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('ListGeo&zpage=' . $page . '&zID=' . $_GET['zID'] . 'spage=' . $_GET['spage'] . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] : '')), 'warning');
 ?>
           </span>
           </div>
@@ -81,5 +81,5 @@
     </form>
   </div>
 <?php
-  include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');
+include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');
 ?>

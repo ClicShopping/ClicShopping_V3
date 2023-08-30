@@ -1,29 +1,29 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
-  $CLICSHOPPING_Settings = Registry::get('Settings');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Settings = Registry::get('Settings');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qadmin = $CLICSHOPPING_Settings->db->get('settings', ['id',
-    'user_name',
-    'name',
-    'first_name',
-    'access'
-  ],
-    ['id' => $_GET['aID']]
-  );
+$Qadmin = $CLICSHOPPING_Settings->db->get('settings', ['id',
+  'user_name',
+  'name',
+  'first_name',
+  'access'
+],
+  ['id' => $_GET['aID']]
+);
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -37,9 +37,9 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Settings->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
 <?php
-  echo HTML::form('administrator', $CLICSHOPPING_Settings->link('Settings&Update&aID=' . $Qadmin->valueInt('id')), 'post', 'autocomplete="off"');
-  echo HTML::button($CLICSHOPPING_Settings->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_Settings->getDef('button_cancel'), null, $CLICSHOPPING_Settings->link('Settings'), 'warning');
+echo HTML::form('administrator', $CLICSHOPPING_Settings->link('Settings&Update&aID=' . $Qadmin->valueInt('id')), 'post', 'autocomplete="off"');
+echo HTML::button($CLICSHOPPING_Settings->getDef('button_update'), null, null, 'success') . ' ';
+echo HTML::button($CLICSHOPPING_Settings->getDef('button_cancel'), null, $CLICSHOPPING_Settings->link('Settings'), 'warning');
 ?>
           </span>
         </div>

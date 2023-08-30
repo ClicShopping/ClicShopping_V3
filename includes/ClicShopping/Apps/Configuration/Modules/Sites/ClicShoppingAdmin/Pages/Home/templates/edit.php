@@ -1,55 +1,53 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Apps;
+use ClicShopping\OM\Apps;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
+use ClicShopping\Sites\ClicShoppingAdmin\CallUserFuncModule;
+use ClicShopping\Apps\Configuration\Modules\Classes\ClicShoppingAdmin\ModulesAdmin;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\CallUserFuncModule;
+$CLICSHOPPING_Modules = Registry::get('Modules');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_CfgModule = Registry::get('CfgModulesAdmin');
+$CLICSHOPPING_Db = Registry::get('Db');
 
-  use ClicShopping\Apps\Configuration\Modules\Classes\ClicShoppingAdmin\ModulesAdmin;
+Registry::set('ModulesAdmin', new ModulesAdmin());
+$CLICSHOPPING_ModulesAdmin = Registry::get('ModulesAdmin');
 
-  $CLICSHOPPING_Modules = Registry::get('Modules');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_CfgModule = Registry::get('CfgModulesAdmin');
-  $CLICSHOPPING_Db = Registry::get('Db');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  Registry::set('ModulesAdmin', new ModulesAdmin());
-  $CLICSHOPPING_ModulesAdmin = Registry::get('ModulesAdmin');
+$set = $_GET['set'] ?? '';
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$modules = $CLICSHOPPING_CfgModule->getAll();
 
-  $set = $_GET['set'] ?? '';
+if (empty($set) || !$CLICSHOPPING_CfgModule->exists($set)) {
+  $set = $modules[0]['code'];
+}
 
-  $modules = $CLICSHOPPING_CfgModule->getAll();
+$module_type = $CLICSHOPPING_CfgModule->get($set, 'code');
+$module_directory = $CLICSHOPPING_CfgModule->get($set, 'directory');
+$module_language_directory = $CLICSHOPPING_CfgModule->get($set, 'language_directory');
 
-  if (empty($set) || !$CLICSHOPPING_CfgModule->exists($set)) {
-    $set = $modules[0]['code'];
-  }
+$module_site = $CLICSHOPPING_CfgModule->get($set, 'site');
+$module_key = $CLICSHOPPING_CfgModule->get($set, 'key');
 
-  $module_type = $CLICSHOPPING_CfgModule->get($set, 'code');
-  $module_directory = $CLICSHOPPING_CfgModule->get($set, 'directory');
-  $module_language_directory = $CLICSHOPPING_CfgModule->get($set, 'language_directory');
+$template_integration = $CLICSHOPPING_CfgModule->get($set, 'template_integration');
 
-  $module_site = $CLICSHOPPING_CfgModule->get($set, 'site');
-  $module_key = $CLICSHOPPING_CfgModule->get($set, 'key');
+define('HEADING_TITLE', $CLICSHOPPING_CfgModule->get($set, 'title'));
 
-  $template_integration = $CLICSHOPPING_CfgModule->get($set, 'template_integration');
+$appModuleType = $CLICSHOPPING_ModulesAdmin->getSwitchModules($module_type);
 
-  define('HEADING_TITLE', $CLICSHOPPING_CfgModule->get($set, 'title'));
-
-  $appModuleType = $CLICSHOPPING_ModulesAdmin->getSwitchModules($module_type);
-
-  echo HTML::form('modules', $CLICSHOPPING_Modules->link('Modules&Update&set=' . $set . '&module=' . $_GET['module']));
+echo HTML::form('modules', $CLICSHOPPING_Modules->link('Modules&Update&set=' . $set . '&module=' . $_GET['module']));
 ?>
 <div class="contentBody">
   <div class="row">
@@ -62,10 +60,10 @@
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Modules->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-end">
 <?php
-  echo '<span class="cols-xs-3 float-end">';
-  echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set), 'warning') . '&nbsp;';
-  echo HTML::button(CLICSHOPPING::getDef('button_update'), null, null, 'success');
-  echo '</span>';
+echo '<span class="cols-xs-3 float-end">';
+echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set), 'warning') . '&nbsp;';
+echo HTML::button(CLICSHOPPING::getDef('button_update'), null, null, 'success');
+echo '</span>';
 ?>
         </div>
       </div>
@@ -73,135 +71,135 @@
   </div>
   <div class="separator"></div>
   <?php
-    $modules_installed = (\defined($module_key) ? explode(';', \constant($module_key)) : array());
+  $modules_installed = (\defined($module_key) ? explode(';', \constant($module_key)) : array());
 
-    $new_modules_counter = 0;
+  $new_modules_counter = 0;
 
-    $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
-    $directory_array = [];
+  $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
+  $directory_array = [];
 
-    if ($dir = @dir($module_directory)) {
-      while ($file = $dir->read()) {
-        if (!is_dir($module_directory . $file)) {
-          if (substr($file, strrpos($file, '.')) == $file_extension) {
-            if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
-              if (!\in_array($file, $modules_installed)) {
-                $directory_array[] = $file;
-              }
+  if ($dir = @dir($module_directory)) {
+    while ($file = $dir->read()) {
+      if (!is_dir($module_directory . $file)) {
+        if (substr($file, strrpos($file, '.')) == $file_extension) {
+          if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
+            if (!\in_array($file, $modules_installed)) {
+              $directory_array[] = $file;
+            }
+          } else {
+            if (\in_array($file, $modules_installed)) {
+              $directory_array[] = $file;
             } else {
-              if (\in_array($file, $modules_installed)) {
-                $directory_array[] = $file;
-              } else {
-                $new_modules_counter++;
-              }
+              $new_modules_counter++;
             }
           }
         }
       }
-      $dir->close();
     }
+    $dir->close();
+  }
 
-    if (isset($appModuleType)) {
-      foreach (Apps::getModules($appModuleType) as $k => $v) {
-        if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
-          if (!\in_array($k, $modules_installed)) {
-            $directory_array[] = $k;
-          }
-        } else {
-          if (\in_array($k, $modules_installed)) {
-            $directory_array[] = $k;
-          } else {
-            $new_modules_counter++;
-          }
+  if (isset($appModuleType)) {
+    foreach (Apps::getModules($appModuleType) as $k => $v) {
+      if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
+        if (!\in_array($k, $modules_installed)) {
+          $directory_array[] = $k;
         }
-      }
-    }
-
-    sort($directory_array);
-
-    $installed_modules = [];
-
-    for ($i = 0, $n = \count($directory_array); $i < $n; $i++) {
-      $file = $directory_array[$i];
-
-      if (str_contains($file, '\\')) {
-        $file_extension = '';
-
-        $class = Apps::getModuleClass($file, $appModuleType);
-
-        $module = new $class();
-        $module->code = $file;
-
-        $class = $file;
       } else {
-        $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
-
-        include($module_directory . $file);
-
-        $class = substr($file, 0, strrpos($file, '.'));
-
-        if (class_exists($class)) {
-          $module = new $class;
-        }
-      }
-
-      if (isset($module)) {
-        if ($module->check() > 0) {
-          if (($module->sort_order > 0) && !isset($installed_modules[$module->sort_order])) {
-            $installed_modules[$module->sort_order] = $file;
-          } else {
-            $installed_modules[] = $file;
-          }
-        }
-
-        if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module'] == $class))) && !isset($mInfo)) {
-          $module_info = [
-            'code' => $module->code,
-            'title' => $module->title,
-            'description' => $module->description,
-            'status' => $module->check(),
-            'signature' => (isset($module->signature) ? $module->signature : null),
-            'api_version' => (isset($module->api_version) ? $module->api_version : null)
-          ];
-
-          $module_keys = $module->keys();
-
-          $keys_extra = [];
-
-          for ($j = 0, $k = \count($module_keys); $j < $k; $j++) {
-
-            $Qkeys = $CLICSHOPPING_Db->get('configuration', [
-              'configuration_title',
-              'configuration_value',
-              'configuration_description',
-              'use_function',
-              'set_function'
-            ], [
-                'configuration_key' => $module_keys[$j]
-              ]
-            );
-
-            $keys_extra[$module_keys[$j]]['title'] = $Qkeys->value('configuration_title');
-            $keys_extra[$module_keys[$j]]['value'] = $Qkeys->value('configuration_value');
-            $keys_extra[$module_keys[$j]]['description'] = $Qkeys->value('configuration_description');
-            $keys_extra[$module_keys[$j]]['use_function'] = $Qkeys->value('use_function');
-            $keys_extra[$module_keys[$j]]['set_function'] = $Qkeys->value('set_function');
-          }
-
-          $module_info['keys'] = $keys_extra;
-
-          $mInfo = new \ArrayObject($module_info, \ArrayObject::ARRAY_AS_PROPS);
+        if (\in_array($k, $modules_installed)) {
+          $directory_array[] = $k;
+        } else {
+          $new_modules_counter++;
         }
       }
     }
+  }
 
-    if (isset($mInfo) && (str_contains($mInfo->code, '\\'))) {
+  sort($directory_array);
+
+  $installed_modules = [];
+
+  for ($i = 0, $n = \count($directory_array); $i < $n; $i++) {
+    $file = $directory_array[$i];
+
+    if (str_contains($file, '\\')) {
       $file_extension = '';
+
+      $class = Apps::getModuleClass($file, $appModuleType);
+
+      $module = new $class();
+      $module->code = $file;
+
+      $class = $file;
     } else {
       $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
+
+      include($module_directory . $file);
+
+      $class = substr($file, 0, strrpos($file, '.'));
+
+      if (class_exists($class)) {
+        $module = new $class;
+      }
     }
 
-    $keys = '';
+    if (isset($module)) {
+      if ($module->check() > 0) {
+        if (($module->sort_order > 0) && !isset($installed_modules[$module->sort_order])) {
+          $installed_modules[$module->sort_order] = $file;
+        } else {
+          $installed_modules[] = $file;
+        }
+      }
+
+      if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module'] == $class))) && !isset($mInfo)) {
+        $module_info = [
+          'code' => $module->code,
+          'title' => $module->title,
+          'description' => $module->description,
+          'status' => $module->check(),
+          'signature' => (isset($module->signature) ? $module->signature : null),
+          'api_version' => (isset($module->api_version) ? $module->api_version : null)
+        ];
+
+        $module_keys = $module->keys();
+
+        $keys_extra = [];
+
+        for ($j = 0, $k = \count($module_keys); $j < $k; $j++) {
+
+          $Qkeys = $CLICSHOPPING_Db->get('configuration', [
+            'configuration_title',
+            'configuration_value',
+            'configuration_description',
+            'use_function',
+            'set_function'
+          ], [
+              'configuration_key' => $module_keys[$j]
+            ]
+          );
+
+          $keys_extra[$module_keys[$j]]['title'] = $Qkeys->value('configuration_title');
+          $keys_extra[$module_keys[$j]]['value'] = $Qkeys->value('configuration_value');
+          $keys_extra[$module_keys[$j]]['description'] = $Qkeys->value('configuration_description');
+          $keys_extra[$module_keys[$j]]['use_function'] = $Qkeys->value('use_function');
+          $keys_extra[$module_keys[$j]]['set_function'] = $Qkeys->value('set_function');
+        }
+
+        $module_info['keys'] = $keys_extra;
+
+        $mInfo = new \ArrayObject($module_info, \ArrayObject::ARRAY_AS_PROPS);
+      }
+    }
+  }
+
+  if (isset($mInfo) && (str_contains($mInfo->code, '\\'))) {
+    $file_extension = '';
+  } else {
+    $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
+  }
+
+  $keys = '';
   ?>
   <div id="orderTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">

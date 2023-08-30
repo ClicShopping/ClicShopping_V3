@@ -1,24 +1,24 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Zones = Registry::get('Zones');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Zones = Registry::get('Zones');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -34,18 +34,18 @@
            <div>
              <div>
 <?php
-  echo HTML::form('search', $CLICSHOPPING_Zones->link('Zones'), 'post', null, ['session_id' => true]);
-  echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Zones->getDef('heading_title_search') . '"');
+echo HTML::form('search', $CLICSHOPPING_Zones->link('Zones'), 'post', null, ['session_id' => true]);
+echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Zones->getDef('heading_title_search') . '"');
 
-  if (isset($_POST['search'])) {
-    echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
-    $search = HTML::sanitize($_POST['search']);
-  } elseif(isset($_GETT['search'])) {
-    echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
-    $search = HTML::sanitize($_GET['search']);
-  } else {
-    $search = '';
-  }
+if (isset($_POST['search'])) {
+  echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
+  $search = HTML::sanitize($_POST['search']);
+} elseif (isset($_GETT['search'])) {
+  echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
+  $search = HTML::sanitize($_GET['search']);
+} else {
+  $search = '';
+}
 ?>
                </form>
              </div>
@@ -85,20 +85,27 @@
     data-mobile-responsive="true">
 
     <thead class="dataTableHeadingRow">
-      <tr>
-        <th data-checkbox="true" data-field="state"></th>
-        <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Zones->getDef('id'); ?></th>
-        <th data-field="country_name" data-sortable="true"><?php echo $CLICSHOPPING_Zones->getDef('table_heading_country_name'); ?></th>
-        <th data-field="country_zone" data-sortable="true"><?php echo $CLICSHOPPING_Zones->getDef('table_heading_zone_name'); ?></th>
-        <th data-field="zone_code" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Zones->getDef('table_heading_zone_code'); ?></th>
-        <th data-field="zone_status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Zones->getDef('table_heading_zone_status'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Zones->getDef('table_heading_action'); ?>&nbsp;</th>
-      </tr>
+    <tr>
+      <th data-checkbox="true" data-field="state"></th>
+      <th data-field="selected" data-sortable="true" data-visible="false"
+          data-switchable="false"><?php echo $CLICSHOPPING_Zones->getDef('id'); ?></th>
+      <th data-field="country_name"
+          data-sortable="true"><?php echo $CLICSHOPPING_Zones->getDef('table_heading_country_name'); ?></th>
+      <th data-field="country_zone"
+          data-sortable="true"><?php echo $CLICSHOPPING_Zones->getDef('table_heading_zone_name'); ?></th>
+      <th data-field="zone_code" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_Zones->getDef('table_heading_zone_code'); ?></th>
+      <th data-field="zone_status" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_Zones->getDef('table_heading_zone_status'); ?></th>
+      <th data-field="action" data-switchable="false"
+          class="text-end"><?php echo $CLICSHOPPING_Zones->getDef('table_heading_action'); ?>&nbsp;
+      </th>
+    </tr>
     </thead>
     <tbody>
     <?php
-      if (isset($search)) {
-        $Qzones = $CLICSHOPPING_Zones->db->prepare('select  SQL_CALC_FOUND_ROWS  z.zone_id,
+    if (isset($search)) {
+      $Qzones = $CLICSHOPPING_Zones->db->prepare('select  SQL_CALC_FOUND_ROWS  z.zone_id,
                                                                                 c.countries_id,
                                                                                 c.countries_name,
                                                                                 z.zone_name,
@@ -115,11 +122,11 @@
                                                             :page_set_max_results
                                                       ');
 
-        $Qzones->bindValue(':search', '%' . $search . '%');
-        $Qzones->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-        $Qzones->execute();
-      } else {
-        $Qzones = $CLICSHOPPING_Zones->db->prepare('select  SQL_CALC_FOUND_ROWS  z.zone_id,
+      $Qzones->bindValue(':search', '%' . $search . '%');
+      $Qzones->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+      $Qzones->execute();
+    } else {
+      $Qzones = $CLICSHOPPING_Zones->db->prepare('select  SQL_CALC_FOUND_ROWS  z.zone_id,
                                                                                 c.countries_id,
                                                                                 c.countries_name,
                                                                                 z.zone_name,
@@ -134,13 +141,13 @@
                                                       limit :page_set_offset,
                                                             :page_set_max_results
                                                       ');
-        $Qzones->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-        $Qzones->execute();
-      }
+      $Qzones->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+      $Qzones->execute();
+    }
 
-      $listingTotalRow = $Qzones->getPageSetTotalRows();
+    $listingTotalRow = $Qzones->getPageSetTotalRows();
 
-      if ($listingTotalRow > 0) {
+    if ($listingTotalRow > 0) {
 
       while ($Qzones->fetch()) {
         if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qzones->valueInt('zone_id')))) && !isset($cInfo)) {
@@ -154,28 +161,28 @@
         <td><?php echo $Qzones->value('zone_code'); ?></td>
         <td class="text-center">
           <?php
-            if ($Qzones->valueInt('zone_status') == 0) {
-              echo '<a href="' . $CLICSHOPPING_Zones->link('Zones&SetFlag&page=' . $page . '&flag=1&id=' . $Qzones->valueInt('zone_id') . '&search=' . $search) . '"><i class="bi-check text-success"></i></a>';
-            } else {
-              echo '<a href="' . $CLICSHOPPING_Zones->link('Zones&SetFlag&page=' . $page . '&flag=0&id=' . $Qzones->valueInt('zone_id')) . '&search=' . $search . '"><i class="bi bi-x text-danger"></i></a>';
-            }
+          if ($Qzones->valueInt('zone_status') == 0) {
+            echo '<a href="' . $CLICSHOPPING_Zones->link('Zones&SetFlag&page=' . $page . '&flag=1&id=' . $Qzones->valueInt('zone_id') . '&search=' . $search) . '"><i class="bi-check text-success"></i></a>';
+          } else {
+            echo '<a href="' . $CLICSHOPPING_Zones->link('Zones&SetFlag&page=' . $page . '&flag=0&id=' . $Qzones->valueInt('zone_id')) . '&search=' . $search . '"><i class="bi bi-x text-danger"></i></a>';
+          }
           ?>
         </td>
         <td class="text-end">
           <div class="btn-group" role="group" aria-label="buttonGroup">
-          <?php
+            <?php
             echo '<a href="' . $CLICSHOPPING_Zones->link('Edit&page=' . $page . '&cID=' . $Qzones->valueInt('zone_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Zones->getDef('icon_edit') . '"></i></h4></a>';
             echo '&nbsp;';
             echo '<a href="' . $CLICSHOPPING_Zones->link('Delete&&page=' . $page . '&cID=' . $Qzones->valueInt('zone_id')) . '"><h4><i class="bi bi-trash2" title="' . $CLICSHOPPING_Zones->getDef('icon_delete') . '"></i></h4></a>';
             echo '&nbsp;';
-          ?>
+            ?>
           </div>
         </td>
-      </tr>
-  <?php
+        </tr>
+        <?php
       } // end while
     } // end $listingTotalRow
-  ?>
+    ?>
     </tbody>
   </table>
   </form>

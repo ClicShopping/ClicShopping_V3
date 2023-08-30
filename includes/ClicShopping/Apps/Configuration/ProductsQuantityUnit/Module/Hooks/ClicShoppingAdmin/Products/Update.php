@@ -1,45 +1,45 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Configuration\ProductsQuantityUnit\Module\Hooks\ClicShoppingAdmin\Products;
+namespace ClicShopping\Apps\Configuration\ProductsQuantityUnit\Module\Hooks\ClicShoppingAdmin\Products;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\ProductsQuantityUnit\ProductsQuantityUnit as ProductsQuantityUnitApp;
+use ClicShopping\Apps\Configuration\ProductsQuantityUnit\ProductsQuantityUnit as ProductsQuantityUnitApp;
 
-  class Update implements \ClicShopping\OM\Modules\HooksInterface
+class Update implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('ProductsQuantityUnit')) {
-        Registry::set('ProductsQuantityUnit', new ProductsQuantityUnitApp());
-      }
-
-      $this->app = Registry::get('ProductsQuantityUnit');
+    if (!Registry::exists('ProductsQuantityUnit')) {
+      Registry::set('ProductsQuantityUnit', new ProductsQuantityUnitApp());
     }
 
-    public function execute()
-    {
-      if (isset($_GET['Update'], $_GET['pID'], $_POST['products_quantity_unit_id'])) {
-        $id = HTML::sanitize($_GET['pID']);
+    $this->app = Registry::get('ProductsQuantityUnit');
+  }
 
-        $Qupdate = $this->app->db->prepare('update :table_products
+  public function execute()
+  {
+    if (isset($_GET['Update'], $_GET['pID'], $_POST['products_quantity_unit_id'])) {
+      $id = HTML::sanitize($_GET['pID']);
+
+      $Qupdate = $this->app->db->prepare('update :table_products
                                             set products_quantity_unit_id = :products_quantity_unit_id
                                             where products_id = :products_id
                                           ');
-        $Qupdate->bindInt(':products_quantity_unit_id', $_POST['products_quantity_unit_id']);
-        $Qupdate->bindInt(':products_id', $id);
-        $Qupdate->execute();
-      }
+      $Qupdate->bindInt(':products_quantity_unit_id', $_POST['products_quantity_unit_id']);
+      $Qupdate->bindInt(':products_id', $id);
+      $Qupdate->execute();
     }
   }
+}

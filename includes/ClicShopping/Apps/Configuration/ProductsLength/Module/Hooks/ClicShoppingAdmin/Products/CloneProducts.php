@@ -1,42 +1,42 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Configuration\ProductsLength\Module\Hooks\ClicShoppingAdmin\Products;
+namespace ClicShopping\Apps\Configuration\ProductsLength\Module\Hooks\ClicShoppingAdmin\Products;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\ProductsLength\ProductsLength as ProductsLengthApp;
+use ClicShopping\Apps\Configuration\ProductsLength\ProductsLength as ProductsLengthApp;
 
-  class CloneProducts implements \ClicShopping\OM\Modules\HooksInterface
+class CloneProducts implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('ProductsLength')) {
-        Registry::set('ProductsLength', new ProductsLengthApp());
-      }
-
-      $this->app = Registry::get('ProductsLength');
+    if (!Registry::exists('ProductsLength')) {
+      Registry::set('ProductsLength', new ProductsLengthApp());
     }
 
-    public function execute()
-    {
-      if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {
-        return false;
-      }
+    $this->app = Registry::get('ProductsLength');
+  }
 
-      if (isset($_GET['Update'], $_POST['clone_categories_id_to'], $_GET['pID'])) {
+  public function execute()
+  {
+    if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {
+      return false;
+    }
 
-        $Qproducts = $this->app->db->prepare('select products_length_class_id,
+    if (isset($_GET['Update'], $_POST['clone_categories_id_to'], $_GET['pID'])) {
+
+      $Qproducts = $this->app->db->prepare('select products_length_class_id,
                                                       products_dimension_width,
                                                       products_dimension_height,
                                                       products_dimension_depth,
@@ -44,20 +44,20 @@
                                               from :table_products
                                               where products_id = :products_id
                                              ');
-        $Qproducts->bindInt(':products_id', $_GET['pID']);
+      $Qproducts->bindInt(':products_id', $_GET['pID']);
 
-        $Qproducts->execute();
+      $Qproducts->execute();
 
-        $sql_array = ['products_length_class_id' => (int)$Qproducts->valueInt('products_length_class_id'),
-          'products_dimension_width' => (float)$Qproducts->valueInt('products_dimension_width'),
-          'products_dimension_height' => (float)$Qproducts->valueInt('products_dimension_height'),
-          'products_dimension_depth' => (float)$Qproducts->valueInt('products_dimension_depth'),
-          'products_volume' => $Qproducts->value('products_volume')
-        ];
+      $sql_array = ['products_length_class_id' => (int)$Qproducts->valueInt('products_length_class_id'),
+        'products_dimension_width' => (float)$Qproducts->valueInt('products_dimension_width'),
+        'products_dimension_height' => (float)$Qproducts->valueInt('products_dimension_height'),
+        'products_dimension_depth' => (float)$Qproducts->valueInt('products_dimension_depth'),
+        'products_volume' => $Qproducts->value('products_volume')
+      ];
 
-        $insert_array = ['products_id' => HTML::sanitize($_POST['clone_products_id'])];
+      $insert_array = ['products_id' => HTML::sanitize($_POST['clone_products_id'])];
 
-        $this->app->db->save('products', $sql_array, $insert_array);
-      }
+      $this->app->db->save('products', $sql_array, $insert_array);
     }
   }
+}

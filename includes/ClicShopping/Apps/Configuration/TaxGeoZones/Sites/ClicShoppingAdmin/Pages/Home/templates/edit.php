@@ -1,22 +1,22 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
+$CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select geo_zone_id,
+$Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select geo_zone_id,
                                                            geo_zone_name,
                                                            geo_zone_description,
                                                            last_modified,
@@ -24,13 +24,13 @@
                                                  from :table_geo_zones
                                                  where geo_zone_id =:geo_zone_id
                                                 ');
-  $Qzones->bindInt(':geo_zone_id', $_GET['zID']);
+$Qzones->bindInt(':geo_zone_id', $_GET['zID']);
 
-  $Qzones->execute();
+$Qzones->execute();
 
-  $zInfo = new ObjectInfo($Qzones->toArray());
+$zInfo = new ObjectInfo($Qzones->toArray());
 
-  $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
+$page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -44,9 +44,9 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxGeoZones->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
 <?php
-  echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&Update&zpage=' . $page . '&zID=' . $zInfo->geo_zone_id . '&action=save_zone'));
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones'), 'warning');
+echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&Update&zpage=' . $page . '&zID=' . $zInfo->geo_zone_id . '&action=save_zone'));
+echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_update'), null, null, 'success') . ' ';
+echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones'), 'warning');
 ?>
           </span>
         </div>

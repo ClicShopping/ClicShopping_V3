@@ -1,21 +1,21 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select a.association_id,
+$Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select a.association_id,
                                                             a.zone_country_id,
                                                             a.zone_id,
                                                             a.geo_zone_id,
@@ -25,21 +25,21 @@
                                                     where a.association_id = :association_id
                                                     ');
 
-  $Qzones->bindInt('association_id', $_GET['sID']); ///3
-  $Qzones->execute();
+$Qzones->bindInt('association_id', $_GET['sID']); ///3
+$Qzones->execute();
 
-  $sInfo = new ObjectInfo($Qzones->toArray());
+$sInfo = new ObjectInfo($Qzones->toArray());
 
-  $Qcountries = $CLICSHOPPING_TaxGeoZones->db->prepare('select countries_id,
+$Qcountries = $CLICSHOPPING_TaxGeoZones->db->prepare('select countries_id,
                                                               countries_name
                                                        from :table_countries
                                                        where countries_id = :countries_id
                                                       ');
 
-  $Qcountries->bindInt('countries_id', $sInfo->zone_country_id); ///3
-  $Qcountries->execute();
+$Qcountries->bindInt('countries_id', $sInfo->zone_country_id); ///3
+$Qcountries->execute();
 
-  $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
+$page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">

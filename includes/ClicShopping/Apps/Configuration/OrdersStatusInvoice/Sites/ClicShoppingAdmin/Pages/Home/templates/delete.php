@@ -1,66 +1,66 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_OrdersStatusInvoice = Registry::get('OrdersStatusInvoice');
-  $CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_OrdersStatusInvoice = Registry::get('OrdersStatusInvoice');
+$CLICSHOPPING_Language = Registry::get('Language');
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $oID = HTML::sanitize($_GET['oID']);
-  $Qstatus = $CLICSHOPPING_OrdersStatusInvoice->db->get('configuration', 'configuration_value', ['configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID']);
+$oID = HTML::sanitize($_GET['oID']);
+$Qstatus = $CLICSHOPPING_OrdersStatusInvoice->db->get('configuration', 'configuration_value', ['configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID']);
 
-  if ($Qstatus->value('configuration_value') == $oID) {
-    $CLICSHOPPING_OrdersStatusInvoice->db->save('configuration', [
-      'configuration_value' => ''
-    ], [
-        'configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID'
-      ]
-    );
-  }
+if ($Qstatus->value('configuration_value') == $oID) {
+  $CLICSHOPPING_OrdersStatusInvoice->db->save('configuration', [
+    'configuration_value' => ''
+  ], [
+      'configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID'
+    ]
+  );
+}
 
-  $QstatusInvoice = $CLICSHOPPING_OrdersStatusInvoice->db->get('orders', 'orders_status', ['orders_status_invoice' => (int)$oID], null, 1);
+$QstatusInvoice = $CLICSHOPPING_OrdersStatusInvoice->db->get('orders', 'orders_status', ['orders_status_invoice' => (int)$oID], null, 1);
 
-  $remove_status = true;
+$remove_status = true;
 
-  if ($oID == DEFAULT_ORDERS_STATUS_INVOICE_ID) {
+if ($oID == DEFAULT_ORDERS_STATUS_INVOICE_ID) {
+  $remove_status = false;
+  $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatusInvoice->getDef('error_remove_default_order_status'), 'error');
+} elseif ($Qstatus->fetch() !== false) {
+  $remove_status = false;
+  $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatusInvoice->getDef('error_status_used_in_orders'), 'error');
+} else {
+
+  $Qhistory = $CLICSHOPPING_OrdersStatusInvoice->db->get('orders_status_history', 'orders_status_invoice_id', ['orders_status_invoice_id' => (int)$oID], null, 1);
+
+  if ($Qhistory->fetch() !== false) {
     $remove_status = false;
-    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatusInvoice->getDef('error_remove_default_order_status'), 'error');
-  } elseif ($Qstatus->fetch() !== false) {
-    $remove_status = false;
-    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatusInvoice->getDef('error_status_used_in_orders'), 'error');
-  } else {
-
-    $Qhistory = $CLICSHOPPING_OrdersStatusInvoice->db->get('orders_status_history', 'orders_status_invoice_id', ['orders_status_invoice_id' => (int)$oID], null, 1);
-
-    if ($Qhistory->fetch() !== false) {
-      $remove_status = false;
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatusInvoice->getDef('error_status_used_in_hsitory'), 'error');
-    }
+    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatusInvoice->getDef('error_status_used_in_hsitory'), 'error');
   }
+}
 
-  $QordersStatusInvoice = $CLICSHOPPING_OrdersStatusInvoice->db->prepare('select  *
+$QordersStatusInvoice = $CLICSHOPPING_OrdersStatusInvoice->db->prepare('select  *
                                                                   from :table_orders_status_invoice
                                                                   where language_id = :language_id
                                                                   and orders_status_invoice_id = :orders_status_invoice_id
                                                                   ');
 
-  $QordersStatusInvoice->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-  $QordersStatusInvoice->bindInt(':orders_status_invoice_id', $_GET['oID']);
+$QordersStatusInvoice->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+$QordersStatusInvoice->bindInt(':orders_status_invoice_id', $_GET['oID']);
 
-  $QordersStatusInvoice->execute();
+$QordersStatusInvoice->execute();
 
-  $oInfo = new ObjectInfo($QordersStatusInvoice->toArray());
+$oInfo = new ObjectInfo($QordersStatusInvoice->toArray());
 
 
 ?>
@@ -93,15 +93,15 @@
       </div>
       <div class="col-md-12 text-center">
         <?php
-          if ($remove_status) {
-            ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . (int)$_GET['page']), 'warning', null, 'sm'); ?></span>
-            <?php
-          } else {
-            ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->orders_status_invoice_id), 'warning', null, 'sm'); ?></span>
-            <?php
-          }
+        if ($remove_status) {
+          ?>
+          <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . (int)$_GET['page']), 'warning', null, 'sm'); ?></span>
+          <?php
+        } else {
+          ?>
+          <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->orders_status_invoice_id), 'warning', null, 'sm'); ?></span>
+          <?php
+        }
         ?>
       </div>
     </div>

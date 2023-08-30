@@ -1,29 +1,29 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin\WeightAdmin;
+use ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin\WeightAdmin;
 
-  $CLICSHOPPING_Weight = Registry::get('Weight');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Weight = Registry::get('Weight');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Language = Registry::get('Language');
 
-  $wInfo = new ObjectInfo(array());
+$wInfo = new ObjectInfo(array());
 
-  $languages = $CLICSHOPPING_Language->getLanguages();
+$languages = $CLICSHOPPING_Language->getLanguages();
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -37,9 +37,9 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
 <?php
-  echo HTML::form('ClassInsert', $CLICSHOPPING_Weight->link('Weight&ClassInsert&page=' . $page));
-  echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert'), null, null, 'primary') . ' ';
-  echo HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight'), 'warning');
+echo HTML::form('ClassInsert', $CLICSHOPPING_Weight->link('Weight&ClassInsert&page=' . $page));
+echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert'), null, null, 'primary') . ' ';
+echo HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight'), 'warning');
 ?>
           </span>
         </div>
