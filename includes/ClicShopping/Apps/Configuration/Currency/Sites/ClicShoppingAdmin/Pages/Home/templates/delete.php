@@ -1,40 +1,40 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Currency = Registry::get('Currency');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Currency = Registry::get('Currency');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qcurrency = $CLICSHOPPING_Currency->db->prepare('select *
+$Qcurrency = $CLICSHOPPING_Currency->db->prepare('select *
                                                   from :table_currencies
                                                   where currencies_id = :currencies_id
                                                 ');
-  $Qcurrency->bindInt(':currencies_id', $_GET['cID']);
-  $Qcurrency->execute();
+$Qcurrency->bindInt(':currencies_id', $_GET['cID']);
+$Qcurrency->execute();
 
-  $cInfo = new ObjectInfo($Qcurrency->toArray());
+$cInfo = new ObjectInfo($Qcurrency->toArray());
 
-  $currencies_id = HTML::sanitize($_GET['cID']);
+$currencies_id = HTML::sanitize($_GET['cID']);
 
-  $Qcurrency = $CLICSHOPPING_Currency->db->get('currencies', 'code', ['currencies_id' => (int)$currencies_id]);
+$Qcurrency = $CLICSHOPPING_Currency->db->get('currencies', 'code', ['currencies_id' => (int)$currencies_id]);
 
-  $remove_currency = true;
-  if ($Qcurrency->value('code') == DEFAULT_CURRENCY) {
-    $remove_currency = false;
-    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Currency->getDef('error_remove_default_currency'), 'error');
-  }
+$remove_currency = true;
+if ($Qcurrency->value('code') == DEFAULT_CURRENCY) {
+  $remove_currency = false;
+  $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Currency->getDef('error_remove_default_currency'), 'error');
+}
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">

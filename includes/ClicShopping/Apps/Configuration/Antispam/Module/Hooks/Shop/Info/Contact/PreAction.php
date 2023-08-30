@@ -72,24 +72,6 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
     return $error;
   }
 
-  /**
-   * @return bool
-   */
-  private static function checkGoogleRecaptchaAntispam(): bool
-  {
-    $error = false;
-
-    if (!\defined('CLICSHOPPING_APP_ANTISPAM_GG_STATUS') || CLICSHOPPING_APP_ANTISPAM_GG_STATUS == 'False') {
-      $error = false;
-    } elseif (!\defined('CLICSHOPPING_APP_ANTISPAM_GG_CONTACT') || CLICSHOPPING_APP_ANTISPAM_GG_STATUS == 'False') {
-      $error = false;
-    } else {
-      $error = AntiSpam::checkGoogleRecaptchaAntispam();
-    }
-
-    return $error;
-  }
-
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_ANTISPAM_STATUS') || CLICSHOPPING_APP_ANTISPAM_STATUS == 'False') {
@@ -101,9 +83,7 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
 
       $error_invisible = static::checkInvisibleAntispam();
       $error_numeric = static::checkNumericAntispam();
-//        $error_recaptcha = static::checkGoogleRecaptchaAntispam();
 
-//        if ($error_invisible === true || $error_numeric === true || $error_recaptcha === true) {
       if ($error_invisible === true || $error_numeric === true) {
 
         $error = true;

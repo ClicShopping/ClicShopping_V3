@@ -1,23 +1,23 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Langues = Registry::get('Langues');
+$CLICSHOPPING_Langues = Registry::get('Langues');
 
-  $id = HTML::sanitize($_GET['lID']);
+$id = HTML::sanitize($_GET['lID']);
 
-  $Qlanguages = $CLICSHOPPING_Langues->db->prepare('select languages_id,
+$Qlanguages = $CLICSHOPPING_Langues->db->prepare('select languages_id,
                                                            name,
                                                            code,
                                                            image,
@@ -28,51 +28,51 @@
                                                     from :table_languages
                                                     where languages_id = :languages_id
                                                     ');
-  $Qlanguages->bindInt(':languages_id', (int)$id);
+$Qlanguages->bindInt(':languages_id', (int)$id);
 
-  $Qlanguages->execute();
+$Qlanguages->execute();
 
-  $lInfo = new ObjectInfo($Qlanguages->toArray());
+$lInfo = new ObjectInfo($Qlanguages->toArray());
 
-  $icons = [];
+$icons = [];
 
-  foreach (glob(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/third_party/flag-icon-css/flags/4x3/*.svg') as $file) {
-    $code = basename($file, '.svg');
+foreach (glob(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/third_party/flag-icon-css/flags/4x3/*.svg') as $file) {
+  $code = basename($file, '.svg');
 
-    $icons[] = ['id' => $code,
-      'text' => $code
-    ];
-  }
+  $icons[] = ['id' => $code,
+    'text' => $code
+  ];
+}
 
-  $directories = [];
+$directories = [];
 
-  foreach (glob(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/languages/*', GLOB_ONLYDIR) as $dir) {
-    $code = basename($dir);
+foreach (glob(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/languages/*', GLOB_ONLYDIR) as $dir) {
+  $code = basename($dir);
 
+  $directories[] = ['id' => $code,
+    'text' => $code
+  ];
+}
+
+foreach (glob(CLICSHOPPING::getConfig('dir_root', 'ClicShoppingAdmin') . 'includes/languages/*', GLOB_ONLYDIR) as $dir) {
+  $code = basename($dir);
+
+  if (array_search($code, array_column($directories, 'id')) === false) {
     $directories[] = ['id' => $code,
       'text' => $code
     ];
   }
+}
 
-  foreach (glob(CLICSHOPPING::getConfig('dir_root', 'ClicShoppingAdmin') . 'includes/languages/*', GLOB_ONLYDIR) as $dir) {
-    $code = basename($dir);
-
-    if (array_search($code, array_column($directories, 'id')) === false) {
-      $directories[] = ['id' => $code,
-        'text' => $code
-      ];
-    }
+uasort($directories, function ($a, $b) {
+  if ($a['id'] == $b['id']) {
+    return 0;
   }
 
-  uasort($directories, function ($a, $b) {
-    if ($a['id'] == $b['id']) {
-      return 0;
-    }
+  return ($a['id'] < $b['id']) ? -1 : 1;
+});
 
-    return ($a['id'] < $b['id']) ? -1 : 1;
-  });
-
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -109,11 +109,11 @@
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Langues->getDef('text_info_language_name'); ?></label>
           <div class="col-md-5">
             <?php
-              if ($id == 1) {
-                echo HTML::inputField('name', $lInfo->name, 'readonly required aria-required="true"');
-              } else {
-                echo HTML::inputField('name', $lInfo->name, 'required aria-required="true"');
-              }
+            if ($id == 1) {
+              echo HTML::inputField('name', $lInfo->name, 'readonly required aria-required="true"');
+            } else {
+              echo HTML::inputField('name', $lInfo->name, 'required aria-required="true"');
+            }
             ?>
           </div>
         </div>
@@ -127,11 +127,11 @@
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Langues->getDef('text_info_language_code'); ?></label>
           <div class="col-md-5">
             <?php
-              if ($id == 1) {
-                echo HTML::inputField('code', $lInfo->code, 'readonly required aria-required="true"');
-              } else {
-                echo HTML::inputField('code', $lInfo->code, 'required aria-required="true"');
-              }
+            if ($id == 1) {
+              echo HTML::inputField('code', $lInfo->code, 'readonly required aria-required="true"');
+            } else {
+              echo HTML::inputField('code', $lInfo->code, 'required aria-required="true"');
+            }
             ?>
           </div>
         </div>
@@ -157,11 +157,11 @@
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Langues->getDef('text_info_language_directory'); ?></label>
           <div class="col-md-5">
             <?php
-              if ($id == 1) {
-                echo HTML::inputField('directory', $lInfo->directory, 'readonly required aria-required="true"');
-              } else {
-                echo HTML::selectField('directory', $directories, $lInfo->directory);
-              }
+            if ($id == 1) {
+              echo HTML::inputField('directory', $lInfo->directory, 'readonly required aria-required="true"');
+            } else {
+              echo HTML::selectField('directory', $directories, $lInfo->directory);
+            }
             ?>
           </div>
         </div>
@@ -175,11 +175,11 @@
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Langues->getDef('text_info_language_locale'); ?></label>
           <div class="col-md-5">
             <?php
-              if ($id == 1) {
-                echo HTML::inputField('locale', $lInfo->locale, 'readonly required aria-required="true"');
-              } else {
-                echo HTML::inputField('locale', $lInfo->locale, 'placeholder="' . $CLICSHOPPING_Langues->getDef('text_locale') . '" required aria-required="true"');
-              }
+            if ($id == 1) {
+              echo HTML::inputField('locale', $lInfo->locale, 'readonly required aria-required="true"');
+            } else {
+              echo HTML::inputField('locale', $lInfo->locale, 'placeholder="' . $CLICSHOPPING_Langues->getDef('text_locale') . '" required aria-required="true"');
+            }
             ?>
           </div>
         </div>
@@ -200,22 +200,22 @@
 
     <div class="row">
       <?php
-        if (DEFAULT_LANGUAGE != $lInfo->code) {
-          ?>
-          <div class="col-md-12">
-            <span class="col-md-5"></span>
-            <ul class="list-group-slider list-group-flush">
-              <span class="text-slider"><?php echo $CLICSHOPPING_Langues->getDef('text_set_default'); ?></span>
-              <li class="list-group-item-slider">
-                <label class="switch">
-                  <?php echo HTML::checkboxField('default', null, null, 'class="success"'); ?>
-                  <span class="slider"></span>
-                </label>
-              </li>
-            </ul>
-          </div>
-          <?php
-        }
+      if (DEFAULT_LANGUAGE != $lInfo->code) {
+        ?>
+        <div class="col-md-12">
+          <span class="col-md-5"></span>
+          <ul class="list-group-slider list-group-flush">
+            <span class="text-slider"><?php echo $CLICSHOPPING_Langues->getDef('text_set_default'); ?></span>
+            <li class="list-group-item-slider">
+              <label class="switch">
+                <?php echo HTML::checkboxField('default', null, null, 'class="success"'); ?>
+                <span class="slider"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+        <?php
+      }
       ?>
       <div class="separator"></div>
       <div class="col-md-12 text-center">

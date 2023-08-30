@@ -1,22 +1,22 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Currency = Registry::get('Currency');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Currency = Registry::get('Currency');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qcurrency = $CLICSHOPPING_Currency->db->prepare('select currencies_id,
+$Qcurrency = $CLICSHOPPING_Currency->db->prepare('select currencies_id,
                                                           code,
                                                           title,
                                                           symbol_left,
@@ -28,21 +28,21 @@
                                                           surcharge
                                                     from :table_currencies
                                                     ');
-  $Qcurrency->execute();
+$Qcurrency->execute();
 
-  $cInfo = new ObjectInfo($Qcurrency->toArray());
+$cInfo = new ObjectInfo($Qcurrency->toArray());
 
-  $currency_select = json_decode(file_get_contents(CLICSHOPPING::BASE_DIR. 'External/CommonCurrencies.json'), true);
-  $currency_select_array = array(array('id' => '', 'text' => $CLICSHOPPING_Currency->getDef('text_info_common_currency')));
+$currency_select = json_decode(file_get_contents(CLICSHOPPING::BASE_DIR . 'External/CommonCurrencies.json'), true);
+$currency_select_array = array(array('id' => '', 'text' => $CLICSHOPPING_Currency->getDef('text_info_common_currency')));
 
-  foreach ($currency_select as $cs) {
-    if (!isset($CLICSHOPPING_Currency->currency[$cs['code']])) {
-      $currency_select_array[] = array('id' => $cs['code'], 'text' => '[' . $cs['code'] . '] ' . $cs['title']);
-    }
+foreach ($currency_select as $cs) {
+  if (!isset($CLICSHOPPING_Currency->currency[$cs['code']])) {
+    $currency_select_array[] = array('id' => $cs['code'], 'text' => '[' . $cs['code'] . '] ' . $cs['title']);
   }
+}
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
-  echo HTML::form('currency', $CLICSHOPPING_Currency->link('Currency&Insert&page=' . $page . (isset($cInfo) ? '&cID=' . $cInfo->currencies_id : '')));
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+echo HTML::form('currency', $CLICSHOPPING_Currency->link('Currency&Insert&page=' . $page . (isset($cInfo) ? '&cID=' . $cInfo->currencies_id : '')));
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -56,8 +56,8 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
 <?php
-  echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $page), 'warning') . ' ';
-  echo HTML::button($CLICSHOPPING_Currency->getDef('button_insert'), null, null, 'success');
+echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $page), 'warning') . ' ';
+echo HTML::button($CLICSHOPPING_Currency->getDef('button_insert'), null, null, 'success');
 ?>
           </span>
         </div>
@@ -203,7 +203,8 @@
       <div class="col-md-12">
         <span class="col-md-5"></span>
         <ul class="list-group-slider list-group-flush">
-          <span class="text-slider"><?php echo $CLICSHOPPING_Currency->getDef('text_info_set_as_default', ['text_set_default' => $CLICSHOPPING_Currency->getDef('text_set_default')]); ?></span>
+          <span
+            class="text-slider"><?php echo $CLICSHOPPING_Currency->getDef('text_info_set_as_default', ['text_set_default' => $CLICSHOPPING_Currency->getDef('text_set_default')]); ?></span>
           <li class="list-group-item-slider">
             <label class="switch">
               <?php echo HTML::checkboxField('default', null, null, 'class="success"'); ?>
@@ -218,25 +219,25 @@
 </form>
 
 <script type="text/javascript">
-    var currency_select = new Array();
-    <?php
-    foreach ($currency_select_array as $cs) {
-      if (!empty($cs['id'])) {
-        echo 'currency_select["' . $cs['id'] . '"] = new Array("' . $currency_select[$cs['id']]['title'] . '", "' . $currency_select[$cs['id']]['symbol_left'] . '", "' . $currency_select[$cs['id']]['symbol_right'] . '", "' . $currency_select[$cs['id']]['decimal_point'] . '", "' . $currency_select[$cs['id']]['thousands_point'] . '", "' . $currency_select[$cs['id']]['decimal_places'] . '");' . "\n";
-      }
+  var currency_select = new Array();
+  <?php
+  foreach ($currency_select_array as $cs) {
+    if (!empty($cs['id'])) {
+      echo 'currency_select["' . $cs['id'] . '"] = new Array("' . $currency_select[$cs['id']]['title'] . '", "' . $currency_select[$cs['id']]['symbol_left'] . '", "' . $currency_select[$cs['id']]['symbol_right'] . '", "' . $currency_select[$cs['id']]['decimal_point'] . '", "' . $currency_select[$cs['id']]['thousands_point'] . '", "' . $currency_select[$cs['id']]['decimal_places'] . '");' . "\n";
     }
-    ?>
+  }
+  ?>
 
-    function updateForm() {
-        var cs = document.forms["currency"].cs[document.forms["currency"].cs.selectedIndex].value;
+  function updateForm() {
+    var cs = document.forms["currency"].cs[document.forms["currency"].cs.selectedIndex].value;
 
-        document.forms["currency"].title.value = currency_select[cs][0];
-        document.forms["currency"].code.value = cs;
-        document.forms["currency"].symbol_left.value = currency_select[cs][1];
-        document.forms["currency"].symbol_right.value = currency_select[cs][2];
-        document.forms["currency"].decimal_point.value = currency_select[cs][3];
-        document.forms["currency"].thousands_point.value = currency_select[cs][4];
-        document.forms["currency"].decimal_places.value = currency_select[cs][5];
-        document.forms["currency"].value.value = 1;
-    }
+    document.forms["currency"].title.value = currency_select[cs][0];
+    document.forms["currency"].code.value = cs;
+    document.forms["currency"].symbol_left.value = currency_select[cs][1];
+    document.forms["currency"].symbol_right.value = currency_select[cs][2];
+    document.forms["currency"].decimal_point.value = currency_select[cs][3];
+    document.forms["currency"].thousands_point.value = currency_select[cs][4];
+    document.forms["currency"].decimal_places.value = currency_select[cs][5];
+    document.forms["currency"].value.value = 1;
+  }
 </script>

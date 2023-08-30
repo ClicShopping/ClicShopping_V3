@@ -1,21 +1,21 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Currency = Registry::get('Currency');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Currency = Registry::get('Currency');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qcurrency = $CLICSHOPPING_Currency->db->prepare('select currencies_id,
+$Qcurrency = $CLICSHOPPING_Currency->db->prepare('select currencies_id,
                                                           title,
                                                           code,
                                                           symbol_left,
@@ -28,14 +28,14 @@
                                                   from :table_currencies
                                                   where currencies_id = :currencies_id
                                                 ');
-  $Qcurrency->bindInt(':currencies_id', $_GET['cID']);
-  $Qcurrency->execute();
+$Qcurrency->bindInt(':currencies_id', $_GET['cID']);
+$Qcurrency->execute();
 
-  $cInfo = new ObjectInfo($Qcurrency->toArray());
+$cInfo = new ObjectInfo($Qcurrency->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-  echo HTML::form('Currency', $CLICSHOPPING_Currency->link('Currency&Update&page=' . $page . '&cID=' . $cInfo->currencies_id));
+echo HTML::form('Currency', $CLICSHOPPING_Currency->link('Currency&Update&page=' . $page . '&cID=' . $cInfo->currencies_id));
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -49,8 +49,8 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
 <?php
-  echo HTML::button($CLICSHOPPING_Currency->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $page . '&cID=' . $cInfo->currencies_id), 'warning');
+echo HTML::button($CLICSHOPPING_Currency->getDef('button_update'), null, null, 'success') . ' ';
+echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $page . '&cID=' . $cInfo->currencies_id), 'warning');
 ?>
           </span>
         </div>
@@ -156,7 +156,6 @@
     </div>
 
 
-
     <div class="row" id="currencies_value">
       <div class="col-md-5">
         <div class="form-group row">
@@ -183,23 +182,24 @@
 
     <div class="row" id="default_currencies">
       <?php
-        if (DEFAULT_CURRENCY != $cInfo->code) {
-          ?>
-          <div class="separator"></div>
-          <div class="col-md-12 text-center">
-            <span class="col-md-3"></span>
-            <ul class="list-group-slider list-group-flush">
-              <span class="text-slider"><?php echo $CLICSHOPPING_Currency->getDef('text_info_set_as_default', ['text_set_default' => $CLICSHOPPING_Currency->getDef('text_set_default')]); ?></span>
-              <li class="list-group-item-slider">
-                <label class="switch">
-                  <?php echo HTML::checkboxField('default', null, null, 'class="success"'); ?>
-                  <span class="slider"></span>
-                </label>
-              </li>
-            </ul>
-          </div>
-          <?php
-        }
+      if (DEFAULT_CURRENCY != $cInfo->code) {
+        ?>
+        <div class="separator"></div>
+        <div class="col-md-12 text-center">
+          <span class="col-md-3"></span>
+          <ul class="list-group-slider list-group-flush">
+            <span
+              class="text-slider"><?php echo $CLICSHOPPING_Currency->getDef('text_info_set_as_default', ['text_set_default' => $CLICSHOPPING_Currency->getDef('text_set_default')]); ?></span>
+            <li class="list-group-item-slider">
+              <label class="switch">
+                <?php echo HTML::checkboxField('default', null, null, 'class="success"'); ?>
+                <span class="slider"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+        <?php
+      }
       ?>
     </div>
   </div>

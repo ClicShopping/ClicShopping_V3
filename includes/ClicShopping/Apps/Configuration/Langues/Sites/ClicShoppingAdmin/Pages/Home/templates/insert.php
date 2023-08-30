@@ -1,60 +1,60 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\FileSystem;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\FileSystem;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Langues = Registry::get('Langues');
+$CLICSHOPPING_Langues = Registry::get('Langues');
 
-  $icons = [];
+$icons = [];
 
-  foreach (glob(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/third_party/flag-icon-css/flags/4x3/*.svg') as $file) {
-    $code = basename($file, '.svg');
+foreach (glob(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/third_party/flag-icon-css/flags/4x3/*.svg') as $file) {
+  $code = basename($file, '.svg');
 
-    $icons[] = [
-      'id' => $code,
-      'text' => $code
-    ];
-  }
+  $icons[] = [
+    'id' => $code,
+    'text' => $code
+  ];
+}
 
-  $directories = [];
+$directories = [];
 
-  foreach (glob(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/languages/*', GLOB_ONLYDIR) as $dir) {
-    $code = basename($dir);
+foreach (glob(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/languages/*', GLOB_ONLYDIR) as $dir) {
+  $code = basename($dir);
 
+  $directories[] = ['id' => $code,
+    'text' => $code
+  ];
+}
+
+foreach (glob(CLICSHOPPING::getConfig('dir_root', 'ClicShoppingAdmin') . 'includes/languages/*', GLOB_ONLYDIR) as $dir) {
+  $code = basename($dir);
+
+  if (array_search($code, array_column($directories, 'id')) === false) {
     $directories[] = ['id' => $code,
       'text' => $code
     ];
   }
+}
 
-  foreach (glob(CLICSHOPPING::getConfig('dir_root', 'ClicShoppingAdmin') . 'includes/languages/*', GLOB_ONLYDIR) as $dir) {
-    $code = basename($dir);
-
-    if (array_search($code, array_column($directories, 'id')) === false) {
-      $directories[] = ['id' => $code,
-        'text' => $code
-      ];
-    }
+uasort($directories, function ($a, $b) {
+  if ($a['id'] == $b['id']) {
+    return 0;
   }
 
-  uasort($directories, function ($a, $b) {
-    if ($a['id'] == $b['id']) {
-      return 0;
-    }
+  return ($a['id'] < $b['id']) ? -1 : 1;
+});
 
-    return ($a['id'] < $b['id']) ? -1 : 1;
-  });
-
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -71,14 +71,14 @@
     </div>
   </div>
   <div class="separator"></div>
-<?php
-    if (FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathLanguage())) {
+  <?php
+  if (FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathLanguage())) {
     ?>
     <div class="alert alert-warning"
          role="alert"><?php echo $CLICSHOPPING_Langues->getDef('error_language_directory_not_writeable'); ?></div>
     <?php
   }
-?>
+  ?>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Langues->getDef('text_info_heading_new_language'); ?></strong></div>
   <?php echo HTML::form('languages', $CLICSHOPPING_Langues->link('Langues&Insert')); ?>
@@ -195,7 +195,7 @@
   </form>
   <div class="separator"></div>
   <div class="alert alert-info" role="alert">
-    <div><?php echo '<h4><i class="bi bi-question-circle" title="' .$CLICSHOPPING_Langues->getDef('title_help') . '"></i></h4> ' . $CLICSHOPPING_Langues->getDef('title_help') ?></div>
+    <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Langues->getDef('title_help') . '"></i></h4> ' . $CLICSHOPPING_Langues->getDef('title_help') ?></div>
     <div class="separator"></div>
     <div><?php echo $CLICSHOPPING_Langues->getDef('text_note_create_language'); ?></div>
   </div>

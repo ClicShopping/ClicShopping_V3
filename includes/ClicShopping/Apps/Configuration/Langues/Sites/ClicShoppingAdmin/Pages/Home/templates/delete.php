@@ -1,33 +1,33 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Langues = Registry::get('Langues');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Langues = Registry::get('Langues');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  $lID = HTML::sanitize($_GET['lID']);
+$lID = HTML::sanitize($_GET['lID']);
 
-  $Qlanguages = $CLICSHOPPING_Langues->db->prepare('select  *
+$Qlanguages = $CLICSHOPPING_Langues->db->prepare('select  *
                                                     from :table_languages
                                                     where languages_id = :languages_id
                                                     ');
-  $Qlanguages->bindInt(':languages_id', $lID);
+$Qlanguages->bindInt(':languages_id', $lID);
 
-  $Qlanguages->execute();
+$Qlanguages->execute();
 
-  $lInfo = new ObjectInfo($Qlanguages->toArray());
+$lInfo = new ObjectInfo($Qlanguages->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -45,9 +45,9 @@
   </div>
   <div class="separator"></div>
   <?php
-    if ($Qlanguages->value('code') == DEFAULT_LANGUAGE) {
-      echo '<div class="alert alert-warning" role="alert">' . $CLICSHOPPING_Langues->getDef('error_remove_default_language') . '</div>';
-    }
+  if ($Qlanguages->value('code') == DEFAULT_LANGUAGE) {
+    echo '<div class="alert alert-warning" role="alert">' . $CLICSHOPPING_Langues->getDef('error_remove_default_language') . '</div>';
+  }
   ?>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Langues->getDef('text_info_heading_delete_language'); ?></strong></div>
@@ -62,11 +62,11 @@
 <?php
 
 
-  if ($Qlanguages->value('code') != DEFAULT_LANGUAGE) {
-    echo '<span><br />' . HTML::button($CLICSHOPPING_Langues->getDef('button_delete'), null, $CLICSHOPPING_Langues->link('Langues&DeleteConfirm&page=' . $page . '&lID=' . $lInfo->languages_id), 'primary', null, 'sm') . ' </span>';
-  }
+if ($Qlanguages->value('code') != DEFAULT_LANGUAGE) {
+  echo '<span><br />' . HTML::button($CLICSHOPPING_Langues->getDef('button_delete'), null, $CLICSHOPPING_Langues->link('Langues&DeleteConfirm&page=' . $page . '&lID=' . $lInfo->languages_id), 'primary', null, 'sm') . ' </span>';
+}
 
-  echo '<span>' . HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null, $CLICSHOPPING_Langues->link('Langues&page=' . $page . '&lID=' . $lInfo->languages_id), 'warning', null, 'sm');
+echo '<span>' . HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null, $CLICSHOPPING_Langues->link('Langues&page=' . $page . '&lID=' . $lInfo->languages_id), 'warning', null, 'sm');
 ?>
         </span>
       </div>
