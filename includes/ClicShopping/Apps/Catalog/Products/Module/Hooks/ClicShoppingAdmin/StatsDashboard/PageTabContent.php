@@ -1,73 +1,73 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Catalog\Products\Module\Hooks\ClicShoppingAdmin\StatsDashboard;
+namespace ClicShopping\Apps\Catalog\Products\Module\Hooks\ClicShoppingAdmin\StatsDashboard;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Catalog\Products\Products as ProductsApp;
+use ClicShopping\Apps\Catalog\Products\Products as ProductsApp;
 
-  class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
+class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Products')) {
-        Registry::set('Products', new ProductsApp());
-      }
-
-      $this->app = Registry::get('Products');
-
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
+    if (!Registry::exists('Products')) {
+      Registry::set('Products', new ProductsApp());
     }
 
+    $this->app = Registry::get('Products');
 
-    private function statsProductsOffline()
-    {
-      $Qproducts = $this->app->db->prepare('select count(products_id) as count
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
+  }
+
+
+  private function statsProductsOffline()
+  {
+    $Qproducts = $this->app->db->prepare('select count(products_id) as count
                                            from :table_products
                                            where products_status = 0
                                            limit 1
                                          ');
-      $Qproducts->execute();
+    $Qproducts->execute();
 
-      $products_total_off_line = $Qproducts->valueInt('count');
+    $products_total_off_line = $Qproducts->valueInt('count');
 
-      return $products_total_off_line;
-    }
+    return $products_total_off_line;
+  }
 
 
-    private function statsProductsTotal()
-    {
-      $Qproducts = $this->app->db->prepare('select count(products_id) as count
+  private function statsProductsTotal()
+  {
+    $Qproducts = $this->app->db->prepare('select count(products_id) as count
                                            from :table_products
                                            limit 1
                                           ');
-      $Qproducts->execute();
+    $Qproducts->execute();
 
-      $products_total = $Qproducts->valueInt('count');
+    $products_total = $Qproducts->valueInt('count');
 
-      return $products_total;
+    return $products_total;
+  }
+
+
+  public function display()
+  {
+
+    if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
+      return false;
     }
 
-
-    public function display()
-    {
-
-      if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
-        return false;
-      }
-
-      if ($this->statsProductsTotal() != 0) {
-        $content = '
+    if ($this->statsProductsTotal() != 0) {
+      $content = '
         <div class="row">
           <div class="col-md-11 mainTable">
             <div class="form-group row">
@@ -79,11 +79,11 @@
           </div>
         </div>
         ';
-      }
+    }
 
 
-      if ($this->statsProductsOffline() != 0) {
-        $content = '
+    if ($this->statsProductsOffline() != 0) {
+      $content = '
         <div class="row">
           <div class="col-md-11 mainTable">
             <div class="form-group row">
@@ -95,10 +95,10 @@
           </div>
         </div>
        ';
-      }
+    }
 
-      if ($this->statsProductsOffline() != 0 || $this->statsProductsTotal() != 0) {
-        $output = <<<EOD
+    if ($this->statsProductsOffline() != 0 || $this->statsProductsTotal() != 0) {
+      $output = <<<EOD
   <!-- ######################## -->
   <!--  Start Products      -->
   <!-- ######################## -->
@@ -107,7 +107,7 @@
   <!--  Start Products      -->
   <!-- ######################## -->
 EOD;
-        return $output;
-      }
+      return $output;
     }
   }
+}

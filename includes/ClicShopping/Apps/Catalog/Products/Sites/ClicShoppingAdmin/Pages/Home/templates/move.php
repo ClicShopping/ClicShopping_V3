@@ -1,24 +1,24 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Products = Registry::get('Products');
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Products = Registry::get('Products');
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
 
-  $Qproducts = $CLICSHOPPING_Products->db->prepare('select p.products_id,
+$Qproducts = $CLICSHOPPING_Products->db->prepare('select p.products_id,
                                                       pd.products_name
                                                  from :table_products p,
                                                       :table_products_description pd,
@@ -29,18 +29,18 @@
                                                  and p.products_id = :products_id
                                               ');
 
-  $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
-  $Qproducts->bindInt(':products_id', (int)$_GET['pID']);
+$Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+$Qproducts->bindInt(':products_id', (int)$_GET['pID']);
 
-  $Qproducts->execute();
+$Qproducts->execute();
 
-  $array_products = ($Qproducts->toArray());
+$array_products = ($Qproducts->toArray());
 
-  $pInfo = new ObjectInfo($array_products);
+$pInfo = new ObjectInfo($array_products);
 
-  $cPath = 0;
+$cPath = 0;
 
-  if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
+if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
 
 ?>
 <div class="contentBody">

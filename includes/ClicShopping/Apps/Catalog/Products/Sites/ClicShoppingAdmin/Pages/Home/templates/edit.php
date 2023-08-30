@@ -1,133 +1,131 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\FileSystem;
-  use ClicShopping\OM\ObjectInfo;
-  use ClicShopping\OM\DateTime;
-  use ClicShopping\OM\HTTP;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\DateTime;
+use ClicShopping\OM\FileSystem;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTTP;
+use ClicShopping\OM\ObjectInfo;
+use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ProductStock;
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+use ClicShopping\Apps\Marketing\SEO\Classes\ClicShoppingAdmin\SeoAdmin;
+use ClicShopping\Sites\ClicShoppingAdmin\Tax;
 
-  use ClicShopping\Apps\Marketing\SEO\Classes\ClicShoppingAdmin\SeoAdmin;
-  use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+$CLICSHOPPING_Products = Registry::get('Products');
+$CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+$CLICSHOPPING_Hooks = Registry::get('Hooks');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
 
-  use ClicShopping\Sites\ClicShoppingAdmin\Tax;
-  use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ProductStock;
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $CLICSHOPPING_Products = Registry::get('Products');
-  $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
-  $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');
+$CLICSHOPPING_Hooks->call('Products', 'PreAction');
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$languages = $CLICSHOPPING_Language->getLanguages();
 
-  $CLICSHOPPING_Hooks->call('Products', 'PreAction');
+$tax = new tax;
 
-  $languages = $CLICSHOPPING_Language->getLanguages();
+// check if the catalog image directory exists
+if (is_dir($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) {
+  if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Products->getDef('error_catalog_image_directory_not_writeable'), 'warning');
+}
 
-  $tax = new tax;
+$parameters = [
+  'products_name' => '',
+  'products_description' => '',
+  'products_url' => '',
+  'products_id' => '',
+  'products_quantity' => '',
+  'products_model' => '',
+  'products_ean' => '',
+  'products_sku' => '',
+  'products_mpn' => '',
+  'products_jan' => '',
+  'products_isbn' => '',
+  'products_upc' => '',
+  'products_image' => '',
+  'products_image_zoom' => '',
+  'products_larger_images' => [],
+  'products_price' => '',
+  'products_weight' => '',
+  'products_price_kilo' => '',
+  'products_date_added' => '',
+  'products_last_modified' => '',
+  'products_date_available' => '',
+  'products_status' => '',
+  'products_percentage' => '',
+  'products_view' => '',
+  'orders_view' => '',
+  'products_tax_class_id' => '',
+  'products_min_qty_order' => '',
+  'products_only_online' => '',
+  'products_image_medium' => '',
+  'products_cost' => '',
+  'products_handling' => '',
+  'products_packaging' => '',
+  'products_sort_order' => '',
+  'products_shipping_delay' => '',
+  'products_quantity_alert' => '',
+  'products_only_shop' => '',
+  'products_download_filename' => '',
+  'products_download_public' => '',
+  'products_description_summary' => '',
+  'products_shipping_delay_out_of_stock' => '',
+  'products_type' => '',
+];
 
-  // check if the catalog image directory exists
-  if (is_dir($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) {
-    if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Products->getDef('error_catalog_image_directory_not_writeable'), 'warning');
-  }
+$pInfo = new ObjectInfo($parameters);
 
-  $parameters = [
-    'products_name' => '',
-    'products_description' => '',
-    'products_url' => '',
-    'products_id' => '',
-    'products_quantity' => '',
-    'products_model' => '',
-    'products_ean' => '',
-    'products_sku' => '',
-    'products_mpn' => '',
-    'products_jan' => '',
-    'products_isbn' => '',
-    'products_upc' => '',
-    'products_image' => '',
-    'products_image_zoom' => '',
-    'products_larger_images' => [],
-    'products_price' => '',
-    'products_weight' => '',
-    'products_price_kilo' => '',
-    'products_date_added' => '',
-    'products_last_modified' => '',
-    'products_date_available' => '',
-    'products_status' => '',
-    'products_percentage' => '',
-    'products_view' => '',
-    'orders_view' => '',
-    'products_tax_class_id' => '',
-    'products_min_qty_order' => '',
-    'products_only_online' => '',
-    'products_image_medium' => '',
-    'products_cost' => '',
-    'products_handling' => '',
-    'products_packaging' => '',
-    'products_sort_order' => '',
-    'products_shipping_delay' => '',
-    'products_quantity_alert' => '',
-    'products_only_shop' => '',
-    'products_download_filename' => '',
-    'products_download_public' => '',
-    'products_description_summary' => '',
-    'products_shipping_delay_out_of_stock' => '',
-    'products_type' => '',
-  ];
-
-  $pInfo = new ObjectInfo($parameters);
-
-  if (isset($_GET['pID']) && isset($_POST)) {
+if (isset($_GET['pID']) && isset($_POST)) {
 // products_view : Affichage Produit Grand Public - orders_view : Autorisation Commande - Referencement
-    $data_products = $CLICSHOPPING_ProductsAdmin->get($_GET['pID']);
-    $pInfo->ObjectInfo($data_products);
+  $data_products = $CLICSHOPPING_ProductsAdmin->get($_GET['pID']);
+  $pInfo->ObjectInfo($data_products);
 
-    $Qimages = $CLICSHOPPING_Products->db->get('products_images', [
-      'id',
-      'image',
-      'htmlcontent',
-      'sort_order'
-    ], [
-      'products_id' => (int)$pInfo->products_id
-    ],
-      'sort_order'
-    );
+  $Qimages = $CLICSHOPPING_Products->db->get('products_images', [
+    'id',
+    'image',
+    'htmlcontent',
+    'sort_order'
+  ], [
+    'products_id' => (int)$pInfo->products_id
+  ],
+    'sort_order'
+  );
 
-    while ($Qimages->fetch()) {
-      $pInfo->products_larger_images[] = [
-        'id' => $Qimages->valueInt('id'),
-        'image' => $Qimages->value('image'),
-        'htmlcontent' => $Qimages->value('htmlcontent'),
-        'sort_order' => $Qimages->valueInt('sort_order')
-      ];
-    }
+  while ($Qimages->fetch()) {
+    $pInfo->products_larger_images[] = [
+      'id' => $Qimages->valueInt('id'),
+      'image' => $Qimages->value('image'),
+      'htmlcontent' => $Qimages->value('htmlcontent'),
+      'sort_order' => $Qimages->valueInt('sort_order')
+    ];
   }
+}
 
-  $cPath = 0;
+$cPath = 0;
 
-  if (isset($_GET['cPath'])) {
-    $cPath = HTML::sanitize($_GET['cPath']);
-  }
+if (isset($_GET['cPath'])) {
+  $cPath = HTML::sanitize($_GET['cPath']);
+}
 
-  $form_action = (isset($_GET['pID'])) ? 'Update' : 'Insert';
+$form_action = (isset($_GET['pID'])) ? 'Update' : 'Insert';
 
-  echo HTML::form('new_product', $CLICSHOPPING_Products->link('Products&' . $form_action . '&cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID'] : '')), 'post', 'enctype="multipart/form-data" id="new_product"');
+echo HTML::form('new_product', $CLICSHOPPING_Products->link('Products&' . $form_action . '&cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID'] : '')), 'post', 'enctype="multipart/form-data" id="new_product"');
 
-  echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
+echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
 <div class="contentBody">
   <div class="row">
@@ -140,17 +138,17 @@
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-end">
 <?php
-  echo HTML::hiddenField('products_date_added', (($pInfo->products_date_added) ? $pInfo->products_date_added : date('Y-m-d')));
-  echo HTML::hiddenField('parent_id', $cPath);
-  echo HTML::hiddenField('cPath', HTML::sanitize($cPath));
+echo HTML::hiddenField('products_date_added', (($pInfo->products_date_added) ? $pInfo->products_date_added : date('Y-m-d')));
+echo HTML::hiddenField('parent_id', $cPath);
+echo HTML::hiddenField('cPath', HTML::sanitize($cPath));
 
-  if ($form_action == 'Update') {
-    echo HTML::button($CLICSHOPPING_Products->getDef('button_update'), null, null, 'success') . ' ';
-  } else {
-    echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, null, 'success') . ' ';
-  }
+if ($form_action == 'Update') {
+  echo HTML::button($CLICSHOPPING_Products->getDef('button_update'), null, null, 'success') . ' ';
+} else {
+  echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, null, 'success') . ' ';
+}
 
-  echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSHOPPING_Products->link('Products&cPath=' . $cPath), 'warning');
+echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSHOPPING_Products->link('Products&cPath=' . $cPath), 'warning');
 ?>
             </span>
         </div>
@@ -180,7 +178,7 @@
     <div class="tabsClicShopping">
       <div class="tab-content">
         <?php
-          // packaging
+        // packaging
         $products_packaging_array = [
           array('id' => '0', 'text' => $CLICSHOPPING_Products->getDef('text_choose')),
           array('id' => '1', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_new')),
@@ -189,9 +187,9 @@
         ];
 
 
-          // ******************************************
-          // Tab 1 General
-          //*******************************************
+        // ******************************************
+        // Tab 1 General
+        //*******************************************
         ?>
         <script
           src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/modal_popup.js'); ?>"></script>
@@ -209,16 +207,18 @@
           </div>
           <div class="adminformTitle" id="tab1ContentRow1">
             <?php
-              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                ?>
-                <div class="form-group row">
-                  <label for="code"
-                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?> <bold>*</bold></label>
-                  <div
-                    class="col-md-5"><?php echo HTML::inputField('products_name[' . $languages[$i]['id'] . ']', ($products_name[$languages[$i]['id']] ?? $CLICSHOPPING_ProductsAdmin->getProductsName($pInfo->products_id, $languages[$i]['id'])), 'required aria-required="true" id="' . 'products_name[' . $languages[$i]['id'] . ']' . '" id="product_name_' . $i .'" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_name') . '"', true) . '&nbsp;'; ?></div>
-                </div>
-                <?php
-              }
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              ?>
+              <div class="form-group row">
+                <label for="code"
+                       class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                  <bold>*</bold>
+                </label>
+                <div
+                  class="col-md-5"><?php echo HTML::inputField('products_name[' . $languages[$i]['id'] . ']', ($products_name[$languages[$i]['id']] ?? $CLICSHOPPING_ProductsAdmin->getProductsName($pInfo->products_id, $languages[$i]['id'])), 'required aria-required="true" id="' . 'products_name[' . $languages[$i]['id'] . ']' . '" id="product_name_' . $i . '" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_name') . '"', true) . '&nbsp;'; ?></div>
+              </div>
+              <?php
+            }
             ?>
           </div>
           <div class="separator"></div>
@@ -323,16 +323,16 @@
               <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_url'); ?>"
                      class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_url') . ' <small>' . $CLICSHOPPING_Products->getDef('text_products_url_without_http') . '</small>'; ?></label>
               <?php
-                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                  ?>
-                  <div class="form-group row">
-                    <label for="code"
-                           class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                    <div
-                      class="col-md-5"><?php echo HTML::inputField('products_url[' . $languages[$i]['id'] . ']', (isset($products_url[$languages[$i]['id']]) ? $products_url[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsUrl($pInfo->products_id, $languages[$i]['id'], 'id="products_url[' . $languages[$i]['id'] . ']"'))); ?></div>
-                  </div>
-                  <?php
-                }
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                ?>
+                <div class="form-group row">
+                  <label for="code"
+                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                  <div
+                    class="col-md-5"><?php echo HTML::inputField('products_url[' . $languages[$i]['id'] . ']', (isset($products_url[$languages[$i]['id']]) ? $products_url[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsUrl($pInfo->products_id, $languages[$i]['id'], 'id="products_url[' . $languages[$i]['id'] . ']"'))); ?></div>
+                </div>
+                <?php
+              }
               ?>
             </div>
 
@@ -360,9 +360,9 @@
 
 
         <?php
-// ******************************************
-// Tab 2 Shipping
-//*******************************************
+        // ******************************************
+        // Tab 2 Shipping
+        //*******************************************
         ?>
         <div class="tab-pane" id="tab2">
           <div class="col-md-12 mainTitle">
@@ -385,15 +385,15 @@
             <div class="row" id="tab2Shipping"></div>
           </div>
 
+          <div class="separator"></div>
+          <div class="col-md-12 mainTitle"><span</span></div>
+          <div class="adminformTitle">
             <div class="separator"></div>
-              <div class="col-md-12 mainTitle"><span</span></div>
-              <div class="adminformTitle">
-                <div class="separator"></div>
-                <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelay">
-                  <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelay">
+              <div class="btn-group" role="group" aria-label="buttonGroup">
                     <span
                       class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay'); ?></span>
-                    <span>
+                <span>
                       <a
                         href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=DISPLAY_SHIPPING_DELAY'); ?>"
                         data-bs-toggle="modal" data-refresh="true"
@@ -407,28 +407,30 @@
                         </div><!-- /.modal-dialog -->
                       </div><!-- /.modal -->
                     </span>
-                  </div>
-                </div>
-                <?php
-                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                  ?>
-                  <div class="form-group row">
-                    <label for="code"
-                           class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                    <div
-                      class="col-md-5"><?php echo HTML::inputField('products_shipping_delay[' . $languages[$i]['id'] . ']', (isset($products_shipping_delay[$languages[$i]['id']]) ? $products_shipping_delay[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsShippingDelay($pInfo->products_id, $languages[$i]['id'])), 'size="90"'); ?></div>
-                  </div>
-                  <?php
-                }
-                ?>
-                <div class="separator"></div>
-                <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelayOutOfStock">
-                  <div class="btn-group" role="group" aria-label="buttonGroup">
-                    <span class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay_out_of_stock'); ?></span>
-                    <span>
-                      <a  href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=DISPLAY_SHIPPING_DELAY_OUT_OF_STOCK'); ?>"
-                          data-bs-toggle="modal" data-refresh="true"
-                          data-bs-target="#myModal1"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>'; ?></a>
+              </div>
+            </div>
+            <?php
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              ?>
+              <div class="form-group row">
+                <label for="code"
+                       class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                <div
+                  class="col-md-5"><?php echo HTML::inputField('products_shipping_delay[' . $languages[$i]['id'] . ']', (isset($products_shipping_delay[$languages[$i]['id']]) ? $products_shipping_delay[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsShippingDelay($pInfo->products_id, $languages[$i]['id'])), 'size="90"'); ?></div>
+              </div>
+              <?php
+            }
+            ?>
+            <div class="separator"></div>
+            <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelayOutOfStock">
+              <div class="btn-group" role="group" aria-label="buttonGroup">
+                <span
+                  class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay_out_of_stock'); ?></span>
+                <span>
+                      <a
+                        href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=DISPLAY_SHIPPING_DELAY_OUT_OF_STOCK'); ?>"
+                        data-bs-toggle="modal" data-refresh="true"
+                        data-bs-target="#myModal1"><?php echo '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>'; ?></a>
                       <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                            aria-hidden="true">
                         <div class="modal-dialog">
@@ -438,38 +440,38 @@
                         </div><!-- /.modal-dialog -->
                       </div><!-- /.modal -->
                     </span>
-                  </div>
-                </div>
-
-                <?php
-                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                  ?>
-                    <div class="form-group row">
-                      <label for="code"
-                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                      <div
-                              class="col-md-5"><?php echo HTML::inputField('products_shipping_delay_out_of_stock[' . $languages[$i]['id'] . ']', (isset($products_shipping_delay[$languages[$i]['id']]) ? $products_shipping_delay[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsShippingDelay($pInfo->products_id, $languages[$i]['id'])), 'size="90"'); ?></div>
-                    </div>
-                  <?php
-                }
-                ?>
               </div>
-              <div class="separator"></div>
-
-              <div class="row" id="tab2ShippingAdd"></div>
-              <div class="separator"></div>
             </div>
 
-        <?php
-          // ******************************************
-          // Tab 3 Stock
-          //*******************************************
+            <?php
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+              ?>
+              <div class="form-group row">
+                <label for="code"
+                       class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                <div
+                  class="col-md-5"><?php echo HTML::inputField('products_shipping_delay_out_of_stock[' . $languages[$i]['id'] . ']', (isset($products_shipping_delay[$languages[$i]['id']]) ? $products_shipping_delay[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsShippingDelay($pInfo->products_id, $languages[$i]['id'])), 'size="90"'); ?></div>
+              </div>
+              <?php
+            }
+            ?>
+          </div>
+          <div class="separator"></div>
 
-          $stockable_dopdown = [
-            ['id' => 'product', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_product')],
-            ['id' => 'consu', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_consumable')],
-            ['id' => 'service', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_service')],
-          ];
+          <div class="row" id="tab2ShippingAdd"></div>
+          <div class="separator"></div>
+        </div>
+
+        <?php
+        // ******************************************
+        // Tab 3 Stock
+        //*******************************************
+
+        $stockable_dopdown = [
+          ['id' => 'product', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_product')],
+          ['id' => 'consu', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_consumable')],
+          ['id' => 'service', 'text' => $CLICSHOPPING_Products->getDef('text_stockable_service')],
+        ];
         ?>
         <div class="tab-pane" id="tab3">
           <div class="col-md-12 mainTitle">
@@ -494,20 +496,20 @@
                 </div>
               </div>
               <?php
-                $historical = ProductStock::getHistoricalCustomerDemandByProducts($pInfo->products_id, null);
+              $historical = ProductStock::getHistoricalCustomerDemandByProducts($pInfo->products_id, null);
 
-                if ($historical > 0) {
-              ?>
+              if ($historical > 0) {
+                ?>
                 <div class="col-md-5">
                   <div class="alert alert-danger" role="alert">
-                     <?php echo $CLICSHOPPING_Products->getDef('text_products_safety_stock'). ' ' . $historical; ?>
+                    <?php echo $CLICSHOPPING_Products->getDef('text_products_safety_stock') . ' ' . $historical; ?>
                   </div>
                 </div>
-              <?php
-               }
+                <?php
+              }
               ?>
             </div>
-            
+
             <div class="separator"></div>
             <div class="row" id="productsStock">
               <div class="col-md-5">
@@ -553,12 +555,12 @@
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_min_order_quantity'); ?></label>
                   <div class="col-md-5">
                     <?php
-                      if ($pInfo->products_min_qty_order == '') {
-                        $products_min_qty_order = 1;
-                      } else {
-                        $products_min_qty_order = $pInfo->products_min_qty_order;
-                      }
-                      echo HTML::inputField('products_min_qty_order', $products_min_qty_order, 'id="products_min_qty_order"');
+                    if ($pInfo->products_min_qty_order == '') {
+                      $products_min_qty_order = 1;
+                    } else {
+                      $products_min_qty_order = $pInfo->products_min_qty_order;
+                    }
+                    echo HTML::inputField('products_min_qty_order', $products_min_qty_order, 'id="products_min_qty_order"');
                     ?>
                     <a
                       href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=MAX_MIN_IN_CART'); ?>"
@@ -591,11 +593,11 @@
               </div>
               <div class="separator"></div>
               <?php
-                if ($pInfo->products_date_available != '') {
-                  $products_date_available = DateTime::toShortWithoutFormat($pInfo->products_date_available);
-                } else {
-                  $products_date_available = $pInfo->products_date_available;
-                }
+              if ($pInfo->products_date_available != '') {
+                $products_date_available = DateTime::toShortWithoutFormat($pInfo->products_date_available);
+              } else {
+                $products_date_available = $pInfo->products_date_available;
+              }
               ?>
               <div class="col-md-5" id="productsDatAvailable">
                 <div class="form-group row">
@@ -607,7 +609,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="separator"></div>
             <div class="col-md-5" id="productsPackaging">
               <div class="form-group row">
@@ -618,7 +620,7 @@
                 </div>
               </div>
             </div>
-  
+
             <div class="separator"></div>
             <div class="row" id="tab2ContentRow7"></div>
           </div>
@@ -633,140 +635,140 @@
           <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab2', null, 'display'); ?>
         </div>
         <?php
-          // ******************************************
-          // Tab 3 Price
-          //*******************************************
+        // ******************************************
+        // Tab 3 Price
+        //*******************************************
 
-          if (!isset($pInfo->products_percentage)) $pInfo->products_percentage = '1';
+        if (!isset($pInfo->products_percentage)) $pInfo->products_percentage = '1';
 
-          switch ($pInfo->products_percentage) {
-            case '0':
-              $in_percent = false;
-              $out_percent = true;
-              break;
-            case '1':
-            default:
-              $in_percent = true;
-              $out_percent = false;
-              break;
-          }
+        switch ($pInfo->products_percentage) {
+          case '0':
+            $in_percent = false;
+            $out_percent = true;
+            break;
+          case '1':
+          default:
+            $in_percent = true;
+            $out_percent = false;
+            break;
+        }
 
-          $tax_class_drop_down = Tax::taxClassDropDown();
+        $tax_class_drop_down = Tax::taxClassDropDown();
         ?>
         <script>
-            var tax_rates = new Array();
+          var tax_rates = new Array();
+          <?php
+          for ($i = 0, $n = \count($tax_class_drop_down); $i < $n; $i++) {
+            if ($tax_class_drop_down[$i]['id'] > 0) {
+              echo 'tax_rates["' . $tax_class_drop_down[$i]['id'] . '"] = ' . $tax->getTaxRateValue($tax_class_drop_down[$i]['id']) . ';' . "\n";
+            }
+          }
+          ?>
+
+          function doRound(x, places) {
+            return Math.round(x * Math.pow(10, places)) / Math.pow(10, places);
+          }
+
+          function getTaxRate() {
+            var selected_value = document.forms["new_product"].products_tax_class_id.selectedIndex;
+            var parameterVal = document.forms["new_product"].products_tax_class_id[selected_value].value;
+
+            if ((parameterVal > 0) && (tax_rates[parameterVal] > 0)) {
+              return tax_rates[parameterVal];
+            } else {
+              return 0;
+            }
+          }
+
+          function updateGross() {
+            var taxRate = getTaxRate();
+            var grossValue = document.forms["new_product"].products_price.value;
+
+            if (taxRate > 0) {
+              grossValue = grossValue * ((taxRate / 100) + 1);
+            }
+
             <?php
-            for ($i = 0, $n = \count($tax_class_drop_down); $i < $n; $i++) {
-              if ($tax_class_drop_down[$i]['id'] > 0) {
-                echo 'tax_rates["' . $tax_class_drop_down[$i]['id'] . '"] = ' . $tax->getTaxRateValue($tax_class_drop_down[$i]['id']) . ';' . "\n";
-              }
-            }
-            ?>
-
-            function doRound(x, places) {
-                return Math.round(x * Math.pow(10, places)) / Math.pow(10, places);
-            }
-
-            function getTaxRate() {
-                var selected_value = document.forms["new_product"].products_tax_class_id.selectedIndex;
-                var parameterVal = document.forms["new_product"].products_tax_class_id[selected_value].value;
-
-                if ((parameterVal > 0) && (tax_rates[parameterVal] > 0)) {
-                    return tax_rates[parameterVal];
-                } else {
-                    return 0;
-                }
-            }
-
-            function updateGross() {
-                var taxRate = getTaxRate();
-                var grossValue = document.forms["new_product"].products_price.value;
-
-                if (taxRate > 0) {
-                    grossValue = grossValue * ((taxRate / 100) + 1);
-                }
-
-              <?php
-              // Desactivation du module B2B
-              if (MODE_B2B_B2C == 'True') {
-                $QcustomersGroup = $CLICSHOPPING_Products->db->prepare('select distinct customers_group_id,
+            // Desactivation du module B2B
+            if (MODE_B2B_B2C == 'True') {
+            $QcustomersGroup = $CLICSHOPPING_Products->db->prepare('select distinct customers_group_id,
                                                                                          customers_group_name,
                                                                                          customers_group_discount
                                                                          from :table_customers_groups
                                                                          where customers_group_id != 0
                                                                          order by customers_group_id
                                                                         ');
-  
-                $QcustomersGroup->execute();
-  
-                while ($QcustomersGroup->fetch()) {
-              ?>
-                var grossValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> = document.forms["new_product"].price<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>.value;
 
-                if (taxRate > 0) {
-                    grossValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> = grossValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> * ((taxRate / 100) + 1);
-                }
+            $QcustomersGroup->execute();
 
-                document.forms["new_product"].price_gross<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>.value = doRound(grossValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>, 4);
-              <?php
-              }
-              }
-              ?>
-                document.forms["new_product"].products_price_gross.value = doRound(grossValue, 4);
+            while ($QcustomersGroup->fetch()) {
+            ?>
+            var grossValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> = document.forms["new_product"].price<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>.value;
+
+            if (taxRate > 0) {
+              grossValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> = grossValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> * ((taxRate / 100) + 1);
             }
 
-            /********************************/
-            /*        Margin report   */
-            /********************************/
-            function updateMargin() {
-                var grossValue = document.forms["new_product"].products_price.value; // valeur net du prix
-                var costValue = document.forms["new_product"].products_cost.value; // cout d'achat
-                var handlingValue = document.forms["new_product"].products_handling.value; // manutention ou autres frais
+            document.forms["new_product"].price_gross<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>.value = doRound(grossValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>, 4);
+            <?php
+            }
+            }
+            ?>
+            document.forms["new_product"].products_price_gross.value = doRound(grossValue, 4);
+          }
 
-                if (isNaN(costValue)) costValue = 0;
-                if (isNaN(handlingValue)) handlingValue = 0;
+          /********************************/
+          /*        Margin report   */
+          /********************************/
+          function updateMargin() {
+            var grossValue = document.forms["new_product"].products_price.value; // valeur net du prix
+            var costValue = document.forms["new_product"].products_cost.value; // cout d'achat
+            var handlingValue = document.forms["new_product"].products_handling.value; // manutention ou autres frais
 
-                marginValue = 100 - (((parseInt(costValue) + parseInt(handlingValue)) / parseInt(grossValue)) * 100);
-                marginValue = Math.round(marginValue, 2);
-                document.getElementById('products_price_margins').innerHTML = marginValue + "%";
+            if (isNaN(costValue)) costValue = 0;
+            if (isNaN(handlingValue)) handlingValue = 0;
+
+            marginValue = 100 - (((parseInt(costValue) + parseInt(handlingValue)) / parseInt(grossValue)) * 100);
+            marginValue = Math.round(marginValue, 2);
+            document.getElementById('products_price_margins').innerHTML = marginValue + "%";
+          }
+
+          function updateNet() {
+            var taxRate = getTaxRate();
+            var netValue = document.forms["new_product"].products_price_gross.value;
+
+            if (taxRate > 0) {
+              netValue = netValue / ((taxRate / 100) + 1);
             }
 
-            function updateNet() {
-                var taxRate = getTaxRate();
-                var netValue = document.forms["new_product"].products_price_gross.value;
-
-                if (taxRate > 0) {
-                    netValue = netValue / ((taxRate / 100) + 1);
-                }
-
-              <?php
-              // Desactivation du module B2B
-              if (MODE_B2B_B2C == 'True') {
-                $QcustomersGroup = $CLICSHOPPING_Products->db->prepare('select distinct customers_group_id,
+            <?php
+            // Desactivation du module B2B
+            if (MODE_B2B_B2C == 'True') {
+            $QcustomersGroup = $CLICSHOPPING_Products->db->prepare('select distinct customers_group_id,
                                                                                         customers_group_name,
                                                                                         customers_group_discount
                                                                          from :table_customers_groups
                                                                          where customers_group_id != 0
                                                                          order by customers_group_id
                                                                         ');
-              $QcustomersGroup->execute();
+            $QcustomersGroup->execute();
 
-              while ($QcustomersGroup->fetch()) {
-              ?>
-                var netValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> = document.forms["new_product"].price_gross<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>.value;
+            while ($QcustomersGroup->fetch()) {
+            ?>
+            var netValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> = document.forms["new_product"].price_gross<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>.value;
 
-                if (taxRate > 0) {
-                    netValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> = netValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> / ((taxRate / 100) + 1);
-                }
-
-                document.forms["new_product"].price<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>.value = doRound(netValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>, 4);
-              <?php
-              }
-              }
-              ?>
-
-                document.forms["new_product"].products_price.value = doRound(netValue, 4);
+            if (taxRate > 0) {
+              netValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> = netValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> / ((taxRate / 100) + 1);
             }
+
+            document.forms["new_product"].price<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>.value = doRound(netValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>, 4);
+            <?php
+            }
+            }
+            ?>
+
+            document.forms["new_product"].products_price.value = doRound(netValue, 4);
+          }
         </script>
 
         <div class="tab-pane" id="tab4">
@@ -795,26 +797,26 @@
                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_price'); ?></label>
                     <div class="col-md-5">
                       <?php
-                        echo HTML::inputField('products_price', $pInfo->products_price, 'id="products_price" onkeyup="updateGross()"') . '<strong>' . $CLICSHOPPING_Products->getDef('text_products_price_net') . '</strong>';
+                      echo HTML::inputField('products_price', $pInfo->products_price, 'id="products_price" onkeyup="updateGross()"') . '<strong>' . $CLICSHOPPING_Products->getDef('text_products_price_net') . '</strong>';
                       ?>
                     </div>
                   </div>
                 </div>
-               
+
                 <div class="col-md-5" id="productsPriceGross">
                   <div class="form-group row">
                     <div class="col-md-5">
                       <?php
-                        if (DISPLAY_DOUBLE_TAXE == 'false') {
-                          echo HTML::inputField('products_price_gross', $pInfo->products_price, 'id="products_price_gross" onkeyup="updateNet()"') . '<strong>' . $CLICSHOPPING_Products->getDef('text_products_price_gross') . '</strong>';
-                        }
+                      if (DISPLAY_DOUBLE_TAXE == 'false') {
+                        echo HTML::inputField('products_price_gross', $pInfo->products_price, 'id="products_price_gross" onkeyup="updateNet()"') . '<strong>' . $CLICSHOPPING_Products->getDef('text_products_price_gross') . '</strong>';
+                      }
                       ?>
                     </div>
                   </div>
                 </div>
                 <div id="ProductPriceOption"></div>
               </div>
-              
+
               <div class="separator"></div>
               <div class="row" id="productsCost">
                 <div class="col-md-5">
@@ -827,7 +829,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="separator"></div>
               <div class="row" id="productsHandling">
                 <div class="col-md-5">
@@ -840,7 +842,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="separator"></div>
               <div class="row" id="productsPriceMargins">
                 <div class="col-md-5">
@@ -853,7 +855,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="separator"></div>
               <div class="row" id="productsView">
                 <div class="col-md-5">
@@ -862,55 +864,59 @@
                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('products_view'); ?></label>
                     <div class="col-md-7">
                       <?php
-                        if (isset($_GET['pID'])) {
-                          ?>
-                          <ul class="list-group-slider list-group-flush">
-                            <li class="list-group-item-slider">
-                              <label class="switch">
-                                <?php echo HTML::checkboxField('products_view', '1', $pInfo->products_view, 'class="success"'); ?>
-                                <span class="slider"></span>
-                              </label>
-                            </li>
-                            <span class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('text_products_view'); ?></span>
-                          </ul>
-                          <ul class="list-group-slider list-group-flush">
-                            <li class="list-group-item-slider">
-                              <label class="switch">
-                                <?php echo HTML::checkboxField('orders_view', '1', $pInfo->orders_view, 'class="success"'); ?>
-                                <span class="slider"></span>
-                              </label>
-                            </li>
-                            <span class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('tab_orders_view'); ?></span>
-                          </ul>
-                          <?php
-                        } else {
-                          ?>
-                          <ul class="list-group-slider list-group-flush">
-                            <li class="list-group-item-slider">
-                              <label class="switch">
-                                <?php echo HTML::checkboxField('products_view', '1', true, 'class="success"'); ?>
-                                <span class="slider"></span>
-                              </label>
-                            </li>
-                            <span class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('text_products_view'); ?></span>
-                          </ul>
-                          <ul class="list-group-slider list-group-flush">
-                            <li class="list-group-item-slider">
-                              <label class="switch">
-                                <?php echo HTML::checkboxField('orders_view', '1', true, 'class="success"'); ?>
-                                <span class="slider"></span>
-                              </label>
-                            </li>
-                            <span class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('tab_orders_view'); ?></span>
-                          </ul>
-                          <?php
-                        }
+                      if (isset($_GET['pID'])) {
+                        ?>
+                        <ul class="list-group-slider list-group-flush">
+                          <li class="list-group-item-slider">
+                            <label class="switch">
+                              <?php echo HTML::checkboxField('products_view', '1', $pInfo->products_view, 'class="success"'); ?>
+                              <span class="slider"></span>
+                            </label>
+                          </li>
+                          <span
+                            class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('text_products_view'); ?></span>
+                        </ul>
+                        <ul class="list-group-slider list-group-flush">
+                          <li class="list-group-item-slider">
+                            <label class="switch">
+                              <?php echo HTML::checkboxField('orders_view', '1', $pInfo->orders_view, 'class="success"'); ?>
+                              <span class="slider"></span>
+                            </label>
+                          </li>
+                          <span
+                            class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('tab_orders_view'); ?></span>
+                        </ul>
+                        <?php
+                      } else {
+                        ?>
+                        <ul class="list-group-slider list-group-flush">
+                          <li class="list-group-item-slider">
+                            <label class="switch">
+                              <?php echo HTML::checkboxField('products_view', '1', true, 'class="success"'); ?>
+                              <span class="slider"></span>
+                            </label>
+                          </li>
+                          <span
+                            class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('text_products_view'); ?></span>
+                        </ul>
+                        <ul class="list-group-slider list-group-flush">
+                          <li class="list-group-item-slider">
+                            <label class="switch">
+                              <?php echo HTML::checkboxField('orders_view', '1', true, 'class="success"'); ?>
+                              <span class="slider"></span>
+                            </label>
+                          </li>
+                          <span
+                            class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('tab_orders_view'); ?></span>
+                        </ul>
+                        <?php
+                      }
                       ?>
                     </div>
                   </div>
                 </div>
               </div>
-              
+
               <div class="separator"></div>
               <div class="row" id="productsPriceKilo">
                 <div class="col-md-5">
@@ -930,9 +936,9 @@
                   </div>
                 </div>
               </div>
-  
+
               <div class="row" id="test"></div>
-              
+
             </div>
             <div id="PriceB2B">
               <?php echo $CLICSHOPPING_Hooks->output('Products', 'CustomerGroupTab3', null, 'display'); ?>
@@ -943,9 +949,9 @@
         </div>
 
         <?php
-          // ******************************************
-          // Tab 4 Description
-          //*******************************************
+        // ******************************************
+        // Tab 4 Description
+        //*******************************************
         ?>
         <div class="tab-pane" id="tab5">
           <div class="col-md-12 mainTitle">
@@ -955,46 +961,50 @@
             <div class="separator"></div>
             <div class="accordion" id="accordionExample">
               <?php
-                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                  $languages_id = $languages[$i]['id'];
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                $languages_id = $languages[$i]['id'];
+                ?>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading<?php $i; ?>">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                    </button>
+                  </h2>
+                  <?php
+                  if ($i == 0) {
+                    $show = ' show';
+                  } else {
+                    $show = '';
+                  }
                   ?>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading<?php $i; ?>">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
-                      </button>
-                    </h2>
-                    <?php
-                    if ($i == 0) {
-                      $show = ' show';
-                    } else {
-                      $show = '';
-                    }
-                    ?>
-                    <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        <?php
-                        $name = 'products_description[' . $languages_id . ']';
-                        $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
+                  <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>"
+                       aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <?php
+                      $name = 'products_description[' . $languages_id . ']';
+                      $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                        echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($products_description[$languages_id]) ? str_replace('& ', '&amp; ', trim($products_description[$languages_id])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages_id)), 'id="' . $ckeditor_id . '"');
-                        ?>
-                        <div class="separator"></div>
-                        <div class="row" id="DescriptionSummaryTitle<?php echo $languages_id; ?>">
-                          <div class="col-md-6">
-                            <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_description_summary'); ?>" class="col-12 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_description_summary'); ?></label>
-                              <div class="col-md-8 input-group" id="SummaryDescription<?php echo $languages_id; ?>">
-                                <?php echo HTML::textAreaField('products_description_summary[' . $languages_id . ']', (isset($products_description_summary[$languages_id]) ? str_replace('& ', '&amp; ', trim($products_description_summary[$languages_id])) : $CLICSHOPPING_ProductsAdmin->getProductsDescriptionSummary($pInfo->products_id, $languages_id)), '120', '5', 'id="SummaryDescription_' . $languages_id . '"'); ?>
-                              </div>
+                      echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($products_description[$languages_id]) ? str_replace('& ', '&amp; ', trim($products_description[$languages_id])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages_id)), 'id="' . $ckeditor_id . '"');
+                      ?>
+                      <div class="separator"></div>
+                      <div class="row" id="DescriptionSummaryTitle<?php echo $languages_id; ?>">
+                        <div class="col-md-6">
+                          <div class="form-group row" data-index="<?php echo $languages_id; ?>">
+                            <label
+                              for="<?php echo $CLICSHOPPING_Products->getDef('text_products_description_summary'); ?>"
+                              class="col-12 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_description_summary'); ?></label>
+                            <div class="col-md-8 input-group" id="SummaryDescription<?php echo $languages_id; ?>">
+                              <?php echo HTML::textAreaField('products_description_summary[' . $languages_id . ']', (isset($products_description_summary[$languages_id]) ? str_replace('& ', '&amp; ', trim($products_description_summary[$languages_id])) : $CLICSHOPPING_ProductsAdmin->getProductsDescriptionSummary($pInfo->products_id, $languages_id)), '120', '5', 'id="SummaryDescription_' . $languages_id . '"'); ?>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <?php
-                }
+                </div>
+                <?php
+              }
               ?>
             </div>
           </div>
@@ -1003,9 +1013,9 @@
         </div>
 
         <?php
-          // ******************************************
-          // Tab 5 Image
-          //*******************************************
+        // ******************************************
+        // Tab 5 Image
+        //*******************************************
         ?>
         <div class="tab-pane" id="tab6">
           <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_image'); ?></div>
@@ -1060,9 +1070,9 @@
             <div class="separator"></div>
           </div>
           <?php
-            // -----------------------------------
-            // Gallery
-            // -----------------------------------
+          // -----------------------------------
+          // Gallery
+          // -----------------------------------
           ?>
           <div class="separator"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_gallery_image'); ?></div>
@@ -1071,7 +1081,8 @@
               <div class="col-md-12">
                 <div class="row">
                   <ul id="piList"></ul>
-                  <a class="linkHandle" data-action="addNewPiForm"><i class="bi bi-plus-circle-fill"></i>&nbsp;<?php echo $CLICSHOPPING_Products->getDef('text_products_add_large_image'); ?>
+                  <a class="linkHandle" data-action="addNewPiForm"><i
+                      class="bi bi-plus-circle-fill"></i>&nbsp;<?php echo $CLICSHOPPING_Products->getDef('text_products_add_large_image'); ?>
                   </a>
                 </div>
               </div>
@@ -1085,10 +1096,11 @@
                     <a class="linkHandle" data-piid="{{counter}}" data-action="undoDelete" data-state="inactive"><i class="bi bi-skip-backward-fill" title="<?php echo $CLICSHOPPING_Products->getDef('image_undo'); ?>"></i></a>
                   </div>
                   <strong><?php echo $CLICSHOPPING_Products->getDef('text_products_large_image'); ?></strong><br />
-                  <?php echo HTML::fileField('{{input_file_name}}'); ?><br />
-                  {{#image}}<a href="<?php echo $CLICSHOPPING_Template->getDirectoryShopTemplateImages(); ?>{{image}}" target="_blank">{{image}}</a><br /><br />{{/image}}
-                  <?php echo $CLICSHOPPING_Products->getDef('text_products_large_image_html_content'); ?><br />
-                  <?php echo HTML::textareaField('{{input_html_content_name}}', '{{html_content}}', '200', '3', null, false); ?>
+                <?php echo HTML::fileField('{{input_file_name}}'); ?><br />
+                  {{#image}}<a href="<?php echo $CLICSHOPPING_Template->getDirectoryShopTemplateImages(); ?>
+                {{image}}" target="_blank">{{image}}</a><br /><br />{{/image}}
+                <?php echo $CLICSHOPPING_Products->getDef('text_products_large_image_html_content'); ?><br />
+                <?php echo HTML::textareaField('{{input_html_content_name}}', '{{html_content}}', '200', '3', null, false); ?>
                 </li>
               </script>
 
@@ -1131,8 +1143,8 @@
 
               <script>
                 $(function () {
-                    const templateLargeImage = $('#templateLargeImage').html();
-                    Mustache.parse(templateLargeImage);
+                  const templateLargeImage = $('#templateLargeImage').html();
+                  Mustache.parse(templateLargeImage);
 
                   <?php
                   $pi_array = [];
@@ -1150,109 +1162,109 @@
                   echo '  var piArray = ' . json_encode($pi_array) . ';';
                   ?>
 
-                    $.each(piArray, function (k, v) {
-                        $('#piList').append(Mustache.render(templateLargeImage, v));
-                    });
+                  $.each(piArray, function (k, v) {
+                    $('#piList').append(Mustache.render(templateLargeImage, v));
+                  });
 
-                    $('#piList .piActions a[data-state="inactive"]').hide();
+                  $('#piList .piActions a[data-state="inactive"]').hide();
 
-                    Sortable.create($('#piList')[0], {
-                        handle: '.sortHandle'
-                    });
+                  Sortable.create($('#piList')[0], {
+                    handle: '.sortHandle'
+                  });
 
-                    $('#tab6 a[data-action="addNewPiForm"]').on('click', function () {
-                        const piSize = $('#piList li').length + 1;
+                  $('#tab6 a[data-action="addNewPiForm"]').on('click', function () {
+                    const piSize = $('#piList li').length + 1;
 
-                        const data = {
-                            counter: piSize,
-                            input_file_name: 'products_image_large_new_' + piSize,
-                            input_html_content_name: 'products_image_htmlcontent_new_' + piSize
-                        };
+                    const data = {
+                      counter: piSize,
+                      input_file_name: 'products_image_large_new_' + piSize,
+                      input_html_content_name: 'products_image_htmlcontent_new_' + piSize
+                    };
 
-                        $('#piList').append(Mustache.render(templateLargeImage, data));
+                    $('#piList').append(Mustache.render(templateLargeImage, data));
 
-                        $('#piId' + piSize + ' .piActions a[data-state="inactive"]').hide();
-                    });
+                    $('#piId' + piSize + ' .piActions a[data-state="inactive"]').hide();
+                  });
 
-                    $('#tab6').on('click', '#piList li a[data-action="showPiDelConfirm"]', function () {
-                        $('#piDelConfirm').data('piid', $(this).data('piid'));
+                  $('#tab6').on('click', '#piList li a[data-action="showPiDelConfirm"]', function () {
+                    $('#piDelConfirm').data('piid', $(this).data('piid'));
 
-                        $('#piDelConfirm').modal('show');
-                    });
+                    $('#piDelConfirm').modal('show');
+                  });
 
-                    $('#tab6').on('click', '#piList li a[data-action="undoDelete"]', function () {
-                        $('#piId' + $(this).data('piid') + ' .piActions a[data-state="inactive"]').hide();
-                        $('#piId' + $(this).data('piid') + ' .piActions a[data-state="active"]').show();
-                        $('#piId' + $(this).data('piid') + ' :input').prop('disabled', false);
-                        $('#piId' + $(this).data('piid')).removeClass('bg-danger').addClass('bg-warning');
-                    });
+                  $('#tab6').on('click', '#piList li a[data-action="undoDelete"]', function () {
+                    $('#piId' + $(this).data('piid') + ' .piActions a[data-state="inactive"]').hide();
+                    $('#piId' + $(this).data('piid') + ' .piActions a[data-state="active"]').show();
+                    $('#piId' + $(this).data('piid') + ' :input').prop('disabled', false);
+                    $('#piId' + $(this).data('piid')).removeClass('bg-danger').addClass('bg-warning');
+                  });
 
-                    $('#piDelConfirmButtonDelete').on('click', function () {
-                        $('#piId' + $('#piDelConfirm').data('piid')).removeClass('bg-warning').addClass('bg-danger');
-                        $('#piId' + $('#piDelConfirm').data('piid') + ' :input').prop('disabled', true);
-                        $('#piId' + $('#piDelConfirm').data('piid') + ' .piActions a[data-state="active"]').hide();
-                        $('#piId' + $('#piDelConfirm').data('piid') + ' .piActions a[data-state="inactive"]').show();
+                  $('#piDelConfirmButtonDelete').on('click', function () {
+                    $('#piId' + $('#piDelConfirm').data('piid')).removeClass('bg-warning').addClass('bg-danger');
+                    $('#piId' + $('#piDelConfirm').data('piid') + ' :input').prop('disabled', true);
+                    $('#piId' + $('#piDelConfirm').data('piid') + ' .piActions a[data-state="active"]').hide();
+                    $('#piId' + $('#piDelConfirm').data('piid') + ' .piActions a[data-state="inactive"]').show();
 
-                        $('#piDelConfirm').modal('hide');
-                    });
+                    $('#piDelConfirm').modal('hide');
+                  });
                 });
               </script>
 
               <?php
-                // -----------------------------------
-                // Manual image
-                // -----------------------------------
-                if (MANUAL_IMAGE_PRODUCTS_DESCRIPTION == 'true') {
-                  ?>
-                  <div
-                    class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_customize'); ?></div>
-                  <div class="adminformTitle">
-                    <div class="row" id="tab5ContentRow7">
-                      <div class="col-md-6 float-start">
-                        <div class="col-md-12">
+              // -----------------------------------
+              // Manual image
+              // -----------------------------------
+              if (MANUAL_IMAGE_PRODUCTS_DESCRIPTION == 'true') {
+                ?>
+                <div
+                  class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_customize'); ?></div>
+                <div class="adminformTitle">
+                  <div class="row" id="tab5ContentRow7">
+                    <div class="col-md-6 float-start">
+                      <div class="col-md-12">
                           <span
                             class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product.gif', $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '40', '40'); ?></span>
-                          <span
-                            class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_insert_big_image_vignette'); ?></span>
-                        </div>
-                        <div class="separator"></div>
-                        <div class="col-md-12 adminformAide">
-                          <div class="col-md-12 text-center">
+                        <span
+                          class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_insert_big_image_vignette'); ?></span>
+                      </div>
+                      <div class="separator"></div>
+                      <div class="col-md-12 adminformAide">
+                        <div class="col-md-12 text-center">
                             <span
                               class="col-sm-12 text-center"><?php echo $CLICSHOPPING_Wysiwyg::fileFieldImageCkEditor('products_image', null, '100', '100'); ?></span>
-                          </div>
-                          <div class="col-md-12">
+                        </div>
+                        <div class="col-md-12">
                             <span
                               class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_medium'), '40', '40'); ?></span>
-                            <span
-                              class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_medium'); ?></span>
-                          </div>
-                          <div class="col-md-12">
+                          <span
+                            class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_medium'); ?></span>
+                        </div>
+                        <div class="col-md-12">
                             <span
                               class="col-sm-6"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_zoom'), '40', '40'); ?></span>
-                            <span
-                              class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_zoom'); ?></span>
-                          </div>
+                          <span
+                            class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_zoom'); ?></span>
                         </div>
                       </div>
-                      <div class="col-md-6 float-start">
-                        <div class="col-md-12">
+                    </div>
+                    <div class="col-md-6 float-start">
+                      <div class="col-md-12">
                           <span
                             class="col-sm-12"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($pInfo->products_image, $CLICSHOPPING_Products->getDef('text_products_image_vignette')); ?></span>
-                          <div class="col-md-12 text-center">
+                        <div class="col-md-12 text-center">
                             <span
                               class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_no_image_visuel_zoom'); ?></span>
-                          </div>
-                          <div class="col-md-12 text-end">
+                        </div>
+                        <div class="col-md-12 text-end">
                             <span
                               class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_delete_image') . ' ' . HTML::checkboxField('delete_image', 'yes', false); ?></span>
-                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <?php
-                }
+                </div>
+                <?php
+              }
               ?>
             </div>
           </div>
@@ -1268,16 +1280,17 @@
           </div>
         </div>
         <?php
-          // ******************************************
-          // Tab 6 Meta Datas
-          //*******************************************
+        // ******************************************
+        // Tab 6 Meta Datas
+        //*******************************************
         ?>
         <div class="tab-pane" id="tab7">
           <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_page_seo'); ?></div>
           <div class="adminformTitle">
             <div class="col-md-12">
               <div class="row text-center" id="productsGoogleKeywords">
-                <a href="https://www.google.fr/trends" target="_blank"><?php echo $CLICSHOPPING_Products->getDef('keywords_google_trend'); ?></a>
+                <a href="https://www.google.fr/trends"
+                   target="_blank"><?php echo $CLICSHOPPING_Products->getDef('keywords_google_trend'); ?></a>
               </div>
             </div>
             <div class="separator"></div>
@@ -1286,74 +1299,83 @@
               <?php
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 $languages_id = $languages[$i]['id'];
-              ?>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="heading<?php $i; ?>">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
-                  </button>
-                </h2>
-                <?php
-                if ($i == 0) {
-                  $show = ' show';
-                } else {
-                  $show = '';
-                }
                 ?>
-                <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>" aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <div class="row" id="productsSeoUrl<?php echo $i ?>">
-                      <div class="col-md-10">
-                        <div class="form-group row">
-                          <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?></label>
-                          <div class="col-md-7 input-group">
-                            <?php echo '&nbsp;' . HTML::inputField('products_seo_url[' . $languages_id . ']', SeoAdmin::getProductsSeoUrl($pInfo->products_id, $languages_id), 'maxlength="70" size="77" id="seo_url_title_' . $i . '"', false); ?>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading<?php $i; ?>">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
+                    </button>
+                  </h2>
+                  <?php
+                  if ($i == 0) {
+                    $show = ' show';
+                  } else {
+                    $show = '';
+                  }
+                  ?>
+                  <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>"
+                       aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="row" id="productsSeoUrl<?php echo $i ?>">
+                        <div class="col-md-10">
+                          <div class="form-group row">
+                            <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?>"
+                                   class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_seo_url'); ?></label>
+                            <div class="col-md-7 input-group">
+                              <?php echo '&nbsp;' . HTML::inputField('products_seo_url[' . $languages_id . ']', SeoAdmin::getProductsSeoUrl($pInfo->products_id, $languages_id), 'maxlength="70" size="77" id="seo_url_title_' . $i . '"', false); ?>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div class="separator"></div>
-                    <div class="row" id="productsSeoTitle<?php echo $languages_id; ?>">
-                      <div class="col-md-10">
-                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                          <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_page_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_page_title'); ?></label>
-                          <div class="col-md-7 input-group" id="products_head_title_tag<?php echo $languages_id; ?>">
-                            <?php echo '&nbsp;' . HTML::inputField('products_head_title_tag[' . $languages_id . ']', SeoAdmin::getProductsSeoTitle($pInfo->products_id, $languages_id), 'maxlength="70" size="77" id="products_head_title_tag_' . $languages_id . '"', false); ?>
+                      <div class="separator"></div>
+                      <div class="row" id="productsSeoTitle<?php echo $languages_id; ?>">
+                        <div class="col-md-10">
+                          <div class="form-group row" data-index="<?php echo $languages_id; ?>">
+                            <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_page_title'); ?>"
+                                   class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_page_title'); ?></label>
+                            <div class="col-md-7 input-group" id="products_head_title_tag<?php echo $languages_id; ?>">
+                              <?php echo '&nbsp;' . HTML::inputField('products_head_title_tag[' . $languages_id . ']', SeoAdmin::getProductsSeoTitle($pInfo->products_id, $languages_id), 'maxlength="70" size="77" id="products_head_title_tag_' . $languages_id . '"', false); ?>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div class="separator"></div>
-                    <div class="row" id="productsSeoDescription<?php echo $languages_id; ?>">
-                      <div class="col-md-6">
-                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                          <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_header_description'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_header_description'); ?></label>
-                          <div class="col-md-8 input-group" id="products_head_desc_tag<?php echo $languages_id; ?>">
-                            <?php echo HTML::textAreaField('products_head_desc_tag[' . $languages_id . ']', SeoAdmin::getProductsSeoDescription($pInfo->products_id, $languages_id), '110', '5', 'id="products_head_desc_tag_' . $languages_id . '"'); ?>
+                      <div class="separator"></div>
+                      <div class="row" id="productsSeoDescription<?php echo $languages_id; ?>">
+                        <div class="col-md-6">
+                          <div class="form-group row" data-index="<?php echo $languages_id; ?>">
+                            <label
+                              for="<?php echo $CLICSHOPPING_Products->getDef('text_products_header_description'); ?>"
+                              class="col-1 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_header_description'); ?></label>
+                            <div class="col-md-8 input-group" id="products_head_desc_tag<?php echo $languages_id; ?>">
+                              <?php echo HTML::textAreaField('products_head_desc_tag[' . $languages_id . ']', SeoAdmin::getProductsSeoDescription($pInfo->products_id, $languages_id), '110', '5', 'id="products_head_desc_tag_' . $languages_id . '"'); ?>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div class="separator"></div>
-                    <div class="row" id="productsSeoKeywords<?php echo $languages_id; ?>">
-                      <div class="col-md-10">
-                        <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                          <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_keywords'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_keywords'); ?></label>
-                          <div class="col-md-7 input-group" id="products_head_keywords_tag<?php echo $languages_id; ?>">
-                            <?php echo HTML::inputField('products_head_keywords_tag[' . $languages_id . ']', SeoAdmin::getProductsSeoKeywords($pInfo->products_id, $languages_id), 'maxlength="70" size="77" id="products_head_keywords_tag_' . $languages_id . '"', false); ?>
+                      <div class="separator"></div>
+                      <div class="row" id="productsSeoKeywords<?php echo $languages_id; ?>">
+                        <div class="col-md-10">
+                          <div class="form-group row" data-index="<?php echo $languages_id; ?>">
+                            <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_keywords'); ?>"
+                                   class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_keywords'); ?></label>
+                            <div class="col-md-7 input-group"
+                                 id="products_head_keywords_tag<?php echo $languages_id; ?>">
+                              <?php echo HTML::inputField('products_head_keywords_tag[' . $languages_id . ']', SeoAdmin::getProductsSeoKeywords($pInfo->products_id, $languages_id), 'maxlength="70" size="77" id="products_head_keywords_tag_' . $languages_id . '"', false); ?>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
                       <div class="separator"></div>
                       <div class="row" id="productsSeoTag<?php echo $languages_id; ?>">
                         <div class="col-md-10">
                           <div class="form-group row" data-index="<?php echo $languages_id; ?>">
-                            <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_tag'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_tag'); ?></label>
+                            <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_tag'); ?>"
+                                   class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_tag'); ?></label>
                             <div class="col-md-7 input-group" id="products_head_tag<?php echo $languages_id; ?>">
                               <?php echo '&nbsp;' . HTML::inputField('products_head_tag[' . $languages_id . ']', SeoAdmin::getProductsSeoTag($pInfo->products_id, $languages_id), 'maxlength="70" size="77" id="products_head_tag_' . $languages_id . '"', false); ?>
                             </div>
@@ -1364,21 +1386,21 @@
                   </div>
                 </div>
                 <?php
-                }
-                ?>
-              </div>
+              }
+              ?>
+            </div>
             <div>
-            <div class="separator"></div>
-            <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab6', null, 'display'); ?>
+              <div class="separator"></div>
+              <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab6', null, 'display'); ?>
+            </div>
           </div>
         </div>
-      </div>
         <?php
-          // ******************************************
-          // Tab 9 Options
-          //*******************************************
-          if (!empty($_GET['pID'])) {
-            $Qproducts = $CLICSHOPPING_Products->db->prepare('select p.products_id,
+        // ******************************************
+        // Tab 9 Options
+        //*******************************************
+        if (!empty($_GET['pID'])) {
+          $Qproducts = $CLICSHOPPING_Products->db->prepare('select p.products_id,
                                                                      pd.products_name,
                                                                      p.products_model
                                                               from :table_products p,
@@ -1388,12 +1410,12 @@
                                                               and pd.products_id = :products_id
                                                               order by pd.products_name
                                                             ');
-            $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-            $Qproducts->bindInt(':products_id', $_GET['pID']);
-            $Qproducts->execute();
+          $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+          $Qproducts->bindInt(':products_id', $_GET['pID']);
+          $Qproducts->execute();
 
 
-            $Qcategories = $CLICSHOPPING_Products->db->prepare('select c.categories_id,
+          $Qcategories = $CLICSHOPPING_Products->db->prepare('select c.categories_id,
                                                                cd.categories_name
                                                         from :table_categories c,
                                                              :table_categories_description cd
@@ -1401,10 +1423,10 @@
                                                         and cd.language_id = :language_id
                                                         and c.categories_id <> :categories_id
                                                        ');
-            $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-            $Qcategories->bindInt(':categories_id', $cPath);
-            $Qcategories->execute();
-          }
+          $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+          $Qcategories->bindInt(':categories_id', $cPath);
+          $Qcategories->execute();
+        }
         ?>
         <div class="tab-pane" id="tab8">
           <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_others_options'); ?></div>
@@ -1436,21 +1458,22 @@
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_file_download'); ?></label>
                   <div class="col-md-5">
                     <?php
-                      echo HTML::fileField('products_download_filename', 'id="download_file" accept=".zip, .pdf, .doc, .odf, .xlsx., xls, .mp3, .mp4, .avi, .png, .jpg, .gif"');
+                    echo HTML::fileField('products_download_filename', 'id="download_file" accept=".zip, .pdf, .doc, .odf, .xlsx., xls, .mp3, .mp4, .avi, .png, .jpg, .gif"');
 
-                      if ($pInfo->products_download_filename) {
-                        echo HTML::inputField('products_download_filename', $pInfo->products_download_filename, 'id="products_download_filename" disabled="disabled"') . '&nbsp';
-                      }
+                    if ($pInfo->products_download_filename) {
+                      echo HTML::inputField('products_download_filename', $pInfo->products_download_filename, 'id="products_download_filename" disabled="disabled"') . '&nbsp';
+                    }
                     ?>
                   </div>
                 </div>
               </div>
             </div>
-  
+
             <div class="row" id="productsOnlyShop">
               <div class="col-md-9">
                 <ul class="list-group-slider list-group-flush">
-                  <span class="text-slider col-5"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_shop'); ?></span>
+                  <span
+                    class="text-slider col-5"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_shop'); ?></span>
                   <li class="list-group-item-slider">
                     <label class="switch">
                       <?php echo HTML::checkboxField('products_only_shop', '1', $pInfo->products_only_shop, 'class="success"'); ?>
@@ -1463,7 +1486,8 @@
             <div class="row" id="productsOnlyOnline">
               <div class="col-md-9">
                 <ul class="list-group-slider list-group-flush">
-                  <span class="text-slider col-5"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_online'); ?></span>
+                  <span
+                    class="text-slider col-5"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_online'); ?></span>
                   <li class="list-group-item-slider">
                     <label class="switch">
                       <?php echo HTML::checkboxField('products_only_online', '1', $pInfo->products_only_online, 'class="success"'); ?>
@@ -1474,7 +1498,7 @@
               </div>
             </div>
           </div>
-  
+
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Products->getDef('title_help_general') . '"></i></h4> ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
@@ -1482,15 +1506,15 @@
             <div><?php echo $CLICSHOPPING_Products->getDef('help_general_tab8') . ' ' . $CLICSHOPPING_Products->getDef('help_general_tab8_1') . ' ' . (int)(ini_get('upload_max_filesize')) . ' Mb'; ?></div>
           </div>
         </div>
-        </div>
+      </div>
       <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab7', null, 'display'); ?>
     </div>
-<?php
-  //***********************************
-  // extension
-  //***********************************
-  echo $CLICSHOPPING_Hooks->output('Products', 'PageTab', null, 'display');
-?>
-      </div>
-    </div>
-  </form>
+    <?php
+    //***********************************
+    // extension
+    //***********************************
+    echo $CLICSHOPPING_Hooks->output('Products', 'PageTab', null, 'display');
+    ?>
+  </div>
+</div>
+</form>

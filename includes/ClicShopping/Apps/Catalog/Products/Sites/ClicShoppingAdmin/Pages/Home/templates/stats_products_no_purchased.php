@@ -1,25 +1,25 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Image = Registry::get('Image');
-  $CLICSHOPPING_Products = Registry::get('Products');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+$CLICSHOPPING_Language = Registry::get('Language');
+$CLICSHOPPING_Image = Registry::get('Image');
+$CLICSHOPPING_Products = Registry::get('Products');
 
-  $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+$CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 
 <div class="contentBody">
@@ -52,16 +52,19 @@
     data-show-export="true">
 
     <thead class="dataTableHeadingRow">
-      <tr>
-        <th data-field="image" data-switchable="false" width="50"></th>
-        <th data-field="products_id" data-switchable="false" width="50"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products_id'); ?></th>
-        <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_action'); ?></th>
-      </tr>
+    <tr>
+      <th data-field="image" data-switchable="false" width="50"></th>
+      <th data-field="products_id" data-switchable="false"
+          width="50"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products_id'); ?></th>
+      <th data-field="products"
+          data-sortable="true"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
+      <th data-field="action" data-switchable="false"
+          class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_action'); ?></th>
+    </tr>
     </thead>
     <tbody>
     <?php
-      $Qproducts = $CLICSHOPPING_Products->db->prepare('select SQL_CALC_FOUND_ROWS  p.products_id,
+    $Qproducts = $CLICSHOPPING_Products->db->prepare('select SQL_CALC_FOUND_ROWS  p.products_id,
                                                                                                     p.products_ordered,
                                                                                                     p.products_image,
                                                                                                     pd.products_name
@@ -78,39 +81,40 @@
                                                                            :page_set_max_results
                                                                      ');
 
-      $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-      $Qproducts->execute();
+    $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+    $Qproducts->execute();
 
-      $listingTotalRow = $Qproducts->getPageSetTotalRows();
+    $listingTotalRow = $Qproducts->getPageSetTotalRows();
 
-      if ($listingTotalRow > 0) {
-        while ($Qproducts->fetch()) {
-          ?>
-          <tr>
-            <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
-            <td><?php echo $Qproducts->valueInt('products_id'); ?></td>
-            <td><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), $Qproducts->value('products_name')); ?></td>
-            <td class="text-end"><?php echo HTML::link($CLICSHOPPING_Products->link('Edit&pID=' . $Qproducts->valueInt('products_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>'); ?></td>
-          </tr>
-          <?php
-        }
-      } // end $listingTotalRow
+    if ($listingTotalRow > 0) {
+      while ($Qproducts->fetch()) {
+        ?>
+        <tr>
+          <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
+          <td><?php echo $Qproducts->valueInt('products_id'); ?></td>
+          <td><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), $Qproducts->value('products_name')); ?></td>
+          <td
+            class="text-end"><?php echo HTML::link($CLICSHOPPING_Products->link('Edit&pID=' . $Qproducts->valueInt('products_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>'); ?></td>
+        </tr>
+        <?php
+      }
+    } // end $listingTotalRow
     ?>
     </tbody>
   </table>
   <?php
-    if ($listingTotalRow > 0) {
-      ?>
-      <div class="row">
-        <div class="col-md-12">
-          <div
-            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Products->getDef('text_display_number_of_link')); ?></div>
-          <div
-            class="float-end text-end"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
-        </div>
+  if ($listingTotalRow > 0) {
+    ?>
+    <div class="row">
+      <div class="col-md-12">
+        <div
+          class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Products->getDef('text_display_number_of_link')); ?></div>
+        <div
+          class="float-end text-end"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
       </div>
-      <?php
-    } // end $listingTotalRow
+    </div>
+    <?php
+  } // end $listingTotalRow
   ?>
 </div>

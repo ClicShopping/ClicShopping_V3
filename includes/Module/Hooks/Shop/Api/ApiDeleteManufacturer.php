@@ -59,7 +59,7 @@ class ApiDeleteManufacturer
     if (isset($_GET['mId'], $_GET['manufacturers'])) {
       $id = HTML::sanitize($_GET['mId']);
 
-      return static::deleteManufacturer($id);
+      return self::deleteManufacturer($id);
     } else {
       return false;
     }

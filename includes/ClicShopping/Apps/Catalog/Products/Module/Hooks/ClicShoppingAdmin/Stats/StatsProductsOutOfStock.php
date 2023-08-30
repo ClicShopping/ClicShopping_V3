@@ -1,68 +1,68 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Catalog\Products\Module\Hooks\ClicShoppingAdmin\Stats;
+namespace ClicShopping\Apps\Catalog\Products\Module\Hooks\ClicShoppingAdmin\Stats;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Catalog\Products\Products as ProductsApp;
+use ClicShopping\Apps\Catalog\Products\Products as ProductsApp;
 
-  class StatsProductsOutOfStock implements \ClicShopping\OM\Modules\HooksInterface
+class StatsProductsOutOfStock implements \ClicShopping\OM\Modules\HooksInterface
+{
+  protected mixed $app;
+
+  public function __construct()
   {
-    protected mixed $app;
-
-    public function __construct()
-    {
-      if (!Registry::exists('Products')) {
-        Registry::set('Products', new ProductsApp());
-      }
-
-      $this->app = Registry::get('Products');
+    if (!Registry::exists('Products')) {
+      Registry::set('Products', new ProductsApp());
     }
 
-    private function getOutOfStock()
-    {
+    $this->app = Registry::get('Products');
+  }
 
-      $Qproducts = $this->app->db->prepare('select count(products_id) as count
+  private function getOutOfStock()
+  {
+
+    $Qproducts = $this->app->db->prepare('select count(products_id) as count
                                             from :table_products
                                             where products_quantity <= 0
                                           ');
-      $Qproducts->execute();
+    $Qproducts->execute();
 
-      return $Qproducts->valueInt('count');
-    }
+    return $Qproducts->valueInt('count');
+  }
 
-    private function getProductsOffLine()
-    {
+  private function getProductsOffLine()
+  {
 
-      $Qproducts = $this->app->db->prepare('select count(products_id) as count
+    $Qproducts = $this->app->db->prepare('select count(products_id) as count
                                             from :table_products
                                             where products_status = 0
                                           ');
-      $Qproducts->execute();
+    $Qproducts->execute();
 
-      return $Qproducts->valueInt('count');
+    return $Qproducts->valueInt('count');
+  }
+
+  public function display()
+  {
+    if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
+      return false;
     }
 
-    public function display()
-    {
-      if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
-        return false;
-      }
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_products_out_of_stock');
 
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_products_out_of_stock');
-
-      if ($this->getOutOfStock() == 0 && $this->getProductsOffLine() == 0) {
-        $output = '';
-      } else {
-        $output = '
+    if ($this->getOutOfStock() == 0 && $this->getProductsOffLine() == 0) {
+      $output = '';
+    } else {
+      $output = '
  <div class="col-md-2 col-12">
     <div class="card bg-danger">
      <div class="card-body">
@@ -82,8 +82,8 @@
   </div>
 </div>  
       ';
-      }
-
-      return $output;
     }
+
+    return $output;
   }
+}

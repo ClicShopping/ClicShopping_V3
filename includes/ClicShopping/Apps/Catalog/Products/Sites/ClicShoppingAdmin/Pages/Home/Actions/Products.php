@@ -1,26 +1,26 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Catalog\Products\Sites\ClicShoppingAdmin\Pages\Home\Actions;
+namespace ClicShopping\Apps\Catalog\Products\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
-  use ClicShopping\OM\Registry;
+use ClicShopping\OM\Registry;
 
-  class Products extends \ClicShopping\OM\PagesActionsAbstract
+class Products extends \ClicShopping\OM\PagesActionsAbstract
+{
+  public function execute()
   {
-    public function execute()
-    {
-      $CLICSHOPPING_Products = Registry::get('Products');
+    $CLICSHOPPING_Products = Registry::get('Products');
 
-      $this->page->setFile('products.php');
-      $this->page->data['action'] = 'Products';
+    $this->page->setFile('products.php');
+    $this->page->data['action'] = 'Products';
 
-      $CLICSHOPPING_Products->loadDefinitions('Sites/ClicShoppingAdmin/Products');
-    }
+    $CLICSHOPPING_Products->loadDefinitions('Sites/ClicShoppingAdmin/Products');
   }
+}

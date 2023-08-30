@@ -1,25 +1,25 @@
 <?php
-  /**
-   *
-   * @copyright 2008 - https://www.clicshopping.org
-   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   * @Licence GPL 2 & MIT
-   * @Info : https://www.clicshopping.org/forum/trademark/
-   *
-   */
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
 
-  namespace ClicShopping\Apps\Catalog\Products\Module\ClicShoppingAdmin\Config\PD\Params;
+namespace ClicShopping\Apps\Catalog\Products\Module\ClicShoppingAdmin\Config\PD\Params;
 
-  class sort_order extends \ClicShopping\Apps\Catalog\Products\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
+class sort_order extends \ClicShopping\Apps\Catalog\Products\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
+{
+
+  public $default = '30';
+  public ?int $sort_order = 300;
+  public bool $app_configured = true;
+
+  protected function init()
   {
-
-    public $default = '30';
-    public ?int $sort_order = 300;
-    public bool $app_configured = true;
-
-    protected function init()
-    {
-      $this->title = $this->app->getDef('cfg_catalog_products_sort_order_title');
-      $this->description = $this->app->getDef('cfg_catalog_products_sort_order_description');
-    }
+    $this->title = $this->app->getDef('cfg_catalog_products_sort_order_title');
+    $this->description = $this->app->getDef('cfg_catalog_products_sort_order_description');
   }
+}
