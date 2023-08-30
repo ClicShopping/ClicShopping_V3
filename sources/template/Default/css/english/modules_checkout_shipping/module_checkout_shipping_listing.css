@@ -7,17 +7,27 @@
  *
  */
 
-.moduleCheckoutShippingListingPageHeader{}
-.moduleCheckoutShippingListingMethod{}
-.moduleCheckoutShippingListingSelect{
+.moduleCheckoutShippingListingPageHeader {
+}
+
+.moduleCheckoutShippingListingMethod {
+}
+
+.moduleCheckoutShippingListingSelect {
   font-weight: bold;
 }
-.moduleCheckoutShippingListingInformation{}
-.moduleCheckoutShippingListingFreeTitle{
-    font-weight: bold;
+
+.moduleCheckoutShippingListingInformation {
 }
-.moduleCheckoutShippingListingRadio{}
-.moduleCheckoutShippingListingCurrencies{
+
+.moduleCheckoutShippingListingFreeTitle {
+  font-weight: bold;
+}
+
+.moduleCheckoutShippingListingRadio {
+}
+
+.moduleCheckoutShippingListingCurrencies {
 }
 
 

@@ -8,17 +8,17 @@
  */
 
 div.SitemapSummaryTable {
-  text-decoration:none!important;
+  text-decoration: none !important;
 }
 
 div.SitemapSummary A {
   padding-left: 0.3125rem;
   line-height: 1.25rem;
-  text-decoration:none;
+  text-decoration: none;
 }
 
 
 li.SitemapSummary {
-  list-style:none;
+  list-style: none;
   list-style-type: none;
 }

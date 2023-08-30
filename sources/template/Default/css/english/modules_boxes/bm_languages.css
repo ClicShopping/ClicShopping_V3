@@ -39,7 +39,7 @@
   text-align: center;
   padding-bottom: 0.5rem;
   padding-top: 0.10rem;
-  padding-right:0.10rem;
+  padding-right: 0.10rem;
 }
 
 .card-footer.boxeBottomLanguages {
@@ -50,8 +50,8 @@
 
 .card-block.boxeContentArroundLanguages {
   overflow: hidden;
-  padding-right:0.1rem;
-  padding-left:0.1rem;
+  padding-right: 0.1rem;
+  padding-left: 0.1rem;
   padding: 0.5rem;
 }
 

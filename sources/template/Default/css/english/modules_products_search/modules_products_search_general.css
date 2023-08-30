@@ -31,7 +31,7 @@ div.ModulesProductsSearchHeadingTitle h1 {
 ***************************/
 
 span.ModulesProductsSearchBootstrapTickerNew {
-  font: 700 10px/8px Arial,Helvetica,sans-serif;
+  font: 700 10px/8px Arial, Helvetica, sans-serif;
   color: #000;
   background: #B2D5EE none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -47,9 +47,8 @@ span.ModulesProductsSearchBootstrapTickerNew {
 }
 
 
-
 span.ModulesProductsSearchBootstrapTickerSpecial {
-  font: 700 10px/8px Arial,Helvetica,sans-serif;
+  font: 700 10px/8px Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #E6290B none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -65,9 +64,8 @@ span.ModulesProductsSearchBootstrapTickerSpecial {
 }
 
 
-
 span.ModulesProductsSearchBootstrapTickerFavorite {
-  font: 700 10px/8px Arial,Helvetica,sans-serif;
+  font: 700 10px/8px Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #449D44 none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -84,7 +82,7 @@ span.ModulesProductsSearchBootstrapTickerFavorite {
 
 
 span.ModulesProductsSearchBootstrapTickerFeatured {
-  font: 700 10px/8px Arial,Helvetica,sans-serif;
+  font: 700 10px/8px Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #025AA5 none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -103,7 +101,7 @@ span.ModulesProductsSearchBootstrapTickerFeatured {
 // Ticker pourcenatge
 ********************************/
 span.ModulesProductsSearchBootstrapTickerPourcentage {
-  font: 700 14px/12px Arial,Helvetica,sans-serif;
+  font: 700 14px/12px Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #FF6600 none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -112,7 +110,7 @@ span.ModulesProductsSearchBootstrapTickerPourcentage {
   width: 3.125rem;
   text-align: center;
   display: block;
-  float:right;
+  float: right;
   position: relative;
-  right:1rem;
+  right: 1rem;
 }

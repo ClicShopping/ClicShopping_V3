@@ -12,13 +12,13 @@
 }
 
 .ModulesProductsFeaturedBoostrapColumn5Title h3 {
-  text-align:center;
-  vertical-align:text-top;
+  text-align: center;
+  vertical-align: text-top;
   padding-top: 0.3125rem;
   height: 0.625rem;
   padding-left: 0.3125rem;
-  padding-right:5px;
-  font-size: 0.875rem!important;
+  padding-right: 5px;
+  font-size: 0.875rem !important;
 }
 
 .ModulesProductsFeaturedBoostrapColumn5Title A {
@@ -26,53 +26,53 @@
 }
 
 .ModulesProductsFeaturedBoostrapColumn5ShortDescription h3 {
-  text-align:center;
+  text-align: center;
   padding-top: 0.3125rem;
   color: #7F736F;
   text-transform: lowercase;
   padding-left: 0.3125rem;
-  padding-right:5px;
+  padding-right: 5px;
 }
 
 .ModulesProductsFeaturedBoostrapColumn5TextPrice {
-  color:#000000;
-  text-align:center;
-  vertical-align:text-top;
+  color: #000000;
+  text-align: center;
+  vertical-align: text-top;
   padding-top: 0.625rem;
 }
 
 .ModulesProductsFeaturedBoostrapColumn5StockImage {
-  text-align:center;
-  vertical-align:text-top;
+  text-align: center;
+  vertical-align: text-top;
   color: #7F736F;
   padding-top: 0.625rem;
 }
 
-.ModulesProductsFeaturedBoostrapColumn5ImageNewArrival  {
-  text-align:center;
-  vertical-align:text-top;
+.ModulesProductsFeaturedBoostrapColumn5ImageNewArrival {
+  text-align: center;
+  vertical-align: text-top;
   color: #7F736F;
   padding-top: 0.625rem;
 }
 
 .ModulesProductsFeaturedBoostrapColumn5QuantityMinOrder {
-  text-align:center;
+  text-align: center;
   color: #7F736F;
   padding-top: 0.625rem;
-  padding-bottom:5px;
+  padding-bottom: 5px;
 }
 
-.ModulesProductsFeaturedBoostrapColumn5ProductsQuantityUnit  {
-  text-align:center;
+.ModulesProductsFeaturedBoostrapColumn5ProductsQuantityUnit {
+  text-align: center;
   color: #7F736F;
   padding-top: 0.625rem;
 }
 
 .ModulesproductsFeaturedBoostrapColumn5ViewDetails {
-  text-align:right;
+  text-align: right;
 }
 
 .ModulesproductsFeaturedBoostrapColumn5SubmitButton {
-  text-align:left;
-  text-transform:uppercase;
+  text-align: left;
+  text-transform: uppercase;
 }

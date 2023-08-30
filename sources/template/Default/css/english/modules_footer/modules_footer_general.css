@@ -7,18 +7,18 @@
  *
  */
 
-.footer{
-  vertical-align:middle;
-  background-color:#F0EDEC;
+.footer {
+  vertical-align: middle;
+  background-color: #F0EDEC;
 }
 
-footer A{
-   color: #524169;
+footer A {
+  color: #524169;
 }
 
 div.footerHr {
-  height:2px;
-  overflow:hidden;
+  height: 2px;
+  overflow: hidden;
   background-color: #edac27;
 }
 

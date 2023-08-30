@@ -1,15 +1,16 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
-  use ClicShopping\OM\CLICSHOPPING;
 
-  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+use ClicShopping\OM\CLICSHOPPING;
+
+require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="account_history_info" id="account_history_info">
   <div class="contentContainer">

@@ -1,19 +1,20 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
-  use ClicShopping\OM\CLICSHOPPING;
 
-  if ($CLICSHOPPING_MessageStack->exists('main')) {
-    echo $CLICSHOPPING_MessageStack->get('main');
-  }
+use ClicShopping\OM\CLICSHOPPING;
 
-  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+if ($CLICSHOPPING_MessageStack->exists('main')) {
+  echo $CLICSHOPPING_MessageStack->get('main');
+}
+
+require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="create_account" id="create_account">
   <div class="contentContainer">

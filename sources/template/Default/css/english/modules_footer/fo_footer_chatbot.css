@@ -1,32 +1,32 @@
 .chatbot-hr {
-    border-top: 1px solid #ccc;
-    margin: 10px 0;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
 }
 
 .chatbox-small {
-    max-width: 50%;
+  max-width: 50%;
 }
 
 .system-message {
-    font-style: italic;
-    color: #888;
+  font-style: italic;
+  color: #888;
 }
 
 #chatbot-messages {
-    overflow-y: auto;
-    max-height: 400px;
+  overflow-y: auto;
+  max-height: 400px;
 }
 
 #chat-messages a {
-    color: #007bff;
-    text-decoration: underline;
+  color: #007bff;
+  text-decoration: underline;
 }
 
 #chat-messages a:visited {
-    color: #800080;
+  color: #800080;
 }
 
 #chat-messages a:hover {
-    color: #ff0000;
-    text-decoration: none;
+  color: #ff0000;
+  text-decoration: none;
 }

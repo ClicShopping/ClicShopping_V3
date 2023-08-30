@@ -39,7 +39,7 @@
   text-align: center;
   padding-bottom: 0.5rem;
   padding-top: 0.10rem;
-  padding-right:0.10rem;
+  padding-right: 0.10rem;
 }
 
 .card-footer.boxeBottomCurrencies {
@@ -51,8 +51,8 @@
 .card-block.boxeContentArroundCurrencies {
   padding: 0.5rem;
   overflow: hidden;
-  padding-right:0.1rem;
-  padding-left:0.1rem;
+  padding-right: 0.1rem;
+  padding-left: 0.1rem;
 }
 
 .card-img-top.boxeCurrencies {
@@ -60,6 +60,6 @@
 
 
 .boxePullDownsideCurrencies {
-  width:90%;
+  width: 90%;
 }
 

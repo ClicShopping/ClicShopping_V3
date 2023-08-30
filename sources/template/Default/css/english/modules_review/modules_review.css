@@ -11,36 +11,36 @@
 }
 
 .moduleReviewTitle A {
-    color: #682b0e;
-    text-decoration: none;
+  color: #682b0e;
+  text-decoration: none;
 }
 
 .moduleReviewTextBy {
-    padding-top: 0.30rem;
-    padding-bottom: 0.30rem;
+  padding-top: 0.30rem;
+  padding-bottom: 0.30rem;
 }
 
 .moduleReviewAuthor {
-    font-weight: bold;
-    text-decoration: underline;
-    text-align: left;
+  font-weight: bold;
+  text-decoration: underline;
+  text-align: left;
 }
 
 .moduleReviewAuthor A {
-    font-weight: bold;
-    text-decoration: underline
+  font-weight: bold;
+  text-decoration: underline
 }
 
 .moduleReviewRating {
-    text-align: right;
+  text-align: right;
 }
 
 .moduleReviewDateAdded {
-    padding-top: 0.30rem;
-    padding-bottom: 0.30rem;
+  padding-top: 0.30rem;
+  padding-bottom: 0.30rem;
 }
 
 .moduleReviewText {
-    padding-top: 0.30rem;
-    padding-bottom: 0.30rem;
+  padding-top: 0.30rem;
+  padding-bottom: 0.30rem;
 }

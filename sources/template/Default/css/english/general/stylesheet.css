@@ -17,12 +17,12 @@ body {
 }
 
 #bodyWrapper {
-    position:relative;
+  position: relative;
 }
 
 #bodyContent {
-/*   background-color:#ffffff;*/
-   padding-bottom: 0.625rem;
+  /*   background-color:#ffffff;*/
+  padding-bottom: 0.625rem;
 }
 
 .frameWork {
@@ -56,7 +56,7 @@ form {
 /* Order Total  */
 /****************/
 .orderEdit {
-  font-size : 0.625rem;
+  font-size: 0.625rem;
   color: #0544d3;
   text-decoration: underline;
 }
@@ -73,27 +73,27 @@ form {
 /* Prix  de la boutique */
 /* *************************************************************** */
 
-span.normalPrice{
-  font-weight:normal;
+span.normalPrice {
+  font-weight: normal;
 }
 
-span.specialPrice{
-  font-weight:bold;
+span.specialPrice {
+  font-weight: bold;
   padding-left: 0.5125rem;
-  color:#ce060b;
+  color: #ce060b;
 }
 
 div.EndDateFlashDiscount, span.EndDateFlashDiscount {
-  font: 700 10px/8px Arial,Helvetica,sans-serif;
+  font: 700 10px/8px Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #c4071b none repeat scroll 0% 0%;
   text-transform: uppercase;
   padding: 0.375rem 0px 0.4375rem;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.24);
-  line-height:1rem;
+  line-height: 1rem;
   text-align: center;
   display: block;
-/*  position: relative;*/
+  /*  position: relative;*/
   right: 1rem;
 }
 
@@ -109,7 +109,7 @@ span.markProductOutOfStock {
 }
 
 .separator {
-  height: 0.625rem!important;
+  height: 0.625rem !important;
 }
 
 .HistoyInfoPDF {
@@ -125,8 +125,8 @@ div.Pageintroduction {
 }
 
 div.PageintroductionAccessCatalog {
-/*  background-color: #fff;*/
-  text-align:center;
+  /*  background-color: #fff;*/
+  text-align: center;
   padding-top: 0.625rem;
 }
 
@@ -139,7 +139,7 @@ div.PageintroductionAccessCatalog A {
   height: auto !important;
   height: 100%;
   margin: 0 auto -2.5rem; /* the bottom margin is the negative value of the footer's height */
-/*  background-color: #fff;*/
+  /*  background-color: #fff;*/
 }
 
 .footerIntroduction, .push {
@@ -150,7 +150,7 @@ div.PageintroductionAccessCatalog A {
 // Ticker Stock
 ********************************/
 span.ModulesTickerBootstrapTickerStockGood {
-  font: 700 0.625rem/0.5rem Arial,Helvetica,sans-serif;
+  font: 700 0.625rem/0.5rem Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #449D44 none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -162,7 +162,7 @@ span.ModulesTickerBootstrapTickerStockGood {
 }
 
 span.ModulesTickerBootstrapTickerStockWarning {
-  font: 700 0.625rem/0.5rem Arial,Helvetica,sans-serif;
+  font: 700 0.625rem/0.5rem Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #EC971F none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -174,7 +174,7 @@ span.ModulesTickerBootstrapTickerStockWarning {
 }
 
 span.ModulesTickerBootstrapTickerStockDanger {
-  font: 700 0.625rem/0.5rem Arial,Helvetica,sans-serif;
+  font: 700 0.625rem/0.5rem Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #E6290B none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -240,27 +240,33 @@ span.ModulesTickerBootstrapTickerStockDanger {
 /*********************************
 // Captcha
 /*********************************/
-.hiddenRecaptcha{
+.hiddenRecaptcha {
   display: none;
 }
 
 span.ModulesReviews {
   color: #f0a42a;
   font-size: medium;
-  text-align:center;
+  text-align: center;
 }
 
 /*****************************
 Stars rate
 *****************************/
-fieldset, label { margin: 0; padding: 0; }
+fieldset, label {
+  margin: 0;
+  padding: 0;
+}
 
 .rating {
   border: none;
   float: left;
 }
 
-.rating > input { display: none; }
+.rating > input {
+  display: none;
+}
+
 .rating > label:before {
   margin: 5px;
   font-size: 2.50rem;
@@ -280,9 +286,15 @@ fieldset, label { margin: 0; padding: 0; }
 
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+.rating:not(:checked) > label:hover ~ label {
+  color: #FFD700;
+}
+
+/* hover previous stars in list */
 
 .rating > input:checked + label:hover, /* hover current star when changing rating */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+.rating > input:checked ~ label:hover ~ label {
+  color: #FFED85;
+}

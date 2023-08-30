@@ -12,13 +12,13 @@
 }
 
 .ModulesProductsSpecialsBoostrapColumn5Title h3 {
-  text-align:center;
-  vertical-align:text-top;
+  text-align: center;
+  vertical-align: text-top;
   padding-top: 0.3125rem;
   height: 0.625rem;
   padding-left: 0.3125rem;
-  padding-right:5px;
-  font-size: 0.875rem!important;
+  padding-right: 5px;
+  font-size: 0.875rem !important;
 }
 
 .ModulesProductsSpecialsBoostrapColumn5Title A {
@@ -26,53 +26,53 @@
 }
 
 .ModulesProductsSpecialsBoostrapColumn5ShortDescription h3 {
-  text-align:center;
+  text-align: center;
   padding-top: 0.3125rem;
   color: #7F736F;
   text-transform: lowercase;
   padding-left: 0.3125rem;
-  padding-right:5px;
+  padding-right: 5px;
 }
 
 .ModulesProductsSpecialsBoostrapColumn5TextPrice {
-  color:#000000;
-  text-align:center;
-  vertical-align:text-top;
+  color: #000000;
+  text-align: center;
+  vertical-align: text-top;
   padding-top: 0.625rem;
 }
 
 dModulesProductsSpecialsBoostrapColumn5StockImage {
-  text-align:center;
-  vertical-align:text-top;
+  text-align: center;
+  vertical-align: text-top;
   color: #7F736F;
   padding-top: 0.625rem;
 }
 
-.ModulesProductsSpecialsBoostrapColumn5ImageNewArrival  {
-  text-align:center;
-  vertical-align:text-top;
+.ModulesProductsSpecialsBoostrapColumn5ImageNewArrival {
+  text-align: center;
+  vertical-align: text-top;
   color: #7F736F;
   padding-top: 0.625rem;
 }
 
 .ModulesProductsSpecialsBoostrapColumn5QuantityMinOrder {
-  text-align:center;
+  text-align: center;
   color: #7F736F;
   padding-top: 0.625rem;
-  padding-bottom:5px;
+  padding-bottom: 5px;
 }
 
-.ModulesProductsSpecialsBoostrapColumn5ProductsQuantityUnit  {
-  text-align:center;
+.ModulesProductsSpecialsBoostrapColumn5ProductsQuantityUnit {
+  text-align: center;
   color: #7F736F;
   padding-top: 0.625rem;
 }
 
 .ModulesProductsSpecialsBoostrapColumn5ViewDetails {
-  text-align:center;
+  text-align: center;
 }
 
 .ModulesProductsSpecialsBoostrapColumn5SubmitButton {
-  text-align:center;
-  text-transform:uppercase;
+  text-align: center;
+  text-transform: uppercase;
 }

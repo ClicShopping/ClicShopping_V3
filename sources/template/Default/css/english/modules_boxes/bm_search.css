@@ -39,7 +39,7 @@
 
   padding-bottom: 0.625rem;
   padding-top: 0.625rem;
-  padding-right:0.1rem;
+  padding-right: 0.1rem;
 }
 
 .card-footer.boxeBottomSearch {
@@ -52,20 +52,20 @@
 .card-block.boxeContentArroundSearch {
   padding: 0.5rem;
   overflow: hidden;
-  padding-right:0.1rem;
-  padding-left:0.1rem;
+  padding-right: 0.1rem;
+  padding-left: 0.1rem;
 }
 
 .boxeContentLinkAdvancedSearch {
   text-align: center;
 }
 
-.boxeContentLinkAdvancedSearch A{
+.boxeContentLinkAdvancedSearch A {
 
 }
 
 
 input.boxeInputSearch {
   padding-left: 0.2rem;
-  width:7.5rem;
+  width: 7.5rem;
 }

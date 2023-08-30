@@ -11,20 +11,20 @@
 }
 
 .moduleProductsInfoReviewsTitle, span.moduleProductsInfoReviewsTitle h3 {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 
-.moduleProductsInfoTextReviewBy, span.moduleProductsInfoTextReviewBy  {
-    font-weight: bold;
-    float: left;
+.moduleProductsInfoTextReviewBy, span.moduleProductsInfoTextReviewBy {
+  font-weight: bold;
+  float: left;
 }
 
-.moduleProductsInfoDateReviewAdded, span.moduleProductsInfoDateReviewAdded  {
+.moduleProductsInfoDateReviewAdded, span.moduleProductsInfoDateReviewAdded {
   font-weight: bold;
 }
 
-.moduleProductsInfoReviewText  {
+.moduleProductsInfoReviewText {
 }
 
 span.productsInfoReviewsRating {

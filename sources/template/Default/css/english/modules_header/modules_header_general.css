@@ -14,10 +14,10 @@
 }
 
 div.header {
-  background:#ffffff;
+  background: #ffffff;
 }
 
-.header a{
+.header a {
   color: #7F736F;
   cursor: pointer;
 }
@@ -36,7 +36,7 @@ span.headerInfo {
 /* *************************************************************** */
 .menuHeaderPageManager {
   padding-left: 0.2rem;
-  padding-right:0.2rem;
+  padding-right: 0.2rem;
   color: #fff;
 }
 

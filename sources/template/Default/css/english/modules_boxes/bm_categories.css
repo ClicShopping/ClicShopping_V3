@@ -7,7 +7,7 @@
  *
  */
 
-.card.boxeContainerCategories  {
+.card.boxeContainerCategories {
   margin-top: 0.625rem;
   border-radius: 0.25rem;
 }
@@ -23,7 +23,7 @@
 
 }
 
-.card-title.boxeTitleCategories{
+.card-title.boxeTitleCategories {
   overflow: hidden;
   padding: 3px;
   text-transform: uppercase;
@@ -34,7 +34,7 @@
   padding: 3px;
   padding-bottom: 0.2rem;
   padding-top: 0.2rem;
-  padding-right:0.1rem;
+  padding-right: 0.1rem;
 }
 
 .card-footer.boxeBottomCategories {
@@ -47,12 +47,12 @@
 .card-block.boxeContentArroundCategories {
   padding: 0.1rem;
   overflow: hidden;
-  padding-right:0.1rem;
-  padding-left:0.1rem;
+  padding-right: 0.1rem;
+  padding-left: 0.1rem;
 }
 
 .boxeCategoriesNavigation {
-  padding-left:3px;
+  padding-left: 3px;
 }
 
 .boxeCategoriesNavigation a:hover {
@@ -60,7 +60,7 @@
 }
 
 
-ul.boxeCategoriesNavigation  {
+ul.boxeCategoriesNavigation {
   list-style: outside none none;
 }
 

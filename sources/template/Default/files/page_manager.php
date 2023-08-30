@@ -1,24 +1,24 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTML;
+use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
+$CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
 
-  $id = HTML::sanitize($_GET['pagesId']);
-  $page = $CLICSHOPPING_PageManagerShop->pageManagerDisplayInformation($id);
-  $page_title = $CLICSHOPPING_PageManagerShop->pageManagerDisplayTitle($id);
+$id = HTML::sanitize($_GET['pagesId']);
+$page = $CLICSHOPPING_PageManagerShop->pageManagerDisplayInformation($id);
+$page_title = $CLICSHOPPING_PageManagerShop->pageManagerDisplayTitle($id);
 
-  const HEADING_TITLE = '';
-  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+const HEADING_TITLE = '';
+require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="information" id="information">
   <div class="contentContainer">

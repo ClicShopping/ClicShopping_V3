@@ -7,12 +7,22 @@
  *
  */
 
-.moduleCheckoutPaymentListingPageHeader{}
-.moduleCheckoutPaymentListingMethod{}
-.moduleCheckoutPaymentListingSelect{
+.moduleCheckoutPaymentListingPageHeader {
+}
+
+.moduleCheckoutPaymentListingMethod {
+}
+
+.moduleCheckoutPaymentListingSelect {
   font-weight: bold;
 }
-.moduleCheckoutPaymentListingInformation{}
-span.ClicShoppingModulesCheckoutPaymentRadio{}
-td.ClicShoppingModulesCheckoutPaymentRadio{}
+
+.moduleCheckoutPaymentListingInformation {
+}
+
+span.ClicShoppingModulesCheckoutPaymentRadio {
+}
+
+td.ClicShoppingModulesCheckoutPaymentRadio {
+}
 

@@ -14,11 +14,11 @@
 
 .passwordLogin a:hover {
   color: #c0007a;
-  text-decoration:none;
+  text-decoration: none;
 }
 
-h3.loginText{
-  font-weight:bold;
+h3.loginText {
+  font-weight: bold;
 }
 
 .loginSeparator {
@@ -29,5 +29,5 @@ h3.loginText{
   margin-left: 3%;
 }
 
-.passwordForgotten{
+.passwordForgotten {
 }

@@ -39,7 +39,7 @@
   text-align: center;
   padding-bottom: 0.5rem;
   padding-top: 0.10rem;
-  padding-right:0.10rem;
+  padding-right: 0.10rem;
 }
 
 .card-footer.boxeBottomManufacturerInfo {
@@ -50,9 +50,9 @@
 
 .card-block.boxeContentArroundManufacturerInfo {
   overflow: hidden;
-  border: 1px solid #7f736f!important;
-  padding-right:0.1rem;
-  padding-left:0.1rem;
+  border: 1px solid #7f736f !important;
+  padding-right: 0.1rem;
+  padding-left: 0.1rem;
 }
 
 .card-img-top.boxeManufacturerInfo {
@@ -60,5 +60,5 @@
 
 
 .boxePullDownsideManufacturerInfo {
-  width:90%;
+  width: 90%;
 }

@@ -30,7 +30,7 @@
 
 }
 
-.card-title.boxeTitleShoppingCart  {
+.card-title.boxeTitleShoppingCart {
   overflow: hidden;
   padding: 3px;
   text-transform: uppercase;
@@ -45,7 +45,7 @@ span.boxeTitleShoppingCart {
 
 }
 
-.card-text.boxeContentsShoppingCart  {
+.card-text.boxeContentsShoppingCart {
   overflow: hidden;
   padding: 3px;
 
@@ -58,11 +58,10 @@ span.boxeTitleShoppingCart {
 }
 
 
-
 .card-block.boxeContentArroundShoppingCart {
   overflow: hidden;
-  padding-right:0.1rem;
-  padding-left:0.1rem;
+  padding-right: 0.1rem;
+  padding-left: 0.1rem;
 
 }
 
@@ -73,7 +72,7 @@ span.boxeTitleShoppingCart {
 }
 
 
-.boxeNewItemShoppingCart  {
+.boxeNewItemShoppingCart {
 
   font-weight: bold;
 }
@@ -85,12 +84,12 @@ A.boxeNewItemShoppingCart {
 }
 
 .boxeShowTotalShoppingCart {
-  text-align:right;
-  padding-top:0.3125rem;
+  text-align: right;
+  padding-top: 0.3125rem;
 }
 
 .boxeShowTextShoppingCart {
-  text-align:center;
-  padding-top:0.625rem
+  text-align: center;
+  padding-top: 0.625rem
 }
 

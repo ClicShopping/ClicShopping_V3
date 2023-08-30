@@ -31,7 +31,7 @@
 
 .card-text.boxeContentsHistory {
   overflow: hidden;
-  padding-right:0.1rem;
+  padding-right: 0.1rem;
 }
 
 .card-footer.boxeBottomHistory {
@@ -43,7 +43,7 @@
 
 li.boxeContentsHistory {
 
-   list-style:none;
+  list-style: none;
 }
 
 li.boxeContentsHistory a {

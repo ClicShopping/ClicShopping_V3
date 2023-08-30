@@ -31,7 +31,7 @@
 
 }
 
-.card-title.boxeTitleSpecials  {
+.card-title.boxeTitleSpecials {
   overflow: hidden;
   padding: 3px;
   text-transform: uppercase;
@@ -52,11 +52,11 @@ span.boxeTitleSpecials {
   text-align: center;
   padding-bottom: 0.625rem;
   padding-top: 0.625rem;
-  padding-right:0.1rem;
+  padding-right: 0.1rem;
 }
 
 .card-text.boxeContentsWhatsNewSpecials a {
-  text-decoration: none ;
+  text-decoration: none;
   text-align: center;
 }
 
@@ -68,8 +68,8 @@ span.boxeTitleSpecials {
 
 .card-block.boxeContentArroundSpecials {
   overflow: hidden;
-  padding-right:0.1rem;
-  padding-left:0.1rem;
+  padding-right: 0.1rem;
+  padding-left: 0.1rem;
   text-align: center;
 }
 

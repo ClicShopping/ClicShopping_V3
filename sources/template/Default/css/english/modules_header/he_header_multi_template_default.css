@@ -8,24 +8,24 @@
  */
 
 span.headerMultiTemplateDefaultTitle {
-  color:#524169;
+  color: #524169;
   padding-right: 0rem;
 }
 
 a.headerMultiTemplateDefaultTitle {
-  color:#524169;
+  color: #524169;
   text-decoration: underline;
 }
 
 div.headerMultiTemplateDefaultLogo {
   padding-top: 0rem;
-  padding-left:0rem;
+  padding-left: 0rem;
 }
 
 span.headerMultiTemplateDefaultShoppingCartImage {
   text-align: right;
-  padding-left:1rem;
-  padding-top:2rem;
+  padding-left: 1rem;
+  padding-top: 2rem;
 }
 
 i.headerMultiTemplateDefaultShoppingCart {
@@ -37,7 +37,7 @@ i.headerMultiTemplateDefaultShoppingCart {
 }
 
 a.headerMultiTemplateDefaultShoppingCart {
-  text-decoration:none;
+  text-decoration: none;
 }
 
 li.headerMultiTemplateDefaultShoppingCart {
@@ -63,7 +63,7 @@ a.headerMultiTemplateDefaultCheckout {
 }
 
 span.headerMultiTemplateDefaultHeaderSearch {
-  padding-top:3rem;
+  padding-top: 3rem;
   text-align: center;
   padding-bottom: 0.625rem;
 }
@@ -85,8 +85,8 @@ span.headerMultiTemplateDefaultLanguage {
   padding-left: 0.3125rem;
 }
 
-li.headerMultiTemplateDefaultLanguage{
-  list-style-type:none;
+li.headerMultiTemplateDefaultLanguage {
+  list-style-type: none;
 }
 
 .headerMultiTemplateDefaultCartLink {
@@ -100,7 +100,7 @@ a.headerMultiTemplateDefaultCartLink h2 {
   height: 30px;
 }
 
-.headerManufacturer{
+.headerManufacturer {
   padding-top: 15px;
   padding-bottom: 10px;
 }

@@ -31,8 +31,8 @@
   margin: 0;
   font-size: 1rem;
   letter-spacing: 0.1em;
-  color: rgb(142,11,0);
-  text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
+  color: rgb(142, 11, 0);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.6);
   border-bottom: 1px solid #ddd;
   padding-bottom: 0.625rem;
   margin-bottom: 0.625rem;
@@ -71,6 +71,7 @@
   -ms-transition: all 0.5s ease 0s;
   -o-transition: all 0.5s ease 0s;
 }
+
 .footerTemplateSocial li:hover {
   transform: scale(1.15) rotate(360deg);
   -webkit-transform: scale(1.1) rotate(360deg);
@@ -78,6 +79,7 @@
   -ms-transform: scale(1.1) rotate(360deg);
   -o-transform: scale(1.1) rotate(360deg);
 }
+
 .footerTemplateSocial li a {
   color: #EDEFF1;
 }
@@ -88,10 +90,10 @@
 }
 
 .footerTemplateSocial li a i {
-   margin: 0 0 0 5px;
+  margin: 0 0 0 5px;
   color: #EDEFF1 !important;
 }
 
 ul.footerTemplateSocial {
-  list-style-type:none;
+  list-style-type: none;
 }

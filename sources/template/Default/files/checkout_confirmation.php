@@ -1,23 +1,23 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
 
-  if ($CLICSHOPPING_MessageStack->exists('main')) {
-    echo $CLICSHOPPING_MessageStack->get('main');
-  }
+if ($CLICSHOPPING_MessageStack->exists('main')) {
+  echo $CLICSHOPPING_MessageStack->get('main');
+}
 
-  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  echo HTML::form('checkout_confirmation', $form_action_url, 'post', 'id="checkout_confirmation" role="form" onsubmit="return checkCheckBox(this)"');
+echo HTML::form('checkout_confirmation', $form_action_url, 'post', 'id="checkout_confirmation" role="form" onsubmit="return checkCheckBox(this)"');
 ?>
 <section class="checkout_confirmation" id="checkout_confirmation">
   <div class="contentContainer">

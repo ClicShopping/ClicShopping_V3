@@ -1,17 +1,17 @@
 <?php
 /**
  *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @Info : https://www.clicshopping.org/forum/trademark/
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTML;
 
-  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
 // ----------------------
 // --- Message  -----
@@ -35,16 +35,17 @@
         </div>
       </div>
 
-<?php
-// ----------------------
-// --- Button  -----
-// ----------------------
-?>
+      <?php
+      // ----------------------
+      // --- Button  -----
+      // ----------------------
+      ?>
       <div class="separator"></div>
       <div class="control-group">
         <div>
           <div class="buttonSet">
-            <span class="float-end"><label for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(null, 'Account&LogIn'), 'success'); ?></label></span>
+            <span class="float-end"><label
+                for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(null, 'Account&LogIn'), 'success'); ?></label></span>
           </div>
         </div>
       </div>

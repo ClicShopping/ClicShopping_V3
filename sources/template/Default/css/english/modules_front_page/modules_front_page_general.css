@@ -12,7 +12,7 @@
 ***************************/
 
 span.ModulesFrontPageTickerBootstrapTickerNew {
-  font: 700 0.625rem/0.5rem Arial,Helvetica,sans-serif;
+  font: 700 0.625rem/0.5rem Arial, Helvetica, sans-serif;
   color: #000;
   background: #B2D5EE none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -28,9 +28,8 @@ span.ModulesFrontPageTickerBootstrapTickerNew {
 }
 
 
-
 span.ModulesFrontPageTickerBootstrapTickerSpecial {
-  font: 700 0.625rem/0.5rem Arial,Helvetica,sans-serif;
+  font: 700 0.625rem/0.5rem Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #E6290B none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -43,11 +42,11 @@ span.ModulesFrontPageTickerBootstrapTickerSpecial {
   left: -0.3125rem;
   top: 1.4375rem;
   transform: rotate(-45deg);
-  float:left;
+  float: left;
 }
 
 span.ModulesFrontPageTickerBootstrapTickerFavorite {
-  font: 700 0.625rem/0.5rem Arial,Helvetica,sans-serif;
+  font: 700 0.625rem/0.5rem Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #449D44 none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -63,7 +62,7 @@ span.ModulesFrontPageTickerBootstrapTickerFavorite {
 }
 
 span.ModulesFrontPageTickerBootstrapTickerFeatured {
-  font: 700 0.625rem/0.5rem Arial,Helvetica,sans-serif;
+  font: 700 0.625rem/0.5rem Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #025AA5 none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -83,7 +82,7 @@ span.ModulesFrontPageTickerBootstrapTickerFeatured {
 // Ticker pourcenatge
 ********************************/
 span.ModulesFrontPageTickerBootstrapTickerPourcentage {
-  font: 700 14px/12px Arial,Helvetica,sans-serif;
+  font: 700 14px/12px Arial, Helvetica, sans-serif;
   color: #FFF;
   background: #FF6600 none repeat scroll 0% 0%;
   text-transform: uppercase;
@@ -92,7 +91,7 @@ span.ModulesFrontPageTickerBootstrapTickerPourcentage {
   width: 3.125rem;
   text-align: center;
   display: block;
-  float:right;
+  float: right;
   position: relative;
-  right:1rem;
+  right: 1rem;
 }

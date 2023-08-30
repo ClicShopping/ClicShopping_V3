@@ -19,40 +19,40 @@ A:hover {
 }
 
 .A H1 {
-  color: #682b0e!important;
-  text-decoration:none;
+  color: #682b0e !important;
+  text-decoration: none;
 }
 
 .A H2 {
-  color: #682b0e!important;
-  text-decoration:none;
+  color: #682b0e !important;
+  text-decoration: none;
 }
 
 .A H3 {
-  color: #682b0e!important;
-  text-decoration:none;
+  color: #682b0e !important;
+  text-decoration: none;
 }
 
 .A H4 {
-  color: #682b0e!important;
-  text-decoration:none;
+  color: #682b0e !important;
+  text-decoration: none;
 }
 
 .A H5 {
-  color: #682b0e!important;
-  text-decoration:none;
+  color: #682b0e !important;
+  text-decoration: none;
 }
 
 .A H6 {
-  color: #682b0e!important;
-  text-decoration:none;
+  color: #682b0e !important;
+  text-decoration: none;
 }
 
-.pageHeading A:hover{
-  text-decoration:none;
+.pageHeading A:hover {
+  text-decoration: none;
 }
 
-.pageHeading  {
+.pageHeading {
   font-weight: bold;
   color: #ff7d00;
 }

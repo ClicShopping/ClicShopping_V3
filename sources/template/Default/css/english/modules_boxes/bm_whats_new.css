@@ -29,7 +29,7 @@
 
 }
 
-.card-title.boxeTitleWhatsNew  {
+.card-title.boxeTitleWhatsNew {
   overflow: hidden;
   padding: 3px;
   text-transform: uppercase;
@@ -50,11 +50,11 @@ span.boxeTitleWhatsNew {
   text-align: center;
   padding-bottom: 0.625rem;
   padding-top: 0.625rem;
-  padding-right:0.1rem;
+  padding-right: 0.1rem;
 }
 
 .card-text.boxeContentsWhatsNew a {
-  text-decoration: none ;
+  text-decoration: none;
   text-align: center;
 }
 
@@ -66,8 +66,8 @@ span.boxeTitleWhatsNew {
 
 .card-block.boxeContentArroundWhatsNew {
   overflow: hidden;
-  padding-right:0.1rem;
-  padding-left:0.1rem;
+  padding-right: 0.1rem;
+  padding-left: 0.1rem;
   text-align: center;
 }
 

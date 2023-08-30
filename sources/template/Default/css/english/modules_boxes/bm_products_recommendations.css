@@ -31,7 +31,7 @@
 
 }
 
-.card-title.boxeTitleRecommendations  {
+.card-title.boxeTitleRecommendations {
   overflow: hidden;
   padding: 3px;
   text-transform: uppercase;
@@ -52,11 +52,11 @@ span.boxeTitleRecommendations {
   text-align: center;
   padding-bottom: 0.625rem;
   padding-top: 0.625rem;
-  padding-right:0.1rem;
+  padding-right: 0.1rem;
 }
 
 .card-text.boxeContentsRecommendations a {
-  text-decoration: none ;
+  text-decoration: none;
   text-align: center;
 }
 
@@ -68,9 +68,9 @@ span.boxeTitleRecommendations {
 
 .card-block.boxeContentArroundRecommendations {
   overflow: hidden;
- /* border: 1px solid #e5e5e5!important;*/
-  padding-right:0.1rem;
-  padding-left:0.1rem;
+  /* border: 1px solid #e5e5e5!important;*/
+  padding-right: 0.1rem;
+  padding-left: 0.1rem;
   text-align: center;
 }
 
