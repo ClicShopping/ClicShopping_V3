@@ -20,16 +20,16 @@ A:hover {
 
 
 .A H1 {
-  color: #682b0e!important;
-  text-decoration:none;
+  color: #682b0e !important;
+  text-decoration: none;
 }
 
-.pageHeading A:hover{
-  text-decoration:none;
+.pageHeading A:hover {
+  text-decoration: none;
 }
 
 
-.pageHeading  {
+.pageHeading {
   font-size: 1.25rem;
   font-weight: bold;
   color: #ff7d00;

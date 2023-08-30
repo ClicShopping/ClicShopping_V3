@@ -13,4 +13,6 @@
 //create_account_pro_registration
 //guest account
 const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-const tooltipList = tooltipTriggerList.map(tooltipTriggerEl => { return new Tooltip(tooltipTriggerEl); });
+const tooltipList = tooltipTriggerList.map(tooltipTriggerEl => {
+  return new Tooltip(tooltipTriggerEl);
+});

@@ -11,14 +11,14 @@
 h1 {
   margin-bottom: 1.25rem;
   margin-top: 0rem;
-  text-transform:uppercase;
+  text-transform: uppercase;
   font-size: 1.25rem;
   line-height: 1.5rem;
 }
 
 h2 {
   margin-bottom: 0.9375rem;
-  text-transform:uppercase;
+  text-transform: uppercase;
   font-size: 1.25rem;
   line-height: 1.5rem;
   padding-right: 4.0625rem;
@@ -26,28 +26,28 @@ h2 {
 }
 
 h2.nopadding {
-  padding:0;
+  padding: 0;
 }
 
 h3 {
   text-transform: uppercase;
   font-size: 1.125rem;
   line-height: 1.25rem;
-  font-weight:normal;
+  font-weight: normal;
 }
 
 h4 {
   margin-bottom: 0.9375rem;
-  text-transform:uppercase;
+  text-transform: uppercase;
   font-size: 1.25rem;
   line-height: 1.25rem
 }
 
 h5 {
-  font:normal 1.5rem/1.625rem Arial, Helvetica, ms-sans-serif;
-  font-style:italic;
-  margin:0;
-  padding:0;
+  font: normal 1.5rem/1.625rem Arial, Helvetica, ms-sans-serif;
+  font-style: italic;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -61,33 +61,35 @@ h5 {
   margin-bottom: 0;
   padding-bottom: 0.3125rem;
 }
+
 .contentContainer a {
   text-decoration: underline
 }
+
 .contentContainer a:hover {
-  text-decoration:none
+  text-decoration: none
 }
 
 .contentText, .contentText table {
 }
 
 [class*="span"] {
-    float: left;
-    margin-left: 5px;
-    min-height: 0.0625rem;
-    margin-right: 0.3125rem;
+  float: left;
+  margin-left: 5px;
+  min-height: 0.0625rem;
+  margin-right: 0.3125rem;
 }
 
 .container {
-   padding-left: 0rem;
-   padding-right: 0rem;
-/*   background-color: #fff;*/
+  padding-left: 0rem;
+  padding-right: 0rem;
+  /*   background-color: #fff;*/
 }
 
 .container-fluid {
   padding-left: 0rem;
   padding-right: 0rem;
-/*  background-color: #fff;*/
+  /*  background-color: #fff;*/
 }
 
 
@@ -99,7 +101,7 @@ h5 {
 }
 
 a.btn-info, a.btn-info:hover {
-  color:#fff!important;
+  color: #fff !important;
   text-decoration: none;
 }
 
@@ -126,14 +128,14 @@ a.btn-primary, a.btn-primary:hover {
 }
 
 a.btn-success, a.btn-success:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .btn-danger {
 }
 
 a.btn-danger, a.btn-danger:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 
@@ -146,7 +148,7 @@ a.btn-danger, a.btn-danger:hover {
 }
 
 a.btn-new, a.btn-new:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .btn-secondary {
@@ -156,7 +158,7 @@ a.btn-new, a.btn-new:hover {
 }
 
 a.btn-secondary, a.btn-secondary:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .blockquote {
@@ -176,7 +178,7 @@ a.btn-secondary, a.btn-secondary:hover {
 }
 
 blockquote {
-  font-size: 1rem!important;
+  font-size: 1rem !important;
 }
 
 .text-info {
@@ -189,24 +191,24 @@ blockquote {
 }
 
 .card-primary {
- border-color: #eae8e7;
+  border-color: #eae8e7;
 }
 
-.card-primary>.card-header {
+.card-primary > .card-header {
   color: #fff;
   background-color: #eee;
   border-color: #eee;
-  color:#000;
+  color: #000;
 }
 
-.dropdown-menu>li>a {
-  text-decoration:none!important;
+.dropdown-menu > li > a {
+  text-decoration: none !important;
   min-width: 140px;
 }
 
-.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
   background-color: #fff;
-  color:#0b0b0b;
+  color: #0b0b0b;
 }
 
 
@@ -217,8 +219,6 @@ blockquote {
 }
 
 
-
-
 /* Responsive Images  ------------------------------------------------------- */
 /* the inbuilt bootstrap responsive images class breaks the text-center class */
 
@@ -227,29 +227,29 @@ blockquote {
   margin-right: auto;
 }
 
-.img-fluid  {
-   display:  inline-block;
+.img-fluid {
+  display: inline-block;
 }
 
 /* Pagination  ------------------------------------------------------- */
 .pagenav {
   position: relative;
-  top:-25px;
-  left:3px;
+  top: -25px;
+  left: 3px;
   height: 2.5rem !important;
 }
 
 .pagenumber {
-  margin-bottom:7px;
+  margin-bottom: 7px;
 }
 
-.page-item>.active>a, .page-item>.active>span, .page-item>.active>a:hover, .page-item>.active>span:hover, .page-item>.active>a:focus, .page-item>.active>span:focus {
+.page-item > .active > a, .page-item > .active > span, .page-item > .active > a:hover, .page-item > .active > span:hover, .page-item > .active > a:focus, .page-item > .active > span:focus {
   background-color: #eee;
   border-color: #ddd;
-  color:#000;
+  color: #000;
 }
 
-.page-item>li>a, .page-item>li>span {
+.page-item > li > a, .page-item > li > span {
   color: #000;
 }
 
@@ -260,8 +260,8 @@ blockquote {
 }
 
 
-.thumbnail:hover  {
- background-color:#eee;
+.thumbnail:hover {
+  background-color: #eee;
 }
 
 .ul {
@@ -285,17 +285,21 @@ blockquote {
   text-align: center;
 }
 
-.breadcrumb {}
+.breadcrumb {
+}
 
-.breadcrumb-item+.breadcrumb-item::before {
+.breadcrumb-item + .breadcrumb-item::before {
   padding-right: 0rem;
   content: "";
 }
+
 /***********************************************/
 /* flexbox  */
 /**********************************************/
 
 
-@media only screen and (max-width : 768px) {
-  .list-group {flex-direction: column; }
+@media only screen and (max-width: 768px) {
+  .list-group {
+    flex-direction: column;
+  }
 }

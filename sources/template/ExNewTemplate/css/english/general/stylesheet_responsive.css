@@ -23,15 +23,15 @@ résolution 320
   }
 
 
-  div.normalPrice{
+  div.normalPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 
 
-  div.specialPrice{
+  div.specialPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 
   .stepwizard {
@@ -54,15 +54,15 @@ résolution 360
     font-size: xx-small;
   }
 
-  div.normalPrice{
+  div.normalPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 
 
-  div.specialPrice{
+  div.specialPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 }
 
@@ -76,20 +76,21 @@ résolution 480
   span.markProductOutOfStock {
     font-size: xx-small;
   }
+
   span.textContent {
     font-size: xx-small;
   }
 
 
-  div.normalPrice{
+  div.normalPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 
 
-  div.specialPrice{
+  div.specialPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 }
 
@@ -102,22 +103,22 @@ résolution 533
   span.markProductOutOfStock {
     font-size: xx-small;
   }
+
   span.textContent {
     font-size: xx-small;
   }
 
-  div.normalPrice{
+  div.normalPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 
 
-  div.specialPrice{
+  div.specialPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 }
-
 
 
 /***************************
@@ -129,19 +130,20 @@ résolution 600
   span.markProductOutOfStock {
     font-size: xx-small;
   }
+
   span.textContent {
     font-size: xx-small;
   }
 
-  div.normalPrice{
+  div.normalPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 
 
-  div.specialPrice{
+  div.specialPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 }
 
@@ -155,15 +157,15 @@ résolution 640
     font-size: xx-small;
   }
 
-  div.normalPrice{
+  div.normalPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 
 
-  div.specialPrice{
+  div.specialPrice {
     font-size: xx-small;
-    float:none;
+    float: none;
   }
 }
 
@@ -177,20 +179,21 @@ résolution 800
   span.markProductOutOfStock {
     font-size: xx-small;
   }
+
   span.textContent {
     font-size: xx-small;
   }
 
 
-  div.normalPrice{
+  div.normalPrice {
     font-size: x-small;
-    float:none;
+    float: none;
   }
 
 
-  div.specialPrice{
+  div.specialPrice {
     font-size: x-small;
-    float:none;
+    float: none;
   }
 }
 

@@ -7,18 +7,18 @@
  *
  */
 
-$(document).ready(function() {
+$(document).ready(function () {
   $('.thumbnails').magnificPopup({
-    type:'image',
+    type: 'image',
     delegate: 'a',
     gallery: {
-      enabled:true
+      enabled: true
     }
   });
 });
 
 /*video*/
-$(document).ready(function() {
+$(document).ready(function () {
   $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
     disableOn: 700,
     type: 'iframe',
