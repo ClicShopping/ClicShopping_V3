@@ -330,27 +330,6 @@ if (isset($_POST['cId'])) {
                     } else {
                       echo '<span>' . HTML::button(round($Qfilesinformation->valueDecimal('file_prices'), 2) . 'EUR', null, null, 'success', null, 'sm') . '</span>';
                     }
-
-                    /*
-                                       echo HTML::form('install', $CLICSHOPPING_Upgrade->link('Marketplace&InstallAppsMarketplace'));
-                                       echo HTML::hiddenField('id', $Qfilesinformation->valueInt('file_id'));
-                                       echo HTML::hiddenField('file_url_download', $Qfilesinformation->value('file_url_download'));
-
-                                       echo '<span class="text-end text-white btn-group">';
-                                       echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_free'), null, null, 'danger', null, 'sm') . '&nbsp;';
-
-                                       if (empty($Qfilesinformation->value('file_url_download'))) {
-                                         echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_uninstallable'), null, null, 'warning', null, 'sm');
-                                       } else {
-                                         echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_install'), null, null, 'primary', null, 'sm');
-                                       }
-
-                                       echo '</span>';
-                                       echo '</form>';
-                                     } else {
-                                       echo '<span>' . HTML::button(round($Qfilesinformation->valueDecimal('file_prices'), 2) . 'EUR', null, null, 'success', null, 'sm') . '</span>';
-                                     }
-                    */
                     ?>
                 </span>
               </span>

@@ -34,10 +34,6 @@
       },
       "ClicShoppingAdmin/DashboardShortCut": {
         "DashboardShortCut": "Module\\Hooks\\ClicShoppingAdmin\\DashboardShortCut\\DashboardShortCutCustomers"
-      },
-      "ClicShoppingAdmin/CreateOrder": {
-        "Save": "Module\\Hooks\\ClicShoppingAdmin\\CreateOrder\\Save",
-        "PageContentTab2": "Module\\Hooks\\ClicShoppingAdmin\\CreateOrder\\PageContentTab2"
       }
     }
   },

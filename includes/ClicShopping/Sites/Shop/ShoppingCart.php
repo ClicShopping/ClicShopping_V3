@@ -124,7 +124,6 @@ class ShoppingCart
 
         if ($qty < $restore_qty) {
           $qty = $this->getRestoreQty($qty, $item_id);
-//            $qty = $this->getRestoreQty(); // @todo verifier ce point au niveau de la fonction
         }
 
         if ($qty > $restore_qty) {
