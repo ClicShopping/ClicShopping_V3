@@ -14,9 +14,12 @@ use ClicShopping\OM\Registry;
 
 class SpecialsClass
 {
-
-// Sets the status of a special product
-  private static function setSpecialsStatus(int $specials_id, int $status)
+  /**
+   * @param int $specials_id
+   * @param int $status
+   * @return int
+   */
+  private static function setSpecialsStatus(int $specials_id, int $status): int
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -43,8 +46,10 @@ class SpecialsClass
     }
   }
 
-// Auto activate scheduled products on special
-  public static function scheduledSpecials()
+  /**
+   * @return void
+   */
+  public static function scheduledSpecials(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -64,8 +69,10 @@ class SpecialsClass
     }
   }
 
-// Auto expire products on special
-  public static function expireSpecials()
+  /**
+   * @return void
+   */
+  public static function expireSpecials(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -85,7 +92,10 @@ class SpecialsClass
     }
   }
 
-  public static function getCountColumnList()
+  /**
+   * @return array
+   */
+  public static function getCountColumnList(): array
   {
 // create column list
     $define_list = [
@@ -107,6 +117,9 @@ class SpecialsClass
     return $column_list;
   }
 
+  /**
+   * @return string
+   */
   private static function Listing()
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -211,7 +224,10 @@ class SpecialsClass
     return $Qlisting;
   }
 
-  public static function getListing()
+  /**
+   * @return mixed
+   */
+  public static function getListing(): mixed
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
     $CLICSHOPPING_Db = Registry::get('Db');

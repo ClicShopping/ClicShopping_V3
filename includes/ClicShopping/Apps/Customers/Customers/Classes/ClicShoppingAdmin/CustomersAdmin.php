@@ -15,7 +15,6 @@ use ClicShopping\OM\Registry;
 class CustomersAdmin
 {
   private mixed $db;
-
   public function __construct()
   {
     $this->db = Registry::get('Db');
@@ -68,6 +67,4 @@ class CustomersAdmin
 
     return $Qcustomer->valueInt('customers_id');
   }
-
-
 }

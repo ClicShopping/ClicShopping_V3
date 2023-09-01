@@ -11,17 +11,20 @@
 namespace ClicShopping\Apps\Marketing\Featured\Classes\Shop;
 
 use ClicShopping\OM\Registry;
+use function count;
 
 class FeaturedClass
 {
-
-// Sets the status of a featured product
+  /**
+   * @param int $products_featured_id
+   * @param int $status
+   * @return int
+   */
   private static function setFeaturedStatus(int $products_featured_id, int $status)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
     if ($status == '1') {
-
       return $CLICSHOPPING_Db->save('products_featured', [
         'status' => 1,
         'date_status_change' => 'now()',
@@ -43,9 +46,10 @@ class FeaturedClass
       return -1;
     }
   }
-
-// Auto activate scheduled products on favorites
-  public static function scheduledFeatured()
+  /**
+   * @return void
+   */
+  public static function scheduledFeatured(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -66,8 +70,10 @@ class FeaturedClass
     }
   }
 
-// Auto expire products on products featured
-  public static function expireFeatured()
+  /**
+   * @return void
+   */
+  public static function expireFeatured(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -87,7 +93,10 @@ class FeaturedClass
     }
   }
 
-  public static function getCountColumnList()
+  /**
+   * @return array
+   */
+  public static function getCountColumnList(): array
   {
 // create column list
     $define_list = [
@@ -109,6 +118,9 @@ class FeaturedClass
     return $column_list;
   }
 
+  /**
+   * @return string
+   */
   private static function Listing()
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -117,7 +129,7 @@ class FeaturedClass
 
     $count_column = static::getCountColumnList();
 
-    for ($i = 0, $n = \count($count_column); $i < $n; $i++) {
+    for ($i = 0, $n = count($count_column); $i < $n; $i++) {
       switch ($count_column[$i]) {
         case 'MODULE_PRODUCTS_FEATURED_LIST_DATE_ADDED':
           $Qlisting .= ' p.products_date_added, ';
@@ -179,8 +191,8 @@ class FeaturedClass
                    ';
     }
 
-    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > \count($count_column))) {
-      for ($i = 0, $n = \count($count_column); $i < $n; $i++) {
+    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($count_column))) {
+      for ($i = 0, $n = count($count_column); $i < $n; $i++) {
         if ($count_column[$i] == 'MODULE_PRODUCTS_FEATURED_LIST_DATE_ADDED') {
           $_GET['sort'] = $i + 1 . 'a';
           $Qlisting .= ' order by p.products_date_added DESC ';
@@ -218,7 +230,10 @@ class FeaturedClass
     return $Qlisting;
   }
 
-  public static function getListing()
+  /**
+   * @return mixed
+   */
+  public static function getListing(): mixed
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
     $CLICSHOPPING_Db = Registry::get('Db');

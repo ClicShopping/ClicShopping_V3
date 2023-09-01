@@ -15,10 +15,10 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\ChatGptShop;
+use function count;
 
 class RecommendationsShop
 {
-
   public function __construct()
   {
     Registry::set('RecommendationsAdmin', new RecommendationsAdmin());
@@ -149,7 +149,7 @@ class RecommendationsShop
 
     $count_column = static::getCountColumnList();
 
-    for ($i = 0, $n = \count($count_column); $i < $n; $i++) {
+    for ($i = 0, $n = count($count_column); $i < $n; $i++) {
       switch ($count_column[$i]) {
         case 'MODULE_PRODUCTS_RECOMMENDATIONS_LIST_DATE_ADDED':
           $Qlisting .= ' p.products_date_added, ';
@@ -216,8 +216,8 @@ class RecommendationsShop
                    ';
     }
 
-    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > \count($count_column))) {
-      for ($i = 0, $n = \count($count_column); $i < $n; $i++) {
+    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($count_column))) {
+      for ($i = 0, $n = count($count_column); $i < $n; $i++) {
         if ($count_column[$i] == 'MODULE_PRODUCTS_RECOMMENDATIONS_LIST_DATE_ADDED') {
           $_GET['sort'] = $i + 1 . 'a';
           $Qlisting .= ' order by pr.score DESC ';

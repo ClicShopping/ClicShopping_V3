@@ -13,19 +13,20 @@ namespace ClicShopping\Apps\Marketing\BannerManager\Classes\Shop;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function is_array;
 
 class Banner
 {
   /**
    * Sets the status of a banner
    *
-   * @param int $id The $banners_id of the banner to set the status to
-   * @param boolean $active_flag A flag that enables or disables the banner
-   * @access private
+   * @param int $banners_id
+   * @param int $status
    * @return boolean
+   * @access private
    */
 
-  private static function setBannerStatus($banners_id, $status)
+  private static function setBannerStatus(int $banners_id, int $status)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -54,9 +55,7 @@ class Banner
   /**
    * Activate a banner that has been on schedule
    *
-   * @param int $id The ID of the banner to activate
-   *
-   * @return boolean
+   * @return void
    */
   public static function activateBanners(): void
   {
@@ -81,9 +80,7 @@ class Banner
   /**
    * Deactivate a banner
    *
-   * @param int $id The ID of the banner to deactivate
-   *
-   * @return boolean
+   * @return void
    */
   public static function expireBanners(): void
   {
@@ -115,11 +112,11 @@ class Banner
    * used.
    *
    * @param int $action of the banner (dynamic or static)
-   * @param The $identifier of the banner to show
+   * @param string $identifier of the banner to show
    *
    * @return string
    */
-  public static function displayBanner($action, $identifier)
+  public static function displayBanner($action, string $identifier)
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -194,7 +191,7 @@ class Banner
         }
       }
     } elseif ($action == 'static') {
-      if (\is_array($identifier)) {
+      if (is_array($identifier)) {
         $banner = $identifier;
       } else {
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
@@ -250,7 +247,7 @@ class Banner
 
     $output = '';
 
-    if (\is_array($banner)) {
+    if (is_array($banner)) {
       if (!empty($banner['banners_html_text'])) {
         $output = $banner['banners_html_text'];
       } else {
@@ -267,16 +264,15 @@ class Banner
     return $output;
   }
 
-
   /**
    * Check if an existing banner is active
    *
-   * @param int $id The ID of the banner to check
-   *
+   * @param $action
+   * @param string $identifier
    * @return boolean
    */
 
-  public static function bannerExists($action, $identifier)
+  public static function bannerExists($action, string $identifier)
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -400,11 +396,10 @@ class Banner
     }
   }
 
-
   /**
    * Increment the display count of the banner
    *
-   * @param int $id The ID of the banner
+   * @param int $banner_id
    * @access private
    */
   private static function updateBannerDisplayCount(int $banner_id): void
@@ -448,14 +443,12 @@ class Banner
     }
   }
 
-
   /**
    * Increment the click count of the banner
    *
    * @param int $banner_id The ID of the banner
    * @access private
    */
-
   public static function updateBannerClickCount(int $banner_id): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

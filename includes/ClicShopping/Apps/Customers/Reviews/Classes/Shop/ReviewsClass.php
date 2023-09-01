@@ -13,6 +13,8 @@ namespace ClicShopping\Apps\Customers\Reviews\Classes\Shop;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function defined;
+use function is_null;
 
 class ReviewsClass
 {
@@ -32,13 +34,13 @@ class ReviewsClass
     $this->customer = Registry::get('Customer');
     $this->hooks = Registry::get('Hooks');
 
-    if (\defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS')) {
+    if (defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS')) {
       $this->reviews_number_word = (int)MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS;
     } else {
       $this->reviews_number_word = 0;
     }
 
-    if (\defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS')) {
+    if (defined('MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS')) {
       $this->reviews_number_comments = (int)MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS;
     } else {
       $this->reviews_number_comments = 0;
@@ -212,7 +214,7 @@ class ReviewsClass
   {
     $reviews_id = HTML::sanitize($id);
 
-    if (!\is_null($reviews_id) && is_numeric($reviews_id)) {
+    if (!is_null($reviews_id) && is_numeric($reviews_id)) {
       if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
         $Qreviews = $this->db->prepare('select r.reviews_id,
                                                 rd.reviews_text,

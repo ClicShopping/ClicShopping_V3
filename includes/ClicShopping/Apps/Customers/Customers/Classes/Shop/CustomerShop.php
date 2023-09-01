@@ -14,6 +14,7 @@ namespace ClicShopping\Apps\Customers\Customers\Classes\Shop;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function is_null;
 
 class CustomerShop
 {
@@ -207,7 +208,6 @@ class CustomerShop
     return false;
   }
 
-
   /**
    * @return int|null
    */
@@ -215,7 +215,7 @@ class CustomerShop
   {
     static $country_id = null;
 
-    if (\is_null($country_id)) {
+    if (is_null($country_id)) {
       if (isset($this->_data['country_id'])) {
         $country_id = $this->_data['country_id'];
       }
@@ -231,7 +231,7 @@ class CustomerShop
   {
     static $zone_id = null;
 
-    if (\is_null($zone_id)) {
+    if (is_null($zone_id)) {
       if (isset($this->_data['zone_id'])) {
         $zone_id = $this->_data['zone_id'];
       }
@@ -247,7 +247,7 @@ class CustomerShop
   {
     static $id = null;
 
-    if (\is_null($id)) {
+    if (is_null($id)) {
       if (isset($this->_data['default_address_id'])) {
         $id = $this->_data['default_address_id'];
       }

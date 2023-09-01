@@ -12,6 +12,7 @@ namespace ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use function count;
 
 class GroupsB2BAdmin
 {
@@ -92,7 +93,7 @@ class GroupsB2BAdmin
       'text' => CLICSHOPPING::getDef('visitor_name')
     ];
 
-    for ($i = 0, $n = \count($customers_group); $i < $n; $i++) {
+    for ($i = 0, $n = count($customers_group); $i < $n; $i++) {
       $values_customers_group_id[$i + 1] = [
         'id' => $customers_group[$i]['id'],
         'text' => $customers_group[$i]['text']

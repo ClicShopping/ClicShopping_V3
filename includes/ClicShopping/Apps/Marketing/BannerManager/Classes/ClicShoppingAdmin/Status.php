@@ -14,9 +14,6 @@ use ClicShopping\OM\Registry;
 
 class Status
 {
-  protected int $languages_id;
-  protected int $banners_id;
-
   /**
    * Status modification of banners - Sets the status of a banner
    * @param int $banners_id

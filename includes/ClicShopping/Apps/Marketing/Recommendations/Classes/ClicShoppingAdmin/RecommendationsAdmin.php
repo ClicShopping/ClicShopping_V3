@@ -11,6 +11,7 @@
 namespace ClicShopping\Apps\Marketing\Recommendations\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
+use function is_null;
 
 class RecommendationsAdmin
 {
@@ -35,7 +36,7 @@ class RecommendationsAdmin
     $userFeedback = static::calculateUserFeedbackScore($userFeedback);
 
     // If a sentiment score is provided, adjust it to be between -1 and 1
-    if (!\is_null($sentimentScore)) {
+    if (!is_null($sentimentScore)) {
       $sentimentScore = max(-1, min(1, $sentimentScore));
     }
 
@@ -54,7 +55,7 @@ class RecommendationsAdmin
       ($userFeedback * 0.2); // Adjust the weight of user feedback as needed
 
     // If a sentiment score is available, incorporate it into the combined score calculation with a specific weight
-    if (!\is_null($sentimentScore)) {
+    if (!is_null($sentimentScore)) {
       $sentimentWeight = (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_WEIGHTING_SENTIMENT;
       $combinedScore = $combinedScore + ($sentimentScore * $sentimentWeight);
     }
@@ -71,12 +72,12 @@ class RecommendationsAdmin
    */
   public static function calculateRecommendationScoreBasedOnRange(float $productsRateWeight = 0.8, float $reviewRate = 0, ?float $userFeedback = 0, ?float $feedbackWeight, ?float $sentimentScore = null): float
   {
-    if (\is_null($feedbackWeight)) {
+    if (is_null($feedbackWeight)) {
       $feedbackWeight = 0.2;
     }
 
     // Adjust the sentiment score to be between -1 and 1 (if provided)
-    if (!\is_null($sentimentScore)) {
+    if (!is_null($sentimentScore)) {
       $sentimentScore = max(-1, min(1, $sentimentScore));
     }
 

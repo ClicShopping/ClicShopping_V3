@@ -10,6 +10,8 @@
 
 namespace ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin;
 
+use SoapClient;
+
 class VatNumber
 {
   /**
@@ -99,11 +101,11 @@ class VatNumber
   }
 
   /**
-   * @return bool|\soapclient
+   * @return bool|soapclient
    */
   public static function checkWebService()
   {
-    $client = new \SoapClient("http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl");
+    $client = new SoapClient("http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl");
 
     if (!array($client)) {
 //        $error_message = "web service at ec.europa.eu unavailable";

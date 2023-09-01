@@ -11,12 +11,15 @@
 namespace ClicShopping\Apps\Marketing\Favorites\Classes\Shop;
 
 use ClicShopping\OM\Registry;
+use function count;
 
 class FavoritesClass
 {
-
-// Sets the status of a favorite product
-//osc_set_products_favorites_status
+  /**
+   * @param int $products_favorites_id
+   * @param int $status
+   * @return int
+   */
   private static function setFavoritesStatus(int $products_favorites_id, int $status)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -41,8 +44,10 @@ class FavoritesClass
     }
   }
 
-// Auto activate scheduled products on favorites
-  public static function scheduledFavorites()
+  /**
+   * @return void
+   */
+  public static function scheduledFavorites(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -62,9 +67,11 @@ class FavoritesClass
       } while ($QFavorites->fetch());
     }
   }
-
+  /**
+   * @return void
+   */
 // Auto expire products on products favorites
-  public static function expireFavorites()
+  public static function expireFavorites(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -84,7 +91,10 @@ class FavoritesClass
     }
   }
 
-  public static function getCountColumnList()
+  /**
+   * @return array
+   */
+  public static function getCountColumnList(): array
   {
 // create column list
     $define_list = [
@@ -106,6 +116,9 @@ class FavoritesClass
     return $column_list;
   }
 
+  /**
+   * @return string
+   */
   private static function Listing()
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -114,7 +127,7 @@ class FavoritesClass
 
     $count_column = static::getCountColumnList();
 
-    for ($i = 0, $n = \count($count_column); $i < $n; $i++) {
+    for ($i = 0, $n = count($count_column); $i < $n; $i++) {
       switch ($count_column[$i]) {
         case 'MODULE_PRODUCTS_FAVORITES_LIST_DATE_ADDED':
           $Qlisting .= ' p.products_date_added, ';
@@ -176,9 +189,8 @@ class FavoritesClass
                    ';
     }
 
-    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > \count($count_column))) {
-
-      for ($i = 0, $n = \count($count_column); $i < $n; $i++) {
+    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($count_column))) {
+      for ($i = 0, $n = count($count_column); $i < $n; $i++) {
         if ($count_column[$i] == 'MODULE_PRODUCTS_FAVORITES_LIST_DATE_ADDED') {
           $_GET['sort'] = $i + 1 . 'a';
           $Qlisting .= ' order by p.products_date_added DESC ';
@@ -215,7 +227,10 @@ class FavoritesClass
     return $Qlisting;
   }
 
-  public static function getListing()
+  /**
+   * @return mixed
+   */
+  public static function getListing(): mixed
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -227,7 +242,6 @@ class FavoritesClass
       $QlistingFavorites->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
     } else {
       $QlistingFavorites = $CLICSHOPPING_Db->prepare($Qlisting);
-
     }
 
     return $QlistingFavorites;
