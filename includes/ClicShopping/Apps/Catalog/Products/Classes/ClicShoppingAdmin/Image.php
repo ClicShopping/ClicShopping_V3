@@ -13,13 +13,15 @@ namespace ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\OM\Upload;
+use function is_null;
+use function strlen;
 
 class Image
 {
   private string $rootImagesDir;
-  private $db;
-  private $template;
-  private $imageResample;
+  private mixed $db;
+  private mixed $template;
+  private mixed $imageResample;
 
   public function __construct()
   {
@@ -39,7 +41,7 @@ class Image
   public function getGenerateRandomString(int $length = 10): string
   {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = \strlen($characters);
+    $charactersLength = strlen($characters);
     $randomString = '';
 
     for ($i = 0; $i < $length; $i++) {
@@ -301,7 +303,7 @@ class Image
       $this->products_image_small = $sql_data_array['products_image_small'];
 
     } else {
-      if ((isset($_POST['products_image']) && !\is_null($_POST['products_image'])) || !empty($small_image_resized) || !empty($small_image_admin_resized)) {
+      if ((isset($_POST['products_image']) && !is_null($_POST['products_image'])) || !empty($small_image_resized) || !empty($small_image_admin_resized)) {
         $products_image_name = $this->cleanImageName($_POST['products_image']);
 //
 // small image catalog
@@ -429,7 +431,7 @@ class Image
       $separator = '/';
     }
 
-    if (isset($_POST['directory']) && !\is_null($_POST['directory'])) {
+    if (isset($_POST['directory']) && !is_null($_POST['directory'])) {
       $separator = '/';
     }
 

@@ -14,9 +14,6 @@ use ClicShopping\OM\Registry;
 
 class Status
 {
-  protected $status;
-  protected $manufacturers_id;
-
   /**
    * Status products manufacturers  - Sets the status of a product on manufacturers
    * @param int $manufacturers_id
@@ -41,8 +38,7 @@ class Status
         'last_modified' => 'now()'
       ];
 
-      return $CLICSHOPPING_Db->save('manufacturers', $update_array, ['manufacturers_id' => (int)$manufacturers_id]
-      );
+      return $CLICSHOPPING_Db->save('manufacturers', $update_array, ['manufacturers_id' => (int)$manufacturers_id]);
     } else {
       return -1;
     }

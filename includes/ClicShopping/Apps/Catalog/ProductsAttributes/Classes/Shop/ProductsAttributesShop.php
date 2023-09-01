@@ -11,13 +11,14 @@
 namespace ClicShopping\Apps\Catalog\ProductsAttributes\Classes\Shop;
 
 use ClicShopping\OM\Registry;
+use function is_null;
 
 class ProductsAttributesShop
 {
   protected mixed $lang;
   protected mixed $app;
-  protected $productsCommon;
-  protected $customer;
+  private mixed $productsCommon;
+  private mixed $customer;
 
   public function __construct()
   {
@@ -34,7 +35,7 @@ class ProductsAttributesShop
    */
   private function setCountProductsAttributes($id = null)
   {
-    if (\is_null($id)) {
+    if (is_null($id)) {
       $id = $this->productsCommon->getID();
     }
 
@@ -92,7 +93,7 @@ class ProductsAttributesShop
    */
   public function getHasProductAttributes($id = null)
   {
-    if (\is_null($id)) {
+    if (is_null($id)) {
       $id = $this->productsCommon->getID();
     }
 
@@ -119,7 +120,7 @@ class ProductsAttributesShop
    */
   public function getProductsAttributesInfo($products_id, $option_id, ?int $options_values_id = null, ?int $language_id)
   {
-    if (!\is_null($options_values_id)) {
+    if (!is_null($options_values_id)) {
       if ($this->customer->getCustomersGroupID() != 0) {
         $Qattributes = $this->db->prepare('select distinct popt.products_options_name,
                                                              poval.products_options_values_name,
@@ -346,7 +347,7 @@ class ProductsAttributesShop
 
   /**
    * get the attributes download - used payment
-   * @param int $products_id
+   * @param int|string $products_id
    * @param int $options_id
    * @param int $options_values_id
    * @param int $language_id

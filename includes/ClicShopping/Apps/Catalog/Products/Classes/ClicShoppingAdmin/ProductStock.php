@@ -11,6 +11,7 @@
 namespace ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
+use function is_null;
 
 class ProductStock
 {
@@ -81,11 +82,11 @@ class ProductStock
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
-    if (\is_null($leadTime)) {
+    if (is_null($leadTime)) {
       $leadTime = (int)SAFETY_STOCK_TIME;
     }
 
-    if (isset($products_id) && !\is_null($products_id)) {
+    if (isset($products_id) && !is_null($products_id)) {
       $QhistoricalDemand = $CLICSHOPPING_Db->get('orders_products', ['products_id', 'products_quantity'], ['products_id' => (int)$products_id]);
 
       $historicalDemand = $QhistoricalDemand->toArray();

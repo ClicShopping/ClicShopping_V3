@@ -12,12 +12,11 @@ namespace ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function is_null;
 
 class SupplierAdmin
 {
-  protected int $supplier_id;
-  protected int $language_id;
-  protected mixed $db;
+  private mixed $db;
 
   public function __construct()
   {
@@ -25,7 +24,7 @@ class SupplierAdmin
   }
 
   /**
-   * @return mixed
+   * @return array|bool
    */
   public function getSupplier(): array|bool
   {
@@ -65,7 +64,7 @@ class SupplierAdmin
    */
   public function getSupplierUrl(?int $supplier_id, int $language_id): string
   {
-    if (!\is_null($supplier_id)) {
+    if (!is_null($supplier_id)) {
       $Qsuppliers = $this->db->prepare('select suppliers_url
                                            from :table_suppliers_info
                                            where suppliers_id = :suppliers_id
@@ -90,7 +89,7 @@ class SupplierAdmin
    */
   public function getSupplierId(?string $supplier_name = null): int|string
   {
-    if (!\is_null($supplier_name)) {
+    if (!is_null($supplier_name)) {
       $Qsuppliers = $this->db->prepare('select suppliers_id
                                           from :table_suppliers
                                           where suppliers_name = :suppliers_name

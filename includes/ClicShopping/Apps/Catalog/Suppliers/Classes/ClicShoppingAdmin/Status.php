@@ -14,9 +14,6 @@ use ClicShopping\OM\Registry;
 
 class Status
 {
-  protected $languages_id;
-  protected $suppliers_id;
-
   /**
    * Status products suppliers  - Sets the status of a product on suppliers
    * @param int $suppliers_id

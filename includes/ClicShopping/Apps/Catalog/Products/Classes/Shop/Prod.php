@@ -11,6 +11,7 @@
 namespace ClicShopping\Apps\Catalog\Products\Classes\Shop;
 
 use ClicShopping\OM\HTML;
+use function is_array;
 
 class Prod
 {
@@ -47,14 +48,14 @@ class Prod
   /**
    * Generate a product ID string value containing its product attributes combinations
    *
-   * @param string $id The product ID
+   * @param string $string
    * @param array $params An array of product attributes
    * @return string
    */
 
-  public static function getProductIDString($string, $params)
+  public static function getProductIDString(string $string, $params): string
   {
-    if (\is_array($params) && !empty($params)) {
+    if (is_array($params) && !empty($params)) {
       $attributes_check = true;
       $attributes_ids = [];
 
@@ -82,7 +83,7 @@ class Prod
    * @return int
    */
 
-  public static function getProductID($id)
+  public static function getProductID(string $id): int
   {
     if (is_numeric($id)) {
       return $id;
@@ -99,7 +100,7 @@ class Prod
    * Products  sort by
    * @param string $field ,field of products, $direction, ascending descending
    */
-  public function setSortBy(string $field, string $direction = '+')
+  public function setSortBy(string $field, string $direction = '+'): void
   {
     switch ($field) {
       case 'model':
@@ -128,7 +129,7 @@ class Prod
   /**
    * @param string $direction
    */
-  public function setSortByDirection(string $direction)
+  public function setSortByDirection(string $direction): void
   {
     $this->_sort_by_direction = ($direction == '-') ? '-' : '+';
   }

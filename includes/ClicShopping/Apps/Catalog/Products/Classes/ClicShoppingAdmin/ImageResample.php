@@ -30,19 +30,19 @@
 namespace ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\CLICSHOPPING;
+use function is_null;
 
 class ImageResample
 {
-
-  protected $image;
-  protected $image_type;
-  protected $filename;
-  protected $height;
-  protected $width;
-  protected $size;
-  protected $scale;
-  protected $x;
-  protected $y;
+  private $image;
+  private $image_type;
+  private $filename;
+  private $height;
+  private $width;
+  private $size;
+  private $scale;
+  private $x;
+  private $y;
 
   public function __construct($filename = null)
   {
@@ -109,7 +109,7 @@ class ImageResample
       }
     }
 
-    if (!\is_null($permissions)) {
+    if (!is_null($permissions)) {
       chmod($filename, $permissions);
     }
   }

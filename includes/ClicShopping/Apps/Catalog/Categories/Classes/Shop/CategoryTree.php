@@ -14,6 +14,8 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\RewriteUrl;
+use function count;
+use function is_array;
 
 class CategoryTree
 {
@@ -197,7 +199,7 @@ class CategoryTree
 
         $categories_url = $this->getCategoryTreeUrl($category_link);
 
-        if (($this->follow_cpath === true) && \in_array($category_id, $this->cpath_array)) {
+        if (($this->follow_cpath === true) && in_array($category_id, $this->cpath_array)) {
           $link_title = $this->cpath_start_string . $category_name . $this->cpath_end_string;
         } else {
           $link_title = $category_name;
@@ -221,7 +223,7 @@ class CategoryTree
 
         if (isset($this->_data[$category_id]) && (($this->max_level == '0') || ($this->max_level > $level + 1))) {
           if ($this->follow_cpath === true) {
-            if (\in_array($category_id, $this->cpath_array)) {
+            if (in_array($category_id, $this->cpath_array)) {
               $result .= $this->_buildBranch($category_id, $level + 1);
             }
           } else {
@@ -265,7 +267,7 @@ class CategoryTree
 
         if (isset($this->_data[$category_id]) && (($this->max_level == '0') || ($this->max_level > $level + 1))) {
           if ($this->follow_cpath === true) {
-            if (\in_array($category_id, $this->cpath_array, true)) {
+            if (in_array($category_id, $this->cpath_array, true)) {
               $result = $this->buildBranchArray($category_id, $level + 1, $result);
             }
           } else {
@@ -696,11 +698,11 @@ class CategoryTree
   {
     $this->lang = Registry::get('Language');
 
-    if (!\is_array($category_tree_array)) {
+    if (!is_array($category_tree_array)) {
       $category_tree_array = [];
     }
 
-    if ((\count($category_tree_array) < 1) && ($exclude != '0')) {
+    if ((count($category_tree_array) < 1) && ($exclude != '0')) {
       $category_tree_array[] = [
         'id' => '0',
         'text' => CLICSHOPPING::getDef('text_selected')

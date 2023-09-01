@@ -15,6 +15,12 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
+use function call_user_func;
+use function count;
+use function is_array;
+use function is_null;
+use function strlen;
+
 class CategoriesAdmin
 {
   protected mixed $lang;
@@ -30,7 +36,7 @@ class CategoriesAdmin
   }
 
   /**
-   * @param string $keywords
+   * @param string|null $keywords
    * @return mixed
    */
   public function getSearch(?string $keywords = null)
@@ -43,7 +49,7 @@ class CategoriesAdmin
       $current_category_id = HTML::sanitize($_GET['cPath']);
     }
 
-    if (!\is_null($keywords)) {
+    if (!is_null($keywords)) {
       $search = HTML::sanitize($keywords);
 
       $Qcategories = $this->db->prepare('select SQL_CALC_FOUND_ROWS c.categories_id,
@@ -184,7 +190,7 @@ class CategoriesAdmin
     while ($Qcategories->fetch() !== false) {
       $categories_count++;
 
-      $categories_count += \call_user_func(__METHOD__, $Qcategories->valueInt('categories_id'));
+      $categories_count += call_user_func(__METHOD__, $Qcategories->valueInt('categories_id'));
     }
 
     return $categories_count;
@@ -234,7 +240,7 @@ class CategoriesAdmin
 
 
     while ($Qchildren->fetch() !== false) {
-      $products_count += \call_user_func(__METHOD__, $Qchildren->valueInt('categories_id'), $include_deactivated);
+      $products_count += call_user_func(__METHOD__, $Qchildren->valueInt('categories_id'), $include_deactivated);
     }
 
     return $products_count;
@@ -249,8 +255,8 @@ class CategoriesAdmin
   {
     $calculated_category_path_string = '';
     $calculated_category_path = $this->getGenerateCategoryPath($id, $from);
-    for ($i = 0, $n = \count($calculated_category_path); $i < $n; $i++) {
-      for ($j = 0, $k = \count($calculated_category_path[$i]); $j < $k; $j++) {
+    for ($i = 0, $n = count($calculated_category_path); $i < $n; $i++) {
+      for ($j = 0, $k = count($calculated_category_path[$i]); $j < $k; $j++) {
         $calculated_category_path_string .= $calculated_category_path[$i][$j]['id'] . '_';
       }
       $calculated_category_path_string = substr($calculated_category_path_string, 0, -1) . '<br />';
@@ -258,7 +264,7 @@ class CategoriesAdmin
 
     $calculated_category_path_string = substr($calculated_category_path_string, 0, -6);
 
-    if (\strlen($calculated_category_path_string) < 1) $calculated_category_path_string = $this->db->getDef('text_top');
+    if (strlen($calculated_category_path_string) < 1) $calculated_category_path_string = $this->db->getDef('text_top');
 
     return $calculated_category_path_string;
   }
@@ -366,21 +372,21 @@ class CategoriesAdmin
     if ($current_category_id == '') {
       $cPath_new = implode('_', $cPath_array);
     } else {
-      if (\count($cPath_array) == 0) {
+      if (count($cPath_array) == 0) {
         $cPath_new = $current_category_id;
       } else {
         $cPath_new = '';
 
-        $Qlast = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$cPath_array[(\count($cPath_array) - 1)]]);
+        $Qlast = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$cPath_array[(count($cPath_array) - 1)]]);
 
         $Qcurrent = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$current_category_id]);
 
         if ($Qlast->valueInt('parent_id') === $Qcurrent->valueInt('parent_id')) {
-          for ($i = 0, $n = \count($cPath_array) - 1; $i < $n; $i++) {
+          for ($i = 0, $n = count($cPath_array) - 1; $i < $n; $i++) {
             $cPath_new .= '_' . $cPath_array[$i];
           }
         } else {
-          for ($i = 0, $n = \count($cPath_array); $i < $n; $i++) {
+          for ($i = 0, $n = count($cPath_array); $i < $n; $i++) {
             $cPath_new .= '_' . $cPath_array[$i];
           }
         }
@@ -404,11 +410,11 @@ class CategoriesAdmin
    * @param bool $include_itself
    * @return array|string
    */
-  public function getCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false)
+  public function getCategoryTree($parent_id = '0', string $spacing = '', $exclude = '', $category_tree_array = '', bool $include_itself = false)
   {
 
-    if (!\is_array($category_tree_array)) $category_tree_array = [];
-    if ((\count($category_tree_array) < 1) && ($exclude != '0')) $category_tree_array[] = ['id' => '0', 'text' => CLICSHOPPING::getDef('text_top')];
+    if (!is_array($category_tree_array)) $category_tree_array = [];
+    if ((count($category_tree_array) < 1) && ($exclude != '0')) $category_tree_array[] = ['id' => '0', 'text' => CLICSHOPPING::getDef('text_top')];
 
     if ($include_itself) {
       $Qcategory = $this->db->get('categories_description', 'categories_name', ['language_id' => $this->lang->getId(),
@@ -461,21 +467,21 @@ class CategoriesAdmin
     if (empty($current_category_id)) {
       $cPath_new = implode('_', $cPath_array);
     } else {
-      if (\count($cPath_array) == 0) {
+      if (count($cPath_array) == 0) {
         $cPath_new = $current_category_id;
       } else {
         $cPath_new = '';
 
-        $Qlast = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$cPath_array[(\count($cPath_array) - 1)]]);
+        $Qlast = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$cPath_array[(count($cPath_array) - 1)]]);
 
         $Qcurrent = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$current_category_id]);
 
         if ($Qlast->valueInt('parent_id') === $Qcurrent->valueInt('parent_id')) {
-          for ($i = 0, $n = \count($cPath_array) - 1; $i < $n; $i++) {
+          for ($i = 0, $n = count($cPath_array) - 1; $i < $n; $i++) {
             $cPath_new .= '_' . $cPath_array[$i];
           }
         } else {
-          for ($i = 0, $n = \count($cPath_array); $i < $n; $i++) {
+          for ($i = 0, $n = count($cPath_array); $i < $n; $i++) {
             $cPath_new .= '_' . $cPath_array[$i];
           }
         }
@@ -501,7 +507,7 @@ class CategoriesAdmin
    */
   public function getGenerateCategoryPath($id, $from = 'category', $categories_array = '', $index = 0)
   {
-    if (!\is_array($categories_array)) {
+    if (!is_array($categories_array)) {
       $categories_array = [];
     }
 
@@ -537,7 +543,7 @@ class CategoriesAdmin
 
           /*
                       if ($Qcategory->valueInt('parent_id') > 0) {
-                        $categories_array = \call_user_func(__FUNCTION__, $Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
+                        $categories_array = call_user_func(__FUNCTION__, $Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
                       }
           */
           $categories_array[$index] = array_reverse($categories_array[$index]);
@@ -566,7 +572,7 @@ class CategoriesAdmin
       ];
 
       if ($Qcategory->valueInt('parent_id') > 0) {
-        $categories_array = \call_user_func(__FUNCTION__, $Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
+        $categories_array = call_user_func(__FUNCTION__, $Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
       }
     }
 
@@ -585,8 +591,8 @@ class CategoriesAdmin
 
     $calculated_category_path = $this->getGenerateCategoryPath($id, $from);
 
-    for ($i = 0, $n = \count($calculated_category_path); $i < $n; $i++) {
-      for ($j = 0, $k = \count($calculated_category_path[$i]); $j < $k; $j++) {
+    for ($i = 0, $n = count($calculated_category_path); $i < $n; $i++) {
+      for ($j = 0, $k = count($calculated_category_path[$i]); $j < $k; $j++) {
         $calculated_category_path_string .= $calculated_category_path[$i][$j]['text'] . '&nbsp;&gt;&nbsp;';
       }
 
@@ -595,7 +601,7 @@ class CategoriesAdmin
 
     $calculated_category_path_string = substr($calculated_category_path_string, 0, -6);
 
-    if (\strlen($calculated_category_path_string) < 1) $calculated_category_path_string = CLICSHOPPING::getDef('text_top');
+    if (strlen($calculated_category_path_string) < 1) $calculated_category_path_string = CLICSHOPPING::getDef('text_top');
 
     return $calculated_category_path_string;
   }

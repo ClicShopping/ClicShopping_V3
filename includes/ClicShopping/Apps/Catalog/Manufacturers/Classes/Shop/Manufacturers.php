@@ -12,6 +12,7 @@ namespace ClicShopping\Apps\Catalog\Manufacturers\Classes\Shop;
 
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function is_null;
 
 class Manufacturers
 {
@@ -162,7 +163,7 @@ class Manufacturers
 
   public function getAll($id = null)
   {
-    if (!\is_null($id)) {
+    if (!is_null($id)) {
       $Qmanufacturer = $this->db->prepare('select m.manufacturers_id as id,
                                                      m.manufacturers_name as name,
                                                      m.manufacturers_image as image,

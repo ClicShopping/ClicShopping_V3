@@ -10,6 +10,8 @@
 
 namespace ClicShopping\Apps\Catalog\Categories\Classes\Common;
 
+use function count;
+use function in_array;
 
 class CategoryCommon
 {
@@ -28,10 +30,10 @@ class CategoryCommon
 
 // make sure no duplicate category IDs exist which could lock the server in a loop
     $tmp_array = [];
-    $n = \count($cPath_array);
+    $n = count($cPath_array);
 
     for ($i = 0; $i < $n; $i++) {
-      if (!\in_array($cPath_array[$i], $tmp_array)) {
+      if (!in_array($cPath_array[$i], $tmp_array)) {
         $tmp_array[] = $cPath_array[$i];
       }
     }

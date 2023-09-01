@@ -32,9 +32,8 @@ class ProductsAttributesAdmin
   /**
    * products options - attributes
    *
-   * @param string $options_id
+   * @param int $options_id
    * @return string $values_values['products_options_values_name'], the value of the option name
-   *
    */
   public function getOptionsName(int $options_id): string
   {
@@ -51,9 +50,8 @@ class ProductsAttributesAdmin
   /**
    * products options name - attributes
    *
-   * @param string $values_id
+   * @param int $values_id
    * @return string $values_values['products_options_values_name'], the name value of the option name
-   *
    */
   public function getValuesName(int $values_id): string
   {
@@ -67,6 +65,9 @@ class ProductsAttributesAdmin
     return $Qvalues->value('products_options_values_name');
   }
 
+  /**
+   * @return
+   */
   public function uploadImage()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
@@ -125,10 +126,10 @@ class ProductsAttributesAdmin
   {
     $products_options_type = [
       ['id' => 'select',
-        'text' => $this->app->getDef('text_select')
+       'text' => $this->app->getDef('text_select')
       ],
       ['id' => 'radio',
-        'text' => $this->app->getDef('text_radio')
+       'text' => $this->app->getDef('text_radio')
       ]
     ];
 

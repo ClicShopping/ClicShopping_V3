@@ -2,7 +2,7 @@
 
 /**
  * elFinder - file manager for web.
- * Core class.
+ * includes class.
  *
  * @package elfinder
  * @author  Dmitry (dio) Levashov

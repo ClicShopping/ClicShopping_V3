@@ -18,14 +18,18 @@ use ClicShopping\OM\Registry;
 use ClicShopping\OM\Upload;
 
 use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+use function call_user_func;
+use function count;
+use function is_array;
+use function is_null;
 
 class ProductsAdmin
 {
-  protected $id;
-  protected mixed $db;
-  protected mixed $template;
-  protected mixed $hooks;
-  protected mixed $lang;
+  private $id;
+  private mixed $db;
+  private mixed $template;
+  private mixed $hooks;
+  private mixed $lang;
 
   public function __construct()
   {
@@ -73,7 +77,7 @@ class ProductsAdmin
   {
     $languages = $this->lang->getLanguages();
 
-    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+    for ($i = 0, $n = count($languages); $i < $n; $i++) {
       $language_id = $languages[$i]['id'];
 
       $sql_data_array = [
@@ -207,7 +211,7 @@ class ProductsAdmin
    */
   public function getproductPackaging(int $id): string
   {
-    if (!\is_null($_SESSION['ProductAdminId'])) {
+    if (!is_null($_SESSION['ProductAdminId'])) {
       $id = $_SESSION['ProductAdminId'];
 
       $QproductAdmin = $this->db->prepare('select products_packaging
@@ -295,7 +299,7 @@ class ProductsAdmin
    */
   public function getProductsShippingDelay(string|int|null $id = null, int $language_id): string|bool
   {
-    if (!\is_null($id)) {
+    if (!is_null($id)) {
       $Qproduct = $this->db->prepare('select products_shipping_delay
                                        from :table_products_description
                                        where products_id = :products_id
@@ -321,7 +325,7 @@ class ProductsAdmin
    */
   public function getProductsShippingDelayOutOfStock(string|int|null $id = null, int $language_id): string|bool
   {
-    if (!\is_null($id)) {
+    if (!is_null($id)) {
       $Qproduct = $this->db->prepare('select products_shipping_delay_out_of_stock
                                        from :table_products_description
                                        where products_id = :products_id
@@ -347,7 +351,7 @@ class ProductsAdmin
    */
   public function getProductsDescriptionSummary(string|int|null $product_id, int $language_id)
   {
-    if (!\is_null($product_id)) {
+    if (!is_null($product_id)) {
       if (!$language_id) $language_id = $this->lang->getId();
 
       $Qproduct = $this->db->prepare('select products_description_summary
@@ -440,7 +444,7 @@ class ProductsAdmin
    */
   public function getProductsDescription(string|int|null $product_id, int $language_id): string|bool
   {
-    if (!\is_null($product_id)) {
+    if (!is_null($product_id)) {
 
       if ($language_id == 0) $language_id = $this->lang->getId();
 
@@ -771,7 +775,7 @@ class ProductsAdmin
    */
   public function getProductsUrl(int|string $product_id, int $language_id): string|bool
   {
-    if (((\is_null($language_id)) || $language_id == 0) && !\is_null($product_id)) {
+    if (((is_null($language_id)) || $language_id == 0) && !is_null($product_id)) {
       $language_id = $this->lang->getId();
 
       $Qproduct = Registry::get('Db')->get('products_description', 'products_url', ['products_id' => (int)$product_id, 'language_id' => (int)$language_id]);
@@ -791,7 +795,7 @@ class ProductsAdmin
    */
   public function getManufacturerUrl(string|int|null $manufacturer_id, int $language_id): string|bool
   {
-    if (!\is_null($manufacturer_id)) {
+    if (!is_null($manufacturer_id)) {
       if ($language_id == 0) $language_id = $this->lang->getId();
       $Qmanufacturer = Registry::get('Db')->get('manufacturers_info', 'manufacturers_url', ['manufacturers_id' => (int)$manufacturer_id, 'languages_id' => (int)$language_id]);
 
@@ -831,7 +835,7 @@ class ProductsAdmin
   {
     $new_category = $categories_id;
 
-    if (\is_array($new_category) && isset($new_category)) {
+    if (is_array($new_category) && isset($new_category)) {
       foreach ($new_category as $value_id) {
         $this->cloneProductsInOtherCategory($id, $value_id);
       }
@@ -862,7 +866,7 @@ class ProductsAdmin
 
     $Qproducts->execute();
 
-    for ($i = 0, $iMax = \count($multi_clone_categories_id_to); $i < $iMax; $i++) {
+    for ($i = 0, $iMax = count($multi_clone_categories_id_to); $i < $iMax; $i++) {
       $clone_categories_id_to = $multi_clone_categories_id_to[$i];
 
       $sql_array = [
@@ -1323,7 +1327,7 @@ class ProductsAdmin
 //  Save Data
 //---------------------------------------------------------------------------------------------
 //update
-    if (is_numeric($id) && !\is_null($id) && $action == 'Update') {
+    if (is_numeric($id) && !is_null($id) && $action == 'Update') {
       $update_sql_data = ['products_last_modified' => 'now()'];
       $sql_data_array = array_merge($sql_data_array, $update_sql_data);
 
@@ -1393,7 +1397,7 @@ class ProductsAdmin
     $Qchildren = $this->db->prepare->get('products', 'products_id', ['parent_id' => $products_id]);
 
     while ($Qchildren->fetch() !== false) {
-      $products_count += \call_user_func(__METHOD__, $Qchildren->valueInt('products_id'), $include_deactivated);
+      $products_count += call_user_func(__METHOD__, $Qchildren->valueInt('products_id'), $include_deactivated);
     }
 
     return $products_count;

@@ -154,7 +154,7 @@ You can create or modify the language file to use translation tool. Please refer
 
 3rd party connectors
 --------------------
- * [ASP.NET](https://github.com/leniel/elFinder.Net) / [ASP.NET Core](https://github.com/gordon-matt/elFinder.NetCore) / [.NET Standard](https://github.com/mguinness/elFinder.AspNet)
+ * [ASP.NET](https://github.com/leniel/elFinder.Net) / [ASP.NET includes](https://github.com/gordon-matt/elFinder.Netincludes) / [.NET Standard](https://github.com/mguinness/elFinder.AspNet)
  * [Java Servlet](https://github.com/trustsystems/elfinder-java-connector)
  * [JavaScript/Efw](https://github.com/efwGrp/efw3.X/blob/master/help/tag.elfinder.md)
  * [Nodejs](https://github.com/dekyfin/elfinder-node)

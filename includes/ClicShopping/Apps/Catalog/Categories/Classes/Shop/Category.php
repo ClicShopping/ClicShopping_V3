@@ -11,6 +11,8 @@
 namespace ClicShopping\Apps\Catalog\Categories\Classes\Shop;
 
 use ClicShopping\OM\Registry;
+use function count;
+use function is_null;
 
 /**
  * The Category class manages category information
@@ -166,13 +168,13 @@ class Category
     if (empty($current_category_id)) {
       $cPath_new = $this->getPathArray($cPath_array);
     } else {
-      if (\count($cPath_array) == 0) {
+      if (count($cPath_array) == 0) {
         $cPath_new = $current_category_id;
       } else {
         $cPath_new = '';
 
         $insert_sql = [
-          'categories_id' => (int)$cPath_array[(\count($cPath_array) - 1)],
+          'categories_id' => (int)$cPath_array[(count($cPath_array) - 1)],
           'status' => 1
         ];
 
@@ -186,11 +188,11 @@ class Category
         $Qcurrent = $this->db->get('categories', 'parent_id', $insert_sql);
 
         if ($Qlast->valueInt('parent_id') === $Qcurrent->valueInt('parent_id')) {
-          for ($i = 0, $n = \count($cPath_array) - 1; $i < $n; $i++) {
+          for ($i = 0, $n = count($cPath_array) - 1; $i < $n; $i++) {
             $cPath_new .= '_' . $cPath_array[$i];
           }
         } else {
-          for ($i = 0, $n = \count($cPath_array); $i < $n; $i++) {
+          for ($i = 0, $n = count($cPath_array); $i < $n; $i++) {
             $cPath_new .= $cPath_array[$i];
           }
         }
@@ -242,7 +244,7 @@ class Category
   {
     $this->_category_depth = 'top';
 
-    if (isset($_GET['cPath']) && !\is_null($_GET['cPath'])) {
+    if (isset($_GET['cPath']) && !is_null($_GET['cPath'])) {
       $Qcheck = $this->db->prepare('select products_id
                                       from :table_products_to_categories
                                       where categories_id = :categories_id
@@ -445,7 +447,7 @@ class Category
 
       $cPath = implode('_', $categories);
 
-      if (!\is_null($cPath)) {
+      if (!is_null($cPath)) {
         $cPath .= '_';
       }
 
