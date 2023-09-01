@@ -15,9 +15,6 @@ use ClicShopping\OM\Registry;
 
 class TemplateEmailAdmin
 {
-  protected $template_email_id;
-  protected $language_id;
-
   /**
    * the name of the template
    *
@@ -44,7 +41,6 @@ class TemplateEmailAdmin
 
     return $QtemplateEmail->value('template_email_name');
   }
-
 
   /**
    * the template email short description
@@ -132,10 +128,11 @@ class TemplateEmailAdmin
       '/{{http_shop}}/'
     );
 
-    $replaces = array(STORE_NAME,
+    $replaces = [
+      STORE_NAME,
       STORE_OWNER_EMAIL_ADDRESS,
       HTTP::getShopUrlDomain()
-    );
+    ];
 
 
     $template_email_footer = preg_replace($keywords, $replaces, $template_email_footer);
@@ -179,7 +176,6 @@ class TemplateEmailAdmin
       HTTP::getShopUrlDomain()
     );
 
-
     $template_email_newsletter_footer = preg_replace($keywords, $replaces, $template_email_newsletter_footer);
 
     return $template_email_newsletter_footer;
@@ -218,11 +214,11 @@ class TemplateEmailAdmin
 
     );
 
-    $replaces = array(STORE_NAME,
+    $replaces = [
+      STORE_NAME,
       STORE_OWNER_EMAIL_ADDRESS,
       HTTP::getShopUrlDomain()
-    );
-
+    ];
 
     $template_email_signature = preg_replace($keywords, $replaces, $template_email_signature);
 
@@ -255,21 +251,22 @@ class TemplateEmailAdmin
 
     $template_email_welcome_admin = $QtemplateEmail->value('template_email_description');
 
-    $keywords = array('/{{store_name}}/',
+    $keywords = [
+      '/{{store_name}}/',
       '/{{store_owner_email_address}}/',
       '/{{http_shop}}/'
-    );
+    ];
 
-    $replaces = array(STORE_NAME,
+    $replaces = [
+      STORE_NAME,
       STORE_OWNER_EMAIL_ADDRESS,
       HTTP::getShopUrlDomain()
-    );
+    ];
 
     $template_email_welcome_admin = preg_replace($keywords, $replaces, $template_email_welcome_admin);
 
     return $template_email_welcome_admin;
   }
-
 
   /**
    * the template email coupon who is sent
@@ -297,15 +294,17 @@ class TemplateEmailAdmin
 
     $template_email_coupon_admin = $QtemplateEmail->value('template_email_description');
 
-    $keywords = array('/{{store_name}}/',
+    $keywords = [
+      '/{{store_name}}/',
       '/{{store_owner_email_address}}/',
       '/{{http_shop}}/'
-    );
+    ];
 
-    $replaces = array(STORE_NAME,
+    $replaces = [
+      STORE_NAME,
       STORE_OWNER_EMAIL_ADDRESS,
       HTTP::getShopUrlDomain()
-    );
+    ];
 
     $template_email_coupon_admin = preg_replace($keywords, $replaces, $template_email_coupon_admin);
 
@@ -339,15 +338,16 @@ class TemplateEmailAdmin
 
     $template_email_intro_command = $QtemplateEmail->value('template_email_description');
 
-    $keywords = array('/{{store_name}}/',
+    $keywords = [
+      '/{{store_name}}/',
       '/{{store_owner_email_address}}/',
       '/{{http_shop}}/'
-    );
+    ];
 
-    $replaces = array(STORE_NAME,
+    $replaces = [STORE_NAME,
       STORE_OWNER_EMAIL_ADDRESS,
       HTTP::getShopUrlDomain()
-    );
+    ];
 
     $template_email_intro_command = preg_replace($keywords, $replaces, $template_email_intro_command);
 

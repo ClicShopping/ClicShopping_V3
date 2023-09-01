@@ -14,9 +14,6 @@ use ClicShopping\OM\Registry;
 
 class Status
 {
-  protected $zones_id;
-  protected $status;
-
   /**
    * @param int $zones_id
    * @param int $status
@@ -27,14 +24,11 @@ class Status
     $CLICSHOPPING_Db = Registry::get('Db');
 
     if ($status == 1) {
-      return $CLICSHOPPING_Db->save('zones', ['zone_status' => 1],
-        ['zone_id' => (int)$zones_id]
+      return $CLICSHOPPING_Db->save('zones', ['zone_status' => 1], ['zone_id' => (int)$zones_id]
       );
 
     } elseif ($status == 0) {
-      return $CLICSHOPPING_Db->save('zones', ['zone_status' => 0],
-        ['zone_id' => (int)$zones_id]
-      );
+      return $CLICSHOPPING_Db->save('zones', ['zone_status' => 0], ['zone_id' => (int)$zones_id]);
     } else {
       return -1;
     }

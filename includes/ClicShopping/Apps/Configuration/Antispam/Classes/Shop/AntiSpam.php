@@ -12,6 +12,7 @@ namespace ClicShopping\Apps\Configuration\Antispam\Classes\Shop;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
+use function defined;
 
 class AntiSpam
 {

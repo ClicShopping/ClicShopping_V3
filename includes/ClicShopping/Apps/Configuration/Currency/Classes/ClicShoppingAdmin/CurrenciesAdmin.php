@@ -14,27 +14,29 @@ use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\Currency\Currency as CurrencyApp;
+use Exception;
+use PDOException;
+use SimpleXMLElement;
+use function is_null;
 
 class CurrenciesAdmin extends \ClicShopping\Apps\Configuration\Currency\Classes\Shop\Currencies
 {
-  protected mixed $db;
-
   public function __construct(array $currencies = null)
   {
-    $this->db = Registry::get('Db');
+    $CLICSHOPPING_Db = Registry::get('Db');
     $this->currencies = [];
 
-    $Qcurrencies = $this->db->query('select currencies_id as id,
-                                              code,
-                                              title,
-                                              symbol_left,
-                                              symbol_right,
-                                              decimal_point,
-                                              thousands_point,
-                                              decimal_places,
-                                              value
-                                       from :table_currencies
-                                      ');
+    $Qcurrencies = $CLICSHOPPING_Db->query('select currencies_id as id,
+                                                  code,
+                                                  title,
+                                                  symbol_left,
+                                                  symbol_right,
+                                                  decimal_point,
+                                                  thousands_point,
+                                                  decimal_places,
+                                                  value
+                                           from :table_currencies
+                                          ');
 
     $Qcurrencies->execute();
 
@@ -76,7 +78,7 @@ class CurrenciesAdmin extends \ClicShopping\Apps\Configuration\Currency\Classes\
   }
 
   /**
-   * @throws \Exception
+   * @throws Exception
    */
   public function updateAllCurrencies()
   {
@@ -95,7 +97,7 @@ class CurrenciesAdmin extends \ClicShopping\Apps\Configuration\Currency\Classes\
     ]);
 
     if (empty($XML)) {
-      throw new \Exception('Can not load currency rates from the European Central Bank website');
+      throw new Exception('Can not load currency rates from the European Central Bank website');
     }
 
     $currencies = [];
@@ -107,7 +109,7 @@ class CurrenciesAdmin extends \ClicShopping\Apps\Configuration\Currency\Classes\
     // This is a constant
     $currencies[$sourceCurrency] = 1;
 
-    $XML = new \SimpleXMLElement($XML);
+    $XML = new SimpleXMLElement($XML);
 
     foreach ($XML->Cube->Cube->Cube as $rate) {
       $code = (string)$rate['currency'];
@@ -127,7 +129,7 @@ class CurrenciesAdmin extends \ClicShopping\Apps\Configuration\Currency\Classes\
     }
 
     foreach ($currencies as $code => $value) {
-      if (!\is_null($value)) {
+      if (!is_null($value)) {
         try {
           $CLICSHOPPING_Currency->db->save('currencies',
             [
@@ -136,7 +138,7 @@ class CurrenciesAdmin extends \ClicShopping\Apps\Configuration\Currency\Classes\
             ], [
               'code' => $code
             ]);
-        } catch (\PDOException $e) {
+        } catch (PDOException $e) {
           trigger_error($e->getMessage());
         }
       }

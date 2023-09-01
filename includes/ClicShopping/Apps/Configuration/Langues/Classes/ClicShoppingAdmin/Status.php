@@ -14,9 +14,6 @@ use ClicShopping\OM\Registry;
 
 class Status
 {
-  protected $languages_id;
-  protected $status;
-
   /**
    * Status language -  Sets the status of a language
    * @param int $languages_id

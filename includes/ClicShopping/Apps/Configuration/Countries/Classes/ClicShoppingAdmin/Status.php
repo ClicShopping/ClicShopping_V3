@@ -14,10 +14,6 @@ use ClicShopping\OM\Registry;
 
 class Status
 {
-
-  protected $countries_id;
-  protected $status;
-
   /**
    * @param int $countries_id
    * @param int $status

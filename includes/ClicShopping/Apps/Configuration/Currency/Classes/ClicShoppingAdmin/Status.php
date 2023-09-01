@@ -14,16 +14,12 @@ use ClicShopping\OM\Registry;
 
 class Status
 {
-
-  protected $countries_id;
-  protected $status;
-
   /**
-   * @param $currencies_id
-   * @param $status
+   * @param int $currencies_id
+   * @param int $status
    * @return int
    */
-  public static function getCurrencyStatus($currencies_id, $status)
+  public static function getCurrencyStatus(int $currencies_id, int $status)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 

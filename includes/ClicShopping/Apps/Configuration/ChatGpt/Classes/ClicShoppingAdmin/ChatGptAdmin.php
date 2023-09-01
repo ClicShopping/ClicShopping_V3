@@ -1,5 +1,5 @@
 <?php
-  /**
+/**
  *
  * @copyright 2008 - https://www.clicshopping.org
  * @Brand : ClicShopping(Tm) at Inpi all right Reserved
@@ -16,6 +16,7 @@ use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 use OpenAI;
+use function defined;
 
 class ChatGptAdmin
 {
@@ -24,7 +25,7 @@ class ChatGptAdmin
    */
   public static function checkGptStatus(): bool
   {
-    if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
+    if (!defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
       return false;
     } else {
       return true;
@@ -430,7 +431,7 @@ class ChatGptAdmin
   {
     $menu = '';
 
-    if (\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') && CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'True' && !empty(CLICSHOPPING_APP_CHATGPT_CH_API_KEY)) {
+    if (defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') && CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'True' && !empty(CLICSHOPPING_APP_CHATGPT_CH_API_KEY)) {
       $menu .= '
               <span class="col-md-2">
                 <!-- Modal -->

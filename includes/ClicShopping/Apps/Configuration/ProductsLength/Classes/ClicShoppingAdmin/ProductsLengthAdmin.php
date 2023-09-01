@@ -12,27 +12,40 @@
 namespace ClicShopping\Apps\Configuration\ProductsLength\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
+use function is_null;
 
 class ProductsLengthAdmin extends \ClicShopping\Apps\Configuration\ProductsLength\Classes\Shop\ProductsLength
 {
-
   protected $products_length_classes = [];
-  protected $precision = 2;
+  protected int $precision = 2;
 
   public function __construct($precision = null)
   {
   }
 
+  /**
+   * @param $id
+   * @param $language_id
+   * @return mixed
+   */
   public static function getTitle($id, $language_id = null)
   {
     return parent::getTitle($id, $language_id);
   }
 
+  /**
+   * @return array
+   */
   public static function getClasses()
   {
     return parent::getClasses();
   }
 
+  /**
+   * @param $value
+   * @param $class
+   * @return string
+   */
   public function display($value, $class)
   {
     return parent::display($value, $class);
@@ -59,7 +72,8 @@ class ProductsLengthAdmin extends \ClicShopping\Apps\Configuration\ProductsLengt
     $classes = [];
 
     while ($Qclasses->fetch() !== false) {
-      $classes[] = ['id' => $Qclasses->valueInt('products_length_class_id'),
+      $classes[] = [
+        'id' => $Qclasses->valueInt('products_length_class_id'),
         'text' => $Qclasses->value('products_length_class_title')
       ];
     }
@@ -77,7 +91,7 @@ class ProductsLengthAdmin extends \ClicShopping\Apps\Configuration\ProductsLengt
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    if (!\is_null($id)) {
+    if (!is_null($id)) {
       $Qlength = $CLICSHOPPING_Db->prepare('select products_length_class_title
                                                from :table_products_length_classes
                                                where products_length_class_id = :products_length_class_id

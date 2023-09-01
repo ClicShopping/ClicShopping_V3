@@ -14,6 +14,9 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\Tax;
+use function count;
+use function is_null;
+use function is_string;
 
 class Currencies
 {
@@ -84,7 +87,7 @@ class Currencies
     }
 
     if ($calculate_currency_value === true) {
-      $rate = (!\is_null($currency_value)) ? $currency_value : $this->currencies[$currency_type]['value'];
+      $rate = (!is_null($currency_value)) ? $currency_value : $this->currencies[$currency_type]['value'];
 
       if ($this->currencies[$currency_type]['surcharge'] > 0) {
         $rate += ($rate * $this->currencies[$currency_type]['surcharge']);
@@ -115,7 +118,7 @@ class Currencies
    */
   public function isSet(string $code): bool
   {
-    if (isset($this->currencies[$code]) && !\is_null($this->currencies[$code])) {
+    if (isset($this->currencies[$code]) && !is_null($this->currencies[$code])) {
       return true;
     } else {
       return false;
@@ -123,7 +126,7 @@ class Currencies
   }
 
   /**
-   * @param $code
+   * @param string $code
    * @return mixed
    */
   public function getValue(string $code): float
@@ -132,7 +135,7 @@ class Currencies
   }
 
   /**
-   * @param $code
+   * @param string $code
    * @return mixed
    */
   public function getDecimalPlaces(string $code): string
@@ -283,13 +286,13 @@ class Currencies
   }
 
   /**
-   * Dispaly a Currencies DropDown
+   * Display a Currencies DropDown
    * @param string $class
    * @return string
    */
   public function getCurrenciesDropDown($class = '')
   {
-    if ((\count($this->currencies) > 1)) {
+    if ((count($this->currencies) > 1)) {
       reset($this->currencies);
       $currency_header = '';
 
@@ -298,7 +301,7 @@ class Currencies
       $hidden_get_variables = '';
 
       foreach ($_GET as $key => $value) {
-        if (\is_string($value) && ($key != 'currency') && ($key != session_name()) && ($key != 'x') && ($key != 'y')) {
+        if (is_string($value) && ($key != 'currency') && ($key != session_name()) && ($key != 'x') && ($key != 'y')) {
           $hidden_get_variables .= HTML::hiddenField($key, $value);
         }
       }

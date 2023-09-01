@@ -12,11 +12,12 @@
 namespace ClicShopping\Apps\Configuration\ProductsLength\Classes\Shop;
 
 use ClicShopping\OM\Registry;
+use function is_null;
 
 class ProductsLength
 {
   protected $products_length_classes = [];
-  protected $precision = 2;
+  protected int $precision = 2;
 
   public function __construct($precision = null)
   {
@@ -56,7 +57,7 @@ class ProductsLength
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    if (\is_null($language_id)) {
+    if (is_null($language_id)) {
       $Qproducts_length = $CLICSHOPPING_Db->prepare('select products_length_class_title
                                                         from :table_products_length_classes
                                                         where products_length_class_id = :products_length_class_id
@@ -89,7 +90,7 @@ class ProductsLength
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    if (\is_null($language_id)) {
+    if (is_null($language_id)) {
       $Qproducts_length = $CLICSHOPPING_Db->prepare('select products_length_class_key
                                                         from :table_products_length_classes
                                                         where products_length_class_id = :products_length_class_id

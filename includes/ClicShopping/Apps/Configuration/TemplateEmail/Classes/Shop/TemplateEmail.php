@@ -78,7 +78,6 @@ class TemplateEmail
    */
   public static function getTemplateEmailDescription(int $template_email_id, int $language_id): string
   {
-
     $CLICSHOPPING_Db = Registry::get('Db');
 
     $QtemplateEmailDescription = $CLICSHOPPING_Db->prepare('select template_email_description
@@ -131,7 +130,6 @@ class TemplateEmail
       STORE_OWNER_EMAIL_ADDRESS,
       HTTP::getShopUrlDomain()
     ];
-
 
     $template_email_footer = preg_replace($keywords, $replaces, $template_email_footer);
 
@@ -224,7 +222,6 @@ class TemplateEmail
     return $template_email_welcome_catalog;
   }
 
-
   /**
    * the template email coupon who is sent
    *
@@ -251,7 +248,8 @@ class TemplateEmail
 
     $template_email_coupon_catalog = $QtextTemplateEmailCouponCatalog->value('template_email_description');
 
-    $keywords = ['/{{store_name}}/',
+    $keywords = [
+      '/{{store_name}}/',
       '/{{store_owner_email_address}}/',
       '/{{http_shop}}/'
     ];
@@ -293,7 +291,8 @@ class TemplateEmail
 
     $template_email_intro_command = $QtextTemplateEmailIntroCommand->value('template_email_description');
 
-    $keywords = ['/{{store_name}}/',
+    $keywords = [
+      '/{{store_name}}/',
       '/{{store_owner_email_address}}/',
       '/{{http_shop}}/'
     ];

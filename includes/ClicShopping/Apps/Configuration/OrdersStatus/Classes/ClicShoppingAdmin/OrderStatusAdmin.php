@@ -16,16 +16,12 @@ use ClicShopping\OM\Registry;
 
 class OrderStatusAdmin
 {
-
-  protected $orders_status_id;
-  protected $language_id;
-
   /**
    * the status name
    *
-   * @param string $orders_status_id , $language_id
+   * @param int $orders_status_id , $language_id
+   * @param int $language_id
    * @return string $orders_status['orders_status_name'],  name of the status
-   *
    */
   public static function getOrdersStatusName(int $orders_status_id, int $language_id): string
   {

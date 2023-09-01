@@ -19,9 +19,9 @@ class Status
   /**
    * Status modification of page manager - Sets the status of a page
    *
-   * @param string pages_id, status
+   * @param int $pages_id pages_id, status
+   * @param int $status
    * @return string status on or off
-   *
    */
   public static function getPageManagerStatus(int $pages_id, int $status)
   {

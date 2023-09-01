@@ -8,20 +8,16 @@
  *
  */
 
-
 namespace ClicShopping\Apps\Configuration\Modules\Classes\ClicShoppingAdmin;
-
 
 class ModulesAdmin
 {
-
   /**
-   * @param $module_type
+   * @param string|null $module_type
    * @return string|null
    */
   public function getSwitchModules(?string $module_type): ?string
   {
-
     $appModuleType = null;
 
     switch ($module_type) {

@@ -8,10 +8,10 @@
  *
  */
 
-
 namespace ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
+use function is_null;
 
 class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\Weight
 {
@@ -93,7 +93,7 @@ class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\W
 
   /**
    * Display a weight class title
-   * @param null $id
+   * @param int|null $id
    * @return string
    */
   public static function getWeightTitle(?int $id = null): string
@@ -101,7 +101,7 @@ class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\W
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    if (!\is_null($id)) {
+    if (!is_null($id)) {
       $Qweight = $CLICSHOPPING_Db->prepare('select weight_class_title
                                                from :table_weight_classes
                                                where weight_class_id = :weight_class_id

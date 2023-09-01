@@ -18,7 +18,7 @@ class AdministratorAdmin
 {
   /**
    * get the user administrator
-   * @param string $user_administrator
+   * @return string
    */
   public static function getUserAdmin(): string
   {
@@ -55,23 +55,23 @@ class AdministratorAdmin
   /**
    * get the administrator right
    * @param string $default , default right
-   * @return string $administrator_right_array ,  right selected
+   * @return array $administrator_right_array ,  right selected
    */
 
   public static function getAdministratorRight(string $default = ''): array
   {
-
     $administrator_right_array = [];
 
     if ($default) {
-      $administrator_right_array[] = ['id' => '',
+      $administrator_right_array[] = [
+        'id' => '',
         'text' => $default
       ];
     }
 
-    $administrator_right_array[] = array('id' => '1', 'text' => CLICSHOPPING::getDef('text_all_rights_admin'));
-    $administrator_right_array[] = array('id' => '2', 'text' => CLICSHOPPING::getDef('text_rights_employee'));
-    $administrator_right_array[] = array('id' => '3', 'text' => CLICSHOPPING::getDef('text_rights_visitor'));
+    $administrator_right_array[] = ['id' => '1', 'text' => CLICSHOPPING::getDef('text_all_rights_admin')];
+    $administrator_right_array[] = ['id' => '2', 'text' => CLICSHOPPING::getDef('text_rights_employee')];
+    $administrator_right_array[] = ['id' => '3', 'text' => CLICSHOPPING::getDef('text_rights_visitor')];
 
     return $administrator_right_array;
   }
@@ -79,7 +79,7 @@ class AdministratorAdmin
   /**
    * get the administrator menu right right
    * @param string $default , default menu right
-   * @return string $administrator_right_array , menu right selected
+   * @return array $administrator_right_array , menu right selected
    */
 
   public static function getAdministratorMenuRight(string $default = ''): array
@@ -88,7 +88,8 @@ class AdministratorAdmin
     $administrator_right_array = [];
 
     if ($default) {
-      $administrator_right_array[] = ['id' => '',
+      $administrator_right_array[] = [
+        'id' => '',
         'text' => $default
       ];
     }

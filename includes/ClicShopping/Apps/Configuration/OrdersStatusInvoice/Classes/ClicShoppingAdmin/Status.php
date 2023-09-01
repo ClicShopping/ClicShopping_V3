@@ -14,10 +14,6 @@ use ClicShopping\OM\Registry;
 
 class Status
 {
-
-  protected $orders_status_tracking_id;
-  protected $language_id;
-
   /**
    * the name of status invoice
    * @param int $orders_status_invoice_id
@@ -32,10 +28,10 @@ class Status
     if (!$language_id) $language_id = $CLICSHOPPING_Language->getId();
 
     $Qinvoice = $CLICSHOPPING_Db->prepare('select orders_status_invoice_name
-                                       from :table_orders_status_invoice
-                                       where orders_status_invoice_id = :orders_status_invoice_id
-                                       and language_id =:language_id
-                                    ');
+                                           from :table_orders_status_invoice
+                                           where orders_status_invoice_id = :orders_status_invoice_id
+                                           and language_id =:language_id
+                                        ');
     $Qinvoice->bindInt(':orders_status_invoice_id', (int)$orders_status_invoice_id);
     $Qinvoice->bindInt(':language_id', (int)$language_id);
 

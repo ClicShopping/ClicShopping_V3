@@ -15,7 +15,7 @@ use ClicShopping\OM\Registry;
 class Status
 {
   /**
-   * @param int $is
+   * @param int $id
    * @param int $status
    * @return int
    */
