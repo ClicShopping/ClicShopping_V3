@@ -11,6 +11,11 @@
 namespace ClicShopping\OM;
 
 use ClicShopping\Service\Shop\SEFU;
+use function call_user_func;
+use function count;
+use function defined;
+use function is_array;
+use function is_null;
 
 class Language
 {
@@ -278,7 +283,7 @@ class Language
     if (isset($this->definitions[$scope][$key])) {
       $def = $this->definitions[$scope][$key];
 
-      if (\is_array($values) && !empty($values)) {
+      if (is_array($values) && !empty($values)) {
         $def = $this->parseDefinition($def, $values);
       }
 
@@ -296,7 +301,7 @@ class Language
    */
   public static function parseDefinition($string, $values)
   {
-    if (\is_array($values) && !empty($values)) {
+    if (is_array($values) && !empty($values)) {
       $string = preg_replace_callback('/\{\{([A-Za-z0-9-_]+)\}\}/', function ($matches) use ($values) {
         return isset($values[$matches[1]]) ? $values[$matches[1]] : $matches[1];
       }, $string);
@@ -335,7 +340,7 @@ class Language
     }
 
     if ($language_code != DEFAULT_LANGUAGE) {
-      return \call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
+      return call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
     }
 
     return false;
@@ -364,7 +369,7 @@ class Language
       $group = $matches[2];
     }
 
-    if (!\is_null($force_directory_language)) $site = $force_directory_language;
+    if (!is_null($force_directory_language)) $site = $force_directory_language;
 
     if ($site == 'ClicShoppingAdmin') {
       $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'includes/languages/' . $this->get('directory', $language_code) . '/' . $group;
@@ -375,7 +380,7 @@ class Language
     $pathname .= '.txt';
 
     if ($language_code != DEFAULT_LANGUAGE) {
-      \call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE, $scope);
+      call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE, $scope);
     }
 
     $defs = $this->getDefinitions($site . '/' . $group, $language_code, $pathname);
@@ -533,7 +538,7 @@ class Language
    */
   public function getLanguageCode()
   {
-    if (!\is_null($this->getUrlValueLanguage())) {
+    if (!is_null($this->getUrlValueLanguage())) {
       $_GET['language'] = $this->getUrlValueLanguage();
     }
 
@@ -557,7 +562,7 @@ class Language
    */
   public function getUrlValueLanguage()
   {
-    if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && (SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start())) {
+    if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && (SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start())) {
       $value_language = SEFU::getUrlValue();
     } else {
       $value_language = null;
@@ -580,7 +585,7 @@ class Language
     if (!isset($_GET['Checkout'])) {
       $languages_string = '';
 
-      if (\is_array($_GET)) {
+      if (is_array($_GET)) {
         foreach ($_GET as $key => $value) {
           if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
             $get_params[] = ($value) ? "$key=$value" : $key;
@@ -632,7 +637,7 @@ class Language
         $languages = $this->getAll();
       }
 
-      if (\is_array($_GET)) {
+      if (is_array($_GET)) {
         foreach ($_GET as $key => $value) {
           if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
             $get_params[] = ($value) ? "$key=$value" : $key;
@@ -647,7 +652,7 @@ class Language
       $get_params .= '&';
     }
 
-    if (\is_array($languages)) {
+    if (is_array($languages)) {
       foreach ($languages as $value) {
         $content .= HTML::link(CLICSHOPPING::link(null, $get_params . 'language=' . $value['code']), $this->getImage($value['code'])) . '&nbsp;&nbsp;';
       }
@@ -727,7 +732,7 @@ class Language
       ];
     }
 
-    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+    for ($i = 0, $n = count($languages); $i < $n; $i++) {
       $values_languages_id[$i + 1] = [
         'id' => $languages[$i]['id'],
         'text' => $languages[$i]['name']

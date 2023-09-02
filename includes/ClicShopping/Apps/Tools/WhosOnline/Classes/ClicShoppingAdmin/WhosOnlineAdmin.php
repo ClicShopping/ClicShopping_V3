@@ -42,9 +42,9 @@ class WhosOnlineAdmin
   }
 
   /**
-   *
+   * @return void
    */
-  private static function delete()
+  private static function delete(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -61,9 +61,9 @@ class WhosOnlineAdmin
   }
 
   /**
-   *
+   * @return void
    */
-  public static function removeWhoOnline()
+  public static function removeWhoOnline(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 

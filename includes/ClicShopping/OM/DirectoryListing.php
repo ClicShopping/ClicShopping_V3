@@ -10,6 +10,12 @@
 
 namespace ClicShopping\OM;
 
+use function count;
+use function in_array;
+use function is_array;
+use function is_string;
+use function strlen;
+
 class DirectoryListing
 {
   protected string $_directory = '';
@@ -65,14 +71,14 @@ class DirectoryListing
    */
   public function setExcludeEntries(?array $entries)
   {
-    if (\is_array($entries)) {
+    if (is_array($entries)) {
       foreach ($entries as $value) {
-        if (!\in_array($value, $this->_exclude_entries)) {
+        if (!in_array($value, $this->_exclude_entries)) {
           $this->_exclude_entries[] = $value;
         }
       }
-    } elseif (\is_string($entries)) {
-      if (!\in_array($entries, $this->_exclude_entries)) {
+    } elseif (is_string($entries)) {
+      if (!in_array($entries, $this->_exclude_entries)) {
         $this->_exclude_entries[] = $entries;
       }
     }
@@ -131,18 +137,18 @@ class DirectoryListing
       $directory = $this->_directory;
     }
 
-    if (!\is_array($this->_listing)) {
+    if (!is_array($this->_listing)) {
       $this->_listing = array();
     }
 
     if ($dir = @dir($directory)) {
       while (($entry = $dir->read()) !== false) {
-        if (!\in_array($entry, $this->_exclude_entries)) {
+        if (!in_array($entry, $this->_exclude_entries)) {
           if (($this->_include_files === true) && is_file($dir->path . '/' . $entry)) {
-            if (empty($this->_check_extension) || \in_array(mb_strtolower(substr($entry, strrpos($entry, '.') + 1)), $this->_check_extension)) {
+            if (empty($this->_check_extension) || in_array(mb_strtolower(substr($entry, strrpos($entry, '.') + 1)), $this->_check_extension)) {
               if ($this->_add_directory_to_filename === true) {
                 if ($dir->path !== $this->_directory) {
-                  $entry = substr($dir->path, \strlen($this->_directory) + 1) . '/' . $entry;
+                  $entry = substr($dir->path, strlen($this->_directory) + 1) . '/' . $entry;
                 }
               }
 
@@ -157,7 +163,7 @@ class DirectoryListing
                   'last_modified' => filemtime($dir->path . '/' . $entry)
                 );
 
-                $this->_listing[\count($this->_listing) - 1] = array_merge($this->_listing[\count($this->_listing) - 1], $stats);
+                $this->_listing[count($this->_listing) - 1] = array_merge($this->_listing[count($this->_listing) - 1], $stats);
               }
             }
           } elseif (is_dir($dir->path . '/' . $entry)) {
@@ -166,7 +172,7 @@ class DirectoryListing
 
               if ($this->_add_directory_to_filename === true) {
                 if ($dir->path !== $this->_directory) {
-                  $entry_name = substr($dir->path, \strlen($this->_directory) + 1) . '/' . $entry;
+                  $entry_name = substr($dir->path, strlen($this->_directory) + 1) . '/' . $entry;
                 }
               }
 
@@ -179,7 +185,7 @@ class DirectoryListing
                   'user_id' => fileowner($dir->path . '/' . $entry),
                   'group_id' => filegroup($dir->path . '/' . $entry),
                   'last_modified' => filemtime($dir->path . '/' . $entry));
-                $this->_listing[\count($this->_listing) - 1] = array_merge($this->_listing[\count($this->_listing) - 1], $stats);
+                $this->_listing[count($this->_listing) - 1] = array_merge($this->_listing[count($this->_listing) - 1], $stats);
               }
             }
 
@@ -202,11 +208,11 @@ class DirectoryListing
    */
   public function getFiles(bool $sort_by_directories = true): array
   {
-    if (!\is_array($this->_listing)) {
+    if (!is_array($this->_listing)) {
       $this->read();
     }
 
-    if (\is_array($this->_listing) && (\count($this->_listing) > 0)) {
+    if (is_array($this->_listing) && (count($this->_listing) > 0)) {
       if ($sort_by_directories === true) {
         usort($this->_listing, array($this, '_sortListing'));
       }
@@ -222,11 +228,11 @@ class DirectoryListing
    */
   public function getSize(): int
   {
-    if (!\is_array($this->_listing)) {
+    if (!is_array($this->_listing)) {
       $this->read();
     }
 
-    return \count($this->_listing);
+    return count($this->_listing);
   }
 
   /**

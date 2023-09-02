@@ -15,6 +15,10 @@
 
 namespace ClicShopping\OM;
 
+use function count;
+use function in_array;
+use function is_array;
+
 class MessageStack
 {
   protected array $data = [];
@@ -27,7 +31,7 @@ class MessageStack
       }
     });
 
-    if (isset($_SESSION['MessageStack_Data']) && \is_array($_SESSION['MessageStack_Data'])) {
+    if (isset($_SESSION['MessageStack_Data']) && is_array($_SESSION['MessageStack_Data'])) {
       foreach ($_SESSION['MessageStack_Data'] as $group => $messages) {
         foreach ($messages as $message) {
           $this->add($message['text'], $message['type'], $group);
@@ -77,7 +81,7 @@ class MessageStack
       'type' => $type
     ];
 
-    if (!$this->exists($group) || !\in_array($stack, $this->data[$group])) {
+    if (!$this->exists($group) || !in_array($stack, $this->data[$group])) {
       $this->data[$group][] = $stack;
     }
   }
@@ -133,7 +137,7 @@ class MessageStack
     if ($this->exists($group)) {
       $data = [];
 
-      if (\is_array($this->data[$group])) {
+      if (is_array($this->data[$group])) {
         foreach ($this->data[$group] as $message) {
           $data['alert-' . $message['type']][] = $message['text'];
         }
@@ -182,12 +186,12 @@ class MessageStack
   {
     if (isset($group)) {
       if ($this->exists($group)) {
-        return \count($this->data[$group]);
+        return count($this->data[$group]);
       }
 
       return 0;
     }
 
-    return \count($this->data);
+    return count($this->data);
   }
 }

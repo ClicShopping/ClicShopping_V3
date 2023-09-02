@@ -10,6 +10,8 @@
 
 namespace ClicShopping\OM;
 
+use RuntimeException;
+
 class ErrorHandler
 {
   public static function initialize()
@@ -21,7 +23,7 @@ class ErrorHandler
     if (FileSystem::isWritable(static::getDirectory(), true)) {
       if (!is_dir(static::getDirectory())) {
         if (!mkdir($concurrentDirectory = static::getDirectory(), 0777, true) && !is_dir($concurrentDirectory)) {
-          throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+          throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
         }
       }
     }

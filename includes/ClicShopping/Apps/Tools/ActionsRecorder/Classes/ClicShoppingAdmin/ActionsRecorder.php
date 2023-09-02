@@ -12,10 +12,13 @@ namespace ClicShopping\Apps\Tools\ActionsRecorder\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
+use function count;
+use function is_array;
+use function is_null;
+use function strlen;
 
 class ActionsRecorder
 {
-
   protected int $category_id;
   protected int $language_id;
 
@@ -36,21 +39,21 @@ class ActionsRecorder
     if ($current_category_id == '') {
       $cPath_new = implode('_', $cPath_array);
     } else {
-      if (\count($cPath_array) == 0) {
+      if (count($cPath_array) == 0) {
         $cPath_new = $current_category_id;
       } else {
         $cPath_new = '';
 
-        $Qlast = $CLICSHOPPING_Db->get('actions_recorder', 'parent_id', ['id' => (int)$cPath_array[(\count($cPath_array) - 1)]]);
+        $Qlast = $CLICSHOPPING_Db->get('actions_recorder', 'parent_id', ['id' => (int)$cPath_array[(count($cPath_array) - 1)]]);
 
         $Qcurrent = $CLICSHOPPING_Db->get('actions_recorder', 'parent_id', ['id' => (int)$current_category_id]);
 
         if ($Qlast->valueInt('parent_id') === $Qcurrent->valueInt('parent_id')) {
-          for ($i = 0, $n = \count($cPath_array) - 1; $i < $n; $i++) {
+          for ($i = 0, $n = count($cPath_array) - 1; $i < $n; $i++) {
             $cPath_new .= '_' . $cPath_array[$i];
           }
         } else {
-          for ($i = 0, $n = \count($cPath_array); $i < $n; $i++) {
+          for ($i = 0, $n = count($cPath_array); $i < $n; $i++) {
             $cPath_new .= '_' . $cPath_array[$i];
           }
         }
@@ -120,11 +123,11 @@ class ActionsRecorder
     $CLICSHOPPING_Language = Registry::get('Language');
     $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
 
-    if (!\is_array($category_tree_array)) {
+    if (!is_array($category_tree_array)) {
       $category_tree_array = [];
     }
 
-    if ((\count($category_tree_array) < 1) && ($exclude != '0')) {
+    if ((count($category_tree_array) < 1) && ($exclude != '0')) {
       $category_tree_array = [
         'id' => '0',
         'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_top')];
@@ -186,8 +189,8 @@ class ActionsRecorder
     $calculated_category_path_string = '';
     $calculated_category_path = static::getGenerateCategoryPath($id);
 
-    for ($i = 0, $n = \count($calculated_category_path); $i < $n; $i++) {
-      for ($j = 0, $k = \count($calculated_category_path[$i]); $j < $k; $j++) {
+    for ($i = 0, $n = count($calculated_category_path); $i < $n; $i++) {
+      for ($j = 0, $k = count($calculated_category_path[$i]); $j < $k; $j++) {
         $calculated_category_path_string .= $calculated_category_path[$i][$j]['id'] . '_';
       }
       $calculated_category_path_string = substr($calculated_category_path_string, 0, -1) . '<br />';
@@ -195,7 +198,7 @@ class ActionsRecorder
 
     $calculated_category_path_string = substr($calculated_category_path_string, 0, -6);
 
-    if (\strlen($calculated_category_path_string) < 1) {
+    if (strlen($calculated_category_path_string) < 1) {
       $calculated_category_path_string = $CLICSHOPPING_ActionsRecorder->getDef('text_top');
     }
 
@@ -213,7 +216,7 @@ class ActionsRecorder
     $CLICSHOPPING_Language = Registry::get('Language');
     $CLICSHOPPING_Db = Registry::get('Db');
 
-    if (!\is_array($categories_array)) {
+    if (!is_array($categories_array)) {
       $categories_array = [];
     }
 
@@ -236,11 +239,7 @@ class ActionsRecorder
         'cd.language_id' => (int)$CLICSHOPPING_Language->getId()
       ]
     );
-    /*
-          if ((!\is_null($Qcategory->valueInt['parent_id'])) && ($Qcategory->valueInt('parent_id') != '0')) {
-            $categories_array = static::getGenerateBlogCategoryPath($Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
-          }
-    */
+
     return $categories_array;
   }
 
@@ -316,11 +315,11 @@ class ActionsRecorder
     $CLICSHOPPING_Language = Registry::get('Language');
     $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
 
-    if (!\is_array($category_tree_array)) {
+    if (!is_array($category_tree_array)) {
       $category_tree_array = [];
     }
 
-    if ((\count($category_tree_array) < 1) && ($exclude != '0')) {
+    if ((count($category_tree_array) < 1) && ($exclude != '0')) {
       $category_tree_array[] = [
         'id' => '0',
         'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_top')
@@ -410,7 +409,7 @@ class ActionsRecorder
   {
     $class = substr($file, 0, strrpos($file, '.'));
 
-    if (class_exists($class) && !\is_null($class)) {
+    if (class_exists($class) && !is_null($class)) {
       $GLOBALS[$class] = new $class;
 
       return $GLOBALS[$class];

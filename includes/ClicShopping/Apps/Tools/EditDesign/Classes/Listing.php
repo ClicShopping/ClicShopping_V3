@@ -12,6 +12,9 @@ namespace ClicShopping\Apps\Tools\EditDesign\Classes;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use function in_array;
 
 class Listing
 {
@@ -41,12 +44,12 @@ class Listing
     $filename_array = [];
 
     /* if empty error is produced : Fatal error: Uncaught exception 'RuntimeException'*/
-    $file_array = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($template_directory));
+    $file_array = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($template_directory));
 
     foreach ($file_array as $filename => $current) {
       $fileInfo = pathinfo($current->getFileName());
 
-      if (array_key_exists('extension', $fileInfo) && \in_array($fileInfo['extension'], $fileTypes)) {
+      if (array_key_exists('extension', $fileInfo) && in_array($fileInfo['extension'], $fileTypes)) {
         $found[] = $current->getFileName();
       }
     }

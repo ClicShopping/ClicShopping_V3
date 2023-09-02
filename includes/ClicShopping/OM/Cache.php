@@ -10,6 +10,8 @@
 
 namespace ClicShopping\OM;
 
+use function strlen;
+
 class Cache
 {
   protected static string $path;
@@ -141,12 +143,12 @@ class Cache
     }
 
     if ($strict === false) {
-      $key_length = \strlen($key);
+      $key_length = strlen($key);
 
       $d = dir(static::getPath());
 
       while (($entry = $d->read()) !== false) {
-        if ((\strlen($entry) >= $key_length) && (substr($entry, 0, $key_length) == $key)) {
+        if ((strlen($entry) >= $key_length) && (substr($entry, 0, $key_length) == $key)) {
           $d->close();
 
           return true;
@@ -180,7 +182,7 @@ class Cache
   /**
    * Delete cached files by their key ID
    * @param string $key The key ID of the cached files to delete
-   * @return bool
+   * @return
    */
   public static function clear(string $key)
   {
@@ -193,13 +195,13 @@ class Cache
     }
 
     if (FileSystem::isWritable(static::getPath())) {
-      $key_length = \strlen($key);
+      $key_length = strlen($key);
 
       $DLcache = new DirectoryListing(static::getPath());
       $DLcache->setIncludeDirectories(false);
 
       foreach ($DLcache->getFiles() as $file) {
-        if ((\strlen($file['name']) >= $key_length) && (substr($file['name'], 0, $key_length) == $key)) {
+        if ((strlen($file['name']) >= $key_length) && (substr($file['name'], 0, $key_length) == $key)) {
           unlink(static::getPath() . $file['name']);
         }
       }
@@ -209,7 +211,7 @@ class Cache
   /**
    * Clear all cache
    */
-  public static function clearAll()
+  public static function clearAll(): void
   {
     if (FileSystem::isWritable(static::getPath())) {
       foreach (glob(static::getPath() . '*.cache', GLOB_NOSORT) as $c) {

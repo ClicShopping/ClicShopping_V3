@@ -20,6 +20,11 @@ use ClicShopping\Sites\Shop\Tax;
 
 use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
 use ClicShopping\Apps\Marketing\DiscountCoupon\Classes\Shop\DiscountCouponCustomer;
+use function count;
+use function defined;
+use function is_array;
+use function is_null;
+use function is_object;
 
 class Order
 {
@@ -56,7 +61,7 @@ class Order
     if (isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
       $this->_id = (int)$_GET['order_id'];
       $this->query($this->_id);
-    } elseif (!\is_null($order_id)) {
+    } elseif (!is_null($order_id)) {
       $this->query((int)$order_id);
     } else {
       $this->cart();
@@ -358,7 +363,7 @@ class Order
       }
     }
 
-    if (\is_array($_SESSION['sendto']) && !empty($_SESSION['sendto'])) {
+    if (is_array($_SESSION['sendto']) && !empty($_SESSION['sendto'])) {
       $shipping_address = [
         'entry_firstname' => $_SESSION['sendto']['firstname'],
         'entry_lastname' => $_SESSION['sendto']['lastname'],
@@ -425,7 +430,7 @@ class Order
       ];
     }
 
-    if (isset($_SESSION['billto']) && \is_array($_SESSION['billto']) && !empty($_SESSION['billto'])) {
+    if (isset($_SESSION['billto']) && is_array($_SESSION['billto']) && !empty($_SESSION['billto'])) {
       $billing_address = [
         'entry_firstname' => $_SESSION['billto']['firstname'],
         'entry_lastname' => $_SESSION['billto']['lastname'],
@@ -485,7 +490,7 @@ class Order
       ];
     }
 
-    if ((isset($_SESSION['payment']) && \is_array($_SESSION['payment'])) || (isset($_SESSION['shipping']) && \is_array($_SESSION['shipping']))) {
+    if ((isset($_SESSION['payment']) && is_array($_SESSION['payment'])) || (isset($_SESSION['shipping']) && is_array($_SESSION['shipping']))) {
       $this->info = [
         'order_status' => (int)DEFAULT_ORDERS_STATUS_ID,
         'order_status_invoice' => (int)DEFAULT_ORDERS_STATUS_INVOICE_ID,
@@ -541,7 +546,7 @@ class Order
       $company_name = $customer_address['entry_company'];
     }
 
-    if (\is_array($customer_address)) {
+    if (is_array($customer_address)) {
       $this->customer = [
         'firstname' => $customer_address['customers_firstname'],
         'customers_group_id' => $customer_address['customers_group_id'],
@@ -551,7 +556,7 @@ class Order
         'suburb' => $customer_address['entry_suburb'],
         'city' => $customer_address['entry_city'],
         'postcode' => $customer_address['entry_postcode'],
-        'state' => ((!\is_null($customer_address['entry_state'])) ? $customer_address['entry_state'] : $customer_address['zone_name']),
+        'state' => ((!is_null($customer_address['entry_state'])) ? $customer_address['entry_state'] : $customer_address['zone_name']),
         'zone_id' => $customer_address['entry_zone_id'],
         'country' => [
           'id' => $customer_address['countries_id'],
@@ -573,7 +578,7 @@ class Order
       }
     }
 
-    if (\is_array($shipping_address)) {
+    if (is_array($shipping_address)) {
       $this->delivery = [
         'firstname' => $shipping_address['entry_firstname'],
         'lastname' => $shipping_address['entry_lastname'],
@@ -582,7 +587,7 @@ class Order
         'suburb' => $shipping_address['entry_suburb'],
         'city' => $shipping_address['entry_city'],
         'postcode' => $shipping_address['entry_postcode'],
-        'state' => ((!\is_null($shipping_address['entry_state'])) ? $shipping_address['entry_state'] : $shipping_address['zone_name']),
+        'state' => ((!is_null($shipping_address['entry_state'])) ? $shipping_address['entry_state'] : $shipping_address['zone_name']),
         'zone_id' => $shipping_address['entry_zone_id'],
         'country' => array('id' => $shipping_address['countries_id'], 'title' => $shipping_address['countries_name'], 'iso_code_2' => $shipping_address['countries_iso_code_2'], 'iso_code_3' => $shipping_address['countries_iso_code_3']),
         'country_id' => $shipping_address['entry_country_id'],
@@ -590,7 +595,7 @@ class Order
       ];
     }
 
-    if (\is_array($billing_address)) {
+    if (is_array($billing_address)) {
       $this->billing = [
         'firstname' => $billing_address['entry_firstname'],
         'lastname' => $billing_address['entry_lastname'],
@@ -599,7 +604,7 @@ class Order
         'suburb' => $billing_address['entry_suburb'],
         'city' => $billing_address['entry_city'],
         'postcode' => $billing_address['entry_postcode'],
-        'state' => (!\is_null($billing_address['entry_state']) ? $billing_address['entry_state'] : $billing_address['zone_name']),
+        'state' => (!is_null($billing_address['entry_state']) ? $billing_address['entry_state'] : $billing_address['zone_name']),
         'zone_id' => $billing_address['entry_zone_id'],
         'country' => array('id' => $billing_address['countries_id'], 'title' => $billing_address['countries_name'], 'iso_code_2' => $billing_address['countries_iso_code_2'], 'iso_code_3' => $billing_address['countries_iso_code_3']),
         'country_id' => $billing_address['entry_country_id'],
@@ -620,7 +625,7 @@ class Order
 
     $products = $CLICSHOPPING_ShoppingCart->get_products();
 
-    if (\is_array($products)) {
+    if (is_array($products)) {
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
         $QgroupTax = $this->db->prepare('select group_order_taxe,
                                                 group_tax
@@ -635,7 +640,7 @@ class Order
         $group_tax = false;
       }
 
-      for ($i = 0, $n = \count($products); $i < $n; $i++) {
+      for ($i = 0, $n = count($products); $i < $n; $i++) {
         // Display an indicator to identify if the product belongs at a customer group or not.
         $QproductsQuantityUnitId = $this->db->prepare('select products_quantity_unit_id_group
                                                          from :table_products_groups
@@ -731,7 +736,7 @@ class Order
         }
 
         // discount coupons
-        if (\is_object($this->coupon)) {
+        if (is_object($this->coupon)) {
           $discount = $this->coupon->getCalculateDiscount($this->products[$index], $valid_products_count);
 
           if ($discount['applied_discount'] > 0) {
@@ -823,7 +828,7 @@ class Order
 
 // Manage the atos module and the  Atos situation report in database.
 // Do not modify
-    if (\defined('MODULE_PAYMENT_ATOS_STATUS') && MODULE_PAYMENT_ATOS_STATUS == 'True') {
+    if (defined('MODULE_PAYMENT_ATOS_STATUS') && MODULE_PAYMENT_ATOS_STATUS == 'True') {
       $cc_owner = $this->info['transaction_id'];
     } else {
       $cc_owner = $this->info['cc_owner'];
@@ -888,7 +893,7 @@ class Order
 // orders total
     $order_totals = $CLICSHOPPING_OrderTotal->process();
 
-    for ($i = 0, $n = \count($order_totals); $i < $n; $i++) {
+    for ($i = 0, $n = count($order_totals); $i < $n; $i++) {
       $sql_data_array = [
         'orders_id' => (int)$this->insertID,
         'title' => $order_totals[$i]['title'],
@@ -902,7 +907,7 @@ class Order
     }
 
 // initialized for the email confirmation
-    for ($i = 0, $n = \count($this->products); $i < $n; $i++) {
+    for ($i = 0, $n = count($this->products); $i < $n; $i++) {
 // search the good model
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
         $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
@@ -942,7 +947,7 @@ class Order
       $order_products_id = $this->db->lastInsertId();
 
       if (isset($this->products[$i]['attributes'])) {
-        for ($j = 0, $n2 = \count($this->products[$i]['attributes']); $j < $n2; $j++) {
+        for ($j = 0, $n2 = count($this->products[$i]['attributes']); $j < $n2; $j++) {
           $Qattributes = $CLICSHOPPING_ProductsAttributes->getAttributesDownloaded($this->products[$i]['id'], $this->products[$i]['attributes'][$j]['option_id'], $this->products[$i]['attributes'][$j]['value_id'], $this->lang->getId());
 
           $sql_data_array = [
@@ -957,7 +962,7 @@ class Order
 
           $this->db->save('orders_products_attributes', $sql_data_array);
 
-          if ((DOWNLOAD_ENABLED == 'true') && $Qattributes->hasValue('products_attributes_filename') && !\is_null($Qattributes->value('products_attributes_filename'))) {
+          if ((DOWNLOAD_ENABLED == 'true') && $Qattributes->hasValue('products_attributes_filename') && !is_null($Qattributes->value('products_attributes_filename'))) {
             $sql_data_array = [
               'orders_id' => (int)$this->insertID,
               'orders_products_id' => (int)$order_products_id,
@@ -1056,7 +1061,7 @@ class Order
 
           $products_attributes = $this->products['attributes'] ?? '';
 
-          if (\is_array($products_attributes)) {
+          if (is_array($products_attributes)) {
             $stock_query_sql .= ' and pa.options_id = :options_id
                                    and pa.options_values_id = :options_values_id
                                 ';
@@ -1066,7 +1071,7 @@ class Order
 
           $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id')));
 
-          if (\is_array($products_attributes)) {
+          if (is_array($products_attributes)) {
             $Qstock->bindInt(':options_id', $products_attributes['option_id']);
             $Qstock->bindInt(':options_values_id', $products_attributes['value_id']);
           }
@@ -1085,7 +1090,7 @@ class Order
 
         if ($Qstock->fetch() !== false) {
 // do not decrement quantities if products_attributes_filename exists
-          if ((DOWNLOAD_ENABLED != 'true') || !\is_null($Qstock->value('products_attributes_filename'))) {
+          if ((DOWNLOAD_ENABLED != 'true') || !is_null($Qstock->value('products_attributes_filename'))) {
 // select the good qty in B2B ti decrease the stock. See shopping_cart top display out stock or not
             if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
               $QproductsQuantityCustomersGroup = $this->db->prepare('select products_quantity_fixed_group
@@ -1325,7 +1330,7 @@ class Order
         if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
           $email[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
 
-          if (\is_array($email)) {
+          if (is_array($email)) {
             foreach ($email as $key => $value) {
               $to_addr = $value[$key];
               $from_name = STORE_NAME;
@@ -1498,7 +1503,7 @@ class Order
    */
   private function getCodeCoupon()
   {
-    if (!\defined('CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS') || CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS == 'False') {
+    if (!defined('CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS') || CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS == 'False') {
       return false;
     }
 
@@ -1524,14 +1529,59 @@ class Order
    */
   private function getFinalizeCouponDiscount()
   {
-    if (!\defined('CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS') || CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS == 'False') {
+    if (!defined('CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS') || CLICSHOPPING_APP_DISCOUNT_COUPON_DC_STATUS == 'False') {
       return false;
     }
 
-    if (\is_object($this->coupon)) {
+    if (is_object($this->coupon)) {
       $this->info['total'] = $this->coupon->getFinalizeDiscount($this->info);
 
       return $this->info['total'];
     }
+  }
+
+  /**
+   * Customers has purchased with comment
+   * @return array : $Qhaspurchased : purchased informations
+   *
+   */
+  public function hasPurchasedProduct()
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Customer = Registry::get('Customer');
+    $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+
+    if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
+      $Qhaspurchased = $CLICSHOPPING_Db->prepare('select count(*) as total
+                                                    from :table_orders o,
+                                                         :table_orders_products op,
+                                                         :table_products p
+                                                    where o.customers_id = :customers_id
+                                                    and o.orders_id = op.orders_id
+                                                    and op.products_id = p.products_id
+                                                    and op.products_id = :products_id
+                                                    and o.customers_group_id = 0
+                                                    ');
+      $Qhaspurchased->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+      $Qhaspurchased->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
+      $Qhaspurchased->execute();
+
+    } else {
+      $Qhaspurchased = $CLICSHOPPING_Db->prepare('select count(*) as total
+                                                    from :table_orders o,
+                                                         :table_orders_products op,
+                                                         :table_products p
+                                                    where o.customers_id = :customers_id
+                                                    and o.orders_id = op.orders_id
+                                                    and op.products_id = p.products_id
+                                                    and op.products_id = :products_id
+                                                    and o.customers_group_id > 0
+                                                    ');
+      $Qhaspurchased->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+      $Qhaspurchased->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
+      $Qhaspurchased->execute();
+    }
+
+    return ($Qhaspurchased->fetch() !== false);
   }
 }

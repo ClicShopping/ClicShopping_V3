@@ -10,7 +10,12 @@
 
 namespace ClicShopping\OM;
 
+use Exception;
 use GuzzleHttp\Client as GuzzleClient;
+use function count;
+use function in_array;
+use function strlen;
+use const JSON_PRETTY_PRINT;
 
 class HTTP
 {
@@ -84,7 +89,7 @@ class HTTP
       $data['cafile'] = CLICSHOPPING::BASE_DIR . 'External/cacert.pem';
     }
 
-    if (isset($data['format']) && !\in_array($data['format'], ['json'])) {
+    if (isset($data['format']) && !in_array($data['format'], ['json'])) {
       trigger_error('HttpRequest::getResponse(): Unknown "format": ' . $data['format']);
 
       unset($data['format']);
@@ -134,12 +139,12 @@ class HTTP
       if (isset($data['format']) && ($data['format'] === 'json')) {
         $result = json_decode($result, true);
       }
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       $json = json_encode([
         'method' => $data['method'],
         'url' => $data['url'],
         'options' => $options
-      ], \JSON_PRETTY_PRINT);
+      ], JSON_PRETTY_PRINT);
 
       if ($json !== false) {
         trigger_error($json);
@@ -224,7 +229,7 @@ class HTTP
     if (!empty($_SERVER["REMOTE_ADDR"]) && $_SERVER["REMOTE_ADDR"] != '::1') { //check ip from share internet
       $provider_client_ip = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
       $str = preg_split("/\./", $provider_client_ip);
-      $i = \count($str);
+      $i = count($str);
 
       $x = $str[0];
 
@@ -287,7 +292,7 @@ class HTTP
 
     $base = CLICSHOPPING::getSite('Shop');
 
-    if ($base[0] === $separator && substr($base, 0, \strlen($systemroot)) !== $systemroot) {
+    if ($base[0] === $separator && substr($base, 0, strlen($systemroot)) !== $systemroot) {
       $base = $systemroot . substr($base, 1);
     }
     if ($base !== $systemroot) {

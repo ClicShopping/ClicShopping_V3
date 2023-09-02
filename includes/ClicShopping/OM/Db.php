@@ -10,7 +10,20 @@
 
 namespace ClicShopping\OM;
 
-class Db extends \PDO
+use ArrayIterator;
+use CachingIterator;
+use Exception;
+use PDO;
+use PDOStatement;
+use function call_user_func_array;
+use function count;
+use function func_get_args;
+use function is_array;
+use function is_null;
+use function is_string;
+use function strlen;
+
+class Db extends PDO
 {
   protected bool $connected = false;
   protected string $server;
@@ -49,29 +62,29 @@ class Db extends \PDO
       $database = CLICSHOPPING::getConfig('db_database');
     }
 
-    if (!\is_array($driver_options)) {
+    if (!is_array($driver_options)) {
       $driver_options = [];
     }
 
-    if (!isset($driver_options[\PDO::ATTR_PERSISTENT]) && CLICSHOPPING::configExists('db_server_persistent_connections')) {
+    if (!isset($driver_options[PDO::ATTR_PERSISTENT]) && CLICSHOPPING::configExists('db_server_persistent_connections')) {
       if (CLICSHOPPING::getConfig('db_server_persistent_connections') === 'true') {
-        $driver_options[\PDO::ATTR_PERSISTENT] = true;
+        $driver_options[PDO::ATTR_PERSISTENT] = true;
       }
     }
 
-    if (!isset($driver_options[\PDO::ATTR_ERRMODE])) {
-      $driver_options[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION;
+    if (!isset($driver_options[PDO::ATTR_ERRMODE])) {
+      $driver_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
     }
 
-    if (!isset($driver_options[\PDO::ATTR_DEFAULT_FETCH_MODE])) {
-      $driver_options[\PDO::ATTR_DEFAULT_FETCH_MODE] = \PDO::FETCH_ASSOC;
+    if (!isset($driver_options[PDO::ATTR_DEFAULT_FETCH_MODE])) {
+      $driver_options[PDO::ATTR_DEFAULT_FETCH_MODE] = PDO::FETCH_ASSOC;
     }
 
-    if (!isset($driver_options[\PDO::ATTR_STATEMENT_CLASS])) {
-      $driver_options[\PDO::ATTR_STATEMENT_CLASS] = array('ClicShopping\OM\DbStatement');
+    if (!isset($driver_options[PDO::ATTR_STATEMENT_CLASS])) {
+      $driver_options[PDO::ATTR_STATEMENT_CLASS] = array('ClicShopping\OM\DbStatement');
     }
 
-    if (!\is_array($options)) {
+    if (!is_array($options)) {
       $options = [];
     }
 
@@ -80,7 +93,7 @@ class Db extends \PDO
     try {
       $class = 'ClicShopping\OM\Db\MySQL';
       $object = new $class($server, $username, $password, $database, $port, $driver_options, $options);
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       $message = $e->getMessage();
 // $message .= "\n" . $e->getTraceAsString(); // the trace will contain the password in plain text
 
@@ -88,7 +101,7 @@ class Db extends \PDO
         error_log('ClicShopping\OM\Db::initialize(): ' . $message);
       }
 
-      throw new \Exception($message, $e->getCode());
+      throw new Exception($message, $e->getCode());
     }
 
     return $object;
@@ -108,13 +121,13 @@ class Db extends \PDO
   /**
    * @param string $statement
    * @param null $driver_options
-   * @return bool|\PDOStatement
+   * @return bool|PDOStatement
    */
-  public function prepare(string $statement, ?array $driver_options = null): \PDOStatement|false
+  public function prepare(string $statement, ?array $driver_options = null): PDOStatement|false
   {
     $statement = $this->autoPrefixTables($statement);
 
-    $DbStatement = parent::prepare($statement, \is_array($driver_options) ? $driver_options : []);
+    $DbStatement = parent::prepare($statement, is_array($driver_options) ? $driver_options : []);
     $DbStatement->setQueryCall('prepare');
     $DbStatement->setPDO($this);
 
@@ -124,16 +137,16 @@ class Db extends \PDO
   /**
    * @param string $statement
    * @param mixed ...$params
-   * @return bool|mixed|\PDOStatement
+   * @return bool|mixed|PDOStatement
    */
-  public function query(string $statement, ...$params): \PDOStatement|false
+  public function query(string $statement, ...$params): PDOStatement|false
   {
     $statement = $this->autoPrefixTables($statement);
 
-    $args = \func_get_args();
+    $args = func_get_args();
 
-    if (\count($args) > 1) {
-      $DbStatement = \call_user_func_array(array($this, 'parent::query'), $args);
+    if (count($args) > 1) {
+      $DbStatement = call_user_func_array(array($this, 'parent::query'), $args);
     } else {
       $DbStatement = parent::query($statement);
     }
@@ -154,11 +167,11 @@ class Db extends \PDO
    * @param null $limit
    * @param null $cache
    * @param array|null $options
-   * @return bool|mixed|\PDOStatement
+   * @return bool|mixed|PDOStatement
    */
   public function get($table, $fields, ?array $where = null, $order = null, $limit = null, $cache = null, ?array $options = null)
   {
-    if (!\is_array($table)) {
+    if (!is_array($table)) {
       $table = [
         $table
       ];
@@ -166,27 +179,27 @@ class Db extends \PDO
 
     if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
       array_walk($table, function (&$v) {
-        if ((\strlen($v) < 7) || (substr($v, 0, 7) != ':table_')) {
+        if ((strlen($v) < 7) || (substr($v, 0, 7) != ':table_')) {
           $v = ':table_' . $v;
         }
       }
       );
     }
 
-    if (!\is_array($fields)) {
+    if (!is_array($fields)) {
       $fields = [
         $fields
       ];
     }
 
-    if (isset($order) && !\is_array($order)) {
+    if (isset($order) && !is_array($order)) {
       $order = [
         $order
       ];
     }
 
     if (isset($limit)) {
-      if (\is_array($limit) && (\count($limit) === 2) && is_numeric($limit[0]) && is_numeric($limit[1])) {
+      if (is_array($limit) && (count($limit) === 2) && is_numeric($limit[0]) && is_numeric($limit[1])) {
         $limit = implode(', ', $limit);
       } elseif (!is_numeric($limit)) {
         $limit = null;
@@ -208,10 +221,10 @@ class Db extends \PDO
 
       $counter = 0;
 
-      $it_where = new \CachingIterator(new \ArrayIterator($where), \CachingIterator::TOSTRING_USE_CURRENT);
+      $it_where = new CachingIterator(new ArrayIterator($where), CachingIterator::TOSTRING_USE_CURRENT);
 
       foreach ($it_where as $key => $value) {
-        if (\is_array($value)) {
+        if (is_array($value)) {
           if (isset($value['val'])) {
             $statement .= $key . ' ' . ($value['op'] ?? '=') . ' :cond_' . $counter;
           }
@@ -221,8 +234,8 @@ class Db extends \PDO
               $statement .= ' and ';
             }
 
-            if (\is_array($value['rel'])) {
-              $it_rel = new \CachingIterator(new \ArrayIterator($value['rel']), \CachingIterator::TOSTRING_USE_CURRENT);
+            if (is_array($value['rel'])) {
+              $it_rel = new CachingIterator(new ArrayIterator($value['rel']), CachingIterator::TOSTRING_USE_CURRENT);
 
               foreach ($it_rel as $rel) {
                 $statement .= $key . ' = ' . $rel;
@@ -261,7 +274,7 @@ class Db extends \PDO
       $counter = 0;
 
       foreach ($it_where as $value) {
-        if (\is_array($value)) {
+        if (is_array($value)) {
           if (isset($value['val'])) {
             $Q->bindValue(':cond_' . $counter, $value['val']);
           }
@@ -274,11 +287,11 @@ class Db extends \PDO
     }
 
     if (isset($cache)) {
-      if (!\is_array($cache)) {
+      if (!is_array($cache)) {
         $cache = [$cache];
       }
 
-      \call_user_func_array([$Q, 'setCache'], $cache);
+      call_user_func_array([$Q, 'setCache'], $cache);
     }
 
     $Q->execute();
@@ -300,7 +313,7 @@ class Db extends \PDO
     }
 
     if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
-      if ((\strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
+      if ((strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
         $table = ':table_' . $table;
       }
     }
@@ -309,7 +322,7 @@ class Db extends \PDO
       $statement = 'update ' . $table . ' set ';
 
       foreach ($data as $c => $v) {
-        if (\is_null($v)) {
+        if (is_null($v)) {
           $v = 'null';
         }
 
@@ -331,7 +344,7 @@ class Db extends \PDO
       $Q = $this->prepare($statement);
 
       foreach ($data as $c => $v) {
-        if ($v != 'now()' && $v !== 'null' && !\is_null($v)) {
+        if ($v != 'now()' && $v !== 'null' && !is_null($v)) {
           $Q->bindValue(':new_' . $c, $v);
         }
       }
@@ -349,7 +362,7 @@ class Db extends \PDO
       $statement = 'insert into ' . $table . ' (' . implode(', ', array_keys($data)) . ') values (';
 
       foreach ($data as $c => $v) {
-        if (\is_null($v)) {
+        if (is_null($v)) {
           $v = 'null';
         }
 
@@ -370,7 +383,7 @@ class Db extends \PDO
         $Q = $this->prepare($statement);
 
         foreach ($data as $c => $v) {
-          if ($v != 'now()' && $v !== 'null' && !\is_null($v)) {
+          if ($v != 'now()' && $v !== 'null' && !is_null($v)) {
             $Q->bindValue(':' . $c, $v);
           }
         }
@@ -393,7 +406,7 @@ class Db extends \PDO
   public function delete(string $table, array $where_condition = [], ?array $options = null): int
   {
     if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
-      if ((\strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
+      if ((strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
         $table = ':table_' . $table;
       }
     }
@@ -435,12 +448,12 @@ class Db extends \PDO
         $import_queries = file_get_contents($sql_file);
 
         if ($import_queries === false) {
-          throw new \Exception('CLICSHOPPING\Db::importSQL(): Cannot read SQL import file: ' . $sql_file);
+          throw new Exception('CLICSHOPPING\Db::importSQL(): Cannot read SQL import file: ' . $sql_file);
         }
       } else {
-        throw new \Exception('CLICSHOPPING\Db::importSQL(): SQL import file does not exist: ' . $sql_file);
+        throw new Exception('CLICSHOPPING\Db::importSQL(): SQL import file does not exist: ' . $sql_file);
       }
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       trigger_error($e->getMessage());
 
       return false;
@@ -449,14 +462,14 @@ class Db extends \PDO
     set_time_limit(0);
 
     $sql_queries = [];
-    $sql_length = \strlen($import_queries);
+    $sql_length = strlen($import_queries);
     $pos = strpos($import_queries, ';');
 
     for ($i = $pos; $i < $sql_length; $i++) {
 // remove comments
       if ((substr($import_queries, 0, 1) == '#') || (substr($import_queries, 0, 2) == '--')) {
         $import_queries = ltrim(substr($import_queries, strpos($import_queries, "\n")));
-        $sql_length = \strlen($import_queries);
+        $sql_length = strlen($import_queries);
         $i = strpos($import_queries, ';') - 1;
         continue;
       }
@@ -482,7 +495,7 @@ class Db extends \PDO
 
 // join the query before the comment appeared, with the rest of the dump
               $import_queries = $query . $import_queries;
-              $sql_length = \strlen($import_queries);
+              $sql_length = strlen($import_queries);
               $i = strpos($import_queries, ';') - 1;
               continue 2;
             }
@@ -522,7 +535,7 @@ class Db extends \PDO
           $sql_queries[] = trim($sql_query);
 
           $import_queries = ltrim(substr($import_queries, $i + 1));
-          $sql_length = \strlen($import_queries);
+          $sql_length = strlen($import_queries);
           $i = strpos($import_queries, ';') - 1;
         }
       }
@@ -779,9 +792,9 @@ class Db extends \PDO
    */
   public static function prepareInput(string $string): string
   {
-    if (\is_string($string)) {
+    if (is_string($string)) {
       return HTML::sanitize($string);
-    } elseif (\is_array($string)) {
+    } elseif (is_array($string)) {
       foreach ($string as $k => $v) {
         $string[$k] = static::prepareInput($v);
       }

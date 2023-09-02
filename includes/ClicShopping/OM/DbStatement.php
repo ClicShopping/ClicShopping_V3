@@ -10,6 +10,10 @@
 
 namespace ClicShopping\OM;
 
+use PDO;
+use function in_array;
+use function is_array;
+
 class DbStatement extends \PDOStatement
 {
   protected $pdo;
@@ -32,7 +36,7 @@ class DbStatement extends \PDOStatement
    * @param int $data_type
    * @return bool
    */
-  public function bindValue(string|int $parameter, mixed $value, int $data_type = \PDO::PARAM_STR): bool
+  public function bindValue(string|int $parameter, mixed $value, int $data_type = PDO::PARAM_STR): bool
   {
     return parent::bindValue($parameter, $value, $data_type);
   }
@@ -45,7 +49,7 @@ class DbStatement extends \PDOStatement
 // force type to int (see http://bugs.php.net/bug.php?id=44639)
   public function bindInt(string|int $parameter, string|int|null $value): bool
   {
-    return $this->bindValue($parameter, (int)$value, \PDO::PARAM_INT);
+    return $this->bindValue($parameter, (int)$value, PDO::PARAM_INT);
   }
 
   /**
@@ -56,7 +60,7 @@ class DbStatement extends \PDOStatement
 // force type to bool (see http://bugs.php.net/bug.php?id=44639)
   public function bindBool(string|int $parameter, bool $value): bool
   {
-    return $this->bindValue($parameter, (bool)$value, \PDO::PARAM_BOOL);
+    return $this->bindValue($parameter, (bool)$value, PDO::PARAM_BOOL);
   }
 
   /**
@@ -75,7 +79,7 @@ class DbStatement extends \PDOStatement
    */
   public function bindNull(string|int $parameter): bool
   {
-    return $this->bindValue($parameter, null, \PDO::PARAM_NULL);
+    return $this->bindValue($parameter, null, PDO::PARAM_NULL);
   }
 
   /**
@@ -153,8 +157,8 @@ class DbStatement extends \PDOStatement
    * @return mixed
    */
   public function fetch(
-    int $fetch_style = \PDO::FETCH_DEFAULT, //FETCH_ASSOC,
-    int $cursor_orientation = \PDO::FETCH_ORI_NEXT,
+    int $fetch_style = PDO::FETCH_DEFAULT, //FETCH_ASSOC,
+    int $cursor_orientation = PDO::FETCH_ORI_NEXT,
     int $cursor_offset = 0): bool|array
   {
     if ($this->cache_read === true) {
@@ -180,14 +184,14 @@ class DbStatement extends \PDOStatement
    * @param array $ctor_args
    * @return array
    */
-  public function fetchAll(?int $fetch_style = \PDO::FETCH_BOTH, mixed ...$args): array
+  public function fetchAll(?int $fetch_style = PDO::FETCH_BOTH, mixed ...$args): array
   {
     if ($this->cache_read === true) {
       $this->result = $this->cache_data;
     } else {
 // fetchAll() fails if second argument is passed in a fetch style that does not
 // use the optional argument
-      if (\in_array($fetch_style, array(\PDO::FETCH_COLUMN, \PDO::FETCH_CLASS, \PDO::FETCH_FUNC))) {
+      if (in_array($fetch_style, array(PDO::FETCH_COLUMN, PDO::FETCH_CLASS, PDO::FETCH_FUNC))) {
         $this->result = parent::fetchAll($fetch_style, $fetch_argument, $ctor_args);
       } else {
         $this->result = parent::fetchAll($fetch_style);
@@ -396,9 +400,9 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param \PDO $instance
+   * @param PDO $instance
    */
-  public function setPDO(\PDO $instance)
+  public function setPDO(PDO $instance)
   {
     $this->pdo = $instance;
   }
@@ -530,7 +534,7 @@ EOD;
    */
   public function __destruct()
   {
-    if (($this->cache_read === false) && isset($this->cache) && \is_array($this->cache_data)) {
+    if (($this->cache_read === false) && isset($this->cache) && is_array($this->cache_data)) {
       if ($this->cache_empty_results || (isset($this->cache_data[0]) && ($this->cache_data[0] !== false))) {
         $cache_data = $this->cache_data;
 

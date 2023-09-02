@@ -11,16 +11,18 @@
 namespace ClicShopping\OM\Is;
 
 use EmailChecker\EmailChecker;
+use function strlen;
+use const FILTER_VALIDATE_EMAIL;
 
 class EmailAddress implements \ClicShopping\OM\IsInterface
 {
   public static function execute($value, bool $check_dns = false): bool
   {
-    if (empty($value) || (\strlen($value) > 191)) {
+    if (empty($value) || (strlen($value) > 191)) {
       return false;
     }
 
-    if (filter_var($value, \FILTER_VALIDATE_EMAIL) === false) {
+    if (filter_var($value, FILTER_VALIDATE_EMAIL) === false) {
       return false;
     }
 

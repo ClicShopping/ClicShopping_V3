@@ -10,6 +10,9 @@
 
 namespace ClicShopping\OM;
 
+use Exception;
+use function call_user_func_array;
+
 class Is
 {
   public static function __callStatic(string $name, array $arguments): bool
@@ -18,11 +21,11 @@ class Is
 
     try {
       if (!class_exists($class)) {
-        throw new \Exception('ClicShopping\Is module class does not exist: ' . $class);
+        throw new Exception('ClicShopping\Is module class does not exist: ' . $class);
       }
 
       if (!is_subclass_of($class, 'ClicShopping\\OM\\IsInterface')) {
-        throw new \Exception('ClicShopping\Is module class does not implement ClicShopping\OM\IsInterface: ' . $class);
+        throw new Exception('ClicShopping\Is module class does not implement ClicShopping\OM\IsInterface: ' . $class);
       }
 
       $callable = [
@@ -31,9 +34,9 @@ class Is
       ];
 
       if (is_callable($callable)) {
-        return \call_user_func_array($callable, $arguments);
+        return call_user_func_array($callable, $arguments);
       }
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       trigger_error($e->getMessage());
     }
 

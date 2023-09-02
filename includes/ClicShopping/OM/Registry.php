@@ -10,6 +10,8 @@
 
 namespace ClicShopping\OM;
 
+use function array_slice;
+
 class Registry
 {
   protected static array $aliases = [];
@@ -34,10 +36,10 @@ class Registry
         $ns_array = explode('\\', $class);
 
         if (\count($ns_array) > 5) {
-          if (implode('\\', \array_slice($ns_array, 0, 4)) === 'ClicShopping\\Custom\\Sites') {
-            $registry_class = implode('\\', \array_slice($ns_array, 0, 5)) . '\\Registry\\' . $key;
-          } elseif (implode('\\', \array_slice($ns_array, 0, 4)) === 'ClicShopping\\Sites') {
-            $registry_class = implode('\\', \array_slice($ns_array, 0, 5)) . '\\Registry\\' . $key;
+          if (implode('\\', array_slice($ns_array, 0, 4)) === 'ClicShopping\\Custom\\Sites') {
+            $registry_class = implode('\\', array_slice($ns_array, 0, 5)) . '\\Registry\\' . $key;
+          } elseif (implode('\\', array_slice($ns_array, 0, 4)) === 'ClicShopping\\Sites') {
+            $registry_class = implode('\\', array_slice($ns_array, 0, 5)) . '\\Registry\\' . $key;
           }
         }
       }

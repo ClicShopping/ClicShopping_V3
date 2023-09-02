@@ -11,6 +11,17 @@
 namespace ClicShopping\OM;
 
 use ClicShopping\Service\Shop\SEFU;
+use DirectoryIterator;
+use PDO;
+use function array_slice;
+use function call_user_func_array;
+use function count;
+use function defined;
+use function func_get_args;
+use function function_exists;
+use function is_array;
+use function is_null;
+use function strlen;
 
 class CLICSHOPPING
 {
@@ -185,11 +196,11 @@ class CLICSHOPPING
     /*
      * remove index.php for the seo
      */
-    if (\is_null($page)) {
+    if (is_null($page)) {
       if (static::getSite() === 'ClicShoppingAdmin') {
         $page = static::getConfig('bootstrap_file');
       } else {
-        if ((\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') && (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
+        if ((defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') && (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
 //SEO with htaccess
 // force to remove seo htaccess if the customer is connected
           if (isset($_SESSION['login_customer_id'])) {
@@ -197,7 +208,7 @@ class CLICSHOPPING
           } else {
             $page = '';
           }
-        } elseif ((\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
+        } elseif ((defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
           $page = static::getConfig('bootstrap_file');
         } else {
           $page = static::getConfig('bootstrap_file');
@@ -251,7 +262,7 @@ class CLICSHOPPING
 
       $p = str_replace($search, $replace, $p);
 //xss patch
-      if ((\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'false')) {
+      if ((defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'false')) {
         $p = htmlspecialchars($p);
       }
 
@@ -270,7 +281,7 @@ class CLICSHOPPING
       $CLICSHOPPING_Session = Registry::get('Session');
 
       if ($CLICSHOPPING_Session->hasStarted() && ($CLICSHOPPING_Session->isForceCookies() === false)) {
-        if ((\strlen(SID) > 0) || (((HTTP::getRequestType() == 'NONSSL') && (parse_url(static::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'https')) || ((HTTP::getRequestType() == 'SSL') && (parse_url(static::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'http')))) {
+        if ((strlen(SID) > 0) || (((HTTP::getRequestType() == 'NONSSL') && (parse_url(static::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'https')) || ((HTTP::getRequestType() == 'SSL') && (parse_url(static::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'http')))) {
           $link .= $separator . HTML::sanitize(session_name() . '=' . session_id());
         }
       }
@@ -286,7 +297,7 @@ class CLICSHOPPING
 
     if (static::getSite() === 'Shop') {
 //SEO with htaccess
-      if ($search_engine_safe === true && SEFU::start() && \defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true' && (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
+      if ($search_engine_safe === true && SEFU::start() && defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true' && (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
 //SEO with htaccess
 // remove seo htaccess if the customer is connected
         if (isset($_SESSION['login_customer_id'])) {
@@ -294,7 +305,7 @@ class CLICSHOPPING
         } else {
           $link = str_replace(['?', '&', '='], ['', '/', '-'], $link);
         }
-      } elseif ($search_engine_safe === true && SEFU::start() && (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
+      } elseif ($search_engine_safe === true && SEFU::start() && (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
         $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
       }
     }
@@ -307,7 +318,7 @@ class CLICSHOPPING
    */
   public static function linkImage(): string
   {
-    $args = \func_get_args();
+    $args = func_get_args();
 
     if (!isset($args[0])) {
       $args[0] = null;
@@ -339,7 +350,7 @@ class CLICSHOPPING
    */
   public static function linkPublic(): string
   {
-    $args = \func_get_args();
+    $args = func_get_args();
 
     if (!isset($args[0])) {
       $args[0] = null;
@@ -372,7 +383,7 @@ class CLICSHOPPING
    */
   public static function redirect(): string
   {
-    $args = \func_get_args();
+    $args = func_get_args();
 
     $url = forward_static_call_array('static::link', $args);
 
@@ -386,15 +397,13 @@ class CLICSHOPPING
   /**
    * Return a language definition
    *
-   * @param string $key The language definition to return
-   * @param array $values Replace keywords with values
    * @return string The language definition
    */
   public static function getDef(): string
   {
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    return \call_user_func_array([$CLICSHOPPING_Language, 'getDef'], \func_get_args());
+    return call_user_func_array([$CLICSHOPPING_Language, 'getDef'], func_get_args());
   }
 
   /**
@@ -403,7 +412,7 @@ class CLICSHOPPING
    */
   public static function hasRoute(array $path): bool
   {
-    return \array_slice(array_keys($_GET), 0, \count($path)) == $path;
+    return array_slice(array_keys($_GET), 0, count($path)) == $path;
   }
 
   /**
@@ -511,7 +520,7 @@ class CLICSHOPPING
   {
     $prefix = 'ClicShopping\\';
 
-    if (strncmp($prefix, $class, \strlen($prefix)) !== 0) {
+    if (strncmp($prefix, $class, strlen($prefix)) !== 0) {
       $class_path = str_replace('\\', '/', $class);
 
       $file = static::BASE_DIR . 'External' . '/' . $class_path . '.php';
@@ -528,7 +537,7 @@ class CLICSHOPPING
       ];
 
       foreach ($site_dirs as $site_dir) {
-        $dir = new \DirectoryIterator(static::BASE_DIR . $site_dir);
+        $dir = new DirectoryIterator(static::BASE_DIR . $site_dir);
 
         foreach ($dir as $f) {
           if (!$f->isDot() && $f->isDir()) {
@@ -546,7 +555,7 @@ class CLICSHOPPING
       return false;
     }
 
-    if (strncmp($prefix . 'OM\Module\\', $class, \strlen($prefix . 'OM\Module\\')) === 0) { // TODO remove and fix namespace
+    if (strncmp($prefix . 'OM\Module\\', $class, strlen($prefix . 'OM\Module\\')) === 0) { // TODO remove and fix namespace
       $file = dirname(static::BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['', '/'], $class) . '.php';
       $custom = dirname(static::BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['ClicShopping\Custom\OM\\', '/'], $class) . '.php';
     } else {
@@ -589,13 +598,13 @@ class CLICSHOPPING
       }
     } else {
       if (!empty($_GET)) {
-        $key = key(\array_slice($_GET, 0, 1, true));
+        $key = key(array_slice($_GET, 0, 1, true));
 
         if (isset($key)) {
           $requested_application = HTML::sanitize(basename($key));
 
           if ($requested_application == static::getSite()) {
-            $key = key(\array_slice($_GET, 1, 1, true));
+            $key = key(array_slice($_GET, 1, 1, true));
 
             if (isset($key)) {
 
@@ -629,7 +638,7 @@ class CLICSHOPPING
    */
   public static function getAllGET($exclude = null)
   {
-    if (!\is_array($exclude)) {
+    if (!is_array($exclude)) {
       if (!empty($exclude)) {
         $exclude = [$exclude];
       } else {
@@ -649,7 +658,7 @@ class CLICSHOPPING
 
     $exclude = array_merge($exclude, $array);
 
-    if (\is_array($_GET)) {
+    if (is_array($_GET)) {
       foreach ($_GET as $key => $value) {
         if (!\in_array($key, $exclude, true)) {
           $params .= $key . (!empty($value) ? '=' . $value : '') . '&';
@@ -670,7 +679,7 @@ class CLICSHOPPING
   public static function getIndex(): string
   {
     $req = parse_url($_SERVER['SCRIPT_NAME']);
-    $result = substr($req['path'], \strlen(static::getConfig('http_path', 'Shop')));
+    $result = substr($req['path'], strlen(static::getConfig('http_path', 'Shop')));
 
     return $result;
   }
@@ -695,20 +704,20 @@ class CLICSHOPPING
    */
   public static function arrayToString(array $array, string|array $exclude = '', string|array $equals = '=', string $separator = '&'): ?string
   {
-    if (!\is_array($exclude)) {
+    if (!is_array($exclude)) {
       $exclude = [];
     }
 
     $get_string = '';
 
-    if (\is_array($array)) {
+    if (is_array($array)) {
       foreach ($array as $key => $value) {
         if ((!\in_array($key, $exclude, true)) && ($key != 'x') && ($key != 'y')) {
           $get_string .= $key . $equals . $value . $separator;
         }
       }
 
-      $remove_chars = \strlen($separator);
+      $remove_chars = strlen($separator);
       $get_string = substr($get_string, 0, -$remove_chars);
     }
 
@@ -751,7 +760,7 @@ class CLICSHOPPING
     ];
 
     $data['mysql'] = [
-      'version' => $CLICSHOPPING_Db->getAttribute(\PDO::ATTR_SERVER_VERSION),
+      'version' => $CLICSHOPPING_Db->getAttribute(PDO::ATTR_SERVER_VERSION),
       'date' => $Qdate->value('datetime')
     ];
 
@@ -759,7 +768,7 @@ class CLICSHOPPING
       'version' => PHP_VERSION,
       'zend' => zend_version(),
       'sapi' => PHP_SAPI,
-      'int_size' => \defined('PHP_INT_SIZE') ? PHP_INT_SIZE : '',
+      'int_size' => defined('PHP_INT_SIZE') ? PHP_INT_SIZE : '',
       'open_basedir' => (int)@ini_get('open_basedir'),
       'memory_limit' => @ini_get('memory_limit'),
       'error_reporting' => error_reporting(),
@@ -772,7 +781,7 @@ class CLICSHOPPING
       'disable_classes' => @ini_get('disable_classes'),
       'filter.default' => @ini_get('filter.default'),
       'unicode.semantics' => (int)@ini_get('unicode.semantics'),
-      'zend_thread_safty' => (int)\function_exists('zend_thread_id'),
+      'zend_thread_safty' => (int)function_exists('zend_thread_id'),
       'extensions' => get_loaded_extensions()
     ];
 
@@ -788,7 +797,7 @@ class CLICSHOPPING
   public static function utf8Decode(string $string): string
   {
     $s = $string;
-    $len = \strlen($s);
+    $len = strlen($s);
 
     for ($i = 0, $j = 0; $i < $len; ++$i, ++$j) {
       switch ($s[$i] & "\xF0") {

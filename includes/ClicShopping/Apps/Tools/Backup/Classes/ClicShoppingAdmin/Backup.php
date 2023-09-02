@@ -12,13 +12,12 @@ namespace ClicShopping\Apps\Tools\Backup\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use function defined;
+use function strlen;
 
 class Backup
 {
-  /**
-   *
-   */
-  public static function backupNow()
+  public static function backupNow(): void
   {
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -73,11 +72,11 @@ class Backup
 
         $schema .= '  ' . $Qfields->value('Field') . ' ' . $Qfields->value('Type');
 
-        if (\strlen($Qfields->value('Default')) > 0) $schema .= ' default \'' . $Qfields->value('Default') . '\'';
+        if (strlen($Qfields->value('Default')) > 0) $schema .= ' default \'' . $Qfields->value('Default') . '\'';
 
         if ($Qfields->value('Null') != 'YES') $schema .= ' not null';
 
-        if (\strlen($Qfields->value('Extra')) > 0) $schema .= ' ' . $Qfields->value('Extra');
+        if (strlen($Qfields->value('Extra')) > 0) $schema .= ' ' . $Qfields->value('Extra');
 
         $schema .= ',' . "\n";
       }
@@ -155,7 +154,7 @@ class Backup
       $compress = 'gzip';
     }
 
-    if (!\defined('LOCAL_EXE_GZIP')) {
+    if (!defined('LOCAL_EXE_GZIP')) {
       define('LOCAL_EXE_GZIP', 'gzip');
     }
 

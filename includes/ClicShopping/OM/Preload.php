@@ -12,6 +12,9 @@
 namespace ClicShopping\OM;
 
 use DarkGhostHunter\Preloader\Preloader;
+use SplFileObject;
+use function func_get_args;
+use function in_array;
 
 class Preload
 {
@@ -69,7 +72,7 @@ class Preload
     self::$ext_filter = false;
 
 // Check we have minimum parameters
-    if (!$args = \func_get_args()) {
+    if (!$args = func_get_args()) {
       die('Must provide a path string or array of path strings');
     }
 
@@ -137,7 +140,7 @@ class Preload
 
     if (is_dir($this->workdir)) {
       foreach ((new Finder())->files()->in(static::$work_dir) as $file) {
-        /** @var \SplFileObject $file */
+        assert($file instanceof SplFileObject);
         unlink($file->getRealPath());
       }
 
@@ -162,7 +165,7 @@ class Preload
       }
 
       if (is_file($dir . DIRECTORY_SEPARATOR . $value)) {
-        if (!self::$ext_filter || \in_array(mb_strtolower(pathinfo($dir . DIRECTORY_SEPARATOR . $value, PATHINFO_EXTENSION)), self::$ext_filter, true)) {
+        if (!self::$ext_filter || in_array(mb_strtolower(pathinfo($dir . DIRECTORY_SEPARATOR . $value, PATHINFO_EXTENSION)), self::$ext_filter, true)) {
           self::$files[] = $result[] = $dir . DIRECTORY_SEPARATOR . $value;
         }
         continue;

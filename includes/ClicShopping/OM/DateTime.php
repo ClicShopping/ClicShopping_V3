@@ -10,6 +10,10 @@
 
 namespace ClicShopping\OM;
 
+use DateTimeZone;
+use function count;
+use function strlen;
+
 class DateTime
 {
   protected $datetime = false;
@@ -213,7 +217,7 @@ class DateTime
   {
     $time_zones_array = [];
 
-    foreach (\DateTimeZone::listIdentifiers() as $id) {
+    foreach (DateTimeZone::listIdentifiers() as $id) {
       $tz_string = str_replace('_', ' ', $id);
 
       $id_array = explode('/', $tz_string, 2);
@@ -362,11 +366,11 @@ class DateTime
 
     $format_string = mb_strtolower($format_string);
 
-    if (\strlen($date_to_check) != \strlen($format_string)) {
+    if (strlen($date_to_check) != strlen($format_string)) {
       return false;
     }
 
-    $size = \count($separators);
+    $size = count($separators);
 
     for ($i = 0; $i < $size; $i++) {
       $pos_separator = strpos($date_to_check, $separators[$i]);
@@ -393,17 +397,17 @@ class DateTime
     if ($date_separator_idx != -1) {
       $format_string_array = explode($separators[$date_separator_idx], $format_string);
 
-      if (\count($format_string_array) != 3) {
+      if (count($format_string_array) != 3) {
         return false;
       }
 
       $date_to_check_array = explode($separators[$date_separator_idx], $date_to_check);
 
-      if (\count($date_to_check_array) != 3) {
+      if (count($date_to_check_array) != 3) {
         return false;
       }
 
-      $size = \count($format_string_array);
+      $size = count($format_string_array);
 
       for ($i = 0; $i < $size; $i++) {
         if ($format_string_array[$i] == 'mm' || $format_string_array[$i] == 'mmm') $month = $date_to_check_array[$i];
@@ -411,12 +415,12 @@ class DateTime
         if (($format_string_array[$i] == 'yyyy') || ($format_string_array[$i] == 'aaaa')) $year = $date_to_check_array[$i];
       }
     } else {
-      if (\strlen($format_string) == 8 || \strlen($format_string) == 9) {
+      if (strlen($format_string) == 8 || strlen($format_string) == 9) {
         $pos_month = strpos($format_string, 'mmm');
 
         if ($pos_month !== false) {
           $month = substr($date_to_check, $pos_month, 3);
-          $size = \count($month_abbr);
+          $size = count($month_abbr);
 
           for ($i = 0; $i < $size; $i++) {
             if ($month == $month_abbr[$i]) {
@@ -435,7 +439,7 @@ class DateTime
       $year = substr($date_to_check, strpos($format_string, 'yyyy'), 4);
     }
 
-    if (\strlen($year) != 4) {
+    if (strlen($year) != 4) {
       return false;
     }
 

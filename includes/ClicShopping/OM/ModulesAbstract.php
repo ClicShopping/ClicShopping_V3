@@ -10,6 +10,8 @@
 
 namespace ClicShopping\OM;
 
+use ReflectionClass;
+
 abstract class ModulesAbstract
 {
   public string $code;
@@ -22,7 +24,7 @@ abstract class ModulesAbstract
 
   final public function __construct()
   {
-    $this->code = (new \ReflectionClass($this))->getShortName();
+    $this->code = (new ReflectionClass($this))->getShortName();
 
     $this->init();
   }

@@ -111,12 +111,12 @@ class Banner
    * Display a banner. If no ID is passed, the value defined in $_exists_id is
    * used.
    *
-   * @param int $action of the banner (dynamic or static)
-   * @param string $identifier of the banner to show
+   * @param $action of the banner (dynamic or static)
+   * @param $identifier of the banner to show
    *
-   * @return string
+   * @return array
    */
-  public static function displayBanner($action, string $identifier)
+  public static function displayBanner($action, $identifier)
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -268,18 +268,17 @@ class Banner
    * Check if an existing banner is active
    *
    * @param $action
-   * @param string $identifier
-   * @return boolean
+   * @param $identifier
+   * @return 
    */
 
-  public static function bannerExists($action, string $identifier)
+  public static function bannerExists($action, $identifier)
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
 
     if ($action == 'dynamic') {
-
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
         $Qbanners = $CLICSHOPPING_Db->prepare('select banners_id,
                                                         banners_title,

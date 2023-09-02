@@ -16,16 +16,12 @@ use ClicShopping\OM\Registry;
 
 class ReturnOrderStatus
 {
-
-  protected $return_orders_status_id;
-  protected $language_id;
-
   /**
    * the status name
    *
-   * @param string $return_orders_status_id , $language_id
+   * @param int $return_orders_status_id , $language_id
+   * @param int $language_id
    * @return string $orders_status['name'],  name of the status
-   *
    */
   public static function getReturnOrdersStatusName(int $return_orders_status_id, int $language_id): string
   {
@@ -43,11 +39,10 @@ class ReturnOrderStatus
    * Get DropDown orders Status
    *
    * @param string $name
-   * @param null $id
+   * @param int|null $id
    * @param string $displays_all_orders_status
    * @return string status order
    */
-
   public static function getDropDownReturnOrderStatus(string $name = 'dropdown_status', $id = null, string $displays_all_orders_status = 'yes'): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -64,9 +59,15 @@ class ReturnOrderStatus
     $QordersStatus->execute();
 
     if (isset($displays_all_orders_status)) {
-      $orders_statuses[] = ['id' => '0', 'text' => CLICSHOPPING::getDef('text_all_orders')];
+      $orders_statuses[] = [
+        'id' => '0',
+        'text' => CLICSHOPPING::getDef('text_all_orders')
+      ];
     } else {
-      $orders_statuses[] = ['id' => '0', 'text' => CLICSHOPPING::getDef('text_select')];
+      $orders_statuses[] = [
+        'id' => '0',
+        'text' => CLICSHOPPING::getDef('text_select')
+      ];
     }
 
     while ($QordersStatus->fetch() !== false) {

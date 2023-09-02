@@ -10,6 +10,9 @@
 
 namespace ClicShopping\OM;
 
+use function call_user_func;
+use function in_array;
+
 class Service
 {
   protected array $_services = [];
@@ -81,7 +84,7 @@ class Service
   {
     if (CLICSHOPPING::getSite() === 'Shop') {
       if (class_exists('ClicShopping\\Service\\Shop\\' . $service)) {
-        if (\call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'start'))) {
+        if (call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'start'))) {
           $this->_started_services[] = $service;
         }
       } else {
@@ -89,7 +92,7 @@ class Service
       }
     } else {
       if (class_exists('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service)) {
-        if (\call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'start'))) {
+        if (call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'start'))) {
           $this->_started_services[] = $service;
         }
       } else {
@@ -105,11 +108,11 @@ class Service
   {
     if (CLICSHOPPING::getSite() === 'Shop') {
       if ($this->isStarted($service)) {
-        \call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'stop'));
+        call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'stop'));
       }
     } else {
       if ($this->isStarted($service)) {
-        \call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'stop'));
+        call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'stop'));
       }
     }
   }
@@ -120,7 +123,7 @@ class Service
    */
   public function isStarted(string $service): bool
   {
-    return \in_array($service, $this->_started_services, true);
+    return in_array($service, $this->_started_services, true);
   }
 
   /**

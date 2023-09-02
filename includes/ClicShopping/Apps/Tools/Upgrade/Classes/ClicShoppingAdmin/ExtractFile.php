@@ -16,6 +16,8 @@ use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Tools\Upgrade\Upgrade as UpgradeApp;
 use ClicShopping\Sites\ClicShoppingAdmin\ModuleDownload;
+use RuntimeException;
+use ZipArchive;
 
 class ExtractFile
 {
@@ -51,7 +53,7 @@ class ExtractFile
    */
   private function getExtractZip(string $source, string $destination): bool
   {
-    $zip = new \ZipArchive;
+    $zip = new ZipArchive;
 
     if ($zip->open($source) === true) {
       $zip->extractTo($destination);
@@ -87,7 +89,7 @@ class ExtractFile
   {
     if (!is_dir($this->saveFileFromGithub)) {
       if (!mkdir($concurrentDirectory = $this->saveFileFromGithub, 0777, true) && !is_dir($concurrentDirectory)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
       }
       return true;
     } elseif (FileSystem::isWritable($this->saveFileFromGithub)) {
@@ -98,7 +100,7 @@ class ExtractFile
 
     if (!is_dir($this->cacheGithub)) {
       if (!mkdir($concurrentDirectory = $this->cacheGithub, 0777, true) && !is_dir($concurrentDirectory)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
       }
       return true;
     } elseif (FileSystem::isWritable($this->cacheGithub)) {
@@ -109,7 +111,7 @@ class ExtractFile
 
     if (!is_dir($this->cacheGithubTemp)) {
       if (!mkdir($concurrentDirectory = $this->cacheGithubTemp, 0777, true) && !is_dir($concurrentDirectory)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
       }
       return true;
     } elseif (FileSystem::isWritable($this->cacheGithubTemp)) {

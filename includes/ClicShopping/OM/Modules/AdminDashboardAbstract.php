@@ -11,6 +11,7 @@
 namespace ClicShopping\OM\Modules;
 
 use ClicShopping\OM\Registry;
+use ReflectionClass;
 
 abstract class AdminDashboardAbstract implements \ClicShopping\OM\Modules\AdminDashboardInterface
 {
@@ -32,7 +33,7 @@ abstract class AdminDashboardAbstract implements \ClicShopping\OM\Modules\AdminD
 
   final public function __construct()
   {
-    $this->code = (new \ReflectionClass($this))->getShortName();
+    $this->code = (new ReflectionClass($this))->getShortName();
 
     $this->db = Registry::get('Db');
 

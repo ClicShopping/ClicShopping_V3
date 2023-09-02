@@ -13,6 +13,9 @@ namespace ClicShopping\Apps\Tools\EditDesign\Classes;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use function in_array;
 
 class Css
 {
@@ -44,12 +47,12 @@ class Css
     $found = []; // Traverse the folder, and add filename to $found array if type matches
 
     /* if empty error is produced : Fatal error: Uncaught exception 'RuntimeException'*/
-    $file_array = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory_selected));
+    $file_array = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory_selected));
 
     foreach ($file_array as $filename => $current) {
       $fileInfo = pathinfo($current->getFileName());
 
-      if (array_key_exists('extension', $fileInfo) && \in_array($fileInfo['extension'], $fileTypes)) {
+      if (array_key_exists('extension', $fileInfo) && in_array($fileInfo['extension'], $fileTypes)) {
         $found[] = $current->getFileName();
       }
     }

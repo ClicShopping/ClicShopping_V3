@@ -10,6 +10,14 @@
 
 namespace ClicShopping\OM;
 
+use DirectoryIterator;
+use ReflectionClass;
+use function call_user_func;
+use function call_user_func_array;
+use function defined;
+use function func_get_args;
+use function is_null;
+
 abstract class AppAbstract
 {
   public string $code;
@@ -37,7 +45,7 @@ abstract class AppAbstract
    */
   final public function link(): string
   {
-    $args = \func_get_args();
+    $args = func_get_args();
 
     $parameters = 'A&' . $this->vendor . '\\' . $this->code;
 
@@ -60,7 +68,7 @@ abstract class AppAbstract
    */
   final public function redirect(): string
   {
-    $args = \func_get_args();
+    $args = func_get_args();
 
     $parameters = 'A&' . $this->vendor . '\\' . $this->code;
 
@@ -132,7 +140,7 @@ abstract class AppAbstract
    */
   private function setInfo()
   {
-    $r = new \ReflectionClass($this);
+    $r = new ReflectionClass($this);
 
     $this->code = $r->getShortName();
     $this->vendor = \array_slice(explode('\\', $r->getNamespaceName()), -2, 1)[0];
@@ -158,7 +166,7 @@ abstract class AppAbstract
    */
   final public function getDef(): string
   {
-    $args = \func_get_args();
+    $args = func_get_args();
 
     if (!isset($args[0])) {
       $args[0] = null;
@@ -172,12 +180,12 @@ abstract class AppAbstract
       $args[2] = $this->vendor . '-' . $this->code;
     }
 
-    return \call_user_func_array([$this->lang, 'getDef'], $args);
+    return call_user_func_array([$this->lang, 'getDef'], $args);
   }
 
   /**
-   * @param $group
-   * @param null $language_code
+   * @param string $group
+   * @param string|null $language_code
    * @return bool|mixed
    */
   final public function definitionsExist(string $group, ?string $language_code = null)
@@ -191,7 +199,7 @@ abstract class AppAbstract
     }
 
     if ($language_code != DEFAULT_LANGUAGE) {
-      return \call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
+      return call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
     }
 
     return false;
@@ -232,11 +240,11 @@ abstract class AppAbstract
    */
   final public function saveCfgParam($key, $value, $title = null, $description = null, $set_func = null): void
   {
-    if (\is_null($value)) {
+    if (is_null($value)) {
       $value = '';
     }
 
-    if (!\defined($key)) {
+    if (!defined($key)) {
       if (!isset($title)) {
         $title = 'Parameter [' . $this->getTitle() . ']';
       }
@@ -290,7 +298,7 @@ abstract class AppAbstract
 
   final public function getConfigApps(array $result, string $directory, string $name_space_config, string $trigger_message): void
   {
-    if ($dir = new \DirectoryIterator($directory)) {
+    if ($dir = new DirectoryIterator($directory)) {
       foreach ($dir as $file) {
         if (!$file->isDot() && $file->isDir() && is_file($file->getPathname() . '/' . $file->getFilename() . '.php')) {
           $class = '' . $name_space_config . '\\' . $file->getFilename() . '\\' . $file->getFilename();

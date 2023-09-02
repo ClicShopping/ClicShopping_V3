@@ -10,6 +10,11 @@
 
 namespace ClicShopping\OM;
 
+use DirectoryIterator;
+use ReflectionFunction;
+use function call_user_func_array;
+use function is_string;
+
 class Hooks
 {
   protected ?string $site;
@@ -58,14 +63,14 @@ class Hooks
     foreach ($calls as $code) {
       $bait = null;
 
-      if (\is_string($code)) {
+      if (is_string($code)) {
         $class = Apps::getModuleClass($code, 'Hooks');
 
         $obj = new $class();
 
         $bait = $obj->$action($parameters);
       } else {
-        $ref = new \ReflectionFunction($code);
+        $ref = new ReflectionFunction($code);
 
         if ($ref->isClosure()) {
           $bait = $code($parameters);
@@ -85,7 +90,7 @@ class Hooks
    */
   public function output(): string
   {
-    return implode('', \call_user_func_array([$this, 'call'], \func_get_args()));
+    return implode('', call_user_func_array([$this, 'call'], \func_get_args()));
   }
 
   /**
@@ -113,7 +118,7 @@ class Hooks
     $directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/' . $this->site . '/' . $group;
 
     if (is_dir($directory)) {
-      if ($dir = new \DirectoryIterator($directory)) {
+      if ($dir = new DirectoryIterator($directory)) {
         foreach ($dir as $file) {
           if (!$file->isDot() && !$file->isDir() && ($file->getExtension() == 'php') && ($file->getBasename('.php') == $hook)) {
             $class = 'ClicShopping\OM\Module\Hooks\\' . $this->site . '\\' . $group . '\\' . $hook;

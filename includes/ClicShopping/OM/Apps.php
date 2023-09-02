@@ -10,6 +10,9 @@
 
 namespace ClicShopping\OM;
 
+use DirectoryIterator;
+use function call_user_func;
+
 class Apps
 {
 
@@ -22,10 +25,10 @@ class Apps
 
     $apps_directory = CLICSHOPPING::BASE_DIR . 'Apps';
 
-    if ($vdir = new \DirectoryIterator($apps_directory)) {
+    if ($vdir = new DirectoryIterator($apps_directory)) {
       foreach ($vdir as $vendor) {
         if (!$vendor->isDot() && $vendor->isDir()) {
-          if ($adir = new \DirectoryIterator($vendor->getPath() . '/' . $vendor->getFilename())) {
+          if ($adir = new DirectoryIterator($vendor->getPath() . '/' . $vendor->getFilename())) {
             foreach ($adir as $app) {
               if (!$app->isDot() && $app->isDir() && static::exists($vendor->getFilename() . '\\' . $app->getFilename())) {
                 if (($json = static::getInfo($vendor->getFilename() . '\\' . $app->getFilename())) !== false) {
@@ -77,10 +80,10 @@ class Apps
     $vendor_directory = CLICSHOPPING::BASE_DIR . 'Apps';
 
     if (is_dir($vendor_directory)) {
-      if ($vdir = new \DirectoryIterator($vendor_directory)) {
+      if ($vdir = new DirectoryIterator($vendor_directory)) {
         foreach ($vdir as $vendor) {
           if (!$vendor->isDot() && $vendor->isDir() && (!isset($filter_vendor) || ($vendor->getFilename() == $filter_vendor))) {
-            if ($adir = new \DirectoryIterator($vendor->getPath() . '/' . $vendor->getFilename())) {
+            if ($adir = new DirectoryIterator($vendor->getPath() . '/' . $vendor->getFilename())) {
               foreach ($adir as $app) {
                 if (!$app->isDot() && $app->isDir() && (!isset($filter_app) || ($app->getFilename() == $filter_app)) && static::exists($vendor->getFilename() . '\\' . $app->getFilename()) && (($json = static::getInfo($vendor->getFilename() . '\\' . $app->getFilename())) !== false)) {
                   if (isset($json['modules'][$type])) {
@@ -240,10 +243,10 @@ class Apps
     $vendor_directory = CLICSHOPPING::BASE_DIR . 'Apps';
 
     if (is_dir($vendor_directory)) {
-      if ($vdir = new \DirectoryIterator($vendor_directory)) {
+      if ($vdir = new DirectoryIterator($vendor_directory)) {
         foreach ($vdir as $vendor) {
           if (!$vendor->isDot() && $vendor->isDir() && (!isset($filter_vendor) || ($vendor->getFilename() == $filter_vendor))) {
-            if ($adir = new \DirectoryIterator($vendor->getPath() . '/' . $vendor->getFilename())) {
+            if ($adir = new DirectoryIterator($vendor->getPath() . '/' . $vendor->getFilename())) {
 
               foreach ($adir as $app) {
                 if (!$app->isDot() && $app->isDir() && (!isset($filter_app) || ($app->getFilename() == $filter_app)) && static::exists($vendor->getFilename() . '\\' . $app->getFilename()) && (($json = static::getInfo($vendor->getFilename() . '\\' . $app->getFilename())) !== false)) {
@@ -258,7 +261,7 @@ class Apps
       }
     }
 
-    return \call_user_func(['ClicShopping\Sites\\' . CLICSHOPPING::getSite() . '\\' . CLICSHOPPING::getSite(),
+    return call_user_func(['ClicShopping\Sites\\' . CLICSHOPPING::getSite() . '\\' . CLICSHOPPING::getSite(),
       'resolveRoute'
     ],
       $route, $routes

@@ -10,13 +10,19 @@
 
 namespace ClicShopping\OM;
 
+use Exception;
+use PasswordHash;
+use function count;
+use function in_array;
+use function strlen;
+
 class Hash
 {
   /**
    * @param $plain
    * @param null|string $algo
    * @return bool|string
-   * @throws \Exception
+   * @throws Exception
    */
   public static function encrypt(string $plain, ?string $algo = null)
   {
@@ -37,7 +43,7 @@ class Hash
         include_once(CLICSHOPPING::BASE_DIR . 'External/PasswordHash.php');
       }
 
-      $hasher = new \PasswordHash(10, true);
+      $hasher = new PasswordHash(10, true);
 
       return $hasher->HashPassword($plain);
     }
@@ -64,21 +70,20 @@ class Hash
   /**
    * @param string $plain
    * @param string $hash
-   * @param string|null $driver
    * @return bool
    */
   public static function verify(string $plain, string $hash): bool
   {
     $result = false;
 
-    if ((\strlen($plain) > 0) && (\strlen($hash) > 0)) {
+    if ((strlen($plain) > 0) && (strlen($hash) > 0)) {
       switch (static::getType($hash)) {
         case 'phpass':
           if (!class_exists('PasswordHash', false)) {
             include_once(BASE_DIR . 'external/PasswordHash.php');
           }
 
-          $hasher = new \PasswordHash(10, true);
+          $hasher = new PasswordHash(10, true);
 
           $result = $hasher->checkPassword($plain, $hash);
 
@@ -88,7 +93,7 @@ class Hash
           // split apart the hash / salt
           $stack = explode(':', $hash, 2);
 
-          if (\count($stack) === 2) {
+          if (count($stack) === 2) {
             $result = (md5($stack[1] . $plain) === $stack[0]);
           } else {
             $result = false;
@@ -158,7 +163,7 @@ class Hash
    * @param null $max
    * @param bool $secure
    * @return int
-   * @throws \Exception
+   * @throws Exception
    */
   public static function getRandomInt($min = null, $max = null, bool $secure = true)
   {
@@ -172,7 +177,7 @@ class Hash
 
     try {
       $result = random_int($min, $max);
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       if ($secure === true) {
         throw $e;
       }
@@ -184,14 +189,14 @@ class Hash
   }
 
   /**
-   * @param $length
+   * @param int $length
    * @param string $type
-   * @return bool|string
-   * @throws \Exception
+   * @return string
+   * @throws Exception
    */
   public static function getRandomString(int $length, string $type = 'mixed'): string
   {
-    if (!\in_array($type, [
+    if (!in_array($type, [
       'mixed',
       'chars',
       'digits'
@@ -219,16 +224,16 @@ class Hash
     do {
       $random = base64_encode(static::getRandomBytes($length));
 
-      for ($i = 0, $n = \strlen($random); $i < $n; $i++) {
+      for ($i = 0, $n = strlen($random); $i < $n; $i++) {
         $char = substr($random, $i, 1);
 
         if (str_contains($base, $char)) {
           $rand_value .= $char;
         }
       }
-    } while (\strlen($rand_value) < $length);
+    } while (strlen($rand_value) < $length);
 
-    if (\strlen($rand_value) > $length) {
+    if (strlen($rand_value) > $length) {
       $rand_value = substr($rand_value, 0, $length);
     }
 
@@ -239,13 +244,13 @@ class Hash
    * @param $length
    * @param bool $secure
    * @return bool|string|void
-   * @throws \Exception
+   * @throws Exception
    */
   public static function getRandomBytes(int $length, bool $secure = true)
   {
     try {
       $result = random_bytes($length);
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       if ($secure === true) {
         throw $e;
       }

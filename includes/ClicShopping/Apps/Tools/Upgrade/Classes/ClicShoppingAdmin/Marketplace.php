@@ -8,16 +8,11 @@
  *
  */
 
-
-//https://aaronparecki.com/oauth-2-simplified/#web-server-apps
-//https://invisioncommunity.com/developers/rest-api/index/
-//https://www.invisionboard.fr/forums/topic/65167-43-sign-in-from-other-sites-using-oauth/
-//https://invisioncommunity.com/search/?&q=oauth&page=5&quick=1&search_and_or=or&sortby=relevancy
-//https://backstage.forgerock.com/knowledge/kb/article/a45882528
-
 namespace ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
+use function count;
+use function is_array;
 
 class Marketplace
 {
@@ -330,11 +325,11 @@ class Marketplace
    */
   public function getLabelTree(int|string $parent_id = '0', string $spacing = '', array|string $exclude = '', array|string $category_tree_array = '', bool $include_itself = false): array
   {
-    if (!\is_array($category_tree_array)) {
+    if (!is_array($category_tree_array)) {
       $category_tree_array = [];
     }
 
-    if ((\count($category_tree_array) < 1) && ($exclude != '0')) {
+    if ((count($category_tree_array) < 1) && ($exclude != '0')) {
       $category_tree_array[] = [
         'id' => '0',
         'text' => $this->upgrade->getDef('text_top')

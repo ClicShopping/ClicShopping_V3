@@ -10,6 +10,9 @@
 
 namespace ClicShopping\OM;
 
+use function in_array;
+use function is_array;
+
 class Upload
 {
   protected $_file;
@@ -94,7 +97,7 @@ class Upload
 
     if (!empty($this->_upload)) {
       if (!empty($this->_extensions)) {
-        if (!\in_array(mb_strtolower(substr($this->_upload['name'], strrpos($this->_upload['name'], '.') + 1)), $this->_extensions)) {
+        if (!in_array(mb_strtolower(substr($this->_upload['name'], strrpos($this->_upload['name'], '.') + 1)), $this->_extensions)) {
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_filetype_not_allowed') . implode(', ', $this->_extensions), 'warning');
 
           return false;
@@ -168,7 +171,7 @@ class Upload
    */
   public function addExtensions($extensions)
   {
-    if (!\is_array($extensions)) {
+    if (!is_array($extensions)) {
       $extensions = [$extensions];
     }
 

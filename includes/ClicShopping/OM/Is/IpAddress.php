@@ -10,6 +10,8 @@
 
 namespace ClicShopping\OM\Is;
 
+use UnexpectedValueException;
+
 class IpAddress implements \ClicShopping\OM\IsInterface
 {
   public static function execute($value, string $type = 'any'): bool
@@ -28,11 +30,11 @@ class IpAddress implements \ClicShopping\OM\IsInterface
       } elseif ($type === 'ipv6') {
         $options['flags'] = \FILTER_FLAG_IPV6;
       } else {
-        throw new \UnexpectedValueException('Invalid type "' . $type . '". Expecting "any", "ipv4", or "ipv6".');
+        throw new UnexpectedValueException('Invalid type "' . $type . '". Expecting "any", "ipv4", or "ipv6".');
       }
 
       return filter_var($value, \FILTER_VALIDATE_IP, $options) !== false;
-    } catch (\UnexpectedValueException $e) {
+    } catch (UnexpectedValueException $e) {
       trigger_error('ClicShopping\OM\Is\IpAddress: ' . $e->getMessage());
     }
 

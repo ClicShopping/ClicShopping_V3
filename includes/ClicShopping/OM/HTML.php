@@ -10,6 +10,15 @@
 
 namespace ClicShopping\OM;
 
+use ArrayIterator;
+use CachingIterator;
+use function count;
+use function in_array;
+use function is_array;
+use function is_null;
+use function is_string;
+use function strlen;
+
 class HTML
 {
   /**
@@ -22,7 +31,7 @@ class HTML
 
   public static function output(?string $string, array $translate = null): string
   {
-    if (\is_null($string) || empty($string)) {
+    if (is_null($string) || empty($string)) {
       return '';
     }
 
@@ -43,7 +52,7 @@ class HTML
    */
   public static function outputProtected(?string $string): string
   {
-    if (\is_null($string) || empty($string)) {
+    if (is_null($string) || empty($string)) {
       return '';
     }
 
@@ -57,7 +66,7 @@ class HTML
    */
   public static function sanitize($string)
   {
-    if (\is_null($string) || empty($string)) {
+    if (is_null($string) || empty($string)) {
       return '';
     }
     $patterns = [
@@ -131,7 +140,7 @@ class HTML
     if (CLICSHOPPING::getSite() == 'Shop') {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if ((empty($src) || \is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
+      if ((empty($src) || is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
         $image = CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . 'icons/nophoto.png';
 
         if (!is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . $image)) {
@@ -152,15 +161,15 @@ class HTML
       $image = '<img src="' . static::output($src) . '" alt="' . static::output($alt) . '"';
     }
 
-    if (isset($alt) && (\strlen($alt) > 0)) {
+    if (isset($alt) && (strlen($alt) > 0)) {
       $image .= ' title="' . static::output($alt) . '"';
     }
 
-    if (isset($width) && (\strlen($width) > 0)) {
+    if (isset($width) && (strlen($width) > 0)) {
       $image .= ' width="' . static::output($width) . '"';
     }
 
-    if (isset($height) && (\strlen($height) > 0)) {
+    if (isset($height) && (strlen($height) > 0)) {
       $image .= ' height="' . static::output($height) . '"';
     }
 
@@ -223,7 +232,7 @@ class HTML
       $form .= static::hiddenField('action', $flags['action']);
     }
 
-    if (($flags['session_id'] === true) && Registry::get('Session')->hasStarted() && (\strlen(SID) > 0) && !Registry::get('Session')->isForceCookies()) {
+    if (($flags['session_id'] === true) && Registry::get('Session')->hasStarted() && (strlen(SID) > 0) && !Registry::get('Session')->isForceCookies()) {
       $form .= static::hiddenField(session_name(), session_id());
     }
 
@@ -250,16 +259,16 @@ class HTML
   {
     $field = '<input type="' . static::output($type) . '" name="' . static::output($name) . '"';
 
-    if (($reinsert_value === true) && ((isset($_GET[$name]) && \is_string($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name])))) {
-      if (isset($_GET[$name]) && \is_string($_GET[$name])) {
+    if (($reinsert_value === true) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
+      if (isset($_GET[$name]) && is_string($_GET[$name])) {
         $value = $_GET[$name];
-      } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
+      } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
         $value = $_POST[$name];
       }
     }
 
-    if (!\is_null($value)) {
-      if (\strlen($value) > 0) {
+    if (!is_null($value)) {
+      if (strlen($value) > 0) {
         $field .= ' value="' . static::output($value) . '"';
       }
     }
@@ -305,7 +314,7 @@ class HTML
 
   protected static function selectionField($name, $type, $values = null, $default = null, $parameters = null, $separator = '&nbsp;&nbsp;')
   {
-    if (!\is_array($values)) {
+    if (!is_array($values)) {
       $values = array($values);
     }
 
@@ -332,7 +341,7 @@ class HTML
     foreach ($values as $key => $value) {
       $counter++;
 
-      if (\is_array($value)) {
+      if (is_array($value)) {
         $selection_value = $value['id'];
         $selection_text = $value['text'];
       } else {
@@ -348,15 +357,15 @@ class HTML
 
 
       if (!str_contains($parameters, 'id=')) {
-        $field .= ' id="' . static::output($name) . (\count($values) > 1 ? '_' . $counter : '') . '"';
-      } elseif (\count($values) > 1) {
+        $field .= ' id="' . static::output($name) . (count($values) > 1 ? '_' . $counter : '') . '"';
+      } elseif (count($values) > 1) {
         $offset = strpos($parameters, 'id="');
         $field .= ' id="' . static::output(substr($parameters, $offset + 4, strpos($parameters, '"', $offset + 4) - ($offset + 4))) . '_' . $counter . '"';
       }
 
       $field .= ' value="' . static::output($selection_value) . '"';
 
-      if (isset($default) && (($default === true) || (!\is_array($default) && ((string)$default == (string)$selection_value)) || (\is_array($default) && \in_array($selection_value, $default)))) {
+      if (isset($default) && (($default === true) || (!is_array($default) && ((string)$default == (string)$selection_value)) || (is_array($default) && in_array($selection_value, $default)))) {
         $field .= ' checked="checked"';
       }
 
@@ -367,14 +376,14 @@ class HTML
       $field .= ' />';
 
       if (!empty($selection_text)) {
-        $field .= '<label for="' . static::output($name) . (\count($values) > 1 ? '_' . $counter : '') . '" class="fieldLabel">' . $selection_text . '</label>';
+        $field .= '<label for="' . static::output($name) . (count($values) > 1 ? '_' . $counter : '') . '" class="fieldLabel">' . $selection_text . '</label>';
       }
 
       $field .= $separator;
     }
 
     if (!empty($field)) {
-      $field = substr($field, 0, \strlen($field) - \strlen($separator));
+      $field = substr($field, 0, strlen($field) - strlen($separator));
     }
 
     return $field;
@@ -452,7 +461,7 @@ class HTML
       $field .= ' class="form-control" id="' . static::output($name) . '"';
     }
 
-    if (!\is_null($parameters)) {
+    if (!is_null($parameters)) {
       $field .= ' ' . $parameters;
     }
 
@@ -500,15 +509,15 @@ class HTML
       $field .= '<option value="">' . CLICSHOPPING::getDef('text_select') . '</option>';
     }
 
-    if (empty($default) && ((isset($_GET[$name]) && \is_string($_GET[$name]) && !\is_null($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name] && !\is_null($_POST[$name]))))) {
-      if (isset($_GET[$name]) && \is_string($_GET[$name])) {
+    if (empty($default) && ((isset($_GET[$name]) && is_string($_GET[$name]) && !is_null($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name] && !is_null($_POST[$name]))))) {
+      if (isset($_GET[$name]) && is_string($_GET[$name])) {
         $default = static::output($_GET[$name]);
-      } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
+      } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
         $default = static::output($_GET[$name]);
       }
     }
 
-    $ci = new \CachingIterator(new \ArrayIterator($values), \CachingIterator::TOSTRING_USE_CURRENT); // used for hasNext() below
+    $ci = new CachingIterator(new ArrayIterator($values), CachingIterator::TOSTRING_USE_CURRENT); // used for hasNext() below
 
     foreach ($ci as $v) {
       if (isset($v['group'])) {
@@ -564,7 +573,7 @@ class HTML
 
     $countries = $CLICSHOPPING_Address->getCountries();
 
-    for ($i = 0, $n = \count($countries); $i < $n; $i++) {
+    for ($i = 0, $n = count($countries); $i < $n; $i++) {
       $countries_array[] = [
         'id' => $countries[$i]['countries_id'],
         'text' => $countries[$i]['countries_name'],
@@ -582,7 +591,7 @@ class HTML
    */
   public static function hideSessionId(string $session_started, string $SID)
   {
-    if (($session_started === true) && (!empty($SID) || !\is_null($SID))) {
+    if (($session_started === true) && (!empty($SID) || !is_null($SID))) {
       return static::hiddenField(session_name(), session_name());
     } else {
       return false;
@@ -646,7 +655,7 @@ class HTML
     $l = 0;
     $output = '';
 
-    for ($i = 0, $n = \strlen($string); $i < $n; $i++) {
+    for ($i = 0, $n = strlen($string); $i < $n; $i++) {
       $char = substr($string, $i, 1);
       if ($char != ' ') {
         $l++;
@@ -718,15 +727,15 @@ class HTML
       $field .= '<option value="">' . CLICSHOPPING::getDef('entry_text_select') . '</option>';
     }
 
-    if (empty($default) && ((isset($_GET[$name]) && \is_string($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name])))) {
-      if (isset($_GET[$name]) && \is_string($_GET[$name])) {
+    if (empty($default) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
+      if (isset($_GET[$name]) && is_string($_GET[$name])) {
         $default = $_GET[$name];
-      } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
+      } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
         $default = $_POST[$name];
       }
     }
 
-    $ci = new \CachingIterator(new \ArrayIterator($values), \CachingIterator::TOSTRING_USE_CURRENT); // used for hasNext() below
+    $ci = new CachingIterator(new ArrayIterator($values), CachingIterator::TOSTRING_USE_CURRENT); // used for hasNext() below
 
     foreach ($ci as $v) {
       if (isset($v['group'])) {
@@ -778,12 +787,12 @@ class HTML
   {
     $field = '<input type="hidden" name="' . static::output($name) . '"';
 
-    if (\strlen($value) > 0) {
+    if (strlen($value) > 0) {
       $field .= ' value="' . static::output($value) . '"';
-    } elseif ((isset($_GET[$name]) && \is_string($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name]))) {
-      if (isset($_GET[$name]) && \is_string($_GET[$name])) {
+    } elseif ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name]))) {
+      if (isset($_GET[$name]) && is_string($_GET[$name])) {
         $field .= ' value="' . static::output($_GET[$name]) . '"';
-      } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
+      } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
         $field .= ' value="' . static::output($_POST[$name]) . '"';
       }
     }
@@ -819,7 +828,7 @@ class HTML
       $params['type'] = 'submit';
     }
 
-    if (!\in_array($params['type'], $types)) {
+    if (!in_array($params['type'], $types)) {
       $params['type'] = 'submit';
     }
 
@@ -827,11 +836,11 @@ class HTML
       $params['type'] = 'button';
     }
 
-    if (isset($style) && !\in_array($style, $styles)) {
+    if (isset($style) && !in_array($style, $styles)) {
       unset($style);
     }
 
-    if (isset($size) && !\in_array($size, $size_button)) {
+    if (isset($size) && !in_array($size, $size_button)) {
       unset($size);
     }
 
@@ -928,7 +937,7 @@ class HTML
 
     $countries = $CLICSHOPPING_Address->getCountries();
 
-    for ($i = 0, $n = \count($countries); $i < $n; $i++) {
+    for ($i = 0, $n = count($countries); $i < $n; $i++) {
       $countries_array[] = [
         'id' => $countries[$i]['countries_iso_code_2'],
         'text' => $countries[$i]['countries_name']

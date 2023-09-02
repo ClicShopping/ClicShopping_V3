@@ -12,10 +12,10 @@ namespace ClicShopping\Apps\Tools\Cronjob\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function is_null;
 
 class Cron
 {
-
   /**
    * @var mixed|null
    */
@@ -38,7 +38,7 @@ class Cron
     $limit = '';
     $where = '';
 
-    if (!\is_null($id)) {
+    if (!is_null($id)) {
       $where = 'where cron_id = ' . HTML::sanitize($_GET['cronId']);
     }
 

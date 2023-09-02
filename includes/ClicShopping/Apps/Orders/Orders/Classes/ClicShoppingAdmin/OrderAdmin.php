@@ -25,7 +25,11 @@ class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
     $this->query($order_id);
   }
 
-  public function query($order_id)
+  /**
+   * @param int $order_id
+   * @return void
+   */
+  public function query(int $order_id): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -197,11 +201,11 @@ class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
   /**
    * Remove order
    *
-   * @param string $order_id , $restock
-   * @return
-   *
+   * @param int $order_id , $restock
+   * @param bool $restock
+   * @return void
    */
-  public static function removeOrder(int $order_id, bool $restock = false)
+  public static function removeOrder(int $order_id, bool $restock = false): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -241,9 +245,7 @@ class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
   /**
    * the name order status
    *
-   * @param string
-   * @return string orders_status_array,  name of the order status
-   *
+   * @return array orders_status_array,  name of the order status
    */
 
   public static function getOrdersStatus(): array
@@ -270,7 +272,7 @@ class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
     return $orders_status_array;
   }
 
-  /*
+  /**
    * pdf logo
    * return string or bool
    */

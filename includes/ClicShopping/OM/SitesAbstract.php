@@ -10,6 +10,8 @@
 
 namespace ClicShopping\OM;
 
+use ReflectionClass;
+
 abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface
 {
   protected string $code;
@@ -26,7 +28,7 @@ abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface
   final public function __construct()
   {
 
-    $this->code = (new \ReflectionClass($this))->getShortName();
+    $this->code = (new ReflectionClass($this))->getShortName();
 
     return $this->init();
   }

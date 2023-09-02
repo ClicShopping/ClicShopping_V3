@@ -10,6 +10,12 @@
 
 namespace ClicShopping\OM;
 
+use ReflectionClass;
+use function array_slice;
+use function count;
+use function in_array;
+use function is_array;
+
 abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
 {
   public array $data = [];
@@ -26,7 +32,7 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
 
   final public function __construct(\ClicShopping\OM\SitesInterface $site)
   {
-    $this->code = (new \ReflectionClass($this))->getShortName();
+    $this->code = (new ReflectionClass($this))->getShortName();
     $this->site = $site;
 
     $this->init();
@@ -51,7 +57,7 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   public function getFile()
   {
     if (isset($this->file)) {
-      return dirname(CLICSHOPPING::BASE_DIR) . '/' . str_replace('\\', '/', (new \ReflectionClass($this))->getNamespaceName()) . '/templates/' . $this->file;
+      return dirname(CLICSHOPPING::BASE_DIR) . '/' . str_replace('\\', '/', (new ReflectionClass($this))->getNamespaceName()) . '/templates/' . $this->file;
     } else {
       return false;
     }
@@ -88,14 +94,14 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   {
     $furious_pete = [];
 
-    if (\count($_GET) > $this->site->actions_index) {
-      $furious_pete = array_keys(\array_slice($_GET, $this->site->actions_index, null, true));
+    if (count($_GET) > $this->site->actions_index) {
+      $furious_pete = array_keys(array_slice($_GET, $this->site->actions_index, null, true));
     }
 
     if (!empty($furious_pete)) {
       $action = HTML::sanitize(basename($furious_pete[0]));
 
-      if (!\in_array($action, $this->ignored_actions, true) && $this->actionExists($action)) {
+      if (!in_array($action, $this->ignored_actions, true) && $this->actionExists($action)) {
         return true;
       }
     }
@@ -108,7 +114,7 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
    */
   public function runAction($actions)
   {
-    if (!\is_array($actions)) {
+    if (!is_array($actions)) {
       $actions = [
         $actions
       ];
@@ -126,10 +132,10 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
 
         $ns = explode('\\', $class);
 
-        if ((\count($ns) > 2) && ($ns[0] == 'ClicShopping') && ($ns[1] == 'Apps')) {
+        if ((count($ns) > 2) && ($ns[0] == 'ClicShopping') && ($ns[1] == 'Apps')) {
           if (isset($this->app) && is_subclass_of($this->app, 'ClicShopping\OM\AppAbstract')) {
-            if ($this->app->definitionsExist(implode('/', \array_slice($ns, 4)))) {
-              $this->app->loadDefinitions(implode('/', \array_slice($ns, 4)));
+            if ($this->app->definitionsExist(implode('/', array_slice($ns, 4)))) {
+              $this->app->loadDefinitions(implode('/', array_slice($ns, 4)));
             }
           }
         }
@@ -154,8 +160,8 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   {
     $actions = $furious_pete = [];
 
-    if (\count($_GET) > $this->site->actions_index) {
-      $furious_pete = array_keys(\array_slice($_GET, $this->site->actions_index, null, true));
+    if (count($_GET) > $this->site->actions_index) {
+      $furious_pete = array_keys(array_slice($_GET, $this->site->actions_index, null, true));
     }
 
     foreach ($furious_pete as $action) {
@@ -163,7 +169,7 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
 
       $actions[] = $action;
 
-      if (\in_array($action, $this->ignored_actions, true) || !$this->actionExists($actions)) {
+      if (in_array($action, $this->ignored_actions, true) || !$this->actionExists($actions)) {
         array_pop($actions);
 
         break;
@@ -181,7 +187,7 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
    */
   public function actionExists($action)
   {
-    if (!\is_array($action)) {
+    if (!is_array($action)) {
       $action = [
         $action
       ];
@@ -219,16 +225,16 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   /**
    * @param $action
    * @return string
-   * @throws \ReflectionException
+   * @throws ReflectionException
    */
   protected function getActionClassName($action)
   {
-    if (!\is_array($action)) {
+    if (!is_array($action)) {
       $action = [
         $action
       ];
     }
 
-    return (new \ReflectionClass($this))->getNamespaceName() . '\\Actions\\' . implode('\\', $action);
+    return (new ReflectionClass($this))->getNamespaceName() . '\\Actions\\' . implode('\\', $action);
   }
 }

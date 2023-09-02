@@ -11,6 +11,7 @@
 namespace ClicShopping\OM\Modules;
 
 use ClicShopping\OM\Registry;
+use ReflectionClass;
 
 abstract class HeaderTagsAbstract implements \ClicShopping\OM\Modules\HeaderTagsInterface
 {
@@ -32,7 +33,7 @@ abstract class HeaderTagsAbstract implements \ClicShopping\OM\Modules\HeaderTags
 
   final public function __construct()
   {
-    $this->code = (new \ReflectionClass($this))->getShortName();
+    $this->code = (new ReflectionClass($this))->getShortName();
 
     $this->db = Registry::get('Db');
 

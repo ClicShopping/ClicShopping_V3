@@ -10,22 +10,27 @@
 
 namespace ClicShopping\OM;
 
+use FilesystemIterator;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+
 class FileSystem
 {
   /**
-   * @param $base
+   * @param string $base
+   * @param bool $recursive
    * @return array
    */
   public static function getDirectoryContents(string $base, bool $recursive = true): array
   {
     $base = str_replace('\\', '/', $base); // Unix style directory separator "/"
 
-    $flags = \FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_SELF | \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::UNIX_PATHS;
+    $flags = FilesystemIterator::KEY_AS_PATHNAME | FilesystemIterator::CURRENT_AS_SELF | FilesystemIterator::SKIP_DOTS | FilesystemIterator::UNIX_PATHS;
 
     if ($recursive === true) {
-      $dir = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($base, $flags));
+      $dir = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($base, $flags));
     } else {
-      $dir = new \FilesystemIterator($base, $flags);
+      $dir = new FilesystemIterator($base, $flags);
     }
 
     $result = [];
@@ -97,7 +102,7 @@ class FileSystem
    */
   public static function isDirectoryEmpty(string $directory): bool
   {
-    $dir = new \FilesystemIterator($directory, \FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_SELF | \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::UNIX_PATHS);
+    $dir = new FilesystemIterator($directory, FilesystemIterator::KEY_AS_PATHNAME | FilesystemIterator::CURRENT_AS_SELF | FilesystemIterator::SKIP_DOTS | FilesystemIterator::UNIX_PATHS);
 
     return ($dir->valid() === false);
   }

@@ -18,6 +18,10 @@ use ClicShopping\OM\Registry;
 
 use ClicShopping\Sites\ClicShoppingAdmin\ModuleDownload;
 use ClicShopping\Apps\Tools\Upgrade\Upgrade as UpgradeApp;
+use function count;
+use function is_null;
+use function is_object;
+use function strlen;
 
 class Github
 {
@@ -26,7 +30,7 @@ class Github
   protected string $githubRepo;
   protected $context;
   protected string $coreName;
-  protected string $githubRepoClicShoppingCore;
+  protected string $githubRepoClicShoppingincludes;
   public ?string $githubRepoName;
   protected string $saveFileFromGithub;
   protected string $cacheGithub;
@@ -47,7 +51,7 @@ class Github
     $this->context = stream_context_create(array('http' => array('header' => 'User-Agent: ClicShopping')));
 
     $this->coreName = 'ClicShopping';
-    $this->githubRepoClicShoppingCore = 'ClicShopping_V3';
+    $this->githubRepoClicShoppingincludes = 'ClicShopping_V3';
 
     if (isset($_POST['addons_apps'])) {
       if ($_POST['addons_apps'] == 'official') {
@@ -64,14 +68,14 @@ class Github
   }
 
   /*
-  * getGithubCoreRepo : ClicShopping Core
+  * getGithubincludesRepo : ClicShopping includes
   * @param
-  * @return  $url url about the ClicShopping Core
+  * @return  $url url about the ClicShopping includes
   * @access
   */
-  private function getGithubCoreRepo()
+  private function getGithubincludesRepo()
   {
-    $url = $this->githubApi . '/' . $this->githubRepo . '/' . $this->coreName . '/' . $this->githubRepoClicShoppingCore;
+    $url = $this->githubApi . '/' . $this->githubRepo . '/' . $this->coreName . '/' . $this->githubRepoClicShoppingincludes;
 
     return $url;
   }
@@ -87,10 +91,12 @@ class Github
   }
 
   /**
-   * get ClicShopping Core Version from Github
-   * @return array|bool $version version of new clicshopping core
+   * get ClicShopping includes Version from Github
+   * @param
+   * @return $version version of new clicshopping core
+   *
    */
-  public function getJsonCoreInformation()
+  public function getJsonincludesInformation()
   {
     $versionCache = new Cache('clicshopping_core_information');
 
@@ -98,11 +104,11 @@ class Github
       $result = $versionCache->get();
     } else {
       $response = HTTP::getResponse([
-        'url' => $this->getGithubCoreRepo() . '/contents/includes/ClicShopping/version.json?ref=master'
+        'url' => $this->getGithubincludesRepo() . '/contents/includes/ClicShopping/version.json?ref=master'
       ]);
 
       if ($response !== false) {
-        $json = @file_get_contents($this->getGithubCoreRepo() . '/contents/includes/ClicShopping/version.json?ref=master', true, $this->context);
+        $json = @file_get_contents($this->getGithubincludesRepo() . '/contents/includes/ClicShopping/version.json?ref=master', true, $this->context);
 
         $url = json_decode($json);
         $url_download = @file_get_contents($url->download_url, true, $this->setContext()); //content of readme.
@@ -118,8 +124,8 @@ class Github
   }
 
   /**
-   * @param string $source
-   * @param string $destination
+   * @param $source
+   * @param $destination
    * @return void
    */
   private function getExtractZip(string $source, string $destination)
@@ -139,7 +145,7 @@ class Github
   }
 
   /**
-   * @return
+   * @return void
    */
   private function checkDirectoryOnlineUpdate()
   {
@@ -149,7 +155,7 @@ class Github
 
   /**
    * get all modules directories for template
-   * @return array $module,values of array
+   * @return $module,values of array
    */
   public function getModuleTemplateDirectory()
   {
@@ -182,7 +188,9 @@ class Github
 
   /**
    * get all modules directories (fix modules)
-   * @return array $module,values of array
+   * @param
+   * @return $module,values of array
+   *
    */
   public function getModuleDirectory(): array
   {
@@ -261,8 +269,8 @@ class Github
       } else {
         $file_name = $module_name;
         $file_array = explode('.', $file_name);
-        $extension = \count($file_array) - 1;
-        $filename = substr($file_name, 0, \strlen($file_name) - \strlen($file_array[$extension]) - 1);
+        $extension = count($file_array) - 1;
+        $filename = substr($file_name, 0, strlen($file_name) - strlen($file_array[$extension]) - 1);
 
         $content_json_file = @file_get_contents($this->getGithubRepo() . $filename . '/contents/' . $this->ModuleInfosJson . '/' . $module_name . '?ref=master', true, $this->context);
         $content_download_file = json_decode($content_json_file);
@@ -293,7 +301,7 @@ class Github
   }
 
   /**
-   * get the json file information about temporary directory
+   * get the json file infromation about temporary directory
    * @param string $module_name
    * @return false|mixed
    */
@@ -356,7 +364,7 @@ class Github
    */
   public function getSearchInsideRepo($name = null)
   {
-    if (\is_null($name)) {
+    if (is_null($name)) {
       $search = $this->githubApi . '/search/repositories?q=org%3A' . $this->githubRepoName . '+' . $this->getSearchModule();
       $search_url = @file_get_contents($search, true, $this->setContext()); //content of readme.
     } else {
@@ -376,7 +384,7 @@ class Github
   {
     $result = $this->getSearchInsideRepo();
 
-    if (\is_object($result)) {
+    if (is_object($result)) {
       $count = $result->total_count;
     } else {
       $count = 0;
@@ -456,7 +464,7 @@ class Github
    */
   public function getModuleMasterArchive(string $module_name)
   {
-    if (!empty($module_name) || !\is_null($module_name)) {
+    if (!empty($module_name) || !is_null($module_name)) {
       $url = HTML::sanitize($_POST['githubLink']);
 
       if (!empty($url)) {
@@ -470,7 +478,7 @@ class Github
   }
 
   /**
-   * Extract ClicShopping Core Zip to install inside ClicShopping
+   * Extract ClicShopping includes Zip to install inside ClicShopping
    * @param string $file
    */
   public function getInstallModuleTemplate(string $file)
@@ -510,11 +518,11 @@ class Github
       $this->getCloseOpenStore('false');
     }
 
-    $this->app->redirect('CoreUpgrade');
+    $this->app->redirect('includesUpgrade');
   }
 
   /**
-   * Extract ClicShopping Core Zip to install inside ClicShopping
+   * Extract ClicShopping includes Zip to install inside ClicShopping
    * @param string $file
    */
   public function getInstallModuleFixe(string $file)

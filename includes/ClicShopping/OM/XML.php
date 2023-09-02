@@ -10,6 +10,10 @@
 
 namespace ClicShopping\OM;
 
+use XMLWriter;
+use function count;
+use function is_array;
+
 class XML
 {
   /**
@@ -31,8 +35,8 @@ class XML
       $xml = get_object_vars($xml);
     }
 
-    if (\is_array($xml)) {
-      if (\count($xml) == 0) {
+    if (is_array($xml)) {
+      if (count($xml) == 0) {
         return (string)$x->__toString(); // for CDATA
       }
 
@@ -57,7 +61,7 @@ class XML
    */
   public static function fromArray($data, string $encoding = 'UTF-8')
   {
-    $xml = new \XMLWriter();
+    $xml = new XMLWriter();
     $xml->openMemory();
     $xml->setIndent(true);
     $xml->setIndentString('  ');
@@ -69,15 +73,15 @@ class XML
   }
 
   /**
-   * @param \XMLWriter $xml
+   * @param XMLWriter $xml
    * @param $data
    * @param null $parent
    * @param bool $add_to_parent_element
    */
-  protected static function _write(\XMLWriter $xml, $data, $parent = null, bool $add_to_parent_element = false)
+  protected static function _write(XMLWriter $xml, $data, $parent = null, bool $add_to_parent_element = false)
   {
     foreach ($data as $key => $value) {
-      if (\is_array($value)) {
+      if (is_array($value)) {
         if (is_int($key)) {
           if ($add_to_parent_element === false) {
             $add_to_parent_element = true;
