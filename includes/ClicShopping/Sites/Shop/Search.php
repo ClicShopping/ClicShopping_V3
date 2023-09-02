@@ -13,6 +13,10 @@ namespace ClicShopping\Sites\Shop;
 use ClicShopping\OM\DateTime;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function count;
+use function defined;
+use function in_array;
+use function is_array;
 
 class Search
 {
@@ -272,7 +276,7 @@ class Search
       if ($counter > 5) {
         break;
       } elseif (!empty($word)) {
-        if (!\in_array($word, $terms_array, true)) {
+        if (!in_array($word, $terms_array, true)) {
           $terms_array[] = $word;
         }
       }
@@ -414,8 +418,9 @@ class Search
 
   public function sortListSearch(): array
   {
-    if (\defined('MODULE_PRODUCTS_SEARCH_LIST_NAME')) {
-      $define_list = ['MODULE_PRODUCTS_SEARCH_LIST_NAME' => MODULE_PRODUCTS_SEARCH_LIST_NAME,
+    if (defined('MODULE_PRODUCTS_SEARCH_LIST_NAME')) {
+      $define_list = [
+        'MODULE_PRODUCTS_SEARCH_LIST_NAME' => MODULE_PRODUCTS_SEARCH_LIST_NAME,
         'MODULE_PRODUCTS_SEARCH_LIST_MODEL' => MODULE_PRODUCTS_SEARCH_LIST_MODEL,
         'MODULE_PRODUCTS_SEARCH_LIST_MANUFACTURER' => MODULE_PRODUCTS_SEARCH_LIST_MANUFACTURER,
         'MODULE_PRODUCTS_SEARCH_LIST_PRICE' => MODULE_PRODUCTS_SEARCH_LIST_PRICE,
@@ -455,7 +460,7 @@ class Search
     $dtoDateTime1 = $this->getDateTo();
     $dfromDateTime1 = $this->getDateFrom();
 
-    if (\defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
+    if (defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
       $max_display = MODULE_PRODUCTS_SEARCH_MAX_DISPLAY;
     } else {
       $max_display = 1;
@@ -608,9 +613,9 @@ class Search
 
     $column_list = $this->sortListSearch();
 
-    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > \count($column_list))) {
-      if (\is_array($column_list)) {
-        for ($i = 0, $n = \count($column_list); $i < $n; $i++) {
+    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($column_list))) {
+      if (is_array($column_list)) {
+        for ($i = 0, $n = count($column_list); $i < $n; $i++) {
           if ($column_list[$i] == 'MODULE_PRODUCTS_SEARCH_LIST_DATE_ADDED') {
             $_GET['sort'] = $i + 1 . 'a';
             $listing_sql .= ' order by p.products_sort_order DESC,

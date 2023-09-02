@@ -11,6 +11,9 @@
 namespace ClicShopping\Sites\ClicShoppingAdmin;
 
 use ClicShopping\OM\HTML;
+use ReflectionClass;
+use function constant;
+use function defined;
 
 abstract class ConfigParamAbstract
 {
@@ -26,7 +29,7 @@ abstract class ConfigParamAbstract
 
   public function __construct()
   {
-    $this->code = (new \ReflectionClass($this))->getShortName();
+    $this->code = (new ReflectionClass($this))->getShortName();
 
     $this->key = $this->key_prefix . $this->code;
 
@@ -36,7 +39,7 @@ abstract class ConfigParamAbstract
   protected function getInputValue()
   {
     $key = mb_strtoupper($this->key);
-    $value = \defined($key) ? \constant($key) : null;
+    $value = defined($key) ? constant($key) : null;
 
     if (!isset($value) && isset($this->default)) {
       $value = $this->default;

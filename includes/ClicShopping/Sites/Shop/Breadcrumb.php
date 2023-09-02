@@ -12,6 +12,9 @@ namespace ClicShopping\Sites\Shop;
 
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function array_slice;
+use function count;
+use function is_null;
 
 /**
  * The Breadcrumb class handles the breadcrumb navigation path
@@ -91,7 +94,7 @@ class Breadcrumb implements \Iterator
    */
   public function get(string $separator = null): string
   {
-    if (\is_null($separator)) {
+    if (is_null($separator)) {
       $separator = $this->_separator;
     }
 
@@ -209,7 +212,7 @@ class Breadcrumb implements \Iterator
 
 // add category names or the manufacturer name to the breadcrumb trail
     if (isset($cPath_array)) {
-      for ($i = 0, $n = \count($cPath_array); $i < $n; $i++) {
+      for ($i = 0, $n = count($cPath_array); $i < $n; $i++) {
         $Qcategories = $CLICSHOPPING_Db->get('categories_description', 'categories_name', [
             'categories_id' => (int)$cPath_array[$i],
             'language_id' => $CLICSHOPPING_Language->getId()
@@ -217,7 +220,7 @@ class Breadcrumb implements \Iterator
         );
 
         if ($Qcategories->fetch() !== false) {
-          $categories_url = $this->rewriteUrl->getCategoryTreeUrl(implode('_', \array_slice($cPath_array, 0, ($i + 1))));
+          $categories_url = $this->rewriteUrl->getCategoryTreeUrl(implode('_', array_slice($cPath_array, 0, ($i + 1))));
 
           $result = $CLICSHOPPING_Breadcrumb->add($Qcategories->value('categories_name'), $categories_url);
         } else {
@@ -234,7 +237,7 @@ class Breadcrumb implements \Iterator
       }
     }
 
-    if (\is_null($result)) {
+    if (is_null($result)) {
       return false;
     } else {
       return $result;

@@ -15,6 +15,10 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use DOMDocument;
+use DOMXPath;
+use function is_null;
+use function is_string;
 
 class CkEditor4 extends HTML
 {
@@ -97,16 +101,16 @@ class CkEditor4 extends HTML
   {
     $field = '<textarea name="' . HTML::output($name) . '"';
 
-    if (!\is_null($parameters)) $field .= ' ' . $parameters;
+    if (!is_null($parameters)) $field .= ' ' . $parameters;
     $field .= ' />';
 
-    if (($override === true) && ((isset($_GET[$name]) && \is_string($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name])))) {
-      if (isset($_GET[$name]) && \is_string($_GET[$name])) {
+    if (($override === true) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
+      if (isset($_GET[$name]) && is_string($_GET[$name])) {
         $field .= HTML::outputProtected($_GET[$name]);
-      } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
+      } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
         $field .= HTML::outputProtected($_POST[$name]);
       }
-    } elseif (!\is_null($text)) {
+    } elseif (!is_null($text)) {
       $field .= HTML::outputProtected($text);
     }
 
@@ -136,11 +140,11 @@ class CkEditor4 extends HTML
 
   public static function fileFieldImageCkEditor(string $name, ?string $value = null, ?int $width = null, ?int $height = null): string
   {
-    if (\is_null($height)) {
+    if (is_null($height)) {
       $height = '250';
     }
 
-    if (\is_null($width)) {
+    if (is_null($width)) {
       $width = '250';
     }
     //ckeditor 4
@@ -173,11 +177,11 @@ class CkEditor4 extends HTML
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
     if (!empty($image)) {
-      $doc = new \DOMDocument();
+      $doc = new DOMDocument();
       libxml_use_internal_errors(true);
 
       $doc->loadHTML($image);
-      $xpath = new \DOMXPath($doc);
+      $xpath = new DOMXPath($doc);
 
       $image = $xpath->evaluate("string(//img/@src)");
       $image = CLICSHOPPING::getConfig('http_server', 'Shop') . $image;

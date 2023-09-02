@@ -14,6 +14,8 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
+use function in_array;
+use function is_null;
 
 class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
 {
@@ -328,7 +330,7 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
       $file_array = str_replace(['&'], ['/'], $file_array);
     }
 
-    if (!\is_null($catalog_files)) {
+    if (!is_null($catalog_files)) {
       $file_array = [$catalog_files];
     }
 
@@ -342,7 +344,7 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
 
   public static function getListCatalogFilesNotIncluded(?string $boostrap_file = null): array
   {
-    if (\is_null($boostrap_file)) $boostrap_file = CLICSHOPPING::getConfig('bootstrap_file');
+    if (is_null($boostrap_file)) $boostrap_file = CLICSHOPPING::getConfig('bootstrap_file');
 
     $file = static::getCatalogFiles();
 
@@ -377,7 +379,7 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
 
       foreach ($contents as $item) {
         $fileInfo = pathinfo($item);
-        if (array_key_exists('extension', $fileInfo) && \in_array($fileInfo['extension'], $fileTypes)) {
+        if (array_key_exists('extension', $fileInfo) && in_array($fileInfo['extension'], $fileTypes)) {
           $found[] = $item;
         }
       }

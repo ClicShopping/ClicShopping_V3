@@ -13,6 +13,10 @@ namespace ClicShopping\Sites\ClicShoppingAdmin;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\FileSystem;
 use ClicShopping\OM\HTML;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use function in_array;
+use function is_array;
 
 class ModuleDownload
 {
@@ -32,7 +36,7 @@ class ModuleDownload
     $directories = array_diff(scandir($template_directory), $weeds);
     $filename_array = [];
 
-    if (\is_array($directories)) {
+    if (is_array($directories)) {
       foreach ($directories as $value) {
         if (is_dir($template_directory . $value)) {
           $filename_array[] = ['id' => $value,
@@ -63,9 +67,9 @@ class ModuleDownload
     }
 
     foreach (
-      $iterator = new \RecursiveIteratorIterator(
-        new  \RecursiveDirectoryIterator($source, \RecursiveDirectoryIterator::SKIP_DOTS),
-        \RecursiveIteratorIterator::SELF_FIRST
+      $iterator = new RecursiveIteratorIterator(
+        new  RecursiveDirectoryIterator($source, RecursiveDirectoryIterator::SKIP_DOTS),
+        RecursiveIteratorIterator::SELF_FIRST
       ) as $item
     ) {
       if ($item->isDir()) {
@@ -85,10 +89,10 @@ class ModuleDownload
   public static function removeDirectory($source)
   {
     if (is_dir($source) === true) {
-      $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($source), \RecursiveIteratorIterator::CHILD_FIRST);
+      $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::CHILD_FIRST);
 
       foreach ($files as $file) {
-        if (\in_array($file->getBasename(), array('.', '..')) !== true) {
+        if (in_array($file->getBasename(), array('.', '..')) !== true) {
           if ($file->isDir() === true) {
             rmdir($file->getPathName());
           } elseif (($file->isFile() === true) || ($file->isLink() === true)) {

@@ -18,9 +18,14 @@
 
 namespace ClicShopping\Sites\Common;
 
+use function count;
+use function defined;
+use function is_array;
+use function is_string;
+use function strlen;
+
 class FPDF
 {
-
   public $page;               //current page number
   public $n;                  //current object number
   public $offsets;            //array of object offsets
@@ -45,7 +50,7 @@ class FPDF
   public $x, $y;               //current position in user unit
   public $lasth;              //height of last printed cell
   public $LineWidth;          //line width in user unit
-  public $CoreFonts;          //array of standard font names
+  public $includesFonts;          //array of standard font names
   public $fonts;              //array of used fonts
   public $FontFiles;          //array of font files
   public $diffs;              //array of encoding differences
@@ -112,7 +117,7 @@ class FPDF
     $this->ws = 0;
 //Standard fonts
 
-    $this->CoreFonts = array('courier' => 'Courier', 'courierB' => 'Courier-Bold', 'courierI' => 'Courier-Oblique', 'courierBI' => 'Courier-BoldOblique',
+    $this->includesFonts = array('courier' => 'Courier', 'courierB' => 'Courier-Bold', 'courierI' => 'Courier-Oblique', 'courierBI' => 'Courier-BoldOblique',
       'helvetica' => 'Helvetica', 'helveticaB' => 'Helvetica-Bold', 'helveticaI' => 'Helvetica-Oblique', 'helveticaBI' => 'Helvetica-BoldOblique',
       'times' => 'Times-Roman', 'timesB' => 'Times-Bold', 'timesI' => 'Times-Italic', 'timesBI' => 'Times-BoldItalic',
       'symbol' => 'Symbol', 'zapfdingbats' => 'ZapfDingbats');
@@ -130,7 +135,7 @@ class FPDF
     //Page format
     $this->PageFormats = array('a3' => array(841.89, 1190.55), 'a4' => array(595.28, 841.89), 'a5' => array(420.94, 595.28),
       'letter' => array(612, 792), 'legal' => array(612, 1008));
-    if (\is_string($format))
+    if (is_string($format))
       $format = $this->_getpageformat($format);
     $this->DefPageFormat = $format;
     $this->CurPageFormat = $format;
@@ -207,7 +212,7 @@ class FPDF
   public function SetDisplayMode($zoom, $layout = 'continuous')
   {
     //Set display mode in viewer
-    if ($zoom == 'fullpage' || $zoom == 'fullwidth' || $zoom == 'real' || $zoom == 'default' || !\is_string($zoom))
+    if ($zoom == 'fullpage' || $zoom == 'fullwidth' || $zoom == 'real' || $zoom == 'default' || !is_string($zoom))
       $this->ZoomMode = $zoom;
     else
       $this->Error('Incorrect zoom display mode: ' . $zoom);
@@ -421,7 +426,7 @@ class FPDF
     $s = (string)$s;
     $cw =& $this->CurrentFont['cw'];
     $w = 0;
-    $l = \strlen($s);
+    $l = strlen($s);
     for ($i = 0; $i < $l; $i++)
       $w += $cw[$s[$i]];
     return $w * $this->FontSize / 1000;
@@ -470,12 +475,12 @@ class FPDF
     include($this->_getfontpath() . $file);
     if (!isset($name))
       $this->Error('Could not include font definition file');
-    $i = \count($this->fonts) + 1;
+    $i = count($this->fonts) + 1;
     $this->fonts[$fontkey] = array('i' => $i, 'type' => $type, 'name' => $name, 'desc' => $desc, 'up' => $up, 'ut' => $ut, 'cw' => $cw, 'enc' => $enc, 'file' => $file);
     if ($diff) {
       //Search existing encodings
       $d = 0;
-      $nb = \count($this->diffs);
+      $nb = count($this->diffs);
       for ($i = 1; $i <= $nb; $i++) {
         if ($this->diffs[$i] == $diff) {
           $d = $i;
@@ -525,7 +530,7 @@ class FPDF
     $fontkey = $family . $style;
     if (!isset($this->fonts[$fontkey])) {
       //Check if one of the standard fonts
-      if (isset($this->CoreFonts[$fontkey])) {
+      if (isset($this->includesFonts[$fontkey])) {
         if (!isset($fpdf_charwidths[$fontkey])) {
           //Load metric file
           $file = $family;
@@ -535,8 +540,8 @@ class FPDF
           if (!isset($fpdf_charwidths[$fontkey]))
             $this->Error('Could not include font metric file');
         }
-        $i = \count($this->fonts) + 1;
-        $name = $this->CoreFonts[$fontkey];
+        $i = count($this->fonts) + 1;
+        $name = $this->includesFonts[$fontkey];
         $cw = $fpdf_charwidths[$fontkey];
         $this->fonts[$fontkey] = array('i' => $i, 'type' => 'core', 'name' => $name, 'up' => -100, 'ut' => 50, 'cw' => $cw);
       } else
@@ -566,7 +571,7 @@ class FPDF
   public function AddLink()
   {
     //Create a new internal link
-    $n = \count($this->links) + 1;
+    $n = count($this->links) + 1;
     $this->links[$n] = array(0, 0);
     return $n;
   }
@@ -633,7 +638,7 @@ class FPDF
         $op = 'S';
       $s = sprintf('%.2F %.2F %.2F %.2F re %s ', $this->x * $k, ($this->h - $this->y) * $k, $w * $k, -$h * $k, $op);
     }
-    if (\is_string($border)) {
+    if (is_string($border)) {
       $x = $this->x;
       $y = $this->y;
       if (str_contains($border, 'L'))
@@ -683,7 +688,7 @@ class FPDF
       $w = $this->w - $this->rMargin - $this->x;
     $wmax = ($w - 2 * $this->cMargin) * 1000 / $this->FontSize;
     $s = str_replace("\r", '', $txt);
-    $nb = \strlen($s);
+    $nb = strlen($s);
     if ($nb > 0 && $s[$nb - 1] == "\n")
       $nb--;
     $b = 0;
@@ -779,7 +784,7 @@ class FPDF
     $w = $this->w - $this->rMargin - $this->x;
     $wmax = ($w - 2 * $this->cMargin) * 1000 / $this->FontSize;
     $s = str_replace("\r", '', $txt);
-    $nb = \strlen($s);
+    $nb = strlen($s);
     $sep = -1;
     $i = 0;
     $j = 0;
@@ -871,7 +876,7 @@ class FPDF
       if (!method_exists($this, $mtd))
         $this->Error('Unsupported image type: ' . $type);
       $info = $this->$mtd($file);
-      $info['i'] = \count($this->images) + 1;
+      $info['i'] = count($this->images) + 1;
       $this->images[$file] = $info;
     } else
       $info = $this->images[$file];
@@ -963,7 +968,7 @@ class FPDF
           header('Content-Type: application/pdf');
           if (headers_sent())
             $this->Error('Some data has already been output, can\'t send PDF file');
-          header('Content-Length: ' . \strlen($this->buffer));
+          header('Content-Length: ' . strlen($this->buffer));
           header('Content-Disposition: inline; filename="' . $name . '"');
           header('Cache-Control: private, max-age=0, must-revalidate');
           header('Pragma: public');
@@ -978,7 +983,7 @@ class FPDF
         header('Content-Type: application/x-download');
         if (headers_sent())
           $this->Error('Some data has already been output, can\'t send PDF file');
-        header('Content-Length: ' . \strlen($this->buffer));
+        header('Content-Length: ' . strlen($this->buffer));
         header('Content-Disposition: attachment; filename="' . $name . '"');
         header('Cache-Control: private, max-age=0, must-revalidate');
         header('Pragma: public');
@@ -990,7 +995,7 @@ class FPDF
         $f = fopen($name, 'wb');
         if (!$f)
           $this->Error('Unable to create output file: ' . $name);
-        fwrite($f, $this->buffer, \strlen($this->buffer));
+        fwrite($f, $this->buffer, strlen($this->buffer));
         fclose($f);
         break;
       case 'S':
@@ -1028,9 +1033,9 @@ class FPDF
 
   public function _getfontpath()
   {
-    if (!\defined('FPDF_FONTPATH') && is_dir(__DIR__ . '/font'))
+    if (!defined('FPDF_FONTPATH') && is_dir(__DIR__ . '/font'))
       define('FPDF_FONTPATH', __DIR__ . '/font/');
-    return \defined('FPDF_FONTPATH') ? FPDF_FONTPATH : '';
+    return defined('FPDF_FONTPATH') ? FPDF_FONTPATH : '';
   }
 
   public function _beginpage($orientation, $format)
@@ -1049,7 +1054,7 @@ class FPDF
     if ($format == '')
       $format = $this->DefPageFormat;
     else {
-      if (\is_string($format))
+      if (is_string($format))
         $format = $this->_getpageformat($format);
     }
     if ($orientation != $this->CurOrientation || $format[0] != $this->CurPageFormat[0] || $format[1] != $this->CurPageFormat[1]) {
@@ -1096,7 +1101,7 @@ class FPDF
   {
     //Convert UTF-8 to UTF-16BE with BOM
     $res = "\xFE\xFF";
-    $nb = \strlen($s);
+    $nb = strlen($s);
     $i = 0;
     while ($i < $nb) {
       $c1 = ord($s[$i++]);
@@ -1234,7 +1239,7 @@ class FPDF
       $s = fread($f, $n);
       if ($s === false)
         $this->Error('Error while reading stream');
-      $n -= \strlen($s);
+      $n -= strlen($s);
       $res .= $s;
     }
     if ($n > 0)
@@ -1275,7 +1280,7 @@ class FPDF
   {
     //Begin a new object
     $this->n++;
-    $this->offsets[$this->n] = \strlen($this->buffer);
+    $this->offsets[$this->n] = strlen($this->buffer);
     $this->_out($this->n . ' 0 obj');
   }
 
@@ -1325,7 +1330,7 @@ class FPDF
         foreach ($this->PageLinks[$n] as $pl) {
           $rect = sprintf('%.2F %.2F %.2F %.2F', $pl[0], $pl[1], $pl[0] + $pl[2], $pl[1] - $pl[3]);
           $annots .= '<</Type /Annot /Subtype /Link /Rect [' . $rect . '] /Border [0 0 0] ';
-          if (\is_string($pl[4]))
+          if (is_string($pl[4]))
             $annots .= '/A <</S /URI /URI ' . $this->_textstring($pl[4]) . '>>>>';
           else {
             $l = $this->links[$pl[4]];
@@ -1340,12 +1345,12 @@ class FPDF
       //Page content
       $p = ($this->compress) ? gzcompress($this->pages[$n]) : $this->pages[$n];
       $this->_newobj();
-      $this->_out('<<' . $filter . '/Length ' . \strlen($p) . '>>');
+      $this->_out('<<' . $filter . '/Length ' . strlen($p) . '>>');
       $this->_putstream($p);
       $this->_out('endobj');
     }
     //Pages root
-    $this->offsets[1] = \strlen($this->buffer);
+    $this->offsets[1] = strlen($this->buffer);
     $this->_out('1 0 obj');
     $this->_out('<</Type /Pages');
     $kids = '/Kids [';
@@ -1390,7 +1395,7 @@ class FPDF
           $font = substr($font, 0, $info['length1']) . substr($font, $info['length1'] + 6);
         }
       }
-      $this->_out('<</Length ' . \strlen($font));
+      $this->_out('<</Length ' . strlen($font));
       if ($compressed)
         $this->_out('/Filter /FlateDecode');
       $this->_out('/Length1 ' . $info['length1']);
@@ -1473,7 +1478,7 @@ class FPDF
       $this->_out('/Width ' . $info['w']);
       $this->_out('/Height ' . $info['h']);
       if ($info['cs'] == 'Indexed')
-        $this->_out('/ColorSpace [/Indexed /DeviceRGB ' . (\strlen($info['pal']) / 3 - 1) . ' ' . ($this->n + 1) . ' 0 R]');
+        $this->_out('/ColorSpace [/Indexed /DeviceRGB ' . (strlen($info['pal']) / 3 - 1) . ' ' . ($this->n + 1) . ' 0 R]');
       else {
         $this->_out('/ColorSpace /' . $info['cs']);
         if ($info['cs'] == 'DeviceCMYK')
@@ -1484,13 +1489,13 @@ class FPDF
         $this->_out('/Filter /' . $info['f']);
       if (isset($info['parms']))
         $this->_out($info['parms']);
-      if (isset($info['trns']) && \is_array($info['trns'])) {
+      if (isset($info['trns']) && is_array($info['trns'])) {
         $trns = '';
-        for ($i = 0, $iMax = \count($info['trns']); $i < $iMax; $i++)
+        for ($i = 0, $iMax = count($info['trns']); $i < $iMax; $i++)
           $trns .= $info['trns'][$i] . ' ' . $info['trns'][$i] . ' ';
         $this->_out('/Mask [' . $trns . ']');
       }
-      $this->_out('/Length ' . \strlen($info['data']) . '>>');
+      $this->_out('/Length ' . strlen($info['data']) . '>>');
       $this->_putstream($info['data']);
       unset($this->images[$file]['data']);
       $this->_out('endobj');
@@ -1498,7 +1503,7 @@ class FPDF
       if ($info['cs'] == 'Indexed') {
         $this->_newobj();
         $pal = ($this->compress) ? gzcompress($info['pal']) : $info['pal'];
-        $this->_out('<<' . $filter . '/Length ' . \strlen($pal) . '>>');
+        $this->_out('<<' . $filter . '/Length ' . strlen($pal) . '>>');
         $this->_putstream($pal);
         $this->_out('endobj');
       }
@@ -1528,7 +1533,7 @@ class FPDF
     $this->_putfonts();
     $this->_putimages();
     //Resource dictionary
-    $this->offsets[2] = \strlen($this->buffer);
+    $this->offsets[2] = strlen($this->buffer);
     $this->_out('2 0 obj');
     $this->_out('<<');
     $this->_putresourcedict();
@@ -1562,7 +1567,7 @@ class FPDF
       $this->_out('/OpenAction [3 0 R /FitH null]');
     elseif ($this->ZoomMode == 'real')
       $this->_out('/OpenAction [3 0 R /XYZ null null 1]');
-    elseif (!\is_string($this->ZoomMode))
+    elseif (!is_string($this->ZoomMode))
       $this->_out('/OpenAction [3 0 R /XYZ null null ' . ($this->ZoomMode / 100) . ']');
     if ($this->LayoutMode == 'single')
       $this->_out('/PageLayout /SinglePage');
@@ -1602,7 +1607,7 @@ class FPDF
     $this->_out('>>');
     $this->_out('endobj');
     //Cross-ref
-    $o = \strlen($this->buffer);
+    $o = strlen($this->buffer);
     $this->_out('xref');
     $this->_out('0 ' . ($this->n + 1));
     $this->_out('0000000000 65535 f ');

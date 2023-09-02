@@ -13,6 +13,7 @@ namespace ClicShopping\Sites\Shop;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function is_array;
 
 class HeaderTags
 {
@@ -47,7 +48,7 @@ class HeaderTags
       $footer_content = '';
 
       foreach ($footer1 as $value) {
-        $footer_content .=  '#' . HTML::link(CLICSHOPPING::link(null, 'Search&Q&keywords=' . HTML::sanitize($value) . '&search_in_description=1'), $value);
+        $footer_content .= HTML::link(CLICSHOPPING::link(null, 'Search&Q&keywords=' . HTML::sanitize($value) . '&search_in_description=1'), $value) . ', ';
       }
 
       return $footer_content;
@@ -72,7 +73,7 @@ class HeaderTags
     $chars = preg_split('/&/', $str, -1);
     $newstring = '';
 
-    if (\is_array($chars)) {
+    if (is_array($chars)) {
       foreach ($chars as $value) {
         $newstring = '?' . ($value[1] ?? 'NULL') . '&' . ($value[2] ?? 'NULL');
       }

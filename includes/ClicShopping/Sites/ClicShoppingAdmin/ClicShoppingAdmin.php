@@ -20,10 +20,11 @@ use ClicShopping\OM\Language;
 use ClicShopping\OM\Registry;
 use ClicShopping\OM\Service;
 use ClicShopping\OM\Session;
+use Exception;
+use function count;
 
 class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
 {
-
   protected static string $default_application = 'Dashboard';
 
   protected function init()
@@ -36,7 +37,7 @@ class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
     try {
       $CLICSHOPPING_Db = Db::initialize();
       Registry::set('Db', $CLICSHOPPING_Db);
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'error_documents/maintenance.php');
       exit;
     }
@@ -150,7 +151,7 @@ class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
     if (!empty($_GET)) {
       $req = basename(array_keys($_GET)[0]);
 
-      if (($req == 'A') && (\count($_GET) > 1)) {
+      if (($req == 'A') && (count($_GET) > 1)) {
         $app = array_keys($_GET)[1];
 
         if (str_contains($app, '\\')) {
@@ -159,7 +160,7 @@ class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
           if (Apps::exists($vendor . '\\' . $app) && ($page = Apps::getRouteDestination(null, $vendor . '\\' . $app)) !== null) {
 // get controller class name from namespace
             $page_namespace = explode('\\', $page);
-            $page_code = $page_namespace[\count($page_namespace) - 1];
+            $page_code = $page_namespace[count($page_namespace) - 1];
 
             if (class_exists('ClicShopping\Apps\\' . $vendor . '\\' . $app . '\\' . $page . '\\' . $page_code)) {
               $this->app = $vendor . '\\' . $app;

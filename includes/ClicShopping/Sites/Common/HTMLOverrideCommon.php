@@ -11,13 +11,14 @@
 namespace ClicShopping\Sites\Common;
 
 use ClicShopping\OM\HTML;
+use function strlen;
 
 class HTMLOverrideCommon extends HTML
 {
   /**
    * Function to remove HTML tags, javascript sections and convert some common HTML entities to their text equivalent
    * public function
-   * @param string $string , $str of the text
+   * @param string $str
    * @return a text replaced
    */
   static public function stripHtmlTags(string $str): string
@@ -71,7 +72,7 @@ class HTMLOverrideCommon extends HTML
     $clean = preg_replace("[<(.*'?)>]", '', $clean);
 
     if (!empty ($length)) {
-      if (\strlen($clean) > $length) {
+      if (strlen($clean) > $length) {
         $clean = substr($clean, 0, $length - 3) . "...";
       }
     }

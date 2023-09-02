@@ -14,6 +14,10 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
+use DOMDocument;
+use DOMXPath;
+use function is_null;
+use function is_string;
 
 class CkEditor5 extends HTML
 {
@@ -122,16 +126,16 @@ class CkEditor5 extends HTML
 
     $field = '<textarea name="' . $name . '"  id="' . $ckeditor_id . '"';
 
-    if (!\is_null($parameters)) $field .= ' ' . $parameters;
+    if (!is_null($parameters)) $field .= ' ' . $parameters;
     $field .= ' />';
 
-    if (($override === true) && ((isset($_GET[$name]) && \is_string($_GET[$name])) || (isset($_POST[$name]) && \is_string($_POST[$name])))) {
-      if (isset($_GET[$name]) && \is_string($_GET[$name])) {
+    if (($override === true) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
+      if (isset($_GET[$name]) && is_string($_GET[$name])) {
         $field .= HTML::outputProtected($_GET[$name]);
-      } elseif (isset($_POST[$name]) && \is_string($_POST[$name])) {
+      } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
         $field .= HTML::outputProtected($_POST[$name]);
       }
-    } elseif (!\is_null($text)) {
+    } elseif (!is_null($text)) {
       $field .= HTML::outputProtected($text);
     }
 
@@ -588,11 +592,11 @@ class CkEditor5 extends HTML
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
     if (!empty($image)) {
-      $doc = new \DOMDocument();
+      $doc = new DOMDocument();
       libxml_use_internal_errors(true);
 
       $doc->loadHTML($image);
-      $xpath = new \DOMXPath($doc);
+      $xpath = new DOMXPath($doc);
 
       $image = $xpath->evaluate("string(//img/@src)");
       $image = CLICSHOPPING::getConfig('http_server', 'Shop') . $image;

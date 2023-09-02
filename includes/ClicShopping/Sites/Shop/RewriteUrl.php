@@ -12,6 +12,9 @@ namespace ClicShopping\Sites\Shop;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use Transliterator;
+use function defined;
+use function is_null;
 
 class RewriteUrl
 {
@@ -826,7 +829,7 @@ class RewriteUrl
   private function getSkipAccents(string $str, string $charset = 'utf-8'): string
   {
     if (extension_loaded('intl')) {
-      $transliterator = \Transliterator::create('Any-Latin; Latin-ASCII');
+      $transliterator = Transliterator::create('Any-Latin; Latin-ASCII');
       $str = $transliterator->transliterate(mb_convert_encoding(htmlspecialchars_decode($str), $charset, 'auto'));
       $str = static::getRemoveAccents($str);
     } else {
@@ -867,8 +870,8 @@ class RewriteUrl
     $CLICSHOPPING_Language = Registry::get('Language');
     $CLICSHOPPING_Db = Registry::get('Db');
 
-    if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
+    if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
+      if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
         $Qseo = $CLICSHOPPING_Db->prepare('select products_seo_url
                                              from :table_products_description
                                              where products_id = :products_id
@@ -881,7 +884,7 @@ class RewriteUrl
 
         $products_seo_url = $Qseo->value('products_seo_url');
 
-        if (empty($products_seo_url) || \is_null($products_seo_url)) {
+        if (empty($products_seo_url) || is_null($products_seo_url)) {
           $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
           $products_name = $this->replaceString($products_name);
           $products_url_rewrited = 'Products&Description&' . $products_name . '&Id=' . $products_id;
@@ -912,8 +915,8 @@ class RewriteUrl
   {
     $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
 
-    if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
+    if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
+      if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
         $page_title = $CLICSHOPPING_PageManagerShop->pageManagerDisplayTitle($page_id);
         $page_title = $this->replaceString($page_title);
         $content_url_rewrited = 'Info&Content&' . $page_title . '&pagesId=' . $page_id;
@@ -954,8 +957,8 @@ class RewriteUrl
     $CLICSHOPPING_Language = Registry::get('Language');
     $CLICSHOPPING_Db = Registry::get('Db');
 
-    if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
+    if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
+      if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
         $Qseo = $CLICSHOPPING_Db->prepare('select categories_seo_url
                                              from :table_categories_description
                                              where categories_id = :categories_id
@@ -968,7 +971,7 @@ class RewriteUrl
 
         $categories_seo_url = $Qseo->value('categories_seo_url');
 
-        if (empty($categories_seo_url) || \is_null($categories_seo_url)) {
+        if (empty($categories_seo_url) || is_null($categories_seo_url)) {
           $link_title = $this->title;
           $link_title = $this->replaceString($link_title);
 
@@ -997,8 +1000,8 @@ class RewriteUrl
 
   public function getCategoryImageUrl(string $categories_id, string $parameters = ''): string
   {
-    if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
+    if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
+      if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
         $link_title = $this->title;
         $link_title = $this->replaceString($link_title);
         $categories_url_rewrited = $link_title . '&' . $categories_id;
@@ -1027,8 +1030,8 @@ class RewriteUrl
   {
     $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
 
-    if (\defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-      if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
+    if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
+      if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
         $manufacturer_title = $CLICSHOPPING_Manufacturers->getTitle($manufacturer_id);
         $manufacturer_title = $this->replaceString($manufacturer_title);
 

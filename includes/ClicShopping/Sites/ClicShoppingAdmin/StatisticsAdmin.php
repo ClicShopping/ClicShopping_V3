@@ -14,13 +14,9 @@ use ClicShopping\OM\Registry;
 
 class StatisticsAdmin
 {
-
-//
-// Statistiques sur le CA
-//
-
-// CA total sur toutes les annees
-// stat_total
+  /**
+   * @return int|mixed
+   */
   public static function statsTotalCaAllYear()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

@@ -9,6 +9,7 @@
  */
 
 namespace ClicShopping\Sites\Shop;
+use function strlen;
 
 class CcValidation
 {
@@ -69,7 +70,7 @@ class CcValidation
   {
     $cardNumber = strrev($this->cc_number);
     $numSum = 0;
-    $cardNumber = \strlen($cardNumber);
+    $cardNumber = strlen($cardNumber);
 
     for ($i = 0; $i < $cardNumber; $i++) {
       $currentNum = substr($cardNumber, $i, 1);

@@ -12,6 +12,7 @@ namespace ClicShopping\Sites\ClicShoppingAdmin;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use function is_object;
 
 class CfgModulesAdmin
 {
@@ -35,7 +36,7 @@ class CfgModulesAdmin
 
             $m = new $class();
 
-            if (\is_object($m)) {
+            if (is_object($m)) {
               $this->_modules[] = [
                 'code' => $m->code,
                 'directory' => $m->directory,
@@ -108,7 +109,7 @@ class CfgModulesAdmin
     for ($i = 0, $n = \count($modules_array); $i < $n; $i++) {
       $class = substr($modules_array[$i], 0, strrpos($modules_array[$i], '.'));
 
-      if (isset($GLOBALS[$class]) && \is_object($GLOBALS[$class])) {
+      if (isset($GLOBALS[$class]) && is_object($GLOBALS[$class])) {
         if ($GLOBALS[$class]->enabled) {
           $count++;
         }

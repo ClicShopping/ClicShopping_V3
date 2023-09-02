@@ -11,6 +11,8 @@
 namespace ClicShopping\Sites\ClicShoppingAdmin;
 
 use ClicShopping\OM\CLICSHOPPING;
+use function in_array;
+use function is_null;
 
 class Composer
 {
@@ -36,7 +38,7 @@ class Composer
   {
     $disabled = explode(', ', ini_get('disable_functions'));
 
-    return !\in_array('exec', $disabled);
+    return !in_array('exec', $disabled);
   }
 
   /**
@@ -65,7 +67,7 @@ class Composer
    */
   public static function checkLibrayInstalled($libray = null): bool
   {
-    if (!\is_null($libray) && self::checkExecute() === true) {
+    if (!is_null($libray) && self::checkExecute() === true) {
       $cmd = 'cd ' . self::$root . ' && composer show' . $libray;
       exec($cmd, $output, $return); // update dependencies
 
@@ -112,7 +114,7 @@ class Composer
   public static function checkOnlineVersion($library = null)
   {
     if (self::checkExecute() === true) {
-      if (!\is_null($library)) {
+      if (!is_null($library)) {
         $result = '';
 
         $cmd = 'cd ' . self::$root . ' && composer show ' . $library;
@@ -158,7 +160,7 @@ class Composer
     $result = '';
 
     if (self::checkExecute() === true) {
-      if (\is_null($library)) {
+      if (is_null($library)) {
         $cmd = 'cd ' . self::$root . ' && composer update 2>&1';
         exec($cmd, $output, $return); // update dependencies
 
@@ -187,7 +189,7 @@ class Composer
     $result = '';
 
     if (self::checkExecute() === true) {
-      if (\is_null($library)) {
+      if (is_null($library)) {
         $result = false;
       } else {
         $cmd = 'cd ' . self::$root . ' && composer require  ' . $library . ' 2>&1';

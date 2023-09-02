@@ -13,6 +13,8 @@ namespace ClicShopping\Sites\ClicShoppingAdmin;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function defined;
+use function is_null;
 
 
 class ActionRecorderAdmin extends \ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder
@@ -45,8 +47,8 @@ class ActionRecorderAdmin extends \ClicShopping\Apps\Tools\ActionsRecorder\Class
   {
     $module = HTML::sanitize(str_replace(' ', '', $this->_module));
 
-    if (\defined('MODULE_ACTION_RECORDER_INSTALLED') && !\is_null(MODULE_ACTION_RECORDER_INSTALLED)) {
-      if (!\is_null($module) && \in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), explode(';', MODULE_ACTION_RECORDER_INSTALLED))) {
+    if (defined('MODULE_ACTION_RECORDER_INSTALLED') && !is_null(MODULE_ACTION_RECORDER_INSTALLED)) {
+      if (!is_null($module) && \in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), explode(';', MODULE_ACTION_RECORDER_INSTALLED))) {
 
         if (!class_exists($module)) {
           if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/action_recorder/' . $module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)))) {

@@ -23,6 +23,9 @@ use ClicShopping\OM\Service;
 use ClicShopping\OM\Session;
 
 use ClicShopping\Apps\Tools\WhosOnline\Classes\Shop\WhosOnlineShop;
+use function array_slice;
+use function count;
+use function define;
 
 class Shop extends \ClicShopping\OM\SitesAbstract
 {
@@ -54,7 +57,7 @@ class Shop extends \ClicShopping\OM\SitesAbstract
     $Qcfg->execute();
 
     while ($Qcfg->fetch()) {
-      \define($Qcfg->value('k'), $Qcfg->value('v'));
+      define($Qcfg->value('k'), $Qcfg->value('v'));
     }
 
 // set the session name and save path
@@ -144,7 +147,7 @@ class Shop extends \ClicShopping\OM\SitesAbstract
 
 // get controller class name from namespace
         $page_namespace = explode('\\', $page);
-        $page_code = $page_namespace[\count($page_namespace) - 1];
+        $page_code = $page_namespace[count($page_namespace) - 1];
 
         if (class_exists('ClicShopping\Apps\\' . $vendor_app . '\\' . $page . '\\' . $page_code)) {
           $class = 'ClicShopping\Apps\\' . $vendor_app . '\\' . $page . '\\' . $page_code;
@@ -188,12 +191,12 @@ class Shop extends \ClicShopping\OM\SitesAbstract
       foreach ($paths as $path => $page) {
         $path_array = explode('&', $path);
 
-        if (\count($path_array) <= \count($route)) {
-          if ($path_array == \array_slice($route, 0, \count($path_array))) {
+        if (count($path_array) <= count($route)) {
+          if ($path_array == array_slice($route, 0, count($path_array))) {
             $result[] = [
               'path' => $path,
               'destination' => $vendor_app . '/' . $page,
-              'score' => \count($path_array)
+              'score' => count($path_array)
             ];
           }
         }

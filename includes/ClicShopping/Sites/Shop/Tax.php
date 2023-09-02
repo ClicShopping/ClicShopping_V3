@@ -12,6 +12,7 @@ namespace ClicShopping\Sites\Shop;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use function strlen;
 
 class Tax
 {
@@ -170,7 +171,7 @@ class Tax
 
     if ($padding > 0) {
       if (($decimal_pos = strpos($value, '.')) !== false) {
-        $decimals = \strlen(substr($value, ($decimal_pos + 1)));
+        $decimals = strlen(substr($value, ($decimal_pos + 1)));
 
         for ($i = $decimals; $i < $padding; $i++) {
           $value .= '0';

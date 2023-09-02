@@ -14,7 +14,15 @@ use ClicShopping\OM\Registry;
 
 class pdfInvoice extends FPDF
 {
-
+  /**
+   * @param $x
+   * @param $y
+   * @param $w
+   * @param $h
+   * @param $r
+   * @param $style
+   * @return void
+   */
   public function roundedRect($x, $y, $w, $h, $r, $style = '')
   {
     $k = $this->k;
@@ -56,7 +64,10 @@ class pdfInvoice extends FPDF
       $x2 * $this->k, ($h - $y2) * $this->k, $x3 * $this->k, ($h - $y3) * $this->k));
   }
 
-  public function Header()
+  /**
+   * @return void
+   */
+  public function Header(): void
   {
     $CLICSHOPPING_Template = Registry::get('Template');
 
@@ -102,7 +113,10 @@ class pdfInvoice extends FPDF
     $this->MultiCell(100, 3.5, CLICSHOPPING::getDef('entry_http_site') . ' ' . HTTP::typeUrlDomain(), 0, 'L');
   }
 
-  public function Footer()
+  /**
+   * @return void
+   */
+  public function Footer():void
   {
 // Remerciement
     $this->SetY(-55);

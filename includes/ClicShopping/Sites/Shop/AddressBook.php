@@ -12,6 +12,8 @@ namespace ClicShopping\Sites\Shop;
 
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function is_array;
+use function is_null;
 
 class AddressBook
 {
@@ -28,7 +30,7 @@ class AddressBook
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Customer = Registry::get('Customer');
 
-    if (\is_null($customers_id)) {
+    if (is_null($customers_id)) {
       $customers_id = $CLICSHOPPING_Customer->getID();
     }
 
@@ -74,7 +76,7 @@ class AddressBook
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Address = Registry::get('Address');
 
-    if (\is_array($address_id) && !empty($address_id)) {
+    if (is_array($address_id) && !empty($address_id)) {
       return $CLICSHOPPING_Address->addressFormat($address_id['address_format_id'], $address_id, $html, $boln, $eoln);
     }
 

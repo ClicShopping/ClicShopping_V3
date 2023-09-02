@@ -13,6 +13,8 @@ namespace ClicShopping\Sites\Shop;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function count;
+use function is_null;
 
 class ProductsListing
 {
@@ -65,7 +67,7 @@ class ProductsListing
 
     $search_query = 'select SQL_CALC_FOUND_ROWS ';
 
-    for ($i = 0, $n = \count($column_list); $i < $n; $i++) {
+    for ($i = 0, $n = count($column_list); $i < $n; $i++) {
       switch ($column_list[$i]) {
         case 'PRODUCT_LIST_MODEL':
           $search_query .= ' p.products_model,';
@@ -97,7 +99,7 @@ class ProductsListing
       $filter_id = null;
     }
 
-    if (!\is_null($CLICSHOPPING_Manufacturers->getID())) {
+    if (!is_null($CLICSHOPPING_Manufacturers->getID())) {
       $manufacturers_id = HTML::sanitize($CLICSHOPPING_Manufacturers->getID());
     } else {
       $manufacturers_id = false;
@@ -105,7 +107,7 @@ class ProductsListing
 
     if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
       if (isset($manufacturers_id) && is_numeric($manufacturers_id) && !empty($manufacturers_id)) {
-        if (isset($filter_id) && !\is_null($filter_id)) {
+        if (isset($filter_id) && !is_null($filter_id)) {
 // Affichage des produits en mode B2B sur la selection d'une marque depuis la boxe manufacturer avec filtrage de la categorie
           $search_query .= ' p.products_id,
                              p.products_sort_order
@@ -153,7 +155,7 @@ class ProductsListing
                            ';
         }
       } else {
-        if (isset($filter_id) && !\is_null($filter_id)) {
+        if (isset($filter_id) && !is_null($filter_id)) {
 // Affichage general en mode B2B de la liste des produits d'une categorie avec un filtrage des Marques
 
           $search_query .= ' p.products_id,
@@ -206,7 +208,7 @@ class ProductsListing
 // ***************************
     } else {
       if (isset($manufacturers_id) && is_numeric($manufacturers_id) && !empty($manufacturers_id)) {
-        if (isset($filter_id) && !\is_null($filter_id)) {
+        if (isset($filter_id) && !is_null($filter_id)) {
 
 // Affichage des produits sur la selection d'une marque depuis la boxe manufacturer avec filtrage de la categorie
           $search_query .= ' p.products_id,
@@ -252,7 +254,7 @@ class ProductsListing
                            ';
         }
       } else {
-        if (isset($filter_id) && !\is_null($filter_id)) {
+        if (isset($filter_id) && !is_null($filter_id)) {
 // Affichage general de la liste des produits d'une categorie avec un filtrage des Marques
 
           $search_query .= ' p.products_id,
@@ -299,8 +301,8 @@ class ProductsListing
 // ####### END B2B #######
     $search_query .= ' group by p.products_id ';
 
-    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > \count($column_list))) {
-      for ($i = 0, $n = \count($column_list); $i < $n; $i++) {
+    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($column_list))) {
+      for ($i = 0, $n = count($column_list); $i < $n; $i++) {
         if ($column_list[$i] == 'PRODUCT_LIST_NAME') {
           $_GET['sort'] = $i + 1 . 'a';
 
@@ -352,7 +354,7 @@ class ProductsListing
 
     if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
       if (isset($manufacturers_id) && is_numeric($manufacturers_id) && !empty($manufacturers_id)) {
-        if (isset($filter_id) && !\is_null($filter_id)) {
+        if (isset($filter_id) && !is_null($filter_id)) {
 // Affichage des produits en mode B2B sur la selection d'une marque depuis la boxe manufacturer avec filtrage de la categorie
           $Qlisting->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
           $Qlisting->bindInt(':manufacturers_id', $manufacturers_id);
@@ -365,7 +367,7 @@ class ProductsListing
           $Qlisting->bindInt(':manufacturers_id', $manufacturers_id);
         }
       } else {
-        if (isset($filter_id) && !\is_null($filter_id)) {
+        if (isset($filter_id) && !is_null($filter_id)) {
 // Affichage general en mode B2B de la liste des produits d'une categorie avec un filtrage des Marques
           $Qlisting->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
           $Qlisting->bindInt(':manufacturers_id', $filter_id);
@@ -392,7 +394,7 @@ class ProductsListing
     } else {
       if (isset($manufacturers_id) && !empty($filter_id)) {
 
-        if (isset($filter_id) && !\is_null($filter_id)) {
+        if (isset($filter_id) && !is_null($filter_id)) {
 // Affichage des produits sur la selection d'une marque depuis la boxe manufacturer avec filtrage de la categorie
           $Qlisting->bindInt(':manufacturers_id', $manufacturers_id);
           $Qlisting->bindInt(':language_id', $CLICSHOPPING_Language->getId());
@@ -403,7 +405,7 @@ class ProductsListing
           $Qlisting->bindInt(':language_id', $CLICSHOPPING_Language->getId());
         }
       } else {
-        if (isset($filter_id) && !\is_null($filter_id)) {
+        if (isset($filter_id) && !is_null($filter_id)) {
 // Affichage general de la liste des produits d'une categorie avec un filtrage des Marques
           $Qlisting->bindInt(':manufacturers_id', $filter_id);
           $Qlisting->bindInt(':language_id', $CLICSHOPPING_Language->getId());

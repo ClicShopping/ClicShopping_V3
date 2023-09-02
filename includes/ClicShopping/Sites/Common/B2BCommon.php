@@ -12,14 +12,15 @@ namespace ClicShopping\Sites\Common;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use function in_array;
 
 class B2BCommon
 {
   /**
    * Display the payment mode in different mode B2B or not
    *
-   * @param string $product_price_d , the price of the product or not
-   *
+   * @param string $pay_check
+   * @return bool
    */
 
   public static function getPaymentUnallowed(string $pay_check): bool
@@ -44,7 +45,7 @@ class B2BCommon
         $payments_not_allowed = $QpaymentsNotAllowed->fetch();
 
         $payments_unallowed = explode(",", $payments_not_allowed['group_payment_unallowed']);
-        $clearance = (\in_array($pay_check, $payments_unallowed)) ? true : false;
+        $clearance = (in_array($pay_check, $payments_unallowed)) ? true : false;
 
       } elseif ($CLICSHOPPING_Customer->isLoggedOn()) {
         $clearance = true;
@@ -63,7 +64,7 @@ class B2BCommon
 
       $payments_not_allowed = $Qpayments->fetch();
       $payments_unallowed = explode(",", $payments_not_allowed['group_payment_unallowed']);
-      $clearance = (!\in_array($pay_check, $payments_unallowed)) ? true : false;
+      $clearance = (!in_array($pay_check, $payments_unallowed)) ? true : false;
 
       return $clearance;
     }
@@ -107,7 +108,7 @@ class B2BCommon
         $shipping_not_allowed = $QshippingNotAllowed->fetch();
 
         $shipping_unallowed = explode(",", $shipping_not_allowed['group_shipping_unallowed']);
-        $shipping_clearance = (\in_array($shipping_check, $shipping_unallowed)) ? true : false;
+        $shipping_clearance = (in_array($shipping_check, $shipping_unallowed)) ? true : false;
       } elseif ($CLICSHOPPING_Customer->isLoggedOn()) {
         $shipping_clearance = true;
       } else {
@@ -128,7 +129,7 @@ class B2BCommon
       if (!empty($shipping_not_allowed['group_payment_unallowed'])) {
         $shipping_unallowed = explode(',', $shipping_not_allowed['group_payment_unallowed']);
 
-        $shipping_clearance = (!\in_array($shipping_check, $shipping_unallowed)) ? true : false;
+        $shipping_clearance = (!in_array($shipping_check, $shipping_unallowed)) ? true : false;
       } else {
         $shipping_clearance = false;
       }
