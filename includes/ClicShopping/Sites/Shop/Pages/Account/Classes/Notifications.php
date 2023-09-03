@@ -11,6 +11,7 @@
 namespace ClicShopping\Sites\Shop\Pages\Account\Classes;
 
 use ClicShopping\OM\Registry;
+use function is_null;
 
 class Notifications
 {
@@ -62,7 +63,7 @@ class Notifications
     $CLICSHOPPING_Customer = Registry::get('Customer');
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    if (!\is_null($products_id)) {
+    if (!is_null($products_id)) {
       $Qproducts = $CLICSHOPPING_Db->prepare('select pd.products_id,
                                                       pd.products_name
                                                 from :table_products_description pd,

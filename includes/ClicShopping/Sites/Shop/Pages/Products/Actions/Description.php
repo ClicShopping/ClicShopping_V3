@@ -16,7 +16,6 @@ use ClicShopping\Service\Shop\WhosOnline;
 
 class Description extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
     $CLICSHOPPING_Template = Registry::get('Template');

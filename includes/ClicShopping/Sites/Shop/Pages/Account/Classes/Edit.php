@@ -14,8 +14,8 @@ use ClicShopping\OM\Registry;
 
 class Edit
 {
-  protected mixed $db;
-  protected $customer;
+  private mixed $db;
+  private $customer;
 
   public function __construct()
   {

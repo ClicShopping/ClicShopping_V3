@@ -15,10 +15,8 @@ use ClicShopping\OM\Registry;
 
 class Password extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
-
     $CLICSHOPPING_Customer = Registry::get('Customer');
     $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
     $CLICSHOPPING_Template = Registry::get('Template');

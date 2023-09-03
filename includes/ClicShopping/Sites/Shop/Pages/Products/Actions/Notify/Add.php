@@ -12,6 +12,8 @@ namespace ClicShopping\Sites\Shop\Pages\Products\Actions\Notify;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use function count;
+use function is_array;
 
 class Add extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -35,9 +37,9 @@ class Add extends \ClicShopping\OM\PagesActionsAbstract
         CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID());
       }
 
-      if (!\is_array($notify)) $notify = array($notify);
+      if (!is_array($notify)) $notify = array($notify);
 
-      for ($i = 0, $n = \count($notify); $i < $n; $i++) {
+      for ($i = 0, $n = count($notify); $i < $n; $i++) {
 
         $Qcheck = $CLICSHOPPING_Db->get('products_notifications', 'products_id', ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
             'products_id' => (int)$notify[$i]
@@ -45,11 +47,13 @@ class Add extends \ClicShopping\OM\PagesActionsAbstract
         );
 
         if ($Qcheck->fetch() === false) {
-          $CLICSHOPPING_Db->save('products_notifications', ['products_id' => (int)$notify[$i],
-              'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-              'date_added' => 'now()'
-            ]
-          );
+          $array = [
+            'products_id' => (int)$notify[$i],
+            'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
+            'date_added' => 'now()'
+          ];
+
+          $CLICSHOPPING_Db->save('products_notifications', $array);
         }
       }
 

@@ -18,6 +18,7 @@ use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder;
 use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
+use function defined;
 
 class Process extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -93,7 +94,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 
               $CLICSHOPPING_ActionRecorder->record(false);
 
-              $message_array = ['module_action_recorder_reset_password_minutes' => (\defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES') ? (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES : 5)];
+              $message_array = ['module_action_recorder_reset_password_minutes' => (defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES') ? (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES : 5)];
 
               $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', $message_array), 'error');
             }

@@ -13,6 +13,9 @@ namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\Payment;
+use function count;
+use function is_array;
+use function is_null;
 
 class Process extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -45,7 +48,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
       CLICSHOPPING::redirect(null, 'Checkout&Shipping');
     }
 
-    if ((!\is_null(MODULE_PAYMENT_INSTALLED)) && (!isset($_SESSION['payment']))) {
+    if ((!is_null(MODULE_PAYMENT_INSTALLED)) && (!isset($_SESSION['payment']))) {
       CLICSHOPPING::redirect(null, 'Checkout&Billing');
     }
 
@@ -64,7 +67,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
     $any_out_of_stock = false;
 
     if (STOCK_CHECK == 'true') {
-      for ($i = 0, $n = \count($CLICSHOPPING_Order->products); $i < $n; $i++) {
+      for ($i = 0, $n = count($CLICSHOPPING_Order->products); $i < $n; $i++) {
         if ($CLICSHOPPING_ProductsCommon->getCheckStock($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['qty'])) {
           $any_out_of_stock = true;
         }
@@ -110,7 +113,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
     if (is_dir($source_folder)) {
       $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutProcess*');
 
-      if (\is_array($files_get)) {
+      if (is_array($files_get)) {
         foreach ($files_get as $value) {
           if (!empty($value['name'])) {
             $CLICSHOPPING_Hooks->call('CheckoutProcess', $value['name']);

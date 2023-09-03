@@ -8,7 +8,6 @@
  *
  */
 
-
 namespace ClicShopping\Sites\Shop\Pages\Account\Actions\AddressBookProcess;
 
 use ClicShopping\OM\CLICSHOPPING;

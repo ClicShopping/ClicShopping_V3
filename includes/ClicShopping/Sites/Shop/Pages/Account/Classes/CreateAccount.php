@@ -15,7 +15,6 @@ use ClicShopping\OM\Registry;
 
 class CreateAccount
 {
-
   public static function getCountryPro(): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');

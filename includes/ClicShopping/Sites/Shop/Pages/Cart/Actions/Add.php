@@ -13,6 +13,7 @@ namespace ClicShopping\Sites\Shop\Pages\Cart\Actions;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function defined;
 
 class Add extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -38,7 +39,7 @@ class Add extends \ClicShopping\OM\PagesActionsAbstract
 
         $CLICSHOPPING_ShoppingCart->addCart($_POST['products_id'], $CLICSHOPPING_ShoppingCart->getQuantity($CLICSHOPPING_Prod::getProductIDString($_POST['products_id'], $attributes)) + ((int)$_POST['cart_quantity']), $attributes);
 
-        if (\defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true' && !isset($_SESSION['login_customer_id'])) {
+        if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true' && !isset($_SESSION['login_customer_id'])) {
           if (DISPLAY_CART == 'true') {
             $goto = null;
             $parameters = 'Cart';

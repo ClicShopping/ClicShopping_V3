@@ -14,6 +14,8 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HttpRequest;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\Shipping as Delivery;
+use function defined;
+use function is_array;
 
 class Shipping extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -66,7 +68,7 @@ class Shipping extends \ClicShopping\OM\PagesActionsAbstract
       $_SESSION['sendto'] = $CLICSHOPPING_Customer->getDefaultAddressID();
     } else {
 // verify the selected shipping address
-      if ((\is_array($_SESSION['sendto']) && empty($_SESSION['sendto'])) || is_numeric($_SESSION['sendto'])) {
+      if ((is_array($_SESSION['sendto']) && empty($_SESSION['sendto'])) || is_numeric($_SESSION['sendto'])) {
         $QcheckAddress = $CLICSHOPPING_Db->prepare('select address_book_id
                                                       from :table_address_book
                                                       where customers_id = :customers_id
@@ -105,7 +107,7 @@ class Shipping extends \ClicShopping\OM\PagesActionsAbstract
     Registry::set('Shipping', new Delivery());
     $CLICSHOPPING_Shipping = Registry::get('Shipping');
 
-    if (\defined('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING') && (MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING == 'true')) {
+    if (defined('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING') && (MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING == 'true')) {
       $pass = false;
 
       switch (MODULE_ORDER_TOTAL_SHIPPING_DESTINATION) {
@@ -141,7 +143,7 @@ class Shipping extends \ClicShopping\OM\PagesActionsAbstract
 // a javascript force-selection method, also automatically select the first shipping
 // method if more than one module is now enabled
     if (!isset($_SESSION['shipping']) || (isset($_SESSION['shipping']) && ($_SESSION['shipping'] === false) && ($CLICSHOPPING_Shipping->geCountShippingModules() > 1))) $_SESSION['shipping'] = $CLICSHOPPING_Shipping->getCheapest();
-    if (\defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False') && !$CLICSHOPPING_Customer->isLoggedOn() && ($_SESSION['shipping'] === false)) {
+    if (defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False') && !$CLICSHOPPING_Customer->isLoggedOn() && ($_SESSION['shipping'] === false)) {
       $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_no_shipping_available_to_shipping_address'), 'error');
 
       CLICSHOPPING::redirect(null, 'Checkout&ShippingAddress');

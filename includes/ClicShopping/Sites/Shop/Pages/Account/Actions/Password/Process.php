@@ -16,6 +16,7 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
+use function strlen;
 
 class Process extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -33,7 +34,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
       $password_new = HTML::sanitize($_POST['password_new']);
       $password_confirmation = HTML::sanitize($_POST['password_confirmation']);
 
-      if (\strlen($password_new) < ENTRY_PASSWORD_MIN_LENGTH) {
+      if (strlen($password_new) < ENTRY_PASSWORD_MIN_LENGTH) {
         $error = true;
 
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_new_error', ['min_length' => ENTRY_PASSWORD_MIN_LENGTH]), 'error');

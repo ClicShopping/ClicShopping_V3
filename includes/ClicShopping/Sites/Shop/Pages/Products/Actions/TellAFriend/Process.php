@@ -18,6 +18,7 @@ use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
 use ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder;
+use function defined;
 
 class Process extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -82,7 +83,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 
         $CLICSHOPPING_ActionRecorder->record(false);
 
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_tell_a_friend_email_minutes' => (\defined('MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES : 15)]), 'danger', 'friend');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_tell_a_friend_email_minutes' => (defined('MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES : 15)]), 'danger', 'friend');
       }
 
       if (Is::EmailAddress($to_email_address) === false) {

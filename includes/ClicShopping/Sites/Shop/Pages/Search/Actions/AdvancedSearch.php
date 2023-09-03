@@ -15,10 +15,8 @@ use ClicShopping\OM\Registry;
 
 class AdvancedSearch extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
-
     $CLICSHOPPING_Template = Registry::get('Template');
     $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
     $CLICSHOPPING_Language = Registry::get('Language');

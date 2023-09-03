@@ -12,6 +12,7 @@ namespace ClicShopping\Sites\Shop\Pages\Account\Actions\Gdpr;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use function is_array;
 
 class Process extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -30,7 +31,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
         if (is_dir($source_folder)) {
           $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'AccountGdprCall*');
 
-          if (\is_array($files_get)) {
+          if (is_array($files_get)) {
             foreach ($files_get as $value) {
               if (!empty($value['name'])) {
                 $CLICSHOPPING_Hooks->call('Account', $value['name']);

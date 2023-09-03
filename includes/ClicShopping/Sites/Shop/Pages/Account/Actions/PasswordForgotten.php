@@ -15,7 +15,6 @@ use ClicShopping\OM\Registry;
 
 class PasswordForgotten extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
     $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');

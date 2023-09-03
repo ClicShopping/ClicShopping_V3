@@ -12,10 +12,12 @@ namespace ClicShopping\Sites\Shop\Pages\Cart\Actions;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use function count;
+use function in_array;
+use function is_array;
 
 class Update extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
     $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
@@ -25,7 +27,7 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
       if (isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         if (isset($_POST['products_id'])) {
 
-          for ($i = 0, $n = \count($_POST['products_id']); $i < $n; $i++) {
+          for ($i = 0, $n = count($_POST['products_id']); $i < $n; $i++) {
             $attributes = $_POST['id'][$_POST['products_id'][$i]] ?? '';
 
             $product_id = $CLICSHOPPING_ShoppingCart->getUprid($_POST['products_id'][$i], $attributes);
@@ -35,7 +37,7 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
                 $CLICSHOPPING_ShoppingCart->addCart($_POST['products_id'][$i], $_POST['cart_quantity'][$i], $attributes, false);
               }
             } else {
-              if (\in_array($_POST['products_id'][$i], (\is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array()), true)) {
+              if (in_array($_POST['products_id'][$i], (is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array()), true)) {
                 $CLICSHOPPING_ShoppingCart->remove($product_id);
               }
             }

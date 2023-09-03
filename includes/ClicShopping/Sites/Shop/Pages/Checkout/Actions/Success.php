@@ -13,10 +13,10 @@ namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\Pages\Checkout\Classes\CheckoutSuccess;
+use function is_array;
 
 class Success extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -42,7 +42,7 @@ class Success extends \ClicShopping\OM\PagesActionsAbstract
       $QglobalNotifications->execute();
 
       if ($QglobalNotifications->valueInt('global_product_notifications') != 1) {
-        if (isset($_POST['notify']) && \is_array($_POST['notify']) && !empty($_POST['notify'])) {
+        if (isset($_POST['notify']) && is_array($_POST['notify']) && !empty($_POST['notify'])) {
           $notify = array_unique($_POST['notify']);
 
           foreach ($notify as $n) {

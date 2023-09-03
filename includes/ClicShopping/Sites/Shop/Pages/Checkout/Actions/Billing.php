@@ -13,6 +13,9 @@ namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function count;
+use function is_array;
+use function is_null;
 
 class Billing extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -54,7 +57,7 @@ class Billing extends \ClicShopping\OM\PagesActionsAbstract
     if ((STOCK_CHECK == 'true') && (STOCK_ALLOW_CHECKOUT != 'true')) {
       $products = $CLICSHOPPING_ShoppingCart->get_products();
 
-      for ($i = 0, $n = \count($products); $i < $n; $i++) {
+      for ($i = 0, $n = count($products); $i < $n; $i++) {
         if ($CLICSHOPPING_ProductsCommon->getCheckStock($products[$i]['id'], $products[$i]['quantity'])) {
           CLICSHOPPING::redirect(null, 'Cart');
           break;
@@ -67,7 +70,7 @@ class Billing extends \ClicShopping\OM\PagesActionsAbstract
       $_SESSION['billto'] = $CLICSHOPPING_Customer->getDefaultAddressID();
     } else {
 // verify the selected billing address
-      if ((\is_array($_SESSION['billto']) && empty($_SESSION['billto'])) || is_numeric($_SESSION['billto'])) {
+      if ((is_array($_SESSION['billto']) && empty($_SESSION['billto'])) || is_numeric($_SESSION['billto'])) {
 
         $QcheckAddress = $CLICSHOPPING_Db->prepare('select count(*) as total
                                                       from :table_address_book
@@ -87,7 +90,7 @@ class Billing extends \ClicShopping\OM\PagesActionsAbstract
       }
     }
 
-    if (isset($_POST['comments']) && !\is_null($_POST['comments'])) {
+    if (isset($_POST['comments']) && !is_null($_POST['comments'])) {
       $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
     }
 

@@ -65,7 +65,7 @@ class ActionInformation
                 <div class="row">
                   <div class="col-md-11 mainTable">
                     <div class="form-group row">
-                      <label for="Bootstrap Core Memory Usage" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_core_memory') . '</label>
+                      <label for="Bootstrap includes Memory Usage" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_core_memory') . '</label>
                       <div class="col-md-3">
                         <div class="separator"></div>
                         <div class="progress">

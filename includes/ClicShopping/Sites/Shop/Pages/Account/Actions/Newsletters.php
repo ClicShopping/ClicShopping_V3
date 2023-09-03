@@ -15,7 +15,6 @@ use ClicShopping\OM\Registry;
 
 class Newsletters extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');

@@ -15,7 +15,6 @@ use ClicShopping\OM\Registry;
 
 class OrderConditions extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -28,7 +27,6 @@ class OrderConditions extends \ClicShopping\OM\PagesActionsAbstract
       $CLICSHOPPING_NavigationHistory->setSnapshot();
       CLICSHOPPING::redirect(null, 'Account&LogIn');
     }
-
 
     if (!isset($_GET['order_id']) || (isset($_GET['order_id']) && !is_numeric($_GET['order_id']))) {
       CLICSHOPPING::redirect('account_history.php');

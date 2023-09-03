@@ -12,6 +12,9 @@ namespace ClicShopping\Sites\Shop\Pages\Account\Actions\Notifications;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use function count;
+use function in_array;
+use function is_array;
 
 class Process extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -32,13 +35,13 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
     $global = $Qglobal->fetch();
 
     if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
-      if (isset($_POST['product_global']) && is_numeric($_POST['product_global']) && \in_array($_POST['product_global'], ['0', '1'])) {
+      if (isset($_POST['product_global']) && is_numeric($_POST['product_global']) && in_array($_POST['product_global'], ['0', '1'])) {
         $product_global = (int)$_POST['product_global'];
       } else {
         $product_global = 0;
       }
 
-      $products = isset($_POST['products']) && \is_array($_POST['products']) ? $_POST['products'] : [];
+      $products = isset($_POST['products']) && is_array($_POST['products']) ? $_POST['products'] : [];
 
       if ($product_global != $global['global_product_notifications']) {
         $product_global = (($global['global_product_notifications'] == '1') ? '0' : '1');
@@ -53,16 +56,16 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success', 'notification');
 
-      } elseif (\count($products) > 0) {
+      } elseif (count($products) > 0) {
         $products_parsed = [];
 
         foreach ($products as $value) {
-          if (is_numeric($value) && !\in_array($value, $products_parsed)) {
+          if (is_numeric($value) && !in_array($value, $products_parsed)) {
             $products_parsed[] = $value;
           }
         }
 
-        if (\count($products_parsed) > 0) {
+        if (count($products_parsed) > 0) {
           $Qcheck = $CLICSHOPPING_Db->prepare('select products_id
                                                  from :table_products_notifications
                                                  where customers_id = :customers_id

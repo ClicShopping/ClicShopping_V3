@@ -15,8 +15,10 @@ use ClicShopping\OM\Registry;
 
 class CheckoutSuccess
 {
-
-  public static function getCheckoutSuccessOrder()
+  /**
+   * @return mixed
+   */
+  public static function getCheckoutSuccessOrder(): mixed
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -33,7 +35,10 @@ class CheckoutSuccess
     return $Qorders;
   }
 
-  public static function getCheckoutSuccessOrderCheck()
+  /**
+   * @return void
+   */
+  public static function getCheckoutSuccessOrderCheck(): void
   {
     $Qorders = static::getCheckoutSuccessOrder();
     // redirect to shopping cart page if no orders exist
@@ -42,7 +47,10 @@ class CheckoutSuccess
     }
   }
 
-  public static function getCheckoutSuccessOrderId()
+  /**
+   * @return int
+   */
+  public static function getCheckoutSuccessOrderId(): int
   {
     $Qorders = static::getCheckoutSuccessOrder();
 

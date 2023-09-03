@@ -14,6 +14,9 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\Payment;
+use function count;
+use function is_array;
+use function is_null;
 
 class Confirmation extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -37,7 +40,7 @@ class Confirmation extends \ClicShopping\OM\PagesActionsAbstract
     if (is_dir($source_folder)) {
       $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutConfirmation*');
 
-      if (\is_array($files_get)) {
+      if (is_array($files_get)) {
         foreach ($files_get as $value) {
           if (!empty($value['name'])) {
             $CLICSHOPPING_Hooks->call('Checkout', $value['name']);
@@ -76,7 +79,7 @@ class Confirmation extends \ClicShopping\OM\PagesActionsAbstract
     if (isset($_POST['comments'])) {
       $_SESSION['comments'] = null;
 
-      if (!\is_null($_POST['comments'])) {
+      if (!is_null($_POST['comments'])) {
         $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
       }
     }
@@ -111,7 +114,7 @@ class Confirmation extends \ClicShopping\OM\PagesActionsAbstract
       CLICSHOPPING::redirect(null, 'Checkout&Billing&error_message=' . urlencode(CLICSHOPPING::getDef('error_no_payment_module_selected')));
     }
 
-    if (\is_array($CLICSHOPPING_Payment->modules)) {
+    if (is_array($CLICSHOPPING_Payment->modules)) {
       $CLICSHOPPING_Payment->pre_confirmation_check();
     }
 
@@ -121,7 +124,7 @@ class Confirmation extends \ClicShopping\OM\PagesActionsAbstract
     $any_out_of_stock = false;
 
     if (STOCK_CHECK == 'true') {
-      for ($i = 0, $n = \count($CLICSHOPPING_Order->products); $i < $n; $i++) {
+      for ($i = 0, $n = count($CLICSHOPPING_Order->products); $i < $n; $i++) {
         if ($CLICSHOPPING_ProductsCommon->getCheckStock($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['qty'])) {
           $any_out_of_stock = true;
         }
@@ -141,7 +144,7 @@ class Confirmation extends \ClicShopping\OM\PagesActionsAbstract
       $form_action_url = CLICSHOPPING::link(null, 'Checkout&Process');
     }
 
-    if (\is_array($CLICSHOPPING_Payment->modules)) {
+    if (is_array($CLICSHOPPING_Payment->modules)) {
       $CLICSHOPPING_Payment->confirmation();
     }
 

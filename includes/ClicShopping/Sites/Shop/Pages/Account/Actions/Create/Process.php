@@ -19,6 +19,8 @@ use ClicShopping\OM\Is;
 use ClicShopping\OM\Registry;
 use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
 use ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder;
+use function defined;
+use function strlen;
 
 class Process extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -76,13 +78,13 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
       }
 
 // Clients B2C : Controle entree du prenom
-      if (\strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
+      if (strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
         $error = true;
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]), 'error');
       }
 
 // Clients B2C : Controle entree du nom de famille
-      if (\strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
+      if (strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
         $error = true;
 
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]), 'error');
@@ -92,7 +94,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
       if (ACCOUNT_DOB == 'true') {
         $dobDateTime = new DateTime($dob);
 
-        if ((\strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
+        if ((strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_date_of_birth_error'), 'error');
@@ -124,7 +126,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
         }
       }
 
-      if (\strlen($password) < ENTRY_PASSWORD_MIN_LENGTH) {
+      if (strlen($password) < ENTRY_PASSWORD_MIN_LENGTH) {
         $error = true;
 
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error', ['min_length' => ENTRY_PASSWORD_MIN_LENGTH]), 'error');
@@ -142,7 +144,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
         $error = true;
         $CLICSHOPPING_ActionRecorder->record(false);
 
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (\defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES : 15)]), 'error');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES : 15)]), 'error');
       }
 
       if ($error === false) {
