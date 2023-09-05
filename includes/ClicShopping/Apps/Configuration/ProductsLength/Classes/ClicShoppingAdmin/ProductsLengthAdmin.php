@@ -17,7 +17,7 @@ use function is_null;
 class ProductsLengthAdmin extends \ClicShopping\Apps\Configuration\ProductsLength\Classes\Shop\ProductsLength
 {
   protected $products_length_classes = [];
-  protected int $precision = 2;
+  protected $precision = 2;
 
   public function __construct($precision = null)
   {
