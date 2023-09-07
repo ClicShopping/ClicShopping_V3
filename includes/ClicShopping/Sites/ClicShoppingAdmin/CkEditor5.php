@@ -39,12 +39,12 @@ class CkEditor5 extends HTML
   {
     $code = static::getWysiwygLanguage();
 
-    $script = '<script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script><br />' . "\n";
+    $script = '<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script><br />' . "\n";
     // $script .= ChatGptAdmin::gptCkeditorParameters();
 
     if ($code != 'en') {
       if (!empty($code)) {
-        $script .= '<script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/translations/' . $code . '.js"></script><br />' . "\n";
+        $script = '<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script><br />' . "\n";
       }
     }
 
