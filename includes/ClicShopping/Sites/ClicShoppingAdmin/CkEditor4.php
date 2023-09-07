@@ -30,7 +30,7 @@ class CkEditor4 extends HTML
     */
   public static function getWysiwyg(): string
   {
-    $script = '<script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>';
+    $script = '<script src="//cdn.ckeditor.com/4.22.0/full/ckeditor.js"></script>';
     $script .= ChatGptAdmin::gptCkeditorParameters();
 
     return $script;
