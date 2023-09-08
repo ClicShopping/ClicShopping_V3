@@ -1674,6 +1674,10 @@ INSERT INTO configuration VALUES(1735, 'Souhaitez-vous afficher les tags de sent
 INSERT INTO configuration VALUES(1736, 'Souhaitez-vous afficher les tags de sentiments du client ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SENTIMENT_TAG', 'True', 'Affiche des tags générés par l\'IA générative en fonction du commentaire de client (GPT doit etre activé)', 6, 1, NULL, '2023-08-19 11:27:50', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1737, 'Souhaitez-vous enregister les tags de sentiments du client lors de la création d\'un commentaire ?', 'CLICSHOPPING_APP_REVIEWS_RV_SENTIMENT_TAG', 'False', 'Enregistre des tags générés par l\'IA générative en fonction du commentaire de client (GPT doit etre activé)', 6, 0, NULL, '2023-08-19 11:41:33', NULL, NULL);
 
+INSERT INTO configuration VALUES(1738, 'Souhaitez-vous activer la création automatique /supression des Coups de Coeur ?', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS', 'False', 'Activer la création automatique /supression des Coups de Coeur', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
+INSERT INTO configuration VALUES(1739, 'Score minimum accepté pour créer automatiquement un coup de coeur', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_MIN_SCORE', '2.1', 'Permet de créer automatiquement un coup de coeur si le score est plus important que le score moyen du produit', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
+
+
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
 INSERT INTO configuration_group VALUES(2, 'Gestion de la carte de crédit', 'Valeur minimum pour : fonctions / données', 2, 1);
