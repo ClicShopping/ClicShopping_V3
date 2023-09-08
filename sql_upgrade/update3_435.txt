@@ -1,11 +1,12 @@
-ALTER TABLE `clic_products_recommendations` ADD `status` INT(11) NOT NULL DEFAULT '1' AFTER `customers_group_id`;
+INSERT INTO `clic_configuration` VALUES(null, 'Do you want to activate the automatic creation / remove favorites ?', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS', 'False', 'Activate the automatic creation / remove favorites', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Score minimum accepted to create a favorites', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_MIN_SCORE', '2.1', 'Allow to create automatically a favorites if the score is more important as average product score', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Do you want to activate the automatic creation / remove featured product ?', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_STATUS', 'False', 'Activate the automatic creation / remove featured product', 6, 0, NULL, '2023-09-08 15:11:50', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Score minimum accepted to create a featured product', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_MIN_SCORE', '1.5', 'Allow to create automatically a featured if the score is more important as average product score', 6, 0, NULL, '2023-09-08 15:11:50', NULL, NULL);
 
 
-INSERT INTO `clic_administrator_menu` VALUES(827, 'index.php?A&Marketing\\Recommendations&ProductsRecommendation', 5, 1, 0, 'products_recommendations.png', 1, 'app_marketing_recommendations', 1);
-
-
-#english
-INSERT INTO `clic_administrator_menu_description` VALUES(827, 'Customers Recommendations', 1);
 
 #french
-INSERT INTO `clic_administrator_menu_description` VALUES(827, 'Recommendations clients', 2);
+INSERT INTO `clic_configuration` VALUES(null, 'Souhaitez-vous activer la création automatique /supression des Coups de Coeur ?', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS', 'False', 'Activer la création automatique /supression des Coups de Coeur', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Score minimum accepté pour créer automatiquement un coup de coeur', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_MIN_SCORE', '2.1', 'Permet de créer automatiquement un coup de coeur si le score est plus important que le score moyen du produit', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Souhaitez-vous activer la création automatique / supression d'un produits sélectionnés', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_STATUS', 'False', 'Activer la création automatique /supression d'un produits sélectionnés', 6, 0, NULL, '2023-09-08 15:11:50', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Score minimum accepté pour créer automatiquement un produit sélectionnés', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_MIN_SCORE', '1.5', 'Permet de créer automatiquement un produit sélectionné si le score est plus important que le score moyen du produit', 6, 0, NULL, '2023-09-08 15:11:50', NULL, NULL);

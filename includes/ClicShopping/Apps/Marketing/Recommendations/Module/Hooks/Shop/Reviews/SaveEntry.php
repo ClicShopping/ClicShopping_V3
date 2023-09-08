@@ -41,5 +41,9 @@ class saveEntry implements \ClicShopping\OM\Modules\HooksInterface
     if (defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS == 'True') {
       ProductsAutomation::favorites();
     }
+
+    if (defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_STATUS == 'True') {
+      ProductsAutomation::featured();
+    }
   }
 }

@@ -1676,6 +1676,8 @@ INSERT INTO configuration VALUES(1737, 'Souhaitez-vous enregister les tags de se
 
 INSERT INTO configuration VALUES(1738, 'Souhaitez-vous activer la création automatique /supression des Coups de Coeur ?', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS', 'False', 'Activer la création automatique /supression des Coups de Coeur', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
 INSERT INTO configuration VALUES(1739, 'Score minimum accepté pour créer automatiquement un coup de coeur', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_MIN_SCORE', '2.1', 'Permet de créer automatiquement un coup de coeur si le score est plus important que le score moyen du produit', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
+INSERT INTO configuration VALUES(1740, 'Souhaitez-vous activer la création automatique / supression d'un produits sélectionnés', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_STATUS', 'False', 'Activer la création automatique /supression d'un produits sélectionnés', 6, 0, NULL, '2023-09-08 15:11:50', NULL, NULL);
+INSERT INTO configuration VALUES(1741, 'Score minimum accepté pour créer automatiquement un produit sélectionnés', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_MIN_SCORE', '1.5', 'Permet de créer automatiquement un produit sélectionné si le score est plus important que le score moyen du produit', 6, 0, NULL, '2023-09-08 15:11:50', NULL, NULL);
 
 
 

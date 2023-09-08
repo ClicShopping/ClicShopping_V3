@@ -1676,6 +1676,8 @@ INSERT INTO configuration VALUES(1737, 'Do you want to save the customer sentime
 
 INSERT INTO configuration VALUES(1738, 'Do you want to activate the automatic creation / remove favorites ?', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS', 'False', 'Activate the automatic creation / remove favorites', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
 INSERT INTO configuration VALUES(1739, 'Score minimum accepted to create a favorites', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_MIN_SCORE', '2.1', 'Allow to create automatically a favorites if the score is more important as average product score', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
+INSERT INTO configuration VALUES(1740, 'Do you want to activate the automatic creation / remove featured product ?', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_STATUS', 'False', 'Activate the automatic creation / remove featured product', 6, 0, NULL, '2023-09-08 15:11:50', NULL, NULL);
+INSERT INTO configuration VALUES(1471, 'Score minimum accepted to create a featured product', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_MIN_SCORE', '1.5', 'Allow to create automatically a featured if the score is more important as average product score', 6, 0, NULL, '2023-09-08 15:11:50', NULL, NULL);
 
 
 

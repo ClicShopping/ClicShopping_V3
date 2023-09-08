@@ -99,4 +99,69 @@ class ProductsAutomation
       $CLICSHOPPING_Db->delete('products_favorites', $sql_array);
     }
   }
+
+
+  //********************************************
+  // featured Automation
+  //********************************************
+
+  /**
+   * @return int|null
+   */
+  public static function featured(): ?int
+  {
+    $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+
+    $avg_core = self::getProductAverageScore();
+
+    if ($avg_core > (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_MIN_SCORE) {
+      return self::createFeatured($CLICSHOPPING_ProductsCommon->getID());
+    } elseif ($avg_core < 0)  {
+      return self::deleteFeatured($CLICSHOPPING_ProductsCommon->getID());
+    } else {
+      return -1;
+    }
+  }
+
+  /**
+   * @param int $id
+   * @return void
+   */
+  private static function createFeatured(int $id): void
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qresult = $CLICSHOPPING_Db->get('products_featured', 'products_id', ['products_id' => $id]);
+
+    if ($Qresult->fetch() === false) {
+      $sql_array = [
+        'products_id' => $id,
+        'products_featured_date_added' => 'now()',
+        'scheduled_date' => null,
+        'expires_date' => null,
+        'status' => 1
+      ];
+
+      $CLICSHOPPING_Db->save('products_featured', $sql_array);
+    }
+  }
+
+  /**
+   * @param int $id
+   * @return void
+   */
+  private static function deleteFeatured(int $id): void
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qresult = $CLICSHOPPING_Db->get('products_featured', ['products_id' => $id]);
+
+    if ($Qresult->fetch() === true) {
+      $sql_array = [
+        'products_id' => $id,
+      ];
+
+      $CLICSHOPPING_Db->delete('products_featured', $sql_array);
+    }
+  }
 }
