@@ -43,7 +43,7 @@ class ProductsAutomation
   /**
    * @return int|null
    */
-  public function favorites(): ?int
+  public static function favorites(): ?int
   {
     $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 

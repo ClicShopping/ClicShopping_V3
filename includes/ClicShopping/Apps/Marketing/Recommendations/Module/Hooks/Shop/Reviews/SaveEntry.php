@@ -27,9 +27,6 @@ class saveEntry implements \ClicShopping\OM\Modules\HooksInterface
 
     Registry::set('RecommendationsShop', new RecommendationsShop());
     $this->recommendationsShop = Registry::get('RecommendationsShop');
-
-    Registry::set('ProductsAutomation', new ProductsAutomation());
-    $this->productsAutomation = Registry::get('ProductsAutomation');
   }
 
   public function execute()
@@ -42,7 +39,7 @@ class saveEntry implements \ClicShopping\OM\Modules\HooksInterface
 
 //productsAutomation
     if (defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS == 'True') {
-      $this->productsAutomation->favorites();
+      ProductsAutomation::favorites();
     }
   }
 }
