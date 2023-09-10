@@ -62,7 +62,7 @@ class ProductsAutomation
    * @param int $id
    * @return void
    */
-  private static function createFavorites(int $id): void
+  private static function createFavorites(int $id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -85,7 +85,7 @@ class ProductsAutomation
    * @param int $id
    * @return void
    */
-  private static function deleteFavorites(int $id): void
+  private static function deleteFavorites(int $id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -127,7 +127,7 @@ class ProductsAutomation
    * @param int $id
    * @return void
    */
-  private static function createFeatured(int $id): void
+  private static function createFeatured(int $id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -150,7 +150,7 @@ class ProductsAutomation
    * @param int $id
    * @return void
    */
-  private static function deleteFeatured(int $id): void
+  private static function deleteFeatured(int $id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
