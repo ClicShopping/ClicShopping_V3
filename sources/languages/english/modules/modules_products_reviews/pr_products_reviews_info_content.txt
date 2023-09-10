@@ -6,3 +6,4 @@ modules_products_reviews_info_content_text_review_text_review_by = {{customer_na
 modules_products_reviews_info_content_text_no_review = no review
 modules_products_reviews_info_content_text_no_review = Delete your comment
 modules_products_reviews_info_content_text_customers_tag = Customers Sentiment
+modules_products_reviews_info_content_text_customers_ai_sentiment = Artificial analysis about the customers sentiments on

@@ -16,7 +16,7 @@ use function is_null;
 class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\Weight
 {
   protected array $weight_classes = [];
-  protected int $precision = 2;
+  protected $precision = 2;
 
   public function __construct($precision = null)
   {

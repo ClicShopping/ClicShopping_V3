@@ -11,6 +11,7 @@
 namespace ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop;
 
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use function defined;
 
 class ChatGptShop
 {
@@ -19,7 +20,7 @@ class ChatGptShop
    */
   public static function checkGptStatus(): bool
   {
-    if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
+    if (!defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
       return false;
     } else {
       return true;

@@ -15,6 +15,9 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use OpenAI;
+use RuntimeException;
+use function defined;
+use function is_null;
 
 class ChatGptShop35
 {
@@ -23,7 +26,7 @@ class ChatGptShop35
    */
   public static function checkGptStatus(): bool
   {
-    if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
+    if (!defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
       return false;
     } else {
       return true;
@@ -99,11 +102,11 @@ class ChatGptShop35
 
     $top = ['\n'];
 
-    if (\is_null($maxtoken)) {
+    if (is_null($maxtoken)) {
       $maxtoken = 200;
     }
 
-    if (\is_null($temperature)) {
+    if (is_null($temperature)) {
       $temperature = 0.5;
     }
 
@@ -148,7 +151,7 @@ class ChatGptShop35
       static::saveData($question, $result, $array_usage);
 
       return $result;
-    } catch (\RuntimeException $e) {
+    } catch (RuntimeException $e) {
       throw new \Exception('Error appears, please look the console error');
 
       return false;
