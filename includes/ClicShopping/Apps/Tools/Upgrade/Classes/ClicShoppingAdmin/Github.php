@@ -96,7 +96,7 @@ class Github
    * @return $version version of new clicshopping core
    *
    */
-  public function getJsonincludesInformation()
+  public function getJsonCoreInformation()
   {
     $versionCache = new Cache('clicshopping_core_information');
 
