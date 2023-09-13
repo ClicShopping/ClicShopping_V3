@@ -55,7 +55,8 @@ class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     $QwhosOnline = $this->app->db->prepare('select distinct customer_id,
                                                               full_name,
                                                               ip_address,
-                                                              user_agent
+                                                              user_agent,
+                                                              time_entry
                                                 from  :table_whos_online
                                                 limit 5
                                               ');
@@ -71,8 +72,8 @@ class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
       $output .= '<table 
             id="table"
             data-toggle="table"
-    data-icons-prefix="bi"
-    data-icons="icons"
+            data-icons-prefix="bi"
+            data-icons="icons"
             data-sort-name="online"
             data-sort-order="asc"
             data-toolbar="#toolbar"
@@ -91,7 +92,6 @@ class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
       $output .= '<tbody>';
 
       while ($QwhosOnline->fetch()) {
-
         $time_online = (time() - $QwhosOnline->value('time_entry'));
 
         $output .= '<tr class="dataTableRow">';
