@@ -207,8 +207,6 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
                         echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($categories_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($categories_description[$languages[$i]['id']])) : $CLICSHOPPING_CategoriesAdmin->getCategoryDescription($cInfo->categories_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
                         ?>
                       </div>
-
-
                     </div>
                   </div>
                 </div>

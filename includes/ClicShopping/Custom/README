@@ -14,7 +14,7 @@ and perform your changes to this new file.
 ## NOTES ##
 
 Although the custom class is copied to a Custom directory, it must retain the
-original Core namespace.
+original includes namespace.
 
-Due to this, copied classes cannot extend the original class in the Core
+Due to this, copied classes cannot extend the original class in the includes
 namespace.

@@ -147,7 +147,6 @@ class CategoriesAdmin
     return $Qcategory->value('categories_name');
   }
 
-
   /**
    * the category description
    *

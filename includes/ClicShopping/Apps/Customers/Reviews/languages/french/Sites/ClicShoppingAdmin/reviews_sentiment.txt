@@ -1,0 +1,33 @@
+heading_title = IA analyse des sentiments des commentaires
+
+table_heading_products = Produits
+table_heading_rating = Evaluation
+table_heading_products_average_rating = Moyenne
+table_heading_approved = Sentiment approuvé
+table_heading_review_analyse = Sentiment généré
+table_heading_review_count_comment = Nbr
+table_heading_action = Action
+
+icon_update = Créer un résumé
+icon_delete = Supprimer
+
+text_statistics_sentiment = Sentiment
+text_statistics = Commentaire
+text_count_sentiment = Généré :
+text_count_sentiment_approved = Apprové :
+text_average_review = Evaluation moyenne :
+text_count_review = Total commentaires :
+text_success = Mis à jour avec succés
+
+text_info_warning_cost = Attention : le résumé peut générer beaucoup de token.<br />
+Vous devz utiliser Gpt pour réaliser les analyses de sentiment de commentaires
+
+text_description_sentiment = AI sentiment généré
+tab_general = General
+
+help_info_warning = You must at least {{nb_comment}} customer reviews to make an analyse<br />
+to use this page you must have an OpenAi secret key
+
+
+text_result_page = Page {{listing_from}} sur {{listing_total}}
+text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)

@@ -38,6 +38,7 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
 
       if ($Qreviews->fetch()) {
         $this->app->db->delete('reviews', ['products_id' => $id]);
+        $this->app->db->delete('reviews_sentiment', ['reviews_id' => $Qreviews->valueInt('reviews_id')]);
 
         while ($Qreviews->fetch()) {
           $this->app->db->delete('reviews_description', ['reviews_id' => $Qreviews->valueInt('reviews_id')]);

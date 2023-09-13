@@ -1,7 +1,7 @@
 version 3.436
 Favorites automation based on recommendations (creation)
 Featured automation based on recommendations (creation)
-
+Review sentiment analisys AI
 --------------------
 version 3.435
 Allow to the admin to change the products recommend status

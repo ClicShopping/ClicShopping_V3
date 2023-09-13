@@ -74,13 +74,26 @@ class pi_products_info_reviews
 
       $Qreviews->execute();
 
+//senitment
+      $Qsentiment = $CLICSHOPPING_Db->prepare('select rsd.description,
+                                                      rs.sentiment_approved
+                                                from :table_reviews_sentiment rs,
+                                                     :table_reviews_sentiment_description rsd
+                                                where rs.id = rsd.id
+                                                and rs.products_id = :products_id
+                                                and rsd.language_id = :language_id
+                                              ');
+      $Qsentiment->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
+      $Qsentiment->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+      $Qsentiment->execute();
+
       $count_review = $Qreviews->rowCount();
 
 //*******************************************
 // customers_feedback
 //********************************************
       $QorderProducts = $CLICSHOPPING_Db->prepare('select products_id,
-                                                            orders_id
+                                                          orders_id
                                                      from :table_orders_products
                                                      where products_id = :products_id
                                                     ');
@@ -98,9 +111,16 @@ class pi_products_info_reviews
         $products_reviews_content .= '<div class="moduleProductsInfoReviewsTitle">';
         $products_reviews_content .= '<span class="page-title moduleProductsInfoReviewsTitle"><h3>' . CLICSHOPPING::getDef('heading_rewiews') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</h3></span>';
         $products_reviews_content .= '</div>';
-        $products_reviews_content .= '<div class="float-end">';
-        $products_reviews_content .= '';
-        $products_reviews_content .= '</div>';
+        $products_reviews_content .= '<div class="separator"></div>';
+
+       if ($Qsentiment->valueInt('sentiment_approved') == 1) {
+          $products_reviews_content .= '<div class="alert alert-info" role="alert">';
+          $products_reviews_content .= '<span class="moduleProductsInfoReviewsTitleAiSentiment"><h6>' . CLICSHOPPING::getDef('modules_products_reviews_info_content_text_customers_ai_sentiment') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</h6></span>';
+          $products_reviews_content .= $Qsentiment->value('description');
+          $products_reviews_content .= '</div>';
+          $products_reviews_content .= '<div class="separator"></div>';
+       }
+
         $products_reviews_content .= '<div class="clearfix"></div>';
         $products_reviews_content .= '<hr>';
         $products_reviews_content .= '<div class="d-flex flex-wrap">';

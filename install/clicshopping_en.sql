@@ -1678,7 +1678,7 @@ INSERT INTO configuration VALUES(1738, 'Do you want to activate the automatic cr
 INSERT INTO configuration VALUES(1739, 'Score minimum accepted to create a favorites', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_MIN_SCORE', '2.1', 'Allow to create automatically a favorites if the score is more important as average product score', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
 INSERT INTO configuration VALUES(1740, 'Do you want to activate the automatic creation / remove featured product ?', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_STATUS', 'False', 'Activate the automatic creation / remove featured product', 6, 0, NULL, '2023-09-08 15:11:50', NULL, NULL);
 INSERT INTO configuration VALUES(1471, 'Score minimum accepted to create a featured product', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_MIN_SCORE', '1.5', 'Allow to create automatically a featured if the score is more important as average product score', 6, 0, NULL, '2023-09-08 15:11:50', NULL, NULL);
-
+INSERT INTO configuration VALUES(1472, 'Reviews number to analyse', 'CLICSHOPPING_APP_REVIEWS_RV_REVIEW_NUMBER', '10', 'For AI sentiment analyis, you must have a minimum of review to analyse. We recommend you 10.', 6, 0, NULL, '2023-09-13 19:21:28', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);

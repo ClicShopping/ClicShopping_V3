@@ -19,23 +19,20 @@ button_uninstall =  Uninstall
 button_delete = Delete
 button_cancel = Cancel
 button_insert = Insert
-button_statistics =  Statistics
+button_statistics = Statistics
 button_reviews = Reviews
+button_new = New
 button_update = Update
 button_send =  Send
-
-button_global = Global
-button_select = Select
-button_unselect = Unselect
-button_submit = Submit
-
-text_products = Products
-text_selected_products = Products selected
-text_count_customers = Number of customers
-text_unsubscribe = Unsebscribe
+button_back = Back
+button_reset = Reset
+button_reviews = Reviews
+button_send = Send
+button_reviews_sentiment = Review sentiment analysis
 
 email_from = Email from
 entry_customer_sentiment_tag = AI customer sentiments :
+button_sentiment_review = Analyse de sentiment
 
 dialog_uninstall_title = Uninstall
 dialog_uninstall_body = Do you want to install this App ?
