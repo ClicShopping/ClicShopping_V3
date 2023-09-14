@@ -62,8 +62,9 @@ class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
                                               ');
     $QwhosOnline->execute();
 
-    if ($QwhosOnline->rowCount() > 0) {
+    $output = '';
 
+    if ($QwhosOnline->rowCount() > 0) {
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_CONTENT_WIDTH;
 
       $output = '<span class="' . $content_width . '">';
