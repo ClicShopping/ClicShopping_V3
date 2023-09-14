@@ -112,7 +112,6 @@ text_user_name = Par :
 
 text_categories_image_title = Image principale de la catégorie
 text_categories_image_vignette = Image vignette de la catégorie
-text_categories_image_visuel = Image actuellement visible sur la catégorie
 text_categories_delete_image = Ne plus afficher d'image sur cette catégorie
 
 text_products_page_seo = SEO

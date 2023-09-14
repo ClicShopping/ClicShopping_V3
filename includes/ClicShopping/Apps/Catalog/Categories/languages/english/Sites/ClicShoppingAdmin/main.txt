@@ -111,7 +111,6 @@ text_help_wysiwyg = Wysiwyg
 
 text_categories_image_title = Categorie main image
 text_categories_image_vignette = Categorie Image label
-text_categories_image_visuel = Currently visible image on the categorie
 text_categories_delete_image = Not display this image on this categorie
 
 text_products_page_seo = SEO
