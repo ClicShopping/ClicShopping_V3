@@ -4,7 +4,7 @@ Featured automation based on recommendations (creation)
 Review sentiment analisys AI
 fix who's online dashboard
 libraries updated
-
+bootstrap 5.3.2 and icons
 --------------------
 version 3.435
 Allow to the admin to change the products recommend status
