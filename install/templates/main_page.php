@@ -27,7 +27,7 @@ $template = 'main_page';
   <meta name="robots" content="noindex,nofollow">
   <title>ClicShopping, Social E-Commerce B2B/B2C Open Source Solutions</title>
   <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="templates/main_page/stylesheet.css">
 
@@ -71,6 +71,5 @@ $template = 'main_page';
   </div>
   <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
