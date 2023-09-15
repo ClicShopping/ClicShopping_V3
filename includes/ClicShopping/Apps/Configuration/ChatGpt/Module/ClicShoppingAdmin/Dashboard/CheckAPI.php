@@ -46,7 +46,7 @@ class CheckAPI extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
     $output = '';
 
-//    if(empty(CLICSHOPPING_APP_CHATGPT_CH_API_KEY)) {
+    if(empty(CLICSHOPPING_APP_CHATGPT_CH_API_KEY)) {
       $link = HTML::link( $this->app ->link('Configuration\ChatGpt&Configure'), $this->app->getDef('module_admin_dashboard_check_api_app_link'));
 
       $output = '<div class="col-md-' . (int)MODULE_ADMIN_DASHBOARD_GPT_CHECK_API_APP_CONTENT_WIDTH . '">';
@@ -54,7 +54,7 @@ class CheckAPI extends \ClicShopping\OM\Modules\AdminDashboardAbstract
       $output .= $this->app->getDef('module_admin_dashboard_check_api_app_alert', ['gpt_link' => $link]);
       $output .= '</div>';
       $output .= '</div>';
- //   }
+   }
 
     return $output;
   }
