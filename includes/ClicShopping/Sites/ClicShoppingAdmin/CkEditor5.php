@@ -105,18 +105,17 @@ class CkEditor5 extends HTML
     return $connector;
   }
 
-  /*
-   * Outputs a form textarea field with ckeditor
-   *
-   * @param string $name The name and ID of the textarea field
-   * @param string $value The default value for the textarea field
-   * @param int $width The width of the textarea field
-   * @param int $height The height of the textarea field
-   * @param string $parameters Additional parameters for the textarea field
-   * @param boolean $override Override the default value with the value found in the GET or POST scope
-   *
+/**
+* Outputs a form textarea field with ckeditor
+* @param string $name
+* @param string|null $value
+* @param int|null $width
+* @param int|null $height
+* @param string|null $text
+* @param string|null $parameters
+* @param bool $override
+* @return string
    */
-
   public static function textAreaCkeditor(string $name, ?string $value = null, ?int $width = 750, ?int $height = 200, ?string $text = null, ?string $parameters = null, bool $override = true): string
   {
     $ckeditor_id = str_replace('[', '', $name);
@@ -364,13 +363,14 @@ class CkEditor5 extends HTML
     return $field;
   }
 
-  /*
-   * Create form textarea field with ckeditor for image icon and source only
-   *
-   * @param string $name The name and ID of the textarea field
-   *
-   */
-
+/**
+* Create form textarea field with ckeditor for image icon and source only
+* @param string $name
+* @param string|null $value
+* @param int|null $width
+* @param int|null $height
+* @return string
+ */
   public static function fileFieldImageCkEditor(string $name, ?string $value = null, ?int $width = null, ?int $height = null): string
   {
     $ckeditor_id = str_replace('[', '', $name);
