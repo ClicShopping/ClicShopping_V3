@@ -50,11 +50,9 @@ class ProductsAutomation
     $avg_core = self::getProductAverageScore();
 
     if ($avg_core > (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_MIN_SCORE) {
-      $create = self::createFavorites($CLICSHOPPING_ProductsCommon->getID());
-      return $create;
+      return self::createFavorites($CLICSHOPPING_ProductsCommon->getID());
     } elseif ($avg_core < 0)  {
-      $delete = self::deleteFavorites($CLICSHOPPING_ProductsCommon->getID());
-      return $delete;
+      return self::deleteFavorites($CLICSHOPPING_ProductsCommon->getID());
     } else {
       return -1;
     }
@@ -125,11 +123,9 @@ class ProductsAutomation
     $avg_core = self::getProductAverageScore();
 
     if ($avg_core > (float)CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_MIN_SCORE) {
-      $create = self::createFeatured($CLICSHOPPING_ProductsCommon->getID());
-      return $create;
+      return self::createFeatured($CLICSHOPPING_ProductsCommon->getID());
     } elseif ($avg_core < 0)  {
-      $remove = self::deleteFeatured($CLICSHOPPING_ProductsCommon->getID());
-      return $remove;
+      return self::deleteFeatured($CLICSHOPPING_ProductsCommon->getID());
     } else {
       return -1;
     }
