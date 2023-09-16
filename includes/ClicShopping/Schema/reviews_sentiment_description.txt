@@ -2,7 +2,7 @@ id int not_null
 language_id int not_null
 description text not_null
 --
-primary id languages_id
+primary id language_id
 ##
 engine innodb
 character_set utf8mb4
