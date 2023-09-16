@@ -62,9 +62,9 @@ class ProductsAutomation
 
   /**
    * @param int $id
-   * @return void
+   * @return bool
    */
-  private static function createFavorites(int $id)
+  private static function createFavorites(int $id): bool
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -79,15 +79,19 @@ class ProductsAutomation
         'status' => 1
       ];
 
-      $CLICSHOPPING_Db->save('products_favorites', $sql_array);
+      $result = $CLICSHOPPING_Db->save('products_favorites', $sql_array);
+
+      return $result !== false; // Return true for success, false for failure
     }
+
+    return false;
   }
 
   /**
    * @param int $id
-   * @return void
+   * @return bool
    */
-  private static function deleteFavorites(int $id)
+  private static function deleteFavorites(int $id): bool
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -98,8 +102,12 @@ class ProductsAutomation
         'products_id' => $id,
       ];
 
-      $CLICSHOPPING_Db->delete('products_favorites', $sql_array);
+      $result = $CLICSHOPPING_Db->delete('products_favorites', $sql_array);
+
+      return $result !== false; // Return true for success, false for failure
     }
+
+    return false;
   }
 
 
@@ -129,9 +137,9 @@ class ProductsAutomation
 
   /**
    * @param int $id
-   * @return void
+   * @return bool
    */
-  private static function createFeatured(int $id)
+  private static function createFeatured(int $id): bool
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -146,15 +154,19 @@ class ProductsAutomation
         'status' => 1
       ];
 
-      $CLICSHOPPING_Db->save('products_featured', $sql_array);
+      $result = $CLICSHOPPING_Db->save('products_featured', $sql_array);
+
+      return $result !== false; // Return true for success, false for failure
     }
+
+    return false;
   }
 
   /**
    * @param int $id
-   * @return void
+   * @return bool
    */
-  private static function deleteFeatured(int $id)
+  private static function deleteFeatured(int $id): bool
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -165,7 +177,11 @@ class ProductsAutomation
         'products_id' => $id,
       ];
 
-      $CLICSHOPPING_Db->delete('products_featured', $sql_array);
+      $result = $CLICSHOPPING_Db->delete('products_featured', $sql_array);
+
+      return $result !== false; // Return true for success, false for failure
     }
+
+    return false;
   }
 }
