@@ -62,15 +62,24 @@ class cc_checkout_confirmation_process_order
       }
 
       $footer = '<!-- button listenner Start -->' . "\n";
-      $footer .= '<script>' . "\n";
-      $footer .= 'const btn = document.getElementById("payNow"); ';
-      $footer .= 'btn.addEventListener("click", submitForm); ';
-      $footer .= 'function submitForm(){ ';
-      $footer .= 'btn.setAttribute("disabled", true); ';
-      $footer .= 'setTimeout(() => { ';
-      $footer .= 'btn.removeAttribute("disabled"); ';
-      $footer .= '}, 6000); ';
-      $footer .= '} ';
+      $footer .= '<script defer>' . "\n";
+      $footer .= 'jQuery(document).ready(function($) {';
+      $footer .= 'var btn = $("#payNow");';
+      $footer .= 'if (btn.length > 0) {';
+      $footer .= 'btn.on("click", function() {';
+      $footer .= 'submitForm(btn);';
+      $footer .= '});';
+      $footer .= '}';
+      $footer .= 'function submitForm(button) {';
+      $footer .= 'if (button.length > 0) {';
+      $footer .= 'button.prop("disabled", true);';
+      $footer .= 'setTimeout(function() {';
+      $footer .= 'button.prop("disabled", false);';
+      $footer .= '}, 6000);';
+      $footer .= '}';
+      $footer .= '}';
+      $footer .= '});';
+      $footer .= '</>';
       $footer .= '</script>' . "\n";
       $footer .= '<!-- stop button listenner  -->' . "\n";
 
