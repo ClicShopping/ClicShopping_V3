@@ -1,3 +1,8 @@
+--------------------
+version 3.437
+
+
+--------------------
 version 3.436
 Favorites automation based on recommendations (creation)
 Featured automation based on recommendations (creation)
