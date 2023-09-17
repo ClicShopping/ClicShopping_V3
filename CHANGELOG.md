@@ -5,6 +5,8 @@ Review sentiment analisys AI
 fix who's online dashboard
 libraries updated
 bootstrap 5.3.2 and icons
+fix javascript for chrome/edge/opera checkout confirmation button
+
 --------------------
 version 3.435
 Allow to the admin to change the products recommend status

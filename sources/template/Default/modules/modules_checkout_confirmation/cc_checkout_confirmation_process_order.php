@@ -62,26 +62,9 @@ class cc_checkout_confirmation_process_order
       }
 
       $footer = '<!-- button listenner Start -->' . "\n";
-      $footer .= '<script defer>' . "\n";
-      $footer .= 'document.addEventListener("DOMContentLoaded", function() {';
-      $footer .= 'let btn = document.querySelector("#payNow");';
-      $footer .= 'if (btn) {';
-      $footer .= 'btn.addEventListener("click", function() {';
-      $footer .= 'submitForm(btn);';
-      $footer .= '});';
-      $footer .= '}';
-      $footer .= 'function submitForm(button) {';
-      $footer .= 'if (button) {';
-      $footer .= 'button.disabled = true;';
-      $footer .= 'setTimeout(function() {';
-      $footer .= 'button.disabled = false;';
-      $footer .= '}, 6000);';
-      $footer .= '}';
-      $footer .= '}';
-      $footer .= '});';
-      $footer .= '</>'; //add this line else does not work with chrome
-      $footer .= '</script>' . "\n";
+      $footer .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/checkout_confirmation.js')) . '"></script>' . "\n";
       $footer .= '<!-- stop button listenner  -->' . "\n";
+
       $CLICSHOPPING_Template->addBlock($footer, 'footer_scripts');
 
       $confirmation = '  <!-- cc_checkout_confirmation_order_total start -->' . "\n";
