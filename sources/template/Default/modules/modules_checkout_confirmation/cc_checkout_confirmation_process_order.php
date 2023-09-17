@@ -64,7 +64,7 @@ class cc_checkout_confirmation_process_order
       $footer = '<!-- button listenner Start -->' . "\n";
       $footer .= '<script defer>' . "\n";
       $footer .= 'jQuery(document).ready(function($) {';
-      $footer .= 'var btn = $("#payNow");';
+      $footer .= 'let btn = $("#payNow");';
       $footer .= 'if (btn.length > 0) {';
       $footer .= 'btn.on("click", function() {';
       $footer .= 'submitForm(btn);';
