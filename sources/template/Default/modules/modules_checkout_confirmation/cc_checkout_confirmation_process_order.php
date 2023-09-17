@@ -57,31 +57,31 @@ class cc_checkout_confirmation_process_order
         if ($CLICSHOPPING_Payment->process_button() !== false) {
           $process_button = $CLICSHOPPING_Payment->process_button();
         } else {
-          $process_button = HTML::button(CLICSHOPPING::getDef('module_checkout_confirmation_process_order_button_pay', ['total' => $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['total'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value'])]), null, null, 'success', ['params' => 'id="payNow"']);
+         $process_button = HTML::button(CLICSHOPPING::getDef('module_checkout_confirmation_process_order_button_pay', ['total' => $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['total'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value'])]), null, null, 'success', ['params' => 'id="payNow"']);
         }
       }
 
       $footer = '<!-- button listenner Start -->' . "\n";
       $footer .= '<script defer>' . "\n";
-      $footer .= 'jQuery(document).ready(function($) {';
-      $footer .= 'let btn = $("#payNow");';
-      $footer .= 'if (btn.length > 0) {';
-      $footer .= 'btn.on("click", function() {';
+      $footer .= 'document.addEventListener("DOMContentLoaded", function() {';
+      $footer .= 'let btn = document.querySelector("#payNow");';
+      $footer .= 'if (btn) {';
+      $footer .= 'btn.addEventListener("click", function() {';
       $footer .= 'submitForm(btn);';
       $footer .= '});';
       $footer .= '}';
       $footer .= 'function submitForm(button) {';
-      $footer .= 'if (button.length > 0) {';
-      $footer .= 'button.prop("disabled", true);';
+      $footer .= 'if (button) {';
+      $footer .= 'button.disabled = true;';
       $footer .= 'setTimeout(function() {';
-      $footer .= 'button.prop("disabled", false);';
+      $footer .= 'button.disabled = false;';
       $footer .= '}, 6000);';
       $footer .= '}';
       $footer .= '}';
       $footer .= '});';
+      $footer .= '</>'; //add this line else does not work with chrome
       $footer .= '</script>' . "\n";
       $footer .= '<!-- stop button listenner  -->' . "\n";
-
       $CLICSHOPPING_Template->addBlock($footer, 'footer_scripts');
 
       $confirmation = '  <!-- cc_checkout_confirmation_order_total start -->' . "\n";
