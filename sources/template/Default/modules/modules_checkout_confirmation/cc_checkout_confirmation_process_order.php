@@ -79,7 +79,6 @@ class cc_checkout_confirmation_process_order
       $footer .= '}';
       $footer .= '}';
       $footer .= '});';
-      $footer .= '</>';
       $footer .= '</script>' . "\n";
       $footer .= '<!-- stop button listenner  -->' . "\n";
 
