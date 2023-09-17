@@ -1,4 +1,4 @@
-version 3.435
+version 3.436
 Allow to the admin to change the products recommend status
 Add check for chatbot frontoffice
 librairies updated
