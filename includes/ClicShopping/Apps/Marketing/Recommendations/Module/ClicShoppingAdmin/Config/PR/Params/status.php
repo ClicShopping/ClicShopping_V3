@@ -8,7 +8,6 @@
  *
  */
 
-
 namespace ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\PR\Params;
 
 use ClicShopping\OM\HTML;

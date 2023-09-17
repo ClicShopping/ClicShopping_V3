@@ -2,27 +2,27 @@
   <img src="https://www.clicshopping.org/images/logonew.png">
 </p>
 
-# ClicShopping
-Unlock the potential of your online business with ClicShopping AI(tm), a powerful open-source Ecommerce solution that supports B2B, B2C, and B2B-B2C. Now integrated with cutting-edge artificial intelligence systems like Gpt and Bard (coming soon), ClicShopping AI takes your store to new heights!
+# ClicShoppingAI
+Unlock the potential of your online business with ClicShoppingAI(tm), a powerful open-source Ecommerce solution that supports B2B, B2C, and B2B-B2C. Now integrated with cutting-edge artificial intelligence systems like Gpt and Bard (coming soon), ClicShoppingAI takes your store to new heights!
 
 Boost Your Competitiveness - Absolutely Free!
 ClicShoppingAI helps merchants increase their turnover and competitiveness and the best part is, it's completely free! With AI on your side, you can optimize inventory, offer personalized recommendations, and provide top-notch customer service, all without breaking the bank.
 
 Seamless, Responsive Design for All Devices:
-Say goodbye to website worries with ClicShopping AI's modern, responsive design. Customers will enjoy a delightful shopping experience across all devices, including mobile and desktop, without sacrificing speed or performance.
+Say goodbye to website worries with ClicShoppingAI's modern, responsive design. Customers will enjoy a delightful shopping experience across all devices, including mobile and desktop, without sacrificing speed or performance.
 
 Lightweight, User-Friendly Installation:
-Don't waste time on complicated setups! Installing ClicShopping AI is a breeze - just a few clicks on your server or computer, and you're good to go. It's a lightweight, customizable, and user-friendly solution, consuming minimal server resources.
+Don't waste time on complicated setups! Installing ClicShoppingAI is a breeze - just a few clicks on your server or computer, and you're good to go. It's a lightweight, customizable, and user-friendly solution, consuming minimal server resources.
 
 Empowering Ongoing Development:
 At ClicShoppingAI, we thrive on community support. By operating on donations, contributions, and financial backing, we ensure continuous platform development, guaranteeing you stay ahead of the competition.
 
 Embrace the Future of Ecommerce - Today!
-Take the leap into the future of Ecommerce with ClicShopping AI. With AI-driven capabilities and an easy installation process, you can revolutionize your online store in no time. Don't wait - seize the opportunity with ClicShopping now!
+Take the leap into the future of Ecommerce with ClicShoppingAI. With AI-driven capabilities and an easy installation process, you can revolutionize your online store in no time. Don't wait - seize the opportunity with ClicShopping now!
 
 ## Table of Contents
 
-* [What is ClicShopping AI](https://github.com/ClicShopping#ClicShopping)
+* [What is ClicShoppingAI](https://github.com/ClicShopping#ClicShopping)
   - [Demo Site](https://www.clicshopping.org)
 * [Solution](https://github.com/ClicShopping#Solution) 
 * [Marketplace](https://github.com/ClicShopping#Marketplace)  
@@ -117,13 +117,16 @@ More information in the Wiki
 - ClicShopping( AItm) has a trademark deposed : https://www.clicshopping.org/forum/trademark/
 
 #Functionnalities (some)
-- B2B - B2C  full functionalities
+- B2B - B2C full functionalities
+- GPT API integration
 - Generative artificial Intelligence included with Gpt and Dall E
 - Generative artificial products customers recommendations
-- Generative artficial intelligence for All content (product,categories...)
+- Generative artificial intelligence for All content (product,categories...)
 - Generative artificial intelligence for SEO
-- Real time safety stock predictive (AI)
 - Generative artificial intelligence for tag sentiment analysis for review
+- Generative artificial Intelligence review summary
+- Real time safety stock predictive (AI)
+- Product automation function GenAI
 - WYSIWYG to create your products description, content with CKeditor
 - Image Editor management with El-Finder 2.x - drag and drop - webp
 - Full SEO functionalities optimization and url
@@ -142,10 +145,12 @@ More information in the Wiki
 - Multi-language (English and french included)
 - Lazy load image optimization
 - Free modular Apps to create import or to import from osCommerce 2.x, OpenCart, ZenCart, Crealoaded, Prestashop .... database migration available on the marketplace
-- double authentification
+- Double authentication Topt
 - API REST
 - Antispam
 - Some dynamics reports
+- Cron System
+- API connection
  ...
 
 

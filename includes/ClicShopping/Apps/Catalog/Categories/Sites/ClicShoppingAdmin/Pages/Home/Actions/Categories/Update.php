@@ -13,6 +13,7 @@ namespace ClicShopping\Apps\Catalog\Categories\Sites\ClicShoppingAdmin\Pages\Hom
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use function count;
 
 class Update extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -54,7 +55,7 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = count($languages); $i < $n; $i++) {
         $language_id = $languages[$i]['id'];
         $categories_name_array = HTML::sanitize($_POST['categories_name']);
         $categories_description_array = $_POST['categories_description'];

@@ -4,6 +4,7 @@ table_heading_products = Products
 table_heading_rating = Rating
 table_heading_date_added = Date Added
 table_heading_action = Action
+
 table_heading_review_author = Author
 table_heading_products_average_rating = Average
 table_heading_review_read = Read
@@ -13,8 +14,8 @@ table_heading_review_group = Customers group
 
 tab_general = General
 
-icon_preview_comment = Comment preview
 icon_edit = Edit
+icon_preview_comment = Comment preview
 
 entry_products = Product name
 entry_from = Name of the customer
@@ -41,6 +42,7 @@ text_info_review_read = Read
 text_info_review_size = Size
 text_info_products_average_rating = Average Rating
 
+text_of_5_stars = %s on 5 stars !
 text_good = <small><font color="#ff0000"><strong>GOOD</strong></font></small>
 text_bad = <small><font color="#ff0000"><strong>BAD</strong></font></small>
 text_info_heading_delete_review = Delete Review
@@ -59,4 +61,3 @@ text_count_customers_tag = Sentiment customers tags :
 
 text_result_page = Page {{listing_from}} of {{listing_total}}
 text_display_number_of_link = Displaying <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (of <strong>{{listing_total}}</strong>)
-

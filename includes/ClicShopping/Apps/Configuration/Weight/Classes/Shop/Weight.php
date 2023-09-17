@@ -16,9 +16,9 @@ use ClicShopping\OM\Registry;
 class Weight
 {
   protected array $weight_classes = [];
-  protected int $precision;
+  protected $precision;
 
-  public function __construct(?int $precision = 2)
+  public function __construct($precision = 2)
   {
     if (\is_int($precision)) {
       $this->precision = $precision;

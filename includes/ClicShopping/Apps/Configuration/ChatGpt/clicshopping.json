@@ -15,7 +15,8 @@
   ],
   "modules": {
     "AdminDashboard": {
-      "TotalToken": "Module\\ClicShoppingAdmin\\Dashboard\\TotalToken"
+      "TotalToken": "Module\\ClicShoppingAdmin\\Dashboard\\TotalToken",
+      "CheckAPI": "Module\\ClicShoppingAdmin\\Dashboard\\CheckAPI"
     },
     "Hooks": {
       "ClicShoppingAdmin/Products": {

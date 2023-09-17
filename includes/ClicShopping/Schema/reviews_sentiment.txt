@@ -1,0 +1,16 @@
+id int not_null auto_increment
+sentiment_status int not_null default(0)
+sentiment_approved int not_null default(0)
+reviews_id int not_null
+products_id int not_null
+date_added datetime default null
+date_modified datetime default null
+user_admin varchar(255) default null
+--
+primary id
+idx_reviews_reviews_id reviews_id
+idx_reviews_products_id products_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

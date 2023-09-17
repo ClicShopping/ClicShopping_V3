@@ -320,6 +320,7 @@ class explodeCategoryTree extends categoryTree
         }
       }
     }
+    
     return $result;
   }
 

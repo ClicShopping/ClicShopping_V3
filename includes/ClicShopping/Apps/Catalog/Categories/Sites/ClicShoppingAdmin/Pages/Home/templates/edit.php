@@ -178,6 +178,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
             <div class="accordion" id="accordionExample">
               <?php
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+                $languageId = $languages[$i]['id'];
                 ?>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="heading<?php $i; ?>">
@@ -197,18 +198,14 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
                   <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>"
                        aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-
-
-                      <div class="col-md-12" id="categoriesDescription<?php echo $languages[$i]['id']; ?>">
+                      <div class="col-md-12" id="categoriesDescription<?php echo $languageId; ?>">
                         <?php
-                        $name = 'categories_description[' . $languages[$i]['id'] . ']';
+                        $name = 'categories_description[' . $languageId . ']';
                         $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);
 
-                        echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($categories_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($categories_description[$languages[$i]['id']])) : $CLICSHOPPING_CategoriesAdmin->getCategoryDescription($cInfo->categories_id, $languages[$i]['id'])), 'id="' . $ckeditor_id . '"');
+                        echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($categories_description[$languageId]) ? str_replace('& ', '&amp; ', trim($categories_description[$languageId])) : $CLICSHOPPING_CategoriesAdmin->getCategoryDescription($cInfo->categories_id, $languageId)), 'id="' . $ckeditor_id . '"');
                         ?>
                       </div>
-
-
                     </div>
                   </div>
                 </div>
@@ -347,10 +344,6 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
                 class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/banner_manager.gif', $CLICSHOPPING_Categories->getDef('text_categories_image_vignette'), '40', '40'); ?></span>
                 <span
                   class="col-md-3 main"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_vignette'); ?></span>
-                <span
-                  class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_categories.gif', $CLICSHOPPING_Categories->getDef('text_categories_image_visuel'), '40', '40'); ?></span>
-                <span
-                  class="col-md-7 main"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_visuel'); ?></span>
               </div>
               <div class="col-md-12">
                 <div class="adminformAide">

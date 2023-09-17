@@ -32,11 +32,8 @@ $action = $_GET['action'] ?? '';
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/newsletters.gif', $CLICSHOPPING_Newsletter->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-end">
-<?php
-echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_insert'), null, $CLICSHOPPING_Newsletter->link('Update'), 'success') . '&nbsp;';
-?>
-           </span>
+          <span
+            class="col-md-6 text-end"><?php echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_insert'), null, $CLICSHOPPING_Newsletter->link('Update'), 'success') . '&nbsp;'; ?></span>
         </div>
       </div>
     </div>
@@ -139,14 +136,13 @@ echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_insert'), null, $CLIC
       while ($Qnewsletters->fetch()) {
         if ($Qnewsletters->valueInt('languages_id') != 0) {
           $QnewslettersLanguages = $CLICSHOPPING_Newsletter->db->prepare('select name
-                                                                             from :table_languages
-                                                                             where languages_id = :language_id
-                                                                            ');
+                                                                         from :table_languages
+                                                                         where languages_id = :language_id
+                                                                        ');
           $QnewslettersLanguages->bindInt(':language_id', $Qnewsletters->valueInt('languages_id'));
           $QnewslettersLanguages->execute();
 
           $newsletters_language = $QnewslettersLanguages->fetch();
-
         } else {
           $newsletters_language['name'] = $CLICSHOPPING_Newsletter->getDef('text_all_languages');
         }
@@ -159,8 +155,8 @@ echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_insert'), null, $CLIC
           <td></td>
           <td><?php echo $Qnewsletters->valueInt('newsletters_id'); ?></td>
           <td></td>
-          <td
-            scope="row"><?php echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Preview&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . $Qnewsletters->value('title') . '</a>'; ?></td>
+          <th
+            scope="row"><?php echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Preview&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . $Qnewsletters->value('title') . '</a>'; ?></th>
           <td class="text-center"><?php echo number_format($Qnewsletters->value('content_length')) . ' bytes'; ?></td>
           <td class="text-center"><?php echo $Qnewsletters->value('module'); ?></td>
           <td class="text-center"><?php echo $newsletters_language['name']; ?></td>

@@ -1,0 +1,6 @@
+module_admin_dashboard_check_api_app_title = Souhaitez-vous installer l'alerte info GPT ?
+module_admin_dashboard_check_api_app_description = Vérifie si la clef API est configurée ou non
+
+module_admin_dashboard_check_api_app_link = Gpt
+module_admin_dashboard_check_api_app_alert = Veuillez insérer la clef disponible OpenAI.com pour utiliser l'AI Générative dans ClicShoppingAI : {{gpt_link}} <br />
+Vous pouvez supprimer ce module dans Configuration / Mon administration / Tableau de bord

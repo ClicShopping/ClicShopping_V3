@@ -1,0 +1,9 @@
+id int not_null
+language_id int not_null
+description text not_null
+--
+primary id language_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

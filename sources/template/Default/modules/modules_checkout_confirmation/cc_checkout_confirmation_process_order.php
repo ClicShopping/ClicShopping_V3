@@ -57,21 +57,12 @@ class cc_checkout_confirmation_process_order
         if ($CLICSHOPPING_Payment->process_button() !== false) {
           $process_button = $CLICSHOPPING_Payment->process_button();
         } else {
-          $process_button = HTML::button(CLICSHOPPING::getDef('module_checkout_confirmation_process_order_button_pay', ['total' => $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['total'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value'])]), null, null, 'success', ['params' => 'id="payNow"']);
+         $process_button = HTML::button(CLICSHOPPING::getDef('module_checkout_confirmation_process_order_button_pay', ['total' => $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['total'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value'])]), null, null, 'success', ['params' => 'id="payNow"']);
         }
       }
 
       $footer = '<!-- button listenner Start -->' . "\n";
-      $footer .= '<script>' . "\n";
-      $footer .= 'const btn = document.getElementById("payNow"); ';
-      $footer .= 'btn.addEventListener("click", submitForm); ';
-      $footer .= 'function submitForm(){ ';
-      $footer .= 'btn.setAttribute("disabled", true); ';
-      $footer .= 'setTimeout(() => { ';
-      $footer .= 'btn.removeAttribute("disabled"); ';
-      $footer .= '}, 6000); ';
-      $footer .= '} ';
-      $footer .= '</script>' . "\n";
+      $footer .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/checkout_confirmation.js')) . '"></script>' . "\n";
       $footer .= '<!-- stop button listenner  -->' . "\n";
 
       $CLICSHOPPING_Template->addBlock($footer, 'footer_scripts');

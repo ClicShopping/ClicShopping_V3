@@ -31,7 +31,7 @@ class cap_create_account_pro_success
 
 
     if (\defined('MODULE_CREATE_ACCOUNT_PRO_SUCCESS_STATUS')) {
-      $this->sort_order = (int)MODULE_CREATE_ACCOUNT_PRO_SUCCESS_SORT_ORDER;
+      $this->sort_order = (int)MODULE_CREATE_ACCOUNT_PRO_SUCCESS_SORT_ORDER ?? 0;
       $this->enabled = (MODULE_CREATE_ACCOUNT_PRO_SUCCESS_STATUS == 'True');
     }
   }

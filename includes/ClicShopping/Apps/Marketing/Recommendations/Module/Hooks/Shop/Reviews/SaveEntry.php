@@ -11,7 +11,10 @@
 namespace ClicShopping\Apps\Marketing\Recommendations\Module\Hooks\Shop\Reviews;
 
 use ClicShopping\Apps\Marketing\Recommendations\Classes\Shop\RecommendationsShop;
+use ClicShopping\Apps\Marketing\Recommendations\Classes\Shop\ProductsAutomation;
+
 use ClicShopping\OM\Registry;
+use function defined;
 
 class saveEntry implements \ClicShopping\OM\Modules\HooksInterface
 {
@@ -21,17 +24,26 @@ class saveEntry implements \ClicShopping\OM\Modules\HooksInterface
   public function __construct()
   {
     $this->productsCommon = Registry::get('ProductsCommon');
-    Registry::set('RecommendationsShop', new RecommendationsShop());
 
+    Registry::set('RecommendationsShop', new RecommendationsShop());
     $this->recommendationsShop = Registry::get('RecommendationsShop');
   }
 
   public function execute()
   {
-    if (!\defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS == 'False') {
+    if (!defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS == 'False') {
       return false;
     }
 
     $this->recommendationsShop->saveRecommendations($this->productsCommon->getID(), (int)$_POST['rating']);
+
+//productsAutomation
+    if (defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS == 'True') {
+      ProductsAutomation::favorites();
+    }
+
+    if (defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_FEATURED_STATUS == 'True') {
+      ProductsAutomation::featured();
+    }
   }
 }

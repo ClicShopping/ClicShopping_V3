@@ -116,20 +116,20 @@ class Payment
   {
     $js = '';
     if (is_array($this->modules)) {
-      $js = '<script><!-- ' . "\n" .
+      $js = '<script>' . "\n" .
         'function check_form() {' . "\n" .
-        '  var error = 0;' . "\n" .
-        '  var error_message = ' . json_encode(CLICSHOPPING::getDef('js_error') . "\n\n", JSON_THROW_ON_ERROR) . ';' . "\n" .
-        '  var payment_value = null;' . "\n" .
+        '  let error = 0;' . "\n" .
+        '  let error_message = ' . json_encode(CLICSHOPPING::getDef('js_error') . "\n\n", JSON_THROW_ON_ERROR) . ';' . "\n" .
+        '  let payment_value = null;' . "\n" .
         '  if (document.checkout_payment.payment.length) {' . "\n" .
-        '    for (var i=0; i<document.checkout_payment.payment.length; i++) {' . "\n" .
+        '    for (let i=0; i<document.checkout_payment.payment.length; i++) {' . "\n" .
         '      if (document.checkout_payment.payment[i].checked) {' . "\n" .
         '        payment_value = document.checkout_payment.payment[i].value;' . "\n" .
         '      }' . "\n" .
         '    }' . "\n" .
-        '  } elseif (document.checkout_payment.payment.checked) {' . "\n" .
+        '  } else if (document.checkout_payment.payment.checked) {' . "\n" .
         '    payment_value = document.checkout_payment.payment.value;' . "\n" .
-        '  } elseif (document.checkout_payment.payment.value) {' . "\n" .
+        '  } else if (document.checkout_payment.payment.value) {' . "\n" .
         '    payment_value = document.checkout_payment.payment.value;' . "\n" .
         '  }' . "\n\n";
 
@@ -154,7 +154,7 @@ class Payment
         '    return true;' . "\n" .
         '  }' . "\n" .
         '}' . "\n" .
-        '//--></script>' . "\n";
+        '</script>' . "\n";
     }
 
     return $js;

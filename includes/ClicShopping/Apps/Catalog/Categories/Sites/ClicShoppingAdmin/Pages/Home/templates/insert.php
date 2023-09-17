@@ -300,10 +300,6 @@ echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLIC
                   class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/banner_manager.gif', $CLICSHOPPING_Categories->getDef('text_categories_image_vignette'), '40', '40'); ?></span>
                 <span
                   class="col-md-3 main"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_vignette'); ?></span>
-                <span
-                  class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_categories.gif', $CLICSHOPPING_Categories->getDef('text_categories_image_visuel'), '40', '40'); ?></span>
-                <span
-                  class="col-md-7 main"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_visuel'); ?></span>
               </div>
               <div class="col-md-12">
                 <div class="adminformAide">

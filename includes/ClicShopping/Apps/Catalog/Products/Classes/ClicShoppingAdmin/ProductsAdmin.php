@@ -524,12 +524,12 @@ class ProductsAdmin
     $Qimage = $this->getImage($id);
 
     $QduplicateImage = $this->db->prepare('select count(*) as total
-                                             from :table_products
-                                             where products_image = :products_image
-                                             or products_image_zoom = :products_image_zoom
-                                             or products_image_medium = :products_image_medium
-                                             or products_image_small = :products_image_small
-                                            ');
+                                           from :table_products
+                                           where products_image = :products_image
+                                           or products_image_zoom = :products_image_zoom
+                                           or products_image_medium = :products_image_medium
+                                           or products_image_small = :products_image_small
+                                          ');
     $QduplicateImage->bindValue(':products_image', $Qimage['products_image']);
     $QduplicateImage->bindValue(':products_image_zoom', $Qimage['products_image_zoom']);
     $QduplicateImage->bindValue(':products_image_medium', $Qimage['products_image_medium']);

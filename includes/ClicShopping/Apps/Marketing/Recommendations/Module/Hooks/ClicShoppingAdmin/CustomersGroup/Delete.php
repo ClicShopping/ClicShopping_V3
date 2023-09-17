@@ -14,6 +14,7 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Marketing\Recommendations\Recommendations as RecommendationsApp;
+use function defined;
 
 class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
@@ -52,7 +53,7 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
 
   public function execute()
   {
-    if (!\defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS == 'False') {
+    if (!defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS == 'False') {
       return false;
     }
 

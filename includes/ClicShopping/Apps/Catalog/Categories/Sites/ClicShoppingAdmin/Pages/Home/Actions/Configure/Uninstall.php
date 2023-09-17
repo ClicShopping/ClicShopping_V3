@@ -14,10 +14,8 @@ use ClicShopping\OM\Registry;
 
 class Uninstall extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
-
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
     $CLICSHOPPING_Categories = Registry::get('Categories');
 

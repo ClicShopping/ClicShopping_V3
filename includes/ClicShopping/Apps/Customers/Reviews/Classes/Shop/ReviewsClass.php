@@ -160,52 +160,6 @@ class ReviewsClass
   }
 
   /**
-   * Customers has purchased with comment
-   *
-   * @return array : $Qhaspurchased : purchased informations
-   *
-   */
-  public function hasPurchasedProduct()
-  {
-    $CLICSHOPPING_Db = Registry::get('Db');
-    $CLICSHOPPING_Customer = Registry::get('Customer');
-    $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
-
-    if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
-      $Qhaspurchased = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                                    from :table_orders o,
-                                                         :table_orders_products op,
-                                                         :table_products p
-                                                    where o.customers_id = :customers_id
-                                                    and o.orders_id = op.orders_id
-                                                    and op.products_id = p.products_id
-                                                    and op.products_id = :products_id
-                                                    and o.customers_group_id = 0
-                                                    ');
-      $Qhaspurchased->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qhaspurchased->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
-      $Qhaspurchased->execute();
-
-    } else {
-      $Qhaspurchased = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                                    from :table_orders o,
-                                                         :table_orders_products op,
-                                                         :table_products p
-                                                    where o.customers_id = :customers_id
-                                                    and o.orders_id = op.orders_id
-                                                    and op.products_id = p.products_id
-                                                    and op.products_id = :products_id
-                                                    and o.customers_group_id > 0
-                                                    ');
-      $Qhaspurchased->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qhaspurchased->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
-      $Qhaspurchased->execute();
-    }
-
-    return ($Qhaspurchased->fetch() !== false);
-  }
-
-  /**
    * Get rewiews with specific reviews id
    * @param int|null $id
    * @return bool|array
