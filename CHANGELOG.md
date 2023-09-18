@@ -1,12 +1,12 @@
 --------------------
 version 3.437
-
+fix db error installation
 
 --------------------
 version 3.436
 Favorites automation based on recommendations (creation)
 Featured automation based on recommendations (creation)
-Review sentiment analisys AI
+Review sentiment analysis AI
 fix who's online dashboard
 libraries updated
 bootstrap 5.3.2 and icons
@@ -15,7 +15,7 @@ fix javascript for chrome/edge/opera checkout confirmation button
 --------------------
 version 3.435
 Allow to the admin to change the products recommend status
-Add check for chatbot frontoffice
+Add check for chatbot front office
 libraries updated
 Refactoring
 

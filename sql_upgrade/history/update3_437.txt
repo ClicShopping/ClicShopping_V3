@@ -1,0 +1,1 @@
+UPDATE `clic_configuration` SET `configuration_value` = 'Configuration\\ChatGptCheckAPI;Orders\\Orders\\TotalMonth;Orders\\Orders\\TotalCaByYear;Orders\\Orders\\TotalRevenue;Customers\\Customers\\TotalCustomers;Orders\\Orders\\Orders' WHERE `clic_configuration`.`configuration_KEY` = `MODULE_ADMIN_DASHBOARD_INSTALLED`;
