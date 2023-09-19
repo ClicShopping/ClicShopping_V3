@@ -10,7 +10,7 @@
 
 namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 use function defined;
 
 class FooterOutputGpt
@@ -25,7 +25,7 @@ class FooterOutputGpt
     if (isset($_SESSION['admin'])) {
       if (!defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'True') {
 
-        $url = ChatGptAdmin::getAjaxUrl(true);
+        $url = ChatGptAdmin35::getAjaxUrl(true);
 
         $output .= '<!-- Start gpt -->' . "\n";
         $output .= '<script defer>';
