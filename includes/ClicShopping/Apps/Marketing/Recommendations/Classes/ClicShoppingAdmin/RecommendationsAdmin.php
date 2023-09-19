@@ -16,12 +16,10 @@ use function is_null;
 class RecommendationsAdmin
 {
   protected mixed $db;
-  private mixed $customer;
 
   public function __construct()
   {
     $this->db = Registry::get('Db');
-    $this->customer = Registry::get('Customer');
   }
 
   /**

@@ -41,6 +41,8 @@ $review_number = (int)CLICSHOPPING_APP_REVIEWS_RV_REVIEW_NUMBER ?? 1;
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/reviews.gif', $CLICSHOPPING_Reviews->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Reviews->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-6 text-md-end"><?php echo HTML::button($CLICSHOPPING_Reviews->getDef('button_configure'), null, CLICSHOPPING::link(null, 'A&Customers\Reviews&Configure'), 'primary'); ?></span>
         </div>
       </div>
     </div>

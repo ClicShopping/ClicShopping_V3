@@ -42,6 +42,9 @@
       },
       "Shop/Reviews": {
         "SaveEntry": "Module\\Hooks\\Shop\\Reviews\\SaveEntry"
+      },
+      "ClicShoppingAdmin/ReviewsSentiment": {
+        "Update": "Module\\Hooks\\ClicShoppingAdmin\\ReviewsSentiment\\Update"
       }
     }
   },

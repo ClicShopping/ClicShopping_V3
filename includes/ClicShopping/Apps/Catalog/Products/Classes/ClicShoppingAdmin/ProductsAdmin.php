@@ -537,7 +537,7 @@ class ProductsAdmin
 
     $QduplicateImage->execute();
 
-    return $QduplicateImage->valueInt('total');;
+    return $QduplicateImage->valueInt('total');
   }
 
   /**
