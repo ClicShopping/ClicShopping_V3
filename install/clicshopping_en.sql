@@ -128,7 +128,7 @@ INSERT INTO administrator_menu VALUES(504, '', 163, 11, 1, 'configuration_44.png
 INSERT INTO administrator_menu VALUES(581, 'index.php?A&Communication\\Newsletter&Newsletter', 6, 6, 0, 'newsletters.gif', 0, 'app_communication_newsletter', 1);
 INSERT INTO administrator_menu VALUES(583, 'index.php?A&Customers\\Customers&Customers', 4, 1, 0, 'client.gif', 0, 'app_customers_customers', 1);
 INSERT INTO administrator_menu VALUES(586, 'index.php?A&Communication\\EMail&EMail', 6, 6, 0, 'email.gif', 0, 'app_communication_email', 1);
-INSERT INTO administrator_menu VALUES(587, 'index.php?A&Customers\\Reviews&Reviews', 4, 6, 0, 'reviews.gif', 0, 'app_customers_reviews', 1);
+INSERT INTO administrator_menu VALUES(587, '', 4, 6, 0, 'reviews.gif', 0, 'app_customers_reviews', 1);
 INSERT INTO administrator_menu VALUES(589, 'index.php?A&Customers\\Groups&Groups', 4, 3, 0, 'group_client.gif', 0, 'app_customers_groups', 1);
 INSERT INTO administrator_menu VALUES(590, 'index.php?A&Catalog\\Archive&Archive', 3, 8, 0, 'archive.gif', 0, 'app_catalog_archive', 1);
 INSERT INTO administrator_menu VALUES(592, 'index.php?A&Orders\\Orders&Orders', 4, 0, 0, 'orders.gif', 0, 'app_orders_orders', 1);
@@ -208,6 +208,8 @@ INSERT INTO administrator_menu VALUES(797, 'index.php?A&Marketing\\Recommendatio
 INSERT INTO administrator_menu VALUES(798, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_recommendations', 117, 1, 0, 'products_recommendations.png', 0, 'app_marketing_recommendations', 1);
 INSERT INTO administrator_menu VALUES(799, 'index.php?A&Catalog\\Products&StatsProductsSafetyStock', 107, 0, 0, '', 0, 'app_catalog_products', 1);
 INSERT INTO administrator_menu VALUES(800, 'index.php?A&Marketing\\Recommendations&ProductsRecommendation', 5, 1, 0, 'products_recommendations.png', 1, 'app_marketing_recommendations', 1);
+INSERT INTO administrator_menu VALUES(801, 'index.php?A&Customers\\Reviews&Reviews', 587, 1, 0, '', 0, 'app_customers_reviews', 1);
+INSERT INTO administrator_menu VALUES(801, 'index.php?A&Customers\\Reviews&ReviewsSentiment', 587, 2, 0, '', 0, 'app_customers_reviews', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -575,6 +577,10 @@ INSERT INTO administrator_menu_description VALUES(799, 'Predictive safety stock'
 INSERT INTO administrator_menu_description VALUES(799, 'Stock de sécurité prédictif', 2);
 INSERT INTO administrator_menu_description VALUES(800, 'Customers Recommendations', 1);
 INSERT INTO administrator_menu_description VALUES(800, 'Recommendations clients', 2);
+INSERT INTO administrator_menu_description VALUES(801, 'Reviews', 1);
+INSERT INTO administrator_menu_description VALUES(801, 'Commentaires', 2);
+INSERT INTO administrator_menu_description VALUES(802, 'Reviews Sentiment', 1);
+INSERT INTO administrator_menu_description VALUES(802, 'SentimentsCommentaires', 2);
 
 
 INSERT INTO api VALUES(1, 'Default', 'd0a36b839700b60727fe13998e22aa0af197c61d8b371e26114c133ca51c4864bd0da73ad6d1e5090b02b55cff42b8a0cd23866e64e78fc8884eb6228d32f5e9d76bed468869dd89ee6bb8a3208c5077e88560d0bc238f67cfc732efcf5313a0cb361e297c29c8d82d050d770ed7dee972af6445e801fa9af12e3d478bf5346a', 0, '2022-09-18 14:25:54', '2022-09-18 14:25:54', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -749,7 +755,7 @@ INSERT INTO configuration VALUES(342, 'Specify the maximum quantity that the cus
 INSERT INTO configuration VALUES(356, 'Please enter your delivery time by defaults to indicate at your customers', 'DISPLAY_SHIPPING_DELAY', '4 days', 'Please indicate your delivery time products to your customer by default<br><br>.<b>Note :</b><br /><i>- For France this information is mandatory (laws Chatel)</i>', 25, 14, '2006-10-23 22:49:44', '2006-04-09 16:13:47', NULL, NULL);
 INSERT INTO configuration VALUES(357, 'Default state for an edition of invoice / order PDF', 'DEFAULT_ORDERS_STATUS_INVOICE_ID', '1', 'When a new generation editing invoice / order PDF is created, his order status will be assigned to it.', 6, 0, NULL, '2006-04-09 16:13:48', NULL, NULL);
 INSERT INTO configuration VALUES(376, 'Installed Modules', 'MODULE_PAYMENT_INSTALLED', 'Payment\\COD\\CO', 'This is automatically updated. No need to edit.', 6, 0, '2016-10-12 17:47:24', '2008-09-16 16:13:41', NULL, NULL);
-INSERT INTO configuration VALUES(377, 'Specify the minimum quantity that the customer can insert in his basket', 'MAX_MIN_IN_CART', '1', 'Insert a minimum default quantity that the customer must put in the basket for an order.<br><br><i> - 1 : for a default quantity</i></br><br><i> - 0 : prevents all orders made ​​on the site by users (not recommended)</i>', 3, 19, NULL, '2008-08-30 10:21:58', NULL, NULL);
+INSERT INTO configuration VALUES(377, 'Specify the minimum quantity that the customer can insert in his basket', 'MAX_MIN_IN_CART', '1', 'Insert a minimum default quantity that the customer must put in the basket for an order.<br><br><i> - 1 : for a default quantity</i></br><br><i> - 0 : prevents all orders made on the site by users (not recommended)</i>', 3, 19, NULL, '2008-08-30 10:21:58', NULL, NULL);
 INSERT INTO configuration VALUES(399, 'Installed Modules', 'MODULE_SHIPPING_INSTALLED', ';Shipping\\Item\\IT', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-30 08:58:19', '2008-12-05 19:09:42', NULL, NULL);
 INSERT INTO configuration VALUES(433, 'Installed Modules', 'MODULE_ORDER_TOTAL_INSTALLED', 'OrderTotal\\SubTotal\\ST;OrderTotal\\TotalShipping\\SH;OrderTotal\\TotalTax\\TX;OrderTotal\\Total\\TO', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-30 08:57:47', '2008-12-05 19:10:43', NULL, NULL);
 INSERT INTO configuration VALUES(445, 'Coupon number assigned to the customer during the account creation', 'COUPON_CUSTOMER', '', 'For any change in the coupon code, please refer to the Marketing / coupon section of your menu', 0, NULL, NULL, '1000-01-01 00:00:00', ' ', NULL);
@@ -1700,11 +1706,11 @@ INSERT INTO configuration_group VALUES(12, 'Setup options mail', 'General settin
 INSERT INTO configuration_group VALUES(13, 'Download Setup', 'Options downloadable products.', 13, 1);
 INSERT INTO configuration_group VALUES(14, 'Setup compression & optimization', 'Website compression & optimization options.', 14, 1);
 INSERT INTO configuration_group VALUES(15, 'Session Setup', 'Session options', 15, 1);
-INSERT INTO configuration_group VALUES(16, 'Setup minimum values ​​for B2C customers', 'Minimum value for the field of B2C customers', 16, 1);
+INSERT INTO configuration_group VALUES(16, 'Setup minimum values for B2C customers', 'Minimum value for the field of B2C customers', 16, 1);
 INSERT INTO configuration_group VALUES(17, 'B2B Setup', 'General Setting B2B', 17, 1);
 INSERT INTO configuration_group VALUES(18, 'Setup B2B customers', 'Setting inscriptions B2B group customers', 18, 1);
-INSERT INTO configuration_group VALUES(19, 'Setup minimum values ​​for B2B customers', 'Minimum value for the field of B2B customers', 19, 1);
-INSERT INTO configuration_group VALUES(20, 'Setup maximum values ​​for B2B customers', 'Maximum value for the field of B2B customers', 20, 1);
+INSERT INTO configuration_group VALUES(19, 'Setup minimum values for B2B customers', 'Minimum value for the field of B2B customers', 19, 1);
+INSERT INTO configuration_group VALUES(20, 'Setup maximum values for B2B customers', 'Maximum value for the field of B2B customers', 20, 1);
 INSERT INTO configuration_group VALUES(21, 'Setup maximum values', 'Maximum value for: functions / data', 21, 1);
 INSERT INTO configuration_group VALUES(22, 'B2C setup', 'General setting for the B2C', 22, 1);
 INSERT INTO configuration_group VALUES(23, 'Image setup', 'Image Setting', 23, 1);
@@ -1713,12 +1719,12 @@ INSERT INTO configuration_group VALUES(26, 'Setup invoices and shipments', 'Sett
 INSERT INTO configuration_group VALUES(27, 'SEO Setup and statistics', 'Options for managing SEO and Statistics', 27, 1);
 INSERT INTO configuration_group VALUES(28, 'Setup product also bought', 'Display information in the product description sheet', 28, 1);
 INSERT INTO configuration_group VALUES(29, 'Setup display specials listing', 'Sheet Listing Description promotions', 29, 1);
-INSERT INTO configuration_group VALUES(30, 'Setup the Home page and categories', 'Values ​​concerning the setup of the home page and categories', 30, 1);
+INSERT INTO configuration_group VALUES(30, 'Setup the Home page and categories', 'Values concerning the setup of the home page and categories', 30, 1);
 INSERT INTO configuration_group VALUES(31, 'Setup boxes left and right', 'Value in the setup of boxes left and right', 31, 1);
 INSERT INTO configuration_group VALUES(32, 'Setup Comments', 'Value for comments', 32, 1);
 INSERT INTO configuration_group VALUES(33, 'Setup news listing', 'Value for the listing of new', 33, 1);
 INSERT INTO configuration_group VALUES(34, 'Setup site URL', 'Setting options URL', 34, 1);
-INSERT INTO configuration_group VALUES(35, 'Setup listing favorites', 'Values ​​for the listing of favorites', 35, 1);
+INSERT INTO configuration_group VALUES(35, 'Setup listing favorites', 'Values for the listing of favorites', 35, 1);
 INSERT INTO configuration_group VALUES(36, 'Setup import / export', 'Setting import and export.', 36, 1);
 INSERT INTO configuration_group VALUES(37, 'Setup specials for home page', 'Setting specials for home page', 37, 1);
 INSERT INTO configuration_group VALUES(43, 'General and miscellaneous Setup design', 'General and miscellaneous Setting design', 43, 1);
