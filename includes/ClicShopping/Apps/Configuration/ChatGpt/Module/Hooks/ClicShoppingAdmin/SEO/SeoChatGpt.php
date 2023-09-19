@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Configuration\ChatGpt\Module\Hooks\ClicShoppingAdmin
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatJsAdminSeo;
 
 class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
@@ -32,7 +32,7 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
   public function display()
   {
 
-    if (ChatGptAdmin::checkGptStatus() === false) {
+    if (ChatGptAdmin35::checkGptStatus() === false) {
       return false;
     }
 
@@ -61,11 +61,11 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 
     $output = '';
 
-    if (ChatGptAdmin::checkGptStatus() === true) {
-      $url = ChatGptAdmin::getAjaxUrl(false);
+    if (ChatGptAdmin35::checkGptStatus() === true) {
+      $url = ChatGptAdmin35::getAjaxUrl(false);
     }
 
-    $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
+    $urlMultilanguage = ChatGptAdmin35::getAjaxSeoMultilanguageUrl();
 
     $getInfoSeoDefaultTitleH1 = ChatJsAdminSeo::getInfoSeoDefaultTitleH1($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);
     $getInfoSeoDefaultTitle = ChatJsAdminSeo::getInfoSeoDefaultTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);

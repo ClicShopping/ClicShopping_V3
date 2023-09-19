@@ -12,7 +12,7 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 
 define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/ClicShopping/') . '/');
 
@@ -27,6 +27,13 @@ $CLICSHOPPING_Db = Registry::get('Db');
 $CLICSHOPPING_Language = Registry::get('Language');
 
 $prompt = HTML::sanitize($_POST['message']);
-$result = ChatGptAdmin::getGptResponse($prompt);
+$result = ChatGptAdmin35::getGptResponse($prompt);
 
-echo $result;
+$pos = strstr($result, ':');
+
+if ($pos !== false) {
+  $result = substr($pos, 2); // Pour enlever les deux-points et l'espace
+  echo $result;
+} else {
+  echo $result; // Si "Keywords:" n'est pas trouvé, imprimez la chaîne d'origine.
+}

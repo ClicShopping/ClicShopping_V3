@@ -14,7 +14,7 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatJsAdminSeo;
 
 class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
@@ -34,7 +34,7 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
   {
     $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
-    if (ChatGptAdmin::checkGptStatus() === false) {
+    if (ChatGptAdmin35::checkGptStatus() === false) {
       return false;
     }
 
@@ -51,8 +51,8 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 
       $product_name = $CLICSHOPPING_ProductsAdmin->getProductsName($id);
 
-      $url = ChatGptAdmin::getAjaxUrl();
-      $urlMultilanguage = ChatGptAdmin::getAjaxSeoMultilanguageUrl();
+      $url = ChatGptAdmin35::getAjaxUrl();
+      $urlMultilanguage = ChatGptAdmin35::getAjaxSeoMultilanguageUrl();
 
       $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
       $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';

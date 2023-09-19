@@ -26,8 +26,8 @@ class CkEditor5 extends HTML
    */
   public static function getWysiwyg(): string
   {
-    $output = static::getJsCkEditor();
-    $output .= static::getJsElFinder();
+    $output = self::getJsCkEditor();
+    $output .= self::getJsElFinder();
 
     return $output;
   }
@@ -37,10 +37,9 @@ class CkEditor5 extends HTML
    */
   public static function getJsCkEditor(): string
   {
-    $code = static::getWysiwygLanguage();
+    $code = self::getWysiwygLanguage();
 
     $script = '<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script><br />' . "\n";
-    // $script .= ChatGptAdmin::gptCkeditorParameters();
 
     if ($code != 'en') {
       if (!empty($code)) {

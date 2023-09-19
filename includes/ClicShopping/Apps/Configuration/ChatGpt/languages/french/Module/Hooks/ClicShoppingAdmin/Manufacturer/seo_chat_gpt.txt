@@ -1,10 +1,10 @@
 text_seo_page_title = SEO Page de Titre
 text_seo_action = Cliquez pour avoir une réponse de Gpt
-text_seo_page_title_question = Donnes moi en moins de 50 mots le SEO Titre concernant cette marque :
-text_seo_page_tag_question = Donnes moi en moins de 70 mots, 5 tag sèparès par une virgule concernant cette marque :
-text_seo_page_keywords_question = Donnes moi 7 mots clefs sèparès par une virgule concernant cette marque :
-text_seo_page_summary_description_question = Donnes moi en moins de 50 mots une description trés courte concernant cette marque :
-text_seo_page_translate_language = Peux tu traduire en
+text_seo_page_title_question = Donnes-moi en moins de 50 mots le SEO Titre concernant cette marque :
+text_seo_page_tag_question = Donnes-moi en moins de 70 mots, 5 tag sèparès par une virgule concernant cette marque :
+text_seo_page_keywords_question = Donnes-moi juste en 7 mots clefs sèparès par une virgule concernant cette marque :
+text_seo_page_summary_description_question = Donnes-moi en moins de 50 mots une description trés courte concernant cette marque :
+text_seo_page_translate_language = Donne moi la réponse brute et peux-tu supprimer la réponse du prompt, la question et tout ce qui est avant la réponse. J ai besoin uniquement que du résultat de la question. Peux tu traduire en
 
 tab_gpt_options = Gpt
 text_gpt_options = Gpt

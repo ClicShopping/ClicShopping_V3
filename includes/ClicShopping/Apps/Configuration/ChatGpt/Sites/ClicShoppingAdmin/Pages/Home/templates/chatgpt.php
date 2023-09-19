@@ -13,7 +13,7 @@ use ClicShopping\OM\DateTime;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 
 $CLICSHOPPING_ChatGpt = Registry::get('ChatGpt');
 $CLICSHOPPING_Page = Registry::get('Site')->getPage();
@@ -56,7 +56,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       <div class="card card-block headerCard">
         <div class="row">
           <?php
-          $stat_result = ChatGptAdmin::getTotalTokenByMonth();
+          $stat_result = ChatGptAdmin35::getTotalTokenByMonth();
 
           if ($stat_result['promptTokens'] > 0) {
             ?>
@@ -127,7 +127,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
             <?php
           }
 
-          if (ChatGptAdmin::getErrorRateGpt() !== false) {
+          if (ChatGptAdmin35::getErrorRateGpt() !== false) {
             ?>
             <div class="col-md-3 col-12">
               <div class="card bg-warning">
@@ -141,7 +141,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
                                 </span>
                       <span class="float-end">
                                 <div
-                                  class="col-sm-12 text-white"><?php echo $CLICSHOPPING_ChatGpt->getDef('text_rate_error_gpt') . ' ' . ChatGptAdmin::getErrorRateGpt(); ?></div>
+                                  class="col-sm-12 text-white"><?php echo $CLICSHOPPING_ChatGpt->getDef('text_rate_error_gpt') . ' ' . ChatGptAdmin35::getErrorRateGpt(); ?></div>
                                 </span>
                     </div>
                   </div>

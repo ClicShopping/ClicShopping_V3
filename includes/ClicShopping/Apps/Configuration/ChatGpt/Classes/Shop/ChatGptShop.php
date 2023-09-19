@@ -10,7 +10,7 @@
 
 namespace ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 use function defined;
 
 class ChatGptShop
@@ -70,7 +70,7 @@ class ChatGptShop
     foreach ($userComments as $comment) {
       $prompt = "Give me the sentiment of the following comment: '{$comment}' is: ";
 
-      $apiResponse = ChatGptAdmin::getGptResponse($prompt, $max_token, $temperature);
+      $apiResponse = ChatGptAdmin35::getGptResponse($prompt, $max_token, $temperature);
 
       if (isset($apiResponse)) {
         $replace = str_replace(' ', '', $apiResponse);

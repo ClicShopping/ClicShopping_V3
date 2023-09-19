@@ -14,7 +14,7 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 use DOMDocument;
 use DOMXPath;
 use function is_null;
@@ -31,7 +31,7 @@ class CkEditor4 extends HTML
   public static function getWysiwyg(): string
   {
     $script = '<script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>';
-    $script .= ChatGptAdmin::gptCkeditorParameters();
+    $script .= ChatGptAdmin35::gptCkeditorParameters();
 
     return $script;
   }
