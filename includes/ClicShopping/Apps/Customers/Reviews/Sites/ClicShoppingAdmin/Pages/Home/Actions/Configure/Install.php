@@ -45,13 +45,14 @@ class Install extends \ClicShopping\OM\PagesActionsAbstract
     $Qcheck = $CLICSHOPPING_Reviews->db->get('administrator_menu', 'app_code', ['app_code' => 'app_customers_reviews']);
 
     if ($Qcheck->fetch() === false) {
-
-      $sql_data_array = ['sort_order' => 6,
-        'link' => 'index.php?A&Customers\Reviews&Reviews',
+      $sql_data_array = [
+        'sort_order' => 6,
+        'link' => '',
         'image' => 'reviews.gif',
         'b2b_menu' => 0,
         'access' => 0,
-        'app_code' => 'app_customers_reviews'
+        'app_code' => 'app_customers_reviews',
+        'status' => 1
       ];
 
       $insert_sql_data = ['parent_id' => 4];
@@ -65,7 +66,6 @@ class Install extends \ClicShopping\OM\PagesActionsAbstract
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-
         $language_id = $languages[$i]['id'];
 
         $sql_data_array = ['label' => $CLICSHOPPING_Reviews->getDef('title_menu')];
@@ -78,7 +78,79 @@ class Install extends \ClicShopping\OM\PagesActionsAbstract
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
         $CLICSHOPPING_Reviews->db->save('administrator_menu_description', $sql_data_array);
-      }
+
+// reviews
+        $sql_data_array = [
+          'sort_order' => 6,
+          'link' => 'index.php?A&Customers\\Reviews&Reviews',
+          'image' => 'reviews.gif',
+          'b2b_menu' => 0,
+          'access' => 0,
+          'app_code' => 'app_customers_reviews',
+          'status' => 1
+        ];
+
+        $insert_sql_data = ['parent_id' => 587];
+
+        $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+        $CLICSHOPPING_Reviews->db->save('administrator_menu', $sql_data_array);
+
+        $id = $CLICSHOPPING_Reviews->db->lastInsertId();
+
+        $languages = $CLICSHOPPING_Language->getLanguages();
+
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+          $language_id = $languages[$i]['id'];
+
+          $sql_data_array = ['label' => $CLICSHOPPING_Reviews->getDef('title_menu')];
+
+          $insert_sql_data = [
+            'id' => (int)$id,
+            'language_id' => (int)$language_id
+          ];
+
+          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+          $CLICSHOPPING_Reviews->db->save('administrator_menu_description', $sql_data_array);
+        }
+
+//sentiment
+        $sql_data_array = [
+          'sort_order' => 7,
+          'link' => 'index.php?A&Customers\\Reviews&ReviewsSentiment',
+          'image' => 'reviews.gif',
+          'b2b_menu' => 0,
+          'access' => 0,
+          'app_code' => 'app_customers_reviews',
+          'status' => 1
+        ];
+
+        $insert_sql_data = ['parent_id' => 587];
+
+        $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+        $CLICSHOPPING_Reviews->db->save('administrator_menu', $sql_data_array);
+
+        $id = $CLICSHOPPING_Reviews->db->lastInsertId();
+
+        $languages = $CLICSHOPPING_Language->getLanguages();
+
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+          $language_id = $languages[$i]['id'];
+
+          $sql_data_array = ['label' => $CLICSHOPPING_Reviews->getDef('title_menu_sentiment')];
+
+          $insert_sql_data = [
+            'id' => (int)$id,
+            'language_id' => (int)$language_id
+          ];
+
+          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+          $CLICSHOPPING_Reviews->db->save('administrator_menu_description', $sql_data_array);
+        }
+     }
 
       Cache::clear('menu-administrator');
     }
