@@ -2,7 +2,7 @@
 /**
  *
  * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
  * @Licence GPL 2 & MIT
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
@@ -41,7 +41,7 @@ class Shop extends \ClicShopping\OM\SitesAbstract
       $CLICSHOPPING_Db = Db::initialize();
       Registry::set('Db', $CLICSHOPPING_Db);
     } catch (\Exception $e) {
-      include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'error_documents/maintenance.php');
+      include_once('error_documents/maintenance.php');
       exit;
     }
 

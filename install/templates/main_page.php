@@ -2,7 +2,7 @@
 /**
  *
  * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
  * @Licence GPL 2 & MIT
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
@@ -23,9 +23,9 @@ $template = 'main_page';
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="generator" content="ClicShopping, Social E-Commerce B2B/B2C Open Source Solutions /">
+  <meta name="generator" content="ClicShoppingAI, GenAI E-Commerce B2B/B2C Open Source Solutions /">
   <meta name="robots" content="noindex,nofollow">
-  <title>ClicShopping, Social E-Commerce B2B/B2C Open Source Solutions</title>
+  <title>ClicShoppingAI, GenAI E-Commerce B2B/B2C Open Source Solutions</title>
   <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
@@ -39,7 +39,7 @@ $template = 'main_page';
   <div class="row" style="margin-top: 10px; margin-bottom: 20px;" id="storeLogo">
     <div class="col-sm-6">
       <a href="index.php"><img src="../images/logo_clicshopping_1.png" border="0" width="200" height="90"
-                               title="ClicShopping" alt="ClicShopping" style="margin: 10px 10px 0px 10px;"/></a>
+                               title="ClicShoppingAI" alt="ClicShoppingAI" style="margin: 10px 10px 0px 10px;"/></a>
     </div>
 
     <div id="headerShortcuts" class="col-sm-6 text-end">
@@ -60,7 +60,7 @@ $template = 'main_page';
           <div class="card">
             <div class="card-footer">
               <div class="text-center">
-                  <small>Copyright &copy; 2008-<?php echo date('Y'); ?> <a href="http://www.clicshopping.org" target="_blank" rel="noreferrer">ClicShopping(TM)</a> - Brand deposed at INPI</small>
+                  <small>Copyright &copy; 2008-<?php echo date('Y'); ?> <a href="http://www.clicshopping.org" target="_blank" rel="noreferrer">ClicShoppingAI(TM)</a> - Brand deposed at INPI</small>
                 </div>
               </div>
             </div>
