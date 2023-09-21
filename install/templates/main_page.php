@@ -38,7 +38,7 @@ $template = 'main_page';
 <div class="container-fluid">
   <div class="row" style="margin-top: 10px; margin-bottom: 20px;" id="storeLogo">
     <div class="col-sm-6">
-      <a href="index.php"><img src="../images/logo_clicshopping_1.png" border="0" width="200" height="90"
+      <a href="index.php"><img src="../images/logo_clicshopping_1.png" border="0" width="284" height="105"
                                title="ClicShoppingAI" alt="ClicShoppingAI" style="margin: 10px 10px 0px 10px;"/></a>
     </div>
 
