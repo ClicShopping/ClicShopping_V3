@@ -38,7 +38,8 @@ class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
       $CLICSHOPPING_Db = Db::initialize();
       Registry::set('Db', $CLICSHOPPING_Db);
     } catch (Exception $e) {
-      include_once('../error_documents/maintenance.php');
+      include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'error_documents/maintenance.php');
+      exit;
     }
 
     Registry::set('Hooks', new Hooks());
