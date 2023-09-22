@@ -1,0 +1,10 @@
+
+INSERT INTO `clic_administrator_menu` VALUES(833, 'index.php?A&Customers\\Reviews&Reviews', 587, 1, 0, '', 0, 'app_customers_reviews', 1);
+INSERT INTO `clic_administrator_menu` VALUES(834, 'index.php?A&Customers\\Reviews&ReviewsSentiment', 587, 2, 0, '', 0, 'app_customers_reviews', 1);
+
+INSERT INTO `clic_administrator_menu_description` VALUES(833, 'Reviews', 1);
+INSERT INTO `clic_administrator_menu_description` VALUES(833, 'Commentaires', 2);
+INSERT INTO `clic_administrator_menu_description` VALUES(834, 'Reviews Sentiment', 1);
+INSERT INTO `clic_administrator_menu_description` VALUES(834, 'SentimentsCommentaires', 2);
+
+UPDATE `clic_administrator_menu` SET `link` = NULL WHERE `clic_administrator_menu`.`id` = 587;
