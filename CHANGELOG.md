@@ -1,13 +1,14 @@
-version 3.438
-Remove Davinci for Gpt3.5-turbo
-Url Rewiting improvement
-Recommendations refactored
+--------------------
+version 3.439
+
+
 
 
 --------------------
 version 3.438
-fix db error installation
-fix access error document
+Remove Davinci for Gpt3.5-turbo
+Url Rewiting improvement
+Recommendations refactored
 
 --------------------
 version 3.437
