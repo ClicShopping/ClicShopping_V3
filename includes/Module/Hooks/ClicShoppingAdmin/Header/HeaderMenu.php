@@ -2,7 +2,7 @@
 /**
  *
  * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
  * @Licence GPL 2 & MIT
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
@@ -18,7 +18,7 @@ use function count;
 use function is_null;
 
 use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 use ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin\AdministratorMenu;
 use ClicShopping\Apps\Tools\WhosOnline\Classes\ClicShoppingAdmin\WhosOnlineAdmin;
 
@@ -60,7 +60,7 @@ class HeaderMenu
         ';
 
       if (isset($_SESSION['admin'])) {
-        $output .= ChatGptAdmin::gptModalMenu();
+        $output .= ChatGptAdmin35::gptModalMenu();
 
         if ($_SESSION['admin']['access'] == 1 && count(glob(ErrorHandler::getDirectory() . 'phpmail_error-*.txt', GLOB_NOSORT)) > 0) {
           $output .= '<span>' . HTML::link(CLICSHOPPING::link(null, 'A&Tools\EditLogError&LogErrorPhpMailer'), '<i class="bi bi-exclamation-circle-fill text-warning" tiltle="Mail"></i>') . '</span> ';

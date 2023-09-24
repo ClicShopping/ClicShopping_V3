@@ -1,12 +1,13 @@
 text_seo_page_title = SEO Page Title
-text_seo_page_title_question = Give me a SEO Title in less 50 characters without the prompt, about this category :
-text_seo_page_tag_question = Give me, without the prompt, in less 70 words 5 tag separated by a comma about this category :
-text_seo_page_keywords_question = Give me, without the prompt, 7 keywords tag separated by a comma about this category :
-text_seo_page_summary_description_question = Give me, without the prompt, in less 50 words a very short description about this category :
-text_seo_page_translate_language = Can you translate in
+text_seo_action = Click to see Gpt reponse
+text_seo_page_title_question = Give me a SEO Title in less 50 characters about this category :
+text_seo_page_tag_question = Give me in less 70 words 5 tag separated by a comma about this category :
+text_seo_page_keywords_question = Give me just 7 keywords tag separated by a comma about this category :
+text_seo_page_summary_description_question = Give me in less 50 words a very short description about this category :
+text_seo_page_translate_language = Could you remove the prompt response, the question and remove everything before the response: I need only the result about the question below. Can you translate in
 
-tab_gpt_options = ChatGpt Options
-text_gpt_options = ChatGpt Options
+tab_gpt_options = Gpt Options
+text_gpt_options = Gpt Options
 text_options_gpt_description = Authorize the AI to generate your content automatically ?
 text_options_gpt_seo_title = Authorize the AI to generate the SEO title of this category ?
 text_options_gpt_seo_description = Authorize the AI to generate the SEO description of this category ?

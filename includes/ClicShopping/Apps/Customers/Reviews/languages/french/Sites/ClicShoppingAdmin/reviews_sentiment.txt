@@ -20,7 +20,7 @@ text_count_review = Total commentaires :
 text_success = Mis à jour avec succés
 
 text_info_warning_cost = Attention : le résumé peut générer beaucoup de token.<br />
-Vous devz utiliser Gpt pour réaliser les analyses de sentiment de commentaires
+Vous devez utiliser Gpt pour réaliser les analyses de sentiment de commentaires
 
 text_description_sentiment = AI sentiment généré
 tab_general = General

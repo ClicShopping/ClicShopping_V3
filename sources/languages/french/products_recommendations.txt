@@ -2,7 +2,7 @@ navbar_title = Recommandations clients
 
 heading_title = Recommandations clients
 
-text_recommendations_seo_title = Recommendations clients
+text_recommendations_seo_title = Recommandations clients
 text_date_added = Date d'ajout
 text_manufacturer = Modèle
 text_price = Prix

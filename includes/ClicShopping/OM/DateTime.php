@@ -2,7 +2,7 @@
 /**
  *
  * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
  * @Licence GPL 2 & MIT
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
@@ -34,6 +34,8 @@ class DateTime
     } else {
       $pattern = $this->raw_pattern_date . ' ' . $this->raw_pattern_time;
     }
+
+    $strict_log = false;
 
 // format time as 00:00:00 if it is missing from the date
     $new_datetime = strtotime($datetime);
@@ -75,9 +77,9 @@ class DateTime
 
   /**
    * @param string|null $pattern
-   * @return bool
+   * @return bool|string
    */
-  public function get(?string $pattern = null)
+  public function get(string|null $pattern = null): bool|string
   {
     if (isset($pattern)) {
       return $this->datetime->format($pattern);
@@ -243,12 +245,11 @@ class DateTime
   /**
    * Set the time zone to use for dates.
    *
-   * @param string $time_zone An optional time zone to set to
-   * @param string $site The Site to retrieve the time zone from
+   * @param string|null $time_zone An optional time zone to set to
    * @return boolean
    */
 
-  public static function setTimeZone(?string $time_zone = null): bool
+  public static function setTimeZone(string|null $time_zone = null): bool
   {
 
     if (!isset($time_zone)) {
@@ -267,7 +268,7 @@ class DateTime
    * @param string|null $format date format
    * @return string
    */
-  public static function getNow(?string $format = null): string
+  public static function getNow(string|null $format = null): string
   {
 
     if (!isset($format)) {

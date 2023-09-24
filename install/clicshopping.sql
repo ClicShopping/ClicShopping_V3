@@ -128,7 +128,7 @@ INSERT INTO administrator_menu VALUES(504, '', 163, 11, 1, 'configuration_44.png
 INSERT INTO administrator_menu VALUES(581, 'index.php?A&Communication\\Newsletter&Newsletter', 6, 6, 0, 'newsletters.gif', 0, 'app_communication_newsletter', 1);
 INSERT INTO administrator_menu VALUES(583, 'index.php?A&Customers\\Customers&Customers', 4, 1, 0, 'client.gif', 0, 'app_customers_customers', 1);
 INSERT INTO administrator_menu VALUES(586, 'index.php?A&Communication\\EMail&EMail', 6, 6, 0, 'email.gif', 0, 'app_communication_email', 1);
-INSERT INTO administrator_menu VALUES(587, 'index.php?A&Customers\\Reviews&Reviews', 4, 6, 0, 'reviews.gif', 0, 'app_customers_reviews', 1);
+INSERT INTO administrator_menu VALUES(587, '', 4, 6, 0, 'reviews.gif', 0, 'app_customers_reviews', 1);
 INSERT INTO administrator_menu VALUES(589, 'index.php?A&Customers\\Groups&Groups', 4, 3, 0, 'group_client.gif', 0, 'app_customers_groups', 1);
 INSERT INTO administrator_menu VALUES(590, 'index.php?A&Catalog\\Archive&Archive', 3, 8, 0, 'archive.gif', 0, 'app_catalog_archive', 1);
 INSERT INTO administrator_menu VALUES(592, 'index.php?A&Orders\\Orders&Orders', 4, 0, 0, 'orders.gif', 0, 'app_orders_orders', 1);
@@ -174,8 +174,8 @@ INSERT INTO administrator_menu VALUES(737, 'index.php?A&Tools\\ActionsRecorder&A
 INSERT INTO administrator_menu VALUES(738, 'index.php?A&Configuration\\Cache&Cache', 21, 1, 1, 'cache.gif', 0, 'app_configuration_cache', 1);
 INSERT INTO administrator_menu VALUES(739, 'index.php?A&Tools\\DefineLanguage&DefineLanguage', 170, 1, 1, 'define_language.gif', 0, 'app_tools_define_language', 1);
 INSERT INTO administrator_menu VALUES(742, 'index.php?A&Tools\\ServiceAPP&ServiceAPP', 727, 2, 1, 'service.png', 0, 'app_tools_modules_service', 1);
-INSERT INTO administrator_menu VALUES(756, 'index.php?A&Configuration\\Weight&Weight', 20, 4, 1, 'weight.png', 0, 'app_configuration_weight', NULL);
-INSERT INTO administrator_menu VALUES(758, 'index.php?A&Catalog\\Categories&Categories', 3, 0, 0, 'categorie.gif', 0, 'app_catalog_categories', NULL);
+INSERT INTO administrator_menu VALUES(756, 'index.php?A&Configuration\\Weight&Weight', 20, 4, 1, 'weight.png', 0, 'app_configuration_weight', 1);
+INSERT INTO administrator_menu VALUES(758, 'index.php?A&Catalog\\Categories&Categories', 3, 0, 0, 'categorie.gif', 0, 'app_catalog_categories', 1);
 INSERT INTO administrator_menu VALUES(766, 'index.php?A&Configuration\\Modules&Modules&set=order_total&list=new', 451, 0, 1, 'modules_order_total.gif', 0, '', NULL);
 INSERT INTO administrator_menu VALUES(767, 'index.php?A&Configuration\\Modules&Modules&set=payment&list=new', 186, 0, 1, 'modules_payment.gif', 0, '', NULL);
 INSERT INTO administrator_menu VALUES(768, 'index.php?A&Configuration\\Modules&Modules&set=shipping&list=new', 449, 0, 1, 'modules_shipping.gif', 0, '', NULL);
@@ -183,7 +183,7 @@ INSERT INTO administrator_menu VALUES(769, '', 2, 4, 1, 'cadenas.gif', 0, '', 1)
 INSERT INTO administrator_menu VALUES(770, 'index.php?A&Configuration%5CModules&Modules&set=action_recorder&list=new', 769, 1, 1, 'cadenas.gif', 0, '', 1);
 INSERT INTO administrator_menu VALUES(771, 'index.php?A&Configuration%5CModules&Modules&set=action_recorder&module=ar_admin_login', 769, 2, 1, 'cadenas.gif', 0, '', 1);
 
-INSERT INTO administrator_menu VALUES(776, 'index.php?A&Configuration\\ProductsLength&ProductsLength', 20, 4, 1, 'products_length.png', 0, 'app_configuration_products_length', NULL);
+INSERT INTO administrator_menu VALUES(776, 'index.php?A&Configuration\\ProductsLength&ProductsLength', 20, 4, 1, 'products_length.png', 0, 'app_configuration_products_length', 1);
 INSERT INTO administrator_menu VALUES(777, 'index.php?A&Marketing\\Specials&Specials', 5, 1, 0, 'specials.gif', 0, 'app_marketing_specials', 1);
 INSERT INTO administrator_menu VALUES(778, 'index.php?A&Marketing\\Favorites&Favorites', 5, 1, 0, 'products_favorites.png', 0, 'app_marketing_favorites', 1);
 INSERT INTO administrator_menu VALUES(779, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_favorites', 117, 1, 0, 'products_favorites.png', 0, 'app_marketing_favorites', 1);
@@ -208,6 +208,8 @@ INSERT INTO administrator_menu VALUES(797, 'index.php?A&Marketing\\Recommendatio
 INSERT INTO administrator_menu VALUES(798, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_recommendations', 117, 1, 0, 'products_recommendations.png', 0, 'app_marketing_recommendations', 1);
 INSERT INTO administrator_menu VALUES(799, 'index.php?A&Catalog\\Products&StatsProductsSafetyStock', 107, 0, 0, '', 0, 'app_catalog_products', 1);
 INSERT INTO administrator_menu VALUES(800, 'index.php?A&Marketing\\Recommendations&ProductsRecommendation', 5, 1, 0, 'products_recommendations.png', 1, 'app_marketing_recommendations', 1);
+INSERT INTO administrator_menu VALUES(801, 'index.php?A&Customers\\Reviews&Reviews', 587, 1, 0, '', 0, 'app_customers_reviews', 1);
+INSERT INTO administrator_menu VALUES(802, 'index.php?A&Customers\\Reviews&ReviewsSentiment', 587, 2, 0, '', 0, 'app_customers_reviews', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -561,8 +563,8 @@ INSERT INTO administrator_menu_description VALUES(792, 'Core Information', 1);
 INSERT INTO administrator_menu_description VALUES(792, 'Core information', 2);
 INSERT INTO administrator_menu_description VALUES(793, 'Marketplace', 1);
 INSERT INTO administrator_menu_description VALUES(793, 'Marketplace', 2);
-INSERT INTO administrator_menu_description VALUES(794, 'ChatGpt', 1);
-INSERT INTO administrator_menu_description VALUES(794, 'ChatGpt', 2);
+INSERT INTO administrator_menu_description VALUES(794, 'Gpt', 1);
+INSERT INTO administrator_menu_description VALUES(794, 'Gpt', 2);
 INSERT INTO administrator_menu_description VALUES(795, 'Products no purchased', 1);
 INSERT INTO administrator_menu_description VALUES(795, 'Produits non achetés', 2);
 INSERT INTO administrator_menu_description VALUES(796, 'Shipping by item', 1);
@@ -574,7 +576,11 @@ INSERT INTO administrator_menu_description VALUES(798, 'Recommandations clients'
 INSERT INTO administrator_menu_description VALUES(799, 'Predictive safety stock', 1);
 INSERT INTO administrator_menu_description VALUES(799, 'Stock de sécurité prédictif', 2);
 INSERT INTO administrator_menu_description VALUES(800, 'Customers Recommendations', 1);
-INSERT INTO administrator_menu_description VALUES(800, 'Recommendations clients', 2);
+INSERT INTO administrator_menu_description VALUES(800, 'Recommandations clients', 2);
+INSERT INTO administrator_menu_description VALUES(801, 'Reviews', 1);
+INSERT INTO administrator_menu_description VALUES(801, 'Commentaires', 2);
+INSERT INTO administrator_menu_description VALUES(802, 'Reviews sentiment', 1);
+INSERT INTO administrator_menu_description VALUES(802, 'Sentiments commentaires', 2);
 
 
 INSERT INTO api VALUES(1, 'Default', 'd0a36b839700b60727fe13998e22aa0af197c61d8b371e26114c133ca51c4864bd0da73ad6d1e5090b02b55cff42b8a0cd23866e64e78fc8884eb6228d32f5e9d76bed468869dd89ee6bb8a3208c5077e88560d0bc238f67cfc732efcf5313a0cb361e297c29c8d82d050d770ed7dee972af6445e801fa9af12e3d478bf5346a', 0, '2022-09-18 14:25:54', '2022-09-18 14:25:54', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);

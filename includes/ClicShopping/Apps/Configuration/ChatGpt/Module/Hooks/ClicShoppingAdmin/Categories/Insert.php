@@ -2,7 +2,7 @@
 /**
  *
  * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
  * @Licence GPL 2 & MIT
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
@@ -11,7 +11,7 @@
 namespace ClicShopping\Apps\Configuration\ChatGpt\Module\Hooks\ClicShoppingAdmin\Categories;
 
 use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 use ClicShopping\OM\Registry;
 
 class Insert implements \ClicShopping\OM\Modules\HooksInterface
@@ -33,7 +33,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    if (ChatGptAdmin::checkGptStatus() === false) {
+    if (ChatGptAdmin35::checkGptStatus() === false) {
       return false;
     }
 
@@ -79,7 +79,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
           if (isset($_POST['option_gpt_description'])) {
             $question_description = $this->app->getDef('text_categories_description');
             $categories_description = $translate_language . ' ' . $language_name . ' ' . $question_description . ' ' . $categories_name;
-            $categories_description = ChatGptAdmin::getGptResponse($categories_description);
+            $categories_description = ChatGptAdmin35::getGptResponse($categories_description);
 
             if ($categories_description !== false) {
               $sql_data_array = [
@@ -94,7 +94,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 //-------------------
           if (isset($_POST['option_gpt_seo_title'])) {
             $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question . ' ' . $categories_name;
-            $seo_product_title = ChatGptAdmin::getGptResponse($seo_product_title);
+            $seo_product_title = ChatGptAdmin35::getGptResponse($seo_product_title);
 
             if ($seo_product_title !== false) {
               $sql_data_array = [
@@ -109,7 +109,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 //-------------------
           if (isset($_POST['option_gpt_seo_title'])) {
             $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $categories_name;
-            $seo_product_description = ChatGptAdmin::getGptResponse($seo_product_description);
+            $seo_product_description = ChatGptAdmin35::getGptResponse($seo_product_description);
 
             if ($seo_product_description !== false) {
               $sql_data_array = [
@@ -124,7 +124,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 //-------------------
           if (isset($_POST['option_gpt_seo_keywords'])) {
             $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords . ' ' . $categories_name;
-            $seo_product_keywords = ChatGptAdmin::getGptResponse($seo_product_keywords);
+            $seo_product_keywords = ChatGptAdmin35::getGptResponse($seo_product_keywords);
 
             if ($seo_product_keywords !== false) {
               $sql_data_array = [
@@ -148,7 +148,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
           $Qcategories->bindInt(':categories_id', $Qcheck->valueInt('categories_id'));
           $Qcategories->execute();
 
-          $image = ChatGptAdmin::createImageChatGpt($Qcategories->value('categories_name'), 'categories', '256x256');
+          $image = ChatGptAdmin35::createImageChatGpt($Qcategories->value('categories_name'), 'categories', '256x256');
 
           if (!empty($image) || $image !== false) {
             $sql_data_array = [

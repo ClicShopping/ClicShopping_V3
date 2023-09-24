@@ -2,13 +2,13 @@
 /**
  *
  * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
  * @Licence GPL 2 & MIT
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-define('TEXT_TITLE_WELCOME', 'Welcome on ClicShopping');
+define('TEXT_TITLE_WELCOME', 'Welcome on ClicShoppingAI');
 define('TEXT_LICENCE', 'Please, accept the licence before to continue');
 define('TEXT_ACCEPT_LICENCE', 'I accept the terms and conditions');
 define('TEXT_AGREEMENT', 'License agreement');
@@ -20,9 +20,9 @@ define('TEXT_PREFIX', 'Prefix all table names in the database with this value');
 
 define('TEXT_SKIP_DATABASE', 'or continue and skip database import <br />after filling the fields');
 
-define('TEXT_INTRO_WELCOME', '  <p>ClicShopping has been specially designed to sell products on the internet. The administration will allow you to manage your products, customers, orders, marketing campaigns ......</p>
-  <p>We paid particular attention to developing ClicShopping and we hope that you will be fully satisfied.</p>
-   <p>ClicShopping is  B2B, B2C, B2B & B2C and open or private sale.</p>');
+define('TEXT_INTRO_WELCOME', '  <p>ClicShoppingAI has been specially designed to sell products on the internet. The administration will allow you to manage your products, customers, orders, marketing campaigns ......</p>
+  <p>We paid particular attention to developing ClicShoppingAI and we hope that you will be fully satisfied.</p>
+   <p>ClicShoppingAI is GenAI solution B2B, B2C, B2B & B2C and open or private sale.</p>');
 
 define('TEXT_SERVER_CARACTERISTICS', 'Server caracteristic');
 define('TEXT_DIRECTORIES', 'Directories permissions (777 or 755 depending the server');
@@ -93,16 +93,16 @@ define('TEXT_INFO_CUSTOMER', '
         /atos/atos_response<br />
         /atos/request<br />
       </blockquote>
-<strong>Note : </strong> We strongly recommend to your server <strong>register_global sur OFF</strong> in your php.ini configuration file. Specific to ClicShopping subsequent features only work in this configuration mode. <br />
+<strong>Note : </strong> We strongly recommend to your server <strong>register_global sur OFF</strong> in your php.ini configuration file. Specific to ClicShoppingAI subsequent features only work in this configuration mode. <br />
 Also strengthen the security of your server
 ');
 
 define('TEXT_INFO_CUSTOMER_ALERT', '<blockquote>Please correct the following errors before continuing the installation process.</blockquote>');
-define('TEXT_INFO_CUSTOMER_ALERT_SERVER', '<p><i>If a modification must be made on the server, please remember to reboot and restart installation ClicShopping.</i></p>');
+define('TEXT_INFO_CUSTOMER_ALERT_SERVER', '<p><i>If a modification must be made on the server, please remember to reboot and restart installation ClicShoppingAI.</i></p>');
 
 define('TEXT_INFO_SERVER_OK', '<p>Server environment has been tested and conforms to the standard technological tool operation. </p>
      <p> If in the configuration section, you see a red cross, please note that there may be components may not operate properly or malfunctions occur, some are not necessarily essential but highly recommended for maximum use </p>
-<strong> Note: </strong> We strongly recommend putting your register_global <strong> OFF </strong> in your php.ini configuration file and use PHP5 technology. Specific to ClicShopping subsequent features only work in this configuration mode. <br />
+<strong> Note: </strong> We strongly recommend putting your register_global <strong> OFF </strong> in your php.ini configuration file and use PHP5 technology. Specific to ClicShoppingAI subsequent features only work in this configuration mode. <br />
 You also will strengthen the security of your server and tool <br /></strong>
      <p> Please continue the installation procedure. </p>
 ');
@@ -138,8 +138,8 @@ define('TEXT_STEP_INTRO_STEP4', '<p>The installation process achieve the setting
 <p>Please follow the instructions given to you during the installation process. </p>');
 define('TEXT_STEP_INTRO_3', 'Step 2: Internet Server');
 define('TEXT_STEP_INTRO_4', '<p>The web server allows you to view the pages of your products to your customers.</p>');
-define('TEXT_STEP_HELP_4', 'Indicate the internet address of your ClicShopping Store');
-define('TEXT_STEP_HELP_5', 'Directory of your ClicShopping store on the server.');
+define('TEXT_STEP_HELP_4', 'Indicate the internet address of your ClicShoppingAI Store');
+define('TEXT_STEP_HELP_5', 'Directory of your ClicShoppingAI store on the server.');
 define('TEXT_STEP_INTRO_5', 'Directory Root of your internet server<br />');
 
 
@@ -148,9 +148,9 @@ define('TEXT_STEP_INTRO_5', 'Directory Root of your internet server<br />');
 //--------------------------
 
 define('TEXT_END_CONFIGURATION', 'Last step of setting');
-define('TEXT_INFO_1', '<p>This is the last step to setup your online store ClicShopping.</p><p> Please take care to fill in all the fields below.</p>');
+define('TEXT_INFO_1', '<p>This is the last step to setup your online store ClicShoppingAI.</p><p> Please take care to fill in all the fields below.</p>');
 define('TEXT_INFO_2', 'Step 3: setting access to ClicShopping store');
-define('TEXT_INFO_3', '<p>You can set the name of your shop ClicShopping, contact information for the owner of the shop. </p> <p> The username and password are protected to login to your admin area.. </p>');
+define('TEXT_INFO_3', '<p>You can set the name of your shop ClicShoppingAI, contact information for the owner of the shop. </p> <p> The username and password are protected to login to your admin area.. </p>');
 
 define('TEXT_STORE_NAME', 'Store name*');
 define('TEXT_STORE_HELP', 'Indicate the name of the shop that will be displayed ClicShopping your customers.');

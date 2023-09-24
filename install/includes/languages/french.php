@@ -2,13 +2,13 @@
 /**
  *
  * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
  * @Licence GPL 2 & MIT
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
-define('TEXT_TITLE_WELCOME', 'Bienvenue sur ClicShopping');
+define('TEXT_TITLE_WELCOME', 'Bienvenue sur ClicShoppingAI');
 define('TEXT_LICENCE', 'Veuillez accepter la licence avant de continuer');
 define('TEXT_ACCEPT_LICENCE', 'J\'accepte les termes et les conditions');
 define('TEXT_AGREEMENT', 'Acceptation de la licence');
@@ -19,10 +19,10 @@ define('TEXT_PREFIX', 'Prefix pour toutes les noms de tables avec cette valeur')
 
 define('TEXT_SKIP_DATABASE', 'ou continuer sans import de la base de données<br />après avoir complété les champs');
 
-define('TEXT_INTRO_WELCOME', '  <p>ClicShopping a été con&ccedil;ue spécialement pour permettre de présenter et de vendre des produits sur Internet. L\'administration vous permettra de gérer vos produits, clients, commandes, campagnes marketing ......</p>
-  <p>Nous avons fait particuli&egrave;rement attention au développement de ClicShopping et nous espérons qu\'il vous apportera une enti&egrave;re satisfaction.</p>
-  <p>ClicShopping a été développé spécifiquement pour permettre des actions marketing adaptées à vos clients.</p>
-  <p>ClicShopping est en version B2B, B2C, B2B & B2C et soit en vente ouverte ou privée.</p>');
+define('TEXT_INTRO_WELCOME', '  <p>ClicShoppingAI a été con&ccedil;ue spécialement pour permettre de présenter et de vendre des produits sur Internet. L\'administration vous permettra de gérer vos produits, clients, commandes, campagnes marketing ......</p>
+  <p>Nous avons fait particuli&egrave;rement attention au développement de ClicShoppingAI et nous espérons qu\'il vous apportera une enti&egrave;re satisfaction.</p>
+  <p>ClicShoppingAI a été développé spécifiquement pour permettre des actions marketing adaptées à vos clients.</p>
+  <p>ClicShoppingAI est en version B2B, B2C, B2B & B2C et soit en vente ouverte ou privée.</p>');
 
 define('TEXT_SERVER_CARACTERISTICS', 'Caractéristiques du serveur');
 define('TEXT_DIRECTORIES', 'Permissions des répertoires devant etre mis en 777 ou 755 en fonction de serveurs');

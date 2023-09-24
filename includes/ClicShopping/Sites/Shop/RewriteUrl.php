@@ -2,7 +2,7 @@
 /**
  *
  * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
  * @Licence GPL 2 & MIT
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
@@ -424,22 +424,41 @@ class RewriteUrl
    * | U+0111   | đ     | dj          | Latin small letter d with stroke        |
    *
    * @param string $string Text that might have accent characters
+   * @param string $locale Optional. The locale to use for accent removal. Some character
+   *                       replacements depend on the locale being used (e.g. 'de_DE').
+   *                       Defaults to the current locale.
    * @return string Filtered string with replaced "nice" characters.
    * @since 4.7.0 Added locale support for `sr_RS`.
    * @since 4.8.0 Added locale support for `bs_BA`.
    *
    * @since 1.2.1
    * @since 4.6.0 Added locale support for `de_CH`, `de_CH_informal`, and `ca`.
+   * @since 6.1.0 Added Unicode NFC encoding normalization support.
+   *
    */
-  private static function getRemoveAccents(string $string): string
+  private static function getRemoveAccents(string $string, string $locale = ''): string
   {
     $CLICSHOPPING_Language = Registry::get('Language');
+
+    if (empty($locale)) {
+      $locale = $CLICSHOPPING_Language->getLocale();
+    }
 
     if (!preg_match('/[\x80-\xff]/', $string)) {
       return $string;
     }
 
     if (static::seemsUtf8($string)) {
+    /*
+    * Unicode sequence normalization from NFD (Normalization Form Decomposed)
+    * to NFC (Normalization Form [Pre]Composed), the encoding used in this function.
+    */
+      if ( function_exists( 'normalizer_is_normalized' ) && function_exists( 'normalizer_normalize' )) {
+        if (!normalizer_is_normalized($string)) {
+          $string = normalizer_normalize($string);
+        }
+      }
+
       $chars = [
         // Decompositions for Latin-1 Supplement
         'ª' => 'a',
@@ -769,9 +788,6 @@ class RewriteUrl
         'ǜ' => 'u',
       ];
 
-      // Used for locale-specific rules
-      $locale = $CLICSHOPPING_Language->getLocale();
-
       if ('de_DE' == $locale || 'de_DE_formal' == $locale || 'de_CH' == $locale || 'de_CH_informal' == $locale) {
         $chars['Ä'] = 'Ae';
         $chars['ä'] = 'ae';
@@ -822,7 +838,7 @@ class RewriteUrl
    * Remove url accent
    * @info : https://userguide.icu-project.org/transforms/general
    * @info : https://hotexamples.com/examples/-/Transliterator/-/php-transliterator-class-examples.html
-   * @param $str
+   * @param string $str
    * @param string $charset
    * @return string
    */
@@ -844,7 +860,7 @@ class RewriteUrl
   }
 
   /**
-   * @param array|string|null $str
+   * @param string|null $str
    * @return string
    */
   private function replaceString(?string $str): string
@@ -1025,7 +1041,6 @@ class RewriteUrl
    * @param string $parameters , url parameters
    * @return string
    */
-
   public function getManufacturerUrl(int $manufacturer_id, string $parameters = ''): string
   {
     $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');

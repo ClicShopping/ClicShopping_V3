@@ -2,7 +2,7 @@
 /**
  *
  * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
  * @Licence GPL 2 & MIT
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
@@ -16,12 +16,10 @@ use function is_null;
 class RecommendationsAdmin
 {
   protected mixed $db;
-  private mixed $customer;
 
   public function __construct()
   {
     $this->db = Registry::get('Db');
-    $this->customer = Registry::get('Customer');
   }
 
   /**

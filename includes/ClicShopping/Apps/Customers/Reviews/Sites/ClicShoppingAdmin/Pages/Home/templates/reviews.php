@@ -2,7 +2,7 @@
 /**
  *
  * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
  * @Licence GPL 2 & MIT
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
@@ -45,6 +45,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
               if (CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'True') {
                echo HTML::button($CLICSHOPPING_Reviews->getDef('button_reviews_sentiment'), null, CLICSHOPPING::link(null, 'A&Customers\Reviews&ReviewsSentiment'), 'success') . '&nbsp;';
               }
+	      
               if (MODE_DEMO == 'False') {
                 echo HTML::button($CLICSHOPPING_Reviews->getDef('button_configure'), null, CLICSHOPPING::link(null, 'A&Customers\Reviews&Configure'), 'primary');
               }
