@@ -1688,8 +1688,6 @@ INSERT INTO configuration VALUES(1742, 'Reviews number to analyse', 'CLICSHOPPIN
 INSERT INTO configuration VALUES(1743, 'Do you want to enable this Module ?', 'MODULE_ADMIN_DASHBOARD_GPT_CHECK_API_APP_STATUS', 'True', 'Do you want to enable this Module ?', 6, 1, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1744, 'Select the width to display', 'MODULE_ADMIN_DASHBOARD_GPT_CHECK_API_APP_CONTENT_WIDTH', '12', 'Select a number between 1 to 12', 6, 1, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1745, 'Sort Order', 'MODULE_ADMIN_DASHBOARD_GPT_CHECK_API_APP_SORT_ORDER', '2', 'Sort order of display. Lowest is displayed first.', 6, 2, NULL, '2023-09-15 09:16:47', NULL, '');
-INSERT INTO configuration VALUES(1746, 'Do you want to display the customer vote ?', 'MODULE_PRODUCTS_INFO_REVIEWS_CUSTOMERS_DISPLAY_VOTE', 'False', 'Do you want to enable this option in your shop ?', 6, 3, NULL, '2023-09-23 10:03:53', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
-
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);

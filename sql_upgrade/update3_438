@@ -14,8 +14,6 @@ ALTER TABLE `clic_reviews_vote`
 
 ALTER TABLE `clic_reviews_vote` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-INSERT INTO `clic_configuration` VALUES(null, 'Do you want to display the customer vote ?', 'MODULE_PRODUCTS_INFO_REVIEWS_CUSTOMERS_DISPLAY_VOTE', 'False', 'Do you want to enable this option in your shop ?', 6, 3, NULL, '2023-09-23 10:03:53', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
-
 INSERT INTO `clic_administrator_menu` VALUES(833, 'index.php?A&Customers\\Reviews&Reviews', 587, 1, 0, '', 0, 'app_customers_reviews', 1);
 INSERT INTO `clic_administrator_menu` VALUES(834, 'index.php?A&Customers\\Reviews&ReviewsSentiment', 587, 2, 0, '', 0, 'app_customers_reviews', 1);
 
