@@ -1,0 +1,1 @@
+title_menu = Paiement par chèque

@@ -1,0 +1,60 @@
+heading_title = Gpt
+module_ch_title = Gpt
+module_ch_short_title = Gpt
+
+text_chatgpt = Gpt
+text_configure =  Configurer App Module
+
+text_intro = Cette app vous permet d'inclure une gestion des pays <br /><br />
+- Activer ce module qui est situé dans le menu Configuration
+- Insérer votre Clef Api OpenAI
+- Poser une question en fonction de ce que vous souhaitez résoudre
+
+module_ch_introduction = Le processus d'installation installe la base de données et le menu
+
+button_install_title = Installer
+button_configure = Configurer
+button_save = Sauver
+button_dialog_uninstall =  Désinstaller
+button_uninstall =  Désinstaller
+button_delete = Supprimer
+button_chatgpt = Gpt
+button_cancel = Annuler
+button_new = Nouveau
+button_insert =  Insérer
+button_back = Retour
+button_reset = Réinitialiser
+button_update = Mettre à jour Statut
+button_edit = Editer
+
+dialog_uninstall_title = Désinstaller
+dialog_uninstall_body = Souhaitez-vous installer cette App ?
+dialog_uninstall_title = Désinstaller le module?
+dialog_uninstall_body = Etes vous sur de désinstaller ce module?
+
+alert_module_install_success = Le module a été installé.
+alert_module_uninstall_success = Le module a été désinstallé.
+alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
+
+text_result_page = Page {{listing_from}}  sur{{listing_total}}
+text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
+
+table_heading_chatgpt_id = Id
+table_heading_chatgpt_question = Questions
+table_heading_chatgpt_response = Réponses
+table_heading_chatgpt_date_added = Dates ajout
+table_heading_action = Actions
+table_heading_chatgpt_user_admin = Administrateur
+
+stat_total_tokens = Jetons total utilisés sur 1 mois
+stat_completion_tokens = Jetons d'achévement utilisés sur 1 mois
+stat_prompt_tokens = Jetons du prompt utilisés sur 1 mois
+stat_total_no_response = Erreur Gpt réponses
+text_rate_error_gpt = Taux d'erreurs
+
+tab_general = Général
+text_description = Description
+
+text_error_composer = Composer n'est pas installé sur votre machine, veuillez réaliser cette commande dans votre terminal : apt-get install composer
+text_error_exec = La fonction exec n'est pas initialisé. Vous ne pouvez pas réaliser de mise à jour ou d'installation d'une librairie Composer. Veuillez vérifier votre php.ini ou contacter votre hébergeur
+

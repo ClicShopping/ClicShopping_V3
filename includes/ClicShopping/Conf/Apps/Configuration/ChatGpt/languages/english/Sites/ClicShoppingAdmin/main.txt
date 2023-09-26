@@ -1,0 +1,59 @@
+heading_title = Gpt
+module_ch_title = Gpt
+module_ch_short_title = Gpt
+
+text_chatgpt = Gpt
+text_configure = Configure App Module
+
+text_intro = This app allow you to include a Gpt page and a shortcut in products page. <br /><br />
+- Activate this module located in the Configuration menu
+- Configure you API Key OpenAI
+- Ask request as you want to help you
+
+module_ch_introduction = The install process create the database settings for this module and the access menu
+
+button_back = Back
+button_install_title = Install
+button_configure = Configure
+button_save = Save
+button_dialog_uninstall =  Uninstall
+button_uninstall =  Uninstall
+button_delete = Delete
+button_chatgpt = Gpt
+button_cancel = Cancel
+button_new = New
+button_insert = Insert
+button_reset = Reset
+button_update = Update Status
+button_edit = Edit
+
+dialog_uninstall_title = Uninstall
+dialog_uninstall_body = Do you want to install this App ?
+dialog_uninstall_title = Uninstall Module?
+dialog_uninstall_body = Are you sure you want to uninstall this module?
+
+alert_module_install_success = Module has been successfully installed.
+alert_module_uninstall_success = Module has been successfully uninstalled.
+alert_cfg_saved_success = Configuration parameters have been successfully saved.
+
+text_result_page = Page {{listing_from}} of {{listing_total}}
+text_display_number_of_link = Display <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (on <strong>{{listing_total}}</strong>)
+
+table_heading_chatgpt_id = Id
+table_heading_chatgpt_question = Question
+table_heading_chatgpt_response = Response
+table_heading_chatgpt_date_added = Date Added
+table_heading_action = Actions
+table_heading_chatgpt_user_admin = User admin
+
+tab_general = General
+text_description = Description
+
+stat_total_tokens = Total tokens used on 1 month
+stat_completion_tokens = Total tokens completions used on 1 month
+stat_prompt_tokens = Prompt token used on 1 month
+stat_total_no_response = Error Gpt No response
+text_rate_error_gpt = Errors rate
+
+text_error_composer = Composer is not installed, please make this command on your server in your terminal : apt-get install composer
+text_error_exec = exec function is not enabled. You can not update or install any composer library, please this setting in your php.ini or contact your hoster

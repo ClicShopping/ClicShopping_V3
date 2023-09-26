@@ -1,0 +1,30 @@
+{
+  "title": "ProductsAttributes App",
+  "app": "ProductsAttributes",
+  "vendor": "Catalog",
+  "version": "1.0.0",
+  "req_core_version": "3.0",
+  "license": "GPL-2",
+  "authors": [
+    {
+      "name": "ClicShopping",
+      "company": "ClicShopping",
+      "email": "admin@clicshopping.org",
+      "website": "https://www.clicshopping.org"
+    }
+  ],
+  "modules": {
+    "Hooks": {
+      "ClicShoppingAdmin/Langues": {
+        "DeleteConfirm": "Module\\Hooks\\ClicShoppingAdmin\\Langues\\DeleteConfirm",
+        "Insert": "Module\\Hooks\\ClicShoppingAdmin\\Langues\\Insert"
+      },
+      "ClicShoppingAdmin/Products": {
+        "RemoveProduct": "Module\\Hooks\\ClicShoppingAdmin\\Products\\RemoveProduct"
+      }
+    }
+  },
+  "routes": {
+    "ClicShoppingAdmin": "Sites\\ClicShoppingAdmin\\Pages\\Home"
+  }
+}

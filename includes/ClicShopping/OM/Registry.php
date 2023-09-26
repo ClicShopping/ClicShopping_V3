@@ -126,6 +126,7 @@ class Registry
       return false;
     }
     static::$aliases[$key] = $class;
+
     return true;
   }
 

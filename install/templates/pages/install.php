@@ -9,7 +9,6 @@
  */
 
 use ClicShopping\OM\HTML;
-
 ?>
 <form name="install" id="installForm" action="install.php?step=2" method="post">
   <div id="content">
@@ -50,6 +49,7 @@ use ClicShopping\OM\HTML;
                     <span class="help-block"><?php echo TEXT_DATABASE_SERVER_HELP; ?></span>
                   </div>
                 </div>
+
                 <div class="form-row">
                   <div class="form-group col required">
                     <label for="username"><?php echo TEXT_USERNAME; ?></label>
@@ -62,7 +62,6 @@ use ClicShopping\OM\HTML;
                     <span class="help-block"><?php echo TEXT_PASSWORD_HELP; ?></span>
                   </div>
                 </div>
-
 
                 <div class="form-row">
                   <div class="form-group col-6 required">

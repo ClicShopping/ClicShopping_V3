@@ -1,0 +1,22 @@
+text_seo_page_title = SEO Page Title
+text_seo_page_title_question = Give me a SEO Title without the prompt in less 50 characters about this product :
+text_seo_page_tag_question = Give me, without the prompt, in less 70 words 5 tag separated by a comma about this product :
+text_seo_page_keywords_question = Give me without the prompt, 7 keywords tag separated by a comma about this product :
+text_seo_page_summary_description_question = Give me, without the prompt, in less 50 words a very short description about this product :
+text_seo_page_translate_language = Could you remove the prompt response, the question and remove everything before the response: I need only the result about the question below. Can you translate in
+
+text_question_description = Write me a long description without the prompt concerning this product :
+text_technical_question = then created me a new paragraph with Bullets points in HTML concerning the technical characteristics
+
+tab_gpt_options = ChatGpt Options
+text_gpt_options = ChatGpt Options
+text_options_gpt_description = Authorize the AI to generate your content automatically?
+text_options_gpt_summary_description = Authorize the AI to generate your short description of this product?
+text_options_gpt_seo_title = Authorize the AI to generate the SEO title of this product?
+text_options_gpt_seo_description = Authorize the AI to generate the SEO description of this product?
+text_options_gpt_seo_keywords = Authorize the AI to generate the SEO keywords of this product?
+text_options_gpt_seo_tags = Authorize the AI to generate Tags SEO of this product?
+text_options_gpt_image = Authorize the AI to generate an image of this product ?
+
+title_help_seo = Help
+text_help_seo = Please note that if you use AI to generate your content, information may take longer to save due to processing. Please wait.

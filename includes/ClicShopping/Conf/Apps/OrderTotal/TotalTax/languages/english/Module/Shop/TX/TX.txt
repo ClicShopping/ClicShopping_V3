@@ -1,0 +1,5 @@
+module_tx_title = Tax
+module_tx_public_title = Tax
+module_tx_short_title = Tax
+
+products_tax_description = Taxes

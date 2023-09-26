@@ -1,0 +1,2 @@
+title_menu = Reviews
+title_menu_sentiment = Reviews Sentiment

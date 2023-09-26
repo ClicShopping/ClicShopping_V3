@@ -35,7 +35,7 @@ class CLICSHOPPING
 
   public static function initialize()
   {
-    static::loadConfig();
+    self::loadConfig();
 
     DateTime::setTimeZone();
 
@@ -44,85 +44,84 @@ class CLICSHOPPING
     HTTP::setRequestType();
     HTTP::getHSTS();
 
-    static::setSiteApplication();
+    self::setSiteApplication();
   }
 
   /**
    * Get the installed version number
    * @return string|null
    */
-  public static function getVersion(): ?string
+  public static function getVersion(): string|null
   {
-    if (!isset(static::$version)) {
-      $file = static::BASE_DIR . 'version.json';
+    if (!isset(self::$version)) {
+      $file = self::BASE_DIR . 'version.json';
 
       $current = trim(file_get_contents($file));
 
       $v = json_decode($current);
 
       if (is_numeric($v->version)) {
-        static::$version = $v->version;
+        self::$version = $v->version;
       } else {
         trigger_error('Version number is not numeric. Please verify: ' . $file);
       }
     }
-    return static::$version;
+    return self::$version;
   }
 
   /**
-   * Get the installed directiory version number
+   * Get the installed directory version number
    * @return string|null
    */
-  public static function getVersionDirectory(): ?string
+  public static function getVersionDirectory(): string|null
   {
-    if (!isset(static::$version)) {
-      $file = static::BASE_DIR . 'version.json';
+    if (!isset(self::$version)) {
+      $file = self::BASE_DIR . 'version.json';
 
       $current = trim(file_get_contents($file));
 
       $v = json_decode($current);
 
       if (is_numeric($v->directory_version)) {
-        static::$directoryVersion = $v->directory_version;
+        self::$directoryVersion = $v->directory_version;
       } else {
         trigger_error('Directory Version number is not numeric. Please verify: ' . $file);
       }
     }
-    return static::$directoryVersion;
+    return self::$directoryVersion;
   }
 
   /**
-   * @param $site
-   * @param bool $strict
+   * @param string $site
    * @return bool
    */
   public static function siteExists(string $site): bool
   {
-    return static::isValidClassName($site) && class_exists('ClicShopping\Sites\\' . $site . '\\' . $site);
+    return self::isValidClassName($site) && class_exists('ClicShopping\Sites\\' . $site . '\\' . $site);
   }
 
   /**
-   * @param null $site
+   * @param string|null $site
    */
-  public static function loadSite(?string $site = null)
+  public static function loadSite(string|null $site = null)
   {
     if (!isset($site)) {
-      $site = static::$site;
+      $site = self::$site;
     }
 
-    static::setSite($site);
+    self::setSite($site);
   }
 
   /**
-   * @param $site
+   * @param string $site
    */
   public static function setSite(string $site)
   {
-    if (!static::siteExists($site)) {
-      $site = static::$site;
+    if (!self::siteExists($site)) {
+      $site = self::$site;
     }
 
-    static::$site = $site;
+    self::$site = $site;
 
     $class = 'ClicShopping\Sites\\' . $site . '\\' . $site;
 
@@ -137,7 +136,7 @@ class CLICSHOPPING
    */
   public static function getSite(): string
   {
-    return static::$site;
+    return self::$site;
   }
 
   /**
@@ -145,29 +144,29 @@ class CLICSHOPPING
    */
   public static function hasSite(): bool
   {
-    return isset(static::$site);
+    return isset(self::$site);
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public static function hasSitePage(): ?string
+  public static function hasSitePage(): string|null
   {
     return Registry::get('Site')->hasPage();
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public static function getSitePageFile(): ?string
+  public static function getSitePageFile(): string|null
   {
     return Registry::get('Site')->getPage()->getFile();
   }
 
   /**
-   * @return mixed
+   * @return string|null
    */
-  public static function useSiteTemplateWithPageFile(): ?string
+  public static function useSiteTemplateWithPageFile(): string|null
   {
     return Registry::get('Site')->getPage()->useSiteTemplate();
   }
@@ -185,42 +184,42 @@ class CLICSHOPPING
   /**
    * Return an internal URL address.
    *
-   * @param string $page The Site to link to. Default: The currently used Site.
-   * @param string $parameters Parameters to add to the link. Example: key1=value1&key2=value2
+   * @param string|null $page The Site to link to. Default: The currently used Site.
+   * @param string|null $parameters Parameters to add to the link. Example: key1=value1&key2=value2
    * @param bool $add_session_id Add the session ID to the link. Default: True.
    * @param bool $search_engine_safe Use search engine safe URLs. Default: True.
    * @return string The URL address.
    */
-  public static function link(string $page = null, string $parameters = null, bool $add_session_id = true, bool $search_engine_safe = true): string
+  public static function link(string|null $page = null, string|null $parameters = null, bool $add_session_id = true, bool $search_engine_safe = true): string
   {
     /*
      * remove index.php for the seo
      */
     if (is_null($page)) {
-      if (static::getSite() === 'ClicShoppingAdmin') {
-        $page = static::getConfig('bootstrap_file');
+      if (self::getSite() === 'ClicShoppingAdmin') {
+        $page = self::getConfig('bootstrap_file');
       } else {
         if ((defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') && (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
 //SEO with htaccess
 // force to remove seo htaccess if the customer is connected
           if (isset($_SESSION['login_customer_id'])) {
-            $page = static::getConfig('bootstrap_file');
+            $page = self::getConfig('bootstrap_file');
           } else {
             $page = '';
           }
         } elseif ((defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
-          $page = static::getConfig('bootstrap_file');
+          $page = self::getConfig('bootstrap_file');
         } else {
-          $page = static::getConfig('bootstrap_file');
+          $page = self::getConfig('bootstrap_file');
         }
       }
     }
 
     $page = HTML::sanitize($page);
 
-    $site = $req_site = static::$site;
+    $site = $req_site = self::$site;
 
-    if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
+    if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && self::siteExists($matches[1])) {
       $req_site = $matches[1];
       $page = $matches[2];
     }
@@ -237,12 +236,12 @@ class CLICSHOPPING
       $add_session_id = false;
     }
 
-    $link = static::getConfig('http_server', $req_site) . static::getConfig('http_path', $req_site) . $page;
+    $link = self::getConfig('http_server', $req_site) . self::getConfig('http_path', $req_site) . $page;
 
     if (!empty($parameters)) {
       $p = HTML::sanitize($parameters);
 
-      if (static::$site == 'ClicShoppingAdmin') {
+      if (self::$site == 'ClicShoppingAdmin') {
         $replace_backslash = "%5C";
       } else {
         $replace_backslash = "\\";
@@ -281,7 +280,7 @@ class CLICSHOPPING
       $CLICSHOPPING_Session = Registry::get('Session');
 
       if ($CLICSHOPPING_Session->hasStarted() && ($CLICSHOPPING_Session->isForceCookies() === false)) {
-        if ((strlen(SID) > 0) || (((HTTP::getRequestType() == 'NONSSL') && (parse_url(static::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'https')) || ((HTTP::getRequestType() == 'SSL') && (parse_url(static::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'http')))) {
+        if ((strlen(SID) > 0) || (((HTTP::getRequestType() == 'NONSSL') && (parse_url(self::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'https')) || ((HTTP::getRequestType() == 'SSL') && (parse_url(self::getConfig('http_server', $req_site), PHP_URL_SCHEME) == 'http')))) {
           $link .= $separator . HTML::sanitize(session_name() . '=' . session_id());
         }
       }
@@ -295,7 +294,7 @@ class CLICSHOPPING
      * Change url syntax if Seo is enable or not
      */
 
-    if (static::getSite() === 'Shop') {
+    if (self::getSite() === 'Shop') {
 //SEO with htaccess
       if ($search_engine_safe === true && SEFU::start() && defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true' && (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true')) {
 //SEO with htaccess
@@ -331,16 +330,16 @@ class CLICSHOPPING
     $args[2] = false;
 
     $page = $args[0];
-    $req_site = static::$site;
+    $req_site = self::$site;
 
-    if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
+    if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && self::siteExists($matches[1])) {
       $req_site = $matches[1];
       $page = $matches[2];
     }
 
-    $args[0] = $req_site . '/' . static::getConfig('http_images_path', $req_site) . $page;
+    $args[0] = $req_site . '/' . self::getConfig('http_images_path', $req_site) . $page;
 
-    $url = forward_static_call_array('static::link', $args);
+    $url = forward_static_call_array('self::link', $args);
 
     return $url;
   }
@@ -363,16 +362,16 @@ class CLICSHOPPING
     $args[2] = false;
 
     $page = $args[0];
-    $req_site = static::$site;
+    $req_site = self::$site;
 
-    if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
+    if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && self::siteExists($matches[1])) {
       $req_site = $matches[1];
       $page = $matches[2];
     }
 
     $args[0] = 'Shop/public/Sites/' . $req_site . '/' . $page;
 
-    $url = forward_static_call_array('static::link()', $args);
+    $url = forward_static_call_array('self::link()', $args);
 
     return $url;
   }
@@ -385,10 +384,10 @@ class CLICSHOPPING
   {
     $args = func_get_args();
 
-    $url = forward_static_call_array('static::link', $args);
+    $url = forward_static_call_array('self::link', $args);
 
     if ((strstr($url, "\n") !== false) || (strstr($url, "\r") !== false)) {
-      $url = static::link(null, '', false);
+      $url = self::link(null, '', false);
     }
 
     HTTP::redirect($url);
@@ -420,19 +419,19 @@ class CLICSHOPPING
    */
   public static function loadConfig(): void
   {
-    static::loadConfigFile(static::BASE_DIR . 'Conf/global.php', 'global');
+    self::loadConfigFile(self::BASE_DIR . 'Conf/global.php', 'global');
 
-    if (is_file(static::BASE_DIR . 'Custom/Conf/global.php')) {
-      static::loadConfigFile(static::BASE_DIR . 'Custom/Conf/global.php', 'global');
+    if (is_file(self::BASE_DIR . 'Custom/Conf/global.php')) {
+      self::loadConfigFile(self::BASE_DIR . 'Custom/Conf/global.php', 'global');
     }
 
-    foreach (glob(static::BASE_DIR . 'Sites/*', GLOB_ONLYDIR) as $s) {
+    foreach (glob(self::BASE_DIR . 'Sites/*', GLOB_ONLYDIR) as $s) {
       $s = basename($s);
-      if (static::siteExists($s, false) && is_file(static::BASE_DIR . 'Sites/' . $s . '/site_conf.php')) {
-        static::loadConfigFile(static::BASE_DIR . 'Sites/' . $s . '/site_conf.php', $s);
+      if (self::siteExists($s, false) && is_file(self::BASE_DIR . 'Sites/' . $s . '/site_conf.php')) {
+        self::loadConfigFile(self::BASE_DIR . 'Sites/' . $s . '/site_conf.php', $s);
 
-        if (is_file(static::BASE_DIR . 'Custom/Sites/' . $s . '/site_conf.php')) {
-          static::loadConfigFile(static::BASE_DIR . 'Custom/Sites/' . $s . '/site_conf.php', $s);
+        if (is_file(self::BASE_DIR . 'Custom/Sites/' . $s . '/site_conf.php')) {
+          self::loadConfigFile(self::BASE_DIR . 'Custom/Sites/' . $s . '/site_conf.php', $s);
         }
       }
     }
@@ -456,7 +455,7 @@ class CLICSHOPPING
     }
 
     if (!empty($cfg)) {
-      static::$cfg[$group] = (isset(static::$cfg[$group])) ? array_merge(static::$cfg[$group], $cfg) : $cfg;
+      self::$cfg[$group] = (isset(self::$cfg[$group])) ? array_merge(self::$cfg[$group], $cfg) : $cfg;
     }
   }
 
@@ -465,18 +464,18 @@ class CLICSHOPPING
    * @param string|null $group
    * @return mixed
    */
-  public static function getConfig(string $key, ?string $group = null)
+  public static function getConfig(string $key, string|null $group = null)
   {
     if (!isset($group)) {
-      $group = static::getSite();
+      $group = self::getSite();
     }
 
-    if (isset(static::$cfg[$group][$key])) {
-      return static::$cfg[$group][$key];
+    if (isset(self::$cfg[$group][$key])) {
+      return self::$cfg[$group][$key];
     }
 
-    if (isset(static::$cfg['global'][$key])) {
-      return static::$cfg['global'][$key];
+    if (isset(self::$cfg['global'][$key])) {
+      return self::$cfg['global'][$key];
     }
   }
 
@@ -485,17 +484,17 @@ class CLICSHOPPING
    * @param string|null $group
    * @return bool
    */
-  public static function configExists(string $key, ?string $group = null): bool
+  public static function configExists(string $key, string|null $group = null): bool
   {
     if (!isset($group)) {
-      $group = static::getSite();
+      $group = self::getSite();
     }
 
-    if (isset(static::$cfg[$group][$key])) {
+    if (isset(self::$cfg[$group][$key])) {
       return true;
     }
 
-    return isset(static::$cfg['global'][$key]);
+    return isset(self::$cfg['global'][$key]);
   }
 
   /**
@@ -503,19 +502,19 @@ class CLICSHOPPING
    * @param $value
    * @param string|null $group
    */
-  public static function setConfig(string $key, $value, ?string $group = null)
+  public static function setConfig(string $key, $value, string|null $group = null)
   {
     if (!isset($group)) {
       $group = 'global';
     }
 
-    static::$cfg[$group][$key] = $value;
+    self::$cfg[$group][$key] = $value;
   }
 
-  /**
-   * @param string $class
-   *
-   */
+/**
+* @param string $class
+* @return bool|void
+ */
   public static function autoload(string $class)
   {
     $prefix = 'ClicShopping\\';
@@ -523,7 +522,7 @@ class CLICSHOPPING
     if (strncmp($prefix, $class, strlen($prefix)) !== 0) {
       $class_path = str_replace('\\', '/', $class);
 
-      $file = static::BASE_DIR . 'External' . '/' . $class_path . '.php';
+      $file = self::BASE_DIR . 'External' . '/' . $class_path . '.php';
 
       if (is_file($file)) {
         require_once($file);
@@ -537,7 +536,7 @@ class CLICSHOPPING
       ];
 
       foreach ($site_dirs as $site_dir) {
-        $dir = new DirectoryIterator(static::BASE_DIR . $site_dir);
+        $dir = new DirectoryIterator(self::BASE_DIR . $site_dir);
 
         foreach ($dir as $f) {
           if (!$f->isDot() && $f->isDir()) {
@@ -556,10 +555,10 @@ class CLICSHOPPING
     }
 
     if (strncmp($prefix . 'OM\Module\\', $class, strlen($prefix . 'OM\Module\\')) === 0) { // TODO remove and fix namespace
-      $file = dirname(static::BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['', '/'], $class) . '.php';
-      $custom = dirname(static::BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['ClicShopping\Custom\OM\\', '/'], $class) . '.php';
+      $file = dirname(self::BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['', '/'], $class) . '.php';
+      $custom = dirname(self::BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['ClicShopping\Custom\OM\\', '/'], $class) . '.php';
     } else {
-      $file = dirname(static::BASE_DIR) . '/' . str_replace('\\', '/', $class) . '.php';
+      $file = dirname(self::BASE_DIR) . '/' . str_replace('\\', '/', $class) . '.php';
       $custom = str_replace('ClicShopping/OM/', 'ClicShopping/Custom/OM/', $file);
     }
 
@@ -569,18 +568,18 @@ class CLICSHOPPING
       require_once($file);
     }
 
-    if (is_file(static::BASE_DIR . 'External/vendor/autoload.php')) {
-      require_once(static::BASE_DIR . 'External/vendor/autoload.php');
+    if (is_file(self::BASE_DIR . 'External/vendor/autoload.php')) {
+      require_once(self::BASE_DIR . 'External/vendor/autoload.php');
     }
   }
 
   /**
    * @param string $application
-   * @return string
+   * @return bool
    */
   protected static function siteApplicationExists(string $application): bool
   {
-    $class = static::isValidClassName($application) && class_exists('ClicShopping\\Sites\\' . static::getSite() . '\\Pages\\' . $application . '\\' . $application);
+    $class = self::isValidClassName($application) && class_exists('ClicShopping\\Sites\\' . self::getSite() . '\\Pages\\' . $application . '\\' . $application);
 
     return $class;
   }
@@ -591,8 +590,8 @@ class CLICSHOPPING
   protected static function setSiteApplication(?string $application = null)
   {
     if (isset($application)) {
-      if (!static::siteApplicationExists($application)) {
-        trigger_error('Apps \'' . $application . '\' does not exist for Site \'' . static::getSite());
+      if (!self::siteApplicationExists($application)) {
+        trigger_error('Apps \'' . $application . '\' does not exist for Site \'' . self::getSite());
 
         $application = null;
       }
@@ -603,7 +602,7 @@ class CLICSHOPPING
         if (isset($key)) {
           $requested_application = HTML::sanitize(basename($key));
 
-          if ($requested_application == static::getSite()) {
+          if ($requested_application == self::getSite()) {
             $key = key(array_slice($_GET, 1, 1, true));
 
             if (isset($key)) {
@@ -612,14 +611,14 @@ class CLICSHOPPING
             }
           }
 
-          if ((preg_match('/^[A-Za-z0-9-_]+$/', $requested_application) === 1) && static::siteApplicationExists($requested_application)) {
+          if ((preg_match('/^[A-Za-z0-9-_]+$/', $requested_application) === 1) && self::siteApplicationExists($requested_application)) {
             $application = $requested_application;
           }
         }
       }
     }
 
-    static::$application = $application;
+    self::$application = $application;
   }
 
   /**
@@ -627,16 +626,16 @@ class CLICSHOPPING
    */
   public static function getSiteApplication(): ?string
   {
-    return static::$application;
+    return self::$application;
   }
 
   /**
    * Get all parameters in the GET scope
    *
-   * @param array $exclude A list of parameters to exclude
+   * @param array|null $exclude A list of parameters to exclude
    * @return string
    */
-  public static function getAllGET($exclude = null)
+  public static function getAllGET(array|null $exclude = null)
   {
     if (!is_array($exclude)) {
       if (!empty($exclude)) {
@@ -649,7 +648,7 @@ class CLICSHOPPING
     $params = '';
 
     $array = [
-      static::getSite(),
+      self::getSite(),
       Registry::get('Session')->getName(),
       'error',
       'x',
@@ -673,37 +672,37 @@ class CLICSHOPPING
     return $params;
   }
 
-  /*  the global scope
-  *   @return String : element of url like Shop/index.php
-  */
+  /**
+   * global scope
+   * @return string
+   */
   public static function getIndex(): string
   {
     $req = parse_url($_SERVER['SCRIPT_NAME']);
-    $result = substr($req['path'], strlen(static::getConfig('http_path', 'Shop')));
+    $result = substr($req['path'], strlen(self::getConfig('http_path', 'Shop')));
 
     return $result;
   }
-
 
   /**
    * @return string
    */
   public static function getBaseNameIndex(): string
   {
-    return basename(static::getIndex());
+    return basename(self::getIndex());
   }
 
-
   /**
-   * @param $array
-   * @param string $exclude
-   * @param string $equals
+   * @param array $array
+   * @param string|array|null $exclude
+   * @param string|array|null $equals
    * @param string $separator
-   * @return bool|string
-   *
+   * @return string|null
    */
-  public static function arrayToString(array $array, string|array $exclude = '', string|array $equals = '=', string $separator = '&'): ?string
+  public static function arrayToString(array $array, string|array|null $exclude = null, string|array|null $equals = null, string $separator = '&'): ?string
   {
+    $equals ??= '=';
+    $exclude ??= '';
     if (!is_array($exclude)) {
       $exclude = [];
     }
@@ -730,7 +729,7 @@ class CLICSHOPPING
    */
   public static function isValidClassName(string $classname): bool
   {
-    return preg_match(static::VALID_CLASS_NAME_REGEXP, $classname) === 1;
+    return preg_match(self::VALID_CLASS_NAME_REGEXP, $classname) === 1;
   }
 
   /**
@@ -747,7 +746,7 @@ class CLICSHOPPING
 
     $data = [];
 
-    $data['clicshopping'] = ['version' => static::getVersion()];
+    $data['clicshopping'] = ['version' => self::getVersion()];
 
     $data['system'] = [
       'date' => date('Y-m-d H:i:s O T'),
@@ -833,7 +832,6 @@ class CLICSHOPPING
   public static function utf8Encode(string $string, string $iso = 'ISO-8859-1'): string
   {
     $result = mb_convert_encoding($string, 'UTF-8', $iso);
-
 
     return $result;
   }
