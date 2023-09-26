@@ -51,6 +51,10 @@ title_reviews_general = Informations générales
 title_reviews_entry = Avis du client
 title_reviews_rating = Classement
 
+text_statistics_customer_review_evaluation = Evaluation des commentaires
+text_count_vote_yes = Vote positif :
+text_count_vote_no =  Vote négatif :
+
 visitor_name = Client normal
 
 text_statistics = Statistiques

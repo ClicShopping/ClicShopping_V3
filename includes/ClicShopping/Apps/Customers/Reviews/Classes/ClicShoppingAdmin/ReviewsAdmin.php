@@ -125,17 +125,52 @@ class ReviewsAdmin
 
     if (!$language_id) $language_id = $CLICSHOPPING_Language->getId();
 
-    $Qcategory = $CLICSHOPPING_Db->prepare('select description
+    $Qdescription = $CLICSHOPPING_Db->prepare('select description
                                             from :table_reviews_sentiment_description
                                             where id = :id
                                             and language_id = :language_id
                                           ');
 
-    $Qcategory->bindInt(':id', $id);
-    $Qcategory->bindInt(':language_id', $language_id);
+    $Qdescription->bindInt(':id', $id);
+    $Qdescription->bindInt(':language_id', $language_id);
 
-    $Qcategory->execute();
+    $Qdescription->execute();
 
-    return $Qcategory->value('description');
+    return $Qdescription->value('description');
+  }
+
+/**
+* @return int
+ */
+  public static function getTotalReviewsVoteYes(): int
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qvote = $CLICSHOPPING_Db->prepare('select count(vote) as vote_yes
+                                            from :table_reviews_vote
+                                            where vote = 1
+                                          ');
+
+    $Qvote->execute();
+
+    return $Qvote->valueInt('vote_yes');
+  }
+
+
+  /**
+   * @return int
+   */
+  public static function getTotalReviewsVoteNo(): int
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qvote = $CLICSHOPPING_Db->prepare('select count(vote) as vote_no
+                                            from :table_reviews_vote
+                                            where vote = 0
+                                          ');
+
+    $Qvote->execute();
+
+    return $Qvote->valueInt('vote_no');
   }
 }

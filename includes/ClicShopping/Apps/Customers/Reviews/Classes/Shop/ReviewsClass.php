@@ -265,14 +265,10 @@ class ReviewsClass
     $this->hooks->call('Reviews', 'SaveEntry');
   }
 
-  /**
-   * Send an email
-   *
-   * @param string
-   * @return string
-   *
-   */
-  public function sendEmail()
+ /**
+* @return void
+  */
+  public function sendEmail(): void
   {
     $CLICSHOPPING_Mail = Registry::get('Mail');
 
@@ -302,8 +298,11 @@ class ReviewsClass
     }
   }
 
-
-  public function deleteReviews(int $review_id)
+/**
+* @param int $review_id
+* @return void
+ */
+  public function deleteReviews(int $review_id): void
   {
     $Odelete = $this->db->prepare('delete
                                     from :table_reviews
@@ -323,7 +322,7 @@ class ReviewsClass
   /**
    * @param int $products_id
    * @param bool $all_language
-   * @return float
+   * @return float|null
    */
   public function getAverageProductReviews(int $products_id, bool $all_language = false): ?float
   {
@@ -354,7 +353,6 @@ class ReviewsClass
         $Qcheck->bindInt(':products_id', $products_id);
         $Qcheck->execute();
       }
-
     } else {
       if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
         $Qcheck = $this->db->prepare('select count(r.reviews_id) as reviews_total, 
@@ -396,11 +394,10 @@ class ReviewsClass
     return $average;
   }
 
-
   /**
    * @param int $products_id
    * @param bool $all_language
-   * @return float
+   * @return int|null
    */
   public function getBestProductReviews(int $products_id, bool $all_language = false): ?int
   {

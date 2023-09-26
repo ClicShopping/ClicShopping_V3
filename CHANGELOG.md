@@ -1,8 +1,6 @@
 --------------------
 version 3.439
-
-
-
+Vote evaluation statistics
 
 --------------------
 version 3.438

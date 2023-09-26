@@ -83,12 +83,12 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
                   </h6>
                   <div class="card-text">
                     <div class="col-sm-12">
-                  <span class="float-end">
-                    <div
-                      class="col-sm-12 text-white"><?php echo $CLICSHOPPING_Reviews->getDef('text_count_reviews') . '  ' . $QavgReviews->valueInt('count'); ?></div>
-                    <div
-                      class="col-sm-12 text-white"><?php echo $CLICSHOPPING_Reviews->getDef('text_average_reviews') . '  ' . $QavgReviews->valueDecimal('avg'); ?></div>
-                  </span>
+                      <span class="float-end">
+                        <div
+                          class="col-sm-12 text-white"><?php echo $CLICSHOPPING_Reviews->getDef('text_count_reviews') . '  ' . $QavgReviews->valueInt('count'); ?></div>
+                        <div
+                          class="col-sm-12 text-white"><?php echo $CLICSHOPPING_Reviews->getDef('text_average_reviews') . '  ' . $QavgReviews->valueDecimal('avg'); ?></div>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -123,6 +123,44 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
             </div>
             <?php
           }
+
+          if (ReviewsAdmin::countCustomersTags() > 0) {
+            ?>
+            <div class="col-md-2 col-12">
+              <div class="card bg-info">
+                <div class="card-body">
+                  <h6 class="card-title text-white"><i
+                            class="bi bi-bar-chart text-white"></i> <?php echo '&nbsp;' . $CLICSHOPPING_Reviews->getDef('text_statistics_customer_review_evaluation'); ?>
+                  </h6>
+                  <div class="card-text">
+                    <div class="col-sm-12">
+                        <span class="float-end">
+                          <div class="col-sm-12 text-white">
+                             <span class="float-end">
+                              <div class="col-sm-12 text-white">
+                                <?php
+                                  $total = ReviewsAdmin::getTotalReviewsVoteYes();
+                                  echo $CLICSHOPPING_Reviews->getDef('text_count_vote_yes') . '  ' . $total;
+                                ?>
+                              </div>
+                              <div class="col-sm-12 text-white">
+                                <?php
+                                  $total = ReviewsAdmin::getTotalReviewsVoteNo();
+                                  echo $CLICSHOPPING_Reviews->getDef('text_count_vote_no') . '  ' . $total;
+                                ?>
+                              </div>
+                            </span>
+                          </div>
+                          <br/>
+                        </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php
+          }
+	  
           echo $CLICSHOPPING_Hooks->output('Reviews', 'StatsReviews');
           ?>
         </div>
