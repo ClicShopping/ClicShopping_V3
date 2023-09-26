@@ -7,7 +7,7 @@ table_heading_approved = sentiment approved
 table_heading_review_analyse = Sentiment generated
 table_heading_review_count_comment = Nbr
 table_heading_action = Action
-table_heading_review_count_vote_sentiment = Customer vote
+table_heading_review_count_vote_sentiment = Customers vote
 
 icon_update = Create a review summary
 icon_delete = Delete

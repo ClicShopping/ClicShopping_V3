@@ -366,7 +366,7 @@ class pi_products_info_reviews
     );
 
     $CLICSHOPPING_Db->save('configuration', [
-        'configuration_title' => 'Do you want to display the customer vote ?',
+        'configuration_title' => 'Do you want to display the customers vote ?',
         'configuration_key' => 'MODULE_PRODUCTS_INFO_REVIEWS_CUSTOMERS_DISPLAY_VOTE',
         'configuration_value' => 'True',
         'configuration_description' => 'Do you want to enable this option in your shop ?',
