@@ -196,12 +196,17 @@ class pi_products_info_reviews
 
             $products_reviews_content .= '<div class="moduleProductsInfoReviewCustomersNotice">';
             $products_reviews_content .= CLICSHOPPING::getDef('modules_products_reviews_text_useful_vote');
-            $products_reviews_content .= ' <strong><span class="toggleButton yesButton" id="' . $uniqueId . '_yesButton" data-unique-id="' . $uniqueId . '" data-product-id="' . $products_id . '" data-customer-id="' . $customer_id . '" data-ajax-url="' . $ajax_url . '">' . CLICSHOPPING::getDef('modules_products_reviews_text_useful_vote_yes') . '</span></strong> ';
+            $products_reviews_content .= '<span class="buttonVoteYes">';
+            $products_reviews_content .= ' <span class="toggleButton yesButton" id="' . $uniqueId . '_yesButton" data-unique-id="' . $uniqueId . '" data-product-id="' . $products_id . '" data-customer-id="' . $customer_id . '" data-ajax-url="' . $ajax_url . '"><strong>' . CLICSHOPPING::getDef('modules_products_reviews_text_useful_vote_yes') . '</strong></span> ';
             $products_reviews_content .= ' <span class="toggleValue yesValue">(' . $QreviewsVoteYes->valueInt('countVoteYes') . ')</span> ';
-            $products_reviews_content .= ' <strong><span class="toggleButton noButton" id="' . $uniqueId . '_noButton" data-unique-id="' . $uniqueId . '" data-product-id="' . $products_id . '" data-customer-id="' . $customer_id . '" data-ajax-url="' . $ajax_url . '">' . CLICSHOPPING::getDef('modules_products_reviews_text_useful_vote_no') . '</span></strong> ';
+            $products_reviews_content .= '</span>';
+
+            $products_reviews_content .= '<span class="buttonVoteNo">';
+            $products_reviews_content .= ' <span class="toggleButton noButton" id="' . $uniqueId . '_noButton" data-unique-id="' . $uniqueId . '" data-product-id="' . $products_id . '" data-customer-id="' . $customer_id . '" data-ajax-url="' . $ajax_url . '"><strong>' . CLICSHOPPING::getDef('modules_products_reviews_text_useful_vote_no') . '</strong></span> ';
             $products_reviews_content .= ' <span class="toggleValue noValue">(' . $QreviewsVoteNo->valueInt('countVoteNo') . ')</span> ';
             $products_reviews_content .= ' <span class="thankYouMessage" style="display: none;">' . CLICSHOPPING::getDef('modules_products_reviews_text_useful_vote_thank_you') . '</span>';
             $products_reviews_content .= '</div>';
+            $products_reviews_content .= '</span>';
 
             $products_reviews_content .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/voted_review.js')) . '"></script>' . "\n";
             $products_reviews_content .= '<div class="separator"></div>';
