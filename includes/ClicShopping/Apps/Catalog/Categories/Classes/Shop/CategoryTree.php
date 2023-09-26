@@ -672,19 +672,6 @@ class CategoryTree
     return $categories_url;
   }
 
-  /**
-   * Rewrite link of Image
-   * @param string $categories_id
-   * @return mixed
-   */
-  public function getCategoryImageUrl(string $categories_id): string
-  {
-    $category = $this->getPathCategories($categories_id);
-
-    $categories_url = $this->rewriteUrl->getCategoryImageUrl($category);
-
-    return $categories_url;
-  }
 
   /**
    * @param string $parent_id
