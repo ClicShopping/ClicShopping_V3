@@ -174,6 +174,8 @@ $review_number = (int)CLICSHOPPING_APP_REVIEWS_RV_REVIEW_NUMBER ?? 1;
           class="text-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_review_analyse'); ?></th>
       <th data-field="review_group" data-sortable="true"
           class="text-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_review_count_comment'); ?></th>
+      <th data-field="review_vote_sentiment" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_review_count_vote_sentiment'); ?></th>
       <th data-field="approved" data-sortable="true"
           class="text-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_approved'); ?></th>
       <th data-field="action"
@@ -271,6 +273,7 @@ $review_number = (int)CLICSHOPPING_APP_REVIEWS_RV_REVIEW_NUMBER ?? 1;
               <?php echo $Qreviews->valueInt('count') . '&nbsp;<h6><i class="bi bi-question-circle text-warning" title="' . $CLICSHOPPING_Reviews->getDef('help_info_warning') . '"></i></h6>'; ?>
             </div>
           </td>
+          <td class="text-center"><span class="text-success"><?php echo ReviewsAdmin::getTotalReviewsSentimentVoteYes($Qreviews->valueInt('products_id')) ?><span> | <span class="text-danger"><?php echo ReviewsAdmin::getTotalReviewsSentimentVoteNo($Qreviews->valueInt('products_id')) ?><span></td>
           <td class="text-center">
             <?php
             if ($Qreviews->valueInt('sentiment_approved') == 1) {

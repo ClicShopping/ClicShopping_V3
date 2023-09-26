@@ -24,17 +24,33 @@ CLICSHOPPING::loadSite('Shop');
 if (isset($_POST['reviewId'], $_POST['product_id'])) {
   $CLICSHOPPING_Db = Registry::get('Db');
 
+  if (!is_null($_POST['reviewId'])) {
+    $reviews_id = HTML::sanitize($_POST['reviewId']);
+  } else {
+    $reviews_id = 0;
+  }
+
   $products_id = HTML::sanitize($_POST['product_id']);
-  $reviews_id = HTML::sanitize($_POST['reviewId']);
   $vote = HTML::sanitize($_POST['vote']);
   $customer_id = HTML::sanitize($_POST['customer_id']);
 
-  $array = [
-    'products_id' => (int)$products_id,
-    'reviews_id' => (int)$reviews_id,
-    'vote' => (int)$vote,
-    'customer_id' => (int)$customer_id
-  ];
+  if ($reviews_id === 0) {
+    $array = [
+      'products_id' => (int)$products_id,
+      'reviews_id' => 0,
+      'vote' => (int)$vote,
+      'customer_id' => (int)$customer_id,
+      'sentiment' => (int)$vote
+    ];
+  } else {
+    $array = [
+      'products_id' => (int)$products_id,
+      'reviews_id' => (int)$reviews_id,
+      'vote' => (int)$vote,
+      'customer_id' => (int)$customer_id,
+      'sentiment' => 0
+    ];
+  }
 
   $CLICSHOPPING_Db->save('reviews_vote', $array);
 }

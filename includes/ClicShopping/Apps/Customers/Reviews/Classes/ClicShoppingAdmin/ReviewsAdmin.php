@@ -147,15 +147,15 @@ class ReviewsAdmin
     $CLICSHOPPING_Db = Registry::get('Db');
 
     $Qvote = $CLICSHOPPING_Db->prepare('select count(vote) as vote_yes
-                                            from :table_reviews_vote
-                                            where vote = 1
-                                          ');
+                                        from :table_reviews_vote
+                                        where vote = 1
+                                        and reviews_id <> 0
+                                        ');
 
     $Qvote->execute();
 
     return $Qvote->valueInt('vote_yes');
   }
-
 
   /**
    * @return int
@@ -167,8 +167,51 @@ class ReviewsAdmin
     $Qvote = $CLICSHOPPING_Db->prepare('select count(vote) as vote_no
                                             from :table_reviews_vote
                                             where vote = 0
-                                          ');
+                                            and reviews_id <> 0
+                                        ');
 
+    $Qvote->execute();
+
+    return $Qvote->valueInt('vote_no');
+  }
+
+
+  /**
+   * @param int $products_id
+   * @return int
+   */
+  public static function getTotalReviewsSentimentVoteYes(int $products_id): int
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qvote = $CLICSHOPPING_Db->prepare('select count(vote) as vote_yes
+                                        from :table_reviews_vote
+                                        where sentiment = 1
+                                        and reviews_id = 0
+                                        and products_id = :products_id
+                                        ');
+
+    $Qvote->bindInt(':products_id', $products_id);
+    $Qvote->execute();
+
+    return $Qvote->valueInt('vote_yes');
+  }
+
+  /**
+   * @param int $products_id
+   * @return int
+   */
+  public static function getTotalReviewsSentimentVoteNo(int $products_id): int
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qvote = $CLICSHOPPING_Db->prepare('select count(vote) as vote_no
+                                        from :table_reviews_vote
+                                        where sentiment = 0
+                                        and reviews_id = 0
+                                        and products_id = :products_id
+                                      ');
+    $Qvote->bindInt(':products_id', $products_id);
     $Qvote->execute();
 
     return $Qvote->valueInt('vote_no');

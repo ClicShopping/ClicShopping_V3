@@ -121,9 +121,48 @@ class pi_products_info_reviews
           $products_reviews_content .= '<div class="alert alert-info" role="alert">';
           $products_reviews_content .= '<span class="moduleProductsInfoReviewsTitleAiSentiment"><h6>' . CLICSHOPPING::getDef('modules_products_reviews_info_content_text_customers_ai_sentiment') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</h6></span>';
           $products_reviews_content .= $Qsentiment->value('description');
-          $products_reviews_content .= '</div>';
           $products_reviews_content .= '<div class="separator"></div>';
-       }
+
+         // Uniq ID for every button
+         $uniqueId = 0;
+
+         $QreviewsVoteYes = $CLICSHOPPING_Db->prepare('select count(vote) as countVoteYes
+                                                         from :table_reviews_vote
+                                                         where products_id = :products_id
+                                                         and vote = 1
+                                                         and sentiment = 1	
+                                                         and reviews_id = 0
+                                                      ');
+         $QreviewsVoteYes->bindInt(':products_id', $products_id);
+         $QreviewsVoteYes->execute();
+
+         $QreviewsVoteNo = $CLICSHOPPING_Db->prepare('select count(vote) as countVoteNo
+                                                         from :table_reviews_vote
+                                                         where products_id = :products_id
+                                                         and vote = 0
+                                                         and sentiment = 0
+                                                         and reviews_id = 0
+                                                        ');
+         $QreviewsVoteNo->bindInt(':products_id', $products_id);
+         $QreviewsVoteNo->execute();
+
+         $products_reviews_content .= '<div class="moduleProductsInfoReviewCustomersNotice">';
+         $products_reviews_content .= CLICSHOPPING::getDef('modules_products_reviews_text_useful_vote');
+         $products_reviews_content .= '<span class="buttonVoteYes">';
+         $products_reviews_content .= ' <span class="toggleButton yesButton" id="' . $uniqueId . '_yesButton" data-unique-id="' . $uniqueId . '" data-product-id="' . $products_id . '" data-customer-id="' . $customer_id . '" data-ajax-url="' . $ajax_url . '"><strong>' . CLICSHOPPING::getDef('modules_products_reviews_text_useful_vote_yes') . '</strong></span> ';
+         $products_reviews_content .= ' <span class="toggleValue yesValue">(' . $QreviewsVoteYes->valueInt('countVoteYes') . ')</span> ';
+         $products_reviews_content .= '</span>';
+
+         $products_reviews_content .= '<span class="buttonVoteNo">';
+         $products_reviews_content .= ' <span class="toggleButton noButton" id="' . $uniqueId . '_noButton" data-unique-id="' . $uniqueId . '" data-product-id="' . $products_id . '" data-customer-id="' . $customer_id . '" data-ajax-url="' . $ajax_url . '"><strong>' . CLICSHOPPING::getDef('modules_products_reviews_text_useful_vote_no') . '</strong></span> ';
+         $products_reviews_content .= ' <span class="toggleValue noValue">(' . $QreviewsVoteNo->valueInt('countVoteNo') . ')</span> ';
+         $products_reviews_content .= ' <span class="thankYouMessage" style="display: none;">' . CLICSHOPPING::getDef('modules_products_reviews_text_useful_vote_thank_you') . '</span>';
+         $products_reviews_content .= '</div>';
+         $products_reviews_content .= '</span>';
+
+         $products_reviews_content .= '</div>';
+         $products_reviews_content .= '<div class="separator"></div>';
+        }
 
         $products_reviews_content .= '<div class="clearfix"></div>';
         $products_reviews_content .= '<hr>';

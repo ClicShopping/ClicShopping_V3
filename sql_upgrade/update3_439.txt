@@ -1,0 +1,1 @@
+alter table clic_reviews_vote  add sentiment tinyint not null default (0);
