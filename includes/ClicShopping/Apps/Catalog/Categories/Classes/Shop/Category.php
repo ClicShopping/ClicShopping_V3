@@ -34,11 +34,10 @@ class Category
   /**
    * Constructor
    *
-   * @param int $id The ID of the category to retrieve information from
-   *
+   * @param int|null $id The ID of the category to retrieve information from
    */
 
-  public function __construct($id = null)
+  public function __construct(int|null $id = null)
   {
     $this->db = Registry::get('Db');
     $this->lang = Registry::get('Language');
@@ -77,10 +76,10 @@ class Category
 
   /**
    * Return the ID of the assigned category
-   * @return integer
+   * @return int|null
    */
 
-  public function getID()
+  public function getID(): int|null
   {
     return $this->_id;
   }
@@ -90,7 +89,7 @@ class Category
    * @return string
    */
 
-  public function getDescription()
+  public function getDescription(): string
   {
     return $this->_description;
   }
@@ -101,17 +100,16 @@ class Category
    * @return string
    */
 
-  public function getTitle()
+  public function getTitle(): string
   {
     return $this->_title;
   }
 
-  /**
-   * Check if the category has an image
-   * @return string
-   */
-
-  public function hasImage()
+/**
+ *  Check if the category has an image
+ * @return bool
+ */
+  public function hasImage(): bool
   {
     return (!empty($this->_image));
   }
@@ -121,7 +119,7 @@ class Category
    * @return string
    */
 
-  public function getImage()
+  public function getImage(): string
   {
     return $this->_image;
   }
@@ -131,17 +129,17 @@ class Category
    * @return boolean
    */
 
-  public function hasParent()
+  public function hasParent(): bool
   {
     return ($this->_parent_id > 0);
   }
 
   /**
    * Return the parent ID of the assigned category
-   * @return integer
+   * @return int|null
    */
 
-  public function getParent()
+  public function getParent(): int|null
   {
     return $this->_parent_id;
   }
@@ -150,7 +148,6 @@ class Category
    * Return the breadcrumb path of the assigned category
    * @return string
    */
-
   public function getPath()
   {
     return $this->categoryTree->buildBreadcrumb($this->_id);

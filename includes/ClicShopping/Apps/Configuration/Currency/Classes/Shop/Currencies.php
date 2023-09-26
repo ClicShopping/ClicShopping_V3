@@ -76,7 +76,7 @@ class Currencies
    * @param null $currency_value
    * @return string|null
    */
-  public function format(?float $number, bool $calculate_currency_value = true, ?string $currency_type = '', $currency_value = null): ?string
+  public function format(float|null $number, bool $calculate_currency_value = true, string|null $currency_type = null, $currency_value = null): ?string
   {
     if (empty($currency_type) && CLICSHOPPING::getSite() === 'Shop') {
       $currency_type = $_SESSION['currency'];
@@ -87,7 +87,7 @@ class Currencies
     }
 
     if ($calculate_currency_value === true) {
-      $rate = (!is_null($currency_value)) ? $currency_value : $this->currencies[$currency_type]['value'];
+      $rate = $currency_value ?? $this->currencies[$currency_type]['value'];
 
       if ($this->currencies[$currency_type]['surcharge'] > 0) {
         $rate += ($rate * $this->currencies[$currency_type]['surcharge']);
@@ -102,12 +102,12 @@ class Currencies
   }
 
   /**
-   * @param float $products_price
+   * @param float|null $products_price
    * @param $products_tax
    * @param int $quantity
    * @return float
    */
-  public function calculatePrice(?float $products_price, $products_tax, int $quantity = 1)
+  public function calculatePrice(float|null $products_price, $products_tax, int $quantity = 1)
   {
     return round(Tax::addTax($products_price, $products_tax), $this->currencies[$_SESSION['currency']]['decimal_places']) * $quantity;
   }
@@ -164,12 +164,12 @@ class Currencies
 
   /**
    * Add a tag after the price ex 100 euros HT or TTC
-   * @param $products_price
-   * @param $products_tax
+   * @param float|null $products_price
+   * @param float|null $products_tax
    * @param int $quantity
    * @return string
    */
-  public function displayPrice(?float $products_price, ?float $products_tax, int $quantity = 1)
+  public function displayPrice(float|null $products_price, float|null $products_tax, int $quantity = 1)
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
     $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
@@ -204,10 +204,10 @@ class Currencies
 
   /**
    * Product Price per kilo calculation
-   * @param $products_price
-   * @param $products_weight
-   * @param $value
-   * @param $products_tax
+   * @param float $products_price
+   * @param float $products_weight
+   * @param float $value
+   * @param float $products_tax
    * @param int $quantity
    * @return bool|string
    */
@@ -233,7 +233,7 @@ class Currencies
    * @param string|null $currency_code
    * @return string
    */
-  public function trim(string $number, string $currency_code = null): string
+  public function trim(string $number, string|null $currency_code = null): string
   {
     if (!isset($currency_code)) {
       $currency_code = $this->getDefault();
@@ -257,7 +257,7 @@ class Currencies
    * @param string|null $currency_code
    * @return mixed array|string
    */
-  public function get(string $key = null, string $currency_code = null)
+  public function get(string|null $key = null, string|null $currency_code = null)
   {
     if (!isset($currency_code)) {
       $currency_code = $this->getDefault();
@@ -290,7 +290,7 @@ class Currencies
    * @param string $class
    * @return string
    */
-  public function getCurrenciesDropDown($class = '')
+  public function getCurrenciesDropDown(string $class = '')
   {
     if ((count($this->currencies) > 1)) {
       reset($this->currencies);
@@ -345,7 +345,7 @@ class Currencies
 * @return string
  *
  */
-  public function show(float $number, string $currency_code = null, float $currency_value = null, bool $calculate = true): string
+  public function show(float $number, string|null $currency_code = null, float|null $currency_value = null, bool $calculate = true): string
   {
     if (!isset($currency_code)) {
       $currency_code = $this->getDefault();
@@ -382,7 +382,7 @@ class Currencies
    * @param bool $true_default
    * @return string|null
    */
-  public function getDefault(bool $true_default = false): ?string
+  public function getDefault(bool $true_default = false): string|null
   {
     return (($true_default === false) && $this->hasSelected()) ? $this->selected : $this->default;
   }
@@ -390,7 +390,7 @@ class Currencies
   /**
    * @return string|null
    */
-  public function getSelected(): ?string
+  public function getSelected(): string|null
   {
     return $this->selected;
   }
