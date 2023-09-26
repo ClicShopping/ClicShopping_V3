@@ -336,6 +336,25 @@ class Currencies
 
     return $result;
   }
+  
+/**
+* @param float $number
+* @param string|null $currency_code
+* @param float|null $currency_value
+* @param bool $calculate
+* @return string
+ *
+ */
+  public function show(float $number, string $currency_code = null, float $currency_value = null, bool $calculate = true): string
+  {
+    if (!isset($currency_code)) {
+      $currency_code = $this->getDefault();
+    }
+
+    $value = $this->raw($number, $currency_code, $currency_value, $calculate, true);
+
+    return $this->currencies[$currency_code]['symbol_left'] . $value . $this->currencies[$currency_code]['symbol_right'];
+  }
 
   /**
    * @param float $number
