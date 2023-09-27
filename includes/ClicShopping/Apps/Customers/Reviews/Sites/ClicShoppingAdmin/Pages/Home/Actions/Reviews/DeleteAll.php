@@ -18,6 +18,7 @@ class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
   public function execute()
   {
     $CLICSHOPPING_Reviews = Registry::get('Reviews');
+    $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
     $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -30,6 +31,8 @@ class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
         $CLICSHOPPING_Reviews->db->delete('reviews_description', ['reviews_id' => (int)$reviews_id]);
       }
     }
+
+    $CLICSHOPPING_Hooks->call('Reviews', 'DeleteAll');
 
     $CLICSHOPPING_Reviews->redirect('Reviews&page=' . $page);
   }

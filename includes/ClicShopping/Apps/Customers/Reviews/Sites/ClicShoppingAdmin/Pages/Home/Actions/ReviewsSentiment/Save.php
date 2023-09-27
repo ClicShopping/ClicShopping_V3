@@ -23,6 +23,7 @@ class Save extends \ClicShopping\OM\PagesActionsAbstract
     $CLICSHOPPING_Reviews = Registry::get('Reviews');
     $CLICSHOPPING_Language = Registry::get('Language');
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+    $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
     $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -58,6 +59,8 @@ class Save extends \ClicShopping\OM\PagesActionsAbstract
 
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Reviews->getDef('text_success'), 'success', 'main');
       }
+
+      $CLICSHOPPING_Hooks->call('ReviewsSentiment', 'Save');
 
       $CLICSHOPPING_Reviews->redirect('ReviewsSentiment&page=' . $page);
     }
