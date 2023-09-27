@@ -18,11 +18,7 @@ use function is_null;
 
 class RewriteUrl
 {
-  protected ?string $title = null;
-
-  public function __construct()
-  {
-  }
+  protected string|null $title = null;
 
   /**
    * Checks to see if a string is utf8 encoded.

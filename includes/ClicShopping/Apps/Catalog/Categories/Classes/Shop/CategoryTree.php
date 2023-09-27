@@ -410,7 +410,6 @@ class CategoryTree
    * @param string $id The category ID to return the parent ID of
    * @return array
    */
-
   public function getParentID(string $id): array
   {
     return $this->getData($id, 'parent_id');
@@ -661,25 +660,12 @@ class CategoryTree
   }
 
   /**
-   * Rewrite link of Image
-   * @param string $categories_id
-   * @return mixed
-   */
-  public function getCategoryTreeImageUrl(string $categories_id): string
-  {
-    $categories_url = $this->rewriteUrl->getCategoryImageUrl($categories_id);
-
-    return $categories_url;
-  }
-
-
-  /**
-   * @param string $parent_id
+   * @param int $parent_id
    * @param string $spacing
    * @param string $exclude
    * @param string $category_tree_array
    * @param bool $include_itself
-   * @return array|string
+   * @return array
    */
   public function getShopCategoryTree(int $parent_id = 0, string $spacing = '', $exclude = '', $category_tree_array = '', bool $include_itself = false): array
   {

@@ -19,7 +19,6 @@ class RewriteUrls implements \ClicShopping\OM\ServiceInterface
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/RewriteUrl.php')) {
-
       $CLICSHOPPING_Service = Registry::get('Service');
 
       if (!Registry::exists('RewriteUrl')) {

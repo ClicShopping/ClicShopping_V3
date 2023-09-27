@@ -28,7 +28,7 @@ if ($CLICSHOPPING_Category->getDepth() == 'products') {
 } elseif ($CLICSHOPPING_Category->getDepth() == 'nested' || (isset($_GET['manufacturersId']) && !empty($_GET['manufacturersId']))) {
 //CATEGORIES Page  2nd level / Listing
   require_once($CLICSHOPPING_Template->getTemplateFiles('index_listing'));
-//Index page
 } else {
+  //Index page
   require_once($CLICSHOPPING_Template->getTemplateFiles('index_default'));
 }

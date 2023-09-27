@@ -21,11 +21,11 @@ class Tax
 
   /**
    * @param int $class_id
-   * @param int $country_id
-   * @param int $zone_id
+   * @param int|null $country_id
+   * @param int|null $zone_id
    * @return mixed
    */
-  public function getTaxRate(int $class_id, ?int $country_id = -1, ?int $zone_id = -1)
+  public function getTaxRate(int $class_id, int|null $country_id = -1, int|null $zone_id = -1)
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -42,19 +42,19 @@ class Tax
 
     if (!isset($this->tax_rates[$class_id][$country_id][$zone_id]['rate'])) {
       $Qtax = $CLICSHOPPING_Db->prepare('select sum(tr.tax_rate) as tax_rate
-                                            from :table_tax_rates tr left join :table_zones_to_geo_zones za on (tr.tax_zone_id = za.geo_zone_id)
-                                                                     left join :table_geo_zones tz on (tz.geo_zone_id = tr.tax_zone_id)
-                                            where (za.zone_country_id is null
-                                                    or za.zone_country_id = 0
-                                                    or za.zone_country_id = :zone_country_id
-                                                   )
-                                            and (za.zone_id is null
-                                                  or za.zone_id = 0
-                                                  or za.zone_id = :zone_id
-                                                  )
-                                            and tr.tax_class_id = :tax_class_id
-                                            group by tr.tax_priority
-                                           ');
+                                          from :table_tax_rates tr left join :table_zones_to_geo_zones za on (tr.tax_zone_id = za.geo_zone_id)
+                                                                   left join :table_geo_zones tz on (tz.geo_zone_id = tr.tax_zone_id)
+                                          where (za.zone_country_id is null
+                                                  or za.zone_country_id = 0
+                                                  or za.zone_country_id = :zone_country_id
+                                                 )
+                                          and (za.zone_id is null
+                                                or za.zone_id = 0
+                                                or za.zone_id = :zone_id
+                                                )
+                                          and tr.tax_class_id = :tax_class_id
+                                          group by tr.tax_priority
+                                         ');
       $Qtax->bindInt(':zone_country_id', $country_id);
       $Qtax->bindInt(':zone_id', $zone_id);
       $Qtax->bindInt(':tax_class_id', $class_id);
@@ -81,11 +81,11 @@ class Tax
   /**
    * Return the tax description for a zone / class
    * @param int $class_id
-   * @param int $country_id
-   * @param int $zone_id
+   * @param int|null $country_id
+   * @param int|null $zone_id
    * @return mixed
    */
-  public function getTaxRateDescription(int $class_id, ?int $country_id, ?int $zone_id)
+  public function getTaxRateDescription(int $class_id, int|null $country_id, int|null $zone_id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -149,7 +149,7 @@ class Tax
    * @param string|null $padding
    * @return string
    */
-  public static function displayTaxRateValue(float $value, string $padding = null): string
+  public static function displayTaxRateValue(float $value, string|null $padding = null): string
   {
     if (!is_numeric($padding)) {
       $padding = (int)TAX_DECIMAL_PLACES;
@@ -235,8 +235,7 @@ class Tax
   /**
    * taxClassDropDown
    *
-   * @return string $$tax_class_array, drop down with all tax title
-   *
+   * @return array drop down with all tax title
    */
 
   public static function taxClassDropDown(): array
