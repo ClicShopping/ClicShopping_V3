@@ -16,10 +16,11 @@ use ClicShopping\OM\Registry;
 
 class Delete extends \ClicShopping\OM\PagesActionsAbstract
 {
-/**
-* @return void
-*/
-  private static function deleteReviews(): void
+  /**
+   * @param $products_id
+   * @return void
+   */
+  private static function deleteReviews($products_id): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -27,13 +28,12 @@ class Delete extends \ClicShopping\OM\PagesActionsAbstract
     $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
     $review_id = HTML::sanitize($_GET['reviews_id']);
-    $products_id = $CLICSHOPPING_ProductsCommon->getId();
 
     $Ocheck = $CLICSHOPPING_Db->prepare('select reviews_id
-                                            from :table_reviews
-                                            where reviews_id = :reviews_id
-                                            and products_id = :products_id
-                                            and customers_id = :customer_id
+                                          from :table_reviews
+                                          where reviews_id = :reviews_id
+                                          and products_id = :products_id
+                                          and customers_id = :customer_id
                                           ');
     $Ocheck->bindInt(':reviews_id', $review_id);
     $Ocheck->bindInt(':products_id', $products_id);
@@ -46,12 +46,15 @@ class Delete extends \ClicShopping\OM\PagesActionsAbstract
   }
   public function execute()
   {
-    if (!isset($_GET['products_id']) && !is_numeric($CLICSHOPPING_ProductsCommon->getId())) {
+    $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+    $products_id = $CLICSHOPPING_ProductsCommon->getId();
+
+    if (!$CLICSHOPPING_ProductsCommon->getId() !== null && !is_numeric($CLICSHOPPING_ProductsCommon->getId())) {
       CLICSHOPPING::redirect();
     }
 
     if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
-      self::deleteReviews();
+      self::deleteReviews($products_id);
 
       CLICSHOPPING::redirect(null, 'Products&Reviews&products_id=' . $products_id);
     }
