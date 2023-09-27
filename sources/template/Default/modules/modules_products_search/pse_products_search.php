@@ -72,7 +72,7 @@ class pse_products_search
           $new_prods_content .= '<div style="padding-right:2em; padding-top:0.5rem;">';
           $new_prods_content .= '<div class="dropdown">';
           $new_prods_content .= '<div class="btn-group btn-group-sm float-end">';
-          $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
+          $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
           $new_prods_content .= CLICSHOPPING::getDef('text_sort_by');
           $new_prods_content .= '</button>';
           $new_prods_content .= '<ul class="dropdown-menu text-start" aria-labelledby="dropdownMenu2">';
