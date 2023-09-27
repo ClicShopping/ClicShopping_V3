@@ -14,6 +14,7 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
+use function is_null;
 
 class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
 {
@@ -28,20 +29,39 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Reviews');
   }
 
-  /**
-   * @param ?int $id
-   */
-  private function removeReviews(?int $id)
+/**
+* @param int|null $id
+* @return void
+ */
+  private function removeReviews(int|null $id): void
   {
-    if (!\is_null($id)) {
+    if (!is_null($id)) {
       $Qreviews = $this->app->db->get('reviews', 'reviews_id', ['products_id' => $id]);
 
       if ($Qreviews->fetch()) {
         $this->app->db->delete('reviews', ['products_id' => $id]);
-        $this->app->db->delete('reviews_sentiment', ['reviews_id' => $Qreviews->valueInt('reviews_id')]);
 
         while ($Qreviews->fetch()) {
           $this->app->db->delete('reviews_description', ['reviews_id' => $Qreviews->valueInt('reviews_id')]);
+        }
+      }
+    }
+  }
+
+/**
+* @param int|null $id
+* @return void
+ */
+  private function removeReviewsSentiment(int|null $id): void
+  {
+    if (!is_null($id)) {
+      $QreviewsSentiment = $this->app->db->get('reviews_sentiment', 'id', ['products_id' => $id]);
+
+      if ($QreviewsSentiment->fetch()) {
+        $this->app->db->delete('reviews', ['products_id' => $id]);
+
+        while ($QreviewsSentiment->fetch()) {
+          $this->app->db->delete('reviews_sentiment_description', ['id' => $QreviewsSentiment->valueInt('id')]);
         }
       }
     }
@@ -52,10 +72,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     if (isset($_POST['selected'])) {
       foreach ($_POST['selected'] as $id) {
         $this->removeReviews($id);
+        $this->removeReviewsSentiment($id);
       }
     } elseif (isset($_POST['products_id'])) {
       $id = HTML::sanitize($_POST['products_id']);
       $this->removeReviews($id);
+      $this->removeReviewsSentiment($id);
     }
   }
 }
