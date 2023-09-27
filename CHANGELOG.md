@@ -1,6 +1,11 @@
 --------------------
 version 3.439
 Vote evaluation statistics
+jquery-3.7.1.min.js
+bug fix
+refactoring
+
+
 
 --------------------
 version 3.438
