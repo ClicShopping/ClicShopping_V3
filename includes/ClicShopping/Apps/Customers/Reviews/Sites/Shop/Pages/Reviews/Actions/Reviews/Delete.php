@@ -24,7 +24,6 @@ class Delete extends \ClicShopping\OM\PagesActionsAbstract
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Customer = Registry::get('Customer');
-    $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
     $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
     $review_id = HTML::sanitize($_GET['reviews_id']);
@@ -33,17 +32,19 @@ class Delete extends \ClicShopping\OM\PagesActionsAbstract
                                           from :table_reviews
                                           where reviews_id = :reviews_id
                                           and products_id = :products_id
-                                          and customers_id = :customer_id
+                                          and customers_id = :customers_id
                                           ');
     $Ocheck->bindInt(':reviews_id', $review_id);
     $Ocheck->bindInt(':products_id', $products_id);
-    $Ocheck->bindInt(':customer_id', $CLICSHOPPING_Customer->getID());
+    $Ocheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
     $Ocheck->execute();
 
     if ($Ocheck->rowCount() > 0) {
-      $CLICSHOPPING_Reviews->deleteReviews($review_id);
+      $CLICSHOPPING_Reviews->delete('reviews', ['customers_id' => (int)$CLICSHOPPING_Customer->getID()]);
+      $CLICSHOPPING_Reviews->delete('reviews_description', ['reviews_id' => (int)$review_id]);
     }
   }
+
   public function execute()
   {
     $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
