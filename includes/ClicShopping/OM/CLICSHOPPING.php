@@ -93,6 +93,7 @@ class CLICSHOPPING
 
   /**
    * @param string $site
+   * @param bool $strict
    * @return bool
    */
   public static function siteExists(string $site): bool
@@ -148,25 +149,25 @@ class CLICSHOPPING
   }
 
   /**
-   * @return string|null
+   * @return mixed
    */
-  public static function hasSitePage(): string|null
+  public static function hasSitePage(): mixed
   {
     return Registry::get('Site')->hasPage();
   }
 
   /**
-   * @return string|null
+   * @return mixed
    */
-  public static function getSitePageFile(): string|null
+  public static function getSitePageFile(): mixed
   {
     return Registry::get('Site')->getPage()->getFile();
   }
 
   /**
-   * @return string|null
+   * @return mixed
    */
-  public static function useSiteTemplateWithPageFile(): string|null
+  public static function useSiteTemplateWithPageFile(): mixed
   {
     return Registry::get('Site')->getPage()->useSiteTemplate();
   }
@@ -184,13 +185,13 @@ class CLICSHOPPING
   /**
    * Return an internal URL address.
    *
-   * @param string|null $page The Site to link to. Default: The currently used Site.
-   * @param string|null $parameters Parameters to add to the link. Example: key1=value1&key2=value2
+   * @param string $page The Site to link to. Default: The currently used Site.
+   * @param string $parameters Parameters to add to the link. Example: key1=value1&key2=value2
    * @param bool $add_session_id Add the session ID to the link. Default: True.
    * @param bool $search_engine_safe Use search engine safe URLs. Default: True.
    * @return string The URL address.
    */
-  public static function link(string|null $page = null, string|null $parameters = null, bool $add_session_id = true, bool $search_engine_safe = true): string
+  public static function link(string $page = null, string $parameters = null, bool $add_session_id = true, bool $search_engine_safe = true): string
   {
     /*
      * remove index.php for the seo
@@ -511,10 +512,10 @@ class CLICSHOPPING
     self::$cfg[$group][$key] = $value;
   }
 
-/**
-* @param string $class
-* @return bool|void
- */
+  /**
+   * @param string $class
+   *
+   */
   public static function autoload(string $class)
   {
     $prefix = 'ClicShopping\\';
@@ -632,10 +633,10 @@ class CLICSHOPPING
   /**
    * Get all parameters in the GET scope
    *
-   * @param array|null $exclude A list of parameters to exclude
+   * @param array $exclude A list of parameters to exclude
    * @return string
    */
-  public static function getAllGET(array|null $exclude = null)
+  public static function getAllGET($exclude = null)
   {
     if (!is_array($exclude)) {
       if (!empty($exclude)) {
@@ -692,17 +693,17 @@ class CLICSHOPPING
     return basename(self::getIndex());
   }
 
+
   /**
-   * @param array $array
-   * @param string|array|null $exclude
-   * @param string|array|null $equals
+   * @param $array
+   * @param string $exclude
+   * @param string $equals
    * @param string $separator
-   * @return string|null
+   * @return bool|string
+   *
    */
-  public static function arrayToString(array $array, string|array|null $exclude = null, string|array|null $equals = null, string $separator = '&'): ?string
+  public static function arrayToString(array $array, string|array $exclude = '', string|array $equals = '=', string $separator = '&'): ?string
   {
-    $equals ??= '=';
-    $exclude ??= '';
     if (!is_array($exclude)) {
       $exclude = [];
     }
