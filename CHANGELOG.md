@@ -4,7 +4,7 @@ Vote evaluation statistics
 jquery-3.7.1.min.js
 bug fix
 refactoring
-
+stats report customer vote
 
 
 --------------------

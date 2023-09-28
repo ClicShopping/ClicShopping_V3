@@ -1,1 +1,5 @@
 alter table clic_reviews_vote  add sentiment tinyint not null default (0);
+
+INSERT INTO `clic_administrator_menu` VALUES(835, 'index.php?A&Customers\\Reviews&StatsCustomersVote', 98, 4, 0, '', 0, 'app_customers_reviews', 1);
+INSERT INTO administrator_menu_description VALUES(835, 'Products Reviews Vote', 1);
+INSERT INTO administrator_menu_description VALUES(835, 'Vote commentaires produits', 2);

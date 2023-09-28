@@ -138,8 +138,7 @@ if (MODE_B2B_B2C == 'True' && isset($_POST['customers_group_id'])) {
       <th data-field="status" data-sortable="true"
           class="text-center"><?php echo $CLICSHOPPING_Featured->getDef('table_heading_status'); ?></th>
       <th data-field="action" data-sortable="true" data-switchable="false"
-          class="text-end"><?php echo $CLICSHOPPING_Featured->getDef('table_heading_action'); ?>&nbsp;
-      </th>
+          class="text-end"><?php echo $CLICSHOPPING_Featured->getDef('table_heading_action'); ?>&nbsp;</th>
     </tr>
     </thead>
     <tbody>

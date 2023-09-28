@@ -301,30 +301,30 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
         }
 
         ?>
-        <td></td>
-        <td><?php echo $Qreviews->valueInt('reviews_id'); ?></td>
-        <td scope="row"
-            width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qreviews->valueInt('products_id') . '?page=' . $page), '<h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_Reviews->getDef('icon_preview_comment') . '"></i></h4>'); ?></td>
-        <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qreviews->value('products_image'), $Qreviews->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
-        <td>
-          <strong<?php echo HTML::link($CLICSHOPPING_Reviews->link('&Edit&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')), $CLICSHOPPING_ProductsAdmin->getProductsName($Qreviews->valueInt('products_id'))); ?></strong>
-        </td>
-        <td><?php echo '<i>' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i>'; ?></td>
-        <td class="text-center"><?php echo $Qreviews->value('customers_name'); ?></td>
-        <td class="text-center"><?php echo number_format($Qreviews->valueInt('reviews_read', 2)); ?></td>
-        <td class="text-center"><?php echo $customer_group['customers_group_name']; ?></td>
-        <td class="text-center"><?php echo DateTime::toLong($Qreviews->value('last_modified')); ?></td>
-        <td class="text-center">
-          <?php
-          if ($Qreviews->valueInt('status') == 1) {
-            echo HTML::link($CLICSHOPPING_Reviews->link('Reviews&SetFlag&flag=0&id=' . $Qreviews->valueInt('reviews_id')), '<i class="bi-check text-success"></i>');
-          } else {
-            echo HTML::link($CLICSHOPPING_Reviews->link('Reviews&SetFlag&flag=1&id=' . $Qreviews->valueInt('reviews_id')), '<i class="bi bi-x text-danger"></i>');
-          }
-          ?>
-        <td
-          class="text-end"><?php echo '<a href="' . $CLICSHOPPING_Reviews->link('Edit&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Reviews->getDef('icon_edit') . '"></i></h4></a>'; ?></td>
-        </td>
+          <td></td>
+          <td><?php echo $Qreviews->valueInt('reviews_id'); ?></td>
+          <td scope="row"
+              width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qreviews->valueInt('products_id') . '?page=' . $page), '<h4><i class="bi bi-easil3" title="' . $CLICSHOPPING_Reviews->getDef('icon_preview_comment') . '"></i></h4>'); ?></td>
+          <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qreviews->value('products_image'), $Qreviews->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
+          <td>
+            <strong<?php echo HTML::link($CLICSHOPPING_Reviews->link('&Edit&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')), $CLICSHOPPING_ProductsAdmin->getProductsName($Qreviews->valueInt('products_id'))); ?></strong>
+          </td>
+          <td><?php echo '<i>' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i>'; ?></td>
+          <td class="text-center"><?php echo $Qreviews->value('customers_name'); ?></td>
+          <td class="text-center"><?php echo number_format($Qreviews->valueInt('reviews_read', 2)); ?></td>
+          <td class="text-center"><?php echo $customer_group['customers_group_name']; ?></td>
+          <td class="text-center"><?php echo DateTime::toLong($Qreviews->value('last_modified')); ?></td>
+          <td class="text-center">
+            <?php
+            if ($Qreviews->valueInt('status') == 1) {
+              echo HTML::link($CLICSHOPPING_Reviews->link('Reviews&SetFlag&flag=0&id=' . $Qreviews->valueInt('reviews_id')), '<i class="bi-check text-success"></i>');
+            } else {
+              echo HTML::link($CLICSHOPPING_Reviews->link('Reviews&SetFlag&flag=1&id=' . $Qreviews->valueInt('reviews_id')), '<i class="bi bi-x text-danger"></i>');
+            }
+            ?>
+          <td
+            class="text-end"><?php echo '<a href="' . $CLICSHOPPING_Reviews->link('Edit&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Reviews->getDef('icon_edit') . '"></i></h4></a>'; ?></td>
+          </td>
         </tr>
         <?php
       } //end while

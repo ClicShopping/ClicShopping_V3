@@ -210,6 +210,7 @@ INSERT INTO administrator_menu VALUES(799, 'index.php?A&Catalog\\Products&StatsP
 INSERT INTO administrator_menu VALUES(800, 'index.php?A&Marketing\\Recommendations&ProductsRecommendation', 5, 1, 0, 'products_recommendations.png', 1, 'app_marketing_recommendations', 1);
 INSERT INTO administrator_menu VALUES(801, 'index.php?A&Customers\\Reviews&Reviews', 587, 1, 0, '', 0, 'app_customers_reviews', 1);
 INSERT INTO administrator_menu VALUES(802, 'index.php?A&Customers\\Reviews&ReviewsSentiment', 587, 2, 0, '', 0, 'app_customers_reviews', 1);
+INSERT INTO administrator_menu VALUES(803, 'index.php?A&Customers\\Reviews&StatsCustomersVote', 98, 4, 0, '', 0, 'app_customers_reviews', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -581,6 +582,8 @@ INSERT INTO administrator_menu_description VALUES(801, 'Reviews', 1);
 INSERT INTO administrator_menu_description VALUES(801, 'Commentaires', 2);
 INSERT INTO administrator_menu_description VALUES(802, 'Reviews sentiment', 1);
 INSERT INTO administrator_menu_description VALUES(802, 'Sentiments commentaires', 2);
+INSERT INTO administrator_menu_description VALUES(803, 'Products Reviews Vote', 1);
+INSERT INTO administrator_menu_description VALUES(803, 'Vote commentaires produits', 2);
 
 
 INSERT INTO api VALUES(1, 'Default', 'd0a36b839700b60727fe13998e22aa0af197c61d8b371e26114c133ca51c4864bd0da73ad6d1e5090b02b55cff42b8a0cd23866e64e78fc8884eb6228d32f5e9d76bed468869dd89ee6bb8a3208c5077e88560d0bc238f67cfc732efcf5313a0cb361e297c29c8d82d050d770ed7dee972af6445e801fa9af12e3d478bf5346a', 0, '2022-09-18 14:25:54', '2022-09-18 14:25:54', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
