@@ -355,8 +355,48 @@ class Currencies
 
     return $this->currencies[$currency_code]['symbol_left'] . $value . $this->currencies[$currency_code]['symbol_right'];
   }
+/**
+* @param float $number
+* @param string|null $currency_code
+* @param float|null $currency_value
+* @param bool $calculate
+* @param bool $use_locale
+* @return string
+ */
+  public function raw(float $number, string $currency_code = null, float $currency_value = null, bool $calculate = true, bool $use_locale = false): string
+  {
+    if (!isset($currency_code)) {
+      $currency_code = $this->getDefault();
+    }
 
-  /**
+    if ($calculate === true) {
+      if (!isset($currency_value)) {
+        $currency_value = $this->currencies[$currency_code]['value'];
+      }
+
+      if ($this->currencies[$currency_code]['surcharge'] > 0) {
+        $currency_value += ($currency_value * $this->currencies[$currency_code]['surcharge']);
+      }
+    } else {
+      $currency_value = 1;
+    }
+
+    $dec_point = '.';
+    $thousands_sep = '';
+
+    if ($use_locale === true) {
+      $CLICSHOPPING_Language = Registry::get('Language');
+
+      $dec_point = $CLICSHOPPING_Language->getNumericDecimalSeparator();
+      $thousands_sep = $CLICSHOPPING_Language->getNumericThousandsSeparator();
+    }
+
+    $value = number_format(round($number * $currency_value, $this->currencies[$currency_code]['decimal_places']), $this->currencies[$currency_code]['decimal_places'], $dec_point, $thousands_sep);
+
+    return $value;
+  }
+
+    /**
    * @param float $number
    * @param bool $use_trim
    * @return array
