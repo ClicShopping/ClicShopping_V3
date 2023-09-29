@@ -71,7 +71,7 @@ class MariaDb
 /**
 * @return void
  */
-  private static function updateSQL(): void
+  private static function installDb(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
