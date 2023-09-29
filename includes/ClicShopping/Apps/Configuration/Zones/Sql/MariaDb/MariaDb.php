@@ -8,41 +8,40 @@
  *
  */
 
-namespace ClicShopping\Apps\Configuration\TaxClass\Sql\Postgres;
+namespace ClicShopping\Apps\Configuration\Zones\Sql\MariaDb;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
 
-class Postgres
+class MariaDb
 {
   public function execute()
   {
-    $CLICSHOPPING_TaxClass = Registry::get('TaxClass');
-    $CLICSHOPPING_TaxClass->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    $CLICSHOPPING_Zones = Registry::get('Zones');
+    $CLICSHOPPING_Zones->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
     self::installDbMenuAdministration();
     self::installDb();
   }
 
-  /**
-   * @return void
-   */
+/**
+* @return void
+ */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
-    $CLICSHOPPING_TaxClass = Registry::get('TaxClass');
+    $CLICSHOPPING_Zones = Registry::get('Zones');
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_tax_class']);
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_zones']);
 
     if ($Qcheck->fetch() === false) {
-      $sql_data_array = [
-        'sort_order' => 2,
-        'link' => 'index.php?A&Configuration\TaxClass&TaxClass',
-        'image' => 'tax_classes.gif',
+      $sql_data_array = ['sort_order' => 3,
+        'link' => 'index.php?A&Configuration\Zones&Zones',
+        'image' => 'zones.gif',
         'b2b_menu' => 0,
         'access' => 0,
-        'app_code' => 'app_configuration_tax_class'
+        'app_code' => 'app_configuration_zones'
       ];
 
       $insert_sql_data = ['parent_id' => 19];
@@ -55,7 +54,7 @@ class Postgres
 
       for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $language_id = $languages[$i]['id'];
-        $sql_data_array = ['label' => $CLICSHOPPING_TaxClass->getDef('title_menu')];
+        $sql_data_array = ['label' => $CLICSHOPPING_Zones->getDef('title_menu')];
 
         $insert_sql_data = [
           'id' => (int)$id,
@@ -65,31 +64,31 @@ class Postgres
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
         $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-
       }
 
       Cache::clear('menu-administrator');
     }
   }
 
-  /**
-   * @return void
-   */
+/**
+* @return void
+ */
   private static function installDb()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
-    $Qcheck = $CLICSHOPPING_Db->query("SELECT to_regclass(':table_tax_class')");
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_zones"');
 
     if ($Qcheck->fetch() === false) {
       $sql = <<<EOD
-CREATE TABLE :table_tax_class (
-  tax_class_id serial PRIMARY KEY,
-  tax_class_title varchar(32) NOT NULL,
-  tax_class_description varchar(255) NOT NULL,
-  last_modified timestamp,
-  date_added timestamp NOT NULL
-);
+CREATE TABLE :table_zones (
+  zone_id int NOT NULL auto_increment,
+  zone_country_id int NOT NULL,
+  zone_code varchar(255) NOT NULL,
+  zone_name varchar(255) NOT NULL,
+  zone_status tinyint(1) default(0) NOT NULL
+  PRIMARY KEY idx_zones_country_id (zone_country_id)
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
       $CLICSHOPPING_Db->exec($sql);
     }

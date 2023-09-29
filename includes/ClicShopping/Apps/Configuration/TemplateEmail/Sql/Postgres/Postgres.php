@@ -8,7 +8,7 @@
  *
  */
 
-namespace ClicShopping\Apps\Configuration\TaxClass\Sql\Postgres;
+namespace ClicShopping\Apps\Configuration\TemplateEmail\Sql\Postgres;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
@@ -17,8 +17,8 @@ class Postgres
 {
   public function execute()
   {
-    $CLICSHOPPING_TaxClass = Registry::get('TaxClass');
-    $CLICSHOPPING_TaxClass->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    $CLICSHOPPING_TemplateEmail = Registry::get('TemplateEmail');
+    $CLICSHOPPING_TemplateEmail->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
     self::installDbMenuAdministration();
     self::installDb();
@@ -30,22 +30,22 @@ class Postgres
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
-    $CLICSHOPPING_TaxClass = Registry::get('TaxClass');
+    $CLICSHOPPING_TemplateEmail = Registry::get('TemplateEmail');
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_tax_class']);
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_template_email']);
 
     if ($Qcheck->fetch() === false) {
       $sql_data_array = [
-        'sort_order' => 2,
-        'link' => 'index.php?A&Configuration\TaxClass&TaxClass',
-        'image' => 'tax_classes.gif',
+        'sort_order' => 3,
+        'link' => 'index.php?A&Configuration\TemplateEmail&TemplateEmail',
+        'image' => 'mail.gif',
         'b2b_menu' => 0,
         'access' => 0,
-        'app_code' => 'app_configuration_tax_class'
+        'app_code' => 'app_configuration_template_email'
       ];
 
-      $insert_sql_data = ['parent_id' => 19];
+      $insert_sql_data = ['parent_id' => 20];
       $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
       $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
@@ -55,7 +55,7 @@ class Postgres
 
       for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $language_id = $languages[$i]['id'];
-        $sql_data_array = ['label' => $CLICSHOPPING_TaxClass->getDef('title_menu')];
+        $sql_data_array = ['label' => $CLICSHOPPING_TemplateEmail->getDef('title_menu')];
 
         $insert_sql_data = [
           'id' => (int)$id,
@@ -65,7 +65,6 @@ class Postgres
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
         $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-
       }
 
       Cache::clear('menu-administrator');
@@ -79,16 +78,32 @@ class Postgres
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
-    $Qcheck = $CLICSHOPPING_Db->query("SELECT to_regclass(':table_tax_class')");
+    $Qcheck = $CLICSHOPPING_Db->query("SELECT to_regclass(':table_template_email')");
 
     if ($Qcheck->fetch() === false) {
       $sql = <<<EOD
-CREATE TABLE :table_tax_class (
-  tax_class_id serial PRIMARY KEY,
-  tax_class_title varchar(32) NOT NULL,
-  tax_class_description varchar(255) NOT NULL,
-  last_modified timestamp,
-  date_added timestamp NOT NULL
+CREATE TABLE :table_template_email (
+  template_email_id serial PRIMARY KEY,
+  template_email_variable varchar(250) NOT NULL,
+  customers_group_id smallint DEFAULT 0 NOT NULL,
+  template_email_type smallint DEFAULT 0 NOT NULL
+);
+EOD;
+      $CLICSHOPPING_Db->exec($sql);
+    }
+
+    $Qcheck = $CLICSHOPPING_Db->query("SELECT to_regclass(':table_template_email_description')");
+
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
+CREATE TABLE :table_template_email_description (
+  template_email_id int NOT NULL,
+  language_id int NOT NULL,
+  template_email_name varchar(250),
+  template_email_short_description varchar(250),
+  template_email_description text,
+  PRIMARY KEY (template_email_id, language_id),
+  CONSTRAINT idx_template_email_name UNIQUE (template_email_name)
 );
 EOD;
       $CLICSHOPPING_Db->exec($sql);
