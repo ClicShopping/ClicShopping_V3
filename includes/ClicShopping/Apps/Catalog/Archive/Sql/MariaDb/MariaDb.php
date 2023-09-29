@@ -17,8 +17,8 @@ class MariaDb
 {
   public function execute()
   {
-    $CLICSHOPPING_ImportExport = Registry::get('Archive');
-    $CLICSHOPPING_ImportExport->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    $CLICSHOPPING_Archive = Registry::get('Archive');
+    $CLICSHOPPING_Archive->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
     self::installDbMenuAdministration();
   }

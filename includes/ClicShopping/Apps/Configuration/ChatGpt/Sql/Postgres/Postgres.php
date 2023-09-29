@@ -17,32 +17,32 @@ class Postgres
 {
   public function execute()
   {
-    $CLICSHOPPING_Administrators = Registry::get('Administrators');
-    $CLICSHOPPING_Administrators->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    $CLICSHOPPING_ChatGpt = Registry::get('ChatGpt');
+    $CLICSHOPPING_ChatGpt->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
     self::installDbMenuAdministration();
     self::installDb();
   }
 
   /**
-   * @return void
+   * @return void$
    */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
-    $CLICSHOPPING_Administrators = Registry::get('Administrators');
+    $CLICSHOPPING_ChatGpt = Registry::get('ChatGpt');
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_administrators']);
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_chatgpt']);
 
     if ($Qcheck->fetch() === false) {
       $sql_data_array = [
-        'sort_order' => 1,
-        'link' => 'index.php?A&Configuration\Administrators&Administrators',
-        'image' => 'administrators.gif',
+        'sort_order' => 100,
+        'link' => 'index.php?A&Configuration\ChatGpt&ChatGpt&Configure',
+        'image' => 'chatgpt.gif',
         'b2b_menu' => 0,
         'access' => 1,
-        'app_code' => 'app_configuration_administrators'
+        'app_code' => 'app_configuration_chatgpt'
       ];
 
       $insert_sql_data = ['parent_id' => 14];
@@ -55,7 +55,7 @@ class Postgres
 
       for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $language_id = $languages[$i]['id'];
-        $sql_data_array = ['label' => $CLICSHOPPING_Administrators->getDef('title_menu')];
+        $sql_data_array = ['label' => $CLICSHOPPING_ChatGpt->getDef('title_menu')];
 
         $insert_sql_data = [
           'id' => (int)$id,
@@ -65,7 +65,6 @@ class Postgres
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
         $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-
       }
 
       Cache::clear('menu-administrator');
@@ -79,21 +78,39 @@ class Postgres
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
-    $Qcheck = $CLICSHOPPING_Db->query("SELECT to_regclass(':table_administrators')");
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_gpt"');
 
     if ($Qcheck->fetch() === false) {
       $sql = <<<EOD
-CREATE TABLE :table_administrators (
-  id serial PRIMARY KEY,
-  user_name varchar(255) COLLATE "C" NOT NULL,
-  user_password varchar(255) NOT NULL,
-  name varchar(255) NOT NULL,
-  first_name varchar(255) NOT NULL,
-  access smallint NOT NULL DEFAULT 0
+CREATE TABLE :table_gpt (
+  gpt_id serial PRIMARY KEY,
+  question text NOT NULL,
+  response text NOT NULL,
+  date_added date DEFAULT NULL
 );
+ALTER TABLE :table_gpt  ADD PRIMARY KEY (gpt_id);
+
+-- Assuming you want gpt_id to be auto-incrementing in PostgreSQL
+ALTER TABLE :table_gpt  ALTER COLUMN gpt_id ADD GENERATED ALWAYS AS IDENTITY;
+
+
+CREATE TABLE :table_gpt_usage (
+  usage_id serial PRIMARY KEY,
+  gpt_id int NOT NULL,
+  prompt_tokens int,
+  completion_tokens int,
+  total_tokens int,
+  ia_type varchar(255),
+  model varchar(255),
+  date_added date
+);
+ALTER TABLE :table_gpt_usage ADD PRIMARY KEY (usage_id);
+
+-- Assuming you want usage_id to be auto-incrementing in PostgreSQL
+ALTER TABLE :table_gpt_usage ALTER COLUMN usage_id ADD GENERATED ALWAYS AS IDENTITY;
 EOD;
+
       $CLICSHOPPING_Db->exec($sql);
     }
-
   }
 }

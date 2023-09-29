@@ -17,8 +17,8 @@ class Postgres
 {
   public function execute()
   {
-    $CLICSHOPPING_ImportExport = Registry::get('ImportExport');
-    $CLICSHOPPING_ImportExport->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    $CLICSHOPPING_Categories = Registry::get('ImportExport');
+    $CLICSHOPPING_Categories->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
     self::installDbMenuAdministration();
     self::installDb();
