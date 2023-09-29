@@ -8,7 +8,7 @@
  *
  */
 
-namespace ClicShopping\Apps\Catalog\Email\Sql\MariaDb;
+namespace ClicShopping\Apps\Communication\Email\Sql\MariaDb;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;

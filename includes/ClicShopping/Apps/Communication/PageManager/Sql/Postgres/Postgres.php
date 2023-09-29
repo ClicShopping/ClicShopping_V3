@@ -8,7 +8,7 @@
  *
  */
 
-namespace ClicShopping\Apps\Catalog\PageManager\Sql\Postgres;
+namespace ClicShopping\Apps\Communication\PageManager\Sql\Postgres;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;

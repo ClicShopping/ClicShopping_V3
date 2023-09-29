@@ -10,10 +10,9 @@
 
 namespace ClicShopping\Apps\Communication\PageManager\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
 
-use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
 
-use ClicShopping\Apps\Catalog\PageManager\Sql\MariaDb\MariaDb;
+use ClicShopping\Apps\Communication\PageManager\Sql\MariaDb\MariaDb;
 
 class Install extends \ClicShopping\OM\PagesActionsAbstract
 {

@@ -8,7 +8,7 @@
  *
  */
 
-namespace ClicShopping\Apps\Catalog\Newsletter\Sql\Postgres;
+namespace ClicShopping\Apps\Communication\Newsletter\Sql\Postgres;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;

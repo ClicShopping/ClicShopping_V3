@@ -12,7 +12,7 @@ namespace ClicShopping\Apps\Communication\Newsletter\Sites\ClicShoppingAdmin\Pag
 
 use ClicShopping\OM\Registry;
 
-use ClicShopping\Apps\Catalog\Newsletter\Sql\MariaDb\MariaDb;
+use ClicShopping\Apps\Communication\Newsletter\Sql\MariaDb\MariaDb;
 
 class Install extends \ClicShopping\OM\PagesActionsAbstract
 {
