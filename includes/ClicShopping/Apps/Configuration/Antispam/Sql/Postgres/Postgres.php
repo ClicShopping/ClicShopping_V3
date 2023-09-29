@@ -8,7 +8,7 @@
  *
  */
 
-namespace ClicShopping\Apps\Configuration\Antispam\Sql\MariaDb;
+namespace ClicShopping\Apps\Configuration\Antispam\Sql\Postgres;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;

@@ -8,7 +8,7 @@
  *
  */
 
-namespace ClicShopping\Apps\Configuration\Currency\Sql\MariaDb;
+namespace ClicShopping\Apps\Configuration\Currency\Sql\Postgres;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
@@ -75,7 +75,7 @@ class Postgres
   /**
    * @return void
    */
-  private static function installCurrencyDb()
+  private static function installDb()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 

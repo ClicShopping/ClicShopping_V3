@@ -8,7 +8,7 @@
  *
  */
 
-namespace ClicShopping\Apps\Configuration\Countries\Sql\Postgres;
+namespace ClicShopping\Apps\Configuration\Modules\Sql\Postgres;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
@@ -17,8 +17,8 @@ class Postgres
 {
   public function execute()
   {
-    $CLICSHOPPING_Langues = Registry::get('Langues');
-    $CLICSHOPPING_Langues->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    $CLICSHOPPING_Modules = Registry::get('Modules');
+    $CLICSHOPPING_Modules->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
     self::installDbMenuAdministration();
   }
@@ -29,20 +29,19 @@ class Postgres
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
-    $CLICSHOPPING_Langues = Registry::get('Langues');
+    $CLICSHOPPING_Modules = Registry::get('Modules');
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_langues']);
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_modules']);
 
     if ($Qcheck->fetch() === false) {
-
       $sql_data_array = [
         'sort_order' => 1,
-        'link' => 'index.php?A&Configuration\Langues&Langues',
-        'image' => 'languages.gif',
+        'link' => 'index.php?A&Configuration\Modules&Modules',
+        'image' => '',
         'b2b_menu' => 0,
-        'access' => 1,
-        'app_code' => 'app_configuration_langues'
+        'access' => 0,
+        'app_code' => 'app_configuration_modules'
       ];
 
       $insert_sql_data = ['parent_id' => 20];
@@ -55,7 +54,7 @@ class Postgres
 
       for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $language_id = $languages[$i]['id'];
-        $sql_data_array = ['label' => $CLICSHOPPING_Langues->getDef('title_menu')];
+        $sql_data_array = ['label' => $CLICSHOPPING_Modules->getDef('title_menu')];
 
         $insert_sql_data = [
           'id' => (int)$id,

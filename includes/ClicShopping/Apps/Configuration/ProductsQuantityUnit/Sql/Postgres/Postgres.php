@@ -8,7 +8,7 @@
  *
  */
 
-namespace ClicShopping\Apps\Configuration\Countries\Sql\Postgres;
+namespace ClicShopping\Apps\Configuration\ProductsQuantityUnit\Sql\Postgres;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
@@ -17,8 +17,8 @@ class Postgres
 {
   public function execute()
   {
-    $CLICSHOPPING_Countries = Registry::get('Countries');
-    $CLICSHOPPING_Countries->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    $CLICSHOPPING_ProductsQuantityUnit = Registry::get('ProductsQuantityUnit');
+    $CLICSHOPPING_ProductsQuantityUnit->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
     self::installDbMenuAdministration();
     self::installDb();
@@ -30,22 +30,21 @@ class Postgres
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
-    $CLICSHOPPING_Countries = Registry::get('Countries');
+    $CLICSHOPPING_ProductsQuantityUnit = Registry::get('ProductsQuantityUnit');
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_countries']);
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_configuration_products_quantity_unit']);
 
     if ($Qcheck->fetch() === false) {
-      $sql_data_array = [
-        'sort_order' => 1,
-        'link' => 'index.php?A&Configuration\Countries&Countries',
-        'image' => 'countries.gif',
+      $sql_data_array = ['sort_order' => 8,
+        'link' => 'index.php?A&Configuration\ProductsQuantityUnit&ProductsQuantityUnit',
+        'image' => 'products_unit.png',
         'b2b_menu' => 0,
         'access' => 0,
-        'app_code' => 'app_configuration_countries'
+        'app_code' => 'app_configuration_products_quantity_unit'
       ];
 
-      $insert_sql_data = ['parent_id' => 19];
+      $insert_sql_data = ['parent_id' => 13];
       $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
       $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
@@ -55,7 +54,7 @@ class Postgres
 
       for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $language_id = $languages[$i]['id'];
-        $sql_data_array = ['label' => $CLICSHOPPING_Countries->getDef('title_menu')];
+        $sql_data_array = ['label' => $CLICSHOPPING_ProductsQuantityUnit->getDef('title_menu')];
 
         $insert_sql_data = [
           'id' => (int)$id,
@@ -65,32 +64,34 @@ class Postgres
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
         $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-
       }
 
       Cache::clear('menu-administrator');
     }
   }
 
-  /**
-   * @return void
-   */
+/**
+* @return void
+ */
   private static function installDb(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
-    $Qcheck = $CLICSHOPPING_Db->query("SELECT to_regclass(':table_countries')");
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_products_quantity_unit"');
 
     if ($Qcheck->fetch() === false) {
       $sql = <<<EOD
-CREATE TABLE :table_countries (
-  countries_id serial PRIMARY KEY,
-  countries_name varchar(255) NOT NULL,
-  countries_iso_code_2 char(2) NOT NULL,
-  countries_iso_code_3 char(3) NOT NULL,
-  address_format_id int NOT NULL,
-  status smallint DEFAULT 1
+CREATE TABLE :table_products_quantity_unit (
+  products_quantity_unit_id serial PRIMARY KEY,
+  language_id int NOT NULL,
+  products_quantity_unit_title varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL
 );
+
+
+ALTER TABLE :table_products_quantity_unit
+  ADD PRIMARY KEY (products_quantity_unit_id, language_id),
+  ADD CONSTRAINT idx_products_quantity_unit_title UNIQUE (products_quantity_unit_title);
+
 EOD;
       $CLICSHOPPING_Db->exec($sql);
     }

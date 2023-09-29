@@ -21,7 +21,6 @@ class MariaDb
     $CLICSHOPPING_Cache->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
     self::installDbMenuAdministration();
-    self::installDb();
   }
 
 /**
