@@ -16,10 +16,8 @@ use ClicShopping\Apps\Catalog\Manufacturers\Sql\MariaDb\MariaDb;
 
 class Install extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
-
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
     $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
 

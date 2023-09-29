@@ -5,7 +5,7 @@ jquery-3.7.1.min.js
 bug fix
 refactoring
 stats report customer vote
-
+Refactoring install Apps allowing to use some other Db (preparation) 
 
 --------------------
 version 3.438
