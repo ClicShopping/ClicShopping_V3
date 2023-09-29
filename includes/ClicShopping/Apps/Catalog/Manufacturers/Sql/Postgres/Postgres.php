@@ -1,0 +1,152 @@
+<?php
+/**
+ *
+ * @copyright 2008 - https://www.clicshopping.org
+ * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
+ * @Licence GPL 2 & MIT
+ * @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+namespace ClicShopping\Apps\Catalog\Manufacturers\Sql\Postgres;
+
+use ClicShopping\OM\Cache;
+use ClicShopping\OM\Registry;
+
+class Postgres
+{
+  public function execute()
+  {
+    $CLICSHOPPING_ImportExport = Registry::get('Manufacturers');
+    $CLICSHOPPING_ImportExport->loadDefinitions('Sites/ClicShoppingAdmin/install');
+
+    self::installDbMenuAdministration();
+    self::installDb();
+  }
+
+  /**
+   * @return void
+   */
+  private static function installDbMenuAdministration(): void
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
+    $CLICSHOPPING_Language = Registry::get('Language');
+
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_catalog_manufacturers']);
+
+    if ($Qcheck->fetch() === false) {
+      $sql_data_array = [
+        'sort_order' => 6,
+        'link' => 'index.php?A&Catalog\Manufacturers&Manufacturers',
+        'image' => 'manufacturers.gif',
+        'b2b_menu' => 0,
+        'access' => 0,
+        'app_code' => 'app_catalog_manufacturers'
+      ];
+
+      $insert_sql_data = ['parent_id' => 3];
+      $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+      $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+
+      $id = $CLICSHOPPING_Db->lastInsertId();
+
+      $languages = $CLICSHOPPING_Language->getLanguages();
+
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+        $language_id = $languages[$i]['id'];
+        $sql_data_array = ['label' => $CLICSHOPPING_Manufacturers->getDef('title_menu')];
+
+        $insert_sql_data = [
+          'id' => (int)$id,
+          'language_id' => (int)$language_id
+        ];
+
+        $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+        $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
+      }
+
+      $sql_data_array = [
+        'sort_order' => 6,
+        'link' => 'index.php?A&Catalog\Manufacturers&Stock',
+        'image' => 'manufacturers.gif',
+        'b2b_menu' => 0,
+        'access' => 0,
+        'app_code' => 'app_catalog_manufacturers'
+      ];
+
+      $insert_sql_data = ['parent_id' => 103];
+
+      $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+      $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
+      $id = $CLICSHOPPING_Db->lastInsertId();
+
+      $languages = $CLICSHOPPING_Language->getLanguages();
+
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
+        $language_id = $languages[$i]['id'];
+        $sql_data_array = ['label' => $CLICSHOPPING_Manufacturers->getDef('title_menu_stock')];
+
+        $insert_sql_data = [
+          'id' => (int)$id,
+          'language_id' => (int)$language_id
+        ];
+
+        $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+
+        $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
+      }
+
+      Cache::clear('menu-administrator');
+    }
+  }
+
+  /**
+   * @return void
+   */
+  private static function installDb(): void
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qcheck = $CLICSHOPPING_Db->query("SELECT to_regclass(':table_manufacturers')");
+
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
+CREATE TABLE :table_manufacturers (
+  manufacturers_id serial PRIMARY KEY,
+  manufacturers_name varchar(64) NOT NULL,
+  manufacturers_image varchar(255),
+  date_added timestamp,
+  last_modified timestamp,
+  manufacturers_status smallint NOT NULL DEFAULT 0,
+  suppliers_id int NULL,
+  CONSTRAINT idx_manufacturers_name UNIQUE (manufacturers_name)
+);
+EOD;
+      $CLICSHOPPING_Db->exec($sql);
+    }
+
+    $Qcheck = $CLICSHOPPING_Db->query("SELECT to_regclass(':table_manufacturers_info')");
+
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
+CREATE TABLE :table_manufacturers_info (
+  manufacturers_id int NOT NULL,
+  languages_id int NOT NULL,
+  manufacturers_url varchar(255) NOT NULL,
+  url_clicked int DEFAULT 0 NOT NULL,
+  date_last_click timestamp,
+  manufacturer_description text,
+  manufacturer_seo_title varchar(70),
+  manufacturer_seo_description varchar(255),
+  manufacturer_seo_keyword text,
+  PRIMARY KEY (manufacturers_id, languages_id)
+);
+EOD;
+      $CLICSHOPPING_Db->exec($sql);
+    }
+  }
+}
