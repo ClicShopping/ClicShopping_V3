@@ -1,1 +1,1 @@
-title_menu = Item
+title_menu = <strong>Item</strong>

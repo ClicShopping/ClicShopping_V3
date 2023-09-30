@@ -1,1 +1,1 @@
-title_menu = Expédition par produit
+title_menu = <strong>Expédition par produit</strong>
