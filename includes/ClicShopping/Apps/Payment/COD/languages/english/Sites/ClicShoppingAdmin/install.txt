@@ -1,1 +1,1 @@
-title_menu = COD
+title_menu = <strong>COD</strong>

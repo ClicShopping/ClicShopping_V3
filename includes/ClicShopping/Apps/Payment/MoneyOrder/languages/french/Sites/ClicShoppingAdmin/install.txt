@@ -1,1 +1,1 @@
-title_menu = Paiement par chèque
+title_menu = <strong>Paiement par chèque</strong>

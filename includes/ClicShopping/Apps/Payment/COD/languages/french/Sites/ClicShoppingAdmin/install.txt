@@ -1,1 +1,1 @@
-title_menu = Paiement à réception
+title_menu = <strong>Paiement à réception</strong>

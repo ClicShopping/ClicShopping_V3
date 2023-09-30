@@ -1,1 +1,1 @@
-title_menu = Stripe
+title_menu = <strong>Stripe</strong>
