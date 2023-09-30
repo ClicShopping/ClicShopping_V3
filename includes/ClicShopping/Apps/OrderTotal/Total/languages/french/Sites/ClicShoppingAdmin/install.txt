@@ -1,1 +1,1 @@
-title_menu = Total
+title_menu = <strong>Total</strong>

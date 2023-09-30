@@ -12,8 +12,6 @@ namespace ClicShopping\Apps\OrderTotal\TotalShipping\Module\ClicShoppingAdmin\Co
 
 class sort_order extends \ClicShopping\Apps\OrderTotal\TotalShipping\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
-
-//    public ?int $sort_order = 1000;
   public $default = '500';
   public bool $app_configured = false;
 

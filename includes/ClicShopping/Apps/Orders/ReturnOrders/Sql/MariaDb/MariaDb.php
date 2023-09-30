@@ -20,7 +20,7 @@ class MariaDb
     $CLICSHOPPING_ReturnOrders = Registry::get('ReturnOrders');
     $CLICSHOPPING_ReturnOrders->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
-    self::installDbMenuAdministration();
+    self::installMenuAdministration();
     self::installDb();
   }
 

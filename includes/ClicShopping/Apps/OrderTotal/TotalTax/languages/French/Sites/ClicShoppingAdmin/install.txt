@@ -1,1 +1,1 @@
-title_menu = Taxes
+title_menu = <strong>Taxes<strong>

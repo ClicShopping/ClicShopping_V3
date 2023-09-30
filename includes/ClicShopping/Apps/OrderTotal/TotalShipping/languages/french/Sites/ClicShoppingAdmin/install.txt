@@ -1,1 +1,1 @@
-title_menu = Total frais expéditions
+title_menu = <strong>Frais expéditions</strong>

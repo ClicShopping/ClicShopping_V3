@@ -21,7 +21,6 @@ class Postgres
     $CLICSHOPPING_Orders->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
     self::installDbMenuAdministration();
-    self::installDb();
   }
 
   /**

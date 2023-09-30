@@ -1,1 +1,1 @@
-title_menu = Shipping
+title_menu = <strong>Shipping</strong>

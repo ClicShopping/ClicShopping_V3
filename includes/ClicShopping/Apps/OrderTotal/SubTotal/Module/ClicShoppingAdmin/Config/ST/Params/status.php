@@ -8,7 +8,6 @@
  *
  */
 
-
 namespace ClicShopping\Apps\OrderTotal\SubTotal\Module\ClicShoppingAdmin\Config\ST\Params;
 
 use ClicShopping\OM\HTML;
