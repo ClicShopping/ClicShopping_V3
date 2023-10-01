@@ -6,6 +6,7 @@ bug fix
 refactoring
 stats report customer vote
 Refactoring install Apps allowing to use some other Db (preparation) 
+Database reorganisation
 
 --------------------
 version 3.438

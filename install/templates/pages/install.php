@@ -125,7 +125,6 @@ use ClicShopping\OM\HTML;
     </div>
   </div>
 </div>
-
 <script>
   $(function () {
     var formSubmited = false;

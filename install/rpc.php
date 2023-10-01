@@ -17,7 +17,7 @@ header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 
 require_once('includes/application.php');
 
-$dir_fs_www_root = dirname(__FILE__);
+$dir_fs_www_root = __DIR__;
 
 $result = [
   'status' => '-100',
@@ -95,7 +95,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 
         $CLICSHOPPING_Db->exec('SET FOREIGN_KEY_CHECKS = 0');
 
-        foreach (glob(CLICSHOPPING::BASE_DIR . 'Schema/*.txt') as $f) {
+        foreach (glob(CLICSHOPPING::BASE_DIR . 'Schema/MariaDb/*.txt') as $f) {
           $schema = $CLICSHOPPING_Db->getSchemaFromFile($f);
 
           $sql = $CLICSHOPPING_Db->getSqlFromSchema($schema, $_POST['prefix']);
@@ -106,11 +106,11 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
         }
 
         if ($_POST['demo'] == 'demo') {
-          $CLICSHOPPING_Db->importSQL($dir_fs_www_root . '/demo_clicshopping_en.sql', $_POST['prefix']);
+          $CLICSHOPPING_Db->importSQL($dir_fs_www_root . '/Db/demo_clicshopping_en.sql', $_POST['prefix']);
         } elseif ($language == 'french') {
-          $CLICSHOPPING_Db->importSQL($dir_fs_www_root . '/clicshopping.sql', $_POST['prefix']);
+          $CLICSHOPPING_Db->importSQL($dir_fs_www_root . '/Db/clicshopping.sql', $_POST['prefix']);
         } else {
-          $CLICSHOPPING_Db->importSQL($dir_fs_www_root . '/clicshopping_en.sql', $_POST['prefix']);
+          $CLICSHOPPING_Db->importSQL($dir_fs_www_root . '/Db/clicshopping_en.sql', $_POST['prefix']);
         }
 
         $CLICSHOPPING_Db->exec('SET FOREIGN_KEY_CHECKS = 1');
