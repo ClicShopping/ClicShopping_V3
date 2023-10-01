@@ -1,4 +1,9 @@
 --------------------
+version 3.440
+
+
+
+--------------------
 version 3.439
 Vote evaluation statistics
 jquery-3.7.1.min.js
