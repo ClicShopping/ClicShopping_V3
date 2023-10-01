@@ -8,7 +8,7 @@
  *
  */
 
-namespace ClicShopping\Apps\Payment\Report\StatsProductsNotification\MariaDb;
+namespace ClicShopping\Apps\Payment\Report\StatsProductsNotification\Sql\MariaDb;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
@@ -36,7 +36,8 @@ class MariaDb
 
     if ($Qcheck->fetch() === false) {
 
-      $sql_data_array = ['sort_order' => 5,
+      $sql_data_array = [
+        'sort_order' => 5,
         'link' => 'index.php?A&Report\StatsProductsNotification&StatsProductsNotification',
         'image' => 'client.gif',
         'b2b_menu' => 0,

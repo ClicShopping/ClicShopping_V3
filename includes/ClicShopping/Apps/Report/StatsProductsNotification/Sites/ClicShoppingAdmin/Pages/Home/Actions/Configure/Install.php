@@ -11,7 +11,7 @@
 namespace ClicShopping\Apps\Report\StatsProductsNotification\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
 
 use ClicShopping\OM\Registry;
-use ClicShopping\Apps\Payment\Report\StatsProductsNotification\MariaDb\MariaDb;
+use ClicShopping\Apps\Payment\Report\StatsProductsNotification\Sql\MariaDb\MariaDb;
 
 class Install extends \ClicShopping\OM\PagesActionsAbstract
 {

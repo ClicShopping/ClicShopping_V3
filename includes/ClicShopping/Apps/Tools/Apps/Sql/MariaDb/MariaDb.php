@@ -8,44 +8,42 @@
  *
  */
 
-namespace ClicShopping\Apps\Report\StatsProductsNotification\Sql\Postgres;
+namespace ClicShopping\Apps\Tools\Apps\Sql\MariaDb;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
 
-class Postgres
+class MariaDb
 {
   public function execute()
   {
-    $CLICSHOPPING_StatsProductsNotification = Registry::get('StatsProductsNotification');
-    $CLICSHOPPING_StatsProductsNotification->loadDefinitions('Sites/ClicShoppingAdmin/install');
+    $CLICSHOPPING_Apps = Registry::get('Apps');
+    $CLICSHOPPING_Apps->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
     self::installMenuAdministration();
   }
 
-  /**
-   * @return void
-   */
+/**
+* @return void
+ */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
-    $CLICSHOPPING_StatsProductsNotification = Registry::get('StatsProductsNotification');
+    $CLICSHOPPING_Apps = Registry::get('Apps');
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_report_stats_products_notification']);
+    $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_tools_apps']);
 
     if ($Qcheck->fetch() === false) {
-
-      $sql_data_array = [
-        'sort_order' => 5,
-        'link' => 'index.php?A&Report\StatsProductsNotification&StatsProductsNotification',
-        'image' => 'client.gif',
+      $sql_data_array = ['sort_order' => 3,
+        'link' => 'index.php?A&Tools\Apps&Apps',
+        'image' => 'apps.png',
         'b2b_menu' => 0,
-        'access' => 0,
-        'app_code' => 'app_report_stats_products_notification'
+        'access' => 1,
+        'app_code' => 'app_tools_apps'
       ];
 
-      $insert_sql_data = ['parent_id' => 107];
+      $insert_sql_data = ['parent_id' => 727];
       $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
       $CLICSHOPPING_Db->save('administrator_menu', $sql_data_array);
@@ -55,7 +53,7 @@ class Postgres
 
       for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $language_id = $languages[$i]['id'];
-        $sql_data_array = ['label' => $CLICSHOPPING_StatsProductsNotification->getDef('title_menu')];
+        $sql_data_array = ['label' => $CLICSHOPPING_Apps->getDef('title_menu')];
 
         $insert_sql_data = [
           'id' => (int)$id,
