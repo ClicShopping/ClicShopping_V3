@@ -15,10 +15,8 @@ use ClicShopping\OM\Registry;
 
 class Delete extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
-
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
     $CLICSHOPPING_EditLogError = Registry::get('EditLogError');
 
