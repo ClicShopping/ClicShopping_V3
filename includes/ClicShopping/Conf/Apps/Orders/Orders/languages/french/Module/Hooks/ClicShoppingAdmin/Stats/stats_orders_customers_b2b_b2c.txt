@@ -1,3 +1,0 @@
-title_orders_b2b_b2c = Groupes client
-text_orders_b2c = Clients B2C
-text_orders_b2b = Clients B2B

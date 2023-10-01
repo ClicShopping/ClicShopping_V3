@@ -1,3 +1,0 @@
-module_sh_title = Total frais expéditions
-module_sh_short_title = Total frais expéditions
-module_sh_public_title = Total frais expéditions

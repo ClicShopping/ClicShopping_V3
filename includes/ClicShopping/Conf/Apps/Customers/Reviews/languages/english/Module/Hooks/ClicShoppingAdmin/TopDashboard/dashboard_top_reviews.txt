@@ -1,2 +1,0 @@
-text_number_of_reviews = Waiting reviews
-text_view = - More informations

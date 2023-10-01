@@ -1,2 +1,0 @@
-module_header_tags_products_recommendation_title = Souhaitez-vous ajouter les metas tag pour la page des recommandations ?
-module_header_tags_products_recommendation_description = Ajoute la meta tag pour la page des recommandations

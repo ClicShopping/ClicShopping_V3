@@ -1,2 +1,0 @@
-module_header_tags_manufacturers_title = Souhaitez vous ajouter les metas tag pour la page des marques des fournisseurs ?
-module_header_tags_manufacturers_description = Ajoute la meta tag pour la page des marques des fournisseurs

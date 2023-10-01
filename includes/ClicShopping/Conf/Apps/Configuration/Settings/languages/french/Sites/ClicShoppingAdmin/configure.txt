@@ -1,1 +1,0 @@
-module_st_short_title = Configuration

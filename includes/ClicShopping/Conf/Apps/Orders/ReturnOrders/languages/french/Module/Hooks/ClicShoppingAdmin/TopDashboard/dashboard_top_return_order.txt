@@ -1,2 +1,0 @@
-text_newsletter = Demande retour produit
-text_view = - Plus d'informations

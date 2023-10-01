@@ -1,1 +1,0 @@
-title_orders_average_turn_over = Average turn over on 1 yer

@@ -1,1 +1,0 @@
-module_ar_short_title = Actions sur les Connexions

@@ -1,1 +1,0 @@
-module_cr_short_title = Currency

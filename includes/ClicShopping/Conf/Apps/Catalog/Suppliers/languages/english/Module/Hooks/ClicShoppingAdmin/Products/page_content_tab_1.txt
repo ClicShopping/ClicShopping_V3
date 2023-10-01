@@ -1,2 +1,0 @@
-text_products_suppliers = Suppliers
-text_create = Create

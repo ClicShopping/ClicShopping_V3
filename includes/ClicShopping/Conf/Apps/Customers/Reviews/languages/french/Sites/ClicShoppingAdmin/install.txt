@@ -1,2 +1,0 @@
-title_menu = Commentaires
-title_menu_sentiment = Sentiments commentaires

@@ -1,2 +1,0 @@
-cfg_gdpr_date_title = Date account deletion
-cfg_gdpr_date_description = Choose the date (in day) to display the account deletion

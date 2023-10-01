@@ -1,1 +1,0 @@
-module_pq_short_title = Quantités unitaires
