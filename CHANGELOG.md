@@ -1,6 +1,7 @@
 --------------------
 version 3.440
-
+add postgresql with vector option
+update installation to be used with postgresql
 
 
 --------------------

@@ -6,7 +6,7 @@ address_format_id int not_null
 status tinyint(1) default(1)
 --
 primary countries_id
-IDX_COUNTRIES_NAME countries_name
+idx_countries_name countries_name
 ##
 engine innodb
 character_set utf8mb4

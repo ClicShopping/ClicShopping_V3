@@ -13,6 +13,7 @@ namespace ClicShopping\OM;
 use PDO;
 use function in_array;
 use function is_array;
+use function is_null;
 
 class DbStatement extends \PDOStatement
 {
@@ -43,7 +44,7 @@ class DbStatement extends \PDOStatement
 
   /**
    * @param string|int $parameter
-   * @param string|int $value
+   * @param string|int|null $value
    * @return bool
    */
 // force type to int (see http://bugs.php.net/bug.php?id=44639)
@@ -64,8 +65,8 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param $parameter
-   * @param $value
+   * @param string|int $parameter
+   * @param float $value
    * @return bool
    */
   public function bindDecimal(string|int $parameter, float $value): bool
@@ -74,7 +75,7 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param $parameter
+   * @param string|int $parameter
    * @return bool
    */
   public function bindNull(string|int $parameter): bool
@@ -107,9 +108,8 @@ class DbStatement extends \PDOStatement
    * @param array|null $input_parameters
    * @return bool
    */
-  public function execute(?array $input_parameters = null): bool
+  public function execute(array|null $input_parameters = null): bool
   {
-
     if ($this->cache) {
       if (isset($this->page_set)) {
         $this->cache->setKey($this->cache->getKey() . '-pageset' . $this->page_set);
@@ -151,10 +151,10 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param int|null $fetch_style
+   * @param int $fetch_style
    * @param int $cursor_orientation
    * @param int $cursor_offset
-   * @return mixed
+   * @return bool|array
    */
   public function fetch(
     int $fetch_style = PDO::FETCH_DEFAULT, //FETCH_ASSOC,
@@ -180,11 +180,10 @@ class DbStatement extends \PDOStatement
 
   /**
    * @param int|null $fetch_style
-   * @param null $fetch_argument
-   * @param array $ctor_args
+   * @param mixed ...$args
    * @return array
    */
-  public function fetchAll(?int $fetch_style = PDO::FETCH_BOTH, mixed ...$args): array
+  public function fetchAll(int|null $fetch_style = PDO::FETCH_BOTH, mixed ...$args): array
   {
     if ($this->cache_read === true) {
       $this->result = $this->cache_data;
@@ -230,8 +229,8 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param $key
-   * @param null $expire
+   * @param string $key
+   * @param int|null $expire
    * @param bool $cache_empty_results
    */
   public function setCache(string $key, ?int $expire = null, bool $cache_empty_results = false)
@@ -254,7 +253,7 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param $column
+   * @param string $column
    * @param string $type
    * @return float|int|string
    */
@@ -294,8 +293,8 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param $column
-   * @return float|int|string
+   * @param string $column
+   * @return string
    */
   public function value(string $column): string
   {
@@ -303,8 +302,8 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param $column
-   * @return float|int|string
+   * @param string $column
+   * @return string
    */
   public function valueProtected(string $column): string
   {
@@ -312,8 +311,8 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param $column
-   * @return float|int|string
+   * @param string $column
+   * @return int
    */
   public function valueInt(string $column): int
   {
@@ -321,8 +320,8 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param $column
-   * @return float|int|string
+   * @param string $column
+   * @return float
    */
   public function valueDecimal(string $column): float
   {
@@ -330,7 +329,7 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param $column
+   * @param string $column
    * @return bool
    */
   public function hasValue(string $column): bool
@@ -359,13 +358,16 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param $type
+   * @param string $type
    */
   public function setQueryCall(string $type)
   {
     $this->query_call = $type;
   }
 
+  /**
+  * @return string
+  */
   public function getQueryCall(): string
   {
     return $this->query_call;
@@ -469,7 +471,7 @@ class DbStatement extends \PDOStatement
     $output = '<nav aria-label="pagination">';
     $output .= '<ul class="pagination pagination-sm">';
 
-    if (\is_null($site)) {
+    if (is_null($site)) {
 //admin
       if ($number_of_pages > 1) {
         $output .= '<li class="page-item">' . HTML::selectField('pageset' . $this->page_set_keyword, $pages, $this->page_set, 'style="vertical-align: top; display: inline-block; float-start;" data-pageseturl="' . HTML::output(CLICSHOPPING::link(null, 'A&' . $parameters . $this->page_set_keyword . '=PAGESETGOTO')) . '"') . '</li>';

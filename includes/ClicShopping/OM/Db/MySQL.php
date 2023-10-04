@@ -38,8 +38,10 @@ class MySQL extends \ClicShopping\OM\Db
 
     return $this->connect();
   }
-
-  public function connect(): ?string
+/**
+* @return string|null
+ */
+  public function connect(): string|null
   {
     $dsn_array = [];
 

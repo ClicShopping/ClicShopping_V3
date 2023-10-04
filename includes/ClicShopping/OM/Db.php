@@ -81,7 +81,7 @@ class Db extends PDO
     }
 
     if (!isset($driver_options[PDO::ATTR_STATEMENT_CLASS])) {
-      $driver_options[PDO::ATTR_STATEMENT_CLASS] = array('ClicShopping\OM\DbStatement');
+      $driver_options[PDO::ATTR_STATEMENT_CLASS] = ['ClicShopping\OM\DbStatement'];
     }
 
     if (!is_array($options)) {
@@ -95,7 +95,7 @@ class Db extends PDO
       $object = new $class($server, $username, $password, $database, $port, $driver_options, $options);
     } catch (Exception $e) {
       $message = $e->getMessage();
-// $message .= "\n" . $e->getTraceAsString(); // the trace will contain the password in plain text
+//      $message .= "\n" . $e->getTraceAsString(); // the trace will contain the password in plain text
 
       if (!isset($options['log_errors']) || ($options['log_errors'] === true)) {
         error_log('ClicShopping\OM\Db::initialize(): ' . $message);
@@ -169,7 +169,7 @@ class Db extends PDO
    * @param array|null $options
    * @return bool|mixed|PDOStatement
    */
-  public function get($table, $fields, ?array $where = null, $order = null, $limit = null, $cache = null, ?array $options = null)
+  public function get($table, $fields, array|null $where = null, $order = null, $limit = null, $cache = null, array|null $options = null)
   {
     if (!is_array($table)) {
       $table = [
@@ -306,7 +306,7 @@ class Db extends PDO
    * @param array|null $options
    * @return bool|int
    */
-  public function save(string $table, ?array $data, ?array $where_condition = null, ?array $options = null)
+  public function save(string $table, array|null $data, array|null $where_condition = null, array|null $options = null)
   {
     if (empty($data)) {
       return false;
