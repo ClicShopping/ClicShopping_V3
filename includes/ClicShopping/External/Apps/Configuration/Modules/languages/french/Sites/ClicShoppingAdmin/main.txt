@@ -1,0 +1,53 @@
+heading_title = Modules
+module_mo_title = Modules
+module_mo_short_title = Modules
+
+text_modules = Module
+text_configure =  Modules Apps Modules
+
+text_intro = Cette app vous permet d'inclure une gestion des modules <br /><br />
+- Activer ce module qui est situé dans le menu Configuration
+
+module_mo_introduction = Le processus d'installation installe la base de données et le menu
+module_mo_short_title = Modules
+
+button_install_title = Installer
+button_configure = Configurer
+button_save = Sauver
+button_dialog_uninstall =  Désinstaller
+button_uninstall =  Désinstaller
+button_delete = Supprimer
+button_modules = Modules
+button_cancel = Annuler
+button_new = Nouveau
+button_insert =  Insérer
+button_back = Retour
+button_reset = Réinitialiser
+button_update = Mettre à jour
+button_module_install = Installer
+button_extension = Extensions
+button_marketplace = Marketplace
+
+dialog_uninstall_title = Désinstaller
+dialog_uninstall_body = Souhaitez-vous installer cette App ?
+dialog_uninstall_title = Désinstaller le module ?
+dialog_uninstall_body = Etes vous sur de désinstaller ce module?
+
+alert_module_install_success = Le module a été installé.
+alert_module_uninstall_success = Le module a été désinstallé.
+alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
+
+text_module_directory = Répertoires des modules :
+
+icon_install = Installer
+icon_edit = Editer
+icon_sort_order = ordre de tri
+icon_delete = Supprimer
+
+table_heading_modules = Modules
+table_heading_sort_order = Ordre de tri
+table_heading_status = Statut
+table_heading_action = Action
+table_heading_group = Group
+
+text_info_module = Tous les ordres de tri doivent etre unique.<br /> Tout groupe / module (s) sans etre actif ne s'afficheront pas.

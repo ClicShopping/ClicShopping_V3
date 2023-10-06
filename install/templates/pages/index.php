@@ -84,7 +84,7 @@ if (!extension_loaded('json')) {
 }
 
 if (!function_exists('pathinfo')) {
-  $warning_array[] = 'The pathinfo function is notenabled in PHP. Please enable it in the PHP configuration to continue installation.<br />';
+  $warning_array[] = 'The pathinfo function is not enabled in PHP. Please enable it in the PHP configuration to continue installation.<br />';
 }
 
 $https_url = 'https://' . $_SERVER['HTTP_HOST'];

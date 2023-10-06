@@ -38,6 +38,7 @@ class MySQL extends \ClicShopping\OM\Db
 
     return $this->connect();
   }
+  
 /**
 * @return string|null
  */

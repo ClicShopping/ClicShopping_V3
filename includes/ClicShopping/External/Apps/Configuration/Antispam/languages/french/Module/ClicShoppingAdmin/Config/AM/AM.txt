@@ -1,0 +1,5 @@
+module_am_title = Anti spam Numérique
+module_am_short_title = Anti spam Numérique
+module_am_public_title = Anti spam Numérique
+
+module_am_introduction = Ce module vous permet d'installer l'anti spam numérique

@@ -1,0 +1,20 @@
+text_seo_page_title = SEO Page de Titre
+text_seo_action = Cliquez pour avoir une réponse de Gpt
+text_seo_page_title_question = Donnes-moi en moins de 50 mots le SEO Titre concernant cette marque :
+text_seo_page_tag_question = Donnes-moi en moins de 70 mots, 5 tag sèparès par une virgule concernant cette marque :
+text_seo_page_keywords_question = Donnes-moi juste en 7 mots clefs sèparès par une virgule concernant cette marque :
+text_seo_page_summary_description_question = Donnes-moi en moins de 50 mots une description trés courte concernant cette marque :
+text_seo_page_translate_language = Donne moi la réponse brute et peux-tu supprimer la réponse du prompt, la question et tout ce qui est avant la réponse. J ai besoin uniquement que du résultat de la question. Peux tu traduire en
+
+tab_gpt_options = Gpt
+text_gpt_options = Gpt
+text_options_gpt_description = Autorisez l'IA à générer votre contenu automatiquement ?
+text_options_gpt_seo_title = Autorisez l'IA à générer le titre SEO concernant marque ?
+text_options_gpt_seo_description = Autorisez l'IA à générer la description SEO concernant marque ?
+text_options_gpt_seo_keywords = Autorisez l'IA à générer les mots clefs SEO concernant marque ?
+text_options_gpt_image =  Autorisez l'IA à générer une image concernant cette marque ?
+
+text_categories_description = Ecris moi une longue description concernant cette marque :
+
+title_help_seo = Aide
+text_help_seo = Veuillez noter que si vous utilisez l'IA pour générer votre contenu, le temps de sauvegarde de l'information peut être plus long du au traitement. Merci de patienter.

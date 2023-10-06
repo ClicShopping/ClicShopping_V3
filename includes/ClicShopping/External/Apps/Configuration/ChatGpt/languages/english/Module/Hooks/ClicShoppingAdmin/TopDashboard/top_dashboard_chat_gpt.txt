@@ -1,0 +1,3 @@
+text_top_dashboard_chat_gpt_request = Stats OpenIA Gpt
+text_top_dashboard_chat_gpt_request_count = Request number
+text_top_dashboard_chat_gpt_request_limit = Request limit

@@ -63,7 +63,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 
     case 'dbCheck':
       try {
-        $CLICSHOPPING_Db = Db::initialize(isset($_POST['server']) ? $_POST['server'] : '', isset($_POST['username']) ? $_POST['username'] : '', isset($_POST['password']) ? $_POST['password'] : '', isset($_POST['name']) ? $_POST['name'] : '', null, null, ['log_errors' => false]);
+        $CLICSHOPPING_Db = Db::initialize($_POST['server'] ?? '', $_POST['username'] ?? '', $_POST['password'] ?? '', $_POST['name'] ?? '', null, null, ['log_errors' => false]);
 
         $result['status'] = '1';
         $result['message'] = 'success';
@@ -90,7 +90,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 
     case 'dbImport':
       try {
-        $CLICSHOPPING_Db = Db::initialize(isset($_POST['server']) ? $_POST['server'] : '', isset($_POST['username']) ? $_POST['username'] : '', isset($_POST['password']) ? $_POST['password'] : '', isset($_POST['name']) ? $_POST['name'] : '');
+          $CLICSHOPPING_Db = Db::initialize($_POST['server'] ?? '', $_POST['username'] ?? '', $_POST['password'] ?? '', $_POST['name'] ?? '');
         $CLICSHOPPING_Db->setTablePrefix('');
 
         $CLICSHOPPING_Db->exec('SET FOREIGN_KEY_CHECKS = 0');

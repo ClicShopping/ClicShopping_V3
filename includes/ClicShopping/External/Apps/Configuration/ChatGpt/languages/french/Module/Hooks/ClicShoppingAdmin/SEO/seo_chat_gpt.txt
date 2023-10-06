@@ -1,0 +1,24 @@
+text_seo_page_title = SEO Page de Titre
+text_seo_action = Cliquez pour avoir une réponse de Gpt
+text_seo_page_title_question = Donnes-moi en moins de 50 mots le SEO Titre concernant :
+text_seo_page_tag_question = Donnes-moi en moins de 70 mots, 5 tag sèparès par une virgule concernant :
+text_seo_page_keywords_question = Donnes-moi juste en 7 mots clefs sèparès par une virgule concernant :
+text_seo_page_summary_description_question = Donnes-moi en moins de 50 mots une description trés courte concernant :
+text_seo_page_translate_language = Donne moi la réponse brute et peux-tu supprimer la réponse du prompt, la question et tout ce qui est avant la réponse. J ai besoin uniquement que du résultat de la question. Peux tu traduire en
+
+text_tag_specials = produits promotionnels
+text_tag_favorite = produits coup de coeur
+text_tag_featured = produits sélectionnés
+text_tag_products_new = nouveautés produits
+text_tag_review = commentaires produits
+text_tag_recommendations = Recommendations prodtios
+text_seo_action = Action Gpt
+
+
+text_seo_page_recommendations_title_question = Donnes-moi un titre SEO pour des recommandations de produit en moins de 50 caractéres concernant :
+text_seo_page_recommendations_description_question = Donnes-moi une description trés courte en moins de 250 mots clefs concernant des recommandations de produit concernant :
+text_seo_page_recommendations_keywords_question = Donnes-moi en moins de 70 mots clefs, 5 tags concernant des recommandations de produits sèparès par une virgule concernant :
+
+text_seo_page_recommendations_translate_language =
+title_help_seo = Aide
+text_help_seo = Veuillez noter que si vous utilisez l'IA pour générer votre contenu, le temps de sauvegarde de l'information peut être plus long du au traitement. Merci de patienter.

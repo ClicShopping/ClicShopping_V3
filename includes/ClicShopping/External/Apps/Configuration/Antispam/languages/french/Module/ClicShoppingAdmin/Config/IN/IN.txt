@@ -1,0 +1,5 @@
+module_in_title = Invisible anti spam
+module_in_short_title = Invisible anti spam
+module_in_public_title = Invisible anti spam
+
+module_in_introduction = Ce module vous permet d'installer l'anti spam invisible

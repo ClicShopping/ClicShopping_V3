@@ -1,0 +1,33 @@
+heading_title = AI Review sentiment analysis
+
+table_heading_products = Products
+table_heading_rating = Rating
+table_heading_products_average_rating = Average
+table_heading_approved = sentiment approved
+table_heading_review_analyse = Sentiment generated
+table_heading_review_count_comment = Nbr
+table_heading_action = Action
+table_heading_review_count_vote_sentiment = Customers vote
+
+icon_update = Create a review summary
+icon_delete = Delete
+
+text_statistics_sentiment = Sentiment
+text_statistics = Reviews
+text_count_sentiment = Generated:
+text_count_sentiment_approved = Approved :
+text_average_review = Average Evaluation :
+text_count_review = Total Reviews :
+text_success = Updated with success
+
+text_info_warning_cost = Be careful : the summary can create some tokens.<br />
+You must use Gpt to create a customer review sentiment analyse.
+
+text_description_sentiment = AI sentiment generated
+tab_general = General
+
+help_info_warning = Vous devez aussi avoir plus de {{nb_comment}} commentaires pour pouvoir faire une analyse
+Pour utiliser cette page et les fonctionnalités, vous devez avoir une clef secréte OpenAI<br />
+
+text_result_page = Page {{listing_from}} of {{listing_total}}
+text_display_number_of_link = Displaying <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (of <strong>{{listing_total}}</strong>)

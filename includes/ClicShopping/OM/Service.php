@@ -49,6 +49,7 @@ class Service
 
     foreach ($result['file'] as &$module) {
       $class = substr($module['files_name'], 0, strrpos($module['files_name'], '.'));
+
       $this->startService($class);
     }
   }

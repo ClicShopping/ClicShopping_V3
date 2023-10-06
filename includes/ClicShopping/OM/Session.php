@@ -28,7 +28,6 @@ class Session
    */
   public static function load(?string $name = null)
   {
-
     if (!isset(static::$driver)) {
       static::$driver = CLICSHOPPING::configExists('store_sessions') ? CLICSHOPPING::getConfig('store_sessions') : static::$default_driver;
     }

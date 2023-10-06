@@ -8,7 +8,7 @@ thousands_point char(1)
 decimal_places char(1)
 value float(13,8)
 last_updated datetime
-status tinyint(1) default(1)
+status tinyint(1) not_null default(1)
 surcharge float(15,4)
 --
 primary currencies_id

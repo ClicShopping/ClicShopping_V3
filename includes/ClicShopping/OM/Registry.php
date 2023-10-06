@@ -93,7 +93,9 @@ class Registry
       trigger_error('ClicShopping\Registry::set(): "' . $key . '" is already registered and is not forced to be replaced');
       return false;
     }
+
     static::$data[$key] = $value;
+
     return true;
   }
 

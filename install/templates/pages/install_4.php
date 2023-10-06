@@ -99,7 +99,6 @@ if (!empty($_POST['CFG_SMTP_HOST']) && !empty($_POST['CFG_SMTP_USER_NAME']) && !
     $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'sendmail'], ['configuration_key' => 'EMAIL_TRANSPORT']);
   }
 
-
   $CLICSHOPPING_Db->save('configuration', ['configuration_value' => HTML::sanitize($_POST['CFG_SMTP_HOST'])], ['configuration_key' => 'EMAIL_SMTP_HOSTS']);
   $CLICSHOPPING_Db->save('configuration', ['configuration_value' => trim($_POST['CFG_SMTP_USER_NAME'])], ['configuration_key' => 'EMAIL_SMTP_USER']);
   $CLICSHOPPING_Db->save('configuration', ['configuration_value' => trim($_POST['CFG_SMTP_PASSWORD'])], ['configuration_key' => 'EMAIL_SMTP_PASSWORD']);
@@ -163,7 +162,6 @@ if (substr($http_catalog, -1) != '/') {
   $http_catalog .= '/';
 }
 
-
 $admin_folder = 'ClicShoppingAdmin';
 
 if (isset($_POST['CFG_ADMIN_DIRECTORY']) && !empty($_POST['CFG_ADMIN_DIRECTORY']) && FileSystem::isWritable($dir_fs_document_root) && FileSystem::isWritable($dir_fs_document_root . 'ClicShoppingAdmin')) {
@@ -201,8 +199,8 @@ db_server_persistent_connections = "false"
 EOD;
 
 ENDCFG;
-// last empty line needed
 
+// last empty line needed
 file_put_contents(CLICSHOPPING::BASE_DIR . 'Conf/global.php', $file_contents, LOCK_EX);
 
 @chmod(CLICSHOPPING::BASE_DIR . 'Conf/global.php', 0444);

@@ -1,0 +1,21 @@
+text_seo_page_title = SEO Page Title
+text_seo_page_title_question = Give me a SEO Title without the prompt in less 50 characters about :
+text_seo_page_tag_question = Give me, without the prompt, in less 70 words 5 tag separated by a comma about :
+text_seo_page_keywords_question = Give me without the prompt, 7 keywords tag separated by a comma about :
+text_seo_page_summary_description_question = Give me, without the prompt, in less 50 words a very short description about :
+
+text_tag_specials = special products
+text_tag_favorite = favorites products
+text_tag_featured = featured products
+text_tag_products_new = new products
+text_tag_review = review products
+text_seo_action = Action Gpt
+
+text_seo_page_translate_language = Could you remove the prompt response, the question and remove everything before the response: I need only the result about the question below. Can you translate in
+
+text_seo_page_recommendations_title_question = Give me a title SEO without the prompt for products recommendations in less 50 characters about :
+text_seo_page_recommendations_description_question = Give me, without the prompt, in less 250 words a description for products recommendations about :
+text_seo_page_recommendations_keywords_question = Give me, without the prompt, in less 70 words 5 tag for product recommendations separated by a comma about :
+
+title_help_seo = Help
+text_help_seo = Please note that if you use AI to generate your content, information may take longer to save due to processing. Please wait.
