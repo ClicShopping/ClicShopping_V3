@@ -113,7 +113,7 @@ class MySQL extends \ClicShopping\OM\SessionAbstract implements \SessionHandlerI
   /**
    * Garbage collector for the database storage handler
    * @param int $maxlifetime
-   * @return bool
+   * @return int|false
    * The maxmimum time a session should exist
    */
   public function gc($maxlifetime): int|false

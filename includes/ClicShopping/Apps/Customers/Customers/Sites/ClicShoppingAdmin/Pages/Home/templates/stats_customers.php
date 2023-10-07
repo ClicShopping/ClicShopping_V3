@@ -87,15 +87,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
     $listingTotalRow = $Qcustomers->getPageSetTotalRows();
 
     if ($listingTotalRow > 0) {
-
-      $rows = 0;
-
       while ($Qcustomers->fetch()) {
-        $rows++;
-
-        if (\strlen($rows) < 2) {
-          $rows = '0' . $rows;
-        }
         ?>
         <tr>
           <td><?php echo $rows; ?>.</td>
@@ -125,7 +117,6 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
     <?php
-  } // end $listingTotalRow
+  }
   ?>
 </div>
-
