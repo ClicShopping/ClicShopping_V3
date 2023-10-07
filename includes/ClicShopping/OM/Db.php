@@ -511,7 +511,7 @@ class Db extends PDO
         if ((mb_strtoupper($next) == 'DROP T') ||
           (mb_strtoupper($next) == 'CREATE') ||
           (mb_strtoupper($next) == 'INSERT') ||
-          (mb_strtoupper($next) == 'ALTER') ||
+          (mb_strtoupper($next) == 'ALTER ') ||
           (mb_strtoupper($next) == 'SET FO')) {
           $next = '';
 
