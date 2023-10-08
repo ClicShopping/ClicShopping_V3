@@ -8,7 +8,8 @@
  *
  */
 
-  use ClicShopping\OM\CLICSHOPPING;use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\Registry;
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');

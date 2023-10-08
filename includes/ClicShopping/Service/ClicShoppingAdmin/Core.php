@@ -18,7 +18,6 @@ class Core implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool
   {
-
     if (is_file(CLICSHOPPING::BASE_DIR . 'OM/MessageStack.php')) {
       Registry::set('MessageStack', new MessageStackClassAdmin());
 
@@ -26,7 +25,6 @@ class Core implements \ClicShopping\OM\ServiceInterface
     } else {
       return false;
     }
-
   }
 
   public static function stop(): bool

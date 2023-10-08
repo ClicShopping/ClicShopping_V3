@@ -17,7 +17,6 @@ use ClicShopping\OM\Registry;
 
 class WhosOnline implements \ClicShopping\OM\ServiceInterface
 {
-
   private static $spider_flag;
 
   public static function start()

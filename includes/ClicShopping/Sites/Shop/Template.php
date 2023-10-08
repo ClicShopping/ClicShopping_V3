@@ -421,7 +421,7 @@ class Template
     } elseif (is_file($this->getPathRoot() . $this->getDefaultTemplateDirectory() . '/' . $this->_directoryTemplateFiles . 'index.php')) {
       $thema = $this->getDefaultTemplateDirectory() . '/';
     } else {
-      HTTP::redirect(CLICSHOPPING::getConfig('http_server', 'Shop') .  CLICSHOPPING::getConfig('http_path', 'Shop') . 'error_documents/error_template.php');
+      HTTP::redirect(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'error_documents/error_template.php');
       clearstatcache();
     }
 

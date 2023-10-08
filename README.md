@@ -125,6 +125,8 @@ More information in the Wiki
 - Generative artificial intelligence for SEO
 - Generative artificial intelligence for tag sentiment analysis for review
 - Generative artificial Intelligence review summary
+- Generative artificial Intelligence Automated product tagging
+- Generative artificial Intelligence Automated review tagging
 - Real time safety stock predictive (AI)
 - Product automation function GenAI
 - WYSIWYG to create your products description, content with CKeditor

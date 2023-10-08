@@ -10,7 +10,6 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
-
 ?>
 <div class="col-md-12 text-center"><?php echo $menu_footer; ?></div>
 <div class="d-flex flex-wrap footerTemplate text-start">

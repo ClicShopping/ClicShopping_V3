@@ -101,7 +101,8 @@ class sf_footer_suffix_copyright
 
   public function keys()
   {
-    return array('MODULES_FOOTER_SUFFIX_COPYRIGHT_STATUS',
+    return array(
+      'MODULES_FOOTER_SUFFIX_COPYRIGHT_STATUS',
       'MODULES_FOOTER_SUFFIX_COPYRIGHT_SORT_ORDER'
     );
   }
