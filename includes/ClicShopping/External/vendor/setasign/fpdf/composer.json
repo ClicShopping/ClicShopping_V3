@@ -16,9 +16,5 @@
         "classmap": [
             "fpdf.php"
         ]
-    },
-    "require": {
-        "ext-zlib": "*",
-        "ext-gd": "*"
     }
 }
