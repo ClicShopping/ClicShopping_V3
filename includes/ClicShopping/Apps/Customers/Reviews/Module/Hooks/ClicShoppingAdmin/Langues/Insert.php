@@ -40,7 +40,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 
     $Qreviews = $this->app->db->prepare('select r.reviews_id as orig_review_id,
                                                  rd.*
-                                          from :table_reviews p left join :table_reviews_description rd on r.reviews_id = rd.reviews_id
+                                          from :table_reviews r left join :table_reviews_description rd on r.reviews_id = rd.reviews_id
                                           where rd.language_id = :language_id
                                           ');
 
