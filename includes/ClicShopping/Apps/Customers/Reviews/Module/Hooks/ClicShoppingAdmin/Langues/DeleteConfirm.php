@@ -48,7 +48,7 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     }
 
     if (isset($_GET['DeleteConfirm'])) {
-      $id = HTML::sanitize($_GET['rID']);
+      $id = HTML::sanitize($_GET['lID']);
       $this->delete($id);
     }
   }

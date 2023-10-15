@@ -1,9 +1,9 @@
 --------------------
 version 3.440
 Remove Icon not used
-bug fix
+fix small bug 
 refactoring
-
+fix delete language ofr reviews
 
 --------------------
 version 3.439
