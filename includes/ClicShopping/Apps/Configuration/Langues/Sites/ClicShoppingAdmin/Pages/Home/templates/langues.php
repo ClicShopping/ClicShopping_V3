@@ -29,7 +29,13 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Langues->getDef('heading_title'); ?></span>
           <span
-            class="col-md-7 text-end"><?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_new'), null, $CLICSHOPPING_Langues->link('Insert&page=' . $page), 'success'); ?></span>
+            class="col-md-7 text-end">
+            <?php
+              if (MODE_DEMO == 'False') {
+                echo HTML::button($CLICSHOPPING_Langues->getDef('button_new'), null, $CLICSHOPPING_Langues->link('Insert&page=' . $page), 'success');
+              }
+            ?>
+          </span>
         </div>
       </div>
     </div>

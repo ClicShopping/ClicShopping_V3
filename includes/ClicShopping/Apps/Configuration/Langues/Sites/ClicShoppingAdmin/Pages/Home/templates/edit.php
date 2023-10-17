@@ -219,7 +219,12 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       ?>
       <div class="separator"></div>
       <div class="col-md-12 text-center">
-        <?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_update'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null, $CLICSHOPPING_Langues->link('Langues&page=' . $page . '&lID=' . $lInfo->languages_id), 'warning', null, 'sm'); ?>
+        <?php
+          if (MODE_DEMO == 'False') {
+            echo '<span>' . HTML::button($CLICSHOPPING_Langues->getDef('button_update'), null, null, 'primary', null, 'sm') . ' </span>';
+          }
+
+          echo '<span>' . HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null, $CLICSHOPPING_Langues->link('Langues&page=' . $page . '&lID=' . $lInfo->languages_id), 'warning', null, 'sm') .'</span>'; ?>
       </div>
     </div>
   </div>
