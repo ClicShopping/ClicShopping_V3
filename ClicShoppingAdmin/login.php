@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * @copyright 2008 - https://www.clicshopping.org
  * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
  * @Licence GPL 2 & MIT
@@ -328,10 +327,10 @@ if (!\is_null($action)) {
           $crypted_password = Hash::encrypt($new_password);
 
           $Qupdate = $CLICSHOPPING_Db->prepare('update :table_administrators
-                                                   set user_password = :user_password
-                                                   where user_name = :user_name
-                                                   limit 1
-                                                ');
+                                                 set user_password = :user_password
+                                                 where user_name = :user_name
+                                                 limit 1
+                                              ');
           $Qupdate->bindValue(':user_password', $crypted_password);
           $Qupdate->bindValue(':user_name', $username);
 
@@ -396,10 +395,25 @@ if (Is::IpAddress($ip) && (!empty($ip) || !\is_null($ip))) {
 
   $details = file_get_contents($url, false, $context);
 
-  if ($details !== false) {
-    $details = json_decode($details, true);
-    if ($details !== null && isset($details->country)) {
-      $country = $details->country;
+  if ($details === false) {
+    $http_response_header = $http_response_header ?? [];
+
+    // Check the HTTP response headers for the status code
+    $responseCode = isset($http_response_header[0]) ? explode(' ', $http_response_header[0])[1] : null;
+
+    if ($responseCode == 429) {
+      // Handle the "Too Many Requests" error
+      echo "Error: Too Many Requests. Please wait and try again later.";
+    } else {
+      // Handle other errors
+      echo "Error: Something went wrong. Please try again later.";
+    }
+  } else {
+    // Process $details as usual
+    $details = json_decode($details, true, 512, JSON_THROW_ON_ERROR);
+
+    if ($details !== null && isset($details['country'])) {
+      $country = $details['country'];
       echo "<script>$('svg path[data-country-code={$country}]').attr('fill', '#197ac6').attr('fill-opacity', '0.15');</script>";
     }
   }
