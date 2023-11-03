@@ -57,6 +57,7 @@ class ErrorObject extends StripeObject
     const CODE_APPLICATION_FEES_NOT_ALLOWED = 'application_fees_not_allowed';
     const CODE_AUTHENTICATION_REQUIRED = 'authentication_required';
     const CODE_BALANCE_INSUFFICIENT = 'balance_insufficient';
+    const CODE_BALANCE_INVALID_PARAMETER = 'balance_invalid_parameter';
     const CODE_BANK_ACCOUNT_BAD_ROUTING_NUMBERS = 'bank_account_bad_routing_numbers';
     const CODE_BANK_ACCOUNT_DECLINED = 'bank_account_declined';
     const CODE_BANK_ACCOUNT_EXISTS = 'bank_account_exists';
@@ -196,6 +197,7 @@ class ErrorObject extends StripeObject
     const CODE_TESTMODE_CHARGES_ONLY = 'testmode_charges_only';
     const CODE_TLS_VERSION_UNSUPPORTED = 'tls_version_unsupported';
     const CODE_TOKEN_ALREADY_USED = 'token_already_used';
+    const CODE_TOKEN_CARD_NETWORK_INVALID = 'token_card_network_invalid';
     const CODE_TOKEN_IN_USE = 'token_in_use';
     const CODE_TRANSFER_SOURCE_BALANCE_PARAMETERS_MISMATCH = 'transfer_source_balance_parameters_mismatch';
     const CODE_TRANSFERS_NOT_ALLOWED = 'transfers_not_allowed';

@@ -365,7 +365,6 @@ class Template
 
   /**
    * Select the language directory
-   *
    * @param string
    * DIR_WS_MODULES - includes/modules
    *
@@ -375,29 +374,24 @@ class Template
     return $this->_directoryIncludes . $this->_directoryModules; // includes/modules
   }
 
-
   /**
    * get path download
-   *
-   * @param null $directory
+   * @param string $directory
    * @return string
    */
-  public function getPathDownloadShopDirectory($directory = null): string
+  public function getPathDownloadShopDirectory(?string $directory = null): string
   {
-
     if (!is_null($directory)) {
-      $path_shop_public_download_directory = $this->getTemplateSource() . '/' . $this->_directoryTemplateDownload . $directory . '/';
+      $path_shop_public_download_directory = $this->getTemplateSource() . $this->_directoryTemplateDownload . $directory . '/';
     } else {
-      $path_shop_public_download_directory = $this->getTemplateSource() . '/' . $this->_directoryTemplateDownload . 'public/';
+      $path_shop_public_download_directory = $this->getTemplateSource() . $this->_directoryTemplateDownload . 'public/';
     }
 
     return $path_shop_public_download_directory;
   }
 
-
   /**
    * Select the default template module directtory
-   *
    * @param string
    * DIR_WS_TEMPLATE . SITE_THEMA . DIR_WS_TEMPLATE_MODULES
    *

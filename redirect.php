@@ -33,7 +33,6 @@ $CLICSHOPPING_Manufacturer = Registry::get('Manufacturers');
 
 $CLICSHOPPING_Language = Registry::get('Language');
 
-
 switch ($_GET['action']) {
   case 'banner':
     $Qbanner = $CLICSHOPPING_Db->get('banners', 'banners_url', ['banners_id' => HTML::sanitize($_GET['goto'])]);

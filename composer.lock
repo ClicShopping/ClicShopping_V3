@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55dce62cddec4ac8487a562d01c345ce",
+    "content-hash": "7b1e409da50cb4510f87bb8f99fe93b1",
     "packages": [
         {
             "name": "darkghosthunter/preloader",
@@ -1198,16 +1198,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v12.8.0",
+            "version": "v13.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "6b6f4a775ad46fee4b1df2df4fdfa574365b1621"
+                "reference": "e0a960c8655b21b21c3ba2e5927f432eeda9105f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/6b6f4a775ad46fee4b1df2df4fdfa574365b1621",
-                "reference": "6b6f4a775ad46fee4b1df2df4fdfa574365b1621",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/e0a960c8655b21b21c3ba2e5927f432eeda9105f",
+                "reference": "e0a960c8655b21b21c3ba2e5927f432eeda9105f",
                 "shasum": ""
             },
             "require": {
@@ -1251,9 +1251,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v12.8.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v13.2.0"
             },
-            "time": "2023-10-16T18:04:12+00:00"
+            "time": "2023-11-02T22:32:22+00:00"
         },
         {
             "name": "stymiee/email-validator",
