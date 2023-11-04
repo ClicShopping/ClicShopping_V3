@@ -81,8 +81,8 @@ class Orders extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     $output .= '<table
         id="table"
         data-toggle="table"
-    data-icons-prefix="bi"
-    data-icons="icons"
+        data-icons-prefix="bi"
+        data-icons="icons"
         data-sort-name="date"
         data-sort-order="asc"
         data-toolbar="#toolbar"
@@ -106,7 +106,7 @@ class Orders extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     while ($orders = $Qorder->fetch()) {
       $output .= '  <tr class="dataTableRow backgroundBlank">' .
         '    <th scope="row">' . DateTime::toShort($orders['date_last_modified']) . '</th>' .
-        '    <td>' . HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Edit&cID=' . (int)$orders['customers_id']), HTML::outputProtected($orders['customers_name'])) . '</a></td>' .
+        '    <td>' . HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Edit&cID=' . (int)$orders['customers_id']), HTML::outputProtected($orders['customers_name'])) . '</a></td>' .
         '    <td>' . $this->lang->getLanguagesName($Qorder->valueInt('language_id')) . '</td>' .
         '    <td>' . strip_tags($orders['order_total']) . '</td>';
 
@@ -120,9 +120,9 @@ class Orders extends \ClicShopping\OM\Modules\AdminDashboardAbstract
       $output .=
         '    <td>' . HTML::outputProtected($orders['orders_status_name']) . '</td>' .
         '    <td class="text-end">
-          ' . HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders&Edit&oID=' . (int)$orders['orders_id']), '<h4><i class="bi bi-pencil" title="' . $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_order') . '"></i></h4>');
-      HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Edit&cID=' . (int)$orders['customers_id']), '<h4><i class="bi bi-person" title="' . $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_customer') . '"></i></h4>');
-      HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders&cID=' . $orders['customers_id']), '<h4><i class="bi bi-cart2" title="' . $this->app->getDef('module_admin_dashboard_orders_app_icon_view_customers_all_orders') . '"></i></h4>');
+          ' . HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Edit&oID=' . (int)$orders['orders_id']), '<h4><i class="bi bi-pencil" title="' . $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_order') . '"></i></h4>');
+      HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Edit&cID=' . (int)$orders['customers_id']), '<h4><i class="bi bi-person" title="' . $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_customer') . '"></i></h4>');
+      HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&cID=' . $orders['customers_id']), '<h4><i class="bi bi-cart2" title="' . $this->app->getDef('module_admin_dashboard_orders_app_icon_view_customers_all_orders') . '"></i></h4>');
 
       $output .= '</td>';
       $output .= '</tr>';
