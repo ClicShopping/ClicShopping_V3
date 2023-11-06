@@ -2,6 +2,8 @@
 version 3.441
 check ip for admin login
 fix link orders dashboard
+Update ckeditor
+
 
 --------------------
 version 3.440
