@@ -185,8 +185,8 @@ class CLICSHOPPING
   /**
    * Return an internal URL address.
    *
-   * @param string $page The Site to link to. Default: The currently used Site.
-   * @param string $parameters Parameters to add to the link. Example: key1=value1&key2=value2
+   * @param string|null $page The Site to link to. Default: The currently used Site.
+   * @param string|null $parameters Parameters to add to the link. Example: key1=value1&key2=value2
    * @param bool $add_session_id Add the session ID to the link. Default: True.
    * @param bool $search_engine_safe Use search engine safe URLs. Default: True.
    * @return string The URL address.

@@ -23,12 +23,14 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
 
 $languages = $CLICSHOPPING_Language->getLanguages();
 
-$values_languages_id[0] = ['id' => '0',
+$values_languages_id[0] = [
+  'id' => '0',
   'text' => $CLICSHOPPING_BannerManager->getDef('text_all_languages')
 ];
 
 for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-  $values_languages_id[$i + 1] = ['id' => $languages[$i]['id'],
+  $values_languages_id[$i + 1] = [
+    'id' => $languages[$i]['id'],
     'text' => $languages[$i]['name']
   ];
 }

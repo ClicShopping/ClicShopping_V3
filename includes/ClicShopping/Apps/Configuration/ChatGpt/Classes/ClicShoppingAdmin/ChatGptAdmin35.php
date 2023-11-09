@@ -149,7 +149,7 @@ class ChatGptAdmin35
    * @param float|null $temperature
    * @throws Exception
    */
-  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null): bool|string
+  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null, string $engine = null): bool|string
   {
     if (self::checkGptStatus() === false) {
       return false;
@@ -157,8 +157,11 @@ class ChatGptAdmin35
 
     $client = self::getClient();
 
+    if (is_null($engine)) {
+      $engine = CLICSHOPPING_APP_CHATGPT_CH_MODEL;
+    }
+
     $prompt = HTML::sanitize($question);
-    $engine = CLICSHOPPING_APP_CHATGPT_CH_MODEL;
     $modelArray = self::getGptModel();
     $modelId = $modelArray[0]['id'];
     $engine = $modelId;

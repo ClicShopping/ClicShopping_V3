@@ -17,6 +17,9 @@ use ClicShopping\OM\Registry;
 use ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin\ManufacturerAdmin;
 use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
 
+use function count;
+use function is_array;
+
 class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
 {
   protected mixed $app;
@@ -47,7 +50,7 @@ class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
 
     $manufacturer_array = ManufacturerAdmin::getManufacturerName($pId);
 
-    if (\is_array($manufacturer_array) && \count($manufacturer_array) > 0) {
+    if (is_array($manufacturer_array) && count($manufacturer_array) > 0) {
       $manufacturers_name = $manufacturer_array[0]['manufacturers_name'];
     } else {
       $manufacturers_name = '';

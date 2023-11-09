@@ -50,9 +50,7 @@ class ReviewsClass
   /**
    * get the total product review
    *
-   * @param int $id , $id of the product
-   * @return bool the numbeer of the review
-   *
+   * @return int the numbeer of the review
    */
   public function getTotalReviews(): int
   {

@@ -14,7 +14,6 @@ use ClicShopping\OM\Registry;
 use ClicShopping\Sites\ClicShoppingAdmin\ManufacturersAdmin;
 
 $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-$CLICSHOPPING_ManufacturersAdmin = Registry::get('ProductsAdmin');
 $CLICSHOPPING_Language = Registry::get('Language');
 $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
 $CLICSHOPPING_Wysiwyg = Registry::get('Wysiwyg');

@@ -264,12 +264,12 @@ class ChatGptShop35
                 and g.products_group_view = 1
                 and p.products_status = 1
                 and p.products_archive = 0
-                and g.customers_group_id = :customers_group_id            
+                and (g.customers_group_id = :customers_group_id or g.customers_group_id = 99)            
                 ';
       } else {
         $query = 'select p.products_id,
                             pd.products_name
-                    from :table_products p,
+                    from :table_products p left join :table_products_groups g on p.products_id = g.products_id,
                          :table_products_description pd
                     where p.products_status = 1
                     and p.products_id = pd.products_id
@@ -277,7 +277,8 @@ class ChatGptShop35
                     and p.products_view = 1
                     and p.products_status = 1
                     and p.products_archive = 0
-                    ';
+                    and (g.customers_group_id = 0 or g.customers_group_id = 99)            
+                  ';
       }
 
       if (!empty($searchQueries)) {
@@ -303,7 +304,7 @@ class ChatGptShop35
 
       if (!empty($question_result)) {
         $result = CLICSHOPPING::getDef('text_chatbot_ok', ['question' => $question]);
-        $result .= ChatGptShop35::getGptResponse($question);
+        $result .= ChatGptShop35::getGptResponse($searchQueries);
       } else {
         $result = CLICSHOPPING::getDef('text_chatbot_not_ok');
       }
