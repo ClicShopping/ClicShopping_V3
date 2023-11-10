@@ -9,6 +9,7 @@ currently being supported with security updates.
 | ------- | ------------------ |
 | +7.4.3   | 3.2145 |
 | +8.1| > 3.300 |
+| +8.2| > 3.400 |
 
 ## Reporting a Vulnerability
 

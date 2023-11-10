@@ -8,7 +8,7 @@ last_modified datetime
 reviews_read int(5) default(0) not_null
 status tinyint(1) default(0) not_null
 customers_group_id int default(0) not_null
-customers_tag varchar(255) not_null
+customers_tag varchar(255)
 --
 primary reviews_id
 idx_reviews_products_id products_id

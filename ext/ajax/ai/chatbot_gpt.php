@@ -43,7 +43,11 @@ if (isset($_POST['message'])) {
     Just give the result without anything other information, just the array.
     The request to analyse : " . $question;
 
-  $result = ChatGptShop35::getGptResponse($prompt, $max_token = 20, $temperature = 0);
+  try {
+    $result = ChatGptShop35::getGptResponse($prompt, $max_token = 20, $temperature = 0);
+  } catch (Exception $e) {
+    $result = 'Error';
+  }
 
   echo ChatGptShop35::productSearch($question, $result);
 }
