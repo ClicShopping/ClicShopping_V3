@@ -1,6 +1,7 @@
 --------------------
 version 3.442
-
+fix errorsqldb
+fix error acces addmin
 
 
 --------------------
