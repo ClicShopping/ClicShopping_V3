@@ -1247,17 +1247,17 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v13.3.0",
-            "version_normalized": "13.3.0.0",
+            "version": "v13.4.0",
+            "version_normalized": "13.4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "58d0e126670d43808ef4a814b40a2864bca788e5"
+                "reference": "ff0a56c75ff50b50ed97c45c02dfaa2dd341c5b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/58d0e126670d43808ef4a814b40a2864bca788e5",
-                "reference": "58d0e126670d43808ef4a814b40a2864bca788e5",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/ff0a56c75ff50b50ed97c45c02dfaa2dd341c5b1",
+                "reference": "ff0a56c75ff50b50ed97c45c02dfaa2dd341c5b1",
                 "shasum": ""
             },
             "require": {
@@ -1271,7 +1271,7 @@
                 "phpstan/phpstan": "^1.2",
                 "phpunit/phpunit": "^5.7 || ^9.0"
             },
-            "time": "2023-11-09T21:21:22+00:00",
+            "time": "2023-11-21T20:08:15+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1303,7 +1303,7 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v13.3.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v13.4.0"
             },
             "install-path": "../stripe/stripe-php"
         },
@@ -1369,8 +1369,8 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.3.0",
-            "version_normalized": "3.3.0.0",
+            "version": "v3.4.0",
+            "version_normalized": "3.4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
@@ -1419,7 +1419,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.3.0"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.4.0"
             },
             "funding": [
                 {
