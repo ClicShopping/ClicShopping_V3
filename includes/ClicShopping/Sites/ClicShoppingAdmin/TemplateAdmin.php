@@ -68,7 +68,7 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
    * define('DIR_FS_DOWNLOAD_PUBLIC', parent::getPathRoot() . 'sources/download/');
    * @return string
    */
-  public function getPathDownloadShopDirectory($directory = null): string
+  public function getPathDownloadShopDirectory(?string $directory = null): string
   {
     $path_shop_public_download_directory = parent::getPathDownloadShopDirectory($directory);
 

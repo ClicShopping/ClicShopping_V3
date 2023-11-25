@@ -39,7 +39,7 @@ $template = 'main_page';
   <div class="row" style="margin-top: 10px; margin-bottom: 20px;" id="storeLogo">
     <div class="col-sm-6">
       <a href="index.php"><img src="../images/logo_clicshopping_1.png" border="0" width="284" height="105"
-                               title="ClicShoppingAI" alt="ClicShoppingAI" style="margin: 10px 10px 0px 10px;"/></a>
+                               title="ClicShoppingAI" alt="ClicShopping AI" style="margin: 10px 10px 0px 10px;"/></a>
     </div>
 
     <div id="headerShortcuts" class="col-sm-6 text-end">
@@ -60,7 +60,7 @@ $template = 'main_page';
           <div class="card">
             <div class="card-footer">
               <div class="text-center">
-                  <small>Copyright &copy; 2008-<?php echo date('Y'); ?> <a href="http://www.clicshopping.org" target="_blank" rel="noreferrer">ClicShoppingAI(TM)</a> - Brand deposed at INPI</small>
+                  <small>Copyright &copy; 2008-<?php echo date('Y'); ?> <a href="http://www.clicshopping.org" target="_blank" rel="noreferrer" alt="ClicShopping AI">ClicShopping AI(TM)</a> - Brand deposed at INPI</small>
                 </div>
               </div>
             </div>

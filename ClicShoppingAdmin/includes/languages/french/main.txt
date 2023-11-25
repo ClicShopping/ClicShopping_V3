@@ -26,7 +26,7 @@ header_title_logoff = Quitter
 
 text_chat_send = Demander
 text_chat_save = Sauver la requête
-text_chat_message = Ecrire un message (Soyer patient pour la réponse)
+text_chat_message = Ecrire un message (Veuillez être patient pour la réponse)
 text_chat_close = Fermer
 text_chat_open = ouvrir le chat
 text_chat_title = Que souhaitez-vous résoudre ?

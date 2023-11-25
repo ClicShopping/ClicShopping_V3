@@ -43,7 +43,7 @@
   </head>
 <body>
 <p align="center"><a href="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>"><img
-      src="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>/shop/images/logo_clicshopping_1.png"></a></p>
+      src="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>/shop/images/logo_clicshopping_1.png" alt="ClicShopping AI"></a></p>
 <h2 align="center">Download / Téléchargement clicShopping OpenSource</h2>
 <div style="padding-top: 100px;">
   <blockquote><a href="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>">Accueil / home Page</a></blockquote>

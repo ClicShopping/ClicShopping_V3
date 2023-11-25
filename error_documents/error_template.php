@@ -7,7 +7,6 @@
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
-
 http_response_code(404);
 ?>
 <!DOCTYPE html>
