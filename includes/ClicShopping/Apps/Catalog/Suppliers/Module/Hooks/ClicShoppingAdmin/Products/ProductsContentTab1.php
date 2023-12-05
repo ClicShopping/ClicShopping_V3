@@ -17,10 +17,13 @@ use ClicShopping\OM\Registry;
 use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
 use ClicShopping\Apps\Catalog\Suppliers\Suppliers as SuppliersApp;
 
+use function count;
+use function is_array;
+
 class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
 {
   protected mixed $app;
-  protected $SupplierAdmin;
+  protected mixed $SupplierAdmin;
 
   public function __construct()
   {
@@ -47,7 +50,7 @@ class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
 
     $suppliers_array = $this->SupplierAdmin->getSupplier();
 
-    if (\is_array($suppliers_array) && \count($suppliers_array) > 0) {
+    if (is_array($suppliers_array) && count($suppliers_array) > 0) {
       $suppliers_name = $suppliers_array[0]['suppliers_name'];
     } else {
       $suppliers_name = null;

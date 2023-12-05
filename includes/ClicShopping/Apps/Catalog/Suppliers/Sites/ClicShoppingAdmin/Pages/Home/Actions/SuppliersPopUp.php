@@ -14,7 +14,6 @@ use ClicShopping\OM\Registry;
 
 class SuppliersPopUp extends \ClicShopping\OM\PagesActionsAbstract
 {
-
   public function execute()
   {
     $CLICSHOPPING_Suppliers = Registry::get('Suppliers');
