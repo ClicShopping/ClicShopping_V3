@@ -449,16 +449,16 @@
         },
         {
             "name": "mattketmo/email-checker",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MattKetmo/EmailChecker.git",
-                "reference": "be575f38ae7f5c4ce18332774479b30fdbc75977"
+                "reference": "062aaa2f8b41f9746a4f91190ac68d35249bab31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MattKetmo/EmailChecker/zipball/be575f38ae7f5c4ce18332774479b30fdbc75977",
-                "reference": "be575f38ae7f5c4ce18332774479b30fdbc75977",
+                "url": "https://api.github.com/repos/MattKetmo/EmailChecker/zipball/062aaa2f8b41f9746a4f91190ac68d35249bab31",
+                "reference": "062aaa2f8b41f9746a4f91190ac68d35249bab31",
                 "shasum": ""
             },
             "require": {
@@ -510,9 +510,9 @@
             ],
             "support": {
                 "issues": "https://github.com/MattKetmo/EmailChecker/issues",
-                "source": "https://github.com/MattKetmo/EmailChecker/tree/v2.2.0"
+                "source": "https://github.com/MattKetmo/EmailChecker/tree/v2.3.0"
             },
-            "time": "2023-09-01T21:18:03+00:00"
+            "time": "2023-12-07T13:10:23+00:00"
         },
         {
             "name": "openai-php/client",
@@ -1203,16 +1203,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v13.5.0",
+            "version": "v13.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "a688c0ee7c0a2d162dee5c80b85d017cdd8d5e37"
+                "reference": "6863bd70637fa1e2c022eceec44b89b7687634a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/a688c0ee7c0a2d162dee5c80b85d017cdd8d5e37",
-                "reference": "a688c0ee7c0a2d162dee5c80b85d017cdd8d5e37",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/6863bd70637fa1e2c022eceec44b89b7687634a1",
+                "reference": "6863bd70637fa1e2c022eceec44b89b7687634a1",
                 "shasum": ""
             },
             "require": {
@@ -1256,9 +1256,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v13.5.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v13.6.0"
             },
-            "time": "2023-11-30T18:11:45+00:00"
+            "time": "2023-12-07T21:13:50+00:00"
         },
         {
             "name": "stymiee/email-validator",

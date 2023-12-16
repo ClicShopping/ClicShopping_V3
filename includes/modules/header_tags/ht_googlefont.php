@@ -29,7 +29,7 @@ class ht_googlefont
     $this->description = CLICSHOPPING::getDef('module_header_tags_google_font_description');
 
     if (\defined('MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS')) {
-      $this->sort_order = MODULE_HEADER_TAGS_GOOGLE_FONT_SORT_ORDER;
+      $this->sort_order = (int)MODULE_HEADER_TAGS_GOOGLE_FONT_SORT_ORDER ?? 0;
       $this->enabled = (MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS == 'True');
     }
   }
