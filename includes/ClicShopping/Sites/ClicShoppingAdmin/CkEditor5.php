@@ -39,11 +39,11 @@ class CkEditor5 extends HTML
   {
     $code = self::getWysiwygLanguage();
 
-    $script = '<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script><br />' . "\n";
+    $script = '<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script><br />' . "\n";
 
     if ($code != 'en') {
       if (!empty($code)) {
-        $script = '<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script><br />' . "\n";
+        $script = '<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script><br />' . "\n";
       }
     }
 
