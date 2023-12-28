@@ -1,12 +1,18 @@
 --------------------
 version 3.443
 librairies updated
+Add status for administrormenu
+fix somesmall bugs
+Librairies updated
+
 
 --------------------
 version 3.442
-fix errorsqldb
+fix error sql db
 fix error acces addmin
-
+Add status for administrormenu
+fix somesmall bugs
+Librairies updated
 
 --------------------
 version 3.441

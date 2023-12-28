@@ -376,7 +376,7 @@ class Template
 
   /**
    * get path download
-   * @param string $directory
+   * @param string|null $directory
    * @return string
    */
   public function getPathDownloadShopDirectory(?string $directory = null): string

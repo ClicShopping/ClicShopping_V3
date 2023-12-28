@@ -53,6 +53,39 @@ class AdministratorAdmin
   }
 
   /**
+   * @return int
+   */
+  public static function getUserAdminId(): int
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    if (isset($_SESSION['admin'])) {
+      $username = array($_SESSION['admin']);
+      $username = $username[0]['username'];
+
+      $Qlogins = $CLICSHOPPING_Db->prepare('select a.id
+                                              from :table_action_recorder ar,
+                                                   :table_administrators a
+                                              where  ar.user_id = a.id
+                                              and ar.module = :module
+                                              and ar.user_name = :user_name
+                                              limit 1
+                                             ');
+
+      $Qlogins->bindValue(':module', 'ar_admin_login');
+      $Qlogins->bindValue(':user_name', $username);
+
+      $Qlogins->execute();
+
+      $administrator = $Qlogins->valueInt('id');
+    } else {
+      $administrator = null;
+    }
+
+    return $administrator;
+  }
+
+  /**
    * get the administrator right
    * @param string $default , default right
    * @return array $administrator_right_array ,  right selected

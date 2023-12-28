@@ -20,7 +20,6 @@ $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 $CLICSHOPPING_Db = Registry::get('Db');
 $CLICSHOPPING_Hooks = Registry::get('Hooks');
 $CLICSHOPPING_Language = Registry::get('Language');
-$CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
@@ -60,11 +59,11 @@ if (isset($_POST['cPath'])) {
           <span class="col-md-3 text-end">
            <div>
              <div>
-<?php
-echo HTML::form('search', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'post', '', ['session_id' => true]);
-echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title_search') . '"');
-echo '&nbsp;&nbsp;&nbsp;';
-?>
+              <?php
+                echo HTML::form('search', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'post', '', ['session_id' => true]);
+                echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title_search') . '"');
+                echo '&nbsp;&nbsp;&nbsp;';
+              ?>
                </form>
            </div>
          </div>
@@ -72,11 +71,11 @@ echo '&nbsp;&nbsp;&nbsp;';
           <span class="col-md-3">
            <div>
              <div>
-<?php
-echo HTML::form('goto', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'post', '', ['session_id' => true]);
-echo HTML::selectMenu('cPath', AdministratorMenu::getLabelTree(), $current_category_id, 'onchange="this.form.submit();"');
-echo '</form>';
-?>
+                <?php
+                  echo HTML::form('goto', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'post', '', ['session_id' => true]);
+                  echo HTML::selectMenu('cPath', AdministratorMenu::getLabelTree(), $current_category_id, 'onchange="this.form.submit();"');
+                  echo '</form>';
+                ?>
                </form>
              </div>
            </div>
@@ -85,7 +84,7 @@ echo '</form>';
 <?php
 $cPath_back = '';
 
-$cPath_array = $CLICSHOPPING_CategoriesAdmin->getPathArray();
+$cPath_array = AdministratorMenu::getPathArray();
 
 if (isset($cPath_array) && \count($cPath_array) > 0) {
   for ($i = 0, $n = \count($cPath_array) - 1; $i < $n; $i++) {
@@ -135,9 +134,11 @@ if (!isset($_GET['search'])) {
     <tr>
       <th data-switchable="false"></th>
       <th data-field="id"
-          data-sortable="true"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_id'); ?></th>
+          data-sortable="true" data-sortable="true"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_id'); ?></th>
       <th
         data-field="menu"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_categories_products'); ?></th>
+      <th data-field="status" data-sortable="true"
+          class="text-center"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_status'); ?></th>
       <th data-field="access"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_rights_access'); ?></th>
       <th data-field="app"
           class="text-center"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_app'); ?></th>
@@ -162,15 +163,15 @@ if (!isset($_GET['search'])) {
                                                                             a.sort_order,
                                                                             a.b2b_menu,
                                                                             a.app_code,
+                                                                            a.status,
                                                                             amd.label
                                                                       from :table_administrator_menu a,
                                                                            :table_administrator_menu_description amd
                                                                       where a.id = amd.id
                                                                       and amd.language_id = :language_id
                                                                       and (amd.label like :search or a.id like :search  or a.app_code like :search)
-                                                                      and a.status = 1
-                                                                      order by a.parent_id,
-                                                                               a.sort_order
+                                                                      order by a.id asc,
+                                                                               a.sort_order asc
                                                                       ');
 
       $Qcategories->bindValue(':search', '%' . $search . '%');
@@ -184,15 +185,15 @@ if (!isset($_GET['search'])) {
                                                                     a.sort_order,
                                                                     a.b2b_menu,
                                                                     a.app_code,
+                                                                    a.status,
                                                                     amd.label
                                                               from :table_administrator_menu a,
                                                                    :table_administrator_menu_description amd
                                                               where a.id = amd.id
                                                               and a.parent_id = :parent_id
                                                               and amd.language_id = :language_id
-                                                              and a.status = 1
-                                                              order by a.parent_id,
-                                                                       a.sort_order
+                                                              order by a.id asc,
+                                                                       a.sort_order asc
                                                               ');
 
       $Qcategories->bindInt(':parent_id', (int)$current_category_id);
@@ -219,6 +220,15 @@ if (!isset($_GET['search'])) {
           ><i class="bi bi-folder-fill text-primary"></i></td>
         <td><?php echo '<strong>' . $Qcategories->value('id') . '</strong>'; ?></td>
         <td><?php echo '<strong>' . $Qcategories->value('label') . '</strong>'; ?></td>
+          <td>
+            <?php
+            if ($Qcategories->valueInt('status') == 1) {
+              echo HTML::link($CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&SetFlag&flag=0&cID=' . $Qcategories->valueInt('id') . '&cPath=' . $cPath), '<i class="bi-check text-success"></i>');
+            } else {
+              echo HTML::link($CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&SetFlag&flag=1&cID=' . $Qcategories->valueInt('id') . '&cPath=' . $cPath), '<i class="bi bi-x text-danger"></i>');
+            }
+            ?>
+          </td>
 
         <?php
         if ($Qcategories->valueInt('access') == 0) {

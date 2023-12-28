@@ -11,7 +11,9 @@
 namespace ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Cache;
+use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+
 use function call_user_func;
 use function count;
 use function is_array;
@@ -19,8 +21,95 @@ use function strlen;
 
 class AdministratorMenu
 {
-  protected int $category_id;
   protected int $language_id;
+  private static mixed $data;
+
+  public function __construct()
+  {
+    static $_category_tree_data;
+
+    $this->db = Registry::get('Db');
+    $this->lang = Registry::get('Language');
+
+
+    if (isset($_category_tree_data)) {
+      static::$data = $_category_tree_data;
+    } else {
+      $Qcategories = $this->db->prepare('select am.id,
+                                               am.parent_id,
+                                               amd.label
+                                        from :table_administrator_menu am,
+                                             :table_administrator_menu_description amd
+                                        where am.id = amd.id
+                                        and amd.language_id = :language_id
+                                        order by am.parent_id,
+                                                 am.sort_order,
+                                                 amd.label
+                                        ');
+
+      $Qcategories->bindInt(':language_id', $this->lang->getId());
+
+      $Qcategories->execute();
+
+      while ($Qcategories->fetch()) {
+        static::$data[$Qcategories->valueInt('parent_id')][$Qcategories->valueInt('id')] = [
+          'name' => $Qcategories->value('label'),
+          'count' => 0
+        ];
+      }
+    }
+  }
+
+  /*
+  * Parse and secure the cPath parameter values
+  * @int, $cPath, value of cPath
+  * return @ string array $tmp_array
+  */
+  private static function getParseCategoryPath(string $cPath): array
+  {
+// make sure the category IDs are integers
+    $cPath_array = array_map(function ($string) {
+      return (int)$string;
+    }, explode('_', $cPath));
+
+// make sure no duplicate category IDs exist which could lock the server in a loop
+    $tmp_array = [];
+    $n = count($cPath_array);
+
+    for ($i = 0; $i < $n; $i++) {
+      if (!in_array($cPath_array[$i], $tmp_array, true)) {
+        $tmp_array[] = $cPath_array[$i];
+      }
+    }
+
+    return $tmp_array;
+  }
+
+
+  /**
+   * @param int|null $id
+   * @return array
+   */
+  public static function getPathArray(int|null $id = null): array
+  {
+    if ((isset($_POST['cPath']) && !empty($_POST['cPath'])) || (isset($_GET['cPath']) && !empty($_GET['cPath']))) {
+      if (isset($_POST['cPath'])) {
+        $cPath = HTML::sanitize($_POST['cPath']);
+      } else {
+        $cPath = HTML::sanitize($_GET['cPath']);
+      }
+
+      $cPath_array = static::getParseCategoryPath($cPath);
+    } else {
+      $cPath_array = [];
+    }
+
+    if (isset($id)) {
+      return $cPath_array[$id];
+    }
+
+    return $cPath_array;
+  }
 
   /**
    *  Return catagories path
@@ -32,9 +121,8 @@ class AdministratorMenu
   public static function getPath(string $current_category_id = ''): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
-    $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
-    $cPath_array = $CLICSHOPPING_CategoriesAdmin->getPathArray();
+    $cPath_array = self::getPathArray();
 
     if ($current_category_id == '') {
       $cPath_new = implode('_', $cPath_array);
@@ -89,9 +177,8 @@ class AdministratorMenu
   /**
    *  remove category
    *
-   * @param string $category_id
+   * @param int $id
    * @return string
-   *
    */
   public static function removeCategory(int $id)
   {
@@ -130,10 +217,13 @@ class AdministratorMenu
     }
 
     if ($include_itself) {
-      $Qcategory = $CLICSHOPPING_Db->get('administrator_menu_description', 'label', ['language_id' => (int)$CLICSHOPPING_Language->getId(),
-          'id' => (int)$parent_id
-        ]
-      );
+      $array = [
+        'language_id' => (int)$CLICSHOPPING_Language->getId(),
+        'id' => (int)$parent_id,
+        'status' => 1
+      ];
+
+      $Qcategory = $CLICSHOPPING_Db->get('administrator_menu_description', 'label', $array);
 
       $category_tree_array[] = [
         'id' => $parent_id,
@@ -151,10 +241,11 @@ class AdministratorMenu
       'c.parent_id'
     ], [
       'c.id' => [
-        'rel' => 'cd.id'
+      'rel' => 'cd.id'
       ],
       'cd.language_id' => (int)$CLICSHOPPING_Language->getId(),
-      'c.parent_id' => (int)$parent_id
+      'c.parent_id' => (int)$parent_id,
+      'status' => 1
     ], [
         'c.sort_order',
         'cd.label'
@@ -181,7 +272,6 @@ class AdministratorMenu
    * @return string $calculated_category_path_string
    *
    */
-
   public static function getGeneratedAdministratorMenuPathIds(int $id)
   {
     $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
@@ -306,7 +396,7 @@ class AdministratorMenu
    * @param bool $include_itself
    * @return array
    */
-  public static function getAdministratorMenuCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', bool $include_itself = false): array
+  public static function getAdministratorMenuCategoryTree($parent_id = '0', string $spacing = '', $exclude = '', $category_tree_array = '', bool $include_itself = false): array
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -393,7 +483,6 @@ class AdministratorMenu
   }
 
   /*
-   * Display the headermenu
    * @return array
    */
   public static function getHeaderMenu(): array
@@ -402,11 +491,11 @@ class AdministratorMenu
     $CLICSHOPPING_Language = Registry::get('Language');
 
     if (isset($_SESSION['admin']['access'])) {
-      if ($_SESSION['admin']['access'] === 1) {
+      if ($_SESSION['admin']['access'] == 1) {
         $access_level = 0;
-      } elseif ($_SESSION['admin']['access'] === 2) {
+      } elseif ($_SESSION['admin']['access'] == 2) {
         $access_level = 2;
-      } elseif ($_SESSION['admin']['access'] === 3) {
+      } elseif ($_SESSION['admin']['access'] == 3) {
         $access_level = 2;
       } else {
         $access_level = 0;
@@ -429,6 +518,7 @@ class AdministratorMenu
                                                   :table_administrator_menu_description amd
                                               where am.id = amd.id
                                               and amd.language_id = :language_id
+                                              and am.status = 1
                                               order by am.parent_id,
                                                        am.sort_order
                                             ');
@@ -447,6 +537,7 @@ class AdministratorMenu
                                             from :table_administrator_menu am  left join :table_administrators ad on ad.access =  am.access,
                                                 :table_administrator_menu_description amd
                                             where am.id = amd.id
+                                            and am.status = 1
                                             and amd.language_id = :language_id
                                             and (am.access = 0 or am.access > 1)
                                             order by am.parent_id,
@@ -457,7 +548,7 @@ class AdministratorMenu
 
     } elseif ($access_level == 3) {
       $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
-                                                am.link,
+                                                  am.link,
                                                   am.parent_id,
                                                   am.access,
                                                   am.sort_order,
@@ -469,6 +560,7 @@ class AdministratorMenu
                                                 :table_administrator_menu_description amd
                                             where am.id = amd.id
                                             and amd.language_id = :language_id
+                                            and am.status = 1
                                             and (am.access = 0 and am.access > 2)
                                             order by am.parent_id,
                                                      am.sort_order
@@ -481,5 +573,24 @@ class AdministratorMenu
     $Qmenus->execute();
 
     return $Qmenus->fetchAll();
+  }
+
+  /**
+   * @param string $category_id
+   * @param array $array
+   * @return array
+   */
+  public static function getChildren(string $category_id, array &$array = []): array
+  {
+    foreach (static::$data as $parent => $categories) {
+      if ($parent == $category_id) {
+        foreach ($categories as $id => $info) {
+          $array[] = $id;
+          self::getChildren($id, $array);
+        }
+      }
+    }
+
+    return $array;
   }
 }

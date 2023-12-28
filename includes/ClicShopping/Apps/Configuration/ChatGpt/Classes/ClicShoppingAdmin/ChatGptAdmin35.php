@@ -149,7 +149,7 @@ class ChatGptAdmin35
    * @param float|null $temperature
    * @throws Exception
    */
-  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null, string $engine = null): bool|string
+  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null, ?string $engine = null, ?int $max = 1): bool|string
   {
     if (self::checkGptStatus() === false) {
       return false;
@@ -176,15 +176,19 @@ class ChatGptAdmin35
       $temperature = (float)CLICSHOPPING_APP_CHATGPT_CH_TEMPERATURE;
     }
 
+    if (is_null($max)) {
+      $max = (float)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE;
+    }
+
     $parameters = [
       'model' => $engine,  // Spécification du modèle à utiliser
       'temperature' => $temperature, // Contrôle de la créativité du modèle
-      'top_p' => (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P, // Caractère de fin de ligne pour la réponse
+      'top_p' => (float)CLICSHOPPING_APP_CHATGPT_CH_TOP_P,
       'frequency_penalty' => (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY, //pénalité de fréquence pour encourager le modèle à générer des réponses plus variées
       'presence_penalty' => (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY, //pénalité de présence pour encourager le modèle à générer des réponses avec des mots qui n'ont pas été utilisés dans l'amorce
       'max_tokens' => $maxtoken, //nombre maximum de jetons à générer dans la réponse
       'stop' => $top, //caractères pour arrêter la réponse
-      'n' => (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_RESPONSE, // nombre de réponses à générer
+      'n' => $max, // nombre de réponses à générer
       'messages' => [
         [
           'role' => 'system',

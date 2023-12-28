@@ -14,7 +14,7 @@ use ClicShopping\OM\Registry;
 
 $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
 $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-$CLICSHOPPING_Template = Registry::get('Template');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
 if ($CLICSHOPPING_MessageStack->exists('main')) {
   echo $CLICSHOPPING_MessageStack->get('main');
