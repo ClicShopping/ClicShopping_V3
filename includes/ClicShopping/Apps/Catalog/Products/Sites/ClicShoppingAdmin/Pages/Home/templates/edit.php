@@ -123,7 +123,7 @@ if (isset($_GET['cPath'])) {
 
 $form_action = (isset($_GET['pID'])) ? 'Update' : 'Insert';
 
-echo HTML::form('new_product', $CLICSHOPPING_Products->link('Products&' . $form_action . '&cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID'] : '')), 'post', 'enctype="multipart/form-data" id="new_product"');
+echo HTML::form('new_product', $CLICSHOPPING_Products->link('Products&' . $form_action . '&cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID'] : '')), 'post', 'enctype="multipart/form-data" id="form"');
 
 echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
 ?>
