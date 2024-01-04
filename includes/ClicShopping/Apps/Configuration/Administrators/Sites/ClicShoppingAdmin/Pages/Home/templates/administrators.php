@@ -23,7 +23,8 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', ['id',
   'user_name',
   'name',
   'first_name',
-  'access'
+  'access',
+  'status'
 ],
   null,
   'user_name'
@@ -62,6 +63,7 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', ['id',
       <th
         data-field="administrator"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_administrators'); ?></th>
       <th data-field="user"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_user'); ?></th>
+      <th data-field="status"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_status'); ?></th>
       <th data-field="right"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_right'); ?></th>
       <th data-field="action" data-switchable="false"
           class="text-end"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_action'); ?></th>
@@ -77,6 +79,15 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', ['id',
     <tr>
       <td><?php echo $Qadmin->value('user_name'); ?></td>
       <td><?php echo $Qadmin->value('first_name') . ' ' . $Qadmin->value('name'); ?></td>
+      <td class="text-center">
+        <?php
+        if ($Qadmin->valueInt('status') == 1) {
+          echo '<a href="' . $CLICSHOPPING_Administrators->link('Administrators&SetFlag&flag=0&id=' . $Qadmin->valueInt('id')) . '"><i class="bi-check text-success"></i></a>';
+        } else {
+          echo '<a href="' . $CLICSHOPPING_Administrators->link('Administrators&SetFlag&flag=1&id=' . $Qadmin->valueInt('id')) . '"><i class="bi bi-x text-danger"></i></a>';
+        }
+        ?>
+      </td>
       <td>
         <?php
         $access = $Qadmin->value('access');

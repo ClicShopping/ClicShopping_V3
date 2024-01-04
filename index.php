@@ -27,7 +27,7 @@ if (!CLICSHOPPING::configExists('db_server') || (\strlen(CLICSHOPPING::getConfig
     $realDirPath = realpath(__DIR__);
     $suffix = str_replace($realDocRoot, '', $realDirPath);
     $prefix = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
-    $folderUrl = $prefix . $_SERVER['HTTP_HOST'] . $suffix . '/install';
+    $folderUrl = $prefix . $_SERVER['HTTP_HOST'] . $suffix . '/install/index.php';
 
     header('Location:' . $folderUrl);
     exit;

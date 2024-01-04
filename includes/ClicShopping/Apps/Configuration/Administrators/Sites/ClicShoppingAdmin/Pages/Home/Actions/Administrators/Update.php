@@ -59,10 +59,12 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
       $_SESSION['admin']['access'] = $access;
     }
 
-    $sql_array = ['user_name' => $username,
+    $sql_array = [
+      'user_name' => $username,
       'name' => $name,
       'first_name' => $first_name,
-      'access' => $access
+      'access' => $access,
+      'last_modified' => 'now()'
     ];
 
     $this->app->db->save('administrators', $sql_array, ['id' => (int)$_GET['aID']]);

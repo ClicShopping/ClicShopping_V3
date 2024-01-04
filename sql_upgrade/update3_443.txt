@@ -1,0 +1,3 @@
+ALTER TABLE `clic_administrators` ADD `status` TINYINT(1) NOT NULL DEFAULT '1' AFTER `double_authentification_secret`;
+ALTER TABLE `clic_administrators` ADD `date_added` datetime NOT NULL AFTER `status`;
+ALTER TABLE `clic_administrators` ADD `last_modified` datetime NULL AFTER `date_added`;

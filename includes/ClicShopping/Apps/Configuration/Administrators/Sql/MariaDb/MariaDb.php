@@ -89,7 +89,11 @@ CREATE TABLE :table_administrators (
   user_password varchar(255) NOT NULL,
   name varchar(255) NOT NULL,
   first_name varchar(255) NOT NULL,
-  access tinyint(1) NOT NULL default(0)
+  access tinyint(1) NOT NULL default(0),
+  double_authentification_secret varchar(255) null,
+  status tinyint(1) NOT NULL default(1),
+  date_added datetime not null,
+  lat_modified datetime   
   PRIMARY KEY id
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;

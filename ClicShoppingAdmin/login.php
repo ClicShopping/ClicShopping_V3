@@ -63,27 +63,29 @@ if (!\is_null($action)) {
           'name',
           'first_name',
           'access',
-          'double_authentification_secret'
+          'double_authentification_secret',
+          'status'
         ];
 
-        $Qcheck = $CLICSHOPPING_Db->get('administrators', $sql_array, ['user_name' => $username]);
+        $Qcheck = $CLICSHOPPING_Db->get('administrators', $sql_array, ['user_name' => $username, 'status' => 1]);
 
         if ($Qcheck->fetch()) {
           if (Hash::verify($password, $Qcheck->value('user_password'))) {
-
             $sql_array = [
               'id',
               'username',
               'access',
-              'double_authentification_secret'
+              'double_authentification_secret',
+              'status'
             ];
 
-            $Qcheck = $CLICSHOPPING_Db->get('administrators', 'double_authentification_secret', ['user_name' => $username]);
+            $Qcheck = $CLICSHOPPING_Db->get('administrators', 'double_authentification_secret', ['user_name' => $username, 'status' => 1]);
 
             $_SESSION['adminAuth'] = [
               'id' => $Qcheck->valueInt('id'),
               'username' => $Qcheck->value('user_name'),
-              'access' => $Qcheck->value('access')
+              'access' => $Qcheck->value('access'),
+              'status' => $Qcheck->value('status')
             ];
 
             $CLICSHOPPING_ActionRecorder->_user_id = $_SESSION['adminAuth']['id'];
@@ -132,14 +134,15 @@ if (!\is_null($action)) {
                   'user_password',
                 ];
 
-                $Qadmin = $CLICSHOPPING_Db->get('administrators', $sql_array, ['user_name' => $username]);
+                $Qadmin = $CLICSHOPPING_Db->get('administrators', $sql_array, ['user_name' => $username, 'status' => 1]);
 
                 if ($Qadmin->fetch() !== false) {
                   if (Hash::verify($password, $Qadmin->value('user_password'))) {
                     $_SESSION['admin'] = [
                       'id' => $Qadmin->valueInt('id'),
                       'username' => $Qadmin->value('user_name'),
-                      'access' => $Qadmin->value('access')
+                      'access' => $Qadmin->value('access'),
+                      'status' => $Qadmin->value('status'),
                     ];
 
                     if (isset($_SESSION['redirect_origin'])) {
@@ -214,17 +217,19 @@ if (!\is_null($action)) {
             'user_password',
             'name',
             'first_name',
-            'access'
+            'access',
+            'status'
           ];
 
-          $Qadmin = $CLICSHOPPING_Db->get('administrators', $sql_array, ['user_name' => $username]);
+          $Qadmin = $CLICSHOPPING_Db->get('administrators', $sql_array, ['user_name' => $username, 'status' => 1]);
 
           if ($Qadmin->fetch() !== false) {
             if (Hash::verify($password, $Qadmin->value('user_password'))) {
               $_SESSION['admin'] = [
                 'id' => $Qadmin->valueInt('id'),
                 'username' => $Qadmin->value('user_name'),
-                'access' => $Qadmin->value('access')
+                'access' => $Qadmin->value('access'),
+                'status' => $Qadmin->value('status')
               ];
 
               $CLICSHOPPING_ActionRecorder->_user_id = $_SESSION['admin']['id'];

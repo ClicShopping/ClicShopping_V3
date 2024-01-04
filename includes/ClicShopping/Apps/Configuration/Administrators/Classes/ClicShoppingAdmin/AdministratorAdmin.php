@@ -17,6 +17,25 @@ use ClicShopping\OM\Registry;
 class AdministratorAdmin
 {
   /**
+   * @param int $id
+   * @return string
+   */
+  public static function getconsultantNameById(int $id): string
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qname = $CLICSHOPPING_Db->prepare('select name,
+                                               first_name
+                                        from :table_administrators
+                                        where id = :id
+                                        ');
+    $Qname->bindint(':id', $id);
+    $Qname->execute();
+
+    return $Qname->value('first_name') . ' ' . $Qname->value('name');
+  }
+
+  /**
    * get the user administrator
    * @return string
    */

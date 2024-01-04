@@ -1,4 +1,4 @@
-cfg_sec_dir_permissions_status_title = StatuT
+cfg_sec_dir_permissions_status_title = Statut
 cfg_sec_dir_permissions_status_description = Sélectionnez True our activer ce module
 
 cfg_sec_dir_permissions_status_true = True

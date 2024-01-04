@@ -44,7 +44,8 @@ icon_delete = Supprimer
 table_heading_administrators = Pseudonymes
 table_heading_user = Utilisateurs
 table_heading_action = Action
-table_heading_right = Droits Utilisateurs
+table_heading_right = Droit Utilisateurs
+table_heading_status = statut
 
 text_info_name = Nom
 text_info_firstname = Prénom
@@ -62,6 +63,7 @@ icon_edit_user = Editer l'utilisateur
 
 error_administrator_exists = Erreur : L'administrateur existe déjà.
 error_administrator_select = Veuillez sélectionner un droit administrateur
+success_status_updated = Le statut à été mis à jour
 
 text_no_secured = Non sécurisé
 text_secured = Sécurisé

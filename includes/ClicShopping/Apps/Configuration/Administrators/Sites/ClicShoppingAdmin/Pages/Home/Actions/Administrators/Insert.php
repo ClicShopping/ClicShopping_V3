@@ -48,7 +48,8 @@ class Insert extends \ClicShopping\OM\PagesActionsAbstract
             'user_password' => Hash::encrypt($password),
             'name' => $name,
             'first_name' => $first_name,
-            'access' => $access
+            'access' => $access,
+            'date_added' => 'now()'
           ]
         );
       }

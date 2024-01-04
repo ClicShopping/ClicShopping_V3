@@ -45,6 +45,7 @@ table_heading_administrators = User name
 table_heading_user = Users
 table_heading_action = Action
 table_heading_right = Users Right
+table_heading_status = Status
 
 text_info_name = Name
 text_info_firstname = First Name
@@ -62,6 +63,7 @@ icon_edit_user = Edit user
 
 error_administrator_exists = Error: Administrator already exists
 error_administrator_select = please select an administrator right
+success_status_updated = Status updated
 
 text_no_secured = No secured
 text_secured = Secured

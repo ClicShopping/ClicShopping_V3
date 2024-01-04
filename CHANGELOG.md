@@ -4,7 +4,7 @@ librairies updated
 Add status for administror menu
 fix some small bugs
 Librairies updated
-
+add status for administrators
 
 --------------------
 version 3.442
