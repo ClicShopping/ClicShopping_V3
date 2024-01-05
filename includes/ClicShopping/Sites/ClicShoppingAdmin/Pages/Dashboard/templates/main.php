@@ -131,9 +131,7 @@ if (\defined('MODULE_ADMIN_DASHBOARD_INSTALLED') && !\is_null(MODULE_ADMIN_DASHB
           <div class="mainTitle"><?php echo CLICSHOPPING::getDef('heading_title_divers'); ?></div>
           <div class="adminformTitle backgroundBlank">
             <div id="tab1Content"></div>
-<?php
-echo $CLICSHOPPING_Hooks->output('StatsDashboard', 'PageTabContent', null, 'display');
-?>
+            <?php echo $CLICSHOPPING_Hooks->output('StatsDashboard', 'PageTabContent', null, 'display'); ?>
           </div>
         </div>
         <!-- ------------------------------------------------------------ //-->

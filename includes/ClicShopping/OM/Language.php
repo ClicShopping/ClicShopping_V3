@@ -572,7 +572,7 @@ class Language
   }
 
   /**
-   * Display the diffrent language under text
+   * Display the different language under text
    *
    * @param string
    * @return string $languages_string, flag language
