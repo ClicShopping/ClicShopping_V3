@@ -1,6 +1,12 @@
 --------------------
+version 3.444
+
+
+
+
+
+--------------------
 version 3.443
-librairies updated
 Add status for administror menu
 fix some small bugs
 Librairies updated
