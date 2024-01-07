@@ -12,10 +12,36 @@ namespace ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdm
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
+use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 
 class AdministratorAdmin
 {
+  public static function checkUserAccess(): void
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+    $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+
+    if (isset($_SESSION['admin']['id'], $_SESSION['admin']['access'])) {
+      $Qcheck = $CLICSHOPPING_Db->prepare('select id
+                                          from :table_administrators
+                                          where id = :id
+                                          and access = :access
+                                          ');
+      $Qcheck->bindint(':id', $_SESSION['admin']['id']);
+      $Qcheck->bindint(':access', 1);
+      $Qcheck->execute();
+
+      if ($Qcheck->fetch() === false) {
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('no_access_warning'), 'warning');
+        HTTP::redirect('index.php');
+      }
+    } else {
+      $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('no_access_warning'), 'warning');
+      HTTP::redirect('index.php');
+    }
+  }
+
   /**
    * @param int $id
    * @return string
@@ -129,7 +155,7 @@ class AdministratorAdmin
   }
 
   /**
-   * get the administrator menu right right
+   * get the administrator menu right
    * @param string $default , default menu right
    * @return array $administrator_right_array , menu right selected
    */

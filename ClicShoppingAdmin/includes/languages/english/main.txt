@@ -476,3 +476,4 @@ error_phpmailer = If you have this message : escapeshellcmd() has been disabled 
 Message could not be sent. Mailer Error:  {{phpmailer_error}}
 
 text_warning_group = Please update our customers group to see this module inside the catalog
+no_access_warning = You do not have access at this fonctionnality.

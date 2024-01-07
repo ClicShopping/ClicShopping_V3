@@ -10,6 +10,7 @@
 
 namespace ClicShopping\Apps\Tools\ModulesHooks\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 use ClicShopping\OM\Registry;
 
 class Configure extends \ClicShopping\OM\PagesActionsAbstract
@@ -17,6 +18,8 @@ class Configure extends \ClicShopping\OM\PagesActionsAbstract
   public function execute()
   {
     $CLICSHOPPING_ModulesHooks = Registry::get('ModulesHooks');
+
+    AdministratorAdmin::checkUserAccess();
 
     $this->page->setFile('configure.php');
     $this->page->data['action'] = 'Configure';

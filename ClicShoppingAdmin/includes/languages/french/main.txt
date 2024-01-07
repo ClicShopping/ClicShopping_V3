@@ -468,3 +468,6 @@ button_continue = Continuer
 
 error_phpmailer = Si vous avez ce message : escapeshellcmd() has been disabled for security reasons, vous devez configurer votre  smtp dans l'administration et ne pas utiliser sendmail par défaut<br />
 Message could not be sent. Mailer Error:  {{phpmailer_error}}
+
+text_warning_group = Veuillez mettre à jour vos groupes clients pour voir ce module dans le catalogue ou le supprimer
+no_access_warning = Vous n'avez pas accés à cette fonctionnalité.

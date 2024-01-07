@@ -11,12 +11,15 @@
 namespace ClicShopping\Apps\Customers\Members\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
 use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
 class Configure extends \ClicShopping\OM\PagesActionsAbstract
 {
   public function execute()
   {
     $CLICSHOPPING_Members = Registry::get('Members');
+
+    AdministratorAdmin::checkUserAccess();
 
     $this->page->setFile('configure.php');
     $this->page->data['action'] = 'Configure';

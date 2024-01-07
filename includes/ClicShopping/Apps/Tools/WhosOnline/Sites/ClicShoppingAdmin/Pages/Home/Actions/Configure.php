@@ -11,12 +11,15 @@
 namespace ClicShopping\Apps\Tools\WhosOnline\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
 use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
 class Configure extends \ClicShopping\OM\PagesActionsAbstract
 {
   public function execute()
   {
     $CLICSHOPPING_WhosOnline = Registry::get('WhosOnline');
+
+    AdministratorAdmin::checkUserAccess();
 
     $this->page->setFile('configure.php');
     $this->page->data['action'] = 'Configure';

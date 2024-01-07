@@ -10,6 +10,7 @@
 
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
 $CLICSHOPPING_Archive = Registry::get('Archive');
 $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -24,6 +25,8 @@ $CLICSHOPPING_Archive_Config = Registry::get('ArchiveAdminConfig' . $current_mod
 if ($CLICSHOPPING_MessageStack->exists('main')) {
   echo $CLICSHOPPING_MessageStack->get('main');
 }
+
+    AdministratorAdmin::checkUserAccess();
 ?>
 <div class="contentBody">
   <div class="row">

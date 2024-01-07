@@ -1,7 +1,8 @@
 --------------------
 version 3.444
-
-
+Librairies updated
+Add new security access to configure.php for Admin
+Small bugs
 
 
 
