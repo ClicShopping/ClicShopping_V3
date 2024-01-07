@@ -5,8 +5,8 @@ text_seo_page_keywords_question = Give me without the prompt, 7 keywords tag sep
 text_seo_page_summary_description_question = Give me, without the prompt, in less 50 words a very short description about this product :
 text_seo_page_translate_language = Could you remove the prompt response, the question and remove everything before the response: I need only the result about the question below. Can you translate in
 
-text_question_description = Write me a long description without the prompt concerning this product :
-text_technical_question = then created me a new paragraph with Bullets points in HTML concerning the technical characteristics
+text_question_description = Write me a long description without the prompt and
+text_technical_question = created me a new paragraph with Bullets points in HTML concerning the technical characteristics concerning this product :
 
 tab_gpt_options = ChatGpt Options
 text_gpt_options = ChatGpt Options

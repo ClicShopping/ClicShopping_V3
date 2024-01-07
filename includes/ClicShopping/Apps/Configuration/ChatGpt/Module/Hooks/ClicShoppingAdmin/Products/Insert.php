@@ -82,7 +82,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
             $question_description = $this->app->getDef('text_question_description');
             $technical_question = $this->app->getDef('text_technical_question');
 
-            $products_description = $translate_language . ' ' . $language_name . ' : ' . $question_description . ' ' . $product_name . ' ' . $technical_question;
+            $products_description = $translate_language . ' ' . $language_name . ' : ' . $question_description . ' ' . $technical_question . ' ' . $product_name ;
             $products_description = ChatGptAdmin35::getGptResponse($products_description);
 
             if ($products_description !== false) {
