@@ -568,8 +568,8 @@ INSERT INTO administrator_menu_description VALUES(794, 'Gpt', 1);
 INSERT INTO administrator_menu_description VALUES(794, 'Gpt', 2);
 INSERT INTO administrator_menu_description VALUES(795, 'Products no purchased', 1);
 INSERT INTO administrator_menu_description VALUES(795, 'Produits non achetés', 2);
+INSERT INTO administrator_menu_description VALUES(796, 'Shipping by item', 1);
 INSERT INTO administrator_menu_description VALUES(796, 'Expédition par produit', 2);
-INSERT INTO administrator_menu_description VALUES(796, 'Customers recommendations', 1);
 INSERT INTO administrator_menu_description VALUES(797, 'Customers recommendations', 1);
 INSERT INTO administrator_menu_description VALUES(797, 'Recommandations clients', 2);
 INSERT INTO administrator_menu_description VALUES(798, 'Customers recommendations', 1);
@@ -584,7 +584,6 @@ INSERT INTO administrator_menu_description VALUES(802, 'Reviews sentiment', 1);
 INSERT INTO administrator_menu_description VALUES(802, 'Sentiments commentaires', 2);
 INSERT INTO administrator_menu_description VALUES(803, 'Products Reviews Vote', 1);
 INSERT INTO administrator_menu_description VALUES(803, 'Vote commentaires produits', 2);
-
 
 
 INSERT INTO api VALUES(1, 'Default', 'd0a36b839700b60727fe13998e22aa0af197c61d8b371e26114c133ca51c4864bd0da73ad6d1e5090b02b55cff42b8a0cd23866e64e78fc8884eb6228d32f5e9d76bed468869dd89ee6bb8a3208c5077e88560d0bc238f67cfc732efcf5313a0cb361e297c29c8d82d050d770ed7dee972af6445e801fa9af12e3d478bf5346a', 0, '2022-09-18 14:25:54', '2022-09-18 14:25:54', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
