@@ -1,4 +1,8 @@
 --------------------
+version 3.445
+
+
+--------------------
 version 3.444
 Librairies updated
 Add new security access to configure.php for Admin
