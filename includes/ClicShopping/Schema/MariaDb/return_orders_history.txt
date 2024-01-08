@@ -1,10 +1,10 @@
-return_history_id int not null,
-return_id int not null,
-return_status_id int not null,
-notify tinyint(1) not null,
-comment text not null,
-date_added datetime not null,
-admin_user_name varchar(64) default NULL
+return_history_id int not_null,
+return_id int not_null,
+return_status_id int not_null,
+notify tinyint(1) not_null,
+comment text not_null,
+date_added datetime not_null,
+admin_user_name varchar(64) default null
 
 --
 primary return_history_id

@@ -1,6 +1,6 @@
-return_reason_id int not null,
-language_id int not null default (0),
-name varchar(128) not null
+return_reason_id int not_null,
+language_id int default(0) not_null,
+name varchar(128) not_null
 --
 primary return_reason_id
 idx_return_reason_id language_id

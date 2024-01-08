@@ -1,5 +1,5 @@
 pages_id int(11) not_null auto_increment
-links_target varchar(6) default('_self') not null
+links_target varchar(6) default('_self')
 sort_order int(3)
 status int(1) default(1) not_null
 page_type int(1) default(0) not_null

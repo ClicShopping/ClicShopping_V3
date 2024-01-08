@@ -3,11 +3,11 @@ user_name varchar(255) not_null
 user_password varchar(255) not_null
 name varchar(255) not_null
 first_name varchar(255) not_null
-access tinyint(1) not null default (0)
+access tinyint(1) default(0) not_null
 double_authentification_secret varchar(255) null
-status tinyint(1) NOT NULL default (1)
+status tinyint(1) default(1) not_null
 date_added datetime not_null
-last_modified datetime NULL
+last_modified datetime null
 --
 primary id
 ##

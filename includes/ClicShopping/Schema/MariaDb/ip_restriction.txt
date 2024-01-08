@@ -1,5 +1,5 @@
 id int not_null auto_increment
-ip_restriction varchar(64) not null
+ip_restriction varchar(64) not_null
 ip_comment varchar(255) null default null
 ip_status_shop tinyint(1) default(0) not_null
 ip_status_admin tinyint(1) default(0) not_null

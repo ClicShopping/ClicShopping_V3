@@ -1,7 +1,7 @@
-suppliers_id int default(0) not null
-languages_id int default(0) not null
+suppliers_id int default(0) not_null
+languages_id int default(0) not_null
 suppliers_url varchar(255)
-url_clicked int(5) default(0) not null
+url_clicked int(5) default(0) not_null
 date_last_click datetime
 --
 primary suppliers_id languages_id

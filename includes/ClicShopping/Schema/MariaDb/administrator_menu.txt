@@ -6,7 +6,7 @@ access tinyint(1) not null default (0)
 image varchar(255) default null
 b2b_menu tinyint(1) default(0) not_null
 app_code varchar(255) default null
-status tinyint(1) default(1) not null
+status tinyint(1) default(1)
 --
 primary id
 idx_categories_parent_id parent_id
