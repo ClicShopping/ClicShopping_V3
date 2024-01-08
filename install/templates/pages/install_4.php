@@ -59,16 +59,20 @@ if (!empty($_POST['CFG_ADMINISTRATOR_USERNAME'])) {
   $Qcheck->execute();
 
   if ($Qcheck->fetch() !== false) {
-    $CLICSHOPPING_Db->save('administrators', ['user_password' => Hash::encrypt(trim($_POST['CFG_ADMINISTRATOR_PASSWORD']))],
-      ['user_name' => $_POST['CFG_ADMINISTRATOR_USERNAME']]
-    );
+    $sql_array = [
+      'user_password' => Hash::encrypt(trim($_POST['CFG_ADMINISTRATOR_PASSWORD'])),
+      'date_added' => 'now()'
+    ];
+
+    $CLICSHOPPING_Db->save('administrators', $sql_array, ['user_name' => $_POST['CFG_ADMINISTRATOR_USERNAME']]);
   } else {
     $update_array = [
       'user_name' => $_POST['CFG_ADMINISTRATOR_USERNAME'],
       'user_password' => Hash::encrypt(trim($_POST['CFG_ADMINISTRATOR_PASSWORD'])),
       'name' => HTML::sanitize($_POST['CFG_ADMINISTRATOR_NAME']),
       'first_name' => HTML::sanitize($_POST['CFG_ADMINISTRATOR_FIRSTNAME']),
-      'access' => '1'
+      'access' => '1',
+      'date_added' => 'now()'
     ];
 
     $CLICSHOPPING_Db->save('administrators', $update_array);

@@ -1,6 +1,7 @@
 --------------------
 version 3.445
 fix db errors
+fix install configuration
 
 --------------------
 version 3.444
