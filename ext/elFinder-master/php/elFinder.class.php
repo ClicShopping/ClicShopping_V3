@@ -2,7 +2,7 @@
 
 /**
  * elFinder - file manager for web.
- * includes class.
+ * Core class.
  *
  * @package elfinder
  * @author  Dmitry (dio) Levashov
@@ -32,7 +32,7 @@ class elFinder
      *
      * @var integer
      */
-    protected static $ApiRevision = 62;
+    protected static $ApiRevision = 65;
 
     /**
      * Storages (root dirs)
@@ -2082,7 +2082,7 @@ class elFinder
         }
 
         if ($args['cpath'] && $args['reqid']) {
-            setcookie('elfdl' . $args['reqid'], '1', 0, urlencode($args['cpath']));
+            setcookie('elfdl' . $args['reqid'], '1', 0, $args['cpath']);
         }
 
         $result = array(

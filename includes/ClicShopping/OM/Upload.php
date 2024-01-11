@@ -132,7 +132,7 @@ class Upload
     if ($this->_replace === true) {
       while (file_exists($this->_destination . '/' . $this->getFilename())) {
 
-        $salt = md5(int(rand(1, 100000)));
+        $salt = md5(rand(1, 100000));
         $salt = substr($salt, 0, 10);
 
         $this->setFilename($salt . '_' . $this->getFilename());

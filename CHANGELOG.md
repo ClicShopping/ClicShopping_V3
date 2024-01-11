@@ -1,5 +1,7 @@
 --------------------
 version 3.446
+elfinder updated
+bootstrap-table updated
 
 
 --------------------
