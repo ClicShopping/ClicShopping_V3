@@ -58,7 +58,7 @@ if (isset($_POST['search'])) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <!-- //################################################################################################################ -->
   <!-- //                                             LISTING DES produits                                      -->
   <!-- //################################################################################################################ -->
@@ -186,7 +186,7 @@ if (isset($_POST['search'])) {
     </tbody>
   </table>
   </form>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div

@@ -57,17 +57,17 @@ if (isset($_GET['cPath'])) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Products->getDef('text_info_heading_delete_product'); ?></strong></div>
   <?php echo HTML::form('products', $CLICSHOPPING_Products->link('Products&DeleteConfirm&&cPath=' . $cPath)) . HTML::hiddenField('products_id', $pInfo->products_id); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_delete_products_intro'); ?><br/><br/></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_delete_products_info'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-sm-2"><?php echo '<strong>' . $pInfo->products_name . '</strong>'; ?></span>
       </div>
@@ -89,11 +89,11 @@ if (isset($_GET['cPath'])) {
       $product_categories_string = substr($product_categories_string, 0, -4);
 
       ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-sm-4"><br/><?php echo $product_categories_string; ?></span>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Products->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSHOPPING_Products->link('Products&cPath=' . $cPath . '&pID=' . $pInfo->products_id), 'warning', null, 'sm'); ?></span>
       </div>

@@ -204,7 +204,7 @@ echo HTML::button($CLICSHOPPING_Customers->getDef('button_update'), null, null, 
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($error === true) {
     ?>
@@ -415,7 +415,7 @@ echo HTML::button($CLICSHOPPING_Customers->getDef('button_update'), null, null, 
           </div>
         </div>
 
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('entry_street_address'); ?></div>
         <div class="adminformTitle">
 
@@ -575,7 +575,7 @@ echo HTML::button($CLICSHOPPING_Customers->getDef('button_update'), null, null, 
           </div>
         </div>
 
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('text_newsletter'); ?></div>
         <div class="adminformTitle">
           <div class="row">
@@ -617,7 +617,7 @@ echo HTML::button($CLICSHOPPING_Customers->getDef('button_update'), null, null, 
             </div>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
 
         <div class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('text_customer_info'); ?></div>
         <div class="adminformTitle">
@@ -788,10 +788,10 @@ echo HTML::hiddenField('customers_modify_company');
             ?>
           </div>
           <div id="tab2Content"></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') . '"></i></h4> ' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_tva_customers'); ?></div>
           </div>
         </div>
@@ -800,7 +800,7 @@ echo HTML::hiddenField('customers_modify_company');
         ?>
         <div class="alert alert-info">
           <div><?php echo '<h4><i class="bi bi-warning" title="' . $CLICSHOPPING_Customers->getDef('title_help_company_warning') . '"></i></h4> ' . $CLICSHOPPING_Customers->getDef('title_help_company_warning') ?></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div><?php echo $CLICSHOPPING_Customers->getDef('text_help_compaby_warning'); ?></div>
         </div>
         <?php
@@ -831,7 +831,7 @@ echo HTML::hiddenField('customers_modify_company');
             </div>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <?php
         $number_address = '1';
 
@@ -1015,7 +1015,7 @@ echo HTML::checkboxField('customers_modify_address_default', '1', $cInfo->custom
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <?php
             $number_address = $number_address + 1;
           }
@@ -1024,7 +1024,7 @@ echo HTML::checkboxField('customers_modify_address_default', '1', $cInfo->custom
         <div id="tab3Content"></div>
         <div class="alert alert-info">
           <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Customers->getDef('title_help_customers_image') . '"></i></h4> ' . $CLICSHOPPING_Customers->getDef('title_help_customers_image') ?></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_customers_default_address'); ?></div>
         </div>
       </div>
@@ -1050,7 +1050,7 @@ echo HTML::checkboxField('customers_modify_address_default', '1', $cInfo->custom
             </div>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('customers_note_summary'); ?></div>
         <div class="adminformTitle">
           <div class="row">
@@ -1075,7 +1075,7 @@ echo HTML::checkboxField('customers_modify_address_default', '1', $cInfo->custom
               <div class="col-md-12">
                 <span><blockquote><?php echo $QcustomersNotes->value('customers_notes'); ?></blockquote></span>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <?php
             }
             ?>

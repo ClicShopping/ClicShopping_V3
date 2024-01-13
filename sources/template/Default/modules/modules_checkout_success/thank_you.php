@@ -12,13 +12,13 @@ use ClicShopping\OM\CLICSHOPPING;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="card">
     <div class="card-header"><?php echo CLICSHOPPING::getDef('module_checkout_success_text_success'); ?></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12">
       <div><?php echo CLICSHOPPING::getDef('module_checkout_success_text_thanks_for_shopping', ['store_name' => STORE_NAME]); ?></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="hr"></div>
       <div class="m-4 ClicShoppingCheckoutSuccessText">
         <span><?php echo $text_info; ?></span>
@@ -27,5 +27,5 @@ use ClicShopping\OM\CLICSHOPPING;
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 </div>

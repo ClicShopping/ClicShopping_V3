@@ -16,7 +16,7 @@ $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
 $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 ?>
 
-<div class="separator"></div>
+<div class="mt-1"></div>
 <div class="contentContainer">
   <div class="contentText">
 
@@ -24,7 +24,7 @@ $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
     if (\defined('MODULE_HEADER_BREADCRUMP_STATUS')) {
       if (MODULE_HEADER_BREADCRUMP_STATUS == 'False' || empty(ClicShopping::getDef('module_header_breadcrump_title'))) {
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12 breadcrumb">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -49,7 +49,7 @@ $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
       }
     } else {
       ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 breadcrumb">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">

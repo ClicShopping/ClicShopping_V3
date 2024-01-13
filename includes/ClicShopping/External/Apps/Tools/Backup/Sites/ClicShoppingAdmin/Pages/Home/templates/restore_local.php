@@ -58,17 +58,17 @@ if (isset($_GET['file'])) {
   <?php
   if (!is_file($backup_directory . !isset($_GET['file']))) {
     ?>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12 mainTitle">
       <strong><?php echo $CLICSHOPPING_Backup->getDef('text_info_hadingg_restore_local'); ?></strong></div>
     <?php echo HTML::form('restore', $CLICSHOPPING_Backup->link('Backup&RestoreLocalNow'), 'post', 'enctype="multipart/form-data"'); ?>
     <div class="adminformTitle">
       <div class="row">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div
           class="col-md-12"><?php echo $CLICSHOPPING_Backup->getDef('text_info_restore_local') . '<br /><br />' . $CLICSHOPPING_Backup->getDef('text_info_best_through_https'); ?>
           <br/><br/></div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12"><?php echo '<br />' . HTML::fileField('sql_file'); ?><br/><br/></div>
         <div class="col-md-12 text-center">
           <span><br/><?php echo HTML::button($CLICSHOPPING_Backup->getDef('button_restore'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Backup->getDef('button_cancel'), null, $CLICSHOPPING_Backup->link('Backup'), 'warning', null, 'sm'); ?></span>

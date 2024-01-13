@@ -25,7 +25,7 @@ if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 't
   $QaccountGroup->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID());
   $QaccountGroup->execute();
   ?>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="form-group row">

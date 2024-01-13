@@ -56,28 +56,28 @@ if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Products->getDef('text_info_heading_move_product'); ?></strong></div>
   <?php echo HTML::form('products', $CLICSHOPPING_Products->link('Products&MoveConfirm&cPath=' . $cPath)) . HTML::hiddenField('products_id', $pInfo->products_id); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div
         class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_move_products_intro', ['products_name' => $pInfo->products_name]); ?>
         <br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-sm-2"><?php echo $CLICSHOPPING_Products->getDef('text_info_current_categories'); ?></span>
         <span
           class="col-sm-10"><strong><?php echo $CLICSHOPPING_CategoriesAdmin->getOutputGeneratedCategoryPath($pInfo->products_id, 'product'); ?> </strong></span>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span
           class="col-sm-4"><br/><?php echo $CLICSHOPPING_Products->getDef('text_move', ['products_name' => $pInfo->products_name]) . '<br />' . HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $cPath); ?></span>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Products->getDef('button_move'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSHOPPING_Products->link('Products&cPath=' . $cPath . '&pID=' . $pInfo->products_id), 'warning', null, 'sm'); ?></span>
       </div>

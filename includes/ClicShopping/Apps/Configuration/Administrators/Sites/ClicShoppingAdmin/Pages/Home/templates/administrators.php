@@ -46,7 +46,7 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', ['id',
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <table
     id="table"
     data-toggle="table"

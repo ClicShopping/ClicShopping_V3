@@ -44,17 +44,17 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_heading_delete_products_length'); ?></strong>
   </div>
   <?php echo HTML::form('delete', $CLICSHOPPING_ProductsLength->link('ProductsLength&ClassDeleteConfirm&page=' . $page . '&wID=' . $wInfo->products_length_class_from_id . '&tID=' . $wInfo->products_length_class_to_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_delete_info'); ?><br/><br/>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div
         class="col-md-12"><?php echo '<strong>' . $CLICSHOPPING_ProductsLength->getDef('text_products_length_rules') . ' ' . $wInfo->products_length_class_rule . '</strong>'; ?>
         <br/><br/></div>

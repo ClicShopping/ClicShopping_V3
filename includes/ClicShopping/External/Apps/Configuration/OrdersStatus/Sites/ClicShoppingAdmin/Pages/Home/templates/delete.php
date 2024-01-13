@@ -66,9 +66,9 @@ if ($oID == DEFAULT_ORDERS_STATUS_ID) {
   <?php echo HTML::form('status', $CLICSHOPPING_OrdersStatus->link('OrdersStatus&DeleteConfirm&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->orders_status_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_info_delete_info'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo '<strong>' . $oInfo->orders_status_name . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-center">
         <?php

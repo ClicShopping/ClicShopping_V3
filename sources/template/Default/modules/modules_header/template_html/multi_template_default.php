@@ -14,7 +14,7 @@ use ClicShopping\OM\HTML;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="row">
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <span class="col-md-4 headerMultiTemplateDefaultLogo"><?php echo $logo_header; ?><br/><br/></span>
     <span class="col-md-8">
       <span class="text-end headerMultiTemplateDefaultTitle">
@@ -33,7 +33,7 @@ use ClicShopping\OM\HTML;
                 </div>
                 <div class="modal-body text-center">
                   <?php echo $form; ?>
-                  <div class="separator"></div>
+                  <div class="mt-1"></div>
                   <div class="row">
                     <div class="col-md-12">
                       <label for="inputAddressEmailLogin" class="visually-hidden"></label>
@@ -52,7 +52,7 @@ use ClicShopping\OM\HTML;
                         class="col-md-9 float-end"><?php echo HTML::inputField('password', null, 'id="current-password" autocomplete="current-password" aria-describedby="' . CLICSHOPPING::getDef('modules_header_multi_template_account_password') . '" placeholder="' . CLICSHOPPING::getDef('modules_header_multi_template_account_password') . '"', 'password'); ?></span>
                     </div>
                   </div>
-                  <div class="separator"></div>
+                  <div class="mt-1"></div>
                   <div>
                     <span
                       class="headerMultiTemplateDefaultPassword col-md-6"><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&PasswordForgotten'), CLICSHOPPING::getDef('modules_header_multi_template_password_forgotten')); ?></span>

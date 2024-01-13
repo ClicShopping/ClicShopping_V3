@@ -107,7 +107,7 @@ if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShop
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="card card-block headerCard">
@@ -117,7 +117,7 @@ if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShop
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($current_category_id == 0) {
     ?>
@@ -283,7 +283,7 @@ if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShop
   <?php
   if (empty($cPath)) {
     ?>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="alert alert-info text-center" role="alert">
       <?php echo $CLICSHOPPING_Products->getDef('text_warning_info_display'); ?>
     </div>

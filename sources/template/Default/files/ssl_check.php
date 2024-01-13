@@ -23,14 +23,14 @@ require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
       <div class="card card-danger">
         <div class="card-header"><?php echo CLICSHOPPING::getDef('box_information_heading'); ?></div>
         <div class="card-block">
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php echo CLICSHOPPING::getDef('box_information'); ?>
         </div>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card card-danger">
         <div class="card-block">
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php echo CLICSHOPPING::getDef('text_information'); ?>
         </div>
       </div>
@@ -40,7 +40,7 @@ require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
       // --- Button  -----
       // ----------------------
       ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="control-group">
         <div>
           <div class="buttonSet">

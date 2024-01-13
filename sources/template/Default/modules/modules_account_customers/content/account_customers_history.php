@@ -14,13 +14,13 @@ use ClicShopping\OM\HTML;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="page-title"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_heading_title'); ?></h3>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12">
     <strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_heading_description'); ?></strong></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div>
     <?php
     if ($ordersTotalRow > 0) {
@@ -36,7 +36,7 @@ use ClicShopping\OM\HTML;
 // --- Display history number   -----
 // ---------------------- --------
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="card">
           <div class="card-header">
             <div class="col-md-12">
@@ -70,12 +70,12 @@ use ClicShopping\OM\HTML;
             </div>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <?php
       }
     } else {
       ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="alert alert-info" role="alert">
         <p><?php echo CLICSHOPPING::getDef('module_account_customers_history_no_purchases'); ?></p>
       </div>
@@ -83,7 +83,7 @@ use ClicShopping\OM\HTML;
     }
     ?>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="clearfix"></div>
   <div class="col-md-12">
     <div

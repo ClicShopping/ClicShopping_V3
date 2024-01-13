@@ -61,7 +61,7 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Suppliers->getDef('
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if (isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID'])) {
     $Qsuppliers = $CLICSHOPPING_Suppliers->db->prepare('select *
@@ -298,15 +298,15 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Suppliers->getDef('
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Suppliers->getDef('title_help_image') . '"></i></h4> ' . $CLICSHOPPING_Suppliers->getDef('title_help_image') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Suppliers->getDef('help_image_suppliers'); ?></div>
           </div>
         </div>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <?php echo $CLICSHOPPING_Hooks->output('Suppliers', 'PageContent', null, 'display'); ?>
     </div>
   </div>

@@ -88,7 +88,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Langues->getDef('text_info_heading_edit_language'); ?></strong></div>
   <?php echo HTML::form('languages', $CLICSHOPPING_Langues->link('Langues&Save&page=' . $page . '&lID=' . $lInfo->languages_id)); ?>
@@ -217,7 +217,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
         <?php
       }
       ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_update'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null, $CLICSHOPPING_Langues->link('Langues&page=' . $page . '&lID=' . $lInfo->languages_id), 'warning', null, 'sm'); ?>
       </div>

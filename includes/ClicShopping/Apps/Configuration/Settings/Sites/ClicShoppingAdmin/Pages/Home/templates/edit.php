@@ -46,7 +46,7 @@ echo HTML::button($CLICSHOPPING_Settings->getDef('button_cancel'), null, $CLICSH
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $Qadmin->value('user_name'); ?></strong></div>
   <div class="adminformTitle">
 

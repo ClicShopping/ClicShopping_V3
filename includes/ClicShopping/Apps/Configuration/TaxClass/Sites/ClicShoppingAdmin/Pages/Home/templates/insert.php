@@ -37,7 +37,7 @@ echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_insert'), null, null, '
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_TaxClass->getDef('text_info_heading_new_tax_class'); ?></strong></div>
   <div class="adminformTitle">

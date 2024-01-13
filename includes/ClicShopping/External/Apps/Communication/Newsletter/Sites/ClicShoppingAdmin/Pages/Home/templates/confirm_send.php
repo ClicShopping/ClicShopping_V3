@@ -61,7 +61,7 @@ $module = new NewsletterModule($nInfo->title, $nInfo->content);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div>&nbsp;</div>
   <div class="text-center"><strong><?php echo $CLICSHOPPING_Newsletter->getDef('text_please_wait'); ?></strong></div>

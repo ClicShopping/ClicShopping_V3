@@ -18,7 +18,7 @@ require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
   <div class="contentContainer">
     <div class="contentText">
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_contact_us'); ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
     </div>
   </div>
 </section>

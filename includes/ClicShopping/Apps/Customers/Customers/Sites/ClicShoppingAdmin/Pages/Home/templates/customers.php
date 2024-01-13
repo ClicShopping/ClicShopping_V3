@@ -65,7 +65,7 @@ if (isset($_GET['search'])) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="card card-block headerCard">
@@ -76,7 +76,7 @@ if (isset($_GET['search'])) {
     </div>
   </div>
 
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <?php
   echo HTML::form('delete_all', $CLICSHOPPING_Customers->link('Customers&DeleteAll&page=' . $page));

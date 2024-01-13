@@ -22,5 +22,5 @@ if (DISPLAY_PAGE_PARSE_TIME == 'true') {
   echo $CLICSHOPPING_LoggerAdmin->timerStop(DISPLAY_PAGE_PARSE_TIME);
   echo '</div>';
   echo '</div>';
-  echo '<div class="separator"></div>';
+  echo '<div class="mt-1"></div>';
 }

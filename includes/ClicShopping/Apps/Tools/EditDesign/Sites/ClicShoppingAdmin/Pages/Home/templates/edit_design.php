@@ -27,7 +27,7 @@ $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="col-md-12">
     <div class="row">
@@ -45,7 +45,7 @@ $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="col-md-12">
     <div class="row">
@@ -107,12 +107,12 @@ $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
     </div>
   </div>
 
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12">
     <div class="row">
       <div class="alert alert-info" role="alert">
         <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_EditDesign->getDef('title_help_edit_html') . '"></i></h4> ' . $CLICSHOPPING_EditDesign->getDef('title_help_edit_html') ?></div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div><?php echo $CLICSHOPPING_EditDesign->getDef('text_help_design'); ?></div>
       </div>
     </div>

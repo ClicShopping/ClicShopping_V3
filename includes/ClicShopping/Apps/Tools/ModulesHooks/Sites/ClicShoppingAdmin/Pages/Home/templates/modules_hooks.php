@@ -99,7 +99,7 @@ foreach (Apps::getModules('Hooks') as $k => $v) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle"></div>
   <table border="0" width="100%" cellspacing="0" cellpadding="2">
     <td>

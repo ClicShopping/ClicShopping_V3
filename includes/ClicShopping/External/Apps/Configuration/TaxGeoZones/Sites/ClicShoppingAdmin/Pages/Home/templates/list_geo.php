@@ -45,7 +45,7 @@ echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, $CLI
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <!-- //################################################################################################################ -->
   <!-- //                                             LISTING                                                            -->
   <!-- //################################################################################################################ -->
@@ -135,7 +135,7 @@ echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, $CLI
     ?>
     </tbody>
   </table>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($listingTotalRow > 0) {
     ?>

@@ -83,7 +83,7 @@ if (\is_array($seoBject)) {
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <!-- ############################################################# //-->
     <!--          ONGLET Information General de la Page Accueil          //-->
     <!-- ############################################################# //-->
@@ -127,7 +127,7 @@ if (\is_array($seoBject)) {
                      target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
 
               <div class="accordion" id="accordionExample">
                 <?php
@@ -164,7 +164,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoDefaultLanguageTitle<?php echo $languages_id; ?>">
                           <div class="col-md-10">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -177,7 +177,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoDefaultDescription<?php echo $languages_id; ?>">
                           <div class="col-md-6">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -191,7 +191,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoDefautLanguageKeywords<?php echo $languages_id; ?>">
                           <div class="col-md-10">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -205,7 +205,7 @@ if (\is_array($seoBject)) {
                             </div>
                           </div>
                         </div>
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoDefautLanguageFooter<?php echo $languages_id; ?>">
                           <div class="col-md-10">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -228,10 +228,10 @@ if (\is_array($seoBject)) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="alert alert-info" role="alert">
               <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
             </div>
           </div>
@@ -252,7 +252,7 @@ if (\is_array($seoBject)) {
                      target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
 
               <div class="accordion" id="accordionExample">
                 <?php
@@ -290,7 +290,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoProductDescription<?php echo $languages_id; ?>">
                           <div class="col-md-6">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -305,7 +305,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoProductDescriptionKeywords<?php echo $languages_id; ?>">
                           <div class="col-md-10">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -327,10 +327,10 @@ if (\is_array($seoBject)) {
                 ?>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="alert alert-info" role="alert">
               <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
             </div>
           </div>
@@ -352,7 +352,7 @@ if (\is_array($seoBject)) {
                      target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
 
               <div class="accordion" id="accordionExample">
                 <?php
@@ -390,7 +390,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoProductNewDescription<?php echo $languages_id; ?>">
                           <div class="col-md-6">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -405,7 +405,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoProductNewKeywords<?php echo $languages_id; ?>">
                           <div class="col-md-10">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -427,10 +427,10 @@ if (\is_array($seoBject)) {
                 ?>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="alert alert-info" role="alert">
               <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
             </div>
           </div>
@@ -451,7 +451,7 @@ if (\is_array($seoBject)) {
                      target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
 
               <div class="accordion" id="accordionExample">
                 <?php
@@ -487,7 +487,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoSpecialDescription<?php echo $languages_id; ?>">
                           <div class="col-md-6">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -502,7 +502,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoSpecialKeywords<?php echo $languages_id; ?>">
                           <div class="col-md-10">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -523,10 +523,10 @@ if (\is_array($seoBject)) {
                 ?>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="alert alert-info" role="alert">
               <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
             </div>
           </div>
@@ -547,7 +547,7 @@ if (\is_array($seoBject)) {
                      target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
 
               <div class="accordion" id="accordionExample">
                 <?php
@@ -583,7 +583,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoReviewDescription<?php echo $languages_id; ?>">
                           <div class="col-md-6">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -597,7 +597,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoReviewKeywords<?php echo $languages_id; ?>">
                           <div class="col-md-10">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -636,7 +636,7 @@ if (\is_array($seoBject)) {
                      target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
 
               <div class="accordion" id="accordionExample">
                 <?php
@@ -673,7 +673,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoFavoriteDescription<?php echo $languages_id; ?>">
                           <div class="col-md-6">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -688,7 +688,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoFavoriteKeywords<?php echo $languages_id; ?>">
                           <div class="col-md-10">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -729,7 +729,7 @@ if (\is_array($seoBject)) {
                 </div>
               </div>
 
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="accordion" id="accordionExample">
                 <?php
                 for ($i = 0, $n = \count($languages); $i < $n; $i++) {
@@ -765,7 +765,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoFeaturedDescription<?php echo $languages_id; ?>">
                           <div class="col-md-6">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -780,7 +780,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoFeaturedKeywords<?php echo $languages_id; ?>">
                           <div class="col-md-10">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -802,10 +802,10 @@ if (\is_array($seoBject)) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="alert alert-info" role="alert">
               <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
             </div>
           </div>
@@ -827,7 +827,7 @@ if (\is_array($seoBject)) {
                 </div>
               </div>
 
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="accordion" id="accordionExample">
                 <?php
                 for ($i = 0, $n = \count($languages); $i < $n; $i++) {
@@ -851,7 +851,7 @@ if (\is_array($seoBject)) {
                     <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>"
                          aria-labelledby="heading<?php echo $languages_id; ?>" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoRecommendationsLanguageTitle<?php echo $languages_id; ?>">
                           <div class="col-md-10">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -866,7 +866,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoRecommendationsLanguageDescription<?php echo $languages_id; ?>">
                           <div class="col-md-6">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -881,7 +881,7 @@ if (\is_array($seoBject)) {
                           </div>
                         </div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="row" id="seoRecommendationsLanguageKeywords<?php echo $languages_id; ?>">
                           <div class="col-md-10">
                             <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -904,10 +904,10 @@ if (\is_array($seoBject)) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="alert alert-info" role="alert">
               <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_SEO->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_SEO->getDef('title_help_seo') ?></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><?php echo $CLICSHOPPING_SEO->getDef('help_seo'); ?></div>
             </div>
           </div>
@@ -1002,7 +1002,7 @@ if (\is_array($seoBject)) {
             </div>
           </div>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php
           //***********************************
           // extension

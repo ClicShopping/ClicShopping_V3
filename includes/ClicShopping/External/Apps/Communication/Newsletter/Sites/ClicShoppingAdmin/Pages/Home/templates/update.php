@@ -59,7 +59,7 @@ if (isset($_GET['Update'])) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   $parameters = ['title' => '',
     'content' => '',
@@ -253,7 +253,7 @@ if (isset($_GET['Update'])) {
         echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
         ?>
         <div class="tab-pane" id="tab2">
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Newsletter->getDef('text_newsletter_content'); ?></div>
           <div class="adminformTitle">
             <div class="row">
@@ -271,7 +271,7 @@ if (isset($_GET['Update'])) {
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
         </div>
       </div>
     </div>

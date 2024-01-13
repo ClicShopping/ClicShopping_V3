@@ -176,7 +176,7 @@ class Newsletter
         </div>
     ';
 
-    $confirm_string .= '<div class="separator"></div>';
+    $confirm_string .= '<div class="mt-1"></div>';
 
     $confirm_string .= '<div id="newsletterBody">' . "\n";
     $confirm_string .= '<div class="text-center alert alert-info" id="newsletterAlert">';
@@ -184,11 +184,11 @@ class Newsletter
     $confirm_string .= '</div>' . "\n";
 
     $confirm_string .= $file_name . "\n";
-    $confirm_string .= '<div class="separator"></div>' . "\n";
+    $confirm_string .= '<div class="mt-1"></div>' . "\n";
     $confirm_string .= '<div><strong>' . $this->title . '</strong></div>' . "\n";
-    $confirm_string .= '<div class="separator"></div>' . "\n";
+    $confirm_string .= '<div class="mt-1"></div>' . "\n";
     $confirm_string .= '<div>' . $this->content . '</div>' . "\n";
-    $confirm_string .= '<div class="separator"></div>';
+    $confirm_string .= '<div class="mt-1"></div>';
     $confirm_string .= '</div>';
     $confirm_string .= '</div>';
 
@@ -445,7 +445,7 @@ class Newsletter
         $CLICSHOPPING_Hooks->call('Newsletter', 'SendTwitter');
       }
     } else {
-      $alert = '<div class="separator"></div>';
+      $alert = '<div class="mt-1"></div>';
       $alert .= '<div class="alert alert-warning text-center" role="alert">';
       $alert .= $this->app->getDef('error_twitter') . ' ' . CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/public/newsletter';
       $alert .= '</div>';

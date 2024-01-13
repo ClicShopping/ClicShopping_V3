@@ -130,7 +130,7 @@ if (isset($_POST['date'])) {
     </div>
 
 
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="row">
       <div class="col-md-12">
         <div class="card card-block headerCard">
@@ -141,7 +141,7 @@ if (isset($_POST['date'])) {
       </div>
     </div>
 
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12">
       <div class="alert alert-warning text-center" role="alert">
         <?php
@@ -154,7 +154,7 @@ if (isset($_POST['date'])) {
       </div>
     </div>
 
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div id="RecommendationsTabs" style="overflow: auto;">
       <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
         <li class="nav-item"><a href="#tab1" role="tab" data-bs-toggle="tab"
@@ -230,7 +230,7 @@ if (isset($_POST['date'])) {
                     </div>
                   </div>
                 </div>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div class="col-md-12">
                   <div class="row">
                   <span class="alert alert-info">

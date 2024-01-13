@@ -23,7 +23,7 @@ $orders_id = HTML::sanitize($_GET['oID'])
 ?>
 
 <div class="contentBody">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="card card-block headerCard">
@@ -39,16 +39,16 @@ $orders_id = HTML::sanitize($_GET['oID'])
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Orders->getDef('text_info_heading_archive'); ?></strong></div>
   <?php echo HTML::form('archive', $CLICSHOPPING_Orders->link('Orders&ArchiveToConfirm&oID=' . (int)$orders_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Orders->getDef('text_info_archive_intro'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_cancel'), null, $CLICSHOPPING_Orders->link('Orders&oID=' . $orders_id), 'warning', null, 'sm') . '&nbsp;</span><span>' . HTML::button($CLICSHOPPING_Orders->getDef('button_archive_batch'), null, null, 'primary', null, 'sm'); ?></span>
       </div>

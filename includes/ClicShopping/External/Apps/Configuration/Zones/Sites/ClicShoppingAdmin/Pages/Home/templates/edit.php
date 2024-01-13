@@ -50,7 +50,7 @@ echo HTML::button($CLICSHOPPING_Zones->getDef('button_cancel'), null, $CLICSHOPP
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Zones->getDef('text_info_heading_edit_zone'); ?></strong></div>
   <div class="adminformTitle">

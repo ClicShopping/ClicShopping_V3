@@ -83,7 +83,7 @@ if ($admin_dir != 'ClicShoppingAdmin') {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <table border="0" width="100%" cellspacing="0" cellpadding="2">
     <td>

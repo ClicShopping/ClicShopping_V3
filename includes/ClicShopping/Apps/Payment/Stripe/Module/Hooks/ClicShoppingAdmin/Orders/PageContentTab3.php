@@ -37,7 +37,7 @@ class PageContentTab3 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Hooks/ClicShoppingAdmin/Orders/page_content_tab_3');
 
     $content = '<!-- stripe start -->';
-    $content .= '<div class="separator"></div>';
+    $content .= '<div class="mt-1"></div>';
     $content .= '<div class="row" id="stripeButton">';
     $content .= '<span class="col-md-2"><a href="https://dashboard.stripe.com" target="_blank" class="btn btn-primary" role="button">' . $this->app->getDef('text_stripe_dashboard') . '</a>';
     $content .= '</div>';

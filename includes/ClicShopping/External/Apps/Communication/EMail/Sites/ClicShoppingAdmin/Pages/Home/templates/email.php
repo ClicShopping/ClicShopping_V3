@@ -80,7 +80,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div id="emailTab">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
@@ -101,7 +101,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
@@ -113,7 +113,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
@@ -134,7 +134,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
             }
             $('#elfinder').elfinder(options);
           </script>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group row">
@@ -156,5 +156,5 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
     </div>
   </div>
   </form>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 </div>

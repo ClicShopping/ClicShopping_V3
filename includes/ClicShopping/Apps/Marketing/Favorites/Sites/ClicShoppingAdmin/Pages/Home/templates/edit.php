@@ -54,7 +54,7 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Favorites->getDef('
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   $form_action = 'Insert';
 
@@ -185,7 +185,7 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Favorites->getDef('
 
         echo $CLICSHOPPING_Hooks->output('Favorites', 'CustomerGroup', null, 'display');
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="mainTitle"><?php echo $CLICSHOPPING_Favorites->getDef('title_products_favorites_date'); ?></div>
         <div class="adminformTitle">
 
@@ -213,10 +213,10 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Favorites->getDef('
             </div>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="alert alert-info" role="alert">
           <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Favorites->getDef('text_help_products_favorites') . '"></i></h4>'; ?></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div><?php echo $CLICSHOPPING_Favorites->getDef('text_help_products_favorites_price'); ?></div>
         </div>
       </div>

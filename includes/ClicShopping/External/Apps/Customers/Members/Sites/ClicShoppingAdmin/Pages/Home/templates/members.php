@@ -60,7 +60,7 @@ echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSH
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <table
     id="table"

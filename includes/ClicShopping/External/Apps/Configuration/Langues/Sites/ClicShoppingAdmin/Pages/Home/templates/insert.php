@@ -70,7 +70,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if (FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathLanguage())) {
     ?>
@@ -171,7 +171,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
     </div>
 
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-md-3"></span>
         <ul class="list-group-slider list-group-flush">
@@ -185,18 +185,18 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
         </ul>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12 text-center">
       <?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_insert'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null, $CLICSHOPPING_Langues->link('Langues&page=' . $page), 'warning', null, 'sm'); ?>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
   </div>
 
   </form>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="alert alert-info" role="alert">
     <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Langues->getDef('title_help') . '"></i></h4> ' . $CLICSHOPPING_Langues->getDef('title_help') ?></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div><?php echo $CLICSHOPPING_Langues->getDef('text_note_create_language'); ?></div>
   </div>
 </div>

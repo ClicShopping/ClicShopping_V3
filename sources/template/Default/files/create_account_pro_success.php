@@ -25,7 +25,7 @@ require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
           }
           ?>
         </h1></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div><?php echo $CLICSHOPPING_Template->getBlocks('modules_create_account_pro'); ?></div>
     </div>
   </div>

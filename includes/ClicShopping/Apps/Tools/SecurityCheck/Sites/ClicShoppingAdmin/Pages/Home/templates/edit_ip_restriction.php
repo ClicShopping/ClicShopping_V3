@@ -49,7 +49,7 @@ if ($form_action == 'Update') echo HTML::hiddenField('id', HTML::sanitize($_GET[
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if (isset($_GET['cID'])) {
     $cID = $_GET['cID'];
@@ -98,7 +98,7 @@ if ($form_action == 'Update') echo HTML::hiddenField('id', HTML::sanitize($_GET[
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="IpComment">
               <div class="col-md-5">
                 <div class="form-group row">

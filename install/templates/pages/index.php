@@ -269,7 +269,7 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
 
 
   <br/>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
 
   <div class="row">

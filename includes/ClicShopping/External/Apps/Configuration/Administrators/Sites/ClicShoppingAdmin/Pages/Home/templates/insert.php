@@ -40,7 +40,7 @@ echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, n
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Administrators->getDef('text_info_heading_new_administrator'); ?></strong></div>
   <div class="adminformTitle">
@@ -64,7 +64,7 @@ echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, n
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
@@ -76,7 +76,7 @@ echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, n
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
@@ -88,7 +88,7 @@ echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, n
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
@@ -104,7 +104,7 @@ echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, n
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">

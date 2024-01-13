@@ -39,18 +39,18 @@ echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_insert'), n
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('text_info_heading_products_unit_quantity_status'); ?></strong>
   </div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div
         class="col-md-12"><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('text_info_products_quantity_unit_intro'); ?>
         <br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <?php
         $products_quantity_unit_inputs_string = '';
@@ -74,7 +74,7 @@ echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_insert'), n
         ?>
       </div>
 
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-md-3"></span>
         <span

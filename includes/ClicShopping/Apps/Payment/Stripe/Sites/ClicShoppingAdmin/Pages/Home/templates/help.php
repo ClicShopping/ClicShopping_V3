@@ -31,7 +31,7 @@ if ($CLICSHOPPING_MessageStack->exists('Stripe')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Stripe->getDef('text_stripe'); ?></strong></div>
   <div class="adminformTitle">
     <?php echo $CLICSHOPPING_Stripe->getDef('text_stripe_info'); ?>

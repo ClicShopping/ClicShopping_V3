@@ -17,11 +17,11 @@ if ($CLICSHOPPING_MessageStack->exists('checkout_success')) {
   echo $CLICSHOPPING_MessageStack->get('main');
 }
 ?>
-<div class="separator"></div>
+<div class="mt-1"></div>
 <section class="checkout_success" id="checkout_success">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_checkout_success'); ?>
       <div class="control-group">
         <div>
@@ -31,7 +31,7 @@ if ($CLICSHOPPING_MessageStack->exists('checkout_success')) {
           </div>
         </div>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
     </div>
   </div>
 </section>

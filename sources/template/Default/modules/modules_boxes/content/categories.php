@@ -16,9 +16,9 @@ $CLICSHOPPING_CategoryTree->setParentGroupString('<ul class="boxeCategoriesNavig
 $CLICSHOPPING_CategoryTree->setChildString('<li class="boxeCategoriesNavigation">', '</li>');
 ?>
 <section class="boxe_categories" id="boxe_categories">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="boxeContainerCategories"><?php echo $categories_banner; ?></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="card">
     <div class="card-header boxeHeadingCategories">
       <span

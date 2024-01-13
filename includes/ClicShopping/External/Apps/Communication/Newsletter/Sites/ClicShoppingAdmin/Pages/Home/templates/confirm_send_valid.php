@@ -30,6 +30,6 @@ $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <span class="text-center"><p
       style="color:#ff0000"><strong><?php echo $CLICSHOPPING_Newsletter->getDef('text_finished_sending_email'); ?></strong></p></span>

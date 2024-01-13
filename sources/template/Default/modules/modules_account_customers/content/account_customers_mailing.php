@@ -13,7 +13,7 @@ use ClicShopping\OM\HTML;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="card">
     <div class="card-header">
@@ -27,7 +27,7 @@ use ClicShopping\OM\HTML;
     </div>
 
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text">
         <div class="moduleAccountCustomersNotificationsList">
           <div class="col-md-12">

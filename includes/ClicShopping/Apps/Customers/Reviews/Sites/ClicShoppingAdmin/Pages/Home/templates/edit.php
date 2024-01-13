@@ -92,7 +92,7 @@ echo HTML::form('update', $CLICSHOPPING_Reviews->link('Reviews&Update&page=' . $
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div id="reviewsTab">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li

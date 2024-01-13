@@ -50,7 +50,7 @@ class Reviews extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_REVIEWS_APP_CONTENT_WIDTH;
 
     $content = '<div class="' . $content_width . '">';
-    $content .= '<div class="separator"></div>';
+    $content .= '<div class="mt-1"></div>';
     $content .= '<table 
         id="table"
         data-toggle="table"

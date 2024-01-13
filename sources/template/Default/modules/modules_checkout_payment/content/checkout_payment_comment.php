@@ -17,11 +17,11 @@ use ClicShopping\OM\CLICSHOPPING;
       <span><h3><?php echo CLICSHOPPING::getDef('module_checkout_payment_comment_table_heading_comments'); ?></h3></span>
     </div>
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text moduleCheckoutPaymentAgreementText">
         <?php echo $comment_fields; ?>
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 </div>

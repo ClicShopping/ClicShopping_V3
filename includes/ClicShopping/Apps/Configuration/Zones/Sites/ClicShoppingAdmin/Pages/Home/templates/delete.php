@@ -43,15 +43,15 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Zones->getDef('text_info_heading_delete_zone'); ?></strong></div>
   <?php echo HTML::form('zones', $CLICSHOPPING_Zones->link('Zones&DeleteConfirm&page=' . $page . '&cID=' . $cInfo->zone_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Zones->getDef('text_info_delete_info'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo '<strong>' . $cInfo->zone_name . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Zones->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Zones->getDef('button_cancel'), null, $CLICSHOPPING_Zones->link('Zones&page=' . (int)$_GET['page'] . '&cID=' . $cInfo->zone_id), 'warning', null, 'sm'); ?></span>

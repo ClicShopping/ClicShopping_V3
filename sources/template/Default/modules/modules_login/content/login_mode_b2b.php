@@ -18,17 +18,17 @@ use ClicShopping\OM\HTML;
       <h2><span><?php echo CLICSHOPPING::getDef('heading_title_b2b'); ?></span></h2>
     </div>
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text">
         <div class="mainLogin"><?php echo CLICSHOPPING::getDef('text_intro_b2b'); ?></div>
         <div class="text-rmd-ight">
           <div class="control-group">
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div>
               <div
                 class="buttonSet text-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_retailers'), null, CLICSHOPPING::link(null, 'Account&CreatePro'), 'primary'); ?></div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
           </div>
         </div>
       </div>

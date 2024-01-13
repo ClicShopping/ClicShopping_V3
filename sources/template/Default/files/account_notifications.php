@@ -18,7 +18,7 @@ if ($CLICSHOPPING_MessageStack->exists('notification')) {
   <div class="contentContainer">
     <div class="contentText">
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_account_customers'); ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
     </div>
   </div>
 </section>

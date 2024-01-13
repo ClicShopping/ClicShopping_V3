@@ -60,24 +60,24 @@ $cInfo = new ObjectInfo($cInfo_array);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_info_heading_delete_category'); ?></strong></div>
   <?php echo HTML::form('categories', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&DeleteCategoryConfirm&cPath=' . $cPath . '&id=' . $cInfo->id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_delete_category_intro'); ?>
         <br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-md-3"><?php echo $cInfo->label; ?></span>
       </div>
       <?php
       if ($cInfo->childs_count > 0) {
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
             <span
               class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_delete_warning_childs', ['delete_child' => $cInfo->childs_count]); ?></span>
@@ -85,7 +85,7 @@ $cInfo = new ObjectInfo($cInfo_array);
         <?php
       }
       ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath . '&cID=' . $cInfo->id), 'warning', null, 'sm'); ?></span>
       </div>

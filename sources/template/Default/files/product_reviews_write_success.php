@@ -29,7 +29,7 @@ if ($CLICSHOPPING_MessageStack->exists('rewiews_write')) {
       <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_title_reviews_success'); ?></h1></div>
       <?php echo CLICSHOPPING::getDef('text_product_reviews_write_success', ['store_owner' => STORE_OWNER]); ?>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php echo $CLICSHOPPING_Template->getBlocks('modules_products_reviews'); ?>
   </div>
 </section>

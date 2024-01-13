@@ -83,7 +83,7 @@ if (is_file($file)) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($action == 'filename') {
     ?>
@@ -96,10 +96,10 @@ if (is_file($file)) {
     <?php
   }
   ?>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="alert alert-info" role="alert">
     <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_EditDesign->getDef('title_help_edit_html') . '"></i></h4> ' . $CLICSHOPPING_EditDesign->getDef('title_help_edit_html') ?></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div><?php echo $CLICSHOPPING_EditDesign->getDef('text_help_edit_html'); ?></div>
   </div>
 </div>

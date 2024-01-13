@@ -14,7 +14,7 @@ use ClicShopping\OM\HTML;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="card">
     <div class="card-header">
       <div>
@@ -22,7 +22,7 @@ use ClicShopping\OM\HTML;
       </div>
     </div>
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text">
         <table border="0" width="100%" cellspacing="1" cellpadding="2">
           <?php
@@ -56,7 +56,7 @@ use ClicShopping\OM\HTML;
         <?php
         if (isset($_GET['Account'], $_GET['HistoryInfo'])) {
           ?>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <p><?php CLICSHOPPING::getDef('module_account_customers_history_info_download_text_download_header_footer_download', ['url' => HTML::link(CLICSHOPPING::link(null, 'Account&Main'), CLICSHOPPING::getDef('module_account_customers_history_info_download_text_download_header_title_my_account'))]); ?></p>
           <?php
         }

@@ -52,7 +52,7 @@ class GoogleLinks extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     $content_width = (int)MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_CONTENT_WIDTH;
 
     $output = '<div class="col-md-' . $content_width . '">';
-    $output .= '<div class="separator"></div>';
+    $output .= '<div class="mt-1"></div>';
     $output .= '<table class="table table-sm table-hover">' .
       '<thead>' .
       '  <tr class="dataTableHeadingRow">' .
@@ -87,7 +87,7 @@ class GoogleLinks extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     $output .= '<tbody>';
     $output .= '</table>';
     $output .= '</div>';
-    $output .= '<div class="separator"></div>';
+    $output .= '<div class="mt-1"></div>';
 
     return $output;
   }

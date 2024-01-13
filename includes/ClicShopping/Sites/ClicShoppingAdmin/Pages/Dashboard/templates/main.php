@@ -63,7 +63,7 @@ $CLICSHOPPING_Hooks = Registry::get('Hooks');
     }
     ?>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12">
     <span class="col-md-8 float-start">
       <div class="row">

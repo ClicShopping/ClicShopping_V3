@@ -32,12 +32,12 @@ if ($CLICSHOPPING_MessageStack->exists('OrdersStatusInvoice')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_orders_status_invoice'); ?></strong></div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
 
       <div class="col-md-12">
         <div>
@@ -45,7 +45,7 @@ if ($CLICSHOPPING_MessageStack->exists('OrdersStatusInvoice')) {
             <?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_intro'); ?>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="separator"></div
         <div class="col-md-12">
           <div>

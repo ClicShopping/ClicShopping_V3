@@ -26,10 +26,10 @@ use ClicShopping\OM\HTML;
   </div>
 </div>
 
-<div class="separator"></div>
+<div class="mt-1"></div>
 <p><?php echo TEXT_LICENCE; ?></p>
 
-<div class="separator"></div>
+<div class="mt-1"></div>
 <div class="card">
   <div class="card-header">
     License
@@ -41,7 +41,7 @@ use ClicShopping\OM\HTML;
   </div>
 </div>
 
-<div class="separator"></div>
+<div class="mt-1"></div>
 <?php echo HTML::form('form', 'verify.php'); ?>
 <div class="col-md-12 text-end">
   <?php echo HTML::button(TEXT_ACCEPT_LICENCE, null, null, 'success'); ?>

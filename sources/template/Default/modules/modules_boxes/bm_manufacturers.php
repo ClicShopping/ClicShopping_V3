@@ -88,7 +88,7 @@ class bm_manufacturers
         $data .= '<label for="manufacturerDropDown" class="visually-hidden"></label>';
         $data .= HTML::selectField('manufacturersId', $manufacturers_array, ($_GET['manufacturersId'] ?? ''), 'onchange="this.form.submit();" id="manufacturerDropDown" class="boxePullDownManufacturer" size="' . MODULE_BOXES_MANUFACTURERS_MANUFACTURERS_LIST . '"');
         $data .= '</form>';
-        $data .= '<div class="separator"></div>';
+        $data .= '<div class="mt-1"></div>';
       }
     }
 

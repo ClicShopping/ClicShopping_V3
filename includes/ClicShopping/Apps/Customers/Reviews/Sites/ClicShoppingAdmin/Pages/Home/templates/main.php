@@ -33,18 +33,18 @@ if ($CLICSHOPPING_MessageStack->exists('reviews')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Reviews->getDef('text_reviews'); ?></strong></div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <div>
           <div class="col-md-12">
             <?php echo $CLICSHOPPING_Reviews->getDef('text_intro'); ?>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <div>
             <div class="col-md-12 text-center">

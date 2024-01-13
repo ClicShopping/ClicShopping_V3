@@ -35,8 +35,8 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
+  <div class="mt-1"></div>
   <?php
   $gpt_id = HTML::sanitize($_GET['cID']);
 
@@ -70,11 +70,11 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
             <div class="col-md-12" id="geptDateAdded">
               <?php echo DateTime::toShort($QchatGpt->value('date_added')); ?>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="col-md-12" id="gptQuestion">
               <?php echo $QchatGpt->value('question'); ?>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="col-md-12" id="gptResponse">
               <?php echo $QchatGpt->value('response'); ?>
             </div>

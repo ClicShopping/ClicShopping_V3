@@ -37,19 +37,19 @@ $order_id = HTML::sanitize($_GET['oID']);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Orders->getDef('text_info_heading_delete_order'); ?></strong></div>
   <?php echo HTML::form('orders', $CLICSHOPPING_Orders->link('Orders&DeleteConfirm&oID=' . (int)$order_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Orders->getDef('text_info_delete_info'); ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <br/><?php echo HTML::checkboxField('restock') . ' ' . $CLICSHOPPING_Orders->getDef('text_info_restock_product_quantity'); ?>
           <br/><br/></div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12 text-center">
           <span><br/><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_delete'), null, null, 'danger', null, 'sm') . '&nbsp;</span><span>' . HTML::button($CLICSHOPPING_Orders->getDef('button_cancel'), null, $CLICSHOPPING_Orders->link('Edit&oID=' . $order_id), 'warning', null, 'sm'); ?></span>
         </div>

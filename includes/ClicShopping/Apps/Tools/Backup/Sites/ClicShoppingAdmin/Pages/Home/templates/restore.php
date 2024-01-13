@@ -64,11 +64,11 @@ $buInfo = new ObjectInfo($info);
   <?php
   if (is_file($backup_directory . $_GET['file'])) {
     ?>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12 mainTitle"><strong><?php echo $buInfo->date; ?></strong></div>
     <div class="adminformTitle">
       <div class="row">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div
           class="col-md-12"><?php echo HTML::breakString($CLICSHOPPING_Backup->getDef('text_info_restore', ['restore' => $backup_directory . (($buInfo->compression != $CLICSHOPPING_Backup->getDef('text_no_extension')) ? substr($buInfo->file, 0, strrpos($buInfo->file, '.')) : $buInfo->file), ($buInfo->compression != $CLICSHOPPING_Backup->getDef('text_info_unpack')) ? $CLICSHOPPING_Backup->getDef('text_no_extension') : '']), 35, ' '); ?>
           <br/><br/></div>

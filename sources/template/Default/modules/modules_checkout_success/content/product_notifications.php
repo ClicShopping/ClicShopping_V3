@@ -14,15 +14,15 @@ use ClicShopping\OM\html;
 echo $form;
 ?>
   <div class="col-md-<?php echo $content_width; ?>">
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="card card-success">
       <div
         class="card-header"><?php echo CLICSHOPPING::getDef('module_checkout_success_product_notifications_text_notify_products'); ?></div>
       <div class="card-block">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div><p class="checkoutSuccessProductsNotifications"><?php echo $products_notifications; ?></p></div>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="control-group">
         <div>
           <div class="buttonSet">
@@ -33,7 +33,7 @@ echo $form;
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 <?php
 echo $endform;
 

@@ -14,7 +14,7 @@ use ClicShopping\OM\CLICSHOPPING;
 <div class="clearfix"></div>
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="col-md-12">
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="page-title moduleCheckoutConfirmationCustomersCommentPageHeader">
       <h3><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_customers_comment_heading_order_title'); ?></h3>
     </div>
@@ -23,7 +23,7 @@ use ClicShopping\OM\CLICSHOPPING;
         <strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_customers_comment_heading_order_comments'); ?></strong><?php echo $edit_comment; ?>
       </div>
       <div class="card-block moduleCheckoutConfirmationCustomersCommentCardBlock">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <?php echo $comment; ?>
       </div>
     </div>

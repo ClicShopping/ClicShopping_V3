@@ -78,7 +78,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div id="categoriesTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
@@ -1099,7 +1099,7 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
           ?>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_attributs') . '"></i></h4>&nbsp;' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_attributs', ['file_size' => @ini_get('upload_max_filesize')]); ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_help_attributs', ['upload_max_filesize' => $upload_max_filesize]); ?></div>
           </div>
         </div>
@@ -1171,7 +1171,7 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
 
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_clone') . '"></i></h4>'; ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_help_clone'); ?></div>
           </div>
         </div>

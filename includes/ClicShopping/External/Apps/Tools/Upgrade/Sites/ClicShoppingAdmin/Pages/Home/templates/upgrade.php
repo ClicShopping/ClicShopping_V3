@@ -59,7 +59,7 @@ if (\is_object($core_online_info) && $core_online_info->version) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="card">
     <div class="card-header">
@@ -129,7 +129,7 @@ if (\is_object($core_online_info) && $core_online_info->version) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="card">
     <div class="card-header">
       <h5><i class="bi bi-file-diff"></i> <?php echo $CLICSHOPPING_Upgrade->getDef('text_changelog'); ?></h5>
@@ -144,5 +144,5 @@ if (\is_object($core_online_info) && $core_online_info->version) {
       </p>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 </div>

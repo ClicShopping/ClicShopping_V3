@@ -81,7 +81,7 @@ class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
         ];
       }
 
-      $output .= '<div class="separator"></div>';
+      $output .= '<div class="mt-1"></div>';
       $output .= '<div class="row" id="supplierName">';
       $output .= '<label for="code" class="col-2 col-form-label">' . $this->app->getDef('text_suppliers_suppliers_name') . '</label>';
       $output .= '<div class="col-md-5">';

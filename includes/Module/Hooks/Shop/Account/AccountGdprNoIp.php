@@ -44,7 +44,7 @@ class AccountGdprNoIp
     $output = '<div>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                            ' . CLICSHOPPING::getDef('module_account_customers_gdpr_no_ip_address') . '
                           <label class="switch">
                             ' . HTML::checkboxField('no_ip_address', $this->getIpAddress(), $this->getIpAddress(), 'class="success"') . '

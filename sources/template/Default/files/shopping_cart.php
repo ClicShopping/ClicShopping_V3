@@ -35,7 +35,7 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
           } else {
             ?>
             <div class="clearfix"></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="col-md-12">
               <div class="alert alert-warning text-center" role="alert">
                 <h3><?php echo CLICSHOPPING::getDef('text_cart_empty'); ?></h3></div>

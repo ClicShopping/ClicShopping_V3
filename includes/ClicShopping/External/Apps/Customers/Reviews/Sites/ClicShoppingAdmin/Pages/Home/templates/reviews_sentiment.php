@@ -47,7 +47,7 @@ $review_number = (int)CLICSHOPPING_APP_REVIEWS_RV_REVIEW_NUMBER ?? 1;
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   $QavgReviews = $CLICSHOPPING_Reviews->db->prepare('select count(reviews_id) as count,
                                                             avg(reviews_rating) as avg
@@ -130,9 +130,9 @@ $review_number = (int)CLICSHOPPING_APP_REVIEWS_RV_REVIEW_NUMBER ?? 1;
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="alert alert-warning"><?php echo $CLICSHOPPING_Reviews->getDef('text_info_warning_cost', ['nb_comment' => $review_number]); ?></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <!-- //################################################################################################################ -->
   <!-- //                                            LISTING DES AVIS CLIENTS                                             -->

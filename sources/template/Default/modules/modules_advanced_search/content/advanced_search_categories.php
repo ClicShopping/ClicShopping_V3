@@ -13,7 +13,7 @@ use ClicShopping\OM\HTML;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-7">
       <div class="form-group row">
@@ -33,7 +33,7 @@ use ClicShopping\OM\HTML;
         <div class="col-md-2">
           <ul class="list-group list-group-flush">
             <li class="list-group-item-slider">
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <label class="switch">
                 <?php echo HTML::checkboxField('inc_subcat', 1, true, ' class="success" id="inc_subcat" aria-label="' . CLICSHOPPING::getDef('modules_advanced_search_category_entry_include_subcategories') . '"'); ?>
                 <span class="slider"></span>

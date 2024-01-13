@@ -104,12 +104,12 @@ class bm_whats_new
 
       $data = '<!-- boxe what new start-->' . "\n";
       $data .= '<section class="boxe_whats_new" id="boxe_whats_new">' . "\n";
-      $data .= '<div class="separator"></div>';
+      $data .= '<div class="mt-1"></div>';
       $data .= '<div class="boxeBannerContentsWhatsNew">' . $what_new_banner . '</div>';
       $data .= '<div class="card boxeContainerWhatsNew">';
       $data .= '<div class="card-header boxeHeadingWhatsNew"><span class="card-title boxeTitleWhatsNew">' . HTML::link(CLICSHOPPING::link(null, 'Products&ProductsNew'), CLICSHOPPING::getDef('module_boxes_whats_new_box_title')) . '</span></div>';
       $data .= '<div class="card-block  text-center boxeContentArroundWhatsNew">';
-      $data .= '<div class="separator"></div>';
+      $data .= '<div class="mt-1"></div>';
 
       while ($Qproducts->fetch()) {
         $products_id = $Qproducts->valueInt('products_id');

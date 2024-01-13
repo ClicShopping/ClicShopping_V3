@@ -13,7 +13,7 @@ use ClicShopping\OM\HTML;
 
 ?>
 <div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="page-title">
     <h4><?php echo CLICSHOPPING::getDef('text_product_options'); ?></h4>
   </div>

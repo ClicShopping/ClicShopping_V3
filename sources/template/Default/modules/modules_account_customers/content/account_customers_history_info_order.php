@@ -14,10 +14,10 @@ use ClicShopping\OM\HTML;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="page-title moduleAccountCustomersHistoryInfoHeadingHorderHistory">
     <h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_heading_order_history'); ?></h3></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="d-flex flex-wrap">
     <?php
     while ($Qstatuse->fetch()) {
@@ -31,6 +31,6 @@ use ClicShopping\OM\HTML;
     }
     ?>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="hr"></div>
 </div>

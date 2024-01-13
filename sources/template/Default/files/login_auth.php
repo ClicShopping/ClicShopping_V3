@@ -25,14 +25,14 @@ require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
       if (empty($_SESSION['user_secret'])) {
         ?>
         <div class="page-title loginText"><h1><?php echo CLICSHOPPING::getDef('heading_title_Login_auth'); ?></h1></div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12 mainLogin"><?php echo CLICSHOPPING::getDef('text_Login_auth_introduction'); ?></div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12 text-center">
           <p><?php echo CLICSHOPPING::getDef('text_auth_qr_code'); ?></p>
           <?php echo Topt::getImageTopt(CLICSHOPPING_TOTP_SHORT_TILTE, $_SESSION['tfa_secret']); ?>
-          <div class="separator"></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
+          <div class="mt-1"></div>
           <?php echo HTML::form('double_authentification', CLICSHOPPING::link(null, 'Account&LogInAuth&Process'), 'post', 'role="form" id="double_authentfication"', ['tokenize' => true, 'action' => 'process']); ?>
           <div class="row">
             <span class="col-md-3"></span>

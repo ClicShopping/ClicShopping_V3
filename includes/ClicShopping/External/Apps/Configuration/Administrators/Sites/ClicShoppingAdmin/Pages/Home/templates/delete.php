@@ -37,20 +37,20 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', ['id',
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $Qadmin->value('user_name'); ?></strong></div>
   <?php echo HTML::form('administrator', $CLICSHOPPING_Administrators->link('Administrators&DeleteConfirm&aID=' . $Qadmin->valueInt('id'))); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Administrators->getDef('text_info_delete_intro'); ?><br/><br/>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-md-2"><?php echo $CLICSHOPPING_Administrators->getDef('text_info_name'); ?></span>
         <span class="col-md-2"><?php echo HTML::outputProtected($Qadmin->value('name')); ?></span>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span
           class="text-center"><?php echo HTML::button($CLICSHOPPING_Administrators->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Administrators->getDef('button_cancel'), null, $CLICSHOPPING_Administrators->link('Administrators&aID=' . $Qadmin->valueInt('id')), 'warning', null, 'sm'); ?></span>

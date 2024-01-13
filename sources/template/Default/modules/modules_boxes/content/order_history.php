@@ -12,7 +12,7 @@ use ClicShopping\OM\CLICSHOPPING;
 
 ?>
 <section class="boxe_order_history" id="boxe_order_history">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="boxeBannerContentsHistory"><?php echo $order_history_banner; ?></div>
   <div class="card boxeContainerHistory">
     <div class="card-header boxeHeadingHistory">
@@ -20,7 +20,7 @@ use ClicShopping\OM\CLICSHOPPING;
         class="card-title boxeTitleHistory"><?php echo CLICSHOPPING::getDef('module_boxes_order_history_box_title'); ?></span>
     </div>
     <div class="card-body boxeContentArroundHistory">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text boxeContentsHistory"><?php echo $customer_orders_string; ?></div>
     </div>
   </div>

@@ -162,7 +162,7 @@ class pi_products_info_price
 // Affichage de l'archive                                         //
 // ----------------------------------------------------------------//
         $products_price_content = '<!-- Start products_archives -->' . "\n";
-        $products_price_content .= '<div class="separator"></div>';
+        $products_price_content .= '<div class="mt-1"></div>';
         $products_price_content .= '<h3 class="text-center">' . CLICSHOPPING::getDef('products_not_sell') . '</h3>';
         $products_price_content .= '<div class="buttonSet"><span class="buttonAction">' . HTML::button(CLICSHOPPING::getDef('button_continue'), CLICSHOPPING::link(), 'primary') . '</span></div>' . "\n";
         $products_price_content .= '<!-- products_archives end -->' . "\n";

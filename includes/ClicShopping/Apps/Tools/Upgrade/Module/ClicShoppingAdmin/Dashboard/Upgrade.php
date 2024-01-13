@@ -75,7 +75,7 @@ class Upgrade extends \ClicShopping\OM\Modules\AdminDashboardAbstract
       $output .= '</div>';
       $output .= '</div>';
       $output .= '</div>';
-      $output .= '<div class="separator"></div>';
+      $output .= '<div class="mt-1"></div>';
 
       return $output;
     }

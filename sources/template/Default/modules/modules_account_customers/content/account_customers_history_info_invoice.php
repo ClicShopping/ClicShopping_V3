@@ -16,7 +16,7 @@ use ClicShopping\Sites\Shop\Tax;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="page-title AccountCustomersHistoryInfo">
     <h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_heading_billing_information'); ?></h3>
   </div>
@@ -25,7 +25,7 @@ use ClicShopping\Sites\Shop\Tax;
       <strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_order_number', ['order_id' => (int)$_GET['order_id']]) . ' <span class="badge text-bg-info primary float-end">' . $CLICSHOPPING_Order->info['orders_status'] . '</span>'; ?></strong>
     </div>
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <table border="0" width="100%" cellspacing="0" cellpadding="2" class="table-hover order_confirmation">
         <thead>
         <?php
@@ -135,6 +135,6 @@ use ClicShopping\Sites\Shop\Tax;
       <?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_order_date') . ' ' . DateTime::toLong($CLICSHOPPING_Order->info['date_purchased']); ?>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="hr"></div>
 </div>

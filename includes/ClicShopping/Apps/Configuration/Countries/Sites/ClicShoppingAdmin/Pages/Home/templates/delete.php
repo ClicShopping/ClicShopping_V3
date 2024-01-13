@@ -40,15 +40,15 @@ $cInfo = new ObjectInfo($Qcountries->toArray());
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Countries->getDef('text_info_delete_country'); ?></strong></div>
   <?php echo HTML::form('countries', $CLICSHOPPING_Countries->link('Countries&DeleteConfirm&page=' . (int)$_GET['page'] . '&cID=' . $cInfo->countries_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Countries->getDef('text_info_delete_info'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo '<strong>' . $cInfo->countries_name . '</strong>'; ?><br/><br/></div>
       <div
         class="col-md-12"><?php echo $CLICSHOPPING_Countries->getDef('text_info_address_format') . '<br />' . $CLICSHOPPING_Address->getAddressFormatRadio($cInfo->address_format_id); ?></div>

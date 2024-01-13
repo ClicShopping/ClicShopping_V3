@@ -64,7 +64,7 @@ echo HTML::hiddenField('customer_id', $customer_id);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <class
   ="row">
   <div class="col-md-12">
@@ -76,7 +76,7 @@ echo HTML::hiddenField('customer_id', $customer_id);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="form-group row">
@@ -88,7 +88,7 @@ echo HTML::hiddenField('customer_id', $customer_id);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="form-group row">
@@ -100,7 +100,7 @@ echo HTML::hiddenField('customer_id', $customer_id);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="form-group row">
@@ -112,7 +112,7 @@ echo HTML::hiddenField('customer_id', $customer_id);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="form-group row">
@@ -124,7 +124,7 @@ echo HTML::hiddenField('customer_id', $customer_id);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="form-group row">
@@ -140,7 +140,7 @@ echo HTML::hiddenField('customer_id', $customer_id);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="form-group row">
@@ -158,8 +158,8 @@ echo HTML::hiddenField('customer_id', $customer_id);
     </div>
   </div>
 </div>
-<div class="separator"></div>
+<div class="mt-1"></div>
 <div
   class="col-md-12 text-end"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_update'), null, null, 'success'); ?></div>
-<div class="separator"></div>
+<div class="mt-1"></div>
 </form>

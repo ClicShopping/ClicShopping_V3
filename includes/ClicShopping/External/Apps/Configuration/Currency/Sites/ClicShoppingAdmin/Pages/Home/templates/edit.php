@@ -57,7 +57,7 @@ echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSH
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Currency->getDef('text_info_heading_edit_currency'); ?></strong></div>
@@ -184,7 +184,7 @@ echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSH
       <?php
       if (DEFAULT_CURRENCY != $cInfo->code) {
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12 text-center">
           <span class="col-md-3"></span>
           <ul class="list-group-slider list-group-flush">

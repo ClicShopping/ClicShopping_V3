@@ -55,7 +55,7 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="appModulesHooksToolbar">
     <li class="nav-item">
       <?php
@@ -98,14 +98,14 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
             <?php
             foreach ($CLICSHOPPING_ModulesHooks_Config->getInputParameters() as $cfg) {
               echo '<div>' . $cfg . '</div>';
-              echo '<div class="separator"></div>';
+              echo '<div class="mt-1"></div>';
             }
             ?>
           </p>
         </div>
       </div>
 
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <?php
         echo HTML::button($CLICSHOPPING_ModulesHooks->getDef('button_save'), null, null, 'success');
@@ -146,7 +146,7 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
       <strong><?php echo $CLICSHOPPING_ModulesHooks->getConfigModuleInfo($current_module, 'title'); ?></strong></div>
     <div class="adminformTitle">
       <div class="row">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <div><?php echo $CLICSHOPPING_ModulesHooks->getConfigModuleInfo($current_module, 'introduction'); ?></div>
           <div class="separator">

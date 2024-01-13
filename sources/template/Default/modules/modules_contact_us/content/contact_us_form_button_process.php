@@ -13,7 +13,7 @@ use ClicShopping\OM\HTML;
 
 ?>
   <div class="col-md-<?php echo $content_width; ?>" id="buttonProcess1">
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="control-group">
       <div class="buttonSet">
         <div class="text-end">

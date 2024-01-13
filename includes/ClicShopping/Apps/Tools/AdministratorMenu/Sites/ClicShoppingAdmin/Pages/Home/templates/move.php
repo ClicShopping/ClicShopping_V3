@@ -73,23 +73,23 @@ if (isset($_GET['cID'])) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_info_heading_move_category'); ?></strong></div>
   <?php echo HTML::form('move', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&MoveCategoryConfirm&cPath=' . $cPath . '&id=' . $cInfo->id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div
         class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_move_categories_intro', ['move_category' => $cInfo->label]); ?>
         <br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span
           class="col-md-3"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_move', ['move_label' => $cInfo->label]) . '<br />' . HTML::selectMenu('move_to_category_id', AdministratorMenu::getLabelTree(), $current_category_id); ?></span>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_move'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath . '&cID=' . $cInfo->id), 'warning', null, 'sm'); ?></span>
       </div>

@@ -33,12 +33,12 @@ $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers'); ?></strong></div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
 
       <div class="col-md-12">
         <div>
@@ -46,7 +46,7 @@ $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
             <?php echo $CLICSHOPPING_Manufacturers->getDef('text_intro'); ?>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
 
         <div class="col-md-12 text-center">
           <div>

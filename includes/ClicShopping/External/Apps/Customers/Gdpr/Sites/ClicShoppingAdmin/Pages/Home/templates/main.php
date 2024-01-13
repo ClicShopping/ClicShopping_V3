@@ -33,18 +33,18 @@ if ($CLICSHOPPING_MessageStack->exists('gdpr')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Gdpr->getDef('text_gdpr'); ?></strong></div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <div>
           <div class="col-md-12">
             <?php echo $CLICSHOPPING_Gdpr->getDef('text_intro'); ?>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <div>
             <div class="col-md-12 text-center">

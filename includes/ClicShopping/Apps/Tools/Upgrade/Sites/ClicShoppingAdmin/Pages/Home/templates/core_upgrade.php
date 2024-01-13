@@ -38,9 +38,9 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
     </div>
   </div>
 
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div stype="padding-top:5rem"><?php echo $CLICSHOPPING_Upgrade->getDef('text_step_upgrade'); ?></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if (!FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/OnlineUpdates')) {
     ?>
@@ -50,7 +50,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
     <?php
   } else {
     ?>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
   }
   ?>

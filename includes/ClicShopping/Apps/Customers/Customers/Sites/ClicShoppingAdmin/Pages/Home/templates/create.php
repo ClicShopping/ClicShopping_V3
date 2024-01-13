@@ -26,7 +26,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
 }
 ?>
 <div class="contentBody">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="card card-block headerCard">
@@ -46,7 +46,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if (isset($_GET['error'])) {
     ?>
@@ -98,7 +98,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="CreateCustomerEntryFirstName">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -111,7 +111,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="CreateCustomercvEntrylastName">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -124,7 +124,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="CreateCustomerEntryDateOfBirth">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -147,7 +147,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="CreateCustomerEntryEmailAddress">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -160,7 +160,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="CreateCustomerEntrytelephoneNumber">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -173,7 +173,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="CreateCustomerEntryCellularPhoneNumber">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -187,7 +187,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
             </div>
           </div>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="col-md-12 mainTitle">
             <div class="text-start"><?php echo $CLICSHOPPING_Customers->getDef('category_address_default'); ?></div>
           </div>
@@ -204,7 +204,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="CreateCustomerEntrySuburb">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -217,7 +217,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="CreateCustomerInfoCountry">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -235,7 +235,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
             <?php
             if (ACCOUNT_STATE == 'true') {
               ?>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="CreateCustomerInfoCountryZone">
                 <div class="col-md-5">
                   <div class="form-group row">
@@ -253,7 +253,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
             }
             ?>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="CreateCustomerEntryPostCode">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -266,7 +266,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="CreateCustomerEntryCity">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -314,7 +314,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
             <?php
             if (MODE_B2B_B2C == 'True') {
               ?>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="CreateCustomerEntrySiret">
                 <div class="col-md-5">
                   <div class="form-group row">
@@ -327,7 +327,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
                 </div>
               </div>
 
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="CreateCustomerEntryApe">
                 <div class="col-md-5">
                   <div class="form-group row">
@@ -342,7 +342,7 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
               <?php
               if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
                 ?>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div class="row" id="CreateCustomerEntryTva">
                   <div class="col-md-5">
                     <div class="form-group row">
@@ -367,10 +367,10 @@ if ($CLICSHOPPING_MessageStack->exists('header')) {
           // Activation du module B2B
           if (MODE_B2B_B2C == 'True') {
             ?>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="alert alert-info" id="CreateCustomerHelCustomersTva">
               <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') . '"></i></h4> ' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') ?></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_tva_customers'); ?></div>
             </div>
             <?php

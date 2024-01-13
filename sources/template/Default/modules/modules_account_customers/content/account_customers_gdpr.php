@@ -18,12 +18,12 @@ echo $form;
     <div class="page-title AccountCustomersGdrp">
       <h3><?php echo CLICSHOPPING::getDef('module_account_customers_gdpr_title'); ?></h3></div>
 
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div><?php echo CLICSHOPPING::getDef('module_account_customers_gdpr_account_intro'); ?></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div>
       <blockquote>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div id="gdpr">
           <?php
           if (is_dir($source_folder)) {

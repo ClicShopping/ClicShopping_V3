@@ -22,7 +22,7 @@ require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
       <?php
       if ($CLICSHOPPING_Reviews->getTotalReviews() == 0) {
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="alert alert-info" role="alert"><?php echo CLICSHOPPING::getDef('text_no_reviews'); ?></div>
         <?php
       } else {

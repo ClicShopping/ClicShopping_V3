@@ -72,7 +72,7 @@ echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLIC
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div id="categoriesTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
@@ -129,7 +129,7 @@ echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLIC
             </div>
           </div>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_Categories->getDef('text_divers_title'); ?></div>
           <div class="adminformTitle" id="categoriesSortOrder">
             <div class="row">
@@ -191,7 +191,7 @@ echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLIC
               ?>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab2', null, 'display'); ?>
         </div>
         <?php
@@ -224,7 +224,7 @@ echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLIC
                   </div>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group row">
@@ -236,7 +236,7 @@ echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLIC
                   </div>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group row">
@@ -248,7 +248,7 @@ echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLIC
                   </div>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group row">
@@ -260,7 +260,7 @@ echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLIC
                   </div>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group row">
@@ -275,10 +275,10 @@ echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLIC
               <?php
             }
             ?>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="alert alert-info" role="alert">
               <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_seo') ?></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><?php echo $CLICSHOPPING_Categories->getDef('help_seo'); ?></div>
             </div>
           </div>
@@ -319,10 +319,10 @@ echo HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLIC
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_image') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_image') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Categories->getDef('help_image_categories'); ?></div>
           </div>
           <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab4', null, 'display'); ?>

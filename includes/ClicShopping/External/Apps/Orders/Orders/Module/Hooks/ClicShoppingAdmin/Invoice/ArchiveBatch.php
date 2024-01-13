@@ -59,13 +59,13 @@ class ArchiveBatch implements \ClicShopping\OM\Modules\HooksInterface
                         ' . HTML::hiddenField('aID', 1) . '
                        </form>
                       ' . HTML::form('archive', $this->app->link('Orders&ArchiveBatch')) . '
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="col-md-12">
                           <div class="col-md-12 text-start">' . $this->app->getDef('label_text_order_number') . '</div>
                           <span class="col-md-6">' . $this->app->getDef('label_text_start') . HTML::inputField('orders_id_start', '', 'aria-required="true" placeholder="10"') . '</span>
                           <span class="col-md-6">' . $this->app->getDef('label_text_end') . HTML::inputField('orders_id_end', '', 'aria-required="true" placeholder="50"') . '</span><br />
                         </div>
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div>
                         ' . HTML::button($this->app->getDef('button_archive_batch'), null, null, 'primary') . ' ' . HTML::button($this->app->getDef('button_archive_consult'), null, $this->app->link('Orders&aID=1'), 'secondary') . '
                         </div>

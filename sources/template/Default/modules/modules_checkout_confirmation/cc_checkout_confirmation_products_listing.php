@@ -50,10 +50,10 @@ class cc_checkout_confirmation_products_listing
       $confirmation = '  <!-- cc_checkout_confirmation_products_listing start -->' . "\n";
 
       $confirmation .= '<div class="col-md-' . $content_width . '">';
-      $confirmation .= '<div class="separator"></div>';
+      $confirmation .= '<div class="mt-1"></div>';
       $confirmation .= '<div class="page-title moduleCheckoutConfirmationProductsListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_information') . '</h3></div>';
-      $confirmation .= '<div class="separator"></div>';
-      $confirmation .= '<div class="separator"></div>';
+      $confirmation .= '<div class="mt-1"></div>';
+      $confirmation .= '<div class="mt-1"></div>';
       $confirmation .= '<div>';
 
       if (\count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
@@ -63,7 +63,7 @@ class cc_checkout_confirmation_products_listing
         $confirmation .= '</div>';
         $confirmation .= '<div class="hr"></div>';
         $confirmation .= '<div class="card-block moduleCheckoutConfirmationProductsListingCardBlock">';
-        $confirmation .= '<div class="separator"></div>';
+        $confirmation .= '<div class="mt-1"></div>';
         $confirmation .= '<table width="100%">';
         $confirmation .= '<tr>';
         $confirmation .= '<td class="text-end"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_tax') . '</strong></td>';
@@ -80,7 +80,7 @@ class cc_checkout_confirmation_products_listing
       }
 
       $confirmation .= '<div class="card-block moduleCheckoutConfirmationProductsListingCardBlock">';
-      $confirmation .= '<div class="separator"></div>';
+      $confirmation .= '<div class="mt-1"></div>';
       $confirmation .= '<table width="100%">';
 
       for ($i = 0, $n = \count($CLICSHOPPING_Order->products); $i < $n; $i++) {

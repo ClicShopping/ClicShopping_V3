@@ -24,7 +24,7 @@ echo HTML::form('advanced_search', CLICSHOPPING::link(null, 'Search&Q'), 'post',
     <div class="contentText">
       <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_search_criteria'); ?></h1></div>
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_advanced_search'); ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="control-group">
         <div>
           <div class="buttonSet">
@@ -34,7 +34,7 @@ echo HTML::form('advanced_search', CLICSHOPPING::link(null, 'Search&Q'), 'post',
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
   </div>
 </section>
 </form>

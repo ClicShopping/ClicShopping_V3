@@ -286,7 +286,7 @@ if (isset($_GET['bID'])) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <?php
   if ($page_error === true) {
@@ -399,13 +399,13 @@ if (isset($_GET['bID'])) {
                     </div>
                   </div>
                 </div>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <?php
               }
             }
             ?>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_pages_type'); ?></div>
 
           <div class="adminformTitle">
@@ -426,7 +426,7 @@ if (isset($_GET['bID'])) {
 
           if ($page_type == 4 || $page_type == 3) {
             ?>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_box'); ?></div>
             <div class="adminformTitle">
               <div class="row">
@@ -447,7 +447,7 @@ if (isset($_GET['bID'])) {
           if ($page_type == 4) {
             if (empty($page_general_condition)) $page_general_condition = 0;
             ?>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div
               class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_general_conditions'); ?></div>
             <div class="adminformTitle">
@@ -466,7 +466,7 @@ if (isset($_GET['bID'])) {
             <?php
           }
           ?>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_pages_date'); ?></div>
           <div class="adminformTitle">
             <div class="row">
@@ -480,7 +480,7 @@ if (isset($_GET['bID'])) {
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -494,7 +494,7 @@ if (isset($_GET['bID'])) {
             </div>
           </div>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_divers'); ?></div>
           <div class="adminformTitle">
             <?php
@@ -511,7 +511,7 @@ if (isset($_GET['bID'])) {
                   </div>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <?php
             }
             ?>
@@ -526,14 +526,14 @@ if (isset($_GET['bID'])) {
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <?php
             if ($page_type == 1) {
               ?>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="alert alert-info" role="alert">
                 <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_PageManager->getDef('title_help_page_manager') . '"></i></h4> ' . $CLICSHOPPING_PageManager->getDef('title_help_page_manager') ?></div>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_type_information'); ?></div>
               </div>
               <?php
@@ -565,7 +565,7 @@ if (isset($_GET['bID'])) {
                       <div class="col-md-5">
                         <?php echo HTML::inputField('externallink_' . $languages[$i]['id'], $externallink[$languages[$i]['id']] ?? '', 'placeholder="https://www."'); ?>
                       </div>
-                      <div class="separator"></div>
+                      <div class="mt-1"></div>
                     </div>
                   </div>
                 </div>
@@ -636,7 +636,7 @@ if (isset($_GET['bID'])) {
               ?>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
         </div>
         <!-- //################################################################################################################ -->
         <!--               ONGLET Information seo		          //-->
@@ -653,7 +653,7 @@ if (isset($_GET['bID'])) {
                    target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="accordion" id="accordionExample">
               <?php
               for ($i = 0, $n = \count($languages);
@@ -702,7 +702,7 @@ if (isset($_GET['bID'])) {
                       </div>
                     </div>
 
-                    <div class="separator"></div>
+                    <div class="mt-1"></div>
                     <div class="row" id="pageManagerSeoDescription<?php echo $languages_id; ?>">
                       <div class="col-md-6">
                         <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -716,7 +716,7 @@ if (isset($_GET['bID'])) {
                       </div>
                     </div>
 
-                    <div class="separator"></div>
+                    <div class="mt-1"></div>
                     <div class="row" id="pageManagerSeoKeywords<?php echo $languages_id; ?>">
                       <div class="col-md-10">
                         <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -738,16 +738,16 @@ if (isset($_GET['bID'])) {
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_PageManager->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_PageManager->getDef('title_help_seo') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_PageManager->getDef('help_seo'); ?></div>
           </div>
         </div>
       </div>
 
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <?php
       //***********************************
       // extension

@@ -40,7 +40,7 @@ echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_newsletter'), null, $
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="appNewsletterToolbar">
     <li class="nav-item">
       <?php
@@ -82,14 +82,14 @@ echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_newsletter'), null, $
             <?php
             foreach ($CLICSHOPPING_Newsletter_Config->getInputParameters() as $cfg) {
               echo '<div>' . $cfg . '</div>';
-              echo '<div class="separator"></div>';
+              echo '<div class="mt-1"></div>';
             }
             ?>
           </p>
         </div>
       </div>
 
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <?php
         echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_save'), null, null, 'success');
@@ -130,10 +130,10 @@ echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_newsletter'), null, $
       <strong><?php echo $CLICSHOPPING_Newsletter->getConfigModuleInfo($current_module, 'title'); ?></strong></div>
     <div class="adminformTitle">
       <div class="row">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <div><?php echo $CLICSHOPPING_Newsletter->getConfigModuleInfo($current_module, 'introduction'); ?></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div><?php echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_install_title', ['title' => $CLICSHOPPING_Newsletter->getConfigModuleInfo($current_module, 'title')]), null, $CLICSHOPPING_Newsletter->link('Configure&Install&module=' . $current_module), 'warning'); ?></div>
         </div>
       </div>

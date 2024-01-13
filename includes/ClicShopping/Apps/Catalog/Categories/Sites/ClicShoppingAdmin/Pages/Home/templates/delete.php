@@ -55,23 +55,23 @@ $cInfo = new ObjectInfo($cInfo_array);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Categories->getDef('text_info_heading_delete_category'); ?></strong></div>
   <?php echo HTML::form('categories', $CLICSHOPPING_Categories->link('Categories&DeleteConfirm&cPath=' . $cPath . '&categories_id=' . $cInfo->categories_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Categories->getDef('text_delete_category_intro'); ?><br/><br/>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-md-3"><?php echo $cInfo->categories_name; ?></span>
       </div>
       <?php
       if ($cInfo->childs_count > 0) {
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
             <span
               class="col-md-12"><?php echo $CLICSHOPPING_Categories->getDef('text_delete_warning_childs', ['delete_child' => $cInfo->childs_count]); ?></span>
@@ -81,7 +81,7 @@ $cInfo = new ObjectInfo($cInfo_array);
 
       if ($cInfo->products_count > 0) {
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
             <span
               class="col-md-12"><?php echo $CLICSHOPPING_Categories->getDef('text_delete_warning_products', ['delete_warning' => $cInfo->products_count]); ?></span>
@@ -89,7 +89,7 @@ $cInfo = new ObjectInfo($cInfo_array);
         <?php
       }
       ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Categories->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLICSHOPPING_Categories->link('Categories&cPath=' . $cPath . '&cID=' . $cInfo->categories_id), 'warning', null, 'sm'); ?></span>
       </div>

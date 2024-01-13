@@ -41,15 +41,15 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_heading_delete_tax_rate'); ?></strong></div>
   <?php echo HTML::form('rates', $CLICSHOPPING_TaxRates->link('TaxRates&DeleteConfirm&page=' . $page . '&tID=' . $trInfo->tax_rates_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_delete_info'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo '<strong>' . $trInfo->tax_description . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_TaxRates->getDef('button_cancel'), null, $CLICSHOPPING_TaxRates->link('TaxRates&page=' . (int)$_GET['page'] . '&tID=' . $trInfo->tax_rates_id), 'warning', null, 'sm'); ?></span>

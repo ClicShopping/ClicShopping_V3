@@ -461,12 +461,12 @@ if ($action != 'password') {
       <span class="input-group-addon" id="basic-addon1"></span>
       <?php echo HTML::inputField('first_name', '', 'placeholder="' . CLICSHOPPING::getDef('text_firstname') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1"></span>
       <?php echo HTML::inputField('name', '', 'placeholder="' . CLICSHOPPING::getDef('text_name') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
   } elseif (!empty($_SESSION['tfa_secret'])) {
     ?>
@@ -476,12 +476,12 @@ if ($action != 'password') {
         ?>
         <div class="col-md-12 text-center">
           <?php echo Topt::getImageTopt(CLICSHOPPING_TOTP_SHORT_TILTE, $_SESSION['tfa_secret']); ?>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="row">
             <span
               class="col-md-12"><?php echo HTML::inputField('tfa_code', null, 'aria-required="true" required placeholder="' . CLICSHOPPING::getDef('text_auth_code') . '"'); ?></span>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <span class="col-md-6">
                     <label
                       for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?></label>
@@ -489,7 +489,7 @@ if ($action != 'password') {
                       for="buttonCancel"><?php echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, 'login.php?action=logoff', 'warning'); ?></label>
                   </span>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12"><?php echo CLICSHOPPING::getDef('text_Login_auth_introduction'); ?></div>
         <?php
       }
@@ -502,16 +502,16 @@ if ($action != 'password') {
       <span class="input-group-addon" id="basic-addon1"></span>
       <?php echo HTML::inputField('username', '', 'placeholder="' . CLICSHOPPING::getDef('text_username') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1"></span>
       <?php echo HTML::passwordField('password', '', 'placeholder="' . CLICSHOPPING::getDef('text_password') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="text-end">
       <label for="buttonText"><?php echo HTML::button($button_text, null, null, 'primary'); ?></label>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     </div>
     </div>
     </form>
@@ -555,7 +555,7 @@ if ($action != 'password') {
               <span class="input-group-addon" id="basic-addon1">@</span>
               <?php echo HTML::inputField('username', '', 'size="150" placeholder="' . CLICSHOPPING::getDef('text_email_lost_password') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
           </div>
         </div>
         <div class="row col-md-12">
@@ -572,7 +572,7 @@ if ($action != 'password') {
         </div>
       </div>
       </form>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
     </div>
   </div>
   <?php

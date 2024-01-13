@@ -121,12 +121,12 @@ class bm_products_favorites
 
       $data = '<!-- Boxe Favorites start -->' . "\n";
       $data .= '<section class="boxe_favorites" id="boxe_favorites">';
-      $data .= '<div class="separator"></div>';
+      $data .= '<div class="mt-1"></div>';
       $data .= '<div class="boxeBannerContentsFavorites">' . $favorites_banner . '</div>';
       $data .= '<div class="card boxeContainerFavorites">';
       $data .= '<div class="card-header boxeHeadingFavorites"><span class="card-title boxeTitleFavorites">' . HTML::link(CLICSHOPPING::link(null, 'Products&Favorites'), CLICSHOPPING::getDef('module_boxes_products_favorites_box_title')) . '</span></div>';
       $data .= '<div class="card-block  text-center boxeContentArroundFavorites">';
-      $data .= '<div class="separator"></div>';
+      $data .= '<div class="mt-1"></div>';
 
       while ($Qproducts->fetch()) {
         $products_id = $Qproducts->valueInt('products_id');

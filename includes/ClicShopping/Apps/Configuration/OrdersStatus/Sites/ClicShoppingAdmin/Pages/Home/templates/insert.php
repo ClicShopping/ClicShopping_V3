@@ -42,7 +42,7 @@ echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_insert'), null, nul
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_info_heading_new_orders_status'); ?></strong></div>
   <div class="adminformTitle">
@@ -80,7 +80,7 @@ echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_insert'), null, nul
       <?php
     }
     ?>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12" id="public_flag">
       <span class="col-md-3"></span>
       <ul class="list-group-slider list-group-flush">

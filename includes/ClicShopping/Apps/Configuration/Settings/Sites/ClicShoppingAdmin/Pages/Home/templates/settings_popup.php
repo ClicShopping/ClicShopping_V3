@@ -98,9 +98,9 @@ echo HTML::form('configuration', $CLICSHOPPING_Settings->link('SettingsPopUp&Upd
 <div style="padding:20px 10px 30px 10px;">
   <div s class="text-start"
        style="font-weight: bold; font-size:12px;"><?php echo '&nbsp;' . $cInfo->configuration_title; ?></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="text-start"><?php echo $cInfo->configuration_description; ?></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div><?php echo $value_field; ?></div>
 </div>
 

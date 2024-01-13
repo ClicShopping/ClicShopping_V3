@@ -124,13 +124,13 @@ class bm_products_recommendations
 
       $data = '<!-- Boxe Products recommendations start -->' . "\n";
       $data .= '<section class="boxe_recommendations" id="boxe_recommendations">' . "\n";
-      $data .= '<div class="separator"></div>';
+      $data .= '<div class="mt-1"></div>';
       $data .= '<div class="boxeBannerContentsRecommendations">' . $recommendations_banner . '</div>';
       $data .= '<div class="clearfix"></div>';
       $data .= '<div class="card boxeContainerRecommendations">';
       $data .= '<div class="card-header boxeHeadingRecommendations"><span class="card-title boxeTitleRecommendations">' . HTML::link(CLICSHOPPING::link(null, 'Products&Recommendations'), CLICSHOPPING::getDef('module_boxes_products_recommendations_box_title')) . '</span></div>';
       $data .= '<div class="card-block  text-center boxeContentArroundRecommendations">';
-      $data .= '<div class="separator"></div>';
+      $data .= '<div class="mt-1"></div>';
 
       while ($Qproducts->fetch()) {
         $products_id = $Qproducts->valueInt('products_id');

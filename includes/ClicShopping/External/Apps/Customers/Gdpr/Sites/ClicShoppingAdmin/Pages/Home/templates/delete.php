@@ -57,23 +57,23 @@ $cInfo = new ObjectInfo($cInfo_array);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Gdpr->getDef('text_info_delete_customer'); ?></strong></div>
   <?php echo HTML::form('customers', $CLICSHOPPING_Gdpr->link('Gdpr&DeleteConfirm&cID=' . $cInfo->customers_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Gdpr->getDef('text_delete_intro'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div
         class="col-md-12"><?php echo '<strong>' . $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname . '</strong>'; ?>
         <br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div
         class="col-md-12"><?php echo HTML::checkboxField('delete_reviews', 'on', true) . ' ' . $CLICSHOPPING_Gdpr->getDef('text_delete_reviews', ['delete_number' => $cInfo->number_of_reviews]); ?>
         <br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Gdpr->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Gdpr->getDef('button_cancel'), null, $CLICSHOPPING_Gdpr->link('Gdpr&page=' . $page . '&cID=' . $cInfo->customers_id), 'warning', null, 'sm'); ?></span>
       </div>

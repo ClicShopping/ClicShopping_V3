@@ -105,7 +105,7 @@ class pi_products_info_options
         }
 
         $products_options_content_display .= '<div class="contentText ' . MODULE_PRODUCTS_INFO_OPTIONS_POSITION . ';">';
-        $products_options_content_display .= '<div class="separator"></div>';
+        $products_options_content_display .= '<div class="mt-1"></div>';
         $products_options_content_display .= '<div class="ModuleProductsInfoPositionOption">';
         $products_options_content_display .= '<span class="ModuleProductsInfoOptionsText"><h3>' . CLICSHOPPING::getDef('text_product_options') . '</h3></span>';
 
@@ -152,7 +152,7 @@ class pi_products_info_options
             $products_options_content_display .= '<label class="ModuleProductsInfoOptionsName">' . $QproductsOptionsName->value('products_options_name') . ' : </label>';
             $products_options_content_display .= '<span class="ModuleProductsInfoOptionsPullDownMenu">' . HTML::selectMenu('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $products_options_array, $selected_attribute, 'class="ModuleProductsInfoOptionsPullDownMenuOptionsInside" required aria-required="true"') . '</span>';
             $products_options_content_display .= '</div>';
-            $products_options_content_display .= '<div class="separator"></div>';
+            $products_options_content_display .= '<div class="mt-1"></div>';
           } else {
 //
 // radio
@@ -210,7 +210,7 @@ class pi_products_info_options
             }
           }
 
-          $products_options_content_display .= '<div class="separator"></div>';
+          $products_options_content_display .= '<div class="mt-1"></div>';
         }// end while
 
         $products_options_content_display .= '</div>';

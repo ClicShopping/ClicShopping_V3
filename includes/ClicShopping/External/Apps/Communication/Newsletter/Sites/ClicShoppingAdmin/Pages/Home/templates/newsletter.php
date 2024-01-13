@@ -38,7 +38,7 @@ $action = $_GET['action'] ?? '';
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="card card-block headerCard">
@@ -48,7 +48,7 @@ $action = $_GET['action'] ?? '';
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <!-- //################################################################################################################ -->
   <!-- //                                             LISTING                                                            -->
   <!-- //################################################################################################################ -->

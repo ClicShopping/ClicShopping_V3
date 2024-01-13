@@ -114,7 +114,7 @@ class chs_downloads
                            </div>
                          </div>
                       </div>
-                     <div class="separator"></div>
+                     <div class="mt-1"></div>
                     ';
 
         $download .= '<!-- Product download end -->' . "\n";

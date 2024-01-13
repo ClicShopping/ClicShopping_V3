@@ -13,7 +13,7 @@ use ClicShopping\OM\CLICSHOPPING;
 ?>
 
 <div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div>
@@ -50,7 +50,7 @@ use ClicShopping\OM\CLICSHOPPING;
         <?php
         if ($customer_group_id > 0) {
           ?>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div><?php echo CLICSHOPPING::getDef('modules_products_reviews_write_comment_customer_group'); ?></div>
           <?php
         }

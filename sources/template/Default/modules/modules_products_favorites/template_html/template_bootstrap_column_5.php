@@ -13,18 +13,18 @@ use ClicShopping\OM\HTML;
 
 ?>
   <div class="col-12 col-md-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?> p-1">
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="card card-height">
       <div class="ModulesProductsFavoritesBoostrapColumn5CardHeight">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="card-img-top ModulesProductsFavoritesBoostrapColumn5Image">
           <?php echo $products_image . $ticker; ?>
         </div>
         <div class="card-body">
           <div class="ModulesProductsFavoritesBoostrapColumn5Title">
             <h3><?php echo HTML::link($products_name_url, $products_name); ?></h3></div>
-          <div class="separator"></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
+          <div class="mt-1"></div>
           <?php
           if (!empty($products_short_description)) {
             ?>
@@ -49,7 +49,7 @@ use ClicShopping\OM\HTML;
           }
           if (!empty($products_flash_discount)) {
             ?>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="EndDateFlashDiscount"> <?php echo $products_flash_discount; ?></div>
             <?php
           }

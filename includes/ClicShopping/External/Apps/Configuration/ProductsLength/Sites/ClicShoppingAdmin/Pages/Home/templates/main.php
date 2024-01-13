@@ -32,12 +32,12 @@ if ($CLICSHOPPING_MessageStack->exists('ProductsLength')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_ProductsLength->getDef('text_products_length'); ?></strong></div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
 
       <div class="col-md-12">
         <div>
@@ -45,7 +45,7 @@ if ($CLICSHOPPING_MessageStack->exists('ProductsLength')) {
             <?php echo $CLICSHOPPING_ProductsLength->getDef('text_intro'); ?>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="separator"></div
         <div class="col-md-12">
           <div>

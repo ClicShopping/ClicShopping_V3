@@ -24,7 +24,7 @@ class AccountGdprDeleteActionsRecorder
     $output .= '<div>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                            ' . CLICSHOPPING::getDef('module_account_customers_gdpr_delete_action_recorder') . '
                           <label class="switch">
                             ' . HTML::checkboxField('action_recorder', null, null, 'class="success"') . '

@@ -77,7 +77,7 @@ class Orders extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_ORDERS_APP_CONTENT_WIDTH;
 
     $output = '<div class="' . $content_width . '">';
-    $output .= '<div class="separator"></div>';
+    $output .= '<div class="mt-1"></div>';
     $output .= '<table
         id="table"
         data-toggle="table"

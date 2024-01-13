@@ -43,19 +43,19 @@ $bInfo = new ObjectInfo($Qbanner->toArray());
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $bInfo->banners_title; ?></strong></div>
   <?php echo HTML::form('banners', $CLICSHOPPING_BannerManager->link('BannerManager&DeleteConfirm&' . (isset($page) ? 'page=' . $page . '&' : '') . 'bID=' . $bInfo->banners_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_BannerManager->getDef('text_info_delete_intro'); ?><br/><br/>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-md-3"><?php echo $bInfo->banners_title; ?></span>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span
           class="col-md-3"><?php echo HTML::checkboxField('delete_image', 'on', true) . ' ' . $CLICSHOPPING_BannerManager->getDef('text_info_delete_image'); ?></span>

@@ -155,7 +155,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div id="productsTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
@@ -221,12 +221,12 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
             }
             ?>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div
             class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_other_information'); ?></div>
           <div class="adminformTitle">
             <div class="row" id="tab1ContentRow2"></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="tab1ContentRow3">
               <div class="col-md-5" id="tab1ContentRow3Model">
                 <div class="form-group row">
@@ -279,7 +279,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                   </div>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="col-md-5" id="tab1ContentRow3Isbn">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_isbn'); ?>"
@@ -301,7 +301,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="tab1ContentRow4">
               <div class="col-md-5" id="tab1ContentRow4Ean">
                 <div class="form-group row">
@@ -315,7 +315,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
               <div class="col-md-5" id="tab1ContentRow4Option"></div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div
             class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_other_information'); ?></div>
           <div class="adminformTitle">
@@ -349,10 +349,10 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
             </div>
           </div>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Products->getDef('title_help_general') . '"></i></h4> ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Products->getDef('help_general'); ?></div>
           </div>
           <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab1', null, 'display'); ?>
@@ -369,7 +369,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
             <span><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping'); ?></span>
           </div>
           <div class="adminformTitle">
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="productsWeight">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -381,14 +381,14 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="tab2Shipping"></div>
           </div>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="col-md-12 mainTitle"><span</span></div>
           <div class="adminformTitle">
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelay">
               <div class="btn-group" role="group" aria-label="buttonGroup">
                     <span
@@ -421,7 +421,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
               <?php
             }
             ?>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelayOutOfStock">
               <div class="btn-group" role="group" aria-label="buttonGroup">
                 <span
@@ -456,10 +456,10 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
             }
             ?>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
 
           <div class="row" id="tab2ShippingAdd"></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
         </div>
 
         <?php
@@ -510,7 +510,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
               ?>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="productsStock">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -591,7 +591,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                   </div>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <?php
               if ($pInfo->products_date_available != '') {
                 $products_date_available = DateTime::toShortWithoutFormat($pInfo->products_date_available);
@@ -610,7 +610,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="col-md-5" id="productsPackaging">
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_packaging'); ?>"
@@ -621,15 +621,15 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="tab2ContentRow7"></div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="row" id="tab2ContentRow8"></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert" id="titleHelpGeneral">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Products->getDef('title_help_general') . '"></i></h4> ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Products->getDef('help_stock'); ?></div>
           </div>
           <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab2', null, 'display'); ?>
@@ -777,7 +777,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
           </div>
           <div class="adminformTitle" style="padding-top: 0rem; padding-left: 0rem; padding-bottom: 0rem;">
             <div style="background-color:#ebebff; height:100%;">
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productsTaxtClass">
                 <div class="col-md-5">
                   <div class="form-group row">
@@ -789,7 +789,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                   </div>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productsPrice">
                 <div class="col-md-5">
                   <div class="form-group row">
@@ -817,7 +817,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                 <div id="ProductPriceOption"></div>
               </div>
 
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productsCost">
                 <div class="col-md-5">
                   <div class="form-group row">
@@ -830,7 +830,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                 </div>
               </div>
 
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productsHandling">
                 <div class="col-md-5">
                   <div class="form-group row">
@@ -843,7 +843,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                 </div>
               </div>
 
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productsPriceMargins">
                 <div class="col-md-5">
                   <div class="form-group row">
@@ -856,7 +856,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                 </div>
               </div>
 
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productsView">
                 <div class="col-md-5">
                   <div class="form-group row">
@@ -917,7 +917,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                 </div>
               </div>
 
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productsPriceKilo">
                 <div class="col-md-5">
                   <div class="form-group row">
@@ -958,7 +958,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
             <span><?php echo $CLICSHOPPING_Products->getDef('text_products_description'); ?></span>
           </div>
           <div class="adminformTitle">
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="accordion" id="accordionExample">
               <?php
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
@@ -987,7 +987,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
 
                       echo $CLICSHOPPING_Wysiwyg::textAreaCkeditor($name, 'soft', '750', '300', (isset($products_description[$languages_id]) ? str_replace('& ', '&amp; ', trim($products_description[$languages_id])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages_id)), 'id="' . $ckeditor_id . '"');
                       ?>
-                      <div class="separator"></div>
+                      <div class="mt-1"></div>
                       <div class="row" id="DescriptionSummaryTitle<?php echo $languages_id; ?>">
                         <div class="col-md-6">
                           <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -1008,7 +1008,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
               ?>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab4', null, 'display'); ?>
         </div>
 
@@ -1028,7 +1028,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                   <span
                     class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_insert_big_image_vignette'); ?></span>
                 </div>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div class="col-md-12">
                   <span
                     class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_directory'); ?></span>
@@ -1059,22 +1059,22 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                     class="col-sm-12 text-center"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($pInfo->products_image, $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '150', '150') . HTML::hiddenField('products_image', $pInfo->products_image); ?></div>
                   <div
                     class="col-sm-12 text-center"><?php echo 'URL : ' . HTTP::getShopUrlDomain() . 'sources/images/' . $pInfo->products_image; ?></div>
-                  <div class="separator"></div>
+                  <div class="mt-1"></div>
                   <div class="col-sm-12 text-center">
                     <?php echo $CLICSHOPPING_Products->getDef('text_products_delete_image') . ' ' . HTML::checkboxField('delete_image', 'yes', false); ?>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
+            <div class="mt-1"></div>
           </div>
           <?php
           // -----------------------------------
           // Gallery
           // -----------------------------------
           ?>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_gallery_image'); ?></div>
           <div class="adminformTitle">
             <div id="tab5ContentRow2">
@@ -1086,7 +1086,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                   </a>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
 
               <script id="templateLargeImage" type="x-tmpl-mustache">
                 <li id="piId{{counter}}">
@@ -1227,7 +1227,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                         <span
                           class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_insert_big_image_vignette'); ?></span>
                       </div>
-                      <div class="separator"></div>
+                      <div class="mt-1"></div>
                       <div class="col-md-12 adminformAide">
                         <div class="col-md-12 text-center">
                             <span
@@ -1268,14 +1268,14 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
               ?>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div>
             <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab5', null, 'display'); ?>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Products->getDef('title_help_image') . '"></i></h4> ' . $CLICSHOPPING_Products->getDef('title_help_image') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Products->getDef('title_help_products'); ?></div>
           </div>
         </div>
@@ -1293,7 +1293,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                    target="_blank"><?php echo $CLICSHOPPING_Products->getDef('keywords_google_trend'); ?></a>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
 
             <div class="accordion" id="accordionExample">
               <?php
@@ -1329,7 +1329,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                         </div>
                       </div>
 
-                      <div class="separator"></div>
+                      <div class="mt-1"></div>
                       <div class="row" id="productsSeoTitle<?php echo $languages_id; ?>">
                         <div class="col-md-10">
                           <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -1342,7 +1342,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                         </div>
                       </div>
 
-                      <div class="separator"></div>
+                      <div class="mt-1"></div>
                       <div class="row" id="productsSeoDescription<?php echo $languages_id; ?>">
                         <div class="col-md-6">
                           <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -1356,7 +1356,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                         </div>
                       </div>
 
-                      <div class="separator"></div>
+                      <div class="mt-1"></div>
                       <div class="row" id="productsSeoKeywords<?php echo $languages_id; ?>">
                         <div class="col-md-10">
                           <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -1370,7 +1370,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
                         </div>
                       </div>
 
-                      <div class="separator"></div>
+                      <div class="mt-1"></div>
                       <div class="row" id="productsSeoTag<?php echo $languages_id; ?>">
                         <div class="col-md-10">
                           <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -1390,7 +1390,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
               ?>
             </div>
             <div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab6', null, 'display'); ?>
             </div>
           </div>
@@ -1499,10 +1499,10 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
             </div>
           </div>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Products->getDef('title_help_general') . '"></i></h4> ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Products->getDef('help_general_tab8') . ' ' . $CLICSHOPPING_Products->getDef('help_general_tab8_1') . ' ' . (int)(ini_get('upload_max_filesize')) . ' Mb'; ?></div>
           </div>
         </div>

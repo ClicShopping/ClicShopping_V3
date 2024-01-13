@@ -43,7 +43,7 @@ echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_class'), n
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <!-- //################################################################################################################ -->
   <!-- //                                             LISTING                                                            -->
   <!-- //################################################################################################################ -->
@@ -138,7 +138,7 @@ echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_class'), n
   </table>
   </td>
   </table>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($listingTotalRow > 0) {
     ?>

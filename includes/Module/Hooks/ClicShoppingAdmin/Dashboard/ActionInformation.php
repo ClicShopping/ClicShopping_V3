@@ -40,7 +40,7 @@ class ActionInformation
     $valuenow = round(($memory_end - $memory_start) / 1024 / 1024 / $valuemax, 3) * 100;
 
     $output = '
-              <div class="separator"></div>
+              <div class="mt-1"></div>
                 <div class="col-md-12">
                 <div class="row">
                   <div class="col-md-11 mainTable">
@@ -67,7 +67,7 @@ class ActionInformation
                     <div class="form-group row">
                       <label for="Bootstrap includes Memory Usage" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_core_memory') . '</label>
                       <div class="col-md-3">
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="progress">
                           <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="' . $valuenow . '" aria-valuemin="0" aria-valuemax="100" style="width: ' . $valuenow . '%;">
                              <strong>' . $valuenow . '%</strong>

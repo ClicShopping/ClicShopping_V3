@@ -72,7 +72,7 @@ class CustomerGroup implements \ClicShopping\OM\Modules\HooksInterface
 <!-- ######################## -->
 <!--  Start CustomersGroup      -->
 <!-- ######################## -->
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="mainTitle">
           <span class="col-md-10">{$title}</span>
         </div>

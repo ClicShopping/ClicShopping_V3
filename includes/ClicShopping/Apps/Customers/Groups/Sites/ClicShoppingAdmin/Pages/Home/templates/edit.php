@@ -101,7 +101,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'su
     </div>
   </div>
 
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($error === true) {
     ?>
@@ -114,7 +114,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'su
       }
       ?>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
   } // end $error
   ?>
@@ -170,7 +170,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'su
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Groups->getDef('title_default_discount'); ?></div>
           <div class="adminformTitle">
             <div class="row">
@@ -186,7 +186,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'su
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Groups->getDef('title_default_quantity'); ?></div>
           <div class="adminformTitle">
             <div class="row">
@@ -202,7 +202,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'su
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Groups->getDef('title_group_tax'); ?></div>
           <div class="adminformTitle">
             <div class="row">
@@ -221,7 +221,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'su
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="adminformAide">
             <div class="row">
               <span class="col-md-12">
@@ -229,7 +229,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'su
                 <strong><?php echo '&nbsp;' . $CLICSHOPPING_Groups->getDef('help_title_onglet_general'); ?></strong>
               </span>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row">
               <span class="col-md-12">
                 <?php echo $CLICSHOPPING_Groups->getDef('help_group_tax'); ?>
@@ -273,7 +273,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'su
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Groups->getDef('title_group_paiement_default'); ?></div>
           <div class="adminformTitle">
             <?php
@@ -332,10 +332,10 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'su
             } // end for
             ?>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Groups->getDef('help_title_onglet_facturation') . '"></i></h4> ' . $CLICSHOPPING_Groups->getDef('help_title_onglet_facturation'); ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Groups->getDef('help_order_tax'); ?></div>
           </div>
         </div>
@@ -446,7 +446,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_update'), null, null, 'su
             </form>
           </div>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Groups->getDef('title_list_categories_discount'); ?></div>
           <div class="adminformTitle">
             <table class="table table-sm table-hover">

@@ -93,7 +93,7 @@ echo HTML::selectField('module', $modules_list_array, null, 'onchange="this.form
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <table
     id="table"
     data-toggle="table"

@@ -29,8 +29,8 @@ if (VERTICAL_MENU_CONFIGURATION == 'true') {
 </div>
 <!-- end center page-->
 
-<div class="separator"></div>
-<div class="separator"></div>
+<div class="mt-1"></div>
+<div class="mt-1"></div>
 <footer id="footer">
   <nav class="navbar fixed-bottom navbar-light bg-faded footerCadre" role="navigation">
     <div class="navbar-collapse text-start" id="footer-body">
@@ -52,7 +52,7 @@ if (VERTICAL_MENU_CONFIGURATION == 'true') {
     </div>
   </nav>
 </footer>
-<div class="separator"></div>
+<div class="mt-1"></div>
 </div>
 <script defer
         src="<?php echo CLICSHOPPING::link("Shop/ext/javascript/clicshopping/ClicShoppingAdmin/page_loader.js"); ?>"></script>

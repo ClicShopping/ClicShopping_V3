@@ -79,16 +79,16 @@ $oInfo = new ObjectInfo($QordersStatusInvoice->toArray());
     </div>
   </div>
   <?php echo HTML::form('status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&DeleteConfirm&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->orders_status_invoice_id)); ?>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_heading_products_unit_quantity_delete'); ?></strong>
   </div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_delete_info'); ?><br/><br/>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo '<strong>' . $oInfo->orders_status_invoice_name . '</strong>'; ?><br/><br/>
       </div>
       <div class="col-md-12 text-center">

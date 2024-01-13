@@ -12,7 +12,7 @@ use ClicShopping\OM\CLICSHOPPING;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="d-flex flex-wrap">
     <?php
@@ -22,7 +22,7 @@ use ClicShopping\OM\CLICSHOPPING;
       <div
         class="card-header"><?php echo '<strong>' . CLICSHOPPING::getDef('module_account_customers_history_info_address_heading_delivery_address') . '</strong>'; ?></div>
       <div class="card-block">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <?php echo $address_delivery; ?>
       </div>
     </span>
@@ -33,7 +33,7 @@ use ClicShopping\OM\CLICSHOPPING;
       <div
         class="card-header"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_address_heading_shipping_method'); ?></strong></div>
       <div class="card-block">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <?php echo $shipping_method; ?>
       </div>
     </span>
@@ -46,7 +46,7 @@ use ClicShopping\OM\CLICSHOPPING;
         <div
           class="card-header"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_address_heading_billing_address'); ?></strong></div>
         <div class="card-block">
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php echo $billing_address; ?></td>
         </div>
       </div>
@@ -57,12 +57,12 @@ use ClicShopping\OM\CLICSHOPPING;
       <strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_address_heading_payment_method'); ?></strong>
     </div>
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <?php echo $payment_method; ?>
     </div>
   </div>
   <div class="clearfix"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="hr"></div>
 </div>
 

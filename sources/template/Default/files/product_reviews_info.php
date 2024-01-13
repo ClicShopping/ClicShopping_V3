@@ -16,7 +16,7 @@ $CLICSHOPPING_Template = Registry::get('Template');
 require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <div class="clearfix"></div>
-<div class="separator"></div>
+<div class="mt-1"></div>
 <section class="product_reviews_info" id="product_reviews_info">
   <div class="contentContainer">
     <div class="contentText">

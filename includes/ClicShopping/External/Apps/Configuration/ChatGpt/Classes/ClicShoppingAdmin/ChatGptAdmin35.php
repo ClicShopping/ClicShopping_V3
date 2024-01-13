@@ -472,13 +472,13 @@ class ChatGptAdmin35
                         ' . HTML::button(CLICSHOPPING::getDef('text_chat_close'), null, null, 'secondary', ['params' => 'data-bs-dismiss="modal"']) . '
                       </div>
                       <div class="modal-body">
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
 
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="form-group">
                           <textarea class="form-control" id="messageGpt" rows="3" placeholder="' . CLICSHOPPING::getDef('text_chat_message') . '"></textarea>
                         </div>
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="form-group text-end">
                           <div class="row">
                             <span class="col-md-6 text-start">
@@ -497,12 +497,12 @@ class ChatGptAdmin35
                             </span>                         
                           </div>
                         </div>
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                         <div class="card">
                           <div class="input-group">
                             <div class="chat-box-message text-start">
                               <div id="chatGpt-output" class="text-bg-light"></div>
-                              <div class="separator"></div>
+                              <div class="mt-1"></div>
                               <div class="col-md-12">
                                 <div class="row">
                                   <span class="col-md-12">

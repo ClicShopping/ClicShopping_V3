@@ -53,15 +53,15 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Currency->getDef('text_info_heading_delete_currency'); ?></strong></div>
   <?php echo HTML::form('currency', $CLICSHOPPING_Currency->link('Currency&DeleteConfirm&page=' . $page . '&cID=' . $cInfo->currencies_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Currency->getDef('text_info_delete_info'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo '<strong>' . $cInfo->title . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo (($remove_currency) ? HTML::button($CLICSHOPPING_Currency->getDef('button_delete'), null, null, 'primary', null, 'sm') : '') . ' </span><span>' . HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . (int)$_GET['page'] . '&cID=' . $cInfo->currencies_id), 'warning', null, 'sm'); ?></span>

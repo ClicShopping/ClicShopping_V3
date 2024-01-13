@@ -44,14 +44,14 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12">
       <div class="row">
         <span class="alert alert-info" role="alert">
           <?php echo $CLICSHOPPING_Upgrade->getDef('text_step_upgrade'); ?>
         </span>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
 
       <?php
       $json_file_directory = CLICSHOPPING::BASE_DIR . 'Work/Temp/' . $_SESSION['app_json'];
@@ -89,7 +89,7 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
                   echo '<li>' . $key . ' : ' . $text . '</li>';
 
                   if (\is_array($value)) {
-                    echo '<div class="separator"></div>';
+                    echo '<div class="mt-1"></div>';
 
                     foreach ($value as $item) {
                       echo '      -' . $item->name . '<br />';
@@ -102,7 +102,7 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
                 }
 
                 if (isset($_SESSION['module_directory'])) {
-                  echo '<div class="separator"></div>';
+                  echo '<div class="mt-1"></div>';
                   echo '<div class="alert alert-success" role="alert">';
                   echo '<span class="text-center"><h3>';
                   echo HTML::link(CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin') . 'index.php?A&' . $_SESSION['module_directory'] . '\\' . $_SESSION['module_apps_name'], $CLICSHOPPING_Upgrade->getDef('text_activate'));

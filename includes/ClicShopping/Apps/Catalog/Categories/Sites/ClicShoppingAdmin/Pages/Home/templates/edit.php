@@ -90,7 +90,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div id="categoriesTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
@@ -148,7 +148,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
             </div>
           </div>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_Categories->getDef('text_divers_title'); ?></div>
           <div class="adminformTitle" id="categoriesSortOrder">
             <div class="row">
@@ -214,7 +214,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
               ?>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab2', null, 'display'); ?>
         </div>
         <?php
@@ -227,14 +227,14 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
             <span><?php echo $CLICSHOPPING_Categories->getDef('text_products_page_seo'); ?></span>
           </div>
           <div class="adminformTitle">
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="col-md-12">
               <div class="row text-center" id="productsGoogleKeywords">
                 <a href="https://www.google.fr/trends"
                    target="_blank"><?php echo $CLICSHOPPING_Categories->getDef('keywords_google_trend'); ?></a>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="accordion" id="accordionExample">
               <?php
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
@@ -258,7 +258,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
                        aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
 
-                      <div class="separator"></div>
+                      <div class="mt-1"></div>
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group row">
@@ -271,7 +271,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
                         </div>
                       </div>
 
-                      <div class="separator"></div>
+                      <div class="mt-1"></div>
                       <div class="row" id="categoriesSeoTitle<?php echo $languages_id; ?>">
                         <div class="col-md-10">
                           <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -285,7 +285,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
                         </div>
                       </div>
 
-                      <div class="separator"></div>
+                      <div class="mt-1"></div>
                       <div class="row" id="categoriesSeoDescription<?php echo $languages_id; ?>">
                         <div class="col-md-6">
                           <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -299,7 +299,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
                         </div>
                       </div>
 
-                      <div class="separator"></div>
+                      <div class="mt-1"></div>
                       <div class="row" id="categoriesSeoKeywords<?php echo $languages_id; ?>">
                         <div class="col-md-10">
                           <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -319,10 +319,10 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
               }
               ?>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="alert alert-info" role="alert">
               <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_seo') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_seo') ?></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><?php echo $CLICSHOPPING_Categories->getDef('help_seo'); ?></div>
             </div>
           </div>
@@ -363,10 +363,10 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Categories->getDef('title_help_image') . '"></i></h4> ' . $CLICSHOPPING_Categories->getDef('title_help_image') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Categories->getDef('help_image_categories'); ?></div>
           </div>
           <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab4', null, 'display'); ?>

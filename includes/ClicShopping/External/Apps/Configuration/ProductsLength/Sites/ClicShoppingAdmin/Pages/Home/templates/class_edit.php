@@ -63,7 +63,7 @@ echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_cancel'), null, $
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_heading_edit_products_length'); ?></strong></div>
   <div class="adminformTitle">

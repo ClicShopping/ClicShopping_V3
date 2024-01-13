@@ -49,7 +49,7 @@ class AdminLogins extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     $content_width = (int)MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_CONTENT_WIDTH;
 
     $output = '<div class="col-md-' . $content_width . '">';
-    $output .= '<div class="separator"></div>';
+    $output .= '<div class="mt-1"></div>';
     $output .= '<table
         id="table"
         data-toggle="table"
@@ -96,7 +96,7 @@ class AdminLogins extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     $output .= '<tbody>';
     $output .= '</table>';
     $output .= '</div>';
-    $output .= '<div class="separator"></div>';
+    $output .= '<div class="mt-1"></div>';
 
     return $output;
   }

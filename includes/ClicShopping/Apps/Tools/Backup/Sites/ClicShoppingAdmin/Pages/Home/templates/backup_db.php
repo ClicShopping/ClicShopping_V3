@@ -46,7 +46,7 @@ if (is_dir($backup_directory)) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
 
   <div class="col-md-12 mainTitle">
@@ -54,9 +54,9 @@ if (is_dir($backup_directory)) {
   <?php echo HTML::form('backup', $CLICSHOPPING_Backup->link('Backup&BackupNow')); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Backup->getDef('text_info_new_backup'); ?></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div>
         <?php
         if (is_file(LOCAL_EXE_GZIP)) {
@@ -64,7 +64,7 @@ if (is_dir($backup_directory)) {
         }
         ?>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <ul class="list-group-slider list-group-flush">
           <li class="list-group-item-slider">
@@ -76,7 +76,7 @@ if (is_dir($backup_directory)) {
           <span class="text-slider"><?php echo $CLICSHOPPING_Backup->getDef('text_info_use_no_compression'); ?></span>
         </ul>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <ul class="list-group-slider list-group-flush">
           <li class="list-group-item-slider">
@@ -91,7 +91,7 @@ if (is_dir($backup_directory)) {
       <?php
       if ($dir_ok === true) {
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <ul class="list-group-slider list-group-flush">
             <li class="list-group-item-slider">
@@ -107,7 +107,7 @@ if (is_dir($backup_directory)) {
         <?php
       } else {
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <ul class="list-group-slider list-group-flush">
             <li class="list-group-item-slider">

@@ -12,7 +12,7 @@ use ClicShopping\OM\CLICSHOPPING;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?> m1">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="page-title moduleCheckoutConfirmationDeliveryAddressPageHeader">
     <h3><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_heading_delivery'); ?></h3></div>
   <?php
@@ -24,12 +24,12 @@ use ClicShopping\OM\CLICSHOPPING;
             <strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_text_delivery_title'); ?></strong><?php echo $delivery_address_link; ?>
           </div>
           <div class="card-block moduleCheckoutConfirmationDeliveryAddressCardBlock">
-            <div class="separator"></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
+            <div class="mt-1"></div>
             <?php echo $delivery_address; ?>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
       </span>
 
     <?php
@@ -41,12 +41,12 @@ use ClicShopping\OM\CLICSHOPPING;
               <strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_text_shipping_title'); ?></strong><?php echo $shipping_link; ?>
             </div>
             <div class="card-block moduleCheckoutConfirmationDeliveryAddressCardBlock">
-             <div class="separator"></div>
-             <div class="separator"></div>
+             <div class="mt-1"></div>
+             <div class="mt-1"></div>
               <?php echo $shipping_method; ?>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
         </span>
       <?php
     }

@@ -90,7 +90,7 @@ if (!empty($cId)) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div id="ApiTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
@@ -110,7 +110,7 @@ if (!empty($cId)) {
 
         ?>
         <div class="tab-pane active" id="tab1">
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="row" id="api_username">
             <div class="col-md-12">
               <div class="form-group row">
@@ -122,7 +122,7 @@ if (!empty($cId)) {
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="row" id="api_key">
             <div class="col-md-12">
               <div class="form-group row">
@@ -130,7 +130,7 @@ if (!empty($cId)) {
                        class="col-3 col-form-label"><?php echo $CLICSHOPPING_Api->getDef('text_api_key'); ?></label>
                 <div class="col-md-7">
                   <?php echo HTML::textAreaField('api_key', $Qapi->value('api_key'), null, 4, 'id="input-key" class="form-control required aria-required="true" "'); ?>
-                  <div class="separator"></div>
+                  <div class="mt-1"></div>
                   <button type="button" id="button-generate" class="btn btn-primary"><i
                       class="bi bi-arrow-clockwise"></i> <?php echo $CLICSHOPPING_Api->getDef('text_api_generate_key'); ?>
                   </button>
@@ -138,7 +138,7 @@ if (!empty($cId)) {
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
 
           <table class="table">
             <thead class="dataTableHeadingRow">
@@ -618,8 +618,8 @@ if (!empty($cId)) {
             </tbody>
           </table>
 
-          <div class="separator"></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
+          <div class="mt-1"></div>
           <?php echo $CLICSHOPPING_Hooks->output('Api', 'ApiContentTab1', null, 'display'); ?>
           </form>
         </div>
@@ -629,7 +629,7 @@ if (!empty($cId)) {
         // -------------------------------------------------------------------
         ?>
         <div class="tab-pane" id="tab2">
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="row" id="text_alert">
             <div class="col-md-12">
               <?php
@@ -647,7 +647,7 @@ if (!empty($cId)) {
               ?>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php
           $Qip = $CLICSHOPPING_Api->db->prepare('select api_ip_id,
                                                          api_id,
@@ -699,7 +699,7 @@ if (!empty($cId)) {
                                     </div>
 
                                   </div>
-                                  <div class="separator"></div>
+                                  <div class="mt-1"></div>
                                   <div class="text-center">
                                     <?php echo HTML::button($CLICSHOPPING_Api->getDef('text_add'), null, null, 'success'); ?>
                                   </div>
@@ -744,7 +744,7 @@ if (!empty($cId)) {
             ?>
             </tbody>
           </table>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php echo $CLICSHOPPING_Hooks->output('Api', 'ApiContentTab2', null, 'display'); ?>
         </div>
         <?php
@@ -766,7 +766,7 @@ if (!empty($cId)) {
         $result = $Qsession->fetchAll();
         ?>
         <div class="tab-pane" id="tab3">
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <table class="table table-striped">
             <thead class="dataTableHeadingRow">
             <tr>
@@ -798,7 +798,7 @@ if (!empty($cId)) {
             ?>
             </tbody>
           </table>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php echo $CLICSHOPPING_Hooks->output('Api', 'ApiContentTab3', null, 'display'); ?>
         </div>
       </div>

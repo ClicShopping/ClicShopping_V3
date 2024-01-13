@@ -21,10 +21,10 @@ if (isset($_GET['reset']) === true && isset($_GET['PasswordForgotten'])) {
   ?>
   <section class="password_forgotten" id="password_forgotten">
     <div class="contentContainer">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="contentText">
         <?php echo CLICSHOPPING::getDef('text_password_reset_initiated'); ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="control-group">
           <div>
             <div class="buttonSet">
@@ -37,7 +37,7 @@ if (isset($_GET['reset']) === true && isset($_GET['PasswordForgotten'])) {
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
   </section>
   <?php
 } else {

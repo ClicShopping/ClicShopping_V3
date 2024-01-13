@@ -55,7 +55,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <!-- ################# -->
   <!-- Hooks Stats - just use execute function to display the hook-->
   <!-- ################# -->
@@ -167,7 +167,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <!-- //################################################################################################################ -->
   <!-- //                                            LISTING DES AVIS CLIENTS                                             -->
   <!-- //################################################################################################################ -->

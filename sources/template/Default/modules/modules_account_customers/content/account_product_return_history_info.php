@@ -14,7 +14,7 @@ use ClicShopping\OM\HTML;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>" id="productReturnHistoryInfo">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="page-title Account_CustomersReturn">
@@ -27,14 +27,14 @@ use ClicShopping\OM\HTML;
   * Summary
   */
   ?>
-  <div class="separator"></div>
-  <div class="separator"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
+  <div class="mt-1"></div>
+  <div class="mt-1"></div>
   <div class="row" id="productReturnSummary">
     <div class="col-md-12"><h5><?php echo CLICSHOPPING::getDef('module_account_product_return_history_summary') ?></h5>
     </div>
-    <div class="separator"></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12">
       <div><?php echo '<strong> ' . CLICSHOPPING::getDef('module_account_product_return_history_return_ref') . '</strong> ' . $return_ref; ?></div>
       <div class="row">
@@ -51,9 +51,9 @@ use ClicShopping\OM\HTML;
     </div>
   </div>
 
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="hr"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   /*
    * Status
@@ -82,7 +82,7 @@ use ClicShopping\OM\HTML;
                   <?php echo '<strong>' . CLICSHOPPING::getDef('module_account_product_return_history_date_added') . '</strong> ' . DateTime::toShort($value['date_added']); ?>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="col-md-12">
                 <strong><?php echo CLICSHOPPING::getDef('module_account_product_return_history_info_comment'); ?></strong>
               </div>
@@ -92,28 +92,28 @@ use ClicShopping\OM\HTML;
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
   }
   /*
   * comment
   */
   ?>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <hr>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php echo $form; ?>
   <div class="row" id="productReturnHistoryInfoComment">
     <div class="col-md-12">
       <h5><?php echo CLICSHOPPING::getDef('module_account_product_return_history_write_comment') ?></h5></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12">
       <div class="row">
         <?php echo HTML::textAreaField('comment', null, 250, 5, 'required  aria-required="true" id="comment" aria-describedby="' . CLICSHOPPING::getDef('module_account_product_return_faulty') . '" placeholder="' . CLICSHOPPING::getDef('module_account_product_return_faulty') . '"'); ?>
       </div>
     </div>
-    <div class="separator"></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12">
       <div class="row">
         <span

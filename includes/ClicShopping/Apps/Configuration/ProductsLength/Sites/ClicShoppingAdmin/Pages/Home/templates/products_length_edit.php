@@ -60,7 +60,7 @@ echo HTML::hiddenField('products_length_class_id', HTML::sanitize($_GET['wID']))
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_heading_edit_products_length'); ?></strong></div>
   <div class="adminformTitle">

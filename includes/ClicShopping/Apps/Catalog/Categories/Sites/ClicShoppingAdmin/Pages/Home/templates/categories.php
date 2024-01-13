@@ -92,7 +92,7 @@ if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShop
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="card card-block headerCard">
@@ -102,7 +102,7 @@ if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShop
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if (!isset($_POST['cPath']) || $_POST['cPath'] == 0) {
     ?>
@@ -227,6 +227,6 @@ if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShop
     </tbody>
   </table>
   </form>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div><?php echo $CLICSHOPPING_Categories->getDef('text_categories') . '&nbsp;' . $categories_count; ?></div>
 </div>

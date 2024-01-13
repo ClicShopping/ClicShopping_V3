@@ -50,7 +50,7 @@ foreach (glob(ErrorHandler::getDirectory() . 'phpmail_error-*.txt') as $f) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <table class="table table-sm table-hover table-striped">
     <thead>
     <tr class="dataTableHeadingRow">

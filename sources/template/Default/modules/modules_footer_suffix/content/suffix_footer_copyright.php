@@ -11,7 +11,7 @@
 use ClicShopping\OM\CLICSHOPPING;
 
 ?>
-<div class="separator"></div>
+<div class="mt-1"></div>
 <div class="hr"></div>
 <div class="text-center footerSuffix">
   <div class="footerSuffixCopyright">

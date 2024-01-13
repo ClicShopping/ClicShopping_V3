@@ -61,22 +61,22 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Categories->getDef('text_info_heading_move_category'); ?></strong></div>
   <?php echo HTML::form('categories', $CLICSHOPPING_Categories->link('Categories&MoveConfirm&cPath=' . $cPath . '&categories_id=' . $cInfo->categories_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div
         class="col-md-12"><?php echo $CLICSHOPPING_Categories->getDef('text_move_categories_intro', ['categorie_name' => $cInfo->categories_name]); ?>
         <br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span
           class="col-md-3"><?php echo $CLICSHOPPING_Categories->getDef('text_move', ['categorie_name' => $cInfo->categories_name]) . '<br />' . HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $cInfo->parent_id); ?></span>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Categories->getDef('button_move'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Categories->getDef('button_cancel'), null, $CLICSHOPPING_Categories->link('Categories&cPath=' . $cPath . '&cID=' . $cInfo->categories_id), 'warning', null, 'sm'); ?></span>
       </div>

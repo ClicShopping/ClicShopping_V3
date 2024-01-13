@@ -16,7 +16,7 @@ require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
       <div class="d-flex flex-wrap">
         <?php echo $CLICSHOPPING_Template->getBlocks('modules_sitemap'); ?>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
     </div>
   </div>
 </section>

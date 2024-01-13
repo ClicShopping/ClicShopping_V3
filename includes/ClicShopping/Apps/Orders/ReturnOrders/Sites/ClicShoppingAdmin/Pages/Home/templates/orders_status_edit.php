@@ -63,7 +63,7 @@ if (isset($_GET['oID'])) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_ReturnOrders->getDef('text_info_heading_edit_orders_status'); ?></strong></div>
   <div class="adminformTitle">
@@ -105,11 +105,11 @@ if (isset($_GET['oID'])) {
           </div>
         </div>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <?php
     }
     ?>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
     /*
   if (DEFAULT_return_status_id != $return_status_id) {

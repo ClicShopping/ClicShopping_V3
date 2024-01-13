@@ -57,17 +57,17 @@ echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_cancel'), n
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('text_info_heading_products_quantity_unit'); ?></strong>
   </div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('text_info_edit_intro'); ?><br/><br/>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
 
         <?php
@@ -91,12 +91,12 @@ echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_cancel'), n
         }
         ?>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
 
       <?php
       if (DEFAULT_PRODUCTS_QUANTITY_UNIT_STATUS_ID != $oInfo->products_quantity_unit_id) {
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <span class="col-md-3"></span>
           <ul class="list-group-slider list-group-flush">

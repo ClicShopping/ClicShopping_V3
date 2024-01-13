@@ -104,7 +104,7 @@ class pageTab4 implements \ClicShopping\OM\Modules\HooksInterface
         $content .= '</div>';
 
         if ($cInfo->customers_group_id != 0) {
-          $content .= '<div class="separator"></div>';
+          $content .= '<div class="mt-1"></div>';
           $content .= '<div class="mainTitle">' . $this->app->getDef('category_order_taxe_group') . '&nbsp;' . $customer_group['customers_group_name'] . '</div>';
           $content .= '<div class="adminformTitle">';
           $content .= '<div class="row">';
@@ -146,7 +146,7 @@ class pageTab4 implements \ClicShopping\OM\Modules\HooksInterface
 
         } // end customers_group_id
 
-        $content .= '<div class="separator"></div>';
+        $content .= '<div class="mt-1"></div>';
         $content .= '<div class="mainTitle">';
 
         if ($cInfo->customers_group_id != 0) {

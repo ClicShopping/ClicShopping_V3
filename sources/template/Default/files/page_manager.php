@@ -27,7 +27,7 @@ require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
         <h1><?php echo $page_title; ?></h1>
       </div>
       <div class="pageManager"><?php echo $page; ?></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
     </div>
   </div>
 </section>

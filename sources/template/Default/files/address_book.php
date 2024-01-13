@@ -31,12 +31,12 @@ $process = false;
 <section class="address_book" id="address_book">
   <div class="contentContainer col-md-12">
     <div class="contentText">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <h3><?php echo CLICSHOPPING::getDef('primary_address_title'); ?></h3>
       <div class="col-md-9">
         <div><?php echo CLICSHOPPING::getDef('primary_address_description', ['store_name' => STORE_NAME]); ?></div>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-3">
         <div class="boxHeading"><strong><?php echo CLICSHOPPING::getDef('primary_address_title'); ?></strong></div>
         <div class="boxContents">
@@ -48,8 +48,8 @@ $process = false;
       // --- Address bool Title
       // ----------------------
       ?>
-      <div class="separator"></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
+      <div class="mt-1"></div>
       <h3><?php echo CLICSHOPPING::getDef('primary_book_title'); ?></h3></
     >
     <div class="d-flex flex-wrap">
@@ -71,7 +71,7 @@ $process = false;
                 <strong><?php echo HTML::outputProtected($Qaddresses->value('firstname') . ' ' . $Qaddresses->value('lastname')); ?></strong><?php if ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->getDefaultAddressID()) echo '&nbsp;<small><i>' . CLICSHOPPING::getDef('primary_address') . '</i></small>'; ?>
               </div>
               <div class="card-block">
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <?php echo $CLICSHOPPING_Address->addressFormat($format_id, $addresses, true, ' ', '<br />'); ?>
               </div>
               <?php
@@ -82,7 +82,7 @@ $process = false;
                 <strong><?php echo HTML::outputProtected($Qaddresses->value('firstname') . ' ' . $Qaddresses->value('lastname')); ?></strong><?php if ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->getDefaultAddressID()) echo '&nbsp;<small><i>' . CLICSHOPPING::getDef('primary_address') . '</i></small>'; ?>
               </div>
               <div class="card-block">
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <?php echo $CLICSHOPPING_Address->addressFormat($format_id, $addresses, true, ' ', '<br />'); ?>
               </div>
               <div class="card-footer text-center">
@@ -109,7 +109,7 @@ $process = false;
     // ----------------------
     if (AddressBook::countCustomersAddAddress() == 1) {
       ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div>
         <div><?php echo CLICSHOPPING::getDef('text_maximum_entries', ['max_entries' => (int)MAX_ADDRESS_BOOK_ENTRIES]); ?></div>
       </div>
@@ -119,7 +119,7 @@ $process = false;
     // --- Button   -----
     // ----------------------
     ?>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="control-group">
       <div>
           <span class="buttonSet">

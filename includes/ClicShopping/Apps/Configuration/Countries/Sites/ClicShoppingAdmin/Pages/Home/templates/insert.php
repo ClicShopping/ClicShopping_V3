@@ -38,7 +38,7 @@ echo HTML::button($CLICSHOPPING_Countries->getDef('button_insert'), null, null, 
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Countries->getDef('text_info_heading_new_county'); ?></strong></div>
   <div class="adminformTitle">
@@ -93,7 +93,7 @@ echo HTML::button($CLICSHOPPING_Countries->getDef('button_insert'), null, null, 
         <?php echo $CLICSHOPPING_Countries->getDef('text_info_address_format'); ?>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="row">
       <?php
       foreach ($address_formats_array as $value) {
@@ -113,16 +113,16 @@ echo HTML::button($CLICSHOPPING_Countries->getDef('button_insert'), null, null, 
               </p>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
         </div>
         <?php
       }
       ?>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="alert alert-info" role="alert">
       <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Countries->getDef('title_help_general') . '"></i></h4> ' . $CLICSHOPPING_Countries->getDef('title_help_general') ?></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div><?php echo $CLICSHOPPING_Countries->getDef('help_general'); ?></div>
     </div>
   </div>

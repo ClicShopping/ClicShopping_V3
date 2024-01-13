@@ -33,12 +33,12 @@ if ($CLICSHOPPING_MessageStack->exists('Customers')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Customers->getDef('text_customers'); ?></strong>
   </div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
 
       <div class="col-md-12">
         <div>

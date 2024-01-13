@@ -14,6 +14,6 @@ use ClicShopping\OM\CLICSHOPPING;
   <div class="modulesTellAFriendMessagePageHeader">
     <h3><?php echo CLICSHOPPING::getDef('modules_tell_a_friend_message_title_friend_message'); ?></h3>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-11"><?php echo $message ?></div>
 </div>

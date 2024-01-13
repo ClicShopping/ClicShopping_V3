@@ -67,7 +67,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div>
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
@@ -138,10 +138,10 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
             }
             ?>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general') . '"></i></h4> ' . $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_TemplateEmail->getDef('text_help_template'); ?></div>
           </div>
         </div>
@@ -196,10 +196,10 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
               ?>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general') . '"></i></h4> ' . $CLICSHOPPING_TemplateEmail->getDef('help_title_onglet_general') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_TemplateEmail->getDef('text_help_template'); ?></div>
           </div>
         </div>

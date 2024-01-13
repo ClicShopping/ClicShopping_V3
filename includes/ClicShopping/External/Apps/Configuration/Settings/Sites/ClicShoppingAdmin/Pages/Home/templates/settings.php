@@ -35,7 +35,7 @@ $QcfgGroup = $CLICSHOPPING_Settings->db->get('configuration_group', 'configurati
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <table
     id="table"

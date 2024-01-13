@@ -44,15 +44,15 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Weight->getDef('text_info_heading_delete_weight'); ?></strong></div>
   <?php echo HTML::form('delete', $CLICSHOPPING_Weight->link('Weight&ClassDeleteConfirm&page=' . $page . '&wID=' . $wInfo->weight_class_from_id . '&tID=' . $wInfo->weight_class_to_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Weight->getDef('text_info_delete_info'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div
         class="col-md-12"><?php echo '<strong>' . $CLICSHOPPING_Weight->getDef('text_weight_rules') . ' ' . $wInfo->weight_class_rule . '</strong>'; ?>
         <br/><br/></div>

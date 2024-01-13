@@ -91,7 +91,7 @@ class ac_account_customers_list_order
                                                     </div>
                                                   </div>
                                                   <div class="card-block">
-                                                    <div class="separator"></div>
+                                                    <div class="mt-1"></div>
                                                     <div class="card-text">
                                               ';
 
@@ -100,15 +100,15 @@ class ac_account_customers_list_order
         $account_customers_title_content .= '<div class="col-md-2">';
         $account_customers_title_content .= '<strong>' . CLICSHOPPING::getDef('overview_title') . '</strong>';
         $account_customers_title_content .= '</div>';
-        $account_customers_title_content .= '<div class="separator"></div>';
+        $account_customers_title_content .= '<div class="mt-1"></div>';
         $account_customers_title_content .= '<div class="col-md-8">';
         $account_customers_title_content .= HTML::link(CLICSHOPPING::link(null, 'Account&History'), '<u>' . CLICSHOPPING::getDef('overview_show_all_orders') . '</u>');
         $account_customers_title_content .= '</div>';
-        $account_customers_title_content .= '<div class="separator"></div>';
+        $account_customers_title_content .= '<div class="mt-1"></div>';
         $account_customers_title_content .= '<div class="col-md-10">';
         $account_customers_title_content .= '<p><strong>' . CLICSHOPPING::getDef('overview_previous_orders') . '</strong></p>';
         $account_customers_title_content .= '</div>';
-        $account_customers_title_content .= '<div class="separator"></div>';
+        $account_customers_title_content .= '<div class="mt-1"></div>';
 
         $account_customers_title_content .= '<div class="d-flex flex-wrap">';
 
@@ -135,7 +135,7 @@ class ac_account_customers_list_order
 
         $account_customers_title_content .= '<div class="col-md-12">';
         $account_customers_title_content .= '<div>' . CLICSHOPPING::getDef('module_account_customers_list_order_order_text') . '</div>';
-        $account_customers_title_content .= '<div class="separator"></div>';
+        $account_customers_title_content .= '<div class="mt-1"></div>';
         $account_customers_title_content .= '</div>';
         $account_customers_title_content .= '</div>';
         $account_customers_title_content .= '</div>';

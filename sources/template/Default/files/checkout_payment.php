@@ -62,7 +62,7 @@ echo HTML::form('checkout_payment', CLICSHOPPING::link(null, 'Checkout&Confirmat
         <?php echo $CLICSHOPPING_Template->getBlocks('modules_checkout_payment'); ?>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
   </div>
 </section>
 </form>

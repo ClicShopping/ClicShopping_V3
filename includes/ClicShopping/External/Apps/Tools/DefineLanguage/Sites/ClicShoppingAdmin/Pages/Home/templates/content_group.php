@@ -48,7 +48,7 @@ echo HTML::button($CLICSHOPPING_DefineLanguage->getDef('button_back'), null, $CL
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="alert alert-info" role="alert" id="alert">
     <?php echo $CLICSHOPPING_DefineLanguage->getDef('alert_info_language'); ?>
   </div>

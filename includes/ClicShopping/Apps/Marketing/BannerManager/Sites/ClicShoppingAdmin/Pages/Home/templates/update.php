@@ -134,7 +134,7 @@ echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, nu
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div id="BannerManagerTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
@@ -166,7 +166,7 @@ echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, nu
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -178,7 +178,7 @@ echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, nu
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -190,7 +190,7 @@ echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, nu
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -206,7 +206,7 @@ echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, nu
 
           <?php echo $CLICSHOPPING_Hooks->output('BannerManager', 'CustomerGroup', null, 'display'); ?>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_group'); ?></div>
           <div class="adminformTitle">
             <div class="row">
@@ -220,7 +220,7 @@ echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, nu
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -232,7 +232,7 @@ echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, nu
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -244,7 +244,7 @@ echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, nu
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -257,8 +257,8 @@ echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, nu
               </div>
             </div>
           </div>
-          <div class="separator"></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_BannerManager->getDef('title_banners_date'); ?></div>
           <div class="adminformTitle">
             <div class="row">
@@ -298,10 +298,10 @@ echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, nu
             </div>
           </div>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') . '"></i></h4> ' . $CLICSHOPPING_BannerManager->getDef('title_help_banners_image') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_expiracy_note') . '<br />' . $CLICSHOPPING_BannerManager->getDef('text_banners_scheduled_note'); ?></div>
           </div>
         </div>
@@ -343,10 +343,10 @@ echo HTML::hiddenField('banners_image_show', $bInfo->banners_image);
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') . '"></i></h4> ' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_insert_note'); ?></div>
           </div>
         </div>
@@ -368,10 +368,10 @@ echo HTML::hiddenField('banners_image_show', $bInfo->banners_image);
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') . '"></i></h4> ' . $CLICSHOPPING_BannerManager->getDef('text_help_banners_image') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_banner_note'); ?></div>
           </div>
         </div>

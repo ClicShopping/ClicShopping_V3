@@ -40,15 +40,15 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_TaxClass->getDef('text_info_heading_delete_tax_class'); ?></strong></div>
   <?php echo HTML::form('classes', $CLICSHOPPING_TaxClass->link('TaxClass&DeleteConfirm&page=' . $page . '&tID=' . $tcInfo->tax_class_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_TaxClass->getDef('text_info_delete_info'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo '<strong>' . $tcInfo->tax_class_title . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_TaxClass->getDef('button_cancel'), null, $CLICSHOPPING_TaxClass->link('TaxClass&page=' . (int)$_GET['page'] . '&tID=' . $tcInfo->tax_class_id), 'warning', null, 'sm'); ?></span>

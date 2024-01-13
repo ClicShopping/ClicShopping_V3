@@ -20,7 +20,7 @@ echo $form;
 // ----------------------
 ?>
   <div class="col-md-<?php echo $content_width; ?>">
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
     if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
       ?>
@@ -44,7 +44,7 @@ echo $form;
     }
     ?>
     <div class="hr"></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
     if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
       if (isset($customers_gender)) {

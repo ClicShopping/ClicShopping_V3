@@ -14,9 +14,9 @@ use ClicShopping\OM\HTML;
 echo $form;
 ?>
   <div class="col-md-<?php echo $content_width; ?>">
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div><?php echo CLICSHOPPING::getDef('text_main'); ?></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
 
     <div class="row">
       <div class="col-md-7">
@@ -46,7 +46,7 @@ echo $form;
       </div>
     </div>
 
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="control-group">
       <div>
         <div class="buttonSet">

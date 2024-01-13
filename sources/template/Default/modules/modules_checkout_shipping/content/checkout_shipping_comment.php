@@ -12,7 +12,7 @@ use ClicShopping\OM\CLICSHOPPING;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div>
     <label for="inputComments" class="moduleCheckoutShippingCommentLabel">
       <h3><?php echo CLICSHOPPING::getDef('module_checkout_shipping_comment_table_heading_comments'); ?></h3>

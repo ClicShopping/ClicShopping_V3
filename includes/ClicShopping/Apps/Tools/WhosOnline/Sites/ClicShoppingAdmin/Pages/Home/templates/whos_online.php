@@ -46,7 +46,7 @@ if (isset($_GET['refresh']) && is_numeric($_GET['refresh'])) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <table class="table">
     <thead class="dataTableHeadingRow">
     <tr>

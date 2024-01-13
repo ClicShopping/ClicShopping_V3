@@ -17,7 +17,7 @@ $CLICSHOPPING_Address = Registry::get('Address');
 echo $form;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="contentText">
     <?php
     if ($CLICSHOPPING_MessageStack->exists('main')) {
@@ -29,7 +29,7 @@ echo $form;
     // ----------------------
     if ((ACCOUNT_COMPANY_PRO == 'true') || (ACCOUNT_SIRET_PRO == 'true') || (ACCOUNT_TVA_INTRACOM_PRO == 'true')) {
       ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card">
         <div class="card-header">
           <span class="alert-warning float-end" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
@@ -37,7 +37,7 @@ echo $form;
             class="modulesCreateAccountRegistrationPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_company'); ?></h3></span>
         </div>
         <div class="card-block">
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="card-text">
             <?php
             if (ACCOUNT_COMPANY_PRO == 'true') {
@@ -153,7 +153,7 @@ echo $form;
           </div>
         </div>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <?php
     }
     // ----------------------
@@ -167,7 +167,7 @@ echo $form;
           class="modulesCreateAccountProRegistrationCategoryAddressProPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_address_pro'); ?></h3></span>
       </div>
       <div class="card-block">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="card-text">
 
           <div class="row">
@@ -344,7 +344,7 @@ echo $form;
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
     // -----------------
     // contact category
@@ -357,7 +357,7 @@ echo $form;
           class="modulesCreateAccountProRegistrationContactPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_contact'); ?></h3></span>
       </div>
       <div class="card-block">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="card-text">
           <div class="row">
             <div class="col-md-12">
@@ -391,7 +391,7 @@ echo $form;
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
     // ----------------------
     // Personnal Information
@@ -404,7 +404,7 @@ echo $form;
           class="modulesCreateAccountProRegistrationCategoryPersonnalPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_personal_pro'); ?></h3></span>
       </div>
       <div class="card-block">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="card-text">
 
           <?php
@@ -501,7 +501,7 @@ echo $form;
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   // ----------------------
   // Newsletter Information
@@ -513,7 +513,7 @@ echo $form;
         class="modulesCreateAccountProRegistrationCategoryOptionsPageHeader"><h3><?php echo CLICSHOPPING::getDef('entry_newsletter'); ?></h3></span>
     </div>
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text">
         <div class="row">
           <div class="col-md-12">
@@ -529,7 +529,7 @@ echo $form;
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   // ----------------------
   // Password
@@ -543,7 +543,7 @@ echo $form;
           class="modulesCreateAccountProRegistrationPasswordPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_password'); ?></h3></span>
       </div>
       <div class="card-block">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="card-text">
           <div class="row">
             <div class="col-md-12">
@@ -575,7 +575,7 @@ echo $form;
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
   }
   require_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');

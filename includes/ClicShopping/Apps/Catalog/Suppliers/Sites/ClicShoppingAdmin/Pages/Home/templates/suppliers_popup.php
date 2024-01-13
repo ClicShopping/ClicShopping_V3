@@ -43,7 +43,7 @@ echo HTML::form('ajaxform', $CLICSHOPPING_Suppliers->link('SuppliersPopUp&Save')
     </div>
   </div>
 </div>
-<div class="separator"></div>
+<div class="mt-1"></div>
 <div>
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
     <li

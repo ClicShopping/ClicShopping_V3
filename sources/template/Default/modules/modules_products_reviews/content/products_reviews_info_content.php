@@ -13,7 +13,7 @@ use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="<?php echo $text_postion; ?> col-md-<?php echo $content_width; ?>">
   <div class="row">
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12 row">
       <span
         class="col-md-6 float-start col-md-7 productsReviewInfoContentCustomerProductsName"><h3><?php echo $products_name ?></h3></span>
@@ -26,20 +26,20 @@ use ClicShopping\OM\CLICSHOPPING;
          <?php } ?>
        </span>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12 productsReviewInfoContentDateAdded">
       <?php echo CLICSHOPPING::getDef('modules_products_reviews_info_content_text_review_date_added', ['date_added' => $date_added]); ?>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="productsReviewInfoContentCustomerReviewBy">
     <h3><?php echo CLICSHOPPING::getDef('modules_products_reviews_info_content_text_review_text_review_by', ['customer_name' => $customer_name]); ?></h3>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <span class="col-md-11 productsReviewInfoContentCustomerText"><?php echo $customer_text; ?></span>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if (MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_SENTIMENT_TAG == 'True') {
     ?>
@@ -54,7 +54,7 @@ use ClicShopping\OM\CLICSHOPPING;
        ?>
       </span>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
   }
   ?>

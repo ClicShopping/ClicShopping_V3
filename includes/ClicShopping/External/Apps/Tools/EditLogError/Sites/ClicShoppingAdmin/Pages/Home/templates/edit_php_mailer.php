@@ -62,7 +62,7 @@ echo HTML::button($CLICSHOPPING_EditLogError->getDef('button_delete'), null, nul
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div>
     <?php echo HTML::textAreaField('code', file_get_contents($log['path']), '', '', 'id="code"'); ?>
   </div>

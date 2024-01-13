@@ -12,7 +12,7 @@ use ClicShopping\OM\CLICSHOPPING;
 
 ?>
 <section class="boxe_manufacturers" id="boxe_manufacturers">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="boxeBannerContentsManufacturer"><?php echo $manufacturer_banner; ?></div>
   <div class="card boxeContainerManufacturer">
     <div class="card-header boxeHeadingManufacturer">
@@ -20,10 +20,10 @@ use ClicShopping\OM\CLICSHOPPING;
         class="card-title boxeTitleManufacturer"><?php echo CLICSHOPPING::getDef('module_boxes_manufacturers_title'); ?></span>
     </div>
     <div class="card-body boxeContentArroundManufacturer">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text boxeContentsManufacturer"><?php echo $output; ?></div>
     </div>
     <div class="card-footer boxeBottomManufacturer"></div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 </section>

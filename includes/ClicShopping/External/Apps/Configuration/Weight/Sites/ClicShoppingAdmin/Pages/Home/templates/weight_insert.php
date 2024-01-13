@@ -50,7 +50,7 @@ echo HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOP
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Weight->getDef('text_info_heading_insert_weight'); ?></strong></div>
   <div class="adminformTitle">

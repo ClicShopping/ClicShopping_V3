@@ -55,14 +55,14 @@ if (!isset($_GET['delete']) && isset($_GET['edit'])) {
 
       if (isset($_GET['delete'])) {
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <span class="col-md-9"><strong><?php echo CLICSHOPPING::getDef('delete_address_description'); ?></strong></span>
         <div class="col-md-3">
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div>
             <strong><?php echo CLICSHOPPING::getDef('selected_address'); ?></strong>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div>
             <?php echo AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), HTML::sanitize($_GET['delete']), true, ' ', '<br />'); ?>
           </div>
@@ -72,7 +72,7 @@ if (!isset($_GET['delete']) && isset($_GET['edit'])) {
 // --- Button   -----
 // ----------------------
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="control-group">
           <div class="buttonSet">
             <div class="col-md-6 float-start"><label

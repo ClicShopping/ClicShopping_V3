@@ -40,7 +40,7 @@ echo HTML::form('stats_products_viewed', $CLICSHOPPING_Products->link('Products&
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <table
     id="table"

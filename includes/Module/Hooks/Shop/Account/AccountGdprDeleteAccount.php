@@ -20,7 +20,7 @@ class AccountGdprDeleteAccount
    */
   public function display(): string
   {
-    $output = '<div class="separator"></div>
+    $output = '<div class="mt-1"></div>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                       <div class="alert alert-danger" role="alert">

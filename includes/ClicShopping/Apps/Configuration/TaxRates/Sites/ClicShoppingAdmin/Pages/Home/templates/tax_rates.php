@@ -37,7 +37,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <!-- //################################################################################################################ -->
   <!-- //                                             LISTING                                                            -->
   <!-- //################################################################################################################ -->
@@ -123,7 +123,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
     ?>
     </tbody>
   </table>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($listingTotalRow > 0) {
     ?>

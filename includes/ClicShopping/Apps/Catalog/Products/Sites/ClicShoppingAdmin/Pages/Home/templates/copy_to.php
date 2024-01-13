@@ -53,22 +53,22 @@ $current_category_id = HTML::sanitize($_GET['cPath']);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Products->getDef('text_info_heading_copy_to'); ?></strong></div>
   <?php echo HTML::form('copy_to', $CLICSHOPPING_Products->link('Products&CopyConfirm&cPath=' . $current_category_id)) . HTML::hiddenField('products_id', $pInfo->products_id) . HTML::hiddenField('current_category_id', $current_category_id); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_info_copy_to_intro'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-sm-2"><?php echo $CLICSHOPPING_Products->getDef('text_info_current_categories'); ?></span>
         <span
           class="col-sm-10"><strong><?php echo $CLICSHOPPING_CategoriesAdmin->getOutputGeneratedCategoryPath($pInfo->products_id, 'product'); ?> </strong></span>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-sm-2"><?php echo $CLICSHOPPING_Products->getDef('text_categories'); ?></span>
         <span
@@ -87,7 +87,7 @@ $current_category_id = HTML::sanitize($_GET['cPath']);
                  for="duplicate"><?php echo $CLICSHOPPING_Products->getDef('text_copy_as_duplicate'); ?></label>
         </div>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Products->getDef('button_copy'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSHOPPING_Products->link('Products&cPath=' . $current_category_id . '&pID=' . $pInfo->products_id), 'warning', null, 'sm'); ?></span>
       </div>

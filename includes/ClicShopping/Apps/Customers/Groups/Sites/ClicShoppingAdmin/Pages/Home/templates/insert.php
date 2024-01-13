@@ -43,7 +43,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_cancel'), null, $CLICSHOP
     </div>
   </div>
 
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($error === true) {
     ?>
@@ -56,7 +56,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_cancel'), null, $CLICSHOP
       }
       ?>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
   }
   ?>
@@ -111,7 +111,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_cancel'), null, $CLICSHOP
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Groups->getDef('title_default_discount'); ?></div>
           <div class="adminformTitle">
             <div class="row">
@@ -129,7 +129,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_cancel'), null, $CLICSHOP
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Groups->getDef('title_default_quantity'); ?></div>
           <div class="adminformTitle">
             <div class="row">
@@ -146,7 +146,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_cancel'), null, $CLICSHOP
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Groups->getDef('title_group_tax'); ?></div>
           <div class="adminformTitle">
             <div class="row">
@@ -166,10 +166,10 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_cancel'), null, $CLICSHOP
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Groups->getDef('help_title_onglet_general') . '"></i></h4> ' . $CLICSHOPPING_Groups->getDef('help_title_onglet_general') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Groups->getDef('help_group_tax'); ?></div>
           </div>
         </div>
@@ -198,7 +198,7 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_cancel'), null, $CLICSHOP
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Groups->getDef('title_group_paiement_default'); ?></div>
           <div class="adminformTitle">
             <?php
@@ -262,10 +262,10 @@ echo HTML::button($CLICSHOPPING_Groups->getDef('button_cancel'), null, $CLICSHOP
             ?>
 
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Groups->getDef('help_title_onglet_facturation') . '"></i></h4> ' . $CLICSHOPPING_Groups->getDef('help_title_onglet_facturation') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Groups->getDef('help_order_tax'); ?></div>
           </div>
         </div>

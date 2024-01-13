@@ -28,8 +28,8 @@ $CLICSHOPPING_Page = Registry::get('Site')->getPage();
       </div>
     </div>
   </div>
-  <div class="separator"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
+  <div class="mt-1"></div>
   <div class="spaceRow"></div>
   <table id="appsInstalledTable" class="table table-sm table-hover">
     <thead>

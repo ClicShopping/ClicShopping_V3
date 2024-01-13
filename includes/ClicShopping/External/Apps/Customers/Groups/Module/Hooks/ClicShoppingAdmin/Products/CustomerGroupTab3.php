@@ -114,11 +114,11 @@ class CustomerGroupTab3 implements \ClicShopping\OM\Modules\HooksInterface
 
         if (!$header) {
           $header = true;
-          $title = '<div class="separator"></div>';
+          $title = '<div class="mt-1"></div>';
           $title .= '<div class="col-md-12 mainTitle" style="height:30px;">';
           $title .= $this->app->getDef('text_cust_groups') . '&nbsp;&nbsp;&nbsp;&nbsp;' . HTML::radioField('products_percentage', '1', $in_percent, 'id="in_percent"') . '&nbsp;' . $override_on . '&nbsp;&nbsp;&nbsp;' . HTML::radioField('products_percentage', '0', $out_percent, 'id="out_percent"') . '&nbsp;' . $this->app->getDef('text_override_off');
           $title .= '</div>';
-          $title .= '<div class="separator"></div>';
+          $title .= '<div class="mt-1"></div>';
         }
 
         $content = '<div class="row">';
@@ -187,22 +187,22 @@ class CustomerGroupTab3 implements \ClicShopping\OM\Modules\HooksInterface
           $content .= '<div>';
           $content .= $QcustomersGroup->value('customers_group_name') . ' ';
           $content .= $content_attibutes;
-          $content .= '<div class="separator"></div>';
+          $content .= '<div class="mt-1"></div>';
 
           if (DISPLAY_DOUBLE_TAXE == 'false') {
             $content .= HTML::inputField('price_gross' . $QcustomersGroup->valueInt('customers_group_id'), $customers_group_price, 'onkeyUp="updateNet()" size="7"  placeholder="' . $this->app->getDef('tax_excluded') . '"') . '<strong>' . $this->app->getDef('tax_excluded') . '</strong>';
           }
 
-          $content .= '<div class="separator"></div>';
+          $content .= '<div class="mt-1"></div>';
           $content .= HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/euro.png', $this->app->getDef('tab_price_group_view')) . ' ' . HTML::checkboxField('price_group_view' . $QcustomersGroup->valueInt('customers_group_id'), 1, $price_group_view) . '&nbsp;&nbsp;&nbsp;';
           $content .= HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/last.png', $this->app->getDef('tab_products_group_view')) . ' ' . HTML::checkboxField('products_group_view' . $QcustomersGroup->valueInt('customers_group_id'), '1', $products_group_view) . '&nbsp;&nbsp;&nbsp;';
           $content .= HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/orders-up.gif', $this->app->getDef('tab_orders_group_view')) . ' ' . HTML::checkboxField('orders_group_view' . $QcustomersGroup->valueInt('customers_group_id'), '1', $orders_group_view) . '<br /><br />';
 
-          $content .= '<div class="separator"></div>';
+          $content .= '<div class="mt-1"></div>';
           $content .= $this->app->getDef('text_products_model_group') . ' ' . HTML::inputField('products_model_group' . $QcustomersGroup->valueInt('customers_group_id'), $products_model_group);
-          $content .= '<div class="separator"></div>';
+          $content .= '<div class="mt-1"></div>';
           $content .= $this->app->getDef('text_products_quantity_fixed_group') . ' ' . HTML::inputField('products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id'), $products_quantity_fixed_group);
-          $content .= '<div class="separator"></div>';
+          $content .= '<div class="mt-1"></div>';
 
           if (\defined('CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS') && CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS == 'True' && !empty(CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS)) {
             $content .= $this->app->getDef('text_products_min_order_quantity_group') . ' ' . HTML::selectMenu('products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id'), $products_quantity_unit_drop_down, $products_quantity_unit_id_group);
@@ -216,7 +216,7 @@ class CustomerGroupTab3 implements \ClicShopping\OM\Modules\HooksInterface
 
         $content .= '</div>';
         // help
-        $content .= '<div class="separator"></div>';
+        $content .= '<div class="mt-1"></div>';
         $content .= '<div class="alert alert-info">';
         $content .= '<div class="row">';
         $content .= '<span class="col-sm-12">';
@@ -224,7 +224,7 @@ class CustomerGroupTab3 implements \ClicShopping\OM\Modules\HooksInterface
         $content .= '<strong>' . '&nbsp;' . $this->app->getDef('title_help_price') . '</strong>';
         $content .= '</span>';
         $content .= '</div>';
-        $content .= '<div class="separator"></div>';
+        $content .= '<div class="mt-1"></div>';
 
         $content .= '<div class="row">';
         $content .= '<span class="col-sm-12">';
@@ -240,7 +240,7 @@ class CustomerGroupTab3 implements \ClicShopping\OM\Modules\HooksInterface
         $content .= '&nbsp;&nbsp;' . $this->app->getDef('help_orders_view');
         $content .= '</span>';
         $content .= '</div>';
-        $content .= '<div class="separator"></div>';
+        $content .= '<div class="mt-1"></div>';
         $content .= '<div class="row">';
         $content .= '<span class="col-sm-12">&nbsp;<strong>' . '&nbsp;' . $this->app->getDef('help_others_group') . '</strong></span>';
         $content .= '</div>';

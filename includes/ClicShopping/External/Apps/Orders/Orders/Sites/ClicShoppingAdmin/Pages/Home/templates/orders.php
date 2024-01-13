@@ -120,7 +120,7 @@ if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <!-- ################# -->
   <!-- Hooks Stats - just use execute function to display the hook-->
   <!-- ################# -->
@@ -133,7 +133,7 @@ if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <table
     id="table"
@@ -631,5 +631,5 @@ if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 </div>

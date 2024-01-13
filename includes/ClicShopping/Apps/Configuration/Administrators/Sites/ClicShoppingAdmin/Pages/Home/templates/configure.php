@@ -41,7 +41,7 @@ if ($CLICSHOPPING_MessageStack->exists('Administrators')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="appAdministratorsToolbar">
     <li class="nav-item">
       <?php
@@ -84,14 +84,14 @@ if ($CLICSHOPPING_MessageStack->exists('Administrators')) {
             <?php
             foreach ($CLICSHOPPING_Administrators_Config->getInputParameters() as $cfg) {
               echo '<div>' . $cfg . '</div>';
-              echo '<div class="separator"></div>';
+              echo '<div class="mt-1"></div>';
             }
             ?>
           </p>
         </div>
       </div>
 
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <?php
         echo HTML::button($CLICSHOPPING_Administrators->getDef('button_save'), null, null, 'success');
@@ -134,10 +134,10 @@ if ($CLICSHOPPING_MessageStack->exists('Administrators')) {
     </div>
     <div class="adminformTitle">
       <div class="row">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <div><?php echo $CLICSHOPPING_Administrators->getConfigModuleInfo($current_module, 'introduction'); ?></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div><?php echo HTML::button($CLICSHOPPING_Administrators->getDef('button_install_title', ['title' => $CLICSHOPPING_Administrators->getConfigModuleInfo($current_module, 'title')]), null, $CLICSHOPPING_Administrators->link('Configure&Install&module=' . $current_module), 'warning'); ?></div>
         </div>
       </div>

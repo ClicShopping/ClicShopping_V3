@@ -68,7 +68,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div id="reviewsTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
@@ -129,7 +129,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
             </div>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <?php echo $CLICSHOPPING_Hooks->output('ReviewsSentimentEdit', 'PageTab', null, 'display'); ?>
       </div>
     </div>

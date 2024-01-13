@@ -101,7 +101,7 @@ $Qcustomers->execute();
 ?>
 
 <div class="contentBody">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="card card-block headerCard">
@@ -128,7 +128,7 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
 
   <!-- pb avec autres script
@@ -235,7 +235,7 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="row">
             <div class="mainTitle"><?php echo $CLICSHOPPING_Orders->getDef('title_orders_customers'); ?></div>
             <div class="adminformTitle">
@@ -247,13 +247,13 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
                     <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_order_siret'); ?></span>
                     <span class="col-md-5"><strong><?php echo $order->customer['siret']; ?></strong></span>
                   </div>
-                  <div class="separator"></div>
+                  <div class="mt-1"></div>
 
                   <div class="col-md-12" id="CodeApe">
                     <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_order_code_ape'); ?></span>
                     <span class="col-md-5"><strong><?php echo $order->customer['ape']; ?></strong></span>
                   </div>
-                  <div class="separator"></div>
+                  <div class="mt-1"></div>
                   <div class="col-md-12" id="tavIntracom">
                     <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_tva_intracom'); ?></span>
                     <span class="col-md-5"><strong><?php echo $order->customer['tva_intracom']; ?></strong></span>
@@ -283,7 +283,7 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
                     </div>
                   </div>
                 </div>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div class="col-md-12" id="phone">
                   <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_telephone_number'); ?></span>
                   <span class="col-md-3"><strong><?php echo $order->customer['telephone']; ?></strong></span>
@@ -291,7 +291,7 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
                 <?php
                 if (!empty($order->customer['cellular_phone'])) {
                   ?>
-                  <div class="separator"></div>
+                  <div class="mt-1"></div>
                   <div class="col-md-12" id="cellular">
                     <span
                       class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_cellular_phone_number'); ?></span>
@@ -300,7 +300,7 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
                   <?php
                 }
                 ?>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div class="col-md-2 group-text" id="location">
                   <span class="col-md-6"><?php echo $CLICSHOPPING_Orders->getDef('entry_customer_location'); ?></span>
                   <span class="col-md-6 float-end text-start"><a target="_blank" rel="noreferrer"
@@ -309,19 +309,19 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
                           title="'<?php echo $CLICSHOPPING_Orders->getDef('entry_customer_location'); ?>"></i></h4></a></span>
                 </div>
                 <div class="clearfix"></div>
-                <div class="separator"></div>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
+                <div class="mt-1"></div>
                 <div class="col-md-12  group-text" id="emailAddress">
                   <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_email_address'); ?></span>
                   <span
                     class="col-md-5"><strong><?php echo '<a href="mailto:' . $order->customer['email_address'] . '"><u>' . $order->customer['email_address'] . '</u></a>'; ?></strong></span>
                 </div>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div class="col-md-12" id="computerIp">
                   <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_client_computer_ip'); ?></span>
                   <span class="col-md-5"><strong><?php echo $order->customer['client_computer_ip']; ?></strong></span>
                 </div>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div class="col-md-12" id="provider">
                   <span
                     class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_provider_name_client'); ?></span>
@@ -330,7 +330,7 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
               </div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="row">
             <div class="mainTitle"><?php echo $CLICSHOPPING_Orders->getDef('title_orders_paiement'); ?></div>
             <div class="adminformTitle">
@@ -363,8 +363,8 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
                   <?php
                 }
                 ?>
-                <div class="separator"></div>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
+                <div class="mt-1"></div>
               </div>
             </div>
           </div>
@@ -428,7 +428,7 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
             ?>
           </table>
 
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <table border="0" cellspacing="0" cellpadding="2" width="100%">
             <?php
             foreach ($order->totals as $value) {
@@ -460,11 +460,11 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
                     class="col-md-4 text-end"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_update'), null, null, 'success'); ?></div>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row col-md-12" id="entryStatus"></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="col-md-12" id="contentTab3"></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="col-md-12" id="StatusNotify">
                 <div class="row">
                   <div class="col-md-6">
@@ -510,11 +510,11 @@ echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPI
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div id="ErpOrder"></div>
             </form>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Orders->getDef('title_orders_history'); ?></div>
           <div class="adminformTitle">
             <table class="table table-sm table-hover">

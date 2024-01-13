@@ -32,8 +32,19 @@ class AddProductAttributes extends \ClicShopping\OM\PagesActionsAbstract
     $CLICSHOPPING_ProductsAttributesAdmin = new ProductsAttributesAdmin();
 
     $products_id = HTML::sanitize($_POST['products_id']);
-    $options_id = HTML::sanitize($_POST['options_id']);
-    $values_id = HTML::sanitize($_POST['values_id']);
+
+    if (isset($_POST['options_id']) && !empty($_POST['options_id'])) {
+      $options_id = HTML::sanitize($_POST['options_id']);
+    } else {
+      $this->app->redirect('ProductsAttributes', 'option_page=1');
+    }
+
+    if (isset($_POST['values_id']) && !empty($_POST['values_id'])) {
+      $options_id = HTML::sanitize($_POST['values_id']);
+    } else {
+      $this->app->redirect('ProductsAttributes', 'option_page=1');
+    }
+
     $value_price = HTML::sanitize($_POST['value_price']);
     $price_prefix = HTML::sanitize($_POST['price_prefix']);
     $value_sort_order = HTML::sanitize($_POST['value_sort_order']);

@@ -18,7 +18,7 @@ use ClicShopping\OM\HTML;
       <h2><?php echo CLICSHOPPING::getDef('module_login_connexion_heading_returning_customer'); ?></h2>
     </div>
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text">
         <?php
         echo $form;
@@ -52,7 +52,7 @@ use ClicShopping\OM\HTML;
           class="col-md-4 passwordForgotten"><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&PasswordForgotten'), CLICSHOPPING::getDef('module_login_connexion_text_password_forgotten')); ?></div>
 
         <div class="control-group">
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div>
             <div
               class="buttonSet text-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_login'), null, null, 'success'); ?></div>
@@ -64,6 +64,6 @@ use ClicShopping\OM\HTML;
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 </div>
 

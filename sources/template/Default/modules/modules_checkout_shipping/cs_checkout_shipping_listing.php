@@ -57,7 +57,7 @@ class cs_checkout_shipping_listing
         $shipping_listing = '<!-- start checkout_shipping_listing -->' . "\n";
 
         if ($CLICSHOPPING_Shipping->geCountShippingModules() > 0) {
-          $data = '<div class="separator"></div>';
+          $data = '<div class="mt-1"></div>';
           $data .= '<span class="page-title moduleCheckoutShippingListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_shipping_table_heading_shipping_method') . '</h3></span>';
 
           if (\count($quotes) > 1 && \count($quotes[0]) > 1 && \is_array($quotes)) {
@@ -65,13 +65,13 @@ class cs_checkout_shipping_listing
             $data .= '<span class="col-md-8 text-start moduleCheckoutShippingListingMethod">' . CLICSHOPPING::getDef('module_checkout_shipping_text_choose_shipping_method') . '</span>';
             $data .= '<span class="col-md-4 text-end float-end moduleCheckoutShippingListingSelect">' . CLICSHOPPING::getDef('module_checkout_shipping_title_please_select') . '</span>';
             $data .= '</div>';
-            $data .= '<div class="separator"></div>';
+            $data .= '<div class="mt-1"></div>';
           } elseif ($_SESSION['free_shipping'] === false) {
-            $data .= '<div class="separator"></div>';
+            $data .= '<div class="mt-1"></div>';
             $data .= '<div class="moduleCheckoutShippingListingInformation">' . CLICSHOPPING::getDef('module_checkout_shipping_text_enter_shipping_information') . '</div>';
           }
 
-          $data .= '<div class="separator"></div>';
+          $data .= '<div class="mt-1"></div>';
           $data .= '<table class="table table-striped table-sm table-hover">';
           $data .= '<tbody>';
 

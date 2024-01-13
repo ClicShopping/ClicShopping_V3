@@ -53,9 +53,9 @@ class cp_checkout_payment_listing
 
       $payment_process = '<!-- start cp_checkout_payment_listing -->' . "\n";
 
-      $data = '<div class="separator"></div>';
+      $data = '<div class="mt-1"></div>';
       $data .= '<span class="page-title moduleCheckoutPaymentListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_payment_listing_table_heading_payment_method') . '</h3></span>';
-      $data .= '<div class="separator"></div>';
+      $data .= '<div class="mt-1"></div>';
 
       if (\count($selection) > 1) {
         $data .= '<div>';

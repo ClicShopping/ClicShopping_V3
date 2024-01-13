@@ -19,7 +19,7 @@ echo $form
     echo $CLICSHOPPING_MessageStack->get('main');
   }
   ?>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="card">
     <div class="card-header">
       <span class="alert-warning float-end" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
@@ -27,7 +27,7 @@ echo $form
         class="modulesCreateAccountRegistrationPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_personal'); ?></h3></span>
     </div>
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text">
         <div class="row" id="RowContentAccountRegistration1">
           <div class="col-md-12">
@@ -52,11 +52,11 @@ echo $form
             </div>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <?php
         if (ACCOUNT_DOB == 'true') {
           ?>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
 
           <div class="row" id="RowContentAccountRegistration3">
             <div class="col-md-12">
@@ -99,7 +99,7 @@ echo $form
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   // ----------------------
   // Newsletter Information
@@ -111,7 +111,7 @@ echo $form
         class="modulesCreateAccountRegistrationCategoryOptionsPageHeader"><h3><?php echo CLICSHOPPING::getDef('entry_newsletter'); ?></h3></span>
     </div>
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text">
         <div class="row" id="RowContentAccountRegistration6">
           <div class="col-md-12">
@@ -127,7 +127,7 @@ echo $form
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   // ----------------------
   // Password
@@ -140,7 +140,7 @@ echo $form
         class="modulesCreateAccountRegistrationPasswordPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_password'); ?></h3></span>
     </div>
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text">
         <div class="row" id="RowContentAccountRegistration7">
           <div class="col-md-12">
@@ -172,7 +172,7 @@ echo $form
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 </div>
 
 

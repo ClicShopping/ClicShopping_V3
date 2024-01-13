@@ -134,12 +134,12 @@ class ps_products_special
             $new_prods_content .= '<div class="text-end">' . CLICSHOPPING::getDef('text_result_page') . '</div>';
             $new_prods_content .= '</div>';
             $new_prods_content .= '</div>';
-            $new_prods_content .= '<div class="separator"></div>';
+            $new_prods_content .= '<div class="mt-1"></div>';
             $new_prods_content .= '<div class="clearfix"></div>';
           }
         }
 
-        $new_prods_content .= '<div class="separator"></div>';
+        $new_prods_content .= '<div class="mt-1"></div>';
         $new_prods_content .= '</div>' . "\n";
         $new_prods_content .= '<div class="boxContentsModulesProductsSpecials">';
 
@@ -311,7 +311,7 @@ class ps_products_special
         if (($listingTotalRow > 0) && ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3'))) {
           if ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3')) {
             $new_prods_content .= '<div class="clearfix"></div>';
-            $new_prods_content .= '<div class="separator"></div>';
+            $new_prods_content .= '<div class="mt-1"></div>';
             $new_prods_content .= '<div class="col-md-12">';
             $new_prods_content .= '<div class="col-md-6 pagenumber hidden-xs">';
             $new_prods_content .= $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));

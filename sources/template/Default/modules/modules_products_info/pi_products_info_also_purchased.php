@@ -131,7 +131,7 @@ class pi_products_info_also_purchased
         $new_prods_content = '<!-- Start products_also_purchased -->' . "\n";
 
         $new_prods_content .= '<div class="clearfix"></div>';
-        $new_prods_content .= '<div class="separator"></div>';
+        $new_prods_content .= '<div class="mt-1"></div>';
         $new_prods_content .= '<div class="contentContainer">';
         $new_prods_content .= '<div class="contentText">';
 

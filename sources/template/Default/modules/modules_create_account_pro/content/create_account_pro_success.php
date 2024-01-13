@@ -26,7 +26,7 @@ use ClicShopping\OM\HTML;
     <?php
   }
   ?>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="control-group">
     <div>
       <div class="buttonSet">
@@ -35,5 +35,5 @@ use ClicShopping\OM\HTML;
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 </div>

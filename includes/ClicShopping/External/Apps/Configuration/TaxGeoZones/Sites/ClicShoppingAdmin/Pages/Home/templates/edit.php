@@ -53,7 +53,7 @@ echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLI
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_heading_edit_zone'); ?></strong></div>

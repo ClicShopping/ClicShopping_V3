@@ -33,7 +33,7 @@ if ($CLICSHOPPING_MessageStack->exists('Featured')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="alert alert-warning" role="alert">
     <?php echo $CLICSHOPPING_Featured->getDef('text_intro_fa'); ?>
     <?php echo $CLICSHOPPING_Featured->getDef('return_url', ['return_url_fe' => CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Products&Featured']); ?>
@@ -42,7 +42,7 @@ if ($CLICSHOPPING_MessageStack->exists('Featured')) {
     <strong><?php echo $CLICSHOPPING_Featured->getDef('text_products_featured'); ?></strong></div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
 
       <div class="col-md-12">
         <div>
@@ -50,7 +50,7 @@ if ($CLICSHOPPING_MessageStack->exists('Featured')) {
             <?php echo $CLICSHOPPING_Featured->getDef('text_intro'); ?>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <div>
             <div class="col-md-12 text-center">

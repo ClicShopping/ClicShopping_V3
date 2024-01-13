@@ -54,7 +54,7 @@ echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_cancel'), null, $CLICSH
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_heading_edit_tax_rate'); ?></strong></div>
   <div class="adminformTitle">

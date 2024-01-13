@@ -253,7 +253,7 @@ class ST implements \ClicShopping\OM\Modules\PaymentInterface
     }
 
     $content .= $this->app->getDef('text_stripe_title');
-    $content .= '<div class="separator"></div>';
+    $content .= '<div class="mt-1"></div>';
 // have to create intent before loading the javascript because it needs the intent id
     $content .= '<input type="hidden" id="intent_id" value="' . HTML::output($stripe_payment_intent_id) . '" />' .
       '<input type="hidden" id="secret" value="' . HTML::output($this->intent->client_secret) . '" />';
@@ -261,7 +261,7 @@ class ST implements \ClicShopping\OM\Modules\PaymentInterface
       '<div><label for="cardholder-name" class="control-label">' . $this->app->getDef('text_stripe_credit_card_owner') . '</label>' .
       '<div><input type="text" id="cardholder-name" class="form-control" value="' . HTML::output($CLICSHOPPING_Order->billing['firstname'] . ' ' . $CLICSHOPPING_Order->billing['lastname']) . '" required></text></div>
                   </div>' .
-      '<div class="separator"></div>' .
+      '<div class="mt-1"></div>' .
       '<div><label for="card-element" class="control-label">' . $this->app->getDef('text_stripe_credit_card_type') . '</label>' .
       '<div id="card-element" class="col-md-5"></div>
                   </div>';

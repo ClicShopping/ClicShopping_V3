@@ -69,7 +69,7 @@ echo '</span>';
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   $modules_installed = (\defined($module_key) ? explode(';', \constant($module_key)) : array());
 

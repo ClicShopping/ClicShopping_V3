@@ -36,7 +36,7 @@ $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] :
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <!-- //################################################################################################################ -->
   <!-- //                                             LISTING                                                            -->
   <!-- //################################################################################################################ -->
@@ -122,7 +122,7 @@ $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] :
     ?>
     </tbody>
   </table>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($listingTotalRow > 0) {
     ?>

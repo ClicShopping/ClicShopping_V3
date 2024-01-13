@@ -56,7 +56,7 @@ if (isset($_GET['cPath'])) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
 
   <div class="col-md-12 mainTitle">
@@ -64,19 +64,19 @@ if (isset($_GET['cPath'])) {
   <?php echo HTML::form('archive', $CLICSHOPPING_Products->link('Products&ArchiveConfirm&&cPath=' . $cPath)) . HTML::hiddenField('products_id', $pInfo->products_id); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_info_archive_intro'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-sm-2"><?php echo '<strong>' . $pInfo->products_name . '</strong>'; ?></span>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <span class="col-sm-2"><?php echo $CLICSHOPPING_Products->getDef('text_info_current_categories'); ?></span>
         <span
           class="col-sm-4"><?php echo '<strong>' . $CLICSHOPPING_CategoriesAdmin->getOutputGeneratedCategoryPath($pInfo->products_id, 'product') . '</strong>'; ?></span>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Products->getDef('button_archive'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSHOPPING_Products->link('Products&cPath=' . $cPath . '&pID=' . $pInfo->products_id), 'warning', null, 'sm'); ?></span>
       </div>

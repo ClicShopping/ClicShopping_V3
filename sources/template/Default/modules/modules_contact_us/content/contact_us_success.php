@@ -15,7 +15,7 @@ use ClicShopping\OM\CLICSHOPPING;
   <div class="modulesContactUsSuccess">
     <?php echo CLICSHOPPING::getDef('modules_contact_us_success_text_success', ['store_name' => STORE_NAME]); ?>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="control-group">
     <div>
       <div class="buttonSet">

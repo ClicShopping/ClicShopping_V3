@@ -26,12 +26,12 @@ echo HTML::form('checkout_shipping', CLICSHOPPING::link(null, 'Checkout&Shipping
 <section class="checkout_shipping" id="checkout_shipping">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_title_checkout_shipping'); ?></h1></div>
       <div>
         <?php echo $CLICSHOPPING_Template->getBlocks('modules_checkout_shipping'); ?>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
     </div>
   </div>
 </section>

@@ -12,7 +12,7 @@ use ClicShopping\OM\CLICSHOPPING;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?> m1">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="page-title moduleCheckoutConfirmationBillingAddressPageHeader">
     <h3><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_billing_heading_billing_information'); ?></h3>
   </div>
@@ -36,11 +36,11 @@ if ($modify_address == 1) {
 ?>
       </div>
       <div class="card-block moduleCheckoutConfirmationBillingAddressCardBlock">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div><?php echo $billing_address; ?></div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
   </span>
 
   <span class="col-md-6 float-end">
@@ -49,11 +49,11 @@ if ($modify_address == 1) {
         <div><strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_heading_payment_method'); ?></strong><?php echo $payment_method; ?></div>
       </div>
       <div class="card-block moduleCheckoutConfirmationBillingAddressCardBlock">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div><?php echo $type_payment; ?></div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
   </span>
 </div>
 <div class="clearfix"></div>

@@ -23,7 +23,7 @@ class AccountGdprDeleteCustomersInformations
     $output = '<div>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">
-                        <div class="separator"></div>
+                        <div class="mt-1"></div>
                            ' . CLICSHOPPING::getDef('module_account_customers_gdpr_delete_customers_info') . '
                           <label class="switch">
                             ' . HTML::checkboxField('delete_customers_info', null, null, 'class="success"') . '

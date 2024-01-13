@@ -25,12 +25,12 @@ if ($CLICSHOPPING_ProductsCommon->getProductsCount() < 1 || (\is_null($CLICSHOPP
   <section class="product" id="product">
     <div class="contentContainer">
       <div class="contentText">
-        <div class="separator"></div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
+        <div class="mt-1"></div>
         <div class="alert alert-warning text-center" role="alert">
           <h3><?php echo CLICSHOPPING::getDef('text_product_not_found'); ?></h3>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="control-group">
           <div>
             <div class="buttonSet">

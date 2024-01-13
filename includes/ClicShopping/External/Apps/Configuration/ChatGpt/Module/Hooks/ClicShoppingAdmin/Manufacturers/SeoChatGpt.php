@@ -77,7 +77,7 @@ EOD;
       $title = $this->app->getDef('text_gpt_options');
 
       $content = '
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productOptionGptDescription">
                 <div class="col-md-9">
                   <div class="form-group row">
@@ -97,7 +97,7 @@ EOD;
                 </div>
               </div>
 
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productOptionGptSeoTitle">
                 <div class="col-md-9">
                   <div class="form-group row">
@@ -117,7 +117,7 @@ EOD;
                 </div>
               </div>
 
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productOptionGptSeoDescription">
                 <div class="col-md-9">
                   <div class="form-group row">
@@ -137,7 +137,7 @@ EOD;
                 </div>
               </div>
 
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productOptionGptSeokeywords">
                 <div class="col-md-9">
                   <div class="form-group row">
@@ -157,7 +157,7 @@ EOD;
                 </div>
               </div>
               
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="row" id="productOptionGptCreateImage">
                 <div class="col-md-9">
                   <div class="form-group row">
@@ -176,10 +176,10 @@ EOD;
                   </div>
                 </div>
               </div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="alert alert-info" role="alert">
                 <div><h4><i class="bi bi-question-circle" title="' . $this->app->getDef('title_help_seo') . '"></i></h4> ' . $this->app->getDef('title_help_seo') . '</div>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div>' . $this->app->getDef('text_help_seo') . '</div>
               </div>
               ';

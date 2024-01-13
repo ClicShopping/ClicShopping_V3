@@ -33,7 +33,7 @@ if ($CLICSHOPPING_MessageStack->exists('Recommendations')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="alert alert-warning" role="alert">
     <?php echo $CLICSHOPPING_Recommendations->getDef('text_intro_pr'); ?>
     <?php echo $CLICSHOPPING_Recommendations->getDef('return_url', ['return_url_pr' => CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Products&Recommendations']); ?>
@@ -42,7 +42,7 @@ if ($CLICSHOPPING_MessageStack->exists('Recommendations')) {
     <strong><?php echo $CLICSHOPPING_Recommendations->getDef('text_products_recommendations'); ?></strong></div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <div class="card card-block headerCard">
           <div class="row">
@@ -51,7 +51,7 @@ if ($CLICSHOPPING_MessageStack->exists('Recommendations')) {
             </div>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
 
         <div class="card card-block headerCard">
           <div class="row">
@@ -60,7 +60,7 @@ if ($CLICSHOPPING_MessageStack->exists('Recommendations')) {
             </div>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
 
         <div class="card card-block headerCard">
           <div class="row">
@@ -69,7 +69,7 @@ if ($CLICSHOPPING_MessageStack->exists('Recommendations')) {
             </div>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
       </div>
     </div>
   </div>

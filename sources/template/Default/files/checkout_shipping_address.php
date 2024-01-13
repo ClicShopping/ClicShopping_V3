@@ -38,7 +38,7 @@ echo HTML::form('checkout_shipping_address', CLICSHOPPING::link(null, 'Checkout&
       <?php
       if ($CLICSHOPPING_Customer->hasDefaultAddress()) {
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <h3><?php echo CLICSHOPPING::getDef('table_heading_shipping_address'); ?></h3>
 
         <span class="col-md-6 float-start">
@@ -49,7 +49,7 @@ echo HTML::form('checkout_shipping_address', CLICSHOPPING::link(null, 'Checkout&
         <div class="card card-default">
           <div class="card-header"><?php echo CLICSHOPPING::getDef('title_shipping_address'); ?></div>
           <div class="card-block">
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <?php echo AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_SESSION['sendto'], true, ' ', '<br />'); ?>
           </div>
         </div>
@@ -66,7 +66,7 @@ echo HTML::form('checkout_shipping_address', CLICSHOPPING::link(null, 'Checkout&
 // ------------------------------- ----
           ?>
           <div><?php echo CLICSHOPPING::getDef('text_select_other_shipping_destination'); ?></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="d-flex flex-wrap ">
             <?php
             $radio_buttons = 0;
@@ -83,7 +83,7 @@ echo HTML::form('checkout_shipping_address', CLICSHOPPING::link(null, 'Checkout&
                     <strong><?php echo HTML::outputProtected($Qaddresses->value('firstname') . ' ' . $Qaddresses->value('lastname')); ?></strong>
                   </div>
                   <div class="card-block">
-                    <div class="separator"></div>
+                    <div class="mt-1"></div>
                     <?php echo $CLICSHOPPING_Address->addressFormat($format_id, $addresses, true, ' ', '<br />'); ?>
                   </div>
                   <div class="card-footer text-center">
@@ -111,7 +111,7 @@ echo HTML::form('checkout_shipping_address', CLICSHOPPING::link(null, 'Checkout&
       if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
         ?>
 
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
@@ -121,7 +121,7 @@ echo HTML::form('checkout_shipping_address', CLICSHOPPING::link(null, 'Checkout&
             </div>
 
             <div class="card-block">
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div class="card-text">
                 <span><?php echo CLICSHOPPING::getDef('text_create_new_shipping_address'); ?></span>
                 <?php
@@ -136,7 +136,7 @@ echo HTML::form('checkout_shipping_address', CLICSHOPPING::link(null, 'Checkout&
         <?php
       }
       ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="control-group">
         <div>
           <div class="buttonSet">
@@ -160,8 +160,8 @@ echo HTML::form('checkout_shipping_address', CLICSHOPPING::link(null, 'Checkout&
       }
       ?>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 </section>
 </form>

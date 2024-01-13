@@ -27,7 +27,7 @@ echo HTML::form('checkout_confirmation', $form_action_url, 'post', 'id="checkout
         <?php echo $CLICSHOPPING_Template->getBlocks('modules_checkout_confirmation'); ?>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
   </div>
 </section>
 </form>

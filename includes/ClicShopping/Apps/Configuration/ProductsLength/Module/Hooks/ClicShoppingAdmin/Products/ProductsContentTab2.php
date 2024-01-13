@@ -86,7 +86,7 @@ class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
     $content .= '</div>';
     $content .= '</div>';
 
-    $content .= '<div class="separator"></div>';
+    $content .= '<div class="mt-1"></div>';
     $content .= '<div class="col-md-5">';
     $content .= '<div class="form-group row">';
     $content .= '<label for="' . $this->app->getDef('text_products_length_type') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_length_type') . '</label>';

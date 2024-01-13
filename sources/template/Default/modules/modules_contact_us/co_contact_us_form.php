@@ -60,9 +60,9 @@ class co_contact_us_form
       $contact_us_form .= $form;
 
       if ($order_id == 0 && !$CLICSHOPPING_Customer->isLoggedOn()) {
-        $contact_us_form .= '<div class="separator"></div>';
+        $contact_us_form .= '<div class="mt-1"></div>';
         $contact_us_form .= '<div class="col-md-12">' . CLICSHOPPING::getDef('entry_note_no_registered') . '</div>';
-        $contact_us_form .= '<div class="separator"></div>';
+        $contact_us_form .= '<div class="mt-1"></div>';
       }
 
       if ($CLICSHOPPING_Customer->isLoggedOn()) {
@@ -93,7 +93,7 @@ class co_contact_us_form
             </div>
           ';
       }
-      $contact_us_form .= '<div class="separator"></div>';
+      $contact_us_form .= '<div class="mt-1"></div>';
 
       if ($CLICSHOPPING_Customer->isLoggedOn()) {
         $contact_us_form .= '
@@ -123,7 +123,7 @@ class co_contact_us_form
           ';
       }
 
-      $contact_us_form .= '<div class="separator"></div>';
+      $contact_us_form .= '<div class="mt-1"></div>';
 
       if ($CLICSHOPPING_Customer->isLoggedOn()) {
 
@@ -248,7 +248,7 @@ class co_contact_us_form
 // ----------------------
 // Enquiry
 // ----------------------
-      $contact_us_form .= '<div class="separator"></div>';
+      $contact_us_form .= '<div class="mt-1"></div>';
       $contact_us_form .= '
            <div class="row" id="enquiry">
              <div class="col-md-12">

@@ -36,7 +36,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <table border="0" width="100%" cellspacing="0" cellpadding="2">
     <td>
       <table class="table table-sm table-hover table-striped">

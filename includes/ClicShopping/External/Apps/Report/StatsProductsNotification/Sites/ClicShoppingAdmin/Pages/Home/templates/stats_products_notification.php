@@ -42,7 +42,7 @@ $products_id = HTML::sanitize($_GET['pID']);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <table
     id="table"
     data-toggle="table"
@@ -148,7 +148,7 @@ $products_id = HTML::sanitize($_GET['pID']);
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
 
     <table
       id="table"

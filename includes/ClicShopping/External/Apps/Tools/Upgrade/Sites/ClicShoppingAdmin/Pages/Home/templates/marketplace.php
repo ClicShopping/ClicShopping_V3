@@ -85,7 +85,7 @@ if (isset($_POST['cId'])) {
                           echo '<div>' . $CLICSHOPPING_Upgrade->getDef('text_info_upload') . '</div>';
                           echo '<p></p>';
                           echo HTML::fileField('uploadApp', 'id="uploadApp" accept=".zip"');
-                          echo '<div class="separator"></div>';
+                          echo '<div class="mt-1"></div>';
                           echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_update'), null, null, 'success');
                           echo '</form>';
                           ?>
@@ -103,7 +103,7 @@ if (isset($_POST['cId'])) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12">
     <?php
     if (empty(CLICSHOPPING_APP_UPGRADE_UP_USERNAME)) {
@@ -291,7 +291,7 @@ if (isset($_POST['cId'])) {
                     </div>
                   </span>
                     </div>
-                    <div class="separator"></div>
+                    <div class="mt-1"></div>
                     <div class="row">
                   <span class="col-md-12 text-center">
                     <?php

@@ -64,7 +64,7 @@ class StatsOrdersArchive implements \ClicShopping\OM\Modules\HooksInterface
           </span>
           <span class="float-end">
             <div class="text-white">' . $this->statsOrderArchive() . ' - ' . HTML::link($this->app->link('Orders&aID=1'), $this->app->getDef('text_orders_archive')) . '</div>
-            <div class="separator"></div>   
+            <div class="mt-1"></div>   
           </span>
         </div>
       </div>

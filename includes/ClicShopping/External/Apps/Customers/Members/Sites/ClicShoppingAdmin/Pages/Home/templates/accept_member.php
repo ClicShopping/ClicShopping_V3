@@ -67,17 +67,17 @@ $cInfo = new ObjectInfo($cInfo_array);
   <?php echo HTML::form('customers', $CLICSHOPPING_Members->link('Members&ConfirmMembers&cID=' . $cInfo->customers_id)); ?>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Members->getDef('text_accept_intro'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div
         class="col-md-5"><?php echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup(), $cInfo->customers_group_id ?? null); ?>
         <br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div
         class="col-md-12"><?php echo HTML::checkboxField('delete_reviews', 'on', true) . ' ' . $CLICSHOPPING_Members->getDef('text_delete_reviews', ['delete_number' => $cInfo->number_of_reviews ?? null]); ?>
         <br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Members->getDef('button_activate'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Members->getDef('button_cancel'), null, $CLICSHOPPING_Members->link('Members&page=' . $page . '&cID=' . $cInfo->customers_id), 'warning', null, 'sm'); ?></span>
       </div>

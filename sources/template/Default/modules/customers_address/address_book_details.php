@@ -23,7 +23,7 @@ if (!isset($_SESSION['process'])) {
   $process = true;
 }
 ?>
-<div class="separator"></div>
+<div class="mt-1"></div>
 <div class="hr"></div>
 <?php
 if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 'true') || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ACCOUNT_COMPANY_PRO == 'true')) {
@@ -69,7 +69,7 @@ if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 't
   <?php
 }
 ?>
-<div class="separator"></div>
+<div class="mt-1"></div>
 <div class="card">
   <div class="card-header">
     <span class="alert-warning float-end" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
@@ -89,7 +89,7 @@ if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 't
           $female = !$male;
         }
         ?>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group row">
@@ -191,7 +191,7 @@ if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 't
     </div>
   </div>
 </div>
-<div class="separator"></div>
+<div class="mt-1"></div>
 <div class="card">
   <div class="card-header">
     <span class="alert-warning float-end" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
@@ -199,7 +199,7 @@ if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 't
   </div>
   <div class="card-block">
     <div class="card-text">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="row">
         <div class="col-md-12">
           <div class="form-group row">
@@ -454,4 +454,4 @@ if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 't
     </div>
   </div>
 </div>
-<div class="separator"></div>
+<div class="mt-1"></div>

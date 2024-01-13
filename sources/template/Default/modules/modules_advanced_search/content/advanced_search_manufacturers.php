@@ -15,7 +15,7 @@ use ClicShopping\OM\Registry;
 $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-7">
       <div class="form-group row">

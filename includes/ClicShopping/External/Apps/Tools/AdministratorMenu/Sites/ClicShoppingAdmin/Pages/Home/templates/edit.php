@@ -85,7 +85,7 @@ echo HTML::form('category', $CLICSHOPPING_AdministratorMenu->link('Administrator
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
 
   <div>

@@ -42,7 +42,7 @@ if ($CLICSHOPPING_MessageStack->exists('ChatGpt')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="appChatGptToolbar">
     <li class="nav-item">
       <?php
@@ -91,13 +91,13 @@ if ($CLICSHOPPING_MessageStack->exists('ChatGpt')) {
             <?php
             foreach ($CLICSHOPPING_ChatGpt_Config->getInputParameters() as $cfg) {
               echo '<div>' . $cfg . '</div>';
-              echo '<div class="separator"></div>';
+              echo '<div class="mt-1"></div>';
             }
             ?>
           </p>
         </div>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
 
       <div class="col-md-12">
         <?php
@@ -139,10 +139,10 @@ if ($CLICSHOPPING_MessageStack->exists('ChatGpt')) {
     </div>
     <div class="adminformTitle">
       <div class="row">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <div><?php echo $CLICSHOPPING_ChatGpt->getConfigModuleInfo($current_module, 'introduction'); ?></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div><?php echo HTML::button($CLICSHOPPING_ChatGpt->getDef('button_install_title', ['title' => $CLICSHOPPING_ChatGpt->getConfigModuleInfo($current_module, 'title')]), null, $CLICSHOPPING_ChatGpt->link('Configure&Install&module=' . $current_module), 'warning'); ?></div>
         </div>
       </div>

@@ -13,16 +13,16 @@ use ClicShopping\OM\HTML;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="page-title AccountCustomersReturn">
         <h3><?php echo CLICSHOPPING::getDef('module_account_product_return_history_heading_title'); ?></h3></div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="hr"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   foreach ($historyCheck as $value) {
     ?>
@@ -64,11 +64,11 @@ use ClicShopping\OM\HTML;
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php
   }
   ?>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12">
     <div class="row">
       <div

@@ -50,7 +50,7 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', $sql_array, ['
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $Qadmin->value('user_name'); ?></strong></div>
   <div class="adminformTitle">
 
@@ -76,7 +76,7 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', $sql_array, ['
       </div>
     </div>
 
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
@@ -88,7 +88,7 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', $sql_array, ['
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
@@ -100,7 +100,7 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', $sql_array, ['
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
@@ -116,7 +116,7 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', $sql_array, ['
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">

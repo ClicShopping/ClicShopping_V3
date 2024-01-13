@@ -12,7 +12,7 @@ use ClicShopping\OM\CLICSHOPPING;
 
 ?>
 <section class="boxe_information" id="boxe_information">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="boxeBannerContentsPageManager"><?php echo $page_manager_banner; ?></div>
   <div class="card boxeContainerPageManager">
     <div class="card-header boxeHeadingPageManager">

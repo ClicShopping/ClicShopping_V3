@@ -13,11 +13,11 @@ use ClicShopping\OM\CLICSHOPPING;
 echo $form;
 ?>
   <div class="col-md-<?php echo $content_width; ?>">
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div>
       <h3><?php echo CLICSHOPPING::getDef('my_newsletter_title'); ?></h3>
       <div class="contentText">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="checkbox">
           <label>
             <?php echo $newsletter_checkbox; ?>
@@ -28,7 +28,7 @@ echo $form;
     </div>
 
     <div class="col-md-12">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="control-group">
         <div>
           <div class="buttonSet">

@@ -70,7 +70,7 @@ $languages = $CLICSHOPPING_Language->getLanguages();
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div id="productsCronjobTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
@@ -100,7 +100,7 @@ $languages = $CLICSHOPPING_Language->getLanguages();
                   </div>
                 </div>
 
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div class="row">
                   <div class="col-md-5" id="cycle">
                     <div class="form-group row">
@@ -113,7 +113,7 @@ $languages = $CLICSHOPPING_Language->getLanguages();
                   </div>
                 </div>
 
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div class="row">
                   <div class="col-md-5" id="action">
                     <div class="form-group row">
@@ -126,7 +126,7 @@ $languages = $CLICSHOPPING_Language->getLanguages();
                   </div>
                 </div>
 
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div class="row">
                   <div class="col-md-5" id="status">
                     <div class="form-group row">
@@ -143,7 +143,7 @@ $languages = $CLICSHOPPING_Language->getLanguages();
             </div>
           </div>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
       </div>
       <?php
       //***********************************

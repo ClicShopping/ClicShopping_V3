@@ -43,7 +43,7 @@ echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_class'), null, $CL
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <!-- //################################################################################################################ -->
   <!-- //                                             LISTING                                                            -->
   <!-- //################################################################################################################ -->
@@ -130,7 +130,7 @@ echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_class'), null, $CL
     ?>
     </tbody>
   </table>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($listingTotalRow > 0) {
     ?>

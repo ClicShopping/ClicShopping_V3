@@ -55,7 +55,7 @@ class pre_products_recommendations
 
         $new_prods_content = '<!-- New Products start -->' . "\n";
         $new_prods_content .= '<div class="clearfix"></div>';
-        $new_prods_content .= '<div class="separator"></div>';
+        $new_prods_content .= '<div class="mt-1"></div>';
         $new_prods_content .= '<div class="contentText">';
         $new_prods_content .= '<div class="ModulesProductsNewContainer">';
 
@@ -128,7 +128,7 @@ class pre_products_recommendations
           }
         }
 
-        $new_prods_content .= '<div class="separator"></div>';
+        $new_prods_content .= '<div class="mt-1"></div>';
         $new_prods_content .= '</div>' . "\n";
         $new_prods_content .= '<div class="boxContentsModulesProductsNew">';
 
@@ -296,14 +296,14 @@ class pre_products_recommendations
 
           $new_prods_content .= '</div>';  // flex
         } else {
-          $new_prods_content .= '<div class="separator"></div>';
+          $new_prods_content .= '<div class="mt-1"></div>';
           $new_prods_content .= '<div class="text-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
         }
 
         if (($listingTotalRow > 0) && ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3'))) {
           if ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3')) {
             $new_prods_content .= '<div class="clearfix"></div>';
-            $new_prods_content .= '<div class="separator"></div>';
+            $new_prods_content .= '<div class="mt-1"></div>';
             $new_prods_content .= '<div>';
             $new_prods_content .= '<div class="col-md-6 pagenumber hidden-xs">';
             $new_prods_content .= $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));

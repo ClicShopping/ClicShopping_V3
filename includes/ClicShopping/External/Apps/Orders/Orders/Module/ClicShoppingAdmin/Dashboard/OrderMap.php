@@ -54,7 +54,7 @@ class OrderMap extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     $output = '<div class="col-12 ' . $content_width . ' d-flex" style="padding-right:0.5rem; padding-top:0.5rem; height:310px;">';
     $output .= '<div class="card flex-fill w-100">';
     $output .= '<div id="vmap"></div>';
-    $output .= '<div class="separator"></div>';
+    $output .= '<div class="mt-1"></div>';
     $output .= '</div>';
     $output .= '</div>';
     $output .= '</div>';

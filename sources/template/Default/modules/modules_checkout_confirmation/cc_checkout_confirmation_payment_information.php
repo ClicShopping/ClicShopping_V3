@@ -76,11 +76,11 @@ class cc_checkout_confirmation_payment_information
               $display = '';
               $display .= '<div class="col-md-' . $content_width . '">';
               $display .= '<div class="col-md-12">';
-              $display .= '<div class="separator"></div>';
+              $display .= '<div class="mt-1"></div>';
               $display .= '<div class="card moduleCheckoutConfirmationPaymentInformationCard">';
               $display .= '<div class="card-header moduleCheckoutConfirmationPaymentInformationCardHeader"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_payment_information_heading_payment_information') . '</strong></div>';
               $display .= '<div class="card-block moduleCheckoutConfirmationPaymentInformationCardBlock">';
-              $display .= '<div class="separator"></div>';
+              $display .= '<div class="mt-1"></div>';
 
               for ($i = 0, $n = \count($confirmation['fields']); $i < $n; $i++) {
 

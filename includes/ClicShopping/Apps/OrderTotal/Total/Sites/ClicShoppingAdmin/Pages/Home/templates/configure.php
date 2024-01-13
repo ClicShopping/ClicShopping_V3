@@ -40,7 +40,7 @@ if ($CLICSHOPPING_MessageStack->exists('Total')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($CLICSHOPPING_Total_Config->is_installed === true) {
     ?>
@@ -58,14 +58,14 @@ if ($CLICSHOPPING_MessageStack->exists('Total')) {
             <?php
             foreach ($CLICSHOPPING_Total_Config->getInputParameters() as $cfg) {
               echo '<div>' . $cfg . '</div>';
-              echo '<div class="separator"></div>';
+              echo '<div class="mt-1"></div>';
             }
             ?>
           </p>
         </div>
       </div>
 
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <?php
         echo HTML::button($CLICSHOPPING_Total->getDef('button_save'), null, null, 'success');
@@ -106,7 +106,7 @@ if ($CLICSHOPPING_MessageStack->exists('Total')) {
       <strong><?php echo $CLICSHOPPING_Total->getConfigModuleInfo($current_module, 'title'); ?></strong></div>
     <div class="adminformTitle">
       <div class="row">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <div><?php echo $CLICSHOPPING_Total->getConfigModuleInfo($current_module, 'introduction'); ?></div>
           <div class="separator">

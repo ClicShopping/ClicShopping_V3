@@ -48,7 +48,7 @@ echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_cancel'), null, $CLICSH
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_TaxClass->getDef('table_heading_tax_classes'); ?></strong></div>
   <div class="adminformTitle">

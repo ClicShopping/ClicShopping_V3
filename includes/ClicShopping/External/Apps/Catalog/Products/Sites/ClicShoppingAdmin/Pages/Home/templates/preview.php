@@ -89,13 +89,13 @@
           </div>
         </div>
       </div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="row" id="tab1ContentRow2">
         <div class="col-md-12">
           <span class="col-md-5 pageHeading float-start"><?php echo $CLICSHOPPING_Products->getDef('text_products_name')  . ' - '  . $products['products_name']; ?></span>
           <span class="col-md-7 pageHeading float-end text-end"><strong><?php echo $CLICSHOPPING_Products->getDef('text_products_model') . ' ' . $products['products_model']; ?></strong></span>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12 text-center">
 <?php
   if (!\is_null($products['products_image'])) {
@@ -103,7 +103,7 @@
   }
 ?>
         </div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12"><?php echo $products['products_description']; ?></div>
       </div>
 <?php
@@ -111,7 +111,7 @@
 // affichage presentation produit                               //
   // ##############################################
 ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="mainTitle"><?php echo  $CLICSHOPPING_Products->getDef('text_products_presentation'); ?></div>
       <div class="adminformTitle">
         <div class="row" id="tab1ContentRow3">
@@ -144,7 +144,7 @@
   // affichage STOCK produit                               //
   // ##############################################
 ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_stock'); ?></div>
       <div class="adminformTitle">
         <div class="row" id="tab1ContentRow4">
@@ -169,7 +169,7 @@
   // affichage prix produit                               //
   // ##############################################
 ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_price_public'); ?></div>
       <div class="adminformTitle">
         <div class="row" id="tab1ContentRow5">
@@ -235,7 +235,7 @@
 <?php
     } // end while
 ?>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <!-- Afficher autoriser du produit + autorisation commande //-->
 
                 <div class="col-md-2"><?php echo $CLICSHOPPING_Products->getDef('products_view'); ?></div>
@@ -289,7 +289,7 @@
   // affichage referencement                    //
   // ##############################################
 ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_page_seo'); ?></div>
       <div class="adminformTitle">
         <div class="row" id="tab1ContentRow6">

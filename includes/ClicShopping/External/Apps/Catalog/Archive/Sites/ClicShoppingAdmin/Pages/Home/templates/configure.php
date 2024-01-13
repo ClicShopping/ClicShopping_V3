@@ -40,7 +40,7 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="appArchiveToolbar">
     <li class="nav-item">
       <?php
@@ -82,14 +82,14 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
             <?php
             foreach ($CLICSHOPPING_Archive_Config->getInputParameters() as $cfg) {
               echo '<div>' . $cfg . '</div>';
-              echo '<div class="separator"></div>';
+              echo '<div class="mt-1"></div>';
             }
             ?>
           </p>
         </div>
       </div>
 
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12">
         <?php
         echo HTML::button($CLICSHOPPING_Archive->getDef('button_save'), null, null, 'success');
@@ -130,10 +130,10 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
       <strong><?php echo $CLICSHOPPING_Archive->getConfigModuleInfo($current_module, 'title'); ?></strong></div>
     <div class="adminformTitle">
       <div class="row">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12">
           <div><?php echo $CLICSHOPPING_Archive->getConfigModuleInfo($current_module, 'introduction'); ?></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div><?php echo HTML::button($CLICSHOPPING_Archive->getDef('button_install_title', ['title' => $CLICSHOPPING_Archive->getConfigModuleInfo($current_module, 'title')]), null, $CLICSHOPPING_Archive->link('Configure&Install&module=' . $current_module), 'warning'); ?></div>
         </div>
       </div>

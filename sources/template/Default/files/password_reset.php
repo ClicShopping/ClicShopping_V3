@@ -22,7 +22,7 @@ require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
       <div class="page-title modulesAccountCustomersPasswordResetPageHeader">
         <h1><?php echo CLICSHOPPING::getDef('heading_title'); ?></h1></div>
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_login'); ?>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
     </div>
   </div>
 </section>

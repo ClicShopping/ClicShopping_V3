@@ -39,7 +39,7 @@ if ($CLICSHOPPING_Template->hasBlocks('boxes_column_right')) {
 }
 ?>
 </div><!-- end flex -->
-<div class="separator"></div>
+<div class="mt-1"></div>
 <?php //important before block ?>
 <footer class="page-footer" id="footer">
   <div class="hr footerHr"></div>

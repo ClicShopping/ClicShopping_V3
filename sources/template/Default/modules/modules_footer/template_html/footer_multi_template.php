@@ -80,8 +80,8 @@ if (!empty($twitter_url)) {
           </ul>
         </span>
     </div>
-    <div class="separator"></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
+    <div class="mt-1"></div>
   </div>
 
 

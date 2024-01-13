@@ -14,19 +14,19 @@ use ClicShopping\OM\HTML;
 echo $form;
 ?>
   <div class="col-md-<?php echo $content_width; ?>">
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <?php echo CLICSHOPPING::getDef('my_notifications_description'); ?>
-    <div class="separator"></div>
-    <div class="separator"></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
+    <div class="mt-1"></div>
+    <div class="mt-1"></div>
     <div class="hr"></div>
-    <div class="separator"></div>
-    <div class="separator"></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
+    <div class="mt-1"></div>
+    <div class="mt-1"></div>
     <h3><?php echo CLICSHOPPING::getDef('global_notifications_title'); ?></h3>
-    <div class="separator"></div>
-    <div class="separator"></div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
+    <div class="mt-1"></div>
+    <div class="mt-1"></div>
     <div>
         <span class="checkbox col-md-1 text-end">
           <label><?php echo $checkbox_notifications; ?> </label>
@@ -39,13 +39,13 @@ echo $form;
     // ----------------------
     if ($global_notification != 1) {
       ?>
-      <div class="separator"></div>
-      <div class="separator"></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
+      <div class="mt-1"></div>
+      <div class="mt-1"></div>
       <div class="hr"></div>
-      <div class="separator"></div>
-      <div class="separator"></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
+      <div class="mt-1"></div>
+      <div class="mt-1"></div>
       <h3><?php echo CLICSHOPPING::getDef('notifications_title'); ?></h3>
       <?php
       if ($row_count > 0 && !\is_null($Qproducts)) {
@@ -71,9 +71,9 @@ echo $form;
         }
       } else {
         ?>
-        <div class="separator"></div>
-        <div class="separator"></div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
+        <div class="mt-1"></div>
+        <div class="mt-1"></div>
         <div class="alert alert-warning" role="alert">
           <?php echo CLICSHOPPING::getDef('notifications_non_existing'); ?>
         </div>
@@ -84,7 +84,7 @@ echo $form;
     // --- button   -----
     // ----------------------
     ?>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="col-md-12">
       <div class="control-group">
         <div>

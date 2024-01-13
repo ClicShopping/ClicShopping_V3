@@ -27,7 +27,7 @@ echo $form;
   // ----- Infos   -----
   // ----------------------
   ?>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="row">
     <div class="col-md-12">
@@ -35,9 +35,9 @@ echo $form;
         <h3><?php echo CLICSHOPPING::getDef('module_account_product_return_heading_title'); ?></h3></div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="hr"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="row">
     <div class="col-sm-6">
@@ -147,8 +147,8 @@ echo $form;
   // ----- order   -----
   // ----------------------
   ?>
-  <div class="separator"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="page-title Account_CustomersReturn">
@@ -156,9 +156,9 @@ echo $form;
     </div>
   </div>
 
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="hr"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
 
   <div class="row">
@@ -209,17 +209,17 @@ echo $form;
     </div>
   </div>
 
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="hr"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <?php
   // ----------------------
   // ----- Return   -----
   // ----------------------
   ?>
-  <div class="separator"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="page-title Account_CustomersReturn">
@@ -227,9 +227,9 @@ echo $form;
     </div>
   </div>
 
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="hr"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="row">
     <div class="col-md-12">
@@ -243,7 +243,7 @@ echo $form;
     </div>
   </div>
 
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="form-group row">
@@ -256,7 +256,7 @@ echo $form;
     </div>
   </div>
 
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="form-group row">
@@ -268,7 +268,7 @@ echo $form;
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="form-group row">
@@ -282,7 +282,7 @@ echo $form;
   </div>
 
   <div class="hr"></div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="col-md-12">
     <div class="control-group">
       <div>
@@ -299,7 +299,7 @@ echo $form;
 <?php
 echo $endform;
 ?>
-<div class="separator"></div>
+<div class="mt-1"></div>
 <div class="col-md-12">
   <div class="row">
     <div class="alert alert-info" role="info">

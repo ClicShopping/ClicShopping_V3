@@ -68,7 +68,7 @@ class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_CONTENT_WIDTH;
 
       $output = '<span class="' . $content_width . '">';
-      $output .= '<div class="separator"></div>';
+      $output .= '<div class="mt-1"></div>';
 
       $output .= '<table 
             id="table"

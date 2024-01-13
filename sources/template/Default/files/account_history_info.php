@@ -18,6 +18,6 @@ require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
       <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_title_history_information'); ?></h1></div>
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_account_customers'); ?>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
   </div>
 </section>

@@ -34,14 +34,14 @@ $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="card">
     <div class="card-header">
       <?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_instruction'); ?>
     </div>
     <div class="card-body">
       <div class="card-text"><?php echo $CLICSHOPPING_Cronjob->getDef('text_info_cronjob'); ?></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="row">
         <div class="input-group">
           <span class="input-group-text">Cron URL</span>
@@ -54,7 +54,7 @@ $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <table
     id="table"
     data-toggle="table"

@@ -110,7 +110,7 @@ $page_general_condition_statut[] = ['id' => '1',
 ];
 ?>
 <div class="contentBody">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="card card-block headerCard">
@@ -130,7 +130,7 @@ echo HTML::button(CLICSHOPPING::getDef('button_new'), null, null, 'success', nul
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_pages_choose'); ?></div>
   <div class="adminformTitle">

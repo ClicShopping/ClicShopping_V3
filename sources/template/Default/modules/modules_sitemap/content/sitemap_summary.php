@@ -13,7 +13,7 @@ use ClicShopping\OM\HTML;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="SitemapSummaryTable">
     <div class="row col-md-12 col-md-12">
       <div class="col-md-4 col-md-4">

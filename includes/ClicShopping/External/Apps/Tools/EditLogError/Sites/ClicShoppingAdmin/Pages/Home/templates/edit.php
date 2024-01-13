@@ -62,7 +62,7 @@ $log = $files[$_GET['log']];
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div>
     <?php
     if (isset($log['path'])) {

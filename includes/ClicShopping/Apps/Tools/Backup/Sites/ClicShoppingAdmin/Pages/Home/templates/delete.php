@@ -68,7 +68,7 @@ $buInfo = new ObjectInfo($info);
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if (FileSystem::isWritable($backup_directory)) {
     ?>
@@ -76,9 +76,9 @@ $buInfo = new ObjectInfo($info);
     <?php echo HTML::form('delete', $CLICSHOPPING_Backup->link('Backup&DeleteConfirm&file=' . $_GET['file'])); ?>
     <div class="adminformTitle">
       <div class="row">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12"><?php echo $CLICSHOPPING_Backup->getDef('text_delete_intro'); ?><br/></div>
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="col-md-12"><?php echo $buInfo->file; ?><br/><br/></div>
         <div class="col-md-12 text-center">
           <span><br/><?php echo HTML::button($CLICSHOPPING_Backup->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Backup->getDef('button_cancel'), null, $CLICSHOPPING_Backup->link('Backup'), 'warning', null, 'sm'); ?></span>

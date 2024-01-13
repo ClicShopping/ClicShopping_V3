@@ -50,7 +50,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   $form_action = 'Insert';
 
@@ -110,7 +110,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
             </div>
 
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderId">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -123,7 +123,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderDate">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -136,7 +136,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderCustomerfirstName">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -149,7 +149,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderCustomerlastName">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -163,7 +163,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderCustomerEmail">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -177,7 +177,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderCustomerPhone">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -191,12 +191,12 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="col-md-12">
               <span><h3><?php echo $CLICSHOPPING_ReturnOrders->getDef('text_description_order_return'); ?></h3></span>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderReturnProductName">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -209,7 +209,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderReturnProductModel">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -222,7 +222,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderReturnReason">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -256,9 +256,9 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderReturnProductModel">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -270,7 +270,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderReturnReturnAction">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -295,7 +295,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
             <span><?php echo $CLICSHOPPING_ReturnOrders->getDef('tab_history'); ?></span>
           </div>
           <div class="adminformTitle" id="adminformTitleTab2">
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="addHistory">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -307,7 +307,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="notify">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -326,7 +326,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="refReturnOrderReturnOpened">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -338,7 +338,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
                 </div>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="Comment">
               <div class="col-md-7">
                 <div class="form-group row">
@@ -351,7 +351,7 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <table class="table table-sm table-hover" id="statusSummary">
               <thead class="dataTableHeadingRow">
               <tr>

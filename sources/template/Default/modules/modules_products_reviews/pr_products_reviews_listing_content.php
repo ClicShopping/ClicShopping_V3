@@ -53,7 +53,7 @@ class pr_products_reviews_listing_content
       $data = '<!-- pr_products_reviews_listing_content start -->' . "\n";
       $data .= '<div class="col-md-' . $content_width . '">';
       $data .= '<div class="contentText">';
-      $data .= '<div class="separator"></div>';
+      $data .= '<div class="mt-1"></div>';
       $data .= '<div class="page-title"><h3>' . CLICSHOPPING::getDef('modules_products_reviews_listing_content_comment') . '</h3></div>';
 
       if ($CLICSHOPPING_Reviews->getPageSetTotalRows() > 0) {
@@ -68,7 +68,7 @@ class pr_products_reviews_listing_content
           $data .= '</div>';
           $data .= '</div>';
           $data .= '<div class="clearfix"></div>';
-          $data .= '<div class="separator"></div>';
+          $data .= '<div class="mt-1"></div>';
         }
       }
 
@@ -117,7 +117,7 @@ class pr_products_reviews_listing_content
           $data .= '</div>';
           $data .= '<div>';
           $data .= '<div class="clearfix"></div>';
-          $data .= '<div class="separator"></div>';
+          $data .= '<div class="mt-1"></div>';
         }
       }
 

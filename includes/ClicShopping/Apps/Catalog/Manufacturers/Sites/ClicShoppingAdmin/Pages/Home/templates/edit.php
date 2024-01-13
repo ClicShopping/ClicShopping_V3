@@ -60,7 +60,7 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getD
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if (isset($_GET['mID'])) {
     $mId = $_GET['mID'];
@@ -129,7 +129,7 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getD
               </div>
             </div>
 
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="row" id="manufacturersUrl">
               <div class="col-md-12">
                 <span
@@ -142,7 +142,7 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getD
               $languages = $CLICSHOPPING_Language->getLanguages();
               for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
-                <div class="separator"></div>
+                <div class="mt-1"></div>
                 <div class="form-group row">
                   <label for="code"
                          class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
@@ -203,7 +203,7 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getD
               ?>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ProductsContentTab2', null, 'display'); ?>
         </div>
 
@@ -244,10 +244,10 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getD
             </div>
           </div>
           <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ProductsContentTab3', null, 'display'); ?>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Manufacturers->getDef('title_help_image') . '"></i></h4>' . $CLICSHOPPING_Manufacturers->getDef('title_help_image') ?></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div><?php echo $CLICSHOPPING_Manufacturers->getDef('help_image_manufacturers'); ?></div>
           </div>
         </div>
@@ -261,14 +261,14 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getD
               class="float-start"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo'); ?></div>
           </div>
           <div class="adminformTitle">
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="col-md-12">
               <div class="row text-center" id="productsGoogleKeywords">
                 <a href="https://www.google.fr/trends"
                    target="_blank"><?php echo CLICSHOPPING::getDef('keywords_google_trend'); ?></a>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
 
             <div class="accordion" id="accordionExample">
               <?php
@@ -297,7 +297,7 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getD
                 <div id="collapseOne" class="accordion-collapse collapse <?php echo $show; ?>"
                      aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-                    <div class="separator"></div>
+                    <div class="mt-1"></div>
                     <div class="row" id="manufacturerSeoTitle<?php echo $languages_id; ?>">
                       <div class="col-md-10">
                         <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -310,7 +310,7 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getD
                       </div>
                     </div>
 
-                    <div class="separator"></div>
+                    <div class="mt-1"></div>
                     <div class="row" id="manufacturerSeoDescription<?php echo $languages_id; ?>">
                       <div class="col-md-6">
                         <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -325,7 +325,7 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getD
                       </div>
                     </div>
 
-                    <div class="separator"></div>
+                    <div class="mt-1"></div>
                     <div class="row" id="manufacturerSeoKeywords<?php echo $languages_id; ?>">
                       <div class="col-md-10">
                         <div class="form-group row" data-index="<?php echo $languages_id; ?>">
@@ -345,14 +345,14 @@ echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getD
                 ?>
               </div>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="alert alert-info" role="alert">
               <div><?php echo '<h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Manufacturers->getDef('title_help_seo') . '"></i></h4>' . $CLICSHOPPING_Manufacturers->getDef('title_help_seo') ?></div>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><?php echo $CLICSHOPPING_Manufacturers->getDef('help_seo'); ?></div>
             </div>
           </div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
           <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ManufacturersTab4', null, 'display'); ?>
         </div>
       </div>

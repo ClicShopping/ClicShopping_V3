@@ -121,12 +121,12 @@ class bm_specials
 
       $data = '<!-- Boxe specials start-->' . "\n";
       $data .= '<section class="boxe_specials" id="boxe_specials">';
-      $data .= '<div class="separator"></div>';
+      $data .= '<div class="mt-1"></div>';
       $data .= '<div class="boxeBannerContentsSpecials">' . $specials_banner . '</div>';
       $data .= '<div class="card boxeContainerSpecials">';
       $data .= '<div class="card-header boxeHeadingSpecials"><span class="card-title boxeTitleSpecials">' . HTML::link(CLICSHOPPING::link(null, 'Products&Specials'), CLICSHOPPING::getDef('module_boxes_specials_box_title')) . '</span></div>';
       $data .= '<div class="card-block text-center boxeContentArroundSpecials">';
-      $data .= ' <div class="separator"></div>';
+      $data .= ' <div class="mt-1"></div>';
 
       while ($Qproducts->fetch()) {
         $products_id = $Qproducts->valueInt('products_id');

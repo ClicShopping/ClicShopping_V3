@@ -13,7 +13,7 @@ use ClicShopping\OM\HTML;
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <div class="card">
     <div class="card-header">
       <div class="row">
@@ -24,11 +24,11 @@ use ClicShopping\OM\HTML;
         </div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="card-block">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="card-text">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="moduleAccountCustomersMyAccountListAccount">
           <div class="col-md-12" id="accountCustomersMyAccountAddress">
             <div><i
@@ -37,9 +37,9 @@ use ClicShopping\OM\HTML;
             <div><i
                 class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i> <?php echo HTML::link(CLICSHOPPING::link(null, 'Account&AddressBook'), CLICSHOPPING::getDef('module_account_customers_my_account_address_book')); ?>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="hr"></div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <?php
             if (\defined('MODULE_ACCOUNT_CUSTOMERS_MY_FEEDBACK_TITLE_STATUS')) {
               if (MODULE_ACCOUNT_CUSTOMERS_MY_FEEDBACK_TITLE_STATUS == 'True') {
@@ -53,11 +53,11 @@ use ClicShopping\OM\HTML;
               }
             }
             ?>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <?php
             if (\defined('MODULE_ACCOUNT_CUSTOMERS_PASSWORD_TITLE_STATUS') && MODULE_ACCOUNT_CUSTOMERS_PASSWORD_TITLE_STATUS == 'True') {
               ?>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><i
                   class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i> <?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Password'), CLICSHOPPING::getDef('module_account_customers_my_account_password')); ?>
               </div>
@@ -67,18 +67,18 @@ use ClicShopping\OM\HTML;
             <div><i
                 class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i> <?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Gdpr'), CLICSHOPPING::getDef('module_account_customers_my_account_gdpr')); ?>
             </div>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <?php
             if (\defined('CLICSHOPPING_APP_RETURN_ORDERS_RO_STATUS') && CLICSHOPPING_APP_RETURN_ORDERS_RO_STATUS == 'True') {
               ?>
-              <div class="separator"></div>
+              <div class="mt-1"></div>
               <div><i
                   class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i> <?php echo HTML::link(CLICSHOPPING::link(null, 'Account&ProductReturnHistory'), CLICSHOPPING::getDef('module_account_customers_my_account_return_history')); ?>
               </div>
               <?php
             }
             ?>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
           </div>
         </div>
       </div>

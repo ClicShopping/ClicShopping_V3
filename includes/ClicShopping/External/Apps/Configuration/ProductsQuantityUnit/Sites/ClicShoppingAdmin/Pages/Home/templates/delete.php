@@ -68,7 +68,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
 
   <?php echo HTML::form('status_products_quantity_unit', $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&DeleteConfirm&page=' . $page . '&oID=' . $oInfo->products_quantity_unit_id)); ?>
 
@@ -77,10 +77,10 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
   </div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('text_info_delete_intro'); ?>
         <br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo '<strong>' . $oInfo->products_quantity_unit_title . '</strong>'; ?><br/><br/>
       </div>
       <div class="col-md-12 text-center">

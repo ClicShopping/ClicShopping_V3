@@ -12,17 +12,17 @@ use ClicShopping\OM\CLICSHOPPING;
 
 ?>
   <div class="col-12 col-md-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?> p-1">
-    <div class="separator"></div>
+    <div class="mt-1"></div>
     <div class="card card-height">
       <div class="ModulesProductsFeaturedBoostrapColumn5CardHeight">
-        <div class="separator"></div>
+        <div class="mt-1"></div>
         <div class="card-img-top ModulesProductsFeaturedBoostrapColumn5Image">
           <?php echo $products_image . $ticker; ?>
         </div>
         <div class="card-body">
           <div class="ModulesProductsNewBoostrapColumn5Title"><h3><?php echo $products_name; ?></h3></div>
-          <div class="separator"></div>
-          <div class="separator"></div>
+          <div class="mt-1"></div>
+          <div class="mt-1"></div>
           <?php
           if (!empty($products_short_description)) {
             ?>
@@ -47,7 +47,7 @@ use ClicShopping\OM\CLICSHOPPING;
           }
           if (!empty($products_flash_discount)) {
             ?>
-            <div class="separator"></div>
+            <div class="mt-1"></div>
             <div class="EndDateFlashDiscount"> <?php echo $products_flash_discount; ?></div>
             <?php
           }

@@ -43,7 +43,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="mt-1"></div>
   <?php
   if ($Qlanguages->value('code') == DEFAULT_LANGUAGE) {
     echo '<div class="alert alert-warning" role="alert">' . $CLICSHOPPING_Langues->getDef('error_remove_default_language') . '</div>';
@@ -53,9 +53,9 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
     <strong><?php echo $CLICSHOPPING_Langues->getDef('text_info_heading_delete_language'); ?></strong></div>
   <div class="adminformTitle">
     <div class="row">
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo $CLICSHOPPING_Langues->getDef('text_info_delete_info'); ?><br/><br/></div>
-      <div class="separator"></div>
+      <div class="mt-1"></div>
       <div class="col-md-12"><?php echo '<strong>' . $lInfo->name . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-center">
         <span><br/>
