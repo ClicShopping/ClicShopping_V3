@@ -72,7 +72,8 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
     data-show-columns="true"
     data-select-item-name="selected[]"
     data-click-to-select="true"
-    data-mobile-responsive="true">
+    data-mobile-responsive="true"
+    data-check-on-init="true">
 
     <thead class="dataTableHeadingRow">
     <tr>

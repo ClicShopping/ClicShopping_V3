@@ -61,7 +61,8 @@ class AdminLogins extends \ClicShopping\OM\Modules\AdminDashboardAbstract
         data-buttons-class="primary"
         data-show-toggle="true"
         data-show-columns="true"
-        data-mobile-responsive="true">' .
+        data-mobile-responsive="true"
+        data-check-on-init="true">' .
       '<thead class="dataTableHeadingRow">' .
       '  <tr>' .
       '    <th data-field="status" data-switchable="false" data-sortable="true" width="20">&nbsp;</th>' .

@@ -55,6 +55,7 @@ $products_id = HTML::sanitize($_GET['pID']);
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
+    data-check-on-init="true"
     data-show-export="true">
 
     <thead class="dataTableHeadingRow">
@@ -162,6 +163,7 @@ $products_id = HTML::sanitize($_GET['pID']);
       data-show-toggle="true"
       data-show-columns="true"
       data-mobile-responsive="true"
+      data-check-on-init="true"
       data-show-export="true">
 
       <thead class="dataTableHeadingRow">

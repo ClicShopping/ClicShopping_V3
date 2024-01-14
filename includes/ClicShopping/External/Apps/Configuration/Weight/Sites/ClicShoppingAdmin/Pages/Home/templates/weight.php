@@ -59,7 +59,8 @@ echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_class'), null, $CL
     data-buttons-class="primary"
     data-show-toggle="true"
     data-show-columns="true"
-    data-mobile-responsive="true">
+    data-mobile-responsive="true"
+    data-check-on-init="true">
 
     <thead class="dataTableHeadingRow">
     <tr>

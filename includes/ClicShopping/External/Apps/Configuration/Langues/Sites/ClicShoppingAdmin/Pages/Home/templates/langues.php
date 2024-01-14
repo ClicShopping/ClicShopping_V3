@@ -50,7 +50,8 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
     data-buttons-class="primary"
     data-show-toggle="true"
     data-show-columns="true"
-    data-mobile-responsive="true">
+    data-mobile-responsive="true"
+    data-check-on-init="true">
 
     <thead class="dataTableHeadingRow">
     <tr>

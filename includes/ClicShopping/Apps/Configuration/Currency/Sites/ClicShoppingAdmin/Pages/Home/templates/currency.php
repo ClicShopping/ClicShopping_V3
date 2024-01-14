@@ -56,7 +56,8 @@ echo HTML::button($CLICSHOPPING_Currency->getDef('button_update_all'), null, $CL
     data-buttons-class="primary"
     data-show-toggle="true"
     data-show-columns="true"
-    data-mobile-responsive="true">
+    data-mobile-responsive="true"
+    data-check-on-init="true">
 
     <thead class="dataTableHeadingRow">
     <tr>

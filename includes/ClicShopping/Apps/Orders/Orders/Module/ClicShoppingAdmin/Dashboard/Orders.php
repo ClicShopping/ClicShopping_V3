@@ -89,7 +89,9 @@ class Orders extends \ClicShopping\OM\Modules\AdminDashboardAbstract
         data-buttons-class="primary"
         data-show-toggle="true"
         data-show-columns="true"
-        data-mobile-responsive="true">';
+        data-mobile-responsive="true"
+        data-check-on-init="true">';
+
     $output .= '<thead class="dataTableHeadingRow">';
     $output .= '<tr>';
     $output .= '<th data-field="date">' . $this->app->getDef('module_admin_dashboard_orders_app_date') . '</th>';

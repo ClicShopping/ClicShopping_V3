@@ -105,7 +105,8 @@ echo HTML::selectField('module', $modules_list_array, null, 'onchange="this.form
     data-buttons-class="primary"
     data-show-toggle="true"
     data-show-columns="true"
-    data-mobile-responsive="true">
+    data-mobile-responsive="true"
+    data-check-on-init="true">
 
     <thead class="dataTableHeadingRow">
     <tr>

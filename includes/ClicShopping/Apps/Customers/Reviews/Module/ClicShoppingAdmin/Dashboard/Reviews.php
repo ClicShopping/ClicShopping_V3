@@ -62,7 +62,9 @@ class Reviews extends \ClicShopping\OM\Modules\AdminDashboardAbstract
         data-buttons-class="primary"
         data-show-toggle="true"
         data-show-columns="true"
-        data-mobile-responsive="true">';
+        data-mobile-responsive="true"
+        data-check-on-init="true">';
+
     $content .= '<thead class="dataTableHeadingRow">';
     $content .= '<tr>';
 

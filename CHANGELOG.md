@@ -2,7 +2,8 @@
 version 3.446
 elfinder updated
 bootstrap-table updated
-
+Add bootstrap-table for mobile
+Librairies updated
 
 --------------------
 version 3.445

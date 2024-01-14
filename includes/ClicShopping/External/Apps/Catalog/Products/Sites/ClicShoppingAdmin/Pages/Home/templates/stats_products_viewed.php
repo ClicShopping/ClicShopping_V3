@@ -54,6 +54,7 @@ echo HTML::form('stats_products_viewed', $CLICSHOPPING_Products->link('Products&
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
+    data-check-on-init="true"
     data-show-export="true">
 
     <thead class="dataTableHeadingRow">

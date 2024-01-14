@@ -81,7 +81,9 @@ class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
             data-buttons-class="primary"
             data-show-toggle="true"
             data-show-columns="true"
-            data-mobile-responsive="true">';
+            data-mobile-responsive="true"
+            data-check-on-init="true">';
+
       $output .= '<thead class="dataTableHeadingRow">';
       $output .= '<tr>';
       $output .= '<th data-field="online" width="10%">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_online') . '</th>';
