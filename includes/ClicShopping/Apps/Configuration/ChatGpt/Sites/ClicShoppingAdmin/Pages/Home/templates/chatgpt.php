@@ -138,13 +138,13 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
                     class="card-title text-white"><?php echo $CLICSHOPPING_ChatGpt->getDef('stat_total_no_response'); ?></h6>
                   <div class="card-text">
                     <div class="col-sm-12">
-                                <span class="float-start">
-                                  <i class="bi bi-graph-up text-white"></i>
-                                </span>
+                      <span class="float-start">
+                        <i class="bi bi-graph-up text-white"></i>
+                      </span>
                       <span class="float-end">
-                                <div
-                                  class="col-sm-12 text-white"><?php echo $CLICSHOPPING_ChatGpt->getDef('text_rate_error_gpt') . ' ' . ChatGptAdmin35::getErrorRateGpt(); ?></div>
-                                </span>
+                        <div
+                          class="col-sm-12 text-white"><?php echo $CLICSHOPPING_ChatGpt->getDef('text_rate_error_gpt') . ' ' . ChatGptAdmin35::getErrorRateGpt(); ?></div>
+                      </span>
                     </div>
                   </div>
                 </div>

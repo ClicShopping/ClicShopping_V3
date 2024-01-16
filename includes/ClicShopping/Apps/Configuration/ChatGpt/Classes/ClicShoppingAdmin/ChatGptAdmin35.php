@@ -70,9 +70,6 @@ class ChatGptAdmin35
       ['id' => 'gpt-3.5-turbo',
         'text' => 'gpt-3.5-turbo'
       ],
-      ['id' => 'gpt-3.5-turbo-instruct',
-        'text' => 'gpt-3.5-turbo-instruct'
-      ],
     ];
 
     return $array;
