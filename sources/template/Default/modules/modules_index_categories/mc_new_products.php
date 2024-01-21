@@ -52,7 +52,7 @@ class mc_new_products
     $parent_id = $CLICSHOPPING_Category->getParent();
 
     if (CLICSHOPPING::getBaseNameIndex() && $CLICSHOPPING_Category->getPath()) {
-      if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_MAX_DISPLAY != 0) {
+      if ((int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_MAX_DISPLAY != 0) {
 
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           if ($CLICSHOPPING_Category->getParent() == 0) {
@@ -163,7 +163,7 @@ class mc_new_products
         }
 
         if ($Qproduct->rowCount() > 0) {
-          if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_MAX_DISPLAY > 0) {
+          if ((int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_MAX_DISPLAY > 0) {
 // delete words
             $delete_word = (int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_SHORT_DESCRIPTION_DELETE_WORLDS;
 // display number of short description

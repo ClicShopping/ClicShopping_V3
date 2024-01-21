@@ -45,7 +45,7 @@ class ps_products_special
     $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
     if (isset($_GET['Products'], $_GET['Specials'])) {
-      if (MODULE_PRODUCTS_SPECIAL_MAX_DISPLAY != 0) {
+      if ((int)MODULE_PRODUCTS_SPECIAL_MAX_DISPLAY != 0) {
         $Qlisting = SpecialsClass::getListing();
 
         $Qlisting->setPageSet((int)MODULE_PRODUCTS_SPECIAL_MAX_DISPLAY);

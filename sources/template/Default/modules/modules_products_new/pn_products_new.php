@@ -45,7 +45,7 @@ class pn_products_new
     $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
     if (isset($_GET['Products'], $_GET['ProductsNew'])) {
-      if (MODULE_PRODUCTS_NEW_MAX_DISPLAY != 0) {
+      if ((int)MODULE_PRODUCTS_NEW_MAX_DISPLAY != 0) {
         $Qlisting = ProductsNewClass::getListing();
 
         $Qlisting->setPageSet((int)MODULE_PRODUCTS_NEW_MAX_DISPLAY);

@@ -48,6 +48,7 @@ class pse_products_search
 
     if (isset($_GET['Q'])) {
       $Qlisting = $CLICSHOPPING_Search->getListing();
+      $max_display = 0;
 
       if (\defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
         $max_display = (int)MODULE_PRODUCTS_SEARCH_MAX_DISPLAY;
