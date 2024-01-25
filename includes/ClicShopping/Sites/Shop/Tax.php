@@ -33,7 +33,7 @@ class Tax
     if (($country_id == -1) && ($zone_id == -1)) {
       if (!$CLICSHOPPING_Customer->isLoggedOn() || !$CLICSHOPPING_Customer->hasDefaultAddress()) {
         $country_id = STORE_COUNTRY;
-        $zone_id = STORE_ZONE;
+        $zone_id = (int)STORE_ZONE;
       } else {
         $country_id = $CLICSHOPPING_Customer->getCountryID();
         $zone_id = $CLICSHOPPING_Customer->getZoneID();

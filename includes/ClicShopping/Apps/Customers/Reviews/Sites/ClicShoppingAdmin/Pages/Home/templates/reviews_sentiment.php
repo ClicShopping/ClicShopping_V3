@@ -69,7 +69,6 @@ $review_number = (int)CLICSHOPPING_APP_REVIEWS_RV_REVIEW_NUMBER ?? 1;
                                                                      ');
 
   $QavgReviewsSentimentApproved->execute();
-
   ?>
   <div class="row">
     <div class="col-md-12">

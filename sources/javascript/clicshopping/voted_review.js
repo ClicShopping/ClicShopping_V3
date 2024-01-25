@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             // Handle the response from the server if needed
-            console.log('Vote saved for review ' + reviewId + ': ' + vote + "&product_id=" + productId + "&customer_id=" + customerId);
+            console.log('Vote saved for review ' + reviewId + ': vote=' + vote + "&product_id=" + productId + "&customer_id=" + customerId);
         }
     };
     xhr.send("reviewId=" + reviewId + "&vote=" + vote + "&product_id=" + productId + "&customer_id=" + customerId);

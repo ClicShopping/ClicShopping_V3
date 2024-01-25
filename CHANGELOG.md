@@ -4,6 +4,9 @@ elfinder updated
 bootstrap-table updated
 Add bootstrap-table for mobile
 Librairies updated
+fix Undefined array key products attributes
+improve securities for constant
+Improve table for mobile
 
 --------------------
 version 3.445

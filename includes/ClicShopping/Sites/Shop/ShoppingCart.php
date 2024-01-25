@@ -63,7 +63,7 @@ class ShoppingCart
         'total_cost' => 0,
         'total_weight' => 0,
         'shipping_address' => [
-          'zone_id' => STORE_ZONE,
+          'zone_id' => (int)STORE_ZONE,
           'country_id' => STORE_COUNTRY
         ],
         'order_totals' => []

@@ -25,7 +25,7 @@ class Tax extends \ClicShopping\Sites\Shop\Tax
   {
     if (!isset($country_id) && !isset($zone_id)) {
       $country_id = HTML::sanitize(STORE_COUNTRY);
-      $zone_id = HTML::sanitize(STORE_ZONE);
+      $zone_id = (int)STORE_ZONE;
     }
 
     return parent::getTaxRate($class_id, $country_id, $zone_id);

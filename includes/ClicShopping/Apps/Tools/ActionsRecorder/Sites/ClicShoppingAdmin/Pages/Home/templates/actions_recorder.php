@@ -153,7 +153,7 @@ echo HTML::selectField('module', $modules_list_array, null, 'onchange="this.form
       }
     }
 
-    $Qactions->setPageSet(MAX_DISPLAY_SEARCH_RESULTS);
+    $Qactions->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS);
     $Qactions->execute();
 
     while ($Qactions->fetch()) {

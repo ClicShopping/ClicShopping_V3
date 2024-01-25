@@ -670,7 +670,7 @@ class Search
         $customer_zone_id = $CLICSHOPPING_Customer->getZoneID();
       } else {
         $customer_country_id = STORE_COUNTRY;
-        $customer_zone_id = STORE_ZONE;
+        $customer_zone_id = (int)STORE_ZONE;
       }
 
       $Qlisting->bindInt(':zone_country_id', $customer_country_id);
