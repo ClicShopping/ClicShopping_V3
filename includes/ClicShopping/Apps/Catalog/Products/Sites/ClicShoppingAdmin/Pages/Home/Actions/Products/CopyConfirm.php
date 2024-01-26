@@ -15,6 +15,7 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ProductsAdmin;
+use function is_null;
 
 class CopyConfirm extends \ClicShopping\OM\PagesActionsAbstract
 {
@@ -121,7 +122,7 @@ class CopyConfirm extends \ClicShopping\OM\PagesActionsAbstract
 
       $this->messageStack->add($this->app->getDef('alert_message_b2b_update'), 'warning');
 
-      $this->app->redirect('Products&cPath=' . $this->categoriesId . '&pID=' . $this->ID);
+      $this->app->redirect('Products&cPath=' . $this->currentCategoryId . '&pID=' . $this->ID);
     }
   }
 }

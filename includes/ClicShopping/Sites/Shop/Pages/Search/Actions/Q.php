@@ -33,7 +33,7 @@ class Q extends \ClicShopping\OM\PagesActionsAbstract
       $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_at_least_one_input'), 'danger', 'search');
     } else {
       if (defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
-        $max_display = MODULE_PRODUCTS_SEARCH_MAX_DISPLAY;
+        $max_display = (int)MODULE_PRODUCTS_SEARCH_MAX_DISPLAY;
       } else {
         $max_display = 1;
       }

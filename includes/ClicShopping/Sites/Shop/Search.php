@@ -669,7 +669,7 @@ class Search
         $customer_country_id = $CLICSHOPPING_Customer->getCountryID();
         $customer_zone_id = $CLICSHOPPING_Customer->getZoneID();
       } else {
-        $customer_country_id = STORE_COUNTRY;
+        $customer_country_id = (int)STORE_COUNTRY;
         $customer_zone_id = (int)STORE_ZONE;
       }
 

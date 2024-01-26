@@ -1087,21 +1087,23 @@ class ProductsAdmin
 //              $attributes = $Qattributes->fetch();
           }
 // Prix + Afficher Prix public + Afficher Produit + Autoriser Commande
-        } elseif (is_array($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')]) && $_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] != '') {
-          $sql_array = [
-            'products_id' => (int)$clone_products_id,
-            'products_price' => (float)$_POST['products_price'],
-            'customers_group_id' => (int)$QcustomersGroup->valueInt('customers_group_id'),
-            'customers_group_price' => (float)$_POST['price' . $QcustomersGroup->valueInt('customers_group_id')],
-            'price_group_view' => (int)$_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
-            'products_group_view' => (int)$_POST['products_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
-            'orders_group_view' => (int)$_POST['orders_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
-            'products_quantity_unit_id_group' => (int)$_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')],
-            'products_model_group' => $_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')],
-            'products_quantity_fixed_group' => (int)$_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')],
-          ];
+        } elseif (is_array($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')])) {
+          if ($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] != '') {
+            $sql_array = [
+              'products_id' => (int)$clone_products_id,
+              'products_price' => (float)$_POST['products_price'],
+              'customers_group_id' => (int)$QcustomersGroup->valueInt('customers_group_id'),
+              'customers_group_price' => (float)$_POST['price' . $QcustomersGroup->valueInt('customers_group_id')],
+              'price_group_view' => (int)$_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
+              'products_group_view' => (int)$_POST['products_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
+              'orders_group_view' => (int)$_POST['orders_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
+              'products_quantity_unit_id_group' => (int)$_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')],
+              'products_model_group' => $_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')],
+              'products_quantity_fixed_group' => (int)$_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')],
+            ];
 
-          $this->db->save('products_groups', $sql_array);
+            $this->db->save('products_groups', $sql_array);
+          }
         }
       } // end while
 
