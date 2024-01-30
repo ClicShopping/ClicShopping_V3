@@ -17,13 +17,6 @@ use ClicShopping\Apps\Tools\Backup\Classes\ClicShoppingAdmin\Backup;
 
 class Process implements \ClicShopping\OM\Modules\HooksInterface
 {
-  public function __construct()
-  {
-  }
-
-  /**
-   *
-   */
   private static function cronJob(): void
   {
     $cron_id_gdpr = Cron::getCronCode('backup');

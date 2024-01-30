@@ -34,6 +34,7 @@ alert_module_install_success = Module has been successfully installed.
 alert_module_uninstall_success = Module has been successfully uninstalled.
 alert_cfg_saved_success = Tools parameters have been successfully saved.
 
+table_heading_cron_id = Id
 table_heading_cron_code = Code
 table_heading_cron_cycle = Cycle
 table_heading_cron_action = Actions
@@ -49,9 +50,10 @@ icon_run = Run
 tab_general = Cronjob
 
 title_cronjob_general = Cron
-text_cronjob_cronjob_code = code
-text_cronjob_cronjob_cycle = Cycle
-text_cronjob_cronjob_action = Action
+text_cronjob_code = Code
+text_cronjob_cycle = Cycle
+text_cronjob_action = Action
+text_cronjob_status = Status
 
 success_expired_entries = Success
 

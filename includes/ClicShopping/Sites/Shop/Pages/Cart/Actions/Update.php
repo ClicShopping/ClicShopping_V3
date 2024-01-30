@@ -37,8 +37,10 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
                 $CLICSHOPPING_ShoppingCart->addCart($_POST['products_id'][$i], $_POST['cart_quantity'][$i], $attributes, false);
               }
             } else {
-              if (in_array($_POST['products_id'][$i], (is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array()), true)) {
-                $CLICSHOPPING_ShoppingCart->remove($product_id);
+              if (isset($_POST['cart_delete'])) {
+                if (in_array($_POST['products_id'][$i], (is_array($_POST['cart_delete']) ? $_POST['cart_delete'] : array()), true)) {
+                  $CLICSHOPPING_ShoppingCart->remove($product_id);
+                }
               }
             }
           }

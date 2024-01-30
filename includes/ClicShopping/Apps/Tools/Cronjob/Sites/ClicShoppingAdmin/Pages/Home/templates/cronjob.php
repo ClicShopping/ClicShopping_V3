@@ -71,6 +71,8 @@ $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
     <thead class="dataTableHeadingRow">
     <tr>
+      <th data-field="id"
+          data-sortable="true"><?php echo $CLICSHOPPING_Cronjob->getDef('table_heading_cron_id'); ?></th>
       <th data-field="code"
           data-sortable="true"><?php echo $CLICSHOPPING_Cronjob->getDef('table_heading_cron_code'); ?></th>
       <th data-field="cycle"
@@ -109,6 +111,7 @@ $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
     while ($Qcron->fetch()) {
       ?>
       <tr>
+        <td><?php echo $Qcron->value('cron_id'); ?></td>
         <td><?php echo $Qcron->value('code'); ?></td>
         <td><?php echo $Qcron->value('cycle'); ?></td>
         <td><?php echo $Qcron->value('action'); ?></td>
@@ -132,7 +135,7 @@ $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
             } else {
               echo '&nbsp;';
             }
-            echo '<a href="' . $CLICSHOPPING_Cronjob->link('Cronjob&Run&cronId=' . $Qcron->valueInt('cron_id')) . '"><h4><i class="bi bi-gear" title="' . $CLICSHOPPING_Cronjob->getDef('icon_run') . '"></i></h4></a>';
+            echo '<a href="' . $CLICSHOPPING_Cronjob->link('Cronjob&Run&cronId=' . $Qcron->valueInt('cron_id') . '&cronCode=' . $Qcron->value('code')) . '"><h4><i class="bi bi-gear" title="' . $CLICSHOPPING_Cronjob->getDef('icon_run') . '"></i></h4></a>';
             echo '&nbsp;';
 
             if ($Qcron->valueInt('cron_id') > 4) {

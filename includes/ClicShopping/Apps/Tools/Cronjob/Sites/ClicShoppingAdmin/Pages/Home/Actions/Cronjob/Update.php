@@ -30,10 +30,17 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
     $cycle = HTML::sanitize($_POST['cycle']);
     $action = HTML::sanitize($_POST['action']);
 
+    if (isset($_POST['status'])) {
+      $status = HTML::sanitize($_POST['status']);
+    } else {
+      $status = 0;
+    }
+
     $sql_data_array = [
       'code' => $code,
       'cycle' => $cycle,
       'action' => $action,
+      'status' => $status,
       'date_modified' => 'now()'
     ];
 
@@ -43,7 +50,6 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
 
     $this->app->db->save('cron', $sql_data_array, $update_array);
   }
-
 
   public function execute()
   {

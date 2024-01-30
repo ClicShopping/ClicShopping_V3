@@ -30,12 +30,19 @@ class Insert extends \ClicShopping\OM\PagesActionsAbstract
     $cycle = HTML::sanitize($_POST['cycle']);
     $action = HTML::sanitize($_POST['action']);
 
+
+    if (isset($_POST['status'])) {
+      $status = HTML::sanitize($_POST['status']);
+    } else {
+      $status = 0;
+    }
+
     $sql_data_array = [
       'code' => $code,
       'cycle' => $cycle,
       'action' => $action,
       'description' => '',
-      'status' => 0,
+      'status' => $status,
       'date_added' => 'now()',
       'date_modified' => null,
     ];

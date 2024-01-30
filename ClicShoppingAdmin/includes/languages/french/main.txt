@@ -471,3 +471,4 @@ Message could not be sent. Mailer Error:  {{phpmailer_error}}
 
 text_warning_group = Veuillez mettre à jour vos groupes clients pour voir ce module dans le catalogue ou le supprimer
 no_access_warning = Vous n'avez pas accés à cette fonctionnalité.
+success_migration_done = La migration a été un succés

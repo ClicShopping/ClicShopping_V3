@@ -14,7 +14,6 @@ use ClicShopping\OM\Registry;
 $CLICSHOPPING_Cronjob = Registry::get('Cronjob');
 $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 $CLICSHOPPING_Hooks = Registry::get('Hooks');
-$CLICSHOPPING_Currencies = Registry::get('Currencies');
 $CLICSHOPPING_Language = Registry::get('Language');
 $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
@@ -87,14 +86,14 @@ $languages = $CLICSHOPPING_Language->getLanguages();
           <div class="row">
             <div class="col-md-12">
               <div class="form-group row">
-
+                <div class="mt-1"></div>
                 <div class="row">
                   <div class="col-md-5" id="code">
                     <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_code'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_code'); ?></label>
+                      <label for="<?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_code'); ?>"
+                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_code'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::inputField('code', $cron['code'] ?? '', 'placeholder="' . $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_code') . '"'); ?>
+                        <?php echo HTML::inputField('code', $cron['code'] ?? '', 'placeholder="' . $CLICSHOPPING_Cronjob->getDef('text_cronjob_code') . '"'); ?>
                       </div>
                     </div>
                   </div>
@@ -104,10 +103,10 @@ $languages = $CLICSHOPPING_Language->getLanguages();
                 <div class="row">
                   <div class="col-md-5" id="cycle">
                     <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_cycle'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_cycle'); ?></label>
+                      <label for="<?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cycle'); ?>"
+                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cycle'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::inputField('cycle', $cron['cycle'] ?? '', 'placeholder="' . $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_cycle') . '"'); ?>
+                        <?php echo HTML::inputField('cycle', $cron['cycle'] ?? '', 'placeholder="' . $CLICSHOPPING_Cronjob->getDef('text_cronjob_cycle') . '"'); ?>
                       </div>
                     </div>
                   </div>
@@ -117,10 +116,10 @@ $languages = $CLICSHOPPING_Language->getLanguages();
                 <div class="row">
                   <div class="col-md-5" id="action">
                     <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_action'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_action'); ?></label>
+                      <label for="<?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_action'); ?>"
+                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_action'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::inputField('action', $cron['action'] ?? '', 'placeholder="' . $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_action') . '"'); ?>
+                        <?php echo HTML::inputField('action', $cron['action'] ?? '', 'placeholder="' . $CLICSHOPPING_Cronjob->getDef('text_cronjob_action') . '"'); ?>
                       </div>
                     </div>
                   </div>
@@ -130,15 +129,21 @@ $languages = $CLICSHOPPING_Language->getLanguages();
                 <div class="row">
                   <div class="col-md-5" id="status">
                     <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_status'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_status'); ?></label>
+                      <label for="<?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_status'); ?>"
+                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_status'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::inputField('status', $cron['status'] ?? '', 'placeholder="' . $CLICSHOPPING_Cronjob->getDef('text_cronjob_cronjob_status') . '"'); ?>
+                        <ul class="list-group-slider list-group-flush">
+                          <li class="list-group-item-slider">
+                            <label class="switch">
+                              <?php echo HTML::checkboxField('status', '1', $cron['status'], 'class="success"'); ?>
+                              <span class="slider"></span>
+                            </label>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
