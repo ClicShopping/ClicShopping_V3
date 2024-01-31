@@ -46,7 +46,7 @@ class AdministratorAdmin
    * @param int $id
    * @return string
    */
-  public static function getconsultantNameById(int $id): string
+  public static function getAdminNameById(int $id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
