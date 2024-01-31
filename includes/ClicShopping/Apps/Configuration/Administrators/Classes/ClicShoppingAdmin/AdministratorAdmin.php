@@ -17,7 +17,10 @@ use ClicShopping\OM\Registry;
 
 class AdministratorAdmin
 {
-  public static function checkUserAccess(): void
+/**
+* @return void
+ */
+  public static function checkUserAccess()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
