@@ -6,10 +6,10 @@ Use this section to tell people about which versions of your project are
 currently being supported with security updates.
 
 | PHP Version | ClicShopping Version |
-| ------- | ------------------ |
-| +7.4.3   | 3.2145 |
-| +8.1| > 3.300 |
-| +8.2| > 3.400 |
+| ------- |----------------------|
+| +7.4.3   | 3.2145               |
+| +8.1| < 3.400              |
+| +8.2| > 3.400              |
 
 ## Reporting a Vulnerability
 

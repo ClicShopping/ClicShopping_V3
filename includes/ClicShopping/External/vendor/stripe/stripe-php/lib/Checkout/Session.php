@@ -36,7 +36,7 @@ namespace Stripe\Checkout;
  * @property int $created Time at which the object was created. Measured in seconds since the Unix epoch.
  * @property null|string $currency Three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html">ISO currency code</a>, in lowercase. Must be a <a href="https://stripe.com/docs/currencies">supported currency</a>.
  * @property null|\Stripe\StripeObject $currency_conversion Currency conversion details for automatic currency conversion sessions
- * @property \Stripe\StripeObject[] $custom_fields Collect additional information from your customer using custom fields. Up to 2 fields are supported.
+ * @property \Stripe\StripeObject[] $custom_fields Collect additional information from your customer using custom fields. Up to 3 fields are supported.
  * @property \Stripe\StripeObject $custom_text
  * @property null|string|\Stripe\Customer $customer The ID of the customer for this Session. For Checkout Sessions in <code>subscription</code> mode or Checkout Sessions with <code>customer_creation</code> set as <code>always</code> in <code>payment</code> mode, Checkout will create a new customer object based on information provided during the payment flow unless an existing customer was provided when the Session was created.
  * @property null|string $customer_creation Configure whether a Checkout Session creates a Customer when the Checkout Session completes.
@@ -67,7 +67,7 @@ namespace Stripe\Checkout;
  * @property null|\Stripe\StripeObject $shipping_details Shipping information for this Checkout Session.
  * @property \Stripe\StripeObject[] $shipping_options The shipping rate options applied to this Session.
  * @property null|string $status The status of the Checkout Session, one of <code>open</code>, <code>complete</code>, or <code>expired</code>.
- * @property null|string $submit_type Describes the type of transaction being performed by Checkout in order to customize relevant text on the page, such as the submit button. <code>submit_type</code> can only be specified on Checkout Sessions in <code>payment</code> mode, but not Checkout Sessions in <code>subscription</code> or <code>setup</code> mode. Possible values are <code>auto</code>, <code>pay</code>, <code>book</code>, <code>donate</code>. If blank or <code>auto</code>, <code>pay</code> is used.
+ * @property null|string $submit_type Describes the type of transaction being performed by Checkout in order to customize relevant text on the page, such as the submit button. <code>submit_type</code> can only be specified on Checkout Sessions in <code>payment</code> mode. If blank or <code>auto</code>, <code>pay</code> is used.
  * @property null|string|\Stripe\Subscription $subscription The ID of the subscription for Checkout Sessions in <code>subscription</code> mode.
  * @property null|string $success_url The URL the customer will be directed to after the payment or subscription creation is successful.
  * @property null|\Stripe\StripeObject $tax_id_collection

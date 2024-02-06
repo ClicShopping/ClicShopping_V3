@@ -7,6 +7,9 @@ Librairies updated
 fix Undefined array key products attributes
 improve securities for constant
 Improve table for mobile
+update doc
+Minimum php version requirement >8.2
+
 
 --------------------
 version 3.445

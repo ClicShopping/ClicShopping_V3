@@ -50,8 +50,8 @@ foreach ($directory_array as $key => $d) {
 
 $warning_array = [];
 
-if (version_compare(phpversion(), '8.1', '<')) {
-  $warning_array[] = 'The minimum required PHP version is v8.1 Please ask your host or server administrator to upgrade the PHP version to continue installation.';
+if (version_compare(phpversion(), '8.2', '<')) {
+  $warning_array[] = 'The minimum required PHP version is v8.2 Please ask your host or server administrator to upgrade the PHP version to continue installation.';
 }
 
 if (!extension_loaded('pdo') || !extension_loaded('pdo_mysql')) {
@@ -134,9 +134,9 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
           <td><?php echo PHP_VERSION; ?></td>
           <td class="text-center"><?php echo phpversion(); ?></td>
           </td>
-          <td class="text-center">PHP 8.1</td>
+          <td class="text-center">PHP 8.2</td>
           <td
-            class="text-end"><?php echo((version_compare(phpversion(), '8.1', '>')) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
+            class="text-end"><?php echo((version_compare(phpversion(), '8.2', '>')) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
         </tr>
         <tr>
           <td>File Upload</td>

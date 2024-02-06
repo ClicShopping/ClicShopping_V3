@@ -59,8 +59,8 @@ Take the leap into the future of Ecommerce with ClicShoppingAI. With AI-driven c
 
 #Requirement (more information in the wiki)
  - Apache 2.4<br>
- - MYSQL 7.x / MariaDb 10.x / Postgress<br>
- - PHP >= 8.1
+ - MYSQL 7.x / MariaDb 10.x<br>
+ - PHP >= 8.2
  - More information in the Wiki
 
 #Installation
