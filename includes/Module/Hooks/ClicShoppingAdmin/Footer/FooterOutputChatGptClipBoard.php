@@ -64,9 +64,16 @@ class FooterOutputChatGptClipBoard
           $("#sendGpt").click(function() {
             let message = $("#messageGpt").val();
             let engine = $("#engine").val();
-            let saveGpt = $("#saveGpt").val();
+            let saveGptElement = document.querySelector("#saveGpt");
+            let saveGpt = saveGptElement ? (saveGptElement.checked ? 1 : 0) : 0;
+                       
+            let data = {
+                message: message,
+                engine: engine,
+                saveGpt: saveGpt,
+            };
             
-            $.post("' . $url . '", {message: message, engine: engine, saveGpt: saveGpt}, function(data) {
+            $.post("' . $url . '", data, function(data) {
               $("#chatGpt-output").html(data);
               // Show the copy buttons after the chat message is generated
               $("#copyResultButton, #copyHTMLButton").removeClass("d-none");

@@ -490,7 +490,7 @@ class ChatGptAdmin35
                                 <span class="text-slider col-6">' . CLICSHOPPING::getDef('text_chat_save') . '</span>
                                 <li class="list-group-item-slider">
                                   <label class="switch">
-                                    ' . HTML::checkboxField('saveGpt', '1', 0, 'class="success" id="saveGpt"') . '
+                                    ' . HTML::checkboxField('saveGpt', null, 0, 'class="success" id="saveGpt"') . '
                                     <span class="slider"></span>
                                   </label>
                                 </li>

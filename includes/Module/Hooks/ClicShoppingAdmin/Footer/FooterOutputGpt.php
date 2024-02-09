@@ -27,24 +27,26 @@ class FooterOutputGpt
 
         $url = ChatGptAdmin35::getAjaxUrl(true);
 
-        $output .= '<!-- Start gpt -->' . "\n";
+        $output .= '<!-- Start gpt modal header-->' . "\n";
         $output .= '<script defer>';
         $output .= 'document.addEventListener("DOMContentLoaded", function() {';
-        $output .= 'var sendGptButton = document.querySelector("#sendGpt");';
-        $output .= 'if (sendGptButton) {';
-        $output .= '  sendGptButton.addEventListener("click", function() {';
-        $output .= '    let message = document.querySelector("#messageGpt").value;';
-        $output .= '    let xhr = new XMLHttpRequest();';
-        $output .= '    xhr.open("POST", "' . $url . '");';
-        $output .= '    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");';
-        $output .= '    xhr.onreadystatechange = function() {';
-        $output .= '      if (xhr.readyState === 4 && xhr.status === 200) {';
-        $output .= '        document.querySelector("#chatGpt-output").innerHTML = xhr.responseText;';
-        $output .= '      }';
-        $output .= '    };';
-        $output .= '    xhr.send("message=" + message);';
-        $output .= '  });';
-        $output .= '}';
+        $output .= '  var sendGptButton = document.querySelector("#sendGpt");';
+        $output .= '  if (sendGptButton) {';
+        $output .= '    sendGptButton.addEventListener("click", function() {';
+        $output .= '      let message = document.querySelector("#messageGpt").value;';
+        $output .= '      let saveGptElement = document.querySelector("#saveGpt");';
+        $output .= '      let saveGpt = saveGptElement ? (saveGptElement.checked ? 1 : 0) : 0;';
+        $output .= '      let xhr = new XMLHttpRequest();';
+        $output .= '      xhr.open("POST", "' . $url . '");';
+        $output .= '      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");';
+        $output .= '      xhr.onreadystatechange = function() {';
+        $output .= '        if (xhr.readyState === 4 && xhr.status === 200) {';
+        $output .= '          document.querySelector("#chatGpt-output").innerHTML = xhr.responseText;';
+        $output .= '        }';
+        $output .= '      };';
+        $output .= '      xhr.send("message=" + encodeURIComponent(message) + "&saveGpt=" + saveGpt);';
+        $output .= '    });';
+        $output .= '  }';
         $output .= '});';
         $output .= '</script>' . "\n";
 

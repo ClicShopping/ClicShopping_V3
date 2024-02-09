@@ -23,13 +23,15 @@ CLICSHOPPING::initialize();
 CLICSHOPPING::loadSite('ClicShoppingAdmin');
 
 $prompt = HTML::sanitize($_POST['message']);
+
+$saveGpt = isset($_POST['saveGpt']) ? HTML::sanitize($_POST['saveGpt']) : null;
 $result = ChatGptAdmin35::getGptResponse($prompt);
 
 $pos = strstr($result, ':');
 
 if ($pos !== false) {
   $result = substr($pos, 2); // Pour enlever les deux-points et l'espace
-  echo $result;
+  echo nl2br($result);
 } else {
-  echo $result; // Si "Keywords:" n'est pas trouvé, imprimez la chaîne d'origine.
+  echo nl2br($result); // Si "Keywords:" n'est pas trouvé, imprimez la chaîne d'origine.
 }
