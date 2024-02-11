@@ -83,7 +83,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 
             if ($categories_description !== false) {
               $sql_data_array = [
-                'categories_description' => $categories_description ?? '',
+                'categories_description' => nl2br($categories_description) ?? '',
               ];
 
               $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);

@@ -81,7 +81,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 
             if ($manufacturers_description !== false) {
               $sql_data_array = [
-                'manufacturer_description' => $manufacturers_description ?? '',
+                'manufacturer_description' => nl2br($manufacturers_description) ?? '',
               ];
 
               $this->app->db->save('manufacturers_info', $sql_data_array, $update_sql_data);

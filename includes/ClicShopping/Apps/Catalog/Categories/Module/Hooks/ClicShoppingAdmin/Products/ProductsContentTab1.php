@@ -29,7 +29,6 @@ class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
   }
 
-
   public function display()
   {
     $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
@@ -158,9 +157,8 @@ $('#tab1ContentRow1').append(
 <!-- ######################## -->
 <!--  End Categories App      -->
 <!-- ######################## -->
-
 EOD;
-    return $output;
 
+    return $output;
   }
 }

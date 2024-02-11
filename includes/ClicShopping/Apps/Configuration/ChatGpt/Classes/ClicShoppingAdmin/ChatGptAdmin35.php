@@ -68,7 +68,7 @@ class ChatGptAdmin35
   {
     $array = [
       ['id' => 'gpt-3.5-turbo',
-        'text' => 'gpt-3.5-turbo'
+       'text' => 'gpt-3.5-turbo'
       ],
     ];
 
@@ -236,7 +236,7 @@ class ChatGptAdmin35
 
     $array_sql = [
       'question' => $question,
-      'response' => $result,
+      'response' => nl2br($result),
       'date_added' => 'now()',
       'user_admin' => 'Chatbot Front Office'
     ];

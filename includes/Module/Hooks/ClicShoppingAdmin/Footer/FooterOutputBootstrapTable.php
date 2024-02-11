@@ -22,7 +22,7 @@ class FooterOutputBootstrapTable
     $output = '';
 
     if (isset($_SESSION['admin'])) {
-      $output .= '<! -- Start BootStrap Table -->' . "\n";
+      $output .= '<!-- Start BootStrap Table -->' . "\n";
       $output .= '<script defer src="https://unpkg.com/bootstrap-table@1.22.2/dist/bootstrap-table.min.js"></script>' . "\n";
 //checkbox
       $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/bootstrapTable/table_checkbox.js') . '"></script>' . "\n";

@@ -23,8 +23,8 @@ CLICSHOPPING::initialize();
 
 CLICSHOPPING::loadSite('Shop');
 
-$CLICSHOPPING_Db = Registry::get(('Db'));
-$CLICSHOPPING_Language = Registry::get(('Language'));
+$CLICSHOPPING_Db = Registry::get('Db');
+$CLICSHOPPING_Language = Registry::get('Language');
 
 if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
   return false;
@@ -49,5 +49,7 @@ if (isset($_POST['message'])) {
     $result = 'Error';
   }
 
-  echo ChatGptShop35::productSearch($question, $result);
+  $search_result = ChatGptShop35::productSearch($question, $result);
+
+  echo nl2br($search_result);
 }
