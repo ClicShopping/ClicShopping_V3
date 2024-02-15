@@ -21,7 +21,9 @@ class Topt
    */
   public static function getTwoFactorAuth(): mixed
   {
-    Registry::set('TwoFactorAuth', new TwoFactorAuth());
+    if (!Registry::exists('TwoFactorAuth')) {
+      Registry::set('TwoFactorAuth', new TwoFactorAuth());
+    }
     $CLICSHOPPING_TwoFactorAuth = Registry::get('TwoFactorAuth');
 
     return $CLICSHOPPING_TwoFactorAuth;
