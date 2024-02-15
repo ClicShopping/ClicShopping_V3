@@ -4,8 +4,10 @@ namespace OpenAI\Testing;
 
 use OpenAI\Contracts\ClientContract;
 use OpenAI\Contracts\ResponseContract;
+use OpenAI\Contracts\ResponseStreamContract;
 use OpenAI\Responses\StreamResponse;
 use OpenAI\Testing\Requests\TestRequest;
+use OpenAI\Testing\Resources\AssistantsTestResource;
 use OpenAI\Testing\Resources\AudioTestResource;
 use OpenAI\Testing\Resources\ChatTestResource;
 use OpenAI\Testing\Resources\CompletionsTestResource;
@@ -17,6 +19,7 @@ use OpenAI\Testing\Resources\FineTuningTestResource;
 use OpenAI\Testing\Resources\ImagesTestResource;
 use OpenAI\Testing\Resources\ModelsTestResource;
 use OpenAI\Testing\Resources\ModerationsTestResource;
+use OpenAI\Testing\Resources\ThreadsTestResource;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Throwable;
 
@@ -42,7 +45,7 @@ class ClientFake implements ClientContract
         $this->responses = [...$this->responses, ...$responses];
     }
 
-    public function assertSent(string $resource, callable|int $callback = null): void
+    public function assertSent(string $resource, callable|int|null $callback = null): void
     {
         if (is_int($callback)) {
             $this->assertSentTimes($resource, $callback);
@@ -69,7 +72,7 @@ class ClientFake implements ClientContract
     /**
      * @return mixed[]
      */
-    private function sent(string $resource, callable $callback = null): array
+    private function sent(string $resource, ?callable $callback = null): array
     {
         if (! $this->hasSent($resource)) {
             return [];
@@ -77,7 +80,7 @@ class ClientFake implements ClientContract
 
         $callback = $callback ?: fn (): bool => true;
 
-        return array_filter($this->resourcesOf($resource), fn (TestRequest $resource) => $callback($resource->method(), $resource->parameters()));
+        return array_filter($this->resourcesOf($resource), fn (TestRequest $resource) => $callback($resource->method(), ...$resource->args()));
     }
 
     private function hasSent(string $resource): bool
@@ -85,7 +88,7 @@ class ClientFake implements ClientContract
         return $this->resourcesOf($resource) !== [];
     }
 
-    public function assertNotSent(string $resource, callable $callback = null): void
+    public function assertNotSent(string $resource, ?callable $callback = null): void
     {
         PHPUnit::assertCount(
             0, $this->sent($resource, $callback),
@@ -111,7 +114,7 @@ class ClientFake implements ClientContract
         return array_filter($this->requests, fn (TestRequest $request): bool => $request->resource() === $type);
     }
 
-    public function record(TestRequest $request): ResponseContract|StreamResponse|string
+    public function record(TestRequest $request): ResponseContract|ResponseStreamContract|string
     {
         $this->requests[] = $request;
 
@@ -181,5 +184,15 @@ class ClientFake implements ClientContract
     public function images(): ImagesTestResource
     {
         return new ImagesTestResource($this);
+    }
+
+    public function assistants(): AssistantsTestResource
+    {
+        return new AssistantsTestResource($this);
+    }
+
+    public function threads(): ThreadsTestResource
+    {
+        return new ThreadsTestResource($this);
     }
 }

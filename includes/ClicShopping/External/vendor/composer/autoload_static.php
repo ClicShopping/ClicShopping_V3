@@ -18,6 +18,9 @@ class ComposerStaticInit559d5c9b702bf740c3f0e192226eea14
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
+            'Symfony\\Contracts\\Service\\' => 26,
+            'Symfony\\Contracts\\HttpClient\\' => 29,
+            'Symfony\\Component\\HttpClient\\' => 29,
             'Symfony\\Component\\Finder\\' => 25,
             'Stripe\\' => 7,
         ),
@@ -27,14 +30,20 @@ class ComposerStaticInit559d5c9b702bf740c3f0e192226eea14
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
+            'Psr\\Container\\' => 14,
             'PhpXmlRpc\\' => 10,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
         'O' => 
         array (
             'OpenAI\\' => 7,
+        ),
+        'N' => 
+        array (
+            'Nyholm\\Psr7\\' => 12,
         ),
         'H' => 
         array (
@@ -65,6 +74,18 @@ class ComposerStaticInit559d5c9b702bf740c3f0e192226eea14
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
+        'Symfony\\Contracts\\Service\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/service-contracts',
+        ),
+        'Symfony\\Contracts\\HttpClient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/http-client-contracts',
+        ),
+        'Symfony\\Component\\HttpClient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/http-client',
+        ),
         'Symfony\\Component\\Finder\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
@@ -77,6 +98,10 @@ class ComposerStaticInit559d5c9b702bf740c3f0e192226eea14
         array (
             0 => __DIR__ . '/..' . '/robthree/twofactorauth/lib',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
@@ -85,6 +110,10 @@ class ComposerStaticInit559d5c9b702bf740c3f0e192226eea14
         'Psr\\Http\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-client/src',
+        ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
         ),
         'PhpXmlRpc\\' => 
         array (
@@ -97,6 +126,10 @@ class ComposerStaticInit559d5c9b702bf740c3f0e192226eea14
         'OpenAI\\' => 
         array (
             0 => __DIR__ . '/..' . '/openai-php/client/src',
+        ),
+        'Nyholm\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nyholm/psr7/src',
         ),
         'Http\\Message\\MultipartStream\\' => 
         array (

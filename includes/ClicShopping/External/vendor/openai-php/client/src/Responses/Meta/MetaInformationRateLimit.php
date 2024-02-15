@@ -4,15 +4,15 @@ namespace OpenAI\Responses\Meta;
 
 final class MetaInformationRateLimit
 {
-    public function __construct(
-        public readonly int $limit,
+    private function __construct(
+        public readonly ?int $limit,
         public readonly int $remaining,
-        public readonly string $reset,
+        public readonly ?string $reset,
     ) {
     }
 
     /**
-     * @param  array{limit: int, remaining: int, reset: string}  $attributes
+     * @param  array{limit: ?int, remaining: int, reset: ?string}  $attributes
      */
     public static function from(array $attributes): self
     {

@@ -2,6 +2,7 @@
 
 namespace OpenAI\Contracts\Resources;
 
+use OpenAI\Responses\Audio\SpeechStreamResponse;
 use OpenAI\Responses\Audio\TranscriptionResponse;
 use OpenAI\Responses\Audio\TranslationResponse;
 
@@ -17,9 +18,18 @@ interface AudioContract
     public function speech(array $parameters): string;
 
     /**
+     * Generates streamed audio from the input text.
+     *
+     * @see https://platform.openai.com/docs/api-reference/audio/createSpeech
+     *
+     * @param  array<string, mixed>  $parameters
+     */
+    public function speechStreamed(array $parameters): SpeechStreamResponse;
+
+    /**
      * Transcribes audio into the input language.
      *
-     * @see https://platform.openai.com/docs/api-reference/audio/create
+     * @see https://platform.openai.com/docs/api-reference/audio/createTranscription
      *
      * @param  array<string, mixed>  $parameters
      */
@@ -28,7 +38,7 @@ interface AudioContract
     /**
      * Translates audio into English.
      *
-     * @see https://platform.openai.com/docs/api-reference/audio/create
+     * @see https://platform.openai.com/docs/api-reference/audio/createTranslation
      *
      * @param  array<string, mixed>  $parameters
      */
