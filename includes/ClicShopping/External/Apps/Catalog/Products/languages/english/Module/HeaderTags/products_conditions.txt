@@ -1,2 +1,0 @@
- module_header_tags_product_condition_title = Do you want to enable Products packing in products description (Json LD) ?
- module_header_tags_product_condition_description = Add a Products packing in products description

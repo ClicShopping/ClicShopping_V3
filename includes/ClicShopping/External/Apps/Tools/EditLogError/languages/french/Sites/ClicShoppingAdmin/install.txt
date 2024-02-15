@@ -1,2 +1,0 @@
-title_menu = Erreurs Application
-title_menu_phpmailer = Erreurs Phpmailer

@@ -1,2 +1,0 @@
-box_entry_products = Products number
-box_entry_products_off_line = Products off line

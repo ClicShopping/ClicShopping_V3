@@ -1,3 +1,0 @@
-module_sh_title = Frais expéditions
-module_sh_public_title = Frais expéditions
-module_sh_short_title = Frais expéditions

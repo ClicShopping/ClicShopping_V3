@@ -1,2 +1,0 @@
-text_recommendations = Customers Recommendations
-text_view = - More informations

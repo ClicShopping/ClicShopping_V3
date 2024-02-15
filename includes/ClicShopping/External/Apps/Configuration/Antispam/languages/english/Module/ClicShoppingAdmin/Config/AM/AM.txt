@@ -1,5 +1,0 @@
-module_am_title = Numeric Antispam
-module_am_short_title = Numeric Antispam
-module_am_public_title = Numeric Antispam
-
-module_am_introduction = This moduloe allows you to install a numeric antispam

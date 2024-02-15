@@ -1,2 +1,0 @@
-module_pd_short_title = Produits
-module_cb_short_title = Code barre

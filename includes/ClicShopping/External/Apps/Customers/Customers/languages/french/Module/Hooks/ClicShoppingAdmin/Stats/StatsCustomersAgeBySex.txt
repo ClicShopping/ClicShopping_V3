@@ -1,3 +1,0 @@
-text_average_age = Age
-text_male = Men
-text_female = Women

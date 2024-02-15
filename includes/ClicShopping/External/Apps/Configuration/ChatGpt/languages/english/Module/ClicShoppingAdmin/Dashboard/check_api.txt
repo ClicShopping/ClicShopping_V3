@@ -1,6 +1,0 @@
-module_admin_dashboard_check_api_app_title = Do you want install the GPT alert Info ?
-module_admin_dashboard_check_api_app_description = Check if the API key is configured or not
-
-module_admin_dashboard_check_api_app_link = Gpt
-module_admin_dashboard_check_api_app_alert = Please do not forget to create you API Key on OpenAI.com to use the Generative IA inside ClicShoppingAI : {{gpt_link}}<br />
-You can remove this module in Configuration / Backoffice / Dashboard
