@@ -24,6 +24,7 @@ class Topt
     if (!Registry::exists('TwoFactorAuth')) {
       Registry::set('TwoFactorAuth', new TwoFactorAuth());
     }
+
     $CLICSHOPPING_TwoFactorAuth = Registry::get('TwoFactorAuth');
 
     return $CLICSHOPPING_TwoFactorAuth;
@@ -59,11 +60,7 @@ class Topt
    */
   public static function getImageTopt(string $name, string $tfa_secret): string
   {
-    if (CLICSHOPPING::getSite() === 'ClicShoppingAdmin') {
-      $result = '<img src="' . static::getTwoFactorAuth()->getQRCodeImageAsDataUri('ClicShoppingAdmin', $tfa_secret) . '">';
-    } else {
-      $result = '<img src="' . static::getTwoFactorAuth()->getQRCodeImageAsDataUri($name, $tfa_secret) . '">';
-    }
+     $result = '<img src="' . static::getTwoFactorAuth()->getQRCodeImageAsDataUri($name, $tfa_secret) . '">';
 
     return $result;
   }

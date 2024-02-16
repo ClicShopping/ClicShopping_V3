@@ -53,7 +53,8 @@ class pl_products_listing
       }
 
       $ProductsListing = Registry::get('ProductsListing');
-      $Qlisting = $ProductsListing->getData();
+
+      $listing_array = $ProductsListing->getData();
 
       $listingTotalRow = $ProductsListing->getTotalRow();
 
@@ -136,8 +137,8 @@ class pl_products_listing
         $filename = $CLICSHOPPING_Template->getTemplateModulesFilename($this->group . '/template_html/' . MODULE_PRODUCTS_LISTING_TEMPLATE);
         $counter = 1;
 
-        while ($Qlisting->fetch()) {
-          $products_id = $Qlisting->valueInt('products_id');
+        foreach ($listing_array as $value) {
+          $products_id = $value['products_id'];
           $_POST['products_id'] = $products_id;
 
           $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
@@ -302,10 +303,10 @@ class pl_products_listing
           $new_prods_content .= '<div class="mt-1"></div>';
           $new_prods_content .= '<div>';
           $new_prods_content .= '<div class="col-md-6 pagenumber hidden-xs">';
-          $new_prods_content .= $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
+          $new_prods_content .= $ProductsListing->getPageSetLabel();
           $new_prods_content .= '</div>';
           $new_prods_content .= '<div class="col-md-6 float-end">';
-          $new_prods_content .= '<span class="float-end pagenav">' . $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</span>';
+          $new_prods_content .= '<span class="float-end pagenav">' . $ProductsListing->getPageSetLinks() . '</span>';
           $new_prods_content .= '<span class="text-end">' . CLICSHOPPING::getDef('text_result_page') . '</span>';
           $new_prods_content .= '</div>';
           $new_prods_content .= '</div>';

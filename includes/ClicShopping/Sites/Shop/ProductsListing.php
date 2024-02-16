@@ -427,6 +427,8 @@ class ProductsListing
     $Qlisting->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS);
     $Qlisting->execute();
 
+    $result = $Qlisting->fetch();
+
     return $Qlisting;
   }
 
@@ -435,5 +437,26 @@ class ProductsListing
     $listingTotalRow = $this->getData()->getPageSetTotalRows();
 
     return $listingTotalRow;
+  }
+
+  /**
+   * @return int
+   */
+  public function getPageSetLabel(): string
+  {
+    $result = $this->getData()->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
+
+    return $result;
+  }
+
+
+ /**
+* @return mixed
+  */
+  public function getPageSetLinks(): mixed
+  {
+    $result = $this->getData()->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop');
+
+    return $result;
   }
 }
