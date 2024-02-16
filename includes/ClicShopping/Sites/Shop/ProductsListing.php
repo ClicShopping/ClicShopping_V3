@@ -427,8 +427,6 @@ class ProductsListing
     $Qlisting->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS);
     $Qlisting->execute();
 
-    $result = $Qlisting->fetch();
-
     return $Qlisting;
   }
 

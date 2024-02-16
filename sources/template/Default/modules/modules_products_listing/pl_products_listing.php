@@ -53,8 +53,7 @@ class pl_products_listing
       }
 
       $ProductsListing = Registry::get('ProductsListing');
-
-      $listing_array = $ProductsListing->getData();
+      $Qlisting = $ProductsListing->getData();
 
       $listingTotalRow = $ProductsListing->getTotalRow();
 
@@ -137,8 +136,8 @@ class pl_products_listing
         $filename = $CLICSHOPPING_Template->getTemplateModulesFilename($this->group . '/template_html/' . MODULE_PRODUCTS_LISTING_TEMPLATE);
         $counter = 1;
 
-        foreach ($listing_array as $value) {
-          $products_id = $value['products_id'];
+        while ($Qlisting->fetch()) {
+          $products_id = $Qlisting->valueInt('products_id');
           $_POST['products_id'] = $products_id;
 
           $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
