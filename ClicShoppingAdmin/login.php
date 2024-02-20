@@ -119,6 +119,49 @@ if (!\is_null($action)) {
 // Check the topt
       if (isset($_POST['tfa_code'])) {
         $tfaCode = HTML::sanitize($_POST['tfa_code']);
+        $username = HTML::sanitize($_SESSION['username']);
+        $password = HTML::sanitize($_SESSION['password']);
+        $sql_array = [
+          'id',
+          'user_name',
+          'user_password',
+          'access',
+          'status'
+        ];
+
+        $Qadmin = $CLICSHOPPING_Db->get('administrators', $sql_array, ['user_name' => $username, 'status' => 1]);
+
+        if ($Qadmin->fetch() !== false) {
+          if (Hash::verify($password, $Qadmin->value('user_password'))) {
+            $_SESSION['admin'] = [
+              'id' => $Qadmin->valueInt('id'),
+              'username' => $Qadmin->value('user_name'),
+              'access' => $Qadmin->value('access'),
+              'status' => $Qadmin->value('status'),
+            ];
+
+            if (isset($_SESSION['redirect_origin'])) {
+              $page = $_SESSION['redirect_origin']['page'];
+
+              $get_string = http_build_query($_SESSION['redirect_origin']['get']);
+
+              unset($_SESSION['redirect_origin']);
+              Topt::resetAllAdmin();
+
+              $CLICSHOPPING_Hooks->call('Login', 'Process');
+
+              CLICSHOPPING::redirect($page, $get_string);
+            } else {
+              CLICSHOPPING::redirect();
+            }
+          }
+        }
+
+        if (isset($_POST['username'])) {
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_invalid_administrator'), 'error');
+
+          $CLICSHOPPING_Hooks->call('Login', 'ErrorProcess');
+        }
 
         if (empty($tfaCode)) {
           CLICSHOPPING::redirect('login.php?action=loginAuth');
@@ -130,8 +173,11 @@ if (!\is_null($action)) {
 
               if (!empty($username) && !empty($password)) {
                 $sql_array = [
+                  'id',
                   'user_name',
                   'user_password',
+                  'access',
+                  'status'
                 ];
 
                 $Qadmin = $CLICSHOPPING_Db->get('administrators', $sql_array, ['user_name' => $username, 'status' => 1]);
@@ -483,11 +529,11 @@ if ($action != 'password') {
           </div>
           <div class="mt-1"></div>
           <span class="col-md-6">
-                    <label
-                      for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?></label>
-                    <label
-                      for="buttonCancel"><?php echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, 'login.php?action=logoff', 'warning'); ?></label>
-                  </span>
+            <label
+              for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?></label>
+            <label
+              for="buttonCancel"><?php echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, 'login.php?action=logoff', 'warning'); ?></label>
+          </span>
         </div>
         <div class="mt-1"></div>
         <div class="col-md-12"><?php echo CLICSHOPPING::getDef('text_Login_auth_introduction'); ?></div>

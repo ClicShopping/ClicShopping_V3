@@ -44,7 +44,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
             ?>
           </span>
           <span class="col-md-3 text-end">
-            <?php echo HTML::button($CLICSHOPPING_Gdpr->getDef('button_configure'), null, $CLICSHOPPING_Gdpr->link('Gdpr&Configure'), 'primary'); ?>
+            <?php echo HTML::button($CLICSHOPPING_Gdpr->getDef('button_configure'), null, $CLICSHOPPING_Gdpr->link('Configure'), 'primary'); ?>
           </span>
         </div>
       </div>
