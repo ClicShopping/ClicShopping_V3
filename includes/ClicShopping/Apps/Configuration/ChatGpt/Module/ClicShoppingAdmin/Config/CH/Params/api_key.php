@@ -10,6 +10,8 @@
 
 namespace ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\CH\Params;
 
+use ClicShopping\OM\HTML;
+
 class api_key extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
 
@@ -22,4 +24,14 @@ class api_key extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppi
     $this->title = $this->app->getDef('cfg_chatgpt_api_key_title');
     $this->description = $this->app->getDef('cfg_chatgpt_api_key_description');
   }
+
+  public function getInputField()
+  {
+    $value = $this->getInputValue();
+
+    $input = HTML::passwordField($this->key,  $value, 'id="' . $this->key . '" autocomplete="off"');
+
+    return $input;
+  }
+
 }

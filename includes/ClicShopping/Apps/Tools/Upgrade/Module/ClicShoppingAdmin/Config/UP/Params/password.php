@@ -10,6 +10,8 @@
 
 namespace ClicShopping\Apps\Tools\Upgrade\Module\ClicShoppingAdmin\Config\UP\Params;
 
+use ClicShopping\OM\HTML;
+
 class password extends \ClicShopping\Apps\Tools\Upgrade\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
 
@@ -21,5 +23,14 @@ class password extends \ClicShopping\Apps\Tools\Upgrade\Module\ClicShoppingAdmin
   {
     $this->title = $this->app->getDef('cfg_upgrade_password_title');
     $this->description = $this->app->getDef('cfg_upgrade_password_description');
+  }
+
+  public function getInputField()
+  {
+    $value = $this->getInputValue();
+
+    $input = HTML::passwordField($this->key,  $value, 'id="' . $this->key . '" autocomplete="off"');
+
+    return $input;
   }
 }
