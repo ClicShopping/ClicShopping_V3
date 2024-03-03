@@ -21,7 +21,7 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   public array $data = [];
 
   protected string $code;
-  protected string $file = 'main.php';
+  protected ?string $file = 'main.php';
   protected bool $use_site_template = true;
   protected SitesInterface $site;
   protected array $actions_run = [];
