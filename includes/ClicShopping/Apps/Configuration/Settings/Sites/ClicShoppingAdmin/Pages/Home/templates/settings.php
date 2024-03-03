@@ -113,3 +113,4 @@ $QcfgGroup = $CLICSHOPPING_Settings->db->get('configuration_group', 'configurati
     </tbody>
   </table>
 </div>
+<div class="py-4"></div>
