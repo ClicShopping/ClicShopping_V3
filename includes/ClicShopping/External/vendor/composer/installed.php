@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '1dfdd9226dbebc3b073151c4e4726d4eba59f8d0',
+        'reference' => '1e113e268b84c48b182758e43b07497827bc4f54',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '1dfdd9226dbebc3b073151c4e4726d4eba59f8d0',
+            'reference' => '1e113e268b84c48b182758e43b07497827bc4f54',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -223,7 +223,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-latest',
             'version' => 'dev-latest',
-            'reference' => '8f1e484da92817191c75c9b00108f13fb62fd741',
+            'reference' => '1054e91fea643e960a73f15090d987d99a1b1190',
             'type' => 'metapackage',
             'install_path' => NULL,
             'aliases' => array(
@@ -250,9 +250,9 @@
             'dev_requirement' => false,
         ),
         'stripe/stripe-php' => array(
-            'pretty_version' => 'v13.13.0',
-            'version' => '13.13.0.0',
-            'reference' => '8dc58bab25f222a74d1157d4ca9e9e48451dd0c1',
+            'pretty_version' => 'v13.15.0',
+            'version' => '13.15.0.0',
+            'reference' => '22963c3596eb198e3dd56fbd95d7de9bc4d44f8f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../stripe/stripe-php',
             'aliases' => array(),
@@ -286,9 +286,9 @@
             'dev_requirement' => false,
         ),
         'symfony/http-client' => array(
-            'pretty_version' => 'v7.0.4',
-            'version' => '7.0.4.0',
-            'reference' => '8384876f49a2316a63f88a9cd12436de6936bee6',
+            'pretty_version' => 'v7.0.5',
+            'version' => '7.0.5.0',
+            'reference' => '425f462a59d8030703ee04a9e1c666575ed5db3b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/http-client',
             'aliases' => array(),

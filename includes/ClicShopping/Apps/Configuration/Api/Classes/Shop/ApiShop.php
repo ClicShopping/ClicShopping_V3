@@ -149,7 +149,7 @@ class ApiShop
         'api_id' => $Qcheck->valueInt('api_id'),
         'session_id' => $session_id,
         'date_modified' => 'now()',
-        'date_added' => $Qcheck->value('date_added'),
+        'date_added' => 'now()',
         'ip' => $Ip
       ];
 

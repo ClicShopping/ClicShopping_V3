@@ -6,7 +6,6 @@ namespace ClicShopping\Apps\Configuration\Api\Classes\Shop;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
-
 class Login
 {
   protected mixed $lang;
