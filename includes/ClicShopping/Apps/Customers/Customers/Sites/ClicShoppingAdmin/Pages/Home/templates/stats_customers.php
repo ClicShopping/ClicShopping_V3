@@ -53,7 +53,6 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
 
     <thead class="dataTableHeadingRow">
     <tr>
-      <th data-field="number"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_number'); ?></th>
       <th data-field="customer"
           data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_customers'); ?></th>
       <th data-field="total_purchased"
@@ -91,7 +90,6 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
       while ($Qcustomers->fetch()) {
         ?>
         <tr>
-          <td><?php echo $rows; ?>.</td>
           <td><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?></td>
           <td
             class="text-end"><?php echo $CLICSHOPPING_Currencies->format($Qcustomers->valueInt('ordersum')); ?>&nbsp;

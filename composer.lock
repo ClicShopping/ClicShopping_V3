@@ -686,16 +686,16 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.19.2",
+            "version": "1.19.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "61e1a1eb69c92741f5896d9e05fb8e9d7e8bb0cb"
+                "reference": "0700efda8d7526335132360167315fdab3aeb599"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/61e1a1eb69c92741f5896d9e05fb8e9d7e8bb0cb",
-                "reference": "61e1a1eb69c92741f5896d9e05fb8e9d7e8bb0cb",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/0700efda8d7526335132360167315fdab3aeb599",
+                "reference": "0700efda8d7526335132360167315fdab3aeb599",
                 "shasum": ""
             },
             "require": {
@@ -719,7 +719,8 @@
                 "php-http/httplug": "^1.0 || ^2.0",
                 "php-http/message-factory": "^1.0",
                 "phpspec/phpspec": "^5.1 || ^6.1 || ^7.3",
-                "symfony/phpunit-bridge": "^6.2"
+                "sebastian/comparator": "^3.0.5 || ^4.0.8",
+                "symfony/phpunit-bridge": "^6.4.4 || ^7.0.1"
             },
             "type": "composer-plugin",
             "extra": {
@@ -758,9 +759,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/discovery/issues",
-                "source": "https://github.com/php-http/discovery/tree/1.19.2"
+                "source": "https://github.com/php-http/discovery/tree/1.19.4"
             },
-            "time": "2023-11-30T16:49:05+00:00"
+            "time": "2024-03-29T13:00:05+00:00"
         },
         {
             "name": "php-http/multipart-stream-builder",
@@ -1384,16 +1385,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v13.15.0",
+            "version": "v13.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "22963c3596eb198e3dd56fbd95d7de9bc4d44f8f"
+                "reference": "b122efcf4ee02256e4a9ae60783cbf1c3f702503"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/22963c3596eb198e3dd56fbd95d7de9bc4d44f8f",
-                "reference": "22963c3596eb198e3dd56fbd95d7de9bc4d44f8f",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/b122efcf4ee02256e4a9ae60783cbf1c3f702503",
+                "reference": "b122efcf4ee02256e4a9ae60783cbf1c3f702503",
                 "shasum": ""
             },
             "require": {
@@ -1437,9 +1438,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v13.15.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v13.16.0"
             },
-            "time": "2024-03-21T21:05:10+00:00"
+            "time": "2024-03-28T19:17:08+00:00"
         },
         {
             "name": "stymiee/email-validator",
@@ -1968,12 +1969,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "98cbbfa55bafb0368a60a5fd6206f07c9dd782eb"
+                "reference": "a2c33d8cc3719997b91b628eec3570d725cebf7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/98cbbfa55bafb0368a60a5fd6206f07c9dd782eb",
-                "reference": "98cbbfa55bafb0368a60a5fd6206f07c9dd782eb",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/a2c33d8cc3719997b91b628eec3570d725cebf7e",
+                "reference": "a2c33d8cc3719997b91b628eec3570d725cebf7e",
                 "shasum": ""
             },
             "conflict": {
@@ -2384,7 +2385,7 @@
                 "pimcore/demo": "<10.3",
                 "pimcore/ecommerce-framework-bundle": "<1.0.10",
                 "pimcore/perspective-editor": "<1.5.1",
-                "pimcore/pimcore": "<11.1.1",
+                "pimcore/pimcore": "<11.1.6.1-dev|>=11.2,<11.2.2",
                 "pixelfed/pixelfed": "<0.11.11",
                 "plotly/plotly.js": "<2.25.2",
                 "pocketmine/bedrock-protocol": "<8.0.2",
@@ -2550,7 +2551,7 @@
                 "thinkcmf/thinkcmf": "<=5.1.7",
                 "thorsten/phpmyfaq": "<3.2.2",
                 "tikiwiki/tiki-manager": "<=17.1",
-                "tinymce/tinymce": "<5.10.9|>=6,<6.7.3",
+                "tinymce/tinymce": "<7",
                 "tinymighty/wiki-seo": "<1.2.2",
                 "titon/framework": "<9.9.99",
                 "tobiasbg/tablepress": "<=2.0.0.0-RC1",
@@ -2703,7 +2704,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-25T20:04:17+00:00"
+            "time": "2024-03-26T22:04:37+00:00"
         }
     ],
     "aliases": [],

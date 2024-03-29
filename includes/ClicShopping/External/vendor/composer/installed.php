@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '94aec38bbfd5e22d956493c244dcbc8ac3c11af4',
+        'reference' => 'cf2f4d96c69675e5455ed715fc3ea5474e508062',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '94aec38bbfd5e22d956493c244dcbc8ac3c11af4',
+            'reference' => 'cf2f4d96c69675e5455ed715fc3ea5474e508062',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -104,9 +104,9 @@
             ),
         ),
         'php-http/discovery' => array(
-            'pretty_version' => '1.19.2',
-            'version' => '1.19.2.0',
-            'reference' => '61e1a1eb69c92741f5896d9e05fb8e9d7e8bb0cb',
+            'pretty_version' => '1.19.4',
+            'version' => '1.19.4.0',
+            'reference' => '0700efda8d7526335132360167315fdab3aeb599',
             'type' => 'composer-plugin',
             'install_path' => __DIR__ . '/../php-http/discovery',
             'aliases' => array(),
@@ -223,7 +223,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-latest',
             'version' => 'dev-latest',
-            'reference' => '98cbbfa55bafb0368a60a5fd6206f07c9dd782eb',
+            'reference' => 'a2c33d8cc3719997b91b628eec3570d725cebf7e',
             'type' => 'metapackage',
             'install_path' => NULL,
             'aliases' => array(
@@ -250,9 +250,9 @@
             'dev_requirement' => false,
         ),
         'stripe/stripe-php' => array(
-            'pretty_version' => 'v13.15.0',
-            'version' => '13.15.0.0',
-            'reference' => '22963c3596eb198e3dd56fbd95d7de9bc4d44f8f',
+            'pretty_version' => 'v13.16.0',
+            'version' => '13.16.0.0',
+            'reference' => 'b122efcf4ee02256e4a9ae60783cbf1c3f702503',
             'type' => 'library',
             'install_path' => __DIR__ . '/../stripe/stripe-php',
             'aliases' => array(),
