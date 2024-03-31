@@ -421,6 +421,7 @@ class ChatGptAdmin35
     $client = self::getClient();
 
     $array = [
+      'model' => 'dall-e-3',
       'prompt' => $name,
       'n' => 1,
       'size' => $size,
