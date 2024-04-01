@@ -53,9 +53,10 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
-    data-check-on-init="true">
+    data-check-on-init="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th
         data-field="status"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('table_heading_invoice_status'); ?></th>

@@ -56,9 +56,10 @@ $products_id = HTML::sanitize($_GET['pID']);
     data-show-columns="true"
     data-mobile-responsive="true"
     data-check-on-init="true"
-    data-show-export="true">
+    data-show-export="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th data-field="number"
           data-sortable="true"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_number'); ?></th>

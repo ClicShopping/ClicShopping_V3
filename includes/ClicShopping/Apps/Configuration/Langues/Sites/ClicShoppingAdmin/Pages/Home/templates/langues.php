@@ -57,9 +57,10 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
-    data-check-on-init="true">
+    data-check-on-init="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th data-field="name"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_name'); ?></th>
       <th data-field="code"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_code'); ?></th>

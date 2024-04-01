@@ -53,9 +53,10 @@ $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] :
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
-    data-check-on-init="true">
+    data-check-on-init="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th data-field="zones"
           data-sortable="true"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_tax_zones'); ?></th>

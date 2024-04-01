@@ -32,23 +32,21 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
             class="col-md-3 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Zones->getDef('heading_title'); ?></span>
           <span class="col-md-3">
            <div>
-             <div>
-<?php
-echo HTML::form('search', $CLICSHOPPING_Zones->link('Zones'), 'post', null, ['session_id' => true]);
-echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Zones->getDef('heading_title_search') . '"');
+              <?php
+              echo HTML::form('search', $CLICSHOPPING_Zones->link('Zones'), 'post', null, ['session_id' => true]);
+              echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Zones->getDef('heading_title_search') . '"');
 
-if (isset($_POST['search'])) {
-  echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
-  $search = HTML::sanitize($_POST['search']);
-} elseif (isset($_GETT['search'])) {
-  echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
-  $search = HTML::sanitize($_GET['search']);
-} else {
-  $search = '';
-}
-?>
-               </form>
-             </div>
+              if (isset($_POST['search'])) {
+                echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
+                $search = HTML::sanitize($_POST['search']);
+              } elseif (isset($_GETT['search'])) {
+                echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
+                $search = HTML::sanitize($_GET['search']);
+              } else {
+                $search = '';
+              }
+              ?>
+             </form>
             </div>
           </span>
           <span class="col-md-5 text-end">
@@ -83,9 +81,10 @@ if (isset($_POST['search'])) {
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
-    data-check-on-init="true">
+    data-check-on-init="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th data-checkbox="true" data-field="state"></th>
       <th data-field="selected" data-sortable="true" data-visible="false"

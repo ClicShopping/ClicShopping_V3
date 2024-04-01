@@ -34,10 +34,10 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
-<?php
-echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_weight'), null, $CLICSHOPPING_Weight->link('WeightInsert&page=' . $page), 'primary') . ' ';
-echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_class'), null, $CLICSHOPPING_Weight->link('ClassInsert&page=' . $page), 'success');
-?>
+            <?php
+              echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_weight'), null, $CLICSHOPPING_Weight->link('WeightInsert&page=' . $page), 'primary') . ' ';
+              echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_class'), null, $CLICSHOPPING_Weight->link('ClassInsert&page=' . $page), 'success');
+            ?>
           </span>
         </div>
       </div>
@@ -60,9 +60,10 @@ echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_class'), null, $CL
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
-    data-check-on-init="true">
+    data-check-on-init="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th data-field="id"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_id'); ?></th>
       <th data-field="symbol"

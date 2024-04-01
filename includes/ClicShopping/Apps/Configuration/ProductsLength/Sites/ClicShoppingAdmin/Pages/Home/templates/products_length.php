@@ -34,10 +34,10 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsLength->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
-<?php
-echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_products_length'), null, $CLICSHOPPING_ProductsLength->link('ProductsLengthInsert&page=' . $page), 'primary') . ' ';
-echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_class'), null, $CLICSHOPPING_ProductsLength->link('ClassInsert&page=' . $page), 'success');
-?>
+            <?php
+              echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_products_length'), null, $CLICSHOPPING_ProductsLength->link('ProductsLengthInsert&page=' . $page), 'primary') . ' ';
+              echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_class'), null, $CLICSHOPPING_ProductsLength->link('ClassInsert&page=' . $page), 'success');
+            ?>
           </span>
         </div>
       </div>
@@ -60,9 +60,10 @@ echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_class'), n
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
-    data-check-on-init="true">
+    data-check-on-init="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th data-field="length_class_id"
           data-sortable="true"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_id'); ?></th>

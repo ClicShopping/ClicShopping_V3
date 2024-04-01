@@ -49,35 +49,31 @@ foreach ($customers_group as $value) {
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Specials->getDef('heading_title'); ?></span>
           <span class="col-md-2">
            <div>
-             <div>
-<?php
-if (MODE_B2B_B2C == 'True') {
-  echo HTML::form('grouped', $CLICSHOPPING_Specials->link('Specials'), 'post', '');
+              <?php
+              if (MODE_B2B_B2C == 'True') {
+                echo HTML::form('grouped', $CLICSHOPPING_Specials->link('Specials'), 'post', '');
 
-  if (isset($_POST['customers_group_id'])) {
-    $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
-  } else {
-    $customers_group_id = null;
-  }
+                if (isset($_POST['customers_group_id'])) {
+                  $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+                } else {
+                  $customers_group_id = null;
+                }
 
-  echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $customers_group_id, 'onchange="this.form.submit();"');
-  echo '</form>';
-}
-?>
-             </div>
+                echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $customers_group_id, 'onchange="this.form.submit();"');
+                echo '</form>';
+              }
+              ?>
            </div>
          </span>
           <span class="col-md-3">
-<?php
-if (MODE_B2B_B2C == 'True' && isset($_POST['customers_group_id'])) {
-  echo HTML::button($CLICSHOPPING_Specials->getDef('button_reset'), null, $CLICSHOPPING_Specials->link('Specials'), 'warning');
-}
-?>
+            <?php
+            if (MODE_B2B_B2C == 'True' && isset($_POST['customers_group_id'])) {
+              echo HTML::button($CLICSHOPPING_Specials->getDef('button_reset'), null, $CLICSHOPPING_Specials->link('Specials'), 'warning');
+            }
+            ?>
          </span>
           <span class="col-md-4 text-end">
-<?php
-echo HTML::button($CLICSHOPPING_Specials->getDef('button_new'), null, $CLICSHOPPING_Specials->link('Edit&page=' . $page . '&action=new'), 'success');
-?>
+            <?php echo HTML::button($CLICSHOPPING_Specials->getDef('button_new'), null, $CLICSHOPPING_Specials->link('Edit&page=' . $page . '&action=new'), 'success'); ?>
          </span>
         </div>
       </div>
@@ -110,9 +106,10 @@ echo HTML::button($CLICSHOPPING_Specials->getDef('button_new'), null, $CLICSHOPP
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
-    data-check-on-init="true">
+    data-check-on-init="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th data-checkbox="true" data-field="state"></th>
       <th data-field="selected" data-sortable="true" data-visible="false"

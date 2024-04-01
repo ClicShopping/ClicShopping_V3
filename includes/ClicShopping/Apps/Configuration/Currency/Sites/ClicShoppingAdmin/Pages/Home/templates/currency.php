@@ -31,10 +31,10 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
-<?php
-echo HTML::button($CLICSHOPPING_Currency->getDef('button_insert'), null, $CLICSHOPPING_Currency->link('Insert'), 'success') . ' ';
-echo HTML::button($CLICSHOPPING_Currency->getDef('button_update_all'), null, $CLICSHOPPING_Currency->link('Currency&UpdateAll&page=' . $page), 'info');
-?>
+          <?php
+            echo HTML::button($CLICSHOPPING_Currency->getDef('button_insert'), null, $CLICSHOPPING_Currency->link('Insert'), 'success') . ' ';
+            echo HTML::button($CLICSHOPPING_Currency->getDef('button_update_all'), null, $CLICSHOPPING_Currency->link('Currency&UpdateAll&page=' . $page), 'info');
+          ?>
           </span>
         </div>
       </div>
@@ -57,9 +57,10 @@ echo HTML::button($CLICSHOPPING_Currency->getDef('button_update_all'), null, $CL
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
-    data-check-on-init="true">
+    data-check-on-init="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th data-field="name"
           data-sortable="true"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_name'); ?></th>

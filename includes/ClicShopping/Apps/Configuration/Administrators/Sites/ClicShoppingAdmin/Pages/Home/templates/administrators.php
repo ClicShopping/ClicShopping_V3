@@ -57,9 +57,10 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', ['id',
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
-    data-check-on-init="true">
+    data-check-on-init="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th
         data-field="administrator"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_administrators'); ?></th>

@@ -4,7 +4,7 @@ bootstrap 5.3.3
 Librairies updated
 small bug fix
 bootstrap-table updated
-
+add search in some forms
 
 
 --------------------

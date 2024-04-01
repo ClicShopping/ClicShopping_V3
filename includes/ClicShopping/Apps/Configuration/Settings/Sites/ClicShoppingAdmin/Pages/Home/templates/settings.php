@@ -47,9 +47,10 @@ $QcfgGroup = $CLICSHOPPING_Settings->db->get('configuration_group', 'configurati
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
-    data-check-on-init="true">
+    data-check-on-init="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th data-field="title"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_title'); ?></th>
       <th data-field="value"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_value'); ?></th>

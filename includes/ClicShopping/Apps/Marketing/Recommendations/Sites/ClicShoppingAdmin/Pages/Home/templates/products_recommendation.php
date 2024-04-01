@@ -99,9 +99,10 @@ foreach ($customers_group as $value) {
     data-show-toggle="true"
     data-show-columns="true"
     data-mobile-responsive="true"
-    data-check-on-init="true">
+    data-check-on-init="true"
+    data-search="true">
 
-    <thead class="dataTableHeadingRow">
+  <thead class="dataTableHeadingRow">
     <tr>
       <th data-checkbox="true" data-field="state"></th>
       <th data-field="selected" data-sortable="true" data-visible="false"
