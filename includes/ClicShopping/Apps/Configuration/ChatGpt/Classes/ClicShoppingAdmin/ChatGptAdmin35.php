@@ -236,7 +236,7 @@ class ChatGptAdmin35
 
     $array_sql = [
       'question' => $question,
-      'response' => nl2br($result),
+      'response' => $result,
       'date_added' => 'now()',
       'user_admin' => 'Chatbot Front Office'
     ];

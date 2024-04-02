@@ -292,24 +292,20 @@ class HTTP
 
     $base = CLICSHOPPING::getSite('Shop');
 
-    if ($base[0] === $separator && substr($base, 0, strlen($systemroot)) !== $systemroot) {
-      $base = $systemroot . substr($base, 1);
-    }
-    if ($base !== $systemroot) {
-      $base = rtrim($base, $separator);
-    }
+    // Normalize system root and base paths
+    $systemroot = rtrim($systemroot, $separator) . $separator;
+    $base = rtrim($base, $separator) . $separator;
 
-    if ($path == '' || $path == '.' . $separator) {
+    if ($path === '' || $path === '.' . $separator) {
       return $base;
     }
 
-    if (substr($path, 0, 3) == '..' . $separator) {
-      $path = $base . $separator . $path;
+    if (substr($path, 0, 3) === '..' . $separator) {
+      $path = $base . $path;
     }
 
-    if ($path !== $systemroot) {
-      $path = rtrim($path, $separator);
-    }
+    // Normalize path
+    $path = rtrim($path, $separator) . $separator;
 
     // Absolute path
     if ($path[0] === $separator || strpos($path, $systemroot) === 0) {
@@ -317,8 +313,8 @@ class HTTP
     }
 
     // Relative path from 'Here'
-    if (substr($path, 0, 2) == '.' . $separator || $path[0] !== '.') {
-      $arrn = preg_split($preg_separator, $path, -1, PREG_SPLIT_NO_EMPTY);
+    if (substr($path, 0, 2) === '.' . $separator || $path[0] !== '.') {
+      $arrn = preg_split('/\\' . $separator . '/', $path, -1, PREG_SPLIT_NO_EMPTY);
       if ($arrn[0] !== '.') {
         array_unshift($arrn, '.');
       }

@@ -1,0 +1,1 @@
+ALTER TABLE clic_products_description` ADD FULLTEXT `description` (`products_description`);
