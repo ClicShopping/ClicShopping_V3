@@ -19,6 +19,7 @@ Improve table for mobile
 update doc
 Minimum php version requirement >8.2
 fix gpt save button
+fix link admin to go a new page
 
 --------------------
 version 3.445

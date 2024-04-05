@@ -24,8 +24,8 @@ class HTML
   /**
    * Parse a user submited value
    *
-   * @param string $string The string to parse and output
-   * @param array $translate An array containing the characters to parse
+   * @param string|null $string $string The string to parse and output
+   * @param array|null $translate An array containing the characters to parse
    * @return string
    */
 
