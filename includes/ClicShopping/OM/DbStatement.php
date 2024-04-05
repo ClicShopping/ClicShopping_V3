@@ -494,14 +494,14 @@ class DbStatement extends \PDOStatement
       if ($this->page_set > 1) {
         $output .= '<li class="page-item active">' . HTML::link(CLICSHOPPING::link(null, $parameters . $this->page_set_keyword . '=' . ($this->page_set - 1)), null, 'title="' . CLICSHOPPING::getDef('prevnext_title_previous_page') . '" class="text-center page-link bi bi-chevron-left"') . '</li>';
       } else {
-        $output .= '<li class="page-item disabled"><a class="text-center page-link"><i class="bi bi-chevron-left"></i></a></li>';
+        $output .= '<li class="page-item disabled"><a class="text-center page-link bi bi-chevron-left"></a></li>';
       }
 
 // next button
       if (($this->page_set < $number_of_pages) && ($number_of_pages != 1)) {
         $output .= '<li class="page-item active">' . HTML::link(CLICSHOPPING::link(null, $parameters . $this->page_set_keyword . '=' . ($this->page_set + 1)), null, 'title="' . CLICSHOPPING::getDef('prevnext_title_next_page') . '" class="text-center page-link bi bi-chevron-right"') . '</li>';
       } else {
-        $output .= '<li class="page-item disabled"><a class="text-m-center page-link"><i class="bi bi-chevron-right"></i></a></li>';
+        $output .= '<li class="page-item disabled"><a class="text-m-center page-link bi bi-chevron-right"></a></li>';
       }
     } else {
       if ($number_of_pages > 1) {
@@ -512,15 +512,15 @@ class DbStatement extends \PDOStatement
 
 // previous button
       if ($this->page_set > 1) {
-        $output .= '<li class="page-item active"><a href="' . CLICSHOPPING::link(null, $parameters . $this->page_set_keyword . '=' . ($this->page_set - 1)) . '" title="' . CLICSHOPPING::getDef('prevnext_title_previous_page') . '" class="text-center page-link"</a></li>';
+        $output .= '<li class="page-item active"><a href="' . CLICSHOPPING::link(null, $parameters . $this->page_set_keyword . '=' . ($this->page_set - 1)) . '" title="' . CLICSHOPPING::getDef('prevnext_title_previous_page') . '" class="text-center page-link  bi bi-chevron-left"</a></li>';
       } else {
-        $output .= '<li class="page-item disabled"><a class="text-center page-link"><i class="bi bi-chevron-left"></i></a></li>';
+        $output .= '<li class="page-item disabled"><a class="text-center page-link bi bi-chevron-left"></a></li>';
       }
 // next button
       if (($this->page_set < $number_of_pages) && ($number_of_pages != 1)) {
-        $output .= '<li class="page-item active"><a href="' . CLICSHOPPING::link(null, $parameters . $this->page_set_keyword . '=' . ($this->page_set + 1)) . '" title="' . CLICSHOPPING::getDef('prevnext_title_next_page') . '" class="text-center page-link"><i class="bi bi-chevron-right"></i></a></li>';
+        $output .= '<li class="page-item active"><a href="' . CLICSHOPPING::link(null, $parameters . $this->page_set_keyword . '=' . ($this->page_set + 1)) . '" title="' . CLICSHOPPING::getDef('prevnext_title_next_page') . '" class="text-center page-link bi bi-chevron-right"></a></li>';
       } else {
-        $output .= '<li class="page-item disabled"><a class="text-center page-link"><i class="bi bi-chevron-right"></i></a></li>';
+        $output .= '<li class="page-item disabled"><a class="text-center page-link bi bi-chevron-right"></a></li>';
       }
     }
 
