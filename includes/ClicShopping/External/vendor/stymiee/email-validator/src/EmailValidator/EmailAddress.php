@@ -56,7 +56,7 @@ class EmailAddress
     public function isGmailWithPlusChar(): bool
     {
         $result = false;
-        if ($this->getDomain() === 'gmail.com') {
+        if (in_array($this->getDomain(), ['gmail.com', 'googlemail.com'])) {
             $result = strpos($this->getUsername(), '+') !== false;
         }
 
@@ -64,7 +64,7 @@ class EmailAddress
     }
 
     /**
-     * Returns a gmail address with the "plus trick" portion of the email address.
+     * Returns a gmail address without the "plus trick" portion of the email address.
      *
      * @since 1.1.0
      * @return string
@@ -72,5 +72,21 @@ class EmailAddress
     public function getGmailAddressWithoutPlus(): string
     {
         return preg_replace('/^(.+?)(\+.+?)(@.+)/', '$1$3', $this->getEmailAddress());
+    }
+
+    /**
+     * Returns a gmail address without the "plus trick" portion of the email address and all dots removed.
+     *
+     * @since 1.1.4
+     * @return string
+     */
+    public function getSanitizedGmailAddress(): string
+    {
+        $email = new EmailAddress($this->getGmailAddressWithoutPlus());
+        return sprintf(
+            '%s@%s',
+            str_replace('.', '', $email->getUsername()),
+            $email->getDomain()
+        );
     }
 }

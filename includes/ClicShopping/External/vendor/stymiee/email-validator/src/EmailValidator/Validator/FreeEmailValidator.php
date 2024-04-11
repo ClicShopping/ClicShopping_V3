@@ -9,6 +9,11 @@ use EmailValidator\EmailAddress;
 class FreeEmailValidator extends AProviderValidator
 {
     /**
+     * @var array Array of client-provided free email providers.
+     */
+    protected $freeEmailListProviders = [];
+
+    /**
      * @var array Array of URLs containing a list of free email addresses and the format of that list.
      */
     protected static $providers = [
@@ -29,15 +34,14 @@ class FreeEmailValidator extends AProviderValidator
     {
         $valid = true;
         if ($this->policy->checkFreeEmail()) {
-            static $freeEmailListProviders;
-            if ($freeEmailListProviders === null) {
-                $freeEmailListProviders = $this->getList(
+            if ($this->freeEmailListProviders === []) {
+                $this->freeEmailListProviders = $this->getList(
                     $this->policy->checkFreeLocalListOnly(),
                     $this->policy->getFreeList()
                 );
             }
             $domain = $email->getDomain();
-            $valid = !in_array($domain, $freeEmailListProviders, true);
+            $valid = !in_array($domain, $this->freeEmailListProviders, true);
         }
         return $valid;
     }

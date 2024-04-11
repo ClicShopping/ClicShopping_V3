@@ -14,6 +14,15 @@ class MxValidatorTest extends TestCase
             'checkMxRecords' => false
         ];
         $validator = new MxValidator(new Policy($policy));
-        self::assertEquals(true, $validator->validate(new EmailAddress('user@example.com')));
+        self::assertTrue($validator->validate(new EmailAddress('user@example.com')));
+    }
+
+    public function testValidateDns(): void
+    {
+        $policy = [
+            'checkMxRecords' => true
+        ];
+        $validator = new MxValidator(new Policy($policy));
+        self::assertTrue($validator->validate(new EmailAddress('stymiee@gmail.com')));
     }
 }

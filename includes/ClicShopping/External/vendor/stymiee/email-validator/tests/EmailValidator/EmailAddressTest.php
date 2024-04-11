@@ -80,4 +80,26 @@ class EmailAddressTest extends TestCase
         $email = new EmailAddress('user+test@example.com');
         self::assertEquals('user@example.com', $email->getGmailAddressWithoutPlus());
     }
+
+    public function gmailAddressDataProvider(): array
+    {
+        return [
+            ['example.com@gmail.com' , 'examplecom@gmail.com'],
+            ['example.com@googlemail.com' , 'examplecom@googlemail.com'],
+            ['e.x.a.m.p.l.e.c.o.m@gmail.com' , 'examplecom@gmail.com'],
+            ['e.x.a.m.p.l.e.c.o.m+string@gmail.com' , 'examplecom@gmail.com'],
+            ['example.com+string@gmail.com' , 'examplecom@gmail.com'],
+        ];
+    }
+
+    /**
+     * @dataProvider gmailAddressDataProvider
+     * @param string $emailAddress
+     * @param string $resultAddress
+     */
+    public function testGetSanitizedGmailAddress(string $emailAddress, string $resultAddress): void
+    {
+        $email = new EmailAddress($emailAddress);
+        self::assertEquals($email->getSanitizedGmailAddress(), $resultAddress);
+    }
 }

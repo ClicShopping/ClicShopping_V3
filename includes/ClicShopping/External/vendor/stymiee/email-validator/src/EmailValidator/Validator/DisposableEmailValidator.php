@@ -9,16 +9,17 @@ use EmailValidator\EmailAddress;
 class DisposableEmailValidator extends AProviderValidator
 {
     /**
+     * @var array Array of client-provided disposable email providers.
+     */
+    protected $disposableEmailListProviders = [];
+
+    /**
      * @var array Array of URLs containing a list of disposable email addresses and the format of that list.
      */
     protected static $providers = [
         [
             'format' => 'txt',
             'url' => 'https://raw.githubusercontent.com/martenson/disposable-email-domains/master/disposable_email_blocklist.conf'
-        ],
-        [
-            'format' => 'txt',
-            'url' => 'https://gist.githubusercontent.com/michenriksen/8710649/raw/e09ee253960ec1ff0add4f92b62616ebbe24ab87/disposable-email-provider-domains'
         ],
         [
             'format' => 'json',
@@ -37,15 +38,14 @@ class DisposableEmailValidator extends AProviderValidator
     {
         $valid = true;
         if ($this->policy->checkDisposableEmail()) {
-            static $disposableEmailListProviders;
-            if ($disposableEmailListProviders === null) {
-                $disposableEmailListProviders = $this->getList(
+            if ($this->disposableEmailListProviders === []) {
+                $this->disposableEmailListProviders = $this->getList(
                     $this->policy->checkDisposableLocalListOnly(),
                     $this->policy->getDisposableList()
                 );
             }
             $domain = $email->getDomain();
-            $valid = !in_array($domain, $disposableEmailListProviders, true);
+            $valid = !in_array($domain, $this->disposableEmailListProviders, true);
         }
         return $valid;
     }

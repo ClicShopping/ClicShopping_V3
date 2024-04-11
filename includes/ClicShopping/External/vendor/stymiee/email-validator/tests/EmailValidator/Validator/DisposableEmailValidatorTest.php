@@ -14,12 +14,24 @@ class DisposableEmailValidatorTest extends TestCase
             'checkDisposableEmail' => false
         ];
         $validator = new DisposableEmailValidator(new Policy($policy));
-        self::assertEquals(true, $validator->validate(new EmailAddress('user@example.com')));
+        self::assertTrue($validator->validate(new EmailAddress('user@example.com')));
     }
 
     public function testValidateDefault(): void
     {
         $validator = new DisposableEmailValidator(new Policy());
-        self::assertEquals(true, $validator->validate(new EmailAddress('user@example.com')));
+        self::assertTrue($validator->validate(new EmailAddress('user@example.com')));
+    }
+
+    public function testValidateClientProvidedDomain(): void
+    {
+        $policy = [
+            'checkDisposableEmail' => true,
+            'disposableList' => [
+                'example.com'
+            ],
+        ];
+        $validator = new DisposableEmailValidator(new Policy($policy));
+        self::assertFalse($validator->validate(new EmailAddress('user@example.com')));
     }
 }
