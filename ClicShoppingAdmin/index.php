@@ -9,6 +9,7 @@
  */
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 
 // Start the clock for the page parse time log
@@ -30,7 +31,7 @@ if (CLICSHOPPING::hasSitePage()) {
     $page_file = CLICSHOPPING::getSitePageFile();
 
     if (empty($page_file) || !is_file($page_file)) {
-      $page_file = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'error_documents/404.php';
+      HTTP::redirect(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'error_documents/404.php');
     }
 
     if (CLICSHOPPING::useSiteTemplateWithPageFile()) {

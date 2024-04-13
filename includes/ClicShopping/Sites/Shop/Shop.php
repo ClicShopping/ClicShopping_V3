@@ -41,8 +41,7 @@ class Shop extends \ClicShopping\OM\SitesAbstract
       $CLICSHOPPING_Db = Db::initialize();
       Registry::set('Db', $CLICSHOPPING_Db);
     } catch (\Exception $e) {
-      include_once('error_documents/maintenance.php');
-      exit;
+      HTTP::redirect(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'error_documents/maintenance.php');
     }
 
     Registry::set('Hooks', new Hooks());
