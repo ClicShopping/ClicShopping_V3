@@ -1,3 +1,19 @@
+## XML-RPC for PHP version 4.10.2 - 2024/04/14
+
+* fixed: allow `Server` subclasses to use their own Parser to determine the Request's charset
+
+* fixed: the Server would not swallow and log php warnings generated from end user's method handler functions unless
+  debug mode was set to 2 or higher. It now does that always.
+
+* fixed: the library will now return a Fault `Response` object whenever parsing some xml responses which do not conform
+  to the specification, namely the for following cases:
+
+  - a `methodResponse` element without either `fault` or `params`
+  - a `methodResponse` element with a `params` child which does not have a single `param`
+
+* improved: test on php 8.3
+
+
 ## XML-RPC for PHP version 4.10.1 - 2023/02/22
 
 * fixed: class autoloading got broken in rel 4.10.0 for users of the legacy API (issue #111)

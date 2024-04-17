@@ -162,7 +162,7 @@ class XMLParser
             'isf_reason' => '',
             'value' => null,
             'method' => false, // so we can check later if we got a methodname or not
-            'params' => array(),
+            'params' => false, // so we can check later if we got a params tag or not
             'pt' => array(),
             'rt' => '',
         );
@@ -289,6 +289,11 @@ class XMLParser
 
         xml_parser_free($parser);
         $this->current_parsing_options = array();
+
+        // BC
+        if ($this->_xh['params'] === false) {
+            $this->_xh['params'] = array();
+        }
 
         return $this->_xh;
     }
@@ -419,8 +424,11 @@ class XMLParser
 
             case 'METHODCALL':
             case 'METHODRESPONSE':
-            case 'PARAMS':
                 // valid elements that add little to processing
+                break;
+
+            case 'PARAMS':
+                $this->_xh['params'] = array();
                 break;
 
             case 'METHODNAME':
@@ -751,13 +759,28 @@ class XMLParser
                 break;
 
             /// @todo add extra checking:
-            ///       - METHODRESPONSE should contain either a PARAMS with a single PARAM, or a FAULT
             ///       - FAULT should contain a single struct with the 2 expected members (check their name and type)
-            ///       - METHODCALL should contain a methodname
             case 'PARAMS':
             case 'FAULT':
+                break;
+
             case 'METHODCALL':
+                /// @todo should we allow to accept this case via a call to handleParsingError ?
+                if ($this->_xh['method'] === false) {
+                    $this->_xh['isf'] = 2;
+                    $this->_xh['isf_reason'] = "missing METHODNAME element inside METHODCALL";
+                }
+                break;
+
             case 'METHODRESPONSE':
+                /// @todo should we allow to accept these cases via a call to handleParsingError ?
+                if ($this->_xh['isf'] != 1 && $this->_xh['params'] === false) {
+                    $this->_xh['isf'] = 2;
+                    $this->_xh['isf_reason'] = "missing both FAULT and PARAMS elements inside METHODRESPONSE";
+                } elseif ($this->_xh['isf'] == 0 && count($this->_xh['params']) !== 1) {
+                    $this->_xh['isf'] = 2;
+                    $this->_xh['isf_reason'] = "PARAMS element inside METHODRESPONSE should have exactly 1 PARAM";
+                }
                 break;
 
             default:
@@ -839,6 +862,7 @@ class XMLParser
     /**
      * xml charset encoding guessing helper function.
      * Tries to determine the charset encoding of an XML chunk received over HTTP.
+     *
      * NB: according to the spec (RFC 3023), if text/xml content-type is received over HTTP without a content-type,
      * we SHOULD assume it is strictly US-ASCII. But we try to be more tolerant of non-conforming (legacy?) clients/servers,
      * which will be most probably using UTF-8 anyway...
@@ -855,6 +879,8 @@ class XMLParser
      * @return string the encoding determined. Null if it can't be determined and mbstring is enabled,
      *                PhpXmlRpc::$xmlrpc_defencoding if it can't be determined and mbstring is not enabled
      *
+     * @todo as of 2023, the relevant RFC for XML Media Types is now 7303, and for HTTP it is 9110. Check if the order of
+     *       precedence implemented here is still correct
      * @todo explore usage of mb_http_input(): does it detect http headers + post data? if so, use it instead of hand-detection!!!
      * @todo feature-creep make it possible to pass in options overriding usage of PhpXmlRpc static variables, to make
      *       the method independent of global state
@@ -927,10 +953,13 @@ class XMLParser
 
             return $enc;
         } else {
-            // no encoding specified: as per HTTP1.1 assume it is iso-8859-1?
-            // Both RFC 2616 (HTTP 1.1) and 1945 (HTTP 1.0) clearly state that for text/xxx content types
+            // No encoding specified: assume it is iso-8859-1, as per HTTP1.1?
+            // Both RFC 2616 (HTTP 1.1) and RFC 1945 (HTTP 1.0) clearly state that for text/xxx content types
             // this should be the standard. And we should be getting text/xml as request and response.
-            // BUT we have to be backward compatible with the lib, which always used UTF-8 as default...
+            // BUT we have to be backward compatible with the lib, which always used UTF-8 as default. Moreover,
+            // RFC 7231, which obsoletes the two RFC mentioned above, has changed the rules. It says:
+            // "The default charset of ISO-8859-1 for text media types has been removed; the default is now whatever
+            // the media type definition says."
             return PhpXmlRpc::$xmlrpc_defencoding;
         }
     }

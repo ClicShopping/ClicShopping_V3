@@ -2136,7 +2136,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
               data: {id: language_id},
               success: function(language_name) {
                 let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$product_name}';
-                
+
                 newButton.click(function() {
                   let message = questionResponse;
                   let engine = $('#engine').val();
