@@ -1385,16 +1385,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v14.2.0",
+            "version": "v14.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "6b77ba6b2f8791dabc5404befd6c0ead59203892"
+                "reference": "4825e7f03f9f83e091928c8f08f96bc87fdd2c7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/6b77ba6b2f8791dabc5404befd6c0ead59203892",
-                "reference": "6b77ba6b2f8791dabc5404befd6c0ead59203892",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/4825e7f03f9f83e091928c8f08f96bc87fdd2c7d",
+                "reference": "4825e7f03f9f83e091928c8f08f96bc87fdd2c7d",
                 "shasum": ""
             },
             "require": {
@@ -1438,9 +1438,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v14.2.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v14.3.0"
             },
-            "time": "2024-04-16T15:58:21+00:00"
+            "time": "2024-04-18T21:25:27+00:00"
         },
         {
             "name": "stymiee/email-validator",
@@ -1969,12 +1969,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "581b11097cf4ba8ed29a685645966a7eb8ea632e"
+                "reference": "16afe68c1b79917b4e8d8222a39ca4db31b63377"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/581b11097cf4ba8ed29a685645966a7eb8ea632e",
-                "reference": "581b11097cf4ba8ed29a685645966a7eb8ea632e",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/16afe68c1b79917b4e8d8222a39ca4db31b63377",
+                "reference": "16afe68c1b79917b4e8d8222a39ca4db31b63377",
                 "shasum": ""
             },
             "conflict": {
@@ -2554,7 +2554,7 @@
                 "thinkcmf/thinkcmf": "<=5.1.7",
                 "thorsten/phpmyfaq": "<3.2.2",
                 "tikiwiki/tiki-manager": "<=17.1",
-                "timber/timber": "<=1.23|==1.24|==2",
+                "timber/timber": ">=0.16.6,<1.23.1|>=1.24,<1.24.1|>=2,<2.1",
                 "tinymce/tinymce": "<7",
                 "tinymighty/wiki-seo": "<1.2.2",
                 "titon/framework": "<9.9.99",
@@ -2710,7 +2710,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-17T11:04:37+00:00"
+            "time": "2024-04-18T17:04:22+00:00"
         }
     ],
     "aliases": [],
