@@ -260,11 +260,10 @@ class XMLParser
             for ($offset = 0; $offset < $len; $offset += $this->maxChunkLength) {
                 $chunk = substr($data, $offset, $this->maxChunkLength);
                 // error handling: xml not well formed
-                if (!xml_parse($parser, $chunk, $offset + $this->maxChunkLength >= $len)) {
+                if (!@xml_parse($parser, $chunk, $offset + $this->maxChunkLength >= $len)) {
                     $errCode = xml_get_error_code($parser);
                     $errStr = sprintf('XML error %s: %s at line %d, column %d', $errCode, xml_error_string($errCode),
                         xml_get_current_line_number($parser), xml_get_current_column_number($parser));
-
                     $this->_xh['isf'] = 3;
                     $this->_xh['isf_reason'] = $errStr;
                 }
@@ -780,6 +779,9 @@ class XMLParser
                 } elseif ($this->_xh['isf'] == 0 && count($this->_xh['params']) !== 1) {
                     $this->_xh['isf'] = 2;
                     $this->_xh['isf_reason'] = "PARAMS element inside METHODRESPONSE should have exactly 1 PARAM";
+                } elseif ($this->_xh['isf'] == 1 && $this->_xh['params'] !== false) {
+                    $this->_xh['isf'] = 2;
+                    $this->_xh['isf_reason'] = "both FAULT and PARAMS elements found inside METHODRESPONSE";
                 }
                 break;
 
@@ -929,6 +931,7 @@ class XMLParser
         // Details:
         // SPACE:         (#x20 | #x9 | #xD | #xA)+ === [ \x9\xD\xA]+
         // EQ:            SPACE?=SPACE? === [ \x9\xD\xA]*=[ \x9\xD\xA]*
+        // We could be stricter on version number: VersionNum ::= '1.' [0-9]+
         if (preg_match('/^<\?xml\s+version\s*=\s*' . "((?:\"[a-zA-Z0-9_.:-]+\")|(?:'[a-zA-Z0-9_.:-]+'))" .
             '\s+encoding\s*=\s*' . "((?:\"[A-Za-z][A-Za-z0-9._-]*\")|(?:'[A-Za-z][A-Za-z0-9._-]*'))/",
             $xmlChunk, $matches)) {
@@ -988,6 +991,7 @@ class XMLParser
         // Details:
         // SPACE:         (#x20 | #x9 | #xD | #xA)+ === [ \x9\xD\xA]+
         // EQ:            SPACE?=SPACE? === [ \x9\xD\xA]*=[ \x9\xD\xA]*
+        // We could be stricter on version number: VersionNum ::= '1.' [0-9]+
         if (preg_match('/^<\?xml\s+version\s*=\s*' . "((?:\"[a-zA-Z0-9_.:-]+\")|(?:'[a-zA-Z0-9_.:-]+'))" .
             '\s+encoding\s*=\s*' . "((?:\"[A-Za-z][A-Za-z0-9._-]*\")|(?:'[A-Za-z][A-Za-z0-9._-]*'))/",
             $xmlChunk)) {
