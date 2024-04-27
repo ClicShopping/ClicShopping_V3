@@ -161,7 +161,7 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
       }
 
       if ($this->statsAverageCustomersMen() != 0) {
-        $content = '
+        $content .= '
           <div class="row">
             <div class="col-md-11 mainTable">
               <div class="form-group row">
@@ -176,7 +176,7 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
       }
 
       if ($this->statsAverageCustomersWomen() != 0) {
-        $content = '
+        $content .= '
           <div class="row">
             <div class="col-md-11 mainTable">
               <div class="form-group row">
