@@ -11,6 +11,7 @@
 namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
+
 use function defined;
 
 class FooterOutputGpt

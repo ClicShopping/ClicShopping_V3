@@ -45,11 +45,11 @@ $oInfo = new ObjectInfo($Qstatus->toArray())
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatus->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
-<?php
-echo HTML::form('status_orders_status', $CLICSHOPPING_OrdersStatus->link('OrdersStatus&Update&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->orders_status_id));
-echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_update'), null, null, 'success') . ' ';
-echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus'), 'warning');
-?>
+          <?php
+            echo HTML::form('status_orders_status', $CLICSHOPPING_OrdersStatus->link('OrdersStatus&Update&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->orders_status_id));
+            echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_update'), null, null, 'success') . ' ';
+            echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus'), 'warning');
+          ?>
           </span>
         </div>
       </div>
@@ -134,7 +134,6 @@ echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CL
       </ul>
     </div>
 
-
     <div class="col-md-12" id="authorize_to_delete_order">
       <span class="col-md-3"></span>
       <ul class="list-group-slider list-group-flush">
@@ -148,7 +147,6 @@ echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CL
           class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_authorize_to_delete_status'); ?></span>
       </ul>
     </div>
-
 
     <?php
     if (DEFAULT_ORDERS_STATUS_ID != $oInfo->orders_status_id) {

@@ -1,5 +1,12 @@
 --------------------
+version 3.449
+Librairies updated
+Add llphant librairies
+Allow to use some different modal on the server (need a dedicated server and ollama installled)
+Small bugs
+Add Ollama and Gpt inside one class
 
+--------------------
 version 3.448
 bootstrap 5.3.3
 Librairies updated

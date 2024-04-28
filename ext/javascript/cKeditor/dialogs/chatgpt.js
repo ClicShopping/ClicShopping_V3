@@ -1,6 +1,5 @@
 CKEDITOR.dialog.add('chatgptDialog', function (editor) {
-  var botUrl = 'https://api.openai.com/v1/chat/completions'; // for gpt3.5
-
+  var botUrl = apiGptUrl; // for gpt3.5
   var apiKey = apiKeyGpt; // Replace with your own API key
   var conversationState = '';
 
@@ -86,7 +85,7 @@ CKEDITOR.dialog.add('chatgptDialog', function (editor) {
                 messages: [
                   {
                     role: 'system',
-                    content: "\n\nYou are the assistant."
+                    content: "\n\nYou are an expert in E-Commerce Marketing."
                   },
                   {
                     role: 'user',

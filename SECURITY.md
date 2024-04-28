@@ -5,7 +5,7 @@
 Use this section to tell people about which versions of your project are
 currently being supported with security updates.
 
-| PHP Version | ClicShopping Version |
+| PHP Version | ClicShoppingAI Version |
 | ------- |----------------------|
 | +7.4.3   | 3.2145               |
 | +8.1| < 3.400              |

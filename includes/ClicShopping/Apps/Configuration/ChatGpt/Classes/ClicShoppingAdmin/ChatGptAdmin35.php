@@ -70,6 +70,9 @@ class ChatGptAdmin35
       ['id' => 'gpt-3.5-turbo',
        'text' => 'gpt-3.5-turbo'
       ],
+      ['id' => 'gpt-4-turbo',
+        'text' => 'gpt-4-turbo'
+      ],
     ];
 
     return $array;
@@ -189,7 +192,7 @@ class ChatGptAdmin35
       'messages' => [
         [
           'role' => 'system',
-          'content' => 'You are the customer service.'
+          'content' => 'You are an e-commerce expert in marketing.'
         ],
         [
           'role' => 'user',
@@ -266,6 +269,7 @@ class ChatGptAdmin35
 
     $CLICSHOPPING_Db->save('gpt_usage', $array_usage_sql);
   }
+  
   /**
    * @return array
    */
@@ -474,7 +478,9 @@ class ChatGptAdmin35
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="chatModalLabel">' . CLICSHOPPING::getDef('text_chat_title') . '</h5>
-                        ' . HTML::button(CLICSHOPPING::getDef('text_chat_close'), null, null, 'secondary', ['params' => 'data-bs-dismiss="modal"']) . '
+                        <div class="ms-auto">
+                            ' . HTML::button(CLICSHOPPING::getDef('text_chat_close'), null, null, 'secondary', ['params' => 'data-bs-dismiss="modal"']) . '
+                        </div>
                       </div>
                       <div class="modal-body">
                         <div class="mt-1"></div>
