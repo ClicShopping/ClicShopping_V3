@@ -353,7 +353,7 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
     $result[] = $boostrap_file;
 
     foreach ($file as $value) {
-      $result[] .= $value;
+      $result[] = $value;
     }
 
     return $result;
