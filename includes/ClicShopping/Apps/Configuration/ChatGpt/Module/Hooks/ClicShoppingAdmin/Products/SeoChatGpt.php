@@ -14,8 +14,10 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatJsAdminSeo;
+
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
+
 
 class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 {
@@ -34,7 +36,7 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
   {
     $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
-    if (ChatGptAdmin35::checkGptStatus() === false) {
+    if (gpt::checkGptStatus() === false) {
       return false;
     }
 
@@ -42,17 +44,18 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 
     if (isset($_GET['pID'])) {
       $id = HTML::sanitize($_GET['pID']);
-
-      $question = $this->app->getDef('text_seo_page_title_question');
-      $question_tag = $this->app->getDef('text_seo_page_tag_question');
-      $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
-      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
-      $translate_language = $this->app->getDef('text_seo_page_translate_language');
-
       $product_name = $CLICSHOPPING_ProductsAdmin->getProductsName($id);
+      $product_name_array = ['products_name' => $product_name];
 
-      $url = ChatGptAdmin35::getAjaxUrl();
-      $urlMultilanguage = ChatGptAdmin35::getAjaxSeoMultilanguageUrl();
+      $expertise = $this->app->getDef('text_seo_expertise');
+      $question = $expertise . ' ' . $this->app->getDef('text_seo_page_title_question', $product_name_array);
+      $question_tag = $expertise . ' ' . $this->app->getDef('text_seo_page_tag_question', $product_name_array);
+      $question_summary_description = $expertise . ' ' . $this->app->getDef('text_seo_page_summary_description_question', $product_name_array);
+      $translate_language = $expertise . ' ' . $this->app->getDef('text_seo_page_translate_language', $product_name_array);
+      $question_keywords = $expertise . ' ' . $this->app->getDef('text_seo_page_keywords_question', $product_name_array);
+
+      $url = Gpt::getAjaxUrl();
+      $urlMultilanguage = Gpt::getAjaxSeoMultilanguageUrl();
 
       $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
       $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';
@@ -206,7 +209,7 @@ EOD;
                 </div>
               </div>
             </div>
-            
+<!--            
             <div class="mt-1"></div>
             <div class="row" id="productOptionGptCreateImage">
               <div class="col-md-9">
@@ -226,7 +229,7 @@ EOD;
                 </div>
               </div>
             </div>
-           
+-->           
             <div class="mt-1"></div>
             <div class="alert alert-info" role="alert">
               <div><h4><i class="bi bi-question-circle" title="' . $this->app->getDef('title_help_seo') . '"></i></h4> ' . $this->app->getDef('title_help_seo') . '</div>

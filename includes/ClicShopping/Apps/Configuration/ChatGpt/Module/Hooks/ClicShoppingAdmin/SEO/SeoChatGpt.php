@@ -13,8 +13,8 @@ namespace ClicShopping\Apps\Configuration\ChatGpt\Module\Hooks\ClicShoppingAdmin
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatJsAdminSeo;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
 
 class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 {
@@ -31,29 +31,29 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 
   public function display()
   {
-
-    if (ChatGptAdmin35::checkGptStatus() === false) {
+/*
+    if (Gpt::checkGptStatus() === false) {
       return false;
     }
-
+*/
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/SEO/seo_chat_gpt');
 
     if (empty(STORE_NAME)) {
       return false;
     }
+    $store_name = HTML::outputProtected(STORE_NAME);
 
-    $store_name = HTML::sanitize(STORE_NAME);
     $translate_language = $this->app->getDef('text_seo_page_translate_language');
-    $question_title = $this->app->getDef('text_seo_page_title_question');
-    $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
-    $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
-    $question_tag = $this->app->getDef('text_seo_page_tag_question');
+    $question_title = $this->app->getDef('text_seo_page_title_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $question_keywords = $this->app->getDef('text_seo_page_keywords_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $question_tag = $this->app->getDef('text_seo_page_tag_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
 
-    $text_tag_specials = $this->app->getDef('text_tag_specials');
-    $text_tag_favorite = $this->app->getDef('text_tag_favorite');
-    $text_tag_featured = $this->app->getDef('text_tag_featured');
-    $text_tag_products_new = $this->app->getDef('text_tag_products_new');
-    $text_tag_review = $this->app->getDef('text_tag_review');
+    $text_tag_specials = $this->app->getDef('text_tag_specials', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $text_tag_favorite = $this->app->getDef('text_tag_favorite', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $text_tag_featured = $this->app->getDef('text_tag_featured', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $text_tag_products_new = $this->app->getDef('text_tag_products_new', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $text_tag_review = $this->app->getDef('text_tag_review', ['store_name' => HTML::outputProtected(STORE_NAME)]);
 
     $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
     $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';
@@ -61,11 +61,11 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 
     $output = '';
 
-    if (ChatGptAdmin35::checkGptStatus() === true) {
-      $url = ChatGptAdmin35::getAjaxUrl(false);
-    }
+//    if (Gpt::checkGptStatus() === true) {
+      $url = Gpt::getAjaxUrl(false);
+//    }
 
-    $urlMultilanguage = ChatGptAdmin35::getAjaxSeoMultilanguageUrl();
+    $urlMultilanguage = Gpt::getAjaxSeoMultilanguageUrl();
 
     $getInfoSeoDefaultTitleH1 = ChatJsAdminSeo::getInfoSeoDefaultTitleH1($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);
     $getInfoSeoDefaultTitle = ChatJsAdminSeo::getInfoSeoDefaultTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);
@@ -98,9 +98,9 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
     $getInfoFeaturedKeywords = ChatJsAdminSeo::getInfoFeaturedKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_featured, $url);
 
 // Recommendations
-    $question_title = $this->app->getDef('text_seo_page_recommendations_title_question');
-    $question_summary_description = $this->app->getDef('text_seo_page_recommendations_description_question');
-    $question_keywords = $this->app->getDef('text_seo_page_recommendations_keywords_question');
+    $question_title = $this->app->getDef('text_seo_page_recommendations_title_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $question_summary_description = $this->app->getDef('text_seo_page_recommendations_description_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $question_keywords = $this->app->getDef('text_seo_page_recommendations_keywords_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
 
     $getInfoSeoRecommendationsTitle = ChatJsAdminSeo::getInfoSeoRecommendationsTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);
     $getInfoSeoRecommendationsDescription = ChatJsAdminSeo::getInfoSeoRecommendationsDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $url);

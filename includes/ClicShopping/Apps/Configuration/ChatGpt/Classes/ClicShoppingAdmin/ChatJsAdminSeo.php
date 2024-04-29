@@ -1987,11 +1987,11 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
    * @param string $urlMultilanguage
    * @param string $translate_language
    * @param string $question
-   * @param string $product_name
+   * @param ?string $product_name
    * @param string $url
    * @return string
    */
-  public static function getProductsSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string $product_name, string $url)
+  public static function getProductsSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, ?string $product_name, string $url)
   {
     $script = "
       <script defer>    
@@ -2010,7 +2010,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question}' + ' ' + '{$product_name}';
+             let questionResponse =  '{$translate_language}' + ' ' + language_name + '. ' + '{$question}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -2046,11 +2046,11 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
    * @param string $urlMultilanguage
    * @param string $translate_language
    * @param string $question_summary_description
-   * @param string $product_name
+   * @param ?string $product_name
    * @param string $url
    * @return string
    */
-  public static function getProductsSummaryDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $product_name, string $url)
+  public static function getProductsSummaryDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, ?string $product_name, string $url)
   {
     $script = "
       <script defer>    
@@ -2072,7 +2072,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
               url: '{$urlMultilanguage}',
               data: {id: language_id},
               success: function(language_name) {
-                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$product_name}';
+                let questionResponse =  '{$translate_language}' + ' ' + language_name + '. ' + '{$question_summary_description}';
                 
                 newButton.click(function() {
                   let message = questionResponse;
@@ -2109,11 +2109,11 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
    * @param string $urlMultilanguage
    * @param string $translate_language
    * @param string $question_summary_description
-   * @param string $product_name
+   * @param ?string $product_name
    * @param string $url
    * @return string
    */
-  public static function getProductsSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, string $product_name, string $url)
+  public static function getProductsSeoDescription(string $content, string $urlMultilanguage, string $translate_language, string $question_summary_description, ?string $product_name, string $url)
   {
     $script = "
       <script defer>    
@@ -2135,7 +2135,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
               url: '{$urlMultilanguage}',
               data: {id: language_id},
               success: function(language_name) {
-                let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' +  '{$question_summary_description}' + ' ' + '{$product_name}';
+                let questionResponse =  '{$translate_language}' + ' ' + language_name + '. ' + '{$question_summary_description}';
 
                 newButton.click(function() {
                   let message = questionResponse;
@@ -2172,12 +2172,12 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
    * @param string $content
    * @param string $urlMultilanguage
    * @param string $translate_language
-   * @param string $question_keywords
-   * @param string $product_name
+   * @param string $question
+   * @param ?string $product_name
    * @param string $url
    * @return string
    */
-  public static function getProductsSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question_keywords, string $product_name, string $url)
+  public static function getProductsSeoKeywords(string $content, string $urlMultilanguage, string $translate_language, string $question, ?string $product_name, string $url)
   {
     $script = "
       <script defer> 
@@ -2196,7 +2196,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_keywords}' + ' ' + '{$product_name}';
+              let questionResponse =  '{$translate_language}' + ' ' + language_name + '. ' + '{$question}';
               
               newButton.click(function() {
                 let message = questionResponse;
@@ -2231,12 +2231,12 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
    * @param string $content
    * @param string $urlMultilanguage
    * @param string $translate_language
-   * @param string $question_tag
-   * @param string $product_name
+   * @param string $question
+   * @param ?string $product_name
    * @param string $url
    * @return string
    */
-  public static function getProductsSeoTags(string $content, string $urlMultilanguage, string $translate_language, string $question_tag, string $product_name, string $url)
+  public static function getProductsSeoTags(string $content, string $urlMultilanguage, string $translate_language, string $question, ?string $product_name, string $url)
   {
     $script = "
       <script defer> 
@@ -2255,7 +2255,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
             url: '{$urlMultilanguage}',
             data: {id: language_id},
             success: function(language_name) {
-              let questionResponse = '{$translate_language}' + ' ' + language_name + ' : ' + '{$question_tag}' + ' ' + '{$product_name}';
+              let questionResponse =  '{$translate_language}' + ' ' + language_name + '. ' + '{$question}';
               
               newButton.click(function() {
                 let message = questionResponse;

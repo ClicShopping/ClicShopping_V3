@@ -1,11 +1,15 @@
 text_seo_page_title = SEO Page de Titre
+
 text_seo_action = Cliquez pour avoir une réponse de Gpt
-text_seo_page_title_question = Donnes-moi en moins de 50 mots le SEO Titre concernant cette page :
-text_seo_page_tag_question = Donnes-moi en moins de 70 mots, 5 tag sèparès par une virgule concernant cette page :
-text_seo_page_keywords_question = Donnes-moi juste en 7 mots clefs sèparès par une virgule concernant cette page :
-text_seo_page_summary_description_question = Donnes-moi en moins de 50 mots une description trés courte concernant cette page :
-text_seo_page_categories_question = et Donnes-moi uniquement une description concernant cette page :
-text_seo_page_translate_language = Donne moi la réponse brute et peux-tu supprimer la réponse du prompt, la question et tout ce qui est avant la réponse. J ai besoin uniquement que du résultat de la question. Peux tu traduire en
+
+text_seo_expertise = Tu es un expert en marketing SEO.
+text_seo_page_title_question = Donnes-moi en moins de 50 mots le SEO Titre concernant cette page : {{store_name}}. Supprime la réponse du prompt.
+text_seo_page_tag_question = Donnes-moi juste en 5 mots clefs sèparès par une virgule concernant cette page : {{store_name}}. Supprime la réponse du prompt.
+text_seo_page_keywords_question = Donnes-moi juste en 7 mots clefs sèparès par une virgule concernant cette page : {{store_name}}. Supprime la réponse du prompt.
+text_seo_page_summary_description_question = Donnes-moi en moins de 50 mots une description trés courte concernant cette page : {{store_name}}. Supprime la réponse du prompt.
+text_seo_page_translate_language = Peux tu traduire la réponse en
+
+text_seo_page_categories_question = et Donnes-moi uniquement une description concernant cette page : {{store_name}}
 
 title_help_seo = Aide
 text_help_seo = Veuillez noter que si vous utilisez l'IA pour générer votre contenu, le temps de sauvegarde de l'information peut être plus long du au traitement. Merci de patienter.

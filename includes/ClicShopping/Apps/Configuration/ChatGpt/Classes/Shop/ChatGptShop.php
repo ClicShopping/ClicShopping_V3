@@ -10,8 +10,8 @@
 
 namespace ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
-use function defined;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\GptShop;
 
 class ChatGptShop
 {
@@ -20,11 +20,7 @@ class ChatGptShop
    */
   public static function checkGptStatus(): bool
   {
-    if (!defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
-      return false;
-    } else {
-      return true;
-    }
+   return Gpt::checkGptStatus();
   }
 
   /**
@@ -70,7 +66,7 @@ class ChatGptShop
     foreach ($userComments as $comment) {
       $prompt = "Give me the sentiment of the following comment: '{$comment}' is: ";
 
-      $apiResponse = ChatGptAdmin35::getGptResponse($prompt, $max_token, $temperature);
+      $apiResponse = GptShop::getGptResponse($prompt, $max_token, $temperature);
 
       if (isset($apiResponse)) {
         $replace = str_replace(' ', '', $apiResponse);

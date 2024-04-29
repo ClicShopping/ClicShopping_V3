@@ -13,8 +13,9 @@ namespace ClicShopping\Apps\Configuration\ChatGpt\Module\Hooks\ClicShoppingAdmin
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
+
 use function count;
 
 class Update implements \ClicShopping\OM\Modules\HooksInterface
@@ -64,8 +65,8 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
 
   /**
    * @param int $language_id
+   * @param string $products_name
    * @return string
-   * @throws \Exception
    */
   private function generateSentiment(int $language_id, string $products_name): string
   {
@@ -83,16 +84,16 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     }
 
     $message = 'Could you give me a summary about the customer sentiment analysis concerning this product reviews ' . $products_name . ' below. 
-    remove the prompt engine message
-    remove the question of this request
+    remove the prompt engine message.
+    remove the question of this request.
     Give me only the brut response.
     Write the answer in this language : ' . $language_name . '.
-    Write the answer in 300 worlds maximum
+    Write the answer in 300 worlds maximum.
     Here customers products reviews for sentiment analysis : ';
 
     $prompt = $message . $text_reviews;
 
-    $sentiment = ChatGptAdmin35::getGptResponse($prompt, 2300, 0.5);
+    $sentiment = Gpt::getGptResponse($prompt, 2300, 0.5);
 
     return $sentiment;
   }
@@ -101,11 +102,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
   {
     $CLICSHOPPING_Language = Registry::get('Language');
     $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
-
-    if (ChatGptAdmin35::checkGptStatus() === false) {
+/*
+    if (Gpt::checkGptStatus() === false) {
       return false;
     }
-
+*/
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/SEO/seo_chat_gpt');
 
     $id = HTML::sanitize($_GET['rID']);

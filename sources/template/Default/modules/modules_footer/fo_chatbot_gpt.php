@@ -8,9 +8,9 @@
  *
  */
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\ChatGptShop35;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\GptShop;
 
 class fo_chatbot_gpt
 {
@@ -36,7 +36,7 @@ class fo_chatbot_gpt
     }
 
     if (\defined('MODULES_FOOTER_CHATBOT_GPT_MAX_TOKEN')) {
-      if (ChatGptShop35::checkMaxTokenPerDay(MODULES_FOOTER_CHATBOT_GPT_MAX_TOKEN) === false) {
+      if (GptShop::checkMaxTokenPerDay(MODULES_FOOTER_CHATBOT_GPT_MAX_TOKEN) === false) {
         $this->enabled = false;
       }
     }
@@ -52,7 +52,7 @@ class fo_chatbot_gpt
 
     $image = CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'sources/images/icons/chat_support.png';
 
-    $url = ChatGptShop35::getAjaxUrl();
+    $url = GptShop::getAjaxUrl();
     $promt_text = CLICSHOPPING::getDef('module_footer_chatbot_gpt_prompt_text');
 
     $footer_tag = '<!--  chatbot start -->' . "\n";

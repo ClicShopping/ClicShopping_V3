@@ -11,8 +11,9 @@
 namespace ClicShopping\Apps\Configuration\ChatGpt\Module\Hooks\ClicShoppingAdmin\Manufacturers;
 
 use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
 use ClicShopping\OM\Registry;
+
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
 
 class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
@@ -32,11 +33,11 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   public function execute()
   {
     $CLICSHOPPING_Language = Registry::get('Language');
-
-    if (ChatGptAdmin35::checkGptStatus() === false) {
+/*
+    if (Gpt::checkGptStatus() === false) {
       return false;
     }
-
+*/
     if (isset($_GET['Insert'], $_GET['Manufacturers'])) {
       $question = $this->app->getDef('text_seo_page_title_question');
       $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
@@ -77,11 +78,11 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 //-------------------
           if (isset($_POST['option_gpt_description'])) {
             $manufacturers_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $manufacturers_name;
-            $manufacturers_description = ChatGptAdmin35::getGptResponse($manufacturers_description);
+            $manufacturers_description = Gpt::getGptResponse($manufacturers_description);
 
             if ($manufacturers_description !== false) {
               $sql_data_array = [
-                'manufacturer_description' => nl2br($manufacturers_description) ?? '',
+                'manufacturer_description' => $manufacturers_description ?? '',
               ];
 
               $this->app->db->save('manufacturers_info', $sql_data_array, $update_sql_data);
@@ -93,7 +94,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 //-------------------
           if (isset($_POST['option_gpt_seo_title'])) {
             $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question . ' ' . $manufacturers_name;
-            $seo_product_title = ChatGptAdmin35::getGptResponse($seo_product_title);
+            $seo_product_title = Gpt::getGptResponse($seo_product_title);
 
             if ($seo_product_title !== false) {
               $sql_data_array = [
@@ -108,7 +109,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 //-------------------
           if (isset($_POST['option_gpt_seo_title'])) {
             $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $manufacturers_name;
-            $seo_product_description = ChatGptAdmin35::getGptResponse($seo_product_description);
+            $seo_product_description = Gpt::getGptResponse($seo_product_description);
 
             if ($seo_product_description !== false) {
               $sql_data_array = [
@@ -123,7 +124,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 //-------------------
           if (isset($_POST['option_gpt_seo_keywords'])) {
             $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords . ' ' . $manufacturers_name;
-            $seo_product_keywords = ChatGptAdmin35::getGptResponse($seo_product_keywords);
+            $seo_product_keywords = Gpt::getGptResponse($seo_product_keywords);
 
             if ($seo_product_keywords !== false) {
               $sql_data_array = [
@@ -138,8 +139,9 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 //-------------------
 //image
 //-------------------
+/*
       if (isset($_POST['option_gpt_create_image'])) {
-        $image = ChatGptAdmin35::createImageChatGpt($manufacturers_name, 'manufacturers');
+        $image = Gpt::createImageChatGpt($manufacturers_name, 'manufacturers');
 
         if (!empty($image) || $image !== false) {
           $sql_data_array = [
@@ -153,6 +155,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
           $this->app->db->save('manufacturers', $sql_data_array, $update_sql_data);
         }
       }
+*/
     }
   }
 }
