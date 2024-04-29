@@ -17,7 +17,7 @@ use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
 
 class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {
@@ -27,22 +27,19 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 
     $this->app = Registry::get('ChatGpt');
 
-    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/seo_chat_gpt');
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Manufacturer/seo_chat_gpt');
   }
 
   public function execute()
   {
     $CLICSHOPPING_Language = Registry::get('Language');
-/*
+
     if (Gpt::checkGptStatus() === false) {
       return false;
     }
-*/
+
     if (isset($_GET['Insert'], $_GET['Manufacturers'])) {
-      $question = $this->app->getDef('text_seo_page_title_question');
-      $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
       $translate_language = $this->app->getDef('text_seo_page_translate_language');
-      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
 
       $Qcheck = $this->app->db->prepare('select manufacturers_id,
                                                   manufacturers_name
@@ -74,10 +71,12 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
           ];
 
 //-------------------
-// products description
+// Manufacturer description
 //-------------------
           if (isset($_POST['option_gpt_description'])) {
-            $manufacturers_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $manufacturers_name;
+            $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['brand_name' => $manufacturers_name]);
+
+            $manufacturers_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description;
             $manufacturers_description = Gpt::getGptResponse($manufacturers_description);
 
             if ($manufacturers_description !== false) {
@@ -93,7 +92,9 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 // Seo Title
 //-------------------
           if (isset($_POST['option_gpt_seo_title'])) {
-            $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question . ' ' . $manufacturers_name;
+            $question = $this->app->getDef('text_seo_page_title_question', ['brand_name' => $manufacturers_name]);
+
+            $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question;
             $seo_product_title = Gpt::getGptResponse($seo_product_title);
 
             if ($seo_product_title !== false) {
@@ -107,8 +108,10 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 //-------------------
 // Seo description
 //-------------------
-          if (isset($_POST['option_gpt_seo_title'])) {
-            $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $manufacturers_name;
+          if (isset($_POST['option_gpt_seo_description'])) {
+            $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['brand_name' => $manufacturers_name]);
+
+            $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description;
             $seo_product_description = Gpt::getGptResponse($seo_product_description);
 
             if ($seo_product_description !== false) {
@@ -123,7 +126,9 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 // Seo keywords
 //-------------------
           if (isset($_POST['option_gpt_seo_keywords'])) {
-            $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords . ' ' . $manufacturers_name;
+            $question_keywords = $this->app->getDef('text_seo_page_keywords_question', ['brand_name' => $manufacturers_name]);
+
+            $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords;
             $seo_product_keywords = Gpt::getGptResponse($seo_product_keywords);
 
             if ($seo_product_keywords !== false) {

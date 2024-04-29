@@ -27,22 +27,19 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 
     $this->app = Registry::get('ChatGpt');
 
-    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/seo_chat_gpt');
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Categories/seo_chat_gpt');
   }
 
   public function execute()
   {
     $CLICSHOPPING_Language = Registry::get('Language');
-/*
+
     if (Gpt::checkGptStatus() === false) {
       return false;
     }
-*/
+
     if (isset($_GET['Insert'], $_GET['Categories'])) {
-      $question = $this->app->getDef('text_seo_page_title_question');
-      $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
       $translate_language = $this->app->getDef('text_seo_page_translate_language');
-      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
 
       $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
@@ -78,8 +75,8 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 // categories description
 //-------------------
           if (isset($_POST['option_gpt_description'])) {
-            $question_description = $this->app->getDef('text_categories_description');
-            $categories_description = $translate_language . ' ' . $language_name . ' ' . $question_description . ' ' . $categories_name;
+            $question_description = $this->app->getDef('text_categories_description', ['category_name' => $categories_name]);
+            $categories_description = $translate_language . ' ' . $language_name . ' ' . $question_description;
             $categories_description = Gpt::getGptResponse($categories_description);
 
             if ($categories_description !== false) {
@@ -94,7 +91,9 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 // Seo Title
 //-------------------
           if (isset($_POST['option_gpt_seo_title'])) {
-            $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question . ' ' . $categories_name;
+            $question = $this->app->getDef('text_seo_page_title_question', ['category_name' => $categories_name]);
+
+            $seo_product_title = $translate_language . ' ' . $language_name . ' : ' . $question;
             $seo_product_title = Gpt::getGptResponse($seo_product_title);
 
             if ($seo_product_title !== false) {
@@ -109,7 +108,9 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 // Seo description
 //-------------------
           if (isset($_POST['option_gpt_seo_title'])) {
-            $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description . ' ' . $categories_name;
+            $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['category_name' => $categories_name]);
+
+            $seo_product_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description;
             $seo_product_description = Gpt::getGptResponse($seo_product_description);
 
             if ($seo_product_description !== false) {
@@ -124,7 +125,9 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 // Seo keywords
 //-------------------
           if (isset($_POST['option_gpt_seo_keywords'])) {
-            $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords . ' ' . $categories_name;
+            $question_keywords = $this->app->getDef('text_seo_page_keywords_question', ['category_name' => $categories_name]);
+
+            $seo_product_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords;
             $seo_product_keywords = Gpt::getGptResponse($seo_product_keywords);
 
             if ($seo_product_keywords !== false) {

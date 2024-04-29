@@ -34,11 +34,11 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
   {
     $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
     $CLICSHOPPING_Language = Registry::get('Language');
-/*
+
     if (Gpt::checkGptStatus() === false) {
       return false;
     }
-*/
+
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Categories/seo_chat_gpt');
 
     if (isset($_GET['cID'])) {

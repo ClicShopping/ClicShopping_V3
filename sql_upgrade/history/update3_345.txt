@@ -1,0 +1,8 @@
+
+#french
+INSERT INTO `clic_configuration` VALUES(null, 'Souhaitez-vous activer la création automatique /supression des Coups de Coeur ?', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS', 'False', 'Activer la création automatique /supression des Coups de Coeur', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Score minimum accepté pour créer automatiquement un coup de coeur', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_MIN_SCORE', '2.1', 'Permet de créer automatiquement un coup de coeur si le score est plus important que le score moyen du produit', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
+
+#english
+INSERT INTO `clic_configuration` VALUES(null, 'Do you want to activate the automatic creation / remove favorites ?', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_STATUS', 'False', 'Activate the automatic creation / remove favorites', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);
+INSERT INTO `clic_configuration` VALUES(null, 'Score minimum accepted to create a favorites', 'CLICSHOPPING_APP_RECOMMENDATIONS_PR_FAVORITES_MIN_SCORE', '2.1', 'Allow to create automatically a favorites if the score is more important as average product score', 6, 0, NULL, '2023-09-08 13:18:11', NULL, NULL);

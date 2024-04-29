@@ -119,7 +119,6 @@ class Gpt {
       return $chat;
     }
 
-
   /**
    * @return OpenAIChat
    * @throws \Exception

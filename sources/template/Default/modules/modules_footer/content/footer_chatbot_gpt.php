@@ -19,7 +19,7 @@ use ClicShopping\OM\CLICSHOPPING;
               <?php echo MODULES_FOOTER_CHATBOT_GPT_NAME . ' ' . CLICSHOPPING::getDef('module_footer_chatbot_gpt_listen'); ?>
             </h7>
           </div>
-          <div class="card-body" id="chat-messages" style="position: relative; height: 400px">
+          <div class="card-body" id="chat-messages" style="position: relative;">
             <!-- Messages will appear here -->
           </div>
           <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">

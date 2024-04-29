@@ -11,7 +11,6 @@
 namespace ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop;
 
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\GptShop;
 
 class ChatGptShop
 {

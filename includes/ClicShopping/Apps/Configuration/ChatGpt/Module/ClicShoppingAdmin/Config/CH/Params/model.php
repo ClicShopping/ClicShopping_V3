@@ -10,7 +10,7 @@
 
 namespace ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\CH\Params;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
 use ClicShopping\OM\HTML;
 
 class model extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
@@ -26,7 +26,7 @@ class model extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShopping
 
   public function getInputField()
   {
-    $array = ChatGptAdmin35::getGptModel();
+    $array = Gpt::getGptModel();
 
     $input = HTML::selectField($this->key, $array, $this->getInputValue(), 'id="engine"');
 

@@ -31,29 +31,30 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 
   public function display()
   {
-/*
+
     if (Gpt::checkGptStatus() === false) {
       return false;
     }
-*/
+
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/SEO/seo_chat_gpt');
 
     if (empty(STORE_NAME)) {
       return false;
     }
+    
     $store_name = HTML::outputProtected(STORE_NAME);
 
     $translate_language = $this->app->getDef('text_seo_page_translate_language');
-    $question_title = $this->app->getDef('text_seo_page_title_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
-    $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
-    $question_keywords = $this->app->getDef('text_seo_page_keywords_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
-    $question_tag = $this->app->getDef('text_seo_page_tag_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $question_title = $this->app->getDef('text_seo_page_title_question', ['store_name' => $store_name]);
+    $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['store_name' => $store_name]);
+    $question_keywords = $this->app->getDef('text_seo_page_keywords_question', ['store_name' => $store_name]);
+    $question_tag = $this->app->getDef('text_seo_page_tag_question', ['store_name' => $store_name]);
 
-    $text_tag_specials = $this->app->getDef('text_tag_specials', ['store_name' => HTML::outputProtected(STORE_NAME)]);
-    $text_tag_favorite = $this->app->getDef('text_tag_favorite', ['store_name' => HTML::outputProtected(STORE_NAME)]);
-    $text_tag_featured = $this->app->getDef('text_tag_featured', ['store_name' => HTML::outputProtected(STORE_NAME)]);
-    $text_tag_products_new = $this->app->getDef('text_tag_products_new', ['store_name' => HTML::outputProtected(STORE_NAME)]);
-    $text_tag_review = $this->app->getDef('text_tag_review', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $text_tag_specials = $this->app->getDef('text_tag_specials', ['store_name' => $store_name]);
+    $text_tag_favorite = $this->app->getDef('text_tag_favorite', ['store_name' => $store_name]);
+    $text_tag_featured = $this->app->getDef('text_tag_featured', ['store_name' => $store_name]);
+    $text_tag_products_new = $this->app->getDef('text_tag_products_new', ['store_name' => $store_name]);
+    $text_tag_review = $this->app->getDef('text_tag_review', ['store_name' => $store_name]);
 
     $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
     $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';
@@ -61,9 +62,9 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 
     $output = '';
 
-//    if (Gpt::checkGptStatus() === true) {
-      $url = Gpt::getAjaxUrl(false);
-//    }
+    if (Gpt::checkGptStatus() === true) {
+      return false;
+    }
 
     $urlMultilanguage = Gpt::getAjaxSeoMultilanguageUrl();
 
@@ -98,9 +99,9 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
     $getInfoFeaturedKeywords = ChatJsAdminSeo::getInfoFeaturedKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $store_name, $text_tag_featured, $url);
 
 // Recommendations
-    $question_title = $this->app->getDef('text_seo_page_recommendations_title_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
-    $question_summary_description = $this->app->getDef('text_seo_page_recommendations_description_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
-    $question_keywords = $this->app->getDef('text_seo_page_recommendations_keywords_question', ['store_name' => HTML::outputProtected(STORE_NAME)]);
+    $question_title = $this->app->getDef('text_seo_page_recommendations_title_question', ['store_name' => $store_name]);
+    $question_summary_description = $this->app->getDef('text_seo_page_recommendations_description_question', ['store_name' => $store_name]);
+    $question_keywords = $this->app->getDef('text_seo_page_recommendations_keywords_question', ['store_name' => $store_name]);
 
     $getInfoSeoRecommendationsTitle = ChatJsAdminSeo::getInfoSeoRecommendationsTitle($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);
     $getInfoSeoRecommendationsDescription = ChatJsAdminSeo::getInfoSeoRecommendationsDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $store_name, $url);

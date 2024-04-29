@@ -13,10 +13,10 @@ namespace ClicShopping\Apps\Configuration\ChatGpt\Module\Hooks\Shop\Reviews;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\ChatGptShop35;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\GptShop;
 use ClicShopping\Apps\Customers\reviews\Classes\Shop\ReviewsClass;
 
-class saveEntry implements \ClicShopping\OM\Modules\HooksInterface
+class SaveEntry implements \ClicShopping\OM\Modules\HooksInterface
 {
   protected mixed $productsCommon;
   protected mixed $reviewsShop;
@@ -108,7 +108,7 @@ class saveEntry implements \ClicShopping\OM\Modules\HooksInterface
       return false;
     }
 
-    if (ChatGptShop35::checkGptStatus() === false) {
+    if (GptShop::checkGptStatus() === false) {
       return false;
     }
 
@@ -126,7 +126,7 @@ class saveEntry implements \ClicShopping\OM\Modules\HooksInterface
 
     $question = 'Provide up in ' . $language_name . ' to 6 comma-separated tags indicating the sentiment of the customer review. Please exclude the prompt\'s response and any other unrelated information. The customer review : ' . $customer_review;
 
-    $tag = ChatGptShop35::getGptResponse($question, 15, 0.7);
+    $tag = GptShop::getGptResponse($question, 15, 0.7);
 
     if (self::getReviewsId() !== false && !empty($tag)) {
       self::saveReviews(self::getReviewsId(), $tag);

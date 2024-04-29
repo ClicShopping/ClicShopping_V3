@@ -102,11 +102,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
   {
     $CLICSHOPPING_Language = Registry::get('Language');
     $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
-/*
+
     if (Gpt::checkGptStatus() === false) {
       return false;
     }
-*/
+
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/SEO/seo_chat_gpt');
 
     $id = HTML::sanitize($_GET['rID']);

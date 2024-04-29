@@ -12,9 +12,10 @@
   color: #888;
 }
 
-#chatbot-messages {
-  overflow-y: auto;
-  max-height: 400px;
+#chat-messages {
+  position: relative;
+  max-height: 400px; /* Définissez la hauteur maximale souhaitée */
+  overflow-y: auto; /* Activer le défilement vertical automatique */
 }
 
 #chat-messages a {
@@ -29,4 +30,8 @@
 #chat-messages a:hover {
   color: #ff0000;
   text-decoration: none;
+}
+
+.scroll-bottom {
+  overflow-y: scroll;
 }

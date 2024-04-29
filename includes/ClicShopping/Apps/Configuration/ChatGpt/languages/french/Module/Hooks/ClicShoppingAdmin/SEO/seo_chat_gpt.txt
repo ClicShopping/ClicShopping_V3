@@ -1,10 +1,10 @@
 text_seo_page_title = SEO Page de Titre
 
 text_seo_expertise = Tu es un expert en marketing SEO.
-text_seo_page_title_question = Donnes-moi en moins de 50 mots le SEO Titre concernant cet site internet : {{store_name}}. Supprime la réponse du prompt.
-text_seo_page_tag_question = Donnes-moi juste en 5 mots clefs sèparès par une virgule concernant cesite internet : {{store_name}}. Supprime la réponse du prompt.
-text_seo_page_keywords_question = Donnes-moi juste en 7 mots clefs sèparès par une virgule concernant cesite internet : {{store_name}}. Supprime la réponse du prompt.
-text_seo_page_summary_description_question = Donnes-moi en moins de 50 mots une description trés courte concernant cetsite internet : {{store_name}}. Supprime la réponse du prompt.
+text_seo_page_title_question = Donnes-moi en moins de 50 mots le SEO Titre concernant cet site internet : {{store_name}}. Supprime la réponse du prompt, donnes uniquement la réponse brut.
+text_seo_page_tag_question = Donnes-moi juste en 5 mots clefs sèparès par une virgule concernant cesite internet : {{store_name}}. Supprime la réponse du prompt, donnes uniquement la réponse brut.
+text_seo_page_keywords_question = Donnes-moi juste en 7 mots clefs sèparès par une virgule concernant cesite internet : {{store_name}}. Supprime la réponse du prompt, donnes uniquement la réponse brut.
+text_seo_page_summary_description_question = Donnes-moi en moins de 50 mots une description trés courte concernant cetsite internet : {{store_name}}. Supprime la réponse du prompt, donnes uniquement la réponse brut.
 text_seo_page_translate_language = Peux tu traduire la réponse en
 
 text_tag_specials = Produits promotionnels
@@ -15,9 +15,9 @@ text_tag_review = Commentaires produits
 text_tag_recommendations = Recommendations produits
 text_seo_action = Action Gpt
 
-text_seo_page_recommendations_title_question = Donnes-moi un titre SEO pour des recommandations de produit en moins de 50 caractéres concernant : {{store_name}}. Supprime la réponse du prompt.
-text_seo_page_recommendations_description_question = Donnes-moi une description trés courte en moins de 250 mots clefs concernant des recommandations de produit concernant : {{store_name}}. Supprime la réponse du prompt.
-text_seo_page_recommendations_keywords_question = Donnes-moi en moins de 70 mots clefs, 5 tags, sèparès par une virgule, concernant des recommandations de produits concernant : {{store_name}}. Supprime la réponse du prompt.
+text_seo_page_recommendations_title_question = Donnes-moi un titre SEO pour des recommandations de produit en moins de 50 caractéres concernant : {{store_name}}. Supprime la réponse du prompt, donnes uniquement la réponse brut.
+text_seo_page_recommendations_description_question = Donnes-moi une description trés courte en moins de 250 mots clefs concernant des recommandations de produit concernant : {{store_name}}. Supprime la réponse du prompt, donnes uniquement la réponse brut.
+text_seo_page_recommendations_keywords_question = Donnes-moi en moins de 70 mots clefs, 5 tags, sèparès par une virgule, concernant des recommandations de produits concernant : {{store_name}}. Supprime la réponse du prompt, donnes uniquement la réponse brut.
 
 text_seo_page_recommendations_translate_language = Peux tu traduire la réponse en
 title_help_seo = Aide

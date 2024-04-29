@@ -33,23 +33,22 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 
   public function display()
   {
-    /*
+
     if (Gpt::checkGptStatus() === false) {
       return false;
     }
-*/
 
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Manufacturer/seo_chat_gpt');
 
     if (isset($_GET['mID'])) {
       $id = HTML::sanitize($_GET['mID']);
-
-      $question = $this->app->getDef('text_seo_page_title_question');
-      $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
-      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
-      $translate_language = $this->app->getDef('text_seo_page_translate_language');
-
       $manufacturer_name = ManufacturerAdmin::getManufacturerNameById($id);
+
+      $question = $this->app->getDef('text_seo_page_title_question', ['brand_name' => $manufacturer_name]);
+      $question_keywords = $this->app->getDef('text_seo_page_keywords_question', ['brand_name' => $manufacturer_name]);
+      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['brand_name' => $manufacturer_name]);
+      $translate_language = $this->app->getDef('text_seo_page_translate_language', ['brand_name' => $manufacturer_name]);
+
 
       $url = Gpt::getAjaxUrl(false);
       $urlMultilanguage = Gpt::getAjaxSeoMultilanguageUrl();

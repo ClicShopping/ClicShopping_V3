@@ -150,6 +150,20 @@ function sendMessage() {
     document.getElementById(\'message\').value = \'\';
 }
 
+// Function to check if user is at the bottom of the textarea
+function checkScrollPosition() {
+    var chatMessages = document.getElementById(\'chat-messages\');
+    var isUserAtBottom = chatMessages.scrollTop + chatMessages.clientHeight === chatMessages.scrollHeight;
+
+    if (isUserAtBottom) {
+        chatMessages.classList.add(\'scroll-bottom\');
+    } else {
+        chatMessages.classList.remove(\'scroll-bottom\');
+    }
+}
+
+// Add scroll event listener to the chat-messages div
+document.getElementById(\'chat-messages\').addEventListener(\'scroll\', checkScrollPosition);
 ';
 
     $footer_tag .= '</script>';

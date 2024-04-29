@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\gpt;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
 
 use function defined;
 use function is_null;
@@ -25,7 +25,7 @@ class GptShop
    */
   public static function checkGptStatus(): bool
   {
-    return gpt::checkGptStatus();
+    return Gpt::checkGptStatus();
   }
 
   /**
@@ -52,7 +52,7 @@ class GptShop
    * @return bool|string
    * @throws \LLPhant\Exception\MissingParameterExcetion
    */
-  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null, ?string $engine = null)
+  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null)
   {
     if (self::checkGptStatus() === false) {
       return false;
@@ -68,7 +68,7 @@ class GptShop
       $temperature = 0.5;
     }
 
-    $response = gpt::getGptResponse($question, $maxtoken, $temperature, $engine);
+    $response = Gpt::getGptResponse($question, $maxtoken, $temperature);
 /*
     try {
       $result = $response['choices'][0]['message']['content'];
@@ -218,7 +218,6 @@ class GptShop
                     and p.products_view = 1
                     and p.products_status = 1
                     and p.products_archive = 0
-                    and (g.customers_group_id = 0 or g.customers_group_id = 99)            
                   ';
       }
 
@@ -245,7 +244,7 @@ class GptShop
 
       if (!empty($question_result)) {
         $result = CLICSHOPPING::getDef('text_chatbot_ok', ['question' => $question]);
-        $result .= GptShop::getGptResponse($searchQueries);
+        $result .= GptShop::getGptResponse($question);
       } else {
         $result = CLICSHOPPING::getDef('text_chatbot_not_ok');
       }

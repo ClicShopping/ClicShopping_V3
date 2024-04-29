@@ -46,7 +46,7 @@ class CustomerGroupTab3 implements \ClicShopping\OM\Modules\HooksInterface
                                               from :table_products
                                               where products_id =  :products_id
                                               ');
-      $Qproducts->bindInt(':products_id', $_GET['pID']);
+      $Qproducts->bindInt(':products_id', (int)$_GET['pID']);
       $Qproducts->execute();
 
       return $Qproducts->fetchAll();
