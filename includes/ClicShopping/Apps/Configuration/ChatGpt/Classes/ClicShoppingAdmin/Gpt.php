@@ -228,10 +228,7 @@ class Gpt {
     $prompt = HTML::sanitize($question);
     $result = self::getChat($question, $maxtoken, $temperature, $engine, $max)->generateText($prompt);
 
-    //$usage_gpt_token = self::getOpenAiGpt(null)->getGptToken($prompt);
-    //self::saveData($prompt, $result, $usage_gpt_token, $engine);
-
-    return $result;
+     return $result;
   }
 
   /**
@@ -459,7 +456,7 @@ class Gpt {
      let apiGptUrl = "' . $url . '";
      let apiKeyGpt = "' . CLICSHOPPING_APP_CHATGPT_CH_API_KEY . '";
      ' . $organization . ';
-     let modelGpt =  "gpt-3.5-turbo";
+     let modelGpt =  "' . $model . '";
      let frequency_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_FREQUENCY_PENALITY . '");
      let presence_penalty_gpt = parseFloat("' . (float)CLICSHOPPING_APP_CHATGPT_CH_PRESENCE_PENALITY . '");
      let max_tokens_gpt = parseInt("' . (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN . '");
@@ -475,40 +472,4 @@ class Gpt {
 
     return $script;
   }
-
-  //**************************************
-  //                  RAG
-  //**************************************
-  /**
-   * @param string $document
-   * @return \LLPhant\Embeddings\Document[]
-   */
-  public static function embedding(string $file_name, $document, string $question)
-  {
-    $dataReader = new FileDataReader(__DIR__ . '/' . $file_name);
-    $documents = $dataReader->getDocuments();
-
-    $splitDocuments = DocumentSplitter::splitDocuments($documents, 500);
-
-    $embeddingGenerator = new OpenAIEmbeddingGenerator();
-    $embeddedDocuments = $embeddingGenerator->embedDocuments($splitDocuments);
-
-    $memoryVectorStore = new MemoryVectorStore();
-    $memoryVectorStore->addDocuments($embeddedDocuments);
-
-
-//Once the vectorStore is ready, you can then use the QuestionAnswering class to answer questions
-    $qa = new QuestionAnswering(
-      $memoryVectorStore,
-      $embeddingGenerator,
-      new OpenAIChat()
-    );
-
-    $answer = $qa->answerQuestion($question);
-
-    return $answer;
-  }
-
-
-
 }

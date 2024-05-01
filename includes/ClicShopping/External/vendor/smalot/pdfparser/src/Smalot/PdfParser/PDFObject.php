@@ -214,13 +214,31 @@ class PDFObject
             return '';
         }
 
-        // Outside of (String) content in PDF document streams, all
-        // text should conform to UTF-8. Test for binary content by
-        // deleting everything after the first open-parenthesis ( which
-        // indicates the beginning of a string. Then test what remains
-        // for valid UTF-8. If it's not UTF-8, return an empty string
-        // as this $content is most likely binary.
-        if (false === mb_check_encoding(preg_replace('/\(.*$/s', '', $content), 'UTF-8')) {
+        // Outside of (String) and inline image content in PDF document
+        // streams, all text should conform to UTF-8. Test for binary
+        // content by deleting everything after the first open-
+        // parenthesis ( which indicates the beginning of a string, or
+        // the first ID command which indicates the beginning of binary
+        // inline image content. Then test what remains for valid
+        // UTF-8. If it's not UTF-8, return an empty string as this
+        // $content is most likely binary. Unfortunately, using
+        // mb_check_encoding(..., 'UTF-8') is not strict enough, so the
+        // following regexp, adapted from the W3, is used. See:
+        // https://www.w3.org/International/questions/qa-forms-utf-8.en
+        // We use preg_replace() instead of preg_match() to avoid "JIT
+        // stack limit exhausted" errors on larger files.
+        $utf8Filter = preg_replace('/(
+            [\x09\x0A\x0D\x20-\x7E] |            # ASCII
+            [\xC2-\xDF][\x80-\xBF] |             # non-overlong 2-byte
+            \xE0[\xA0-\xBF][\x80-\xBF] |         # excluding overlongs
+            [\xE1-\xEC\xEE\xEF][\x80-\xBF]{2} |  # straight 3-byte
+            \xED[\x80-\x9F][\x80-\xBF] |         # excluding surrogates
+            \xF0[\x90-\xBF][\x80-\xBF]{2} |      # planes 1-3
+            [\xF1-\xF3][\x80-\xBF]{3} |          # planes 4-15
+            \xF4[\x80-\x8F][\x80-\xBF]{2}        # plane 16
+        )/xs', '', preg_replace('/(\(|ID\s).*$/s', '', $content));
+
+        if ('' !== $utf8Filter) {
             return '';
         }
 
@@ -282,12 +300,12 @@ class PDFObject
         //       PDF 32000:2008 lists them as 'i' and 'ri' respectively. Both versions
         //       appear here in the list for completeness.
         $operators = [
-          'b*', 'b', 'BDC', 'BMC', 'B*', 'BI', 'BT', 'BX', 'B', 'cm', 'cs', 'c', 'CS',
-          'd0', 'd1', 'd', 'Do', 'DP', 'EMC', 'EI', 'ET', 'EX', 'f*', 'f', 'F', 'gs',
-          'g', 'G',  'h', 'i', 'ID', 'I', 'j', 'J', 'k', 'K', 'l', 'm', 'MP', 'M', 'n',
-          'q', 'Q', 're', 'rg', 'ri', 'rI', 'RG', 'scn', 'sc', 'sh', 's', 'SCN', 'SC',
-          'S', 'T*', 'Tc', 'Td', 'TD', 'Tf', 'TJ', 'Tj', 'TL', 'Tm', 'Tr', 'Ts', 'Tw',
-          'Tz', 'v', 'w', 'W*', 'W', 'y', '\'', '"',
+            'b*', 'b', 'BDC', 'BMC', 'B*', 'BI', 'BT', 'BX', 'B', 'cm', 'cs', 'c', 'CS',
+            'd0', 'd1', 'd', 'Do', 'DP', 'EMC', 'EI', 'ET', 'EX', 'f*', 'f', 'F', 'gs',
+            'g', 'G',  'h', 'i', 'ID', 'I', 'j', 'J', 'k', 'K', 'l', 'm', 'MP', 'M', 'n',
+            'q', 'Q', 're', 'rg', 'ri', 'rI', 'RG', 'scn', 'sc', 'sh', 's', 'SCN', 'SC',
+            'S', 'T*', 'Tc', 'Td', 'TD', 'Tf', 'TJ', 'Tj', 'TL', 'Tm', 'Tr', 'Ts', 'Tw',
+            'Tz', 'v', 'w', 'W*', 'W', 'y', '\'', '"',
         ];
         foreach ($operators as $operator) {
             $content = preg_replace(

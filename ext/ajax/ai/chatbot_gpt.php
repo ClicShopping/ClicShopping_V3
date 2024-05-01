@@ -12,7 +12,7 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\ChatGptShop35;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\Shop\GptShop;
 
 define('CLICSHOPPING_BASE_DIR', __DIR__ . '/../../../includes/ClicShopping/');
 
@@ -26,7 +26,7 @@ CLICSHOPPING::loadSite('Shop');
 $CLICSHOPPING_Db = Registry::get('Db');
 $CLICSHOPPING_Language = Registry::get('Language');
 
-if (!\defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') || CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'False' || empty('CLICSHOPPING_APP_CHATGPT_CH_API_KEY')) {
+if (GptShop::checkGptStatus() === false) {
   return false;
 }
 
@@ -44,12 +44,12 @@ if (isset($_POST['message'])) {
     The request to analyse : " . $question;
 
   try {
-    $result = ChatGptShop35::getGptResponse($prompt, $max_token = 20, $temperature = 0);
+    $result = GptShop::getGptResponse($prompt, $max_token = 20, $temperature = 0);
   } catch (Exception $e) {
     $result = 'Error';
   }
 
-  $search_result = ChatGptShop35::productSearch($question, $result);
+  $search_result = GptShop::productSearch($question, $result);
 
   echo nl2br($search_result);
 }

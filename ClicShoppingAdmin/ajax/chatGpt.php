@@ -11,7 +11,7 @@
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatGptAdmin35;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
 
 define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/ClicShopping/') . '/');
 
@@ -25,7 +25,7 @@ CLICSHOPPING::loadSite('ClicShoppingAdmin');
 $prompt = HTML::sanitize($_POST['message']);
 
 $saveGpt = isset($_POST['saveGpt']) ? HTML::sanitize($_POST['saveGpt']) : null;
-$result = ChatGptAdmin35::getGptResponse($prompt);
+$result = Gpt::getGptResponse($prompt);
 
 $pos = strstr($result, ':');
 
