@@ -5,6 +5,7 @@ Add llphant librairies
 Allow to use some different modal on the server (need a dedicated server and ollama installled)
 Small bugs
 Add Ollama and Gpt inside one class
+Remove Dall-E
 
 --------------------
 version 3.448

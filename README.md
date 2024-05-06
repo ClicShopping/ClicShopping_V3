@@ -3,7 +3,7 @@
 </p>
 
 # ClicShoppingAI
-Unlock the potential of your online business with ClicShoppingAI(tm), a powerful open-source Ecommerce solution that supports B2B, B2C, and B2B-B2C. Now integrated with cutting-edge artificial intelligence systems like Gpt and Bard (coming soon), ClicShoppingAI takes your store to new heights!
+Unlock the potential of your online business with ClicShoppingAI(tm), a powerful open-source Ecommerce solution that supports B2B, B2C, and B2B-B2C. Now integrated with cutting-edge generative artificial intelligence systems like Gpt and Ollama, ClicShoppingAI takes your store to new heights!
 
 Boost Your Competitiveness - Absolutely Free!
 ClicShoppingAI helps merchants increase their turnover and competitiveness and the best part is, it's completely free! With AI on your side, you can optimize inventory, offer personalized recommendations, and provide top-notch customer service, all without breaking the bank.
@@ -119,7 +119,7 @@ More information in the Wiki
 #Functionnalities (some)
 - B2B - B2C full functionalities
 - GPT API integration
-- Generative artificial Intelligence included with Gpt and Dall E
+- Generative artificial Intelligence included with Gpt and Ollama
 - Generative artificial products customers recommendations
 - Generative artificial intelligence for All content (product,categories...)
 - Generative artificial intelligence for SEO
