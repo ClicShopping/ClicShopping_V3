@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '7970fe006bbe646eba8c4b8ba202f5aeb38de434',
+        'reference' => '8129ab99aa3219fdd8ddcdff1721df589ebd97bb',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '7970fe006bbe646eba8c4b8ba202f5aeb38de434',
+            'reference' => '8129ab99aa3219fdd8ddcdff1721df589ebd97bb',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -256,7 +256,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-latest',
             'version' => 'dev-latest',
-            'reference' => 'f9d568f4dfd55d0a2a306d67330dde426277e0dc',
+            'reference' => '386924e51b2e98d13dcc88bb530807046edbda90',
             'type' => 'metapackage',
             'install_path' => null,
             'aliases' => array(
@@ -424,9 +424,9 @@
             'dev_requirement' => false,
         ),
         'theodo-group/llphant' => array(
-            'pretty_version' => '0.6.6',
-            'version' => '0.6.6.0',
-            'reference' => '0c1da3650e1c92c5087fabac5d248b344df212dc',
+            'pretty_version' => '0.6.7',
+            'version' => '0.6.7.0',
+            'reference' => 'fbe576064c7857d82618f6e88e1079d41dda580e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../theodo-group/llphant',
             'aliases' => array(),

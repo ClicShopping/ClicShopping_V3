@@ -43,13 +43,12 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 
     if (isset($_GET['cID'])) {
       $id = HTML::sanitize($_GET['cID']);
-
-      $question = $this->app->getDef('text_seo_page_title_question');
-      $question_keywords = $this->app->getDef('text_seo_page_keywords_question');
-      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question');
-      $translate_language = $this->app->getDef('text_seo_page_translate_language');
-
       $categories_name = $CLICSHOPPING_CategoriesAdmin->getCategoryName($id, $CLICSHOPPING_Language->getId());
+
+      $question = $this->app->getDef('text_seo_page_title_question', ['category_name' , $categories_name]);
+      $question_keywords = $this->app->getDef('text_seo_page_keywords_question', ['category_name' , $categories_name]);
+      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['category_name' , $categories_name]);
+      $translate_language = $this->app->getDef('text_seo_page_translate_language');
 
       $url = Gpt::getAjaxUrl(false);
       $urlMultilanguage = Gpt::getAjaxSeoMultilanguageUrl();
@@ -58,9 +57,9 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
       $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';
       $content .= '</button>';
 
-      $getCategoriesSeoTitle = ChatJsAdminSeo::getCategoriesSeoTitle($content, $urlMultilanguage, $translate_language, $question, $categories_name, $url);
-      $getCategoriesSeoDescription = ChatJsAdminSeo::getCategoriesSeoDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $categories_name, $url);
-      $getCategoriesSeoKeywords = ChatJsAdminSeo::getCategoriesSeoKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $categories_name, $url);
+      $getCategoriesSeoTitle = ChatJsAdminSeo::getCategoriesSeoTitle($content, $urlMultilanguage, $translate_language, $question, $url);
+      $getCategoriesSeoDescription = ChatJsAdminSeo::getCategoriesSeoDescription($content, $urlMultilanguage, $translate_language, $question_summary_description, $url);
+      $getCategoriesSeoKeywords = ChatJsAdminSeo::getCategoriesSeoKeywords($content, $urlMultilanguage, $translate_language, $question_keywords, $url);
 
 $output = <<<EOD
 <!------------------>
