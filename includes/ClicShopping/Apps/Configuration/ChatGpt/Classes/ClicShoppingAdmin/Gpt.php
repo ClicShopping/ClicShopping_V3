@@ -17,21 +17,17 @@ use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\Adm
 
 use LLPhant\Chat\OllamaChat;
 use LLPhant\Chat\OpenAIChat;
-use LLPhant\Embeddings\DocumentSplitter\DocumentSplitter;
-use LLPhant\Embeddings\EmbeddingFormatter\EmbeddingFormatter;
-use LLPhant\Embeddings\EmbeddingGenerator\OpenAI\OpenAI3SmallEmbeddingGenerator;
-use LLPhant\Embeddings\VectorStores\Memory\MemoryVectorStore;
 use LLPhant\Exception\MissingParameterExcetion;
 use LLPhant\OpenAIConfig;
 use LLPhant\OllamaConfig;
-use LLPhant\Embeddings\EmbeddingGenerator\OpenAI;
-use LLPhant\Query\SemanticSearch\QuestionAnswering;
+use LLPhant\Chat\TokenUsage;
 
 
 use function defined;
 use function is_null;
 
 class Gpt {
+  private static $usage;
 
   public function __construct() {
   }
@@ -116,6 +112,8 @@ class Gpt {
 
       $chat = new OpenAIChat($config);
 
+      static::$usage = $chat->usage;
+
       return $chat;
     }
 
@@ -163,7 +161,6 @@ class Gpt {
       }
 
       $chat = self::getOpenAiGpt($parameters);
-
 
       return $chat;
     } else {
@@ -226,10 +223,16 @@ class Gpt {
     }
 
     $prompt = HTML::sanitize($question);
+
     $result = self::getChat($question, $maxtoken, $temperature, $engine, $max)->generateText($prompt);
 
-     return $result;
+    if (strpos(CLICSHOPPING_APP_CHATGPT_CH_MODEL, 'gpt') === 0) {
+      self::saveData($question, $result, $engine);
+    }
+
+    return $result;
   }
+
 
   /**
    * @param string $question
@@ -237,9 +240,12 @@ class Gpt {
    * @param array $usage
    * @param string|null $engine
    */
-  private static function saveData(string $question, string $result, array $usage, ?string $engine): void
+  private static function saveData(string $question, string $result,?string $engine): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
+    $promptTokens = 0;
+    $completionTokens = 0;
+    $totalTokens = 0;
 
     $array_sql = [
       'question' => $question,
@@ -256,16 +262,20 @@ class Gpt {
                                            limit 1
                                           ');
     $QlastId->execute();
-/*
-    $modelArray = self::getGptModel(); // Get the array of models
-    $modelId = $modelArray[0]['id']; // Get the 'id' of the first model
-    $engine = $modelId; // Assign the model ID to the $engine variable
-*/
+
+    $usage = static::$usage;
+
+    if ($usage instanceof TokenUsage) {
+      $promptTokens = $usage->Prompt_Tokens;
+      $completionTokens = $usage->Completion_Tokens;
+      $totalTokens = $usage->Total_Tokens;
+    }
+
     $array_usage_sql = [
       'gpt_id' => $QlastId->valueInt('gpt_id'),
-      'promptTokens' => $usage[0]['text'], // Accéder à la valeur de 'prompt_tokens'
-      'completionTokens' => $usage[2]['text'], // Accéder à la valeur de 'completion_tokens'
-      'totalTokens' => $usage[1]['text'], // Accéder à la valeur de 'total_tokens
+      'promptTokens' => $promptTokens, // Accéder à la valeur de 'prompt_tokens'
+      'completionTokens' => $completionTokens, // Accéder à la valeur de 'completion_tokens'
+      'totalTokens' => $totalTokens, // Accéder à la valeur de 'total_tokens
       'ia_type' => 'GPT',
       'model' => $engine,
       'date_added' => 'now()'
