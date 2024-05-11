@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'e41bafe1fb53104df4bfd1ce4c0456725035c84f',
+        'reference' => 'e0b463da545f9832a8d440fca73b09e2e669e422',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'e41bafe1fb53104df4bfd1ce4c0456725035c84f',
+            'reference' => 'e0b463da545f9832a8d440fca73b09e2e669e422',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -198,9 +198,9 @@
             ),
         ),
         'psr/http-factory' => array(
-            'pretty_version' => '1.0.2',
-            'version' => '1.0.2.0',
-            'reference' => 'e616d01114759c4c489f93b099585439f795fe35',
+            'pretty_version' => '1.1.0',
+            'version' => '1.1.0.0',
+            'reference' => '2b4765fddfe3b508ac62f829e852b1501d3f6e8a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../psr/http-factory',
             'aliases' => array(),
@@ -256,7 +256,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-latest',
             'version' => 'dev-latest',
-            'reference' => '386924e51b2e98d13dcc88bb530807046edbda90',
+            'reference' => '6bdc6b064ecc2d47fd9aad5f3dce20f2a7dfcd64',
             'type' => 'metapackage',
             'install_path' => null,
             'aliases' => array(
@@ -292,9 +292,9 @@
             'dev_requirement' => false,
         ),
         'stripe/stripe-php' => array(
-            'pretty_version' => 'v14.5.0',
-            'version' => '14.5.0.0',
-            'reference' => '5e0a29ebbe5506126b2cb26f560b0f22d73f1857',
+            'pretty_version' => 'v14.6.0',
+            'version' => '14.6.0.0',
+            'reference' => 'cc4108812a0b6db06041e520fe340f6d8ecfeff1',
             'type' => 'library',
             'install_path' => __DIR__ . '/../stripe/stripe-php',
             'aliases' => array(),
