@@ -15,7 +15,6 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
 
-use function defined;
 use function is_null;
 
 class GptShop
@@ -47,10 +46,8 @@ class GptShop
    * @param string $question
    * @param int|null $maxtoken
    * @param float|null $temperature
-   * @param string|null $engine
-   * @param int|null $max
    * @return bool|string
-   * @throws \LLPhant\Exception\MissingParameterExcetion
+   * @throws \Exception
    */
   public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null)
   {
@@ -68,36 +65,17 @@ class GptShop
       $temperature = 0.5;
     }
 
-    $response = Gpt::getGptResponse($question, $maxtoken, $temperature);
-/*
-    try {
-      $result = $response['choices'][0]['message']['content'];
-
-      $array_usage = [
-        'promptTokens' => $response->usage->promptTokens,
-        'completionTokens' => $response->usage->completionTokens,
-        'totalTokens' => $response->usage->totalTokens,
-      ];
-
-      static::saveData($question, $result, $array_usage);
-
-      return $result;
-    } catch (RuntimeException $e) {
-      throw new \Exception('Error appears, please look the console error');
-
-      return false;
+    if (strpos(CLICSHOPPING_APP_CHATGPT_CH_MODEL, 'gpt') === 0) {
+      $engine = CLICSHOPPING_APP_CHATGPT_CH_MODEL;
+      $response = Gpt::getGptResponse($question, $maxtoken, $temperature, $engine);
+    } else {
+      //ollama
+      $response = Gpt::getGptResponse($question, $maxtoken, $temperature);
     }
-*/
+
+	    
     return $response;
   }
-
-
-
-
-
-
-
-
 
   /**
    * @param int $max_token
@@ -120,47 +98,6 @@ class GptShop
     }
   }
 
-  /**
-   * @param string $prompt
-   * @param string $result
-   * @param array $usage
-   */
-  private static function saveData(string $question, string $result, array $usage): void
-  {
-    $CLICSHOPPING_Db = Registry::get('Db');
-
-    $array_sql = [
-      'question' => $question,
-      'response' => $result,
-      'date_added' => 'now()',
-      'user_admin' => 'Chatbot Front Office'
-    ];
-
-    $CLICSHOPPING_Db->save('gpt', $array_sql);
-
-    $QlastId = $CLICSHOPPING_Db->prepare('select gpt_id
-                                           from :table_gpt
-                                           order by gpt_id desc
-                                           limit 1
-                                          ');
-    $QlastId->execute();
-
-    $modelArray = self::getGptModel(); // Get the array of models
-    $modelId = $modelArray[0]['id']; // Get the 'id' of the first model
-    $engine = $modelId; // Assign the model ID to the $engine variable
-
-    $array_usage_sql = [
-      'gpt_id' => $QlastId->valueInt('gpt_id'),
-      'promptTokens' => $usage['promptTokens'],
-      'completionTokens' => $usage['completionTokens'],
-      'totalTokens' => $usage['totalTokens'],
-      'ia_type' => 'GPT',
-      'model' => $engine,
-      'date_added' => 'now()'
-    ];
-
-    $CLICSHOPPING_Db->save('gpt_usage', $array_usage_sql);
-  }
 
   /**
    * @param string $question

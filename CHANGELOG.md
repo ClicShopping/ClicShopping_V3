@@ -2,7 +2,8 @@
 version 3.450
 Librairies updated
 Add stats gpt usage removed in  3.449
-
+gpt app and module refactoring
+code refactoring for better compatibility
 
 --------------------
 version 3.449
