@@ -38,7 +38,7 @@ class Reviews extends \ClicShopping\OM\AppAbstract
 
       if ($dir = new \DirectoryIterator($directory)) {
         foreach ($dir as $file) {
-          if (!$file->isDot() && $file->isDir() && is_file($file->getPathname() . '/' . $file->getFilename() . '.php')) {
+          if (!$file->isDot() && $file->isDir() && is_file($file->getPathname() . DIRECTORY_SEPARATOR . $file->getFilename() . '.php')) {
             $class = '' . $name_space_config . '\\' . $file->getFilename() . '\\' . $file->getFilename();
 
             if (is_subclass_of($class, '' . $name_space_config . '\ConfigAbstract')) {

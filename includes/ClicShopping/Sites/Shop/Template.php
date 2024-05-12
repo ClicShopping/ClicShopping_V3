@@ -283,7 +283,7 @@ class Template
       $template = $this->getCode();
     }
 
-    return CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Templates/' . $template . '/' . $file;
+    return CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Templates/' . $template . DIRECTORY_SEPARATOR . $file;
   }
 
   /*
@@ -298,7 +298,7 @@ class Template
       $template = $this->getCode();
     }
 
-    return CLICSHOPPING::linkPublic('Templates/' . $template . '/' . $file);
+    return CLICSHOPPING::linkPublic('Templates/' . $template . DIRECTORY_SEPARATOR . $file);
   }
 
   /**
@@ -410,9 +410,9 @@ class Template
 
   public function getPathDirectoryTemplateThema(): string
   {
-    if (is_file($this->getPathRoot() . $this->setSiteThema() . '/' . $this->_directoryTemplateFiles . 'index.php')) {
+    if (is_file($this->getPathRoot() . $this->setSiteThema() . DIRECTORY_SEPARATOR . $this->_directoryTemplateFiles . 'index.php')) {
       $thema = $this->setSiteThema() . '/';
-    } elseif (is_file($this->getPathRoot() . $this->getDefaultTemplateDirectory() . '/' . $this->_directoryTemplateFiles . 'index.php')) {
+    } elseif (is_file($this->getPathRoot() . $this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $this->_directoryTemplateFiles . 'index.php')) {
       $thema = $this->getDefaultTemplateDirectory() . '/';
     } else {
       HTTP::redirect(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'error_documents/error_template.php');
@@ -521,9 +521,9 @@ class Template
 // module language
             if (!class_exists($class)) {
               if (CLICSHOPPING::getSite('ClicShoppingAdmin')) {
-                $CLICSHOPPING_Language->loadDefinitions('modules/' . $group . '/' . pathinfo($module, PATHINFO_FILENAME));
+                $CLICSHOPPING_Language->loadDefinitions('modules/' . $group . DIRECTORY_SEPARATOR . pathinfo($module, PATHINFO_FILENAME));
               } else {
-                $CLICSHOPPING_Language->loadDefinitions('sources/template/Default/modules/' . $group . '/' . pathinfo($module, PATHINFO_FILENAME));
+                $CLICSHOPPING_Language->loadDefinitions('sources/template/Default/modules/' . $group . DIRECTORY_SEPARATOR . pathinfo($module, PATHINFO_FILENAME));
               }
 //mode privee ou ouvert - affichage des boxes gauche ou droite
               if (MODE_VENTE_PRIVEE == 'true' && $CLICSHOPPING_Customer->isLoggedOn()) {
@@ -536,19 +536,19 @@ class Template
 
               if ($group == $modules_boxes) {
 //check the module exist inside the template or take default template
-                if (is_file($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php')) {
-                  include($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php');
-                } elseif (is_file($this->getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php')) {
-                  include($this->getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                if (is_file($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php')) {
+                  include($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php');
+                } elseif (is_file($this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php')) {
+                  include($this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php');
                 } else {
-                  if (is_file($this->_directoryIncludes . $this->_directoryModules . $group . '/' . $class . '.php')) {
-                    include($this->_directoryIncludes . $this->_directoryModules . $group . '/' . $class . '.php');
+                  if (is_file($this->_directoryIncludes . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php')) {
+                    include($this->_directoryIncludes . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php');
                   }
                 }
               } else {
 //default module
-                if (is_file($this->_directoryIncludes . $this->_directoryModules . $group . '/' . $class . '.php')) {
-                  include($this->_directoryIncludes . $this->_directoryModules . $group . '/' . $class . '.php');
+                if (is_file($this->_directoryIncludes . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php')) {
+                  include($this->_directoryIncludes . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php');
                 }
               }
 
@@ -557,19 +557,19 @@ class Template
                 $result = array_search($group, $this->getReadModulesDefaultDirectories());
 
                 if (!is_null($result)) {
-                  if (is_file($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php')) {
-                    include($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php');
-                  } elseif (is_file($this->getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php')) {
-                    include($this->getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                  if (is_file($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php')) {
+                    include($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php');
+                  } elseif (is_file($this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php')) {
+                    include($this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php');
                   } else {
-                    if (is_file($this->_directoryIncludes . $this->_directoryModules . $group . '/' . $class . '.php')) {
-                      include($this->_directoryIncludes . $this->_directoryModules . $group . '/' . $class . '.php');
+                    if (is_file($this->_directoryIncludes . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php')) {
+                      include($this->_directoryIncludes . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php');
                     }
                   }
                 } else {
                   if ($group != $modules_boxes) {
-                    if (is_file($this->_directoryIncludes . $this->_directoryModules . $group . '/' . $class . '.php')) {
-                      include($this->_directoryIncludes . $this->_directoryModules . $group . '/' . $class . '.php');
+                    if (is_file($this->_directoryIncludes . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php')) {
+                      include($this->_directoryIncludes . $this->_directoryModules . $group . DIRECTORY_SEPARATOR . $class . '.php');
                     }
                   }
                 }
@@ -702,7 +702,7 @@ class Template
     if (file_exists($this->getPathDirectoryTemplateThema() . $name . '.php')) {
       $themaFiles = $this->getPathDirectoryTemplateThema() . $name . '.php';
     } else {
-      $themaFiles = $this->getDefaultTemplateDirectory() . '/' . $name . '.php';
+      $themaFiles = $this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $name . '.php';
     }
 
     return $themaFiles;
@@ -717,14 +717,14 @@ class Template
   public function getTemplateCSS(): string
   {
     $CLICSHOPPING_Language = Registry::get('Language');
-    if (is_file($this->getPathRoot() . '/' . $this->getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
-      $themaCSS = CLICSHOPPING::link($this->getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php');
+    if (is_file($this->getPathRoot() . DIRECTORY_SEPARATOR . $this->getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . DIRECTORY_SEPARATOR . 'compressed_css.php')) {
+      $themaCSS = CLICSHOPPING::link($this->getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . DIRECTORY_SEPARATOR . 'compressed_css.php');
     } else {
-      $themaCSS = CLICSHOPPING::link($this->getDefaultTemplateDirectory() . '/' . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php');
+      $themaCSS = CLICSHOPPING::link($this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . DIRECTORY_SEPARATOR . 'compressed_css.php');
     }
 
 // if current does'nt exist take default
-    if (!is_file($this->getPathRoot() . '/' . $this->getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
+    if (!is_file($this->getPathRoot() . DIRECTORY_SEPARATOR . $this->getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . DIRECTORY_SEPARATOR . 'compressed_css.php')) {
       $themaCSS = CLICSHOPPING::link($this->getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . 'english/' . 'compressed_css.php');
     }
 
@@ -743,7 +743,7 @@ class Template
     if (is_file($this->getPathDirectoryTemplateThema() . $this->_directoryTemplateFiles . $name . '.php')) {
       $themaFiles = $this->getPathDirectoryTemplateThema() . $this->_directoryTemplateFiles . $name . '.php';
     } else {
-      $themaFiles = $this->getDefaultTemplateDirectory() . '/' . $this->_directoryTemplateFiles . $name . '.php';
+      $themaFiles = $this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $this->_directoryTemplateFiles . $name . '.php';
     }
 
     return $themaFiles;
@@ -761,7 +761,7 @@ class Template
     if (is_file($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $name . '.php')) {
       $themaFiles = $this->getPathDirectoryTemplateThema() . $this->_directoryModules . $name . '.php';
     } else {
-      $themaFiles = $this->getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $name . '.php';
+      $themaFiles = $this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $this->_directoryModules . $name . '.php';
     }
 
     return $themaFiles;
@@ -780,7 +780,7 @@ class Template
     if (is_file($this->getPathDirectoryTemplateThema() . $this->_directoryModules . $name)) {
       $themaFilename = $this->getPathDirectoryTemplateThema() . $this->_directoryModules . $name;
     } else {
-      $themaFilename = $this->getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $name;
+      $themaFilename = $this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $this->_directoryModules . $name;
     }
 
     return $themaFilename;
@@ -797,13 +797,13 @@ class Template
   {
     $CLICSHOPPING_Language = Registry::get('Language');
 
-    if (is_file($this->getPathRoot() . $this->getPathDirectoryTemplateThema() . $this->_directoryTemplateLanguages . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
-      $languagefiles = $this->getPathDirectoryTemplateThema() . $this->_directoryTemplateLanguages . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
-      if (is_file($this->getPathRoot() . $this->getSiteTemplateLanguageDirectory() . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
-        $languagefiles = $this->getSiteTemplateLanguageDirectory() . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
+    if (is_file($this->getPathRoot() . $this->getPathDirectoryTemplateThema() . $this->_directoryTemplateLanguages . $CLICSHOPPING_Language->get('directory') . DIRECTORY_SEPARATOR . $name . '.php')) {
+      $languagefiles = $this->getPathDirectoryTemplateThema() . $this->_directoryTemplateLanguages . $CLICSHOPPING_Language->get('directory') . DIRECTORY_SEPARATOR . $name . '.php';
+      if (is_file($this->getPathRoot() . $this->getSiteTemplateLanguageDirectory() . $CLICSHOPPING_Language->get('directory') . DIRECTORY_SEPARATOR . $name . '.php')) {
+        $languagefiles = $this->getSiteTemplateLanguageDirectory() . $CLICSHOPPING_Language->get('directory') . DIRECTORY_SEPARATOR . $name . '.php';
       }
     } else {
-      $languagefiles = $this->getSiteTemplateLanguageDirectory() . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
+      $languagefiles = $this->getSiteTemplateLanguageDirectory() . $CLICSHOPPING_Language->get('directory') . DIRECTORY_SEPARATOR . $name . '.php';
     }
 
     return $languagefiles;
@@ -817,7 +817,7 @@ class Template
    */
   public function getTemplateDefaultJavaScript(string $name): string
   {
-    $javascript = CLICSHOPPING::getSite('Shop') . '/' . $this->_directoryTemplateSources . $this->_directoryJavascript . $name;
+    $javascript = CLICSHOPPING::getSite('Shop') . DIRECTORY_SEPARATOR . $this->_directoryTemplateSources . $this->_directoryJavascript . $name;
 
     return $javascript;
   }
@@ -833,7 +833,7 @@ class Template
     if (is_file($this->getPathDirectoryTemplateThema() . $this->_directoryJavascript . $name)) {
       $javascript = $this->getPathDirectoryTemplateThema() . $this->_directoryJavascript . $name;
     } else {
-      $javascript = $this->getDefaultTemplateDirectory() . '/' . $this->_directoryJavascript . $name;
+      $javascript = $this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $this->_directoryJavascript . $name;
     }
 
     return $javascript;

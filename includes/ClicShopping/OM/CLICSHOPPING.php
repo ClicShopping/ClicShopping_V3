@@ -338,7 +338,7 @@ class CLICSHOPPING
       $page = $matches[2];
     }
 
-    $args[0] = $req_site . '/' . self::getConfig('http_images_path', $req_site) . $page;
+    $args[0] = $req_site . DIRECTORY_SEPARATOR . self::getConfig('http_images_path', $req_site) . $page;
 
     $url = forward_static_call_array('self::link', $args);
 
@@ -370,7 +370,7 @@ class CLICSHOPPING
       $page = $matches[2];
     }
 
-    $args[0] = 'Shop/public/Sites/' . $req_site . '/' . $page;
+    $args[0] = 'Shop/public/Sites/' . $req_site . DIRECTORY_SEPARATOR . $page;
 
     $url = forward_static_call_array('self::link()', $args);
 
@@ -523,7 +523,7 @@ class CLICSHOPPING
     if (strncmp($prefix, $class, strlen($prefix)) !== 0) {
       $class_path = str_replace('\\', '/', $class);
 
-      $file = self::BASE_DIR . 'External' . '/' . $class_path . '.php';
+      $file = self::BASE_DIR . 'External' . DIRECTORY_SEPARATOR . $class_path . '.php';
 
       if (is_file($file)) {
         require_once($file);
@@ -541,7 +541,7 @@ class CLICSHOPPING
 
         foreach ($dir as $f) {
           if (!$f->isDot() && $f->isDir()) {
-            $file = $f->getPath() . '/' . $f->getFilename() . '/' . 'External' . '/' . $class_path . '.php';
+            $file = $f->getPath() . DIRECTORY_SEPARATOR . $f->getFilename() . DIRECTORY_SEPARATOR . 'External' . DIRECTORY_SEPARATOR . $class_path . '.php';
 
             if (is_file($file)) {
               require($file);
@@ -556,10 +556,10 @@ class CLICSHOPPING
     }
 
     if (strncmp($prefix . 'OM\Module\\', $class, strlen($prefix . 'OM\Module\\')) === 0) { // TODO remove and fix namespace
-      $file = dirname(self::BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['', '/'], $class) . '.php';
-      $custom = dirname(self::BASE_DIR) . '/' . str_replace(['ClicShopping\OM\\', '\\'], ['ClicShopping\Custom\OM\\', '/'], $class) . '.php';
+      $file = dirname(self::BASE_DIR) . DIRECTORY_SEPARATOR . str_replace(['ClicShopping\OM\\', '\\'], ['', '/'], $class) . '.php';
+      $custom = dirname(self::BASE_DIR) . DIRECTORY_SEPARATOR . str_replace(['ClicShopping\OM\\', '\\'], ['ClicShopping\Custom\OM\\', '/'], $class) . '.php';
     } else {
-      $file = dirname(self::BASE_DIR) . '/' . str_replace('\\', '/', $class) . '.php';
+      $file = dirname(self::BASE_DIR) . DIRECTORY_SEPARATOR . str_replace('\\', '/', $class) . '.php';
       $custom = str_replace('ClicShopping/OM/', 'ClicShopping/Custom/OM/', $file);
     }
 

@@ -3665,17 +3665,17 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.6.8",
-            "version_normalized": "0.6.8.0",
+            "version": "0.6.9",
+            "version_normalized": "0.6.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "26c2b1eaae77cb1c425967a7d3a713331c2d3c06"
+                "reference": "c561cf5f998e75db25311b65d9a74bed0482ce53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/26c2b1eaae77cb1c425967a7d3a713331c2d3c06",
-                "reference": "26c2b1eaae77cb1c425967a7d3a713331c2d3c06",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/c561cf5f998e75db25311b65d9a74bed0482ce53",
+                "reference": "c561cf5f998e75db25311b65d9a74bed0482ce53",
                 "shasum": ""
             },
             "require": {
@@ -3708,7 +3708,7 @@
                 "hkulekci/qdrant": "This is required for the QdrantVectoreStore.",
                 "predis/predis": "This is required for the RedisVectoreStore."
             },
-            "time": "2024-05-07T09:55:09+00:00",
+            "time": "2024-05-12T09:43:21+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3737,7 +3737,7 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.8"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.9"
             },
             "install-path": "../theodo-group/llphant"
         }

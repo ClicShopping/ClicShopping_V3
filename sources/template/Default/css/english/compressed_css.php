@@ -53,7 +53,7 @@ function get_files($root_dir, $all_data = [])
   $dir_content = scandir($root_dir, SCANDIR_SORT_ASCENDING);
 
   foreach ($dir_content as $key => $content) {
-    $path = $root_dir . '/' . $content;
+    $path = $root_dir . DIRECTORY_SEPARATOR . $content;
     if (is_file($path) && is_readable($path)) {
 // skip ignored files
       if (!\in_array($content, $ignore_files)) {

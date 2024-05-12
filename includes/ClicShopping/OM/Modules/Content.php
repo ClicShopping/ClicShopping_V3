@@ -23,7 +23,7 @@ class Content extends \ClicShopping\OM\ModulesAbstract
       $class = $this->ns . $app . '\\' . $class;
 
       if (is_subclass_of($class, 'ClicShopping\OM\Modules\\' . $this->code . 'Interface')) {
-        $result[$key . '/' . $app . '\\' . $code] = $class;
+        $result[$key . DIRECTORY_SEPARATOR . $app . '\\' . $code] = $class;
       }
     }
 

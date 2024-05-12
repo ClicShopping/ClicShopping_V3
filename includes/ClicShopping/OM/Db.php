@@ -897,7 +897,7 @@ class Db extends PDO
     $this->exec('SET FOREIGN_KEY_CHECKS = 0');
 
     if ($migrate === true) {
-      $directory = CLICSHOPPING::BASE_DIR . 'Custom/Schema/' . CLICSHOPPING::getVersionDirectory() . '/';
+      $directory = CLICSHOPPING::BASE_DIR . 'Custom/Schema/' . CLICSHOPPING::getVersionDirectory() . DIRECTORY_SEPARATOR;
     } else {
       $directory = CLICSHOPPING::BASE_DIR . 'Custom/Schema/';
     }

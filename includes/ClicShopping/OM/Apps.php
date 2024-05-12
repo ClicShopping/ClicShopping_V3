@@ -28,7 +28,7 @@ class Apps
     if ($vdir = new DirectoryIterator($apps_directory)) {
       foreach ($vdir as $vendor) {
         if (!$vendor->isDot() && $vendor->isDir()) {
-          if ($adir = new DirectoryIterator($vendor->getPath() . '/' . $vendor->getFilename())) {
+          if ($adir = new DirectoryIterator($vendor->getPath() . DIRECTORY_SEPARATOR . $vendor->getFilename())) {
             foreach ($adir as $app) {
               if (!$app->isDot() && $app->isDir() && static::exists($vendor->getFilename() . '\\' . $app->getFilename())) {
                 if (($json = static::getInfo($vendor->getFilename() . '\\' . $app->getFilename())) !== false) {
@@ -83,7 +83,7 @@ class Apps
       if ($vdir = new DirectoryIterator($vendor_directory)) {
         foreach ($vdir as $vendor) {
           if (!$vendor->isDot() && $vendor->isDir() && (!isset($filter_vendor) || ($vendor->getFilename() == $filter_vendor))) {
-            if ($adir = new DirectoryIterator($vendor->getPath() . '/' . $vendor->getFilename())) {
+            if ($adir = new DirectoryIterator($vendor->getPath() . DIRECTORY_SEPARATOR . $vendor->getFilename())) {
               foreach ($adir as $app) {
                 if (!$app->isDot() && $app->isDir() && (!isset($filter_app) || ($app->getFilename() == $filter_app)) && static::exists($vendor->getFilename() . '\\' . $app->getFilename()) && (($json = static::getInfo($vendor->getFilename() . '\\' . $app->getFilename())) !== false)) {
                   if (isset($json['modules'][$type])) {
@@ -164,7 +164,7 @@ class Apps
     if (str_contains($app, '\\')) {
       [$vendor, $app] = explode('\\', $app, 2);
 
-      $metafile = CLICSHOPPING::BASE_DIR . 'Apps/' . basename($vendor) . '/' . basename($app) . '/clicshopping.json';
+      $metafile = CLICSHOPPING::BASE_DIR . 'Apps/' . basename($vendor) . DIRECTORY_SEPARATOR . basename($app) . '/clicshopping.json';
 
       if (is_file($metafile) && (($json = json_decode(file_get_contents($metafile), true)) !== null)) {
         return $json;
@@ -246,7 +246,7 @@ class Apps
       if ($vdir = new DirectoryIterator($vendor_directory)) {
         foreach ($vdir as $vendor) {
           if (!$vendor->isDot() && $vendor->isDir() && (!isset($filter_vendor) || ($vendor->getFilename() == $filter_vendor))) {
-            if ($adir = new DirectoryIterator($vendor->getPath() . '/' . $vendor->getFilename())) {
+            if ($adir = new DirectoryIterator($vendor->getPath() . DIRECTORY_SEPARATOR . $vendor->getFilename())) {
 
               foreach ($adir as $app) {
                 if (!$app->isDot() && $app->isDir() && (!isset($filter_app) || ($app->getFilename() == $filter_app)) && static::exists($vendor->getFilename() . '\\' . $app->getFilename()) && (($json = static::getInfo($vendor->getFilename() . '\\' . $app->getFilename())) !== false)) {

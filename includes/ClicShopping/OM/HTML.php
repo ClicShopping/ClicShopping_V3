@@ -689,7 +689,7 @@ class HTML
       $image_responsive = ' class="img-fluid"';
     }
 
-    return static::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'template/' . SITE_THEMA . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $image, $title, '', '', $parameters, $image_responsive);
+    return static::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'template/' . SITE_THEMA . DIRECTORY_SEPARATOR . $CLICSHOPPING_Language->get('directory') . DIRECTORY_SEPARATOR . $image, $title, '', '', $parameters, $image_responsive);
   }
 
   /**

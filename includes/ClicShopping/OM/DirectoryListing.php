@@ -144,11 +144,11 @@ class DirectoryListing
     if ($dir = @dir($directory)) {
       while (($entry = $dir->read()) !== false) {
         if (!in_array($entry, $this->_exclude_entries)) {
-          if (($this->_include_files === true) && is_file($dir->path . '/' . $entry)) {
+          if (($this->_include_files === true) && is_file($dir->path . DIRECTORY_SEPARATOR . $entry)) {
             if (empty($this->_check_extension) || in_array(mb_strtolower(substr($entry, strrpos($entry, '.') + 1)), $this->_check_extension)) {
               if ($this->_add_directory_to_filename === true) {
                 if ($dir->path !== $this->_directory) {
-                  $entry = substr($dir->path, strlen($this->_directory) + 1) . '/' . $entry;
+                  $entry = substr($dir->path, strlen($this->_directory) + 1) . DIRECTORY_SEPARATOR . $entry;
                 }
               }
 
@@ -156,23 +156,23 @@ class DirectoryListing
 
               if ($this->_stats === true) {
                 $stats = array(
-                  'size' => filesize($dir->path . '/' . $entry),
-                  'permissions' => fileperms($dir->path . '/' . $entry),
-                  'user_id' => fileowner($dir->path . '/' . $entry),
-                  'group_id' => filegroup($dir->path . '/' . $entry),
-                  'last_modified' => filemtime($dir->path . '/' . $entry)
+                  'size' => filesize($dir->path . DIRECTORY_SEPARATOR . $entry),
+                  'permissions' => fileperms($dir->path . DIRECTORY_SEPARATOR . $entry),
+                  'user_id' => fileowner($dir->path . DIRECTORY_SEPARATOR . $entry),
+                  'group_id' => filegroup($dir->path . DIRECTORY_SEPARATOR . $entry),
+                  'last_modified' => filemtime($dir->path . DIRECTORY_SEPARATOR . $entry)
                 );
 
                 $this->_listing[count($this->_listing) - 1] = array_merge($this->_listing[count($this->_listing) - 1], $stats);
               }
             }
-          } elseif (is_dir($dir->path . '/' . $entry)) {
+          } elseif (is_dir($dir->path . DIRECTORY_SEPARATOR . $entry)) {
             if ($this->_include_directories === true) {
               $entry_name = $entry;
 
               if ($this->_add_directory_to_filename === true) {
                 if ($dir->path !== $this->_directory) {
-                  $entry_name = substr($dir->path, strlen($this->_directory) + 1) . '/' . $entry;
+                  $entry_name = substr($dir->path, strlen($this->_directory) + 1) . DIRECTORY_SEPARATOR . $entry;
                 }
               }
 
@@ -180,17 +180,17 @@ class DirectoryListing
 
               if ($this->_stats === true) {
                 $stats = array(
-                  'size' => filesize($dir->path . '/' . $entry),
-                  'permissions' => fileperms($dir->path . '/' . $entry),
-                  'user_id' => fileowner($dir->path . '/' . $entry),
-                  'group_id' => filegroup($dir->path . '/' . $entry),
-                  'last_modified' => filemtime($dir->path . '/' . $entry));
+                  'size' => filesize($dir->path . DIRECTORY_SEPARATOR . $entry),
+                  'permissions' => fileperms($dir->path . DIRECTORY_SEPARATOR . $entry),
+                  'user_id' => fileowner($dir->path . DIRECTORY_SEPARATOR . $entry),
+                  'group_id' => filegroup($dir->path . DIRECTORY_SEPARATOR . $entry),
+                  'last_modified' => filemtime($dir->path . DIRECTORY_SEPARATOR . $entry));
                 $this->_listing[count($this->_listing) - 1] = array_merge($this->_listing[count($this->_listing) - 1], $stats);
               }
             }
 
             if ($this->_recursive === true) {
-              $this->read($dir->path . '/' . $entry);
+              $this->read($dir->path . DIRECTORY_SEPARATOR . $entry);
             }
           }
         }

@@ -128,10 +128,10 @@ class FileSystem
       $dir = dir($source);
       while ($file = $dir->read()) {
         if (($file != '.') && ($file != '..')) {
-          if (FileSystem::isWritable($source . '/' . $file)) {
-            static::rmFile($source . '/' . $file);
+          if (FileSystem::isWritable($source . DIRECTORY_SEPARATOR . $file)) {
+            static::rmFile($source . DIRECTORY_SEPARATOR . $file);
           } else {
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_file_not_removeable') . ' ' . $source . '/' . $file, 'error');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_file_not_removeable') . ' ' . $source . DIRECTORY_SEPARATOR . $file, 'error');
           }
         }
       }

@@ -27,8 +27,6 @@ use function defined;
 use function is_null;
 
 class Gpt {
-  private static $usage;
-
   public function __construct() {
   }
   
@@ -97,28 +95,33 @@ class Gpt {
   }
 
   /**
-   * @param $parameters
+   * @param array|null $parameters
    * @return array
    * @throws \Exception
    */
   public static function getOpenAiGpt(array|null $parameters): mixed
   {
-      $config = new OpenAIConfig();
-      $config->apiKey = CLICSHOPPING_APP_CHATGPT_CH_API_KEY;
 
-      if (!is_null($parameters)) {
+     $config = new OpenAIConfig();
+     $config->apiKey = CLICSHOPPING_APP_CHATGPT_CH_API_KEY;
+
+     if (!is_null($parameters)) {
+        $config->model = $parameters['model'];
         $config->modelOptions = $parameters;
       }
 
       $chat = new OpenAIChat($config);
 
-      static::$usage = $chat->usage;
-
       return $chat;
     }
 
   /**
-   * @return OpenAIChat
+   * @param string $question
+   * @param int|null $maxtoken
+   * @param float|null $temperature
+   * @param string|null $engine
+   * @param int|null $max
+   * @return mixed
    * @throws \Exception
    */
    public static function getOpenAIChat(string $question, ?int $maxtoken = null, ?float $temperature = null, ?string $engine = null, ?int $max = 1): mixed
@@ -155,9 +158,11 @@ class Gpt {
       ];
 
       if (!empty(CLICSHOPPING_APP_CHATGPT_CH_ORGANIZATION)) {
-        $parameters = [
-          'organization' => CLICSHOPPING_APP_CHATGPT_CH_ORGANISATION,
-        ];
+        $parameters['organization'] = CLICSHOPPING_APP_CHATGPT_CH_ORGANISATION;
+      }
+
+      if (!\is_null($engine)) {
+        $parameters['model'] = $engine;
       }
 
       $chat = self::getOpenAiGpt($parameters);
@@ -211,36 +216,54 @@ class Gpt {
    * @param string $question
    * @param int|null $maxtoken
    * @param float|null $temperature
-   * @param string $engine
+   * @param string|null $engine
    * @param int|null $max
    * @return bool|string
-   * @throws MissingParameterExcetion
    */
-  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null, string $engine = 'gpt-3.5-turbo', ?int $max = 1): bool|string
+  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null, ?string $engine = null, ?int $max = 1): bool|string
   {
     if (self::checkGptStatus() === false) {
       return false;
     }
 
+    if (is_null($engine)) {
+      $engine = CLICSHOPPING_APP_CHATGPT_CH_MODEL;
+    }
+
     $prompt = HTML::sanitize($question);
 
-    $result = self::getChat($question, $maxtoken, $temperature, $engine, $max)->generateText($prompt);
+    // Get the chat instance
+    $chat = self::getChat($question, $maxtoken, $temperature, $engine, $max);
+
+    // Generate text using the chat instance
+    $result = $chat->generateText($prompt);
 
     if (strpos(CLICSHOPPING_APP_CHATGPT_CH_MODEL, 'gpt') === 0) {
-      self::saveData($question, $result, $engine);
+      $lastResponse = $chat->getLastResponse();
+
+      if (!is_null($lastResponse)) {
+        $usage = [
+          'prompt_tokens' => $lastResponse['usage']['prompt_tokens'],
+          'completion_tokens' => $lastResponse['usage']['completion_tokens'],
+          'total_tokens' => $lastResponse['usage']['total_tokens']
+        ];
+      } else {
+        $usage = null;
+      }
+
+      self::saveData($question, $result, $engine, $usage);
     }
 
     return $result;
   }
 
-
   /**
    * @param string $question
    * @param string $result
-   * @param array $usage
    * @param string|null $engine
+   * @param array|null $usage
    */
-  private static function saveData(string $question, string $result,?string $engine): void
+  private static function saveData(string $question, string $result, string|null $engine, array|null $usage): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $promptTokens = 0;
@@ -263,12 +286,10 @@ class Gpt {
                                           ');
     $QlastId->execute();
 
-    $usage = static::$usage;
-
-    if ($usage instanceof TokenUsage) {
-      $promptTokens = $usage->Prompt_Tokens;
-      $completionTokens = $usage->Completion_Tokens;
-      $totalTokens = $usage->Total_Tokens;
+    if (!is_null($usage)) {
+      $promptTokens = $usage['prompt_tokens'];
+      $completionTokens = $usage['completion_tokens'];
+      $totalTokens = $usage['total_tokens'];
     }
 
     $array_usage_sql = [
@@ -283,7 +304,6 @@ class Gpt {
 
     $CLICSHOPPING_Db->save('gpt_usage', $array_usage_sql);
   }
-  
   
   /*****************************************
    * Statistiques

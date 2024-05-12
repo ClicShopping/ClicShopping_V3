@@ -40,8 +40,8 @@ class Download extends \ClicShopping\OM\PagesActionsAbstract
           continue;
         }
 
-        if (file_exists($dir . $subdir . '/' . $file)) {
-          unlink($dir . $subdir . '/' . $file);
+        if (file_exists($dir . $subdir . DIRECTORY_SEPARATOR . $file)) {
+          unlink($dir . $subdir . DIRECTORY_SEPARATOR . $file);
         }
       }
 
@@ -113,10 +113,10 @@ class Download extends \ClicShopping\OM\PagesActionsAbstract
 
       umask(0000);
       mkdir($CLICSHOPPING_Template->getPathDownloadShopDirectory('Private') . $tempdir, 0777);
-      symlink($CLICSHOPPING_Template->getPathDownloadShopDirectory('Private') . $Qdownload->value('orders_products_filename'), $CLICSHOPPING_Template->getPathDownloadShopDirectory('Private') . $tempdir . '/' . $Qdownload->value('orders_products_filename'));
+      symlink($CLICSHOPPING_Template->getPathDownloadShopDirectory('Private') . $Qdownload->value('orders_products_filename'), $CLICSHOPPING_Template->getPathDownloadShopDirectory('Private') . $tempdir . DIRECTORY_SEPARATOR . $Qdownload->value('orders_products_filename'));
 
-      if (is_file($CLICSHOPPING_Template->getPathDownloadShopDirectory('Private') . $tempdir . '/' . $Qdownload->value('orders_products_filename'))) {
-        CLICSHOPPING::redirect($CLICSHOPPING_Template->getTemplateSource() . '/Download/Private/' . $tempdir . '/' . $Qdownload->value('orders_products_filename'));
+      if (is_file($CLICSHOPPING_Template->getPathDownloadShopDirectory('Private') . $tempdir . DIRECTORY_SEPARATOR . $Qdownload->value('orders_products_filename'))) {
+        CLICSHOPPING::redirect($CLICSHOPPING_Template->getTemplateSource() . '/Download/Private/' . $tempdir . DIRECTORY_SEPARATOR . $Qdownload->value('orders_products_filename'));
       }
     }
 

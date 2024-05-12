@@ -85,10 +85,10 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
 
   public function getDirectoryPathModuleShopTemplateHtml(string $name): string
   {
-    if (file_exists(parent::getPathRoot() . parent::getDynamicTemplateDirectory() . '/' . $this->directoryAdminModules . $name . '/template_html/')) {
-      $template_directory = parent::getPathRoot() . parent::getDynamicTemplateDirectory() . '/' . $this->directoryAdminModules . $name . '/template_html/';
+    if (file_exists(parent::getPathRoot() . parent::getDynamicTemplateDirectory() . DIRECTORY_SEPARATOR . $this->directoryAdminModules . $name . '/template_html/')) {
+      $template_directory = parent::getPathRoot() . parent::getDynamicTemplateDirectory() . DIRECTORY_SEPARATOR . $this->directoryAdminModules . $name . '/template_html/';
     } else {
-      $template_directory = parent::getPathRoot() . $this->getDefaultTemplateDirectory() . '/' . $this->directoryAdminModules . $name . '/template_html/';
+      $template_directory = parent::getPathRoot() . $this->getDefaultTemplateDirectory() . DIRECTORY_SEPARATOR . $this->directoryAdminModules . $name . '/template_html/';
     }
 
     return $template_directory;
@@ -134,7 +134,7 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
    */
   public function getDirectoryPathModuleShop(): string
   {
-    $modules_catalog_directory = $this->getModulesDirectory() . '/' . $this->directoryAdminModules;
+    $modules_catalog_directory = $this->getModulesDirectory() . DIRECTORY_SEPARATOR . $this->directoryAdminModules;
 
     return $modules_catalog_directory;
   }
@@ -154,7 +154,7 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   {
 
     if (isset($template)) {
-      $template = CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Templates/' . $template . '/' . $file;
+      $template = CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Templates/' . $template . DIRECTORY_SEPARATOR . $file;
     }
 
     return $template;

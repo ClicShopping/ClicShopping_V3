@@ -145,7 +145,7 @@ abstract class AppAbstract
     $this->code = $r->getShortName();
     $this->vendor = \array_slice(explode('\\', $r->getNamespaceName()), -2, 1)[0];
 
-    $metafile = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . '/' . $this->code . '/clicshopping.json';
+    $metafile = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . DIRECTORY_SEPARATOR . $this->code . '/clicshopping.json';
 
     if (!is_file($metafile) || (($json = json_decode(file_get_contents($metafile), true)) === null)) {
       trigger_error('ClicShopping\OM\AppAbstract::setInfo(): ' . $this->vendor . '\\' . $this->code . ' - Could not read App information in ' . $metafile . '.');
@@ -192,7 +192,7 @@ abstract class AppAbstract
   {
     $language_code = isset($language_code) && $this->lang->exists($language_code) ? $language_code : $this->lang->get('code');
 
-    $pathname = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . '/' . $this->code . '/languages/' . $this->lang->get('directory', $language_code) . '/' . $group . '.txt';
+    $pathname = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . DIRECTORY_SEPARATOR . $this->code . '/languages/' . $this->lang->get('directory', $language_code) . DIRECTORY_SEPARATOR . $group . '.txt';
 
     if (is_file($pathname)) {
       return true;
@@ -217,14 +217,14 @@ abstract class AppAbstract
       $this->loadDefinitions($group, DEFAULT_LANGUAGE);
     }
 
-    $pathname = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . '/' . $this->code . '/languages/' . $this->lang->get('directory', $language_code) . '/' . $group . '.txt';
+    $pathname = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . DIRECTORY_SEPARATOR . $this->code . '/languages/' . $this->lang->get('directory', $language_code) . DIRECTORY_SEPARATOR . $group . '.txt';
 
     if (!is_file($pathname)) {
       $language_code = DEFAULT_LANGUAGE;
-      $pathname = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . '/' . $this->code . '/languages/' . $this->lang->get('directory', $language_code) . '/' . $group . '.txt';
+      $pathname = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . DIRECTORY_SEPARATOR . $this->code . '/languages/' . $this->lang->get('directory', $language_code) . DIRECTORY_SEPARATOR . $group . '.txt';
     }
 
-    $group = 'Apps/' . $this->vendor . '/' . $this->code . '/' . $group;
+    $group = 'Apps/' . $this->vendor . DIRECTORY_SEPARATOR . $this->code . DIRECTORY_SEPARATOR . $group;
 
     $defs = $this->lang->getDefinitions($group, $language_code, $pathname);
 
@@ -300,7 +300,7 @@ abstract class AppAbstract
   {
     if ($dir = new DirectoryIterator($directory)) {
       foreach ($dir as $file) {
-        if (!$file->isDot() && $file->isDir() && is_file($file->getPathname() . '/' . $file->getFilename() . '.php')) {
+        if (!$file->isDot() && $file->isDir() && is_file($file->getPathname() . DIRECTORY_SEPARATOR . $file->getFilename() . '.php')) {
           $class = '' . $name_space_config . '\\' . $file->getFilename() . '\\' . $file->getFilename();
 
           if (is_subclass_of($class, '' . $name_space_config . '\ConfigAbstract')) {

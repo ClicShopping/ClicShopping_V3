@@ -194,7 +194,7 @@ class Shop extends \ClicShopping\OM\SitesAbstract
           if ($path_array == array_slice($route, 0, count($path_array))) {
             $result[] = [
               'path' => $path,
-              'destination' => $vendor_app . '/' . $page,
+              'destination' => $vendor_app . DIRECTORY_SEPARATOR . $page,
               'score' => count($path_array)
             ];
           }

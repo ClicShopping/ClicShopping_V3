@@ -328,9 +328,9 @@ class Language
     }
 
     if ($site == 'ClicShoppingAdmin') {
-      $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'includes/languages/' . $this->get('directory', $language_code) . '/' . $group;
+      $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'includes/languages/' . $this->get('directory', $language_code) . DIRECTORY_SEPARATOR . $group;
     } else {
-      $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'sources/languages/' . $this->get('directory', $language_code) . '/' . $group;
+      $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'sources/languages/' . $this->get('directory', $language_code) . DIRECTORY_SEPARATOR . $group;
     }
 
     $pathname .= '.txt';
@@ -372,9 +372,9 @@ class Language
     if (!is_null($force_directory_language)) $site = $force_directory_language;
 
     if ($site == 'ClicShoppingAdmin') {
-      $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'includes/languages/' . $this->get('directory', $language_code) . '/' . $group;
+      $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'includes/languages/' . $this->get('directory', $language_code) . DIRECTORY_SEPARATOR . $group;
     } else {
-      $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'sources/languages/' . $this->get('directory', $language_code) . '/' . $group;
+      $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'sources/languages/' . $this->get('directory', $language_code) . DIRECTORY_SEPARATOR . $group;
     }
 
     $pathname .= '.txt';
@@ -383,7 +383,7 @@ class Language
       call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE, $scope);
     }
 
-    $defs = $this->getDefinitions($site . '/' . $group, $language_code, $pathname);
+    $defs = $this->getDefinitions($site . DIRECTORY_SEPARATOR . $group, $language_code, $pathname);
 
     $this->injectDefinitions($defs, $scope);
   }

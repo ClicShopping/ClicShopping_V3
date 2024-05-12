@@ -130,7 +130,7 @@ class Upload
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
     if ($this->_replace === true) {
-      while (file_exists($this->_destination . '/' . $this->getFilename())) {
+      while (file_exists($this->_destination . DIRECTORY_SEPARATOR . $this->getFilename())) {
 
         $salt = md5(rand(1, 100000));
         $salt = substr($salt, 0, 10);
@@ -140,14 +140,14 @@ class Upload
     }
 
     if ($this->_upload['type'] == 'PUT') {
-      if (rename(CLICSHOPPING::BASE_DIR . 'Work/Temp/' . $this->_upload['temp_filename'], $this->_destination . '/' . $this->getFilename())) {
-        chmod($this->_destination . '/' . $this->getFilename(), $this->_permissions);
+      if (rename(CLICSHOPPING::BASE_DIR . 'Work/Temp/' . $this->_upload['temp_filename'], $this->_destination . DIRECTORY_SEPARATOR . $this->getFilename())) {
+        chmod($this->_destination . DIRECTORY_SEPARATOR . $this->getFilename(), $this->_permissions);
 
         return true;
       }
     } elseif ($this->_upload['type'] == 'POST') {
-      if (move_uploaded_file($this->_upload['tmp_name'], $this->_destination . '/' . $this->getFilename())) {
-        chmod($this->_destination . '/' . $this->getFilename(), $this->_permissions);
+      if (move_uploaded_file($this->_upload['tmp_name'], $this->_destination . DIRECTORY_SEPARATOR . $this->getFilename())) {
+        chmod($this->_destination . DIRECTORY_SEPARATOR . $this->getFilename(), $this->_permissions);
 
         return true;
       }

@@ -57,7 +57,7 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   public function getFile()
   {
     if (isset($this->file)) {
-      return dirname(CLICSHOPPING::BASE_DIR) . '/' . str_replace('\\', '/', (new ReflectionClass($this))->getNamespaceName()) . '/templates/' . $this->file;
+      return dirname(CLICSHOPPING::BASE_DIR) . DIRECTORY_SEPARATOR . str_replace('\\', '/', (new ReflectionClass($this))->getNamespaceName()) . '/templates/' . $this->file;
     } else {
       return false;
     }
