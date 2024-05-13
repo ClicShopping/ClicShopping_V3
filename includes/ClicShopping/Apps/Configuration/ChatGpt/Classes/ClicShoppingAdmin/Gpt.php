@@ -74,7 +74,7 @@ class Gpt {
   {
     $array = [
       ['id' => 'gpt-3.5-turbo', 'text' => 'OpenAI gpt-3.5-turbo'],
-      ['id' => 'gpt4-turbo', 'text' => 'OpenAi gpt4-turbo'],
+      ['id' => 'gpt-4o', 'text' => 'OpenAi gpt-4o'],
       ['id' => 'gemma:7b', 'text' => 'Ollama Gemma:7b'],
       ['id' => 'mistral:7b', 'text' => 'Ollama Mistral:7b'],
     ];
