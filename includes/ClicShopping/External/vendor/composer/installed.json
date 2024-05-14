@@ -1581,12 +1581,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "60e42fbc5481d71199ae7734b7faf28b16b9b2a3"
+                "reference": "9e4c9c09230934de3ccbff68623cab7de1b0e80b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/60e42fbc5481d71199ae7734b7faf28b16b9b2a3",
-                "reference": "60e42fbc5481d71199ae7734b7faf28b16b9b2a3",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/9e4c9c09230934de3ccbff68623cab7de1b0e80b",
+                "reference": "9e4c9c09230934de3ccbff68623cab7de1b0e80b",
                 "shasum": ""
             },
             "conflict": {
@@ -2130,6 +2130,7 @@
                 "socalnick/scn-social-auth": "<1.15.2",
                 "socialiteproviders/steam": "<1.1",
                 "spatie/browsershot": "<3.57.4",
+                "spatie/image-optimizer": "<1.7.3",
                 "spipu/html2pdf": "<5.2.8",
                 "spoon/library": "<1.4.1",
                 "spoonity/tcpdf": "<6.2.22",
@@ -2207,7 +2208,7 @@
                 "tinymighty/wiki-seo": "<1.2.2",
                 "titon/framework": "<9.9.99",
                 "tobiasbg/tablepress": "<=2.0.0.0-RC1",
-                "topthink/framework": "<6.0.14",
+                "topthink/framework": "<6.0.17|>=6.1,<6.1.5|>=8,<8.0.4",
                 "topthink/think": "<=6.1.1",
                 "topthink/thinkphp": "<=3.2.3",
                 "torrentpier/torrentpier": "<=2.4.1",
@@ -2330,7 +2331,7 @@
                 "zfr/zfr-oauth2-server-module": "<0.1.2",
                 "zoujingli/thinkadmin": "<=6.1.53"
             },
-            "time": "2024-05-13T15:05:08+00:00",
+            "time": "2024-05-13T21:04:21+00:00",
             "default-branch": true,
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
@@ -3665,17 +3666,17 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.6.9",
-            "version_normalized": "0.6.9.0",
+            "version": "0.6.10",
+            "version_normalized": "0.6.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "c561cf5f998e75db25311b65d9a74bed0482ce53"
+                "reference": "e7957898b9b3ad7165a5d82f88cccbdbb19cbf74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/c561cf5f998e75db25311b65d9a74bed0482ce53",
-                "reference": "c561cf5f998e75db25311b65d9a74bed0482ce53",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/e7957898b9b3ad7165a5d82f88cccbdbb19cbf74",
+                "reference": "e7957898b9b3ad7165a5d82f88cccbdbb19cbf74",
                 "shasum": ""
             },
             "require": {
@@ -3708,7 +3709,7 @@
                 "hkulekci/qdrant": "This is required for the QdrantVectoreStore.",
                 "predis/predis": "This is required for the RedisVectoreStore."
             },
-            "time": "2024-05-12T09:43:21+00:00",
+            "time": "2024-05-14T07:52:14+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3737,7 +3738,7 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.9"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.10"
             },
             "install-path": "../theodo-group/llphant"
         }
