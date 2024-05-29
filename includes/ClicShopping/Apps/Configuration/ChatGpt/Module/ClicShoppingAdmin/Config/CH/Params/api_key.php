@@ -33,5 +33,4 @@ class api_key extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppi
 
     return $input;
   }
-
 }
