@@ -1581,12 +1581,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "c1fa2bf9896d5ce592bd78a9d01dc6ba836da82f"
+                "reference": "2e530fa2b00d046ceb5660f3139af583170ea7f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/c1fa2bf9896d5ce592bd78a9d01dc6ba836da82f",
-                "reference": "c1fa2bf9896d5ce592bd78a9d01dc6ba836da82f",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/2e530fa2b00d046ceb5660f3139af583170ea7f9",
+                "reference": "2e530fa2b00d046ceb5660f3139af583170ea7f9",
                 "shasum": ""
             },
             "conflict": {
@@ -1906,7 +1906,7 @@
                 "lms/routes": "<2.1.1",
                 "localizationteam/l10nmgr": "<7.4|>=8,<8.7|>=9,<9.2",
                 "luyadev/yii-helpers": "<1.2.1",
-                "magento/community-edition": "<2.4.3.0-patch3|>=2.4.4,<2.4.5",
+                "magento/community-edition": "<2.4.5|==2.4.5|>=2.4.5.0-patch1,<2.4.5.0-patch8|==2.4.6|>=2.4.6.0-patch1,<2.4.6.0-patch6|==2.4.7",
                 "magento/core": "<=1.9.4.5",
                 "magento/magento1ce": "<1.9.4.3-dev",
                 "magento/magento1ee": ">=1,<1.14.4.3-dev",
@@ -2340,7 +2340,7 @@
                 "zfr/zfr-oauth2-server-module": "<0.1.2",
                 "zoujingli/thinkadmin": "<=6.1.53"
             },
-            "time": "2024-06-12T20:04:30+00:00",
+            "time": "2024-06-13T20:04:44+00:00",
             "default-branch": true,
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
@@ -2557,17 +2557,17 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v14.9.0",
-            "version_normalized": "14.9.0.0",
+            "version": "v14.10.0",
+            "version_normalized": "14.10.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "7165f64ec1b19cb0ce288d553909cd68d8e6a3b1"
+                "reference": "7e1c4b5d2beadeaeddc42fd1f8a50fdb18b37f30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/7165f64ec1b19cb0ce288d553909cd68d8e6a3b1",
-                "reference": "7165f64ec1b19cb0ce288d553909cd68d8e6a3b1",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/7e1c4b5d2beadeaeddc42fd1f8a50fdb18b37f30",
+                "reference": "7e1c4b5d2beadeaeddc42fd1f8a50fdb18b37f30",
                 "shasum": ""
             },
             "require": {
@@ -2581,7 +2581,7 @@
                 "phpstan/phpstan": "^1.2",
                 "phpunit/phpunit": "^5.7 || ^9.0"
             },
-            "time": "2024-05-30T20:12:41+00:00",
+            "time": "2024-06-13T21:04:47+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2613,7 +2613,7 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v14.9.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v14.10.0"
             },
             "install-path": "../stripe/stripe-php"
         },
@@ -3678,17 +3678,17 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.6.15",
-            "version_normalized": "0.6.15.0",
+            "version": "0.6.16",
+            "version_normalized": "0.6.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "8478ca0defcc8ac65d2ff15818bc61c3047d706d"
+                "reference": "f33923454f4fe68dc6fc54947decd9be1fdf62d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/8478ca0defcc8ac65d2ff15818bc61c3047d706d",
-                "reference": "8478ca0defcc8ac65d2ff15818bc61c3047d706d",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/f33923454f4fe68dc6fc54947decd9be1fdf62d8",
+                "reference": "f33923454f4fe68dc6fc54947decd9be1fdf62d8",
                 "shasum": ""
             },
             "require": {
@@ -3723,7 +3723,7 @@
                 "predis/predis": "This is required for the RedisVectoreStore.",
                 "symfony/cache": "This is one of the possible types of psr/cache needed by doctrine/orm"
             },
-            "time": "2024-06-12T21:21:13+00:00",
+            "time": "2024-06-13T15:33:42+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3752,7 +3752,7 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.15"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.16"
             },
             "install-path": "../theodo-group/llphant"
         }
