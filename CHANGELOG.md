@@ -4,6 +4,7 @@ Librairies updated
 Add stats gpt usage removed in  3.449
 gpt app and module refactoring
 code refactoring for better compatibility
+aad fields mandatory for products attributes
 
 --------------------
 version 3.449

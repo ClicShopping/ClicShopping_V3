@@ -264,7 +264,7 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
 
                       $inputs .= '<div class="row">
                       <span class="col-md-1">' . $languages[$i]['code'] . ':</span>
-                      <span class="col-md-11">&nbsp;' . HTML::inputField('option_name[' . $languages[$i]['id'] . ']', $QoptionsName->value('products_options_name')) . '&nbsp;</span>
+                      <span class="col-md-11">&nbsp;' . HTML::inputField('option_name[' . $languages[$i]['id'] . ']', $QoptionsName->value('products_options_name'), 'required aria-required="true"') . '&nbsp;</span>
                       </div>
                      ';
 
@@ -322,7 +322,7 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
                 for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                   $inputs .= '<div class="row">
                     <span class="col-md-1">' . $languages[$i]['code'] . ':</span>
-                    <span class="col-md-11">&nbsp;' . HTML::inputField('option_name[' . $languages[$i]['id'] . ']') . '&nbsp;</span>
+                    <span class="col-md-11">&nbsp;' . HTML::inputField('option_name[' . $languages[$i]['id'] . ']', null, 'required aria-required="true"') . '&nbsp;</span>
                     </div>
                     ';
                 }
@@ -502,7 +502,7 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
 
                   $inputs .= '<div class="row">
                         <span class="col-md-1">' . $languages[$i]['code'] . ':</span>
-                        <span class="col-md-11">&nbsp;' . HTML::inputField('value_name[' . $languages[$i]['id'] . ']', $QvaluesName->value('products_options_values_name')) . '</span>
+                        <span class="col-md-11">&nbsp;' . HTML::inputField('value_name[' . $languages[$i]['id'] . ']', $QvaluesName->value('products_options_values_name'), 'required aria-required="true"') . '</span>
                       </div>
                       ';
                 }
@@ -597,7 +597,7 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
 
                     $inputs = '';
                     for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-                      $inputs .= $languages[$i]['code'] . ':&nbsp;' . HTML::inputField('value_name[' . $languages[$i]['id'] . ']') . '<br />';
+                      $inputs .= $languages[$i]['code'] . ':&nbsp;' . HTML::inputField('value_name[' . $languages[$i]['id'] . ']', null, 'required aria-required="true"') . '<br />';
                     }
                     ?>
                   </select>
@@ -792,9 +792,9 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
                   }
                   ?>
                   <td
-                    class="text-end"><?php echo HTML::inputField('value_price', $Qattributes->value('options_values_price')); ?></td>
+                    class="text-end"><?php echo HTML::inputField('value_price', $Qattributes->value('options_values_price'), 'required aria-required="true"'); ?></td>
                   <td
-                    class="text-center"><?php echo HTML::inputField('price_prefix', $Qattributes->value('price_prefix')); ?></td>
+                    class="text-center"><?php echo HTML::inputField('price_prefix', $Qattributes->value('price_prefix'), 'required aria-required="true"'); ?></td>
                   <td></td>
                   <td
                     class="text-center"><?php echo HTML::inputField('value_sort_order', $Qattributes->value('products_options_sort_order')); ?></td>
@@ -832,9 +832,9 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
                           <strong></td>
                       <td
                         colspan="2"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_text_max_days') ?></td>
-                      <td><?php echo HTML::inputField('products_attributes_maxdays', $products_attributes_maxdays); ?></td>
+                      <td><?php echo HTML::inputField('products_attributes_maxdays', $products_attributes_maxdays, 'required aria-required="true"'); ?></td>
                       <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_text_max_count'); ?></td>
-                      <td><?php echo HTML::inputField('products_attributes_maxcount', $products_attributes_maxcount); ?></td>
+                      <td><?php echo HTML::inputField('products_attributes_maxcount', $products_attributes_maxcount, 'required aria-required="true"'); ?></td>
                       <td></td>
                       <td></td>
                     </tr>
