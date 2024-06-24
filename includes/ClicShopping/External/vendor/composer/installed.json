@@ -1581,12 +1581,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "5b38ec8e0b7fdca1e7b95173a15d3cac3a482d1f"
+                "reference": "64eaaecdc0e915ce201f399e4707f83155389e96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/5b38ec8e0b7fdca1e7b95173a15d3cac3a482d1f",
-                "reference": "5b38ec8e0b7fdca1e7b95173a15d3cac3a482d1f",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/64eaaecdc0e915ce201f399e4707f83155389e96",
+                "reference": "64eaaecdc0e915ce201f399e4707f83155389e96",
                 "shasum": ""
             },
             "conflict": {
@@ -1595,7 +1595,7 @@
                 "adodb/adodb-php": "<=5.20.20|>=5.21,<=5.21.3",
                 "aheinze/cockpit": "<2.2",
                 "aimeos/ai-client-html": ">=2020.04.1,<2020.10.27|>=2021.04.1,<2021.10.21|>=2022.04.1,<2022.10.12|>=2023.04.1,<2023.10.14|>=2024.04.1,<2024.04.4",
-                "aimeos/aimeos-core": "<2024.04.7",
+                "aimeos/aimeos-core": ">=2022.04.1,<2022.10.17|>=2023.04.1,<2023.10.17|>=2024.04.1,<2024.04.7",
                 "aimeos/aimeos-typo3": "<19.10.12|>=20,<20.10.5",
                 "airesvsg/acf-to-rest-api": "<=3.1",
                 "akaunting/akaunting": "<2.1.13",
@@ -1869,6 +1869,7 @@
                 "jsdecena/laracom": "<2.0.9",
                 "jsmitty12/phpwhois": "<5.1",
                 "juzaweb/cms": "<=3.4",
+                "jweiland/events2": "<8.3.8|>=9,<9.0.6",
                 "kazist/phpwhois": "<=4.2.6",
                 "kelvinmo/simplexrd": "<3.1.1",
                 "kevinpapst/kimai2": "<1.16.7",
@@ -2145,6 +2146,7 @@
                 "statamic/cms": "<4.46|>=5.3,<5.6.2",
                 "stormpath/sdk": "<9.9.99",
                 "studio-42/elfinder": "<2.1.62",
+                "studiomitte/friendlycaptcha": "<0.1.4",
                 "subhh/libconnect": "<7.0.8|>=8,<8.1",
                 "sukohi/surpass": "<1",
                 "sulu/form-bundle": ">=2,<2.5.3",
@@ -2340,7 +2342,7 @@
                 "zfr/zfr-oauth2-server-module": "<0.1.2",
                 "zoujingli/thinkadmin": "<=6.1.53"
             },
-            "time": "2024-06-19T16:05:03+00:00",
+            "time": "2024-06-21T16:04:36+00:00",
             "default-branch": true,
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
@@ -3678,17 +3680,17 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.6.17",
-            "version_normalized": "0.6.17.0",
+            "version": "0.6.18",
+            "version_normalized": "0.6.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "f289437e0b99190c686438a97aecf49524dc3635"
+                "reference": "4a971e2378f191b8f0d3620603867f5d934a687f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/f289437e0b99190c686438a97aecf49524dc3635",
-                "reference": "f289437e0b99190c686438a97aecf49524dc3635",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/4a971e2378f191b8f0d3620603867f5d934a687f",
+                "reference": "4a971e2378f191b8f0d3620603867f5d934a687f",
                 "shasum": ""
             },
             "require": {
@@ -3702,10 +3704,11 @@
                 "smalot/pdfparser": "^2.7"
             },
             "require-dev": {
+                "codewithkyrian/chromadb-php": "^0.3.0",
                 "doctrine/orm": "^2.13.0",
                 "elasticsearch/elasticsearch": "^8.10",
                 "hkulekci/qdrant": "^v0.5.3",
-                "laravel/pint": "^v1.13.7",
+                "laravel/pint": "v1.15.3",
                 "mockery/mockery": "^1.6",
                 "pestphp/pest": "2.32.0",
                 "pestphp/pest-plugin-arch": "^2.5.0",
@@ -3717,13 +3720,14 @@
                 "symfony/var-dumper": "^6.3.1 || ^7.0.0"
             },
             "suggest": {
+                "codewithkyrian/chromadb-php": "This is required for the ChromaDBVectorStore.",
                 "doctrine/orm": "This is required for the DoctrineVectoreStore. This should be working with any version ^2.13.0",
                 "elasticsearch/elasticsearch": "This is required for the ElasticsearchVectoreStore.",
                 "hkulekci/qdrant": "This is required for the QdrantVectoreStore.",
                 "predis/predis": "This is required for the RedisVectoreStore.",
                 "symfony/cache": "This is one of the possible types of psr/cache needed by doctrine/orm"
             },
-            "time": "2024-06-19T16:07:27+00:00",
+            "time": "2024-06-24T08:24:12+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3752,7 +3756,7 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.17"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.18"
             },
             "install-path": "../theodo-group/llphant"
         }
