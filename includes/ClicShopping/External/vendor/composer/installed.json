@@ -1188,17 +1188,17 @@
         },
         {
             "name": "phpxmlrpc/phpxmlrpc",
-            "version": "4.10.3",
-            "version_normalized": "4.10.3.0",
+            "version": "4.10.4",
+            "version_normalized": "4.10.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gggeek/phpxmlrpc.git",
-                "reference": "6725f215cd7d7c7d36c1d773aa89902aef2da67c"
+                "reference": "ede1b630c57e7092d8946f6c48e852fc63bcfbba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/6725f215cd7d7c7d36c1d773aa89902aef2da67c",
-                "reference": "6725f215cd7d7c7d36c1d773aa89902aef2da67c",
+                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/ede1b630c57e7092d8946f6c48e852fc63bcfbba",
+                "reference": "ede1b630c57e7092d8946f6c48e852fc63bcfbba",
                 "shasum": ""
             },
             "require": {
@@ -1224,7 +1224,7 @@
                 "phpxmlrpc/extras": "Adds more featured Server classes, including self-documenting and ajax-enabled servers",
                 "phpxmlrpc/jsonrpc": "Adds support for the JSON-RPC protocol"
             },
-            "time": "2024-04-23T10:50:06+00:00",
+            "time": "2024-06-27T08:36:24+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1245,7 +1245,7 @@
             ],
             "support": {
                 "issues": "https://github.com/gggeek/phpxmlrpc/issues",
-                "source": "https://github.com/gggeek/phpxmlrpc/tree/4.10.3"
+                "source": "https://github.com/gggeek/phpxmlrpc/tree/4.10.4"
             },
             "install-path": "../phpxmlrpc/phpxmlrpc"
         },
@@ -1581,12 +1581,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "64eaaecdc0e915ce201f399e4707f83155389e96"
+                "reference": "27714b56f04815b654c3805502ab77207505ac19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/64eaaecdc0e915ce201f399e4707f83155389e96",
-                "reference": "64eaaecdc0e915ce201f399e4707f83155389e96",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/27714b56f04815b654c3805502ab77207505ac19",
+                "reference": "27714b56f04815b654c3805502ab77207505ac19",
                 "shasum": ""
             },
             "conflict": {
@@ -1594,7 +1594,7 @@
                 "admidio/admidio": "<4.2.13",
                 "adodb/adodb-php": "<=5.20.20|>=5.21,<=5.21.3",
                 "aheinze/cockpit": "<2.2",
-                "aimeos/ai-client-html": ">=2020.04.1,<2020.10.27|>=2021.04.1,<2021.10.21|>=2022.04.1,<2022.10.12|>=2023.04.1,<2023.10.14|>=2024.04.1,<2024.04.4",
+                "aimeos/ai-client-html": ">=2020.04.1,<2020.10.27|>=2021.04.1,<2021.10.22|>=2022.04.1,<2022.10.13|>=2023.04.1,<2023.10.15|>=2024.04.1,<2024.04.7",
                 "aimeos/aimeos-core": ">=2022.04.1,<2022.10.17|>=2023.04.1,<2023.10.17|>=2024.04.1,<2024.04.7",
                 "aimeos/aimeos-typo3": "<19.10.12|>=20,<20.10.5",
                 "airesvsg/acf-to-rest-api": "<=3.1",
@@ -1977,12 +1977,12 @@
                 "october/cms": "<1.0.469|==1.0.469|==1.0.471|==1.1.1",
                 "october/october": "<=3.4.4",
                 "october/rain": "<1.0.472|>=1.1,<1.1.2",
-                "october/system": "<1.0.476|>=1.1,<1.1.12|>=2,<2.2.34|>=3,<3.5.2",
+                "october/system": "<1.0.476|>=1.1,<1.1.12|>=2,<2.2.34|>=3,<3.5.15",
                 "omeka/omeka-s": "<4.0.3",
                 "onelogin/php-saml": "<2.10.4",
                 "oneup/uploader-bundle": ">=1,<1.9.3|>=2,<2.1.5",
                 "open-web-analytics/open-web-analytics": "<1.7.4",
-                "opencart/opencart": "<=3.0.3.7|>=4,<4.0.2.3-dev",
+                "opencart/opencart": "<=3.0.3.9|>=4",
                 "openid/php-openid": "<2.3",
                 "openmage/magento-lts": "<20.5",
                 "opensolutions/vimbadmin": "<=3.0.15",
@@ -2342,7 +2342,7 @@
                 "zfr/zfr-oauth2-server-module": "<0.1.2",
                 "zoujingli/thinkadmin": "<=6.1.53"
             },
-            "time": "2024-06-21T16:04:36+00:00",
+            "time": "2024-06-26T15:05:17+00:00",
             "default-branch": true,
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
@@ -2681,17 +2681,17 @@
         },
         {
             "name": "symfony/console",
-            "version": "v7.1.1",
-            "version_normalized": "7.1.1.0",
+            "version": "v7.1.2",
+            "version_normalized": "7.1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "9b008f2d7b21c74ef4d0c3de6077a642bc55ece3"
+                "reference": "0aa29ca177f432ab68533432db0de059f39c92ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/9b008f2d7b21c74ef4d0c3de6077a642bc55ece3",
-                "reference": "9b008f2d7b21c74ef4d0c3de6077a642bc55ece3",
+                "url": "https://api.github.com/repos/symfony/console/zipball/0aa29ca177f432ab68533432db0de059f39c92ae",
+                "reference": "0aa29ca177f432ab68533432db0de059f39c92ae",
                 "shasum": ""
             },
             "require": {
@@ -2723,7 +2723,7 @@
                 "symfony/stopwatch": "^6.4|^7.0",
                 "symfony/var-dumper": "^6.4|^7.0"
             },
-            "time": "2024-05-31T14:57:53+00:00",
+            "time": "2024-06-28T10:03:55+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -2757,7 +2757,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v7.1.1"
+                "source": "https://github.com/symfony/console/tree/v7.1.2"
             },
             "funding": [
                 {
@@ -2913,17 +2913,17 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v7.1.1",
-            "version_normalized": "7.1.1.0",
+            "version": "v7.1.2",
+            "version_normalized": "7.1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "1ec24a54d1885b11e862d6ddab31bd6749720d20"
+                "reference": "90ace27d17ccc9afc6f7ec0081e8529fb0e29425"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/1ec24a54d1885b11e862d6ddab31bd6749720d20",
-                "reference": "1ec24a54d1885b11e862d6ddab31bd6749720d20",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/90ace27d17ccc9afc6f7ec0081e8529fb0e29425",
+                "reference": "90ace27d17ccc9afc6f7ec0081e8529fb0e29425",
                 "shasum": ""
             },
             "require": {
@@ -2959,7 +2959,7 @@
                 "symfony/rate-limiter": "^6.4|^7.0",
                 "symfony/stopwatch": "^6.4|^7.0"
             },
-            "time": "2024-05-31T14:57:53+00:00",
+            "time": "2024-06-28T08:00:31+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -2990,7 +2990,7 @@
                 "http"
             ],
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v7.1.1"
+                "source": "https://github.com/symfony/http-client/tree/v7.1.2"
             },
             "funding": [
                 {
@@ -3590,17 +3590,17 @@
         },
         {
             "name": "symfony/string",
-            "version": "v7.1.1",
-            "version_normalized": "7.1.1.0",
+            "version": "v7.1.2",
+            "version_normalized": "7.1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "60bc311c74e0af215101235aa6f471bcbc032df2"
+                "reference": "14221089ac66cf82e3cf3d1c1da65de305587ff8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/60bc311c74e0af215101235aa6f471bcbc032df2",
-                "reference": "60bc311c74e0af215101235aa6f471bcbc032df2",
+                "url": "https://api.github.com/repos/symfony/string/zipball/14221089ac66cf82e3cf3d1c1da65de305587ff8",
+                "reference": "14221089ac66cf82e3cf3d1c1da65de305587ff8",
                 "shasum": ""
             },
             "require": {
@@ -3621,7 +3621,7 @@
                 "symfony/translation-contracts": "^2.5|^3.0",
                 "symfony/var-exporter": "^6.4|^7.0"
             },
-            "time": "2024-06-04T06:40:14+00:00",
+            "time": "2024-06-28T09:27:18+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3660,7 +3660,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v7.1.1"
+                "source": "https://github.com/symfony/string/tree/v7.1.2"
             },
             "funding": [
                 {
@@ -3680,17 +3680,17 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.6.18",
-            "version_normalized": "0.6.18.0",
+            "version": "0.6.19",
+            "version_normalized": "0.6.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "4a971e2378f191b8f0d3620603867f5d934a687f"
+                "reference": "ad62f4fcc043a952b7f84bcd64e3220ac1aa3740"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/4a971e2378f191b8f0d3620603867f5d934a687f",
-                "reference": "4a971e2378f191b8f0d3620603867f5d934a687f",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/ad62f4fcc043a952b7f84bcd64e3220ac1aa3740",
+                "reference": "ad62f4fcc043a952b7f84bcd64e3220ac1aa3740",
                 "shasum": ""
             },
             "require": {
@@ -3727,7 +3727,7 @@
                 "predis/predis": "This is required for the RedisVectoreStore.",
                 "symfony/cache": "This is one of the possible types of psr/cache needed by doctrine/orm"
             },
-            "time": "2024-06-24T08:24:12+00:00",
+            "time": "2024-06-26T15:27:37+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3756,7 +3756,7 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.18"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.19"
             },
             "install-path": "../theodo-group/llphant"
         }
