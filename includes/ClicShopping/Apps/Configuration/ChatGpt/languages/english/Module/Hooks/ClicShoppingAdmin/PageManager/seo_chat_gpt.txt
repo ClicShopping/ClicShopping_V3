@@ -1,9 +1,9 @@
 text_seo_page_title = SEO Page Title
 text_seo_expertise = Your are an expert in SEO Marketing.
-text_seo_page_title_question = Give me a SEO Title in less 50 characters about this page : {{page_name}}. Remove the prompt response, give onlythe raw data.
-text_seo_page_tag_question = Give me 7 keywords tag separated by a comma about this page : {{page_name}}. Remove the prompt response, give onlythe raw data.
-text_seo_page_keywords_question = Give me 7 keywords tag separated by a comma about this page : {{page_name}}. Remove the prompt response, give onlythe raw data.
-text_seo_page_summary_description_question = Give me in less 50 words a very short description about this page : {{page_name}}. Remove the prompt response, give onlythe raw data.
+text_seo_page_title_question = Give me a SEO Title in less 50 characters about this page : {{page_name}}. Remove the prompt response, give only the raw data.
+text_seo_page_tag_question = Give me 7 keywords tag separated by a comma about this page : {{page_name}}. Remove the prompt response, give only the raw data.
+text_seo_page_keywords_question = Give me 7 keywords tag separated by a comma about this page : {{page_name}}. Remove the prompt response, give only the raw data.
+text_seo_page_summary_description_question = Give me in less 50 words a very short description about this page : {{page_name}}. Remove the prompt response, give only the raw data.
 text_seo_page_translate_language = Can you translate in
 text_seo_page_translate_language = Could you remove the prompt response, the question and remove everything before the response: I need only the result about the question below. Can you translate in
 
