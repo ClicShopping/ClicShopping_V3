@@ -98,7 +98,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 
             if ($seo_product_title !== false) {
               $sql_data_array = [
-                'categories_head_title_tag' => $seo_product_title ?? '',
+                'categories_head_title_tag' => strip_tags($seo_product_title) ?? '',
               ];
 
               $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
@@ -115,7 +115,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 
             if ($seo_product_description !== false) {
               $sql_data_array = [
-                'categories_head_desc_tag' => $seo_product_description ?? '',
+                'categories_head_desc_tag' => strip_tags($seo_product_description) ?? '',
               ];
 
               $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
@@ -132,7 +132,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 
             if ($seo_product_keywords !== false) {
               $sql_data_array = [
-                'categories_head_keywords_tag' => $seo_product_keywords ?? '',
+                'categories_head_keywords_tag' => strip_tags($seo_product_keywords) ?? '',
               ];
 
               $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);

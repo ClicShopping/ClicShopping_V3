@@ -188,9 +188,9 @@ class Save extends \ClicShopping\OM\PagesActionsAbstract
             'pages_title' => $pages_title,
             'pages_html_text' => $pages_html_text,
             'externallink' => $externallink,
-            'page_manager_head_title_tag' => $page_manager_head_title_tag,
-            'page_manager_head_keywords_tag' => $page_manager_head_keywords_tag,
-            'page_manager_head_desc_tag' => $page_manager_head_desc_tag,
+            'page_manager_head_title_tag' => strip_tags($page_manager_head_title_tag),
+            'page_manager_head_keywords_tag' => strip_tags($page_manager_head_keywords_tag),
+            'page_manager_head_desc_tag' => strip_tags($page_manager_head_desc_tag),
             'language_id' => $language_id
           ];
 
@@ -200,9 +200,9 @@ class Save extends \ClicShopping\OM\PagesActionsAbstract
             'pages_title' => $pages_title,
             'pages_html_text' => $pages_html_text,
             'externallink' => $externallink,
-            'page_manager_head_title_tag' => $page_manager_head_title_tag,
-            'page_manager_head_keywords_tag' => $page_manager_head_keywords_tag,
-            'page_manager_head_desc_tag' => $page_manager_head_desc_tag
+            'page_manager_head_title_tag' => strip_tags($page_manager_head_title_tag),
+            'page_manager_head_keywords_tag' => strip_tags($page_manager_head_keywords_tag),
+            'page_manager_head_desc_tag' => strip_tags($page_manager_head_desc_tag)
           ];
 
           $insert_sql_data = [

@@ -18,7 +18,7 @@ use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
 
 class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {
@@ -66,6 +66,8 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
       return false;
     }
 
+
+    $url = Gpt::getAjaxUrl(false);
     $urlMultilanguage = Gpt::getAjaxSeoMultilanguageUrl();
 
     $getInfoSeoDefaultTitleH1 = ChatJsAdminSeo::getInfoSeoDefaultTitleH1($content, $urlMultilanguage, $translate_language, $question_title, $store_name, $url);

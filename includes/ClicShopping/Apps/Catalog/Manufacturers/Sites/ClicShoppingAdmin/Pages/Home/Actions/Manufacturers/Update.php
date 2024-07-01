@@ -60,22 +60,24 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
     $languages = $CLICSHOPPING_Language->getLanguages();
 
     for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-      $manufacturers_url_array = $_POST['manufacturers_url'];
-      $manufacturer_description_array = $_POST['manufacturer_description'];
-      $manufacturer_seo_title_array = $_POST['manufacturer_seo_title'];
-      $manufacturer_seo_description_array = $_POST['manufacturer_seo_description'];
-      $manufacturer_seo_keyword_array = $_POST['manufacturer_seo_keyword'];
+      $manufacturers_url_array = HTML::sanitize($_POST['manufacturers_url']);
+      $manufacturer_description_array = HTML::sanitize(strip_tags($_POST['manufacturer_description']));
+      $manufacturer_seo_title_array = HTML::sanitize(strip_tags($_POST['manufacturer_seo_title']));
+      $manufacturer_seo_description_array = HTML::sanitize(strip_tags($_POST['manufacturer_seo_description']));
+      $manufacturer_seo_keyword_array = HTML::sanitize(strip_tags($_POST['manufacturer_seo_keyword']));
       $language_id = $languages[$i]['id'];
 
-      $sql_data_array = ['manufacturers_url' => HTML::sanitize($manufacturers_url_array[$language_id]),
+      $sql_data_array = [
+        'manufacturers_url' =>$manufacturers_url_array[$language_id],
         'manufacturer_description' => $manufacturer_description_array[$language_id],
-        'manufacturer_seo_title' => HTML::sanitize($manufacturer_seo_title_array[$language_id]),
-        'manufacturer_seo_description' => HTML::sanitize($manufacturer_seo_description_array[$language_id]),
-        'manufacturer_seo_keyword' => HTML::sanitize($manufacturer_seo_keyword_array[$language_id])
+        'manufacturer_seo_title' =>$manufacturer_seo_title_array[$language_id],
+        'manufacturer_seo_description' =>$manufacturer_seo_description_array[$language_id],
+        'manufacturer_seo_keyword' =>$manufacturer_seo_keyword_array[$language_id]
       ];
 
-      $this->app->db->save('manufacturers_info', $sql_data_array, ['manufacturers_id' => (int)$manufacturers_id,
-          'languages_id' => (int)$language_id
+      $this->app->db->save('manufacturers_info', $sql_data_array, [
+         'manufacturers_id' => (int)$manufacturers_id,
+         'languages_id' => (int)$language_id
         ]
       );
     }
