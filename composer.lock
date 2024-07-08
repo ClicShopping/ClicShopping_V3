@@ -2765,16 +2765,16 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.6.22",
+            "version": "0.6.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "5c30bf38d13d21595ecf9cb67cfe92b955d445c4"
+                "reference": "3d8e7bc081168a3960b7cc39a316326fdf52bc27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/5c30bf38d13d21595ecf9cb67cfe92b955d445c4",
-                "reference": "5c30bf38d13d21595ecf9cb67cfe92b955d445c4",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/3d8e7bc081168a3960b7cc39a316326fdf52bc27",
+                "reference": "3d8e7bc081168a3960b7cc39a316326fdf52bc27",
                 "shasum": ""
             },
             "require": {
@@ -2828,19 +2828,22 @@
             ],
             "description": "LLPhant is a library to help you build Generative AI applications.",
             "keywords": [
+                "anthropic",
                 "api",
                 "gpt-4",
                 "language",
                 "llm",
+                "mistral",
+                "ollama",
                 "openai",
                 "php",
                 "vectorstore"
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.22"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.23"
             },
-            "time": "2024-07-02T21:37:17+00:00"
+            "time": "2024-07-08T07:34:23+00:00"
         }
     ],
     "packages-dev": [
