@@ -117,22 +117,22 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
                   <table class="table table-sm">
                     <?php
                     $Qproducts = $CLICSHOPPING_ProductsAttributes->db->prepare('select p.products_id,
-                                                                       p.products_model,
-                                                                       pd.products_name,
-                                                                       pov.products_options_values_name,
-                                                                       pa.products_attributes_reference
-                                                                from :table_products p,
-                                                                     :table_products_options_values pov,
-                                                                     :table_products_attributes pa,
-                                                                     :table_products_description pd
-                                                                where pd.products_id = p.products_id
-                                                                and pov.language_id = :language_id
-                                                                and pd.language_id = :language_id
-                                                                and pa.products_id = p.products_id
-                                                                and pa.options_id = :options_id
-                                                                and pov.products_options_values_id = pa.options_values_id
-                                                                order by pd.products_name
-                                                              ');
+                                                                                       p.products_model,
+                                                                                       pd.products_name,
+                                                                                       pov.products_options_values_name,
+                                                                                       pa.products_attributes_reference
+                                                                                from :table_products p,
+                                                                                     :table_products_options_values pov,
+                                                                                     :table_products_attributes pa,
+                                                                                     :table_products_description pd
+                                                                                where pd.products_id = p.products_id
+                                                                                and pov.language_id = :language_id
+                                                                                and pd.language_id = :language_id
+                                                                                and pa.products_id = p.products_id
+                                                                                and pa.options_id = :options_id
+                                                                                and pov.products_options_values_id = pa.options_values_id
+                                                                                order by pd.products_name
+                                                                              ');
                     $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
                     $Qproducts->bindInt(':options_id', (int)$_GET['option_id']);
 
@@ -357,11 +357,11 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
             // delete product option value
             if (isset($_GET['DeleteOptionValue'])) {
             $Qvalues = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_values_id,
-                                                                    products_options_values_name
-                                                             from :table_products_options_values
-                                                             where products_options_values_id = :products_options_values_id
-                                                             and language_id = :language_id
-                                                            ');
+                                                                            products_options_values_name
+                                                                     from :table_products_options_values
+                                                                     where products_options_values_id = :products_options_values_id
+                                                                     and language_id = :language_id
+                                                                    ');
 
             $Qvalues->bindInt(':language_id', $CLICSHOPPING_Language->getId());
             $Qvalues->bindInt(':products_options_values_id', $_GET['value_id']);
@@ -373,20 +373,20 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
                 <table class="table table-sm">
                   <?php
                   $products = $CLICSHOPPING_ProductsAttributes->db->prepare('select p.products_id,
-                                                                       pd.products_name,
-                                                                       po.products_options_name
-                                                                from :table_products p,
-                                                                     :table_products_attributes pa,
-                                                                     :table_products_options po,
-                                                                     :table_products_description pd
-                                                               where pd.products_id = p.products_id
-                                                               and pd.language_id = :language_id
-                                                               and po.language_id = :language_id
-                                                               and pa.products_id = p.products_id
-                                                               and pa.options_values_id = :options_values_id
-                                                               and po.products_options_id = pa.options_id
-                                                               order by pd.products_name
-                                                              ');
+                                                                                     pd.products_name,
+                                                                                     po.products_options_name
+                                                                              from :table_products p,
+                                                                                   :table_products_attributes pa,
+                                                                                   :table_products_options po,
+                                                                                   :table_products_description pd
+                                                                             where pd.products_id = p.products_id
+                                                                             and pd.language_id = :language_id
+                                                                             and po.language_id = :language_id
+                                                                             and pa.products_id = p.products_id
+                                                                             and pa.options_values_id = :options_values_id
+                                                                             and po.products_options_id = pa.options_id
+                                                                             order by pd.products_name
+                                                                            ');
                   $products->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
                   $products->bindInt(':options_values_id', (int)$_GET['value_id']);
                   $products->execute();
@@ -434,16 +434,15 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
 
             <?php
             } else {
-
             $Qvalues = $CLICSHOPPING_ProductsAttributes->db->prepare('select SQL_CALC_FOUND_ROWS pov.products_options_values_id,
-                                                                                          pov.products_options_values_name,
-                                                                                          pov2po.products_options_id
-                                                               from :table_products_options_values pov left join :table_products_options_values_to_products_options pov2po on pov.products_options_values_id = pov2po.products_options_values_id
-                                                               where pov.language_id = :language_id
-                                                               order by pov.products_options_values_id
-                                                               limit :page_set_offset,
-                                                                    :page_set_max_results
-                                                              ');
+                                                                                                    pov.products_options_values_name,
+                                                                                                    pov2po.products_options_id
+                                                                         from :table_products_options_values pov left join :table_products_options_values_to_products_options pov2po on pov.products_options_values_id = pov2po.products_options_values_id
+                                                                         where pov.language_id = :language_id
+                                                                         order by pov.products_options_values_id
+                                                                         limit :page_set_offset,
+                                                                              :page_set_max_results
+                                                                        ');
             $Qvalues->bindInt(':language_id', $CLICSHOPPING_Language->getId());
             $Qvalues->setPageSet((int)MAX_ROW_LISTS_OPTIONS);
             $Qvalues->execute();
@@ -1052,8 +1051,8 @@ echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), nul
                   }
                   ?>
                 </td>
-                <td class="text-end"><?php echo HTML::inputField('value_price'); ?></td>
-                <td class="text-end"><?php echo HTML::inputField('price_prefix'); ?></td>
+                <td class="text-end"><?php echo HTML::inputField('value_price', null, 'required aria-required="true"'); ?></td>
+                <td class="text-end"><?php echo HTML::inputField('price_prefix', null, 'required aria-required="true"'); ?></td>
                 <td></td>
                 <td class="text-end"><?php echo HTML::inputField('value_sort_order'); ?></td>
                 <td></td>

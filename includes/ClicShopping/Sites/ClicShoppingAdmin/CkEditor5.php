@@ -116,7 +116,7 @@ class CkEditor5 extends HTML
 * @param bool $override
 * @return string
    */
-  public static function textAreaCkeditor(string $name, ?string $value = null, ?int $width = 750, ?int $height = 200, ?string $text = null, ?string $parameters = null, bool $override = true): string
+  public static function textAreaCkeditor(string $name, string|null $value = null, int|null $width = 750, int|null $height = 200, string|null $text = null, string|null $parameters = null, bool $override = true): string
   {
     $ckeditor_id = str_replace('[', '', $name);
     $ckeditor_id = str_replace(']', '', $ckeditor_id);
@@ -125,7 +125,10 @@ class CkEditor5 extends HTML
 
     $field = '<textarea name="' . $name . '"  id="' . $ckeditor_id . '"';
 
-    if (!is_null($parameters)) $field .= ' ' . $parameters;
+    if (!is_null($parameters)) {
+      $field .= ' ' . $parameters;
+    }
+
     $field .= ' />';
 
     if (($override === true) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
@@ -371,7 +374,7 @@ class CkEditor5 extends HTML
 * @param int|null $height
 * @return string
  */
-  public static function fileFieldImageCkEditor(string $name, ?string $value = null, ?int $width = null, ?int $height = null): string
+  public static function fileFieldImageCkEditor(string $name, string|null $value = null, int|null $width = null, int|null $height = null): string
   {
     $ckeditor_id = str_replace('[', '', $name);
     $ckeditor_id = str_replace(']', '', $ckeditor_id);
@@ -428,7 +431,7 @@ class CkEditor5 extends HTML
                           _fm.one('open', () => {
                             _fm.file(open)? resolve(_fm) : reject(_fm, 'errFolderNotFound');
                           });
-                                            } else {
+                        } else {
                           // elFinder has already been initialized
                           new Promise((res, rej) => {
                             if (_fm.file(open)) {
@@ -440,7 +443,7 @@ class CkEditor5 extends HTML
                               }).fail(() => {
                                 rej();
                               });
-                                                    }
+                            }
                           }).then(() => {
                             // Open folder after folder information is acquired
                             _fm.exec('open', open).done(() => {
@@ -488,23 +491,23 @@ class CkEditor5 extends HTML
                      // Insert in CKEditor when choosing files
                       getFileCallback : (files, fm) => {
                         let imgs = [];
-                                fm.getUI('cwd').trigger('unselectall');
-                                $.each(files, function(i, f) {
-                                  if (f && f.mime.match(/^image\//i)) {
-                                    imgs.push(fm.convAbsUrl(f.url));
-                                } else {
+                        fm.getUI('cwd').trigger('unselectall');
+                        $.each(files, function(i, f) {
+                          if (f && f.mime.match(/^image\//i)) {
+                            imgs.push(fm.convAbsUrl(f.url));
+                        } else {
                           editor.execute('link', fm.convAbsUrl(f.url));
                         }
-                              });
-                              if (imgs.length) {
-                                insertImages(imgs);
-                              }
-                            }
-                        }).elfinder('instance');
-                        done();
+                        });
+                        if (imgs.length) {
+                          insertImages(imgs);
+                        }
                       }
-                     });
-                    };
+                      }).elfinder('instance');
+                      done();
+                    }
+                   });
+                  };
             
                     // elFinder instance
                     let _fm;

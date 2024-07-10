@@ -40,7 +40,7 @@ class AddProductAttributes extends \ClicShopping\OM\PagesActionsAbstract
     }
 
     if (isset($_POST['values_id']) && !empty($_POST['values_id'])) {
-      $options_id = HTML::sanitize($_POST['values_id']);
+      $values_id = HTML::sanitize($_POST['values_id']);
     } else {
       $this->app->redirect('ProductsAttributes', 'option_page=1');
     }
@@ -59,17 +59,19 @@ class AddProductAttributes extends \ClicShopping\OM\PagesActionsAbstract
 
     $page_info = 'option_page=' . HTML::sanitize($option_page) . '&value_page=' . HTML::sanitize($value_page) . '&attribute_page=' . HTML::sanitize($attribute_page);
 
-    $this->app->db->save('products_attributes', ['products_id' => (int)$products_id,
-        'options_id' => (int)$options_id,
-        'options_values_id' => (int)$values_id,
-        'options_values_price' => (float)$value_price,
-        'price_prefix' => $price_prefix,
-        'products_options_sort_order' => (int)$value_sort_order,
-        'products_attributes_reference' => $products_attributes_reference,
-        'customers_group_id' => (int)$customers_group_id,
-        'products_attributes_image' => $products_attributes_image
-      ]
-    );
+    $insert_array = [
+      'products_id' => (int)$products_id,
+      'options_id' => (int)$options_id,
+      'options_values_id' => (int)$values_id,
+      'options_values_price' => (float)$value_price,
+      'price_prefix' => $price_prefix,
+      'products_options_sort_order' => (int)$value_sort_order,
+      'products_attributes_reference' => $products_attributes_reference,
+      'customers_group_id' => (int)$customers_group_id,
+      'products_attributes_image' => $products_attributes_image
+    ];
+
+    $this->app->db->save('products_attributes', $insert_array);
 
     if (DOWNLOAD_ENABLED == 'true') {
       $products_attributes_id = $this->app->db->lastInsertId();

@@ -7,6 +7,7 @@ code refactoring for better compatibility
 add fields mandatory for products attributes
 Improve SEO GPT
 Replace Gemma by Gemma2 for ollama
+fix error products_attributes and check field
 
 --------------------
 version 3.449
