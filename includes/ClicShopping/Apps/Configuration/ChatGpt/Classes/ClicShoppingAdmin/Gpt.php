@@ -213,12 +213,15 @@ class Gpt {
   }
 
   /**
-   * @param $string
+   * @param string $string
    * @return string
    */
   public static function compressPrompt(string $string)
   {
-    $prompt = base64_encode($string);
+    $compressed = gzcompress($string);
+    $base64Encoded = base64_encode($compressed);
+
+    return $base64Encoded;
 
     return $prompt;
   }
