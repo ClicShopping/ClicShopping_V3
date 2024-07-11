@@ -1581,12 +1581,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "fc38d77fa25d52b7da4c00962fa4189549c60e16"
+                "reference": "c31e886d98723c528ab99e920e7903ccb7391bd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/fc38d77fa25d52b7da4c00962fa4189549c60e16",
-                "reference": "fc38d77fa25d52b7da4c00962fa4189549c60e16",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/c31e886d98723c528ab99e920e7903ccb7391bd0",
+                "reference": "c31e886d98723c528ab99e920e7903ccb7391bd0",
                 "shasum": ""
             },
             "conflict": {
@@ -1623,6 +1623,7 @@
                 "athlon1600/php-proxy": "<=5.1",
                 "athlon1600/php-proxy-app": "<=3",
                 "austintoddj/canvas": "<=3.4.2",
+                "auth0/wordpress": "<=4.6",
                 "automad/automad": "<=1.10.9",
                 "automattic/jetpack": "<9.8",
                 "awesome-support/awesome-support": "<=6.0.7",
@@ -2345,7 +2346,7 @@
                 "zfr/zfr-oauth2-server-module": "<0.1.2",
                 "zoujingli/thinkadmin": "<=6.1.53"
             },
-            "time": "2024-07-10T17:04:19+00:00",
+            "time": "2024-07-11T20:05:10+00:00",
             "default-branch": true,
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
@@ -2562,17 +2563,17 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v15.1.0",
-            "version_normalized": "15.1.0.0",
+            "version": "v15.2.0",
+            "version_normalized": "15.2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "ce69d019941cf528c036ae0d1a3a9580c7389460"
+                "reference": "29a28251d35dba236ad6e860e1927b3f35cc1b2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/ce69d019941cf528c036ae0d1a3a9580c7389460",
-                "reference": "ce69d019941cf528c036ae0d1a3a9580c7389460",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/29a28251d35dba236ad6e860e1927b3f35cc1b2e",
+                "reference": "29a28251d35dba236ad6e860e1927b3f35cc1b2e",
                 "shasum": ""
             },
             "require": {
@@ -2586,7 +2587,7 @@
                 "phpstan/phpstan": "^1.2",
                 "phpunit/phpunit": "^5.7 || ^9.0"
             },
-            "time": "2024-07-05T18:52:07+00:00",
+            "time": "2024-07-11T18:46:58+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2618,7 +2619,7 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v15.1.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v15.2.0"
             },
             "install-path": "../stripe/stripe-php"
         },
