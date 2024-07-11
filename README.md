@@ -97,7 +97,7 @@ More information in the Wiki
 #Analyse
   -  [![SymfonyInsight](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e/big.svg)](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e)
   
-  -  [![php](https://img.shields.io/badge/Php-%3E%3D8.1-green])](https://img.shields.io/badge/Php-%3E%3D8.1-green)
+  -  [![php](https://img.shields.io/badge/Php-%3E%3D8.2-green])](https://img.shields.io/badge/Php-%3E%3D8.2-green)
   
   -  ![GitHub repo size](https://img.shields.io/github/repo-size/ClicShopping/ClicShopping_v3)
   
