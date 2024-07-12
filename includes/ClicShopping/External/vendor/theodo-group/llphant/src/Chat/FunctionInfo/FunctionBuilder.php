@@ -10,7 +10,16 @@ class FunctionBuilder
     public static function buildFunctionInfo(object $instance, string $name): FunctionInfo
     {
         $reflection = new ReflectionMethod($instance::class, $name);
+        $docComment = $reflection->getDocComment() ?: '';
         $params = $reflection->getParameters();
+
+        $parametersDescriptions = [];
+        preg_match_all('/@param.+?\$(\w+)\s+(.+)/', $docComment, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            $paramName = $match[1];
+            $paramDescription = trim($match[2]);
+            $parametersDescriptions[$paramName] = $paramDescription;
+        }
 
         $parameters = [];
         $requiredParameters = [];
@@ -19,7 +28,8 @@ class FunctionBuilder
             /** @var ReflectionNamedType $reflectionType */
             $reflectionType = $param->getType();
 
-            $newParameter = new Parameter($param->getName(), TypeMapper::mapPhpTypeToJsonSchemaType($reflectionType), '');
+            $parameterName = $param->getName();
+            $newParameter = new Parameter($parameterName, TypeMapper::mapPhpTypeToJsonSchemaType($reflectionType), $parametersDescriptions[$parameterName] ?? '');
 
             if ($newParameter->type === 'array') {
                 $newParameter->itemsOrProperties = self::getArrayType($reflection->getDocComment() ?: '', $param->getName());
@@ -31,7 +41,6 @@ class FunctionBuilder
             }
         }
 
-        $docComment = $reflection->getDocComment() ?: '';
         // Remove PHPDoc annotations and get only the description
         $functionDescription = preg_replace('/\s*\* @.*/', '', $docComment);
         $functionDescription = trim(str_replace(['/**', '*/', '*'], '', $functionDescription ?? ''));

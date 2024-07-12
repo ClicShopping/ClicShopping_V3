@@ -213,29 +213,14 @@ class Gpt {
   }
 
   /**
-   * @param string $string
-   * @return string
-   */
-  public static function compressPrompt(string $string)
-  {
-    $compressed = gzcompress($string);
-    $base64Encoded = base64_encode($compressed);
-
-    return $base64Encoded;
-
-    return $prompt;
-  }
-
-  /**
    * @param string $question
    * @param int|null $maxtoken
    * @param float|null $temperature
    * @param string|null $engine
    * @param int|null $max
-   * @param bool $compress
    * @return bool|string
    */
-  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null, ?string $engine = null, ?int $max = 1, bool $compress = false): bool|string
+  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null, ?string $engine = null, ?int $max = 1): bool|string
   {
     if (self::checkGptStatus() === false) {
       return false;
@@ -246,10 +231,6 @@ class Gpt {
     }
 
     $prompt = HTML::sanitize($question);
-
-    if ($compress === true) {
-      $prompt = static::compressPrompt($prompt);
-    }
 
     // Get the chat instance
     $chat = self::getChat($question, $maxtoken, $temperature, $engine, $max);
