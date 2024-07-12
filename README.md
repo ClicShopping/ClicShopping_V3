@@ -119,7 +119,7 @@ More information in the Wiki
 #Functionnalities (some)
 - B2B - B2C full functionalities
 - GPT API integration
-- Generative artificial Intelligence included with Gpt and Ollama
+- Generative artificial Intelligence included with Gpt, Ollama and Anthropic
 - Generative artificial products customers recommendations
 - Generative artificial intelligence for All content (product,categories...)
 - Generative artificial intelligence for SEO

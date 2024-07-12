@@ -21,7 +21,8 @@ use LLPhant\Exception\MissingParameterExcetion;
 use LLPhant\OpenAIConfig;
 use LLPhant\OllamaConfig;
 use LLPhant\Chat\TokenUsage;
-
+use LLPhant\AnthropicConfig;
+use LLPhant\Chat\AnthropicChat;
 
 use function defined;
 use function is_null;
@@ -77,6 +78,9 @@ class Gpt {
       ['id' => 'gpt-4o', 'text' => 'OpenAi gpt-4o'],
       ['id' => 'gemma:7b', 'text' => 'Ollama Gemma:7b'],
       ['id' => 'mistral:7b', 'text' => 'Ollama Mistral:7b'],
+      ['id' => 'anth-sonnet', 'text' => 'Anthropic Claude Sonnet 3.5'],
+      ['id' => 'anth-opus', 'text' => 'Anthropic Claude Opus'],
+      ['id' => 'anth-haiku', 'text' => 'Anthropic Claude Haiku'],
     ];
 
     return $array;
@@ -180,11 +184,59 @@ class Gpt {
    */
   public static function getOllamaChat(string $model = 'mistral:7b'): mixed
   {
-
-    if (!empty(CLICSHOPPING_APP_CHATGPT_CH_MODEL)) {
       $config = new OllamaConfig();
       $config->model = $model;
       $chat = new OllamaChat($config);
+
+      return $chat;
+  }
+
+
+  /**
+   * @param string $model
+   * @param int|null $maxtoken
+   * @param array|null $modelOptions
+   * @return array
+   */
+  public static function getAnthropicChat(string $model, int|null $maxtoken = null, array|null $modelOptions = null): mixed
+  {
+    $api_key = CLICSHOPPING_APP_CHATGPT_CH_API_KEY_ANTHROPIC;
+    $chat = false;
+
+    if ($modelOptions === null) {
+      $modelOptions = [
+        'messages' => [
+          ['role' => 'system',
+           'content' => 'You are an e-commerce expert in marketing.'
+          ]
+        ]
+      ];
+    }
+/*
+    // Perform the transformation if needed, e.g., extract contents from messages
+    $transformedMessages = array_map(function($message) {
+      return $message['content'];
+    }, $modelOptions['messages']);
+
+    // If transformation means a different structure, adapt accordingly
+    // For example, if you want to convert it to a dictionary:
+    $modelOptions['transformedMessages'] = $transformedMessages;
+*/
+    if (is_null($maxtoken)) {
+      $maxtoken = (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN;
+    }
+
+
+    // Create a new AnthropicChat instance with the specified configuration
+
+    if (!empty(CLICSHOPPING_APP_CHATGPT_CH_API_KEY_ANTHROPIC)) {
+      if ($model = 'anth-sonnet') {
+        $chat = new AnthropicChat(new AnthropicConfig(AnthropicConfig::CLAUDE_3_5_SONNET, $maxtoken, $modelOptions, $api_key));
+      } elseif ($model = 'anth-opus') {
+        $chat = new AnthropicChat(new AnthropicConfig(AnthropicConfig::CLAUDE_3_OPUS, $maxtoken, $modelOptions, $api_key));
+      } else {
+        $chat = new AnthropicChat(new AnthropicConfig(AnthropicConfig::CLAUDE_3_HAIKU, $maxtoken, $modelOptions, $api_key));
+      }
 
       return $chat;
     } else {
@@ -205,6 +257,8 @@ class Gpt {
   {
     if (strpos(CLICSHOPPING_APP_CHATGPT_CH_MODEL, 'gpt') === 0) {
       $client = self::getOpenAIChat($question, $maxtoken, $temperature, $engine, $max);
+    } elseif (strpos(CLICSHOPPING_APP_CHATGPT_CH_MODEL, 'anth') === 0) {
+       $client = self::getAnthropicChat(CLICSHOPPING_APP_CHATGPT_CH_MODEL, $maxtoken);
     } else {
       $client = self::getOllamaChat(CLICSHOPPING_APP_CHATGPT_CH_MODEL);
     }

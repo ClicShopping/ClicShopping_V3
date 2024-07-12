@@ -1,0 +1,2 @@
+cfg_chatgpt_api_key_anthropic_title = Clef Api Anthropic
+cfg_chatgpt_api_key_anthropic_description = Veuillez insérer la clef API (https://www.anthropic.com)

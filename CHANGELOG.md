@@ -8,6 +8,7 @@ add fields mandatory for products attributes
 Improve SEO GPT
 Replace Gemma by Gemma2 for ollama
 fix error products_attributes and check field
+Add Anthopic Sonnet3.5,Opus, Haiku
 
 --------------------
 version 3.449
