@@ -120,4 +120,61 @@ class FunctionFormatter
 
         return $param;
     }
+
+    /**
+     * @param  FunctionInfo[]  $tools
+     * @return array<int, array<string, mixed>>
+     */
+    public static function formatFunctionsToAnthropic(array $tools): array
+    {
+        if ($tools === []) {
+            return [];
+        }
+
+        $result = [];
+        foreach ($tools as $tool) {
+            $result[] = self::formatOneFunctionToAnthropic($tool);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return array{name: string, description: string, input_schema: mixed[]}
+     */
+    private static function formatOneFunctionToAnthropic(FunctionInfo $tool): array
+    {
+        return [
+            'name' => $tool->name,
+            'description' => $tool->description,
+            'input_schema' => self::toInputSchema($tool->parameters, $tool->requiredParameters),
+        ];
+    }
+
+    /**
+     * @param  Parameter[]  $parameters
+     * @param  Parameter[]  $requiredParameters
+     * @return array{type: string, properties: array<string, array{type: string, description: string}>}
+     */
+    private static function toInputSchema(array $parameters, array $requiredParameters): array
+    {
+        $result = [];
+        foreach ($parameters as $parameter) {
+            $result[$parameter->name] = [
+                'type' => $parameter->type,
+                'description' => $parameter->description,
+            ];
+        }
+
+        $requiredParametersNames = [];
+        foreach ($requiredParameters as $requiredParameter) {
+            $requiredParametersNames[] = $requiredParameter->name;
+        }
+
+        return [
+            'type' => 'object',
+            'properties' => $result,
+            'required' => $requiredParametersNames,
+        ];
+    }
 }

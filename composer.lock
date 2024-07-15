@@ -2765,16 +2765,16 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.6.24",
+            "version": "0.6.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "ba195cc528afdd117ba10cdb5d207023e4a0ffbb"
+                "reference": "643187120871a45e191e81c9284f434c68f71fbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/ba195cc528afdd117ba10cdb5d207023e4a0ffbb",
-                "reference": "ba195cc528afdd117ba10cdb5d207023e4a0ffbb",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/643187120871a45e191e81c9284f434c68f71fbd",
+                "reference": "643187120871a45e191e81c9284f434c68f71fbd",
                 "shasum": ""
             },
             "require": {
@@ -2841,9 +2841,9 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.24"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.6.25"
             },
-            "time": "2024-07-11T22:16:35+00:00"
+            "time": "2024-07-15T09:14:09+00:00"
         }
     ],
     "packages-dev": [
@@ -2853,12 +2853,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "c31e886d98723c528ab99e920e7903ccb7391bd0"
+                "reference": "d44cb505c9515db5ff905ec510d69a0f80b366a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/c31e886d98723c528ab99e920e7903ccb7391bd0",
-                "reference": "c31e886d98723c528ab99e920e7903ccb7391bd0",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/d44cb505c9515db5ff905ec510d69a0f80b366a2",
+                "reference": "d44cb505c9515db5ff905ec510d69a0f80b366a2",
                 "shasum": ""
             },
             "conflict": {
@@ -3496,7 +3496,7 @@
                 "topthink/framework": "<6.0.17|>=6.1,<6.1.5|>=8,<8.0.4",
                 "topthink/think": "<=6.1.1",
                 "topthink/thinkphp": "<=3.2.3",
-                "torrentpier/torrentpier": "<=2.4.1",
+                "torrentpier/torrentpier": "<=2.4.3",
                 "tpwd/ke_search": "<4.0.3|>=4.1,<4.6.6|>=5,<5.0.2",
                 "tribalsystems/zenario": "<9.5.60602",
                 "truckersmp/phpwhois": "<=4.3.1",
@@ -3538,7 +3538,8 @@
                 "wallabag/tcpdf": "<6.2.22",
                 "wallabag/wallabag": "<2.6.7",
                 "wanglelecc/laracms": "<=1.0.3",
-                "web-auth/webauthn-framework": ">=3.3,<3.3.4",
+                "web-auth/webauthn-framework": ">=3.3,<3.3.4|>=4.5,<4.9",
+                "web-auth/webauthn-lib": ">=4.5,<4.9",
                 "web-feet/coastercms": "==5.5",
                 "webbuilders-group/silverstripe-kapost-bridge": "<0.4",
                 "webcoast/deferred-image-processing": "<1.0.2",
@@ -3654,7 +3655,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-11T20:05:10+00:00"
+            "time": "2024-07-15T18:05:53+00:00"
         }
     ],
     "aliases": [],
