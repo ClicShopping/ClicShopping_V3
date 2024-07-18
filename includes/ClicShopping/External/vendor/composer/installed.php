@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '666b56784da6dc2ff54067a6aad9214b4f980500',
+        'reference' => '137148f87dd246748a098e439f54da4a93c468ca',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '666b56784da6dc2ff54067a6aad9214b4f980500',
+            'reference' => '137148f87dd246748a098e439f54da4a93c468ca',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -193,8 +193,8 @@
         'psr/http-client-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '*',
-                1 => '1.0',
+                0 => '1.0',
+                1 => '*',
             ),
         ),
         'psr/http-factory' => array(
@@ -292,9 +292,9 @@
             'dev_requirement' => false,
         ),
         'stripe/stripe-php' => array(
-            'pretty_version' => 'v15.2.0',
-            'version' => '15.2.0.0',
-            'reference' => '29a28251d35dba236ad6e860e1927b3f35cc1b2e',
+            'pretty_version' => 'v15.3.0',
+            'version' => '15.3.0.0',
+            'reference' => '0ac234d3651ee7bd4c74c0bc867032742506d6dc',
             'type' => 'library',
             'install_path' => __DIR__ . '/../stripe/stripe-php',
             'aliases' => array(),
