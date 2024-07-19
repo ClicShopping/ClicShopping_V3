@@ -4,33 +4,35 @@ namespace LLPhant\Experimental\Agent\Render;
 
 use LLPhant\Experimental\Agent\Task;
 
-use function Termwind\{render};
-
 class CLIOutputUtils implements OutputAgentInterface
 {
     public function render(string $message, bool $verbose): void
     {
         $message = self::truncateString($verbose, $message);
-        render($message);
+        echo $message.PHP_EOL;
     }
 
     public function renderTitle(string $title, string $message, bool $verbose): void
     {
         $message = self::truncateString($verbose, $message);
 
-        render('<div><div class="px-1 bg-blue-500">'.$title.'</div><em class="ml-1">'.$message.'</em></div>');
+        $separator = \str_repeat('*', 80);
+
+        $this->render($separator, $verbose);
+        $this->render($title.' *** '.$message.' ***', $verbose);
+        $this->render($separator, $verbose);
     }
 
     public function renderTitleAndMessageGreen(string $title, string $message, bool $verbose): void
     {
         $message = self::truncateString($verbose, $message, $title);
-        render('<div><div class="px-1 bg-green-300">'.$title.'</div><em class="ml-1">'.$message.'</em></div>');
+        $this->renderTitle('🍏 '.$title, $message, $verbose);
     }
 
     public function renderTitleAndMessageOrange(string $title, string $message, bool $verbose): void
     {
         $message = self::truncateString($verbose, $message, $title);
-        render('<div><div class="px-1 bg-orange-300">'.$title.'</div><em class="ml-1">'.$message.'</em></div>');
+        $this->renderTitle('🔸 '.$title, $message, $verbose);
     }
 
     public function renderResult(string $result): void
@@ -43,16 +45,17 @@ class CLIOutputUtils implements OutputAgentInterface
      */
     public function printTasks(bool $verbose, array $tasks, ?Task $currentTask = null): void
     {
-        $liItems = '';
+        $separator = '------------------'.PHP_EOL;
+        $liItems = $separator.'Tasks'.PHP_EOL;
         foreach ($tasks as $task) {
             if ($currentTask === $task) {
-                $liItems .= "<li class='font-bold text-pink-400'>⚙️ - {$task->name} ({$task->description})</li>";
+                $liItems .= "\t⚙️ - {$task->name} ({$task->description})".PHP_EOL;
 
                 continue;
             }
 
             if (is_null($task->result)) {
-                $liItems .= "<li class='font-bold text-pink-400'>⚪️ - {$task->name} ({$task->description})</li>";
+                $liItems .= "\t⚪️ - {$task->name} ({$task->description})".PHP_EOL;
 
                 continue;
             }
@@ -60,17 +63,14 @@ class CLIOutputUtils implements OutputAgentInterface
             $result = self::truncateString($verbose, $task->result, $task->name);
 
             if ($task->wasSuccessful) {
-                $liItems .= "<li class='font-bold text-pink-400'>🟢 - {$task->name} ({$task->description}) - {$result}</li>";
+                $liItems .= "\t🟢 - {$task->name} ({$task->description}) - {$result}".PHP_EOL;
             } else {
-                $liItems .= "<li class='font-bold text-pink-400'>🔴 - {$task->name} ({$task->description})</li>";
+                $liItems .= "\t🔴 - {$task->name} ({$task->description})".PHP_EOL;
             }
         }
+        $liItems .= $separator;
 
-        render('<div class="px-4 mt-2 mb-2">
-                        <h1 class="font-bold">List of tasks:</h1>
-                        <ul class="list-disc">'.$liItems.'</ul>
-                    </div>'
-        );
+        $this->render($liItems, $verbose);
     }
 
     private static function truncateString(bool $verbose, string $message, ?string $title = null): string

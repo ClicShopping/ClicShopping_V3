@@ -3,6 +3,13 @@
 Please refer to [UPGRADING](UPGRADING.md) guide for upgrading to a major version.
 
 
+## 7.9.1 - 2024-07-19
+
+### Fixed
+
+- Fix TLS 1.3 check for HTTP/2 requests
+
+
 ## 7.9.0 - 2024-07-18
 
 ### Changed

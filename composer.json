@@ -20,7 +20,7 @@
         "phpxmlrpc/phpxmlrpc": "^4.10",
         "setasign/fpdf": "^1.8",
         "stripe/stripe-php": "^15.0",
-        "theodo-group/llphant": "^0.6.23"
+        "theodo-group/llphant": "^0.7.1"
     }
     ,
     "require-dev": {

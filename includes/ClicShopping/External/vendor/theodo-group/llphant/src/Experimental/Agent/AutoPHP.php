@@ -13,8 +13,6 @@ use LLPhant\OpenAIConfig;
 
 class AutoPHP
 {
-    public OpenAIChat $openAIChat;
-
     public TaskManager $taskManager;
 
     public CreationTaskAgent $creationTaskAgent;
@@ -34,7 +32,6 @@ class AutoPHP
         public OutputAgentInterface $outputAgent = new CLIOutputUtils(),
     ) {
         $this->taskManager = new TaskManager();
-        $this->openAIChat = new OpenAIChat();
         $this->creationTaskAgent = new CreationTaskAgent($this->taskManager, new OpenAIChat(), $tools, $verbose,
             $this->outputAgent);
         $this->prioritizationTaskAgent = new PrioritizationTaskAgent($this->taskManager, new OpenAIChat(), $verbose,
@@ -42,7 +39,7 @@ class AutoPHP
         $this->defaultModelName = OpenAIChatModel::Gpt4Turbo->value;
     }
 
-    public function run(int $maxIteration = 100): string
+    public function run(int $maxIteration = 10): string
     {
         $this->outputAgent->renderTitle('🐘 AutoPHP 🐘', '🎯 Objective: '.$this->objective, $this->verbose);
         $this->creationTaskAgent->createTasks($this->objective, $this->tools);
@@ -50,6 +47,7 @@ class AutoPHP
         $currentTask = $this->prioritizationTaskAgent->prioritizeTask($this->objective);
         $iteration = 1;
         while ($currentTask instanceof Task && $maxIteration >= $iteration) {
+            $this->outputAgent->render('Iteration '.$iteration, false);
             $this->outputAgent->printTasks($this->verbose, $this->taskManager->tasks, $currentTask);
 
             // TODO: add a mechanism to retrieve short-term / long-term memory
@@ -88,7 +86,7 @@ class AutoPHP
         $model = new OpenAIChat($config);
         $autoPHPInternalTool = new AutoPHPInternalTool();
         $enoughDataToFinishFunction = FunctionBuilder::buildFunctionInfo($autoPHPInternalTool, 'objectiveStatus');
-        $model->setFunctions([$enoughDataToFinishFunction]);
+        $model->setTools([$enoughDataToFinishFunction]);
         $model->requiredFunction = $enoughDataToFinishFunction;
 
         $achievedTasks = $this->taskManager->getAchievedTasksNameAndResult();
