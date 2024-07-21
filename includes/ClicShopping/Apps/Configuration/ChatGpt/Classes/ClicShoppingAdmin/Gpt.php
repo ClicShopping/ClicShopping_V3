@@ -77,7 +77,7 @@ class Gpt {
       ['id' => 'gpt-3.5-turbo', 'text' => 'OpenAI gpt-3.5-turbo'],
       ['id' => 'gpt-4o-mini', 'text' => 'gpt-4o-mini'],
       ['id' => 'gpt-4o', 'text' => 'OpenAi gpt-4o'],
-      ['id' => 'gemma:7b', 'text' => 'Ollama Gemma:7b'],
+      ['id' => 'gemma2', 'text' => 'Ollama Gemma2'],
       ['id' => 'mistral:7b', 'text' => 'Ollama Mistral:7b'],
       ['id' => 'anth-sonnet', 'text' => 'Anthropic Claude Sonnet 3.5'],
       ['id' => 'anth-opus', 'text' => 'Anthropic Claude Opus'],
