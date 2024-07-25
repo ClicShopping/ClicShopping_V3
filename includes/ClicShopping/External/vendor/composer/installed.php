@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'e663c4d2dc28dd243f2c8b45e4b03af13e6a6edc',
+        'reference' => '03af4425021f03071828bc03918d2fd4bc7189c3',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'e663c4d2dc28dd243f2c8b45e4b03af13e6a6edc',
+            'reference' => '03af4425021f03071828bc03918d2fd4bc7189c3',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -38,9 +38,9 @@
             'dev_requirement' => false,
         ),
         'guzzlehttp/guzzle' => array(
-            'pretty_version' => '7.9.1',
-            'version' => '7.9.1.0',
-            'reference' => 'a629e5b69db96eb4939c1b34114130077dd4c6fc',
+            'pretty_version' => '7.9.2',
+            'version' => '7.9.2.0',
+            'reference' => 'd281ed313b989f213357e3be1a179f02196ac99b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../guzzlehttp/guzzle',
             'aliases' => array(),
@@ -184,8 +184,8 @@
         'psr/http-client-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0',
-                1 => '*',
+                0 => '*',
+                1 => '1.0',
             ),
         ),
         'psr/http-factory' => array(
@@ -241,7 +241,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-latest',
             'version' => 'dev-latest',
-            'reference' => '80e489d7669e5f7a4c56ca250489a0450d3d3219',
+            'reference' => '4ee5bb22f4c3a7ced8de2ff3e7abce703d546de8',
             'type' => 'metapackage',
             'install_path' => null,
             'aliases' => array(
@@ -277,9 +277,9 @@
             'dev_requirement' => false,
         ),
         'stripe/stripe-php' => array(
-            'pretty_version' => 'v15.3.0',
-            'version' => '15.3.0.0',
-            'reference' => '0ac234d3651ee7bd4c74c0bc867032742506d6dc',
+            'pretty_version' => 'v15.4.0',
+            'version' => '15.4.0.0',
+            'reference' => '13581553ea8725b9d0cfff93d24462c4149abec9',
             'type' => 'library',
             'install_path' => __DIR__ . '/../stripe/stripe-php',
             'aliases' => array(),
