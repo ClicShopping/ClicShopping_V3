@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '03af4425021f03071828bc03918d2fd4bc7189c3',
+        'reference' => '9eb9d855204ff7d3bd24122c0e1114d5495c045d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '03af4425021f03071828bc03918d2fd4bc7189c3',
+            'reference' => '9eb9d855204ff7d3bd24122c0e1114d5495c045d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -184,8 +184,8 @@
         'psr/http-client-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '*',
-                1 => '1.0',
+                0 => '1.0',
+                1 => '*',
             ),
         ),
         'psr/http-factory' => array(
@@ -241,7 +241,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-latest',
             'version' => 'dev-latest',
-            'reference' => '4ee5bb22f4c3a7ced8de2ff3e7abce703d546de8',
+            'reference' => 'a7df4da9cd5ab8ad109e6ce0f18327790efbe8a3',
             'type' => 'metapackage',
             'install_path' => null,
             'aliases' => array(
@@ -304,18 +304,18 @@
             'dev_requirement' => false,
         ),
         'symfony/finder' => array(
-            'pretty_version' => 'v5.4.40',
-            'version' => '5.4.40.0',
-            'reference' => 'f51cff4687547641c7d8180d74932ab40b2205ce',
+            'pretty_version' => 'v5.4.42',
+            'version' => '5.4.42.0',
+            'reference' => '0724c51fa067b198e36506d2864e09a52180998a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/finder',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
         'symfony/http-client' => array(
-            'pretty_version' => 'v7.1.2',
-            'version' => '7.1.2.0',
-            'reference' => '90ace27d17ccc9afc6f7ec0081e8529fb0e29425',
+            'pretty_version' => 'v7.1.3',
+            'version' => '7.1.3.0',
+            'reference' => 'b79858aa7a051ea791b0d50269a234a0b50cb231',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/http-client',
             'aliases' => array(),
@@ -364,9 +364,9 @@
             'dev_requirement' => false,
         ),
         'theodo-group/llphant' => array(
-            'pretty_version' => '0.7.1',
-            'version' => '0.7.1.0',
-            'reference' => 'eca20e22c8f77e21a07191207685218e1dc9052b',
+            'pretty_version' => '0.7.3',
+            'version' => '0.7.3.0',
+            'reference' => 'fea142b4e5b14095ae273166809abf77f0d68f9a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../theodo-group/llphant',
             'aliases' => array(),
