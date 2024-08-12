@@ -81,16 +81,16 @@ for ($i = 0, $n = \count($languages); $i < $n; $i++) {
   ];
 }
 
-$groups_array = [];
+  $groups_array = [];
 
-$Qgroups = $CLICSHOPPING_BannerManager->db->get('banners', 'distinct banners_group', null, 'banners_group');
+  $Qgroups = $CLICSHOPPING_BannerManager->db->get('banners', 'distinct banners_group', null, 'banners_group');
 
-while ($Qgroups->fetch()) {
-  $groups_array[] = [
-    'id' => $Qgroups->value('banners_group'),
-    'text' => $Qgroups->value('banners_group')
-  ];
-}
+  while ($Qgroups->fetch()) {
+    $groups_array[] = [
+      'id' => $Qgroups->value('banners_group'),
+      'text' => $Qgroups->value('banners_group')
+    ];
+  }
 
 
 $theme_array = [];
@@ -123,12 +123,12 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_BannerManager->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-end">
-<?php
-echo HTML::form('new_banner', $CLICSHOPPING_BannerManager->link('BannerManager&Update', (isset($page) ? 'page=' . $page . '&' : '')), 'post', 'enctype="multipart/form-data"');
-echo HTML::hiddenField('banners_id', (int)$bID);
-echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_cancel'), null, $CLICSHOPPING_BannerManager->link('BannerManager&BannerManager' . (isset($page) ? 'page=' . $page . '&' : '') . (isset($_GET['bID']) ? 'bID=' . $_GET['bID'] : '')), 'warning') . ' ';
-echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, null, 'success');
-?>
+            <?php
+            echo HTML::form('new_banner', $CLICSHOPPING_BannerManager->link('BannerManager&Update', (isset($page) ? 'page=' . $page . '&' : '')), 'post', 'enctype="multipart/form-data"');
+            echo HTML::hiddenField('banners_id', (int)$bID);
+            echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_cancel'), null, $CLICSHOPPING_BannerManager->link('BannerManager&BannerManager' . (isset($page) ? 'page=' . $page . '&' : '') . (isset($_GET['bID']) ? 'bID=' . $_GET['bID'] : '')), 'warning') . ' ';
+            echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_update'), null, null, 'success');
+            ?>
           </span>
         </div>
       </div>

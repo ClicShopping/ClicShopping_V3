@@ -7,8 +7,8 @@ namespace LLPhant\Chat;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Utils;
 use LLPhant\Chat\FunctionInfo\FunctionInfo;
+use LLPhant\Chat\FunctionInfo\ToolFormatter;
 use LLPhant\Exception\HttpException;
-use LLPhant\Exception\MissingFeatureException;
 use LLPhant\Exception\MissingParameterException;
 use LLPhant\OllamaConfig;
 use LLPhant\Utility;
@@ -31,9 +31,13 @@ class OllamaChat implements ChatInterface
 
     public Client $client;
 
+    /** @var FunctionInfo[] */
+    private array $tools = [];
+
+    public ?FunctionInfo $lastFunctionCalled = null;
+
     public function __construct(protected OllamaConfig $config)
     {
-        $this->config = $config;
         if (! isset($config->model)) {
             throw new MissingParameterException('You need to specify a model for Ollama');
         }
@@ -77,30 +81,26 @@ class OllamaChat implements ChatInterface
         return $json['response'];
     }
 
-    /**
-     * Ollama does not support (yet) functions, this is an alias of generateText and generateChat
-     */
     public function generateTextOrReturnFunctionCalled(string $prompt): string|FunctionInfo
     {
-        return $this->generateText($prompt);
+        $answer = $this->generateText($prompt);
+
+        if ($this->lastFunctionCalled instanceof FunctionInfo) {
+            return $this->lastFunctionCalled;
+        }
+
+        return $answer;
     }
 
     public function generateChatOrReturnFunctionCalled(array $messages): string|FunctionInfo
     {
-        $params = [
-            ...$this->modelOptions,
-            'model' => $this->config->model,
-            'messages' => $this->prepareMessages($messages),
-            'stream' => false,
-        ];
-        $response = $this->sendRequest(
-            'POST',
-            'chat',
-            $params
-        );
-        $json = Utility::decodeJson($response->getBody()->getContents());
+        $answer = $this->generateChat($messages);
 
-        return $json['message']['content'];
+        if ($this->lastFunctionCalled instanceof FunctionInfo) {
+            return $this->lastFunctionCalled;
+        }
+
+        return $answer;
     }
 
     public function generateStreamOfText(string $prompt): StreamInterface
@@ -134,15 +134,38 @@ class OllamaChat implements ChatInterface
             'model' => $this->config->model,
             'messages' => $this->prepareMessages($messages),
             'stream' => false,
+            'tools' => ToolFormatter::formatFunctionsToOpenAITools($this->tools),
         ];
+
         $response = $this->sendRequest(
             'POST',
             'chat',
             $params
         );
-        $json = Utility::decodeJson($response->getBody()->getContents());
 
-        return $json['message']['content'];
+        $contents = $response->getBody()->getContents();
+        $json = Utility::decodeJson($contents);
+
+        $message = $json['message'];
+
+        /** @var Message[] $toolsOutput */
+        $toolsOutput = [];
+
+        if (\array_key_exists('tool_calls', $message)) {
+            foreach ($message['tool_calls'] as $toolCall) {
+                $functionName = $toolCall['function']['name'];
+                $toolResult = $this->callFunction($functionName, $toolCall['function']['arguments']);
+                if (is_string($toolResult)) {
+                    $toolsOutput[] = Message::toolResult($toolResult);
+                }
+            }
+        }
+
+        if ($toolsOutput !== []) {
+            return $this->generateChat(\array_merge($messages, $toolsOutput));
+        }
+
+        return $message['content'];
     }
 
     /** @param  Message[]  $messages */
@@ -168,26 +191,28 @@ class OllamaChat implements ChatInterface
         $this->systemMessage = Message::system($message);
     }
 
-    /** @param  FunctionInfo[]  $tools */
+    /**
+     * @param  FunctionInfo[]  $tools
+     */
     public function setTools(array $tools): void
     {
-        throw new MissingFeatureException('This feature is not supported');
+        $this->tools = $tools;
     }
 
     public function addTool(FunctionInfo $functionInfo): void
     {
-        throw new MissingFeatureException('This feature is not supported');
+        $this->tools[] = $functionInfo;
     }
 
-    /** @param  FunctionInfo[]  $functions */
+    /** @param FunctionInfo[] $functions */
     public function setFunctions(array $functions): void
     {
-        throw new MissingFeatureException('This feature is not supported');
+        $this->setTools($functions);
     }
 
     public function addFunction(FunctionInfo $functionInfo): void
     {
-        throw new MissingFeatureException('This feature is not supported');
+        $this->addTool($functionInfo);
     }
 
     public function setModelOption(string $option, mixed $value): void
@@ -296,5 +321,29 @@ class OllamaChat implements ChatInterface
         }
 
         return $response;
+    }
+
+    /**
+     * @param  array<string, mixed>  $arguments
+     *
+     * @throws \Exception
+     */
+    private function callFunction(string $functionName, array $arguments): mixed
+    {
+        $functionToCall = $this->getFunctionInfoFromName($functionName);
+        $this->lastFunctionCalled = $functionToCall;
+
+        return $functionToCall->callWithArguments($arguments);
+    }
+
+    private function getFunctionInfoFromName(string $functionName): FunctionInfo
+    {
+        foreach ($this->tools as $function) {
+            if ($function->name === $functionName) {
+                return $function;
+            }
+        }
+
+        throw new \Exception("AI tried to call $functionName which doesn't exist");
     }
 }

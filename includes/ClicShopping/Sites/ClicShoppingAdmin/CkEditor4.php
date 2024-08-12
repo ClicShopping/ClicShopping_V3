@@ -185,7 +185,7 @@ class CkEditor4 extends HTML
       $xpath = new DOMXPath($doc);
 
       $image = $xpath->evaluate("string(//img/@src)");
-      $image = CLICSHOPPING::getConfig('http_server', 'Shop') . $image;
+      //$image = CLICSHOPPING::getConfig('http_server', 'Shop') . $image;
 
       $image = htmlspecialchars($image, ENT_QUOTES | ENT_HTML5);
       $image = strstr($image, $CLICSHOPPING_Template->getDirectoryShopTemplateImages());
