@@ -58,6 +58,12 @@ class ApiDeleteSupplier
   {
     if (isset($_GET['sId'], $_GET['suppliers'])) {
       $id = HTML::sanitize($_GET['sId']);
+
+      if (!is_numeric($id)) {
+        http_response_code(400);
+        return json_encode(['error' => 'Invalid ID format']);
+      }
+
       static::deleteSupplier($id);
     } else {
       return false;

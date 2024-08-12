@@ -59,6 +59,11 @@ class ApiDeleteManufacturer
     if (isset($_GET['mId'], $_GET['manufacturers'])) {
       $id = HTML::sanitize($_GET['mId']);
 
+      if (!is_numeric($id)) {
+        http_response_code(400);
+        return json_encode(['error' => 'Invalid ID format']);
+      }
+
       return self::deleteManufacturer($id);
     } else {
       return false;

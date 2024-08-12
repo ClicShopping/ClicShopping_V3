@@ -1,3 +1,9 @@
+version 3.450
+Librairies updated
+Remove ckeditor4
+Improve modal for chatgpt communication
+Minor bugfix
+
 --------------------
 version 3.450
 Librairies updated
@@ -9,6 +15,7 @@ Improve SEO GPT
 Replace Gemma by Gemma2 for ollama
 fix error products_attributes and check field
 Add Anthopic Sonnet3.5,Opus, Haiku
+
 
 --------------------
 version 3.449

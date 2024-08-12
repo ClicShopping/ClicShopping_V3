@@ -673,14 +673,15 @@ class Language
 
     $languages_array = [];
 
-    $arraay = [
+    $array = [
       'languages_id',
       'name',
       'code',
       'image',
       'directory'
     ];
-    $Qlanguages = Registry::get('Db')->get('languages', $arraay, null, 'sort_order');
+    
+    $Qlanguages = Registry::get('Db')->get('languages', $array, null, 'sort_order');
 
     while ($Qlanguages->fetch()) {
       $languages_array[] = [

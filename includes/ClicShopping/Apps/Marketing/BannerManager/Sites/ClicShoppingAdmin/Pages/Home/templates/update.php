@@ -81,16 +81,16 @@ for ($i = 0, $n = \count($languages); $i < $n; $i++) {
   ];
 }
 
-  $groups_array = [];
+$groups_array = [];
 
-  $Qgroups = $CLICSHOPPING_BannerManager->db->get('banners', 'distinct banners_group', null, 'banners_group');
+$Qgroups = $CLICSHOPPING_BannerManager->db->get('banners', 'distinct banners_group', null, 'banners_group');
 
-  while ($Qgroups->fetch()) {
-    $groups_array[] = [
-      'id' => $Qgroups->value('banners_group'),
-      'text' => $Qgroups->value('banners_group')
-    ];
-  }
+while ($Qgroups->fetch()) {
+  $groups_array[] = [
+    'id' => $Qgroups->value('banners_group'),
+    'text' => $Qgroups->value('banners_group')
+  ];
+}
 
 
 $theme_array = [];

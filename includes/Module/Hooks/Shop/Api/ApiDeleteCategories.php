@@ -93,6 +93,12 @@ class ApiDeleteCategories
   {
     if (isset($_GET['cId'], $_GET['categories'])) {
       $id = HTML::sanitize($_GET['cId']);
+
+      if (!is_numeric($id)) {
+        http_response_code(400);
+        return json_encode(['error' => 'Invalid ID format']);
+      }
+
       static::deleteCategories($id);
     } else {
       return false;

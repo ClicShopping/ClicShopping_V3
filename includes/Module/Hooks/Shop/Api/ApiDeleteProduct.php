@@ -77,6 +77,11 @@ class ApiDeleteProduct
     if (isset($_GET['pId'], $_GET['product'])) {
       $id = HTML::sanitize($_GET['pId']);
 
+      if (!is_numeric($id)) {
+        http_response_code(400);
+        return json_encode(['error' => 'Invalid ID format']);
+      }
+
       return static::deleteProducts($id);
     } else {
       return false;

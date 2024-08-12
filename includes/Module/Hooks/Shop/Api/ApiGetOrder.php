@@ -117,6 +117,11 @@ class ApiGetOrder
     if (isset($_GET['oId'], $_GET['token'])) {
       $id = HTML::sanitize($_GET['oId']);
 
+      if (!is_numeric($id)) {
+        http_response_code(400);
+        return json_encode(['error' => 'Invalid ID format']);
+      }
+
       return static::getOrder($id);
     } else {
       return false;

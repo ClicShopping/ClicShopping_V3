@@ -88,7 +88,6 @@ class ApiGetSupplier
 
   public function execute()
   {
-
     if (isset($_GET['sId'], $_GET['token'])) {
       $id = HTML::sanitize($_GET['sId']);
 
@@ -96,6 +95,11 @@ class ApiGetSupplier
         $language_id = HTML::sanitize($_GET['lId']);
       } else {
         $language_id = '';
+      }
+
+      if (!is_numeric($language_id)) {
+        http_response_code(400);
+        return json_encode(['error' => 'Invalid ID format']);
       }
 
       return static::suppliers($id, $language_id);

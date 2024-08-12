@@ -74,8 +74,7 @@ class Gpt {
   public static function getGptModel(): array
   {
     $array = [
-      ['id' => 'gpt-3.5-turbo', 'text' => 'OpenAI gpt-3.5-turbo'],
-      ['id' => 'gpt-4o-mini', 'text' => 'gpt-4o-mini'],
+      ['id' => 'gpt-4o-mini', 'text' => 'OpenAi gpt-4o-mini'],
       ['id' => 'gpt-4o', 'text' => 'OpenAi gpt-4o'],
       ['id' => 'gemma2', 'text' => 'Ollama Gemma2'],
       ['id' => 'mistral:7b', 'text' => 'Ollama Mistral:7b'],
@@ -155,7 +154,6 @@ class Gpt {
         'stop' => $top, //caractères pour arrêter la réponse
         'n' => $max, // nombre de réponses à générer
         'user' => AdministratorAdmin::getUserAdmin(), // nom de l'utilisateur
-        'response_format' => (object)['type' => CLICSHOPPING_APP_CHATGPT_CH_RESPONSE_FORMAT], // Request JSON object response
         'messages' => [
                         'role' => 'system',
                         'content' => 'You are an e-commerce expert in marketing.'
@@ -192,7 +190,6 @@ class Gpt {
       return $chat;
   }
 
-
   /**
    * @param string $model
    * @param int|null $maxtoken
@@ -202,47 +199,23 @@ class Gpt {
   public static function getAnthropicChat(string $model, int|null $maxtoken = null, array|null $modelOptions = null): mixed
   {
     $api_key = CLICSHOPPING_APP_CHATGPT_CH_API_KEY_ANTHROPIC;
-    $chat = false;
+    $result = false;
 
-    if ($modelOptions === null) {
-      $modelOptions = [
-        'messages' => [
-          ['role' => 'system',
-           'content' => 'You are an e-commerce expert in marketing.'
-          ]
-        ]
-      ];
-    }
-/*
-    // Perform the transformation if needed, e.g., extract contents from messages
-    $transformedMessages = array_map(function($message) {
-      return $message['content'];
-    }, $modelOptions['messages']);
-
-    // If transformation means a different structure, adapt accordingly
-    // For example, if you want to convert it to a dictionary:
-    $modelOptions['transformedMessages'] = $transformedMessages;
-*/
     if (is_null($maxtoken)) {
       $maxtoken = (int)CLICSHOPPING_APP_CHATGPT_CH_MAX_TOKEN;
     }
 
-
-    // Create a new AnthropicChat instance with the specified configuration
-
     if (!empty(CLICSHOPPING_APP_CHATGPT_CH_API_KEY_ANTHROPIC)) {
       if ($model = 'anth-sonnet') {
-        $chat = new AnthropicChat(new AnthropicConfig(AnthropicConfig::CLAUDE_3_5_SONNET, $maxtoken, $modelOptions, $api_key));
+        $result = new AnthropicChat(new AnthropicConfig(AnthropicConfig::CLAUDE_3_5_SONNET, $maxtoken, $modelOptions, $api_key));
       } elseif ($model = 'anth-opus') {
-        $chat = new AnthropicChat(new AnthropicConfig(AnthropicConfig::CLAUDE_3_OPUS, $maxtoken, $modelOptions, $api_key));
+        $result = new AnthropicChat(new AnthropicConfig(AnthropicConfig::CLAUDE_3_OPUS, $maxtoken, $modelOptions, $api_key));
       } else {
-        $chat = new AnthropicChat(new AnthropicConfig(AnthropicConfig::CLAUDE_3_HAIKU, $maxtoken, $modelOptions, $api_key));
+        $result = new AnthropicChat(new AnthropicConfig(AnthropicConfig::CLAUDE_3_HAIKU, $maxtoken, $modelOptions, $api_key));
       }
-
-      return $chat;
-    } else {
-      return false;
     }
+
+    return $result;
   }
 
   /**
@@ -274,6 +247,7 @@ class Gpt {
    * @param string|null $engine
    * @param int|null $max
    * @return bool|string
+   * @throws \Exception
    */
   public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null, ?string $engine = null, ?int $max = 1): bool|string
   {
@@ -321,6 +295,7 @@ class Gpt {
   private static function saveData(string $question, string $result, string|null $engine, array|null $usage): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
+
     $promptTokens = 0;
     $completionTokens = 0;
     $totalTokens = 0;
@@ -361,7 +336,7 @@ class Gpt {
   }
   
   /*****************************************
-   * Statistiques
+   * Statistics
    ****************************************/
 
   /**
@@ -413,6 +388,7 @@ class Gpt {
   public static function getErrorRateGpt(): bool|float
   {
     $CLICSHOPPING_Db = Registry::get('Db');
+    $result = false;
 
     $Qtotal = $CLICSHOPPING_Db->prepare('select count(gpt_id) as total_id
                                            from :table_gpt
@@ -436,8 +412,6 @@ class Gpt {
 
     if ($result_no_response > 0) {
       $result = ($result_no_response / $result_total_chat) * 100 . '%';
-    } else {
-      $result = false;
     }
 
     return $result;
@@ -450,70 +424,74 @@ class Gpt {
   {
     $menu = '';
 
+      $checkbox = '
+                        <ul class="list-group-slider list-group-flush">
+                          <span class="text-slider col-12">' . CLICSHOPPING::getDef('text_chat_save') . '</span>
+                          <li class="list-group-item-slider">
+                            <label class="switch">
+                              ' . HTML::checkboxField('saveGpt', null, 0, 'class="success" id="saveGpt"') . '
+                              <span class="slider"></span>
+                            </label>
+                          </li>
+                        </ul>
+      ';
     if (defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') && CLICSHOPPING_APP_CHATGPT_CH_STATUS == 'True' && !empty(CLICSHOPPING_APP_CHATGPT_CH_API_KEY)) {
       $menu .= '
-              <span class="col-md-2">
-                <!-- Modal -->
-                <a href="#chatModal" data-bs-toggle="modal" data-bs-target="#chatModal"><span class="text-white"><i class="bi bi-chat-left-dots-fill" title="' . CLICSHOPPING::getDef('text_chat_open') . '"></i><span></a>
-                <div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
+    <span class="col-md-2">
+        <!-- Modal -->
+        <a href="#chatModal" data-bs-toggle="modal" data-bs-target="#chatModal"><span class="text-white"><i class="bi bi-chat-left-dots-fill" title="' . CLICSHOPPING::getDef('text_chat_open') . '"></i><span></a>
+        <div class="modal fade modal-right" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
                         <h5 class="modal-title" id="chatModalLabel">' . CLICSHOPPING::getDef('text_chat_title') . '</h5>
                         <div class="ms-auto">
-                            ' . HTML::button(CLICSHOPPING::getDef('text_chat_close'), null, null, 'secondary', ['params' => 'data-bs-dismiss="modal"']) . '
+                            ' . HTML::button(CLICSHOPPING::getDef('text_chat_close'), null, null, 'secondary', ['params' => 'data-bs-dismiss="modal"'], 'md') . '
                         </div>
-                      </div>
-                      <div class="modal-body">
+                    </div>
+                    <div class="modal-body">
                         <div class="mt-1"></div>
-
                         <div class="mt-1"></div>
-                        <div class="form-group">
-                          <textarea class="form-control" id="messageGpt" rows="3" placeholder="' . CLICSHOPPING::getDef('text_chat_message') . '"></textarea>
-                        </div>
-                        <div class="mt-1"></div>
-                        <div class="form-group text-end">
-                          <div class="row">
-                            <span class="col-md-6 text-start">
-                              <ul class="list-group-slider list-group-flush">
-                                <span class="text-slider col-6">' . CLICSHOPPING::getDef('text_chat_save') . '</span>
-                                <li class="list-group-item-slider">
-                                  <label class="switch">
-                                    ' . HTML::checkboxField('saveGpt', null, 0, 'class="success" id="saveGpt"') . '
-                                    <span class="slider"></span>
-                                  </label>
-                                </li>
-                              </ul>
-                            </span>
-                            <span class="col-md-6 text-end">                          
-                               ' . HTML::button(CLICSHOPPING::getDef('text_chat_send'), null, null, 'primary', ['params' => 'id="sendGpt"'], 'sm') . '
-                            </span>                         
-                          </div>
-                        </div>
                         <div class="mt-1"></div>
                         <div class="card">
-                          <div class="input-group">
-                            <div class="chat-box-message text-start">
-                              <div id="chatGpt-output" class="text-bg-light"></div>
-                              <div class="mt-1"></div>
-                              <div class="col-md-12">
-                                <div class="row">
-                                  <span class="col-md-12">
-                                    <button id="copyResultButton" class="btn btn-primary btn-sm d-none" data-clipboard-target="#chatGpt-output">
-                                      <i class="bi bi-clipboard" title="' . CLICSHOPPING::getDef('text_copy') . '"></i> ' . CLICSHOPPING::getDef('text_copy') . '
-                                    </button>
-                                  </span>
+                            <div class="input-group">
+                                <div class="chat-box-message text-start">
+                                    <div id="chatGpt-output" class="text-bg-light"></div>
+                                    <div class="mt-1"></div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <span class="col-md-12">
+                                                <button id="copyResultButton" class="btn btn-primary btn-sm d-none" data-clipboard-target="#chatGpt-output">
+                                                    <i class="bi bi-clipboard" title="' . CLICSHOPPING::getDef('text_copy') . '"></i> ' . CLICSHOPPING::getDef('text_copy') . '
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
                             </div>
-                          </div>
                         </div>  
-                      </div>
                     </div>
-                  </div>
+                    <div class="modal-footer">
+                         <div class="form-group col-md-12">
+                            <textarea class="form-control" id="messageGpt" rows="3" placeholder="' . CLICSHOPPING::getDef('text_chat_message') . '"></textarea>
+                        </div>                        
+                        <div class="mt-1"></div>
+                        <div class="form-group text-end col-md-12">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6 text-start">' . $checkbox . '</div>
+                                    <div class="col-md-6 text-end"><br>
+                                    ' . HTML::button(CLICSHOPPING::getDef('text_chat_send'), null, null, 'primary', ['params' => 'id="sendGpt"'], 'sm') . '
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                        
                 </div>
-              </span>
-          ';
+            </div>
+        </div>
+    </span>
+';
     }
 
     return $menu;

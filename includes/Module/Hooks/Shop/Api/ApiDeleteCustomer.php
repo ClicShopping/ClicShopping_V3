@@ -51,6 +51,12 @@ class ApiDeleteCustomer
   {
     if (isset($_GET['cId'], $_GET['customer'])) {
       $id = HTML::sanitize($_GET['cId']);
+
+      if (!is_numeric($id)) {
+        http_response_code(400);
+        return json_encode(['error' => 'Invalid ID format']);
+      }
+
       static::deleteCustomer($id);
     } else {
       return false;

@@ -1,5 +1,5 @@
 CKEDITOR.dialog.add('chatgptDialog', function (editor) {
-  var botUrl = apiGptUrl; // for gpt3.5
+  var botUrl = apiGptUrl;
   var apiKey = apiKeyGpt; // Replace with your own API key
   var conversationState = '';
 

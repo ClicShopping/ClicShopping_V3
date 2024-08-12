@@ -1,0 +1,2 @@
+
+UPDATE `clic_configuration` SET `set_function` = 'clic_cfg_set_boolean_value(array(\'CkEditor5\'))' WHERE `clic_configuration`.`configuration_key` = 'DEFAULT_WYSIWYG';

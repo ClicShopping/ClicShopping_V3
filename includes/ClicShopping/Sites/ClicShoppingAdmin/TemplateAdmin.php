@@ -198,6 +198,18 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
     return CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $this->directoryAdminImages . $this->directoryAdmin;
   }
 
+  /*
+  * get the Relative Path for image shop directory
+  *
+  * @param string $themaFilename , filename in this module
+  *
+  * @return string
+  */
+  public function getImageDirectoryShop(): string
+  {
+    return CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $this->directoryAdminSources . $this->_directoryTemplateImages;
+  }
+
   /**
    * get the boxes directory
    *

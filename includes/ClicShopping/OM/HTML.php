@@ -821,7 +821,7 @@ class HTML
   public static function button(?string $title = null, ?string $icon = null, ?string $link = null, ?string $style = null, $params = null, ?string $size = null): string
   {
     $types = ['submit', 'button', 'reset'];
-    $styles = ['primary', 'info', 'success', 'warning', 'danger', 'inverse', 'link', 'new', 'secondary', 'dark', 'light', 'default'];
+    $styles = ['primary', 'info', 'success', 'warning', 'danger', 'inverse', 'link', 'new', 'secondary', 'dark', 'light', 'default', 'close'];
     $size_button = ['lg', 'md', 'sm'];
 
     if (!isset($params['type'])) {

@@ -151,3 +151,4 @@ if (\defined('MODULE_ADMIN_DASHBOARD_INSTALLED') && !\is_null(MODULE_ADMIN_DASHB
     <div class="clearfix"></div>
   </div>
 </div>
+<div class="py-4"></div>

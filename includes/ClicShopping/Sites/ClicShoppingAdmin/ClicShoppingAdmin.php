@@ -7,6 +7,7 @@
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
+declare(strict_types=1);
 
 namespace ClicShopping\Sites\ClicShoppingAdmin;
 

@@ -82,6 +82,11 @@ class ApiGetCategories
         $language_id = '';
       }
 
+      if (!is_numeric($language_id)) {
+        http_response_code(400);
+        return json_encode(['error' => 'Invalid ID format']);
+      }
+
       return static::categories($id, $language_id);
     } else {
       return false;

@@ -20,8 +20,6 @@ class Wysiwyg implements \ClicShopping\OM\ServiceInterface
   {
     if (defined('DEFAULT_WYSIWYG') && DEFAULT_WYSIWYG == 'CkEditor5') {
       Registry::set('Wysiwyg', new CkEditor5());
-    } else {
-      Registry::set('Wysiwyg', new CkEditor4());
     }
 
     return true;
