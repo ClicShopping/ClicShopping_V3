@@ -6,12 +6,14 @@ namespace LLPhant\Embeddings\EmbeddingGenerator\OpenAI;
 
 use Exception;
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\RequestOptions;
 use LLPhant\Embeddings\Document;
+use LLPhant\Embeddings\DocumentUtils;
 use LLPhant\Embeddings\EmbeddingGenerator\EmbeddingGeneratorInterface;
 use LLPhant\OpenAIConfig;
 use OpenAI;
-use OpenAI\Client;
+use OpenAI\Contracts\ClientContract;
 use Psr\Http\Client\ClientExceptionInterface;
 
 use function getenv;
@@ -19,7 +21,7 @@ use function str_replace;
 
 abstract class AbstractOpenAIEmbeddingGenerator implements EmbeddingGeneratorInterface
 {
-    public Client $client;
+    public ClientContract $client;
 
     public int $batch_size_limit = 50;
 
@@ -32,7 +34,7 @@ abstract class AbstractOpenAIEmbeddingGenerator implements EmbeddingGeneratorInt
      */
     public function __construct(?OpenAIConfig $config = null)
     {
-        if ($config instanceof OpenAIConfig && $config->client instanceof Client) {
+        if ($config instanceof OpenAIConfig && $config->client instanceof ClientContract) {
             $this->client = $config->client;
         } else {
             $apiKey = $config->apiKey ?? getenv('OPENAI_API_KEY');
@@ -52,7 +54,7 @@ abstract class AbstractOpenAIEmbeddingGenerator implements EmbeddingGeneratorInt
      */
     public function embedText(string $text): array
     {
-        $text = str_replace("\n", ' ', $text);
+        $text = str_replace("\n", ' ', DocumentUtils::toUtf8($text));
 
         $response = $this->client->embeddings()->create([
             'model' => $this->getModelName(),
@@ -80,13 +82,9 @@ abstract class AbstractOpenAIEmbeddingGenerator implements EmbeddingGeneratorInt
      */
     public function embedDocuments(array $documents): array
     {
-        if ($this->apiKey === '' || $this->apiKey === '0') {
-            throw new Exception('You have to provide a custom client or an $apiKey to batch embeddings.');
-        }
+        $clientForBatch = $this->createClientForBatch();
 
-        $clientForBatch = new GuzzleClient();
-
-        $texts = array_map(fn (Document $document): string => $document->formattedContent ?? $document->content, $documents);
+        $texts = array_map('LLPhant\Embeddings\DocumentUtils::getUtf8Data', $documents);
 
         // We create batches of 50 texts to avoid hitting the limit
         if ($this->batch_size_limit <= 0) {
@@ -101,21 +99,17 @@ abstract class AbstractOpenAIEmbeddingGenerator implements EmbeddingGeneratorInt
                 'input' => $chunk,
             ];
 
-            $requestForBatch = new Request(
-                'POST',
-                $this->uri,
-                [
-                    'Authorization' => 'Bearer '.$this->apiKey,
-                    'Content-Type' => 'application/json',
-                ],
-                json_encode($body, JSON_THROW_ON_ERROR)
-            );
+            $options = [
+                RequestOptions::JSON => $body,
+            ];
 
-            $response = $clientForBatch->sendRequest($requestForBatch);
+            $response = $clientForBatch->request('POST', $this->uri, $options);
             $jsonResponse = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
 
-            foreach ($jsonResponse['data'] as $key => $oneEmbeddingObject) {
-                $documents[$chunkKey * $this->batch_size_limit + $key]->embedding = $oneEmbeddingObject['embedding'];
+            if (\array_key_exists('data', $jsonResponse)) {
+                foreach ($jsonResponse['data'] as $key => $oneEmbeddingObject) {
+                    $documents[$chunkKey * $this->batch_size_limit + $key]->embedding = $oneEmbeddingObject['embedding'];
+                }
             }
         }
 
@@ -125,4 +119,19 @@ abstract class AbstractOpenAIEmbeddingGenerator implements EmbeddingGeneratorInt
     abstract public function getEmbeddingLength(): int;
 
     abstract public function getModelName(): string;
+
+    protected function createClientForBatch(): ClientInterface
+    {
+        if ($this->apiKey === '' || $this->apiKey === '0') {
+            throw new Exception('You have to provide an $apiKey to batch embeddings.');
+        }
+
+        return new GuzzleClient([
+            'headers' => [
+                'Authorization' => 'Bearer '.$this->apiKey,
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+        ]);
+    }
 }
