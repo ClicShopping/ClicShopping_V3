@@ -1598,16 +1598,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v15.6.0",
+            "version": "v15.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "4209ec90509656623c8976e70b31c80070e355da"
+                "reference": "3e8161c1d7d1e9fb79751a693cd6123550f6ce21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/4209ec90509656623c8976e70b31c80070e355da",
-                "reference": "4209ec90509656623c8976e70b31c80070e355da",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/3e8161c1d7d1e9fb79751a693cd6123550f6ce21",
+                "reference": "3e8161c1d7d1e9fb79751a693cd6123550f6ce21",
                 "shasum": ""
             },
             "require": {
@@ -1651,9 +1651,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v15.6.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v15.7.0"
             },
-            "time": "2024-08-08T23:56:48+00:00"
+            "time": "2024-08-15T21:17:26+00:00"
         },
         {
             "name": "stymiee/email-validator",
@@ -2346,12 +2346,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "a143e7459e3961149eb6a8eecc98dfa19799d02a"
+                "reference": "251a4f1fefcc6e6cc90d50514fee6b6e3745cb3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/a143e7459e3961149eb6a8eecc98dfa19799d02a",
-                "reference": "a143e7459e3961149eb6a8eecc98dfa19799d02a",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/251a4f1fefcc6e6cc90d50514fee6b6e3745cb3e",
+                "reference": "251a4f1fefcc6e6cc90d50514fee6b6e3745cb3e",
                 "shasum": ""
             },
             "conflict": {
@@ -2517,7 +2517,7 @@
                 "ezsystems/ezplatform-graphql": ">=1.0.0.0-RC1-dev,<1.0.13|>=2.0.0.0-beta1,<2.3.12",
                 "ezsystems/ezplatform-kernel": "<1.2.5.1-dev|>=1.3,<1.3.35",
                 "ezsystems/ezplatform-rest": ">=1.2,<=1.2.2|>=1.3,<1.3.8",
-                "ezsystems/ezplatform-richtext": ">=2.3,<2.3.7.1-dev",
+                "ezsystems/ezplatform-richtext": ">=2.3,<2.3.7.1-dev|>=3.3,<3.3.40",
                 "ezsystems/ezplatform-solr-search-engine": ">=1.7,<1.7.12|>=2,<2.0.2|>=3.3,<3.3.15",
                 "ezsystems/ezplatform-user": ">=1,<1.0.1",
                 "ezsystems/ezpublish-kernel": "<6.13.8.2-dev|>=7,<7.5.31",
@@ -2598,6 +2598,7 @@
                 "hyn/multi-tenant": ">=5.6,<5.7.2",
                 "ibexa/admin-ui": ">=4.2,<4.2.3|>=4.6.0.0-beta1,<4.6.9",
                 "ibexa/core": ">=4,<4.0.7|>=4.1,<4.1.4|>=4.2,<4.2.3|>=4.5,<4.5.6|>=4.6,<4.6.2",
+                "ibexa/fieldtype-richtext": ">=4.6,<4.6.10",
                 "ibexa/graphql": ">=2.5,<2.5.31|>=3.3,<3.3.28|>=4.2,<4.2.3",
                 "ibexa/post-install": "<=1.0.4",
                 "ibexa/solr": ">=4.5,<4.5.4",
@@ -3154,7 +3155,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-08-12T19:04:53+00:00"
+            "time": "2024-08-14T19:05:08+00:00"
         }
     ],
     "aliases": [],
