@@ -93,7 +93,7 @@ $languages = $CLICSHOPPING_Language->getLanguages();
                       <label for="<?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_code'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_code'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::inputField('code', $cron['code'] ?? '', 'placeholder="' . $CLICSHOPPING_Cronjob->getDef('text_cronjob_code') . '"'); ?>
+                        <?php echo HTML::inputField('code', $cron['code'] ?? '', 'required aria-required="true" placeholder="' . $CLICSHOPPING_Cronjob->getDef('text_cronjob_code') . '"'); ?>
                       </div>
                     </div>
                   </div>
@@ -106,7 +106,7 @@ $languages = $CLICSHOPPING_Language->getLanguages();
                       <label for="<?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cycle'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_Cronjob->getDef('text_cronjob_cycle'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::inputField('cycle', $cron['cycle'] ?? '', 'placeholder="' . $CLICSHOPPING_Cronjob->getDef('text_cronjob_cycle') . '"'); ?>
+                        <?php echo HTML::inputField('cycle', $cron['cycle'] ?? '', 'required aria-required="true" placeholder="' . $CLICSHOPPING_Cronjob->getDef('text_cronjob_cycle') . '"'); ?>
                       </div>
                     </div>
                   </div>
