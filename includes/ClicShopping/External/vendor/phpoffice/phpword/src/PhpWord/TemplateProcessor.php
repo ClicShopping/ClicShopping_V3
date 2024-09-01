@@ -146,18 +146,6 @@ class TemplateProcessor
                 // Nothing to do here.
             }
         }
-        // Temporary file
-        if ($this->tempDocumentFilename && file_exists($this->tempDocumentFilename)) {
-            unlink($this->tempDocumentFilename);
-        }
-    }
-
-    public function __wakeup(): void
-    {
-        $this->tempDocumentFilename = '';
-        $this->zipClass = null;
-
-        throw new Exception('unserialize not permitted for this class');
     }
 
     /**
@@ -355,6 +343,15 @@ class TemplateProcessor
         if (Settings::isOutputEscapingEnabled()) {
             $xmlEscaper = new Xml();
             $replace = $xmlEscaper->escape($replace);
+        }
+
+        // convert carriage returns
+        if (is_array($replace)) {
+            foreach ($replace as &$item) {
+                $item = $this->replaceCarriageReturns($item);
+            }
+        } else {
+            $replace = $this->replaceCarriageReturns($replace);
         }
 
         $this->tempDocumentHeaders = $this->setValueForPart($search, $replace, $this->tempDocumentHeaders, $limit);
@@ -665,13 +662,13 @@ class TemplateProcessor
         foreach (array_keys($this->tempDocumentHeaders) as $headerIndex) {
             $searchParts[$this->getHeaderName($headerIndex)] = &$this->tempDocumentHeaders[$headerIndex];
         }
-        foreach (array_keys($this->tempDocumentFooters) as $headerIndex) {
-            $searchParts[$this->getFooterName($headerIndex)] = &$this->tempDocumentFooters[$headerIndex];
+        foreach (array_keys($this->tempDocumentFooters) as $footerIndex) {
+            $searchParts[$this->getFooterName($footerIndex)] = &$this->tempDocumentFooters[$footerIndex];
         }
 
         // define templates
         // result can be verified via "Open XML SDK 2.5 Productivity Tool" (http://www.microsoft.com/en-us/download/details.aspx?id=30425)
-        $imgTpl = '<w:pict><v:shape type="#_x0000_t75" style="width:{WIDTH};height:{HEIGHT}" stroked="f"><v:imagedata r:id="{RID}" o:title=""/></v:shape></w:pict>';
+        $imgTpl = '<w:pict><v:shape type="#_x0000_t75" style="width:{WIDTH};height:{HEIGHT}" stroked="f" filled="f"><v:imagedata r:id="{RID}" o:title=""/></v:shape></w:pict>';
 
         $i = 0;
         foreach ($searchParts as $partFileName => &$partContent) {
@@ -808,8 +805,8 @@ class TemplateProcessor
      */
     public function deleteRow(string $search): void
     {
-        if ('${' !== substr($search, 0, 2) && '}' !== substr($search, -1)) {
-            $search = '${' . $search . '}';
+        if (self::$macroOpeningChars !== substr($search, 0, 2) && self::$macroClosingChars !== substr($search, -1)) {
+            $search = self::$macroOpeningChars . $search . self::$macroClosingChars;
         }
 
         $tagPos = strpos($this->tempDocumentMainPart, $search);
@@ -1306,6 +1303,14 @@ class TemplateProcessor
     }
 
     /**
+     * Replace carriage returns with xml.
+     */
+    public function replaceCarriageReturns(string $string): string
+    {
+        return str_replace(["\r\n", "\r", "\n"], '</w:t><w:br/><w:t>', $string);
+    }
+
+    /**
      * Replaces variables with values from array, array keys are the variable names.
      *
      * @param array $variableReplacements
@@ -1488,5 +1493,10 @@ class TemplateProcessor
     {
         self::$macroOpeningChars = $macroOpeningChars;
         self::$macroClosingChars = $macroClosingChars;
+    }
+
+    public function getTempDocumentFilename(): string
+    {
+        return $this->tempDocumentFilename;
     }
 }

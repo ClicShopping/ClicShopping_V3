@@ -165,6 +165,60 @@ class MathMLTest extends TestCase
         $math = $reader->read($content);
     }
 
+    public function testReadFractionWithRow(): void
+    {
+        $content = '<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE math PUBLIC "-//W3C//DTD MathML 2.0//EN" "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mfrac>
+                <mrow>
+                    <mn>3</mn>
+                    <mo>-</mo>
+                    <mi>x</mi>
+                </mrow>
+                <mn>2</mn>
+            </mfrac>
+        </math>';
+
+        $reader = new MathML();
+        $math = $reader->read($content);
+        $this->assertInstanceOf(Math::class, $math);
+
+        $elements = $math->getElements();
+        $this->assertCount(1, $elements);
+        $this->assertInstanceOf(Element\Fraction::class, $elements[0]);
+
+        /** @var Element\Fraction $element */
+        $element = $elements[0];
+
+        $this->assertInstanceOf(Element\Row::class, $element->getNumerator());
+        /** @var Element\Row $subElement */
+        $subElement = $element->getNumerator();
+
+        $subsubElements = $subElement->getElements();
+        $this->assertCount(3, $subsubElements);
+
+        /** @var Element\Numeric $subsubElement */
+        $subsubElement = $subsubElements[0];
+        $this->assertInstanceOf(Element\Numeric::class, $subsubElement);
+        $this->assertEquals('3', $subsubElement->getValue());
+
+        /** @var Element\Operator $subsubElement */
+        $subsubElement = $subsubElements[1];
+        $this->assertInstanceOf(Element\Operator::class, $subsubElement);
+        $this->assertEquals('-', $subsubElement->getValue());
+
+        /** @var Element\Identifier $subsubElement */
+        $subsubElement = $subsubElements[2];
+        $this->assertInstanceOf(Element\Identifier::class, $subsubElement);
+        $this->assertEquals('x', $subsubElement->getValue());
+
+        $this->assertInstanceOf(Element\Numeric::class, $element->getDenominator());
+        /** @var Element\Numeric $subElement */
+        $subElement = $element->getDenominator();
+        $this->assertEquals('2', $subElement->getValue());
+    }
+
     public function testReadSuperscriptInvalid(): void
     {
         $this->expectException(InvalidInputException::class);

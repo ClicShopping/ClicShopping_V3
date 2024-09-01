@@ -16,10 +16,6 @@ class ComposerStaticInit559d5c9b702bf740c3f0e192226eea14
     );
 
     public static $prefixLengthsPsr4 = array (
-        'T' => 
-        array (
-            'Tests\\PhpOffice\\Math\\' => 21,
-        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -82,10 +78,6 @@ class ComposerStaticInit559d5c9b702bf740c3f0e192226eea14
     );
 
     public static $prefixDirsPsr4 = array (
-        'Tests\\PhpOffice\\Math\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpoffice/math/tests/Math',
-        ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',

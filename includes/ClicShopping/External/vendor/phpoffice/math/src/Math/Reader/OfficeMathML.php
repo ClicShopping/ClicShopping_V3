@@ -18,7 +18,7 @@ class OfficeMathML implements ReaderInterface
     /** @var Math */
     protected $math;
 
-    /** @var DOMXpath */
+    /** @var DOMXPath */
     protected $xpath;
 
     /** @var string[] */
@@ -52,7 +52,7 @@ class OfficeMathML implements ReaderInterface
      */
     protected function parseNode(?DOMNode $nodeRowElement, $parent): void
     {
-        $this->xpath = new DOMXpath($this->dom);
+        $this->xpath = new DOMXPath($this->dom);
         foreach ($this->xpath->query('*', $nodeRowElement) ?: [] as $nodeElement) {
             $element = $this->getElement($nodeElement);
             $parent->add($element);

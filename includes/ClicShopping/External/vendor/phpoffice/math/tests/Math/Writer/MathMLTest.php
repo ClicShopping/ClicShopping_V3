@@ -95,7 +95,7 @@ class MathMLTest extends WriterTestCase
 
         $math = new Math();
 
-        $object = new class() extends Element\AbstractElement {};
+        $object = new class extends Element\AbstractElement {};
         $math->add($object);
 
         $writer = new MathML();

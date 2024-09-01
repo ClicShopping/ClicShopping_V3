@@ -7,7 +7,11 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "PhpOffice\\Math\\": "src/Math/",
+            "PhpOffice\\Math\\": "src/Math/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Tests\\PhpOffice\\Math\\": "tests/Math/"
         }
     },
