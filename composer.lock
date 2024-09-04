@@ -765,16 +765,16 @@
         },
         {
             "name": "php-http/multipart-stream-builder",
-            "version": "1.4.0",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/multipart-stream-builder.git",
-                "reference": "ad3d012c44d6a5a1686fea99cbfa560f0fb80448"
+                "reference": "10086e6de6f53489cca5ecc45b6f468604d3460e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/multipart-stream-builder/zipball/ad3d012c44d6a5a1686fea99cbfa560f0fb80448",
-                "reference": "ad3d012c44d6a5a1686fea99cbfa560f0fb80448",
+                "url": "https://api.github.com/repos/php-http/multipart-stream-builder/zipball/10086e6de6f53489cca5ecc45b6f468604d3460e",
+                "reference": "10086e6de6f53489cca5ecc45b6f468604d3460e",
                 "shasum": ""
             },
             "require": {
@@ -815,9 +815,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/multipart-stream-builder/issues",
-                "source": "https://github.com/php-http/multipart-stream-builder/tree/1.4.0"
+                "source": "https://github.com/php-http/multipart-stream-builder/tree/1.4.2"
             },
-            "time": "2024-09-01T11:08:55+00:00"
+            "time": "2024-09-04T13:22:54+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -2258,16 +2258,16 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.7.9",
+            "version": "0.7.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "ec796b9e67eeddc9e3329263785da27987854040"
+                "reference": "3c5e1cf72daefa993d317174fb91e6c31479214a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/ec796b9e67eeddc9e3329263785da27987854040",
-                "reference": "ec796b9e67eeddc9e3329263785da27987854040",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/3c5e1cf72daefa993d317174fb91e6c31479214a",
+                "reference": "3c5e1cf72daefa993d317174fb91e6c31479214a",
                 "shasum": ""
             },
             "require": {
@@ -2333,9 +2333,9 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.7.9"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.7.10"
             },
-            "time": "2024-08-28T10:17:14+00:00"
+            "time": "2024-09-04T11:03:34+00:00"
         }
     ],
     "packages-dev": [
@@ -2345,12 +2345,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "5ddbc0bf3c8c38da3f706c8d1203f9a6a451d44d"
+                "reference": "f6547941a3b3a96c1b20b77c6ebf126b195f814e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/5ddbc0bf3c8c38da3f706c8d1203f9a6a451d44d",
-                "reference": "5ddbc0bf3c8c38da3f706c8d1203f9a6a451d44d",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/f6547941a3b3a96c1b20b77c6ebf126b195f814e",
+                "reference": "f6547941a3b3a96c1b20b77c6ebf126b195f814e",
                 "shasum": ""
             },
             "conflict": {
@@ -2800,7 +2800,7 @@
                 "phpmyfaq/phpmyfaq": "<3.2.5|==3.2.5",
                 "phpoffice/common": "<0.2.9",
                 "phpoffice/phpexcel": "<1.8",
-                "phpoffice/phpspreadsheet": "<2.2.1",
+                "phpoffice/phpspreadsheet": "<1.29.1|>=2,<2.2.1",
                 "phpseclib/phpseclib": "<2.0.47|>=3,<3.0.36",
                 "phpservermon/phpservermon": "<3.6",
                 "phpsysinfo/phpsysinfo": "<3.4.3",
@@ -2809,9 +2809,10 @@
                 "phpxmlrpc/extras": "<0.6.1",
                 "phpxmlrpc/phpxmlrpc": "<4.9.2",
                 "pi/pi": "<=2.5",
-                "pimcore/admin-ui-classic-bundle": "<=1.5.1",
+                "pimcore/admin-ui-classic-bundle": "<1.5.4",
                 "pimcore/customer-management-framework-bundle": "<4.0.6",
                 "pimcore/data-hub": "<1.2.4",
+                "pimcore/data-importer": "<1.8.9|>=1.9,<1.9.3",
                 "pimcore/demo": "<10.3",
                 "pimcore/ecommerce-framework-bundle": "<1.0.10",
                 "pimcore/perspective-editor": "<1.5.1",
@@ -3156,7 +3157,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-08-30T15:05:01+00:00"
+            "time": "2024-09-04T15:05:11+00:00"
         }
     ],
     "aliases": [],

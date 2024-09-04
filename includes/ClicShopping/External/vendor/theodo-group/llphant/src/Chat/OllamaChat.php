@@ -6,6 +6,7 @@ namespace LLPhant\Chat;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Utils;
+use LLPhant\Chat\CalledFunction\CalledFunction;
 use LLPhant\Chat\FunctionInfo\FunctionInfo;
 use LLPhant\Chat\FunctionInfo\ToolFormatter;
 use LLPhant\Exception\HttpException;
@@ -34,9 +35,8 @@ class OllamaChat implements ChatInterface
     /** @var FunctionInfo[] */
     private array $tools = [];
 
-    public ?FunctionInfo $lastFunctionCalled = null;
-
-    public mixed $lastToolsOutput = null;
+    /** @var CalledFunction[] */
+    public array $functionsCalled = [];
 
     public function __construct(protected OllamaConfig $config)
     {
@@ -87,8 +87,10 @@ class OllamaChat implements ChatInterface
     {
         $answer = $this->generateText($prompt);
 
-        if ($this->lastFunctionCalled instanceof FunctionInfo) {
-            return $this->lastFunctionCalled;
+        if ($this->functionsCalled) {
+            $lastKey = array_key_last($this->functionsCalled);
+
+            return $this->functionsCalled[$lastKey]->definition;
         }
 
         return $answer;
@@ -98,8 +100,10 @@ class OllamaChat implements ChatInterface
     {
         $answer = $this->generateChat($messages);
 
-        if ($this->lastFunctionCalled instanceof FunctionInfo) {
-            return $this->lastFunctionCalled;
+        if ($this->functionsCalled) {
+            $lastKey = array_key_last($this->functionsCalled);
+
+            return $this->functionsCalled[$lastKey]->definition;
         }
 
         return $answer;
@@ -157,7 +161,6 @@ class OllamaChat implements ChatInterface
             foreach ($message['tool_calls'] as $toolCall) {
                 $functionName = $toolCall['function']['name'];
                 $toolResult = $this->callFunction($functionName, $toolCall['function']['arguments']);
-                $this->lastToolsOutput = $toolResult;
                 if (is_string($toolResult)) {
                     $toolsOutput[] = Message::toolResult($toolResult);
                 }
@@ -334,9 +337,11 @@ class OllamaChat implements ChatInterface
     private function callFunction(string $functionName, array $arguments): mixed
     {
         $functionToCall = $this->getFunctionInfoFromName($functionName);
-        $this->lastFunctionCalled = $functionToCall;
+        $return = $functionToCall->callWithArguments($arguments);
 
-        return $functionToCall->callWithArguments($arguments);
+        $this->functionsCalled[] = new CalledFunction($functionToCall, $arguments, $return);
+
+        return $return;
     }
 
     private function getFunctionInfoFromName(string $functionName): FunctionInfo
