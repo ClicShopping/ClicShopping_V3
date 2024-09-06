@@ -17,10 +17,44 @@ use ClicShopping\OM\Registry;
 
 class AdministratorAdmin
 {
-/**
+  /**
+   * @return int
+   */
+  public static function CountUser(): int
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qname = $CLICSHOPPING_Db->prepare('select count(id) as count
+                                        from :table_administrators
+                                        ');
+    $Qname->execute();
+
+    return $Qname->value('count');
+  }
+
+  /**
+   * @return array
+   */
+  public static function getAllUserAmin(): array
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qname = $CLICSHOPPING_Db->prepare('select id,
+                                               name,
+                                               first_name
+                                        from :table_administrators
+                                        ');
+    $Qname->execute();
+
+    $check_array = $Qname->fetchAll();
+
+    return $check_array;
+  }
+  
+  /**
 * @return void
  */
-  public static function checkUserAccess()
+  public static function checkUserAccess(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -30,9 +64,10 @@ class AdministratorAdmin
                                           from :table_administrators
                                           where id = :id
                                           and access = :access
+                                          and status = 1
                                           ');
-      $Qcheck->bindint(':id', $_SESSION['admin']['id']);
-      $Qcheck->bindint(':access', 1);
+      $Qcheck->bindInt(':id', $_SESSION['admin']['id']);
+      $Qcheck->bindInt(':access', 1);
       $Qcheck->execute();
 
       if ($Qcheck->fetch() === false) {
@@ -43,6 +78,28 @@ class AdministratorAdmin
       $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('no_access_warning'), 'warning');
       HTTP::redirect('index.php');
     }
+  }
+
+  /**
+   * @return mixed
+   */
+  public static function getAdminIdByAccess(): int
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qcheck = $CLICSHOPPING_Db->prepare('select id
+                                          from :table_administrators
+                                          where id = :id
+                                          and access = :access_id
+                                          and status = 1
+                                          ');
+    $Qcheck->bindInt(':id', $_SESSION['admin']['id']);
+    $Qcheck->bindInt(':access_id', $_SESSION['admin']['access']);
+    $Qcheck->execute();
+
+    $admin_id = $Qcheck->valueInt('id');
+
+    return $admin_id;
   }
 
   /**
@@ -92,12 +149,23 @@ class AdministratorAdmin
       $Qlogins->execute();
 
       $administrator = HTML::output($Qlogins->value('first_name') . ' ' . $Qlogins->value('name'));
-
     } else {
       $administrator = 'Shop action';
     }
 
     return $administrator;
+  }
+
+  /**
+   * @return string
+   * Get the email of the admin
+   */
+  public static function getAdminUserEmail(): string
+  {
+    $username = array($_SESSION['admin']);
+    $username = $username[0]['username'];
+
+    return $username;
   }
 
   /**

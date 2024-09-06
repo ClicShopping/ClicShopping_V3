@@ -348,3 +348,4 @@ text_products_large_image_confirm_delete = Etes vous sur ?
 
 text_alert_info_product = Veuillez sélectionner une catégorie pour voir le produit
 alert_message_b2b_update = Veuillez mettre à jours les Groupes clients pour respecter l'intégrité dela table (Clients/Customer groups)
+alert_copy_category = Veuillez sélectionner une catégorie pour terminer votre copie

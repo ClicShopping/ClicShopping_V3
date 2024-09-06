@@ -3,6 +3,7 @@ Librairies updated
 Remove ckeditor4
 Improve modal for chatgpt communication
 Minor bugfix
+fix copy product
 
 --------------------
 version 3.450

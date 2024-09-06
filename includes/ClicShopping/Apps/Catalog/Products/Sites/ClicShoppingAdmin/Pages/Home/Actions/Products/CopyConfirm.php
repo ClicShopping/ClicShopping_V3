@@ -32,9 +32,16 @@ class CopyConfirm extends \ClicShopping\OM\PagesActionsAbstract
     $this->messageStack = Registry::get('MessageStack');
 
     $this->ID = HTML::sanitize($_POST['products_id']);
-    $this->categoriesId = HTML::sanitize($_POST['categories_id']);
+
     $this->currentCategoryId = HTML::sanitize($_POST['current_category_id']);
     $this->copyAs = $_POST['copy_as'];
+
+    if ( isset($_POST['categories_id'])) {
+      $this->categoriesId = isset($_POST['categories_id']);
+    } else {
+      $this->messageStack->add($this->app->getDef('alert_copy_category'), 'warning');
+      $this->app->redirect('Products&cPath=' . $this->currentCategoryId . '&pID=' . $this->ID);
+    }
 
     $this->productsAdmin = new ProductsAdmin();
   }
