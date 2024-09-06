@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d1dc124d024ea91a1605cd7f56c29c3",
+    "content-hash": "c0ef88ca3034e147468db5891570ae68",
     "packages": [
         {
             "name": "darkghosthunter/preloader",
