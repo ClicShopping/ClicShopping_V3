@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '13edad36140637a84a5a7e0a75829e62ea149d74',
+        'reference' => 'd7c07788ead37a685bcd1956cdbc896b5833046e',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '13edad36140637a84a5a7e0a75829e62ea149d74',
+            'reference' => 'd7c07788ead37a685bcd1956cdbc896b5833046e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -221,9 +221,9 @@
             ),
         ),
         'psr/log' => array(
-            'pretty_version' => '3.0.1',
-            'version' => '3.0.1.0',
-            'reference' => '79dff0b268932c640297f5208d6298f71855c03e',
+            'pretty_version' => '3.0.2',
+            'version' => '3.0.2.0',
+            'reference' => 'f16e1d5863e37f8d8c2a01719f5b34baa2b714d3',
             'type' => 'library',
             'install_path' => __DIR__ . '/../psr/log',
             'aliases' => array(),
@@ -241,7 +241,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-latest',
             'version' => 'dev-latest',
-            'reference' => '883f97eeb8484a500893e4508f60da3086c69ead',
+            'reference' => 'ed0688c3e18bf76d2a17fb243b99acb52c2e29ef',
             'type' => 'metapackage',
             'install_path' => null,
             'aliases' => array(
@@ -277,9 +277,9 @@
             'dev_requirement' => false,
         ),
         'stripe/stripe-php' => array(
-            'pretty_version' => 'v15.8.0',
-            'version' => '15.8.0.0',
-            'reference' => '5ed133fa45987771f80ad300be2316c05832f6a7',
+            'pretty_version' => 'v15.9.0',
+            'version' => '15.9.0.0',
+            'reference' => 'dc9726ac0cfbba7b3c97e2cf6042f2c090551cdb',
             'type' => 'library',
             'install_path' => __DIR__ . '/../stripe/stripe-php',
             'aliases' => array(),
