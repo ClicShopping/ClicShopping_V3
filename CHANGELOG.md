@@ -1,4 +1,4 @@
-version 3.450
+version 3.451
 Librairies updated
 Remove ckeditor4
 Improve modal for chatgpt communication
