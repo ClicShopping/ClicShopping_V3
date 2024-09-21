@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'b04b2a7c1034e486b8b32a085294ea6309554770',
+        'reference' => '7e5a2b8665980c272f1733a480141df8f5f6ed24',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'b04b2a7c1034e486b8b32a085294ea6309554770',
+            'reference' => '7e5a2b8665980c272f1733a480141df8f5f6ed24',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -241,7 +241,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-latest',
             'version' => 'dev-latest',
-            'reference' => '22aca9a3467be44288882a3bcf7f2865abe08ca3',
+            'reference' => '4b6b927472278272e2411f4341dba95d96c8c7d7',
             'type' => 'metapackage',
             'install_path' => null,
             'aliases' => array(
@@ -313,9 +313,9 @@
             'dev_requirement' => false,
         ),
         'symfony/http-client' => array(
-            'pretty_version' => 'v7.1.4',
-            'version' => '7.1.4.0',
-            'reference' => 'a8f8d60b30b331cf4b743b3632e5acdba3f8285c',
+            'pretty_version' => 'v7.1.5',
+            'version' => '7.1.5.0',
+            'reference' => 'abca35865118edf35a23f2f24978a1784c831cb4',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/http-client',
             'aliases' => array(),
