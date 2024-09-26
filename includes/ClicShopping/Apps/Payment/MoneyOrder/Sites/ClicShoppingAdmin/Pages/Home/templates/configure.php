@@ -122,6 +122,5 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
     <?php
   }
   ?>
-</div>
-</div>
+  <div class="py-4"></div>
 </div>

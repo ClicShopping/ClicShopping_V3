@@ -40,8 +40,6 @@ $(document).ready(function() {
             message: message,
             engine: engine,
             saveGpt: saveGpt,
-            company_id: company_id_chat,
-            position_id: position_id_chat
         };
 
         $.post(url_chat, data, function(data) {

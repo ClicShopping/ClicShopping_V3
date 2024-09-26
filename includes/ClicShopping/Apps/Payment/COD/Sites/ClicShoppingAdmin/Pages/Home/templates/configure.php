@@ -14,6 +14,7 @@ use ClicShopping\OM\Registry;
 
 $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 $CLICSHOPPING_COD = Registry::get('COD');
+$CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
 $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
@@ -120,4 +121,5 @@ if ($CLICSHOPPING_MessageStack->exists('main')) {
     <?php
   }
   ?>
+  <div class="py-4"></div>
 </div>
