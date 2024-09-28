@@ -594,16 +594,16 @@
         },
         {
             "name": "openai-php/client",
-            "version": "v0.9.2",
+            "version": "v0.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openai-php/client.git",
-                "reference": "a4e519a3efa380c1dc9d64b1fd1fecf8fc466ba2"
+                "reference": "8b63d27a2f009a7ce4714fda77769e93d883c8da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openai-php/client/zipball/a4e519a3efa380c1dc9d64b1fd1fecf8fc466ba2",
-                "reference": "a4e519a3efa380c1dc9d64b1fd1fecf8fc466ba2",
+                "url": "https://api.github.com/repos/openai-php/client/zipball/8b63d27a2f009a7ce4714fda77769e93d883c8da",
+                "reference": "8b63d27a2f009a7ce4714fda77769e93d883c8da",
                 "shasum": ""
             },
             "require": {
@@ -666,7 +666,7 @@
             ],
             "support": {
                 "issues": "https://github.com/openai-php/client/issues",
-                "source": "https://github.com/openai-php/client/tree/v0.9.2"
+                "source": "https://github.com/openai-php/client/tree/v0.10.1"
             },
             "funding": [
                 {
@@ -682,7 +682,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-27T19:27:25+00:00"
+            "time": "2024-06-06T20:27:51+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -2258,22 +2258,22 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.7.12",
+            "version": "0.7.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "e573ef02cbfed73b631b7e2c05d73c8f1cfac3c6"
+                "reference": "9ac8a5325605da1f6beca6fcb02929a756f8a3a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/e573ef02cbfed73b631b7e2c05d73c8f1cfac3c6",
-                "reference": "e573ef02cbfed73b631b7e2c05d73c8f1cfac3c6",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/9ac8a5325605da1f6beca6fcb02929a756f8a3a9",
+                "reference": "9ac8a5325605da1f6beca6fcb02929a756f8a3a9",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.4.5",
                 "guzzlehttp/psr7": "^2.7",
-                "openai-php/client": "^v0.7.7 || ^v0.8.4 || ^v0.9.2",
+                "openai-php/client": "^v0.7.7 || ^v0.8.4 || ^v0.9.2 || ^v0.10.1",
                 "php": "^8.1.0",
                 "phpoffice/phpword": "^1.3.0",
                 "psr/http-message": "^2.0",
@@ -2333,9 +2333,9 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.7.12"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.7.13"
             },
-            "time": "2024-09-25T08:58:47+00:00"
+            "time": "2024-09-28T18:39:38+00:00"
         }
     ],
     "packages-dev": [
@@ -2345,12 +2345,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "e575df03927277be35e76086cdf41d54f4340767"
+                "reference": "5bd374d4b964c449fc99b871b6d9f139d0b41502"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/e575df03927277be35e76086cdf41d54f4340767",
-                "reference": "e575df03927277be35e76086cdf41d54f4340767",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/5bd374d4b964c449fc99b871b6d9f139d0b41502",
+                "reference": "5bd374d4b964c449fc99b871b6d9f139d0b41502",
                 "shasum": ""
             },
             "conflict": {
@@ -2533,6 +2533,8 @@
                 "feehi/cms": "<=2.1.1",
                 "feehi/feehicms": "<=2.1.1",
                 "fenom/fenom": "<=2.12.1",
+                "filament/infolists": ">=3,<3.2.115",
+                "filament/tables": ">=3,<3.2.115",
                 "filegator/filegator": "<7.8",
                 "filp/whoops": "<2.1.13",
                 "fineuploader/php-traditional-server": "<=1.2.2",
@@ -3162,7 +3164,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-26T18:06:24+00:00"
+            "time": "2024-09-27T21:04:39+00:00"
         }
     ],
     "aliases": [],
