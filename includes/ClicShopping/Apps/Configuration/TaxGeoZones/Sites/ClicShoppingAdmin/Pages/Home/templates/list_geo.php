@@ -120,7 +120,7 @@ echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, $CLI
             scope="row"><?php echo $Qzones->hasValue('countries_name') ? $Qzones->value('countries_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries'); ?></th>
           <td><?php echo $Qzones->hasValue('zone_name') ? $Qzones->value('zone_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_selected'); ?></td>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('EditGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_TaxGeoZones->getDef('icon_edit') . '"></i></h4></a>';
               echo '&nbsp;';

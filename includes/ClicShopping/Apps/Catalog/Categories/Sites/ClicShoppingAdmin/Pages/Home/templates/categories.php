@@ -210,7 +210,7 @@ if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShop
           </td>
           <td class="text-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
           <th class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               echo '<a href="' . $CLICSHOPPING_Categories->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Categories->getDef('icon_edit') . '"></i></h4></a>';
               echo '&nbsp;';

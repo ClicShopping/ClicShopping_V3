@@ -127,7 +127,7 @@ $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
         <td><?php echo $Qcron->value('date_added'); ?></td>
         <td><?php echo $Qcron->value('date_modified'); ?></td>
         <td class="text-end">
-          <div class="btn-group" role="group" aria-label="buttonGroup">
+          <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
             <?php
             if ($Qcron->valueInt('cron_id') > 4) {
               echo '<a href="' . $CLICSHOPPING_Cronjob->link('Edit&Update&cronId=' . $Qcron->valueInt('cron_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Cronjob->getDef('icon_edit') . '"></i></h4></a>';

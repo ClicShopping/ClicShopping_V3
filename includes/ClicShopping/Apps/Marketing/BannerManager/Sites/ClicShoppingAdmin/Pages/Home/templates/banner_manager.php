@@ -268,7 +268,7 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
             ?>
           </td>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               echo '<a href="' . $CLICSHOPPING_BannerManager->link('Update&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_BannerManager->getDef('icon_edit') . '"></i></h4></a>';
               echo '&nbsp;';

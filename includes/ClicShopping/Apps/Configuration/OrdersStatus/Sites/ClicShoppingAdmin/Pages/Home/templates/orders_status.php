@@ -96,7 +96,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
         }
         ?>
         <td class="text-end">
-          <div class="btn-group" role="group" aria-label="buttonGroup">
+          <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
             <?php
             echo '<a href="' . $CLICSHOPPING_OrdersStatus->link('Edit&page=' . (int)$page . '&oID=' . $Qstatus->valueInt('orders_status_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_OrdersStatus->getDef('icon_edit') . '"></i></h4></a>';
             echo '&nbsp;';

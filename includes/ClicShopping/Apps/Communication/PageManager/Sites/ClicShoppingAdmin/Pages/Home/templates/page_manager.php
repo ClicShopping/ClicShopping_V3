@@ -230,7 +230,7 @@ $languages = $CLICSHOPPING_Language->getLanguages();
           <td><?php echo $page_box; ?></td>
           <td class="text-center"><?php echo $Qpages->valueInt('sort_order'); ?></td>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               echo '<a href="' . $CLICSHOPPING_PageManager->link('Edit&bID=' . $Qpages->valueInt('pages_id') . '&page=' . $page) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_PageManager->getDef('icon_edit') . '"></i></h4></a>';
               echo '&nbsp;';

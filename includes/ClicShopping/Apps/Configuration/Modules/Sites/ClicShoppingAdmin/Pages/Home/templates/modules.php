@@ -277,7 +277,7 @@ switch ($module_type) {
             ?>
           </td>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               if ($module->check() > 0) {
                 echo HTML::link($CLICSHOPPING_Modules->link('Edit&set=' . $set . '&module=' . $class), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Modules->getDef('icon_edit') . '"></i></h4>') . '&nbsp;';

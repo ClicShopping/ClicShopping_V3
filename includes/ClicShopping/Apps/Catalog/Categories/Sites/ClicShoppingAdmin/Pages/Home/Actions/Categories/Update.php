@@ -59,9 +59,54 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
         $language_id = $languages[$i]['id'];
         $categories_name_array = HTML::sanitize($_POST['categories_name']);
         $categories_description_array = $_POST['categories_description'];
-        $categories_seo_title_array = HTML::sanitize(strip_tags($_POST['categories_head_title_tag']));
-        $categories_seo_description_array = HTML::sanitize(strip_tags($_POST['categories_head_desc_tag']));
-        $categories_seo_keyword_array = HTML::sanitize(strip_tags($_POST['categories_head_keywords_tag']));
+
+        if (!empty($_POST['categories_head_title_tag'])) {
+          if (is_array($_POST['categories_head_title_tag'])) {
+            $categories_seo_title_array = [];
+            foreach ($_POST['categories_head_title_tag'] as $key => $value) {
+              // Assurez-vous que chaque valeur est une chaîne avant d'appliquer strip_tags et HTML::sanitize
+              $categories_seo_title_array[$key] = HTML::sanitize(strip_tags($value));
+            }
+          } else {
+            // Si ce n'est pas un tableau, traiter comme une chaîne unique
+            $categories_seo_title_array = HTML::sanitize(strip_tags($_POST['categories_head_title_tag']));
+          }
+        } else {
+          $categories_seo_title_array = HTML::sanitize($_POST['categories_head_title_tag']);
+        }
+
+
+        if (!empty($_POST['categories_head_desc_tag'])) {
+          if (is_array($_POST['categories_head_desc_tag'])) {
+            $categories_seo_description_array = [];
+            foreach ($_POST['categories_head_desc_tag'] as $key => $value) {
+              // Assurez-vous que chaque valeur est une chaîne avant d'appliquer strip_tags et HTML::sanitize
+              $categories_seo_description_array[$key] = HTML::sanitize(strip_tags($value));
+            }
+          } else {
+            // Si ce n'est pas un tableau, traiter comme une chaîne unique
+            $categories_seo_description_array = HTML::sanitize(strip_tags($_POST['categories_head_desc_tag']));
+          }
+        } else {
+          $categories_seo_description_array = HTML::sanitize($_POST['categories_head_desc_tag']);
+        }
+
+
+        if (!empty($_POST['categories_head_keywords_tag'])) {
+          if (is_array($_POST['categories_head_keywords_tag'])) {
+            $categories_seo_keyword_array = [];
+            foreach ($_POST['categories_head_keywords_tag'] as $key => $value) {
+              // Assurez-vous que chaque valeur est une chaîne avant d'appliquer strip_tags et HTML::sanitize
+              $categories_seo_keyword_array[$key] = HTML::sanitize(strip_tags($value));
+            }
+          } else {
+            // Si ce n'est pas un tableau, traiter comme une chaîne unique
+            $categories_seo_keyword_array = HTML::sanitize(strip_tags($_POST['categories_head_keywords_tag']));
+          }
+        } else {
+          $categories_seo_keyword_array = HTML::sanitize($_POST['categories_head_keywords_tag']);
+        }
+
         $categories_seo_url_array = HTML::sanitize($_POST['categories_seo_url']);
 
         $sql_data_array = [

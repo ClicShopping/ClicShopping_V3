@@ -195,7 +195,7 @@ $action = $_GET['action'] ?? '';
             } ?>
           </td>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               if ($Qnewsletters->valueInt('locked') > 0) {
                 echo '<a href="' . $CLICSHOPPING_Newsletter->link('Update&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Newsletter->getDef('icon_edit') . '"></i></h4></a>&nbsp;';

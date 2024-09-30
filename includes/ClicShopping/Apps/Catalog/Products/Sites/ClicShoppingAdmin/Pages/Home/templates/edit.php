@@ -390,7 +390,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
           <div class="adminformTitle">
             <div class="mt-1"></div>
             <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelay">
-              <div class="btn-group" role="group" aria-label="buttonGroup">
+              <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
                     <span
                       class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay'); ?></span>
                 <span>
@@ -423,7 +423,7 @@ echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSH
             ?>
             <div class="mt-1"></div>
             <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tabShippingDelayOutOfStock">
-              <div class="btn-group" role="group" aria-label="buttonGroup">
+              <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
                 <span
                   class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay_out_of_stock'); ?></span>
                 <span>

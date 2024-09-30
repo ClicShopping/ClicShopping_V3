@@ -148,7 +148,7 @@ echo $form
               <label for="inputPassword"
                      class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_password'); ?></label>
               <div class="col-sm-6 col-md-6">
-                <div class="btn-group" role="group" aria-label="buttonGroup">
+                <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
                   <span><?php echo HTML::inputField('password', null, 'required aria-required="true" autocomplete="off" id="input-password" aria-describedby="' . CLICSHOPPING::getDef('entry_password') . '" placeholder="' . CLICSHOPPING::getDef('entry_password') . '" minlength="' . (int)ENTRY_PASSWORD_MIN_LENGTH . '"'); ?></span>
                   <span><button type="button" id="button-generate" class="btn btn-primary btn-sm"><i
                         class="bi bi-arrow-clockwise"></i></button></span>

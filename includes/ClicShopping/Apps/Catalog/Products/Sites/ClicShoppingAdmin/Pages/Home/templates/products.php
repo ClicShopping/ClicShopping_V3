@@ -256,7 +256,7 @@ if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShop
           <td class="text-start"><?php echo $Qproducts->value('admin_user_name'); ?></td>
           <td class="text-end"><?php echo $Qproducts->valueInt('products_sort_order'); ?></td>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               echo HTML::link($CLICSHOPPING_Products->link('Edit&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>');
               echo '&nbsp;';

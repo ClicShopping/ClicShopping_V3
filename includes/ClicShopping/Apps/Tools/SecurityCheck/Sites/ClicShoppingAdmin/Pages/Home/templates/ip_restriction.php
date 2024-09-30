@@ -140,7 +140,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
           </td>
           <td><?php echo $Qcount->valueInt('number_of_ip'); ?></td>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               echo '<a href="' . $CLICSHOPPING_SecurityCheck->link('EditIpRestriction&&Edit&cID=' . $QIpRestriction->valueInt('id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_SecurityCheck->getDef('icon_edit') . '"></i></h4></a>';
               ?>

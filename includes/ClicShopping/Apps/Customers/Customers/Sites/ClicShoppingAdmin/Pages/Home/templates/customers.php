@@ -342,7 +342,7 @@ if (isset($_GET['search'])) {
         }
         ?>
         <td class="text-end">
-          <div class="btn-group" role="group" aria-label="buttonGroup">
+          <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
             <?php
             if ($QcustColl->valueInt('customers_group_id') > 0) {
               echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Groups&Edit&cID=' . $QcustColl->valueInt('customers_group_id') . '&action=edit'), '<h4><i class="bi bi-edit" title="' . $CLICSHOPPING_Customers->getDef('icon_edit_customers_group') . '"></i></h4>');

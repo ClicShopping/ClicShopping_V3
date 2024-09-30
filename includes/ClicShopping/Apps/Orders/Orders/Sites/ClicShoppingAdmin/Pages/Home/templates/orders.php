@@ -565,7 +565,7 @@ if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($
         ?>
         <td class="text-end"><?php echo $Qhistory->value('admin_user_name'); ?></td>
         <td class="text-end">
-          <div class="btn-group" role="group" aria-label="buttonGroup">
+          <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
             <?php
             echo HTML::link(ClicShopping::link('index.php?A&Customers\Customers&Edit&cID=' . $Qorders->valueInt('customers_id')), '<h4><i class="bi bi-person" title="' . $CLICSHOPPING_Orders->getDef('icon_edit_customer') . '"></i></h4>');
             echo '&nbsp;';

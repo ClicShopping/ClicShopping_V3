@@ -269,7 +269,7 @@ $review_number = (int)CLICSHOPPING_APP_REVIEWS_RV_REVIEW_NUMBER ?? 1;
             ?>
           </td>
           <td class="text-center">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php echo $Qreviews->valueInt('count') . '&nbsp;<h6><i class="bi bi-question-circle text-warning" title="' . $CLICSHOPPING_Reviews->getDef('help_info_warning') . '"></i></h6>'; ?>
             </div>
           </td>
@@ -283,7 +283,7 @@ $review_number = (int)CLICSHOPPING_APP_REVIEWS_RV_REVIEW_NUMBER ?? 1;
             }
             ?>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
             <?php
               if ($Qreviews->valueInt('count') >= $review_number) {
                 echo HTML::link($CLICSHOPPING_Reviews->link('ReviewsSentiment&Update&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')), '<h4><i class="bi bi-gear" title="' . $CLICSHOPPING_Reviews->getDef('icon_update') . '"></i></h4>');

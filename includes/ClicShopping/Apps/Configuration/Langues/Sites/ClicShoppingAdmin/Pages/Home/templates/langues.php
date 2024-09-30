@@ -122,7 +122,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
           ?>
         </td>
         <td class="text-end">
-          <div class="btn-group" role="group" aria-label="buttonGroup">
+          <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
             <?php
             echo HTML::link($CLICSHOPPING_Langues->link('Edit&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=edit'), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Langues->getDef('icon_edit') . '"></i></h4>');
             echo '&nbsp;';

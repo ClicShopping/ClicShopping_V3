@@ -169,7 +169,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
           ?>
         </td>
         <td class="text-end">
-          <div class="btn-group" role="group" aria-label="buttonGroup">
+          <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
             <?php
             echo '<a href="' . $CLICSHOPPING_Zones->link('Edit&page=' . $page . '&cID=' . $Qzones->valueInt('zone_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Zones->getDef('icon_edit') . '"></i></h4></a>';
             echo '&nbsp;';

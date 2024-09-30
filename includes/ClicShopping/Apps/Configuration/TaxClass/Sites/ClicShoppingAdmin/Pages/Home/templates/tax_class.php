@@ -75,7 +75,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
             <th scope="row"><?php echo $Qclasse->value('tax_class_title'); ?></th>
             <td><?php echo $Qclasse->value('tax_class_description'); ?></td>
             <td class="text-end">
-              <div class="btn-group" role="group" aria-label="buttonGroup">
+              <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
                 <?php
                 echo '<a href="' . $CLICSHOPPING_TaxClass->link('Edit&page=' . $page . '&tID=' . $Qclasse->valueInt('tax_class_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_TaxClass->getDef('icon_edit') . '"></i></h4></a>';
                 echo '&nbsp;';

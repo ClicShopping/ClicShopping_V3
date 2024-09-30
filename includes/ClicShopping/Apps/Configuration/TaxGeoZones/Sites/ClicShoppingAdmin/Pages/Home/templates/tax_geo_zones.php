@@ -106,7 +106,7 @@ $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] :
           <td><?php echo $Qzones->value('geo_zone_description'); ?></td>
           <td><?php echo $zInfo->num_zones ?? null; ?></td>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               echo HTML::link($CLICSHOPPING_TaxGeoZones->link('Edit&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_TaxGeoZones->getDef('icon_edit') . '"></i></h4>');
               echo '&nbsp;';

@@ -125,7 +125,7 @@ if (isset($_POST['search'])) {
       <tr>
         <td><?php echo $Qcontent_group->value('content_group') . ($search_count > '' ? '<span class="text-info"><small><i>' . $search_count . '</i></small></span>' : ''); ?></td>
         <td class="action text-end">
-          <div class="btn-group" role="group" aria-label="buttonGroup">
+          <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
             <?php
             echo HTML::link($CLICSHOPPING_DefineLanguage->link('ContentGroup=' . $Qcontent_group->value('content_group')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_DefineLanguage->getDef('icon_edit') . '"></i></h4>');
             echo '&nbsp;';

@@ -104,7 +104,7 @@ $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', ['id',
         ?>
       </td>
       <td class="text-end">
-        <div class="btn-group" role="group" aria-label="buttonGroup">
+        <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
           <?php
           echo '<a href="' . $CLICSHOPPING_Administrators->link('Edit&aID=' . $Qadmin->valueInt('id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Administrators->getDef('image_edit') . '"></i></h4></a>';
           echo '&nbsp;';

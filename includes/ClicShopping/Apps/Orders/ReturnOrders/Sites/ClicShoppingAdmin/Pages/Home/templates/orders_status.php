@@ -92,7 +92,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
         echo '                <th scope="row">' . $QReturnStatus->value('name') . '</th>' . "\n";
         ?>
         <td class="text-end">
-          <div class="btn-group" role="group" aria-label="buttonGroup">
+          <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
             <?php
             echo '<a href="' . $CLICSHOPPING_ReturnOrders->link('OrdersStatusEdit&page=' . (int)$page . '&oID=' . $QReturnStatus->valueInt('return_status_id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_ReturnOrders->getDef('icon_edit') . '"></i></h4></a>';
             echo '&nbsp;';

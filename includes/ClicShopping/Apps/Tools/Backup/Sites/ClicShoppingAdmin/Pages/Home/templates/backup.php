@@ -129,7 +129,7 @@ if (is_dir($backup_directory)) {
             </td>
             <td class="text-center" onclick="document.location.href='<?php $compression; ?>'"></td>
             <td class="text-end">
-              <div class="btn-group" role="group" aria-label="buttonGroup">
+              <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
                 <?php
                 echo '<a href="' . $CLICSHOPPING_Backup->link('Backup&Download&file=' . $entry) . '"><h4><i class="bi bi-cloud-arrow-down" title="' . $CLICSHOPPING_Backup->getDef('icon_file_download') . '"></i></h4></a>';
                 echo '&nbsp;';

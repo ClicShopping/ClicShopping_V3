@@ -230,7 +230,7 @@ $languages = $CLICSHOPPING_Language->getLanguages();
           }
           ?>
           <th class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               echo HTML::link($CLICSHOPPING_ReturnOrders->link('EditReturnOrders&rID=' . $Qreturn->valueInt('return_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_ReturnOrders->getDef('icon_edit') . '"></i></h4>');
               echo '&nbsp;';

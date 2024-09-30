@@ -114,7 +114,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
           <td><?php echo $weight_class_title; ?></td>
           <td><?php echo $Qweight->value('weight_class_rule'); ?></td>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               echo HTML::link($CLICSHOPPING_Weight->link('ClassEdit&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id') . '&tID=' . $Qweight->valueInt('weight_class_to_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Weight->getDef('icon_edit') . '"></i></h4>');
               echo '&nbsp;';

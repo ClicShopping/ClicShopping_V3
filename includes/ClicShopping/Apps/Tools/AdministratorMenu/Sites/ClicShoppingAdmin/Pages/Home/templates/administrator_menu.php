@@ -245,7 +245,7 @@ if (!isset($_GET['search'])) {
         <td><span class="badge text-bg-light"><?php echo $Qcategories->value('app_code'); ?></span></td>
         <td class="text-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
         <td class="text-end">
-          <div class="btn-group" role="group" aria-label="buttonGroup">
+          <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
             <?php
             echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '"><h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_AdministratorMenu->getDef('image_edit') . '"></i></h4></a>';
             echo '&nbsp;';

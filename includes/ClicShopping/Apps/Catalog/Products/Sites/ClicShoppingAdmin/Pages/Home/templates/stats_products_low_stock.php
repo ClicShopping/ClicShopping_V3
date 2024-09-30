@@ -148,7 +148,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
           <td><?php echo $Qproducts->value('products_warehouse_level_location'); ?></td>
           <td class="text-center"><strong><?php echo $Qproducts->value('products_quantity'); ?></strong></td>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               echo HTML::link($CLICSHOPPING_Products->link('Products&search=' . $Qproducts->value('products_name')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Products->getDef('icon_edit') . '"></i></h4>');
               echo '&nbsp;';

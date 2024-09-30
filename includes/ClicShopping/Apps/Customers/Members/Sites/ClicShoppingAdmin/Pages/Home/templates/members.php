@@ -180,7 +180,7 @@ echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSH
           <td><?php echo $Qcustomers->value('entry_company'); ?></td>
           <td class="text-end"><?php echo DateTime::toShort($Qinfo->value('date_account_created')); ?></td>
           <td class="text-end">
-            <div class="btn-group" role="group" aria-label="buttonGroup">
+            <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
               <?php
               echo HTML::link($CLICSHOPPING_Members->link('AcceptMembers&cID=' . $Qcustomers->valueInt('customers_id')), '<h4><i class="bi bi-bag-plus" title="' . $CLICSHOPPING_Members->getDef('icon_activate') . '"></i></h4>');
               echo '&nbsp;';

@@ -110,7 +110,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
         <td><?php echo DateTime::toShort($Qapi->value('date_added')); ?></td>
         <td><?php echo DateTime::toShort($Qapi->value('date_modified')); ?></td>
         <td class="text-end">
-          <div class="btn-group" role="group" aria-label="buttonGroup">
+          <div class="btn-group d-flex justify-content-end" role="group" aria-label="buttonGroup">
             <?php
             echo HTML::link($CLICSHOPPING_Api->link('Edit&page=' . $page . '&cID=' . $Qapi->valueInt('api_id')), '<h4><i class="bi bi-pencil" title="' . $CLICSHOPPING_Api->getDef('icon_edit') . '"></i></h4>');
             echo '&nbsp;';
