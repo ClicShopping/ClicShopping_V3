@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '503ad3d1642e560f2c27c134eb7ca67ab0891f0f',
+        'reference' => 'e25560ee75ac95203750802ffb3600e0ac891a2a',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '503ad3d1642e560f2c27c134eb7ca67ab0891f0f',
+            'reference' => 'e25560ee75ac95203750802ffb3600e0ac891a2a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -104,9 +104,9 @@
             ),
         ),
         'php-http/discovery' => array(
-            'pretty_version' => '1.19.4',
-            'version' => '1.19.4.0',
-            'reference' => '0700efda8d7526335132360167315fdab3aeb599',
+            'pretty_version' => '1.20.0',
+            'version' => '1.20.0.0',
+            'reference' => '82fe4c73ef3363caed49ff8dd1539ba06044910d',
             'type' => 'composer-plugin',
             'install_path' => __DIR__ . '/../php-http/discovery',
             'aliases' => array(),
@@ -241,7 +241,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-latest',
             'version' => 'dev-latest',
-            'reference' => '6f63660a573ec1e6d48d54ff7c44dfb1e303f30d',
+            'reference' => '0abc1abb96987c7110ea5ee01f279e8f51718cf6',
             'type' => 'metapackage',
             'install_path' => null,
             'aliases' => array(

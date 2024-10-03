@@ -175,9 +175,9 @@ echo $CLICSHOPPING_Wysiwyg::getWysiwyg();
                        aria-labelledby="heading<?php $i; ?>" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-12">
                           <div class="form-group row">
-                            <div class="col-md-3">
+                            <div class="col-md-12">
                               <?php
                               $name = 'template_email_description[' . $languages[$i]['id'] . ']';
                               $ckeditor_id = $CLICSHOPPING_Wysiwyg::getWysiwygId($name);

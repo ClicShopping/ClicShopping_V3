@@ -704,17 +704,17 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.19.4",
-            "version_normalized": "1.19.4.0",
+            "version": "1.20.0",
+            "version_normalized": "1.20.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "0700efda8d7526335132360167315fdab3aeb599"
+                "reference": "82fe4c73ef3363caed49ff8dd1539ba06044910d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/0700efda8d7526335132360167315fdab3aeb599",
-                "reference": "0700efda8d7526335132360167315fdab3aeb599",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/82fe4c73ef3363caed49ff8dd1539ba06044910d",
+                "reference": "82fe4c73ef3363caed49ff8dd1539ba06044910d",
                 "shasum": ""
             },
             "require": {
@@ -741,7 +741,7 @@
                 "sebastian/comparator": "^3.0.5 || ^4.0.8",
                 "symfony/phpunit-bridge": "^6.4.4 || ^7.0.1"
             },
-            "time": "2024-03-29T13:00:05+00:00",
+            "time": "2024-10-02T11:20:13+00:00",
             "type": "composer-plugin",
             "extra": {
                 "class": "Http\\Discovery\\Composer\\Plugin",
@@ -780,7 +780,7 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/discovery/issues",
-                "source": "https://github.com/php-http/discovery/tree/1.19.4"
+                "source": "https://github.com/php-http/discovery/tree/1.20.0"
             },
             "install-path": "../php-http/discovery"
         },
@@ -1489,12 +1489,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "6f63660a573ec1e6d48d54ff7c44dfb1e303f30d"
+                "reference": "0abc1abb96987c7110ea5ee01f279e8f51718cf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/6f63660a573ec1e6d48d54ff7c44dfb1e303f30d",
-                "reference": "6f63660a573ec1e6d48d54ff7c44dfb1e303f30d",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/0abc1abb96987c7110ea5ee01f279e8f51718cf6",
+                "reference": "0abc1abb96987c7110ea5ee01f279e8f51718cf6",
                 "shasum": ""
             },
             "conflict": {
@@ -1595,7 +1595,7 @@
                 "concrete5/core": "<8.5.8|>=9,<9.1",
                 "contao-components/mediaelement": ">=2.14.2,<2.21.1",
                 "contao/comments-bundle": ">=2,<4.13.40|>=5.0.0.0-RC1-dev,<5.3.4",
-                "contao/contao": ">=3,<3.5.37|>=4,<4.4.56|>=4.5,<4.9.40|>=4.10,<4.11.7|>=4.13,<4.13.21|>=5.1,<5.1.4",
+                "contao/contao": "<=5.4.1",
                 "contao/core": "<3.5.39",
                 "contao/core-bundle": "<4.13.49|>=5,<5.3.15|>=5.4,<5.4.3",
                 "contao/listing-bundle": ">=3,<=3.5.30|>=4,<4.4.8",
@@ -1898,7 +1898,7 @@
                 "nzo/url-encryptor-bundle": ">=4,<4.3.2|>=5,<5.0.1",
                 "october/backend": "<1.1.2",
                 "october/cms": "<1.0.469|==1.0.469|==1.0.471|==1.1.1",
-                "october/october": "<=3.4.4",
+                "october/october": "<=3.6.4",
                 "october/rain": "<1.0.472|>=1.1,<1.1.2",
                 "october/system": "<1.0.476|>=1.1,<1.1.12|>=2,<2.2.34|>=3,<3.5.15",
                 "omeka/omeka-s": "<4.0.3",
@@ -2150,7 +2150,7 @@
                 "topthink/thinkphp": "<=3.2.3",
                 "torrentpier/torrentpier": "<=2.4.3",
                 "tpwd/ke_search": "<4.0.3|>=4.1,<4.6.6|>=5,<5.0.2",
-                "tribalsystems/zenario": "<9.5.60602",
+                "tribalsystems/zenario": "<=9.7.61188",
                 "truckersmp/phpwhois": "<=4.3.1",
                 "ttskch/pagination-service-provider": "<1",
                 "twbs/bootstrap": "<=3.4.1|>=4,<=4.6.2",
@@ -2273,7 +2273,7 @@
                 "zfr/zfr-oauth2-server-module": "<0.1.2",
                 "zoujingli/thinkadmin": "<=6.1.53"
             },
-            "time": "2024-09-30T18:06:02+00:00",
+            "time": "2024-10-02T23:04:46+00:00",
             "default-branch": true,
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
