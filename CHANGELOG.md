@@ -1,5 +1,9 @@
 version3.452
 Librairies updated
+
+------------------
+version3.452
+Librairies updated
 fix template wisywig email
 small fix
 
