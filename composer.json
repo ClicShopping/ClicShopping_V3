@@ -19,8 +19,8 @@
         "mattketmo/email-checker": "^2.3",
         "phpxmlrpc/phpxmlrpc": "^4.10",
         "setasign/fpdf": "^1.8",
-        "theodo-group/llphant": "^0.7.10",
-        "stripe/stripe-php": "^16.0"
+        "stripe/stripe-php": "^16.0",
+        "theodo-group/llphant": "^0.8.2"
     }
     ,
     "require-dev": {
