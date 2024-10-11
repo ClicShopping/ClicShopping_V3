@@ -3182,17 +3182,17 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.8.2",
-            "version_normalized": "0.8.2.0",
+            "version": "0.8.4",
+            "version_normalized": "0.8.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "a423f2f5c78e8cfeb3468b1a0292117bb15c8672"
+                "reference": "873bfd068548e53cfc0a824804c0955da7fb7d29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/a423f2f5c78e8cfeb3468b1a0292117bb15c8672",
-                "reference": "a423f2f5c78e8cfeb3468b1a0292117bb15c8672",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/873bfd068548e53cfc0a824804c0955da7fb7d29",
+                "reference": "873bfd068548e53cfc0a824804c0955da7fb7d29",
                 "shasum": ""
             },
             "require": {
@@ -3228,7 +3228,7 @@
                 "predis/predis": "This is required for the RedisVectoreStore.",
                 "symfony/cache": "This is one of the possible types of psr/cache needed by doctrine/orm"
             },
-            "time": "2024-10-11T14:48:09+00:00",
+            "time": "2024-10-11T22:44:59+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3260,7 +3260,7 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.2"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.4"
             },
             "install-path": "../theodo-group/llphant"
         }

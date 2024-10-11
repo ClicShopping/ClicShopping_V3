@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "28787ace0172bfc69b21c43a5e8b3cd1",
+    "content-hash": "8fb95f3f0e0196eb51cd3aa271cc16f1",
     "packages": [
         {
             "name": "darkghosthunter/preloader",
@@ -2258,16 +2258,16 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.8.2",
+            "version": "0.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "a423f2f5c78e8cfeb3468b1a0292117bb15c8672"
+                "reference": "873bfd068548e53cfc0a824804c0955da7fb7d29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/a423f2f5c78e8cfeb3468b1a0292117bb15c8672",
-                "reference": "a423f2f5c78e8cfeb3468b1a0292117bb15c8672",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/873bfd068548e53cfc0a824804c0955da7fb7d29",
+                "reference": "873bfd068548e53cfc0a824804c0955da7fb7d29",
                 "shasum": ""
             },
             "require": {
@@ -2333,9 +2333,9 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.2"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.4"
             },
-            "time": "2024-10-11T14:48:09+00:00"
+            "time": "2024-10-11T22:44:59+00:00"
         }
     ],
     "packages-dev": [
