@@ -21,7 +21,7 @@ class DashboardMembersB2B implements \ClicShopping\OM\Modules\HooksInterface
   /**
    * @var bool|null
    */
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

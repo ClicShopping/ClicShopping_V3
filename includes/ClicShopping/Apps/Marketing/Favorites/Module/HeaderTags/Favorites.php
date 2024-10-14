@@ -17,8 +17,8 @@ use ClicShopping\OM\Registry;
 class Favorites extends \ClicShopping\OM\Modules\HeaderTagsAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
-  protected mixed $template;
+  private mixed $app;
+  private mixed $template;
 
   protected function init()
   {

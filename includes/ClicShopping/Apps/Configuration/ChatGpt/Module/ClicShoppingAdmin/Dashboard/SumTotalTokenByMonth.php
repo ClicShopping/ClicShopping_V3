@@ -17,7 +17,7 @@ use ClicShopping\OM\Registry;
 class SumTotalTokenByMonth extends \ClicShopping\OM\Modules\AdminDashboardAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
+  private mixed $app;
   public $group;
 
   protected function init()

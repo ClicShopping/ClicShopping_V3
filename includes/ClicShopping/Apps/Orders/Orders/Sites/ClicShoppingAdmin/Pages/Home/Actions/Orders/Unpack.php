@@ -16,7 +16,7 @@ use ClicShopping\OM\Registry;
 
 class Unpack extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
   protected $oID;
 
   public function __construct()

@@ -18,7 +18,7 @@ use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
 class TotalToken extends \ClicShopping\OM\Modules\AdminDashboardAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
+  private mixed $app;
   public $group;
 
   protected function init()

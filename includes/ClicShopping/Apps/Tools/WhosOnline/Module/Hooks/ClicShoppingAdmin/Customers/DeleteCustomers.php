@@ -17,7 +17,7 @@ use ClicShopping\Apps\Tools\WhosOnline\WhosOnline as WhosOnlineApp;
 
 class DeleteCustomers implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

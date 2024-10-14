@@ -22,7 +22,7 @@ use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\Temp
 
 class Newsletter
 {
-  protected mixed $app;
+  private mixed $app;
   public $show_chooseAudience;
   public $title;
   public $content;

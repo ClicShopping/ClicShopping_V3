@@ -16,7 +16,7 @@ use ClicShopping\Apps\Payment\Stripe\Stripe as StripeApp;
 
 class PageContentTab3 implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

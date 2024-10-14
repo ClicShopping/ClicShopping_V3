@@ -20,8 +20,8 @@ use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
 class Index extends \ClicShopping\OM\Modules\HeaderTagsAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
-  protected mixed $template;
+  private mixed $app;
+  private mixed $template;
 
   protected function init()
   {

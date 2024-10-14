@@ -16,7 +16,7 @@ use ClicShopping\OM\Registry;
 
 class CoreReset extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function execute()
   {

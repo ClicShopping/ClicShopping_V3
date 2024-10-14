@@ -23,7 +23,7 @@ class UpdateOrder extends \ClicShopping\OM\PagesActionsAbstract
   /**
    * @var bool|\orders|null
    */
-  protected mixed $app;
+  private mixed $app;
   /**
    * @var bool|\lang|null
    */
@@ -31,7 +31,7 @@ class UpdateOrder extends \ClicShopping\OM\PagesActionsAbstract
   /**
    * @var bool|\db|null
    */
-  protected mixed $db;
+  private mixed $db;
   /**
    * @var bool|\hooks|null
    */

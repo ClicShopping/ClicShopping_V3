@@ -17,7 +17,7 @@ use ClicShopping\Apps\Catalog\Suppliers\Suppliers as SuppliersApp;
 
 class CopyConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

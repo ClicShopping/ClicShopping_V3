@@ -21,7 +21,7 @@ class WhosOnlineShop
   protected $contents;
   protected $total;
   protected $weight;
-  protected mixed $db;
+  private mixed $db;
 
   public function __construct()
   {

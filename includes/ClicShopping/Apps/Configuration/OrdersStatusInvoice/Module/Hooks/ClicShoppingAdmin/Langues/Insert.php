@@ -17,7 +17,7 @@ use ClicShopping\Apps\Configuration\OrdersStatusInvoice\OrdersStatusInvoice as O
 
 class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
   protected mixed $lang;
 
   public function __construct()

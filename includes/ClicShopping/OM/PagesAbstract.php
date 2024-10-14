@@ -28,7 +28,7 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   protected array $ignored_actions = [];
   protected bool $is_rpc = false;
 
-  protected mixed $app;
+  private mixed $app;
 
   final public function __construct(\ClicShopping\OM\SitesInterface $site)
   {

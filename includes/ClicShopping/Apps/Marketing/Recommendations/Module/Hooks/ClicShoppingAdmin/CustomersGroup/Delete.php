@@ -18,7 +18,7 @@ use function defined;
 
 class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

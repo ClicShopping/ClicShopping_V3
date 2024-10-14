@@ -16,7 +16,7 @@ use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
 
 class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

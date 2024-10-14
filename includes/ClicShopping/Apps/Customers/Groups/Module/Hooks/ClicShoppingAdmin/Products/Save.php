@@ -17,7 +17,7 @@ use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
 
 class Save implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
   protected $id;
   protected $currentCategoryId;
 

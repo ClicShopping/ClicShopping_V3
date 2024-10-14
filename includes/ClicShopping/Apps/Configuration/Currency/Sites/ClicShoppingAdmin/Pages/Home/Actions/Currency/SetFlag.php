@@ -19,7 +19,7 @@ use ClicShopping\Apps\Configuration\Currency\Classes\ClicShoppingAdmin\Status;
 
 class SetFlag extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

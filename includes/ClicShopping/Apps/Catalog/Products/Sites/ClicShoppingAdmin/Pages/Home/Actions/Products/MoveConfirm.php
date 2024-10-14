@@ -17,7 +17,7 @@ use ClicShopping\OM\Registry;
 
 class MoveConfirm extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
   protected $newParentId;
   protected $currentCategoryId;
 

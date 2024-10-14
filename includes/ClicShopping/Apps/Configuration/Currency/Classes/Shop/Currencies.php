@@ -21,7 +21,7 @@ use function is_string;
 class Currencies
 {
   public array $currencies = [];
-  protected mixed $db;
+  private mixed $db;
   protected $show;
   protected string $selected;
   protected string $default;

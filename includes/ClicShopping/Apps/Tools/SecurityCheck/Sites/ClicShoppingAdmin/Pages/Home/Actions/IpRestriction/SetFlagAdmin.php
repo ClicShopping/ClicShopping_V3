@@ -16,7 +16,7 @@ use ClicShopping\Apps\Tools\SecurityCheck\Classes\IpRestriction;
 
 class SetFlagAdmin extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

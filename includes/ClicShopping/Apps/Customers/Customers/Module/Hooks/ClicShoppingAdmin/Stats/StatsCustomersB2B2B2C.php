@@ -16,7 +16,7 @@ use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
 
 class StatsCustomersB2B2B2C implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

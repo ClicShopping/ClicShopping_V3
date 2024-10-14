@@ -17,7 +17,7 @@ use ClicShopping\Apps\Configuration\ProductsQuantityUnit\Classes\ClicShoppingAdm
 
 class PreviewContent implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
   protected $qteUnit;
 
   public function __construct()

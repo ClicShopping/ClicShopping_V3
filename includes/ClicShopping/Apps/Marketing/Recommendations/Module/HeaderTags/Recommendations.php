@@ -17,8 +17,8 @@ use ClicShopping\Apps\Marketing\Recommendations\Recommendations as Recommendatio
 class Recommendations extends \ClicShopping\OM\Modules\HeaderTagsAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
-  protected mixed $template;
+  private mixed $app;
+  private mixed $template;
 
   protected function init()
   {

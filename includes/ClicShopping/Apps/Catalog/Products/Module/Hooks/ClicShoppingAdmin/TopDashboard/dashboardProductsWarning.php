@@ -18,7 +18,7 @@ use ClicShopping\Apps\Catalog\Products\Products as ProductsApp;
 
 class dashboardProductsWarning implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

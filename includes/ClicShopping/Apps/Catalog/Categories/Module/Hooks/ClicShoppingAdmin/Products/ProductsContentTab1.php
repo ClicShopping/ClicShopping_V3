@@ -17,7 +17,7 @@ use ClicShopping\OM\Registry;
 
 class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

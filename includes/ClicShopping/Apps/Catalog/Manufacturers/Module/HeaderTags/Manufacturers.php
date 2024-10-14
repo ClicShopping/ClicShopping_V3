@@ -20,8 +20,8 @@ use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
 class Manufacturers extends \ClicShopping\OM\Modules\HeaderTagsAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
-  protected mixed $template;
+  private mixed $app;
+  private mixed $template;
 
   protected function init()
   {

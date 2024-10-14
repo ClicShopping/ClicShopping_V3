@@ -21,7 +21,7 @@ class Login extends \ClicShopping\OM\PagesAbstract
   protected ?string $file = null;
   protected bool $use_site_template = false;
   protected mixed $lang;
-  protected mixed $Db;
+  private mixed $db;
 
   protected function init()
   {

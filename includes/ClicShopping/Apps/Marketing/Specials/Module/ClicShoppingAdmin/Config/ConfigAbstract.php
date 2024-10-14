@@ -15,7 +15,7 @@ use ClicShopping\OM\Registry;
 
 abstract class ConfigAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public string $code;
   public $title;

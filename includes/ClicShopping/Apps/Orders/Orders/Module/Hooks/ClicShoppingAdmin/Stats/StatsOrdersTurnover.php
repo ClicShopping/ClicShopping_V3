@@ -15,7 +15,7 @@ use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
 class StatsOrdersTurnover implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

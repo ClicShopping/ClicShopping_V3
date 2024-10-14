@@ -20,7 +20,7 @@ use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 class Orders extends \ClicShopping\OM\Modules\AdminDashboardAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
+  private mixed $app;
   public $group;
 
   protected function init()

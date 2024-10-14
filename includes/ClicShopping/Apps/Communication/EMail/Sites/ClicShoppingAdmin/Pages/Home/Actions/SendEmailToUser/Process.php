@@ -25,7 +25,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
   protected $templateEmailSignature;
   protected $templateEmailFooter;
   protected $mail;
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

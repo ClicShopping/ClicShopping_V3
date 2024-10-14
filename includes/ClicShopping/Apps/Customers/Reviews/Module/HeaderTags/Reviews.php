@@ -17,8 +17,8 @@ use ClicShopping\OM\Registry;
 class Reviews extends \ClicShopping\OM\Modules\HeaderTagsAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
-  protected mixed $template;
+  private mixed $app;
+  private mixed $template;
   public $group;
 
   protected function init()

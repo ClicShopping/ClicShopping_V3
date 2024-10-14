@@ -18,7 +18,7 @@ use ClicShopping\Apps\Tools\WhosOnline\WhosOnline as WhosOnlineApp;
 class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
+  private mixed $app;
   public $group;
 
   protected function init()

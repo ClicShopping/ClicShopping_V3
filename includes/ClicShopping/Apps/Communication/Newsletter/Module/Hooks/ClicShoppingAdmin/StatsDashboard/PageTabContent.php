@@ -16,7 +16,7 @@ use ClicShopping\Apps\Communication\Newsletter\Newsletter as NewsletterApp;
 
 class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

@@ -20,7 +20,7 @@ use ClicShopping\Apps\Tools\Upgrade\Upgrade as UpgradeApp;
 class Upgrade extends \ClicShopping\OM\Modules\AdminDashboardAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
+  private mixed $app;
   public $group;
 
   protected function init()

@@ -24,8 +24,8 @@ use function strlen;
 class CategoriesAdmin
 {
   protected mixed $lang;
-  protected mixed $template;
-  protected mixed $db;
+  private mixed $template;
+  private mixed $db;
 
   public function __construct()
   {

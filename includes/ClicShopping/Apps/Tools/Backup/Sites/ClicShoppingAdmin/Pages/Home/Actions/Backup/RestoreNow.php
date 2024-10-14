@@ -16,7 +16,7 @@ use ClicShopping\OM\Registry;
 
 class RestoreNow extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

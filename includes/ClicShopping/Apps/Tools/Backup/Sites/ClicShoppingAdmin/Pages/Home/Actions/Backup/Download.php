@@ -15,7 +15,7 @@ use ClicShopping\OM\Registry;
 
 class Download extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

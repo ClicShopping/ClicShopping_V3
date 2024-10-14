@@ -19,7 +19,7 @@ use ClicShopping\Apps\Configuration\Modules\Classes\ClicShoppingAdmin\ModulesAdm
 
 class Remove extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

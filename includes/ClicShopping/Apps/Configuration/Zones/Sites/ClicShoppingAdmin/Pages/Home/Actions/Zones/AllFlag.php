@@ -16,7 +16,7 @@ use ClicShopping\Apps\Configuration\Zones\Classes\ClicShoppingAdmin\Status;
 
 class AllFlag extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

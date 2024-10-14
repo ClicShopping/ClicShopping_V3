@@ -17,7 +17,7 @@ use ClicShopping\Apps\Communication\PageManager\PageManager as PageManagerApp;
 
 class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

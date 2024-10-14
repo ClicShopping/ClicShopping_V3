@@ -17,7 +17,7 @@ use ClicShopping\OM\Upload;
 
 class RestoreLocalNow extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

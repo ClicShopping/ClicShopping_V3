@@ -17,7 +17,7 @@ use ClicShopping\Apps\Marketing\Featured\Featured as FeaturedApp;
 
 class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

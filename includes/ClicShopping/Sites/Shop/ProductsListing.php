@@ -18,7 +18,7 @@ use function is_null;
 
 class ProductsListing
 {
-  protected mixed $db;
+  private mixed $db;
 
   public function __construct()
   {

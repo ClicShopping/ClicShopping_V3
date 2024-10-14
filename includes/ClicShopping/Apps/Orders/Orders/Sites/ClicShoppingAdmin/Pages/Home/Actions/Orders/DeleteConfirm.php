@@ -18,7 +18,7 @@ use ClicShopping\Apps\Orders\Orders\Classes\ClicShoppingAdmin\OrderAdmin;
 
 class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
   protected bool $restock;
   protected int $oID;
 

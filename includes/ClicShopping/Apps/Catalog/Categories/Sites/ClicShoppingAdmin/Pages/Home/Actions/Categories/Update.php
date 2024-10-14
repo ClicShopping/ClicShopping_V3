@@ -17,7 +17,7 @@ use function count;
 
 class Update extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function execute()
   {

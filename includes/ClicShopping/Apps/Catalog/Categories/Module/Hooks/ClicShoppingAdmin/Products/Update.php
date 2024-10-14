@@ -18,7 +18,7 @@ use ClicShopping\OM\Registry;
 
 class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
   protected $productsAdmin;
   protected string $productsLink;
   protected string $currentCategoryId;

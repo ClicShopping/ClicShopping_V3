@@ -18,7 +18,7 @@ use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\Github;
 
 class CoreUpgrade extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

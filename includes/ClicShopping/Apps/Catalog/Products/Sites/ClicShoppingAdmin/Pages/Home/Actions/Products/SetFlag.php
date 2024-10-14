@@ -17,7 +17,7 @@ use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ProductsStatusA
 
 class SetFlag extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

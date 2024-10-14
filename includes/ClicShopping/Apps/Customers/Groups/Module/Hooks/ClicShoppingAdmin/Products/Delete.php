@@ -17,7 +17,7 @@ use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
 
 class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

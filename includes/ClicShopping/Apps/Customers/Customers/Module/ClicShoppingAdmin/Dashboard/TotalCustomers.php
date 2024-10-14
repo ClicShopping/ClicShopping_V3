@@ -18,7 +18,7 @@ use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
 class TotalCustomers extends \ClicShopping\OM\Modules\AdminDashboardAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
+  private mixed $app;
   public $group;
 
   protected function init()

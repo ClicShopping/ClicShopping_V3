@@ -26,7 +26,7 @@ class Category
   protected string $_description;
   protected string $_category_depth;
   protected array $_data = [];
-  protected mixed $db;
+  private mixed $db;
   protected mixed $lang;
   protected $categoryTree;
   protected $rewriteUrl;

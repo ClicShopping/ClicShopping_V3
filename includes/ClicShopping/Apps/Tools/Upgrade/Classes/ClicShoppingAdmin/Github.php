@@ -25,7 +25,7 @@ use function strlen;
 
 class Github
 {
-  protected mixed $app;
+  private mixed $app;
   protected $github;
   protected string $githubRepo;
   protected $context;

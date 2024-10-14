@@ -16,7 +16,7 @@ use ClicShopping\Apps\Communication\Newsletter\Newsletter as NewslettersApp;
 
 class StatsCustomersNewsletterBySex implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

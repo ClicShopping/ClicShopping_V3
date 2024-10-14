@@ -17,7 +17,7 @@ use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
 class ArchiveBatch implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
   protected $Id;
 
   public function __construct()

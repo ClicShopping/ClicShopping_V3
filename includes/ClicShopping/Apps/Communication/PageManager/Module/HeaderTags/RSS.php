@@ -19,7 +19,7 @@ use ClicShopping\Apps\Communication\PageManager\PageManager as PageManagerApp;
 class RSS extends \ClicShopping\OM\Modules\HeaderTagsAbstract
 {
   protected mixed $lang;
-  protected mixed $app;
+  private mixed $app;
 
   protected function init()
   {

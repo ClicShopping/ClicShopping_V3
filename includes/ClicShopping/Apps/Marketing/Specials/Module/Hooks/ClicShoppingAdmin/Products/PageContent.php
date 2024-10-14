@@ -17,7 +17,7 @@ use ClicShopping\Apps\Marketing\Specials\Specials as SpecialsApp;
 
 class PageContent implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

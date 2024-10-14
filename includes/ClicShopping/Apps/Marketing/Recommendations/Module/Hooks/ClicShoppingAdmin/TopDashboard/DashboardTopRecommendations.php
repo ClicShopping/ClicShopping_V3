@@ -22,7 +22,7 @@ class DashboardTopRecommendations implements \ClicShopping\OM\Modules\HooksInter
   /**
    * @var bool|null
    */
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

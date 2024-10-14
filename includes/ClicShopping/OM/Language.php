@@ -24,7 +24,7 @@ class Language
   protected array $definitions = [];
   protected array $detectors = [];
   protected bool $use_cache = false;
-  protected mixed $db;
+  private mixed $db;
   public string $code;
 
   /**

@@ -17,10 +17,10 @@ use ClicShopping\Apps\Communication\PageManager\PageManager as PageManagerApp;
 
 class PageManager extends \ClicShopping\OM\Modules\HeaderTagsAbstract
 {
-  protected mixed $db;
+  private mixed $db;
   protected mixed $lang;
-  protected mixed $app;
-  protected mixed $template;
+  private mixed $app;
+  private mixed $template;
 
   protected function init()
   {

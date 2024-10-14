@@ -18,7 +18,7 @@ use function defined;
 
 class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

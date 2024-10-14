@@ -15,7 +15,7 @@ use ClicShopping\OM\Registry;
 
 class Unarchive extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
   protected int $rID;
 
   public function __construct()

@@ -14,7 +14,7 @@ use ClicShopping\OM\Registry;
 
 class MySQL extends \ClicShopping\OM\SessionAbstract implements \SessionHandlerInterface
 {
-  protected mixed $db;
+  private mixed $db;
 
   public function __construct()
   {

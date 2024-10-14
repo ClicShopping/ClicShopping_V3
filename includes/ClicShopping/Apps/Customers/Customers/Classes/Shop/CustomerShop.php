@@ -22,7 +22,7 @@ class CustomerShop
   protected array $_data = [];
   protected array $_data1 = [];
 
-  protected mixed $db;
+  private mixed $db;
 
   public function __construct()
   {

@@ -41,7 +41,7 @@ class Order
   public $coupon;
   public $content_type;
 
-  protected mixed $db;
+  private mixed $db;
   protected mixed $lang;
   protected $mail;
 

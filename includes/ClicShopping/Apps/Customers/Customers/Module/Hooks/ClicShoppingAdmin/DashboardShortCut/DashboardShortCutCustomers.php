@@ -18,7 +18,7 @@ use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
 
 class DashboardShortCutCustomers implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

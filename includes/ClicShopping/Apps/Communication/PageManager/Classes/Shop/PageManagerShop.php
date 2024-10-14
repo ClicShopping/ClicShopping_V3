@@ -19,7 +19,7 @@ use ClicShopping\OM\Registry;
 class PageManagerShop
 {
   protected int $id;
-  protected mixed $db;
+  private mixed $db;
   protected $customer;
   protected mixed $lang;
   protected $rewriteUrl;

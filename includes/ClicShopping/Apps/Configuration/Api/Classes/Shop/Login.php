@@ -9,7 +9,7 @@ use ClicShopping\OM\Registry;
 class Login
 {
   protected mixed $lang;
-  protected mixed $Db;
+  private mixed $db;
   public string $username;
   public string $key;
   public ?string $ip;

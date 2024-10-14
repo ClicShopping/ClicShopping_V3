@@ -18,13 +18,16 @@ use function strlen;
 
 class Hash
 {
+  private static $key = '1c5f37542a2056c76dc2cfe98fecb514'; // 32 caractères pour AES-256
+  private static $cipher = 'aes-256-cbc'; // Algorithme de chiffremen
+
   /**
-   * @param $plain
+   * @param string $plain
    * @param null|string $algo
    * @return bool|string
    * @throws Exception
    */
-  public static function encrypt(string $plain, ?string $algo = null)
+  public static function encrypt(string $plain, string|null $algo = null)
   {
     if (!isset($algo) || $algo == 'default' || $algo == 'bcrypt' || $algo == 'argon2id') {
       if (!isset($algo) || ($algo == 'default')) {
@@ -268,5 +271,85 @@ class Hash
     }
 
     return $result;
+  }
+
+  /**
+   * Chiffrement de données - - Uniquement pour les données type text
+   * @param string $data
+   * @return string
+   * @throws Exception
+   */
+  public static function encryptDatatext(string $data): string
+  {
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(self::$cipher));
+
+    $encrypted = openssl_encrypt($data, self::$cipher, self::$key, 0, $iv);
+    if ($encrypted === false) {
+      throw new Exception('Erreur lors du chiffrement des données');
+    }
+
+    return base64_encode($encrypted . '::' . $iv);
+  }
+
+  /**
+   * Déchiffrement de données - Uniquement pour les données type text
+   * @param string $encryptedData
+   * @return string
+   * @throws Exception
+   */
+  private static function decryptDatatext(string $encryptedData): string
+  {
+    $decodedData = base64_decode($encryptedData);
+    $parts = explode('::', $decodedData, 2);
+
+    if (count($parts) !== 2) {
+      throw new Exception('Données de chiffrement invalides');
+    }
+
+    [$encrypted, $iv] = $parts;
+
+    $decrypted = openssl_decrypt($encrypted, self::$cipher, self::$key, 0, $iv);
+    if ($decrypted === false) {
+      throw new Exception('Erreur lors du déchiffrement des données');
+    }
+
+    return $decrypted;
+  }
+
+  /**
+   * Vérifie si les données sont chiffrées (données en base64 avec "::" pour séparer le contenu et l'IV)
+   * @param string $data
+   * @return bool
+   */
+  private static function isEncryptedDatatext(string $data): bool
+  {
+    // Vérifie si la donnée est encodée en base64
+    if (base64_decode($data, true) === false) {
+      return false;
+    }
+
+    // Vérifie si la donnée décodée contient "::", séparateur entre le texte chiffré et l'IV
+    return count(explode('::', base64_decode($data), 2)) === 2;
+  }
+
+  /**
+   * Display the data decripted on the front Office
+   * @param string|null $dataString
+   * @return string
+   * @throws Exception
+   */
+  public static function displayDecryptedDataText(string|null $dataString): string
+  {
+    if (!is_null($dataString)) {
+      if (self::isEncryptedDatatext($dataString)) {
+        $data = self::decryptDatatext($dataString);
+      } else {
+        $data = $dataString;
+      }
+    } else {
+      $data = '';
+    }
+
+    return $data;
   }
 }

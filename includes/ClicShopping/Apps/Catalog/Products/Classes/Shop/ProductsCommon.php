@@ -54,8 +54,8 @@ class ProductsCommon extends Prod
   protected $infoPriceDiscountByQuantity;
   protected $saveMoney;
 
-  protected mixed $app;
-  protected mixed $db;
+  private mixed $app;
+  private mixed $db;
   protected $language;
   protected $customer;
 

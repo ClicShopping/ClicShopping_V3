@@ -19,7 +19,7 @@ use ClicShopping\OM\Registry;
  */
 class Address
 {
-  protected mixed $db;
+  private mixed $db;
 
   public function __construct()
   {

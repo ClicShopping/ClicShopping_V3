@@ -18,7 +18,7 @@ use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\ClicShoppingAdmin\Produ
 
 class AddProductAttributes extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

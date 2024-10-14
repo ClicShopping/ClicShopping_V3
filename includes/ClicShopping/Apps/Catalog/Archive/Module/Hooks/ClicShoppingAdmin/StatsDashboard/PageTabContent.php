@@ -16,7 +16,7 @@ use ClicShopping\Apps\Catalog\Archive\Archive as ArchiveApp;
 
 class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

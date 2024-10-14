@@ -16,7 +16,7 @@ use function is_null;
 
 class Manufacturers
 {
-  protected mixed $db;
+  private mixed $db;
   protected mixed $lang;
   protected ?int $Id;
 

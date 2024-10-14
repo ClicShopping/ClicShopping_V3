@@ -18,7 +18,7 @@ use ClicShopping\Apps\Configuration\ProductsQuantityUnit\ProductsQuantityUnit as
 
 class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
   protected $qteUnit;
 
   public function __construct()

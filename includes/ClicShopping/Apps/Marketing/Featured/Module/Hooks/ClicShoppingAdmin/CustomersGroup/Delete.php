@@ -17,7 +17,7 @@ use ClicShopping\Apps\Marketing\Featured\Featured as FeaturedApp;
 
 class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

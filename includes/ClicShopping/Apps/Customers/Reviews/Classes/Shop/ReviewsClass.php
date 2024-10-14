@@ -19,9 +19,9 @@ use function is_null;
 class ReviewsClass
 {
   protected mixed $productsCommon;
-  protected mixed $db;
+  private mixed $db;
   protected mixed $lang;
-  protected mixed $hooks;
+  private mixed $hooks;
   protected mixed $customer;
   protected int $reviews_number_comments;
   protected int $reviews_number_word;

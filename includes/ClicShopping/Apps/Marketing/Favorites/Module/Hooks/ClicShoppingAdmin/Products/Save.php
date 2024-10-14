@@ -17,7 +17,7 @@ use ClicShopping\Apps\Marketing\Favorites\Favorites as FavoritesApp;
 
 class Save implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

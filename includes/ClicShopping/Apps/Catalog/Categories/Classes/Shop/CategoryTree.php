@@ -49,7 +49,7 @@ class CategoryTree
   protected $category_product_count_start_string = '&nbsp;(';
   protected $category_product_count_end_string = ')';
   protected $rewriteUrl;
-  protected mixed $db;
+  private mixed $db;
   protected mixed $lang;
 
   public function __construct()

@@ -22,7 +22,7 @@ class ProductsFunctionTemplate
 {
   protected mixed $productsCommon;
   protected mixed $customer;
-  protected mixed $template;
+  private mixed $template;
   protected mixed $category;
   protected mixed $rewriteUrl;
 

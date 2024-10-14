@@ -17,8 +17,8 @@ use ClicShopping\Apps\Catalog\Suppliers\Suppliers as SuppliersApp;
 
 class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
-  protected mixed $db;
+  private mixed $app;
+  private mixed $db;
 
   public function __construct()
   {

@@ -21,7 +21,7 @@ abstract class HeaderTagsAbstract implements \ClicShopping\OM\Modules\HeaderTags
   public ?int $sort_order = null;
   public bool $enabled = false;
 
-  protected mixed $db;
+  private mixed $db;
 
   abstract protected function init();
 

@@ -20,9 +20,9 @@ use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\Temp
 
 class Update extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
   protected mixed $lang;
-  protected mixed $db;
+  private mixed $db;
   protected int $oID;
   protected int $status;
   protected int $statusInvoice;

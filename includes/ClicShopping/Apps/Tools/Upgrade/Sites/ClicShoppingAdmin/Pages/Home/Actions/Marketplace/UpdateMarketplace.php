@@ -14,7 +14,7 @@ use ClicShopping\OM\Registry;
 
 class UpdateMarketplace extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {

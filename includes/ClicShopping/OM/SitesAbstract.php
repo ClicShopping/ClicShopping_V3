@@ -17,7 +17,7 @@ abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface
   protected string $code;
   protected string $default_page = 'Home'; // else white page
   protected mixed $page;
-  protected mixed $app;
+  private mixed $app;
   protected mixed $route;
   public int $actions_index = 1;
 

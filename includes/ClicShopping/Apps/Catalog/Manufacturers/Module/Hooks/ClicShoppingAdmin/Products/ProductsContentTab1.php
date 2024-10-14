@@ -22,7 +22,7 @@ use function is_array;
 
 class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
   protected $manufacturerAdmin;
 
   public function __construct()

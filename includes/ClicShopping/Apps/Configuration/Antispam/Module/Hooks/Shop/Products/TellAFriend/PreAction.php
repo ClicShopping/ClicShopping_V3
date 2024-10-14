@@ -21,7 +21,7 @@ use ClicShopping\Apps\Configuration\Antispam\Classes\Shop\AntiSpam;
 
 class PreAction implements HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
   public mixed $messageStack;
 
   public function __construct()

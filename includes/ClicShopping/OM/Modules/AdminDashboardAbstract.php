@@ -21,7 +21,7 @@ abstract class AdminDashboardAbstract implements \ClicShopping\OM\Modules\AdminD
   public ?int $sort_order = null;
   public bool $enabled = false;
 
-  protected mixed $db;
+  private mixed $db;
 
   abstract protected function init();
 

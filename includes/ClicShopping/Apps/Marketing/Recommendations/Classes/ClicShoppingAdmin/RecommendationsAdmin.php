@@ -15,7 +15,7 @@ use function is_null;
 
 class RecommendationsAdmin
 {
-  protected mixed $db;
+  private mixed $db;
 
   public function __construct()
   {

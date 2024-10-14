@@ -16,7 +16,7 @@ use function is_null;
 class ProductsAttributesShop
 {
   protected mixed $lang;
-  protected mixed $app;
+  private mixed $app;
   private mixed $productsCommon;
   private mixed $customer;
 

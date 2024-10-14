@@ -19,7 +19,7 @@ use function is_null;
 
 class CopyConfirm extends \ClicShopping\OM\PagesActionsAbstract
 {
-  protected mixed $app;
+  private mixed $app;
   protected $ID;
   protected $categoriesId;
   protected $currentCategoryId;

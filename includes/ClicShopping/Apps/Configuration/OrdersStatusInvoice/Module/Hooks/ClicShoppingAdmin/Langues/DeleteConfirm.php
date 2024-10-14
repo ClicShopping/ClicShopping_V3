@@ -17,7 +17,7 @@ use ClicShopping\Apps\Configuration\OrdersStatusInvoice\OrdersStatusInvoice as O
 
 class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
-  protected mixed $app;
+  private mixed $app;
 
   public function __construct()
   {
