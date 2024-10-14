@@ -116,7 +116,7 @@ class CkEditor5 extends HTML
 * @param bool $override
 * @return string
    */
-  public static function textAreaCkeditor(string $name, string|null $value = null, int|null $width = 750, int|null $height = 200, string|null $text = null, string|null $parameters = null, bool $override = true): string
+  public static function textAreaCkeditor(string $name, string|null $value = null, mixed $width = 750, mixed $height = 200, string|null $text = null, string|null $parameters = null, bool $override = true): string
   {
     $ckeditor_id = str_replace('[', '', $name);
     $ckeditor_id = str_replace(']', '', $ckeditor_id);
