@@ -24,8 +24,7 @@ class ThreadRunStreamResponse implements ResponseContract
     private function __construct(
         public readonly string $event,
         public readonly ThreadResponse|ThreadRunResponse|ThreadRunStepResponse|ThreadRunStepDeltaResponse|ThreadMessageResponse|ThreadMessageDeltaResponse $response,
-    ) {
-    }
+    ) {}
 
     /**
      * Acts as static factory, and returns a new Response instance.
@@ -50,6 +49,7 @@ class ThreadRunStreamResponse implements ResponseContract
             'thread.run.in_progress',
             'thread.run.requires_action',
             'thread.run.completed',
+            'thread.run.incomplete',
             'thread.run.failed',
             'thread.run.cancelling',
             'thread.run.cancelled',
