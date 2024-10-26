@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\C
 class featured_min_score extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 1.5;
-  public ?int $sort_order = 110;
+  public int|null $sort_order = 110;
   public bool $app_configured = true;
 
   protected function init()

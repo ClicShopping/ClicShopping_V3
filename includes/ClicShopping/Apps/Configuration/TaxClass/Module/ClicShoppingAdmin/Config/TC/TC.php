@@ -16,7 +16,7 @@ class TC extends \ClicShopping\Apps\Configuration\TaxClass\Module\ClicShoppingAd
   protected $pm_code = 'tax_class';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

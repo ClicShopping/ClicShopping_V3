@@ -16,7 +16,7 @@ use ClicShopping\Apps\Tools\Backup\Classes\ClicShoppingAdmin\Backup;
 
 class BackupNow extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

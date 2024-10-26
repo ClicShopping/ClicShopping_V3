@@ -16,7 +16,7 @@ class EL extends \ClicShopping\Apps\Tools\EditLogError\Module\ClicShoppingAdmin\
   protected $pm_code = 'edit_log_error';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

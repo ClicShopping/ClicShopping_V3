@@ -32,7 +32,7 @@ class ShoppingCart
   protected string $productsId;
   protected bool $products_in_stock = true;
   private mixed $db;
-  protected mixed $lang;
+  private mixed $lang;
   protected $customer;
   protected $productsCommon;
   protected $prod;

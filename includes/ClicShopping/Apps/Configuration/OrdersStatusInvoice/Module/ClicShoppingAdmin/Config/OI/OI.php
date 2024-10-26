@@ -16,7 +16,7 @@ class OI extends \ClicShopping\Apps\Configuration\OrdersStatusInvoice\Module\Cli
   protected $pm_code = 'orders_status_invoice';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

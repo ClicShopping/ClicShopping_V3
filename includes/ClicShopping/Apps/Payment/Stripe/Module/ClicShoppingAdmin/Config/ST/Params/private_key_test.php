@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ST\Pa
 class private_key_test extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = '';
-  public ?int $sort_order = 46;
+  public int|null $sort_order = 46;
 
   protected function init()
   {

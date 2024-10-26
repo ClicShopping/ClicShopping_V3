@@ -90,7 +90,7 @@ class TextBox extends Image
     /**
      * Set margin top.
      */
-    public function setInnerMarginTop(?int $value = null): void
+    public function setInnerMarginTop( int|null $value = null): void
     {
         $this->innerMarginTop = $value;
     }
@@ -98,7 +98,7 @@ class TextBox extends Image
     /**
      * Get margin top.
      */
-    public function getInnerMarginTop(): ?int
+    public function getInnerMarginTop():  int|null
     {
         return $this->innerMarginTop;
     }
@@ -106,7 +106,7 @@ class TextBox extends Image
     /**
      * Set margin left.
      */
-    public function setInnerMarginLeft(?int $value = null): void
+    public function setInnerMarginLeft( int|null $value = null): void
     {
         $this->innerMarginLeft = $value;
     }
@@ -114,7 +114,7 @@ class TextBox extends Image
     /**
      * Get margin left.
      */
-    public function getInnerMarginLeft(): ?int
+    public function getInnerMarginLeft():  int|null
     {
         return $this->innerMarginLeft;
     }
@@ -122,7 +122,7 @@ class TextBox extends Image
     /**
      * Set margin right.
      */
-    public function setInnerMarginRight(?int $value = null): void
+    public function setInnerMarginRight( int|null $value = null): void
     {
         $this->innerMarginRight = $value;
     }
@@ -130,7 +130,7 @@ class TextBox extends Image
     /**
      * Get margin right.
      */
-    public function getInnerMarginRight(): ?int
+    public function getInnerMarginRight():  int|null
     {
         return $this->innerMarginRight;
     }
@@ -138,7 +138,7 @@ class TextBox extends Image
     /**
      * Set margin bottom.
      */
-    public function setInnerMarginBottom(?int $value = null): void
+    public function setInnerMarginBottom( int|null $value = null): void
     {
         $this->innerMarginBottom = $value;
     }
@@ -146,7 +146,7 @@ class TextBox extends Image
     /**
      * Get margin bottom.
      */
-    public function getInnerMarginBottom(): ?int
+    public function getInnerMarginBottom():  int|null
     {
         return $this->innerMarginBottom;
     }
@@ -156,7 +156,7 @@ class TextBox extends Image
      *
      * @param null|int $value Margin in twips
      */
-    public function setInnerMargin(?int $value = null): void
+    public function setInnerMargin( int|null $value = null): void
     {
         $this->setInnerMarginTop($value);
         $this->setInnerMarginLeft($value);
@@ -196,7 +196,7 @@ class TextBox extends Image
      *
      * @param null|int $value Size in points
      */
-    public function setBorderSize(?int $value = null): void
+    public function setBorderSize( int|null $value = null): void
     {
         $this->borderSize = $value;
     }
@@ -204,7 +204,7 @@ class TextBox extends Image
     /**
      * Get border size.
      */
-    public function getBorderSize(): ?int
+    public function getBorderSize():  int|null
     {
         return $this->borderSize;
     }

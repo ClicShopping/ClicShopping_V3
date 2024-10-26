@@ -15,7 +15,7 @@ use ClicShopping\OM\Registry;
 
 class Insert extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
   protected string $currentCategoryId;
 
   public function __construct()

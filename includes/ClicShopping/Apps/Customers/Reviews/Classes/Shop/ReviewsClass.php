@@ -20,7 +20,7 @@ class ReviewsClass
 {
   protected mixed $productsCommon;
   private mixed $db;
-  protected mixed $lang;
+  private mixed $lang;
   private mixed $hooks;
   protected mixed $customer;
   protected int $reviews_number_comments;
@@ -162,7 +162,7 @@ class ReviewsClass
    * @param int|null $id
    * @return bool|array
    */
-  public function getDataReviews(?int $id): bool|array
+  public function getDataReviews( int|null $id): bool|array
   {
     $reviews_id = HTML::sanitize($id);
 
@@ -397,7 +397,7 @@ class ReviewsClass
    * @param bool $all_language
    * @return int|null
    */
-  public function getBestProductReviews(int $products_id, bool $all_language = false): ?int
+  public function getBestProductReviews(int $products_id, bool $all_language = false):  int|null
   {
     if ($all_language === false) {
       if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {

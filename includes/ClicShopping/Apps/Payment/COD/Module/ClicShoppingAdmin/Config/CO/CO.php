@@ -16,7 +16,7 @@ class CO extends \ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config\
   protected $pm_code = 'COD';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

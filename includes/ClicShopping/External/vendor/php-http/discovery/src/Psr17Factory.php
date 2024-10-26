@@ -134,7 +134,7 @@ class Psr17Factory implements RequestFactoryInterface, ResponseFactoryInterface,
         return $factory->createStreamFromResource($resource);
     }
 
-    public function createUploadedFile(StreamInterface $stream, ?int $size = null, int $error = \UPLOAD_ERR_OK, ?string $clientFilename = null, ?string $clientMediaType = null): UploadedFileInterface
+    public function createUploadedFile(StreamInterface $stream,  int|null $size = null, int $error = \UPLOAD_ERR_OK, ?string $clientFilename = null, ?string $clientMediaType = null): UploadedFileInterface
     {
         $factory = $this->uploadedFileFactory ?? $this->setFactory(Psr17FactoryDiscovery::findUploadedFileFactory());
 

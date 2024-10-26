@@ -16,7 +16,7 @@ class ME extends \ClicShopping\Apps\Customers\Members\Module\ClicShoppingAdmin\C
   protected $pm_code = 'members';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

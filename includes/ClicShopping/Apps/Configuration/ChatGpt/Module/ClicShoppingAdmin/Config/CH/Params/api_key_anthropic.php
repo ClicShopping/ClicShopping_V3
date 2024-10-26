@@ -16,7 +16,7 @@ class api_key_anthropic extends \ClicShopping\Apps\Configuration\ChatGpt\Module\
 {
 
   public $default = '';
-  public ?int $sort_order = 33;
+  public int|null $sort_order = 33;
   public bool $app_configured = true;
 
   protected function init()

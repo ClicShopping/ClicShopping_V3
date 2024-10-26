@@ -27,9 +27,9 @@ class AmpBody implements RequestBody, InputStream
 {
     private ResourceInputStream|\Closure|string $body;
     private array $info;
-    private ?int $offset = 0;
+    private  int|null $offset = 0;
     private int $length = -1;
-    private ?int $uploaded = null;
+    private  int|null $uploaded = null;
 
     /**
      * @param \Closure|resource|string $body

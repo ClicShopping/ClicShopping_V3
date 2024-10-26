@@ -54,7 +54,7 @@ class ProductsCommon extends Prod
   protected $infoPriceDiscountByQuantity;
   protected $saveMoney;
 
-  private mixed $app;
+  public mixed $app;
   private mixed $db;
   protected $language;
   protected $customer;
@@ -325,7 +325,7 @@ class ProductsCommon extends Prod
    * @return string $products_name, name of the product
    *
    */
-  public function getProductsName(?int $id = null): string
+  public function getProductsName( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -356,7 +356,7 @@ class ProductsCommon extends Prod
    * @return string $products_image, image of the product
    * @access private
    */
-  private function setProductsImage(?int $id = null): string
+  private function setProductsImage( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -380,7 +380,7 @@ class ProductsCommon extends Prod
    * @return string $products_image, image of the product
    *
    */
-  public function getProductsImage(?int $id = null)
+  public function getProductsImage( int|null $id = null)
   {
     if (is_null($this->setProductsImage($id))) {
       return false;
@@ -395,7 +395,7 @@ class ProductsCommon extends Prod
    * @return string $products_image_medium, image medium of the product
    * @access private
    */
-  private function setProductsImageMedium(?int $id = null): string
+  private function setProductsImageMedium( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -418,7 +418,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $products_image_medium, image medium of the product
    */
-  public function getProductsImageMedium(?int $id = null)
+  public function getProductsImageMedium( int|null $id = null)
   {
     if (is_null($this->setProductsImageMedium($id))) {
       return false;
@@ -432,7 +432,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string
    */
-  public function getProductsDateAvailable(?int $id = null): string
+  public function getProductsDateAvailable( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -474,7 +474,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string
    */
-  public function getProductsSKU(?int $id = null): string
+  public function getProductsSKU( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -497,7 +497,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $products_name, name of the product
    */
-  public function getProductsJAN(?int $id = null): string
+  public function getProductsJAN( int|null $id = null): string
   {
     $array = [
       'products_status' => 1,
@@ -516,7 +516,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string
    */
-  public function getProductsISBN(?int $id = null): string
+  public function getProductsISBN( int|null $id = null): string
   {
     $array = [
       'products_status' => 1,
@@ -535,7 +535,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string
    */
-  public function getProductsMNP(?int $id = null): string
+  public function getProductsMNP( int|null $id = null): string
   {
     $array = [
       'products_status' => 1,
@@ -554,7 +554,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string
    */
-  public function getProductsUPC(?int $id = null): string
+  public function getProductsUPC( int|null $id = null): string
   {
     $array = [
       'products_status' => 1,
@@ -594,7 +594,7 @@ class ProductsCommon extends Prod
    * @return string $products_description, description of the product
    *
    */
-  public function getProductsDescription(?int $id = null): string
+  public function getProductsDescription( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -624,7 +624,7 @@ class ProductsCommon extends Prod
    * @param int $products_short_description_number
    * @return string $short_description , short description
    */
-  public function getProductsShortDescription(?int $id = null, int $delete_word = 0, int $products_short_description_number = 0): string
+  public function getProductsShortDescription( int|null $id = null, int $delete_word = 0, int $products_short_description_number = 0): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -665,7 +665,7 @@ class ProductsCommon extends Prod
    * @param string
    * @return string $products_dimension, dimension of the product
    */
-  public function getProductsDimension(?int $id = null, string $separator = ' x '): string
+  public function getProductsDimension( int|null $id = null, string $separator = ' x '): string
   {
     $CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
 
@@ -708,7 +708,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $products_manufacturer, manufacturer of the product
    */
-  public function getProductsManufacturer(?int $id = null)
+  public function getProductsManufacturer( int|null $id = null)
   {
     $manufacturer_search = '';
 
@@ -759,7 +759,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $icon_new_arrival_products, product new arrival
    */
-  public function getProductsNewArrival(?int $id = null, $size_button = null): string
+  public function getProductsNewArrival( int|null $id = null, $size_button = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -799,7 +799,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $products_only_shop, sell only the shop
    */
-  public function getProductsOnlyTheShop(?int $id = null): string
+  public function getProductsOnlyTheShop( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -822,7 +822,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $products_only_online, products only on the web site
    */
-  public function getProductsOnlyOnTheWebSite(?int $id = null): string
+  public function getProductsOnlyOnTheWebSite( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -845,7 +845,7 @@ class ProductsCommon extends Prod
    * @param null|int
    * @return string $products_packaging, products packaging
    */
-  public function getProductsPackaging(?int $id = null): string
+  public function getProductsPackaging( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -868,7 +868,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $products_packaging, products packaging
    */
-  public function getProductsDateAdded(?int $id = null): string
+  public function getProductsDateAdded( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -893,7 +893,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $products_quantity_unit['products_quantity_unit_title'], products quantity unit type
    */
-  public function getProductQuantityUnitType(?int $id = null): string
+  public function getProductQuantityUnitType( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -1037,7 +1037,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $products_web, sell web and in the shop
    */
-  public function getProductsWebAndShop(?int $id = null): string
+  public function getProductsWebAndShop( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -1081,7 +1081,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $products_weight, weight of the product
    */
-  private function setProductsWeight(?int $id = null)
+  private function setProductsWeight( int|null $id = null)
   {
     $CLICSHOPPING_Weight = Registry::get('Weight');
 
@@ -1113,7 +1113,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $products_weight, weight of the product
    */
-  public function getProductsWeight(?int $id = null)
+  public function getProductsWeight( int|null $id = null)
   {
     return $this->setProductsWeight($id);
   }
@@ -1218,7 +1218,7 @@ class ProductsCommon extends Prod
    * @return string $products_model, model of the product
    */
 
-  private function setProductsModel(?int $id = null): string
+  private function setProductsModel( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -1268,7 +1268,7 @@ class ProductsCommon extends Prod
    * @param int
    * @return string $products_model, model of the product
    */
-  public function getProductsModel(?int $id = null): string
+  public function getProductsModel( int|null $id = null): string
   {
     return $this->setProductsModel($id);
   }
@@ -1279,7 +1279,7 @@ class ProductsCommon extends Prod
    * @return string $flash_discount, the product flash discount based on end special end date
    * @access private
    */
-  private function setProductsFlashDiscount(?int $id = null): string
+  private function setProductsFlashDiscount( int|null $id = null): string
   {
     if (is_null($id)) {
       $id = $this->getID();
@@ -1351,7 +1351,7 @@ class ProductsCommon extends Prod
    * @param int|null $id
    * @return string $products_flash_discount, flash discount
    */
-  public function getProductsFlashDiscount(?int $id = null)
+  public function getProductsFlashDiscount( int|null $id = null)
   {
     return $this->setProductsFlashDiscount($id);
   }
@@ -1369,7 +1369,7 @@ class ProductsCommon extends Prod
    * @access private
    */
 
-  private function setProductQuantityUnitTypeCustomersGroup(?int $id = null)
+  private function setProductQuantityUnitTypeCustomersGroup( int|null $id = null)
   {
     if (is_null($id)) {
       $id = $this->getID();

@@ -23,7 +23,7 @@ class PageManagerAdmin
    * @param int|null $language_id
    * @return string
    */
-  public static function getPageManagerTitle(int $pages_id, ?int $language_id): string
+  public static function getPageManagerTitle(int $pages_id,  int|null $language_id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -49,7 +49,7 @@ class PageManagerAdmin
    * @param int|null $language_id
    * @return string
    */
-  public static function getPageManagerHeadTitleTag(int $pages_id, ?int $language_id): string
+  public static function getPageManagerHeadTitleTag(int $pages_id,  int|null $language_id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -74,7 +74,7 @@ class PageManagerAdmin
    * @param int|null $language_id
    * @return string
    */
-  public static function getPageManagerHeadDescTag(int $pages_id, ?int $language_id): string
+  public static function getPageManagerHeadDescTag(int $pages_id,  int|null $language_id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -99,7 +99,7 @@ class PageManagerAdmin
    * @param int|null $language_id
    * @return string
    */
-  public static function getPageManagerHeadKeywordsTag(int $pages_id, ?int $language_id): string
+  public static function getPageManagerHeadKeywordsTag(int $pages_id,  int|null $language_id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');

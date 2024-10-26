@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ST\Pa
 class key_webhook_endpoint extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = '';
-  public ?int $sort_order = 48;
+  public int|null $sort_order = 48;
 
   protected function init()
   {

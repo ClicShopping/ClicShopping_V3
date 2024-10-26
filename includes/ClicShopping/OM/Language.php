@@ -259,7 +259,7 @@ class Language
    * @param null $height
    * @return string
    */
-  public function getImage(string $language_code, ?int $width = null, ?int $height = null): string
+  public function getImage(string $language_code,  int|null $width = null,  int|null $height = null): string
   {
     if (!isset($width) || !is_int($width)) {
       $width = 28;

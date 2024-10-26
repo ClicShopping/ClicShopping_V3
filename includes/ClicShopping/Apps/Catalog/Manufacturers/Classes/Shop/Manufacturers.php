@@ -17,8 +17,8 @@ use function is_null;
 class Manufacturers
 {
   private mixed $db;
-  protected mixed $lang;
-  protected ?int $Id;
+  private mixed $lang;
+  protected  int|null $Id;
 
   protected $rewriteUrl;
 

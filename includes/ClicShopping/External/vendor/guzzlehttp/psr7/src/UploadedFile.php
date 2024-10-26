@@ -62,7 +62,7 @@ class UploadedFile implements UploadedFileInterface
      */
     public function __construct(
         $streamOrFile,
-        ?int $size,
+         int|null $size,
         int $errorStatus,
         ?string $clientFilename = null,
         ?string $clientMediaType = null
@@ -189,7 +189,7 @@ class UploadedFile implements UploadedFileInterface
         }
     }
 
-    public function getSize(): ?int
+    public function getSize():  int|null
     {
         return $this->size;
     }

@@ -49,7 +49,7 @@ class GptShop
    * @return bool|string
    * @throws \Exception
    */
-  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null)
+  public static function getGptResponse(string $question,  int|null $maxtoken = null, ?float $temperature = null)
   {
     if (self::checkGptStatus() === false) {
       return false;
@@ -97,7 +97,6 @@ class GptShop
       return true;
     }
   }
-
 
   /**
    * @param string $question

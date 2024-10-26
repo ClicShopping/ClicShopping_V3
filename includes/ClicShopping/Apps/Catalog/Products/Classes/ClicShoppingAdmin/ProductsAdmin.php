@@ -30,6 +30,7 @@ class ProductsAdmin
   private mixed $template;
   private mixed $hooks;
   private mixed $lang;
+  private mixed $image;
 
   public function __construct()
   {

@@ -16,7 +16,7 @@ class AM extends \ClicShopping\Apps\Tools\AdministratorMenu\Module\ClicShoppingA
   protected $pm_code = 'administrator_menu';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

@@ -15,8 +15,8 @@ use ClicShopping\OM\Registry;
 
 class UpdateCustomerAddress extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
-  protected mixed $lang;
+  public mixed $app;
+  private mixed $lang;
   private mixed $db;
 
   public function __construct()

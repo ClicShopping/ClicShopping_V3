@@ -16,7 +16,7 @@ class BM extends \ClicShopping\Apps\Marketing\BannerManager\Module\ClicShoppingA
   protected $pm_code = 'banner_manager';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

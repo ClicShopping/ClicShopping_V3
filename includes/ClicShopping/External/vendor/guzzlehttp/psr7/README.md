@@ -498,7 +498,7 @@ a message.
 
 ## `GuzzleHttp\Psr7\Utils::readLine`
 
-`public static function readLine(StreamInterface $stream, ?int $maxLength = null): string`
+`public static function readLine(StreamInterface $stream,  int|null $maxLength = null): string`
 
 Read a line from the stream up to the maximum allowed buffer length.
 

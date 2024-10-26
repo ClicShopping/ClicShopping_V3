@@ -18,7 +18,7 @@ use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
 
 class CustomerGroupTab3 implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
   protected $qteUnit;
 
   public function __construct()

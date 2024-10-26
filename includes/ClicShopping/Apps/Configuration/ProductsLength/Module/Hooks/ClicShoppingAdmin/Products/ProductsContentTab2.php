@@ -18,7 +18,7 @@ use ClicShopping\Apps\Configuration\ProductsLength\ProductsLength as ProductsLen
 
 class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

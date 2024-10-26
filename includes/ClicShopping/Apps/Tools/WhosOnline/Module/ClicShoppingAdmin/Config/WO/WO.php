@@ -16,7 +16,7 @@ class WO extends \ClicShopping\Apps\Tools\WhosOnline\Module\ClicShoppingAdmin\Co
   protected $pm_code = 'whos_online';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
   public $title;
   public string $short_title;
   public string $introduction;

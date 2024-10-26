@@ -395,7 +395,7 @@ class Uri implements UriInterface, \JsonSerializable
         return $this->host;
     }
 
-    public function getPort(): ?int
+    public function getPort():  int|null
     {
         return $this->port;
     }
@@ -621,7 +621,7 @@ class Uri implements UriInterface, \JsonSerializable
      *
      * @throws \InvalidArgumentException If the port is invalid.
      */
-    private function filterPort($port): ?int
+    private function filterPort($port):  int|null
     {
         if ($port === null) {
             return null;

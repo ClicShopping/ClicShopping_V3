@@ -16,7 +16,7 @@ class TO extends \ClicShopping\Apps\OrderTotal\Total\Module\ClicShoppingAdmin\Co
   protected $pm_code = 'Total';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

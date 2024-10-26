@@ -21,7 +21,7 @@ class ManufacturerAdmin
    * @param int $language_id
    * @return string
    */
-  public static function getManufacturerDescription(?int $manufacturers_id, int $language_id): string
+  public static function getManufacturerDescription( int|null $manufacturers_id, int $language_id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -62,7 +62,7 @@ class ManufacturerAdmin
    * @param int|null $id
    * @return mixed
    */
-  public static function getManufacturerName(?int $id = null): array|string
+  public static function getManufacturerName( int|null $id = null): array|string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 

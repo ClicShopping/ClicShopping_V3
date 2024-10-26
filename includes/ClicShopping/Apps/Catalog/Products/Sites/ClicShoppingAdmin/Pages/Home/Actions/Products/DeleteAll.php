@@ -17,7 +17,7 @@ use ClicShopping\OM\Registry;
 
 class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
   protected $selected;
   protected $cPath;
 

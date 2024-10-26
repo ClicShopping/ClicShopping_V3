@@ -12,12 +12,12 @@ use OpenAI\Responses\Meta\MetaInformation;
 use OpenAI\Testing\Responses\Concerns\Fakeable;
 
 /**
- * @implements ResponseContract<array{id: string, object: string, model: string, created_at: int, finished_at: ?int, fine_tuned_model: ?string, hyperparameters: array{n_epochs: int|string, batch_size: int|string|null, learning_rate_multiplier: float|string|null}, organization_id: string, result_files: array<int, string>, status: string, validation_file: ?string, training_file: string, trained_tokens: ?int, error: ?array{code: string, param: ?string, message: string}}>
+ * @implements ResponseContract<array{id: string, object: string, model: string, created_at: int, finished_at:  int|null, fine_tuned_model: ?string, hyperparameters: array{n_epochs: int|string, batch_size: int|string|null, learning_rate_multiplier: float|string|null}, organization_id: string, result_files: array<int, string>, status: string, validation_file: ?string, training_file: string, trained_tokens:  int|null, error: ?array{code: string, param: ?string, message: string}}>
  */
 final class RetrieveJobResponse implements ResponseContract, ResponseHasMetaInformationContract
 {
     /**
-     * @use ArrayAccessible<array{id: string, object: string, model: string, created_at: int, finished_at: ?int, fine_tuned_model: ?string, hyperparameters: array{n_epochs: int|string, batch_size: int|string|null, learning_rate_multiplier: float|string|null}, organization_id: string, result_files: array<int, string>, status: string, validation_file: ?string, training_file: string, trained_tokens: ?int, error: ?array{code: string, param: ?string, message: string}}>
+     * @use ArrayAccessible<array{id: string, object: string, model: string, created_at: int, finished_at:  int|null, fine_tuned_model: ?string, hyperparameters: array{n_epochs: int|string, batch_size: int|string|null, learning_rate_multiplier: float|string|null}, organization_id: string, result_files: array<int, string>, status: string, validation_file: ?string, training_file: string, trained_tokens:  int|null, error: ?array{code: string, param: ?string, message: string}}>
      */
     use ArrayAccessible;
 
@@ -32,7 +32,7 @@ final class RetrieveJobResponse implements ResponseContract, ResponseHasMetaInfo
         public readonly string $object,
         public readonly string $model,
         public readonly int $createdAt,
-        public readonly ?int $finishedAt,
+        public readonly  int|null $finishedAt,
         public readonly ?string $fineTunedModel,
         public readonly RetrieveJobResponseHyperparameters $hyperparameters,
         public readonly string $organizationId,
@@ -40,7 +40,7 @@ final class RetrieveJobResponse implements ResponseContract, ResponseHasMetaInfo
         public readonly string $status,
         public readonly ?string $validationFile,
         public readonly string $trainingFile,
-        public readonly ?int $trainedTokens,
+        public readonly  int|null $trainedTokens,
         public readonly ?RetrieveJobResponseError $error,
         private readonly MetaInformation $meta,
     ) {}
@@ -48,7 +48,7 @@ final class RetrieveJobResponse implements ResponseContract, ResponseHasMetaInfo
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param  array{id: string, object: string, model: string, created_at: int, finished_at: ?int, fine_tuned_model: ?string, hyperparameters: array{n_epochs: int|string, batch_size: int|string|null, learning_rate_multiplier: float|string|null}, organization_id: string, result_files: array<int, string>, status: string, validation_file: ?string, training_file: string, trained_tokens: ?int, error: ?array{code: string, param: ?string, message: string}}  $attributes
+     * @param  array{id: string, object: string, model: string, created_at: int, finished_at:  int|null, fine_tuned_model: ?string, hyperparameters: array{n_epochs: int|string, batch_size: int|string|null, learning_rate_multiplier: float|string|null}, organization_id: string, result_files: array<int, string>, status: string, validation_file: ?string, training_file: string, trained_tokens:  int|null, error: ?array{code: string, param: ?string, message: string}}  $attributes
      */
     public static function from(array $attributes, MetaInformation $meta): self
     {

@@ -16,7 +16,7 @@ class LG extends \ClicShopping\Apps\Configuration\Langues\Module\ClicShoppingAdm
   protected $pm_code = 'langues';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

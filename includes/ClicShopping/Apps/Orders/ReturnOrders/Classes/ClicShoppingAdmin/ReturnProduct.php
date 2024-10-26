@@ -19,7 +19,7 @@ class ReturnProduct
    * @param int|null $id
    * @return string
    */
-  public static function getDropDownReasonOpened(?int $id): string
+  public static function getDropDownReasonOpened( int|null $id): string
   {
     $CLICSHOPPING_ReturnOrders = Registry::get('ReturnOrders');
 
@@ -37,7 +37,7 @@ class ReturnProduct
    * @param int|null $id
    * @return string
    */
-  public static function getDropDownAction(?int $id): string
+  public static function getDropDownAction( int|null $id): string
   {
     $CLICSHOPPING_ReturnOrders = Registry::get('ReturnOrders');
     $CLICSHOPPING_language = Registry::get('Language');
@@ -69,7 +69,7 @@ class ReturnProduct
    * @param int|null $id
    * @return string
    */
-  public static function getDropDownStatus(?int $id): string
+  public static function getDropDownStatus( int|null $id): string
   {
     $CLICSHOPPING_ReturnOrders = Registry::get('ReturnOrders');
     $CLICSHOPPING_Language = Registry::get('Language');

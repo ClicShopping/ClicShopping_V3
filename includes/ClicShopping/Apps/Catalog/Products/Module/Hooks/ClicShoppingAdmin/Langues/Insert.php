@@ -17,8 +17,8 @@ use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAd
 
 class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
-  protected mixed $lang;
+  public mixed $app;
+  private mixed $lang;
   protected $insert_language_id;
 
   public function __construct()

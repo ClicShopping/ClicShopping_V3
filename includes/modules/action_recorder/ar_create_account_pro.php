@@ -17,7 +17,7 @@ class ar_create_account_pro
   public string $code;
   public $title;
   public $description;
-  public ?int $sort_order = 0;
+  public int|null $sort_order = 0;
   public $minutes = 90;
   public $attempts = 4;
   public $identifier;

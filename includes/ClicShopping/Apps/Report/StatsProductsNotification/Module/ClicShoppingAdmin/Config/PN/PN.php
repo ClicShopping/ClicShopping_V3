@@ -16,7 +16,7 @@ class PN extends \ClicShopping\Apps\Report\StatsProductsNotification\Module\Clic
   protected $pm_code = 'stats_products_notification';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

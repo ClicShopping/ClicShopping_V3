@@ -27,7 +27,7 @@ class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\W
    * @param int|null $language_id
    * @return mixed
    */
-  public static function getTitle(int $id, ?int $language_id = null): string
+  public static function getTitle(int $id,  int|null $language_id = null): string
   {
     return parent::getTitle($id, $language_id);
   }
@@ -96,7 +96,7 @@ class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\W
    * @param int|null $id
    * @return string
    */
-  public static function getWeightTitle(?int $id = null): string
+  public static function getWeightTitle( int|null $id = null): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');

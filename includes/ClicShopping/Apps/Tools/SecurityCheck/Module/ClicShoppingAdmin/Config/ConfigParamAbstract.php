@@ -14,7 +14,7 @@ use ClicShopping\OM\Registry;
 
 abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin\ConfigParamAbstract
 {
-  private mixed $app;
+  public mixed $app;
   protected $config_module;
 
   protected string $key_prefix = 'clicshopping_app_security_check_';

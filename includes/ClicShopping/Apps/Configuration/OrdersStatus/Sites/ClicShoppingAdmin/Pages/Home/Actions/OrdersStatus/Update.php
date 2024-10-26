@@ -16,7 +16,7 @@ use ClicShopping\OM\Registry;
 
 class Update extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {
@@ -62,7 +62,7 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
         );
       }
 
-      $this->hooks->call('OrdersStatus', 'UpdateOrdersStatusUpdate');
+      $this->hooks->call('OrdersStatus', 'UpdateOrdersStatus');
 
       Cache::clear('configuration');
 

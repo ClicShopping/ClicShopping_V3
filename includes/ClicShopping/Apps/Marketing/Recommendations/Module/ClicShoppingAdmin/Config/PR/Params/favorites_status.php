@@ -15,7 +15,7 @@ use ClicShopping\OM\HTML;
 class favorites_status extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 'False';
-  public ?int $sort_order = 70;
+  public int|null $sort_order = 70;
 
   protected function init()
   {

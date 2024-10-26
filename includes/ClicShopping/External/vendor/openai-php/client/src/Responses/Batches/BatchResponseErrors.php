@@ -8,12 +8,12 @@ use OpenAI\Contracts\ResponseContract;
 use OpenAI\Responses\Concerns\ArrayAccessible;
 
 /**
- * @implements ResponseContract<array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line: ?int}>}>
+ * @implements ResponseContract<array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line:  int|null}>}>
  */
 final class BatchResponseErrors implements ResponseContract
 {
     /**
-     * @use ArrayAccessible<array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line: ?int}>}>
+     * @use ArrayAccessible<array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line:  int|null}>}>
      */
     use ArrayAccessible;
 
@@ -28,7 +28,7 @@ final class BatchResponseErrors implements ResponseContract
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param  array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line: ?int}>}  $attributes
+     * @param  array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line:  int|null}>}  $attributes
      */
     public static function from(array $attributes): self
     {

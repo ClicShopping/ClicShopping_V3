@@ -8,11 +8,11 @@ final class MetaInformationOpenAI
         public readonly ?string $model,
         public readonly ?string $organization,
         public readonly ?string $version,
-        public readonly ?int $processingMs,
+        public readonly  int|null $processingMs,
     ) {}
 
     /**
-     * @param  array{model: ?string, organization: ?string, version: ?string, processingMs: ?int}  $attributes
+     * @param  array{model: ?string, organization: ?string, version: ?string, processingMs:  int|null}  $attributes
      */
     public static function from(array $attributes): self
     {

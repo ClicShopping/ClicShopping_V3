@@ -18,7 +18,7 @@ use function is_null;
 
 class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

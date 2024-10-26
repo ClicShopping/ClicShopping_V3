@@ -23,7 +23,7 @@ use function strlen;
 
 class CategoriesAdmin
 {
-  protected mixed $lang;
+  private mixed $lang;
   private mixed $template;
   private mixed $db;
 
@@ -107,7 +107,7 @@ class CategoriesAdmin
    * @param int|null $id
    * @return array
    */
-  public function getPathArray(?int $id = null): array
+  public function getPathArray( int|null $id = null): array
   {
     $CLICSHOPPING_CategoryCommon = Registry::get('CategoryCommon');
 

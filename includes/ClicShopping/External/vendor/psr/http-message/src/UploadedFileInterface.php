@@ -73,7 +73,7 @@ interface UploadedFileInterface
      *
      * @return int|null The file size in bytes or null if unknown.
      */
-    public function getSize(): ?int;
+    public function getSize():  int|null;
     
     /**
      * Retrieve the error associated with the uploaded file.

@@ -16,7 +16,7 @@ class TE extends \ClicShopping\Apps\Configuration\TemplateEmail\Module\ClicShopp
   protected $pm_code = 'template_email';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

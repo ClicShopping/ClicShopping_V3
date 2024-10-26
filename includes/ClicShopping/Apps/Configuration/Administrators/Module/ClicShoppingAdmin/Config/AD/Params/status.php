@@ -8,7 +8,6 @@
  *
  */
 
-
 namespace ClicShopping\Apps\Configuration\Administrators\Module\ClicShoppingAdmin\Config\AD\Params;
 
 use ClicShopping\OM\HTML;
@@ -16,7 +15,7 @@ use ClicShopping\OM\HTML;
 class status extends \ClicShopping\Apps\Configuration\Administrators\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 'True';
-  public ?int $sort_order = 10;
+  public int|null $sort_order = 10;
 
   protected function init()
   {

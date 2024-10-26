@@ -16,7 +16,7 @@ class ZN extends \ClicShopping\Apps\Configuration\Zones\Module\ClicShoppingAdmin
   protected $pm_code = 'zones';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

@@ -15,7 +15,7 @@ use ClicShopping\OM\HTML;
 class server_prod extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 'False';
-  public ?int $sort_order = 15;
+  public int|null $sort_order = 15;
 
   protected function init()
   {

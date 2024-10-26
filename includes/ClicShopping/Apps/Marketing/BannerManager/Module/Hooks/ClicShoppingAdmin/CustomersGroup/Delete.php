@@ -17,7 +17,7 @@ use ClicShopping\Apps\Marketing\BannerManager\BannerManager as BannerManagerApp;
 
 class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

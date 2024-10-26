@@ -23,7 +23,7 @@ class SH implements \ClicShopping\OM\Modules\OrderTotalInterface
   public $enabled;
   public $group;
   public $output;
-  public ?int $sort_order = 0;
+  public int|null $sort_order = 0;
   public mixed $app;
   public $surcharge;
   public $maximum;

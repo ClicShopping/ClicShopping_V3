@@ -18,7 +18,7 @@ class ar_admin_login
   public string $code;
   public $title;
   public $description;
-  public ?int $sort_order = 0;
+  public int|null $sort_order = 0;
   public $minutes = 5;
   public $attempts = 3;
   public $identifier;

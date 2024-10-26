@@ -48,7 +48,7 @@ class Weight
    * @param null|int $language_id
    * @return string
    */
-  public static function getTitle(int $id, ?int $language_id = null): string
+  public static function getTitle(int $id,  int|null $language_id = null): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');

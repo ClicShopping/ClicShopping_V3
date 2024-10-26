@@ -329,7 +329,7 @@ class SeoAdmin
    * @return string $manufacturer['manufacturers_seo_description']
    *
    */
-  public static function getManufacturerSeoDescription(?int $manufacturers_id, int $language_id): string
+  public static function getManufacturerSeoDescription( int|null $manufacturers_id, int $language_id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -354,7 +354,7 @@ class SeoAdmin
    * @return string $manufacturer['manufacturers_seo_title'],  seo title of the manufacturer
    *
    */
-  public static function getManufacturerSeoTitle(?int $manufacturers_id, int $language_id)
+  public static function getManufacturerSeoTitle( int|null $manufacturers_id, int $language_id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -378,7 +378,7 @@ class SeoAdmin
    * @param int $language_id
    * @return string $manufacturer['manufacturers_seo_keyword'],  seo keyword of the manufacturer
    */
-  public static function getManufacturerSeoKeyword(?int $manufacturers_id, int $language_id): string
+  public static function getManufacturerSeoKeyword( int|null $manufacturers_id, int $language_id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -523,7 +523,7 @@ class SeoAdmin
    * @param int $language_id
    * @return string
    */
-  public static function getCategoriesSeoUrl(?int $category_id, int $language_id): string
+  public static function getCategoriesSeoUrl( int|null $category_id, int $language_id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -548,7 +548,7 @@ class SeoAdmin
    * @param int $language_id
    * @return string
    */
-  public static function getCategoriesSeoTitle(?int $category_id, int $language_id): string
+  public static function getCategoriesSeoTitle( int|null $category_id, int $language_id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -573,7 +573,7 @@ class SeoAdmin
    * @param int $language_id
    * @return string
    */
-  public static function getCategoriesSeoDescription(?int $category_id, int $language_id): string
+  public static function getCategoriesSeoDescription( int|null $category_id, int $language_id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -598,7 +598,7 @@ class SeoAdmin
    * @param int $language_id
    * @return string
    */
-  public static function getCategoriesSeoKeywords(?int $category_id, int $language_id): string
+  public static function getCategoriesSeoKeywords( int|null $category_id, int $language_id): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Language = Registry::get('Language');

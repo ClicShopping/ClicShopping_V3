@@ -19,7 +19,7 @@ use ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin\Administ
 
 class MoveCategoryConfirm extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
   protected $Id;
   protected $moveToCategoryID;
   protected $cPath;

@@ -14,7 +14,7 @@ use ClicShopping\OM\Registry;
 
 class Forget extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

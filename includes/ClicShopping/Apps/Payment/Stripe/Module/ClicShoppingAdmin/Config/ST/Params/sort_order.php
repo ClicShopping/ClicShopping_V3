@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ST\Pa
 class sort_order extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
 
-  public ?int $sort_order = 1000;
+  public int|null $sort_order = 1000;
   public $default = '300';
   public bool $app_configured = false;
 

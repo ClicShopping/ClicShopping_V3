@@ -16,7 +16,7 @@ use ClicShopping\OM\HTML;
 class free_shipping extends \ClicShopping\Apps\OrderTotal\TotalShipping\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 'False';
-  public ?int $sort_order = 20;
+  public int|null $sort_order = 20;
 
   protected function init()
   {

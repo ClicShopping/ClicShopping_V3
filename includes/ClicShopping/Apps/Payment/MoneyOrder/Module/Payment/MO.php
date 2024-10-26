@@ -27,7 +27,7 @@ class MO implements \ClicShopping\OM\Modules\PaymentInterface
   public $title_selection;
   public $signature;
   public $public_title;
-  public ?int $sort_order = 0;
+  public int|null $sort_order = 0;
   protected $api_version;
   public $group;
 

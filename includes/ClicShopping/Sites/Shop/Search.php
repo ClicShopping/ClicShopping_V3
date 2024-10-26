@@ -367,7 +367,7 @@ class Search
   /**
    * @return int|null
    */
-  private function getCategoryID(): ?int
+  private function getCategoryID():  int|null
   {
     if (isset($_POST['categories_id']) && !empty($_POST['categories_id'])) {
       $category_id = HTML::sanitize($_POST['categories_id']);

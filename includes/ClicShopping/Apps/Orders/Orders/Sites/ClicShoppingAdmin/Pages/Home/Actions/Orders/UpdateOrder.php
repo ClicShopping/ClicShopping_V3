@@ -23,11 +23,11 @@ class UpdateOrder extends \ClicShopping\OM\PagesActionsAbstract
   /**
    * @var bool|\orders|null
    */
-  private mixed $app;
+  public mixed $app;
   /**
    * @var bool|\lang|null
    */
-  protected mixed $lang;
+  private mixed $lang;
   /**
    * @var bool|\db|null
    */

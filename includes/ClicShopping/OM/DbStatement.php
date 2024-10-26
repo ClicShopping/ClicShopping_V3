@@ -27,7 +27,7 @@ class DbStatement extends \PDOStatement
   protected bool $cache_read = false;
   protected bool $cache_empty_results = false;
   protected string $query_call;
-  protected ?int $page_set_total_rows;
+  protected  int|null $page_set_total_rows;
   protected $result;
   public ?string $page_set;
 
@@ -233,7 +233,7 @@ class DbStatement extends \PDOStatement
    * @param int|null $expire
    * @param bool $cache_empty_results
    */
-  public function setCache(string $key, ?int $expire = null, bool $cache_empty_results = false)
+  public function setCache(string $key,  int|null $expire = null, bool $cache_empty_results = false)
   {
     if (!is_numeric($expire)) {
       $expire = 0;

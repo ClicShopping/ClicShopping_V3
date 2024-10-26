@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config\CO\Param
 class logo extends \ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 'paiement_livraison.jpg';
-  public ?int $sort_order = 30;
+  public int|null $sort_order = 30;
 
   protected function init()
   {

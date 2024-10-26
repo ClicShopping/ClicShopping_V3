@@ -14,7 +14,7 @@ use ClicShopping\OM\Registry;
 
 class Process implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   /*
     * getPageManagerGeneralConditons

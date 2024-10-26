@@ -31,7 +31,7 @@ class Db extends PDO
   protected string $password;
   protected string $database;
   protected string $table_prefix;
-  protected ?int $port;
+  protected  int|null $port;
   protected ?array $driver_options = [];
   protected ?array $options = [];
   protected $query_call;

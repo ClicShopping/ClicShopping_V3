@@ -14,7 +14,7 @@ class review_number extends \ClicShopping\Apps\Customers\Reviews\Module\ClicShop
 {
 
   public $default = '10';
-  public ?int $sort_order = 30;
+  public int|null $sort_order = 30;
   public bool $app_configured = true;
 
   protected function init()

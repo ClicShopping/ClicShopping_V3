@@ -15,7 +15,7 @@ use ClicShopping\OM\Registry;
 
 abstract class ConfigAbstract
 {
-  private mixed $app;
+  public mixed $app;
 
   public string $code;
   public $title;
@@ -25,7 +25,7 @@ abstract class ConfigAbstract
   public bool $is_installed = false;
   public bool $is_uninstallable = false;
   public bool $is_migratable = false;
-  public ?int $sort_order = 0;
+  public int|null $sort_order = 0;
   public $group;
 
   abstract protected function init();

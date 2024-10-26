@@ -14,7 +14,7 @@ class date extends \ClicShopping\Apps\Customers\Gdpr\Module\ClicShoppingAdmin\Co
 {
 
   public $default = '180';
-  public ?int $sort_order = 20;
+  public int|null $sort_order = 20;
   public bool $app_configured = true;
 
   protected function init()

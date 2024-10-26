@@ -17,7 +17,7 @@ use ClicShopping\Apps\Configuration\ProductsQuantityUnit\ProductsQuantityUnit as
 
 class CopyConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

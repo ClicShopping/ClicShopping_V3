@@ -16,7 +16,7 @@ use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
 use ClicShopping\Apps\Catalog\Suppliers\Suppliers as SuppliersApp;
 class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
   protected $supplierAdmin;
 
   public function __construct()

@@ -19,7 +19,7 @@ class ST extends \ClicShopping\OM\PagesAbstract
   protected ?string $file = null;
   protected bool $use_site_template = false;
   protected $pm;
-  protected mixed $lang;
+  private mixed $lang;
 
   protected function init()
   {

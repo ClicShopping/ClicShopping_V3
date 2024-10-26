@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Confi
 class max_response extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = '1';
-  public ?int $sort_order = 40;
+  public int|null $sort_order = 40;
   public bool $app_configured = true;
 
   protected function init()

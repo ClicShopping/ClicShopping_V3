@@ -15,7 +15,7 @@ use ClicShopping\OM\Registry;
 
 class Archive extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
   protected int $rID;
 
   public function __construct()

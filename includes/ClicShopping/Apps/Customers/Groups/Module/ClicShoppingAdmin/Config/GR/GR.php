@@ -16,7 +16,7 @@ class GR extends \ClicShopping\Apps\Customers\Groups\Module\ClicShoppingAdmin\Co
   protected $pm_code = 'groups';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

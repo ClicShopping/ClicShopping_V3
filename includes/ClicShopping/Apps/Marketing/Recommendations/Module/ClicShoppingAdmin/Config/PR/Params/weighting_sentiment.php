@@ -14,7 +14,7 @@ class weighting_sentiment extends \ClicShopping\Apps\Marketing\Recommendations\M
 {
 
   public $default = 1.5;
-  public ?int $sort_order = 70;
+  public int|null $sort_order = 70;
   public bool $app_configured = true;
 
   protected function init()

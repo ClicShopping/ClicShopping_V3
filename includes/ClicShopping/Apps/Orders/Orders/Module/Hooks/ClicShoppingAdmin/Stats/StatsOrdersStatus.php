@@ -17,7 +17,7 @@ use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
 class StatsOrdersStatus implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

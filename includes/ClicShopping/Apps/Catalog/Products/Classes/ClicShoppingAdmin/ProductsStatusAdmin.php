@@ -49,7 +49,7 @@ class ProductsStatusAdmin
    * @param int|null $products_id
    * @return bool
    */
-  public static function checkProductStatus(?int $products_id): bool
+  public static function checkProductStatus( int|null $products_id): bool
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 

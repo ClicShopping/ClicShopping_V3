@@ -16,7 +16,7 @@ class ST extends \ClicShopping\Apps\Configuration\Settings\Module\ClicShoppingAd
   protected $pm_code = 'settings';
 
   public bool $is_uninstallable = false;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

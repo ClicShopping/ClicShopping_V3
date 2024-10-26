@@ -18,7 +18,7 @@ use ClicShopping\OM\Registry;
 
 class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
   protected $productsAdmin;
   protected string $productsLink;
   protected string $currentCategoryId;
@@ -76,7 +76,7 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
    * @param int|null $id
    * @return void
    */
-  public function updateProductCategories(?int $id = null): void
+  public function updateProductCategories( int|null $id = null): void
   {
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 

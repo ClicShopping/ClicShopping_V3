@@ -15,7 +15,7 @@ use ClicShopping\OM\HTML;
 class prepare_order_status_id extends \ClicShopping\Apps\Payment\MoneyOrder\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = '0';
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

@@ -20,7 +20,7 @@ use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
 
 class pageTab4 implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

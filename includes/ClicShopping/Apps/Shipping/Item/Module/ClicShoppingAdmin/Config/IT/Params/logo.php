@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Shipping\Item\Module\ClicShoppingAdmin\Config\IT\Par
 class logo extends \ClicShopping\Apps\Shipping\Item\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = '';
-  public ?int $sort_order = 30;
+  public int|null $sort_order = 30;
 
   protected function init()
   {

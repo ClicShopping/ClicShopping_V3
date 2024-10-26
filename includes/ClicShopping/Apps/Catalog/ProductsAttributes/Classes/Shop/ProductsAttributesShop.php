@@ -15,8 +15,8 @@ use function is_null;
 
 class ProductsAttributesShop
 {
-  protected mixed $lang;
-  private mixed $app;
+  private mixed $lang;
+  public mixed $app;
   private mixed $productsCommon;
   private mixed $customer;
 
@@ -118,7 +118,7 @@ class ProductsAttributesShop
    * @param int $language_id
    * @return mixed
    */
-  public function getProductsAttributesInfo($products_id, $option_id, ?int $options_values_id = null, ?int $language_id)
+  public function getProductsAttributesInfo($products_id, $option_id,  int|null $options_values_id = null,  int|null $language_id)
   {
     if (!is_null($options_values_id)) {
       if ($this->customer->getCustomersGroupID() != 0) {

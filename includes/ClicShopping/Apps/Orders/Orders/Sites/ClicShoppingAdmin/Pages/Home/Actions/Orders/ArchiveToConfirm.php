@@ -15,7 +15,7 @@ use ClicShopping\OM\Registry;
 
 class ArchiveToConfirm extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
   protected $oID;
 
   public function __construct()

@@ -67,10 +67,10 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
     <tbody>
     <?php
     $Qstatus = $CLICSHOPPING_OrdersStatus->db->prepare('select SQL_CALC_FOUND_ROWS orders_status_id,
-                                                                                     orders_status_name
+                                                                                   orders_status_name
                                                           from :table_orders_status
-                                                          where language_id = :language_id
-                                                          order by orders_status_id
+                                                          where language_id = :language_id 
+                                                          order by  orders_status_id
                                                           limit :page_set_offset,
                                                                :page_set_max_results
                                                           ');

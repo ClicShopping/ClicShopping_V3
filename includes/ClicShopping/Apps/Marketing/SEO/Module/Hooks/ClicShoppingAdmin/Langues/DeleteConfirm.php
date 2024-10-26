@@ -17,7 +17,7 @@ use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
 
 class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

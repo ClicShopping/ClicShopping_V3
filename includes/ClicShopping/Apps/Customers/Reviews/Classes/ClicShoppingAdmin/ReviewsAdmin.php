@@ -57,7 +57,7 @@ class ReviewsAdmin
    * @param int|null $status
    * @return string status on or off
    */
-  public static function getReviewsStatus(int $id, ?int $status)
+  public static function getReviewsStatus(int $id,  int|null $status)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -88,7 +88,7 @@ class ReviewsAdmin
    * @param int|null $status
    * @return string status on or off
    */
-  public static function getReviewsSentimentApprovedStatus(int $id, ?int $status)
+  public static function getReviewsSentimentApprovedStatus(int $id,  int|null $status)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 

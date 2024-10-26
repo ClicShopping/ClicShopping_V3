@@ -42,10 +42,10 @@ class Order
   public $content_type;
 
   private mixed $db;
-  protected mixed $lang;
+  private mixed $lang;
   protected $mail;
 
-  public function __construct(?int $order_id = null)
+  public function __construct( int|null $order_id = null)
   {
     $this->db = Registry::get('Db');
     $this->lang = Registry::get('Language');

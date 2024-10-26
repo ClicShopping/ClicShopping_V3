@@ -16,7 +16,7 @@ class BC extends \ClicShopping\Apps\Tools\Backup\Module\ClicShoppingAdmin\Config
   protected $pm_code = 'backup';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

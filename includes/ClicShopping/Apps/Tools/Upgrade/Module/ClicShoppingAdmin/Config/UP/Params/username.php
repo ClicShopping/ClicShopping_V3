@@ -15,7 +15,7 @@ class username extends \ClicShopping\Apps\Tools\Upgrade\Module\ClicShoppingAdmin
 
   public $default = '';
   public bool $app_configured = true;
-  public ?int $sort_order = 20;
+  public int|null $sort_order = 20;
 
   protected function init()
   {

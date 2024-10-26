@@ -18,8 +18,8 @@ use function defined;
 
 class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
-  protected mixed $lang;
+  public mixed $app;
+  private mixed $lang;
 
   public function __construct()
   {

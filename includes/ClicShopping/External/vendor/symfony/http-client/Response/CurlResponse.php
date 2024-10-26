@@ -47,7 +47,7 @@ final class CurlResponse implements ResponseInterface, StreamableInterface
         ?LoggerInterface $logger = null,
         string $method = 'GET',
         ?callable $resolveRedirect = null,
-        ?int $curlVersion = null,
+         int|null $curlVersion = null,
         ?string $originalUrl = null,
     ) {
         if ($ch instanceof \CurlHandle) {

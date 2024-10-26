@@ -115,7 +115,7 @@ final class FnStream implements StreamInterface
         return ($this->_fn_detach)();
     }
 
-    public function getSize(): ?int
+    public function getSize():  int|null
     {
         return ($this->_fn_getSize)();
     }

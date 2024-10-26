@@ -14,7 +14,7 @@ class sort_order extends \ClicShopping\Apps\Orders\Orders\Module\ClicShoppingAdm
 {
 
   public $default = '200';
-  public ?int $sort_order = 300;
+  public int|null $sort_order = 300;
   public bool $app_configured = true;
 
   protected function init()

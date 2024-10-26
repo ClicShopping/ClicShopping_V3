@@ -19,8 +19,8 @@ use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
 
 class Index extends \ClicShopping\OM\Modules\HeaderTagsAbstract
 {
-  protected mixed $lang;
-  private mixed $app;
+  private mixed $lang;
+  public mixed $app;
   private mixed $template;
 
   protected function init()

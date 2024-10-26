@@ -19,7 +19,7 @@ use ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin\Administ
 
 class DeleteCategoryConfirm extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
   protected $cPath;
   protected $Id;
 

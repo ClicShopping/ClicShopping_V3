@@ -128,7 +128,7 @@ class Gpt {
    * @return mixed
    * @throws \Exception
    */
-   public static function getOpenAIChat(string $question, ?int $maxtoken = null, ?float $temperature = null, ?string $engine = null, ?int $max = 1): mixed
+   public static function getOpenAIChat(string $question,  int|null $maxtoken = null, ?float $temperature = null, ?string $engine = null,  int|null $max = 1): mixed
    {
     if (!empty(CLICSHOPPING_APP_CHATGPT_CH_API_KEY)) {
       $top = ['\n'];
@@ -227,7 +227,7 @@ class Gpt {
    * @return mixed
    * @throws MissingParameterExcetion
    */
-  private static function getChat(string $question, ?int $maxtoken = null, ?float $temperature = null, ?string $engine = null, ?int $max = 1): mixed
+  private static function getChat(string $question,  int|null $maxtoken = null, ?float $temperature = null, ?string $engine = null,  int|null $max = 1): mixed
   {
     if (strpos(CLICSHOPPING_APP_CHATGPT_CH_MODEL, 'gpt') === 0) {
       $client = self::getOpenAIChat($question, $maxtoken, $temperature, $engine, $max);
@@ -249,7 +249,7 @@ class Gpt {
    * @return bool|string
    * @throws \Exception
    */
-  public static function getGptResponse(string $question, ?int $maxtoken = null, ?float $temperature = null, ?string $engine = null, ?int $max = 1): bool|string
+  public static function getGptResponse(string $question,  int|null $maxtoken = null, ?float $temperature = null, ?string $engine = null,  int|null $max = 1): bool|string
   {
     if (self::checkGptStatus() === false) {
       return false;

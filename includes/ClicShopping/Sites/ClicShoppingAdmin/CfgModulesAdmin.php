@@ -17,7 +17,7 @@ use function is_object;
 class CfgModulesAdmin
 {
   public array $_modules = [];
-  protected mixed $lang;
+  private mixed $lang;
 
   public function __construct()
   {

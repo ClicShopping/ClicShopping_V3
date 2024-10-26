@@ -16,7 +16,7 @@ class CT extends \ClicShopping\Apps\Catalog\Categories\Module\ClicShoppingAdmin\
   protected $pm_code = 'categories';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

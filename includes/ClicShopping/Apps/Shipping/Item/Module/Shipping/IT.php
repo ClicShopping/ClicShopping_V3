@@ -30,7 +30,7 @@ class IT implements \ClicShopping\OM\Modules\ShippingInterface
   public $public_title;
   protected $api_version;
   public $tax_class;
-  public ?int $sort_order = 0;
+  public int|null $sort_order = 0;
 
   public function __construct()
   {

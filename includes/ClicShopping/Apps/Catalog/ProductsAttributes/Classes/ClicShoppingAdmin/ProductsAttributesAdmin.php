@@ -18,9 +18,9 @@ use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ImageResample;
 
 class ProductsAttributesAdmin
 {
-  protected mixed $lang;
+  private mixed $lang;
   private mixed $db;
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

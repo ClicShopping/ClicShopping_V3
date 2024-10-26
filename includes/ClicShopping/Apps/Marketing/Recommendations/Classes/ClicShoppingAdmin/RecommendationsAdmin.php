@@ -110,7 +110,7 @@ class RecommendationsAdmin
    * @return float
    * Function to calculate the score for product recommendations
    */
-  public function calculateRecommendationScore(?float $productsRateWeight = 0.8, ?float $reviewRate = 0, ?int $userFeedback = 0, ?string $strategy = 'Range', ?float $sentimentScore = null): float
+  public function calculateRecommendationScore(?float $productsRateWeight = 0.8, ?float $reviewRate = 0,  int|null $userFeedback = 0, ?string $strategy = 'Range', ?float $sentimentScore = null): float
   {
     // Adjust the review rate to be between 0 and 1
     $maxReviewRate = 5; // Maximum possible review rate

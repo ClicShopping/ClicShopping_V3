@@ -15,7 +15,7 @@ use ClicShopping\OM\Registry;
 
 class Update extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
   protected $ID;
   protected $currentCategoryId;
 

@@ -16,7 +16,7 @@ class RV extends \ClicShopping\Apps\Customers\Reviews\Module\ClicShoppingAdmin\C
   protected $pm_code = 'reviews';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

@@ -211,7 +211,7 @@ class CustomerShop
   /**
    * @return int|null
    */
-  public function getCountryID(): ?int
+  public function getCountryID():  int|null
   {
     static $country_id = null;
 
@@ -227,7 +227,7 @@ class CustomerShop
   /**
    * @return int|null
    */
-  public function getZoneID(): ?int
+  public function getZoneID():  int|null
   {
     static $zone_id = null;
 
@@ -243,7 +243,7 @@ class CustomerShop
   /**
    * @return int|null
    */
-  public function getDefaultAddressID(): ?int
+  public function getDefaultAddressID():  int|null
   {
     static $id = null;
 
@@ -424,7 +424,7 @@ class CustomerShop
    * @param int|null $id
    * @return int|null
    */
-  public function getCustomerGuestAccount(int $id): ?int
+  public function getCustomerGuestAccount(int $id):  int|null
   {
     $Qresult = $this->db->get('customers', 'customer_guest_account', ['customers_id' => (int)$id]);
 

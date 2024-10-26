@@ -20,8 +20,8 @@ use ClicShopping\Sites\ClicShoppingAdmin\ModuleDownload;
 
 class Insert extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
-  protected mixed $lang;
+  public mixed $app;
+  private mixed $lang;
 
   public function __construct()
   {

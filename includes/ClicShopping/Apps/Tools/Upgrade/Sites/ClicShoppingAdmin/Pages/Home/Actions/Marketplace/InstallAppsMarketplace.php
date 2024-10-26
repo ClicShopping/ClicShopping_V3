@@ -20,7 +20,7 @@ use ClicShopping\Apps\Tools\Upgrade\Upgrade as UpgradeApp;
 
 class InstallAppsMarketplace extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
   private mixed $extractFile;
 
   public function __construct()

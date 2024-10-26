@@ -15,7 +15,7 @@ use ClicShopping\OM\HTML;
 class featured_status extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 'False';
-  public ?int $sort_order = 100;
+  public int|null $sort_order = 100;
 
   protected function init()
   {

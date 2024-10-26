@@ -17,8 +17,8 @@ use ClicShopping\Apps\Marketing\SEO\Classes\Shop\SeoShop as SeoShopSpecials;
 
 class Specials extends \ClicShopping\OM\Modules\HeaderTagsAbstract
 {
-  protected mixed $lang;
-  private mixed $app;
+  private mixed $lang;
+  public mixed $app;
   private mixed $template;
 
   protected function init()

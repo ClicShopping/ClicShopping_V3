@@ -29,7 +29,7 @@ class Row extends AbstractElement
     /**
      * Row height.
      *
-     * @var ?int
+     * @var  int|null
      */
     private $height;
 
@@ -99,7 +99,7 @@ class Row extends AbstractElement
     /**
      * Get row height.
      *
-     * @return ?int
+     * @return  int|null
      */
     public function getHeight()
     {

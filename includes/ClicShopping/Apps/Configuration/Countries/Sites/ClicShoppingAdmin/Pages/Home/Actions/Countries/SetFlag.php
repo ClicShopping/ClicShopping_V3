@@ -18,7 +18,7 @@ use ClicShopping\Apps\Configuration\Countries\Classes\ClicShoppingAdmin\Status;
 
 class SetFlag extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

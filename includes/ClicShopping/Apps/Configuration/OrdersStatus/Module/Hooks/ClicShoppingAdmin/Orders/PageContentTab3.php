@@ -17,7 +17,7 @@ use ClicShopping\Apps\Configuration\OrdersStatus\OrdersStatus as OrdersStatusApp
 
 class PageContentTab3 implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

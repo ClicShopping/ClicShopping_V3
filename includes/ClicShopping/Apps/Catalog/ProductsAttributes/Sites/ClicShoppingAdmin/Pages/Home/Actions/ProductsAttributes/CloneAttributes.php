@@ -15,7 +15,7 @@ use ClicShopping\OM\Registry;
 
 class CloneAttributes extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

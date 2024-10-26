@@ -18,9 +18,9 @@ use ClicShopping\Apps\Communication\PageManager\PageManager as PageManagerApp;
 class Sitemap extends \ClicShopping\OM\Modules\HeaderTagsAbstract
 {
   private mixed $db;
-  protected mixed $lang;
+  private mixed $lang;
   private mixed $template;
-  private mixed $app;
+  public mixed $app;
 
   protected function init()
   {

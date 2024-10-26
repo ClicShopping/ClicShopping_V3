@@ -18,7 +18,7 @@ use ClicShopping\Apps\Configuration\Weight\Weight as WeightApp;
 
 class PreviewContent implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

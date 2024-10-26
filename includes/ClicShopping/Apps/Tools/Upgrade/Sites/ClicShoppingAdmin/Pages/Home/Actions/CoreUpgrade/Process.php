@@ -18,7 +18,7 @@ use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\Github;
 
 class Process extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

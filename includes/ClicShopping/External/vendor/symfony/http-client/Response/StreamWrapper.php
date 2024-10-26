@@ -38,7 +38,7 @@ class StreamWrapper
     private bool $blocking = true;
     private ?float $timeout = null;
     private bool $eof = false;
-    private ?int $offset = 0;
+    private  int|null $offset = 0;
 
     /**
      * Creates a PHP stream resource from a ResponseInterface.
@@ -191,7 +191,7 @@ class StreamWrapper
         return '';
     }
 
-    public function stream_set_option(int $option, int $arg1, ?int $arg2): bool
+    public function stream_set_option(int $option, int $arg1,  int|null $arg2): bool
     {
         if (\STREAM_OPTION_BLOCKING === $option) {
             $this->blocking = (bool) $arg1;

@@ -16,7 +16,7 @@ use ClicShopping\OM\HTML;
 class strategy extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 'Range';
-  public ?int $sort_order = 15;
+  public int|null $sort_order = 15;
 
   protected function init()
   {

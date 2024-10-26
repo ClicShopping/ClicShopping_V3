@@ -18,7 +18,7 @@ class Customers extends \ClicShopping\OM\PagesAbstract
 {
   protected ?string $file = null;
   protected bool $use_site_template = false;
-  protected mixed $lang;
+  private mixed $lang;
   private mixed $db;
 
   protected function init()

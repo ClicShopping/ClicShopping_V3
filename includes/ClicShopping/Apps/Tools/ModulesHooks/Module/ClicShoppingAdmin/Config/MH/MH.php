@@ -16,7 +16,7 @@ class MH extends \ClicShopping\Apps\Tools\ModulesHooks\Module\ClicShoppingAdmin\
   protected $pm_code = 'modules_hooks';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

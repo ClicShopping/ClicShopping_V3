@@ -96,7 +96,7 @@ class AddressAdmin extends \ClicShopping\Sites\Shop\Address
    * @return string $geo_zone_name the drop down of the zone name
    *
    */
-  public static function getGeoZoneName(int $geo_zone_id): ?int
+  public static function getGeoZoneName(int $geo_zone_id):  int|null
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 

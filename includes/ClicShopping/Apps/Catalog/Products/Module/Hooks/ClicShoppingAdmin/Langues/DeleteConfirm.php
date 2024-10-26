@@ -17,7 +17,7 @@ use ClicShopping\Apps\Catalog\Products\Products as ProductsApp;
 
 class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

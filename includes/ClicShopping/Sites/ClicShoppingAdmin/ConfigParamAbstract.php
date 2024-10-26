@@ -23,7 +23,7 @@ abstract class ConfigParamAbstract
   public $title;
   public $description;
   public $default;
-  public ?int $sort_order = 0;
+  public int|null $sort_order = 0;
 
   abstract protected function init();
 

@@ -22,7 +22,7 @@ class RSS
   protected int $products_id;
   protected string $site_name;
   private mixed $db;
-  protected mixed $lang;
+  private mixed $lang;
   protected $navigationHistory;
   protected $rewriteUrl;
 

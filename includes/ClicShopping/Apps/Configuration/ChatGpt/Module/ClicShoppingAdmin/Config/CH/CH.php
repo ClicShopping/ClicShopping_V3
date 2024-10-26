@@ -16,7 +16,7 @@ class CH extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdm
   protected $pm_code = 'chatgpt';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

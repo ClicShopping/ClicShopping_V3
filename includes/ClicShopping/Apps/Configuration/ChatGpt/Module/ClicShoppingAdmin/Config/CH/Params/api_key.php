@@ -16,7 +16,7 @@ class api_key extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppi
 {
 
   public $default = '';
-  public ?int $sort_order = 30;
+  public int|null $sort_order = 30;
   public bool $app_configured = true;
 
   protected function init()

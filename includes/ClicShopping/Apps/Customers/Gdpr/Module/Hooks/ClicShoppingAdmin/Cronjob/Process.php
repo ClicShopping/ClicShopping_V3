@@ -19,7 +19,7 @@ use ClicShopping\Apps\Customers\Gdpr\Classes\ClicShoppingAdmin\Gdpr;
 
 class Process implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

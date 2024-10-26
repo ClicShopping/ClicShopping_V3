@@ -14,7 +14,7 @@ class withdrawal extends \ClicShopping\Apps\Orders\ReturnOrders\Module\ClicShopp
 {
 
   public $default = '14';
-  public ?int $sort_order = 50;
+  public int|null $sort_order = 50;
   public bool $app_configured = true;
 
   protected function init()

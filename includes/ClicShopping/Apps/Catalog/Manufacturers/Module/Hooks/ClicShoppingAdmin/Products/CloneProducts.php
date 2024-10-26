@@ -17,7 +17,7 @@ use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
 
 class CloneProducts implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

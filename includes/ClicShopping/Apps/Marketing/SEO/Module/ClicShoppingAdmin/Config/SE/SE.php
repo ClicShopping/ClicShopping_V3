@@ -16,7 +16,7 @@ class SE extends \ClicShopping\Apps\Marketing\SEO\Module\ClicShoppingAdmin\Confi
   protected $pm_code = 'seo';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

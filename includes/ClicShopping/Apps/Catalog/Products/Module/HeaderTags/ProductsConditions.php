@@ -16,8 +16,8 @@ use ClicShopping\Apps\Catalog\Products\Products as ProductsApp;
 
 class ProductsConditions extends \ClicShopping\OM\Modules\HeaderTagsAbstract
 {
-  protected mixed $lang;
-  private mixed $app;
+  private mixed $lang;
+  public mixed $app;
 
   protected function init()
   {

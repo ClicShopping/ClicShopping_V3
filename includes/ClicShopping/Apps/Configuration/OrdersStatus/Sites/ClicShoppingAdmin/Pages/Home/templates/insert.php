@@ -32,11 +32,11 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatus->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
-<?php
-echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus'), 'warning') . ' ';
-echo HTML::form('status_orders_status', $CLICSHOPPING_OrdersStatus->link('OrdersStatus&Insert&page=' . $page));
-echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_insert'), null, null, 'success')
-?>
+            <?php
+            echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus'), 'warning') . ' ';
+            echo HTML::form('status_orders_status', $CLICSHOPPING_OrdersStatus->link('OrdersStatus&Insert&page=' . $page));
+            echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_insert'), null, null, 'success')
+            ?>
           </span>
         </div>
       </div>

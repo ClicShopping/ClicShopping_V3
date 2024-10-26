@@ -71,7 +71,7 @@ class AddressBook
    * @param string $eoln
    * @return mixed
    */
-  public static function addressLabel(int $customers_id, ?int $address_id = 1, bool $html = false, string $boln = '', string $eoln = "\n")
+  public static function addressLabel(int $customers_id,  int|null $address_id = 1, bool $html = false, string $boln = '', string $eoln = "\n")
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Address = Registry::get('Address');

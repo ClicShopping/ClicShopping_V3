@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Shipping\Item\Module\ClicShoppingAdmin\Config\IT\Par
 class cost extends \ClicShopping\Apps\Shipping\Item\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = '2.50';
-  public ?int $sort_order = 40;
+  public int|null $sort_order = 40;
 
   protected function init()
   {

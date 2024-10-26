@@ -16,7 +16,7 @@ class OU extends \ClicShopping\Apps\Configuration\OrdersStatus\Module\ClicShoppi
   protected $pm_code = 'orders_status';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

@@ -14,7 +14,7 @@ use ClicShopping\OM\Registry;
 
 class ProductsQuantityUnitAdmin
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

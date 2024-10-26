@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Confi
 class frequency_penality extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = '0.5';
-  public ?int $sort_order = 60;
+  public int|null $sort_order = 60;
   public bool $app_configured = true;
 
   protected function init()

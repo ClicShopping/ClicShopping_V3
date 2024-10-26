@@ -32,7 +32,7 @@ class Cell extends AbstractContainer
     /**
      * Cell width.
      *
-     * @var ?int
+     * @var  int|null
      */
     private $width;
 
@@ -68,7 +68,7 @@ class Cell extends AbstractContainer
     /**
      * Get cell width.
      *
-     * @return ?int
+     * @return  int|null
      */
     public function getWidth()
     {

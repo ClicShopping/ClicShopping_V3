@@ -62,7 +62,7 @@ class ApiShop
    * @return int
    * @throws \Exception
    */
-  public static function createSession(?int $api_id): int
+  public static function createSession( int|null $api_id): int
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 

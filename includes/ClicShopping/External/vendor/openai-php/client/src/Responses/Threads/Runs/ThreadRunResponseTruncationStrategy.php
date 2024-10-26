@@ -9,12 +9,12 @@ use OpenAI\Responses\Concerns\ArrayAccessible;
 use OpenAI\Testing\Responses\Concerns\Fakeable;
 
 /**
- * @implements ResponseContract<array{type: string, last_messages: ?int}>
+ * @implements ResponseContract<array{type: string, last_messages:  int|null}>
  */
 final class ThreadRunResponseTruncationStrategy implements ResponseContract
 {
     /**
-     * @use ArrayAccessible<array{type: string, last_messages: ?int}>
+     * @use ArrayAccessible<array{type: string, last_messages:  int|null}>
      */
     use ArrayAccessible;
 
@@ -22,13 +22,13 @@ final class ThreadRunResponseTruncationStrategy implements ResponseContract
 
     private function __construct(
         public string $type,
-        public ?int $lastMessages,
+        public int|null $lastMessages,
     ) {}
 
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param  array{type: string, last_messages: ?int}  $attributes
+     * @param  array{type: string, last_messages:  int|null}  $attributes
      */
     public static function from(array $attributes): self
     {

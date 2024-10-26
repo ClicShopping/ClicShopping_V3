@@ -23,10 +23,10 @@ $orders_status_inputs_string = '';
 $languages = $CLICSHOPPING_Language->getLanguages();
 
 $Qstatus = $CLICSHOPPING_OrdersStatus->db->prepare('select *
-                                                from :table_orders_status
-                                                where language_id = :language_id
-                                                and orders_status_id = :orders_status_id
-                                                ');
+                                                    from :table_orders_status
+                                                    where language_id = :language_id
+                                                    and orders_status_id = :orders_status_id
+                                                    ');
 
 $Qstatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 $Qstatus->bindInt(':orders_status_id', $_GET['oID']);

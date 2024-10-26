@@ -8,7 +8,7 @@ use LLPhant\Embeddings\VectorStores\VectorStoreBase;
 
 class AstraDBVectorStore extends VectorStoreBase
 {
-    private ?int $embeddingLength = null;
+    private  int|null $embeddingLength = null;
 
     public function __construct(private readonly AstraDBClient $client = new AstraDBClient())
     {

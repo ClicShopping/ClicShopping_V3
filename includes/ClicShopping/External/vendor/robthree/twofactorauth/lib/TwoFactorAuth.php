@@ -113,7 +113,7 @@ class TwoFactorAuth
      * Calculate the code with given secret and point in time
      *
      * @param string $secret
-     * @param ?int $time
+     * @param  int|null $time
      *
      * @return string
      */
@@ -136,7 +136,7 @@ class TwoFactorAuth
      * @param string $secret
      * @param string $code
      * @param int $discrepancy
-     * @param ?int $time
+     * @param  int|null $time
      * @param int $timeslice
      *
      * @return bool
@@ -240,7 +240,7 @@ class TwoFactorAuth
     }
 
     /**
-     * @param ?int $time
+     * @param  int|null $time
      *
      * @return int
      */

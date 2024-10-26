@@ -62,7 +62,7 @@ class SupplierAdmin
    * @param int $language_id
    * @return string $supplier['supplier_description'],  description of the supplier
    */
-  public function getSupplierUrl(?int $supplier_id, int $language_id): string
+  public function getSupplierUrl( int|null $supplier_id, int $language_id): string
   {
     if (!is_null($supplier_id)) {
       $Qsuppliers = $this->db->prepare('select suppliers_url

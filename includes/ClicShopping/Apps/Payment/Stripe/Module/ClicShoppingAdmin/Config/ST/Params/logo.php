@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ST\Pa
 class logo extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 'stripe_cards.png';
-  public ?int $sort_order = 30;
+  public int|null $sort_order = 30;
 
   protected function init()
   {

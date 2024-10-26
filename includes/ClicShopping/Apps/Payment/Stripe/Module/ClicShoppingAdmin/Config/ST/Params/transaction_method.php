@@ -15,7 +15,7 @@ use ClicShopping\OM\HTML;
 class transaction_method extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 'automatic';
-  public ?int $sort_order = 50;
+  public int|null $sort_order = 50;
 
   protected function init()
   {

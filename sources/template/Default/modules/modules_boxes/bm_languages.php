@@ -17,10 +17,10 @@ class bm_languages
   public string $group;
   public $title;
   public $description;
-  public ?int $sort_order = 0;
+  public int|null $sort_order = 0;
   public bool $enabled = false;
   public $pages;
-  protected mixed $lang;
+  private mixed $lang;
 
   public function __construct()
   {

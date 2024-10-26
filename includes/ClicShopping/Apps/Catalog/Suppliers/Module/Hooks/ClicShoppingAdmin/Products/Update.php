@@ -18,7 +18,7 @@ use ClicShopping\Apps\Catalog\Suppliers\Suppliers as SuppliersApp;
 
 class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
   protected $supplierAdmin;
 
   public function __construct()

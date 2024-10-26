@@ -21,7 +21,7 @@ use ZipArchive;
 
 class ExtractFile
 {
-  private mixed $app;
+  public mixed $app;
   private string $saveFileFromGithub;
   private string $cacheGithub;
   private string $cacheGithubTemp;

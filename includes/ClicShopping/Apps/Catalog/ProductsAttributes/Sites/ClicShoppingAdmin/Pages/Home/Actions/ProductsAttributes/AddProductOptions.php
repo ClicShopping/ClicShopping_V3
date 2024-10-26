@@ -16,7 +16,7 @@ use ClicShopping\OM\Registry;
 
 class AddProductOptions extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

@@ -16,7 +16,7 @@ class SV extends \ClicShopping\Apps\Tools\ServiceAPP\Module\ClicShoppingAdmin\Co
   protected $pm_code = 'service';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

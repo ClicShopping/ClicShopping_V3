@@ -20,7 +20,7 @@ use ClicShopping\Apps\Configuration\Modules\Classes\ClicShoppingAdmin\ModulesAdm
 
 class Install extends \ClicShopping\OM\PagesActionsAbstract
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

@@ -19,7 +19,7 @@ use function is_null;
 
 class ActionRecorderAdmin extends \ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder
 {
-  protected mixed $lang;
+  private mixed $lang;
 
   public function __construct(string $module, string $user_id = null, string $user_name = null)
   {

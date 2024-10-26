@@ -107,7 +107,7 @@ class Uri implements UriInterface
         return $this->host;
     }
 
-    public function getPort(): ?int
+    public function getPort():  int|null
     {
         return $this->port;
     }
@@ -317,7 +317,7 @@ class Uri implements UriInterface
         return !isset(self::SCHEMES[$scheme]) || $port !== self::SCHEMES[$scheme];
     }
 
-    private function filterPort($port): ?int
+    private function filterPort($port):  int|null
     {
         if (null === $port) {
             return null;

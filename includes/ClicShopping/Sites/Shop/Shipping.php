@@ -24,7 +24,7 @@ class Shipping
 {
   public array $modules = [];
   public $selected_module;
-  protected mixed $lang;
+  private mixed $lang;
 
   public function __construct($module = null)
   {

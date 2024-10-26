@@ -21,7 +21,7 @@ class PageManagerShop
   protected int $id;
   private mixed $db;
   protected $customer;
-  protected mixed $lang;
+  private mixed $lang;
   protected $rewriteUrl;
 
   public function __construct()

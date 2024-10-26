@@ -16,7 +16,7 @@ use ClicShopping\OM\HTML;
 class reviews_write extends \ClicShopping\Apps\Configuration\Antispam\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 'False';
-  public ?int $sort_order = 40;
+  public int|null $sort_order = 40;
 
   protected function init()
   {

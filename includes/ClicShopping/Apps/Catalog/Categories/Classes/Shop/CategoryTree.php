@@ -50,7 +50,7 @@ class CategoryTree
   protected $category_product_count_end_string = ')';
   protected $rewriteUrl;
   private mixed $db;
-  protected mixed $lang;
+  private mixed $lang;
 
   public function __construct()
   {

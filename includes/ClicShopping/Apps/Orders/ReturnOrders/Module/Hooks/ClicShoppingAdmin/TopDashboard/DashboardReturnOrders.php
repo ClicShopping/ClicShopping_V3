@@ -18,7 +18,7 @@ use ClicShopping\Apps\Orders\ReturnOrders\ReturnOrders as ReturnOrdersApp;
 
 class DashboardReturnOrders implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
 
   public function __construct()
   {

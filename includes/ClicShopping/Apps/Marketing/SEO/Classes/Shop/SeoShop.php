@@ -17,7 +17,7 @@ use ClicShopping\OM\Registry;
 class SeoShop
 {
   private mixed $db;
-  protected mixed $lang;
+  private mixed $lang;
 
   protected string $seoDefaultTitle;
   protected string $seoDefaultDescription;

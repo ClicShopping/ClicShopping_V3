@@ -16,7 +16,7 @@ class DL extends \ClicShopping\Apps\Tools\DefineLanguage\Module\ClicShoppingAdmi
   protected $pm_code = 'define_language';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

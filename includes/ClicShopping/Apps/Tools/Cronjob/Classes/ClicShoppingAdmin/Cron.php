@@ -31,7 +31,7 @@ class Cron
    * @param int|null $id
    * @return array
    */
-  public static function getCrons(?array $data = [], ?int $id): array
+  public static function getCrons(?array $data = [],  int|null $id): array
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 

@@ -16,7 +16,7 @@ class PQ extends \ClicShopping\Apps\Configuration\ProductsQuantityUnit\Module\Cl
   protected $pm_code = 'products_quantity_unit';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

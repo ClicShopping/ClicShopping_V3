@@ -18,7 +18,7 @@ use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
 
 class pageTab5 implements \ClicShopping\OM\Modules\HooksInterface
 {
-  private mixed $app;
+  public mixed $app;
   protected string $customers_group_name;
   protected int $customers_group_id;
 

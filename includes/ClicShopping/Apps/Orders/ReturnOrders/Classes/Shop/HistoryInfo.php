@@ -20,7 +20,7 @@ class HistoryInfo
    * @param int|null $rId
    * @return mixed
    */
-  public static function getHistoryInfoListing(bool $fetch = true, ?int $rId = null)
+  public static function getHistoryInfoListing(bool $fetch = true,  int|null $rId = null)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Customer = Registry::get('Customer');

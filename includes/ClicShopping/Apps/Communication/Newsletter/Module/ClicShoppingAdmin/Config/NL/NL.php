@@ -16,7 +16,7 @@ class NL extends \ClicShopping\Apps\Communication\Newsletter\Module\ClicShopping
   protected $pm_code = 'newsletter';
 
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 400;
+  public int|null $sort_order = 400;
 
   protected function init()
   {

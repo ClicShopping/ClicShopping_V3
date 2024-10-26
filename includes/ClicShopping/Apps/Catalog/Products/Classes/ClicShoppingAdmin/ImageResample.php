@@ -249,7 +249,7 @@ class ImageResample
    * @param int $width
    * @param int|null $height
    */
-  public function maxarea(int $width, ?int $height = null)
+  public function maxarea(int $width,  int|null $height = null)
   {
     $height = $height ? $height : $width;
 
@@ -265,7 +265,7 @@ class ImageResample
    * @param $width
    * @param null $height
    */
-  public function minarea(int $width, ?int $height = null)
+  public function minarea(int $width,  int|null $height = null)
   {
     $height = $height ?: $width;
 

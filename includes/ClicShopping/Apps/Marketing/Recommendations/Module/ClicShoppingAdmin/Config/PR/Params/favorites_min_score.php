@@ -13,7 +13,7 @@ namespace ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\C
 class favorites_min_score extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
   public $default = 2.1;
-  public ?int $sort_order = 80;
+  public int|null $sort_order = 80;
   public bool $app_configured = true;
 
   protected function init()

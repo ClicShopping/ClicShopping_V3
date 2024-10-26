@@ -139,7 +139,7 @@ class Stream implements StreamInterface
         return $this->uri;
     }
 
-    public function getSize(): ?int
+    public function getSize():  int|null
     {
         if (null !== $this->size) {
             return $this->size;

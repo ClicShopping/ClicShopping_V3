@@ -14,7 +14,7 @@ class IN extends \ClicShopping\Apps\Configuration\Antispam\Module\ClicShoppingAd
 {
   protected $pm_code = 'antispam';
   public bool $is_uninstallable = true;
-  public ?int $sort_order = 600;
+  public int|null $sort_order = 600;
 
   protected function init()
   {
