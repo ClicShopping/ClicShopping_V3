@@ -40,7 +40,7 @@ class AsyncResponse implements ResponseInterface, StreamableInterface
     /** @var callable|null */
     private $passthru;
     private ?\Iterator $stream = null;
-    private  int|null $yieldedState = null;
+    private ?int $yieldedState = null;
 
     /**
      * @param ?callable(ChunkInterface, AsyncContext): ?\Iterator $passthru

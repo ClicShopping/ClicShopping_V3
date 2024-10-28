@@ -31,7 +31,7 @@ final class NativeResponse implements ResponseInterface, StreamableInterface
 
     private \Closure $resolver;
     private ?\Closure $onProgress;
-    private  int|null $remaining = null;
+    private ?int $remaining = null;
 
     /**
      * @var resource|null

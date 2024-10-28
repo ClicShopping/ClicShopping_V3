@@ -163,7 +163,7 @@ class RetryableHttpClient implements HttpClientInterface, ResetInterface
         });
     }
 
-    private function getDelayFromHeader(array $headers):  int|null
+    private function getDelayFromHeader(array $headers): ?int
     {
         if (null !== $after = $headers['retry-after'][0] ?? null) {
             if (is_numeric($after)) {
