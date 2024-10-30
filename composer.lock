@@ -1597,16 +1597,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v16.1.1",
+            "version": "v16.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "524ae42483d7434dfaecb0076e32e5cb521f6bb7"
+                "reference": "813ae4961755af28a13bda451689f7a6ed6498cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/524ae42483d7434dfaecb0076e32e5cb521f6bb7",
-                "reference": "524ae42483d7434dfaecb0076e32e5cb521f6bb7",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/813ae4961755af28a13bda451689f7a6ed6498cb",
+                "reference": "813ae4961755af28a13bda451689f7a6ed6498cb",
                 "shasum": ""
             },
             "require": {
@@ -1650,9 +1650,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v16.1.1"
+                "source": "https://github.com/stripe/stripe-php/tree/v16.2.0"
             },
-            "time": "2024-10-18T18:42:52+00:00"
+            "time": "2024-10-29T21:15:53+00:00"
         },
         {
             "name": "stymiee/email-validator",
@@ -2258,16 +2258,16 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.8.6",
+            "version": "0.8.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "f4af8cc8c1e1c92c540d27dc18f77faef94ca0f6"
+                "reference": "121e6dba0f2f824d2fd707d19c219fe2af777bd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/f4af8cc8c1e1c92c540d27dc18f77faef94ca0f6",
-                "reference": "f4af8cc8c1e1c92c540d27dc18f77faef94ca0f6",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/121e6dba0f2f824d2fd707d19c219fe2af777bd4",
+                "reference": "121e6dba0f2f824d2fd707d19c219fe2af777bd4",
                 "shasum": ""
             },
             "require": {
@@ -2333,9 +2333,9 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.6"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.7"
             },
-            "time": "2024-10-26T21:49:45+00:00"
+            "time": "2024-10-30T22:09:26+00:00"
         }
     ],
     "packages-dev": [
@@ -2345,12 +2345,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "622ede44e079ad5c341a40013ef0e16fab2902ab"
+                "reference": "b372328a5d688ed9819ebbddd9ec439a26228aec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/622ede44e079ad5c341a40013ef0e16fab2902ab",
-                "reference": "622ede44e079ad5c341a40013ef0e16fab2902ab",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/b372328a5d688ed9819ebbddd9ec439a26228aec",
+                "reference": "b372328a5d688ed9819ebbddd9ec439a26228aec",
                 "shasum": ""
             },
             "conflict": {
@@ -2528,7 +2528,7 @@
                 "ezsystems/ezpublish-legacy": "<=2017.12.7.3|>=2018.6,<=2019.03.5.1",
                 "ezsystems/platform-ui-assets-bundle": ">=4.2,<4.2.3",
                 "ezsystems/repository-forms": ">=2.3,<2.3.2.1-dev|>=2.5,<2.5.15",
-                "ezyang/htmlpurifier": "<4.1.1",
+                "ezyang/htmlpurifier": "<=4.2",
                 "facade/ignition": "<1.16.15|>=2,<2.4.2|>=2.5,<2.5.2",
                 "facturascripts/facturascripts": "<=2022.08",
                 "fastly/magento2": "<1.2.26",
@@ -2704,7 +2704,7 @@
                 "mautic/core-lib": ">=1.0.0.0-beta,<4.4.13|>=5.0.0.0-alpha,<5.1.1",
                 "mdanter/ecc": "<2",
                 "mediawiki/cargo": "<3.6.1",
-                "mediawiki/core": "<1.36.2",
+                "mediawiki/core": "<1.39.5|==1.40",
                 "mediawiki/matomo": "<2.4.3",
                 "mediawiki/semantic-media-wiki": "<4.0.2",
                 "melisplatform/melis-asset-manager": "<5.0.1",
@@ -2803,7 +2803,7 @@
                 "phenx/php-svg-lib": "<0.5.2",
                 "php-censor/php-censor": "<2.0.13|>=2.1,<2.1.5",
                 "php-mod/curl": "<2.3.2",
-                "phpbb/phpbb": "<3.2.10|>=3.3,<3.3.1",
+                "phpbb/phpbb": "<3.3.11",
                 "phpems/phpems": ">=6,<=6.1.3",
                 "phpfastcache/phpfastcache": "<6.1.5|>=7,<7.1.2|>=8,<8.0.7",
                 "phpmailer/phpmailer": "<6.5",
@@ -3171,7 +3171,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-28T19:04:33+00:00"
+            "time": "2024-10-30T19:04:36+00:00"
         }
     ],
     "aliases": [],
