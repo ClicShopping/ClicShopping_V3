@@ -13,15 +13,15 @@
         "stymiee/email-validator": "^1.1",
         "robthree/twofactorauth": "^1.8",
         "phpmailer/phpmailer": "^6.9",
-        "symfony/http-client": "^7.0",
         "nyholm/psr7": "^1.8",
         "guzzlehttp/guzzle": "^7.8",
         "mattketmo/email-checker": "^2.3",
         "phpxmlrpc/phpxmlrpc": "^4.10",
         "setasign/fpdf": "^1.8",
         "stripe/stripe-php": "^16.0",
-      "ext-xml": "*",
-        "theodo-group/llphant": "^0.8.9"
+        "ext-xml": "*",
+        "theodo-group/llphant": "^0.8.9",
+        "symfony/http-client": "^7.1"
     }
     ,
     "require-dev": {
