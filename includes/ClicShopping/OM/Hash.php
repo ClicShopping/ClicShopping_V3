@@ -204,7 +204,7 @@ class Hash
       'chars',
       'digits'
     ])) {
-      trigger_error('Hash::getRandomString() $type not recognized: ' . $type, E_USER_ERROR);
+      throw new InvalidArgumentException('Hash::getRandomString() $type not recognized: ' . $type);
 
       return false;
     }

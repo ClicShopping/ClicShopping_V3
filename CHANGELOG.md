@@ -1,3 +1,7 @@
+version3.453
+PHP 8.4 : fix deprecated element
+
+------------------
 version3.452
 Librairies updated
 

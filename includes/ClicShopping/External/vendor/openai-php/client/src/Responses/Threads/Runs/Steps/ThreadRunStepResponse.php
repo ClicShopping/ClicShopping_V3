@@ -12,12 +12,12 @@ use OpenAI\Responses\Threads\Runs\ThreadRunResponseLastError;
 use OpenAI\Testing\Responses\Concerns\Fakeable;
 
 /**
- * @implements ResponseContract<array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, run_id: string, type: string, status: string, step_details: array{type: 'tool_calls', tool_calls: array<int, array{id: ?string, type: 'code_interpreter', code_interpreter: array{input?: string, outputs?: array<int, array{type: 'image', image: array{file_id: string}}|array{type: 'logs', logs: string}>}}|array{id: string, type: 'file_search', file_search: array<string, string>}|array{id: ?string, type: 'function', function: array{name: ?string, arguments: string, output: ?string}}>}|array{type: 'message_creation', message_creation: array{message_id: string}}, last_error: ?array{code: string, message: string}, expires_at:  int|null, cancelled_at:  int|null, failed_at:  int|null, completed_at:  int|null, metadata?: array<string, string>, usage: ?array{prompt_tokens: int, completion_tokens: int, total_tokens: int}}>
+ * @implements ResponseContract<array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, run_id: string, type: string, status: string, step_details: array{type: 'tool_calls', tool_calls: array<int, array{id: ?string, type: 'code_interpreter', code_interpreter: array{input?: string, outputs?: array<int, array{type: 'image', image: array{file_id: string}}|array{type: 'logs', logs: string}>}}|array{id: string, type: 'file_search', file_search: array<string, string>}|array{id: ?string, type: 'function', function: array{name: ?string, arguments: string, output: ?string}}>}|array{type: 'message_creation', message_creation: array{message_id: string}}, last_error: ?array{code: string, message: string}, expires_at: ?int, cancelled_at: ?int, failed_at: ?int, completed_at: ?int, metadata?: array<string, string>, usage: ?array{prompt_tokens: int, completion_tokens: int, total_tokens: int}}>
  */
 final class ThreadRunStepResponse implements ResponseContract
 {
     /**
-     * @use ArrayAccessible<array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, run_id: string, type: string, status: string, step_details: array{type: 'tool_calls', tool_calls: array<int, array{id: ?string, type: 'code_interpreter', code_interpreter: array{input?: string, outputs?: array<int, array{type: 'image', image: array{file_id: string}}|array{type: 'logs', logs: string}>}}|array{id: string, type: 'file_search', file_search: array<string, string>}|array{id: ?string, type: 'function', function: array{name: ?string, arguments: string, output: ?string}}>}|array{type: 'message_creation', message_creation: array{message_id: string}}, last_error: ?array{code: string, message: string}, expires_at:  int|null, cancelled_at:  int|null, failed_at:  int|null, completed_at:  int|null, metadata?: array<string, string>, usage: ?array{prompt_tokens: int, completion_tokens: int, total_tokens: int}}>
+     * @use ArrayAccessible<array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, run_id: string, type: string, status: string, step_details: array{type: 'tool_calls', tool_calls: array<int, array{id: ?string, type: 'code_interpreter', code_interpreter: array{input?: string, outputs?: array<int, array{type: 'image', image: array{file_id: string}}|array{type: 'logs', logs: string}>}}|array{id: string, type: 'file_search', file_search: array<string, string>}|array{id: ?string, type: 'function', function: array{name: ?string, arguments: string, output: ?string}}>}|array{type: 'message_creation', message_creation: array{message_id: string}}, last_error: ?array{code: string, message: string}, expires_at: ?int, cancelled_at: ?int, failed_at: ?int, completed_at: ?int, metadata?: array<string, string>, usage: ?array{prompt_tokens: int, completion_tokens: int, total_tokens: int}}>
      */
     use ArrayAccessible;
 
@@ -38,10 +38,10 @@ final class ThreadRunStepResponse implements ResponseContract
         public string $status,
         public ThreadRunStepResponseMessageCreationStepDetails|ThreadRunStepResponseToolCallsStepDetails $stepDetails,
         public ?ThreadRunResponseLastError $lastError,
-        public int|null $expiresAt,
-        public int|null $cancelledAt,
-        public int|null $failedAt,
-        public int|null $completedAt,
+        public ?int $expiresAt,
+        public ?int $cancelledAt,
+        public ?int $failedAt,
+        public ?int $completedAt,
         public array $metadata,
         private readonly MetaInformation $meta,
         public ?ThreadRunStepResponseUsage $usage
@@ -50,7 +50,7 @@ final class ThreadRunStepResponse implements ResponseContract
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param  array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, run_id: string, type: string, status: string, step_details: array{type: 'tool_calls', tool_calls: array<int, array{id?: string, type: 'code_interpreter', code_interpreter: array{input: string, outputs: array<int, array{type: 'image', image: array{file_id: string}}|array{type: 'logs', logs: string}>}}|array{id: string, type: 'file_search', file_search: array<string, string>}|array{id?: string, type: 'function', function: array{name?: string, arguments: string, output?: ?string}}>}|array{type: 'message_creation', message_creation: array{message_id: string}}, last_error: ?array{code: string, message: string}, expires_at:  int|null, cancelled_at:  int|null, failed_at:  int|null, completed_at:  int|null, metadata?: array<string, string>, usage: ?array{prompt_tokens: int, completion_tokens: int, total_tokens: int}}  $attributes
+     * @param  array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, run_id: string, type: string, status: string, step_details: array{type: 'tool_calls', tool_calls: array<int, array{id?: string, type: 'code_interpreter', code_interpreter: array{input: string, outputs: array<int, array{type: 'image', image: array{file_id: string}}|array{type: 'logs', logs: string}>}}|array{id: string, type: 'file_search', file_search: array<string, string>}|array{id?: string, type: 'function', function: array{name?: string, arguments: string, output?: ?string}}>}|array{type: 'message_creation', message_creation: array{message_id: string}}, last_error: ?array{code: string, message: string}, expires_at: ?int, cancelled_at: ?int, failed_at: ?int, completed_at: ?int, metadata?: array<string, string>, usage: ?array{prompt_tokens: int, completion_tokens: int, total_tokens: int}}  $attributes
      */
     public static function from(array $attributes, MetaInformation $meta): self
     {

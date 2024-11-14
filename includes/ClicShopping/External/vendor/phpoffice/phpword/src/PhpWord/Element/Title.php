@@ -67,7 +67,7 @@ class Title extends AbstractElement
      * @param string|TextRun $text
      * @param int $depth
      */
-    public function __construct($text, $depth = 1,  int|null $pageNumber = null)
+    public function __construct($text, $depth = 1, ?int $pageNumber = null)
     {
         if (is_string($text)) {
             $this->text = SharedText::toUTF8($text);
@@ -121,7 +121,7 @@ class Title extends AbstractElement
     /**
      * Get page number.
      */
-    public function getPageNumber():  int|null
+    public function getPageNumber(): ?int
     {
         return $this->pageNumber;
     }

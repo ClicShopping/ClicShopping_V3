@@ -27,11 +27,10 @@
         "laravel/pint": "^1.18.1",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^7.11.0|^8.5.0",
-        "pestphp/pest": "^2.36.0|^3.4.1",
+        "pestphp/pest": "^2.36.0|^3.5.0",
         "pestphp/pest-plugin-arch": "^2.7|^3.0",
         "pestphp/pest-plugin-type-coverage": "^2.8.7|^3.1.0",
-        "phpstan/phpstan": "^1.12.6",
-        "rector/rector": "^1.2.7",
+        "phpstan/phpstan": "^1.12.7",
         "symfony/var-dumper": "^6.4.11|^7.1.5"
     },
     "autoload": {
@@ -59,15 +58,12 @@
     },
     "scripts": {
         "lint": "pint -v",
-        "refactor": "rector --debug",
         "test:lint": "pint --test -v",
-        "test:refactor": "rector --dry-run",
         "test:types": "phpstan analyse --ansi",
         "test:type-coverage": "pest --type-coverage --min=100",
         "test:unit": "pest --colors=always",
         "test": [
             "@test:lint",
-            "@test:refactor",
             "@test:types",
             "@test:type-coverage",
             "@test:unit"

@@ -41,7 +41,7 @@ class Table extends AbstractElement
     /**
      * Table width.
      *
-     * @var  int|null
+     * @var ?int
      */
     private $width;
 
@@ -112,7 +112,7 @@ class Table extends AbstractElement
     /**
      * Get table width.
      *
-     * @return  int|null
+     * @return ?int
      */
     public function getWidth()
     {

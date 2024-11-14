@@ -8,7 +8,7 @@ final class CreateResponseUsage
 {
     private function __construct(
         public readonly int $promptTokens,
-        public readonly  int|null $completionTokens,
+        public readonly ?int $completionTokens,
         public readonly int $totalTokens,
     ) {}
 

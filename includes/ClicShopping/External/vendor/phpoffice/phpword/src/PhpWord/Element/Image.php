@@ -269,7 +269,7 @@ class Image extends AbstractElement
     /**
      * Get image quality.
      */
-    public function getImageQuality():  int|null
+    public function getImageQuality(): ?int
     {
         return $this->imageQuality;
     }

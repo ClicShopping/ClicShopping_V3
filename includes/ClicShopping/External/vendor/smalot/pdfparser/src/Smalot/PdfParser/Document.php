@@ -418,7 +418,7 @@ class Document
         throw new \Exception('Missing catalog.');
     }
 
-    public function getText( int|null $pageLimit = null): string
+    public function getText(?int $pageLimit = null): string
     {
         $texts = [];
         $pages = $this->getPages();

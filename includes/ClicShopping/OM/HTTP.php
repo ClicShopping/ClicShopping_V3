@@ -166,7 +166,7 @@ class HTTP
   public static function setResponseCode(int $code): bool
   {
     if (headers_sent()) {
-      trigger_error('HTTP::setResponseCode() - headers already sent, cannot set response code.', E_USER_ERROR);
+      throw new InvalidArgumentException('HTTP::setResponseCode() - headers already sent, cannot set response code.');
 
       return false;
     }

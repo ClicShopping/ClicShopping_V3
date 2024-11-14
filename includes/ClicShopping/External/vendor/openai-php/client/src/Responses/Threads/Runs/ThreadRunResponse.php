@@ -13,12 +13,12 @@ use OpenAI\Responses\Meta\MetaInformation;
 use OpenAI\Testing\Responses\Concerns\Fakeable;
 
 /**
- * @implements ResponseContract<array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, status: string, required_action?: array{type: string, submit_tool_outputs: array{tool_calls: array<int, array{id: string, type: string, function: array{name: string, arguments: string}}>}}, last_error: ?array{code: string, message: string}, expires_at:  int|null, started_at:  int|null, cancelled_at:  int|null, failed_at:  int|null, completed_at:  int|null, model: string, instructions: ?string, tools: array<int, array{type: string}|array{type: string}|array{type: string, function: array{description: string, name: string, parameters: array<string, mixed>}}>, metadata: array<string, string>, usage?: array{prompt_tokens: int, completion_tokens: int|null, total_tokens: int}, incomplete_details: null|array{reason: string}, temperature: float|int|null, top_p: null|float|int, max_prompt_tokens:  int|null, max_completion_tokens:  int|null, truncation_strategy: ?array{type: string, last_messages:  int|null}, tool_choice: null|string|array{type: string, function?: array{name: string}}, response_format: null|string|array{type: string}}>
+ * @implements ResponseContract<array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, status: string, required_action?: array{type: string, submit_tool_outputs: array{tool_calls: array<int, array{id: string, type: string, function: array{name: string, arguments: string}}>}}, last_error: ?array{code: string, message: string}, expires_at: ?int, started_at: ?int, cancelled_at: ?int, failed_at: ?int, completed_at: ?int, model: string, instructions: ?string, tools: array<int, array{type: string}|array{type: string}|array{type: string, function: array{description: string, name: string, parameters: array<string, mixed>}}>, metadata: array<string, string>, usage?: array{prompt_tokens: int, completion_tokens: int|null, total_tokens: int}, incomplete_details: null|array{reason: string}, temperature: float|int|null, top_p: null|float|int, max_prompt_tokens: ?int, max_completion_tokens: ?int, truncation_strategy: ?array{type: string, last_messages: ?int}, tool_choice: null|string|array{type: string, function?: array{name: string}}, response_format: null|string|array{type: string}}>
  */
 final class ThreadRunResponse implements ResponseContract, ResponseHasMetaInformationContract
 {
     /**
-     * @use ArrayAccessible<array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, status: string, required_action?: array{type: string, submit_tool_outputs: array{tool_calls: array<int, array{id: string, type: string, function: array{name: string, arguments: string}}>}}, last_error: ?array{code: string, message: string}, expires_at:  int|null, started_at:  int|null, cancelled_at:  int|null, failed_at:  int|null, completed_at:  int|null, model: string, instructions: ?string, tools: array<int, array{type: string}|array{type: string}|array{type: string, function: array{description: string, name: string, parameters: array<string, mixed>}}>, metadata: array<string, string>, usage?: array{prompt_tokens: int, completion_tokens: int|null, total_tokens: int}, incomplete_details: ?array{reason: string}, temperature: float|int|null, top_p: null|float|int, max_prompt_tokens:  int|null, max_completion_tokens:  int|null, truncation_strategy: ?array{type: string, last_messages:  int|null}, tool_choice: null|string|array{type: string, function?: array{name: string}}, response_format: null|string|array{type: string}}>
+     * @use ArrayAccessible<array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, status: string, required_action?: array{type: string, submit_tool_outputs: array{tool_calls: array<int, array{id: string, type: string, function: array{name: string, arguments: string}}>}}, last_error: ?array{code: string, message: string}, expires_at: ?int, started_at: ?int, cancelled_at: ?int, failed_at: ?int, completed_at: ?int, model: string, instructions: ?string, tools: array<int, array{type: string}|array{type: string}|array{type: string, function: array{description: string, name: string, parameters: array<string, mixed>}}>, metadata: array<string, string>, usage?: array{prompt_tokens: int, completion_tokens: int|null, total_tokens: int}, incomplete_details: ?array{reason: string}, temperature: float|int|null, top_p: null|float|int, max_prompt_tokens: ?int, max_completion_tokens: ?int, truncation_strategy: ?array{type: string, last_messages: ?int}, tool_choice: null|string|array{type: string, function?: array{name: string}}, response_format: null|string|array{type: string}}>
      */
     use ArrayAccessible;
 
@@ -38,11 +38,11 @@ final class ThreadRunResponse implements ResponseContract, ResponseHasMetaInform
         public string $status,
         public ?ThreadRunResponseRequiredAction $requiredAction,
         public ?ThreadRunResponseLastError $lastError,
-        public int|null $expiresAt,
-        public int|null $startedAt,
-        public int|null $cancelledAt,
-        public int|null $failedAt,
-        public int|null $completedAt,
+        public ?int $expiresAt,
+        public ?int $startedAt,
+        public ?int $cancelledAt,
+        public ?int $failedAt,
+        public ?int $completedAt,
         public ?ThreadRunResponseIncompleteDetails $incompleteDetails,
         public string $model,
         public ?string $instructions,
@@ -51,8 +51,8 @@ final class ThreadRunResponse implements ResponseContract, ResponseHasMetaInform
         public ?ThreadRunResponseUsage $usage,
         public ?float $temperature,
         public ?float $topP,
-        public int|null $maxPromptTokens,
-        public int|null $maxCompletionTokens,
+        public ?int $maxPromptTokens,
+        public ?int $maxCompletionTokens,
         public ?ThreadRunResponseTruncationStrategy $truncationStrategy,
         public null|string|ThreadRunResponseToolChoice $toolChoice,
         public null|string|AssistantResponseResponseFormat $responseFormat,
@@ -62,7 +62,7 @@ final class ThreadRunResponse implements ResponseContract, ResponseHasMetaInform
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param  array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, status: string, required_action?: array{type: string, submit_tool_outputs: array{tool_calls: array<int, array{id: string, type: string, function: array{name: string, arguments: string}}>}}, last_error: ?array{code: string, message: string}, expires_at:  int|null, started_at:  int|null, cancelled_at:  int|null, failed_at:  int|null, completed_at:  int|null, model: string, instructions: ?string, tools: array<int, array{type: 'code_interpreter'}|array{type: 'file_search'}|array{type: 'function', function: array{description: string, name: string, parameters: array<string, mixed>}}>, metadata: array<string, string>, usage?: array{prompt_tokens: int, completion_tokens: int|null, total_tokens: int}, incomplete_details: ?array{reason: string}, temperature: float|int|null, top_p: null|float|int, max_prompt_tokens:  int|null, max_completion_tokens:  int|null, truncation_strategy: ?array{type: string, last_messages:  int|null}, tool_choice: null|string|array{type: string, function?: array{name: string}}, response_format: null|string|array{type: 'text'|'json_object'}}  $attributes
+     * @param  array{id: string, object: string, created_at: int, thread_id: string, assistant_id: string, status: string, required_action?: array{type: string, submit_tool_outputs: array{tool_calls: array<int, array{id: string, type: string, function: array{name: string, arguments: string}}>}}, last_error: ?array{code: string, message: string}, expires_at: ?int, started_at: ?int, cancelled_at: ?int, failed_at: ?int, completed_at: ?int, model: string, instructions: ?string, tools: array<int, array{type: 'code_interpreter'}|array{type: 'file_search'}|array{type: 'function', function: array{description: string, name: string, parameters: array<string, mixed>}}>, metadata: array<string, string>, usage?: array{prompt_tokens: int, completion_tokens: int|null, total_tokens: int}, incomplete_details: ?array{reason: string}, temperature: float|int|null, top_p: null|float|int, max_prompt_tokens: ?int, max_completion_tokens: ?int, truncation_strategy: ?array{type: string, last_messages: ?int}, tool_choice: null|string|array{type: string, function?: array{name: string}}, response_format: null|string|array{type: 'text'|'json_object'}}  $attributes
      */
     public static function from(array $attributes, MetaInformation $meta): self
     {

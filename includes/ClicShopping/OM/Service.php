@@ -89,7 +89,7 @@ class Service
           $this->_started_services[] = $service;
         }
       } else {
-        trigger_error('\'ClicShopping\\Service\\Shop\\' . $service . '\' does not exist', E_USER_ERROR);
+        throw new InvalidArgumentException('\'ClicShopping\\Service\\Shop\\' . $service . '\' does not exist');
       }
     } else {
       if (class_exists('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service)) {
@@ -97,7 +97,7 @@ class Service
           $this->_started_services[] = $service;
         }
       } else {
-        trigger_error('\'ClicShopping\\Service\\ClicShoppingAdmin\\' . $service . '\' does not exist', E_USER_ERROR);
+        throw new InvalidArgumentException('\'ClicShopping\\Service\\ClicShoppingAdmin\\' . $service . '\' does not exist');
       }
     }
   }

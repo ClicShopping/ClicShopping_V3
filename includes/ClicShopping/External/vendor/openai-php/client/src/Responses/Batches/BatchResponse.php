@@ -12,12 +12,12 @@ use OpenAI\Responses\Meta\MetaInformation;
 use OpenAI\Testing\Responses\Concerns\Fakeable;
 
 /**
- * @implements ResponseContract<array{id: string, object: string, endpoint: string, errors: ?array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line:  int|null}>}, input_file_id: string, completion_window: string, status: string, output_file_id: ?string, error_file_id: ?string, created_at: int, in_progress_at:  int|null, expires_at:  int|null, finalizing_at:  int|null, completed_at:  int|null, failed_at:  int|null, expired_at:  int|null, cancelling_at:  int|null, cancelled_at:  int|null, request_counts: ?array{total: int, completed: int, failed: int}, metadata: ?array<string, string>}>
+ * @implements ResponseContract<array{id: string, object: string, endpoint: string, errors: ?array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line: ?int}>}, input_file_id: string, completion_window: string, status: string, output_file_id: ?string, error_file_id: ?string, created_at: int, in_progress_at: ?int, expires_at: ?int, finalizing_at: ?int, completed_at: ?int, failed_at: ?int, expired_at: ?int, cancelling_at: ?int, cancelled_at: ?int, request_counts: ?array{total: int, completed: int, failed: int}, metadata: ?array<string, string>}>
  */
 final class BatchResponse implements ResponseContract, ResponseHasMetaInformationContract
 {
     /**
-     * @use ArrayAccessible<array{id: string, object: string, endpoint: string, errors: ?array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line:  int|null}>}, input_file_id: string, completion_window: string, status: string, output_file_id: ?string, error_file_id: ?string, created_at: int, in_progress_at:  int|null, expires_at:  int|null, finalizing_at:  int|null, completed_at:  int|null, failed_at:  int|null, expired_at:  int|null, cancelling_at:  int|null, cancelled_at:  int|null, request_counts: ?array{total: int, completed: int, failed: int}, metadata: ?array<string, string>}>
+     * @use ArrayAccessible<array{id: string, object: string, endpoint: string, errors: ?array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line: ?int}>}, input_file_id: string, completion_window: string, status: string, output_file_id: ?string, error_file_id: ?string, created_at: int, in_progress_at: ?int, expires_at: ?int, finalizing_at: ?int, completed_at: ?int, failed_at: ?int, expired_at: ?int, cancelling_at: ?int, cancelled_at: ?int, request_counts: ?array{total: int, completed: int, failed: int}, metadata: ?array<string, string>}>
      */
     use ArrayAccessible;
 
@@ -38,14 +38,14 @@ final class BatchResponse implements ResponseContract, ResponseHasMetaInformatio
         public ?string $outputFileId,
         public ?string $errorFileId,
         public int $createdAt,
-        public int|null $inProgressAt,
-        public int|null $expiresAt,
-        public int|null $finalizingAt,
-        public int|null $completedAt,
-        public int|null $failedAt,
-        public int|null $expiredAt,
-        public int|null $cancellingAt,
-        public int|null $cancelledAt,
+        public ?int $inProgressAt,
+        public ?int $expiresAt,
+        public ?int $finalizingAt,
+        public ?int $completedAt,
+        public ?int $failedAt,
+        public ?int $expiredAt,
+        public ?int $cancellingAt,
+        public ?int $cancelledAt,
         public ?BatchResponseRequestCounts $requestCounts,
         public ?array $metadata,
         private readonly MetaInformation $meta,
@@ -54,7 +54,7 @@ final class BatchResponse implements ResponseContract, ResponseHasMetaInformatio
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param  array{id: string, object: string, endpoint: string, errors?: array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line:  int|null}>}, input_file_id: string, completion_window: string, status: string, output_file_id: ?string, error_file_id: ?string, created_at: int, in_progress_at:  int|null, expires_at:  int|null, finalizing_at:  int|null, completed_at:  int|null, failed_at:  int|null, expired_at:  int|null, cancelling_at:  int|null, cancelled_at:  int|null, request_counts?: array{total: int, completed: int, failed: int}, metadata: ?array<string, string>}  $attributes
+     * @param  array{id: string, object: string, endpoint: string, errors?: array{object: string, data: array<array-key, array{code: string, message: string, param: ?string, line: ?int}>}, input_file_id: string, completion_window: string, status: string, output_file_id: ?string, error_file_id: ?string, created_at: int, in_progress_at: ?int, expires_at: ?int, finalizing_at: ?int, completed_at: ?int, failed_at: ?int, expired_at: ?int, cancelling_at: ?int, cancelled_at: ?int, request_counts?: array{total: int, completed: int, failed: int}, metadata: ?array<string, string>}  $attributes
      */
     public static function from(array $attributes, MetaInformation $meta): self
     {
