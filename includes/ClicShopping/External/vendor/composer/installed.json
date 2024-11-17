@@ -3191,17 +3191,17 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.8.9",
-            "version_normalized": "0.8.9.0",
+            "version": "0.8.11",
+            "version_normalized": "0.8.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "55f0b09d7e00a85d6aaef11ffc775874bf105deb"
+                "reference": "5fb7309fbd39d60fb70e45622b0b3be17bb3e124"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/55f0b09d7e00a85d6aaef11ffc775874bf105deb",
-                "reference": "55f0b09d7e00a85d6aaef11ffc775874bf105deb",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/5fb7309fbd39d60fb70e45622b0b3be17bb3e124",
+                "reference": "5fb7309fbd39d60fb70e45622b0b3be17bb3e124",
                 "shasum": ""
             },
             "require": {
@@ -3215,20 +3215,21 @@
             },
             "require-dev": {
                 "codewithkyrian/chromadb-php": "^0.3.0",
-                "doctrine/orm": "^2.13.0",
-                "elasticsearch/elasticsearch": "^8.10",
-                "hkulekci/qdrant": "^v0.5.3",
+                "doctrine/orm": "^2.20.0",
+                "elasticsearch/elasticsearch": "^8.15",
+                "hkulekci/qdrant": "^v0.5.7",
                 "laravel/pint": "v1.15.3",
-                "mockery/mockery": "^1.6",
+                "mockery/mockery": "^1.6.12",
                 "opensearch-project/opensearch-php": "^2.3",
-                "pestphp/pest": "2.32.0",
-                "pestphp/pest-plugin-arch": "^2.5.0",
+                "pestphp/pest": "^v2.36.0",
+                "pestphp/pest-plugin-arch": "^2.7.0",
                 "pestphp/pest-plugin-type-coverage": "2.8.0",
                 "phpstan/phpstan": "1.10.55",
                 "predis/predis": "^2.2",
                 "rector/rector": "^0.16.0",
-                "symfony/cache": "^7.0",
-                "symfony/var-dumper": "^6.3.1 || ^7.0.0"
+                "symfony/cache": "^7.2",
+                "symfony/process": "^v7.1.8",
+                "symfony/var-dumper": "^7.2"
             },
             "suggest": {
                 "codewithkyrian/chromadb-php": "This is required for the ChromaDBVectorStore.",
@@ -3239,9 +3240,9 @@
                 "predis/predis": "This is required for the RedisVectoreStore.",
                 "symfony/cache": "This is one of the possible types of psr/cache needed by doctrine/orm"
             },
-            "time": "2024-11-07T10:02:03+00:00",
+            "time": "2024-11-17T13:52:58+00:00",
             "type": "library",
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "LLPhant\\": "src/"
@@ -3271,7 +3272,7 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.9"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.11"
             },
             "install-path": "../theodo-group/llphant"
         }

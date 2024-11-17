@@ -14,6 +14,8 @@ class OllamaConfig
 
     public bool $formatJson = false;
 
+    public ?int $timeout = null;
+
     /**
      * model options, example:
      * - options
