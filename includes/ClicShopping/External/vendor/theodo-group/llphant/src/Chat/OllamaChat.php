@@ -9,6 +9,7 @@ use GuzzleHttp\Psr7\Utils;
 use LLPhant\Chat\CalledFunction\CalledFunction;
 use LLPhant\Chat\FunctionInfo\FunctionInfo;
 use LLPhant\Chat\FunctionInfo\ToolFormatter;
+use LLPhant\Chat\Vision\VisionMessage;
 use LLPhant\Exception\HttpException;
 use LLPhant\Exception\MissingParameterException;
 use LLPhant\OllamaConfig;
@@ -315,22 +316,31 @@ class OllamaChat implements ChatInterface
      */
     protected function prepareMessages(array $messages): array
     {
-        $response = [];
+        $responseMessages = [];
         // The system message is always the first
         if (isset($this->systemMessage->role)) {
-            $response[] = [
+            $responseMessages[] = [
                 'role' => $this->systemMessage->role,
                 'content' => $this->systemMessage->content,
             ];
         }
         foreach ($messages as $msg) {
-            $response[] = [
+            $responseMessage = [
                 'role' => $msg->role,
                 'content' => $msg->content,
             ];
+
+            if ($msg instanceof VisionMessage) {
+                $responseMessage['images'] = [];
+                foreach ($msg->images as $image) {
+                    $responseMessage['images'][] = $image->getBase64($this->client);
+                }
+            }
+
+            $responseMessages[] = $responseMessage;
         }
 
-        return $response;
+        return $responseMessages;
     }
 
     /**
