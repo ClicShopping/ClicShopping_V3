@@ -26,14 +26,12 @@ use Symfony\Contracts\Service\ResetInterface;
  */
 final class TraceableHttpClient implements HttpClientInterface, ResetInterface, LoggerAwareInterface
 {
-    private HttpClientInterface $client;
-    private ?Stopwatch $stopwatch;
     private \ArrayObject $tracedRequests;
 
-    public function __construct(HttpClientInterface $client, ?Stopwatch $stopwatch = null)
-    {
-        $this->client = $client;
-        $this->stopwatch = $stopwatch;
+    public function __construct(
+        private HttpClientInterface $client,
+        private ?Stopwatch $stopwatch = null,
+    ) {
         $this->tracedRequests = new \ArrayObject();
     }
 
@@ -55,11 +53,11 @@ final class TraceableHttpClient implements HttpClientInterface, ResetInterface, 
             $content = false;
         }
 
-        $options['on_progress'] = function (int $dlNow, int $dlSize, array $info, ?\Closure $resolve = null) use (&$traceInfo, $onProgress) {
+        $options['on_progress'] = function (int $dlNow, int $dlSize, array $info) use (&$traceInfo, $onProgress) {
             $traceInfo = $info;
 
             if (null !== $onProgress) {
-                $onProgress($dlNow, $dlSize, $info, $resolve);
+                $onProgress($dlNow, $dlSize, $info);
             }
         };
 
