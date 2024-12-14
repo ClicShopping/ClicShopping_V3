@@ -18,7 +18,12 @@ use DOMDocument;
 use DOMXPath;
 use function is_null;
 use function is_string;
-
+/**
+ * Class CkEditor5
+ *
+ * Handles the integration of CKEditor 5 and elFinder with the application, providing methods to load
+ * JavaScript and manage text areas with WYSIWYG functionalities.
+ */
 class CkEditor5 extends HTML
 {
   /**

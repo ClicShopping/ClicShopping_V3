@@ -11,7 +11,14 @@
 namespace ClicShopping\Sites\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
-
+/**
+ * Calculates the total revenue from all years.
+ *
+ * The method retrieves the total sales amount by summing up the product prices multiplied
+ * by the quantities for all orders matching the specified status across all years.
+ *
+ * @return int|mixed Total revenue or 0 if no data is found.
+ */
 class StatisticsAdmin
 {
   /**

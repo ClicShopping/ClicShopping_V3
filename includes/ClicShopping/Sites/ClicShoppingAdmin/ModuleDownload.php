@@ -17,7 +17,12 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use function in_array;
 use function is_array;
-
+/**
+ * Retrieves a list of all template directories and generates a dropdown menu using these directories.
+ *
+ * @param string $value The selected value for the dropdown menu.
+ * @return string Returns the HTML dropdown menu based on the directory names.
+ */
 class ModuleDownload
 {
   /**

@@ -14,7 +14,10 @@ use ClicShopping\OM\HTML;
 use ReflectionClass;
 use function constant;
 use function defined;
-
+/**
+ * This abstract class provides a template to define configurable parameters.
+ * It includes methods for initialization, input handling, and rendering configuration forms for an admin interface.
+ */
 abstract class ConfigParamAbstract
 {
   protected string $code;

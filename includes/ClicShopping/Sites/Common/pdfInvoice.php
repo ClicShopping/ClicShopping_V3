@@ -11,7 +11,12 @@
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
-
+/**
+ * Class pdfInvoice
+ *
+ * This class extends the functionality of FPDF to facilitate the creation of customized PDFs,
+ * particularly invoices. It includes methods for rendering rounded rectangles, headers, footers, and other graphical elements.
+ */
 class pdfInvoice extends FPDF
 {
   /**

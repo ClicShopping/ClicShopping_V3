@@ -23,7 +23,13 @@ use function defined;
 use function is_array;
 use function is_string;
 use function strlen;
-
+/**
+ * Class FPDF
+ *
+ * Main class for generating PDF documents programmatically.
+ * Provides functionalities for setting page formats, margins, orientation,
+ * fonts, colors, and other features required for creating PDFs.
+ */
 class FPDF
 {
   public $page;               //current page number

@@ -12,7 +12,15 @@ namespace ClicShopping\Sites\ClicShoppingAdmin;
 
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
-
+/**
+ * Retrieves the name associated with a given product option ID.
+ *
+ * This function fetches the product option name based on the provided option ID and the language ID
+ * obtained from the system's registry.
+ *
+ * @param int $options_id The ID of the product option.
+ * @return string The name of the product option.
+ */
 class ProductsAttributesAdmin
 {
 

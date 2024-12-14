@@ -12,7 +12,12 @@ namespace ClicShopping\Sites\Common;
 
 use ClicShopping\OM\HTML;
 use function strlen;
-
+/**
+ * Class HTMLOverrideCommon
+ *
+ * Provides methods to process and manipulate HTML content. It extends the `HTML` class
+ * and adds functionality to strip HTML tags, clean and minify HTML, and minify JavaScript code.
+ */
 class HTMLOverrideCommon extends HTML
 {
   /**

@@ -11,7 +11,10 @@
 namespace ClicShopping\Sites\ClicShoppingAdmin;
 
 use function defined;
-
+/**
+ * Class LoggerAdmin
+ * Handles logging and execution time tracking for the ClicShoppingAdmin site.
+ */
 class LoggerAdmin
 {
   public $timerStart;

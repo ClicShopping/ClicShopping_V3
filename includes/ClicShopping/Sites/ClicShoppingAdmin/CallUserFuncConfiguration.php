@@ -12,7 +12,11 @@ namespace ClicShopping\Sites\ClicShoppingAdmin;
 
 use ClicShopping\OM\CLICSHOPPING;
 use function call_user_func;
-
+/**
+ * This class provides a static method to dynamically execute a function or a class method.
+ * It supports execution of global functions as well as class methods specified in the format "Class::Method".
+ * If the specified function or file does not exist, it attempts to include the required file from predefined directories.
+ */
 class CallUserFuncConfiguration
 {
   public static function execute($function, $default = null, $key = null)

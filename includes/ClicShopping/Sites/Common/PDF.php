@@ -13,7 +13,12 @@ namespace ClicShopping\Sites\Common;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
-
+/**
+ * Class PDF
+ *
+ * Extends the FPDF library to add custom functionality such as rounded rectangles
+ * and customization for invoice headers and footers.
+ */
 class PDF extends FPDF
 {
   private static function getGlobalPdf()

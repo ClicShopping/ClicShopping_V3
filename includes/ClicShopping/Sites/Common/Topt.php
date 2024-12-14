@@ -13,7 +13,10 @@ namespace ClicShopping\Sites\Common;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 use RobThree\Auth\TwoFactorAuth;
-
+/**
+ * Class Topt
+ * Provides methods to handle Two-Factor Authentication (TFA) operations such as generating secrets, verifying codes, and managing TFA-related data for administrators and customers.
+ */
 class Topt
 {
   /**

@@ -12,7 +12,13 @@ namespace ClicShopping\Sites\ClicShoppingAdmin;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
-
+/**
+ * AddressAdmin class
+ *
+ * This class extends functionality of the Shop Address class and provides additional
+ * methods specific to the application's admin context for managing addresses,
+ * address formats, zones, and geo zones.
+ */
 class AddressAdmin extends \ClicShopping\Sites\Shop\Address
 {
   /**

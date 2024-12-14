@@ -16,7 +16,12 @@ use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 use function in_array;
 use function is_null;
-
+/**
+ * TemplateAdmin class handles various directory and path-related operations
+ * for the administration area of the application. It extends the Template class
+ * from the Shop namespace, inheriting basic template functionalities and adding
+ * specific methods for the admin site environment.
+ */
 class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
 {
   protected string $directoryAdminLanguages = 'languages/';

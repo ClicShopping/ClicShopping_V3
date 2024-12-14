@@ -13,7 +13,12 @@ namespace ClicShopping\Sites\ClicShoppingAdmin;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 use function is_object;
-
+/**
+ * Class CfgModulesAdmin
+ *
+ * This class is responsible for managing configuration modules in the ClicShopping Admin area.
+ * It provides methods for retrieving module information, checking module existence, and counting active modules.
+ */
 class CfgModulesAdmin
 {
   public array $_modules = [];

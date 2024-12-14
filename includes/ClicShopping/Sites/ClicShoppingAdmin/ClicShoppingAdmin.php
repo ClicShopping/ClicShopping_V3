@@ -9,6 +9,12 @@
  */
 declare(strict_types=1);
 
+/**
+ * This class represents the ClicShoppingAdmin site, extending the SitesAbstract class.
+ * It orchestrates the initialization of various system components, manages the session,
+ * handles application routing, and loads language translations.
+ */
+
 namespace ClicShopping\Sites\ClicShoppingAdmin;
 
 use ClicShopping\OM\Apps;

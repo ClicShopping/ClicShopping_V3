@@ -14,7 +14,14 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use function in_array;
-
+/**
+ * Class HTMLOverrideAdmin
+ *
+ * This class extends the HTML class and provides additional functionalities
+ * specific to the ClicShoppingAdmin environment, such as sanitizing strings,
+ * generating HTML form elements, dynamic JavaScript for zone fields, and
+ * exporting data to CSV files.
+ */
 class HTMLOverrideAdmin extends HTML
 {
   /*

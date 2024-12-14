@@ -1,11 +1,13 @@
 <?php
 /**
+ * Determines if a given payment is disallowed for the current customer group.
  *
- * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
- * @Licence GPL 2 & MIT
- * @Info : https://www.clicshopping.org/forum/trademark/
+ * This function evaluates whether the specified payment method is restricted
+ * for the current user, depending on their customer group, and whether they
+ * are logged in. It checks restrictions configured for the customer group.
  *
+ * @param string $pay_check The payment method to check.
+ * @return bool True if the payment method is disallowed, false otherwise.
  */
 
 namespace ClicShopping\Sites\Common;
@@ -14,6 +16,16 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 use function in_array;
 
+/**
+ * Determines if a given payment is disallowed for the current customer group.
+ *
+ * This function evaluates whether the specified payment method is restricted
+ * for the current user, depending on their customer group, and whether they
+ * are logged in. It checks restrictions configured for the customer group.
+ *
+ * @param string $pay_check The payment method to check.
+ * @return bool True if the payment method is disallowed, false otherwise.
+ */
 class B2BCommon
 {
   /**

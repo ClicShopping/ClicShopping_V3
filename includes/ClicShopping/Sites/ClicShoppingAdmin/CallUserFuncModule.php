@@ -12,7 +12,12 @@ namespace ClicShopping\Sites\ClicShoppingAdmin;
 
 use ClicShopping\OM\CLICSHOPPING;
 use function call_user_func;
-
+/**
+ * CallUserFuncModule class provides functionality to dynamically call functions or methods
+ * within the ClicShoppingAdmin site framework. This allows for executing functions or methods
+ * provided by their full name (including namespaced method calls) or dynamic loading of
+ * configuration parameter files.
+ */
 class CallUserFuncModule
 {
   public static function execute($function, $default = null, $key = null)

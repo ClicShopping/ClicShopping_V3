@@ -12,7 +12,10 @@ namespace ClicShopping\Sites\ClicShoppingAdmin;
 
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
-
+/**
+ * Handles tax-related functionality for the ClicShoppingAdmin site, extending
+ * the shop tax functionality by providing additional features and overrides.
+ */
 class Tax extends \ClicShopping\Sites\Shop\Tax
 {
   /**

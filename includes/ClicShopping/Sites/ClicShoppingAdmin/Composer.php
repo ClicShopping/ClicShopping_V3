@@ -13,7 +13,11 @@ namespace ClicShopping\Sites\ClicShoppingAdmin;
 use ClicShopping\OM\CLICSHOPPING;
 use function in_array;
 use function is_null;
-
+/**
+ * The Composer class provides utility functions for managing Composer dependencies in a CLI/Shop context.
+ * It supports checking the Composer environment, managing installed libraries, updating or installing new ones,
+ * and clearing the Composer cache. Various utility methods ensure Composer and exec command functionality are available.
+ */
 class Composer
 {
   protected static string $root;
