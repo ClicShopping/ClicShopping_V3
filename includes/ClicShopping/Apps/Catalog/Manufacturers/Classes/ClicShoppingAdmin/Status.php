@@ -12,6 +12,9 @@ namespace ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
 
+/**
+ * Class Status provides functionalities to manage the status of manufacturers and products.
+ */
 class Status
 {
   /**

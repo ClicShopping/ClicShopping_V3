@@ -13,6 +13,11 @@ namespace ClicShopping\Apps\Catalog\Categories\Classes\Common;
 use function count;
 use function in_array;
 
+/**
+ * Class CategoryCommon
+ *
+ * Provides utility methods for handling category-related operations.
+ */
 class CategoryCommon
 {
 

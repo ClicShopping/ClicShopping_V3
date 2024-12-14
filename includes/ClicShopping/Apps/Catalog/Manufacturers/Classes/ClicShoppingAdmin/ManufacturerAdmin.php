@@ -12,7 +12,11 @@ namespace ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
 use function is_null;
-
+/**
+ * Class ManufacturerAdmin
+ *
+ * Provides utility methods for managing manufacturer-related operations in the admin panel.
+ */
 class ManufacturerAdmin
 {
   /**

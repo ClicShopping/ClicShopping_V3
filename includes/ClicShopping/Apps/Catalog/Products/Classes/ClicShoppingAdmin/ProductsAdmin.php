@@ -23,6 +23,11 @@ use function count;
 use function is_array;
 use function is_null;
 
+/**
+ * ProductsAdmin class provides methods for managing products within the admin panel,
+ * including retrieving product information, saving product descriptions,
+ * and managing various product-specific details like model, SKU, EAN, and packaging.
+ */
 class ProductsAdmin
 {
   private $id;

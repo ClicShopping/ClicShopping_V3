@@ -14,8 +14,10 @@ use ClicShopping\OM\Registry;
 use function count;
 use function is_null;
 
+
 /**
- * The Category class manages category information
+ * Class representing a category with associated properties,
+ * behaviors, and data management methods.
  */
 class Category
 {

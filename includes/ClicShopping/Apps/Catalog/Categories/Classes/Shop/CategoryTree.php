@@ -17,6 +17,10 @@ use ClicShopping\Sites\Shop\RewriteUrl;
 use function count;
 use function is_array;
 
+/**
+ * Class CategoryTree
+ * Provides a hierarchical structure for managing and interacting with categories and their subcategories.
+ */
 class CategoryTree
 {
 

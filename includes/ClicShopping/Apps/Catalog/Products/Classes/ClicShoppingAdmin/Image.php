@@ -16,6 +16,11 @@ use ClicShopping\OM\Upload;
 use function is_null;
 use function strlen;
 
+/**
+ * Class Image
+ *
+ * Handles operations related to image processing for products in the ClicShoppingAdmin module.
+ */
 class Image
 {
   private string $rootImagesDir;

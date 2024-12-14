@@ -20,7 +20,11 @@ use function count;
 use function is_array;
 use function is_null;
 use function strlen;
-
+/**
+ * Class CategoriesAdmin
+ *
+ * This class provides functionality for managing and retrieving category-related data in the admin panel for ClicShopping.
+ */
 class CategoriesAdmin
 {
   private mixed $lang;

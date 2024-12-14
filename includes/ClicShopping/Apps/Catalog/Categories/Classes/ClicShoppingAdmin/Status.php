@@ -13,6 +13,9 @@ namespace ClicShopping\Apps\Catalog\Categories\Classes\ClicShoppingAdmin;
 use ClicShopping\Apps\Catalog\Categories\Classes\Shop\CategoryTree;
 use ClicShopping\OM\Registry;
 
+/**
+ * Handles the status of categories by enabling or disabling them based on the provided status.
+ */
 class Status
 {
   protected int $status;

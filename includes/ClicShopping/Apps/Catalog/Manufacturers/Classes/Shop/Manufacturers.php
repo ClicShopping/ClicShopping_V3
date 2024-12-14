@@ -14,6 +14,10 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use function is_null;
 
+/**
+ * Class representing manufacturers with methods to retrieve details such as ID, URL, name,
+ * image, description, and other related information.
+ */
 class Manufacturers
 {
   private mixed $db;
