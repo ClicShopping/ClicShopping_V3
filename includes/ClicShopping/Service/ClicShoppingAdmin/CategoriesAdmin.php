@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Catalog\Categories\Classes\ClicShoppingAdmin\CategoriesAdmin as CategoriesAdminClass;
 
+/**
+ * Service class responsible for initializing the CategoriesAdmin module
+ * within the ClicShoppingAdmin environment. This class implements the
+ * ServiceInterface and handles the starting and stopping of the service.
+ */
 class CategoriesAdmin implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

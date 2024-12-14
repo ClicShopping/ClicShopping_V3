@@ -14,7 +14,13 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Catalog\Products\Classes\Shop\ProductsRecommendations as Recommendation;
-
+/**
+ * Service class responsible for handling the initialization and shutdown of the ProductsRecommendations functionality.
+ *
+ * This class implements the ClicShopping service interface and provides methods to manage the
+ * lifecycle of the ProductsRecommendations service. It ensures the necessary file exists and
+ * manages its registration with the registry.
+ */
 class ProductsRecommendations implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

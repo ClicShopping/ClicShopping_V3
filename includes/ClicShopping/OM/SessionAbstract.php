@@ -10,6 +10,13 @@
 
 namespace ClicShopping\OM;
 
+/**
+ * Abstract class SessionAbstract
+ *
+ * Provides abstraction for session management functionalities, such as creating, verifying,
+ * recreating, and destroying sessions. Implements configuration for session-related settings
+ * such as cookies, security parameters, and SameSite attribute.
+ */
 abstract class SessionAbstract
 {
   protected $name;

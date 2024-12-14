@@ -11,6 +11,12 @@
 
 namespace ClicShopping\OM\Modules;
 
+/**
+ * ShippingInterface provides the blueprint for implementing shipping-related functionalities.
+ *
+ * It defines methods for obtaining shipping quotes, performing validation checks,
+ * managing installation or removal of shipping modules, and retrieving configurable parameters.
+ */
 interface ShippingInterface
 {
   public function quote();

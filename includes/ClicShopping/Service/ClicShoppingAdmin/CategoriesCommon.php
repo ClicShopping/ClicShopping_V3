@@ -14,7 +14,10 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Catalog\Categories\Classes\Common\CategoryCommon as CategoryCommonClass;
-
+/**
+ * Service class responsible for managing the initialization and lifecycle of
+ * the CategoryCommon class within the ClicShopping application.
+ */
 class CategoriesCommon implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

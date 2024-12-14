@@ -9,7 +9,9 @@
  */
 
 namespace ClicShopping\Service\Shop;
-
+/**
+ * Service class SEFU for handling Shop URL rewriting and language parameter extraction.
+ */
 class SEFU implements \ClicShopping\OM\ServiceInterface
 {
   /**

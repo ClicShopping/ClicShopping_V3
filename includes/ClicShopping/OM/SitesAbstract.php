@@ -12,6 +12,11 @@ namespace ClicShopping\OM;
 
 use ReflectionClass;
 
+/**
+ * Abstract base class for implementing site-specific functionality.
+ * This class provides basic structure and utilities for managing pages,
+ * routes, and site-specific logic.
+ */
 abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface
 {
   protected string $code;

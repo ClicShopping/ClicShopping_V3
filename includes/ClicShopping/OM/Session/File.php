@@ -13,6 +13,12 @@ namespace ClicShopping\OM\Session;
 use ClicShopping\OM\CLICSHOPPING;
 use function strlen;
 
+/**
+ * File-based session handler implementation.
+ *
+ * This class extends the SessionAbstract class and implements the PHP SessionHandlerInterface.
+ * It uses file storage for session handling, providing methods for session lifecycle management.
+ */
 class File extends \ClicShopping\OM\SessionAbstract implements \SessionHandlerInterface
 {
   protected string $path;

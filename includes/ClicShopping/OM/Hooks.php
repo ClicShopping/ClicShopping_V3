@@ -15,6 +15,11 @@ use ReflectionFunction;
 use function call_user_func_array;
 use function is_string;
 
+/**
+ * The Hooks class abstracts the functionality for managing, registering, and executing hooks within
+ * the ClicShopping framework. Hooks are used to provide a flexible and extensible way to execute
+ * custom code at various points in the application lifecycle.
+ */
 class Hooks
 {
   protected ?string $site;

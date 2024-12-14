@@ -12,6 +12,10 @@ namespace ClicShopping\OM\Modules;
 
 use ClicShopping\OM\Apps;
 
+/**
+ * Handles operations related to header tag modules by retrieving module information
+ * and constructing proper class names for a given application context.
+ */
 class HeaderTags extends \ClicShopping\OM\ModulesAbstract
 {
   public function getInfo($app, $key, $data)

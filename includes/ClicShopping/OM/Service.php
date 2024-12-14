@@ -13,6 +13,11 @@ namespace ClicShopping\OM;
 use function call_user_func;
 use function in_array;
 
+/**
+ * Handles the management of service modules for the application.
+ * It provides mechanisms to start, stop, and manage services,
+ * as well as functionality to handle calls before and after page content.
+ */
 class Service
 {
   protected array $_services = [];

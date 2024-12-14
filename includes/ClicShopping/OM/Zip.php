@@ -14,6 +14,9 @@ use ZipArchive;
 use function count;
 use function is_array;
 
+/**
+ * Provides an extension to the standard PHP ZipArchive class with additional functionality.
+ */
 class Zip extends ZipArchive
 {
   public static function zipStatusString($status)

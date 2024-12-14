@@ -12,6 +12,12 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class ar_create_account_pro
+ *
+ * Handles actions and rule enforcement for creating professional accounts.
+ * This class ensures rate limiting and tracks user actions to prevent abuse.
+ */
 class ar_create_account_pro
 {
   public string $code;

@@ -12,6 +12,10 @@ namespace ClicShopping\OM;
 
 use RuntimeException;
 
+/**
+ * The ErrorHandler class is responsible for managing PHP error handling initialization
+ * and ensuring proper configuration of error-related settings.
+ */
 class ErrorHandler
 {
   public static function initialize()

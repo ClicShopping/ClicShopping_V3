@@ -14,7 +14,14 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Marketing\Favorites\Classes\Shop\FavoritesClass;
-
+/**
+ * Service class for managing the Favorites functionality in the shop.
+ *
+ * This class implements the ServiceInterface and provides methods to
+ * initialize and terminate the Favorites service. It ensures the availability
+ * of the Favorites module and invokes necessary functions related to scheduled
+ * and expired favorites handling.
+ */
 class Favorites implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

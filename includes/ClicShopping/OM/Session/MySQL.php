@@ -12,6 +12,12 @@ namespace ClicShopping\OM\Session;
 
 use ClicShopping\OM\Registry;
 
+/**
+ * The MySQL class provides a session handler implementation
+ * that interacts with a database to store and manage session data.
+ * It implements the SessionHandlerInterface and extends the
+ * SessionAbstract class to define custom session management operations.
+ */
 class MySQL extends \ClicShopping\OM\SessionAbstract implements \SessionHandlerInterface
 {
   private mixed $db;

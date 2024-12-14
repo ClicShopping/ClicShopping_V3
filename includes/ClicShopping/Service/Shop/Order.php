@@ -14,7 +14,13 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Orders\Orders\Classes\Shop\Order as OrderClass;
-
+/**
+ * This class implements the service interface and provides functionality
+ * to initialize and stop the Order class in the application.
+ *
+ * The class checks for the existence of the Order class file,
+ * initializes it in the registry, and ensures the service is properly started and stopped.
+ */
 class Order implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

@@ -14,6 +14,11 @@ use ClicShopping\OM\ErrorHandler as ErrorHandlerClass;
 use ClicShopping\OM\FileSystem;
 use ClicShopping\OM\Registry;
 
+/**
+ * @namespace ClicShopping\Service\ClicShoppingAdmin
+ *
+ * The ErrorHandler class implements the ServiceInterface to provide start and stop functionalities for the error handler service.
+ */
 class ErrorHandler implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

@@ -10,6 +10,12 @@
 
 namespace ClicShopping\OM;
 
+/**
+ * Interface ServiceInterface
+ *
+ * Defines the structure for a service within the application by requiring
+ * the implementation of methods to start and stop the service.
+ */
 interface ServiceInterface
 {
   public static function start();

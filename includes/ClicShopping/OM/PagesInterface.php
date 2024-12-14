@@ -10,6 +10,11 @@
 
 namespace ClicShopping\OM;
 
+/**
+ * Interface PagesInterface
+ *
+ * Provides an interface to manage page files within the ClicShopping framework.
+ */
 interface PagesInterface
 {
   public function getFile();

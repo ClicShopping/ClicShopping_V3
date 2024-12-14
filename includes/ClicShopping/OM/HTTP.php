@@ -17,6 +17,13 @@ use function in_array;
 use function strlen;
 use const JSON_PRETTY_PRINT;
 
+/**
+ * The HTTP class provides a collection of static methods to handle HTTP requests, responses,
+ * redirections, client IP retrieval, and security configurations such as HSTS.
+ *
+ * It utilizes the GuzzleHttp client for handling requests and provides utility methods
+ * to manipulate HTTP headers and retrieve domain or IP-related information.
+ */
 class HTTP
 {
   protected static string $request_type;

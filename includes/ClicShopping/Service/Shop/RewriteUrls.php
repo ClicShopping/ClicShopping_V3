@@ -13,7 +13,11 @@ namespace ClicShopping\Service\Shop;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\RewriteUrl as RewriteUrlClass;
-
+/**
+ * The RewriteUrls service class is responsible for initializing URL rewriting functionality in the shop system.
+ * It ensures that the required RewriteUrl class is loaded and registered with the Registry for use throughout the application.
+ * It also integrates the service to execute specific logic before the page content is generated.
+ */
 class RewriteUrls implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

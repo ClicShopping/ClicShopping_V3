@@ -15,7 +15,11 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\Currency\Classes\Shop\Currencies as CurrenciesClass;
-
+/**
+ * Service class responsible for managing the currency system in the shop.
+ * This service initializes and configures the currency settings based on various factors
+ * such as session data, URL parameters, and application defaults.
+ */
 class Currencies implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

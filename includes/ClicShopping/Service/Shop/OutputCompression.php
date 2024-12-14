@@ -9,7 +9,11 @@
  */
 
 namespace ClicShopping\Service\Shop;
-
+/**
+ * This class provides a service for handling output compression in a shop context.
+ * It uses gzip compression if enabled and the required zlib extension is loaded,
+ * and if no headers have already been sent.
+ */
 class OutputCompression implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

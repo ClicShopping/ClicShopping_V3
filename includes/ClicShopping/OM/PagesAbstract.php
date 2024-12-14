@@ -16,6 +16,10 @@ use function count;
 use function in_array;
 use function is_array;
 
+/**
+ * Abstract class representing the base functionality of a page. Handles templating, execution of actions,
+ * and site-specific configurations. Implementations should extend this class to define specific page behavior.
+ */
 abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
 {
   public array $data = [];

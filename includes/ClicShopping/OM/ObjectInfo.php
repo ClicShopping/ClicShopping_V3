@@ -10,6 +10,13 @@
 
 namespace ClicShopping\OM;
 
+/**
+ * Class ObjectInfo
+ *
+ * ObjectInfo is a utility class that dynamically assigns properties to the object
+ * based on the provided associative array. The class facilitates the dynamic population
+ * of object properties at runtime.
+ */
 class ObjectInfo
 {
   /**

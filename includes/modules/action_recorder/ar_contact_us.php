@@ -12,6 +12,11 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class used to manage action recording for the "Contact Us" feature.
+ * Ensures that certain actions, such as sending emails, are restricted
+ * based on predefined limits to prevent misuse.
+ */
 class ar_contact_us
 {
   public string $code;

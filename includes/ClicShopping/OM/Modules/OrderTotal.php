@@ -13,6 +13,13 @@ namespace ClicShopping\OM\Modules;
 
 use ClicShopping\OM\Apps;
 
+/**
+ * Class OrderTotal
+ *
+ * Extends the \ClicShopping\OM\ModulesAbstract class to provide functionality
+ * for retrieving information about modules and returning specific class instances
+ * based on the provided module name.
+ */
 class OrderTotal extends \ClicShopping\OM\ModulesAbstract
 {
   public function getInfo($app, $key, $data)

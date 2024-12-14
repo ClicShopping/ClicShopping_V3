@@ -13,7 +13,15 @@ namespace ClicShopping\Service\ClicShoppingAdmin;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\MessageStack as MessageStackClassAdmin;
 use ClicShopping\OM\Registry;
-
+/**
+ * Class Core
+ *
+ * This class represents the core service for the ClicShoppingAdmin namespace.
+ * It implements the ServiceInterface and provides functionality to start and stop the service.
+ *
+ * The `start` method initializes the MessageStack instance and registers it in the Registry
+ * if the required file exists, while the `stop` method is designed to terminate the service.
+ */
 class Core implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

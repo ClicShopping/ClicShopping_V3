@@ -21,7 +21,12 @@ use ClicShopping\Apps\Catalog\Products\Classes\Shop\Prod as ProdClass;
 use ClicShopping\Apps\Catalog\Products\Classes\Shop\ProductsCommon as ProductsCommonClass;
 use ClicShopping\Apps\Catalog\Products\Classes\Shop\ProductsFunctionTemplate as ProductsFunctionTemplateClass;
 use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\Shop\ProductsAttributesShop;
-
+/**
+ * Core Service Class
+ *
+ * This class implements the ServiceInterface and provides the necessary
+ * initialization and shutdown operations for the core services in the shop.
+ */
 class Core implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

@@ -10,6 +10,12 @@
 
 namespace ClicShopping\OM;
 
+/**
+ * Class Session
+ *
+ * Responsible for managing the session handler and providing functionality
+ * to load and initialize the session storage driver.
+ */
 class Session
 {
   /**

@@ -15,6 +15,13 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
+/**
+ * This class manages the creation and sending of emails using the PHPMailer library.
+ * It supports both text and HTML emails, attachments, and can be configured
+ * to use different email transports, including SMTP with different secure methods.
+ * It also provides functionalities for adding custom headers, setting charset,
+ * and managing recipients.
+ */
 class Mail
 {
   protected string $html;

@@ -14,7 +14,13 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Marketing\BannerManager\Classes\Shop\Banner as BannerClass;
-
+/**
+ * Class Banner
+ *
+ * This service handles the initialization and management of the Banner functionality.
+ * It integrates with the BannerManager app and ensures banners are activated and expired appropriately.
+ * Implements the ServiceInterface for use within the ClicShopping framework.
+ */
 class Banner implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

@@ -14,6 +14,16 @@ use EmailChecker\EmailChecker;
 use function strlen;
 use const FILTER_VALIDATE_EMAIL;
 
+/**
+ * Class EmailAddress
+ *
+ * This class provides functionality for validating email addresses.
+ * It checks the format of the email address and optionally verifies
+ * the existence of the domain through DNS records.
+ *
+ * Methods:
+ * - execute: Validates an email address based on format, length, and optional DNS checks.
+ */
 class EmailAddress implements \ClicShopping\OM\IsInterface
 {
   public static function execute($value, bool $check_dns = false): bool

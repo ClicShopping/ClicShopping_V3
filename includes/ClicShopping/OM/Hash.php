@@ -16,6 +16,17 @@ use function count;
 use function in_array;
 use function strlen;
 
+/**
+ * Encrypts a plaintext string using the specified algorithm.
+ * Supported algorithms are 'default', 'bcrypt', 'argon2id', 'phpass', and 'salt'.
+ * If no algorithm is specified, 'PASSWORD_DEFAULT' is used by default.
+ * Triggers a warning if an unknown algorithm is specified and returns false.
+ *
+ * @param string $plain The plaintext string to encrypt.
+ * @param null|string $algo The encryption algorithm to use.
+ * @return bool|string The encrypted string or false on failure.
+ * @throws Exception If the 'phpass' class cannot load, or in case of failure during random number generation for 'salt'.
+ */
 class Hash
 {
   private static $key = '1c5f37542a2056c76dc2cfe98fecb514'; // 32 caractères pour AES-256

@@ -12,6 +12,11 @@ namespace ClicShopping\OM\Modules;
 
 use ClicShopping\OM\Apps;
 
+/**
+ * Class Hooks
+ *
+ * Provides methods to handle module information retrieval, class resolution, and filtering of modules based on specific criteria.
+ */
 class Hooks extends \ClicShopping\OM\ModulesAbstract
 {
   /**

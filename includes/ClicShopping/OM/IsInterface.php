@@ -10,6 +10,12 @@
 
 namespace ClicShopping\OM;
 
+/**
+ * Interface IsInterface
+ *
+ * This interface defines a method for executing a specific functionality.
+ * Implementing classes are required to provide the logic for the `execute` method.
+ */
 interface IsInterface
 {
   public static function execute($value): bool;

@@ -14,6 +14,13 @@ use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
+/**
+ * Retrieve the contents of a directory.
+ *
+ * @param string $base The base directory to scan.
+ * @param bool $recursive Whether to search directories recursively.
+ * @return array An array containing the contents of the directory.
+ */
 class FileSystem
 {
   /**

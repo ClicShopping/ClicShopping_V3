@@ -12,6 +12,11 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class ar_reset_password
+ *
+ * A module to log and manage password reset attempts using an action recorder.
+ */
 class ar_reset_password
 {
   public string $code;

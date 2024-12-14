@@ -13,6 +13,10 @@ namespace ClicShopping\OM\Modules;
 
 use ClicShopping\OM\Apps;
 
+/**
+ * Represents the administrative menu system and provides functionalities
+ * to retrieve information about modules and their corresponding class instances.
+ */
 class AdminMenu extends \ClicShopping\OM\ModulesAbstract
 {
   public function getInfo($app, $key, $data)

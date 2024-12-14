@@ -13,6 +13,12 @@ namespace ClicShopping\OM\Modules;
 
 use ClicShopping\OM\Apps;
 
+/**
+ * Class Shipping
+ *
+ * This class represents the Shipping module functionality and handles the retrieval
+ * of information and class definitions for available shipping modules.
+ */
 class Shipping extends \ClicShopping\OM\ModulesAbstract
 {
   public function getInfo($app, $key, $data)

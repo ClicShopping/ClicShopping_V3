@@ -18,6 +18,11 @@ use function defined;
 use function func_get_args;
 use function is_null;
 
+/**
+ * This abstract class serves as a foundational framework for applications within the system.
+ * It provides core functionalities such as metadata management, database and language bindings,
+ * and mechanisms for managing application-specific modules and configurations.
+ */
 abstract class AppAbstract
 {
   public string $code;

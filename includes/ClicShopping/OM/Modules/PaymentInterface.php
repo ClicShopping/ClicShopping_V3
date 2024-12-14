@@ -10,6 +10,13 @@
 
 namespace ClicShopping\OM\Modules;
 
+/**
+ * Interface for implementing payment modules.
+ *
+ * Defines the methods that must be implemented to handle various
+ * stages of a payment process, such as status updates, validation,
+ * and error handling.
+ */
 interface PaymentInterface
 {
   public function update_status();

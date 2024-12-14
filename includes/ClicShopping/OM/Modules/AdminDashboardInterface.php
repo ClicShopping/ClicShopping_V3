@@ -10,6 +10,12 @@
 
 namespace ClicShopping\OM\Modules;
 
+/**
+ * Interface AdminDashboardInterface
+ *
+ * Defines the structure for an admin dashboard module, including methods
+ * for rendering output, installation, configuration, and operational checks.
+ */
 interface AdminDashboardInterface
 {
   public function getOutput();

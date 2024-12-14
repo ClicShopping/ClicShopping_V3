@@ -14,6 +14,11 @@ use DateTimeZone;
 use function count;
 use function strlen;
 
+
+/**
+ * A class to handle date and time operations, providing functionalities
+ * for formatting and conversion based on specific patterns and time zones.
+ */
 class DateTime
 {
   protected $datetime = false;

@@ -13,6 +13,12 @@ namespace ClicShopping\OM;
 use DirectoryIterator;
 use function call_user_func;
 
+/**
+ * Class Apps
+ *
+ * This class provides static methods to handle and retrieve application data, such as obtaining a list of all apps,
+ * retrieving specific modules, checking the existence of apps, and managing routes.
+ */
 class Apps
 {
 

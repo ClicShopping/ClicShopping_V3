@@ -15,6 +15,11 @@ use function in_array;
 use function is_array;
 use function is_null;
 
+/**
+ * Class DbStatement
+ * Extends the PDOStatement class to provide additional features for database operations,
+ * including custom data binding, pagination, caching, and result handling.
+ */
 class DbStatement extends \PDOStatement
 {
   protected $pdo;

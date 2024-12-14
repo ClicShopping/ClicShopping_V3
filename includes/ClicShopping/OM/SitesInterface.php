@@ -11,6 +11,12 @@
 
 namespace ClicShopping\OM;
 
+/**
+ * Interface SitesInterface
+ *
+ * Defines the structure for handling pages and resolving routes
+ * in the context of the application.
+ */
 interface SitesInterface
 {
   public function hasPage();

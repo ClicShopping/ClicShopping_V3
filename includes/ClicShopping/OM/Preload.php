@@ -16,6 +16,11 @@ use SplFileObject;
 use function func_get_args;
 use function in_array;
 
+/**
+ * This class manages the preloading functionality, including checking system requirements,
+ * scanning directories for files, and executing the preloading process. It provides support
+ * for recursive directory scans and file filtering by extensions.
+ */
 class Preload
 {
   private static string $work_dir = CLICSHOPPING::BASE_DIR . 'Work/Log/';

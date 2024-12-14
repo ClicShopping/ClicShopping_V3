@@ -13,6 +13,22 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 
+/**
+ * The ar_admin_login class represents a module used for tracking admin login attempts, limiting
+ * the number of failed attempts within a specified time period. It provides mechanisms to
+ * configure and enforce login policies and manage action recorder data.
+ *
+ * Properties:
+ * - $code: The unique code or identifier for the module.
+ * - $title: Title of the module.
+ * - $description: Description of the module.
+ * - $sort_order: The order in which the module is displayed.
+ * - $minutes: The allowed time frame, in minutes, for login attempts.
+ * - $attempts: The maximum number of allowed login attempts within the specified time frame.
+ * - $identifier: The identifier for recording login attempts, typically the user's IP.
+ * - $enabled: Denotes whether the module is active.
+ * - $group: The group or directory associated with the module.
+ */
 class ar_admin_login
 {
   public string $code;

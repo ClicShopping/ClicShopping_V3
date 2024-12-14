@@ -12,6 +12,12 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class ar_tell_a_friend
+ *
+ * Handles the operations related to the tell-a-friend action recorder module.
+ * This class monitors user activities around sending "tell-a-friend" emails and enforces restrictions based on specific configurations.
+ */
 class ar_tell_a_friend
 {
   public string $code;

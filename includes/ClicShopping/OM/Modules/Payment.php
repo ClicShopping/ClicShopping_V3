@@ -12,6 +12,10 @@ namespace ClicShopping\OM\Modules;
 
 use ClicShopping\OM\Apps;
 
+/**
+ * Represents a payment module extending the abstract functionality provided in the ClicShopping\OM\ModulesAbstract class.
+ * This class provides methods for retrieving information and class definitions for specific payment modules.
+ */
 class Payment extends \ClicShopping\OM\ModulesAbstract
 {
   public function getInfo($app, $key, $data)

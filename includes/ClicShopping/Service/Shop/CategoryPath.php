@@ -15,7 +15,11 @@ use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Catalog\Categories\Classes\Shop\Category as CategoryClass;
 use ClicShopping\Apps\Catalog\Categories\Classes\Shop\CategoryTree as CategoryTreeClass;
-
+/**
+ * This service is used to manage the initialization of CategoryTree and Category classes
+ * within the ClicShopping framework. It ensures these components are properly registered
+ * and available for use in the application.
+ */
 class CategoryPath implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

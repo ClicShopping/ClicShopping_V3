@@ -12,6 +12,10 @@ namespace ClicShopping\OM;
 
 use function array_slice;
 
+/**
+ * Class Registry
+ * Handles the management of registered classes and their instances in a central registry system.
+ */
 class Registry
 {
   protected static array $aliases = [];

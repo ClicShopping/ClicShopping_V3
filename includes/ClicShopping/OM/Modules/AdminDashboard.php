@@ -12,6 +12,10 @@ namespace ClicShopping\OM\Modules;
 
 use ClicShopping\OM\Apps;
 
+/**
+ * Represents the AdminDashboard module extending the base functionality of ModulesAbstract.
+ * Provides methods to retrieve module information and resolve module classes.
+ */
 class AdminDashboard extends \ClicShopping\OM\ModulesAbstract
 {
   public function getInfo($app, $key, $data)

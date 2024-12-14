@@ -14,7 +14,13 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
-
+/**
+ * WhosOnline Service Class
+ *
+ * Handles the functionalities related to tracking users currently active on the shop.
+ * This includes logging customer activities, tracking guest or spider activities, and updating session IDs.
+ * It also determines if the active user is identified as a recognized spider.
+ */
 class WhosOnline implements \ClicShopping\OM\ServiceInterface
 {
   private static $spider_flag;

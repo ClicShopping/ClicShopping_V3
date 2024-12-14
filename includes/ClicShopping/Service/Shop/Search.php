@@ -13,7 +13,10 @@ namespace ClicShopping\Service\Shop;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\Search as SearchClass;
-
+/**
+ * Service class responsible for initializing and managing the Search functionality
+ * in the Shop namespace of ClicShopping.
+ */
 class Search implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

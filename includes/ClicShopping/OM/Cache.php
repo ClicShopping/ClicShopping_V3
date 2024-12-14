@@ -12,6 +12,11 @@ namespace ClicShopping\OM;
 
 use function strlen;
 
+
+/**
+ * Class Cache
+ * Manages caching operations including saving, retrieving, checking existence, and clearing cache data.
+ */
 class Cache
 {
   protected static string $path;

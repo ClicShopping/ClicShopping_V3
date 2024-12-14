@@ -13,7 +13,10 @@ namespace ClicShopping\Service\Shop;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Mail as MailClass;
 use ClicShopping\OM\Registry;
-
+/**
+ * This class implements the ServiceInterface and provides functionality
+ * for initializing and managing the Mail service in the ClicShopping application.
+ */
 class Mail implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

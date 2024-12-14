@@ -10,6 +10,13 @@
 
 namespace ClicShopping\OM\Modules;
 
+/**
+ * Interface HeaderTagsInterface
+ *
+ * Defines a contract for managing header tags in a system.
+ * Provides methods for output generation, installation, configuration keys retrieval,
+ * status checking, and removal functionalities.
+ */
 interface HeaderTagsInterface
 {
   public function getOutput();

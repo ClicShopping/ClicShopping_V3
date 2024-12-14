@@ -10,6 +10,13 @@
 
 namespace ClicShopping\OM;
 
+/**
+ * Interface PagesActionsInterface
+ *
+ * Defines the structure for pages action classes within the ClicShopping framework.
+ * Classes implementing this interface must provide methods for executing actions
+ * and determining if the action is executed via Remote Procedure Call (RPC).
+ */
 interface PagesActionsInterface
 {
   public function execute();

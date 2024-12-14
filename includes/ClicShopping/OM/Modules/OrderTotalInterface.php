@@ -10,6 +10,11 @@
 
 namespace ClicShopping\OM\Modules;
 
+/**
+ * Interface OrderTotalInterface
+ *
+ * Represents the contract for managing and processing order total modules.
+ */
 interface OrderTotalInterface
 {
   public function process();

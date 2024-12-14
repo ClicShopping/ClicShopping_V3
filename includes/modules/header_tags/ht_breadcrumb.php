@@ -11,6 +11,13 @@
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class representing the ht_breadcrumb module.
+ *
+ * The ht_breadcrumb class is responsible for managing the breadcrumb trail functionality
+ * within a web application. It extends the behavior to include JSON breadcrumbs in
+ * templates and integrates with application services like templates and breadcrumbs management.
+ */
 class ht_breadcrumb
 {
   public string $code;

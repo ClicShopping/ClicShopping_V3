@@ -12,6 +12,13 @@ namespace ClicShopping\OM\Db;
 
 use PDO;
 
+/**
+ * Represents a MySQL database connection and driver with specific implementations
+ * and options for connecting to a MySQL database using PDO.
+ *
+ * Extends the ClicShopping\OM\Db class to provide MySQL-specific functionality and behavior.
+ */
+
 class MySQL extends \ClicShopping\OM\Db
 {
   protected bool $connected;

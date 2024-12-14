@@ -14,6 +14,10 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\ClicShoppingAdmin\AddressAdmin as AddressClass;
 
+/**
+ * This class is a service implementation for the ClicShoppingAdmin module in the ClicShopping framework.
+ * It provides functionality to start and stop the Address service.
+ */
 class Address implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

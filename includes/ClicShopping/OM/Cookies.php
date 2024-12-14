@@ -10,6 +10,9 @@
 
 namespace ClicShopping\OM;
 
+/**
+ * Class responsible for managing cookies within the application.
+ */
 class Cookies
 {
   protected ?string $domain;

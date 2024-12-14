@@ -23,6 +23,10 @@ use function is_null;
 use function is_string;
 use function strlen;
 
+/**
+ * ClicShopping\OM\Db is a class extending PDO to manage database interactions
+ * with additional features for query preparation, execution, and table prefixing.
+ */
 class Db extends PDO
 {
   protected bool $connected = false;

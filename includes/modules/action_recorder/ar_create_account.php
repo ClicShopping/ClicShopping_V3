@@ -12,6 +12,14 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class ar_create_account
+ *
+ * Implements the action recorder module for account creation. It helps track
+ * and limit the number of account creation attempts based on user-defined
+ * settings. The module allows configuration of time intervals, number of
+ * attempts, and expiration of old log entries.
+ */
 class ar_create_account
 {
   public string $code;

@@ -19,6 +19,9 @@ use function is_null;
 use function is_string;
 use function strlen;
 
+/**
+ * Namespace for organizing the HTML class logic.
+ */
 class HTML
 {
   /**

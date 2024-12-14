@@ -14,7 +14,10 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\ProductsLength\Classes\Shop\ProductsLength as ProductsLengthShop;
-
+/**
+ * Service class for managing the ProductsLength functionality in the shop.
+ * This service initializes the ProductsLength class if the required file exists.
+ */
 class ProductsLength implements \ClicShopping\OM\ServiceInterface
 {
   public static function start(): bool

@@ -10,6 +10,11 @@
 
 namespace ClicShopping\OM\Is;
 
+/**
+ * Integer class provides a static method to validate if a given value is an integer.
+ * It also allows for optional minimum and maximum range validation.
+ */
+
 class Integer implements \ClicShopping\OM\IsInterface
 {
   public static function execute($value, int $min = null, int $max = null): bool

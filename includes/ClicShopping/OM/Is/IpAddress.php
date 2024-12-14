@@ -12,6 +12,13 @@ namespace ClicShopping\OM\Is;
 
 use UnexpectedValueException;
 
+/**
+ * Class IpAddress
+ *
+ * Provides a method to validate if a given value is an IP address.
+ * Supports validation for IPv4, IPv6, or any IP address type.
+ */
+
 class IpAddress implements \ClicShopping\OM\IsInterface
 {
   public static function execute($value, string $type = 'any'): bool

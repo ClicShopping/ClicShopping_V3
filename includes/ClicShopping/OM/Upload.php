@@ -13,6 +13,10 @@ namespace ClicShopping\OM;
 use function in_array;
 use function is_array;
 
+/**
+ * Class responsible for handling file uploads via POST or PUT requests, validating file extensions, permissions,
+ * and destination validations, and saving the uploaded files to the desired directory.
+ */
 class Upload
 {
   protected $_file;

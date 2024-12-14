@@ -14,6 +14,9 @@ use XMLWriter;
 use function count;
 use function is_array;
 
+/**
+ * Class providing utility functions to convert between XML and PHP arrays.
+ */
 class XML
 {
   /**

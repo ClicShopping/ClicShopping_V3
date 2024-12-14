@@ -10,6 +10,10 @@
 
 namespace ClicShopping\OM;
 
+/**
+ * This abstract class implements the PagesActionsInterface and serves as a base
+ * class for handling page-specific actions in the application.
+ */
 abstract class PagesActionsAbstract implements \ClicShopping\OM\PagesActionsInterface
 {
   protected $page;

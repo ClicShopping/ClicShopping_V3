@@ -13,6 +13,12 @@ namespace ClicShopping\OM;
 use Exception;
 use function call_user_func_array;
 
+/**
+ * The Is class provides a mechanism to dynamically call static methods that
+ * resolve to specific classes implementing the `ClicShopping\OM\IsInterface`.
+ * It validates whether the targeted class exists and conforms to the interface
+ * before invoking an `execute` method on the resolved class with the provided arguments.
+ */
 class Is
 {
   public static function __callStatic(string $name, array $arguments): bool

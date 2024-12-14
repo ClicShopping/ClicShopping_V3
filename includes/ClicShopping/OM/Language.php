@@ -1,11 +1,6 @@
 <?php
 /**
  *
- * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
- * @Licence GPL 2 & MIT
- * @Info : https://www.clicshopping.org/forum/trademark/
- *
  */
 
 namespace ClicShopping\OM;
@@ -17,6 +12,11 @@ use function defined;
 use function is_array;
 use function is_null;
 
+/**
+ * This class manages language configurations for the application.
+ * It provides methods to load, detect, and manage language settings
+ * for either the Shop or Admin interface environments.
+ */
 class Language
 {
   public string $language;

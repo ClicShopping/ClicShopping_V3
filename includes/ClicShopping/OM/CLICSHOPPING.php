@@ -23,6 +23,9 @@ use function is_array;
 use function is_null;
 use function strlen;
 
+/**
+ * Core class responsible for initializing the application and handling main configurations, sites, and linking.
+ */
 class CLICSHOPPING
 {
   public const BASE_DIR = CLICSHOPPING_BASE_DIR;

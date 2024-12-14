@@ -12,6 +12,12 @@
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class ht_googlefont
+ *
+ * This class is a module that integrates Google Fonts into the header tags of the ClicShopping template system.
+ * It manages enabling, disabling, installation, and configuration of the Google Fonts integration within the system.
+ */
 class ht_googlefont
 {
   public string $code;

@@ -16,6 +16,11 @@ use function is_array;
 use function is_string;
 use function strlen;
 
+/**
+ * Class DirectoryListing
+ * Provides functionality to list directories and files with configurable options such as file inclusion, directory inclusion,
+ * exclusion of specific entries, recursive traversal, and optional file statistics.
+ */
 class DirectoryListing
 {
   protected string $_directory = '';
