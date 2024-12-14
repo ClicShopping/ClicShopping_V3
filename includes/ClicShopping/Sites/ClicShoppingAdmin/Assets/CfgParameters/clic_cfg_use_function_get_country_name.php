@@ -21,7 +21,7 @@ use ClicShopping\OM\Registry;
 /**
  * Country name name
  *
- * @param string country_id
+ * @param string $country_id country_id
  * @return string $country['countries_name'] the country name
  *
  */

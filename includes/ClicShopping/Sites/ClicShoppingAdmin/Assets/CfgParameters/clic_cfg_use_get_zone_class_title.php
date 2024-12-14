@@ -12,6 +12,10 @@
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
+/**
+ * @param $id
+ * @return string
+ */
 function clic_cfg_use_get_zone_class_title($id)
 {
   $CLICSHOPPING_Db = Registry::get('Db');

@@ -12,6 +12,11 @@ use ClicShopping\OM\HTML;
 
 use ClicShopping\Apps\Configuration\ProductsLength\Classes\Shop\ProductsLength;
 
+/**
+ * @param $default
+ * @param $key
+ * @return string
+ */
 function clic_cfg_set_products_lenght_classes_pulldown_menu($default, $key = null)
 {
   $name = (empty($key)) ? 'configuration_value' : 'configuration[' . $key . ']';

@@ -7,7 +7,10 @@
  * @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
-
+/**
+ * @param $string
+ * @return bool|mixed|string
+ */
 function clic_cfg_use_get_boolean_value($string)
 {
   switch ($string) {

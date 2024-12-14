@@ -15,8 +15,12 @@ use ClicShopping\OM\Registry;
  * List all zones or specific zone by Country and Zones country
  *
  */
+/**
+ * @param $default
+ * @param $key
+ * @return string
+ */
 
-// clic_cfg_pull_down_zone_classes
 function clic_cfg_set_zones_pulldown_menu($default, $key = null)
 {
   $CLICSHOPPING_Address = Registry::get('Address');

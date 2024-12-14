@@ -11,10 +11,10 @@
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
-/*
- * Display the countries
- *
- * @return a dropdown with a list of the countries
+/**
+ * @param $default
+ * @param $key
+ * @return string
  */
 //clic_cfg_pull_down_country_list(
 function clic_cfg_set_countries_pull_down_menu($default, $key = null)

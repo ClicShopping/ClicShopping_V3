@@ -14,8 +14,8 @@ use ClicShopping\OM\HTML;
  * Generate a boostrap width
  *
  * @param
- * @param return $content_width , boostrap width
- *
+ * @param string $key
+ * @return string
  */
 function clic_cfg_set_content_module_width_pull_down($id, $key = '')
 {

@@ -16,6 +16,12 @@ use Transliterator;
 use function defined;
 use function is_null;
 
+/**
+ * Class RewriteUrl
+ *
+ * Provides functionality for URL rewriting, including encoding and decoding UTF-8 strings
+ * and converting accented characters to ASCII equivalents.
+ */
 class RewriteUrl
 {
   protected string|null $title = null;

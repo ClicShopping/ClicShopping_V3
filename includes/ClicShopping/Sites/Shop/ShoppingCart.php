@@ -19,6 +19,11 @@ use function defined;
 use function is_array;
 use function is_null;
 
+/**
+ * Class ShoppingCart
+ *
+ * Represents a shopping cart containing products, quantities, totals, and related information.
+ */
 class ShoppingCart
 {
   public array $contents = [];

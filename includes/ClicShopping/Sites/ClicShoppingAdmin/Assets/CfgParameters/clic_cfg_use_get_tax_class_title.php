@@ -11,9 +11,12 @@
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
+/**
+ * @param $id
+ * @return string
+ */
 function clic_cfg_use_get_tax_class_title($id)
 {
-
   $CLICSHOPPING_Db = Registry::get('Db');
 
   if ($id < 1) {

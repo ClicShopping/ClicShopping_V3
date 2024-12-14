@@ -13,10 +13,8 @@ use ClicShopping\OM\Registry;
 /**
  * the weight title
  *
- * @param int id
+ * @param int $id id
  * @return string $orders_status['orders_status_name'],  name of the status
- *
- *
  */
 
 function clic_cfg_use_get_weight_title($id)

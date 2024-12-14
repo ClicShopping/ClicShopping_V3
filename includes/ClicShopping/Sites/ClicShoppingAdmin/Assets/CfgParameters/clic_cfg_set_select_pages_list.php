@@ -12,6 +12,11 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
+/**
+ * @param $key_value
+ * @param $key
+ * @return string
+ */
 // Alias function for module [boxes] configuration value
 // template system
 function clic_cfg_set_select_pages_list($key_value, $key = null)

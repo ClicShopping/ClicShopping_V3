@@ -16,7 +16,11 @@ use function count;
 use function defined;
 use function is_array;
 use function is_null;
-
+/**
+ * The OrderTotal class is responsible for managing, processing, and rendering
+ * order total modules in a shopping cart system. It dynamically loads and executes
+ * installed order total modules to determine the calculation and output of order totals.
+ */
 class OrderTotal
 {
   public array $modules = [];

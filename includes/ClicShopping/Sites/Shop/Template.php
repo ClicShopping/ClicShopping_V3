@@ -21,6 +21,9 @@ use function defined;
 use function is_array;
 use function is_null;
 
+/**
+ * Class Template manages the different components and settings related to website templates.
+ */
 class Template
 {
   protected string $_template = 'template/';

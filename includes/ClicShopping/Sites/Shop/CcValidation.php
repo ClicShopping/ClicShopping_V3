@@ -10,6 +10,12 @@
 
 namespace ClicShopping\Sites\Shop;
 use function strlen;
+/**
+ * Class CcValidation
+ *
+ * This class is used to validate credit card numbers, determine their type,
+ * and validate their expiry dates.
+ */
 
 class CcValidation
 {

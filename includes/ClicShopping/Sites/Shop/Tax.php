@@ -14,6 +14,10 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 use function strlen;
 
+/**
+ * Class Tax
+ * Handles tax calculation, tax rate retrieval, and display functionality for different tax scenarios.
+ */
 class Tax
 {
   protected array $tax_rates = [];

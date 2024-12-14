@@ -12,7 +12,11 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
-//clic_cfg_pull_down_order_status_list
+/**
+ * @param $default
+ * @param $key
+ * @return string
+ */
 function clic_cfg_set_order_statuses_pull_down_menu($default, $key = null)
 {
   $CLICSHOPPING_Db = Registry::get('Db');

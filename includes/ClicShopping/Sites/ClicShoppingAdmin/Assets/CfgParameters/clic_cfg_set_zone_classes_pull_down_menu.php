@@ -12,6 +12,11 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
+/**
+ * @param $default
+ * @param $key
+ * @return string
+ */
 function clic_cfg_set_zone_classes_pull_down_menu($default, $key = null)
 {
   $CLICSHOPPING_Db = Registry::get('Db');

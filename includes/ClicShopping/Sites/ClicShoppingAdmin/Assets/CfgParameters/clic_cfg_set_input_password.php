@@ -15,8 +15,6 @@ use ClicShopping\OM\HTML;
  *
  * @param string $password
  * @return string  $password, the password
- *
- * clic_cfg_input_password
  */
 
 function clic_cfg_set_input_password($password)

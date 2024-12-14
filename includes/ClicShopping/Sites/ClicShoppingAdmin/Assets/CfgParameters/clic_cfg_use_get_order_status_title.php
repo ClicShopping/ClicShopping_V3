@@ -14,9 +14,8 @@ use ClicShopping\OM\Registry;
 /**
  * the status name
  *
- * @param string $orders_status_id , $language_id
+ * @param $id
  * @return string $orders_status['orders_status_name'],  name of the status
- *
  *
  */
 

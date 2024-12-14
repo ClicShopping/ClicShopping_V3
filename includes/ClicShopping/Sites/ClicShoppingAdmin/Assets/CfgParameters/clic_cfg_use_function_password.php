@@ -8,7 +8,10 @@
  *
  */
 
-//clic_cfg_password
+/**
+ * @param $password
+ * @return array|string|string[]|null
+ */
 function clic_cfg_use_function_password($password)
 {
   return preg_replace("|.|", "*", $password);

@@ -10,6 +10,11 @@
 
 use ClicShopping\OM\HTML;
 
+/**
+ * @param $text
+ * @param $key
+ * @return string
+ */
 function clic_cfg_set_textarea_field($text, $key = null)
 {
   $name = (!empty($key) ? 'configuration[' . $key . ']' : 'configuration_value');

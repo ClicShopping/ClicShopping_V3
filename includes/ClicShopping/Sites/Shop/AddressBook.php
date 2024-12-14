@@ -14,7 +14,10 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use function is_array;
 use function is_null;
-
+/**
+ * Class AddressBook
+ * Provides methods for handling customer address book operations.
+ */
 class AddressBook
 {
 

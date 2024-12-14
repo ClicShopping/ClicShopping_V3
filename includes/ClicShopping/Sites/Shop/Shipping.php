@@ -20,6 +20,9 @@ use function in_array;
 use function is_array;
 use function is_null;
 
+/**
+ * Class responsible for handling shipping modules and operations related to shipping in the application.
+ */
 class Shipping
 {
   public array $modules = [];

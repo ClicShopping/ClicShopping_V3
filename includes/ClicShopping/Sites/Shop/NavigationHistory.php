@@ -17,7 +17,11 @@ use function array_slice;
 use function count;
 use function in_array;
 use function is_array;
-
+/**
+ * Class NavigationHistory
+ * Handles the navigation history of web pages for the current user's session. Tracks visited pages
+ * and allows for navigation back to previous pages, including snapshot management for redirecting to specific pages.
+ */
 class NavigationHistory
 {
 

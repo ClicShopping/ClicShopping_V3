@@ -13,9 +13,9 @@ namespace ClicShopping\Sites\Shop;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
-
 /**
- * The Address class handles address related functions such as the format and country and zone information
+ * Handles address-related operations such as formatting addresses,
+ * retrieving country and zone details, and managing address-related data.
  */
 class Address
 {

@@ -12,6 +12,11 @@ use ClicShopping\OM\HTML;
 
 use ClicShopping\Apps\Configuration\Weight\Classes\Shop\Weight;
 
+/**
+ * @param $default
+ * @param $key
+ * @return string
+ */
 function clic_cfg_set_weight_classes_pulldown_menu($default, $key = null)
 {
   $name = (empty($key)) ? 'configuration_value' : 'configuration[' . $key . ']';

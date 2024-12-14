@@ -13,10 +13,8 @@ use ClicShopping\OM\Registry;
 /**
  * Function select a zone
  *
- * @param string text
+ * @param string $zone_id text
  * @return string zone['zone_name'], the zone name of the country
- *
- * clic_cfg_get_zone_name
  */
 function clic_cfg_use_funtion_get_zone_name($zone_id)
 {

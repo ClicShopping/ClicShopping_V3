@@ -11,6 +11,11 @@
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
+/**
+ * @param $values
+ * @param $key
+ * @return string
+ */
 function ht_datepicker_jquery_edit_pages($values, $key)
 {
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

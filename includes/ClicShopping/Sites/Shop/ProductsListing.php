@@ -16,6 +16,12 @@ use ClicShopping\OM\Registry;
 use function count;
 use function is_null;
 
+/**
+ * Class ProductsListing
+ *
+ * This class is responsible for handling the listing of products, including retrieving column settings
+ * and generating the corresponding SQL queries required for fetching the product data.
+ */
 class ProductsListing
 {
   private mixed $db;

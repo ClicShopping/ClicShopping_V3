@@ -18,6 +18,11 @@ use function defined;
 use function in_array;
 use function is_array;
 
+/**
+ * Handles various operations related to product search, including filtering by year,
+ * date, price, manufacturer, keywords, description, and categories. It also provides
+ * methods to retrieve and validate search parameters.
+ */
 class Search
 {
   protected $_period_min_year;

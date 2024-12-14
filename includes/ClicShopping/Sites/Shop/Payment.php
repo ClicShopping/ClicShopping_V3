@@ -18,7 +18,11 @@ use function defined;
 use function in_array;
 use function is_array;
 use function is_null;
-
+/**
+ * The Payment class handles payment modules within the system.
+ * It is capable of managing multiple payment methods, including initialization,
+ * selection, validation, and updating of payment statuses.
+ */
 class Payment
 {
   public array $modules = [];

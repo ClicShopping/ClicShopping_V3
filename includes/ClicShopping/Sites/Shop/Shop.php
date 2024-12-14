@@ -27,6 +27,13 @@ use function array_slice;
 use function count;
 use function define;
 
+/**
+ * Class Shop
+ *
+ * Represents the main Shop application.
+ * Initializes key components and services required for the Shop site and manages page routing.
+ * Extends the SitesAbstract class to utilize base site functionality.
+ */
 class Shop extends \ClicShopping\OM\SitesAbstract
 {
   protected static ?string $_application;

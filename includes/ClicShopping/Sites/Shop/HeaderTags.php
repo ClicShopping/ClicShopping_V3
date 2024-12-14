@@ -14,7 +14,13 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use function is_array;
-
+/**
+ * Retrieves and formats the meta tag information for the footer.
+ * The data is fetched from the database for the current language
+ * and is processed to generate clickable links.
+ *
+ * @return string The formatted meta tag content for the footer.
+ */
 class HeaderTags
 {
 

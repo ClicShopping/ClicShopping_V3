@@ -8,7 +8,10 @@
  *
  */
 
-
+/**
+ * @param $text
+ * @return string
+ */
 function ht_datepicker_jquery_show_pages($text)
 {
   return nl2br(implode("\n", explode(';', $text)));
