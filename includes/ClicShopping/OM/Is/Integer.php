@@ -17,6 +17,14 @@ namespace ClicShopping\OM\Is;
 
 class Integer implements \ClicShopping\OM\IsInterface
 {
+  /**
+   * Validates whether the given value is an integer within the optional specified range.
+   *
+   * @param mixed $value The value to validate.
+   * @param int|null $min Optional. The minimum allowable value, inclusive.
+   * @param int|null $max Optional. The maximum allowable value, inclusive.
+   * @return bool Returns true if the value is a valid integer within the range, otherwise false.
+   */
   public static function execute($value, int $min = null, int $max = null): bool
   {
     $options = [];

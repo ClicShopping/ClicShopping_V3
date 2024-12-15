@@ -24,15 +24,34 @@ class MySQL extends \ClicShopping\OM\Db
   protected bool $connected;
   protected string $table_prefix;
 
+  /**
+   * Constructor method for initializing database connection parameters.
+   *
+   * @param string $server The database server hostname or IP address.
+   * @param string $username The username for database authentication.
+   * @param string $password The password for database authentication.
+   * @param string $database The name of the database to connect to.
+   * @param int $port The port number for the database connection.
+   * @param array $driver_options An array of driver-specific options.
+   * @param array $options Additional options for the database connection.
+   *
+   * @return void
+   */
   public function __construct($server, $username, $password, $database, $port, $driver_options, $options)
   {
     $this->server = $server;
-    $this->username = $username;
+    /**
+     *
+     */
+      $this->username = $username;
     $this->password = $password;
     $this->database = $database;
     $this->port = $port;
     $this->driver_options = $driver_options;
-    $this->options = $options;
+    /**
+     *
+     */
+      $this->options = $options;
 
     if (!isset($this->driver_options[PDO::MYSQL_ATTR_INIT_COMMAND])) {
       // STRICT_ALL_TABLES 5.0.2
@@ -45,10 +64,13 @@ class MySQL extends \ClicShopping\OM\Db
 
     return $this->connect();
   }
-  
-/**
-* @return string|null
- */
+
+  /**
+   * Establishes a connection to the database using the provided configuration settings
+   * and returns the database handle.
+   *
+   * @return string|null Returns the database handle on a successful connection, or null if the connection failed.
+   */
   public function connect(): string|null
   {
     $dsn_array = [];

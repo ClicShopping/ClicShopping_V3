@@ -36,6 +36,11 @@ abstract class AdminDashboardAbstract implements \ClicShopping\OM\Modules\AdminD
 
   abstract public function keys();
 
+  /**
+   * Constructor method for initializing the class.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->code = (new ReflectionClass($this))->getShortName();
@@ -45,16 +50,33 @@ abstract class AdminDashboardAbstract implements \ClicShopping\OM\Modules\AdminD
     $this->init();
   }
 
+  /**
+   * Checks if the feature or functionality is enabled.
+   *
+   * @return bool Returns true if enabled, false otherwise.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Checks if the sort_order property is set.
+   *
+   * @return bool Returns true if the sort_order property is set, otherwise false.
+   */
   public function check()
   {
     return isset($this->sort_order);
   }
 
+  /**
+   * Executes a delete query on the database to remove configuration entries
+   * where the configuration keys match the keys returned by the keys() method.
+   *
+   * @return int|false Returns the number of rows affected by the delete query
+   *                   or false on failure.
+   */
   public function remove()
   {
     return $this->db->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');

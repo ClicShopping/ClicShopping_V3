@@ -26,6 +26,13 @@ use const FILTER_VALIDATE_EMAIL;
  */
 class EmailAddress implements \ClicShopping\OM\IsInterface
 {
+  /**
+   * Validates an email address and optionally checks its DNS records.
+   *
+   * @param string $value The email address to validate.
+   * @param bool $check_dns Optional. Whether to perform a DNS check for the domain of the email address. Default is false.
+   * @return bool Returns true if the email address is valid and, if applicable, the DNS check passes. Returns false otherwise.
+   */
   public static function execute($value, bool $check_dns = false): bool
   {
     if (empty($value) || (strlen($value) > 191)) {

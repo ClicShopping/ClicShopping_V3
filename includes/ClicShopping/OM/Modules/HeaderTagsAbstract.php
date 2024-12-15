@@ -54,6 +54,11 @@ abstract class HeaderTagsAbstract implements \ClicShopping\OM\Modules\HeaderTags
 
   abstract public function keys();
 
+  /**
+   * Constructs a new instance of the class.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->code = (new ReflectionClass($this))->getShortName();
@@ -63,11 +68,21 @@ abstract class HeaderTagsAbstract implements \ClicShopping\OM\Modules\HeaderTags
     $this->init();
   }
 
+  /**
+   * Checks if the current instance is enabled.
+   *
+   * @return bool Returns true if the instance is enabled, false otherwise.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Checks whether the `sort_order` property is set.
+   *
+   * @return bool Returns true if the `sort_order` property is set; otherwise, false.
+   */
   public function check()
   {
     return isset($this->sort_order);

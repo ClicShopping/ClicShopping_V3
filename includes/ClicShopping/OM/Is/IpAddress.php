@@ -21,6 +21,17 @@ use UnexpectedValueException;
 
 class IpAddress implements \ClicShopping\OM\IsInterface
 {
+  /**
+   * Validates whether the provided value is a valid IP address.
+   *
+   * @param mixed $value The value to be checked as an IP address.
+   * @param string $type The type of IP address to validate against. Possible values are:
+   *                     'any' for both IPv4 and IPv6 (default),
+   *                     'ipv4' for IPv4 validation,
+   *                     'ipv6' for IPv6 validation.
+   *
+   * @return bool Returns true if the value is a valid IP address of the specified type. Returns false otherwise.
+   */
   public static function execute($value, string $type = 'any'): bool
   {
     if (empty($value)) {

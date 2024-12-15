@@ -18,6 +18,16 @@ use ClicShopping\OM\Apps;
  */
 class Payment extends \ClicShopping\OM\ModulesAbstract
 {
+  /**
+   * Retrieves and constructs module information based on the given application, key, and data.
+   *
+   * @param string $app The name of the application.
+   * @param string $key A specific key representing a part of the module identifier.
+   * @param string $data The class or module data used for instantiation or verification.
+   *
+   * @return array An associative array containing the constructed module information
+   *               if the class is a valid subclass of the specified interface; otherwise, an empty array.
+   */
   public function getInfo($app, $key, $data)
   {
     $result = [];
@@ -31,6 +41,12 @@ class Payment extends \ClicShopping\OM\ModulesAbstract
     return $result;
   }
 
+  /**
+   * Retrieves the full class name of a module based on the provided module identifier.
+   *
+   * @param string $module The module identifier in the format 'Vendor\App\Code'.
+   * @return string|false The fully qualified class name if found, or false if not found.
+   */
   public function getClass($module)
   {
 

@@ -22,6 +22,15 @@ use ClicShopping\OM\Apps;
  */
 class OrderTotal extends \ClicShopping\OM\ModulesAbstract
 {
+  /**
+   * Retrieves information based on the specified parameters and validates the class against an interface.
+   *
+   * @param string $app The name of the application to retrieve information for.
+   * @param string $key A specific key related to the application.
+   * @param string $data The data to build the class name for validation.
+   *
+   * @return array An associative array containing the app and key as the key, and the validated class as the value. Returns an empty array if the class does not meet the required conditions.
+   */
   public function getInfo($app, $key, $data)
   {
     $result = [];
@@ -35,6 +44,12 @@ class OrderTotal extends \ClicShopping\OM\ModulesAbstract
     return $result;
   }
 
+  /**
+   * Retrieves the full class name of a module based on its namespace structure and application info.
+   *
+   * @param string $module The module identifier in the format 'Vendor\App\Code'.
+   * @return string|false The fully qualified class name if found, or false if the module does not exist.
+   */
   public function getClass($module)
   {
     [$vendor, $app, $code] = explode('\\', $module, 3);

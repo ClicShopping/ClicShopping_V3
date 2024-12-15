@@ -18,6 +18,14 @@ use ClicShopping\OM\Apps;
  */
 class HeaderTags extends \ClicShopping\OM\ModulesAbstract
 {
+  /**
+   * Retrieves information about a specific app and its associated data.
+   *
+   * @param string $app The name of the application.
+   * @param string $key A unique key associated with the app.
+   * @param string $data The specific data to be used for fetching information.
+   * @return array An associative array with the app and key as the index and the class as the value, or an empty array if the class does not meet conditions.
+   */
   public function getInfo($app, $key, $data)
   {
     $result = [];
@@ -31,6 +39,12 @@ class HeaderTags extends \ClicShopping\OM\ModulesAbstract
     return $result;
   }
 
+  /**
+   * Retrieves the full class name for a given module.
+   *
+   * @param string $module The module name in the format 'Vendor\App\Code'.
+   * @return string|bool The fully qualified class name if found, or false if the module does not exist.
+   */
   public function getClass($module)
   {
     [$vendor, $app, $code] = explode('\\', $module, 3);
