@@ -16,8 +16,14 @@ use ClicShopping\OM\Registry;
 class ApiGetCustomer
 {
   /**
-   * @param int|string $id
-   * @return array
+   * Retrieves customer data based on the provided customer ID.
+   *
+   * This method fetches customer details from the database, including personal,
+   * address, and contact information, by either numeric ID or other identifier.
+   *
+   * @param int|string $id The customer ID which can be numeric or a string identifier.
+   * @return array An array of customer data, including fields such as customers_id,
+   *               customers_firstname, customers_lastname, and address details.
    */
   private static function getcustomer(int|string $id)
   {
@@ -72,6 +78,11 @@ class ApiGetCustomer
     return $customer_data;
   }
 
+  /**
+   * Executes the process of validating and retrieving customer information based on provided parameters.
+   *
+   * @return string|array|false Returns customer data as an array if successful, a JSON-encoded string with an error if the ID format is invalid, or false if required parameters are missing.
+   */
   public function execute()
   {
     if (isset($_GET['cId'], $_GET['token'])) {

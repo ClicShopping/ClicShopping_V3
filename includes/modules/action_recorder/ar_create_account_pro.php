@@ -30,6 +30,13 @@ class ar_create_account_pro
   public $enabled = true;
   public $group;
 
+  /**
+   * Constructor method for initializing the class properties and configuration.
+   * Sets the class code, group, title, and description. Checks for existing
+   * configuration to set additional parameters like email time intervals.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->code = get_class($this);
@@ -45,11 +52,24 @@ class ar_create_account_pro
     }
   }
 
+  /**
+   * Sets the identifier property of the class with the current IP address
+   * retrieved from HTTP::getIpAddress().
+   *
+   * @return void
+   */
   public function setIdentifier()
   {
     $this->identifier = HTTP::getIpAddress();
   }
 
+  /**
+   * Determines whether the action can be performed based on certain conditions, such as user ID, identifier,
+   * time constraints, and allowed attempts.
+   *
+   * @param int|null $user_id The ID of the user attempting the action. Can be null.
+   * @return bool True if the action can be performed, false otherwise.
+   */
   public function canPerform($user_id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -89,6 +109,15 @@ class ar_create_account_pro
     return true;
   }
 
+  /**
+   * Removes entries from the action recorder table that are older than a specified time limit.
+   *
+   * This method deletes records corresponding to the current module where the
+   * added date is older than the defined time limit in minutes. The time limit
+   * is determined by the "minutes" property of the current object.
+   *
+   * @return int The number of rows that were deleted.
+   */
   public function expireEntries()
   {
     $Qdel = Registry::get('Db')->prepare('delete
@@ -103,11 +132,22 @@ class ar_create_account_pro
     return $Qdel->rowCount();
   }
 
+  /**
+   * Checks if the constant 'MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES' is defined.
+   *
+   * @return bool Returns true if the constant is defined, false otherwise.
+   */
   public function check()
   {
     return \defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES');
   }
 
+  /**
+   * Installs the configuration settings for the minimum minutes per e-mail restriction
+   * when creating a professional account.
+   *
+   * @return void
+   */
   public function install()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -124,11 +164,22 @@ class ar_create_account_pro
     );
   }
 
+  /**
+   * Removes configuration entries from the database where the configuration key matches
+   * any of the keys provided by the keys() method.
+   *
+   * @return int|false The number of rows affected by the delete operation, or false on failure.
+   */
   public function remove()
   {
     return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
+  /**
+   * Retrieves the list of configuration keys related to the module.
+   *
+   * @return array Returns an array of configuration key strings.
+   */
   public function keys()
   {
     return array('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES');

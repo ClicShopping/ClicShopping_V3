@@ -41,6 +41,11 @@ class ar_admin_login
   public $enabled = true;
   public $group;
 
+  /**
+   * Constructor for initializing the module's properties and settings.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->code = get_class($this);
@@ -57,11 +62,21 @@ class ar_admin_login
     }
   }
 
+  /**
+   *
+   * @return void
+   */
   public function setIdentifier()
   {
     $this->identifier = HTTP::getIpAddress();
   }
 
+  /**
+   * Determines whether a user or identifier can perform an action based on certain constraints.
+   *
+   * @param string $user_name The username to check. If empty, only the identifier is considered.
+   * @return bool Returns true if the action can be performed; otherwise, false.
+   */
   public function canPerform($user_name)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -102,6 +117,13 @@ class ar_admin_login
     return true;
   }
 
+  /**
+   * Executes a database query to delete outdated entries from the action recorder table.
+   * The entries are filtered by module type and determined to be expired if they were
+   * added before a specified time interval.
+   *
+   * @return int The number of rows affected by the deletion query.
+   */
   public function expireEntries()
   {
     $Qdel = Registry::get('Db')->prepare('delete
@@ -117,11 +139,21 @@ class ar_admin_login
     return $Qdel->rowCount();
   }
 
+  /**
+   * Checks whether the constant 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES' is defined.
+   *
+   * @return bool Returns true if the constant is defined, false otherwise.
+   */
   public function check()
   {
     return \defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES');
   }
 
+  /**
+   * Adds configuration settings related to admin login attempts and time restrictions to the database.
+   *
+   * @return void
+   */
   public function install()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -149,11 +181,23 @@ class ar_admin_login
     );
   }
 
+  /**
+   * Removes configuration entries from the database based on the keys provided.
+   *
+   * This method executes a delete SQL query on the configuration table.
+   * The keys to be removed are determined by the keys() method.
+   *
+   * @return int The number of rows affected by the delete query.
+   */
   public function remove()
   {
     return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
+  /**
+   *
+   * @return array Returns an array of configuration keys used for the module.
+   */
   public function keys()
   {
     return array('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES', 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS');

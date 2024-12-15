@@ -28,10 +28,18 @@ class ar_contact_us
   public $identifier;
   public $enabled = true;
 
+  /**
+   * Constructor method for initializing the class properties.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->code = get_class($this);
-    $this->group = basename(__DIR__);
+    /**
+     *
+     */
+      $this->group = basename(__DIR__);
 
     $this->title = CLICSHOPPING::getDef('module_action_recorder_contact_us_title');
     $this->description = CLICSHOPPING::getDef('module_action_recorder_contact_us_description');
@@ -43,11 +51,24 @@ class ar_contact_us
     }
   }
 
+  /**
+   *
+   * Sets the identifier property to the IP address obtained via the HTTP::getIpAddress method.
+   *
+   * @return void
+   */
   public function setIdentifier()
   {
     $this->identifier = HTTP::getIpAddress();
   }
 
+  /**
+   * Checks whether the specified user or identifier can perform the action
+   * based on recent records and predefined limits.
+   *
+   * @param int|null $user_id The ID of the user to check, or null if only the identifier is used.
+   * @return bool Returns true if the action can be performed, false otherwise.
+   */
   public function canPerform($user_id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -87,6 +108,15 @@ class ar_contact_us
     return true;
   }
 
+  /**
+   * Deletes expired entries from the action recorder table based on the module and a time interval.
+   *
+   * This method identifies and removes entries from the `:table_action_recorder` table
+   * where the module matches the specified module code and the date added is older than
+   * the defined limit in minutes. The number of affected rows is returned after execution.
+   *
+   * @return int The number of rows deleted from the table.
+   */
   public function expireEntries()
   {
     $Qdel = Registry::get('Db')->prepare('delete
@@ -101,11 +131,21 @@ class ar_contact_us
     return $Qdel->rowCount();
   }
 
+  /**
+   * Checks if the constant 'MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES' is defined.
+   *
+   * @return bool True if the constant is defined, false otherwise.
+   */
   public function check()
   {
     return \defined('MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES');
   }
 
+  /**
+   * Installs the configuration settings related to the contact us email action recorder module.
+   *
+   * @return void
+   */
   public function install()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -122,11 +162,24 @@ class ar_contact_us
     );
   }
 
+  /**
+   * Removes configuration entries from the database table where the configuration keys match
+   * the keys returned by the keys() method.
+   *
+   * Executes a DELETE SQL statement to remove matching entries from the specified table.
+   *
+   * @return int The number of rows affected by the DELETE statement.
+   */
   public function remove()
   {
     return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
+  /**
+   * Retrieves the configuration keys related to the module.
+   *
+   * @return array An array of configuration keys.
+   */
   public function keys()
   {
     return array('MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES');

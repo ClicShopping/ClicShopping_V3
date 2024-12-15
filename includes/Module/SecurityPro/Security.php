@@ -10,6 +10,21 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 
+/**
+ * Class Security
+ *
+ * A class designed to handle cleansing of input data with options for managing exclusions,
+ * recursive sanitization, and global variable handling. The class is configurable in terms of
+ * enabling key cleansing and managing specific file exclusions.
+ *
+ * Members include:
+ * - $_excluded_from_cleansing: Array of files excluded from cleansing.
+ * - $_enabled: Boolean to enable or disable the security logic.
+ * - $_basename: Base name of the current data being cleansed.
+ * - $_cleanse_keys: Boolean indicating whether to cleanse keys during operations.
+ *
+ * This class implements methods to manage exclusions, cleanse input data recursively, and sanitize strings.
+ */
 class Security
 {
 
@@ -20,10 +35,11 @@ class Security
   public $_cleanse_keys; // Turn on or off - bool true / false
 
   /**
-   * Constructor
+   * Constructor method for initializing the object with optional cleansing keys logic
+   * and setting default exclusions.
    *
-   * @param bool $cleanse_keys
-   * @uses defined
+   * @param bool $cleanse_keys Determines whether keys should be cleansed. Default is false.
+   * @return void
    */
   public function __construct(bool $cleanse_keys = false)
   {
@@ -32,13 +48,10 @@ class Security
   } // end constructor
 
   /**
-   * Add file exclusions - these files will NOT have the querystring cleansed
+   * Adds a file to the list of exclusions to prevent it from undergoing a cleansing process.
    *
-   * @param string $file_to_exclude - file to exclude from cleansing
-   *
-   *
-   * @return object _Security_Pro - allows chaining
-   * @uses in_array
+   * @param string $file_to_exclude The file to be excluded from the cleansing process.
+   * @return self Returns the current instance to allow method chaining.
    */
   public function addExclusion($file_to_exclude = '')
   {
@@ -50,13 +63,10 @@ class Security
   } // end method
 
   /**
-   * Add multiple file exclusions as an array
+   * Adds multiple exclusions to the internal exclusion list.
    *
-   * @param array $args - files to exclude from cleansing
-   *
-   *
+   * @param array $args An array of exclusion files to be added. If the array is empty, no action is performed.
    * @return void
-   * @uses foreach()
    */
   public function addExclusions(array $args = array()): void
   {
@@ -67,15 +77,11 @@ class Security
   } // end method
 
   /**
-   * Called from application_top.php here we instigate the cleansing of the querystring
+   * Cleanses input data by applying various sanitization steps to $_GET and updates $_REQUEST accordingly.
+   * Ensures excluded data is not processed and additional global variable cleaning is performed when necessary.
    *
-   * @param string $data
-   * @return void
-   * @uses ini_get()
-   * @see  _Security_Pro::cleanGlobals()
-   * @uses in_array
-   * @uses function_exists()
-   *  array $_GET - long array
+   * @param string $data Optional data string to be cleansed.
+   * @return void No value is returned.
    */
 
   public function cleanse(string $data = '')
@@ -98,13 +104,11 @@ class Security
   } // end method
 
   /**
-   * Recursively cleanse _GET values and optionally keys as well if _Security_Pro::cleanse_keys === true
+   * Recursively cleanses the data in a given GET array by sanitizing keys and values.
    *
-   * @param array $get
-   *
-   *
+   * @param array &$get The GET array to be cleaned recursively. Keys might be removed if they do not conform to expectations,
+   *                    and values are cleansed depending on whether they are arrays or strings.
    * @return void
-   * @uses is_array
    */
   public function cleanseGetRecursive(&$get): void
   {
@@ -123,15 +127,10 @@ class Security
   } // end method
 
   /**
-   * Cleanse array keys
+   * Cleanses a given string by removing disallowed characters and patterns and ensuring safe formatting.
    *
-   * Initially set as the same as values this may need to be made less strict
-   *
-   * @return string - cleansed key string
-   * @uses preg_replace()
-   *
-   *
-   * @uses urldecode()
+   * @param string $string The input string to be sanitized.
+   * @return string The cleansed and formatted string.
    */
   public function cleanseKeyString(string $string): string
   {
@@ -146,13 +145,11 @@ class Security
 
 
   /**
-   * Cleanse array values
+   * Cleanses an input string by removing disallowed characters, removing banned patterns,
+   * and normalizing sequences such as repeated hyphens.
    *
-   * @return string - cleansed value string
-   * @uses preg_replace()
-   *
-   *
-   * @uses urldecode()
+   * @param string $string The input string to be cleansed.
+   * @return string The cleansed string with disallowed characters and banned patterns removed.
    */
   public function cleanseValueString(string $string): string
   {
@@ -173,12 +170,14 @@ class Security
 
 
   /**
-   * With register globals set to on we need to ensure that GLOBALS are cleansed
+   * Cleans up global variables by synchronizing values from the $_GET superglobal.
+   *
+   * Iterates through the $_GET array and, for each key-value pair, checks if the key
+   * exists in the $GLOBALS array. If the key exists, the value from $_GET is assigned
+   * to the corresponding key in $GLOBALS. This ensures that global variables are
+   * updated with the corresponding values from the $_GET superglobal array.
    *
    * @return void
-   * @uses array_key_exists()
-   *
-   *
    */
   public function cleanGlobals(): void
   {

@@ -21,6 +21,11 @@ class CfgmModulesAdvancedSearch
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method that initializes directory paths and module title
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

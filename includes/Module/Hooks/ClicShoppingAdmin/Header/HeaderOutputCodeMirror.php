@@ -15,7 +15,10 @@ use ClicShopping\OM\CLICSHOPPING;
 class HeaderOutputCodeMirror
 {
   /**
-   * @return string
+   * Generates and returns HTML output for including CodeMirror-related resources
+   * if the user is authenticated as an admin in the session.
+   *
+   * @return string The generated HTML output for CodeMirror resources or false if the user is not an admin.
    */
   public function display(): string
   {

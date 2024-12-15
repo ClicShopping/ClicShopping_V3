@@ -26,6 +26,15 @@ class OrderTotal
   public array $modules = [];
 
 // class constructor
+
+  /**
+   * Constructor method for initializing the class.
+   *
+   * Checks if the module order total is installed and processes the installed modules.
+   * Splits the modules into an array and registers each module in the application's registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (defined('MODULE_ORDER_TOTAL_INSTALLED') && !is_null(MODULE_ORDER_TOTAL_INSTALLED)) {
@@ -41,6 +50,20 @@ class OrderTotal
     }
   }
 
+  /**
+   * Processes the modules to generate an array of order totals.
+   *
+   * This method iterates through available modules, checks their enabled status,
+   * and processes their output to construct an array containing details such as
+   * the code, title, displayed text, value, and sort order of each order total component.
+   *
+   * @return array Returns an array of order totals, each containing the keys:
+   *               - 'code': The unique code of the module.
+   *               - 'title': The title of the order total component.
+   *               - 'text': The textual representation of the order total value.
+   *               - 'value': The numeric value of the order total component.
+   *               - 'sort_order': The sorting order assigned to the component.
+   */
   public function process()
   {
     $order_total_array = [];
@@ -73,6 +96,12 @@ class OrderTotal
     return $order_total_array;
   }
 
+  /**
+   * Generates and returns an HTML string containing the output of enabled modules.
+   * The output includes title and text values of the modules formatted as table rows.
+   *
+   * @return string The formatted HTML string representing the output of the enabled modules.
+   */
   public function output()
   {
     $output_string = '';

@@ -16,7 +16,10 @@ use ClicShopping\OM\HTML;
 class AccountGdprDeleteCustomersInformations
 {
   /**
-   * @return string
+   * Generates and returns the HTML output for displaying a GDPR-related option
+   * with a checkbox field.
+   *
+   * @return string The HTML output as a string.
    */
   public function display(): string
   {

@@ -34,6 +34,18 @@ class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
 {
   protected static string $default_application = 'Dashboard';
 
+  /**
+   * Initializes and configures the application by setting up essential components and services.
+   *
+   * This method performs various setup actions, including:
+   * - Registering cookie management and session handling.
+   * - Establishing a database connection and loading application configurations.
+   * - Setting up language support, managing templates, and initiating hooks for the application.
+   * - Ensuring proper redirection and secure access to the application.
+   * - Preloading system configuration and services.
+   *
+   * @return void
+   */
   protected function init()
   {
     global $login_request;
@@ -148,6 +160,17 @@ class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
     Registry::get('Service')->start();
   }
 
+  /**
+   * Sets and initializes the page based on the current request parameters.
+   *
+   * This method determines the correct page controller class to use based on
+   * input from GET parameters or default application settings. It validates
+   * whether the resolved class implements the required interface and then
+   * initializes and executes the page actions. If the page does not implement
+   * the required interface, a trigger error is raised.
+   *
+   * @return void
+   */
   public function setPage()
   {
 //important dans la redirection sinon page blanche
@@ -197,9 +220,12 @@ class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
   }
 
   /**
-   * @param array $route
-   * @param array $routes
-   * @return mixed
+   * Resolves and retrieves the first matched route from the provided routes array.
+   *
+   * @param array $route The route to be resolved.
+   * @param array $routes An array of available routes to match against.
+   *
+   * @return mixed The first matched route from the provided routes array.
    */
   public static function resolveRoute(array $route, array $routes)
   {
@@ -207,7 +233,8 @@ class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string Returns the default application name.
    */
   public static function getDefaultApplication(): string
   {

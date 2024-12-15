@@ -21,6 +21,13 @@ class CfgmModulesSitemap
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method initializes the required properties for the Sitemap module.
+   * This includes setting the directory path for the module's HTML templates,
+   * the language directory path, and the module's title.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

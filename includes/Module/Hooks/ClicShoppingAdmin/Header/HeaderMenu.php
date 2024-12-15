@@ -25,7 +25,13 @@ use ClicShopping\Apps\Tools\WhosOnline\Classes\ClicShoppingAdmin\WhosOnlineAdmin
 class HeaderMenu
 {
   /**
-   * @return bool|string
+   * Generates and returns the HTML for the admin header menu, including navigation and additional components.
+   *
+   * The method dynamically constructs a multi-level menu based on the configuration
+   * and user session information. It includes support for nested submenus and interactive elements.
+   * Additional icons and links are displayed based on the admin's access level and available warnings or errors.
+   *
+   * @return string The constructed HTML output for the admin header menu.
    */
   public function display(): string
   {

@@ -13,7 +13,10 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 class FooterOutputClipBoard
 {
   /**
-   * @return bool|string
+   * Generates and returns a string containing JavaScript code for using clipboard functionality.
+   * The script is included only if the 'admin' session is set.
+   *
+   * @return string JavaScript code for clipboard functionality or an empty string if the session is not set.
    */
   public function display(): string
   {

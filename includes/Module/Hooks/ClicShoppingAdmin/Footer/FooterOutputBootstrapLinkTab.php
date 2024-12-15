@@ -10,10 +10,23 @@
 
 namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 
+/**
+ * Class HeaderOutputBootstrapLinkTab
+ *
+ * This class is responsible for generating a JavaScript snippet that helps dynamically activate
+ * Bootstrap navigation tabs based on certain conditions. It checks if specific criteria are
+ * fulfilled, such as the presence of a query string and a session key, to generate and return
+ * the JavaScript code.
+ */
 class FooterOutputBootstrapLinkTab
 {
   /**
-   * @return string|bool
+   * Generates a JavaScript snippet for dynamically activating Bootstrap navigation tabs
+   * based on the URL fragment if certain conditions are met (e.g., the session contains
+   * an 'admin' key and a query string is present).
+   *
+   * @return string|bool Returns the generated JavaScript code as a string if conditions
+   *         are fulfilled, otherwise returns false.
    */
   public function display(): string|bool
   {

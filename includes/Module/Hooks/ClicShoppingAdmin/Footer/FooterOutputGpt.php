@@ -17,7 +17,10 @@ use function defined;
 class FooterOutputGpt
 {
   /**
-   * @return bool|string
+   * Renders and returns the necessary JavaScript and HTML for a modal chat interface
+   * if the admin session is active and the ChatGPT application status is enabled.
+   *
+   * @return string The generated HTML and JavaScript for the modal chat interface.
    */
   public function display(): string
   {

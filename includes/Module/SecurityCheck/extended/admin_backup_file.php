@@ -12,20 +12,44 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 
+/**
+ * This class performs a security check to ensure that no backup files are publicly accessible in the administrator backup directory.
+ */
 class securityCheckExtended_admin_backup_file
 {
   public $type = 'danger';
   public $has_doc = true;
 
+  /**
+   * Constructor method initializes the class by loading language definitions
+   * and setting the title property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Language = Registry::get('Language');
 
     $CLICSHOPPING_Language->loadDefinitions('modules/security_check/extended/admin_backup_file', null, null, 'Shop');
 
-    $this->title = CLICSHOPPING::getDef('module_security_check_extended_admin_backup_file_title');
+    /**
+     *
+     */
+      $this->title = CLICSHOPPING::getDef('module_security_check_extended_admin_backup_file_title');
   }
 
+  /**
+   * Checks the presence and accessibility of backup files in a specific directory.
+   *
+   * The method inspects the backup directory for specific backup file types
+   * (zip, sql, gz) and prioritizes binary formats (zip and gz) over plain
+   * text files (sql). If a suitable file is found, it validates its accessibility
+   * by sending an HTTP request and checking the response.
+   *
+   * @return bool Returns true if the backup directory is empty, or no suitable
+   *              backup files are found, or the backup file is inaccessible;
+   *              otherwise, returns false.
+   */
   public function pass()
   {
     $backup_directory = CLICSHOPPING::BASE_DIR . 'Work/Backups/';
@@ -73,7 +97,9 @@ class securityCheckExtended_admin_backup_file
   }
 
   /**
-   * @return string
+   * Retrieves a predefined message based on the security check for admin backup file with context-specific data.
+   *
+   * @return string The formatted message with the appropriate backups path.
    */
   public function getMessage(): string
   {
@@ -83,8 +109,10 @@ class securityCheckExtended_admin_backup_file
   }
 
   /**
-   * @param $url
-   * @return mixed|bool|string
+   * Sends an HTTP request to a given URL using the HEAD method and returns connection or response information.
+   *
+   * @param string|null $url The URL to send the HTTP request to. It can be null, in which case no request will be made.
+   * @return array|string Returns an array containing connection or response information if successful, or 'error' if the request fails.
    */
   public function getHttpRequest(?string $url)
   {

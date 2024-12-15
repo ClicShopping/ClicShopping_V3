@@ -25,6 +25,17 @@ class WhosOnline implements \ClicShopping\OM\ServiceInterface
 {
   private static $spider_flag;
 
+  /**
+   * Tracks the current user's session and updates the 'whos_online' table with session, user, and activity details.
+   *
+   * This method checks if the 'WhosOnline' registry entry exists. If not, it operates on the data stored
+   * in the `Customer` and `Db` registries. The session details, such as session ID, IP address,
+   * user agent, and last visited URL, are used to update or insert records in the database. Entries
+   * older than a certain limit are removed automatically. Additionally, it identifies whether the user
+   * is a guest, logged-in customer, or a bot.
+   *
+   * @return false|void Returns false if the 'WhosOnline' registry already exists, otherwise returns nothing.
+   */
   public static function start()
   {
     if (!Registry::exists('WhosOnline')) {
@@ -130,23 +141,37 @@ class WhosOnline implements \ClicShopping\OM\ServiceInterface
   }
 
   /**
-   * @return mixed
+   * Retrieves the value of the spider flag.
+   *
+   * This method returns the current state of the spider flag, which indicates
+   * whether the current visitor has been identified as a spider or bot based on
+   * user agent analysis.
+   *
+   * @return bool The spider flag state. True if a spider or bot was detected; false otherwise.
    */
   public static function getResultSpiderFlag()
   {
     return self::$spider_flag;
   }
 
+  /**
+   * Stops a running process or operation.
+   *
+   * @return bool Returns true upon successful execution.
+   */
   public static function stop(): bool
   {
     return true;
   }
 
   /**
-   * @param string $old_id
-   * @param string $new_id
+   * Updates the session ID in the 'whos_online' table to reflect a new session ID.
+   *
+   * @param string $old_id The current session ID to be replaced.
+   * @param string $new_id The new session ID to update in the database.
+   * @return void
    */
-  public static function whosOnlineUpdateSessionId(string $old_id, string $new_id)
+  public static function whosOnlineUpdateSessionId(string $old_id, string $new_id): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
 

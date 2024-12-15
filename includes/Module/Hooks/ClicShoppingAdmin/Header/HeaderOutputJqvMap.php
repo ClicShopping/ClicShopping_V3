@@ -15,7 +15,10 @@ use ClicShopping\OM\CLICSHOPPING;
 class HeaderOutputJqvMap
 {
   /**
-   * @return string|bool
+   * Generates and returns HTML output for including jqvmap assets if the session indicates an admin user.
+   * Returns false if query parameters are present in the request or the user is not an admin.
+   *
+   * @return string|bool The HTML output with stylesheet links for jqvmap if conditions are met, otherwise false.
    */
   public function display(): string|bool
   {

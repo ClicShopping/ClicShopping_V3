@@ -21,6 +21,11 @@ class CfgmModulesProductsSpecial
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Initializes the configuration for product specials modules, setting up the necessary directory paths and title.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

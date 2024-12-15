@@ -16,7 +16,12 @@ use ClicShopping\OM\HTML;
 class AccountGdprDeleteAccount
 {
   /**
-   * @return string
+   * Generates and returns the HTML output for displaying a GDPR account delete section.
+   *
+   * The output includes a title, an introductory message, and a checkbox field
+   * for confirming the deletion of all reviews.
+   *
+   * @return string The generated HTML string for the GDPR account delete section.
    */
   public function display(): string
   {

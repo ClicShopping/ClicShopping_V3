@@ -16,7 +16,9 @@ use function defined;
 class FooterOutputChatGptClipBoard
 {
   /**
-   * @return bool|string
+   * Generates and returns HTML output for the admin clipboard functionality if the admin session is active and specific conditions are met.
+   *
+   * @return string The generated HTML output or an empty string if conditions are not met.
    */
   public function display(): string
   {

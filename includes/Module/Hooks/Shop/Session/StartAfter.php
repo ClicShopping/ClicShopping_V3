@@ -18,6 +18,19 @@ use ClicShopping\OM\Registry;
 
 class StartAfter
 {
+  /**
+   * Executes the session initialization and validation processes.
+   *
+   * This method performs the following:
+   * - Initializes a session token if it does not exist.
+   * - Verifies the SSL session ID if SSL is enabled and the feature is configured.
+   * - Verifies the browser user agent if the feature is enabled.
+   * - Verifies the IP address if the feature is enabled.
+   *
+   * If validation fails, the session is killed and the user is redirected.
+   *
+   * @return void
+   */
   public function execute()
   {
 

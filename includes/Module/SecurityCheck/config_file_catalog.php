@@ -16,6 +16,11 @@ class securityCheck_config_file_catalog
 {
   public string $type = 'warning';
 
+  /**
+   * Constructor method.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -24,11 +29,21 @@ class securityCheck_config_file_catalog
 
   }
 
+  /**
+   * Checks if the configuration file is not writable.
+   *
+   * @return bool Returns true if the configuration file is not writable, otherwise false.
+   */
   public function pass()
   {
     return !FileSystem::isWritable(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/configure.php');
   }
 
+  /**
+   * Retrieves the warning message related to the writable configuration file.
+   *
+   * @return string The warning message with the configured file path.
+   */
   public function getMessage()
   {
     return CLICSHOPPING::getDef('warning_config_file_writeable', [

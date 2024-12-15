@@ -21,6 +21,11 @@ class CfgmModulesProductsFeatured
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor initializes the module configuration for the products featured module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

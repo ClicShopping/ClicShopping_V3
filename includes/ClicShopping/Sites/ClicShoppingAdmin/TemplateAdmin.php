@@ -39,11 +39,9 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
    ************************************************/
 
   /**
-   * Get the path for the default template HTML directory
+   * Retrieves the directory path for the shop's default template in HTML format.
    *
-   * @param string $themaFilename , filename in this module
-   *
-   * @return string
+   * @return string The full path to the shop's default template directory.
    */
   public function getDirectoryPathShopDefaultTemplateHtml(): string
   {
@@ -51,12 +49,9 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * get the catalog modules directory
+   * Retrieves the path to the shop languages directory.
    *
-   * @param string $language_directory ,directory of the language
-   *
-   *  define('parent::getPathRoot() 'sources/languages/');
-   * @return string
+   * @return string The path to the shop languages directory.
    */
   public function getPathLanguageShopDirectory(): string
   {
@@ -66,12 +61,11 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * get path public download
+   * Retrieves the path to the shop's download directory. If a specific directory is provided,
+   * it appends it to the base download directory path.
    *
-   * @param string $modules_directory ,directory of the module
-   *
-   * define('DIR_FS_DOWNLOAD_PUBLIC', parent::getPathRoot() . 'sources/download/');
-   * @return string
+   * @param string|null $directory Optional directory to append to the base download directory path.
+   * @return string The full path to the shop's download directory, possibly including the appended directory.
    */
   public function getPathDownloadShopDirectory(?string $directory = null): string
   {
@@ -81,11 +75,10 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * Verify if module directory exist in shop template
+   * Retrieves the directory path for the shop module's HTML template.
    *
-   * @param string
-   *
-   * @return string
+   * @param string $name Name of the module to locate the HTML template for.
+   * @return string The full directory path to the HTML template of the specified module.
    */
 
   public function getDirectoryPathModuleShopTemplateHtml(string $name): string
@@ -100,8 +93,9 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * Verify if the image exist in shop
-   * @return string
+   * Retrieves the directory path for shop template images.
+   *
+   * @return string The complete directory path to shop template images.
    */
 
   public function getDirectoryPathTemplateShopImages(): string
@@ -111,8 +105,9 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
 
 
   /**
-   * Verify if the image exist in shop
-   * @return string
+   * Retrieves the HTTP URL for the template shop images directory.
+   *
+   * @return string The full URL to the shop images directory.
    */
 
   public function getHttpTemplateShopImages(): string
@@ -121,8 +116,9 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * Verify if the language exist in shop
-   * @return string
+   * Retrieves the directory path for language files.
+   *
+   * @return string The directory path where language files are stored.
    */
 
   public function getDirectoryPathLanguage(): string
@@ -131,11 +127,9 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * get the catalog modules directory
+   * Retrieves the directory path for the shop module within the modules directory.
    *
-   * @param string $language_directory ,directory of the language
-   *
-   * @return string
+   * @return string The full path to the shop module directory.
    */
   public function getDirectoryPathModuleShop(): string
   {
@@ -145,15 +139,12 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
 
-  /**********************************************
-   * Relative / virtual Path
-   *********************************************
+  /**
+   * Retrieves the path to the specified template header or footer for the admin area.
    *
-   *
-   * getFileAdmin inside a directory
-   * @param : $file name of the file
-   * @param : $template : template directory
-   * /www/
+   * @param string $file The name of the file to retrieve within the template directory.
+   * @param string $template The name of the template to use. Defaults to 'Default'.
+   * @return string The full path to the specified template file.
    */
   public function getTemplateHeaderFooterAdmin(string $file, string $template = 'Default'): string
   {
@@ -166,12 +157,9 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * get the Relative Path template directory
+   * Retrieves the directory path for templates.
    *
-   * @param string $themaFilename , filename in this module
-   *
-   * /sources/template
-   * @return string
+   * @return string The path to the template directory.
    */
   public function getTemplateDirectory(): string
   {
@@ -186,6 +174,11 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   * //sources/template/SITE_THEMA
   * @return string
   */
+  /**
+   * Retrieves the directory path for dynamic templates.
+   *
+   * @return string The directory path for dynamic templates.
+   */
   public function getDynamicTemplateDirectory(): string
   {
     return parent::getDynamicTemplateDirectory(); //sources/template/SITE_THEMA
@@ -198,6 +191,11 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   *
   * @return string
   */
+  /**
+   * Retrieves the directory path for admin image assets within the application's file structure.
+   *
+   * @return string The full path to the administrative image directory.
+   */
   public function getImageDirectory(): string
   {
     return CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $this->directoryAdminImages . $this->directoryAdmin;
@@ -210,18 +208,20 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   *
   * @return string
   */
+  /**
+   * Retrieves the full directory path for shop images.
+   *
+   * @return string The complete URL or path for the shop images directory.
+   */
   public function getImageDirectoryShop(): string
   {
     return CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $this->directoryAdminSources . $this->_directoryTemplateImages;
   }
 
   /**
-   * get the boxes directory
+   * Retrieves the directory path for admin boxes.
    *
-   * @param string $language_directory ,directory of the language
-   *
-   * define('DIR_WS_BOXES', 'includes/boxes/');
-   * @return string
+   * @return string The directory path for admin boxes.
    */
   public function getBoxeDirectory(): string
   {
@@ -231,12 +231,9 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * get the language directory
+   * Retrieves the directory path for language-related files within the admin includes.
    *
-   * @param string $language_directory ,directory of the language
-   *
-   * define('DIR_WS_LANGUAGES', 'includes/languages/');
-   * @return string
+   * @return string The path to the language directory.
    */
   public function getLanguageDirectory(): string
   {
@@ -246,12 +243,9 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * get the modules directory
+   * Retrieves the modules directory path.
    *
-   * @param string $modules_directory ,directory of the module
-   *
-   *   define('DIR_WS_MODULES', 'includes/modules/');
-   * @return string
+   * @return string The path to the modules directory.
    */
   public function getModulesDirectory(): string
   {
@@ -261,11 +255,9 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * get the the shop image directory
+   * Retrieves the directory path for shop template images.
    *
-   * @param string
-   *
-   * @return string
+   * @return string The full directory path to the shop template images.
    */
   public function getDirectoryShopTemplateImages(): string
   {
@@ -275,11 +267,9 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * get the the shop sources directory
+   * Retrieves the directory path for shop sources.
    *
-   * @param string
-   *
-   * @return string
+   * @return string The directory path for shop sources.
    */
   public function getDirectoryShopSources(): string
   {
@@ -289,12 +279,11 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * All files about the catalog
+   * Retrieves an array of catalog file paths, optionally replacing elements with a provided file or formatting them
+   * based on SEO-friendly URL settings.
    *
-   * @string $catalog_files, string, nwe specific files
-   *
-   * @param string|null $catalog_files
-   * @return array, file list
+   * @param string|null $catalog_files Optional specific catalog file to replace the array contents. If null, returns the default array.
+   * @return array Returns an array of catalog file paths, formatted based on SEO settings if applicable.
    */
   public static function getCatalogFiles(?string $catalog_files = null): array
   {
@@ -355,8 +344,11 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   *  Dynamic Template System
-   * Return an array of the catalog directory. mechanism for reading this.
+   * Retrieves a list of catalog files not included, optionally starting with a specified bootstrap file.
+   *
+   * @param string|null $boostrap_file The name of the bootstrap file to include at the start of the list.
+   * If null, the default bootstrap file from the configuration will be used.
+   * @return array An array containing the list of catalog files, starting with the specified or default bootstrap file.
    */
 
   public static function getListCatalogFilesNotIncluded(?string $boostrap_file = null): array
@@ -377,10 +369,15 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * get all files inside a multi template directory
-   * @param string $filename
-   * @param string $module
-   * @return array
+   * Retrieves a list of template files from the specified module's template directory
+   * and generates a dropdown menu for selection.
+   *
+   * @param string $filename The default filename, not directly used in this function.
+   * @param string $module The module name whose template directory is to be scanned.
+   *
+   * @return array Returns an array containing options for a dropdown menu,
+   *               where each option includes 'id' and 'text' keys corresponding
+   *               to available template files.
    */
   public function getMultiTemplatePullDown(string $filename, string $module): array
   {
@@ -428,10 +425,12 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * @param string $source_folder
-   * @param string $filename
-   * @param string $ext
-   * @return array|null
+   * Retrieves specific files based on the provided folder, filename, and extension.
+   *
+   * @param string $source_folder The path to the folder where the search is performed.
+   * @param string $filename The name of the file to search for.
+   * @param string $ext The extension of the files to search for. Defaults to 'php'.
+   * @return mixed The result from the parent method, typically a list or collection of matching files.
    */
   public function getSpecificFiles(string $source_folder, string $filename, string $ext = 'php')
   {
@@ -441,11 +440,14 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * Use Modules Hooks to call some element for the header or footer
-   * @param string $source_folder
-   * @param string $file_get_output
-   * @param string $files_get_call
-   * @param string $hook_call
+   * Processes recursive module hooks for a given template.
+   *
+   * @param string $source_folder The source folder containing templates.
+   * @param string $file_get_output The output file data to retrieve.
+   * @param string $files_get_call The method or function to call for retrieving files.
+   * @param string $hook_call The hook method or function to invoke in the process.
+   *
+   * @return mixed The result of the parent method processing the recursive module hooks.
    */
   public function useRecursiveModulesHooksForTemplate(string $source_folder, string $file_get_output, string $files_get_call, string $hook_call)
   {
@@ -455,11 +457,13 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * look the directory template inside template directory
-   * @param string $key
-   * @param string $default
-   * @param bool $config
-   * @return string
+   * Retrieves all available templates based on the provided parameters and generates
+   * a select menu with the template options.
+   *
+   * @param string $key The key used for configuration or naming the select menu. Defaults to an empty string.
+   * @param string $default The default option text to be displayed in the select menu. Defaults to an empty string.
+   * @param bool $config Determines whether to build the configuration-based or non-configuration-based select menu. Defaults to true.
+   * @return string The HTML string of a select menu with the available template options.
    */
   public function getAllTemplate(string $key = '', string $default = '', $config = true): string
   {
@@ -497,13 +501,14 @@ class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   }
 
   /**
-   * Update templatetheme
-   * @param string $name
-   * @param string $default
-   * @param string|null $item_value
-   * @return string
+   * Updates the template with the available directory options and returns an HTML select menu.
+   *
+   * @param string $name The name attribute for the select menu.
+   * @param string $default The default option text to display in the select menu.
+   * @param string|null $item_value The selected value in the select menu, or null if none is selected.
+   * @return string The generated HTML select menu.
    */
-  public function updateTemplate(string $name, string $default = '', ?string $item_value): string
+  public function updateTemplate(string $name, string $default = '', string|null $item_value): string
   {
     $template_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . $this->getTemplateDirectory() . '/';
 

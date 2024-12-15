@@ -16,6 +16,12 @@ use ClicShopping\OM\Db;
 class ActionInformation
 {
 
+  /**
+   * Constructor method for verifying the current site.
+   * Redirects if the site is not 'ClicShoppingAdmin'.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
@@ -23,6 +29,12 @@ class ActionInformation
     }
   }
 
+  /**
+   * Generates and returns an HTML output showing system and application statistics,
+   * including memory usage, database size, disk space, bandwidth, and backup information.
+   *
+   * @return string The generated HTML output displaying the requested system and application statistics.
+   */
   public function execute()
   {
 // Space_disk

@@ -21,6 +21,14 @@ class CfgmModulesFooter
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method for initializing the footer module configuration.
+   *
+   * Retrieves the template admin instance, sets the directory paths for the
+   * module's default HTML templates and language files, and defines the module's title.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

@@ -20,9 +20,13 @@ class CfgmService
   public $language_directory;
   public bool $template_integration = false;
 
+  /**
+   * Initializes the object and sets the directory path for the service.
+   *
+   * @return void
+   */
   public function __construct()
   {
-
     $this->directory = CLICSHOPPING::BASE_DIR . 'Service/Shop/';
   }
 }

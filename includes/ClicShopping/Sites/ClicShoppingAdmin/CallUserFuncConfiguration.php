@@ -19,6 +19,16 @@ use function call_user_func;
  */
 class CallUserFuncConfiguration
 {
+  /**
+   * Executes a specified function or method and returns the result.
+   * The function can be a standalone function or a class method.
+   * If the specified function does not exist, it attempts to include a corresponding configuration file.
+   *
+   * @param string $function The name of the function or method to be executed. Accepts both standalone functions and class methods in the format "ClassName::method".
+   * @param mixed|null $default Default value to be passed as a parameter to the function or method, if applicable.
+   * @param mixed|null $key Additional parameter to be passed to the function or method, if applicable.
+   * @return mixed Returns the result of the function or method execution.
+   */
   public static function execute($function, $default = null, $key = null)
   {
     if (str_contains($function, '::')) {

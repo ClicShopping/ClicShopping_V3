@@ -21,6 +21,11 @@ class CfgmModulesIndexCategories
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Initializes the class by setting the directory path, language directory, and title for the module configuration.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

@@ -20,6 +20,16 @@ use function call_user_func;
  */
 class CallUserFuncModule
 {
+  /**
+   * Executes a specified function or method and returns its result.
+   *
+   * @param string $function The name of the function or method to execute. For static class methods, use the format 'ClassName::methodName'.
+   *                         For functions with parameters, use the format 'functionName(param1, param2)'.
+   * @param mixed|null $default Optional parameter to pass as the default value to the function or method.
+   * @param mixed|null $key Optional parameter to pass as the key to the function or method.
+   *
+   * @return mixed Returns the result of the executed function or method.
+   */
   public static function execute($function, $default = null, $key = null)
   {
     if (str_contains($function, '::')) {

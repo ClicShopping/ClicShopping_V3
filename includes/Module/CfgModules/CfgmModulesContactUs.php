@@ -21,6 +21,12 @@ class CfgmModulesContactUs
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Initializes the class by setting up the directory paths and title
+   * for the contact us module configuration.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

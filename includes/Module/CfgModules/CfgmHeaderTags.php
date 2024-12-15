@@ -21,6 +21,13 @@ class CfgmHeaderTags
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method for initializing the module configuration.
+   *
+   * This method sets up the directory paths and module title for the header tags module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

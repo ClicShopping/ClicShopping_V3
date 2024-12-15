@@ -23,7 +23,16 @@ use ClicShopping\Apps\Tools\WhosOnline\Classes\ClicShoppingAdmin\WhosOnlineAdmin
 class HeaderMenuSideBar
 {
   /**
-   * @return string|bool
+   * Generates and displays the structured HTML output for a vertical navigation menu.
+   * The method dynamically builds the menu structure based on the hierarchy of parent and sub-menu items
+   * as retrieved from the database. The menu includes support for multiple levels, user sessions, and administrative tools.
+   *
+   * - Constructs primary and nested menu items (up to four levels) based on the parent-child relationship of menu options.
+   * - Integrates session-based admin functionalities like user details, logout options, error logs, and "Who's Online".
+   * - Provides support for collapsible menus with toggle functionality for enhanced user interaction.
+   *
+   * @return string|bool Returns the generated HTML string for the navigation menu if conditions are met.
+   *                     Returns false if prerequisites such as session or configuration are not met.
    */
   public function display(): string|bool
   {

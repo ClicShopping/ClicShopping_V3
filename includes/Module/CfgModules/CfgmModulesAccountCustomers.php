@@ -21,6 +21,11 @@ class CfgmModulesAccountCustomers
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method to initialize module-specific directory paths and title for account customers configuration module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

@@ -16,7 +16,10 @@ use ClicShopping\OM\HTTP;
 class HeaderOutputManifest
 {
   /**
-   * @return bool|string
+   * Generates and returns a string containing HTML meta tags and link elements
+   * required for manifest settings and Apple-specific application features.
+   *
+   * @return string The generated HTML content for manifest and Apple app meta tags.
    */
   public function display()
   {

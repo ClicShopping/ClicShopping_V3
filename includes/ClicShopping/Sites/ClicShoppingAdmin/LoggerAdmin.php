@@ -22,11 +22,23 @@ class LoggerAdmin
   public $timer_total;
 
 // class constructor
+
+  /**
+   * Constructor method that initializes the timer by invoking the timerStart method.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->timerStart();
   }
 
+  /**
+   * Initializes the timer by setting the start time.
+   * If a predefined constant PAGE_PARSE_START_TIME exists, it uses that value; otherwise, it uses the current time in microseconds.
+   *
+   * @return void
+   */
   public function timerStart()
   {
     if (defined("PAGE_PARSE_START_TIME")) {
@@ -37,8 +49,11 @@ class LoggerAdmin
   }
 
   /**
-   * @param bool $display
-   * @return string
+   * Stops the timer and calculates the total elapsed time since the timer started.
+   * Optionally displays the elapsed time if the parameter is set to true.
+   *
+   * @param bool $display Determines whether to display the elapsed time. Default is false.
+   * @return mixed Returns the elapsed time if $display is true, otherwise returns false.
    */
   public function timerStop(bool $display = false)
   {
@@ -59,7 +74,9 @@ class LoggerAdmin
   }
 
   /**
-   * @return string
+   * Displays the total parse time in a formatted string.
+   *
+   * @return string Returns a string indicating the parse time in seconds.
    */
   public function timerDisplay()
   {
@@ -67,8 +84,12 @@ class LoggerAdmin
   }
 
   /**
-   * @param $message
-   * @param $type
+   * Logs a message with a specified type if page parse time logging is enabled.
+   *
+   * @param string $message The message to be logged.
+   * @param string $type The type or category of the log message.
+   * @return string|false Returns a formatted string with the log entry if logging is enabled and the log file is writable,
+   *                      a warning string if the log file is not found or writable, or false if logging is disabled.
    */
   public static function write(string $message, string $type)
   {

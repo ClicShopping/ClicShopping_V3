@@ -21,6 +21,12 @@ class CfgmPayment
   public $title;
   public bool $template_integration = false;
 
+  /**
+   * Initializes the payment module configuration settings by retrieving the necessary directories
+   * and title definitions from the TemplateAdmin registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

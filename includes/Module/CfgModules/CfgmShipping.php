@@ -20,6 +20,11 @@ class CfgmShipping
   public $title;
   public bool $template_integration = false;
 
+  /**
+   * Constructor method for initializing the shipping module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

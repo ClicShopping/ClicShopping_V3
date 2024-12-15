@@ -21,6 +21,13 @@ class CfgmModulesProductsReviews
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method.
+   *
+   * Initializes the module configuration for product reviews by setting the directory paths and title.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

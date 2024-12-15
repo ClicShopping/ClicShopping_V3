@@ -21,6 +21,13 @@ class CfgmModulesShoppingCart
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Initializes the class by setting up the directory paths and title for the shopping cart module.
+   *
+   * Retrieves the necessary paths and definitions from the TemplateAdmin registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

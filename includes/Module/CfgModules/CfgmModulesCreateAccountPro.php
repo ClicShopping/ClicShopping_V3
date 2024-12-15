@@ -21,6 +21,11 @@ class CfgmModulesCreateAccountPro
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Initializes the class by setting up directory paths and language directory for the Create Account Pro module configuration.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
@@ -31,5 +36,3 @@ class CfgmModulesCreateAccountPro
     $this->title = CLICSHOPPING::getDef('module_cfg_module_create_account_pro_modules_title');
   }
 }
-
-?>

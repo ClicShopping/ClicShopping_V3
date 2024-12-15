@@ -15,6 +15,13 @@ use ClicShopping\OM\Registry;
 class AccountGdprCallDeleteCustomersInformations
 {
 
+  /**
+   * Resets customer information in the database including date of last logon, number of logons,
+   * account creation date, and account last modified date if a specific request to delete
+   * customer information is detected.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

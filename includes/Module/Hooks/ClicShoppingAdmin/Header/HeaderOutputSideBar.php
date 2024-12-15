@@ -15,7 +15,10 @@ use ClicShopping\OM\CLICSHOPPING;
 class HeaderOutputSideBar
 {
   /**
-   * @return string|bool
+   * Generates and returns the sidebar vertical menu script for admin users.
+   *
+   * @return string|bool Returns the generated HTML code as a string if the user is an admin,
+   *                     or false if the user is not an admin.
    */
   public function display(): string|bool
   {

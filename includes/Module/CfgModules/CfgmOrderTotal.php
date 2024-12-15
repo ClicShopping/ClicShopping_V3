@@ -21,6 +21,12 @@ class CfgmOrderTotal
   public $title;
   public bool $template_integration = false;
 
+  /**
+   * Initializes the constructor for the class. Sets the directory paths
+   * for modules and language files, and defines the title for the module configuration.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

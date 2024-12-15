@@ -13,7 +13,9 @@ namespace ClicShopping\OM\Module\Hooks\Shop\Header;
 class HeaderOutputJquery
 {
   /**
-   * @return string
+   * Generates and returns a script tag string for including the jQuery library.
+   *
+   * @return string The HTML script tag string for the jQuery library.
    */
   public function display(): string
   {

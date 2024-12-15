@@ -16,7 +16,10 @@ use ClicShopping\OM\HTML;
 class AccountGdprDeleteActionsRecorder
 {
   /**
-   * @return string
+   * Generates and returns HTML output for displaying a list group with specific elements,
+   * including an action recorder checkbox with a toggle switch UI.
+   *
+   * @return string The generated HTML output as a string.
    */
   public function display(): string
   {

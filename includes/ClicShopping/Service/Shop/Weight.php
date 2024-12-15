@@ -20,6 +20,11 @@ use ClicShopping\Apps\Configuration\Weight\Classes\Shop\Weight as WeightShop;
  */
 class Weight implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the WeightShop class if the required file exists.
+   *
+   * @return bool Returns true if the file exists and the class is instantiated, otherwise false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Configuration/Weight/Classes/Shop/Weight.php')) {
@@ -31,6 +36,10 @@ class Weight implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   *
+   * @return bool Returns true indicating the stop operation was successful.
+   */
   public static function stop(): bool
   {
     return true;

@@ -16,9 +16,11 @@ use ClicShopping\OM\Registry;
 class ApiGetSupplier
 {
   /**
-   * @param int|string $id
-   * @param int|string $language_id
-   * @return array
+   * Retrieves supplier data based on the provided supplier ID and language ID.
+   *
+   * @param int|string $id The supplier ID. This can be an integer or a string.
+   * @param int|string $language_id The language ID. This can be an integer or a string.
+   * @return array An array of supplier information, including supplier details such as name, contact information, and status.
    */
   private static function suppliers(int|string $id, int|string $language_id): array
   {
@@ -86,6 +88,14 @@ class ApiGetSupplier
     return $suppliers_data;
   }
 
+  /**
+   * Executes the function to process request data and retrieve supplier information.
+   *
+   * Validates the presence of required query parameters 'sId' and 'token', sanitizes inputs,
+   * and ensures that 'lId', if provided, is numeric. If validation fails, returns an error response.
+   *
+   * @return false|string Returns supplier data as a JSON-encoded string, or false if the required parameters are missing.
+   */
   public function execute()
   {
     if (isset($_GET['sId'], $_GET['token'])) {

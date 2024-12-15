@@ -13,7 +13,9 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 class FooterOutputSortable
 {
   /**
-   * @return string|bool
+   * Renders specific JavaScript code for a sortable functionality if certain conditions are met.
+   *
+   * @return string|bool Returns generated script code as a string if parameters and conditions are fulfilled; otherwise, returns false.
    */
   public function display(): string|bool
   {

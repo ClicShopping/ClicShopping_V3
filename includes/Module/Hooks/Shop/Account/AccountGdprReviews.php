@@ -22,7 +22,13 @@ class AccountGdprReviews
   protected $count;
 
   /**
-   * @return mixed
+   * Retrieves the review count for the current customer and returns the query result.
+   *
+   * This method connects to the database to count the number of reviews associated
+   * with the currently logged-in customer's ID. The count is stored as a class property,
+   * and the query result is returned.
+   *
+   * @return array|false Returns the fetched query result as an associative array. If no results are found, returns false.
    */
   private function getCheck()
   {
@@ -42,7 +48,13 @@ class AccountGdprReviews
   }
 
   /**
-   * @return string
+   * Generates and returns the HTML output for displaying GDPR-related review information.
+   *
+   * This method checks if the criteria for displaying the GDPR delete all reviews option are met.
+   * If so, it constructs an HTML block showcasing the delete reviews option with a checkbox and
+   * related information, including the count of reviews.
+   *
+   * @return string Returns the generated HTML output as a string. If no output is generated, returns an empty string.
    */
   public function display(): string
   {

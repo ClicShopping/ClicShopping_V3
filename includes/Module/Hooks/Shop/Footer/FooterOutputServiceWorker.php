@@ -13,7 +13,9 @@ namespace ClicShopping\OM\Module\Hooks\Shop\Footer;
 class FooterOutputServiceWorker
 {
   /**
-   * @return bool|string
+   * Generates and returns a JavaScript script block that includes a service worker registration implementation for offline functionality.
+   *
+   * @return string The generated script block as a string.
    */
   public function display(): string
   {

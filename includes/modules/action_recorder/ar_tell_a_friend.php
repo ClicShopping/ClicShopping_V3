@@ -30,6 +30,11 @@ class ar_tell_a_friend
   public $enabled = true;
   public $group;
 
+  /**
+   * Constructor method for initializing the class properties.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->code = get_class($this);
@@ -46,11 +51,22 @@ class ar_tell_a_friend
     }
   }
 
+  /**
+   * Sets the identifier property to the current IP address obtained via HTTP request.
+   *
+   * @return void
+   */
   public function setIdentifier()
   {
     $this->identifier = HTTP::getIpAddress();
   }
 
+  /**
+   * Determines if an action can be performed based on user ID, identifier, and defined time limits.
+   *
+   * @param int|null $user_id The ID of the user attempting the action. Can be null.
+   * @return bool Returns true if the action can be performed, false otherwise.
+   */
   public function canPerform($user_id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -90,6 +106,12 @@ class ar_tell_a_friend
     return true;
   }
 
+  /**
+   * Deletes expired entries from the action recorder table based on the module code and a time interval.
+   * The time interval is determined by the value of the "minutes" property.
+   *
+   * @return int The number of rows deleted from the action recorder table.
+   */
   public function expireEntries()
   {
     $Qdel = Registry::get('Db')->prepare('delete
@@ -105,11 +127,21 @@ class ar_tell_a_friend
     return $Qdel->rowCount();
   }
 
+  /**
+   * Checks if the constant 'MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES' is defined.
+   *
+   * @return bool Returns true if the constant is defined, otherwise false.
+   */
   public function check()
   {
     return \defined('MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES');
   }
 
+  /**
+   * Installs the configuration settings for the "tell a friend" email action recorder module.
+   *
+   * @return void
+   */
   public function install()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -126,11 +158,22 @@ class ar_tell_a_friend
     );
   }
 
+  /**
+   * Removes entries from the configuration table in the database where the configuration_key matches
+   * the keys provided by the `keys` method.
+   *
+   * @return bool|int Returns the number of affected rows on success, or false on failure.
+   */
   public function remove()
   {
     return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
+  /**
+   * Retrieves an array of configuration keys related to the Tell A Friend email action recorder module.
+   *
+   * @return array An array containing the configuration keys.
+   */
   public function keys()
   {
     return array('MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES');

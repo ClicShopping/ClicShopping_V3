@@ -15,7 +15,10 @@ use ClicShopping\OM\CLICSHOPPING;
 class HeaderOutputSmartMenus
 {
   /**
-   * @return bool|string
+   * Generates and returns the HTML output for SmartMenus integration if the admin session is set
+   * and vertical menu configuration is disabled.
+   *
+   * @return string|bool Returns the HTML output as a string when the conditions are met, or false otherwise.
    */
   public function display(): string|bool
   {

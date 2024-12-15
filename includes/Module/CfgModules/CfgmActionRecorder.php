@@ -22,6 +22,11 @@ class CfgmActionRecorder
   public $title;
   public bool $template_integration = false;
 
+  /**
+   * Initializes the class by setting the directory paths and title based on the template and language configuration.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

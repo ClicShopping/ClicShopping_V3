@@ -15,9 +15,23 @@ use ClicShopping\OM\Registry;
 use function is_array;
 use function is_null;
 
+/**
+ * Class ActionStatsCountStatus
+ *
+ * This class is responsible for querying and displaying the count of orders
+ * based on their status in an administrative interface. It retrieves the
+ * orders data from the database and dynamically generates the corresponding
+ * HTML elements to display this information.
+ */
 class ActionStatsCountStatus
 {
 
+  /**
+   * Initializes the class instance and ensures that the current site is ClicShoppingAdmin.
+   * Redirects if the condition is not met.
+   *
+   * @return void
+   */
   public function __construct()
   {
 
@@ -26,6 +40,13 @@ class ActionStatsCountStatus
     }
   }
 
+  /**
+   * Executes the process of retrieving and displaying order statuses along with the count of orders
+   * associated with each status. This function fetches order status data from the database, counts
+   * the pending orders for each status, and generates a formatted output for display.
+   *
+   * @return void Outputs the result directly, displaying order statuses and counts if applicable.
+   */
   public function execute()
   {
 

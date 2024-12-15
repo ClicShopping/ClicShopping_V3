@@ -30,6 +30,12 @@ abstract class ConfigParamAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the object by setting the code and key properties
+   * based on the class name and a key prefix, and calls the init method.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->code = (new ReflectionClass($this))->getShortName();
@@ -39,6 +45,11 @@ abstract class ConfigParamAbstract
     $this->init();
   }
 
+  /**
+   * Retrieves the input value for the current key. If the key is not defined, the default value (if set) is returned.
+   *
+   * @return mixed The retrieved value associated with the key, or the default value if the key is not defined.
+   */
   protected function getInputValue()
   {
     $key = mb_strtoupper($this->key);
@@ -51,6 +62,11 @@ abstract class ConfigParamAbstract
     return $value;
   }
 
+  /**
+   * Retrieves the input field HTML element for the given key and input value.
+   *
+   * @return string The HTML string of the input field.
+   */
   public function getInputField()
   {
     $input = HTML::inputField($this->key, $this->getInputValue());
@@ -58,6 +74,10 @@ abstract class ConfigParamAbstract
     return $input;
   }
 
+  /**
+   *
+   * @return string The generated HTML structure, incorporating the input field, title, and description.
+   */
   public function getSetField()
   {
     $input = $this->getInputField();

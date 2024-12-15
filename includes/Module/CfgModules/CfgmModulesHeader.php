@@ -21,6 +21,11 @@ class CfgmModulesHeader
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Initializes the module configuration for the header module by setting the directory paths and title.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

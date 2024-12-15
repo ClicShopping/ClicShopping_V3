@@ -20,12 +20,14 @@ use ClicShopping\OM\Registry;
 class pdfInvoice extends FPDF
 {
   /**
-   * @param $x
-   * @param $y
-   * @param $w
-   * @param $h
-   * @param $r
-   * @param $style
+   * Draws a rounded rectangle on the page.
+   *
+   * @param float $x The x-coordinate of the top-left corner of the rectangle.
+   * @param float $y The y-coordinate of the top-left corner of the rectangle.
+   * @param float $w The width of the rectangle.
+   * @param float $h The height of the rectangle.
+   * @param float $r The radius of the rounded corners.
+   * @param string $style The drawing style ('D' for draw, 'F' for fill, 'DF' or 'FD' for both draw and fill). Default is an empty string.
    * @return void
    */
   public function roundedRect($x, $y, $w, $h, $r, $style = '')
@@ -62,6 +64,18 @@ class pdfInvoice extends FPDF
     $this->_out($op);
   }
 
+  /**
+   * Draws a cubic Bézier curve between three control points.
+   *
+   * @param float $x1 The x-coordinate of the first control point.
+   * @param float $y1 The y-coordinate of the first control point.
+   * @param float $x2 The x-coordinate of the second control point.
+   * @param float $y2 The y-coordinate of the second control point.
+   * @param float $x3 The x-coordinate of the third control point.
+   * @param float $y3 The y-coordinate of the third control point.
+   *
+   * @return void
+   */
   public function _Arc($x1, $y1, $x2, $y2, $x3, $y3)
   {
     $h = $this->h;
@@ -70,6 +84,8 @@ class pdfInvoice extends FPDF
   }
 
   /**
+   * Generates the header section for an invoice, including the company logo, name, address, email, and website URL.
+   *
    * @return void
    */
   public function Header(): void
@@ -119,6 +135,12 @@ class pdfInvoice extends FPDF
   }
 
   /**
+   * Adds footer content to the document.
+   *
+   * Formats and positions various elements in the footer, including customer appreciation text,
+   * legal property information, company details, and additional information.
+   * Displays differing information based on configuration settings (e.g., DISPLAY_DOUBLE_TAXE).
+   *
    * @return void
    */
   public function Footer():void

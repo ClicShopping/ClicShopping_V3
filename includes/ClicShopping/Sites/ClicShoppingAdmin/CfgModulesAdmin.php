@@ -24,6 +24,14 @@ class CfgModulesAdmin
   public array $_modules = [];
   private mixed $lang;
 
+  /**
+   * Constructor method.
+   *
+   * Initializes module configuration objects by dynamically loading classes from the specified module directory.
+   * Each loaded module's metadata is stored in the `_modules` property for later use.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
@@ -59,7 +67,9 @@ class CfgModulesAdmin
   }
 
   /**
-   * @return array
+   * Retrieves all modules.
+   *
+   * @return array An array containing all modules.
    */
   public function getAll()
   {
@@ -67,9 +77,11 @@ class CfgModulesAdmin
   }
 
   /**
-   * @param string $code
-   * @param string $key
-   * @return mixed
+   * Retrieves the value of a specific key from a module identified by its code.
+   *
+   * @param string $code The identifier code of the module to search for.
+   * @param string $key The key within the module array whose value is to be retrieved.
+   * @return mixed|null Returns the value of the specified key if the module and key exist, otherwise null.
    */
   public function get(string $code, string $key)
   {
@@ -83,8 +95,10 @@ class CfgModulesAdmin
   }
 
   /**
-   * @param $code
-   * @return bool
+   * Checks if a module with the specified code exists within the module list.
+   *
+   * @param string $code The code of the module to search for.
+   * @return bool Returns true if the module with the specified code exists, false otherwise.
    */
   public function exists($code): bool
   {
@@ -100,8 +114,10 @@ class CfgModulesAdmin
   }
 
   /**
-   * @param string $modules
-   * @return int
+   * Counts the number of enabled modules from a semicolon-separated string of module names.
+   *
+   * @param string $modules A semicolon-separated string containing module names. Each module name is expected to include a file extension.
+   * @return int The count of enabled modules.
    */
   public function countModules(string $modules = ''): int
   {

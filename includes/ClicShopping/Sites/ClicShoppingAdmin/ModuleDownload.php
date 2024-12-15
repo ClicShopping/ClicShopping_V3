@@ -26,11 +26,10 @@ use function is_array;
 class ModuleDownload
 {
   /**
-   * Directory template with a drop down for all template
+   * Retrieves a list of all valid template directories and generates an HTML select menu for configuration.
    *
-   * @param string  all_template
-   * @return string configuration_value, $filename_array,  $template_directory, the directory name
-   *
+   * @param string $value The current selected value for the configuration dropdown menu.
+   * @return string Returns the generated HTML select menu for the list of template directories.
    */
 
   public static function cfgPullDownAllTemplateDirectorylist($value)
@@ -55,13 +54,12 @@ class ModuleDownload
   }
 
   /**
-   * Copy file or folder from source to destination, it can do
-   * recursive copy as well and is very smart
-   * It recursively creates the dest file or directory path if there weren't exists
-   * @param $source //file or folder
-   * @param $dest ///file or folder
-   * @param $options //folderPermission,filePermission
-   * @return boolean
+   * Recursively copies files and directories from a source path to a destination path,
+   * while excluding specific files.
+   *
+   * @param string $source The source directory or file to copy from.
+   * @param string $dest The destination directory where the content will be copied.
+   * @return void
    */
   public static function smartCopy($source, $dest)
   {
@@ -87,9 +85,14 @@ class ModuleDownload
     }
   }
 
-  /*
-   * Delete directory
-   * param $dest string : folder path
+  /**
+   * Removes a directory or a file from the given path.
+   *
+   * If the provided path is a directory, it recursively deletes all files and subdirectories.
+   * If the provided path is a file or a link, it deletes the file or link directly.
+   *
+   * @param string $source The path of the directory or file to be removed.
+   * @return bool Returns true on success or false on failure.
    */
   public static function removeDirectory($source)
   {

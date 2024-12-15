@@ -67,6 +67,12 @@ class Template
   protected string $setSiteThema;
   protected string $getPathDirectoryTemplateThema;
 
+  /**
+   * Constructor method that initializes the title, description, keywords, and newskeywords properties,
+   * and adds predefined meta tag blocks to the header tags.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->_title = HTML::sanitize(STORE_NAME);
@@ -77,21 +83,42 @@ class Template
     $this->addBlock('<meta name="author" content="ClicShopping" />', 'header_tags');
   }
 
+  /**
+   * Sets the value of the code sail.
+   *
+   * @param mixed $_codeSail The value to set for the code sail.
+   * @return void
+   */
   public function setCodeSail($_codeSail): void
   {
     $this->_code = $_codeSail;
   }
 
+  /**
+   * Retrieves the value of the code sail.
+   *
+   * @return string The current value of the code sail.
+   */
   public function getCodeSail(): string
   {
     return $this->_codeSail;
   }
 
+  /**
+   * Retrieves the code associated with the object.
+   *
+   * @return string The code value of the object.
+   */
   public function getCode(): string
   {
     return $this->_template;
   }
 
+  /**
+   * Retrieves the root directory path of the shop.
+   *
+   * @return string The root directory path.
+   */
   public function getPathRoot(): string
   {
     $path_root = CLICSHOPPING::getConfig('dir_root', 'Shop');
@@ -99,29 +126,57 @@ class Template
     return $path_root;
   }
 
+  /**
+   * Retrieves the full path to the template source directory.
+   *
+   * @return string The full path of the template source directory.
+   */
   public function getTemplateSource(): string
   {
     return $this->getPathRoot() . $this->_directoryTemplateSources; //sources
   }
 
+  /**
+   * Retrieves the template directory path.
+   *
+   * @return string The combined path of the template sources directory and the template directory.
+   */
   public function getTemplateDirectory(): string
   {
     return $this->_directoryTemplateSources . $this->_directoryTemplate; //sources/template
   }
 
 //sources/template/Default
+
+  /**
+   * Retrieves the default template directory path.
+   *
+   * @return string The concatenated path to the default template directory.
+   */
   public function getDefaultTemplateDirectory(): string
   {
     return $this->_directoryTemplateSources . $this->_directoryTemplate . $this->_directoryTemplateDefault; // 'sources/template/Default
   }
 
 //sources/template/templatename
+
+  /**
+   * Retrieves the directory path for the dynamic template.
+   *
+   * @return string The constructed path for the dynamic template directory.
+   */
   public function getDynamicTemplateDirectory(): string
   {
     return $this->_directoryTemplateSources . $this->_directoryTemplate . $this->_dynamicTemplate; // 'sources/template/SITE_THEMA
   }
 
 // sources/images/
+
+  /**
+   * Retrieves the concatenated path to the directory containing template images.
+   *
+   * @return string The complete path to the template images directory.
+   */
   public function getDirectoryTemplateImages(): string
   {
     return $this->_directoryTemplateSources . $this->_directoryTemplateImages; //sources/images/
@@ -131,26 +186,53 @@ class Template
 //           Boostrap
 //******************************************
 
+  /**
+   * Sets the width of the grid container.
+   *
+   * @param mixed $width The desired width of the grid container.
+   * @return void
+   */
   public function setGridContainerWidth($width): void
   {
     $this->_grid_container_width = $width;
   }
 
+  /**
+   * Retrieves the width of the grid container.
+   *
+   * @return int|null The width of the grid container, or null if not set.
+   */
   public function getGridContainerWidth()
   {
     return $this->_grid_container_width;
   }
 
+  /**
+   * Sets the content width of the grid.
+   *
+   * @param mixed $width The width to set for the grid content.
+   * @return void
+   */
   public function setGridContentWidth($width): void
   {
     $this->_grid_content_width = $width;
   }
 
+  /**
+   * Retrieves the width of the grid content.
+   *
+   * @return mixed The width of the grid content.
+   */
   public function getGridContentWidth()
   {
     return $this->_grid_content_width;
   }
 
+  /**
+   * Calculates and retrieves the width of a grid column.
+   *
+   * @return float|int The calculated width of the grid column.
+   */
   public function getGridColumnWidth(): float|int
   {
     $width = ((12 - GRID_CONTENT_WITH) / 2);
@@ -158,7 +240,10 @@ class Template
   }
 
   /**
-   * @param string|null $title
+   * Sets the title value.
+   *
+   * @param string|null $title The title to set, or null to unset the title.
+   * @return void
    */
   public function setTitle(?string $title): void
   {
@@ -166,7 +251,9 @@ class Template
   }
 
   /**
-   * @return string|null
+   * Retrieves the title.
+   *
+   * @return string|null The title, or null if not set.
    */
   public function getTitle(): ?string
   {
@@ -174,7 +261,10 @@ class Template
   }
 
   /**
-   * @param string|null $description
+   * Sets the description for the object.
+   *
+   * @param string|null $description The description to set.
+   * @return void
    */
   public function setDescription(?string $description): void
   {
@@ -182,7 +272,9 @@ class Template
   }
 
   /**
-   * @return string
+   * Retrieves the description.
+   *
+   * @return string|null The description or null if not set.
    */
   public function getDescription(): ?string
   {
@@ -190,7 +282,10 @@ class Template
   }
 
   /**
-   * @param string|null $keywords
+   * Sets the keywords property.
+   *
+   * @param string|null $keywords The keywords to be assigned, or null to unset it.
+   * @return void
    */
   public function setKeywords(?string $keywords): void
   {
@@ -198,20 +293,29 @@ class Template
   }
 
   /**
-   * @return string|null
+   * Retrieves the keywords.
+   *
+   * @return string|null The keywords or null if not set.
    */
   public function getKeywords(): ?string
   {
     return $this->_keywords;
   }
 
+  /**
+   *
+   * @param string|null $Newskeywords The keywords related to the news item.
+   * @return void
+   */
   public function setNewsKeywords(?string $Newskeywords)
   {
     $this->_newskeywords = $Newskeywords;
   }
 
   /**
-   * @return string|null
+   * Retrieves the news keywords.
+   *
+   * @return string|null The news keywords if set, or null if not set.
    */
   public function getNewsKeywords(): ?string
   {
@@ -219,8 +323,11 @@ class Template
   }
 
   /**
-   * @param $block
-   * @param $group
+   * Adds a block to a specified group.
+   *
+   * @param string $block The block content to be added.
+   * @param string $group The name of the group to which the block belongs.
+   * @return void
    */
   public function addBlock(string $block, string $group): void
   {
@@ -232,8 +339,10 @@ class Template
   }
 
   /**
-   * @param string $group
-   * @return bool
+   * Checks if the specified group has associated blocks.
+   *
+   * @param string $group The group name to check for blocks.
+   * @return bool True if the group has blocks, false otherwise.
    */
   public function hasBlocks(string $group): bool
   {
@@ -241,7 +350,9 @@ class Template
   }
 
   /**
-   * return all HeaderTags files in apps Hooks
+   * Processes and outputs the header tags for installed modules.
+   *
+   * @return
    */
   public function getAppsHeaderTags(): void
   {
@@ -262,8 +373,10 @@ class Template
   }
 
   /**
-   * @param $group
-   * @return string
+   * Retrieves the blocks associated with a specific group.
+   *
+   * @param string $group The name of the group for which to retrieve the blocks.
+   * @return string The concatenated string of blocks for the specified group. Returns
    */
   public function getBlocks($group): string
   {
@@ -274,11 +387,11 @@ class Template
     }
   }
 
-  /*
-   * getfile inside a directory
-   * @param : $file name of the file
-   * @param : $template : template directory
-   * /www/
+  /**
+   * Retrieves the full path to a specified file within a template directory.
+   *
+   * @param string $file The name of the file to retrieve the path for.
+   * @param string|null $template The
    */
   public function getFile(string $file, string $template = null): string
   {
@@ -289,11 +402,11 @@ class Template
     return CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Templates/' . $template . DIRECTORY_SEPARATOR . $file;
   }
 
-  /*
-   * getPublicFile relative path
-   * @param : $file name of the file
-   * @param : $template : template directory
-   * /www/
+  /**
+   * Retrieves the public file path based on the provided file name and template.
+   *
+   * @param string $file The name of the file to retrieve.
+   * @param string|null $template The template to use for the
    */
   public function getPublicFile(string $file, string $template = null): string
   {
@@ -305,8 +418,13 @@ class Template
   }
 
   /**
-   * scan directory to create a dropdown
-   * @return string
+   * Retrieves the selected template dropdown menu for a customer.
+   *
+   * This method scans the template directory, filters out unwanted files and directories,
+   * and constructs an HTML dropdown menu for selecting templates. The dropdown includes
+   * a default option and dynamically adds available template directories.
+   *
+   * @return string The HTML string for the dropdown menu of selected templates.
    */
 
   public function getDropDownSelectedTemplateByCustomer(): string
@@ -338,9 +456,10 @@ class Template
   }
 
   /**
-   * Select a default template
-   * @param string|null $thema_directory
-   * @return string
+   * Sets the site theme directory.
+   *
+   * @param string|null $thema_directory The directory path for the site theme, or null to use the default setup.
+   * @return string The resolved theme directory path.
    */
   public function setSiteThema(?string $thema_directory = null): string
   {
@@ -356,9 +475,9 @@ class Template
   }
 
   /**
-   * Select the language directory
-   * @param string
-   * DIR_WS_LANGUAGES - sources/languages
+   * Retrieves the directory path for site template languages.
+   *
+   * @return string The concatenated path of template source and language directories.
    */
 
   public function getSiteTemplateLanguageDirectory(): string
@@ -367,10 +486,9 @@ class Template
   }
 
   /**
-   * Select the language directory
-   * @param string
-   * DIR_WS_MODULES - includes/modules
+   * Retrieves the module directory path.
    *
+   * @return string The path to the module directory.
    */
   public function getModuleDirectory(): string
   {
@@ -378,9 +496,10 @@ class Template
   }
 
   /**
-   * get path download
-   * @param string|null $directory
-   * @return string
+   * Retrieves the path to the shop's download directory.
+   *
+   * @param string|null $directory The specific directory to append to the base path. If null, the default 'public' directory is used.
+   * @return string The full path to the specified or default download directory.
    */
   public function getPathDownloadShopDirectory(?string $directory = null): string
   {
@@ -394,10 +513,9 @@ class Template
   }
 
   /**
-   * Select the default template module directtory
-   * @param string
-   * DIR_WS_TEMPLATE . SITE_THEMA . DIR_WS_TEMPLATE_MODULES
+   * Retrieves the directory path for the site template module.
    *
+   * @return string The concatenated path to the site template module directory.
    */
 
   public function getSiteTemplateModuleDirectory(): string
@@ -406,9 +524,13 @@ class Template
   }
 
   /**
-   * Select the default template and verify if it exist
+   * Retrieves the path to the directory of the theme template.
    *
-   * @return string
+   * Determines the theme directory path based on the existence of specific files
+   * within the defined paths. If none are found, it redirects to an error page.
+   * Will also use the demo template path if it is defined.
+   *
+   * @return string The path to the theme template directory.
    */
 
   public function getPathDirectoryTemplateThema(): string
@@ -430,8 +552,10 @@ class Template
   }
 
   /**
-   * Demo approach
-   * @return string
+   * Retrieves the path template for the selected theme or default theme based on the module configuration
+   * and user selection.
+   *
+   * @return string The path to the selected theme template, or an empty string if no theme is selected or configured.
    */
   public function getPathTemplateDemo()
   {
@@ -459,11 +583,11 @@ class Template
   }
 
   /**
-   * Compare a string with an array
-   * @param array $needles
-   * @param string $haystack
-   * @return bool true / false
+   * Checks if any of the specified needles are found within the haystack string.
    *
+   * @param array $needles The array of strings to search for in the haystack.
+   * @param string $haystack The string in which to search for the needles.
+   * @return bool Returns true if at least one needle is found in the haystack; otherwise, returns false.
    */
   public static function match(array $needles, string $haystack): bool
   {
@@ -476,9 +600,10 @@ class Template
   }
 
   /**
-   * Scan all the directories inside the default template
-   * @param string $source_folder
-   * @return array
+   * Retrieves the default directories for read modules based on the specified source folder.
+   *
+   * @param string $source_folder The prefix of the source folder to read. Defaults to 'modules_'.
+   * @return array An array of module directory names relative to the base directory.
    */
 
   public function getReadModulesDefaultDirectories(string $source_folder = 'modules_'): array
@@ -499,7 +624,11 @@ class Template
   }
 
   /**
-   * return void
+   * Builds and initializes the blocks for specific module groups.
+   * This method dynamically includes and executes modules based on the configuration
+   * and group types defined within the template block groups.
+   *
+   * @return void
    */
 
   public function buildBlocks(): void
@@ -629,9 +758,14 @@ class Template
   }
 
   /**
-   * Allow to display or remove information on the catalog
-   * @param string $string
-   * @return mixed
+   * Retrieves a URL without the Search Engine Friendly URL (SEFU) parameters.
+   *
+   * This method processes the current URL to generate a simplified version by removing
+   * language, currency, or category query string parameters if present and adapting
+   * the URL based on SEO configurations.
+   *
+   * @param string $string A delimiter character used for processing certain parts of the URL, defaulting to '/'.
+   * @return string The modified URL string without SEFU parameters.
    */
   public function getUrlWithoutSEFU(string $string = '/'): string
   {
@@ -693,11 +827,10 @@ class Template
   }
 
   /**
-   * Select the header or footer of the template
+   * Retrieves the path of the template header or footer file based on the specified name.
    *
-   * @param string $name , header or footer of the template
-   * sources/template/Default/header.php
-   *
+   * @param string $name The name of the template file to retrieve.
+   * @return string The full path of the template file.
    */
   public function getTemplateHeaderFooter(string $name): string
   {
@@ -712,10 +845,10 @@ class Template
   }
 
   /**
-   * Select the css in directory of the template by language
+   * Retrieves the path to the template CSS file based on the current language and theme configuration.
+   * If the specific CSS file is not found, it defaults to a predefined directory.
    *
-   * @param string $themaGraphism , css directory in the template
-   *
+   * @return string The URL to the template CSS file.
    */
   public function getTemplateCSS(): string
   {
@@ -736,10 +869,10 @@ class Template
 
 
   /**
-   * Select the the file in this directory Files
+   * Retrieves the full path of a template file based on the given name.
    *
-   * @param string $name
-   * @return string
+   * @param string $name The name of the template file to retrieve.
+   * @return string The full path of the template file.
    */
   public function getTemplateFiles(string $name): string
   {
@@ -753,10 +886,10 @@ class Template
   }
 
   /**
-   * Select the the file in this directory module
+   * Retrieves the file path for a template module based on the provided module name.
    *
-   * @param string $name
-   * @return string
+   * @param string $name The name of the template module to retrieve.
+   * @return string The file path of
    */
   public function getTemplateModules(string $name): string
   {
@@ -771,11 +904,10 @@ class Template
   }
 
   /**
-   * Select the the filename in this directory Modules
+   * Retrieves the full path to the template module file based on the specified name.
    *
-   * @param string $themaFilename , filename in this module
-   * ex: sources/template/Default/modules/modules_header/template_html/multi_template_test.php
-   *
+   * @param string $name The name of the template module file.
+   * @return string The full path to the template
    */
   public function getTemplateModulesFilename(string $name): string
   {
@@ -790,10 +922,10 @@ class Template
   }
 
   /**
-   * Select the file language in function the the file for the template
+   * Gets the path to the directory of the template language files for a given file name.
    *
-   * @param string $name
-   * @return string
+   * @param string $name The name of the language file to locate.
+   * @return string The path to the template language file.
    */
 
   public function getPathDirectoryTemplatetLanguageFiles(string $name): string
@@ -813,10 +945,10 @@ class Template
   }
 
   /**
-   * public
-   * Select the javascript for all template
-   * @param $name $name of the js
-   * @return string $javascript, directory of javascript in the template directory
+   * Retrieves the default JavaScript path for a given template name.
+   *
+   * @param string $name The name of the JavaScript file.
+   * @return string The full path to the JavaScript file.
    */
   public function getTemplateDefaultJavaScript(string $name): string
   {
@@ -826,10 +958,10 @@ class Template
   }
 
   /**
-   * public
-   * Select the javascript inside a specific theme directory
-   * @param $name $name of the js string
-   * @return string $javascript, directory of javascript in the template directory
+   * Retrieves the file path of the JavaScript file for the specified template theme.
+   *
+   * @param string $name The name of the JavaScript file to retrieve.
+   * @return string The file path
    */
   public function getTemplateThemaJavaScript(string $name): string
   {
@@ -843,12 +975,12 @@ class Template
   }
 
   /**
-   * Select all the files inside directory
-   * @param string $source_folder , directory
-   * @param string $filename , name of the file
-   * @param string $ext , file extension
-   * @return
+   * Retrieves a list of specific files from a given folder, filtered by filename and extension.
    *
+   * @param string $source_folder The folder path to search for files.
+   * @param string $filename The name of the files to match.
+   * @param string $ext The file extension to filter by. Defaults to 'php'.
+   * @return array|null An array of specific files with their names or null if no valid files are found.
    */
   public function getSpecificFiles(string $source_folder, string $filename, string $ext = 'php')
   {
@@ -875,11 +1007,14 @@ class Template
   }
 
   /**
-   * Allow display or call Module Hooks for template
-   * @param string $source_folder
-   * @param string $file_get_output
-   * @param string $files_get_call
-   * @param string $hook_call
+   * Executes recursive hooks for a given template by processing specific files
+   * and invoking hook outputs and calls for each file.
+   *
+   * @param string $source_folder The directory to scan for specific files.
+   * @param string $file_get_output The type of files to process for hook output.
+   * @param string $files_get_call The type of files to process for hook calls.
+   * @param string $hook_call The hook group or identifier to execute.
+   * @return void
    */
   public function useRecursiveModulesHooksForTemplate(string $source_folder, string $file_get_output, string $files_get_call, string $hook_call)
   {

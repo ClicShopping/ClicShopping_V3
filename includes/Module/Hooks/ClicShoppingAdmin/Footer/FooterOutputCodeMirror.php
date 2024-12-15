@@ -13,7 +13,9 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 class FooterOutputCodeMirror
 {
   /**
-   * @return string|bool
+   * Generates and returns a script for CodeMirror editor setup if the user is an admin.
+   *
+   * @return string|bool Returns the generated output as a string if the user is an admin, or false otherwise.
    */
   public function display(): string|bool
   {

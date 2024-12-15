@@ -15,7 +15,9 @@ use ClicShopping\OM\Registry;
 class HeaderOutputAMetaHeader
 {
   /**
-   * @return string
+   * Generates and returns the output string containing app header tags and header tag blocks.
+   *
+   * @return string Concatenated string consisting of app header tags and header tag blocks.
    */
   public function display(): string
   {

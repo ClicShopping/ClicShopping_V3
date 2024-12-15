@@ -23,6 +23,12 @@ class Composer
   protected static string $root;
   protected static string $composerJson;
 
+  /**
+   * Initializes the class by setting the root directory, composer.json file path,
+   * and defining the composer environment variables.
+   *
+   * @return void
+   */
   public function __construct()
   {
     static::$root = CLICSHOPPING::getConfig('dir_root', 'Shop');
@@ -35,8 +41,10 @@ class Composer
   }
 
   /**
-   * Check if exec is enabled
-   * @return bool
+   * Checks if the 'exec' function is enabled on the server by inspecting the
+   * 'disable_functions' directive from the PHP configuration.
+   *
+   * @return bool Returns true if the 'exec' function is enabled, false otherwise.
    */
   public static function checkExecEnabled(): bool
   {
@@ -46,8 +54,14 @@ class Composer
   }
 
   /**
-   * check if composer is installed
-   * @return bool
+   * Checks if Composer is installed and accessible in the current environment.
+   *
+   * This method verifies if the system has Composer installed by first checking
+   * if the execution of shell commands is enabled. If execution is allowed,
+   * it attempts to run `composer show` in the root directory. The method
+   * returns true if the command executes successfully; otherwise, it returns false.
+   *
+   * @return bool Returns true if Composer is installed and accessible, false otherwise.
    */
   public static function checkComposerInstalled(): bool
   {
@@ -66,8 +80,10 @@ class Composer
   }
 
   /**
-   * check if a libray is installed
-   * @return bool
+   * Checks if a specific library is installed using Composer.
+   *
+   * @param string|null $libray The name of the library to check. Defaults to null.
+   * @return bool Returns true if the library is installed and command execution is enabled, otherwise false.
    */
   public static function checkLibrayInstalled($libray = null): bool
   {
@@ -86,8 +102,11 @@ class Composer
   }
 
   /**
-   * Check if exec or composer is authorise or installed
-   * @return bool
+   * Verifies if the necessary conditions for executing commands are met.
+   *
+   * This method checks whether Composer is installed and the `exec` function is enabled.
+   *
+   * @return bool Returns true if Composer is installed and the `exec` function is enabled, otherwise false.
    */
   private static function checkExecute(): bool
   {
@@ -99,10 +118,11 @@ class Composer
   }
 
   /**
-   * To add inside a function with exit to see the result
-   * @param $output
-   * @param $return
-   * @return string
+   * Combines the provided output and return parameters into a formatted string.
+   *
+   * @param mixed $output The output to be included in the debug string.
+   * @param string $return The return value to append to the debug string.
+   * @return string The formatted debug string.
    */
   public function debug($output, $return): string
   {
@@ -111,9 +131,10 @@ class Composer
   }
 
   /**
-   * check if online version
-   * @param null $library
-   * @return string|null
+   * Checks the online version of a specified library using Composer.
+   *
+   * @param string|null $library The name of the library whose version is to be checked. If null, the function will return false.
+   * @return string|false The version information of the specified library if successful, or false if an error occurs or the library is not provided.
    */
   public static function checkOnlineVersion($library = null)
   {
@@ -138,8 +159,9 @@ class Composer
   }
 
   /**
-   * List library installed
-   * @return array
+   * Retrieves the list of required libraries from the composer.json file.
+   *
+   * @return array An associative array of libraries and their version constraints, or an empty array if the file does not exist.
    */
   public static function getLibrary(): array
   {
@@ -155,9 +177,10 @@ class Composer
   }
 
   /**
-   * Update one or all library
-   * @param null $library
-   * @return string
+   * Updates all composer dependencies or a specific library if provided.
+   *
+   * @param string|null $library The name of the specific library to update. If null, updates all dependencies.
+   * @return string The output message from the update operation, typically the third line of the composer output.
    */
   public static function update($library = null)
   {
@@ -184,9 +207,10 @@ class Composer
 
 
   /**
-   * Install a new library
-   * @param null $library
-   * @return bool|mixed
+   * Installs a specified library using Composer if execution is enabled.
+   *
+   * @param string|null $library The name of the library to install. If null, installation will not proceed.
+   * @return string|bool Returns the output message of the installation process or false if the library parameter is null.
    */
   public static function install($library = null)
   {
@@ -209,9 +233,11 @@ class Composer
   }
 
   /**
-   * remove ibrary
-   * @param null $library
-   * @return bool|mixed
+   *
+   * Removes a specified library using composer if execution of commands is enabled.
+   *
+   * @param string|null $library The name of the library to remove. Defaults to null.
+   * @return string The result message from the remove operation.
    */
   public static function remove($library = null): string
   {
@@ -230,8 +256,9 @@ class Composer
   }
 
   /**
-   * Clear composer cache
-   * @return string
+   * Clears the cache by executing the composer clearcache command.
+   *
+   * @return string The result of the cache clearing operation, typically a message or output from the command execution.
    */
   public static function clearCache(): string
   {

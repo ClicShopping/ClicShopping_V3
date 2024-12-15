@@ -39,6 +39,24 @@ class Shop extends \ClicShopping\OM\SitesAbstract
   protected static ?string $_application;
   protected array $ignored_actions;
 
+  /**
+   * Initializes the essential components and services required for the application.
+   * This method sets up the following:
+   * - Cookies management
+   * - Database connection
+   * - Hooks system
+   * - Application configuration and settings
+   * - Session management and handling
+   * - Security measures
+   * - Template system
+   * - Language configurations
+   * - Shopping cart actions
+   * - WhosOnline tracking and updates
+   * - Service execution
+   * - Breadcrumb initialization
+   *
+   * @return void
+   */
   protected function init()
   {
     $CLICSHOPPING_Cookies = new Cookies();
@@ -133,6 +151,19 @@ class Shop extends \ClicShopping\OM\SitesAbstract
     $CLICSHOPPING_Breadcrumb->getCategoriesManufacturer();
   }
 
+  /**
+   * Sets the current page based on the default page, GET request parameters, or routing configuration.
+   *
+   * This method determines the appropriate controller class for the requested page
+   * and initializes it. If a valid page controller is identified, the class must
+   * implement the `ClicShopping\OM\PagesInterface` interface. The method will execute
+   * any actions associated with the page.
+   *
+   * The selection process prioritizes custom namespaces over default namespaces,
+   * and uses routing information or GET request parameters to resolve the page code.
+   *
+   * @return void
+   */
   public function setPage(): void
   {
 
@@ -185,9 +216,16 @@ class Shop extends \ClicShopping\OM\SitesAbstract
   }
 
   /**
-   * @param array $route
-   * @param array $routes
-   * @return array|mixed
+   * Resolves a route from a given set of available routes.
+   *
+   * This method matches a provided route against a set of predefined routes, determines
+   * the most specific match, and returns its associated destination.
+   *
+   * @param array $route The route to be resolved, represented as an ordered array of path segments.
+   * @param array $routes The collection of available routes, where keys represent vendor applications
+   *                      and values are arrays mapping paths to destination pages.
+   * @return array|null Returns an associative array containing 'path', 'destination', and 'score' of the best match,
+   *                    or null if no matching route is found.
    */
   public static function resolveRoute(array $route, array $routes)
   {

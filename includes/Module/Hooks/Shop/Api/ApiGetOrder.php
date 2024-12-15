@@ -16,8 +16,18 @@ use ClicShopping\OM\Registry;
 class ApiGetOrder
 {
   /**
-   * @param int|string $id
-   * @return array
+   * Retrieves order details based on the provided order ID and returns the associated customer, delivery, billing,
+   * payment, order, and currency information.
+   *
+   * @param int|string $id The ID of the order for which details are to be retrieved. It can be numeric or a string.
+   *
+   * @return array An associative array containing the following:
+   * - Customer details (e.g., customer ID, company, name, address, phone, etc.).
+   * - Delivery information (e.g., delivery address, delivery company, etc.).
+   * - Billing information (e.g., billing address, billing name, etc.).
+   * - Order details (e.g., order status, date purchased, etc.).
+   * - Currency and payment details (e.g., currency, currency value, payment method, etc.).
+   * - Additional metadata (e.g., client IP, cellular phone, etc.).
    */
   private static function getOrder(int|string $id)
   {
@@ -112,6 +122,13 @@ class ApiGetOrder
     return $customer_data;
   }
 
+  /**
+   * Executes the request to validate and retrieve order details based on provided parameters.
+   *
+   * @return string|false Returns the order details as a JSON-encoded string if the request is valid,
+   *                      returns false if required parameters are not provided, or an error JSON string
+   *                      if the ID format is invalid.
+   */
   public function execute()
   {
     if (isset($_GET['oId'], $_GET['token'])) {

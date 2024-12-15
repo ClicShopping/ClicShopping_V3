@@ -21,6 +21,12 @@ class CfgmModulesCheckoutPayment
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Initializes the object and sets up the directory paths and title required
+   * for managing checkout payment modules.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

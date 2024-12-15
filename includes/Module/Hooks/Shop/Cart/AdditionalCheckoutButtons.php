@@ -16,6 +16,11 @@ use ClicShopping\Sites\Shop\Payment;
 class AdditionalCheckoutButtons
 {
 
+  /**
+   * Executes the initialization of the payment method during the checkout process.
+   *
+   * @return string Returns a concatenated string representation of the payment initialization methods.
+   */
   public function execute()
   {
 
@@ -29,5 +34,4 @@ class AdditionalCheckoutButtons
       return implode('', $CLICSHOPPING_Payment->checkout_initialization_method());
     }
   }
-
 }

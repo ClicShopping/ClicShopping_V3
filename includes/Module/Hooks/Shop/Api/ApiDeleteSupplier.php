@@ -16,7 +16,13 @@ use ClicShopping\OM\Registry;
 class ApiDeleteSupplier
 {
   /**
-   * @param int $id
+   * Deletes a supplier and associated data from the database.
+   *
+   * Deletes records from the suppliers table, suppliers_info table, and updates
+   * affected products in the database. Additionally, triggers any associated
+   * hooks for supplier deletion.
+   *
+   * @param int $id The ID of the supplier to delete.
    * @return void
    */
   private static function deleteSupplier(int $id): void
@@ -54,6 +60,15 @@ class ApiDeleteSupplier
     }
   }
 
+  /**
+   * Executes the main logic to delete a supplier based on the provided ID.
+   *
+   * Checks if the necessary parameters are passed via the GET request. Validates the supplier ID
+   * format and sanitizes it. Calls the static method to perform the deletion of the supplier.
+   *
+   * @return false|string False if required parameters are missing; JSON-encoded error message if
+   *                      the ID format is invalid; otherwise, no return value.
+   */
   public function execute()
   {
     if (isset($_GET['sId'], $_GET['suppliers'])) {

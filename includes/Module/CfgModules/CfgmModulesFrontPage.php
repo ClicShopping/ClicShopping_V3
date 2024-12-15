@@ -21,6 +21,13 @@ class CfgmModulesFrontPage
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Initializes the Front Page module configuration.
+   *
+   * Sets up the directory paths and title for the Front Page module based on the admin template configuration and language settings.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

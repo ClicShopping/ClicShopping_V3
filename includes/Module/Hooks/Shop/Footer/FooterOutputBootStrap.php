@@ -13,7 +13,9 @@ namespace ClicShopping\OM\Module\Hooks\Shop\Footer;
 class FooterOutputBootStrap
 {
   /**
-   * @return string
+   * Generates and returns a string containing the script for including the Bootstrap JavaScript bundle.
+   *
+   * @return string The HTML script tag for the Bootstrap JavaScript bundle.
    */
   public function display(): string
   {

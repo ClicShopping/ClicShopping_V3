@@ -24,10 +24,20 @@ class Tax
   public static string $tag;
 
   /**
-   * @param int $class_id
-   * @param int|null $country_id
-   * @param int|null $zone_id
-   * @return mixed
+   * Retrieves the tax rate for a given tax class, country, and zone.
+   *
+   * This method calculates the applicable tax rate based on the provided tax class ID and either the
+   * specified or default country and zone IDs. If no country and zone IDs are explicitly provided,
+   * the customer's default address is used, or the store's default country and zone are used if the
+   * customer is not logged in.
+   *
+   * @param int $class_id The tax class ID for which the tax rate is to be retrieved.
+   * @param int|null $country_id The ID of the country. If not provided or set to -1, the customer's
+   *                             country (if logged in) or the store's default country will be used.
+   * @param int|null $zone_id The ID of the zone. If not provided or set to -1, the customer's zone
+   *                          (if logged in) or the store's default zone will be used.
+   *
+   * @return float The calculated tax rate for the specified class, country, and zone.
    */
   public function getTaxRate(int $class_id, int|null $country_id = -1, int|null $zone_id = -1)
   {
@@ -83,11 +93,13 @@ class Tax
   }
 
   /**
-   * Return the tax description for a zone / class
-   * @param int $class_id
-   * @param int|null $country_id
-   * @param int|null $zone_id
-   * @return mixed
+   * Retrieves the tax rate description for a specified tax class, country, and zone.
+   *
+   * @param int $class_id The tax class ID for which the tax rate description is being fetched.
+   * @param int|null $country_id The ID of the country related to the tax rate, or null if not applicable.
+   * @param int|null $zone_id The ID of the zone related to the tax rate, or null if not applicable.
+   *
+   * @return string The description of the tax rate, including any applicable tags or default text.
    */
   public function getTaxRateDescription(int $class_id, int|null $country_id, int|null $zone_id)
   {
@@ -137,9 +149,11 @@ class Tax
   }
 
   /**
-   * @param float|null $price
-   * @param float|null $tax_rate
-   * @return float
+   * Calculates the tax amount based on the given price and tax rate.
+   *
+   * @param float|null $price The base price of the item. If null, it will be treated as 0.
+   * @param float|null $tax_rate The tax rate to be applied. If null, it will be treated as 0.
+   * @return float The calculated tax amount, rounded to the decimal places of the default currency.
    */
   public static function calculate(?float $price, ?float $tax_rate): float
   {
@@ -149,9 +163,11 @@ class Tax
   }
 
   /**
-   * @param float $value
-   * @param string|null $padding
-   * @return string
+   * Formats a given tax rate value, optionally padding it to a specific number of decimal places.
+   *
+   * @param float $value The tax rate value to be formatted.
+   * @param string|null $padding The number of decimal places to pad the value to. If not numeric, it defaults to a constant value.
+   * @return string The formatted tax rate value as a string, including a '%' symbol.
    */
   public static function displayTaxRateValue(float $value, string|null $padding = null): string
   {
@@ -193,10 +209,11 @@ class Tax
   }
 
   /**
-   * Add tax to a products price
-   * symbol tax :display information after currency (ex : HT / TTC)
-   * @param $price
-   * @param ?float $tax
+   * Calculates the final price by optionally adding tax based on customer and group configurations.
+   *
+   * @param float $price The base price of the item.
+   * @param float|null $tax The applicable tax rate as a percentage. Pass null if no tax is applied.
+   * @return float Returns the price adjusted for tax, if applicable.
    */
   public static function addTax($price, ?float $tax)
   {
@@ -237,9 +254,11 @@ class Tax
   }
 
   /**
-   * taxClassDropDown
+   * Retrieves an array representing a drop-down menu of tax classes.
+   * Each entry in the array contains an ID and a corresponding text representation of a tax class.
+   * Default includes an option with ID 0 and a text of "None".
    *
-   * @return array drop down with all tax title
+   * @return array Returns an array of tax classes, where each element is an associative array with keys 'id' and 'text'.
    */
 
   public static function taxClassDropDown(): array
@@ -269,7 +288,9 @@ class Tax
   }
 
   /**
-   * @return string
+   * Retrieves the tag associated with the class.
+   *
+   * @return string The tag value.
    */
   public function getTag(): string
   {

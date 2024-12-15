@@ -22,6 +22,12 @@ class CfgmModulesProductsSearch
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method for initializing the module with directory and language paths,
+   * and setting the title for the product search module configuration.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

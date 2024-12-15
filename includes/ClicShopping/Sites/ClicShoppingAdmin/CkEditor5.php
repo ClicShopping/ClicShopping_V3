@@ -27,7 +27,9 @@ use function is_string;
 class CkEditor5 extends HTML
 {
   /**
-   * @return string
+   * Combines and returns JavaScript code for initializing CKEditor and elFinder.
+   *
+   * @return string The combined JavaScript code for CKEditor and elFinder.
    */
   public static function getWysiwyg(): string
   {
@@ -38,7 +40,9 @@ class CkEditor5 extends HTML
   }
 
   /**
-   * @return string
+   * Generates the JavaScript script tag for including the CKEditor library.
+   *
+   * @return string The HTML <script> tag or tags required to include the CKEditor JavaScript library.
    */
   public static function getJsCkEditor(): string
   {
@@ -57,7 +61,10 @@ class CkEditor5 extends HTML
   }
 
   /**
-   * @return string
+   * Generates and returns the necessary JavaScript and CSS code to integrate
+   * the elFinder library, including jQuery UI and the related elFinder style files.
+   *
+   * @return string The HTML string containing script and link elements for elFinder integration.
    */
   public static function getJsElFinder(): string
   {
@@ -74,7 +81,10 @@ class CkEditor5 extends HTML
 
 
   /**
-   * @return string
+   * Retrieves the code of the current WYSIWYG language.
+   * If the language code is not set, it defaults to the predefined default language.
+   *
+   * @return string The code of the WYSIWYG language or the default language code if none is set.
    */
   public static function getWysiwygLanguage(): string
   {
@@ -89,8 +99,10 @@ class CkEditor5 extends HTML
   }
 
   /**
-   * @param string $name
-   * @return string
+   * Converts a provided WYSIWYG editor field name to a plain ID-friendly string by removing square brackets.
+   *
+   * @param string $name The original name of the WYSIWYG editor field that may contain square brackets.
+   * @return string The processed string with square brackets removed.
    */
   public static function getWysiwygId(string $name): string
   {
@@ -101,7 +113,9 @@ class CkEditor5 extends HTML
   }
 
   /**
-   * @return string
+   * Retrieves the URL of the elFinder connector script.
+   *
+   * @return string The full URL to the elFinder connector.
    */
   public static function getElFinderConnector(): string
   {
@@ -110,16 +124,17 @@ class CkEditor5 extends HTML
     return $connector;
   }
 
-/**
-* Outputs a form textarea field with ckeditor
-* @param string $name
-* @param string|null $value
-* @param int|null $width
-* @param int|null $height
-* @param string|null $text
-* @param string|null $parameters
-* @param bool $override
-* @return string
+  /**
+   * Generates a CKEditor text area with optional parameters for customization.
+   *
+   * @param string $name The name attribute for the textarea element.
+   * @param string|null $value The initial value of the textarea, if any.
+   * @param mixed $width The width of the editor, default is 750.
+   * @param mixed $height The height of the editor, default is 200.
+   * @param string|null $text The default text content for the textarea.
+   * @param string|null $parameters Additional HTML attributes to be included in the textarea.
+   * @param bool $override Whether to override the value with request data from $_GET or $_POST if available.
+   * @return string The generated HTML for the CKEditor-integrated textarea.
    */
   public static function textAreaCkeditor(string $name, string|null $value = null, mixed $width = 750, mixed $height = 200, string|null $text = null, string|null $parameters = null, bool $override = true): string
   {
@@ -371,14 +386,15 @@ class CkEditor5 extends HTML
     return $field;
   }
 
-/**
-* Create form textarea field with ckeditor for image icon and source only
-* @param string $name
-* @param string|null $value
-* @param int|null $width
-* @param int|null $height
-* @return string
- */
+  /**
+   * Generates a CKEditor textarea field with integrated file management and image upload capabilities using elFinder.
+   *
+   * @param string $name The name attribute of the textarea field.
+   * @param string|null $value The initial value of the textarea. Default is null.
+   * @param int|null $width The width of the CKEditor field. Default is null.
+   * @param int|null $height The height of the CKEditor field. Default is null.
+   * @return string The HTML markup for the CKEditor textarea field with integrated script.
+   */
   public static function fileFieldImageCkEditor(string $name, string|null $value = null, int|null $width = null, int|null $height = null): string
   {
     $ckeditor_id = str_replace('[', '', $name);
@@ -589,11 +605,10 @@ class CkEditor5 extends HTML
   }
 
   /**
-   * Clean html code image
+   * Extracts and processes the image URL from a WYSIWYG editor content.
    *
-   * @param string $image
-   * @return string $image, without html
-   *
+   * @param string $image The HTML content from which the image URL needs to be extracted.
+   * @return string Processed image URL or an empty string if no image is found.
    */
   public static function getWysiwygImageAlone(string $image): string
   {

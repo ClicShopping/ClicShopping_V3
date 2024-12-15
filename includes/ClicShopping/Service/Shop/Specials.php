@@ -22,6 +22,11 @@ use ClicShopping\Apps\Marketing\Specials\Classes\Shop\SpecialsClass;
  */
 class Specials implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the SpecialsClass functionality if the required file exists.
+   *
+   * @return bool Returns true if the SpecialsClass is successfully initialized, otherwise false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Marketing/Specials/Classes/Shop/SpecialsClass.php')) {
@@ -38,6 +43,11 @@ class Specials implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the execution or performs the necessary termination operations.
+   *
+   * @return bool Returns true to indicate that the stop operation was successful.
+   */
   public static function stop(): bool
   {
     return true;

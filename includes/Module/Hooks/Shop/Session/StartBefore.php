@@ -17,6 +17,13 @@ use function strlen;
 
 class StartBefore
 {
+  /**
+   * Executes a series of checks to identify whether the user agent belongs to a web crawler or spider.
+   * Blocks the start of specific processes if a spider is detected, based on matching user agents against a pre-defined list.
+   *
+   * @param array $parameters An associative array containing control parameters, which will be modified to determine if a process can start.
+   * @return void
+   */
   public function execute($parameters)
   {
     if (SESSION_BLOCK_SPIDERS == 'True') {

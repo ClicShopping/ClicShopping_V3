@@ -13,7 +13,11 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 class FooterOutputJqvMap
 {
   /**
-   * @return string|bool
+   * Generates and returns a script block for initializing the Jqvmap visualization
+   * if the session indicates an administrative user and there are no query string parameters.
+   *
+   * @return string|bool Returns the generated script block as a string if conditions are met,
+   *                     or false if the conditions are not satisfied.
    */
   public function display(): string|bool
   {

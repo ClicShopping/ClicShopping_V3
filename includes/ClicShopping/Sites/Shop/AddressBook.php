@@ -28,6 +28,13 @@ class AddressBook
   * @return array $Qaddresses
   * public
   */
+  /**
+   * Retrieves the address details of a customer based on the given customer ID and address book ID.
+   *
+   * @param int|null $customers_id The ID of the customer. If null, the currently logged-in customer's ID is used.
+   * @param int|null $address_book_id The ID of the address book entry. If not provided, no specific entry is targeted.
+   * @return array|false The address details as an associative array if found, or false if no address is found.
+   */
   public static function getAddressCustomer(int|null $customers_id = null, int|null $address_book_id = null)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -65,14 +72,15 @@ class AddressBook
   }
 
   /**
-   * Return a formatted address
-   * TABLES: customers, address_book
-   * @param $customers_id
-   * @param int $address_id
-   * @param bool $html
-   * @param string $boln
-   * @param string $eoln
-   * @return mixed
+   * Generates an address label based on the given customer ID and address ID.
+   *
+   * @param int $customers_id The ID of the customer for which the address label is generated.
+   * @param int|null $address_id The ID of the address to format. Defaults to 1 if not specified.
+   * @param bool $html Indicates whether the address label should be formatted in HTML. Defaults to false.
+   * @param string $boln The string to prepend to the beginning of each line (used for formatting). Defaults to an empty string.
+   * @param string $eoln The string to append at the end of each line (used for formatting). Defaults to a newline character ("\n").
+   *
+   * @return string The formatted address label.
    */
   public static function addressLabel(int $customers_id,  int|null $address_id = 1, bool $html = false, string $boln = '', string $eoln = "\n")
   {
@@ -108,10 +116,11 @@ class AddressBook
   }
 
   /**
-   * Controle autorisation au client de modifier son adresse par defaut
-   * @param string $id
-   * @param bool $check_session
-   * @return string
+   * Counts the default address modification status for a customer.
+   *
+   * @param string $id The customer ID. If not provided, it attempts to determine the ID from the logged-in session.
+   * @param bool $check_session Whether to validate the session for the logged-in customer. Defaults to true.
+   * @return string The customer's default address modification status, or 0 if conditions are not met.
    */
   public static function countCustomersModifyAddressDefault($id = '', bool $check_session = true): string
   {
@@ -147,10 +156,11 @@ class AddressBook
   }
 
   /**
-   *  Controle autorisation d'ajouter une adresse selon la fiche client
-   * @param null $id
-   * @param bool $check_session
-   * @return string|null
+   * Counts and retrieves the customer's additional address information.
+   *
+   * @param int|null $id The customer's ID, or null to use the ID of the currently logged-in customer.
+   * @param bool $check_session Whether to ensure the customer's session is valid. Defaults to true.
+   * @return string|null The customer's additional address information, or null if not available.
    */
   public static function countCustomersAddAddress($id = null, bool $check_session = true): ?string
   {
@@ -187,11 +197,11 @@ class AddressBook
   }
 
   /**
-   * Controle autorisation au client B2B de modifier ses informations sur la societe
-   * @param string $id
-   * @param bool $check_session
-   * @return string
+   * Retrieves the modification status of the company associated with the specified customer ID.
    *
+   * @param string $id The customer ID. If not provided and the customer is logged on, their ID will be used. Otherwise, returns 0.
+   * @param bool $check_session If true, ensures the logged-in session corresponds to the provided ID. Defaults to true.
+   * @return string The value of the "customers_modify_company" field for the customer, or 0 if conditions are not met.
    */
   public static function countCustomersModifyCompany($id = '', bool $check_session = true): string
   {
@@ -225,9 +235,10 @@ class AddressBook
   }
 
   /**
-   * Verify the address book entry belongs to the current customer
-   * @param int $id
-   * @return bool
+   * Checks if an address book entry exists for the given customer.
+   *
+   * @param int $id The address book ID to be checked.
+   * @return bool Returns true if the address book entry exists, otherwise false.
    */
   public static function checkEntry(int $id)
   {
@@ -258,9 +269,10 @@ class AddressBook
   }
 
   /**
-   * Delete an address book entry
-   * @param int $id
-   * @return bool
+   * Deletes an address book entry for the currently logged-in customer.
+   *
+   * @param int $id The ID of the address book entry to be deleted.
+   * @return bool Returns true if the entry was successfully deleted, false otherwise.
    */
   public static function deleteEntry(int $id)
   {
@@ -279,10 +291,15 @@ class AddressBook
   }
 
   /**
-   *  count customer address book
-   * @param string $id
-   * @param bool $check_session
-   * @return int
+   * Counts the total number of address book entries for a specific customer.
+   *
+   * @param int|string $id The customer ID. If not provided, the method will attempt to determine
+   *                       the ID from the logged-in customer's session.
+   * @param bool $check_session Whether to verify that the provided customer ID matches the current
+   *                            logged-in customer's ID.
+   *
+   * @return int The total number of address book entries for the customer. Returns 0 if the customer
+   *             is not logged in or if the ID validation fails.
    */
   public static function countCustomerAddressBookEntries($id = '', bool $check_session = true)
   {
@@ -321,10 +338,11 @@ class AddressBook
   }
 
   /**
-   * Count customer_order
-   * @param string $id
-   * @param bool $check_session
-   * @return int
+   * Counts the number of orders made by a specific customer.
+   *
+   * @param int|string $id The ID of the customer. If not provided, the ID of the currently logged-in customer is used.
+   * @param bool $check_session Whether to verify that the session belongs to the customer. Defaults to true.
+   * @return int The total number of orders for the customer, or 0 if the customer is not logged in or not valid.
    */
   public static function countCustomerOrders($id = '', $check_session = true)
   {
@@ -368,8 +386,15 @@ class AddressBook
   }
 
   /**
-   * Returns the address book entries for the current customer
-   * @return mixed
+   * Retrieves a list of addresses associated with the currently logged-in customer.
+   *
+   * This method queries the database to fetch address book entries for the customer.
+   * Each address includes details such as the first name, last name, company,
+   * street address, suburb, city, postcode, state, zone, and country information.
+   *
+   * The results are ordered by the customer's first and last name.
+   *
+   * @return object Returns the prepared statement object containing the address list.
    */
   public static function getListing()
   {
@@ -404,9 +429,13 @@ class AddressBook
   }
 
   /**
-   * Returns a specific address book entry for the current customer
-   * @param int $id
-   * @return mixed
+   * Retrieves an entry from the address book based on the address book ID or the current customer's ID.
+   *
+   * If the `newcustomer` parameter is set to 1 in the GET request, the method returns details for the
+   * current customer. Otherwise, it retrieves the entry for the specified address book ID.
+   *
+   * @param int $id The address book ID for the entry to retrieve. Ignored when `newcustomer` is set.
+   * @return array An associative array containing the entry details, such as gender, company, name, address, and contact information.
    */
   public static function getEntry(int $id)
   {
@@ -459,9 +488,10 @@ class AddressBook
   }
 
   /**
-   * Return the number of address book entries the current customer has
-   * @param $total_entries
-   * @return int
+   * Calculates and returns the total number of address book entries for the logged-in customer.
+   *
+   * @param int $total_entries The current total number of entries, may be initialized as 0.
+   * @return int The total number of address book entries for the logged-in customer.
    */
   public static function numberOfEntries($total_entries): int
   {
@@ -486,9 +516,10 @@ class AddressBook
   }
 
   /**
-   * Set the address book entry as the primary address for the current customer
-   * @param int $id
-   * @return bool
+   * Sets the primary address for the currently logged-in customer.
+   *
+   * @param int $id The ID of the address to be set as the primary address.
+   * @return bool Returns true if the primary address was successfully updated, false otherwise.
    */
   public static function setPrimaryAddress(int $id)
   {
@@ -511,8 +542,10 @@ class AddressBook
   }
 
   /**
-   * Check if it's new customer or not
-   * @return bool
+   * Determines whether the operation involves a new customer or an existing customer by evaluating specific conditions
+   * such as the presence of query parameters and their associated values, as well as validating address book entries.
+   *
+   * @return bool Returns true if a valid address book entry exists, otherwise returns false.
    */
   public static function checkNewCustomer(): bool
   {

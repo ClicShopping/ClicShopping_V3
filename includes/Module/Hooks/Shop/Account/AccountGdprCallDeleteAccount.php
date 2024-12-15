@@ -17,6 +17,13 @@ use ClicShopping\OM\Registry;
 class AccountGdprCallDeleteAccount
 {
 
+  /**
+   * Executes the customer account deletion process. Validates the customer’s request to delete their account, performs
+   * checks on the conditions for deletion, and removes all associated customer data from the database if applicable.
+   * Sends an email notification upon successful deletion and redirects or displays error messages if deletion cannot proceed.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

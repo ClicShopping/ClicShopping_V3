@@ -13,10 +13,18 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
+/**
+ * Manages and tracks the status of extended security checks for the application.
+ */
 class securityCheck_extended_last_run
 {
   public string $type = 'warning';
 
+  /**
+   * Constructor method to initialize the language definitions for the SecurityCheck module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -24,6 +32,12 @@ class securityCheck_extended_last_run
     $CLICSHOPPING_Language->loadDefinitions('modules/SecurityCheck/extended_last_run', null, null, 'Shop');
   }
 
+  /**
+   * Checks and processes the extended security check status.
+   *
+   * @return bool Returns true if the extended security check timestamp is updated or
+   *              if the last run timestamp exists and was within the last 30 days; otherwise, false.
+   */
   public function pass()
   {
 
@@ -58,6 +72,11 @@ class securityCheck_extended_last_run
     return defined('MODULE_SECURITY_CHECK_EXTENDED_LAST_RUN_DATETIME') && (MODULE_SECURITY_CHECK_EXTENDED_LAST_RUN_DATETIME > strtotime('-30 days'));
   }
 
+  /**
+   * Generates a link to the security check tool with a specific message definition.
+   *
+   * @return string The generated hyperlink pointing to the security check tool with the corresponding message.
+   */
   public function getMessage()
   {
     return HTML::link(CLICSHOPPING::link(null, 'A&Tools\SecurityCheck&SecurityCheck'), CLICSHOPPING::getDef('module_security_check_extended_last_run_old'));

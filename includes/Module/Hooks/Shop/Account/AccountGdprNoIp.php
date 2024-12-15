@@ -17,7 +17,9 @@ use ClicShopping\OM\Registry;
 class AccountGdprNoIp
 {
   /**
-   * @return string
+   * Retrieves the IP address associated with the current customer from the database.
+   *
+   * @return string Returns the IP address of the customer as a string.
    */
   private function getIpAddress(): string
   {

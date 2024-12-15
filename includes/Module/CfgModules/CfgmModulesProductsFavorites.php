@@ -21,6 +21,11 @@ class CfgmModulesProductsFavorites
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Initializes the object by setting the directory paths and title using the TemplateAdmin from the Registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

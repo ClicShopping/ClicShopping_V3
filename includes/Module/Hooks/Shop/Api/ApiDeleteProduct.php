@@ -16,9 +16,10 @@ use ClicShopping\OM\Registry;
 class ApiDeleteProduct
 {
   /**
-   * @param int|null $id
-   * @param int|string $language_id
-   * @return array
+   * Deletes a product and its related data from various tables in the database.
+   *
+   * @param int|string $id The ID of the product to be deleted. Can be either an integer or a string.
+   * @return void
    */
   private static function deleteProducts(int|string $id)
   {
@@ -72,6 +73,13 @@ class ApiDeleteProduct
     }
   }
 
+  /**
+   * Handles the execution of a product-related operation based on query parameters.
+   *
+   * @return mixed Returns a JSON-encoded error message if the ID format is invalid,
+   *               the result of the deleteProducts method if the operation is successful,
+   *               or false if required parameters are missing.
+   */
   public function execute()
   {
     if (isset($_GET['pId'], $_GET['product'])) {

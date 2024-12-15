@@ -16,7 +16,9 @@ use ClicShopping\OM\HTML;
 class AccountGdprDeleteCustomerBirth
 {
   /**
-   * @return string
+   * Renders and returns the HTML output for displaying a list group item with a checkbox.
+   *
+   * @return string The generated HTML output.
    */
   public function display(): string
   {

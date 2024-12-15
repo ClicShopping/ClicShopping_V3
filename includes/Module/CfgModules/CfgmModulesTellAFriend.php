@@ -21,6 +21,12 @@ class CfgmModulesTellAFriend
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method for initializing the module configuration with default template paths,
+   * language directory, and title for the Tell A Friend module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

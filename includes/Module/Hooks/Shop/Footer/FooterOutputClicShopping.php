@@ -16,7 +16,9 @@ use ClicShopping\OM\Registry;
 class FooterOutputClicShopping
 {
   /**
-   * @return string
+   * Generates and returns the HTML script tag for including the default ClicShopping footer JavaScript file.
+   *
+   * @return string The HTML string containing the script tag to include the footer JavaScript file.
    */
   public function display(): string
   {

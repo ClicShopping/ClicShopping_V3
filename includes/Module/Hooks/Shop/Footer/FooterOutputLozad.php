@@ -13,7 +13,9 @@ namespace ClicShopping\OM\Module\Hooks\Shop\Footer;
 class FooterOutputLozad
 {
   /**
-   * @return string
+   * Generates and returns the necessary HTML and JavaScript for implementing the Lozad.js library.
+   *
+   * @return string The HTML and JavaScript code for lazy loading using Lozad.js.
    */
   public function display(): string
   {

@@ -26,14 +26,21 @@ class ProductsListing
 {
   private mixed $db;
 
+  /**
+   * Constructor method for the class.
+   * Initializes the database connection by fetching the 'Db' instance from the registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->db = Registry::get('Db');
   }
 
   /**
-   * Get column listing
-   * @return array
+   * Retrieves a list of column keys based on defined configurations.
+   *
+   * @return array Returns an array of column keys where the corresponding configuration is not empty.
    */
   public function getColumnList(): array
   {
@@ -59,8 +66,20 @@ class ProductsListing
   }
 
   /**
-   * get listing data
-   * @return mixed
+   * Builds and returns a data query string based on various parameters including
+   * customer group, manufacturer selection, category filtering, and selected
+   * product attributes. The method dynamically generates SQL queries to fetch
+   * product information matching specific criteria.
+   *
+   * The generated query integrates product details such as name, model, weight,
+   * images, manufacturer information, stock quantity, and additional metadata.
+   * It considers customer group restrictions, manufacturer IDs, category IDs,
+   * and language-specific product descriptions.
+   *
+   * Handles both B2B and public-facing client scenarios, adapting query logic
+   * to support filtered or general product lists. Accounts for archived products
+   * and ensures compatibility with multilingual data and hierarchical product
+   * categorization.
    */
   public function getData()
   {
@@ -436,6 +455,11 @@ class ProductsListing
     return $Qlisting;
   }
 
+  /**
+   * Retrieves the total number of rows in the current page set.
+   *
+   * @return int The total number of rows.
+   */
   public function getTotalRow(): int
   {
     $listingTotalRow = $this->getData()->getPageSetTotalRows();
@@ -444,7 +468,9 @@ class ProductsListing
   }
 
   /**
-   * @return int
+   * Retrieves the label for the current page set.
+   *
+   * @return string The label representing the current set of pages.
    */
   public function getPageSetLabel(): string
   {
@@ -454,9 +480,12 @@ class ProductsListing
   }
 
 
- /**
-* @return mixed
-  */
+  /**
+   * Retrieves the page set links by processing the current GET parameters
+   * and generating the corresponding links for paging.
+   *
+   * @return mixed Returns the page set links based on the current parameters.
+   */
   public function getPageSetLinks(): mixed
   {
     $result = $this->getData()->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop');

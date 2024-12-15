@@ -10,10 +10,16 @@
 
 namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 
+/**
+ * Handles the inclusion of Bootstrap JavaScript resources in the admin footer of the ClicShopping platform.
+ */
 class FooterOutputBootstrap
 {
   /**
-   * @return bool|string
+   * Generates and returns a string containing the required HTML comments and script tags
+   * to include the Bootstrap JavaScript library in a web page.
+   *
+   * @return string The generated HTML string with Bootstrap JavaScript inclusion.
    */
   public function display(): string
   {

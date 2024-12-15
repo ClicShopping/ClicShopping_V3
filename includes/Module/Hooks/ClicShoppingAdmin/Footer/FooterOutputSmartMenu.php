@@ -15,7 +15,9 @@ use ClicShopping\OM\CLICSHOPPING;
 class FooterOutputSmartMenu
 {
   /**
-   * @return string|bool
+   * Generates and returns the HTML output for including SmartMenu scripts if certain conditions are met.
+   *
+   * @return string|bool The HTML output as a string if conditions are met; false otherwise.
    */
   public function display(): string|bool
   {

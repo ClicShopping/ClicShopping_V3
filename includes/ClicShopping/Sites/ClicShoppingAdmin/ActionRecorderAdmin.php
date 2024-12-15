@@ -26,13 +26,24 @@ class ActionRecorderAdmin extends \ClicShopping\Apps\Tools\ActionsRecorder\Class
 {
   private mixed $lang;
 
+  /**
+   * Constructor method for initializing the module, user ID, and user name.
+   *
+   * @param string $module The name of the module to be initialized.
+   * @param string|null $user_id Optional user ID, must be numeric if provided.
+   * @param string|null $user_name Optional user name.
+   * @return void
+   */
   public function __construct(string $module, string $user_id = null, string $user_name = null)
   {
     $this->lang = Registry::get('Language');
 
     $module = HTML::sanitize(str_replace(' ', '', $module));
 
-    $this->_module = $module;
+    /**
+     *
+     */
+      $this->_module = $module;
 
     $this->isInstalled();
 
@@ -48,6 +59,11 @@ class ActionRecorderAdmin extends \ClicShopping\Apps\Tools\ActionsRecorder\Class
     $GLOBALS[$this->_module]->setIdentifier();
   }
 
+  /**
+   * Checks if the specified module is installed and its respective class and file exist.
+   *
+   * @return bool Returns true if the module is installed and the corresponding class and file are available; otherwise, returns false.
+   */
   public function isInstalled()
   {
     $module = HTML::sanitize(str_replace(' ', '', $this->_module));

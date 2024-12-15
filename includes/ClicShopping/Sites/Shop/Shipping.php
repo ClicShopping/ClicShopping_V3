@@ -29,6 +29,12 @@ class Shipping
   public $selected_module;
   private mixed $lang;
 
+  /**
+   * Constructor for initializing the shipping modules.
+   *
+   * @param array|null $module Optional module information, expected to include an 'id' key with module identifier.
+   * @return void
+   */
   public function __construct($module = null)
   {
     $this->lang = Registry::get('Language');
@@ -79,9 +85,10 @@ class Shipping
   }
 
   /**
-   * get the weight
-   * @param int $shipping_num_boxes
-   * @return float
+   * Calculates the shipping weight based on the items in the shopping cart,
+   * considering additional box weight, padding, and maximum shipping weight constraints.
+   *
+   * @return float The calculated shipping weight.
    */
   public function getShippingWeight(): float
   {
@@ -107,10 +114,12 @@ class Shipping
   }
 
   /**
-   * get shipping module elements id, title ...
-   * @param null $method
-   * @param null $module
-   * @return array
+   * Retrieves shipping quotes based on the specified method and module.
+   *
+   * @param string|null $method The shipping method for which quotes are required. Defaults to null if no specific method is provided.
+   * @param string|null $module The shipping module to be used for fetching the quotes. Defaults to null if no specific module is provided.
+   *
+   * @return array An array of shipping quotes retrieved based on the provided method and module.
    */
   public function getQuote($method = null, $module = null): array
   {
@@ -151,6 +160,14 @@ class Shipping
 
 // function not include in shipping.php
 // can put pb with module like post canada online 94
+  /**
+   * Retrieves the first available shipping method with its corresponding details
+   * if enabled and meeting the required conditions.
+   *
+   * @return array|null An associative array containing the first available shipping method's
+   *                    details such as 'id', 'title', 'info', and 'cost'. Returns null
+   *                    if no valid shipping method is found.
+   */
   public function getFirst()
   {
     foreach ($this->modules as $value) {
@@ -173,8 +190,14 @@ class Shipping
   }
 
   /**
-   * get the cheapest shipping
-   * @return bool|mixed
+   * Determines and returns the cheapest shipping rate from available modules.
+   *
+   * This method iterates through registered shipping modules, collecting their
+   * rates and comparing them to find the lowest-cost shipping option.
+   *
+   * @return array|false An associative array with details of the cheapest shipping rate
+   *                     (including 'id', 'title', 'info', and 'cost')
+   *                     or false if no rates are available.
    */
   public function getCheapest()
   {
@@ -222,8 +245,9 @@ class Shipping
   }
 
   /**
-   * Count shipping modules
-   * @return int
+   * Counts the number of enabled shipping modules installed in the system.
+   *
+   * @return int The count of enabled shipping modules.
    */
   public function geCountShippingModules(): int
   {

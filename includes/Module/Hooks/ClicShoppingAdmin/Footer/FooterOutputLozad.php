@@ -13,7 +13,9 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 class FooterOutputLozad
 {
   /**
-   * @return string|bool
+   * Generates a Lazyload script block for administrators.
+   *
+   * @return string|bool Returns the generated output string if the session contains an 'admin' key, or false otherwise.
    */
   public function display(): string|bool
   {

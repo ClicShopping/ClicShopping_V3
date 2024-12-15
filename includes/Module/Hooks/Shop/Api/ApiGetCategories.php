@@ -16,9 +16,11 @@ use ClicShopping\OM\Registry;
 class ApiGetCategories
 {
   /**
-   * @param int|null $id
-   * @param int|string $language_id
-   * @return array
+   * Retrieves category data based on the provided category ID and language ID.
+   *
+   * @param int|string $id The category ID. Can be an integer or a string.
+   * @param int|string $language_id The language ID. Can be an integer or a string.
+   * @return array An array containing category data, including categories ID, parent ID, language ID, name, and description.
    */
   private static function categories(int|string $id, int|string $language_id)
   {
@@ -71,6 +73,13 @@ class ApiGetCategories
     return $categories_data;
   }
 
+  /**
+   * Executes the required process based on the provided GET parameters.
+   *
+   * @return string|bool Returns a JSON-encoded string containing the categories data if the parameters are valid.
+   *                     Returns a JSON-encoded error message if the language ID format is invalid.
+   *                     Returns false if required parameters are missing.
+   */
   public function execute()
   {
     $id = HTML::sanitize($_GET['cId']);

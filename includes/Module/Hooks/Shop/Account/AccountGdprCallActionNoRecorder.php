@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 class AccountGdprCallActionNoRecorder
 {
 
+  /**
+   * Deletes entries from the action recorder database table for the current customer if the 'action_recorder' POST parameter is set.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

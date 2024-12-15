@@ -21,10 +21,10 @@ use function strlen;
 class HTMLOverrideCommon extends HTML
 {
   /**
-   * Function to remove HTML tags, javascript sections and convert some common HTML entities to their text equivalent
-   * public function
-   * @param string $str
-   * @return a text replaced
+   * Strips HTML tags, JavaScript, and certain special HTML entities from a string.
+   *
+   * @param string $str The input string potentially containing HTML tags and special characters.
+   * @return string The cleaned string with HTML tags, JavaScript, and specified HTML entities removed or replaced.
    */
   static public function stripHtmlTags(string $str): string
   {
@@ -63,9 +63,11 @@ class HTMLOverrideCommon extends HTML
   }
 
   /**
-   * @param $CatList
-   * @param string $length
-   * @return mixed|string|string[]|null
+   * Cleans the given HTML content by stripping tags, encoding entities, and applying additional sanitizing steps.
+   *
+   * @param mixed $CatList The input content, which may contain HTML, to be cleaned.
+   * @param string $length Optional. The maximum length of the cleaned content. If specified, the content is truncated to this length with an ellipsis.
+   * @return string The sanitized and optionally truncated content.
    */
   public static function cleanHtml($CatList, string $length = '')
   {
@@ -88,9 +90,10 @@ class HTMLOverrideCommon extends HTML
   }
 
   /**
-   * Minify HTML
-   * @param string $input
-   * @return string|string[]|null
+   * Minifies the given HTML by removing unnecessary whitespaces and optimizing formatting while preserving functionality.
+   *
+   * @param string $input The HTML string to be minified.
+   * @return string The minified HTML string.
    */
   public static function getMinifyHtml(string $input)
   {
@@ -142,9 +145,11 @@ class HTMLOverrideCommon extends HTML
   }
 
   /**
-   * minify js
-   * @param $input
-   * @return string|string[]|null
+   * Minifies a block of JavaScript code by removing unnecessary characters such as comments,
+   * extra whitespaces, and semicolons. Also converts certain JavaScript notations to more concise formats.
+   *
+   * @param string $input The JavaScript code to be minified.
+   * @return string The minified JavaScript code.
    */
   public static function getMinifyJS(string $input)
   {

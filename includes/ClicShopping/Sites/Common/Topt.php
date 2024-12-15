@@ -20,7 +20,8 @@ use RobThree\Auth\TwoFactorAuth;
 class Topt
 {
   /**
-   * @return mixed
+   *
+   * @return mixed Returns an instance of TwoFactorAuth from the Registry. If it does not exist, it initializes and stores it in the Registry.
    */
   public static function getTwoFactorAuth(): mixed
   {
@@ -34,8 +35,10 @@ class Topt
   }
 
   /**
-   * @param string $username
-   * @return string
+   * Checks the authentication details for an administrator based on the provided username.
+   *
+   * @param string $username The username of the administrator whose authentication details are being checked.
+   * @return string Returns the double authentication secret associated with the specified username.
    */
   public static function checkAuthAdmin(string $username): string
   {
@@ -47,7 +50,9 @@ class Topt
   }
 
   /**
-   * @return string
+   * Retrieves and generates a new Two-Factor Authentication (TFA) secret.
+   *
+   * @return string The newly created TFA secret.
    */
   public static function getTfaSecret(): string
   {
@@ -57,9 +62,11 @@ class Topt
   }
 
   /**
-   * @param string $tfa_secret
-   * @param string $name
-   * @return string
+   * Generates an image tag containing the QR Code for two-factor authentication.
+   *
+   * @param string $name The name or identifier associated with the account.
+   * @param string $tfa_secret The secret key used for generating the QR Code.
+   * @return string The HTML image tag with the embedded QR Code as a data URI.
    */
   public static function getImageTopt(string $name, string $tfa_secret): string
   {
@@ -69,9 +76,11 @@ class Topt
   }
 
   /**
-   * @param string $tfa_secret
-   * @param string $tfaCode
-   * @return bool
+   * Verifies the provided two-factor authentication (TFA) code against the given TFA secret.
+   *
+   * @param string $tfa_secret The secret key associated with the user's TFA setup.
+   * @param string $tfaCode The TFA code provided by the user for verification.
+   * @return bool True if the verification is successful, false otherwise.
    */
   public static function getVerifyAuth(string $tfa_secret, string $tfaCode): bool
   {
@@ -81,8 +90,10 @@ class Topt
   }
 
   /**
-   * @param string $email
-   * @return string
+   * Checks the two-factor authentication login secret for a customer based on their email address.
+   *
+   * @param string $email The email address of the customer whose two-factor authentication secret is being retrieved.
+   * @return string The two-factor authentication secret associated with the provided email address.
    */
   public static function checkToptloginCustomer(string $email): string
   {
@@ -95,6 +106,8 @@ class Topt
 
 
   /**
+   * Resets all admin-related session variables to log out the current administrator.
+   *
    * @return void
    */
   public static function resetAllAdmin(): void
@@ -107,6 +120,8 @@ class Topt
   }
 
   /**
+   * Resets all session variables related to the user authentication and session data.
+   *
    * @return void
    */
   public static function resetAll(): void

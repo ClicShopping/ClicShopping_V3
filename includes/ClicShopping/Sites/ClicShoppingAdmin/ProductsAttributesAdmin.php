@@ -25,11 +25,10 @@ class ProductsAttributesAdmin
 {
 
   /**
-   * products options - attributes
+   * Retrieves the name of a product option based on its ID and the current language.
    *
-   * @param string $options_id
-   * @return string $values_values['products_options_values_name'], the value of the option name
-   *
+   * @param int $options_id The ID of the product option to retrieve the name for.
+   * @return string The name of the product option associated with the provided ID.
    */
   public static function getOptionsName(int $options_id): string
   {
@@ -46,11 +45,10 @@ class ProductsAttributesAdmin
 
 
   /**
-   * products options name - attributes
+   * Retrieves the name of a product option value based on its ID and the current language ID.
    *
-   * @param string $values_id
-   * @return string $values_values['products_options_values_name'], the name value of the option name
-   *
+   * @param int $values_id The ID of the product option value.
+   * @return string The name of the product option value.
    */
   public static function getValuesName(int $values_id): string
   {
@@ -64,11 +62,12 @@ class ProductsAttributesAdmin
   }
 
   /**
-   * Alias function for module configuration keys
-   * @param array $select_array
-   * @param string $key_name
-   * @param string $key_value
-   * @return string
+   * Generates a string representation of HTML radio buttons based on the given select array, key name, and key value.
+   *
+   * @param array $select_array An associative or indexed array containing the options for the select input. If indexed, the value will be used as both the key and the display text.
+   * @param string $key_name The name attribute for the radio input elements.
+   * @param string $key_value The current value to match against keys in the select array to mark the corresponding option as checked.
+   * @return string A string containing the generated HTML for the radio buttons.
    */
   public static function getModSelectOption(array $select_array, string $key_name, string $key_value): string
   {

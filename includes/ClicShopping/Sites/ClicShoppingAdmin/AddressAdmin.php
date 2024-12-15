@@ -22,11 +22,10 @@ use ClicShopping\OM\Registry;
 class AddressAdmin extends \ClicShopping\Sites\Shop\Address
 {
   /**
-   * Get the country zone
+   * Retrieves the list of zones for a given country.
    *
-   * @param $country_id , if ogf the country
-   * @return array $zones_array, zone of the country
-   *
+   * @param int $country_id The ID of the country for which the zones should be retrieved.
+   * @return array An array of zones associated with the specified country.
    */
   public static function getCountryZones($country_id)
   {
@@ -36,11 +35,9 @@ class AddressAdmin extends \ClicShopping\Sites\Shop\Address
   }
 
   /**
-   * Get the address format
+   * Retrieves a list of address formats from the database.
    *
-   * @param
-   * @return array $address_format_array, list of address_format_id's
-   *
+   * @return array Returns an array containing address format data, where each entry includes an 'id' as the address format ID and a 'text' representation of the ID.
    */
 
   public static function getAddressFormats(): array
@@ -59,12 +56,10 @@ class AddressAdmin extends \ClicShopping\Sites\Shop\Address
   }
 
   /**
-   * Set the address format
+   * Retrieves an array containing address format elements with their corresponding definitions.
    *
-   * @param
-   * @return array $address_format_array, list of address_format_id's
-   *
-   *
+   * @return array An associative array where keys represent address format components
+   *               (e.g., 'company', 'firstname') and values are localized definitions.
    */
   public static function setAddressFormatArrayAdmin(): array
   {
@@ -83,12 +78,10 @@ class AddressAdmin extends \ClicShopping\Sites\Shop\Address
   }
 
   /**
-   * get the address format
+   * Retrieves the formatted address for display using a specified format ID.
    *
-   * @param $address_format_id ; id of the address
-   * @return address format
-   *
-   *
+   * @param int $address_format_id The ID of the address format to be applied.
+   * @return string The formatted address string based on the provided format ID.
    */
   public static function getAddressFormatRadio(int $address_format_id)
   {
@@ -96,11 +89,12 @@ class AddressAdmin extends \ClicShopping\Sites\Shop\Address
   }
 
   /**
-   * Get the geo zone name of the country
+   * Retrieves the name of a geo zone based on its ID.
    *
-   * @param string $geo_zone_id , if of the geo zone
-   * @return string $geo_zone_name the drop down of the zone name
-   *
+   * @param int $geo_zone_id The ID of the geo zone to fetch the name for.
+   * @return int|null Returns the geo zone name as a string if found,
+   *                  or the provided geo zone ID as an integer if not found,
+   *                  or null on failure.
    */
   public static function getGeoZoneName(int $geo_zone_id):  int|null
   {
@@ -123,12 +117,11 @@ class AddressAdmin extends \ClicShopping\Sites\Shop\Address
   }
 
   /**
-   * Drop down of the geo name
+   * Generates an HTML dropdown menu containing geographical zones.
    *
-   * @param string $parameters , $selected
-   * @return string $select_string, the drop down of the zone name
-   *
-   *
+   * @param string $parameters The name and identifier of the select element.
+   * @param string $selected The ID of the pre-selected geographical zone (optional).
+   * @return string The HTML string for the dropdown menu.
    */
   public static function getGeoZonesPullDown(string $parameters, string $selected = ''): string
   {
@@ -157,11 +150,10 @@ class AddressAdmin extends \ClicShopping\Sites\Shop\Address
   }
 
   /**
-   * Get the address of customer id
+   * Retrieves a listing of address book entries for a given customer ID.
    *
-   * @param $id , id of the customer
-   * @return array $QaddressesBook, list of address_format_id's
-   *
+   * @param int $id The ID of the customer whose address book entries are to be retrieved.
+   * @return mixed The query result object containing address book entries.
    */
   public static function getListingAdmin(int $id): mixed
   {

@@ -20,6 +20,11 @@ class CfgmDashboard
   public $title;
   public bool $template_integration = false;
 
+  /**
+   * Initializes the dashboard module by setting up necessary directories and the module's title.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->directory = CLICSHOPPING::getConfig('dir_root', $this->site) . 'includes/modules/dashboard/';

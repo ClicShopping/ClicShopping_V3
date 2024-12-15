@@ -20,8 +20,11 @@ use ClicShopping\Apps\Catalog\Categories\Classes\ClicShoppingAdmin\CategoriesAdm
 class ApiDeleteCategories
 {
   /**
-   * @param int $id
-   * @return void
+   * Deletes a category and its associated data, including related products if no other categories
+   * are linked to them, along with clearing relevant caches and triggering necessary hooks.
+   *
+   * @param int $id The ID of the category to be deleted.
+   * @return void No return value.
    */
   private static function deleteCategories(int $id): void
   {
@@ -89,6 +92,14 @@ class ApiDeleteCategories
     }
   }
 
+  /**
+   * Executes an operation to delete a category identified by a sanitized category ID,
+   * if the necessary parameters are present in the input. If the category ID is invalid,
+   * returns an error response. If required parameters are missing, the method will return false.
+   *
+   * @return string|bool Returns a JSON-encoded error message if the category ID is invalid, or
+   *                     false if the required parameters are not set.
+   */
   public function execute()
   {
     if (isset($_GET['cId'], $_GET['categories'])) {

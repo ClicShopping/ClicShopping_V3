@@ -29,6 +29,11 @@ class ar_reset_password
   public $enabled = true;
   public $group;
 
+  /**
+   * Constructor method for initializing the action recorder reset password module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->code = get_class($this);
@@ -46,11 +51,22 @@ class ar_reset_password
     }
   }
 
+  /**
+   * Sets the identifier property to the IP address retrieved from the HTTP request.
+   *
+   * @return void
+   */
   public function setIdentifier()
   {
     $this->identifier = HTTP::getIpAddress();
   }
 
+  /**
+   * Checks if a user can perform an action based on predefined constraints.
+   *
+   * @param string $user_name The name of the user attempting the action.
+   * @return bool Returns true if the user can perform the action, otherwise false.
+   */
   public function canPerform($user_name)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -77,6 +93,14 @@ class ar_reset_password
     return true;
   }
 
+  /**
+   * Removes expired entries from the action recorder table based on the specified module and time limit.
+   *
+   * This method deletes records from the `:table_action_recorder` table where the `module` column matches
+   * the current object's code and the `date_added` column is older than the defined interval in minutes.
+   *
+   * @return int The number of rows affected by the deletion query.
+   */
   public function expireEntries()
   {
     $Qdel = Registry::get('Db')->prepare('delete
@@ -92,11 +116,21 @@ class ar_reset_password
     return $Qdel->rowCount();
   }
 
+  /**
+   * Checks if the constant MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES is defined.
+   *
+   * @return bool True if the constant is defined, false otherwise.
+   */
   public function check()
   {
     return \defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES');
   }
 
+  /**
+   * Installs the configuration settings for the module by adding required entries into the configuration table.
+   *
+   * @return void
+   */
   public function install()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -124,11 +158,21 @@ class ar_reset_password
     );
   }
 
+  /**
+   * Removes configuration entries from the database where the configuration_key matches any of the keys returned by the keys() method.
+   *
+   * @return int|bool Returns the number of affected rows on success, or false on failure.
+   */
   public function remove()
   {
     return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
+  /**
+   * Retrieves the configuration keys related to the reset password action recorder.
+   *
+   * @return array The array of configuration keys.
+   */
   public function keys()
   {
     return array('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES',

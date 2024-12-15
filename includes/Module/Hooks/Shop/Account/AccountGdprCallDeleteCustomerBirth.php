@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 class AccountGdprCallDeleteCustomerBirth
 {
 
+  /**
+   * Deletes the customer's date of birth from the database if the 'delete_customers_birth' POST parameter is set.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

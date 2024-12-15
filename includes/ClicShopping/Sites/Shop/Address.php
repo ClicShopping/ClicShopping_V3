@@ -21,6 +21,11 @@ class Address
 {
   private mixed $db;
 
+  /**
+   * Constructor method for initializing the class.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->db = Registry::get('Db');
@@ -30,6 +35,16 @@ class Address
   * Return a formatted address
   *  TABLES: address_format
   */
+  /**
+   * Formats an address based on a specified address format ID and other attributes.
+   *
+   * @param int $address_format_id The ID of the address format to be used for formatting.
+   * @param array $address The address data including components like company, street, suburb, city, state, country, etc.
+   * @param bool $html Whether the formatted address should be in HTML format or plain text.
+   * @param string $boln The beginning of line notation (used for formatting).
+   * @param string $eoln The end of line notation (used for formatting).
+   * @return string The formatted address as a string.
+   */
   public static function addressFormat($address_format_id, $address, $html, $boln, $eoln)
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -118,9 +133,10 @@ class Address
   }
 
   /**
-   * Returns the address_format_id for the given country
-   * @param $country_id
-   * @return int
+   * Retrieves the address format ID associated with a given country ID.
+   *
+   * @param int $country_id The ID of the country for which the address format ID will be retrieved.
+   * @return int The address format ID for the specified country. Defaults to 1 if no specific format is found.
    */
 
   public static function getAddressFormatId(int $country_id): int
@@ -139,11 +155,12 @@ class Address
 
 
   /**
-   * Return the zone code
+   * Retrieves the zone code for a specified country and zone.
    *
-   * @param int $id The ID of the zone
-   *
-   * @return string
+   * @param int $country_id The ID of the country to which the zone belongs.
+   * @param int $zone_id The ID of the zone to retrieve the code for.
+   * @param string $default_zone The default zone code to return if no matching zone is found.
+   * @return string The zone code if found, otherwise the default zone code.
    */
 
   public static function getZoneCode(int $country_id, int $zone_id, string $default_zone): string
@@ -170,11 +187,13 @@ class Address
   }
 
   /**
-   * Return the zone name
-   * @param int $country_id
-   * @param int $zone_id
-   * @param null $default_zone
-   * @return string
+   * Retrieves the name of the zone based on the provided country ID, zone ID, and default zone.
+   *
+   * @param int $country_id The ID of the country for which the zone name should be retrieved.
+   * @param int|null $zone_id The ID of the zone to be fetched. If null, the default zone is used.
+   * @param string|null $default_zone The default zone to return if no matching zone is found or if the zone_id is null.
+   *
+   * @return string|null The name of the zone if found, or the default zone value if no matching zone exists.
    */
   public static function getZoneName($country_id, $zone_id = null, $default_zone = null)
   {
@@ -209,10 +228,12 @@ class Address
   }
 
   /**
-   *  Returns an array with countries
-   * @param string $countries_id
-   * @param string $with_iso_codes
+   * Retrieves a list of countries from the database. If a specific country ID is provided,
+   * retrieves information for the specified country. Optionally includes ISO codes if requested.
    *
+   * @param int|null $countries_id The ID of the specific country to retrieve. If null, retrieves all countries.
+   * @param bool $with_iso_codes Whether to include ISO codes (2 or 3) in the result. Defaults to false.
+   * @return array Returns an array containing countries information. The content depends on the parameters provided.
    */
 
   public static function getCountries($countries_id = null, bool $with_iso_codes = false): array
@@ -261,9 +282,10 @@ class Address
   }
 
   /**
-   * Retour the name of the country
-   * @param $country_id
+   * Retrieves the name of the country based on the provided country ID.
    *
+   * @param int $country_id The ID of the country.
+   * @return string The name of the country.
    */
   public static function getCountryName(int $country_id): string
   {
@@ -274,9 +296,10 @@ class Address
   }
 
   /**
-   *  Alias function to getCountries, which also returns the countries iso codes
-   * @param string $countries_id
+   * Retrieves country information along with ISO codes.
    *
+   * @param int $countries_id The ID of the country to fetch information for.
+   * @return array Returns an array containing country details and their respective ISO codes.
    */
   public function getCountriesWithIsoCodes(int $countries_id)
   {
@@ -284,11 +307,10 @@ class Address
   }
 
   /**
-   * Return the zones belonging to a country, or all zones
+   * Retrieves a list of zones based on the provided country ID or retrieves all zones if no ID is provided.
    *
-   * @param int $id The ID of the country
-   *
-   * @return array
+   * @param int|null $id The ID of the country to filter the zones. If null, retrieves zones from all countries.
+   * @return array An array of zones, where each zone includes the zone ID, name, country ID, and country name.
    */
 
   public static function getZones($id = null): array
@@ -337,12 +359,10 @@ class Address
   }
 
   /**
-   * Get the country zone
+   * Retrieves the zones associated with a specific country.
    *
-   * @param $country_id , if ogf the country
-   * @return array $zones_array, zone of the country
-   *
-   * Shop and Admin
+   * @param int $country_id The ID of the country for which zones are to be fetched.
+   * @return array An array of zones, where each zone contains 'id' and 'text' keys representing the zone ID and zone name respectively.
    */
   public static function getCountryZones($country_id)
   {
@@ -368,12 +388,10 @@ class Address
   }
 
   /**
-   * Get pull down of the country zone
+   * Prepares a list of country zones for use in a dropdown menu.
    *
-   * @param $country_id , if ogf the country
-   * @return array $zones_array, zone of the country
-   *
-   * Shop and Admin
+   * @param string $country_id The ID of the country for which the zones are being retrieved. Default is an empty string.
+   * @return array An array of country zones with each element containing an 'id' and 'text' key.
    */
   public static function getPrepareCountryZonesPullDown($country_id = ''): array
   {
@@ -399,9 +417,10 @@ class Address
   }
 
   /**
-   * Get all zone for one country
-   * @param int $country_id
-   * @return string
+   * Retrieves all zones associated with the given country ID.
+   *
+   * @param int $country_id The ID of the country for which zones should be retrieved.
+   * @return array|false Returns an array of zones (each containing 'id' and 'text') if zones are found, or false if no zones exist.
    */
   public function getAllZones(int $country_id)
   {
@@ -430,9 +449,10 @@ class Address
 
 
   /**
-   * Display zone states
-   * @param int $country_id
-   * @return string
+   * Generates a dropdown menu or input field for selecting or entering a state/zone based on the provided country ID.
+   *
+   * @param int|string $country_id The ID of the country used to retrieve the list of zones.
+   * @return string The HTML string for the zone dropdown menu if zones exist, or an input field if no zones are found.
    */
   public function getZoneDropdown($country_id): string
   {
@@ -448,10 +468,15 @@ class Address
   }
 
   /**
-   * Check if a zone exist
-   * @param int $country
-   * @param null $zone_id
-   * @return bool
+   * Checks and retrieves a zone ID associated with a specific country and an optional zone identifier.
+   *
+   * @param int $country The ID of the country for which the zone is being checked.
+   * @param mixed $zone_id Optional parameter; can be null, numeric, or a string representing the zone name or code.
+   *                        If null, the method looks for any zone associated with the country.
+   *                        If numeric, the method looks for a specific zone ID.
+   *                        If a string, the method looks for a matching zone name or code.
+   *
+   * @return int|null The ID of the zone if found, or null if no matching zone is found.
    */
   public function checkZoneCountry(int $country, $zone_id = null)
   {
@@ -497,10 +522,17 @@ class Address
   }
 
   /**
-   * Check the zone by country and State
-   * @param int $country_id
-   * @param $state
-   * @return
+   * Checks the zone ID based on the given country ID and state.
+   *
+   * This method determines the zone ID for a specific country and state combination.
+   * In case of a match, it returns the corresponding zone ID. If no matching zone is found,
+   * it returns false.
+   *
+   * @param int $country_id The ID of the country to check the zones for.
+   * @param mixed $state The state name, code, or ID. This parameter can be empty, a non-numeric
+   *                     string for name/code, or a numeric value for ID.
+   *
+   * @return int|false Returns the zone ID if a matching zone is found. Returns false otherwise.
    */
   public function checkZoneByCountryState(int $country_id, $state = '')
   {

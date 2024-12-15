@@ -29,10 +29,10 @@ use function in_array;
 class B2BCommon
 {
   /**
-   * Display the payment mode in different mode B2B or not
+   * Checks if a specific payment method is not allowed for the current customer group or context.
    *
-   * @param string $pay_check
-   * @return bool
+   * @param string $pay_check The payment method to check against the restrictions.
+   * @return bool Returns true if the payment method is not allowed, otherwise false.
    */
 
   public static function getPaymentUnallowed(string $pay_check): bool
@@ -83,10 +83,10 @@ class B2BCommon
   }
 
   /**
-   * Not Display  the payment module if customer_group = 0
-   * @param string $customer_group_id , the group of the customer
+   * Retrieves the customer group ID associated with the current customer.
    *
-   **/
+   * @return int The customer group ID of the currently logged-in customer.
+   */
   public static function getPaymentNotDisplayPayment(): int
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -96,10 +96,10 @@ class B2BCommon
   }
 
   /**
-   * Display the shipping mode in different mode B2B or not
+   * Determines whether a shipping method is not allowed for the current customer group or context.
    *
-   * @param string $product_price_d , the price of the product or not
-   *
+   * @param string $shipping_check The shipping method to be checked.
+   * @return bool Returns true if the shipping method is not allowed; otherwise, returns false.
    */
   public static function getShippingUnallowed(string $shipping_check): bool
   {
@@ -152,11 +152,9 @@ class B2BCommon
 
 
   /**
-   * Display the taxe or not mode in different mode B2B or not
+   * Determines if tax is unallowed for a specific customer group.
    *
-   * @param string $product_price_d , the price of the product or not
-   *
-   * $tax_check no variable
+   * @return bool Returns true if tax is unallowed, otherwise false.
    */
   public static function getTaxUnallowed(): bool
   {

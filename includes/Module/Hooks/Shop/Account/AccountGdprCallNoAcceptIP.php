@@ -15,6 +15,14 @@ use function is_null;
 
 class AccountGdprCallNoAcceptIP
 {
+  /**
+   * Handles the execution of customer GDPR data validation and updates within the database.
+   *
+   * This method checks if a customer's GDPR data exists in the database. If not, it creates a new record.
+   * If the data exists, it updates the `no_ip_address` status and the timestamp accordingly.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

@@ -13,10 +13,19 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 use ClicShopping\OM\CLICSHOPPING;
 use function defined;
 
+/**
+ * Handles the generation of HTML and JavaScript output for embedding a tool that
+ * enables text copying functionality in the ClicShopping administration footer,
+ * conditioned on certain application and user session states.
+ */
 class FooterOutputBootstrapCopyText
 {
   /**
-   * @return string|bool
+   * Generates and returns a structured HTML output with additional JavaScript inclusion
+   * if specific conditions for admin session and application status are met.
+   *
+   * @return string|bool Returns the generated HTML output as a string if conditions are met,
+   *                     or false if query parameters are empty or the user is not an admin.
    */
   public function display(): string|bool
   {

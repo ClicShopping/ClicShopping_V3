@@ -21,6 +21,11 @@ class CfgmModulesProductsNew
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Initializes the object with necessary dependencies and properties.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

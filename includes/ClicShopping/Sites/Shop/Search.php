@@ -42,6 +42,12 @@ class Search
   protected bool $_recursive = false;
   protected $listing;
 
+  /**
+   * Initializes the object by setting up the database connection and querying the minimum and maximum years
+   * from the products table. The resulting values are used to initialize the period range.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->db = Registry::get('Db');
@@ -58,7 +64,9 @@ class Search
   }
 
   /**
-   * @return string
+   * Retrieves the minimum year of the period.
+   *
+   * @return string The minimum year as a string.
    */
   public function getMinYear(): string
   {
@@ -66,7 +74,9 @@ class Search
   }
 
   /**
-   * @return string
+   * Retrieves the maximum year of the period.
+   *
+   * @return string The maximum year of the period.
    */
   public function getMaxYear(): string
   {
@@ -74,7 +84,12 @@ class Search
   }
 
   /**
-   * @return string
+   * Retrieves the starting date ('dfrom') from either POST or GET request.
+   * - If 'dfrom' is set and non-empty in the POST request, it sanitizes and sets it.
+   * - If not found in POST, checks GET for 'dfrom', sanitizes, and sets it.
+   * - If 'dfrom' is not set in both, defaults to an empty string.
+   *
+   * @return string The sanitized starting date or an empty string if not provided.
    */
   public function getDateFrom(): string
   {
@@ -90,7 +105,9 @@ class Search
   }
 
   /**
-   * @return bool
+   * Determines if the dateFrom property is valid.
+   *
+   * @return bool True if the dateFrom property is valid, false otherwise.
    */
   public function hasDateFrom(): bool
   {
@@ -106,7 +123,10 @@ class Search
   }
 
   /**
-   * @return string
+   * Retrieves the ending date value based on the 'dto' parameter from the POST or GET request.
+   * Sanitizes the retrieved value to ensure safety.
+   *
+   * @return string The sanitized 'dto' value or an empty string if not provided.
    */
   public function getDateTo(): string
   {
@@ -122,7 +142,9 @@ class Search
   }
 
   /**
-   * @return bool
+   * Checks if there is a valid "date to" value.
+   *
+   * @return bool Returns true if the "date to" value is valid, otherwise false.
    */
   public function hasDateTo(): bool
   {
@@ -138,8 +160,9 @@ class Search
   }
 
   /**
-   * @param string $timestamp
-   * @return string
+   *
+   * @param string $timestamp The timestamp to set as the starting date.
+   * @return string The set starting date.
    */
   public function setDateFrom(string $timestamp): string
   {
@@ -147,7 +170,10 @@ class Search
   }
 
   /**
-   * @param $timestamp
+   * Sets the date to the specified timestamp.
+   *
+   * @param int|string $timestamp The timestamp to set as the date.
+   * @return void
    */
   public function setDateTo($timestamp)
   {
@@ -155,7 +181,10 @@ class Search
   }
 
   /**
-   * @return string
+   * Retrieves the "price from" value from either the POST or GET request.
+   * Sanitizes the input if it is set, not empty, and numeric. If not available, returns an empty string.
+   *
+   * @return string The sanitized "price from" value or an empty string if not set or invalid.
    */
   public function getPriceFrom(): string
   {
@@ -171,7 +200,9 @@ class Search
   }
 
   /**
-   * @return bool
+   * Determines whether a price is set for the entity.
+   *
+   * @return bool Returns true if a price is set, otherwise false.
    */
   public function hasPriceFrom(): bool
   {
@@ -185,7 +216,9 @@ class Search
   }
 
   /**
-   * @return string
+   * Retrieves the maximum price value from request parameters.
+   *
+   * @return string The sanitized maximum price value or an empty string if no valid value is found.
    */
   public function getPriceTo(): string
   {
@@ -201,7 +234,9 @@ class Search
   }
 
   /**
-   * @return bool
+   * Determines if there is a price for the "to" field.
+   *
+   * @return bool True if the "to" price is set, otherwise false.
    */
   public function hasPriceTo(): bool
   {
@@ -214,23 +249,21 @@ class Search
     return $priceto;
   }
 
-  /*
-    * Number of products result
-    * @param
-    * @return $this->_result['total'], total of products
-    *
-  */
+  /**
+   * Retrieves the total number of results.
+   *
+   * @return int The total number of results.
+   */
   public function getNumberOfResults(): int
   {
     return $this->_result['total'];
   }
 
-  /*
-   * Search keywords
-   * @param
-   * @return $this->_keywords, the keywords
+  /**
+   * Retrieves and sanitizes the 'keywords' parameter from either POST or GET request.
    *
-  */
+   * @return string The sanitized keywords or an empty string if not present in the request.
+   */
   public function getKeywords(): string
   {
     if (isset($_POST['keywords'])) {
@@ -244,11 +277,12 @@ class Search
     return $this->_keywords;
   }
 
-  /*
-   * Boolean True False
-   * @return true or False
+
+  /**
+   * Determines if keywords are present.
    *
-  */
+   * @return bool Returns true if there are keywords, false otherwise.
+   */
   public function hasKeywords(): bool
   {
     if (!empty($this->getKeywords())) {
@@ -264,6 +298,12 @@ class Search
    * @return keywords under an array
    *
   */
+  /**
+   * Sets and sanitizes the input keywords, limiting the processed terms to a maximum of five unique words.
+   *
+   * @param string $keywords The input keywords string to be sanitized and processed.
+   * @return void
+   */
   public function setKeywords(string $keywords)
   {
     if (isset($keywords)) {
@@ -296,6 +336,11 @@ class Search
    * @return $this->_description, the keywords
    *
   */
+  /**
+   * Determines whether to search within descriptions based on POST or GET values.
+   *
+   * @return bool Returns true if searching in descriptions is enabled; otherwise, false.
+   */
   private function getDescription(): bool
   {
     if (isset($_POST['search_in_description']) == 1) {
@@ -309,13 +354,12 @@ class Search
     return $this->_description;
   }
 
-  /*
-   * Description
-   * Boolean true False
-   * @return true or False
-   * @access private
-  */
 
+  /**
+   * Checks if a description is present.
+   *
+   * @return bool True if a description exists, false otherwise.
+   */
   private function hasDescription(): bool
   {
     return $this->getDescription();
@@ -327,6 +371,11 @@ class Search
    * @return $this->_category, the categorie
    *
   */
+  /**
+   * Determines and returns the category status based on input parameters.
+   *
+   * @return bool True if a valid categories_id is found in POST or GET data, otherwise false.
+   */
   private function getCategory(): bool
   {
     if (isset($_POST['categories_id']) && !empty($_POST['categories_id']) && is_numeric($_POST['categories_id'])) {
@@ -340,12 +389,11 @@ class Search
     return $this->_category;
   }
 
-  /*
-   * Category
-   * Boolean true False
-   * @return true or False
+  /**
+   * Checks if a category exists.
    *
-  */
+   * @return bool Returns true if a category exists, otherwise false.
+   */
   private function hasCategory(): bool
   {
     return $this->getCategory();
@@ -357,6 +405,11 @@ class Search
    * @return $this->_recursive, id fo categories
    *
   */
+  /**
+   * Determines if the operation should be recursive based on a specific POST parameter.
+   *
+   * @return bool Whether the operation is recursive.
+   */
   private function isRecursive(): bool
   {
     if (isset($_POST['inc_subcat']) && ($_POST['inc_subcat'] == '1')) {
@@ -370,7 +423,9 @@ class Search
   }
 
   /**
-   * @return int|null
+   * Retrieves the category ID from the request parameters if available.
+   *
+   * @return int|null The sanitized category ID if present, null otherwise.
    */
   private function getCategoryID():  int|null
   {
@@ -388,6 +443,11 @@ class Search
   * @return $this->_manufacturer, the manufacturer
   *
   */
+  /**
+   * Determines the manufacturer based on provided POST or GET data.
+   *
+   * @return bool Returns true if a valid manufacturer ID is found and set, otherwise false.
+   */
   private function getManufacturer(): bool
   {
     $this->checkManufacturer = false;
@@ -409,6 +469,10 @@ class Search
    * @return true or False
    * @access private
   */
+  /**
+   *
+   * @return bool|null Indicates whether a manufacturer is present or null if not determined.
+   */
   private function hasManufacturer(): ?bool
   {
     return $this->checkManufacturer;
@@ -421,6 +485,11 @@ class Search
   *
   */
 
+  /**
+   * Sorts and filters the search list configuration settings based on their defined values.
+   *
+   * @return array Sorted and filtered array of column identifiers for the search list.
+   */
   public function sortListSearch(): array
   {
     if (defined('MODULE_PRODUCTS_SEARCH_LIST_NAME')) {
@@ -452,6 +521,12 @@ class Search
    * @return $result : sql sesult
    *
   */
+  /**
+   * Executes a comprehensive product search based on various criteria such as price, category, manufacturer, and keywords.
+   * The search conditions are dynamically constructed to filter results from the product database.
+   *
+   * @return array An array of search results based on the specified filters and sorting criteria.
+   */
   public function execute()
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -758,8 +833,11 @@ class Search
     $this->_result = $result;
   }
 
+
   /**
-   * @return mixed
+   * Retrieves the listing.
+   *
+   * @return mixed The listing associated with the instance.
    */
   public function getListing()
   {
@@ -767,7 +845,10 @@ class Search
   }
 
   /**
-   * @return mixed
+   * Retrieves the result of an operation.
+   * If the result is not already set, it will execute the operation to generate it.
+   *
+   * @return mixed The result of the operation.
    */
   public function getResult()
   {

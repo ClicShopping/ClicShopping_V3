@@ -13,7 +13,10 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 class FooterOutputSideBar
 {
   /**
-   * @return string|bool
+   * Generates and returns the sidebar vertical menu script if the admin session is set
+   * and the vertical menu configuration is enabled.
+   *
+   * @return string|bool Returns the script as a string if conditions are met, or false otherwise.
    */
   public function display(): string|bool
   {

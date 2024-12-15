@@ -16,9 +16,12 @@ use ClicShopping\OM\Registry;
 class ApiGetProduct
 {
   /**
-   * @param int|null $id
-   * @param int|string $language_id
-   * @return array
+   * Retrieves product data based on product ID and language ID.
+   *
+   * @param int|string $id The product ID. If numeric, it is used to filter the query.
+   * @param int|string $language_id The language ID. If numeric, it is used to filter the query.
+   * @return array Returns an array of product information including various product attributes
+   *               such as name, description, SKU, UPC, dimensions, and price.
    */
   private static function products(int|string $id, int|string $language_id)
   {
@@ -86,6 +89,12 @@ class ApiGetProduct
   }
 
 
+  /**
+   * Executes the functionality by verifying parameters and fetching product information if valid.
+   *
+   * @return false|string Returns false if required parameters are not set or if the ID is invalid;
+   *                      otherwise, returns a JSON-encoded string with product information.
+   */
   public function execute()
   {
     if (isset($_GET['pId'], $_GET['token'])) {

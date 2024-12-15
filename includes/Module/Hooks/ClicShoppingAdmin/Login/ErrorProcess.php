@@ -20,6 +20,14 @@ use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\Temp
 
 class ErrorProcess
 {
+  /**
+   * Executes the method responsible for sending a security alert email when an unauthorized access attempt is detected on the admin panel.
+   * Utilizes session data, username sanitization, and IP address details to build a detailed report.
+   * The report includes information such as IP address, host name, referer, geo-location data (city, country, region), and a Google Maps link.
+   * The report is then sent via email using the configured mail settings.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Mail = Registry::get('Mail');

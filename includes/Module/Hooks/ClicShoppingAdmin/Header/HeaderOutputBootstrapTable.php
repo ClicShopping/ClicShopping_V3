@@ -13,7 +13,9 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Header;
 class HeaderOutputBootstrapTable
 {
   /**
-   * @return string
+   * Generates and returns a string containing HTML and CSS links for initializing a Bootstrap table if the user is an admin.
+   *
+   * @return string|bool Returns a string with the HTML and CSS links if the user is an admin, otherwise returns false.
    */
   public function display(): string|bool
   {

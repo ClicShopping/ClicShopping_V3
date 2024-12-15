@@ -15,6 +15,12 @@ use ClicShopping\OM\Hash;
 
 class Recreated
 {
+  /**
+   * Resets the session token with a newly generated value.
+   *
+   * @param mixed $parameters Additional parameters for the execution. Not used in the current implementation.
+   * @return void
+   */
   public function execute($parameters)
   {
 // reset session token

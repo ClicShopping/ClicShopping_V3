@@ -15,6 +15,14 @@ use ClicShopping\OM\Registry;
 class AccountGdprCallDeleteReviews
 {
 
+  /**
+   * Deletes all reviews associated with the currently logged-in customer if the delete_all_reviews POST parameter is set.
+   *
+   * This method retrieves all review IDs for the logged-in customer and subsequently deletes the reviews
+   * and their associated descriptions from the database.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

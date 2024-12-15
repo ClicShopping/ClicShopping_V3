@@ -13,7 +13,11 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 class FooterOutputMustache
 {
   /**
-   * @return string|bool
+   * Generates and returns a string containing Mustache.js script include tags
+   * if the 'admin' session variable is set.
+   * Returns false if the 'admin' session variable is not set.
+   *
+   * @return string|bool Returns the Mustache.js script tags as a string if 'admin' session variable exists, otherwise returns false.
    */
   public function display(): string|bool
   {

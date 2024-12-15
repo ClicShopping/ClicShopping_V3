@@ -21,6 +21,14 @@ class CfgmModulesCreateAccount
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method.
+   *
+   * Initializes the properties for directory, language_directory, and title by fetching the necessary
+   * configurations from the TemplateAdmin registry object.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

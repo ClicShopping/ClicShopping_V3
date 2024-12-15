@@ -15,6 +15,12 @@ use ClicShopping\OM\CLICSHOPPING;
 class ActionDonate
 {
 
+  /**
+   * Constructor method that initializes the class and ensures the current site is 'ClicShoppingAdmin'.
+   * If the site is not 'ClicShoppingAdmin', it will redirect to another location.
+   *
+   * @return void
+   */
   public function __construct()
   {
 
@@ -23,6 +29,11 @@ class ActionDonate
     }
   }
 
+  /**
+   * Generates and returns a formatted HTML output containing donation and social media links.
+   *
+   * @return string The HTML content with donation and social media links.
+   */
   public function execute()
   {
     $output = '<div class="mt-1"></div>

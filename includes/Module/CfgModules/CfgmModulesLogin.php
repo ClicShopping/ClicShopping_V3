@@ -21,6 +21,12 @@ class CfgmModulesLogin
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method that initializes directory and language directory paths,
+   * and sets the module title for the login module configuration.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

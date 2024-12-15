@@ -15,7 +15,10 @@ use ClicShopping\OM\CLICSHOPPING;
 class FooterOutputBootstrapTab
 {
   /**
-   * @return string|bool
+   * Generates and returns a script block for a Bootstrap tab if conditions are met.
+   *
+   * @return string|bool A string containing the script block if the query string is not empty
+   *                     and the user session is identified as admin; false otherwise.
    */
   public function display(): string|bool
   {

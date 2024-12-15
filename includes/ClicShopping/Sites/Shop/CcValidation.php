@@ -24,6 +24,14 @@ class CcValidation
   public string $cc_expiry_month;
   public string $cc_expiry_year;
 
+  /**
+   * Constructor method to initialize credit card details.
+   *
+   * @param string $number The credit card number, which will be sanitized and validated.
+   * @param string $expiry_m The expiry month of the credit card, which must be a numeric value between 1 and 12.
+   * @param string $expiry_y The expiry year of the credit card, which must be a valid future year within an acceptable range.
+   * @return int Returns a negative integer if any validation fails, otherwise returns the result of the validation check.
+   */
   public function __construct(string $number, string $expiry_m, string $expiry_y)
   {
     $this->cc_number = preg_replace('/[^0-9]/', '', $number);
@@ -70,7 +78,9 @@ class CcValidation
   }
 
   /**
-   * @return bool
+   * Validates the credit card number using the Luhn algorithm.
+   *
+   * @return bool Returns true if the credit card number is valid, otherwise false.
    */
   public function isValid(): bool
   {

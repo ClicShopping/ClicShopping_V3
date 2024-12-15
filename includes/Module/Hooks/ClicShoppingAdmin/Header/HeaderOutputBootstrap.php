@@ -15,7 +15,10 @@ use ClicShopping\OM\CLICSHOPPING;
 class HeaderOutputBootstrap
 {
   /**
-   * @return string
+   * Generates and returns a string containing Bootstrap-related HTML meta tags and stylesheet links.
+   * This ensures required Bootstrap assets are included for proper styling and icon usage.
+   *
+   * @return string The HTML markup for including Bootstrap stylesheet and icon assets.
    */
   public function display(): string
   {

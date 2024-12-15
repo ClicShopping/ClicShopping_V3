@@ -12,9 +12,21 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Dashboard;
 
 use ClicShopping\OM\CLICSHOPPING;
 
+/**
+ * ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Dashboard\ActionLinkedin
+ *
+ * This class is a module hook for the ClicShoppingAdmin dashboard. It generates and displays
+ * an HTML block that includes a LinkedIn "Add to Profile" button.
+ * This feature allows users to add a ClicShopping professional certification to their LinkedIn profile.
+ */
 class ActionLinkedin
 {
 
+  /**
+   * Generates and returns the HTML output for displaying a LinkedIn certificate.
+   *
+   * @return string The HTML output for displaying the LinkedIn Add to Profile button.
+   */
   public function execute()
   {
     $output = '<div class="mt-1"></div>

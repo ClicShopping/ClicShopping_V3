@@ -13,7 +13,9 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Header;
 class HeaderOutputChart
 {
   /**
-   * @return string|bool
+   * Generates and returns HTML output for embedding charts if the current session belongs to an admin user.
+   *
+   * @return string|bool Returns the generated HTML string if the session is admin; otherwise, returns false.
    */
   public function display(): string|bool
   {

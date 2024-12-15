@@ -31,6 +31,18 @@ class Payment
   private mixed $lang;
 
 // class constructor
+
+  /**
+   * Payment module constructor.
+   *
+   * Initializes the payment modules, sets the selected payment module if specified,
+   * and configures the registry for each payment module class. It also handles
+   * scenarios where only one payment method is available and ensures the
+   * appropriate session variable is set for the payment method.
+   *
+   * @param string|null $module The specific payment module to initialize, if any.
+   * @return void
+   */
   public function __construct($module = null)
   {
     $this->template = Registry::get('Template');
@@ -83,7 +95,10 @@ class Payment
           $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $module));
 
           if (isset($CLICSHOPPING_PM->form_action_url)) {
-            $this->form_action_url = $CLICSHOPPING_PM->form_action_url;
+            /**
+             *
+             */
+              $this->form_action_url = $CLICSHOPPING_PM->form_action_url;
           }
         }
       }
@@ -99,6 +114,11 @@ class Payment
      payment modules available which would break the modules in the contributions
      section. This should be looked into again post 2.2.
   */
+  /**
+   * Updates the status of the selected payment module if it exists and has an update_status method.
+   *
+   * @return void
+   */
   public function update_status()
   {
     if (is_array($this->modules)) {
@@ -116,6 +136,13 @@ class Payment
     }
   }
 
+  /**
+   * Generates and returns JavaScript code for validating the payment form on the checkout page.
+   * The validation script checks if a payment method is selected and ensures that any additional validation
+   * logic provided by enabled payment modules is executed.
+   *
+   * @return string The JavaScript validation code as a string.
+   */
   public function javascript_validation(): string
   {
     $js = '';
@@ -164,6 +191,11 @@ class Payment
     return $js;
   }
 
+  /**
+   * Executes the checkout initialization method for each enabled payment module that supports it.
+   *
+   * @return array Returns an array containing the results of the checkout initialization methods from applicable payment modules.
+   */
   public function checkout_initialization_method(): array
   {
     $initialize_array = [];
@@ -183,6 +215,11 @@ class Payment
     return $initialize_array;
   }
 
+  /**
+   * Retrieves an array of selection options from enabled payment modules.
+   *
+   * @return array Contains a list of selection data from the enabled modules.
+   */
   public function selection(): array
   {
     $selection_array = [];
@@ -204,7 +241,10 @@ class Payment
   }
 
   /**
-   * preconfirmation
+   * Performs a pre-confirmation check for the selected payment module.
+   * If the selected module is enabled, it invokes its specific `pre_confirmation_check` method.
+   *
+   * @return void
    */
   public function pre_confirmation_check()
   {
@@ -220,7 +260,7 @@ class Payment
   }
 
   /**
-   * confirmation
+   *
    */
   public function confirmation()
   {
@@ -236,7 +276,11 @@ class Payment
   }
 
   /**
-   * process
+   * Executes the process_button functionality for the selected payment module.
+   *
+   * This method checks if the payment modules are defined as an array and if the
+   * selected module contains a namespace separator. If so, it retrieves the corresponding
+   * payment module instance and calls its process_button method if the module is enabled.
    */
   public function process_button()
   {
@@ -252,7 +296,14 @@ class Payment
   }
 
   /**
-   * before process
+   * Executes the `before_process` method for the selected payment module if it is enabled.
+   *
+   * This method first checks if the `$modules` property is an array. Then, it verifies
+   * if the `selected_module` contains a backslash character (`\`). If so, a payment
+   * module instance is retrieved using the `Registry` class. If the retrieved module
+   * is enabled, its `before_process` method is invoked and its result is returned.
+   *
+   * @return mixed Returns the result of the payment module's `before_process` method if invoked; null otherwise.
    */
   public function before_process()
   {
@@ -268,7 +319,16 @@ class Payment
   }
 
   /**
-   * after process
+   * Executes the after_process method for the selected payment module.
+   *
+   * Checks if the selected payment module exists and is enabled. If so, it calls the
+   * after_process method of that specific payment module to handle any operations
+   * that should be performed after the main process is completed.
+   *
+   * This method relies on the presence of a valid module name in the `selected_module`
+   * property and ensures the module is structured within the application registry.
+   *
+   * Returns the result of the after_process method from the selected payment module.
    */
   public function after_process()
   {
@@ -284,7 +344,13 @@ class Payment
   }
 
   /**
-   * error
+   * Retrieves error information from the selected module.
+   *
+   * If the modules property is an array and the selected module contains a
+   * namespace separator, it attempts to access the corresponding payment module
+   * and invokes its get_error method, returning any error details it provides.
+   *
+   * @return mixed|null Returns the error information from the module, or null if no error is found or the condition is not met.
    */
   public function get_error()
   {
@@ -300,8 +366,9 @@ class Payment
   }
 
   /**
-   * count payment
-   * @return int
+   * Counts the number of enabled payment modules installed in the system.
+   *
+   * @return int The count of enabled payment modules.
    */
   public function getCountPaymentModules(): int
   {

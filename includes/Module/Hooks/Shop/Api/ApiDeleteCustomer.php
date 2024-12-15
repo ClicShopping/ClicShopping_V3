@@ -16,7 +16,9 @@ use ClicShopping\OM\Registry;
 class ApiDeleteCustomer
 {
   /**
-   * @param int $id
+   * Deletes a customer and all associated information from the database.
+   *
+   * @param int $id The ID of the customer to be deleted.
    * @return void
    */
   private static function deleteCustomer(int $id): void
@@ -47,6 +49,13 @@ class ApiDeleteCustomer
     }
   }
 
+  /**
+   * Executes the operation to delete a customer based on the provided ID.
+   *
+   * @return false|string Returns a JSON-encoded error message if the ID is invalid,
+   *                      false if the required parameters are missing,
+   *                      or performs the customer deletion if valid input is provided.
+   */
   public function execute()
   {
     if (isset($_GET['cId'], $_GET['customer'])) {

@@ -27,6 +27,11 @@ class ht_breadcrumb
   public int|null $sort_order = 0;
   public bool $enabled = false;
 
+  /**
+   * Constructor method for initializing the class properties.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->code = get_class($this);
@@ -41,6 +46,11 @@ class ht_breadcrumb
     }
   }
 
+  /**
+   * Executes the process of adding a footer breadcrumb script block if the Breadcrumb service is started.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Template = Registry::get('Template');
@@ -54,16 +64,31 @@ class ht_breadcrumb
     $CLICSHOPPING_Template->addBlock($footer, 'footer_scripts');
   }
 
+  /**
+   * Checks if the current instance is enabled.
+   *
+   * @return bool Returns true if the instance is enabled, otherwise false.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Checks if the constant 'MODULE_HEADER_TAGS_BREADCRUMB_STATUS' is defined.
+   *
+   * @return bool Returns true if the constant is defined, otherwise false.
+   */
   public function check()
   {
     return \defined('MODULE_HEADER_TAGS_BREADCRUMB_STATUS');
   }
 
+  /**
+   * Installs the configuration settings for the module into the database.
+   *
+   * @return void
+   */
   public function install()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -93,11 +118,23 @@ class ht_breadcrumb
     );
   }
 
+  /**
+   * Removes configuration entries from the database that match the keys provided by the keys() method.
+   *
+   * Executes a delete query on the configuration table for the specified configuration keys.
+   *
+   * @return int The number of rows affected by the delete query.
+   */
   public function remove()
   {
     return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
+  /**
+   * Retrieves the configuration keys used by the module.
+   *
+   * @return array An array of configuration keys.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_BREADCRUMB_STATUS',

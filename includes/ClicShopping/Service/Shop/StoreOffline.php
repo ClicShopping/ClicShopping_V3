@@ -18,6 +18,13 @@ use ClicShopping\OM\CLICSHOPPING;
  */
 class StoreOffline implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Starts the application and checks if it should run in offline mode.
+   * If the store is offline, verifies whether the current IP is allowed access.
+   * Redirects to an offline page if access is restricted.
+   *
+   * @return bool Returns true when the application is successfully started.
+   */
   public static function start(): bool
   {
     if (STORE_OFFLINE == 'true') {
@@ -39,6 +46,11 @@ class StoreOffline implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   * Stops the currently running process or action.
+   *
+   * @return bool Returns true to indicate the process has been successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

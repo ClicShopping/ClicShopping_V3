@@ -32,6 +32,12 @@ class HTMLOverrideAdmin extends HTML
    *
    */
 
+  /**
+   * Replaces spaces with '+' and replaces angle brackets '<' and '>' with '_'.
+   *
+   * @param string $string The input string to be sanitized and modified.
+   * @return string The sanitized and modified string.
+   */
   public static function sanitizeReplace(string $string): string
   {
     $string = preg_replace("/ /", "+", $string);
@@ -40,11 +46,13 @@ class HTMLOverrideAdmin extends HTML
 
 
   /**
-   * Pulldown products
+   * Generates a dropdown menu (HTML select element) populated with product names and prices.
    *
-   * @param string $name , $parameters, $exclude
-   * @return string $select_string, the pulldown value of products
-   *
+   * @param string $name The name attribute for the select element.
+   * @param mixed $parameters Optional additional parameters for the select element attributes (e.g., id or custom attributes).
+   * @param mixed $exclude Optional list of products (or product-group combinations) to exclude from the dropdown.
+   * @param string $class Optional CSS class for the select element, defaults to 'form-control'.
+   * @return string The generated HTML for the dropdown menu.
    */
   public static function selectMenuProductsPullDown(string $name, $parameters = '', $exclude = '', string $class = 'form-control'): string
   {
@@ -141,8 +149,13 @@ class HTMLOverrideAdmin extends HTML
 
 
   /**
-   * javascript to dynamically update the states/provinces list when the country is changed
-   * TABLES: zones
+   * Generates a JavaScript string to populate zone selection options based on the provided country.
+   *
+   * @param string $country The variable representing the selected country identifier.
+   * @param string $form The name of the form containing the zone field to be updated.
+   * @param string $field The name of the form field to populate with zones.
+   *
+   * @return string A JavaScript string containing the conditional logic to update zone options.
    */
   public static function getJsZoneList(string $country, string $form, string $field): string
   {
@@ -195,11 +208,15 @@ class HTMLOverrideAdmin extends HTML
   }
 
   /**
-   * @param array $data
-   * @param string $filename
-   * @param string $delimiter
-   * @param string $extension
-   * @param string $enclosure
+   * Exports an array of data to a CSV file and triggers a download in the user's browser.
+   *
+   * @param array $data The array of data to be exported. Each element represents a row, and each row is an associative array with column-value pairs.
+   * @param string $filename The name of the file to be downloaded, without the extension. Default is 'export'.
+   * @param string $delimiter The delimiter to be used in the CSV file. Default is ';'.
+   * @param string $extension The file extension for the exported file. Default is 'csv'.
+   * @param string $enclosure The character used to enclose fields in the CSV file. Default is '"'.
+   *
+   * @return void
    */
   public function exportDataToCsv(array $data, string $filename = 'export', string $delimiter = ';', string $extension = 'csv', string $enclosure = '"')
   {

@@ -25,11 +25,9 @@ class HeaderTags
 {
 
   /**
-   * Function to return the metatag in the footer
-   * public function
-   * @param string $footer
-   * @return string metatag in the footer
-   * get_submit_footer
+   * Generates and returns the footer tag content based on the default SEO language footer retrieved from the database.
+   *
+   * @return string The formatted footer tag content with links created for each keyword.
    */
 
   public static function geFooterTag(): string
@@ -61,12 +59,10 @@ class HeaderTags
     }
   }
 
-  /*
-   * Function to return the canonical URL
-   * @version 1.0
-   * public function
-   * @param string $canonical_link
-   * @return string url of the website
+  /**
+   * Generates and returns the canonical URL for the current request by removing specific unnecessary query string parameters.
+   *
+   * @return string The canonical URL for the current request.
    */
   public static function getCanonicalUrl(): string
   {

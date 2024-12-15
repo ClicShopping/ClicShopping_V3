@@ -15,7 +15,12 @@ use ClicShopping\OM\CLICSHOPPING;
 class FooterOutputBootstrapTable
 {
   /**
-   * @return bool|string
+   * Outputs the necessary scripts and elements required for initializing and using a Bootstrap table,
+   * including support for features like checkboxes, export functionality, and mobile responsive design.
+   *
+   * If the session does not have an admin user authenticated, the method returns false.
+   *
+   * @return string|bool The generated HTML and script elements for the Bootstrap table if the admin session exists, or false otherwise.
    */
   public function display(): string|bool
   {

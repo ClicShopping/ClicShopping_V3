@@ -15,7 +15,9 @@ use ClicShopping\OM\CLICSHOPPING;
 class FooterOutputClipBoardCopyText
 {
   /**
-   * @return string|bool
+   * Generates a formatted string containing a script for tooltips if the user session is identified as admin.
+   *
+   * @return string|bool Returns the formatted script string if conditions are met; otherwise, returns false.
    */
   public function display(): string|bool
   {

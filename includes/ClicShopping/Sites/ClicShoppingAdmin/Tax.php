@@ -19,10 +19,13 @@ use ClicShopping\OM\Registry;
 class Tax extends \ClicShopping\Sites\Shop\Tax
 {
   /**
-   * @param int $class_id
-   * @param null $country_id
-   * @param null $zone_id
-   * @return mixed
+   * Retrieves the tax rate based on the provided class ID, country ID, and zone ID.
+   *
+   * @param int $class_id The tax class ID to retrieve the rate for.
+   * @param int|null $country_id The ID of the country to consider for the tax rate. Defaults to the store's country if not provided.
+   * @param int|null $zone_id The ID of the zone to consider for the tax rate. Defaults to the store's zone if not provided.
+   *
+   * @return float The tax rate for the specified parameters.
    */
   public function getTaxRate($class_id, $country_id = null, $zone_id = null)
   {
@@ -35,7 +38,9 @@ class Tax extends \ClicShopping\Sites\Shop\Tax
   }
 
   /**
-   * @return array
+   * Retrieves a list of tax classes, including their IDs and titles, from the database.
+   *
+   * @return array An array of tax classes, where each entry contains the tax class ID and title.
    */
   public static function getClasses(): array
   {
@@ -52,11 +57,10 @@ class Tax extends \ClicShopping\Sites\Shop\Tax
   }
 
   /**
-   *  Add tax to a products price
-   * @param float $price
-   * @param float|null $tax
-   * @param false $override
-   * @return float
+   *
+   * @param float $price The initial price of the product or service.
+   * @param float $tax The tax rate to be applied, expressed as a percentage.
+   * @param bool $override An optional flag to force tax calculation regardless of settings.
    */
   public static function addTax($price, $tax, $override = false)
   {
@@ -68,11 +72,11 @@ class Tax extends \ClicShopping\Sites\Shop\Tax
   }
 
   /**
-   * Drop down of the class title
+   * Generates an HTML dropdown menu with tax class options from the database.
    *
-   * @param string $parameters , $selected
-   * @return string $select_string, the drop down f the title class
-   *
+   * @param string $parameters The name and id attribute for the select element.
+   * @param string $selected The value of the tax class to be pre-selected, if any.
+   * @return string The generated HTML string for the dropdown menu.
    */
   public static function getTaxClassesPullDown(string $parameters, string $selected = ''): string
   {
@@ -102,11 +106,10 @@ class Tax extends \ClicShopping\Sites\Shop\Tax
   }
 
   /**
-   * return value of taxe
+   * Retrieves the tax rate value for a given class ID.
    *
-   * @param string $class_id , class id
-   * @return string  value of the taxe
-   *
+   * @param int $class_id The identifier of the tax class.
+   * @return string The calculated tax rate value.
    */
   public function getTaxRateValue(int $class_id): string
   {
@@ -114,8 +117,9 @@ class Tax extends \ClicShopping\Sites\Shop\Tax
   }
 
   /**
-   * return drop down
-   * @return array
+   * Retrieves a dropdown array for tax classes.
+   *
+   * @return array List of tax class options.
    */
   public static function taxClassDropDown(): array
   {
@@ -123,11 +127,13 @@ class Tax extends \ClicShopping\Sites\Shop\Tax
   }
 
   /**
-   * @param float $value
-   * @param string|null $padding
-   * @return string
+   * Formats and displays the tax rate value with optional padding.
+   *
+   * @param float $value The tax rate value to be formatted and displayed.
+   * @param string|null $padding Optional padding to apply to the displayed tax rate value.
+   * @return string The formatted tax rate value as a string.
    */
-  public static function displayTaxRateValue(float $value, string $padding = null): string
+  public static function displayTaxRateValue(float $value, string|null $padding = null): string
   {
     return parent::displayTaxRateValue($value, $padding);
   }

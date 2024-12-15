@@ -16,7 +16,12 @@ use function defined;
 class HeaderOutputBootstrap
 {
   /**
-   * @return bool|string
+   * Generates and returns the HTML output for loading Bootstrap and custom template CSS stylesheets.
+   * If the related meta tag for enabling theme selection is not installed or is disabled, this method
+   * will return the necessary HTML for injecting the required stylesheets into a webpage.
+   *
+   * @return string|false The generated HTML string for including Bootstrap and custom template CSS,
+   *                      or false if the theme selection meta tag is enabled.
    */
   public function display()
   {

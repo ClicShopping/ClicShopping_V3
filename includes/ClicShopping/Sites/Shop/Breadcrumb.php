@@ -27,7 +27,8 @@ class Breadcrumb implements \Iterator
   private array $_pathArray;
 
   /**
-   * Resets the breadcrumb navigation path
+   * Resets the internal path array to an empty state.
+   *
    * @return void
    */
   public function reset(): void
@@ -36,11 +37,11 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   * Adds an entry to the breadcrumb navigation path
+   * Adds a breadcrumb item to the path list.
    *
-   * @param string $title The title of the breadcrumb navigation entry
-   * @param string $link The link of the breadcrumb navigation entry
-   *
+   * @param string $title The title of the breadcrumb item.
+   * @param string $link Optional. The URL link associated with the breadcrumb item. Defaults to an empty string.
+   * @return void
    */
 
   public function add(string $title, string $link = ''): void
@@ -57,8 +58,9 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   * return navigation path
-   * @return string
+   * Generates a JSON-LD formatted breadcrumb list used for SEO purposes, structured according to Schema.org specifications.
+   *
+   * @return string The JSON-LD string encapsulated within a script tag for embedding in an HTML document.
    */
   public function getJsonBreadcrumb(): string
   {
@@ -88,9 +90,10 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   * Returns the breadcrumb navigation path with the entries separated by $separator
-   * @param string|null $separator
-   * @return string
+   * Retrieves a combined string representation of the path elements, joined by a specified separator.
+   *
+   * @param string|null $separator The string to use as a separator between path elements. If null, the default separator is used.
+   * @return string The concatenated string of path elements separated by the specified or default separator.
    */
   public function get(string $separator = null): string
   {
@@ -102,8 +105,9 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   * Returns the breadcrumb navigation path array
-   * @return array
+   * Retrieves the path array.
+   *
+   * @return array The array representing the path.
    */
 
   public function getArray(): array
@@ -112,9 +116,9 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   * Returns the breadcrumb separator
+   * Retrieves the separator string used in the context of the class.
    *
-   * @return string
+   * @return string The separator string.
    */
 
   public function getSeparator(): string
@@ -123,10 +127,10 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   * Sets the breadcrumb string separator
+   * Sets the separator value.
    *
-   * @param string $separator The string to separator breadcrumb entries with
-   * @return string
+   * @param string $separator The separator to be set.
+   * @return string|null The previously set separator if available, otherwise null.
    */
   public function setSeparator(string $separator): ?string
   {
@@ -134,7 +138,8 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   * Overloaded rewind iterator function
+   * Resets the internal pointer of the _path array to its first element.
+   *
    * @return void
    */
   public function Rewind(): void
@@ -143,8 +148,9 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   *  Overloaded current iterator function
-   * @return string
+   * Retrieves the current element from the internal `_path` array.
+   *
+   * @return mixed The current element of the `_path` array, or false if the array is empty.
    */
   public function current(): mixed
   {
@@ -152,9 +158,9 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   * Overloaded key iterator function
-   * @return string
+   * Retrieves the key from the current element of the internal path array.
    *
+   * @return string The key of the current element in the internal path array.
    */
   public function key(): string
   {
@@ -162,8 +168,9 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   * Overloaded next iterator function
+   * Advances the internal array pointer of the `_path` property to the next element.
    *
+   * @return void
    */
   public function Next(): void
   {
@@ -171,8 +178,9 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   * Overloaded next iterator function
-   * @return bool
+   * Checks whether the current element of the _path array is valid.
+   *
+   * @return bool Returns true if the current element exists and is not false, false otherwise.
    */
   public function Valid(): bool
   {
@@ -180,8 +188,12 @@ class Breadcrumb implements \Iterator
   }
 
   /**
-   *  get manufacturer (brand) inside the categories
-   * @return string
+   * Builds and returns a breadcrumb trail based on the category path or manufacturer information.
+   * The method calculates the category path for a given product or other context
+   * and adds the appropriate category names or manufacturer name to the breadcrumb trail.
+   *
+   * @return string|bool Returns the generated breadcrumb result as a string if successful,
+   *                     or false if no categories or manufacturers are found.
    */
   public function getCategoriesManufacturer(): string
   {

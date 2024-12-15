@@ -27,6 +27,11 @@ class ht_googlefont
   public int|null $sort_order = 0;
   public bool $enabled = false;
 
+  /**
+   * Constructor method for initializing the header tags Google Font module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->code = get_class($this);
@@ -40,6 +45,11 @@ class ht_googlefont
     }
   }
 
+  /**
+   * Executes the process of adding a preconnect link block for Google Fonts to the template.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Template = Registry::get('Template');
@@ -48,16 +58,31 @@ class ht_googlefont
     $CLICSHOPPING_Template->addBlock($google . "\n", $this->group);
   }
 
+  /**
+   * Checks whether the current instance is enabled.
+   *
+   * @return bool Returns true if the instance is enabled, false otherwise.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Checks if the constant 'MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS' is defined.
+   *
+   * @return bool Returns true if the constant is defined, false otherwise.
+   */
   public function check()
   {
     return \defined('MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS');
   }
 
+  /**
+   * Installs the required configuration settings for the module in the database.
+   *
+   * @return void
+   */
   public function install()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -88,11 +113,22 @@ class ht_googlefont
 
   }
 
+  /**
+   * Removes configuration entries from the database where the keys match
+   * the values returned by the keys() method.
+   *
+   * @return int The number of rows affected by the delete operation.
+   */
   public function remove()
   {
     return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
+  /**
+   * Retrieves the configuration keys associated with the Google Font module.
+   *
+   * @return array An array of configuration keys related to the Google Font module.
+   */
   public function keys()
   {
     return array('MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS',

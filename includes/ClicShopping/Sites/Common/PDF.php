@@ -21,6 +21,11 @@ use ClicShopping\OM\Registry;
  */
 class PDF extends FPDF
 {
+  /**
+   * Retrieves the global PDF object from the session if it exists; otherwise, it fetches it from the global scope.
+   *
+   * @return mixed The PDF object from the session or the global scope.
+   */
   private static function getGlobalPdf()
   {
     if (isset($_SESSION['pdf'])) {
@@ -33,12 +38,20 @@ class PDF extends FPDF
   }
 
   /**
-   * @param $x
-   * @param $y
-   * @param $w
-   * @param $h
-   * @param $r
-   * @param string $style
+   * Draws a rectangle with rounded corners on the PDF document.
+   *
+   * @param float $x The x-coordinate of the upper-left corner of the rectangle.
+   * @param float $y The y-coordinate of the upper-left corner of the rectangle.
+   * @param float $w The width of the rectangle.
+   * @param float $h The height of the rectangle.
+   * @param float $r The radius of the corners.
+   * @param string $style The drawing style of the rectangle. Possible values are:
+   *                      'F' - Fill the rectangle.
+   *                      'D' - Draw only the border.
+   *                      'FD' or 'DF' - Fill and draw the border.
+   *                      Default is an empty string for border-only.
+   *
+   * @return void
    */
   public function roundedRect(float $x, float $y, float $w, float $h, float $r, string $style = '')
   {
@@ -75,12 +88,16 @@ class PDF extends FPDF
   }
 
   /**
-   * @param $x1
-   * @param $y1
-   * @param $x2
-   * @param $y2
-   * @param $x3
-   * @param $y3
+   * Draws a Bézier curve segment defined by three control points.
+   *
+   * @param float $x1 The x-coordinate of the first control point.
+   * @param float $y1 The y-coordinate of the first control point.
+   * @param float $x2 The x-coordinate of the second control point.
+   * @param float $y2 The y-coordinate of the second control point.
+   * @param float $x3 The x-coordinate of the third control point, which is also the endpoint.
+   * @param float $y3 The y-coordinate of the third control point, which is also the endpoint.
+   *
+   * @return void
    */
   public function _Arc(float $x1, float $y1, float $x2, float $y2, float $x3, float $y3)
   {
@@ -90,7 +107,12 @@ class PDF extends FPDF
   }
 
   /**
-   *  invoice header
+   * Generates the header section of the invoice document.
+   *
+   * This method includes components such as the company's logo, name,
+   * address, email, and website, and positions them appropriately within the document.
+   *
+   * @return void
    */
   public function Header()
   {
@@ -140,7 +162,12 @@ class PDF extends FPDF
   }
 
   /**
-   *  footer invoice
+   * Generates and outputs the footer section of the document. This includes:
+   * - A thank you message for the customer.
+   * - Legal property statements.
+   * - Company information and additional optional details.
+   *
+   * @return void
    */
   public function Footer()
   {
@@ -189,8 +216,10 @@ class PDF extends FPDF
    ****************************************************/
 
   /**
-   * output_table_heading
-   * @param float $Y_Fields_Name_position
+   * Outputs a table heading to a PDF document with predefined fields and styling.
+   *
+   * @param float $Y_Fields_Name_position The Y-coordinate position where the table headings will be placed on the PDF.
+   * @return void
    */
   public static function outputTableHeadingPdf(float $Y_Fields_Name_position)
   {
@@ -224,6 +253,12 @@ class PDF extends FPDF
 
 // Création entête du tableau des produits pour les bons de livraison
 //  output_table_heading_packingslip
+  /**
+   * Outputs the table heading for the packing slip.
+   *
+   * @param float $Y_Fields_Name_position The Y-coordinate position for the table heading.
+   * @return void
+   */
   public static function outputTableHeadingPackingslip($Y_Fields_Name_position)
   {
     $pdf = static::getGlobalPdf();
@@ -241,8 +276,10 @@ class PDF extends FPDF
   }
 
   /**
-   * output_table_suppliers
-   * @param float $Y_Fields_Name_position
+   * Outputs a table header for supplier details in a PDF document.
+   *
+   * @param float $Y_Fields_Name_position The vertical position in the PDF where the table header starts.
+   * @return void
    */
   public function outputTableSuppliers(float $Y_Fields_Name_position)
   {
@@ -266,8 +303,10 @@ class PDF extends FPDF
   }
 
   /**
-   * output_table_customers_suppliers
-   * @param float $Y_Fields_Name_position
+   * Outputs a table header for Customers and Suppliers in a PDF document.
+   *
+   * @param float $Y_Fields_Name_position The Y-coordinate position for the table header in the PDF document.
+   * @return void
    */
   public static function outputTableCustomersSuppliers(float $Y_Fields_Name_position)
   {

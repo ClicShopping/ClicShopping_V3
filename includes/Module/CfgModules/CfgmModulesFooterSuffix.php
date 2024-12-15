@@ -21,6 +21,11 @@ class CfgmModulesFooterSuffix
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
@@ -31,5 +36,3 @@ class CfgmModulesFooterSuffix
     $this->title = CLICSHOPPING::getDef('module_cfg_module_footer_suffix_title');
   }
 }
-
-?>

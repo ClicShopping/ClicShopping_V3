@@ -15,7 +15,9 @@ namespace ClicShopping\Service\Shop;
 class SEFU implements \ClicShopping\OM\ServiceInterface
 {
   /**
-   * @return mixed|string
+   * Retrieves the path information from the server's global variables.
+   *
+   * @return string The path information obtained from the server, or an empty string if not available.
    */
   private static function getPathInfo(): string
   {
@@ -24,6 +26,16 @@ class SEFU implements \ClicShopping\OM\ServiceInterface
     return $path_info;
   }
 
+  /**
+   * Processes the path information to populate the global $_GET array.
+   *
+   * This method retrieves the path information, extracts parameters from
+   * it, and populates the global $_GET array with key-value pairs derived
+   * from the processed parameters. Additionally, it handles array-style
+   * parameters within the path by populating them into $_GET as arrays.
+   *
+   * @return bool Always returns true upon completion.
+   */
   public static function start(): bool
   {
     $path_info = static::getPathInfo();
@@ -58,13 +70,20 @@ class SEFU implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   * Stops the execution or process and ensures a successful termination.
+   *
+   * @return bool Returns true to indicate the process was stopped successfully.
+   */
   public static function stop(): bool
   {
     return true;
   }
 
   /**
-   * @return mixed|null
+   * Retrieves the value of the 'language' parameter from the URL path information.
+   *
+   * @return string|null Returns the value of the 'language' parameter if found, otherwise null.
    */
   public static function getUrlValue()
   {

@@ -21,6 +21,11 @@ class CfgmModulesCheckoutSuccess
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Initializes the properties of the class with information from the TemplateAdmin registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

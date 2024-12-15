@@ -21,6 +21,11 @@ class CfgmModulesBoxes
   public $title;
   public bool $template_integration = true;
 
+  /**
+   * Constructor method responsible for initializing the directory paths and title used within the module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');

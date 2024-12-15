@@ -45,6 +45,15 @@ class ShoppingCart
   protected $productsAttributes;
   protected $order_totals;
 
+  /**
+   * Constructor method for initializing the class properties and session variables.
+   *
+   * This method sets up dependencies from the Registry, initializes the session
+   * variables related to the shopping cart, and prepares the required data
+   * structures for managing the shopping cart operations.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->db = Registry::get('Db');
@@ -53,7 +62,10 @@ class ShoppingCart
     $this->prod = Registry::get('Prod');
     $this->productsCommon = Registry::get('ProductsCommon');
     $this->tax = Registry::get('Tax');
-    $this->hooks = Registry::get('Hooks');
+    /**
+     *
+     */
+      $this->hooks = Registry::get('Hooks');
 
     if (!Registry::exists('ProductsAttributesShop')) {
       Registry::set('ProductsAttributesShop', new ProductsAttributesShop());
@@ -83,7 +95,9 @@ class ShoppingCart
   }
 
   /**
-   * Remove All Items
+   * Removes all elements by resetting the internal state.
+   *
+   * @return void
    */
   public function removeAll()
   {
@@ -92,7 +106,9 @@ class ShoppingCart
 
 
   /**
-   * @return bool
+   * Determines if the contents property has data.
+   *
+   * @return bool Returns true if the contents property is an array, otherwise false.
    */
   public function hasContents(): bool
   {
@@ -104,6 +120,13 @@ class ShoppingCart
    *  string $qty
   */
 
+  /**
+   * Retrieves the restored quantity for a given product ID after validation.
+   *
+   * @param int $qty The initial quantity to be restored.
+   * @param string $products_id The identifier of the product.
+   * @return int The validated and updated restored quantity.
+   */
   private function getRestoreQty(int $qty, string $products_id): int
   {
     $qty = $this->getCheckGoodQty($products_id, $qty);
@@ -112,9 +135,17 @@ class ShoppingCart
   }
 
   /**
-   * Restore the the cart content
-   * @return false
-   * @throws \Exception
+   * Restores the contents of the customer's shopping cart from the database and updates it with current information.
+   *
+   * This method performs several tasks, including:
+   * - Checking if the customer is logged in.
+   * - Synchronizing the cart contents from the database.
+   * - Handling product quantities and attributes.
+   * - Validating the status and availability of products.
+   * - Applying group and quantity-based discounts.
+   * - Resetting the session-based cart.
+   *
+   * @return mixed The method returns `false` if the customer is not logged in or completes the cart synchronization process successfully otherwise.
    */
   public function getRestoreContents()
   {
@@ -363,8 +394,10 @@ class ShoppingCart
   }
 
   /**
-   * remove all items
-   * @param bool $reset_database
+   * Resets the cart contents and related properties. Optionally resets the database entries if specified.
+   *
+   * @param bool $reset_database Indicates whether to also reset the database records related to the cart.
+   * @return void
    */
   public function reset(bool $reset_database = false): void
   {
@@ -387,11 +420,13 @@ class ShoppingCart
   }
 
   /**
-   * add products
-   * @param $products_id
-   * @param string $qty
-   * @param string $attributes
-   * @param bool $notify
+   * Adds a product to the shopping cart with specified options and quantity.
+   *
+   * @param string $products_id The unique identifier for the product.
+   * @param int $qty The quantity of the product to add to the cart, defaults to 1.
+   * @param mixed $attributes An associative array of product attributes or an empty string if none are specified.
+   * @param bool $notify Whether to notify the user about adding the product to the cart, defaults to true.
+   * @return void
    */
   public function add(string $products_id, int $qty = 1, $attributes = '', bool $notify = true)
   {
@@ -491,11 +526,14 @@ class ShoppingCart
   }
 
   /**
-   * @param string $products_id
-   * @param int $qty
-   * @param array $attributes
-   * @param bool $notify
-   * @throws \Exception
+   * Adds a product to the shopping cart with specified attributes and quantity.
+   *
+   * @param string $products_id The ID of the product to be added to the cart.
+   * @param int $qty The quantity of the product to add. Defaults to 1.
+   * @param mixed $attributes The attributes associated with the product, if any.
+   * @param bool $notify Flag to notify and set the product ID as newly added. Defaults to true.
+   *
+   * @return void
    */
   public function addCart(string $products_id, int $qty = 1, $attributes = '', bool $notify = true)
   {
@@ -593,11 +631,12 @@ class ShoppingCart
 //Update
 //************************************************
   /**
-   * Update product quantity
-   * @param $products_id
-   * @param string $quantity
-   * @param array $attributes
-   * @throws \Exception
+   * Updates the quantity of a product in the cart, taking into account limits and product attributes.
+   *
+   * @param string $products_id The unique identifier for the product.
+   * @param int $quantity The desired quantity to set for the product.
+   * @param array|string $attributes Optional, the attributes associated with the product (as an array of key-value pairs).
+   * @return void
    */
   public function updateQuantity(string $products_id, int $quantity, $attributes = '')
   {
@@ -659,7 +698,10 @@ class ShoppingCart
   }
 
   /**
-   * items cleanUp
+   * Removes items with quantity less than 1 from the contents and updates the database
+   * if the customer is logged in.
+   *
+   * @return void
    */
   private function cleanUp(): void
   {
@@ -681,8 +723,10 @@ class ShoppingCart
   }
 
   /**
-   * @param $product_id
-   * @return int|string
+   * Retrieves the basket ID associated with a given product ID.
+   *
+   * @param string|int $product_id The ID of the product to search for.
+   * @return string|int|null Returns the basket ID if the product is found, or null if the product ID is not present.
    */
   public function getBasketID($product_id)
   {
@@ -696,8 +740,9 @@ class ShoppingCart
   }
 
   /**
-   * get total number of items in cart
-   * @return int
+   * Retrieves the total number of items from the contents.
+   *
+   * @return int The total count of items based on quantities in the contents array.
    */
   public function getCountContents(): int
   {
@@ -713,9 +758,10 @@ class ShoppingCart
   }
 
   /**
-   * get total quantity on each items in cart
-   * @param string $item_id
-   * @return int
+   * Retrieves the quantity of a specific item from the contents.
+   *
+   * @param string $item_id The unique identifier of the item.
+   * @return int The quantity of the item. Returns 0 if the item does not exist in the contents.
    */
   public function getQuantity(string $item_id)
   {
@@ -727,6 +773,12 @@ class ShoppingCart
    * @param : int $products_id, id of the product
    * @return : int qty
    */
+  /**
+   * Determines if a product is in the cart.
+   *
+   * @param string $products_id The ID of the product to check.
+   * @return bool Returns true if the product is in the cart, false otherwise.
+   */
   public function inCart(string $products_id): bool
   {
     if (isset($this->contents[$products_id])) {
@@ -737,8 +789,10 @@ class ShoppingCart
   }
 
   /**
-   * @param string $item_id
-   * @throws \Exception
+   * Removes an item from the cart and updates the database if the customer is logged in.
+   *
+   * @param string $item_id The ID of the item to be removed from the cart.
+   * @return void
    */
   public function remove(string $item_id)
   {
@@ -767,7 +821,9 @@ class ShoppingCart
   }
 
   /**
-   * @return false|string
+   * Generates a comma-separated list of product IDs from the contents array.
+   *
+   * @return string A comma-separated string of product IDs, or an empty string if the contents array is not set or is empty.
    */
   public function getProductIdList()
   {
@@ -783,7 +839,10 @@ class ShoppingCart
   }
 
   /**
-   * @throws \Exception
+   * Calculates the subtotal, total, and weight of items in the shopping cart, considering individual product details,
+   * customer group-specific pricing, special offers, taxes, and product attributes.
+   *
+   * @return void
    */
   private function calculate()
   {
@@ -944,7 +1003,10 @@ class ShoppingCart
   }
 
   /**
-   * @return array
+   * Retrieves the list of products currently in the system, including detailed data for each product.
+   * The method differentiates between normal customers and those associated with a group, applying appropriate pricing logic for each.
+   *
+   * @return array Returns an array of products with their details, including ID, name, model, image, price, quantity, dimensions, weight, tax class, and attributes.
    */
   public function get_products()
   {
@@ -1095,7 +1157,9 @@ class ShoppingCart
   }
 
   /**
-   * @return float
+   * Retrieves the subtotal value.
+   *
+   * @return float The subtotal amount.
    */
   public function getSubTotal(): float
   {
@@ -1103,8 +1167,9 @@ class ShoppingCart
   }
 
   /**
-   * @return float
-   * @throws \Exception
+   * Calculates and returns the total value.
+   *
+   * @return float The total value after calculation.
    */
   public function show_total(): float
   {
@@ -1114,8 +1179,9 @@ class ShoppingCart
   }
 
   /**
-   * @return float
-   * @throws \Exception
+   * Calculates and returns the weight.
+   *
+   * @return float The calculated weight.
    */
   public function getWeight(): float
   {
@@ -1125,9 +1191,10 @@ class ShoppingCart
   }
 
   /**
-   * @param int $length
-   * @return bool|string
-   * @throws \Exception
+   * Generates a random cart ID consisting of digits.
+   *
+   * @param int $length The desired length of the cart ID. Defaults to 5.
+   * @return string A randomly generated cart ID in string format.
    */
   public function generate_cart_id(int $length = 5)
   {
@@ -1135,7 +1202,14 @@ class ShoppingCart
   }
 
   /**
-   * @return bool|string
+   * Determines the content type of the current contents based on their attributes and download status.
+   *
+   * This method evaluates the attributes of items in the `contents` property to determine if the content type
+   * is physical, virtual, or a mix of both. If downloads are enabled and contents exist, it checks attributes
+   * for each item to establish the content type. The evaluation considers whether items include downloadable
+   * attributes or not.
+   *
+   * @return string Returns 'physical', 'virtual', or 'mixed' depending on the evaluation of the contents.
    */
   public function get_content_type()
   {
@@ -1191,8 +1265,10 @@ class ShoppingCart
   }
 
   /**
-   * @param string $item_id
-   * @return bool
+   * Checks if a specific item is in stock based on its quantity in the inventory.
+   *
+   * @param string $item_id The identifier of the item to check for stock availability.
+   * @return bool Returns true if the item is in stock, otherwise false.
    */
   public function isInStock(string $item_id): bool
   {
@@ -1213,7 +1289,9 @@ class ShoppingCart
   }
 
   /**
-   * @return bool
+   * Checks if there are products in stock.
+   *
+   * @return bool Returns true if there are products in stock, otherwise false.
    */
   public function hasStock()
   {
@@ -1221,7 +1299,11 @@ class ShoppingCart
   }
 
   /**
-   * @param $broken
+   * Reconstructs the object's properties from a given array.
+   *
+   * @param array $broken An associative array where keys represent property names
+   *                       and values represent the corresponding property values.
+   * @return void
    */
   public function unserialize(array $broken)
   {
@@ -1234,9 +1316,11 @@ class ShoppingCart
   }
 
   /**
-   * Return a product ID with attributes
-   * @param string $prid , $params
-   * @return string $uprid,
+   * Constructs a unique product identifier (UPRID) from the given product ID and parameters.
+   *
+   * @param mixed $prid The product identifier, which could be numeric or a string.
+   * @param array|null $params An optional array of attributes with option-value pairs.
+   * @return mixed Returns the unique product identifier as a string if successful, or false on failure.
    */
   public function getUprid($prid, $params)
   {
@@ -1295,8 +1379,10 @@ class ShoppingCart
   }
 
   /**
-   * @param $uprid
-   * @return false|int
+   * Extracts and returns the numeric portion of the provided unique product identifier (uprid).
+   *
+   * @param string $uprid The unique product identifier to be parsed.
+   * @return int|false Returns the numeric portion of the identifier as an integer if valid, or false if the identifier is not numeric.
    */
   public function getPrid($uprid)
   {
@@ -1310,9 +1396,11 @@ class ShoppingCart
   }
 
   /**
-   * @param string $products_id
-   * @param int $qty
-   * @return int
+   * Adjusts the quantity of a product to comply with predefined constraints such as maximum or minimum allowed quantities.
+   *
+   * @param string $products_id The ID of the product to check.
+   * @param int $qty The desired quantity for the product.
+   * @return int The adjusted quantity that complies with the defined constraints.
    */
   public function getCheckGoodQty(string $products_id, int $qty): int
   {
@@ -1334,10 +1422,12 @@ class ShoppingCart
   }
 
   /**
-   * display minimum order quantiy
-   * @param int $products_id ; id of the product
-   * @return $min_order_qty_values, nimum order quantity
+   * Retrieves the minimum order quantity for a product in the shopping cart based on
+   * the provided product ID and the customer's group ID.
    *
+   * @param string $products_id The ID of the product whose minimum order quantity is being requested.
+   * @return int The minimum order quantity for the specified product, determined either by the product's
+   *             settings or the customer's group default settings.
    */
   public function getProductsMinOrderQtyShoppingCart(string $products_id): int
   {
@@ -1374,10 +1464,10 @@ class ShoppingCart
   }
 
   /**
-   * get the attributes price
-   * @param string $products_id , the id of the products
-   * @return $attributes_price the price of the attributes
+   * Calculates the total price of product attributes based on their price and prefix.
    *
+   * @param string $products_id The ID of the product whose attributes' price is to be calculated.
+   * @return float The total calculated price of the attributes for the specified product.
    */
   public function getAttributesPrice(string $products_id): float
   {

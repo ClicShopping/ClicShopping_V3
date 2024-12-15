@@ -32,6 +32,13 @@ class ar_create_account
   public $enabled = true;
   public $group;
 
+  /**
+   * Initializes the module by setting its code, group, title, and description.
+   * Optionally sets the time limit for the email-based action recorder if the
+   * module is already configured and the relevant constant is defined.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->code = get_class($this);
@@ -47,11 +54,21 @@ class ar_create_account
     }
   }
 
+  /**
+   *
+   * @return void
+   */
   public function setIdentifier()
   {
     $this->identifier = HTTP::getIpAddress();
   }
 
+  /**
+   * Determines whether a user can perform an action based on historical data.
+   *
+   * @param int|null $user_id The ID of the user attempting the action. If null, the check is performed based on the identifier only.
+   * @return bool Returns true if the user can perform the action; otherwise, false if the limit or conditions are reached.
+   */
   public function canPerform($user_id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -91,6 +108,12 @@ class ar_create_account
     return true;
   }
 
+  /**
+   * Removes expired entries from the action recorder table based on the specified module
+   * and the time interval defined by the limit in minutes.
+   *
+   * @return int The number of rows that were deleted.
+   */
   public function expireEntries()
   {
     $Qdel = Registry::get('Db')->prepare('delete
@@ -105,11 +128,21 @@ class ar_create_account
     return $Qdel->rowCount();
   }
 
+  /**
+   * Checks if the constant 'MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES' is defined.
+   *
+   * @return bool Returns true if the constant is defined, otherwise false.
+   */
   public function check()
   {
     return \defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES');
   }
 
+  /**
+   * Installs the module configuration into the database.
+   *
+   * @return void
+   */
   public function install()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -126,11 +159,22 @@ class ar_create_account
     );
   }
 
+  /**
+   * Removes configuration entries from the database where the configuration keys
+   * match the keys returned by the `keys()` method.
+   *
+   * @return int|false The number of rows affected by the delete operation, or false on failure.
+   */
   public function remove()
   {
     return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
+  /**
+   * Retrieves the configuration keys used by the module.
+   *
+   * @return array Returns an array containing the configuration keys.
+   */
   public function keys()
   {
     return array('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES');

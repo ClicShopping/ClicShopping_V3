@@ -15,7 +15,9 @@ use ClicShopping\OM\CLICSHOPPING;
 class HeaderOutputStyleSheet
 {
   /**
-   * @return string
+   * Generates and returns the HTML output for including the SmartMenus stylesheet links.
+   *
+   * @return string The generated HTML output containing the necessary stylesheet links for SmartMenus.
    */
   public function display(): string
   {
