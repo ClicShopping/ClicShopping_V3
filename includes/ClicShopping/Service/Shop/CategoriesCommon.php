@@ -21,6 +21,13 @@ use ClicShopping\Apps\Catalog\Categories\Classes\Common\CategoryCommon as Catego
  */
 class CategoriesCommon implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Starts the process by checking the existence of a specific file.
+   * If the file exists, it initializes the CategoryCommonClass and
+   * registers it under the 'CategoryCommon' key in the Registry.
+   *
+   * @return bool Returns true if the file exists and the process is initialized successfully, otherwise false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Categories/Classes/Common/CategoryCommon.php')) {
@@ -32,6 +39,11 @@ class CategoriesCommon implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Terminates a process or operation.
+   *
+   * @return bool Returns true indicating the successful termination of the process or operation.
+   */
   public static function stop(): bool
   {
     return true;

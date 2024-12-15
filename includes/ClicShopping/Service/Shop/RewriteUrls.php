@@ -20,6 +20,11 @@ use ClicShopping\Sites\Shop\RewriteUrl as RewriteUrlClass;
  */
 class RewriteUrls implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initiates the process by checking if the required RewriteUrl file exists and configures the necessary dependencies.
+   *
+   * @return bool Returns true if the RewriteUrl file exists and initialization is successful; otherwise, false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/RewriteUrl.php')) {
@@ -37,6 +42,11 @@ class RewriteUrls implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the currently running service or process.
+   *
+   * @return bool Returns true on successful termination.
+   */
   public static function stop(): bool
   {
     return true;

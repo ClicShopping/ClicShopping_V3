@@ -21,6 +21,14 @@ use function call_user_func_array;
  */
 class Is
 {
+  /**
+   * Dynamically handles static method calls to classes implementing a specific interface.
+   *
+   * @param string $name The name of the method being called, corresponding to a class name within the namespace.
+   * @param array $arguments An array of arguments to be passed to the method being executed.
+   * @return bool Returns the result of the class method execution. Returns false if the class does not exist,
+   *              does not implement the required interface, or if the method is not callable.
+   */
   public static function __callStatic(string $name, array $arguments): bool
   {
     $class = __NAMESPACE__ . '\\Is\\' . $name;

@@ -33,10 +33,16 @@ class Hash
   private static $cipher = 'aes-256-cbc'; // Algorithme de chiffremen
 
   /**
-   * @param string $plain
-   * @param null|string $algo
-   * @return bool|string
-   * @throws Exception
+   * Encrypts a plain text string using the specified algorithm.
+   *
+   * Supported algorithms:
+   * - 'default' or null: Uses the default PHP password hashing algorithm.
+   * - 'bcrypt': Uses the Bcrypt hashing algorithm.
+   * - 'argon2id': Uses the Argon2id hashing algorithm.
+   * - 'phpass': Uses the Phpass library for password hashing.
+   * - 'salt': Applies a custom MD5-based hashing with a salt.
+   *
+   * @param string $plain The plain text string to be encrypted
    */
   public static function encrypt(string $plain, string|null $algo = null)
   {
@@ -82,9 +88,11 @@ class Hash
   }
 
   /**
-   * @param string $plain
-   * @param string $hash
-   * @return bool
+   * Verifies if the given plain text matches the provided hashed value using various hashing mechanisms.
+   *
+   * @param string $plain The plain text string to verify.
+   * @param string $hash The hashed value to compare against.
+   * @return bool Returns true if the plain text matches the hashed value, otherwise false.
    */
   public static function verify(string $plain, string $hash): bool
   {
@@ -126,9 +134,11 @@ class Hash
   }
 
   /**
-   * @param string $hash
-   * @param string|null $algo
-   * @return bool
+   * Determines if a hashed password needs to be rehashed with a different algorithm or cost.
+   *
+   * @param string $hash The hashed password to verify.
+   * @param string|null $algo The algorithm to use for verifying the hash. Can be 'default', 'bcrypt', 'argon2id', or null for the default algorithm. Defaults to null.
+   * @return bool Returns true if the hash needs to be rehashed, false otherwise.
    */
   public static function needsRehash(string $hash, ?string $algo = null)
   {
@@ -148,8 +158,10 @@ class Hash
   }
 
   /**
-   * @param string $hash
-   * @return string|null
+   * Determines the type of a given hash based on its characteristics.
+   *
+   * @param string $hash The hash string to analyze and determine its type.
+   * @return string|null Returns the hash type as a string if recognized, or null if not found.
    */
   public static function getType(string $hash): ?string
   {
@@ -173,11 +185,13 @@ class Hash
   }
 
   /**
-   * @param null $min
-   * @param null $max
-   * @param bool $secure
-   * @return int
-   * @throws Exception
+   * Generates a random integer within the specified range.
+   * If a secure random number cannot be generated, a less secure fallback is used if allowed.
+   *
+   * @param int|null $min The minimum value of the range. Defaults to 0 if not specified.
+   * @param int|null $max The maximum value of the range. Defaults to PHP_INT_MAX if not specified.
+   * @param bool $secure Whether to strictly use cryptographically secure random numbers. Defaults to true.
+   * @return int A random integer
    */
   public static function getRandomInt($min = null, $max = null, bool $secure = true)
   {
@@ -203,10 +217,17 @@ class Hash
   }
 
   /**
-   * @param int $length
-   * @param string $type
-   * @return string
-   * @throws Exception
+   * Generates a random string based on the specified type and length.
+   *
+   * @param int $length The length of the random string to be generated.
+   * @param string $type The type of characters to include in the random string.
+   *                      Accepted values are:
+   *                      - 'mixed': Includes both characters and digits.
+   *                      - 'chars': Includes only alphabetical characters.
+   *                      - 'digits': Includes only numerical digits.
+   *                      Defaults to 'mixed'.
+   * @return string The generated random string of the specified length and type.
+   * @throws InvalidArgumentException If
    */
   public static function getRandomString(int $length, string $type = 'mixed'): string
   {
@@ -255,10 +276,14 @@ class Hash
   }
 
   /**
-   * @param $length
-   * @param bool $secure
-   * @return bool|string|void
-   * @throws Exception
+   * Generates a string of random bytes with a specified length.
+   * If the `secure` parameter is true and a cryptographically secure source of randomness
+   * is unavailable, an exception will be thrown.
+   *
+   * @param int $length The number of random bytes to generate.
+   * @param bool $secure Whether to enforce the use of a cryptographically secure method. Defaults to true.
+   * @return string A string containing the generated random bytes.
+   * @throws Exception If a secure random byte generation method is required but unavailable.
    */
   public static function getRandomBytes(int $length, bool $secure = true)
   {
@@ -285,10 +310,11 @@ class Hash
   }
 
   /**
-   * Chiffrement de données - - Uniquement pour les données type text
-   * @param string $data
-   * @return string
-   * @throws Exception
+   * Encrypts the provided data using a specified cipher and key.
+   *
+   * @param string $data The plaintext data to be encrypted.
+   * @return string The encrypted data in Base64-encoded format, including the encryption initialization vector.
+   * @throws Exception If the encryption process fails.
    */
   public static function encryptDatatext(string $data): string
   {
@@ -303,10 +329,11 @@ class Hash
   }
 
   /**
-   * Déchiffrement de données - Uniquement pour les données type text
-   * @param string $encryptedData
-   * @return string
-   * @throws Exception
+   * Decrypts the provided encrypted data string.
+   *
+   * @param string $encryptedData The encrypted data in base64 format, containing the encrypted text and IV concatenated with '::'.
+   * @return string Returns the decrypted data as a plain text string.
+   * @throws Exception If the data format is invalid or decryption fails.
    */
   private static function decryptDatatext(string $encryptedData): string
   {
@@ -328,9 +355,11 @@ class Hash
   }
 
   /**
-   * Vérifie si les données sont chiffrées (données en base64 avec "::" pour séparer le contenu et l'IV)
-   * @param string $data
-   * @return bool
+   * Checks if the given data is an encrypted text.
+   *
+   * @param string $data The input string to verify if it represents encrypted text.
+   * @return bool Returns true if the data appears to be encrypted (valid base64 encoding
+   *              containing a separator "::" for the encrypted text and IV), false otherwise.
    */
   private static function isEncryptedDatatext(string $data): bool
   {
@@ -339,15 +368,15 @@ class Hash
       return false;
     }
 
-    // Vérifie si la donnée décodée contient "::", séparateur entre le texte chiffré et l'IV
     return count(explode('::', base64_decode($data), 2)) === 2;
   }
 
   /**
-   * Display the data decripted on the front Office
-   * @param string|null $dataString
-   * @return string
-   * @throws Exception
+   * Displays the decrypted data text if the input is encrypted,
+   * or returns the original string if it is not encrypted.
+   *
+   * @param string|null $dataString The input string to be handled, which may be encrypted or null.
+   * @return string The decrypted string if the input was encrypted, otherwise the original string or an empty string if null was provided.
    */
   public static function displayDecryptedDataText(string|null $dataString): string
   {

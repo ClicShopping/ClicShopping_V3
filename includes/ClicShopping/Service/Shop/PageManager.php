@@ -21,6 +21,11 @@ use ClicShopping\Apps\Communication\PageManager\Classes\Shop\PageManagerShop as 
  */
 class PageManager implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the PageManagerShop class if the required file exists.
+   *
+   * @return bool Returns true if the PageManagerShop class is successfully initialized and methods are called; false otherwise.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Communication/PageManager/Classes/Shop/PageManagerShop.php')) {
@@ -37,6 +42,11 @@ class PageManager implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the current process or operation.
+   *
+   * @return bool Returns true if the stop operation was successful.
+   */
   public static function stop(): bool
   {
     return true;

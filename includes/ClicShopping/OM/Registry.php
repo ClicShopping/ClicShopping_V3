@@ -22,8 +22,10 @@ class Registry
   protected static array $data = [];
 
   /**
-   * @param string $key
-   * @return mixed|null
+   * Retrieves the value associated with the specified key from the registry.
+   *
+   * @param string $key The key for which the value should be retrieved.
+   * @return mixed The value associated with the provided key or null if the key is not registered.
    */
   public static function get(string $key): mixed
   {
@@ -86,10 +88,12 @@ class Registry
   }
 
   /**
-   * @param string $key
-   * @param $value
-   * @param bool $force
-   * @return bool
+   * Registers a value in the registry under the given key.
+   *
+   * @param string $key The unique identifier for the value to be stored.
+   * @param mixed $value The value to be stored in the registry.
+   * @param bool $force Determines whether to forcibly overwrite an existing value for the given key. Default is false.
+   * @return bool Returns true if the value was successfully set, or false if the key already exists and $force is not true.
    */
   public static function set(string $key, $value, bool $force = false): bool
   {
@@ -104,8 +108,10 @@ class Registry
   }
 
   /**
-   * @param string $key
-   * @return bool
+   * Checks if the specified key exists in the data array.
+   *
+   * @param string $key The key to check for existence.
+   * @return bool Returns true if the key exists, false otherwise.
    */
   public static function exists(string $key): bool
   {
@@ -113,7 +119,10 @@ class Registry
   }
 
   /**
-   * @param string $key
+   * Removes an entry identified by the provided key from the data array.
+   *
+   * @param string $key The key of the entry to be removed.
+   * @return void
    */
   public static function remove(string $key): void
   {
@@ -121,9 +130,11 @@ class Registry
   }
 
   /**
-   * @param string $key
-   * @param string $class
-   * @return bool
+   * Adds an alias for a class to the registry.
+   *
+   * @param string $key The alias name to be registered.
+   * @param string $class The fully qualified class name to be associated with the alias.
+   * @return bool Returns true if the alias was successfully registered, false if the alias already exists.
    */
   public static function addAlias(string $key, string $class): bool
   {
@@ -137,7 +148,10 @@ class Registry
   }
 
   /**
-   * @param array $keys
+   * Adds multiple aliases to the internal alias mapping.
+   *
+   * @param array $keys An associative array where the keys are the alias names and the values are the corresponding class names.
+   * @return void
    */
   public static function addAliases(array $keys): void
   {
@@ -147,8 +161,10 @@ class Registry
   }
 
   /**
-   * @param string $key
-   * @return bool
+   * Checks if the given alias key exists in the aliases array.
+   *
+   * @param string $key The key of the alias to check.
+   * @return bool Returns true if the alias exists, false otherwise.
    */
   public static function aliasExists(string $key): bool
   {
@@ -156,7 +172,10 @@ class Registry
   }
 
   /**
-   * @param string $key
+   * Removes the specified alias from the list of aliases.
+   *
+   * @param string $key The key of the alias to be removed.
+   * @return void
    */
   public static function removeAlias(string $key): void
   {

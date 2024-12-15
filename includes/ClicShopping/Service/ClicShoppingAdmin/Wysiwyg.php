@@ -19,6 +19,11 @@ use ClicShopping\Sites\ClicShoppingAdmin\CkEditor5 as CkEditor5;
  */
 class Wysiwyg implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the WYSIWYG editor if the default editor is set to 'CkEditor5'.
+   *
+   * @return bool Returns true after successful initialization.
+   */
   public static function start(): bool
   {
     if (defined('DEFAULT_WYSIWYG') && DEFAULT_WYSIWYG == 'CkEditor5') {
@@ -28,6 +33,11 @@ class Wysiwyg implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   * Stops the current process or operation.
+   *
+   * @return bool Returns true on successful termination.
+   */
   public static function stop(): bool
   {
     return true;

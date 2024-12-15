@@ -21,6 +21,11 @@ use ClicShopping\OM\Registry;
  */
 class ErrorHandler implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initiates the process by checking if the log directory is writable, and adds a message to the message stack if it is not.
+   *
+   * @return bool Returns true after execution, indicating the process has completed.
+   */
   public static function start(): bool
   {
     if (!FileSystem::isWritable(ErrorHandlerClass::getDirectory())) {
@@ -30,6 +35,11 @@ class ErrorHandler implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   * Stops the current process or operation.
+   *
+   * @return bool Returns true on successful termination.
+   */
   public static function stop(): bool
   {
     return true;

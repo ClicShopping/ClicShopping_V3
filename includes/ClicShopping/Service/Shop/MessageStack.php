@@ -27,6 +27,12 @@ use ClicShopping\OM\Registry;
  */
 class MessageStack implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Starts the initialization process by setting up the message stack
+   * and configuring the service to execute specific actions before page content loads.
+   *
+   * @return bool Returns true if the message stack file exists and was successfully initialized; false otherwise.
+   */
   public static function start(): bool
   {
 // initialize the message stack for output messages
@@ -43,6 +49,11 @@ class MessageStack implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the current process or operation.
+   *
+   * @return bool Returns true if the process is successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

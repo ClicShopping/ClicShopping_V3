@@ -23,6 +23,11 @@ use ClicShopping\Apps\Catalog\Products\Classes\Shop\ProductsRecommendations as R
  */
 class ProductsRecommendations implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Starts the ProductsRecommendations class if the required file exists.
+   *
+   * @return bool Returns true if the file is found and the class is initialized; otherwise, returns false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Products/Classes/Shop/ProductsRecommendations.php')) {
@@ -34,6 +39,11 @@ class ProductsRecommendations implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the current process or operation.
+   *
+   * @return bool Returns true if the operation was stopped successfully.
+   */
   public static function stop(): bool
   {
     return true;

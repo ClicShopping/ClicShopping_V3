@@ -20,6 +20,12 @@ abstract class PagesActionsAbstract implements \ClicShopping\OM\PagesActionsInte
   protected $file;
   protected bool $is_rpc = false;
 
+  /**
+   * Constructor method for initializing the page object.
+   *
+   * @param \ClicShopping\OM\PagesInterface $page An instance of PagesInterface representing the page to be initialized.
+   * @return void
+   */
   public function __construct(\ClicShopping\OM\PagesInterface $page)
   {
     $this->page = $page;
@@ -29,6 +35,11 @@ abstract class PagesActionsAbstract implements \ClicShopping\OM\PagesActionsInte
     }
   }
 
+  /**
+   * Checks if the current request is an RPC (Remote Procedure Call) request.
+   *
+   * @return bool Returns true if the request is an RPC request, otherwise false.
+   */
   public function isRPC()
   {
     return ($this->is_rpc === true);

@@ -20,6 +20,11 @@ use ClicShopping\Sites\ClicShoppingAdmin\Composer as ComposerClass;
  */
 class Composer implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the Composer registry entry if it does not already exist.
+   *
+   * @return bool Returns true upon successfully starting the process.
+   */
   public static function start(): bool
   {
     if (!Registry::exists('Composer')) {
@@ -29,6 +34,11 @@ class Composer implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   * Stops the current operation or process.
+   *
+   * @return bool Returns true if the operation is successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

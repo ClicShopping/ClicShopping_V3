@@ -36,6 +36,13 @@ abstract class AppAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by setting initial information, retrieving
+   * database and language instances from the registry, and performing
+   * any necessary initialization steps.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->setInfo();
@@ -46,7 +53,9 @@ abstract class AppAbstract
   }
 
   /**
-   * @return string
+   * Constructs a formatted link string using the provided arguments and predefined parameters.
+   *
+   * @return string The generated link string.
    */
   final public function link(): string
   {
@@ -69,7 +78,9 @@ abstract class AppAbstract
   }
 
   /**
-   * @return string
+   * Redirects to a specified location with appended parameters.
+   *
+   * @return string The resulting redirection URL.
    */
   final public function redirect(): string
   {
@@ -92,6 +103,7 @@ abstract class AppAbstract
   }
 
   /**
+   *
    * @return string
    */
   final public function getCode(): string
@@ -100,7 +112,8 @@ abstract class AppAbstract
   }
 
   /**
-   * @return mixed
+   *
+   * @return string The vendor associated with this instance.
    */
   final public function getVendor(): string
   {
@@ -108,7 +121,8 @@ abstract class AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string Returns the title of the instance.
    */
   final public function getTitle(): string
   {
@@ -116,7 +130,8 @@ abstract class AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string The version string of the current instance.
    */
   final public function getVersion(): string
   {
@@ -124,7 +139,9 @@ abstract class AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the list of modules.
+   *
+   * @return array The array of modules.
    */
   final public function getModules()
   {
@@ -132,16 +149,23 @@ abstract class AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $type
+   * Checks if a specific module of a given type exists.
+   *
+   * @param string $module The name of the module to check for.
+   * @param string $type The type of the module to check for.
+   * @return bool Returns true if the module exists, false otherwise.
    */
   final public function hasModule(string $module, string $type)
   {
   }
 
   /**
-   * @return bool
-   * @throws \ReflectionException
+   * Sets the app information by reflecting the current class and loading data
+   * from a metafile. Assigns the app's code, vendor, title, version, and modules
+   * if available. Triggers an error if the metafile cannot be located or parsed.
+   *
+   * @return bool Returns false if the metafile cannot be read or is invalid,
+   *              otherwise no explicit value will be returned.
    */
   private function setInfo()
   {
@@ -167,7 +191,8 @@ abstract class AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string The definition string retrieved using the provided arguments.
    */
   final public function getDef(): string
   {
@@ -189,9 +214,12 @@ abstract class AppAbstract
   }
 
   /**
-   * @param string $group
-   * @param string|null $language_code
-   * @return bool|mixed
+   * Checks whether a definitions file exists for the specified group and optionally a language code.
+   *
+   * @param string $group The group name for which the definition file is checked.
+   * @param string|null $language_code The optional language code to check, defaults to the system's current language if null.
+   *
+   * @return bool Returns true if the definition file exists, otherwise false.
    */
   final public function definitionsExist(string $group, ?string $language_code = null)
   {
@@ -211,8 +239,11 @@ abstract class AppAbstract
   }
 
   /**
-   * @param string $group
-   * @param string|null $language_code
+   * Loads the language definitions for the given group and optional language code.
+   *
+   * @param string $group The group of definitions to load.
+   * @param string|null $language_code The optional language code to load definitions for. Defaults to the current language.
+   * @return void
    */
   final public function loadDefinitions(string $group, ?string $language_code = null): void
   {
@@ -237,11 +268,17 @@ abstract class AppAbstract
   }
 
   /**
-   * @param string $key
-   * @param string $value
-   * @param string|null $title
-   * @param string|null $description
-   * @param string|null $set_func
+   * Saves a configuration parameter to the database. If the parameter does not already exist,
+   * it is created with additional metadata such as title and description. If the parameter already
+   * exists, its value is updated.
+   *
+   * @param string $key The configuration key. It should be unique and is used to identify the parameter.
+   * @param mixed $value The value to be associated with the specified configuration key.
+   * @param string|null $title Optional. The title of the configuration parameter. If not provided, a default value is set.
+   * @param string|null $description Optional. The description of the configuration parameter. If not provided, a default value is set.
+   * @param string|null $set_func Optional. The function used to generate a set value or additional related data.
+   *
+   * @return void
    */
   final public function saveCfgParam($key, $value, $title = null, $description = null, $set_func = null): void
   {
@@ -285,7 +322,9 @@ abstract class AppAbstract
   }
 
   /**
-   * @param string $key
+   *
+   * @param string $key The configuration key that identifies the parameter to be deleted.
+   * @return void
    */
   final public function deleteCfgParam(string $key): void
   {
@@ -295,10 +334,13 @@ abstract class AppAbstract
   }
 
   /**
-   * to remove not update with some tab
-   * @param array $result
-   * @param string $directory
-   * @param string $name_space_config
+   * Processes and organizes configuration applications found in a given directory.
+   *
+   * @param array $result A reference to the array where the resulting configuration applications are stored.
+   * @param string $directory The directory to scan for configuration application files.
+   * @param string $name_space_config The namespace under which the configuration classes are defined.
+   * @param string $trigger_message The trigger error message to display for invalid classes.
+   * @return void This method does not return a value; it modifies the $result array by reference.
    */
 
   final public function getConfigApps(array $result, string $directory, string $name_space_config, string $trigger_message): void

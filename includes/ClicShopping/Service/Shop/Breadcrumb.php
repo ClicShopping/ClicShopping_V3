@@ -22,6 +22,14 @@ use ClicShopping\Sites\Shop\Breadcrumb as BreadcrumbClass;
  */
 class Breadcrumb implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the breadcrumb system by verifying the required file exists
+   * and setting up the breadcrumb object in the registry. Adds predefined
+   * breadcrumb entries for navigation.
+   *
+   * @return bool Returns true if the BreadcrumbClass is successfully initialized
+   * and added to the registry; otherwise, returns false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/Breadcrumb.php')) {
@@ -37,6 +45,11 @@ class Breadcrumb implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Halts the current process or operation.
+   *
+   * @return bool Returns true when the method is successfully executed.
+   */
   public static function stop(): bool
   {
     return true;

@@ -24,6 +24,11 @@ use ClicShopping\Apps\Marketing\Favorites\Classes\Shop\FavoritesClass;
  */
 class Favorites implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initiates the FavoritesClass if the required file exists.
+   *
+   * @return bool Returns true if the FavoritesClass is successfully initialized and executed, otherwise false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Marketing/Favorites/Classes/Shop/FavoritesClass.php')) {
@@ -40,6 +45,11 @@ class Favorites implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the current operation.
+   *
+   * @return bool Returns true upon successful completion.
+   */
   public static function stop(): bool
   {
     return true;

@@ -20,7 +20,12 @@ use ClicShopping\Apps\Tools\SecurityCheck\Classes\IpRestriction as Reject;
 class IpRestriction implements \ClicShopping\OM\ServiceInterface
 {
   /**
-   * @return bool
+   * Starts the process of checking IP restrictions and handling the redirection if necessary.
+   *
+   * This method performs a check for all shop-specific IP restrictions, saves the current restriction state,
+   * and redirects to an offline page if the IP restriction condition is met.
+   *
+   * @return bool Returns true after completing the process.
    */
   public static function start(): bool
   {
@@ -35,7 +40,9 @@ class IpRestriction implements \ClicShopping\OM\ServiceInterface
   }
 
   /**
-   * @return bool
+   * Stops the current process or action.
+   *
+   * @return bool Returns true indicating the process was successfully stopped.
    */
   public static function stop(): bool
   {

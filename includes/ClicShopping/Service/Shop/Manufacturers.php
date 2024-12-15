@@ -23,6 +23,12 @@ use ClicShopping\Apps\Catalog\Manufacturers\Classes\Shop\Manufacturers as Manufa
  */
 class Manufacturers implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the Manufacturers module by checking the existence of the required file
+   * and registering the ManufacturersShopClass in the application registry.
+   *
+   * @return bool Returns true if the required file exists and the module is successfully initialized, otherwise false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Manufacturers/Classes/Shop/Manufacturers.php')) {
@@ -33,6 +39,11 @@ class Manufacturers implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the execution or process.
+   *
+   * @return bool Returns true if the stop operation was successful.
+   */
   public static function stop(): bool
   {
     return true;

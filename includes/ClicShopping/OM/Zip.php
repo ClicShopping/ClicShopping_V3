@@ -19,6 +19,12 @@ use function is_array;
  */
 class Zip extends ZipArchive
 {
+  /**
+   * Returns a string description for a given zip status code.
+   *
+   * @param int $status The status code returned by a Zip operation.
+   * @return string A description of the given status code, specifying the type of error or status.
+   */
   public static function zipStatusString($status)
   {
     return match ((int)$status) {
@@ -50,13 +56,25 @@ class Zip extends ZipArchive
     };
   }
 
+  /**
+   * Checks if the given path represents a directory.
+   *
+   * @param string $path The path to check.
+   * @return bool True if the path ends with a directory separator ('/'), false otherwise.
+   */
   public static function isDir($path)
   {
     return substr($path, -1) == '/';
   }
 
   /**
-   * @return array
+   * Constructs and returns a tree representation of file paths within the object.
+   *
+   * Loops through available files, splits their paths by slashes, and organizes them
+   * hierarchically into an array structure. This method ensures all directory paths
+   * and their respective files are properly nested.
+   *
+   * @return array A hierarchical array representing the file and directory structure.
    */
   public function getTree(): array
   {
@@ -85,11 +103,12 @@ class Zip extends ZipArchive
   }
 
   /**
-   * creates a compressed zip file
-   * @param array $files
-   * @param string $destination
-   * @param bool $overwrite
-   * @return bool
+   * Creates a zip archive from the provided array of files.
+   *
+   * @param array $files Array of file paths to be included in the zip archive.
+   * @param string $destination Path to the destination zip file.
+   * @param bool $overwrite Whether to overwrite the zip file if it already exists.
+   * @return bool Returns true if the zip file is successfully created, otherwise false.
    */
   public static function Create(array $files = [], string $destination = '', bool $overwrite = false)
   {

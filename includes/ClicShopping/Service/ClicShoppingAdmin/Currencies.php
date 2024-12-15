@@ -22,6 +22,11 @@ use ClicShopping\Apps\Configuration\Currency\Classes\Shop\Currencies as Currenci
  */
 class Currencies implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes and sets up the Currencies registry.
+   *
+   * @return bool Returns true upon successful initialization.
+   */
   public static function start(): bool
   {
     Registry::set('Currencies', new CurrenciesClass());
@@ -29,6 +34,10 @@ class Currencies implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   *
+   * @return bool Returns true on successful execution.
+   */
   public static function stop(): bool
   {
     return true;

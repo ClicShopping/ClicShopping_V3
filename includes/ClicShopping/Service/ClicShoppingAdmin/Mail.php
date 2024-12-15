@@ -21,6 +21,11 @@ use ClicShopping\OM\Mail as MailClass;
  */
 class Mail implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes and registers the Mail service within the Registry.
+   *
+   * @return bool Returns true upon successful registration of the Mail service.
+   */
   public static function start(): bool
   {
     Registry::set('Mail', new MailClass());
@@ -28,6 +33,11 @@ class Mail implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   * Stops the current process or operation.
+   *
+   * @return bool Returns true if the operation is successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

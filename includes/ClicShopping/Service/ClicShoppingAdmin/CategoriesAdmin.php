@@ -22,6 +22,12 @@ use ClicShopping\Apps\Catalog\Categories\Classes\ClicShoppingAdmin\CategoriesAdm
  */
 class CategoriesAdmin implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the CategoriesAdmin class by checking for the existence of the required file
+   * and registering it in the application registry.
+   *
+   * @return bool Returns true if the file exists and the class is successfully registered, otherwise false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Categories/Classes/ClicShoppingAdmin/CategoriesAdmin.php')) {
@@ -33,6 +39,11 @@ class CategoriesAdmin implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the current process or operation.
+   *
+   * @return bool Returns true indicating the process stopped successfully.
+   */
   public static function stop(): bool
   {
     return true;

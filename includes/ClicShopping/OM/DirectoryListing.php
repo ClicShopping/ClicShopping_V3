@@ -33,6 +33,14 @@ class DirectoryListing
   protected bool $_add_directory_to_filename = false;
   protected $_listing;
 
+  /**
+   * Constructor method to initialize the object with a directory path and optional statistics setting.
+   *
+   * @param string $directory The directory path to initialize. Defaults to an empty string.
+   * @param bool $stats Optional parameter to enable or disable statistics. Defaults to false.
+   *
+   * @return void
+   */
   public function __construct(string $directory = '', bool $stats = false)
   {
     $this->setDirectory(realpath($directory));
@@ -40,7 +48,10 @@ class DirectoryListing
   }
 
   /**
-   * @param string $directory
+   * Sets the directory path.
+   *
+   * @param string $directory The path of the directory to set.
+   * @return void
    */
   public function setDirectory(string $directory)
   {
@@ -48,7 +59,10 @@ class DirectoryListing
   }
 
   /**
-   * @param bool $boolean
+   * Sets whether to include files or not.
+   *
+   * @param bool $boolean A boolean value indicating whether to include files (true) or not (false).
+   * @return void
    */
   public function setIncludeFiles(bool $boolean)
   {
@@ -60,7 +74,10 @@ class DirectoryListing
   }
 
   /**
-   * @param bool $boolean
+   * Sets whether directories should be included in processing.
+   *
+   * @param bool $boolean A boolean value indicating whether to include directories (true) or not (false).
+   * @return void
    */
   public function setIncludeDirectories(bool $boolean)
   {
@@ -72,7 +89,10 @@ class DirectoryListing
   }
 
   /**
-   * @param string $entries
+   * Updates the list of entries to be excluded by adding new ones that are not already present in the list.
+   *
+   * @param array|string|null $entries The entries to be excluded, can be an array or a single string. If null, no action is taken.
+   * @return void
    */
   public function setExcludeEntries(?array $entries)
   {
@@ -90,7 +110,10 @@ class DirectoryListing
   }
 
   /**
-   * @param bool $boolean
+   * Sets the statistics indicator based on the given boolean value.
+   *
+   * @param bool $boolean Determines whether to set the statistics indicator to true or false.
+   * @return void
    */
   public function setStats(bool $boolean)
   {
@@ -102,7 +125,10 @@ class DirectoryListing
   }
 
   /**
-   * @param bool $boolean
+   * Sets the recursive flag to the specified boolean value.
+   *
+   * @param bool $boolean Indicates whether the recursive flag should be set to true or false.
+   * @return void
    */
   public function setRecursive(bool $boolean)
   {
@@ -114,7 +140,10 @@ class DirectoryListing
   }
 
   /**
-   * @param string $extension
+   * Adds a file extension to the list of extensions to check.
+   *
+   * @param string $extension The file extension to be added.
+   * @return void
    */
   public function setCheckExtension(string $extension)
   {
@@ -122,7 +151,10 @@ class DirectoryListing
   }
 
   /**
-   * @param bool $boolean
+   * Sets whether the directory should be added to the filename.
+   *
+   * @param bool $boolean True to add the directory to the filename, false otherwise.
+   * @return void
    */
   public function setAddDirectoryToFilename(bool $boolean)
   {
@@ -134,7 +166,10 @@ class DirectoryListing
   }
 
   /**
-   * @param string $directory
+   * Reads the contents of a directory and populates the listing based on the specified configurations.
+   *
+   * @param string $directory The directory path to read. If not provided, the default directory will be used.
+   * @return void
    */
   public function read(string $directory = '')
   {
@@ -208,8 +243,10 @@ class DirectoryListing
   }
 
   /**
-   * @param bool $sort_by_directories
-   * @return array
+   * Retrieves the list of files, optionally sorted by directories.
+   *
+   * @param bool $sort_by_directories Determines whether to sort the files by directories.
+   * @return array Returns an array of files. If no files are found, an empty array is returned.
    */
   public function getFiles(bool $sort_by_directories = true): array
   {
@@ -229,7 +266,9 @@ class DirectoryListing
   }
 
   /**
-   * @return int
+   * Retrieves the size of the listing.
+   *
+   * @return int The number of elements in the listing.
    */
   public function getSize(): int
   {
@@ -241,7 +280,9 @@ class DirectoryListing
   }
 
   /**
-   * @return string
+   * Retrieves the current directory path.
+   *
+   * @return string The path of the directory.
    */
   public function getDirectory(): string
   {
@@ -249,9 +290,14 @@ class DirectoryListing
   }
 
   /**
-   * @param string $a
-   * @param string $b
-   * @return string
+   * Compares two file listings for sorting purposes, prioritizing directories over files
+   * and sorting alphabetically by name within each type.
+   *
+   * @param array $a The first file listing to compare.
+   * @param array $b The second file listing to compare.
+   * @return string Returns a negative integer, zero, or a positive integer
+   *                as the first argument is considered less than, equal to,
+   *                or greater than the second, respectively.
    */
   protected function _sortListing(array $a, array $b): string
   {

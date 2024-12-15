@@ -22,6 +22,12 @@ use ClicShopping\Apps\Configuration\Currency\Classes\Shop\Currencies as Currenci
  */
 class Currencies implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the application currency settings by verifying the existence of required files,
+   * setting up the currency registry, and managing the session currency based on user input or default settings.
+   *
+   * @return bool Returns true if the initialization process completes successfully; otherwise, false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Configuration/Currency/Classes/Shop/Currencies.php')) {
@@ -41,6 +47,11 @@ class Currencies implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the execution or operation of a process.
+   *
+   * @return bool Returns true indicating the stop operation has been executed successfully.
+   */
   public static function stop(): bool
   {
     return true;

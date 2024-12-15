@@ -19,8 +19,11 @@ namespace ClicShopping\OM;
 class SimpleXMLElement extends \SimpleXMLElement
 {
   /**
-   * @param string $name
-   * @param string $value
+   * Adds a CDATA section with a specified value to a child node of the current XML element.
+   *
+   * @param string $name The name of the child node to which the CDATA section will be added.
+   * @param string $value The value to be enclosed in the CDATA section.
+   * @return void
    */
   public function addChildCData(string $name, string $value)
   {
@@ -29,7 +32,10 @@ class SimpleXMLElement extends \SimpleXMLElement
   }
 
   /**
-   * @param string $value
+   * Adds a CDATA section with the provided value to the current XML node.
+   *
+   * @param string $value The value to be wrapped in a CDATA section and added to the XML node.
+   * @return void
    */
   protected function addCData(string $value)
   {

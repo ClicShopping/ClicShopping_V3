@@ -29,6 +29,16 @@ use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\Shop\ProductsAttributes
  */
 class Core implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the required registry entries and session objects.
+   *
+   * This method sets up various essential components in the registry that
+   * are required for the application's operation. Additionally, it ensures
+   * the shopping cart session is properly initialized. If necessary, it
+   * creates and assigns a new shopping cart object to the registry.
+   *
+   * @return bool Returns true upon successful initialization of all components.
+   */
   public static function start(): bool
   {
     Registry::set('Customer', new CustomerClass());
@@ -48,6 +58,11 @@ class Core implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   * Stops the execution or process and returns its success status.
+   *
+   * @return bool Returns true if the stop operation was successful, false otherwise.
+   */
   public static function stop(): bool
   {
     return true;

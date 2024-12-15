@@ -21,6 +21,11 @@ use ClicShopping\Apps\Customers\Customers\Classes\Shop\CustomerShop as CustomerS
  */
 class CustomersShop implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the CustomerShopClass if the required file exists.
+   *
+   * @return bool Returns true if the file exists and the class is successfully initialized; otherwise, false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Customers/Customers/Classes/Shop/CustomerShop.php')) {
@@ -31,6 +36,11 @@ class CustomersShop implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Terminates the process or operation.
+   *
+   * @return bool Returns true indicating the process was successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

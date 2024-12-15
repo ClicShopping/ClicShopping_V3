@@ -16,6 +16,15 @@ namespace ClicShopping\Service\Shop;
  */
 class OutputCompression implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Starts the process for configuring gzip compression if enabled.
+   *
+   * This method configures the gzip compression settings if the feature is enabled,
+   * the zlib extension is loaded, and no headers are already sent. Compression level
+   * and related parameters are set accordingly.
+   *
+   * @return bool Returns false after attempting to configure the compression settings.
+   */
   public static function start(): bool
   {
 // configure gzip compression if it is enabled
@@ -30,6 +39,11 @@ class OutputCompression implements \ClicShopping\OM\ServiceInterface
     return false;
   }
 
+  /**
+   * Stops the current operation or process.
+   *
+   * @return bool Returns true indicating the process was successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

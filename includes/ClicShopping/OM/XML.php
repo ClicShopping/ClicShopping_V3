@@ -20,8 +20,10 @@ use function is_array;
 class XML
 {
   /**
-   * @param $xml
-   * @return string
+   * Converts an XML input into an associative array.
+   *
+   * @param mixed $xml The XML data to be converted. It should be an instance of \SimpleXMLElement or a valid XML string.
+   * @return mixed The resulting associative array representing the XML structure or a string for CDATA elements.
    */
   public static function toArray($xml)
   {
@@ -58,9 +60,11 @@ class XML
   }
 
   /**
-   * @param $data
-   * @param string $encoding
-   * @return string
+   * Converts an associative array into an XML string.
+   *
+   * @param array $data The data to be converted into XML format.
+   * @param string $encoding The character encoding to be used in the XML document. Defaults to 'UTF-8'.
+   * @return string The generated XML string.
    */
   public static function fromArray($data, string $encoding = 'UTF-8')
   {
@@ -76,10 +80,14 @@ class XML
   }
 
   /**
-   * @param XMLWriter $xml
-   * @param $data
-   * @param null $parent
-   * @param bool $add_to_parent_element
+   * Recursively writes data into an XMLWriter object.
+   *
+   * @param XMLWriter $xml The XMLWriter instance used to build the XML document.
+   * @param mixed $data The data to be written into the XML. It can be an associative array or value.
+   * @param string|null $parent The name of the parent element, if applicable.
+   * @param bool $add_to_parent_element Flag indicating whether elements should be added to a parent element.
+   *
+   * @return void
    */
   protected static function _write(XMLWriter $xml, $data, $parent = null, bool $add_to_parent_element = false)
   {

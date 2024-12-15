@@ -21,6 +21,12 @@ use ClicShopping\Sites\Shop\Address as AddressClass;
  */
 class Address implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the Address module by checking if the required Address.php file exists
+   * and registering the Address class in the registry.
+   *
+   * @return bool Returns true if the file exists and the Address class is successfully registered; false otherwise.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/Address.php')) {
@@ -32,6 +38,11 @@ class Address implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the process or operation.
+   *
+   * @return bool Returns true if the process was successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

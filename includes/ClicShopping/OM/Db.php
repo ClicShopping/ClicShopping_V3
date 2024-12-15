@@ -40,6 +40,13 @@ class Db extends PDO
   protected ?array $options = [];
   protected $query_call;
 
+  /**
+   * Initializes a database connection.
+   *
+   * @param string|null $server The database server address. Defaults to the application configuration if not provided.
+   * @param string|null $username The database username. Defaults to the application configuration if not provided.
+   * @param string|null $password The database user password. Defaults to
+   */
   public static function initialize(
     $server = null,
     $username = null,
@@ -112,8 +119,12 @@ class Db extends PDO
   }
 
   /**
-   * @param string $statement
-   * @return int|false
+   * Executes an SQL statement and returns the number of affected rows or false on failure.
+   *
+   * @param string $statement The SQL statement to execute. The statement should not return a result set.
+   *
+   * @return int|false Returns the number of rows that were affected by the executed statement,
+   *                   or false if the execution fails.
    */
   public function exec(string $statement): int|false
   {
@@ -123,9 +134,11 @@ class Db extends PDO
   }
 
   /**
-   * @param string $statement
-   * @param null $driver_options
-   * @return bool|PDOStatement
+   * Prepares an SQL statement for execution, with optional driver options.
+   *
+   * @param string $statement The SQL statement to prepare, with placeholders for bound parameters if applicable.
+   * @param array|null $driver_options An optional array of driver-specific options to set for the statement.
+   * @return PDOStatement|false Returns a PDOStatement object if the preparation is successful, or false on failure.
    */
   public function prepare(string $statement, ?array $driver_options = null): PDOStatement|false
   {
@@ -139,9 +152,11 @@ class Db extends PDO
   }
 
   /**
-   * @param string $statement
-   * @param mixed ...$params
-   * @return bool|mixed|PDOStatement
+   * Executes a SQL query with optional parameters and returns the prepared statement.
+   *
+   * @param string $statement The SQL query to execute.
+   * @param mixed ...$params Optional parameters to bind to the query.
+   * @return PDOStatement|false Returns the PDOStatement object if the query was successful, or false on failure.
    */
   public function query(string $statement, ...$params): PDOStatement|false
   {
@@ -164,14 +179,12 @@ class Db extends PDO
   }
 
   /**
-   * @param string|array $table
-   * @param string|array $fields
-   * @param array|null $where
-   * @param null $order
-   * @param null $limit
-   * @param null $cache
-   * @param array|null $options
-   * @return bool|mixed|PDOStatement
+   * Retrieves data from the specified table with optional conditions, ordering, limits, and caching.
+   *
+   * @param string|array $table The name of the table or an array of table names. If not prefixed, a default prefix is applied.
+   * @param string|array $fields The fields to select from the table.
+   * @param array|null $where An associative array of conditions for the query. Can include operators and compound relationships.
+   * @param string|array|null $order The
    */
   public function get($table, $fields, array|null $where = null, $order = null, $limit = null, $cache = null, array|null $options = null)
   {
@@ -304,11 +317,13 @@ class Db extends PDO
   }
 
   /**
-   * @param string $table
-   * @param array $data
-   * @param array|null $where_condition
-   * @param array|null $options
-   * @return bool|int
+   * Saves data to a specified database table. Can perform either an insert or an update operation
+   * depending on whether a where condition is provided.
+   *
+   * @param string $table The name of the database table. If table prefixing is enabled in options,
+   *                      the table name will be automatically prefixed.
+   * @param array|null $data An associative array of column-value pairs to be inserted/updated.
+   *                         Columns as keys, values as data to save.
    */
   public function save(string $table, array|null $data, array|null $where_condition = null, array|null $options = null)
   {
@@ -402,10 +417,13 @@ class Db extends PDO
   }
 
   /**
-   * @param string $table
-   * @param array $where_condition
-   * @param array|null $options
-   * @return int
+   * Deletes records from the specified table based on the provided where conditions.
+   *
+   * @param string $table The name of the table from which records should be deleted.
+   * @param array $where_condition An associative array representing the WHERE conditions,
+   *                                where the keys are column names and the values are the corresponding values to match.
+   *                                If the array is empty, all rows in the table will be deleted.
+   * @param array|null $options Optional settings. If the 'prefix_tables'
    */
   public function delete(string $table, array $where_condition = [], ?array $options = null): int
   {
@@ -441,9 +459,11 @@ class Db extends PDO
   }
 
   /**
-   * @param string $sql_file
-   * @param string|null $table_prefix
-   * @return bool
+   * Imports SQL queries from a given SQL file into the database.
+   *
+   * @param string $sql_file Path to the SQL file to be imported.
+   * @param string|null $table_prefix Optional table prefix to be used for renaming tables in the SQL file.
+   * @return bool Returns true if all SQL queries are successfully executed, otherwise false.
    */
   public function importSQL(string $sql_file, ?string $table_prefix = null): bool
   {
@@ -559,9 +579,11 @@ class Db extends PDO
   }
 
   /**
-   * @param string $file
-   * @return array
-   */
+   * Parses a schema definition file and generates an array representation of the database schema.
+   *
+   * @param string $file The path to the schema definition file. It is expected to have a structured format
+   *                     where different sections (columns, indexes, foreign keys, properties) are divided
+   *                     by*/
   public static function getSchemaFromFile(string $file): array
   {
     $table = substr(basename($file), 0, strrpos(basename($file), '.'));
@@ -699,10 +721,13 @@ class Db extends PDO
   }
 
   /**
-   * @param array $schema
-   * @param string|null $prefix
-   * @return string
-   */
+   * Generates an SQL "CREATE TABLE" statement from the provided schema definition.
+   *
+   * @param array $schema The table schema, including table name, columns, indexes, and other attributes.
+   *                       - 'name' (string): The name of the table.
+   *                       - 'col' (array): An associative array of column definitions, where the key is the column name and the value is an array of column properties:
+   *                           - 'type' (string): Data type of the column.
+   *                           - 'length' (*/
   public static function getSqlFromSchema(array $schema, ?string $prefix = null)
   {
     $sql = 'CREATE TABLE ' . (isset($prefix) ? $prefix : '') . $schema['name'] . ' (' . "\n";
@@ -791,8 +816,10 @@ class Db extends PDO
   }
 
   /**
-   * @param string $string
-   * @return string
+   * Prepares and sanitizes the input by processing strings or arrays recursively.
+   *
+   * @param string|array $string The input string or array to be sanitized.
+   * @return string|array The sanitized string or array.
    */
   public static function prepareInput(string $string): string
   {
@@ -810,8 +837,10 @@ class Db extends PDO
   }
 
   /**
-   * @param string $string
-   * @return string
+   * Escapes and formats a string to be used as an identifier in a database query.
+   *
+   * @param string $string The input string to be formatted as an identifier.
+   * @return string The formatted identifier with special characters escaped.
    */
   public static function prepareIdentifier(string $string): string
   {
@@ -819,7 +848,10 @@ class Db extends PDO
   }
 
   /**
-   * @param string $prefix
+   * Sets the prefix to be used for table names.
+   *
+   * @param string $prefix The prefix to be set for table names.
+   * @return void
    */
   public function setTablePrefix(string $prefix)
   {
@@ -828,8 +860,10 @@ class Db extends PDO
 
 
   /**
-   * @param string $statement
-   * @return string
+   * Automatically prefixes table names in a database query statement with the configured table prefix.
+   *
+   * @param string $statement The SQL query statement containing placeholders for table names.
+   * @return string The SQL query statement with table name placeholders replaced by the configured prefix.
    */
   protected function autoPrefixTables(string $statement): string
   {
@@ -847,8 +881,9 @@ class Db extends PDO
   }
 
   /**
-   * Calculate the size of database
-   * @return float
+   * Calculates the total size of the database in megabytes.
+   *
+   * @return float The size of the database rounded to one decimal place in megabytes.
    */
   public static function sizeDb(): float
   {
@@ -869,8 +904,9 @@ class Db extends PDO
 
 
   /**
-   * Calculate the size of all databse
-   * @return float
+   * Calculates and displays the size of the database in megabytes.
+   *
+   * @return float The size of the database in megabytes, rounded to one decimal place.
    */
   public static function displayDbSize(): float
   {
@@ -890,11 +926,13 @@ class Db extends PDO
   }
 
   /**
-   * install new db
-   * @param string $filename
-   * @param bool|null $migrate
+   * Installs a new database schema from the given filename.
+   *
+   * @param string $filename The name of the file containing the database schema to install, excluding the ".txt" extension.
+   * @param bool|null $migrate Optional. Indicates whether to use the migration directory for schema files. Defaults to false.
+   * @return void
    */
-  public function installNewDb(string $filename, ?bool $migrate = false)
+  public function installNewDb(string $filename, ?bool $migrate = false): void
   {
     $prefix = CLICSHOPPING::getConfig('db_table_prefix');
 

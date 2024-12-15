@@ -32,9 +32,13 @@ abstract class SessionAbstract
   abstract public function exists(string $session_id);
 
   /**
-   * Verify an existing session ID and create or resume the session if the existing session ID is valid
+   * Starts a new session while ensuring secure and strict session handling policies.
    *
-   * @return boolean
+   * This method modifies session configurations, such as cookie security and strict mode,
+   * and ensures proper initialization by handling potential inconsistencies with session
+   * identifiers. It also invokes hooks before and after the session is started.
+   *
+   * @return bool Returns true if the session successfully started, or false otherwise.
    */
 
   public function start(): bool
@@ -107,7 +111,10 @@ abstract class SessionAbstract
   }
 
   /**
-   * @param bool $force_cookies
+   * Sets whether cookies should be forcibly enabled.
+   *
+   * @param bool $force_cookies Determines if cookies should be forced.
+   * @return void
    */
   public function setForceCookies(bool $force_cookies)
   {
@@ -115,7 +122,8 @@ abstract class SessionAbstract
   }
 
   /**
-   * @return bool
+   *
+   * @return bool Returns true if cookies are forced, false otherwise.
    */
   public function isForceCookies(): bool
   {
@@ -123,8 +131,9 @@ abstract class SessionAbstract
   }
 
   /**
-   * Checks if the session has been started or not
-   * @return boolean
+   * Checks if the current session has started.
+   *
+   * @return bool True if the session is active, false otherwise.
    */
 
   public function hasStarted(): bool
@@ -133,8 +142,9 @@ abstract class SessionAbstract
   }
 
   /**
-   * Deletes an existing session
-   * @return bool
+   * Ends the current session and deletes the associated session cookie if it exists.
+   *
+   * @return bool Returns true on successful session destruction, or false otherwise.
    */
   public function kill(): bool
   {
@@ -156,8 +166,10 @@ abstract class SessionAbstract
   }
 
   /**
-   * Delete an existing session and move the session data to a new session with a new session ID
-   * @return bool
+   * Regenerates the session ID while preserving or deleting the old session data based on its existence,
+   * and triggers a hook upon successful recreation.
+   *
+   * @return bool Returns true if the session ID was successfully regenerated, otherwise false.
    */
   public function recreate(): bool
   {
@@ -183,9 +195,9 @@ abstract class SessionAbstract
   }
 
   /**
-   * Sets the name of the session
    *
-   * @param string $name The name of the session
+   * @param string $name The new name to set for the session.
+   * @return string The previous name of the session.
    */
 
   public function setName(string $name): string
@@ -194,8 +206,10 @@ abstract class SessionAbstract
   }
 
   /**
-   * Sets the life time of the session (in seconds)
-   * @param int $time The life time of the session (in seconds)
+   * Sets the lifetime for the session garbage collector in seconds.
+   *
+   * @param float $time The session lifetime in seconds.
+   * @return float The previous value of the session.gc_maxlifetime configuration option.
    */
 
   public function setLifeTime(float $time): float
@@ -204,7 +218,8 @@ abstract class SessionAbstract
   }
 
   /**
-   * @return string|null
+   *
+   * @return string|null Returns the name or null if not set.
    */
   public function getName(): ?string
   {
@@ -212,9 +227,8 @@ abstract class SessionAbstract
   }
 
   /**
-   * Gets the SameSite attribute.
    *
-   * @return string|null
+   * @return string|null Returns the same-site attribute value if set, or null if not set.
    */
   public function getSameSite(): ?string
   {

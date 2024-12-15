@@ -23,7 +23,9 @@ class Apps
 {
 
   /**
-   * @return array
+   * Retrieves a list of all available applications by scanning the designated base directory.
+   *
+   * @return array Returns an array of applications, where each entry contains information about an application.
    */
   public static function getAll(): array
   {
@@ -51,10 +53,12 @@ class Apps
   }
 
   /**
-   * @param string $type
-   * @param string|null $filter_vendor_app
-   * @param array|null $filter
-   * @return array
+   * Retrieves a list of modules of a specified type, optionally filtered by vendor, application, and additional criteria.
+   *
+   * @param string $type The type of module to retrieve (e.g., 'Payment', 'Shipping').
+   * @param string|null $filter_vendor_app Optional parameter to filter modules by a specific vendor or a combination of vendor and application, using the format 'Vendor\App'.
+   * @param array|null $filter Optional array of additional criteria to apply when filtering modules.
+   * @return array Returns an array of modules matching the specified type and filters. If no matching modules are found, an empty array is returned.
    */
   public static function getModules(string $type, ?string $filter_vendor_app = null, ?array $filter = null): array
   {
@@ -115,8 +119,10 @@ class Apps
   }
 
   /**
-   * @param string $app
-   * @return bool
+   * Checks if a given app exists and is a valid subclass of ClicShopping\OM\AppAbstract.
+   *
+   * @param string $app The fully qualified name of the app in the format "Vendor\App".
+   * @return bool Returns true if the app exists and is a subclass of ClicShopping\OM\AppAbstract, otherwise false.
    */
   public static function exists(string $app): bool
   {
@@ -138,9 +144,11 @@ class Apps
   }
 
   /**
-   * @param $module
-   * @param $type
-   * @return bool
+   * Retrieves the class of the specified module based on its type.
+   *
+   * @param string $module The name of the module.
+   * @param string|null $type The type of the module. Can be null.
+   * @return mixed Returns the class of the module if found, or false if the module class does not exist.
    */
   public static function getModuleClass(string $module, ?string $type)
   {
@@ -162,8 +170,11 @@ class Apps
   }
 
   /**
-   * @param string $app
-   * @return bool|mixed
+   * Retrieves metadata information for a specific application.
+   *
+   * @param string $app The fully qualified name of the application in the format "Vendor\App".
+   * @return array|false Returns an array containing the application's metadata if found and valid,
+   *                     or false if the metadata cannot be retrieved or if the format is invalid.
    */
   public static function getInfo(string $app)
   {
@@ -185,9 +196,10 @@ class Apps
   }
 
   /**
-   * Remove specific double request with ? inside url
-   * @param array $route
-   * @return array
+   * Processes a given route array and transforms it into an associative array of query parameters.
+   *
+   * @param array $route The route array, typically containing query parameters as key-value pairs.
+   * @return array The processed associative array of query parameters extracted from the input route.
    */
   public static function getRouteValue(array $route): array
   {
@@ -219,9 +231,11 @@ class Apps
   }
 
   /**
-   * @param null $route
-   * @param null $filter_vendor_app
-   * @return array|mixed
+   * Resolves and retrieves the final route destination based on the input route and optional filtering criteria.
+   *
+   * @param array|string|null $route The initial route or list of routes, can be null to use global request parameters.
+   * @param string|null $filter_vendor_app Optional filter to narrow down the specific vendor and app (using "vendor\app" format).
+   * @return array The resolved route destination after processing and applying filters.
    */
   public static function getRouteDestination($route = null, $filter_vendor_app = null)
   {

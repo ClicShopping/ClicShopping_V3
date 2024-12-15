@@ -21,6 +21,11 @@ use ClicShopping\Sites\ClicShoppingAdmin\LoggerAdmin;
  */
 class Logger implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the LoggerAdmin instance and registers it in the Registry.
+   *
+   * @return bool Returns true upon successful initialization.
+   */
   public static function start(): bool
   {
     Registry::set('LoggerAdmin', new LoggerAdmin());
@@ -28,6 +33,11 @@ class Logger implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   * Stops the current operation or process.
+   *
+   * @return bool Returns true on successful operation termination.
+   */
   public static function stop(): bool
   {
     return true;

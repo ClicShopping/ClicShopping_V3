@@ -21,6 +21,11 @@ use ClicShopping\OM\Registry;
  */
 class CurrenciesGeolocalisation implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Starts the execution of the currency geolocation process across all shops by triggering the appropriate hook.
+   *
+   * @return bool Returns true upon successful initiation of the process.
+   */
   public static function start(): bool
   {
 // hook has impact in all shop
@@ -29,6 +34,11 @@ class CurrenciesGeolocalisation implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   * Stops the current process or execution.
+   *
+   * @return bool Returns true when the stop process is successfully completed.
+   */
   public static function stop(): bool
   {
     return true;

@@ -22,6 +22,11 @@ use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ProductsAdmin a
  */
 class ProductAdmin implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the ProductsAdmin system by registering the ProductAdminClass instance.
+   *
+   * @return bool Returns true upon successful initialization.
+   */
   public static function start(): bool
   {
     Registry::set('ProductsAdmin', new ProductAdminClass());
@@ -29,6 +34,10 @@ class ProductAdmin implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   *
+   * @return bool Returns true on successful execution.
+   */
   public static function stop(): bool
   {
     return true;

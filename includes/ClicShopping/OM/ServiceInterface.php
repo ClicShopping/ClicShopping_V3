@@ -18,7 +18,13 @@ namespace ClicShopping\OM;
  */
 interface ServiceInterface
 {
+  /**
+   * Starts the execution of the defined process or service.
+   */
   public static function start();
 
+  /**
+   * Stops the execution of the defined process or service.
+   */
   public static function stop();
 }

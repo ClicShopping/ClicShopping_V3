@@ -18,6 +18,11 @@ use ClicShopping\Sites\ClicShoppingAdmin\Tax as TaxClass;
  */
 class Tax implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes and registers the Tax class within the Registry.
+   *
+   * @return bool Returns true upon successful initialization.
+   */
   public static function start(): bool
   {
     Registry::set('Tax', new TaxClass());
@@ -25,6 +30,10 @@ class Tax implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   *
+   * @return bool Returns true when the stop process is successfully completed.
+   */
   public static function stop(): bool
   {
     return true;

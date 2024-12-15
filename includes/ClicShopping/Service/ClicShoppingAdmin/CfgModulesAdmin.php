@@ -19,6 +19,11 @@ use ClicShopping\Sites\ClicShoppingAdmin\CfgModulesAdmin as CfgModulesAdminClass
  */
 class CfgModulesAdmin implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the CfgModulesAdmin module by setting it in the Registry.
+   *
+   * @return bool Returns true on successful initialization.
+   */
   public static function start(): bool
   {
     Registry::set('CfgModulesAdmin', new CfgModulesAdminClass());
@@ -26,6 +31,11 @@ class CfgModulesAdmin implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   * Stops the current operation or process.
+   *
+   * @return bool Returns true on successful stop execution.
+   */
   public static function stop(): bool
   {
     return true;

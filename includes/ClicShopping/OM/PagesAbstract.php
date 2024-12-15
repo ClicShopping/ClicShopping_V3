@@ -34,6 +34,12 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
 
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the class.
+   *
+   * @param \ClicShopping\OM\SitesInterface $site The site interface instance.
+   * @return void
+   */
   final public function __construct(\ClicShopping\OM\SitesInterface $site)
   {
     $this->code = (new ReflectionClass($this))->getShortName();
@@ -42,12 +48,19 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
     $this->init();
   }
 
+  /**
+   * Initializes the required settings or configurations for the current instance.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return string
+   * Retrieves the code associated with the current object.
+   *
+   * @return mixed The value of the code property.
    */
   public function getCode()
   {
@@ -55,8 +68,9 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   }
 
   /**
-   * @return false|string
-   * @throws \ReflectionException
+   * Retrieves the file path based on the current class's namespace and a defined file property.
+   *
+   * @return string|bool Returns the full file path if the file property is set, or false otherwise.
    */
   public function getFile()
   {
@@ -68,7 +82,10 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   }
 
   /**
-   * @param bool $bool
+   * Sets whether to use the site template.
+   *
+   * @param bool $bool Determines if the site template should be used. Pass true to enable; false to disable.
+   * @return void
    */
   public function setUseSiteTemplate(bool $bool)
   {
@@ -76,7 +93,9 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   }
 
   /**
-   * @return bool
+   * Determines whether to use the site template.
+   *
+   * @return bool Returns true if the site template is used, false otherwise.
    */
   public function useSiteTemplate(): bool
   {
@@ -84,7 +103,10 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   }
 
   /**
-   * @param string $file
+   * Sets the file property with the provided file value.
+   *
+   * @param string $file The file name or path to be assigned.
+   * @return void
    */
   public function setFile($file)
   {
@@ -92,7 +114,10 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   }
 
   /**
-   * @return bool
+   * Determines if the current request is an action request by analyzing
+   * the query parameters and verifying against ignored actions and existing actions.
+   *
+   * @return bool Returns true if the current request is identified as an action request, otherwise false.
    */
   public function isActionRequest(): bool
   {
@@ -114,7 +139,11 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   }
 
   /**
-   * @param $actions
+   * Executes a list of actions, determining their validity and handling their execution.
+   *
+   * @param mixed $actions A single action or an array of actions to be executed.
+   *                        If not an array, it will be wrapped into one.
+   * @return void
    */
   public function runAction($actions)
   {
@@ -158,7 +187,14 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   }
 
   /**
+   * Processes and sanitizes action names from the request URI, verifies their validity,
+   * and executes the corresponding actions if they exist.
    *
+   * Actions are extracted based on the site configuration and processed sequentially.
+   * If an action is invalid or ignored, the loop breaks and stops further processing.
+   * Valid actions are passed to the `runAction` method for execution.
+   *
+   * @return void
    */
   public function runActions()
   {
@@ -186,8 +222,10 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   }
 
   /**
-   * @param $action
-   * @return bool
+   * Checks if a given action exists and is a valid subclass of the specified interface.
+   *
+   * @param string|array $action The action name as a string or an array to check for existence.
+   * @return bool Returns true if the action exists and implements the PagesActionsInterface, otherwise false.
    */
   public function actionExists($action)
   {
@@ -211,7 +249,9 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   }
 
   /**
-   * @return array
+   * Retrieves the list of actions that have been executed.
+   *
+   * @return array The array containing the executed actions.
    */
   public function getActionsRun()
   {
@@ -219,7 +259,9 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   }
 
   /**
-   * @return bool
+   * Determines if the current action is a Remote Procedure Call (RPC).
+   *
+   * @return bool Returns true if the current action is identified as an RPC, otherwise false.
    */
   public function isRPC(): bool
   {
@@ -227,9 +269,10 @@ abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
   }
 
   /**
-   * @param $action
-   * @return string
-   * @throws ReflectionException
+   * Retrieves the fully qualified class name of an action based on the provided action input.
+   *
+   * @param string|array $action The action name or array of action names used to construct the class name.
+   * @return string Returns the fully qualified class name of the action.
    */
   protected function getActionClassName($action)
   {

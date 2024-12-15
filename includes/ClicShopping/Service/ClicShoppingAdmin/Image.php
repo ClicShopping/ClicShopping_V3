@@ -22,6 +22,11 @@ use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\Image as ImageC
  */
 class Image implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes and registers the ImageClass instance into the Registry.
+   *
+   * @return bool Returns true upon successful initialization.
+   */
   public static function start(): bool
   {
     Registry::set('Image', new ImageClass());
@@ -29,6 +34,11 @@ class Image implements \ClicShopping\OM\ServiceInterface
     return true;
   }
 
+  /**
+   * Stops the execution or operation of a given process or functionality.
+   *
+   * @return bool Returns true if the operation was successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

@@ -20,6 +20,11 @@ use ClicShopping\Apps\Customers\Reviews\Classes\Shop\ReviewsClass as NewReviews;
  */
 class Reviews implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Starts the process to initialize the Reviews class if the specified file exists.
+   *
+   * @return bool Returns true if the Reviews class file exists and is successfully initialized, otherwise false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Customers/Reviews/Classes/Shop/ReviewsClass.php')) {
@@ -31,6 +36,11 @@ class Reviews implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the execution or process.
+   *
+   * @return bool Returns true when the method is successfully executed.
+   */
   public static function stop(): bool
   {
     return true;

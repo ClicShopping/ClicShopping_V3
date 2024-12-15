@@ -24,6 +24,11 @@ use ClicShopping\OM\Registry;
  */
 class Core implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Starts the process by checking for the existence of the required file and initializing the MessageStackClassAdmin.
+   *
+   * @return bool Returns true if the file exists and the MessageStackClassAdmin is successfully initialized; otherwise, false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'OM/MessageStack.php')) {
@@ -35,6 +40,11 @@ class Core implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the current process or operation.
+   *
+   * @return bool Returns true when the process is successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

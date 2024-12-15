@@ -28,12 +28,15 @@ class Upload
   protected array $_upload = [];
 
   /**
-   * Upload constructor.
-   * @param $file
-   * @param $destination
-   * @param null $permissions
-   * @param null $extensions
-   * @param bool $replace
+   * Constructor to initialize file handling with specified parameters.
+   *
+   * @param string $file The file to be processed.
+   * @param string $destination The destination directory where the file will be processed.
+   * @param string|null $permissions Optional. File permissions to be set. Defaults to '777' if not specified.
+   * @param array|null $extensions Optional. Additional extensions to be added.
+   * @param bool $replace Indicates whether to replace existing files. Defaults to false.
+   *
+   * @return void
    */
   public function __construct($file, $destination, $permissions = null, $extensions = null, bool $replace = false)
   {
@@ -59,7 +62,12 @@ class Upload
   }
 
   /**
-   * @return bool
+   * Validates and processes file upload requests using either PUT or POST methods.
+   * Checks if the uploaded file meets configured requirements such as extensions,
+   * and ensures it is saved to a writable destination directory.
+   *
+   * @return bool Returns true if the file upload is successfully validated and processed;
+   *              otherwise, false.
    */
   public function check(): bool
   {
@@ -127,7 +135,13 @@ class Upload
   }
 
   /**
-   * @return bool
+   * Saves the uploaded file to the specified destination directory.
+   * Depending on the upload type ('PUT' or 'POST'), the method either renames or moves the file
+   * to the target location, ensuring no duplicate names are present if the `_replace` property is true.
+   * Permissions are applied to the saved file.
+   * A warning message is added to the message stack if the file cannot be saved.
+   *
+   * @return bool Returns true if the file is successfully saved, otherwise returns false.
    */
   public function save()
   {
@@ -163,7 +177,10 @@ class Upload
   }
 
   /**
-   * @param $permissions
+   * Sets the permissions for the current object.
+   *
+   * @param mixed $permissions The permissions value to be set, which will be converted to an octal decimal.
+   * @return void
    */
   public function setPermissions($permissions)
   {
@@ -171,7 +188,10 @@ class Upload
   }
 
   /**
-   * @param $extensions
+   * Adds one or more extensions to the existing list of extensions.
+   *
+   * @param mixed $extensions A single extension as a string or multiple extensions as an array.
+   * @return void
    */
   public function addExtensions($extensions)
   {
@@ -185,7 +205,10 @@ class Upload
   }
 
   /**
-   * @param bool $bool
+   * Sets the replace flag.
+   *
+   * @param bool $bool Indicates whether to enable or disable the replace flag.
+   * @return void
    */
   public function setReplace(bool $bool)
   {
@@ -193,7 +216,9 @@ class Upload
   }
 
   /**
-   * @return false|string
+   * Retrieves the destination property.
+   *
+   * @return mixed The value of the destination property.
    */
   public function getDestination()
   {
@@ -201,7 +226,10 @@ class Upload
   }
 
   /**
-   * @param string $filename
+   * Sets the filename property.
+   *
+   * @param string $filename The name of the file to be set.
+   * @return void
    */
   public function setFilename(string $filename)
   {
@@ -209,7 +237,9 @@ class Upload
   }
 
   /**
-   * @return mixed
+   * Retrieves the filename.
+   *
+   * @return string Returns the filename if set, otherwise returns the upload's name.
    */
   public function getFilename()
   {
@@ -221,7 +251,9 @@ class Upload
   }
 
   /**
-   * @return string
+   * Retrieves the file extension from the filename in lowercase.
+   *
+   * @return string The file extension in lowercase.
    */
   public function getExtension(): string
   {
@@ -229,7 +261,9 @@ class Upload
   }
 
   /**
-   * @return mixed
+   * Retrieves the permissions property.
+   *
+   * @return mixed Returns the value of the _permissions property.
    */
   public function getPermissions()
   {
@@ -237,7 +271,9 @@ class Upload
   }
 
   /**
-   * destruct
+   * Destructor method that ensures the temporary uploaded file is deleted if it exists.
+   *
+   * @return void
    */
   public function __destruct()
   {

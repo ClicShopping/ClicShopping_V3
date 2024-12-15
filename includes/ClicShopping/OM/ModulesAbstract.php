@@ -29,6 +29,13 @@ abstract class ModulesAbstract
 
   abstract public function getClass($module);
 
+  /**
+   * Constructs the object, setting the code property to the short name
+   * of the ReflectionClass instance associated with the current class
+   * and initializes the object by calling the init method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->code = (new ReflectionClass($this))->getShortName();
@@ -36,14 +43,22 @@ abstract class ModulesAbstract
     $this->init();
   }
 
+  /**
+   * Initializes the necessary components or sets up the required configurations.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @param $modules
-   * @param $filter
-   * @return mixed
+   * Filters the provided modules based on the given filter criteria.
+   *
+   * @param array $modules The array of modules to be filtered.
+   * @param mixed $filter The criteria or condition used to filter the modules.
+   *
+   * @return array The filtered array of modules.
    */
   public function filter($modules, $filter)
   {

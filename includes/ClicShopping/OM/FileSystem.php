@@ -24,9 +24,11 @@ use RecursiveIteratorIterator;
 class FileSystem
 {
   /**
-   * @param string $base
-   * @param bool $recursive
-   * @return array
+   * Retrieves the contents of a directory as an array of file paths.
+   *
+   * @param string $base The base directory to scan for contents.
+   * @param bool $recursive Whether to scan the directory recursively. Defaults to true.
+   * @return array An array of file paths contained within the specified directory.
    */
   public static function getDirectoryContents(string $base, bool $recursive = true): array
   {
@@ -50,9 +52,12 @@ class FileSystem
   }
 
   /**
-   * @param $location
-   * @param bool $recursive_check
-   * @return bool
+   * Determines whether a specified location is writable. Optionally checks writability recursively
+   * by traversing up the directory tree until an existing location is found.
+   *
+   * @param string $location The file or directory path to check for writability.
+   * @param bool $recursive_check Optional. If true, checks writability recursively by moving up the directory hierarchy.
+   * @return bool Returns true if the location is writable, otherwise false.
    */
   public static function isWritable(string $location, bool $recursive_check = false): bool
   {
@@ -72,9 +77,11 @@ class FileSystem
   }
 
   /**
-   * @param $dir
-   * @param bool $dry_run
-   * @return array
+   * Recursively removes a directory and its contents or performs a dry run to check the writability of the directory and its files.
+   *
+   * @param string $dir The directory to be removed.
+   * @param bool $dry_run Flag to determine whether to perform actual deletion (false) or a dry run to check permissions (true).
+   * @return array Returns an array of the processing results for each file and directory, including type, source, and operation result.
    */
   public static function rmdir(string $dir, bool $dry_run = false): array
   {
@@ -104,8 +111,9 @@ class FileSystem
   }
 
   /**
-   * @param string $directory
-   * @return bool
+   * Checks if a specified directory is empty.
+   *
+   * @param string $directory The
    */
   public static function isDirectoryEmpty(string $directory): bool
   {
@@ -115,8 +123,10 @@ class FileSystem
   }
 
   /**
-   * @param $pathname
-   * @return mixed
+   * Converts a given pathname to use the correct directory separator for the current system.
+   *
+   * @param string $pathname The path to be converted.
+   * @return string The pathname with the correct directory separator.
    */
   public static function displayPath(string $pathname): string
   {
@@ -124,8 +134,10 @@ class FileSystem
   }
 
   /**
-   * Recursively remove a directory or a single file
-   * @param string $source The source to remove
+   * Removes a file or directory at the specified location and its contents if applicable.
+   *
+   * @param string $source The file or directory path to be removed.
+   * @return void
    */
   public static function rmFile(string $source)
   {
@@ -159,9 +171,10 @@ class FileSystem
   }
 
   /**
-   * Parse file permissions to a human readable layout
-   * @param $mode
-   * @return string
+   * Determines the type and permissions of a file based on its mode.
+   *
+   * @param string $mode The file's mode, typically provided as a result of the `fileperms()` function.
+   * @return string A string representing the file type and its permissions in standard UNIX format.
    */
   public function getFilePermissions(string $mode)
   {
@@ -211,10 +224,11 @@ class FileSystem
   }
 
   /**
-   * Copy file
-   * @param string $source
-   * @param string $destination
-   * @return bool
+   * Copies a file from the source location to the destination location.
+   *
+   * @param string $source The path to the source file that needs to be copied.
+   * @param string $destination The path where the file should be copied to.
+   * @return bool Returns true if the file was successfully copied, otherwise false.
    */
   public static function copyFile(string $source, string $destination): bool
   {
@@ -228,10 +242,11 @@ class FileSystem
   }
 
   /**
-   * Move File
-   * @param string $source
-   * @param string $destination
-   * @return bool
+   * Moves a file from the source location to the destination location.
+   *
+   * @param string $source The path to the source file.
+   * @param string $destination The path to the destination file.
+   * @return bool Returns true if the file was moved successfully, false otherwise.
    */
   public static function moveFile(string $source, string $destination): bool
   {

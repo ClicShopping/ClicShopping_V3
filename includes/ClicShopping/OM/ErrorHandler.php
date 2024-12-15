@@ -18,6 +18,11 @@ use RuntimeException;
  */
 class ErrorHandler
 {
+  /**
+   * Initializes error handling configuration for the application.
+   *
+   * @return void
+   */
   public static function initialize()
   {
     ini_set('display_errors', false);
@@ -38,6 +43,11 @@ class ErrorHandler
     }
   }
 
+  /**
+   * Retrieves the directory path for the log files.
+   *
+   * @return string The directory path for log storage.
+   */
   public static function getDirectory(): string
   {
     return CLICSHOPPING::BASE_DIR . 'Work/Log/';

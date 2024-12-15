@@ -25,11 +25,11 @@ use function strlen;
 class HTML
 {
   /**
-   * Parse a user submited value
+   * Processes a given string by trimming it and replacing characters based on a translation array.
    *
-   * @param string|null $string $string The string to parse and output
-   * @param array|null $translate An array containing the characters to parse
-   * @return string
+   * @param string|null $string The input string to be processed. If null or empty, an empty string is returned.
+   * @param array|null $translate An associative array of characters to translate. Defaults to translating double quotes (") to single quotes (').
+   * @return string The processed string after applying trim and character translations.
    */
 
   public static function output(?string $string, array $translate = null): string
@@ -48,10 +48,10 @@ class HTML
   }
 
   /**
-   * Strictly parse a user submited value
-   * The string to strictly parse and output
-   * @param string $string
-   * @return string
+   * Returns a string with special characters converted to HTML entities to protect against XSS attacks.
+   *
+   * @param string|null $string The input string to be protected. If null or empty, an empty string is returned.
+   * @return string The protected string with HTML entities encoded.
    */
   public static function outputProtected(?string $string): string
   {
@@ -63,9 +63,10 @@ class HTML
   }
 
   /**
-   * Sanitize a user submited value
-   * @param $string
-   * @return string|string[]
+   * Sanitizes the given string by replacing unwanted characters and patterns.
+   *
+   * @param string|null $string The input string to sanitize. Can be null or empty.
+   * @return string The sanitized string. If the input is null or empty, an empty string is returned.
    */
   public static function sanitize($string)
   {
@@ -95,12 +96,12 @@ class HTML
 
 
   /**
-   * Generate a <a href> tag and link to an element
+   * Generates an HTML anchor tag based on the provided URL, element content, and optional parameters.
    *
-   * @param $url The url to link to
-   * @param $element The element to link to
-   * @param $parameters Additional parameters for the a href tag
-   * @return string
+   * @param string $url The URL for the anchor tag's href attribute.
+   * @param string $element The content to be displayed between the opening and closing anchor tags.
+   * @param string|null $parameters Optional. Additional attributes to include in the anchor tag.
+   * @return string The complete anchor tag as an HTML string.
    */
 
   public static function link($url, $element, $parameters = null)
@@ -114,6 +115,13 @@ class HTML
   * @param string $url url of image
   * @return string
   */
+  /**
+   * Checks if a file exists at the given URL.
+   *
+   * @param string $url The URL of the file to check.
+   *
+   * @return bool Returns true if the file exists at the given URL, otherwise false.
+   */
   public static function getUrlFileExists(string $url): bool
   {
     if (@file_get_contents($url, false, NULL, 0, 1)) {
@@ -134,6 +142,19 @@ class HTML
   * @return string
   */
 
+  /**
+   * Generates an HTML image element with various customizable attributes.
+   *
+   * @param string $src The source URL for the image. Defaults to an empty string.
+   * @param string|null $alt The alternate text for the image. Defaults to null.
+   * @param string|null $width The width of the image. Defaults to null.
+   * @param string|null $height The height of the image. Defaults to null.
+   * @param string|null $parameters Additional HTML attributes for the image element. Defaults to an empty string.
+   * @param bool $responsive Determines whether the image should have responsive styling applied. Defaults to true.
+   * @param string $bootstrap_css Any additional Bootstrap CSS classes to apply. Defaults to an empty string.
+   *
+   * @return string The generated HTML string for the image element.
+   */
   public static function image(string $src = '', ?string $alt = null, ?string $width = null, ?string $height = null, ?string $parameters = '', bool $responsive = true, string $bootstrap_css = ''): string
   {
     if ((empty($src) || ($src == CLICSHOPPING::linkImage(''))) && (IMAGE_REQUIRED == 'false')) {
@@ -202,15 +223,17 @@ class HTML
   }
 
   /**
-   * Generate a form
+   * Generates an HTML form element with optional parameters and flags.
    *
-   * @param string $name : form name
-   * @param string $action :  action type
-   * @param string $method : post method
-   * @param string $parameters : parameterstype
-   * @param string $tokenize : false - true
-   *
-   * @return string session_name(), session_name()
+   * @param string $name The name attribute of the form.
+   * @param string|null $action The action URL the form submits to. Defaults to null.
+   * @param string|null $method The HTTP method used for form submission (e.g., "post" or "get"). Defaults to "post".
+   * @param string|null $parameters Additional attributes to include in the form element. Defaults to an empty string.
+   * @param array $flags An associative array of flags for form behavior:
+   *                     - 'tokenize' (bool): Whether to include a form token for security. Defaults to false if not set.
+   *                     - 'session_id' (bool): Whether to include session ID in a hidden field. Defaults to false if not set.
+   *                     - 'action' (mixed): The value for a hidden "action" field, if specified.
+   * @return string The generated HTML form element as a string.
    */
 
   public static function form(string $name, ?string $action = null, ?string $method = 'post', ?string $parameters = '', array $flags = []): string
@@ -247,15 +270,16 @@ class HTML
   }
 
   /**
-   * Generate a form input field (text/password)
+   * Generates an HTML input field.
    *
-   * @param string $name The name and ID of the input field
-   * @param string $value The default value for the input field
-   * @param string $parameters Additional parameters for the input field
-   * @param string $type The type of input field to use (text/password/file)
-   * @param bool $reinsert_value
-   * @param string $class
-   * @return string
+   * @param string $name The name attribute of the input field.
+   * @param string $value The value attribute of the input field. Defaults to an empty string.
+   * @param string $parameters Additional parameters to include in the input field element.
+   * @param string $type The type attribute of the input field (e.g., 'text', 'password'). Defaults to 'text'.
+   * @param bool $reinsert_value Whether to reinsert the value from the GET or POST request if available. Defaults to true.
+   * @param string $class The CSS class to apply to the input field. Defaults to 'form-control'.
+   *
+   * @return string The HTML string of the input field element.
    */
 
   public static function inputField($name, $value = '', $parameters = '', $type = 'text', $reinsert_value = true, $class = 'form-control')
@@ -290,12 +314,13 @@ class HTML
   }
 
   /**
-   * Generate a form password field
+   * Generates a password input field.
    *
-   * @param string $name The name and ID of the password field
-   * @param string|null $value
-   * @param string $parameters Additional parameters for the password field
-   * @return string
+   * @param string $name The name attribute of the password field.
+   * @param string|null $value The default value of the password field. Defaults to null.
+   * @param string $parameters Additional parameters for the password field, such as maxlength. Defaults to 'maxlength="40"'.
+   *
+   * @return string The HTML string for the password input field.
    */
 
   public static function passwordField(string $name, ?string $value = null, string $parameters = 'maxlength="40"'): string
@@ -304,15 +329,15 @@ class HTML
   }
 
   /**
-   * Generate a form selection field (checkbox/radio)
+   * Generates an input selection field with specified attributes and options.
    *
-   * @param string $name The name and indexed ID of the selection field
-   * @param string $type The type of the selection field (checkbox/radio)
-   * @param mixed $values The value of, or an array of values for, the selection field
-   * @param string $default The default value for the selection field
-   * @param string $parameters Additional parameters for the selection field
-   * @param string $separator The separator to use between multiple options for the selection field
-   * @return string
+   * @param string $name The name attribute of the input field.
+   * @param string $type The input type (e.g., "checkbox", "radio").
+   * @param array|string|null $values The values for the input field; can be an array of values or a single value.
+   * @param string|array|bool|null $default The default value(s) to preselect; can be a string, an array of values, or a boolean.
+   * @param string|null $parameters Additional parameters to include in the input element.
+   * @param string $separator A string used to separate multiple input fields; defaults to a non-breaking space.
+   * @return string The generated HTML string for the input selection field.
    */
 
   protected static function selectionField($name, $type, $values = null, $default = null, $parameters = null, $separator = '&nbsp;&nbsp;')
@@ -393,14 +418,15 @@ class HTML
   }
 
   /**
-   * Generate a form checkbox field
+   * Generates a checkbox field with specified attributes.
    *
-   * @param string $name The name and indexed ID of the checkbox field
-   * @param mixed $values The value of, or an array of values for, the checkbox field
-   * @param string $default The default value for the checkbox field
-   * @param string $parameters Additional parameters for the checkbox field
-   * @param string $separator The separator to use between multiple options for the checkbox field
-   * @return string
+   * @param string $name The name attribute of the checkbox field.
+   * @param mixed $values The value(s) assigned to the checkbox option(s). Can be a string or an array.
+   * @param mixed $default The default selected value(s). Can be a string or an array.
+   * @param mixed $parameters Additional parameters or attributes for the checkbox field.
+   * @param string $separator The separator between multiple checkbox options. Default is '&nbsp;&nbsp;'.
+   *
+   * @return string The rendered HTML string of the checkbox field.
    */
 
   public static function checkboxField(string $name, $values = null, $default = null, $parameters = null, string $separator = '&nbsp;&nbsp;')
@@ -409,14 +435,14 @@ class HTML
   }
 
   /**
-   * Generate a form radio field
+   * Generates a group of radio input fields with associated labels, based on the provided values.
    *
-   * @param string $name The name and indexed ID of the radio field
-   * @param mixed $values The value of, or an array of values for, the radio field
-   * @param string $default The default value for the radio field
-   * @param string $parameters Additional parameters for the radio field
-   * @param string $separator The separator to use between multiple options for the radio field
-   * @return string
+   * @param string $name The name attribute for the radio input fields.
+   * @param array $values An array of values and corresponding labels for the radio options.
+   * @param string|null $default The default selected value. If null, no option is preselected.
+   * @param string|null $parameters Additional parameters or attributes for the radio input fields.
+   * @param string $separator The string used to separate each radio field. Default is '&nbsp;&nbsp;'.
+   * @return string The HTML string for the radio input fields group.
    */
 
   public static function radioField($name, $values, $default = null, $parameters = null, $separator = '&nbsp;&nbsp;')
@@ -425,15 +451,15 @@ class HTML
   }
 
   /**
-   * Generate a form textarea field
+   * Generates a text area HTML field with specified attributes and optional override functionality.
    *
-   * @param string $name The name and ID of the textarea field
-   * @param string $value The default value for the textarea field
-   * @param int $width The width of the textarea field
-   * @param int $height The height of the textarea field
-   * @param string $parameters Additional parameters for the textarea field
-   * @param boolean $override Override the default value with the value found in the GET or POST scope
-   * @return string
+   * @param string $name The name attribute of the text area.
+   * @param string|null $value The default value of the text area. If override is enabled, can be replaced by GET or POST data.
+   * @param int $width The number of columns (width) of the text area. Defaults to 60.
+   * @param int $height The number of rows (height) of the text area. Defaults to 5.
+   * @param string|null $parameters Additional attributes to include in the text area tag.
+   * @param bool $override Whether to override the default value with GET or POST data if available. Defaults to true.
+   * @return string The generated HTML for the text area element.
    */
 
   public static function textAreaField($name, $value = null, $width = 60, $height = 5, $parameters = null, $override = true)
@@ -475,13 +501,16 @@ class HTML
 
 
   /**
-   * Generate a form select menu field
+   * Generates an HTML select menu.
    *
-   * @param string $name The name of the pull down menu field
-   * @param array $values Defined values for the pull down menu field [ id, text, group, params (since v3.0.2) ]
-   * @param string $default The default value for the pull down menu field
-   * @param string $parameters Additional parameters for the pull down menu field
-   * @return string
+   * @param string $name The name attribute for the <select> element.
+   * @param array $values An array of options for the select menu. Each item in the array
+   *                      should be an associative array with keys 'id', 'text', and optionally 'group' and 'params'.
+   * @param mixed|null $default The default selected value. If null, default is selected based on GET or POST data.
+   * @param string $parameters Additional HTML attributes for the <select> element.
+   * @param bool $required Whether the select menu is required. Defaults to false.
+   * @param string $class CSS classes to apply to the <select> element. Defaults to 'form-select form-control'.
+   * @return string The generated HTML string for the select menu.
    */
 
   public static function selectMenu($name, array $values, $default = null, $parameters = '', $required = false, $class = 'form-select form-control')
@@ -557,13 +586,12 @@ class HTML
 
 
   /**
-   * Generate a form select menu field
+   * Generates a dropdown menu listing all available countries.
    *
-   * @param string $name The country name of the pull down menu field
-   * @param array $selected selected country
-   * @param string $default The default value for the pull down menu field
-   * @param string $parameters Additional parameters for the pull down menu field
-   * @return string
+   * @param string $name The name attribute for the dropdown menu.
+   * @param mixed|null $selected The selected value in the dropdown menu (default is null).
+   * @param string|null $parameters Additional parameters for the dropdown menu (default is null).
+   * @return string Returns the HTML markup for the dropdown menu.
    */
   public static function selectMenuCountryList($name, $selected = null, $parameters = null)
   {
@@ -588,9 +616,11 @@ class HTML
   }
 
   /**
-   * Generate a form hidden element
+   * Hides the session ID by creating a hidden field containing the session name if the session has started and the SID is not empty or null.
    *
-   * @return string session_name(), session_name()
+   * @param string $session_started Flag indicating if the session has started.
+   * @param string $SID The session ID to check.
+   * @return mixed Returns a hidden field with the session name if conditions are met, otherwise returns false.
    */
   public static function hideSessionId(string $session_started, string $SID)
   {
@@ -603,10 +633,11 @@ class HTML
 
 
   /**
-   * Generate a form file upload field
+   * Generates an HTML file input field.
    *
-   * @param string $name The name and $parameters, parameters like ID of the file upload field
-   * @return string input fields
+   * @param string $name The name attribute of the input field.
+   * @param string $parameters Additional parameters or attributes to include in the input field.
+   * @return string The HTML string for a file input field.
    */
 
   public static function fileField($name, $parameters = '')
@@ -615,12 +646,11 @@ class HTML
   }
 
   /**
-   * Generate a time zone selection menu
+   * Generates a timezone select menu based on available timezones.
    *
-   * @param $name string The name of the selection field
-   * @param $default The default value
-   * @return string
-   *
+   * @param string $name The name attribute for the select menu.
+   * @param string|null $default The default selected timezone. If null, the server's default timezone will be used.
+   * @return string The HTML of the timezone select menu.
    */
 
   public static function timeZoneSelectMenu($name, $default = null)
@@ -645,12 +675,13 @@ class HTML
   }
 
   /**
-   * Word in a string if it is longer than a specified length ($len)
+   * Breaks a given string into a new format by inserting a specified character
+   * after a defined length of non-space characters.
    *
-   * @param string $string
-   * @param string $len
-   * @param string $break_char
-   *
+   * @param string $string The input string to be processed.
+   * @param int $len The maximum number of consecutive non-space characters before inserting the break character.
+   * @param string $break_char The character to insert when the maximum length is exceeded. Default is '-'.
+   * @return string The processed string with the break characters inserted.
    */
 
   public static function breakString($string, $len, $break_char = '-')
@@ -676,12 +707,13 @@ class HTML
   }
 
   /**
-   * Generate an image button
+   * Generates an image button element.
    *
-   * @param string $image The image filename to display
-   * @param string $title The title of the image button
-   * @param string $parameters Additional parameters for the image
-   * @return string
+   * @param string $image The filename of the image to be used as the button.
+   * @param string $title The title or alt text for the image (optional).
+   * @param string $parameters Additional parameters or attributes for the image tag (optional).
+   * @param bool $responsive Indicates whether the image should be rendered as responsive (optional, default false).
+   * @return string The generated image button HTML string.
    */
   public static function imageButton($image, $title = '', $parameters = '', $responsive = false)
   {
@@ -696,15 +728,15 @@ class HTML
   }
 
   /**
-   * Generate a dropdown
+   * Generates an HTML select field with specified options and attributes.
    *
-   * @param string $name name of the field
-   * @param array $values : the values of the field
-   * @param string default : defaut value
-   * @param string $parameters Additional parameters for the image
-   * @param bool required : true false
-   * @param $class : css class
-   * @return string $field, result of dropdown
+   * @param string $name The name attribute for the select field.
+   * @param array $values An array of values for the select field. Each value should include 'id', 'text', and optionally 'group' and 'params'.
+   * @param string|null $default The default selected value or null if none should be selected.
+   * @param string $parameters Additional parameters for the select field (e.g., onclick, style).
+   * @param bool $required Whether the select field is required. If true, adds the "required" attribute.
+   * @param string $class The CSS class(es) to apply to the select field. Defaults to 'form-control form-select'.
+   * @return string The generated HTML select field.
    */
   public static function selectField($name, $values, $default = null, $parameters = '', $required = false, $class = 'form-control form-select')
   {
@@ -778,12 +810,12 @@ class HTML
   }
 
   /**
-   * Generate a form hidden field
+   * Generates an HTML hidden input field.
    *
-   * @param string $name The name of the hidden field
-   * @param string $value The value for the hidden field
-   * @param string $parameters Additional parameters for the hidden field
-   * @return string
+   * @param string $name The name attribute of the hidden input field.
+   * @param string $value Optional. The value attribute of the hidden input field. Default is an empty string.
+   * @param string $parameters Optional. Additional parameters to include in the input field element. Default is an empty string.
+   * @return string The generated HTML hidden input field.
    */
 
   public static function hiddenField($name, $value = '', $parameters = '')
@@ -810,15 +842,15 @@ class HTML
   }
 
   /**
-   * Generate a boostrap button
+   * Generates an HTML button or anchor tag with specified attributes.
    *
-   * @param null|string $title , title of the button
-   * @param null|string $$icon, ui icon of the button
-   * @param null|string $link , link
-   * @param null|string $priotiy ; primary or secondary
-   * @param null|string $param
-   * @param null|string size, sm, xs, md, lg button
-   * @param return string $button , the button
+   * @param string|null $title The text or label to display on the button. Optional.
+   * @param string|null $icon The CSS class for the icon to include in the button. Optional.
+   * @param string|null $link The URL to use for an anchor tag. If set, the button will be an anchor tag instead of a button element. Optional.
+   * @param string|null $style The style of the button, corresponding to predefined CSS classes (e.g., 'primary', 'success'). Optional.
+   * @param mixed|null $params Additional parameters for the button, such as its type or attributes. Optional.
+   * @param string|null $size The size of the button, corresponding to predefined CSS classes (e.g., 'lg', 'sm'). Optional.
+   * @return string Returns the HTML string representing the button or anchor tag.
    */
 
   public static function button(?string $title = null, ?string $icon = null, ?string $link = null, ?string $style = null, $params = null, ?string $size = null): string
@@ -887,11 +919,12 @@ class HTML
   }
 
   /**
-   * Generate a star evaluation
+   * Generates a string of star icons based on the provided rating.
    *
-   * @param $rating string the nummber of the star
-   * @param $empty The default value
-   * @return string
+   * @param int $rating The number of stars to display (default is 0).
+   * @param bool $meta Whether to include a meta tag for the rating (default is true).
+   * @param string $style The CSS class to apply to the stars (default is 'text-warning').
+   * @return string The rendered HTML string of stars and an optional meta tag.
    */
   public static function stars(int $rating = 0, bool $meta = true, string $style = 'text-warning'): string
   {
@@ -905,12 +938,12 @@ class HTML
   }
 
   /**
-   * Generate a ticker on image
+   * Generates a ticker image HTML element based on the provided parameters.
    *
-   * @param $name : title of ticker
-   * @param $css : css applied
-   * @param $display :display or not
-   * @return string
+   * @param string|null $name The name or text to be displayed inside the ticker. Defaults to null.
+   * @param string|null $css A string representing CSS class(es) to be applied to the ticker element. Defaults to null.
+   * @param bool $display A boolean determining whether the ticker should be displayed. Defaults to false.
+   * @return string The HTML string for the ticker element, or an empty string if display is false.
    */
   public static function tickerImage(?string $name = null, ?string $css = null, bool $display = false): string
   {
@@ -923,13 +956,12 @@ class HTML
   }
 
   /**
-   * Function to select state with ISO Norm
-   * public function
-   * @param string $string , $name of the country
-   * @param string $string , $selected of the country selected bu default
-   * @param string $string , $parameters of the paramter
-   * @return dropdown with country
+   * Generates a dropdown menu for selecting countries based on their ISO code.
    *
+   * @param string $name The name attribute for the select menu.
+   * @param string $selected The pre-selected option's ISO code. Defaults to an empty string.
+   * @param string $parameters Additional parameters to include in the HTML select tag. Defaults to an empty string.
+   * @return string The HTML string for the select menu.
    */
   public static function selectMenuIsoList($name, $selected = '', $parameters = '')
   {
@@ -951,11 +983,10 @@ class HTML
   }
 
   /**
-   * Function to clean the metatag
-   * public function
-   * @param string $clean_html
-   * @return string $its_cleaned  in the meta language
-   * clean_html_comments
+   * Removes specific HTML comments marked with a known pattern from the provided HTML string.
+   *
+   * @param string $clean_html The HTML content to be processed and stripped of specific comment patterns.
+   * @return string The HTML content with the targeted comments removed.
    */
   public static function cleanHtmlComments(string $clean_html): string
   {
@@ -974,13 +1005,10 @@ class HTML
   }
 
   /**
-   * Return a remove file emphasis
+   * Removes accents from the provided string and replaces them with their non-accented equivalents.
    *
-   * @param string $accent , original character
-   * @param string $new_accent ,  the remplacement
-   * @param string $character , the new character converted
-   * @param return $character ,, the new character converted
-   * Doesn't work if inserted in general.php
+   * @param string $character The input string that may contain accented characters.
+   * @return string The string with accented characters replaced by their non-accented equivalents.
    */
 
   public static function removeFileAccents(string $character): string
@@ -992,10 +1020,12 @@ class HTML
   }
 
   /**
-   * @param string $search
-   * @param string $replace
-   * @param string $name
-   * @return string
+   * Replaces all occurrences of a search string with a replacement string in the given input.
+   *
+   * @param string $search The string to search for.
+   * @param string $replace The string to replace the search string with.
+   * @param string $name The input string in which replacements will be made.
+   * @return string The modified string after replacements have been applied.
    */
   public static function replaceString(string $search = '', string $replace = '', string $name = ''): string
   {

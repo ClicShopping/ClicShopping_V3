@@ -28,13 +28,20 @@ class HTTP
 {
   protected static string $request_type;
 
+  /**
+   * Determines and sets the type of the current request (SSL or NONSSL) based on server environment variables.
+   *
+   * @return void
+   */
   public static function setRequestType()
   {
     static::$request_type = ((isset($_SERVER['HTTPS']) && (mb_strtolower($_SERVER['HTTPS']) == 'on')) || (isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] == 443))) ? 'SSL' : 'NONSSL';
   }
 
   /**
-   * @return string
+   * Retrieves the current request type.
+   *
+   * @return string The type of the request.
    */
   public static function getRequestType(): string
   {
@@ -43,6 +50,13 @@ class HTTP
 
   /*
    * Use HTTP Strict Transport Security to force client to use secure connections only
+   */
+  /**
+   * Handles HTTP Strict Transport Security (HSTS) for secure connections.
+   *
+   * @param bool $use_sts Determines whether to send HSTS headers or redirect to HTTPS.
+   *                       If true, the method sends the HSTS header. If false, it redirects to HTTPS and terminates further execution.
+   * @return void
    */
   public static function getHSTS(bool $use_sts = true)
   {
@@ -58,8 +72,11 @@ class HTTP
   }
 
   /**
-   * @param string|null $url
-   * @param int $http_response_code - 301 - 302 - 303 - 307
+   * Redirects the browser to the specified URL with an optional HTTP response code.
+   *
+   * @param string|null $url The URL to redirect to. It can be null.
+   * @param int $http_response_code Optional HTTP response status code for the redirection. Defaults to 0.
+   * @return void
    */
 
   public static function redirect(?string $url, int $http_response_code = 0)
@@ -76,7 +93,17 @@ class HTTP
   }
 
   /**
-   * @param array $data url, headers, parameters, method, verify_ssl, cafile, certificate, proxy
+   * Sends an HTTP request based on the provided data and retrieves the response.
+   *
+   * @param array $data An associative array containing the following keys:
+   *                    - 'header' (array): Optional. An array of request headers.
+   *                    - 'parameters' (mixed): Optional. Parameters to be sent with the request.
+   *                    - 'method' (string): Optional. HTTP method to use ('get' or 'post').
+   *                    - 'cafile' (string): Optional. Path to the certificate authority file for SSL validation.
+   *                    - 'format' (string): Optional. Expected response format, e.g., 'json'.
+   *                    - 'url' (string): Required. The URL for the request.
+   *                    - 'certificate' (string): Optional. Path to the certificate file for SSL authentication.
+   * @return mixed The response body. If 'format' is set to 'json', the response will be decoded into an array. Returns false if an error occurs.
    */
   public static function getResponse(array $data)
   {
@@ -164,10 +191,10 @@ class HTTP
   }
 
   /**
-   * Set the HTTP status code
+   * Sets the HTTP response code for the current execution context.
    *
-   * @param int $code The HTTP status code to set
-   * @return boolean
+   * @param int $code The HTTP response code to be set.
+   * @return bool Returns true if the response code is successfully set. Throws an exception and returns false if the headers are already sent.
    */
 
   public static function setResponseCode(int $code): bool
@@ -184,9 +211,14 @@ class HTTP
   }
 
   /**
-   * Get the IP address of the client
-   * @param bool $to_int
-   * @return string
+   * Retrieves the IP address of the client making the request.
+   * Optionally, it can return the IP in its integer representation.
+   *
+   * @param bool $to_int Indicates whether the IP address should be returned as an integer.
+   *                      If true, the IP address is converted to an unsigned integer.
+   *                      Defaults to false.
+   *
+   * @return string The IP address of the client. Returns "0.0.0.0" if no valid IP address is found.
    */
 
   public static function getIpAddress(bool $to_int = false): string
@@ -231,6 +263,15 @@ class HTTP
    * $isp_provider_client the provider name
    * return string
    */
+  /**
+   * Retrieves the provider name for the customer based on their IP address.
+   *
+   * This method attempts to resolve the remote client's IP address to a hostname
+   * and constructs a name based on the first two segments of the resolved hostname.
+   * If the IP is local or cannot be resolved, it returns 'Unknown or localhost'.
+   *
+   * @return string The provider name constructed from the resolved hostname, or 'Unknown or localhost'.
+   */
   public static function getProviderNameCustomer(): string
   {
     if (!empty($_SERVER["REMOTE_ADDR"]) && $_SERVER["REMOTE_ADDR"] != '::1') { //check ip from share internet
@@ -253,7 +294,9 @@ class HTTP
   }
 
   /**
-   * @return string
+   * Determines the URL domain based on the current site type.
+   *
+   * @return string Returns the full domain URL for either the admin panel or the shop, depending on the site context.
    */
   public static function typeUrlDomain(): string
   {
@@ -267,7 +310,9 @@ class HTTP
   }
 
   /**
-   * @return string
+   * Retrieves the shop's URL domain by combining the HTTP server and HTTP path configurations.
+   *
+   * @return string The constructed shop URL domain.
    */
   public static function getShopUrlDomain(): string
   {
@@ -277,8 +322,9 @@ class HTTP
   }
 
   /**
-   * get the url requests
-   * @return string
+   * Retrieves the URI from the server request, removing any OpenID-related query string parameters.
+   *
+   * @return string The sanitized URI without OpenID-related parameters.
    */
   public static function getUri(): string
   {
@@ -288,10 +334,11 @@ class HTTP
   }
 
   /**
-   * Resolve relative / (Unix-like)absolute path
-   * @param string $path target path
-   * @param string $separator separator
-   * @return string
+   * Constructs and returns the full normalized path based on the given input, separator, and system root configurations.
+   *
+   * @param string $path The relative or absolute path to be processed. Defaults to an empty string.
+   * @param string $separator The directory separator to use for path normalization. Defaults to '/'.
+   * @return string The fully resolved and normalized path.
    */
   public static function getFullPath(string $path = '', string $separator = '/'): string
   {

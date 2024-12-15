@@ -22,6 +22,11 @@ use ClicShopping\Apps\Catalog\Categories\Classes\Shop\CategoryTree as CategoryTr
  */
 class CategoryPath implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the category-related classes if the required file exists.
+   *
+   * @return bool Returns true if the file is found and categories are successfully initialized; otherwise, false.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Categories/Classes/Shop/Category.php')) {
@@ -34,6 +39,11 @@ class CategoryPath implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the requested process or operation.
+   *
+   * @return bool Returns true indicating the process has been successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

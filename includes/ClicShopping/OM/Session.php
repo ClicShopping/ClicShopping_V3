@@ -29,8 +29,11 @@ class Session
   protected static string $default_driver = 'File';
 
   /**
-   * @param string|null $name
-   * @return mixed
+   * Loads and initializes the session driver, setting the session name and lifetime.
+   *
+   * @param string|null $name The name of the session. If not specified, a default value 'clicshopid' will be used.
+   * @return object The initialized session object.
+   * @throws InvalidArgumentException If the specified session driver does not exist.
    */
   public static function load(?string $name = null)
   {

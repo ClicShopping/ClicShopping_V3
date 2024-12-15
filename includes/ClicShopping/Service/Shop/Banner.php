@@ -23,6 +23,13 @@ use ClicShopping\Apps\Marketing\BannerManager\Classes\Shop\Banner as BannerClass
  */
 class Banner implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the BannerManager application by setting up the necessary dependencies
+   * and triggering the activation and expiration of banners.
+   *
+   * @return bool Returns true if the BannerManager class was successfully initialized;
+   *              otherwise, returns false if the required file is not found.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Marketing/BannerManager/Classes/Shop/Banner.php')) {
@@ -39,6 +46,11 @@ class Banner implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the execution process.
+   *
+   * @return bool Returns true if the process is successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

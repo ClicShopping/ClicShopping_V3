@@ -20,6 +20,12 @@ use ClicShopping\Apps\Configuration\ProductsLength\Classes\Shop\ProductsLength a
  */
 class ProductsLength implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the ProductsLength module by checking the existence of the required file
+   * and registering it within the application.
+   *
+   * @return bool Returns true if the initialization was successful, false otherwise.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Configuration/ProductsLength/Classes/Shop/ProductsLength.php')) {
@@ -31,6 +37,11 @@ class ProductsLength implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the execution or process.
+   *
+   * @return bool Returns true to indicate the stop was successful.
+   */
   public static function stop(): bool
   {
     return true;

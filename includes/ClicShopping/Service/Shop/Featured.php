@@ -30,6 +30,12 @@ use ClicShopping\Apps\Marketing\Featured\Classes\Shop\FeaturedClass;
  */
 class Featured implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the FeaturedClass if the relevant file exists and executes
+   * scheduled and expiration tasks for featured items.
+   *
+   * @return bool Returns true if the file exists and the class is successfully initialized, false otherwise.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Marketing/Featured/Classes/Shop/Featured.php')) {
@@ -46,6 +52,11 @@ class Featured implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the operation and returns the status.
+   *
+   * @return bool Returns true when the operation is successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

@@ -27,10 +27,12 @@ class DateTime
   protected string $raw_pattern_time = 'H:i:s';
 
   /**
-   * DateTime constructor.
-   * @param string $datetime
-   * @param bool $use_raw_pattern
-   * @param bool $strict
+   * Constructs a DateTime object based on the provided parameters.
+   *
+   * @param string $datetime The date and time string to be converted to a DateTime object.
+   * @param bool $use_raw_pattern Indicates whether to use a raw date and time pattern instead of the default format.
+   * @param bool $strict Determines whether to trigger an error if the provided datetime cannot be formatted properly.
+   * @return void
    */
   public function __construct(string $datetime, bool $use_raw_pattern = false, bool $strict = false)
   {
@@ -73,7 +75,9 @@ class DateTime
   }
 
   /**
-   * @return bool
+   * Checks if the current object's datetime property is a valid DateTime instance.
+   *
+   * @return bool True if the datetime property is an instance of \DateTime, false otherwise.
    */
   public function isValid(): bool
   {
@@ -81,8 +85,11 @@ class DateTime
   }
 
   /**
-   * @param string|null $pattern
-   * @return bool|string
+   * Retrieves the formatted date and time as a string based on the provided pattern.
+   * If no pattern is provided, it returns the raw datetime object as a string.
+   *
+   * @param string|null $pattern The format pattern for the datetime string, or null to return the raw datetime.
+   * @return bool|string The formatted datetime string or the raw datetime.
    */
   public function get(string|null $pattern = null): bool|string
   {
@@ -94,10 +101,10 @@ class DateTime
   }
 
   /**
-   * output a  date string in the selected locale date format
-   * @param bool $with_time
-   * @return string
-   * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
+   * Generates a formatted date string based on the specified configuration.
+   *
+   * @param bool $with_time Determines whether the output includes time information. If false, only the date is returned.
+   * @return string The formatted date or date-time string.
    */
 
   public function getShort(bool $with_time = false): string
@@ -110,10 +117,12 @@ class DateTime
   }
 
   /**
-   * @param string $raw_datetime
-   * @param bool $with_time
-   * @param bool $strict
-   * @return string
+   * Converts a raw datetime string into a formatted short or long date string.
+   *
+   * @param string $raw_datetime The raw datetime string to be converted.
+   * @param bool $with_time Whether to include the time in the formatted result. Defaults to false.
+   * @param bool $strict Whether to enable strict validation when parsing the datetime. Defaults to true.
+   * @return string The formatted date string, with or without time, based on the input parameters.
    */
   public static function toShort(string $raw_datetime, bool $with_time = false, bool $strict = true): string
   {
@@ -133,10 +142,12 @@ class DateTime
   }
 
   /**
-   * @param string $raw_datetime
-   * @param bool $with_time
-   * @param bool $strict
-   * @return string
+   * Converts a raw datetime string into a formatted date string without custom formatting.
+   *
+   * @param string $raw_datetime The raw datetime string to be converted.
+   * @param bool $with_time Indicates whether the result should include time. Defaults to false.
+   * @param bool $strict Controls whether strict validation is applied to the datetime. Defaults to true.
+   * @return string The formatted date string or an empty string if the input is invalid.
    */
   public static function toShortWithoutFormat(string $raw_datetime, bool $with_time = false, bool $strict = true): string
   {
@@ -163,6 +174,11 @@ class DateTime
     * $date needs to be in this format: Saturday february 2015
    */
 
+  /**
+   * Retrieves the formatted date string based on the long date format.
+   *
+   * @return string Returns the formatted date string.
+   */
   public function getLong(): string
   {
     $pattern = new DateTime(CLICSHOPPING::getDef('date_format_long'), true, true);
@@ -171,9 +187,11 @@ class DateTime
   }
 
   /**
-   * @param string $raw_datetime
-   * @param bool $strict
-   * @return string
+   * Converts a raw datetime string into a formatted long date string.
+   *
+   * @param string $raw_datetime The raw datetime string to be converted.
+   * @param bool $strict Optional. If set to true, applies strict validation on the datetime string. Defaults to true.
+   * @return string The formatted long date string, or an empty string if the datetime string is invalid.
    */
   public static function toLong(string $raw_datetime, bool $strict = true): string
   {
@@ -189,8 +207,10 @@ class DateTime
   }
 
   /**
-   * @param bool $with_time
-   * @return string
+   * Retrieves the raw formatted date and optionally the time based on the provided pattern.
+   *
+   * @param bool $with_time Determines whether the time should be included in the raw output. Defaults to true.
+   * @return string The raw formatted date and/or time as a string.
    */
   public function getRaw(bool $with_time = true): string
   {
@@ -209,15 +229,23 @@ class DateTime
   * @return
   * ex : 1430965442
   */
+  /**
+   * Retrieves the Unix timestamp from the stored DateTime object.
+   *
+   * @return int The Unix timestamp representing the date and time.
+   */
   public function getTimestamp(): int
   {
     return $this->datetime->getTimestamp();
   }
 
   /**
-   * Return an array of available time zones.
+   * Retrieves a list of time zones formatted into an array containing their identifiers, display text, and groupings.
    *
-   * @return array
+   * @return array An array of time zone data, where each element is an associative array with keys:
+   *               - 'id': The identifier of the time zone.
+   *               - 'text': A human-readable representation of the time zone.
+   *               - 'group': The group/category the time zone belongs to.
    */
 
   public static function getTimeZones(): array
@@ -248,10 +276,10 @@ class DateTime
   }
 
   /**
-   * Set the time zone to use for dates.
+   * Sets the time zone for the application.
    *
-   * @param string|null $time_zone An optional time zone to set to
-   * @return boolean
+   * @param string|null $time_zone The desired time zone to set. If null or empty, falls back to configuration or UTC.
+   * @return bool Returns true on success or false on failure.
    */
 
   public static function setTimeZone(string|null $time_zone = null): bool
@@ -269,9 +297,10 @@ class DateTime
   }
 
   /**
-   * Output a date now
-   * @param string|null $format date format
-   * @return string
+   * Retrieves the current date and time formatted according to the specified format.
+   *
+   * @param string|null $format The date format to use. If null, a default long date format is applied.
+   * @return string The formatted current date and time.
    */
   public static function getNow(string|null $format = null): string
   {
@@ -284,9 +313,9 @@ class DateTime
   }
 
   /**
-   * Output a  date reference  for invoice
-   * @return string short date reference
-   * $date needs to be in this format: YYYYMMDD
+   * Retrieves a short date reference string formatted according to the defined date format.
+   *
+   * @return string The formatted date string based on the given pattern and timestamp.
    */
   public function getDateReferenceShort(): string
   {
@@ -296,9 +325,11 @@ class DateTime
   }
 
   /**
-   * @param string $raw_datetime
-   * @param bool $strict
-   * @return string
+   * Converts a raw datetime string into a formatted short date reference.
+   *
+   * @param string $raw_datetime The raw datetime string to be converted.
+   * @param bool $strict Specifies whether to apply strict parsing of the input datetime.
+   * @return string The formatted short date reference. Returns an empty string if the datetime is invalid or empty.
    */
   public static function toDateReferenceShort(string $raw_datetime, bool $strict = true): string
   {
@@ -317,10 +348,11 @@ class DateTime
   }
 
   /**
-   * Date Unix Timestamp
-   * @param $timestamp
-   * @param null $format
-   * @return false|string
+   * Converts a Unix timestamp into a formatted date string.
+   *
+   * @param string $timestamp The Unix timestamp to convert.
+   * @param mixed $format Optional. The format in which the date should be returned. If not provided, a default format will be used.
+   * @return string The formatted date string.
    */
   public static function fromUnixTimestamp(string $timestamp, $format = null): string
   {
@@ -332,9 +364,12 @@ class DateTime
   }
 
   /**
-   * Unix Date
-   * @param string|null $year
-   * @return bool
+   * Determines if the given year is a leap year.
+   *
+   * A leap year is a year divisible by 4. However, years divisible by 100 are not leap years unless they are also divisible by 400.
+   *
+   * @param string|null $year The year to check. If null, the current year is used.
+   * @return bool True if the year is a leap year; false otherwise.
    */
   public static function isLeapYear(?string $year = null): bool
   {
@@ -357,12 +392,12 @@ class DateTime
   }
 
   /**
-   * Check date
-   * @param string $date_to_check
-   * @param string $format_string
-   * @param array $date_array
-   * @return bool
-   * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
+   * Validates a given date string against a specific format and populates an array with the extracted date components.
+   *
+   * @param string $date_to_check The date string to validate.
+   * @param string $format_string The format string describing the expected date format (e.g., 'dd-mm-yyyy').
+   * @param array &$date_array Reference to an array that will be populated with the extracted date components (year, month, day) if validation succeeds.
+   * @return bool Returns true if the date is valid according to the provided format, false otherwise.
    */
   public static function validate(string $date_to_check, string $format_string, array &$date_array): bool
   {
@@ -475,11 +510,12 @@ class DateTime
   }
 
   /**
-   * Interval between 2 date
-   * @param string $dateStart
-   * @param string $dateEnd
-   * @param string $differenceFormat
-   * @return string
+   * Calculates the interval between two dates and formats it according to the specified difference format.
+   *
+   * @param string $dateStart The start date in a valid date format.
+   * @param string $dateEnd The end date in a valid date format.
+   * @param string $differenceFormat The format in which the difference should be returned. Default is '%r%a'.
+   * @return string The formatted date interval as a string.
    */
   public static function getIntervalDate(string $dateStart, string $dateEnd, string $differenceFormat = '%r%a'): string
   {

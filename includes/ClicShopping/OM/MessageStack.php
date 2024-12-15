@@ -23,6 +23,14 @@ class MessageStack
 {
   protected array $data = [];
 
+  /**
+   * Initializes the class and sets up session handling and hooks.
+   * Registers a shutdown function to save messages to the session,
+   * restores messages from the session upon initialization,
+   * and sets up hooks for session and account handling.
+   *
+   * @return void
+   */
   public function __construct()
   {
     register_shutdown_function(function () {
@@ -61,12 +69,12 @@ class MessageStack
   }
 
   /**
-   * Add a message to the stack
+   * Adds a message to a specified group with a defined type.
    *
-   * @param string $group The group the message belongs to
-   * @param string $message The message information text
-   * @param string $type The type of message: info, error, warning, success
-   *
+   * @param string $message The message text to be added.
+   * @param string $type The type of the message (default is 'error', automatically converted to 'danger').
+   * @param string $group The group to which the message is added (default is 'main').
+   * @return void
    */
   public function add(string $message, string $type = 'error', string $group = 'main')
   {
@@ -87,7 +95,10 @@ class MessageStack
   }
 
   /**
-   * @param string|null $group
+   * Resets the data, either for a specific group or entirely if no group is provided.
+   *
+   * @param string|null $group The group to reset. If null, all data will be reset.
+   * @return void
    */
   public function reset(?string $group = null)
   {
@@ -101,9 +112,10 @@ class MessageStack
   }
 
   /**
-   * Checks to see if a group in the stack contains messages
-   * @param string|null $group
-   * @return bool
+   * Checks if a specific group exists in the data or if the data is not empty.
+   *
+   * @param string|null $group The name of the group to check for existence. If null, checks if the data is not empty.
+   * @return bool Returns true if the specified group exists or if the data is not empty, otherwise false.
    */
   public function exists(?string $group = null)
   {
@@ -115,8 +127,9 @@ class MessageStack
   }
 
   /**
-   * Checks to see if the message stack contains messages
-   * @return bool
+   * Determines if the data container has any content.
+   *
+   * @return bool Returns true if the data container is not empty, false otherwise.
    */
   public function hasContent()
   {
@@ -124,11 +137,10 @@ class MessageStack
   }
 
   /**
-   * Get the messages belonging to a group. The messages are placed into an
-   * unsorted list wrapped in a DIV element with the "messageStack" style sheet
-   * class.
+   * Retrieves and formats alert messages for a specified group.
    *
-   * @param string $group The name of the group to get the messages from
+   * @param string $group The group identifier to retrieve alert messages from.
+   * @return string The formatted alert messages as an HTML string. Returns an empty string if no messages exist for the specified group.
    */
   public function get(string $group): string
   {
@@ -160,9 +172,10 @@ class MessageStack
   }
 
   /**
-   * Get the message stack array data set
-   * @param string|null $group
-   * @return array|mixed
+   * Retrieves all data for a specific group if provided, or all data otherwise.
+   *
+   * @param string|null $group The name of the group to retrieve data for, or null to retrieve all data.
+   * @return array The data belonging to the specified group or all data if no group is specified.
    */
   public function getAll(?string $group = null)
   {
@@ -178,9 +191,10 @@ class MessageStack
   }
 
   /**
-   * Get the number of messages belonging to a group
-   * @param string|null $group
-   * @return int
+   * Retrieves the size of the data collection. If a group name is provided, it returns the count of items within that specific group.
+   *
+   * @param string|null $group An optional group name to count the items of a specific group.
+   * @return int The count of items in the entire data collection or in the specified group if provided.
    */
   public function size(?string $group = null): int
   {

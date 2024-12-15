@@ -24,6 +24,12 @@ class Cache
   protected string $key;
   protected $data;
 
+  /**
+   * Constructor method for initializing the class.
+   *
+   * @param string $key A unique identifier key to set during the object instantiation.
+   * @return void
+   */
   public function __construct(string $key)
   {
     static::setPath();
@@ -32,8 +38,10 @@ class Cache
   }
 
   /**
-   * @param string $key
-   * @return bool
+   * Sets the cache key if it matches the valid key name pattern.
+   *
+   * @param string $key The cache key to set. It must comply with the valid naming convention.
+   * @return bool Returns false if the key name is invalid; otherwise, no value is returned.
    */
   public function setKey(string $key)
   {
@@ -47,7 +55,9 @@ class Cache
   }
 
   /**
-   * @return string
+   * Retrieves the key value.
+   *
+   * @return mixed The value of the key property.
    */
   public function getKey()
   {
@@ -55,8 +65,10 @@ class Cache
   }
 
   /**
-   * @param string $data
-   * @return bool
+   * Saves the provided data to a cache file if the directory is writable.
+   *
+   * @param mixed $data The data to be saved, which will be serialized and written to the cache file.
+   * @return bool Returns true if the data was successfully written to the cache file, otherwise false.
    */
   public function save($data)
   {
@@ -68,8 +80,10 @@ class Cache
   }
 
   /**
-   * @param string|null $expire
-   * @return bool
+   * Checks if the cache file exists and optionally verifies if it has not expired.
+   *
+   * @param string|null $expire Optional expiration time in minutes. If provided, checks if the cache file's age is less than the given value.
+   * @return bool Returns true if the cache file exists and meets the expiration criteria (if provided), otherwise false.
    */
   public function exists(?string $expire = null): bool
   {
@@ -93,8 +107,13 @@ class Cache
   }
 
   /**
-   * Return the cached data
-   * @return array
+   * Retrieves the cached data associated with the current key.
+   *
+   * This method constructs the filename based on the cache path and the key.
+   * If the file exists, it reads and unserializes its contents into the data property.
+   * Finally, it returns the retrieved data.
+   *
+   * @return mixed Returns the cached data if it exists, or null if no cache is found.
    */
   public function get()
   {
@@ -108,8 +127,10 @@ class Cache
   }
 
   /**
-   * @param string $key
-   * @return bool
+   * Checks if the provided key has a safe name based on a predefined regex pattern.
+   *
+   * @param string $key The key to be checked.
+   * @return bool Returns true if the key matches the safe name criteria, false otherwise.
    */
   public static function hasSafeName(string $key): bool
   {
@@ -117,7 +138,9 @@ class Cache
   }
 
   /**
-   * @return bool
+   * Retrieves the last modification time of the cache file associated with the current key.
+   *
+   * @return int|false The file modification time as a Unix timestamp if the file exists, or false if the file does not exist.
    */
   public function getTime()
   {
@@ -130,9 +153,11 @@ class Cache
   }
 
   /**
-   * @param string $key
-   * @param bool $strict
-   * @return bool
+   * Finds whether a cache file exists for the given key.
+   *
+   * @param string $key The cache key to search for. Must consist of valid characters (a-zA-Z0-9-_).
+   * @param bool $strict If true, an exact match is required for the key. If false, a partial match is allowed.
+   * @return bool Returns true if a matching cache file is found, otherwise false.
    */
   public static function find(string $key, bool $strict = true): bool
   {
@@ -165,7 +190,9 @@ class Cache
   }
 
   /**
+   * Sets the path to the cache directory.
    *
+   * @return void
    */
   public static function setPath()
   {
@@ -173,7 +200,9 @@ class Cache
   }
 
   /**
-   * @return mixed
+   * Retrieves the path. If the path is not set, it initializes the path by calling setPath().
+   *
+   * @return string The current stored path.
    */
   public static function getPath()
   {
@@ -185,9 +214,10 @@ class Cache
   }
 
   /**
-   * Delete cached files by their key ID
-   * @param string $key The key ID of the cached files to delete
-   * @return
+   * Clears cached files associated with the specified key.
+   *
+   * @param string $key The key identifying cached files to be cleared. Only safe key names are allowed.
+   * @return bool Returns true if the cache path is writable and the operation is performed; false otherwise.
    */
   public static function clear(string $key)
   {
@@ -214,7 +244,9 @@ class Cache
   }
 
   /**
-   * Clear all cache
+   * Clears all cache files in the specified directory.
+   *
+   * @return void
    */
   public static function clearAll(): void
   {

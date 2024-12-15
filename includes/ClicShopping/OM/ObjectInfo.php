@@ -20,8 +20,10 @@ namespace ClicShopping\OM;
 class ObjectInfo
 {
   /**
-   * ObjectInfo constructor.
-   * @param array $object_array
+   * Constructor method to initialize the object with provided data.
+   *
+   * @param array $object_array An associative array containing object information.
+   * @return void
    */
   public function __construct(array $object_array)
   {
@@ -29,7 +31,10 @@ class ObjectInfo
   }
 
   /**
-   * @param array $object_array
+   * Populates the properties of the object with the key-value pairs from the provided array.
+   *
+   * @param array $object_array An associative array where keys correspond to property names and values are the values to be assigned.
+   * @return void
    */
   public function objectInfo(array $object_array)
   {

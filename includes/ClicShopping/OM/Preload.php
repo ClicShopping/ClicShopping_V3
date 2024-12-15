@@ -32,7 +32,12 @@ class Preload
   private static array $directories;
 
   /**
-   * @return bool
+   * Checks the current environment and configuration to ensure all required conditions are met.
+   *
+   * The method verifies if the working directory is writable, the PHP version meets the minimum requirement,
+   * and preloading configuration is set to the necessary state.
+   *
+   * @return bool Returns true if all conditions are satisfied; otherwise, returns false.
    */
   public static function check(): bool
   {
@@ -54,7 +59,11 @@ class Preload
   }
 
   /**
-   * Execute Preload
+   * Executes the preloading process.
+   * It first validates the conditions via a check and then proceeds to create a Preloader instance,
+   * which is configured to require files from the base directory and write the output to a specific directory.
+   *
+   * @return void
    */
   public static function execute()
   {
@@ -66,8 +75,12 @@ class Preload
   }
 
   /**
-   * Scan directory
-   * @return array
+   * Scans the provided filesystem paths and retrieves a list of files based on the specified parameters.
+   *
+   * This function accepts a path string or an array of path strings, optionally filters files by their extensions,
+   * and allows recursive scanning of sub-directories if specified.
+   *
+   * @return array The list of files retrieved from the specified paths.
    */
   public static function scan(): array
   {
@@ -107,7 +120,12 @@ class Preload
   }
 
   /**
-   * @param $paths
+   * Verifies the provided paths, checks if they exist as directories,
+   * and categorizes them appropriately. If any paths do not exist,
+   * the method outputs an error message and halts execution.
+   *
+   * @param string $paths A single directory path or an array of paths to be verified.
+   * @return array|null Returns an array of directory contents if the paths are valid, otherwise halts execution.
    */
   private static function verifyPaths(string $paths)
   {
@@ -135,7 +153,10 @@ class Preload
   }
 
   /**
+   * Clears the working directory by removing all files and directories within it,
+   * including a specific 'preloader.php' file if it exists.
    *
+   * @return void
    */
   protected function clearWorkdir()
   {
@@ -156,8 +177,10 @@ class Preload
   // This is how we scan directories
 
   /**
-   * @param $dir
-   * @return array
+   * Recursively finds all files in a given directory and its subdirectories, filtered by extension if specified.
+   *
+   * @param string $dir The directory path to search within.
+   * @return array An array containing the paths of all matched files.
    */
   private static function findContents(string $dir): array
   {
@@ -187,7 +210,9 @@ class Preload
   }
 
   /**
-   * @return array
+   * Retrieves a list of PHP files from the Shop template directory using a recursive scan.
+   *
+   * @return array An array of file paths that match the specified criteria (PHP files, recursive search).
    */
   public static function getFiles(): array
   {

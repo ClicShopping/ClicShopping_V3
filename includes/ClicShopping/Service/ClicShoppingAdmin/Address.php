@@ -20,6 +20,14 @@ use ClicShopping\Sites\ClicShoppingAdmin\AddressAdmin as AddressClass;
  */
 class Address implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the AddressClass within the Registry if it does not already exist,
+   * provided the required AddressAdmin.php file is present.
+   *
+   * @return bool Returns true if the AddressClass was successfully set in the Registry
+   *              or if it already existed; returns false if the AddressAdmin.php file
+   *              is not found.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/AddressAdmin.php')) {
@@ -32,6 +40,11 @@ class Address implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the process or operation.
+   *
+   * @return bool Returns true to indicate the process has been successfully stopped.
+   */
   public static function stop(): bool
   {
     return true;

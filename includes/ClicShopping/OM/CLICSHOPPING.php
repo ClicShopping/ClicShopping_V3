@@ -36,6 +36,11 @@ class CLICSHOPPING
   protected static array $cfg = [];
   protected static ?string $application;
 
+  /**
+   * Initializes the system by setting up configuration, error handling, HTTP settings, and the site application.
+   *
+   * @return void
+   */
   public static function initialize()
   {
     self::loadConfig();
@@ -51,8 +56,13 @@ class CLICSHOPPING
   }
 
   /**
-   * Get the installed version number
-   * @return string|null
+   * Retrieves and returns the current version number.
+   *
+   * The method reads the version information from a `version.json` file,
+   * validates that the version number is numeric, and caches it for future calls.
+   * If the version number is not numeric, an error is triggered.
+   *
+   * @return string|null The version number as a string, or null if it is not set or invalid.
    */
   public static function getVersion(): string|null
   {
@@ -73,8 +83,11 @@ class CLICSHOPPING
   }
 
   /**
-   * Get the installed directory version number
-   * @return string|null
+   * Retrieves the version directory if it has been set, otherwise attempts to set it
+   * by reading and decoding the content of a 'version.json' file in the base directory.
+   * Ensures the directory version is numeric, otherwise triggers an error.
+   *
+   * @return string|null Returns the directory version as a string if set, or null if not set.
    */
   public static function getVersionDirectory(): string|null
   {
@@ -95,9 +108,10 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string $site
-   * @param bool $strict
-   * @return bool
+   * Checks if a given site exists by verifying its class name and checking if the associated class exists.
+   *
+   * @param string $site The name of the site to check.
+   * @return bool True if the site exists, false otherwise.
    */
   public static function siteExists(string $site): bool
   {
@@ -105,7 +119,10 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string|null $site
+   * Loads the specified site or uses the default site if none is provided.
+   *
+   * @param string|null $site The name of the site to load. If null, the default site will be used.
+   * @return void
    */
   public static function loadSite(string|null $site = null)
   {
@@ -117,7 +134,10 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string $site
+   * Sets the current site and initializes the site-related class.
+   *
+   * @param string $site The name of the site to be set. If the site does not exist, the current site will remain unchanged.
+   * @return void
    */
   public static function setSite(string $site)
   {
@@ -136,7 +156,9 @@ class CLICSHOPPING
   }
 
   /**
-   * @return string
+   * Retrieves the current site name.
+   *
+   * @return string The name of the site.
    */
   public static function getSite(): string
   {
@@ -144,7 +166,9 @@ class CLICSHOPPING
   }
 
   /**
-   * @return bool
+   * Checks if a site is set.
+   *
+   * @return bool Returns true if a site is set, otherwise false.
    */
   public static function hasSite(): bool
   {
@@ -152,7 +176,9 @@ class CLICSHOPPING
   }
 
   /**
-   * @return mixed
+   * Checks whether the current site has a specific page available.
+   *
+   * @return mixed Returns the result of the hasPage method from the Site registry entry.
    */
   public static function hasSitePage(): mixed
   {
@@ -160,7 +186,9 @@ class CLICSHOPPING
   }
 
   /**
-   * @return mixed
+   * Retrieves the file associated with the current site page.
+   *
+   * @return mixed The file of the current site page, as determined by the Page object.
    */
   public static function getSitePageFile(): mixed
   {
@@ -168,7 +196,10 @@ class CLICSHOPPING
   }
 
   /**
-   * @return mixed
+   * Retrieves and utilizes the site template associated with the current page file.
+   *
+   * @return mixed The result of using the site template, which depends on the implementation
+   * of the `useSiteTemplate` method in the current page object.
    */
   public static function useSiteTemplateWithPageFile(): mixed
   {
@@ -176,7 +207,9 @@ class CLICSHOPPING
   }
 
   /**
-   * @return bool
+   * Determines if the current page is an RPC (Remote Procedure Call) page.
+   *
+   * @return bool Returns true if the current page is an RPC page, otherwise false.
    */
   public static function isRPC(): bool
   {
@@ -186,13 +219,13 @@ class CLICSHOPPING
   }
 
   /**
-   * Return an internal URL address.
+   * Creates a URL by combining the specified page, parameters, and additional options like session ID and SEO settings.
    *
-   * @param string|null $page The Site to link to. Default: The currently used Site.
-   * @param string|null $parameters Parameters to add to the link. Example: key1=value1&key2=value2
-   * @param bool $add_session_id Add the session ID to the link. Default: True.
-   * @param bool $search_engine_safe Use search engine safe URLs. Default: True.
-   * @return string The URL address.
+   * @param string|null $page The page name or path to include in the URL. If not provided, a default page is determined based on the application and SEO settings.
+   * @param string|null $parameters Additional URL parameters to append to the query string. Supports specific character sanitization.
+   * @param bool $add_session_id Determines whether to append the session ID to the URL. Default is true.
+   * @param bool $search_engine_safe Specifies if the URL should be transformed to a search engine friendly format. Default is true.
+   * @return string The constructed URL based on the provided parameters and configuration.
    */
   public static function link(string $page = null, string $parameters = null, bool $add_session_id = true, bool $search_engine_safe = true): string
   {
@@ -317,7 +350,14 @@ class CLICSHOPPING
   }
 
   /**
-   * @return string
+   * Generates a URL link to an image located in the configured HTTP images path.
+   *
+   * This method processes the given arguments to construct the image path
+   * based on the site configuration and requested page. If the page argument
+   * includes a specific site, it will validate the site and adjust the path
+   * accordingly. Finally, it delegates the URL generation to the `link` method.
+   *
+   * @return string The constructed URL to the image.
    */
   public static function linkImage(): string
   {
@@ -349,7 +389,10 @@ class CLICSHOPPING
   }
 
   /**
-   * @return string
+   * Generates a public URL based on the provided arguments and the current site configuration.
+   * This method dynamically constructs the URL using specific page and site information.
+   *
+   * @return string The generated URL linking to the public site directory.
    */
   public static function linkPublic(): string
   {
@@ -381,8 +424,9 @@ class CLICSHOPPING
   }
 
   /**
-   * Redirect to a page
-   * @return string $url, url to redirect
+   * Redirects to a generated URL based on the provided arguments.
+   *
+   * @return string The URL to which the redirection is performed.
    */
   public static function redirect(): string
   {
@@ -398,9 +442,9 @@ class CLICSHOPPING
   }
 
   /**
-   * Return a language definition
+   * Retrieves a language definition using the Language class registered in the system.
    *
-   * @return string The language definition
+   * @return string Returns the language definition corresponding to the provided arguments.
    */
   public static function getDef(): string
   {
@@ -410,8 +454,10 @@ class CLICSHOPPING
   }
 
   /**
-   * @param array $path
-   * @return bool
+   * Checks if the specified route exists by comparing the beginning of the $_GET keys with the given path array.
+   *
+   * @param array $path The expected path represented as an array of strings.
+   * @return bool True if the given path matches the start of $_GET keys, false otherwise.
    */
   public static function hasRoute(array $path): bool
   {
@@ -419,7 +465,12 @@ class CLICSHOPPING
   }
 
   /**
-   * load config element to connect db and path
+   * Loads configuration files for the application.
+   *
+   * This method handles the loading of default global configuration files,
+   * as well as site-specific configuration files located in predefined directories.
+   *
+   * @return void
    */
   public static function loadConfig(): void
   {
@@ -442,8 +493,11 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string $file
-   * @param string $group
+   * Loads a configuration file and parses its contents into the specified group.
+   *
+   * @param string $file The path to the configuration file to be loaded.
+   * @param string $group The group name under which the configuration data will be stored.
+   * @return void
    */
 
   public static function loadConfigFile(string $file, string $group): void
@@ -464,9 +518,11 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string $key
-   * @param string|null $group
-   * @return mixed
+   * Retrieves a configuration value for a given key and group.
+   *
+   * @param string $key The configuration key to retrieve.
+   * @param string|null $group The group from which to retrieve the configuration. Defaults to the current site if not provided.
+   * @return mixed|null The configuration value if found, or null if the key does not exist in the specified group or global configuration.
    */
   public static function getConfig(string $key, string|null $group = null)
   {
@@ -484,9 +540,11 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string $key
-   * @param string|null $group
-   * @return bool
+   * Checks whether a configuration key exists in the specified group or globally.
+   *
+   * @param string $key The configuration key to check.
+   * @param string|null $group The configuration group to check within. If null, defaults to the current site.
+   * @return bool Returns true if the configuration key exists in the given group or globally; otherwise, false.
    */
   public static function configExists(string $key, string|null $group = null): bool
   {
@@ -502,9 +560,12 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string $key
-   * @param $value
-   * @param string|null $group
+   * Sets a configuration value for a specified key within an optional group.
+   *
+   * @param string $key The configuration key.
+   * @param mixed $value The configuration value to be set.
+   * @param string|null $group The group to which the configuration belongs. Defaults to 'global' if not provided.
+   * @return void
    */
   public static function setConfig(string $key, $value, string|null $group = null)
   {
@@ -516,8 +577,11 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string $class
+   * Autoloads classes based on their namespace and directory structure.
    *
+   * @param string $class The fully-qualified class name to be autoloaded.
+   *
+   * @return bool True if the class file is successfully loaded, otherwise false.
    */
   public static function autoload(string $class)
   {
@@ -578,8 +642,10 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string $application
-   * @return bool
+   * Checks if the specified site application exists.
+   *
+   * @param string $application The name of the application to check.
+   * @return bool Returns true if the application exists, false otherwise.
    */
   protected static function siteApplicationExists(string $application): bool
   {
@@ -589,7 +655,10 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string|null $application
+   * Sets the site application based on the provided application name or the query parameters.
+   *
+   * @param string|null $application The name of the application to set. If null, it attempts to determine the application from query parameters.
+   * @return void
    */
   protected static function setSiteApplication(?string $application = null)
   {
@@ -626,7 +695,9 @@ class CLICSHOPPING
   }
 
   /**
-   * @return string|null
+   * Retrieves the current site application.
+   *
+   * @return string|null Returns the current site application name if set, or null if not set.
    */
   public static function getSiteApplication(): ?string
   {
@@ -634,10 +705,12 @@ class CLICSHOPPING
   }
 
   /**
-   * Get all parameters in the GET scope
+   * Retrieves all GET parameters as a query string while excluding specified keys.
    *
-   * @param array $exclude A list of parameters to exclude
-   * @return string
+   * @param mixed $exclude A single key or an array of keys to exclude from the returned query string.
+   *                        If not provided, a default list of keys is excluded.
+   * @return string A query string containing all GET parameters except the excluded ones.
+   *                The string does not include the trailing ampersand (&) if present.
    */
   public static function getAllGET($exclude = null)
   {
@@ -677,8 +750,9 @@ class CLICSHOPPING
   }
 
   /**
-   * global scope
-   * @return string
+   * Retrieves and returns the index path of the script relative to the configured 'http_path'.
+   *
+   * @return string The index path of the current script.
    */
   public static function getIndex(): string
   {
@@ -689,7 +763,9 @@ class CLICSHOPPING
   }
 
   /**
-   * @return string
+   * Retrieves the base name of the index.
+   *
+   * @return string The base name of the index file.
    */
   public static function getBaseNameIndex(): string
   {
@@ -698,12 +774,13 @@ class CLICSHOPPING
 
 
   /**
-   * @param $array
-   * @param string $exclude
-   * @param string $equals
-   * @param string $separator
-   * @return bool|string
+   * Converts an associative array into a query string-style formatted string.
    *
+   * @param array $array The associative array to be converted into a string.
+   * @param string|array $exclude Keys to be excluded from the resulting string. Default is an empty string.
+   * @param string|array $equals The character(s) used to separate keys and values in the resulting string. Default is '='.
+   * @param string $separator The character used to separate each key-value pair in the resulting string. Default is '&'.
+   * @return string|null The formatted string representation of the array, or null if the input is not an array.
    */
   public static function arrayToString(array $array, string|array $exclude = '', string|array $equals = '=', string $separator = '&'): ?string
   {
@@ -728,8 +805,10 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string $classname
-   * @return bool
+   * Validates whether the provided class name matches the defined pattern.
+   *
+   * @param string $classname The class name to validate.
+   * @return bool True if the class name is valid, false otherwise.
    */
   public static function isValidClassName(string $classname): bool
   {
@@ -737,8 +816,16 @@ class CLICSHOPPING
   }
 
   /**
-   * Retrieve web server and database server information
-   * return $data, array og php.ini information
+   * Retrieves detailed information about the system, MySQL, PHP, and other server configurations.
+   *
+   * @return array An associative array containing the following information:
+   *               - clicshopping: Version details of the application.
+   *               - system: Details about the system including date, hostname, operating system,
+   *                 kernel version, uptime, and HTTP server.
+   *               - mysql: MySQL server version and current date/time.
+   *               - php: Detailed PHP configurations such as version, Zend engine version,
+   *                 SAPI type, memory limits, error reporting settings, file upload settings,
+   *                 and loaded extensions.
    */
   public static function getSystemInformation(): array
   {
@@ -792,10 +879,11 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string $string
-   * @return string
-   * replace utf8_decode
-   * utf8_to_iso8859_1
+   * Decodes a UTF-8-encoded string into its original representation.
+   *
+   * @param string $string The UTF-8-encoded string to decode.
+   *
+   * @return string The decoded string. Characters that cannot be decoded are replaced with a '?'.
    */
   public static function utf8Decode(string $string): string
   {
@@ -828,10 +916,11 @@ class CLICSHOPPING
   }
 
   /**
-   * @param string $string
-   * @return string
-   * replace utf8_encode
-   * iso8859_1_to_utf8
+   * Encodes a given string to UTF-8 from a specified ISO character encoding.
+   *
+   * @param string $string The input string to be encoded.
+   * @param string $iso The ISO character encoding of the input string. Defaults to 'ISO-8859-1'.
+   * @return string The UTF-8 encoded string.
    */
   public static function utf8Encode(string $string, string $iso = 'ISO-8859-1'): string
   {

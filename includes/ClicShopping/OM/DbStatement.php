@@ -37,10 +37,7 @@ class DbStatement extends \PDOStatement
   public ?string $page_set;
 
   /**
-   * @param mixed $parameter
-   * @param mixed $value
-   * @param int $data_type
-   * @return bool
+   *
    */
   public function bindValue(string|int $parameter, mixed $value, int $data_type = PDO::PARAM_STR): bool
   {
@@ -48,9 +45,10 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param string|int $parameter
-   * @param string|int|null $value
-   * @return bool
+   * Binds an integer value to a parameter for use in a prepared statement.
+   *
+   * @param string|int $parameter The parameter identifier to bind the value to.
+   * @param string|int
    */
 // force type to int (see http://bugs.php.net/bug.php?id=44639)
   public function bindInt(string|int $parameter, string|int|null $value): bool
@@ -59,9 +57,7 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param string|int $parameter
-   * @param bool $value
-   * @return bool
+   *
    */
 // force type to bool (see http://bugs.php.net/bug.php?id=44639)
   public function bindBool(string|int $parameter, bool $value): bool
@@ -70,18 +66,14 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param string|int $parameter
-   * @param float $value
-   * @return bool
-   */
+   * Binds a decimal value to*/
   public function bindDecimal(string|int $parameter, float $value): bool
   {
     return $this->bindValue($parameter, (float)$value); // there is no \PDO::PARAM_FLOAT
   }
 
   /**
-   * @param string|int $parameter
-   * @return bool
+   *
    */
   public function bindNull(string|int $parameter): bool
   {
@@ -89,10 +81,9 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param $max_results
-   * @param null $page_set_keyword
-   * @param string $placeholder_offset
-   * @param string $placeholder_max_results
+   * Sets up pagination properties and binds relevant placeholders for offset and maximum results.
+   *
+   * @param int $max_results The maximum number of results per page.
    */
   public function setPageSet($max_results, $page_set_keyword = null, string $placeholder_offset = 'page_set_offset', string $placeholder_max_results = 'page_set_max_results')
   {
@@ -110,8 +101,10 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param array|null $input_parameters
-   * @return bool
+   * Executes the query with the provided input parameters, handles caching,
+   * and processes pagination-related operations if applicable.
+   *
+   * @param array|null
    */
   public function execute(array|null $input_parameters = null): bool
   {
@@ -156,10 +149,9 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param int $fetch_style
-   * @param int $cursor_orientation
-   * @param int $cursor_offset
-   * @return bool|array
+   * Fetches the next row from the result set.
+   *
+   * @param int $fetch_style The fetch style for the resulting row. Defaults
    */
   public function fetch(
     int $fetch_style = PDO::FETCH_DEFAULT, //FETCH_ASSOC,
@@ -184,10 +176,7 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param int|null $fetch_style
-   * @param mixed ...$args
-   * @return array
-   */
+   * Fetches all rows from the*/
   public function fetchAll(int|null $fetch_style = PDO::FETCH_BOTH, mixed ...$args): array
   {
     if ($this->cache_read === true) {
@@ -210,7 +199,7 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @return bool
+   *
    */
   public function check()
   {
@@ -222,7 +211,7 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @return array
+   *
    */
   public function toArray()
   {
@@ -234,9 +223,10 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param string $key
-   * @param int|null $expire
-   * @param bool $cache_empty_results
+   * Sets caching parameters for the current database query.
+   *
+   * @param string $key The unique key to reference the cache.
+   * @param int
    */
   public function setCache(string $key,  int|null $expire = null, bool $cache_empty_results = false)
   {
@@ -258,9 +248,7 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param string $column
-   * @param string $type
-   * @return float|int|string
+   *
    */
   protected function valueMixed(string $column, string $type = 'string')
   {
@@ -298,8 +286,10 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param string $column
-   * @return string
+   * Retrieves the value of a specified column as a string.
+   *
+   * @param string $column The name of the column to retrieve the value from.
+   * @return
    */
   public function value(string $column): string
   {
@@ -307,17 +297,19 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param string $column
-   * @return string
-   */
+   * Retrieves a protected value for the given column.
+   *
+   * @param string $column The name of the column to retrieve the protected value for.
+   * @*/
   public function valueProtected(string $column): string
   {
     return $this->valueMixed($column, 'protected');
   }
 
   /**
-   * @param string $column
-   * @return int
+   * Retrieves the value of the specified column cast as an integer.
+   *
+   * @param string $column The name of the column from which to retrieve the
    */
   public function valueInt(string $column): int
   {
@@ -325,8 +317,7 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param string $column
-   * @return float
+   *
    */
   public function valueDecimal(string $column): float
   {
@@ -334,9 +325,10 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param string $column
-   * @return bool
-   */
+   * Checks if a specified column has a value in the result set.
+   *
+   * @param string $column The name of the column to check.
+   **/
   public function hasValue(string $column): bool
   {
     if (!isset($this->result)) {
@@ -347,7 +339,9 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @return bool
+   * Checks whether the current instance represents an error state.
+   *
+   * @return bool True if the instance is in
    */
   public function isError(): bool
   {
@@ -355,7 +349,9 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @return string
+   * Retrieves the query string.
+   *
+   * @return string The query string.
    */
   public function getQuery(): string
   {
@@ -363,7 +359,7 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param string $type
+   *
    */
   public function setQueryCall(string $type)
   {
@@ -371,15 +367,17 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-  * @return string
-  */
+   * Retrieves the stored query call string.
+   *
+   * @return string The query call string.
+   */
   public function getQueryCall(): string
   {
     return $this->query_call;
   }
 
   /**
-   * @return mixed
+   *
    */
   public function getCurrentPageSet()
   {
@@ -387,7 +385,9 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @return mixed
+   * Retrieves the number of results displayed per page in the current page set.
+   *
+   * @return int The number of results per page.
    */
   public function getPageSetResultsPerPage()
   {
@@ -395,7 +395,9 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @return mixed
+   * Retrieves the total number of rows for the current page set.
+   *
+   * @return int The total number of rows if set, otherwise 0.
    */
   public function getPageSetTotalRows()
   {
@@ -407,17 +409,14 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param PDO $instance
-   */
+   * Sets the PDO instance to be*/
   public function setPDO(PDO $instance)
   {
     $this->pdo = $instance;
   }
 
   /**
-   * @param string $text
-   * @return string
-   */
+   * Generates a label for the current page set*/
   public function getPageSetLabel(string $text): string
   {
     if ($this->page_set_total_rows < 1) {
@@ -442,9 +441,7 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * @param null $parameters
-   * @param null $site
-   * @return string
+   *
    */
   public function getPageSetLinks($parameters = null, $site = null): string
   {
@@ -548,7 +545,9 @@ EOD;
   }
 
   /**
-   * destruct
+   * Destructor method responsible for handling cache operations.
+   *
+   * @return void
    */
   public function __destruct()
   {

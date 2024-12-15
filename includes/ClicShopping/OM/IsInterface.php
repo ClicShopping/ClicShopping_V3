@@ -18,5 +18,11 @@ namespace ClicShopping\OM;
  */
 interface IsInterface
 {
+  /**
+   * Executes a specific operation based on the provided value.
+   *
+   * @param mixed $value The input value required for execution.
+   * @return bool Returns true if the operation was successful, otherwise false.
+   */
   public static function execute($value): bool;
 }

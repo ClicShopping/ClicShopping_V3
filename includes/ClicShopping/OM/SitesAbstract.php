@@ -30,6 +30,14 @@ abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface
 
   abstract public function setPage();
 
+  /**
+   * Constructor method.
+   *
+   * Initializes the class by setting the code property to the short name of the class
+   * and calling the init method.
+   *
+   * @return mixed The return value of the init method.
+   */
   final public function __construct()
   {
 
@@ -39,7 +47,9 @@ abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface
   }
 
   /**
-   * @return string
+   * Retrieves the code property of the current object.
+   *
+   * @return string The code associated with the object.
    */
   public function getCode(): string
   {
@@ -47,7 +57,9 @@ abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface
   }
 
   /**
-   * @return bool
+   * Checks if a page is set.
+   *
+   * @return bool Returns true if a page is set, false otherwise.
    */
   public function hasPage(): bool
   {
@@ -55,7 +67,9 @@ abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface
   }
 
   /**
-   * @return mixed
+   * Retrieves the current page property.
+   *
+   * @return mixed Returns the value of the page property.
    */
   public function getPage()
   {
@@ -63,7 +77,9 @@ abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface
   }
 
   /**
-   * @return mixed
+   * Retrieves the current route.
+   *
+   * @return mixed The route information stored within the instance.
    */
   public function getRoute()
   {
@@ -71,8 +87,11 @@ abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface
   }
 
   /**
-   * @param array $route
-   * @param array $routes
+   * Resolves the given route based on the provided routes configuration.
+   *
+   * @param array $route The route to resolve, typically including parameters such as path or name.
+   * @param array $routes A collection of predefined routes against which the provided route is matched.
+   * @return array|null Returns the matched route details if a match is found, otherwise null.
    */
   public static function resolveRoute(array $route, array $routes)
   {

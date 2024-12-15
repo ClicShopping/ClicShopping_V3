@@ -37,6 +37,14 @@ class Mail
 // 2 = client and server messages
   protected PHPMailer $phpMail;
 
+  /**
+   * Constructor method for initializing the PHPMailer instance and configuring mailing settings.
+   *
+   * It sets up the mail encoding, character set, word wrap, and X-Mailer signature.
+   * Additionally, it determines the line feed format and defines the path for email error logging.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->phpMail = new PHPMailer();
@@ -66,7 +74,15 @@ class Mail
   }
 
   /**
-   *  Send email
+   * Sends an email using the configured PHPMailer instance and email transport method.
+   *
+   * The method determines the email transport type (e.g., SMTP, Gmail, or sendmail)
+   * and sets up the PHPMailer instance accordingly. Additionally, it handles
+   * optional debugging output if enabled. If the email fails to send, it logs
+   * any encountered errors and returns false. Otherwise, it clears addresses
+   * and attachments and returns true upon successful email dispatch.
+   *
+   * @return bool True if the email is successfully sent, false otherwise.
    */
   protected function sendPhpMailer(): bool
   {
@@ -136,11 +152,12 @@ class Mail
   }
 
   /**
-   * nl2br() prior PHP 4.2.0 did not convert linefeeds on all OSs (it only converted \n)
-   * @param $from
-   * @param $to
-   * @param $string
-   * @return mixed
+   * Converts linefeeds in a string by replacing occurrences of a specified linefeed with another.
+   *
+   * @param string $from The linefeed string to be replaced.
+   * @param string $to The linefeed string to replace with.
+   * @param string $string The input string where the replacement occurs.
+   * @return string The resulting string after linefeed replacement.
    */
   private function convertLinefeeds($from, $to, $string): string
   {
@@ -148,7 +165,10 @@ class Mail
   }
 
   /**
-   * @param string $text
+   * Adds plain text to the email content after converting linefeeds.
+   *
+   * @param string $text The plain text content to add. Defaults to an empty string.
+   * @return void
    */
   public function addText(string $text = '')
   {
@@ -157,13 +177,12 @@ class Mail
   }
 
   /**
-   * Adds a html part to the mail.
-   * Also replaces image names with
-   * content-id's.
-   * @param string $html
-   * @param string $text
-   * @param string|null $images_dir
-   * @throws Exception
+   * Adds HTML content and optional plain text content to the email message.
+   *
+   * @param string $html The HTML content to be added to the email.
+   * @param string $text Optional plain text content, used as a fallback for email clients that do not support HTML.
+   * @param mixed $images_dir Optional directory path for embedded images used within the HTML content.
+   * @return void
    */
   public function addHtml(string $html, string $text = '', $images_dir = NULL)
   {
@@ -175,9 +194,12 @@ class Mail
   }
 
   /**
-   * Adds a html part to the mail.
-   * Also replaces image names with
-   * content-id's.
+   * Adds HTML content to the email using CKEditor formatting.
+   *
+   * @param string $html The HTML content to be added to the email.
+   * @param string|null $text Optional plain text content as an alternative for non-HTML email clients.
+   * @param string|null $images_dir Optional directory path for embedded images within the HTML content.
+   * @return void
    */
 
   public function addHtmlCkeditor(string $html, ?string $text = NULL, ?string $images_dir = NULL): void
@@ -191,7 +213,10 @@ class Mail
   }
 
   /**
-   * @param string $encoding
+   * Sets the content transfer encoding for the email.
+   *
+   * @param string $encoding The desired content transfer encoding type (e.g., "base64", "quoted-printable").
+   * @return void
    */
   public function setContentTransferEncoding(string $encoding): void
   {
@@ -199,10 +224,11 @@ class Mail
   }
 
   /**
-   * @param string $email_address
-   * @param string|null $name
-   * @return bool
-   * @throws Exception
+   * Adds a CC (carbon copy) recipient to the email.
+   *
+   * @param string $email_address The email address of the recipient to be added as a CC.
+   * @param string|null $name The name of the recipient, optional.
+   * @return bool True on success, false on failure.
    */
   public function addCC(string $email_address, ?string $name = null)
   {
@@ -210,10 +236,11 @@ class Mail
   }
 
   /**
-   * @param string $email_address
-   * @param string|null $name
-   * @return bool
-   * @throws Exception
+   * Adds a "BCC" (blind carbon copy) recipient to the email.
+   *
+   * @param string $email_address The email address of the recipient to add as BCC.
+   * @param string|null $name Optional name associated with the BCC email address.
+   * @return bool True on success, false on failure.
    */
   public function addBCC(string $email_address, ?string $name = null)
   {
@@ -221,7 +248,9 @@ class Mail
   }
 
   /**
-   * Clear all recipients
+   * Clears all "To" recipients from the email.
+   *
+   * @return void
    */
   public function clearTo(): void
   {
@@ -229,7 +258,10 @@ class Mail
   }
 
   /**
-   * @param string $charset
+   * Sets the character set for the email.
+   *
+   * @param string $charset The character set to be used (e.g., 'UTF-8').
+   * @return void
    */
   public function setCharset(string $charset): void
   {
@@ -237,8 +269,10 @@ class Mail
   }
 
   /**
-   * @param string $key
-   * @param string $value
+   *
+   * @param string $key The name of the header to add.
+   * @param string $value The value of the header to add.
+   * @return void No return value.
    */
   public function addHeader(string $key, string $value): void
   {
@@ -246,7 +280,9 @@ class Mail
   }
 
   /**
-   * Clear header
+   * Clears all custom headers from the email instance.
+   *
+   * @return void
    */
   public function clearHeaders(): void
   {
@@ -254,8 +290,9 @@ class Mail
   }
 
   /**
+   * Retrieves the mailer instance.
    *
-   * @return mixed
+   * @return mixed The mailer instance.
    */
   public function getMailer(): mixed
   {
@@ -263,12 +300,14 @@ class Mail
   }
 
   /**
-   * @param string $path
-   * @param string $name
-   * @param string $encoding
-   * @param string $type
-   * @param string $disposition
-   * @throws Exception
+   * Adds an attachment to the email.
+   *
+   * @param string $path The file path to the attachment.
+   * @param string $name The name of the attachment. Optional, defaults to an empty string.
+   * @param string $encoding The encoding of the attachment. Optional, defaults to 'base64'.
+   * @param string $type The MIME type of the attachment. Optional, defaults to an empty string.
+   * @param string $disposition The disposition of the attachment, such as 'attachment' or 'inline'. Optional, defaults to 'attachment'.
+   * @return void
    */
   public function addAttachment(string $path, string $name = '', string $encoding = 'base64', string $type = '', string $disposition = 'attachment')
   {
@@ -276,14 +315,15 @@ class Mail
   }
 
   /**
-   * @param ?string $to_name
-   * @param ?string $to_addr
-   * @param ?string $from_name
-   * @param ?string $from_addr
-   * @param string $subject
-   * @param bool $reply_to
-   * @return bool
-   * @throws Exception
+   * Sends an email using the configured PHPMailer instance.
+   *
+   * @param string|null $to_addr The recipient's email address. Can be null.
+   * @param string|null $from_name The sender's name. Can be null.
+   * @param string|null $from_addr The sender's email address. Can be null.
+   * @param string|null $to_name The recipient's name. Defaults to an empty string.
+   * @param string $subject The subject of the email. Defaults to an empty string.
+   * @param bool $reply_to Indicates whether to use a predefined reply-to address. Defaults to false.
+   * @return bool True if the email process completes, regardless of actual sending status.
    */
   public function send(?string $to_addr, ?string $from_name, ?string $from_addr, ?string $to_name = '', string $subject = '', bool $reply_to = false): bool
   {
@@ -353,9 +393,10 @@ class Mail
 
 
   /**
-   * @param string $file
-   * @return bool
-   * @throws Exception
+   * Adds an image as an attachment to the email with inline disposition.
+   *
+   * @param string $file The path to the image file to be attached.
+   * @return bool True on success, false on failure.
    */
   public function addImage(string $file)
   {
@@ -363,15 +404,15 @@ class Mail
   }
 
   /**
-   * Send email (text/html) using MIME
-   * This is the central mail function. The SMTP Server should be configured
-   * @param string|null $to_name The name of the recipient
-   * @param string|null $to_email_address The email address of the recipient
-   * @param string $email_subject
-   * @param string $email_text
-   * @param string $from_email_name
-   * @param string $from_email_address The email address of the sender
-   * @throws Exception
+   * Sends an email with the specified parameters. Allows for both HTML and plain text formats depending on configuration.
+   *
+   * @param string|null $to_email_address The recipient's email address. Defaults to null.
+   * @param string|null $to_name The recipient's name. Defaults to null.
+   * @param string $email_subject The subject of the email. Defaults to an empty string.
+   * @param string $email_text The body content of the email. Defaults to an empty string.
+   * @param string $from_email_name The name of the sender. Defaults to an empty string.
+   * @param string $from_email_address The sender's email address. Defaults to an empty string.
+   * @return bool Returns false if sending emails is disabled via configuration. Otherwise, returns no value explicitly.
    */
   public function clicMail(string|null $to_email_address = null, ?string $to_name = null, string $email_subject = '', string $email_text = '', string $from_email_name = '', string $from_email_address = '')
   {
@@ -395,9 +436,10 @@ class Mail
   }
 
   /**
-   * Analyse the customer email  domain and validate or not the email
-   * @param string|null $email
-   * @return bool
+   * Validates if the provided email is a valid domain email.
+   *
+   * @param string|null $email The email address to validate. Can be null.
+   * @return bool Returns true if the email address is valid; otherwise, false.
    */
   public function validateDomainEmail(?string $email): bool
   {
@@ -409,9 +451,11 @@ class Mail
   }
 
   /**
-   * Do not send en email if it'excluded by the admin
-   * @param string|null $email
-   * @return bool
+   * Checks if the provided email belongs to a banned domain as defined in the configuration
+   * and verifies the validity of the email address.
+   *
+   * @param string|null $email The email address to validate and check against the banned domain list. Defaults to an empty string.
+   * @return bool Returns true if the email belongs to a banned domain or is invalid, otherwise false.
    */
   public function excludeEmailDomain(?string $email = '')
   {

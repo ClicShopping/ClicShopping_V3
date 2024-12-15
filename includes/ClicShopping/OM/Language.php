@@ -13,9 +13,10 @@ use function is_array;
 use function is_null;
 
 /**
- * This class manages language configurations for the application.
- * It provides methods to load, detect, and manage language settings
- * for either the Shop or Admin interface environments.
+ * Class Language
+ *
+ * The Language class handles language management within the system. It provides methods to initialize
+ * available languages, retrieve language settings, and detect browser language preferences.
  */
 class Language
 {
@@ -28,8 +29,13 @@ class Language
   public string $code;
 
   /**
-   * Language constructor.
-   * @param null $code
+   * Constructor for the language management class.
+   *
+   * This method initializes the language system by loading available languages
+   * from the database and setting the default or preferred language.
+   * It also ensures system locale settings do not interfere with numeric formatting.
+   *
+   * @param string
    */
   public function __construct($code = null)
   {
@@ -94,8 +100,9 @@ class Language
   }
 
   /**
-   * @return mixed
-   */
+   * Retrieves the locale information based on the current code.
+   *
+   * This*/
   public function getLocale()
   {
     $code = $this->getCode();
@@ -104,7 +111,10 @@ class Language
   }
 
   /**
-   * @param $code
+   * Sets the language code and updates the language property.
+   *
+   * @param string $code The language code to be set.
+   * @return void
    */
   protected function set(string $code): void
   {
@@ -118,7 +128,7 @@ class Language
   }
 
   /**
-   * @return string
+   *
    */
   public function getCode(): string
   {
@@ -126,8 +136,7 @@ class Language
   }
 
   /**
-   * Check browser
-   * @return bool|int|string
+   *
    */
   public function getBrowserSetting()
   {
@@ -206,10 +215,10 @@ class Language
   }
 
   /**
-   * Get language
-   * @param null $data
-   * @param null $language_code
-   * @return mixed
+   * Retrieves the value associated with the specified data key and language code from the languages array.
+   *
+   * @param string|null $data The key for the data to be retrieved. Defaults to 'code' if not provided.
+   * @param string|null $language_code
    */
   public function get($data = null, $language_code = null)
   {
@@ -225,9 +234,9 @@ class Language
   }
 
   /**
-   * get the  language id
-   * @param null $language_code
-   * @return int
+   * Retrieves the ID value associated with the specified language code.
+   *
+   * @param string|null $language_code The language code to retrieve the ID for.
    */
   public function getId($language_code = null)
   {
@@ -235,8 +244,7 @@ class Language
   }
 
   /**
-   * get all language in array
-   * @return array
+   *
    */
   public function getAll(): array
   {
@@ -244,8 +252,10 @@ class Language
   }
 
   /**
-   * @param string $code
-   * @return bool
+   * Checks if the given code exists in the languages array.
+   *
+   * @param string $code The code to check for existence.
+   * @return bool True if the code exists, false otherwise.
    */
   public function exists(string $code): bool
   {
@@ -253,11 +263,11 @@ class Language
   }
 
   /**
-   * get image svg 4:3
-   * @param $language_code
-   * @param null $width
-   * @param null $height
-   * @return string
+   * Generates an image URL based on the given language code and dimensions.
+   *
+   * @param string $language_code The language code for which the image is generated.
+   * @param int|null $width Optional. The width of the image. Defaults to 28 if not provided.
+   * @param int|null $height Optional
    */
   public function getImage(string $language_code,  int|null $width = null,  int|null $height = null): string
   {
@@ -278,6 +288,13 @@ class Language
     return $image;
   }
 
+  /**
+   * Retrieves the definition associated with a specific key within a given scope.
+   *
+   * @param string $key The key for the definition to retrieve.
+   * @param array|null $values Optional values to replace placeholders in the definition.
+   * @param string $scope
+   */
   public function getDef($key, $values = null, $scope = 'global')
   {
     if (isset($this->definitions[$scope][$key])) {
@@ -294,11 +311,7 @@ class Language
   }
 
   /**
-   * Parse the definition
-   * @param $string
-   * @param $values
-   * @return null|string|string[]
-   */
+   * Parses a string*/
   public static function parseDefinition($string, $values)
   {
     if (is_array($values) && !empty($values)) {
@@ -311,10 +324,7 @@ class Language
   }
 
   /**
-   * check if defintion exist
-   * @param $group
-   * @param null $language_code
-   * @return bool|mixed
+   *
    */
   public function definitionsExist($group, $language_code = null)
   {
@@ -347,12 +357,10 @@ class Language
   }
 
   /**
-   * Load the language
-   * @param $group
-   * @param null $language_code
-   * @param null $scope
-   * @param null $force_directory_language
-   * @return bool
+   * Loads language definitions for a specific group and optionally a language code, scope, or forced directory language.
+   *
+   * @param string $group The group name or identifier for which language definitions are to be loaded.
+   * @param string|null $language_code Optional.
    */
   public function loadDefinitions($group, $language_code = null, $scope = null, $force_directory_language = null)
   {
@@ -389,11 +397,7 @@ class Language
   }
 
   /**
-   * Get definition
-   * @param $group
-   * @param $language_code
-   * @param $pathname
-   * @return array|mixed
+   *
    */
   public function getDefinitions($group, $language_code, $pathname)
   {
@@ -445,9 +449,10 @@ class Language
   }
 
   /**
-   * Get definition from file
-   * @param $filename
-   * @return array
+   * Parses a file to extract key-value definitions.
+   *
+   * @param string $filename The path to the file containing definitions.
+   * @return array An associative array of key-value pairs parsed from the file.
    */
   public function getDefinitionsFromFile($filename)
   {
@@ -476,9 +481,11 @@ class Language
   }
 
   /**
-   * Inject definition
-   * @param $defs
-   * @param $scope
+   * Injects a set of definitions into a specific scope.
+   *
+   * @param array $defs The definitions to be injected.
+   * @param string $scope The scope in which the definitions will be injected.
+   * @return void
    */
   public function injectDefinitions($defs, $scope)
   {
@@ -490,17 +497,18 @@ class Language
   }
 
   /**
-   * Set cache is used
-   * @param $flag
+   *
    */
   public function setUseCache($flag)
   {
     $this->use_cache = ($flag === true);
   }
 
-  /**Detect encoding
-   * @param $filename
-   * @return bool
+  /**
+   * Detects the encoding of a file and verifies if it is 'UTF-8 without BOM'.
+   *
+   * @param string $filename The path to the file whose encoding is to be checked.
+   * @return bool Returns true if the file encoding is 'UTF-
    */
   public function detectFileEncoding($filename)
   {
@@ -530,10 +538,6 @@ class Language
 
 
   /**
-   * Get the code language to display (french english)
-   *
-   * @param return code of the language
-   *
    *
    */
   public function getLanguageCode()
@@ -556,10 +560,10 @@ class Language
   }
 
   /**
-   * Get the language value of the URL when Search engine is activate
-   * @return $value_language, the value of the language
-   * @return mixed|null
-   */
+   * Retrieves the language value from the URL depending on the configuration settings.
+   *
+   * The method checks if search engine friendly URLs are enabled and uses SEFU::getUrlValue()
+   * to extract the language value if*/
   public function getUrlValueLanguage()
   {
     if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && (SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start())) {
@@ -572,11 +576,10 @@ class Language
   }
 
   /**
-   * Display the different language under text
+   * Generates a formatted string containing links to available languages with optional GET parameters.
    *
-   * @param string
-   * @return string $languages_string, flag language
-   *
+   * @param string $tag The string delimiter to be used between the language links. Default is ' - '.
+   * @return string A string containing the language links separated by the
    */
   public function getLanguageText($tag = ' - ')
   {
@@ -608,10 +611,6 @@ class Language
   }
 
   /**
-   * Display the language flag image in catalog when the status is valid
-   *
-   * @param string
-   * @return string $flag, flag language
    *
    */
   public function getFlag()
@@ -662,12 +661,11 @@ class Language
   }
 
   /**
-   * the language
+   * Retrieves an array of available languages with their respective details.
    *
-   * @param string
-   * @return string $languages_array,
-   *
-   */
+   * @return array An array where each element is an associative array containing:
+   *               - 'id': The ID of the language (integer).
+   *               - 'name': The name*/
   public function getLanguages()
   {
 
@@ -697,11 +695,10 @@ class Language
   }
 
   /**
-   * get language name in function the id of the language
+   * Retrieves the name of a language based on its ID.
    *
-   * @param string
-   * @return string name, name of the language id
-   *
+   * @param int $id The ID of the language to retrieve the name for.
+   * @return string|null The name of the language if found, or null if not found.
    */
   public function getLanguagesName($id)
   {
@@ -716,13 +713,13 @@ class Language
   }
 
   /**
-   * get All language or not
+   * Retrieves a list of all languages, optionally including a default "all languages" option.
    *
-   * @param string $option to display all language or not true, false
-   * @return array $values_languages_id,, languages
+   * @param bool $option When set to true, includes an "all languages" option in the returned list. Defaults to false.
    *
+   * @return array An array of languages where each language is represented by an associative array with 'id' and 'text' keys.
    */
-  public function getAllLanguage($option = false)
+  public function getAllLanguage(bool $option = false): array
   {
     $languages = $this->getLanguages();
 

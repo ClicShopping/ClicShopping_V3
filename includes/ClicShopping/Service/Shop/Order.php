@@ -23,6 +23,11 @@ use ClicShopping\Apps\Orders\Orders\Classes\Shop\Order as OrderClass;
  */
 class Order implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the 'Order' class if the required file exists.
+   *
+   * @return bool Returns true if the 'Order' class is successfully initialized, false otherwise.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Orders/Orders/Classes/Shop/Order.php')) {
@@ -33,6 +38,11 @@ class Order implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the current process or operation.
+   *
+   * @return bool Returns true when the stop operation is successfully executed.
+   */
   public static function stop(): bool
   {
     return true;

@@ -19,6 +19,11 @@ use ClicShopping\OM\Registry;
  */
 class Mail implements \ClicShopping\OM\ServiceInterface
 {
+  /**
+   * Initializes the Mail class if the Mail.php file exists in the specified directory.
+   *
+   * @return bool Returns true if the Mail class is successfully initialized, false otherwise.
+   */
   public static function start(): bool
   {
     if (is_file(CLICSHOPPING::BASE_DIR . 'OM/Mail.php')) {
@@ -30,6 +35,11 @@ class Mail implements \ClicShopping\OM\ServiceInterface
     }
   }
 
+  /**
+   * Stops the current process or operation.
+   *
+   * @return bool Returns true on successful stop.
+   */
   public static function stop(): bool
   {
     return true;
