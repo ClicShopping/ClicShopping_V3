@@ -11,7 +11,11 @@
 namespace ClicShopping\Apps\Customers\Customers\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
-
+/**
+ * Class CustomersAdmin
+ *
+ * Provides methods to manage customer data in the administration module.
+ */
 class CustomersAdmin
 {
   private mixed $db;
@@ -21,8 +25,10 @@ class CustomersAdmin
   }
 
   /**
-   * @param $id , customer id
-   * @return bool
+   * Retrieves customer data based on the provided customer ID.
+   *
+   * @param int $id The ID of the customer to fetch the data for.
+   * @return array|null An array containing customer data if found, or null if no data is found.
    */
   public function getData(int $id): ?array
   {
@@ -42,8 +48,10 @@ class CustomersAdmin
   }
 
   /**
-   * @param int $id
-   * @return string
+   * Retrieves the email address of a customer based on their unique ID.
+   *
+   * @param int $id The unique identifier of the customer.
+   * @return string The email address of the customer.
    */
   protected function getCustomerEmail(int $id): string
   {
@@ -53,8 +61,10 @@ class CustomersAdmin
   }
 
   /**
-   * @param string $email
-   * @return int
+   * Retrieves the customer ID associated with the given email address.
+   *
+   * @param string $email The email address of the customer.
+   * @return int The ID of the customer if found, otherwise 0 or an exception if the email does not exist.
    */
   public function getCustomerIdByEmail(string $email): int
   {

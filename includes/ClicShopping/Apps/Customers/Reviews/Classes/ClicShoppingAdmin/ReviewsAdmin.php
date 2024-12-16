@@ -11,11 +11,19 @@
 namespace ClicShopping\Apps\Customers\Reviews\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
-
+/**
+ * Class ReviewsAdmin
+ *
+ * Provides administrative functionalities for managing customer reviews,
+ * including counting tags, setting review statuses, managing sentiments,
+ * and retrieving vote statistics.
+ */
 class ReviewsAdmin
 {
   /**
-   * @return int
+   * Counts the total number of customer tags from the reviews table.
+   *
+   * @return int The total count of all customer tags across all reviews.
    */
   public static function countCustomersTags(): int
   {
@@ -38,8 +46,9 @@ class ReviewsAdmin
   }
 
   /**
-   * @return bool
-   * If it's toolong, the response from gpt can give an error
+   * Checks if the number of customer tags exceeds the specified threshold.
+   *
+   * @return bool Returns true if the count of customer tags is greater than 300, otherwise false.
    */
   public static function CountTagCountWarning(): bool
   {
@@ -51,11 +60,11 @@ class ReviewsAdmin
   }
 
   /**
-   * Status reviews  - Sets the status of a reviews products
+   * Updates the status of a review in the database based on the provided review ID and status.
    *
-   * @param int $id , reviews_id
-   * @param int|null $status
-   * @return string status on or off
+   * @param int $id The ID of the review to update.
+   * @param int|null $status The new status to set for the review. Accepts 1 for active, 0 for inactive, or null for invalid status.
+   * @return bool|int Returns true if the update is successful, -1 if the status is invalid.
    */
   public static function getReviewsStatus(int $id,  int|null $status)
   {
@@ -82,11 +91,11 @@ class ReviewsAdmin
   }
 
   /**
-   * Status reviews  - Sets the status of a reviews products
+   * Updates the approved status of a review's sentiment based on the provided status.
    *
-   * @param int $id , reviews_id
-   * @param int|null $status
-   * @return string status on or off
+   * @param int $id The ID of the review whose sentiment approved status needs to be updated.
+   * @param int|null $status The status to set for the review's sentiment (1 for approved, 0 for not approved). Any other value results in a return value of -1.
+   * @return bool|int Returns true on successful update, false on failure, and -1 if the status is invalid.
    */
   public static function getReviewsSentimentApprovedStatus(int $id,  int|null $status)
   {
@@ -114,9 +123,11 @@ class ReviewsAdmin
   }
 
   /**
-   * @param int $id
-   * @param int $language_id
-   * @return string
+   * Retrieves the sentiment description based on the provided sentiment ID and language ID.
+   *
+   * @param int $id The ID of the sentiment to retrieve the description for.
+   * @param int $language_id The ID of the language for the description. If not provided, the default language ID is used.
+   * @return string The sentiment description corresponding to the given ID and language ID.
    */
   public static function getSentimentDescription(int $id, int $language_id): string
   {
@@ -139,9 +150,11 @@ class ReviewsAdmin
     return $Qdescription->value('description');
   }
 
-/**
-* @return int
- */
+  /**
+   * Retrieves the total number of "vote yes" entries from the reviews votes table.
+   *
+   * @return int The total count of "yes" votes for reviews.
+   */
   public static function getTotalReviewsVoteYes(): int
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -158,7 +171,9 @@ class ReviewsAdmin
   }
 
   /**
-   * @return int
+   * Retrieves the total number of reviews where the vote is marked as "No".
+   *
+   * @return int The count of reviews with a "No" vote.
    */
   public static function getTotalReviewsVoteNo(): int
   {
@@ -177,8 +192,10 @@ class ReviewsAdmin
 
 
   /**
-   * @param int $products_id
-   * @return int
+   * Retrieves the total number of positive sentiment votes for a given product based on its ID.
+   *
+   * @param int $products_id The ID of the product for which to count positive sentiment votes.
+   * @return int The total number of votes with a positive sentiment for the specified product.
    */
   public static function getTotalReviewsSentimentVoteYes(int $products_id): int
   {
@@ -198,8 +215,11 @@ class ReviewsAdmin
   }
 
   /**
-   * @param int $products_id
-   * @return int
+   * Retrieves the total count of negative sentiment votes (sentiment = 0 and reviews_id = 0)
+   * for a given product.
+   *
+   * @param int $products_id The ID of the product for which to retrieve the vote count.
+   * @return int The total number of negative sentiment votes for the specified product.
    */
   public static function getTotalReviewsSentimentVoteNo(int $products_id): int
   {

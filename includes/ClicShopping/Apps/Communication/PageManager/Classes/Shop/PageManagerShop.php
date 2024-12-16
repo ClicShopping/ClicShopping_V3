@@ -1,11 +1,6 @@
 <?php
 /**
  *
- * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
- * @Licence GPL 2 & MIT
- * @Info : https://www.clicshopping.org/forum/trademark/
- *
  */
 
 namespace ClicShopping\Apps\Communication\PageManager\Classes\Shop;
@@ -15,14 +10,17 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
-
+/**
+ * PageManagerShop is a class that provides functionality to interact with
+ * and manage pages displayed in various sections of the ClicShopping shop front-end.
+ */
 class PageManagerShop
 {
   protected int $id;
   private mixed $db;
-  protected $customer;
+  protected mixed $customer;
   private mixed $lang;
-  protected $rewriteUrl;
+  protected mixed $rewriteUrl;
 
   public function __construct()
   {
@@ -33,8 +31,9 @@ class PageManagerShop
   }
 
   /**
-   * Count the introduction page
-   * @return mixed
+   * Retrieves the count of pages from the pages manager table where the status is active and the page type is 1.
+   *
+   * @return int The number of pages meeting the specified criteria.
    */
   private function pageManagerDisplayPageIntroCount()
   {
@@ -49,8 +48,13 @@ class PageManagerShop
   }
 
   /**
-   * Time to display the introduction page
-   * @return mixed
+   * Retrieves the display time for the introductory page in the page manager.
+   *
+   * This method queries the database for a random active introductory page
+   * and retrieves its associated display time. If no introductory pages are
+   * available, a default time of 0 is returned.
+   *
+   * @return int The display time for the introductory page, or 0 if no pages are available.
    */
   public function pageManagerDisplayPageIntroTime()
   {
@@ -79,8 +83,13 @@ class PageManagerShop
   }
 
   /**
-   * display the introduction page
-   * @return mixed
+   * Retrieves and returns the introductory HTML content of a page managed by the page manager.
+   *
+   * This method checks if there are any active pages available for display as intros.
+   * If available, it randomly selects one active page with a specified language ID and page type,
+   * retrieves its HTML content, and returns it. If no pages are available, it returns an empty string.
+   *
+   * @return string The HTML content of the page intro, or an empty string if no intro is available.
    */
   public function pageManagerDisplayPageIntro()
   {
@@ -113,8 +122,17 @@ class PageManagerShop
   }
 
   /**
-   * Display informations on frontpage
-   * @return mixed
+   * Retrieves and returns the HTML content of a front page from the page manager.
+   *
+   * This method first checks if there are any active front page entries (page_type = 2).
+   * If entries are found, it randomly selects one page and retrieves its associated
+   * HTML content (along with its ID). It ensures that the selected page matches the
+   * specified language and customer group or falls back to default values.
+   *
+   * If no entries are found, it returns default values with an empty HTML content
+   * and page ID set to 0.
+   *
+   * @return string The HTML content of the randomly selected front page or an empty string if no pages are available.
    */
   public function pageManagerDisplayFrontPage()
   {
@@ -162,8 +180,7 @@ class PageManagerShop
   }
 
   /**
-   * display information in contact page
-   * @return mixed
+   *
    */
   public function pageManagerDisplayContact()
   {
@@ -199,11 +216,17 @@ class PageManagerShop
   }
 
   /**
-   * display information in footer
-   * @param string $start_class
-   * @param string $end_class
-   * @param string $separation
-   * @return mixed
+   * Generates and retrieves the HTML display box for the page manager.
+   *
+   * This method queries the database to fetch a list of active pages for display purposes.
+   * Based on the retrieved data, it dynamically generates an HTML structure by including links
+   * and formatting based on the provided parameters. The resulting HTML string can be used
+   * to display page manager content in a box layout.
+   *
+   * @param string $start_class The starting HTML wrapper, defaulting to '<div class="pageManagerDisplayBox">'.
+   * @param string $end_class The ending HTML wrapper, defaulting to '</div>'.
+   * @param string $separation A string that separates the individual contents of the box, defaulting to an empty string.
+   * @return string The generated HTML content for the page manager display box.
    */
   public function pageManagerDisplayBox($start_class = '<div class="pageManagerDisplayBox">', $end_class = '</div>', $separation = '')
   {
@@ -272,11 +295,17 @@ class PageManagerShop
   }
 
   /**
-   * display the secondary box
-   * @param string $start_class
-   * @param string $end_class
-   * @param string $separation
-   * @return mixed
+   * Generates and retrieves the HTML for the secondary box display in the page manager.
+   *
+   * This method queries the database for active pages of specific types that are part of
+   * the secondary box display, then formats them into an HTML string with optional
+   * customization for start and end classes, as well as separation between items.
+   * The results include internal or external links formatted with appropriate attributes.
+   *
+   * @param string $start_class The HTML markup to use at the start of the secondary box display.
+   * @param string $end_class The HTML markup to use at the end of the secondary box display.
+   * @param string $separation The HTML or text separator to use between items in the secondary box.
+   * @return string The generated HTML for the secondary box display.
    */
   public function pageManagerDisplaySecondaryBox($start_class = '<div class="pageManagerDisplaySecondaryBox">', $end_class = '</div>', $separation = '|')
   {
@@ -358,10 +387,17 @@ class PageManagerShop
   }
 
   /**
-   * @param string $start_class
-   * @param string $end_class
-   * @param string $separation
-   * @return mixed
+   * Generates the header menu from the page manager.
+   *
+   * This method retrieves a list of active pages of a specific type from the database
+   * and constructs a formatted header menu. It applies specified start and end classes
+   * as well as a separation string between menu items. It also respects external link configurations
+   * and includes relevant attributes for links.
+   *
+   * @param string $start_class The HTML class or tag to append at the start of each menu item.
+   * @param string $end_class The HTML class or tag to append at the end of each menu item.
+   * @param string $separation The string or character used to separate menu items.
+   * @return string The constructed header menu as an HTML-formatted string.
    */
   public function pageManagerDisplayHeaderMenu($start_class = '<span class="menuHeaderPageManager">', $end_class = '</span>', $separation = '|')
   {
@@ -430,10 +466,16 @@ class PageManagerShop
   }
 
   /**
-   * @param string $start_class
-   * @param string $end_class
-   * @param string $separation
-   * @return mixed
+   * Generates the footer menu for the page manager.
+   *
+   * This method retrieves active footer menu items from the database based on the user's
+   * language and customer group. The retrieved items are formatted with the specified
+   * start class, end class, and separation string, and returned as a formatted string.
+   *
+   * @param string $start_class The HTML markup or text to be prepended to each menu item. Default is '<span class="menuFooterPageManager">'.
+   * @param string $end_class The HTML markup or text to be appended to each menu item. Default is '</span>'.
+   * @param string $separation The string to separate each menu item. Default is ' | '.
+   * @return string The generated footer menu as a formatted HTML string.
    */
   public function pageManagerDisplayFooterMenu($start_class = '<span class="menuFooterPageManager">', $end_class = '</span>', $separation = ' | ')
   {
@@ -493,8 +535,15 @@ class PageManagerShop
   }
 
   /**
-   * display the footer menu information
-   * @return mixed
+   * Generates and retrieves the HTML content for displaying footer pages in the page manager.
+   *
+   * This method retrieves pages from the database that qualify as footer pages based on
+   * their type, status, language, customer group, and sort order. Links for the footer
+   * are created dynamically, including external and internal links, with attributes such
+   * as target and title. The resulting content is wrapped in a container and returned as
+   * a string of HTML.
+   *
+   * @return string The HTML content representing the footer pages in the page manager.
    */
   public function pageManagerDisplayFooter()
   {
@@ -568,9 +617,15 @@ class PageManagerShop
   }
 
   /**
-   * display the content information
-   * @param int $id
-   * @return mixed
+   * Retrieves the HTML content and metadata for a specific page in the page manager.
+   *
+   * This method queries the database to fetch the page details associated with the given
+   * page ID, considering filters such as page type, status, language, and customer group.
+   * If the page type matches a specific value, it redirects to a predefined URL.
+   * If the page is not found, it redirects to the shop's homepage.
+   *
+   * @param int $id The ID of the page to retrieve from the page manager.
+   * @return string The HTML content of the page, or redirects to a URL if applicable.
    */
   public function pageManagerDisplayInformation(int $id)
   {
@@ -615,8 +670,16 @@ class PageManagerShop
   }
 
   /**
-   * @param int $id
-   * @return mixed
+   * Retrieves the display title of a specific page in the page manager.
+   *
+   * This method queries the database for a page with the provided ID,
+   * ensuring it matches the specified criteria such as active status,
+   * page type, language, and customer group. It returns the page title
+   * if available. For a specific page type, the user is redirected
+   * to a designated URL.
+   *
+   * @param int $id The unique identifier of the page to retrieve the title for.
+   * @return string|null The title of the page, or null if the page does not exist or does not meet the criteria.
    */
   public function pageManagerDisplayTitle(int $id)
   {
@@ -657,10 +720,15 @@ class PageManagerShop
   }
 
   /**
-   * Index and information status
-   * @param $pages_id
-   * @param $status
-   * @return int
+   * Updates the status of a page in the page manager.
+   *
+   * This method sets the status of a specified page, updating relevant fields such as
+   * the status change date and related timestamps. It clears the cache after updating.
+   * If the status is not recognized, it returns -1.
+   *
+   * @param int $pages_id The ID of the page to update.
+   * @param int $status The desired status of the page (1 for active, 0 for inactive).
+   * @return bool|int True on successful execution, or -1 if the provided status is invalid.
    */
   private function setPageManagerStatus($pages_id, $status)
   {
@@ -696,7 +764,13 @@ class PageManagerShop
   }
 
   /**
-   * Auto activation index and information
+   * Activates pages in the page manager that meet specific criteria.
+   *
+   * This method scans the pages manager for pages with a defined start date
+   * that has passed and are not currently active. It updates their status to active
+   * and clears the cache after processing all applicable pages.
+   *
+   * @return void This method does not return any value.
    */
   public function activatePageManager()
   {
@@ -719,7 +793,14 @@ class PageManagerShop
   }
 
   /**
-   * Auto expiration index and information
+   * Expires active pages in the page manager based on their closing date.
+   *
+   * This method checks for pages in the page manager table that are active,
+   * have a non-null closing date, and whose closing date has already passed.
+   * It updates the status of such pages to inactive and clears the cache
+   * for the updates to take effect.
+   *
+   * @return void
    */
   public function expirePageManager()
   {
@@ -743,9 +824,16 @@ class PageManagerShop
 
 
   /**
-   * Get the general condition to include in the order
-   * @return string page_manager_general_condition, the text of the general condition of sales
+   * Retrieves the general conditions page content for the customer group.
    *
+   * This method determines and fetches the appropriate general conditions page content.
+   * It performs several database queries to identify the correct content based on the
+   * customer's group ID, general condition settings, and active status of the page.
+   * If the customer does not belong to any group, it returns false. Otherwise, it returns
+   * the HTML text of the matched general conditions page or an empty string if no page is found.
+   *
+   * @return string|false The HTML content of the general conditions page for the customer group,
+   *                      or false if the customer's group ID is not defined.
    */
   public function pageManagerGeneralCondition()
   {
@@ -847,7 +935,12 @@ class PageManagerShop
   }
 
   /**
-   * clear cache
+   * Clears cached data related to the page manager and its associated components.
+   *
+   * This method removes various cached entries used for managing and displaying page
+   * content, ensuring the system reflects the latest updates.
+   *
+   * @return void This method does not return any value.
    */
   private function getClearCache()
   {

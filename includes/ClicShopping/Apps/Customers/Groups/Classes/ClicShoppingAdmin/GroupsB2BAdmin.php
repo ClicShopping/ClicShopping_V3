@@ -13,14 +13,21 @@ namespace ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 use function count;
-
+/**
+ * Class GroupsB2BAdmin
+ *
+ * Provides methods for managing customer groups in the admin panel, including retrieval
+ * of customer group names and customer group data.
+ */
 class GroupsB2BAdmin
 {
   protected string $iso;
 
   /**
-   * @param int $id
-   * @return string
+   * Retrieves the name of the customer group associated with the given ID.
+   *
+   * @param int $id The ID of the customer group.
+   * @return string The name of the customer group.
    */
   public static function getCustomersGroupName(int $id): string
   {
@@ -39,9 +46,10 @@ class GroupsB2BAdmin
   }
 
   /**
-   * Returns an array with customers_groups
-   * @param string $default
-   * @return array
+   * Retrieves an array of customer groups from the database.
+   *
+   * @param string $default The default value to include as the first element of the returned array. If provided, it will be added as an entry with an id of '0'.
+   * @return array An array of customer groups, where each group is represented by an associative array with keys 'id' and 'text'.
    */
   public static function getCustomersGroup(string $default = ''): array
   {
@@ -75,8 +83,9 @@ class GroupsB2BAdmin
   }
 
   /**
-   * Returns an array with all customers_groups
-   * @return array
+   * Retrieves all customer groups including a default 'All Groups' entry and a visitor entry.
+   *
+   * @return array Returns an array of customer groups with id and text for each group.
    */
   public static function getAllGroups(): array
   {

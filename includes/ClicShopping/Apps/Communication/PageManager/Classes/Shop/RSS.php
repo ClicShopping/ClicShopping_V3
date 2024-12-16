@@ -1,11 +1,6 @@
 <?php
 /**
  *
- * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
- * @Licence GPL 2 & MIT
- * @Info : https://www.clicshopping.org/forum/trademark/
- *
  */
 
 namespace ClicShopping\Apps\Communication\PageManager\Classes\Shop;
@@ -15,7 +10,11 @@ use ClicShopping\OM\HTML;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Common\HTMLOverrideCommon;
-
+/**
+ * RSS Class.
+ * Handles RSS feed-related functionality, such as generating namespace links,
+ * setting site titles, descriptions, and retrieving feed configurations.
+ */
 class RSS
 {
 
@@ -42,8 +41,10 @@ class RSS
   }
 
   /**
-   *  Site link for rss
-   * @return string
+   * Generates a string containing multiple XML namespace declarations.
+   * The returned string includes a range of XML namespaces commonly used in RSS feeds, RDF data, and various web standards.
+   *
+   * @return string A formatted string of XML namespace declarations, or an empty string if none are available.
    */
   public function xmlns(): string
   {
@@ -123,8 +124,12 @@ class RSS
   }
 
   /**
-   *  Title of the site
-   * @return string
+   * Sets the title based on SEO data from the database.
+   *
+   * This method retrieves the title from the database for a specific language ID.
+   * If the language-specific title is not found, it uses a default title instead.
+   *
+   * @return string The title of the page based on the SEO data or a default value.
    */
   private function setTitle(): string
   {
@@ -149,8 +154,9 @@ class RSS
   }
 
   /**
-   * Description of the site
-   * @return string
+   * Retrieves and sets the description based on the current language and SEO configuration.
+   *
+   * @return string The description retrieved from the database or a sanitized fallback value.
    */
   private function setDescription(): string
   {
@@ -175,9 +181,10 @@ class RSS
   }
 
   /**
-   *  max of item to display
-   * @param int $number_of_item
-   * @return int
+   * Retrieves the maximum number of items for a listing.
+   *
+   * @param int $number_of_item The number of items to be listed. Defaults to 20.
+   * @return int The maximum number of items for the listing.
    */
   public function getMaxListing(int $number_of_item = 20): int
   {
@@ -185,8 +192,13 @@ class RSS
   }
 
   /**
-   * all list of items
-   * @return array
+   * Retrieves a list of RSS products based on specific filters and conditions.
+   * Removes the current page from the navigation history and fetches product details,
+   * including image, name, description, manufacturer information, and timestamps.
+   * The query is adjusted depending on whether stock checking is enabled or disabled,
+   * and results are ordered by the product's addition date in descending order.
+   *
+   * @return array Returns an array of products matching the criteria.
    */
   public function setListRSS(): array
   {
@@ -249,8 +261,9 @@ class RSS
   }
 
   /**
-   * number of item
-   * @return int
+   * Calculates and returns the total count of RSS items.
+   *
+   * @return int The total number of RSS items.
    */
   public function countRSS(): int
   {
@@ -259,7 +272,9 @@ class RSS
   }
 
   /**
-   * @return string
+   * Retrieves the date when the most recently modified product with active status and view status was added.
+   *
+   * @return string The date the product was added.
    */
   public function productDateAdded(): string
   {
@@ -277,8 +292,14 @@ class RSS
   }
 
   /**
-   * RSS 2.0 xml
-   * @return string
+   * Generates and returns a properly formatted RSS feed in XML format.
+   *
+   * The method constructs the complete RSS feed containing the required
+   * channel properties, image, and items dynamically populated based on
+   * the data available. It ensures the RSS feed adheres to XML syntax and
+   * RSS standards.
+   *
+   * @return string The generated RSS feed as an XML string.
    */
   public function displayFeed(): string
   {

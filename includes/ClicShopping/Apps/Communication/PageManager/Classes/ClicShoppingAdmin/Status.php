@@ -11,17 +11,32 @@
 namespace ClicShopping\Apps\Communication\PageManager\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
-
+/**
+ * Status modification of page manager - Sets the status of a page
+ *
+ * This method updates the status of a specified page in the pages_manager table.
+ * It can either enable (status = 1) or disable (status = 0) the page. The method
+ * also updates relevant fields such as `date_status_change`, and optionally,
+ * `page_date_closed` depending on the status passed.
+ *
+ * @param int $pages_id The ID of the page to update
+ * @param int $status The desired status for the page (1 for active, 0 for inactive)
+ * @return string|int Updates the database and returns an indication of success or failure (-1 for invalid status)
+ */
 class Status
 {
   protected int $pages_id;
 
   /**
-   * Status modification of page manager - Sets the status of a page
+   * Updates the status of a page in the pages_manager table based on the provided status.
    *
-   * @param int $pages_id pages_id, status
-   * @param int $status
-   * @return string status on or off
+   * @param int $pages_id The ID of the page to update.
+   * @param int $status The desired status to set for the page.
+   *                    Use 1 to activate the page and 0 to deactivate it.
+   *                    Any other value will result in no changes and will return -1.
+   *
+   * @return mixed Returns the result of the save operation when the status is set to 1 or 0.
+   *               Returns -1 for invalid status values.
    */
   public static function getPageManagerStatus(int $pages_id, int $status)
   {

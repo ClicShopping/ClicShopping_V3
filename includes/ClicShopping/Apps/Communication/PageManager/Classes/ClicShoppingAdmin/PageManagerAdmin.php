@@ -11,7 +11,9 @@
 namespace ClicShopping\Apps\Communication\PageManager\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
-
+/**
+ * Class providing administrative methods related to page management.
+ */
 class PageManagerAdmin
 {
 
@@ -19,9 +21,11 @@ class PageManagerAdmin
   protected int $language_id;
 
   /**
-   * @param int $pages_id
-   * @param int|null $language_id
-   * @return string
+   * Retrieves the title of a page from the pages manager description table based on the provided page ID and language ID.
+   *
+   * @param int $pages_id The ID of the page whose title is to be retrieved.
+   * @param int|null $language_id The ID of the language. If 0 or null, the default language ID will be used.
+   * @return string The title of the specified page.
    */
   public static function getPageManagerTitle(int $pages_id,  int|null $language_id): string
   {
@@ -45,9 +49,11 @@ class PageManagerAdmin
 
 
   /**
-   * @param int $pages_id
-   * @param int|null $language_id
-   * @return string
+   * Retrieves the head title tag of a page from the pages manager description table based on the page ID and language ID.
+   *
+   * @param int $pages_id The ID of the page.
+   * @param int|null $language_id The ID of the language. If null or 0, the default language ID will be used.
+   * @return string The head title tag of the specified page.
    */
   public static function getPageManagerHeadTitleTag(int $pages_id,  int|null $language_id): string
   {
@@ -70,9 +76,11 @@ class PageManagerAdmin
   }
 
   /**
-   * @param int $pages_id
-   * @param int|null $language_id
-   * @return string
+   * Retrieves the head description tag for a page based on the given page ID and language ID.
+   *
+   * @param int $pages_id The ID of the page for which the head description tag is retrieved.
+   * @param int|null $language_id The ID of the language. If null or 0, the default language ID is used.
+   * @return string The head description tag associated with the given page and language.
    */
   public static function getPageManagerHeadDescTag(int $pages_id,  int|null $language_id): string
   {
@@ -95,9 +103,11 @@ class PageManagerAdmin
   }
 
   /**
-   * @param int $pages_id
-   * @param int|null $language_id
-   * @return string
+   * Retrieves the keyword meta tag for a specific page and language from the page manager.
+   *
+   * @param int $pages_id The ID of the page for which to retrieve the keyword meta tag.
+   * @param int|null $language_id The ID of the language. If set to null or 0, the default language ID will be used.
+   * @return string The keyword meta tag associated with the specified page and language.
    */
   public static function getPageManagerHeadKeywordsTag(int $pages_id,  int|null $language_id): string
   {

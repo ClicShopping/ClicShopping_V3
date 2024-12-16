@@ -11,9 +11,19 @@
 namespace ClicShopping\Apps\Customers\Gdpr\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
-
+/**
+ * Class Gdpr
+ *
+ * Provides methods for handling GDPR-related operations, including the deletion of customer data from multiple tables.
+ */
 class Gdpr
 {
+  /**
+   * Deletes all customer-related data from multiple database tables based on the provided customer ID.
+   *
+   * @param int $customers_id The ID of the customer whose data will be deleted.
+   * @return void
+   */
   public static function deleteCustomersData(int $customers_id): void
   {
     $CLICSHOPPING_Gdpr = Registry::get('Gdpr');

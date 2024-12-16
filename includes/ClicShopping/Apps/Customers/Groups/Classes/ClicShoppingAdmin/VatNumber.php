@@ -11,11 +11,20 @@
 namespace ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin;
 
 use SoapClient;
-
+/**
+ * Get the prefix for Intracommunity VAT numbers for various countries.
+ *
+ * This method returns an associative array where the keys represent ISO
+ * code of countries and values represent the corresponding VAT prefix.
+ *
+ * @return array Returns an array of ISO country codes and their VAT prefixes.
+ */
 class VatNumber
 {
   /**
-   * @return array
+   * Retrieves an associative array of intracommunity VAT prefixes for European Union countries.
+   *
+   * @return array An associative array where the keys represent country codes and the values are the corresponding VAT prefixes.
    */
   public static function getPrefixIntracomVAT(): array
   {
@@ -84,8 +93,10 @@ class VatNumber
   }
 
   /**
-   * @param string $country_iso
-   * @return bool|void
+   * Checks if the provided ISO country code is valid and present in the list of prefixes for Intracom VAT.
+   *
+   * @param string $country_iso The ISO country code to be checked.
+   * @return bool Returns true if the country ISO is invalid or not found in the list; otherwise, false.
    */
   public static function checkIsoCountry(string $country_iso)
   {
@@ -101,7 +112,9 @@ class VatNumber
   }
 
   /**
-   * @return bool|soapclient
+   * Checks the availability of a web service by attempting to create a SOAP client.
+   *
+   * @return mixed Returns the SOAP client if the web service is available, or true if it is unavailable.
    */
   public static function checkWebService()
   {
@@ -116,9 +129,11 @@ class VatNumber
   }
 
   /**
-   * @param string|null $country_iso
-   * @param string $tva_intracom
-   * @return bool
+   * Checks the validity of a VAT number against a web service.
+   *
+   * @param string|null $country_iso The ISO country code. If null, it will be determined based on the VAT number.
+   * @param string $tva_intracom The VAT number to validate.
+   * @return bool Returns true if the VAT check fails or the web service is unavailable, false if the VAT check succeeds.
    */
   public static function serviceCheckVat(?string $country_iso, string $tva_intracom): bool
   {
@@ -186,8 +201,10 @@ class VatNumber
   }
 
   /**
-   * @param $response
-   * @return string
+   * Processes the response to extract company information and formats it as a JSON-like string.
+   *
+   * @param array $response The response data containing company details.
+   * @return string A formatted string representing the company's information in a JSON-like structure.
    */
   public static function getInfoCompany($response): string
   {
