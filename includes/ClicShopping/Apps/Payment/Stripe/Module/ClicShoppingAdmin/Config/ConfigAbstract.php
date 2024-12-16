@@ -12,7 +12,13 @@ namespace ClicShopping\Apps\Payment\Stripe\Module\ClicShoppingAdmin\Config;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
-
+/**
+ * Abstract class representing a configuration module for Stripe payment integration in the ClicShoppingAdmin interface.
+ * This class defines basic functionality for module initialization, installation, uninstallation,
+ * and parameter management.
+ *
+ * It provides an extensible structure for creating specific configuration modules by extending this abstract class.
+ */
 abstract class ConfigAbstract
 {
   public mixed $app;
@@ -30,6 +36,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructs the object, initializes required properties, and sets up the application instance.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Stripe');
@@ -39,6 +50,12 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module by iterating through the parameters,
+   * instantiating their associated classes, and saving their default configurations.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_STRIPE_' . $this->code . '_');
@@ -54,6 +71,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -66,6 +86,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the configuration parameters from the specified directory for the current module.
+   *
+   * @return array An array of configuration parameter keys defined in the module directory.
+   */
   public function getParameters()
   {
     $result = [];
@@ -89,6 +114,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes the input parameters for the configuration module.
+   *
+   * Parses defined configuration keys specific to the module, creating appropriate
+   * parameter objects and sorting them by their sort order. If a configuration
+   * value is not set, it saves the default value provided by the parameter object.
+   *
+   * @return array An associative array of configuration parameter fields sorted numerically by sort order.
+   */
   public function getInputParameters()
   {
     $result = [];

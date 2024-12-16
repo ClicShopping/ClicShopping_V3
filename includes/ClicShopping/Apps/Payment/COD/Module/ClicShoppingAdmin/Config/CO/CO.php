@@ -1,15 +1,25 @@
 <?php
 /**
+ * Class CO
  *
- * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
- * @Licence GPL 2 & MIT
- * @Info : https://www.clicshopping.org/forum/trademark/
+ * This class defines the configuration module for the "COD" (Cash on Delivery) payment app in the ClicShoppingAdmin.
+ * It manages the installation and uninstallation of the COD payment module and initializes its properties.
  *
+ * @package ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config\CO
  */
 
 namespace ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config\CO;
 
+
+/**
+ * Class CO
+ *
+ * Represents the configuration module for managing the "COD" (Cash on Delivery) payment method
+ * within the ClicShoppingAdmin application. Handles initialization, installation, and uninstalling
+ * of the COD payment system, including updating the list of installed payment modules.
+ *
+ * @package ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config\CO
+ */
 class CO extends \ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config\ConfigAbstract
 {
 

@@ -13,8 +13,20 @@ namespace ClicShopping\Apps\Payment\COD\Sql\MariaDb;
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class MariaDb
+ *
+ * Handles the execution process for the COD payment module, including installing
+ * necessary administration menu entries in the database and clearing cache when required.
+ */
 class MariaDb
 {
+  /**
+   * Executes the primary functionality of the method, which includes
+   * loading the required definitions and installing the menu administration.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_COD = Registry::get('COD');
@@ -23,9 +35,14 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu administration entry for the Cash on Delivery (COD) payment module.
+   * This includes adding a new menu entry to the database and its associated descriptions
+   * for all available languages, if it does not already exist. Additionally, clears
+   * the administrator menu cache after updates.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

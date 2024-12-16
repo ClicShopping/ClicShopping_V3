@@ -12,6 +12,11 @@ namespace ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config;
 
 use ClicShopping\OM\Registry;
 
+/**
+ * Abstract class ConfigParamAbstract.
+ *
+ * Provides an abstract base for configuring parameters within the COD app in the ClicShoppingAdmin environment.
+ */
 abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin\ConfigParamAbstract
 {
   public mixed $app;
@@ -20,6 +25,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_cod_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor method.
+   *
+   * @param string $config_module The configuration module name used to initialize the object and load related definitions.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('COD');

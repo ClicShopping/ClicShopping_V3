@@ -16,6 +16,13 @@ use ClicShopping\OM\Registry;
 use ClicShopping\Apps\Payment\COD\COD as CodApp;
 use ClicShopping\Sites\Common\B2BCommon;
 
+/**
+ * This class implements the PaymentInterface for the Cash on Delivery (COD) payment module.
+ * It provides the functionality to manage the COD payment option within a ClicShopping application.
+ *
+ * The CO class includes methods to handle payment-specific operations such as validation,
+ * module activation and deactivation, order status updates, and more.
+ */
 class CO implements \ClicShopping\OM\Modules\PaymentInterface
 {
   public string $code;
@@ -30,6 +37,15 @@ class CO implements \ClicShopping\OM\Modules\PaymentInterface
   public int|null $sort_order = 0;
   public $group;
 
+  /**
+   * Constructor method initializes the Cash on Delivery (COD) module.
+   * Sets up the module attributes such as code, title, description, and status.
+   * Loads necessary resources and configuration options from the registry.
+   * Determines module availability based on customer group and other conditions.
+   * Configures order status and sort order specific to the module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -91,6 +107,13 @@ class CO implements \ClicShopping\OM\Modules\PaymentInterface
   }
 
 
+  /**
+   * Updates the status of the module based on geographic zones and order content type.
+   * The method checks if the module is enabled and verifies its compatibility with
+   * the specified geographic zones and whether the order contains only virtual products.
+   *
+   * @return void
+   */
   public function update_status()
   {
     $CLICSHOPPING_Order = Registry::get('Order');
@@ -125,11 +148,21 @@ class CO implements \ClicShopping\OM\Modules\PaymentInterface
     }
   }
 
+  /**
+   * Validates JavaScript input or related functionality.
+   *
+   * @return bool Returns false indicating the validation process.
+   */
   public function javascript_validation()
   {
     return false;
   }
 
+  /**
+   * Retrieves the selection details for the module, including the module ID and title.
+   *
+   * @return array An associative array containing the module's ID and title.
+   */
   public function selection()
   {
     $CLICSHOPPING_Template = Registry::get('Template');
@@ -147,52 +180,101 @@ class CO implements \ClicShopping\OM\Modules\PaymentInterface
     ];
   }
 
+  /**
+   * Performs necessary checks or operations before order confirmation.
+   *
+   * @return bool Always returns false.
+   */
   public function pre_confirmation_check()
   {
     return false;
   }
 
+  /**
+   * Handles the confirmation process logic.
+   *
+   * @return bool Returns false to indicate the confirmation process did not succeed.
+   */
   public function confirmation()
   {
     return false;
   }
 
+  /**
+   *
+   * @return bool Returns false indicating the button processing did not complete successfully.
+   */
   public function process_button()
   {
     return false;
   }
 
+  /**
+   * Executes preliminary processing logic before the main process.
+   *
+   * @return bool Returns false to indicate no further processing is required.
+   */
   public function before_process()
   {
     return false;
   }
 
+  /**
+   * Executes finalization logic after the main process has completed.
+   *
+   * @return bool Returns false to indicate the process did not complete successfully or requires no additional handling.
+   */
   public function after_process()
   {
     return false;
   }
 
+  /**
+   * Retrieves the error state of the process.
+   *
+   * @return bool Returns false when no error is present.
+   */
   public function get_error()
   {
     return false;
   }
 
 
+  /**
+   * Checks if the constant 'CLICSHOPPING_APP_COD_CO_STATUS' is defined and if its value is not an empty string after trimming.
+   *
+   * @return bool Returns true if the constant is defined and has a non-empty value, otherwise false.
+   */
   public function check()
   {
     return \defined('CLICSHOPPING_APP_COD_CO_STATUS') && (trim(CLICSHOPPING_APP_COD_CO_STATUS) != '');
   }
 
+  /**
+   * Initiates the installation process and redirects to the configuration page for the specified module.
+   *
+   * @return void This method does not return a value.
+   */
   public function install()
   {
     $this->app->redirect('Configure&Install&module=CO');
   }
 
+  /**
+   * Redirects to the uninstall configuration page for the specified module.
+   *
+   * @return void
+   */
   public function remove()
   {
     $this->app->redirect('Configure&Uninstall&module=CO');
   }
 
+  /**
+   * Retrieves an array of configuration keys.
+   *
+   * @return array An array containing configuration key strings.
+   */
   public function keys()
   {
     return array('CLICSHOPPING_APP_COD_CO_SORT_ORDER');

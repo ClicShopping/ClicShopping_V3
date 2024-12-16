@@ -13,6 +13,14 @@ namespace ClicShopping\Apps\Payment\COD;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class COD
+ *
+ * This class extends the abstract class \ClicShopping\OM\AppAbstract and provides functionalities
+ * related to the configuration and management of Cash on Delivery (COD) payment modules within
+ * the ClicShopping application. It includes methods for retrieving configuration modules, module
+ * information, API version, and identifier.
+ */
 class COD extends \ClicShopping\OM\AppAbstract
 {
   protected $api_version = 1;
@@ -23,7 +31,13 @@ class COD extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration module names, ordered by their sort order or default order.
+   *
+   * The method scans the specific directory for module configurations, checks if they are valid
+   * subclasses of the required abstract class, and loads them if appropriate. The resulting list
+   * is sorted based on a defined sort order or the default order determined by the scanning process.
+   *
+   * @return mixed An array of configuration module names indexed by their sort order or default order.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +88,11 @@ class COD extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific information about a configuration module.
+   *
+   * @param string $module The name of the module to retrieve the information for.
+   * @param string $info The specific information to retrieve from the module.
+   * @return mixed The information requested from the configuration module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -89,7 +105,9 @@ class COD extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version of the system.
    */
   public function getApiVersion(): string|int
   {
@@ -97,7 +115,9 @@ class COD extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier associated with the current instance.
+   *
+   * @return string The identifier of the instance.
    */
   public function getIdentifier(): string
   {

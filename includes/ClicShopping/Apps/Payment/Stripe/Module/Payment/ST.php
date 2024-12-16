@@ -17,6 +17,16 @@ use ClicShopping\Apps\Payment\Stripe\Stripe as StripeApp;
 use ClicShopping\Sites\Common\B2BCommon;
 use Stripe\PaymentIntent;
 use Stripe\Stripe as StripeAPI;
+/**
+ * Class ST
+ *
+ * This class represents the Stripe Payment integration module for the ClicShopping environment.
+ * It implements the PaymentInterface to handle all payment-related processes, including
+ * enabling/disabling the module, updating its status, and processing payments.
+ *
+ * The class interacts with the Stripe API for secure payment handling and supports configurations
+ * like custom order statuses, payment zones, and B2B group-based access.
+ */
 
 class ST implements \ClicShopping\OM\Modules\PaymentInterface
 {
@@ -36,6 +46,17 @@ class ST implements \ClicShopping\OM\Modules\PaymentInterface
   public $private_key;
   public $public_key;
 
+  /**
+   * Constructor method for initializing the Stripe payment module.
+   *
+   * This method sets up the necessary configurations and properties required
+   * for the Stripe payment module. It handles registry initialization,
+   * module definitions, versioning, API configuration, and enabling or disabling
+   * the module based on certain conditions, such as customer group settings
+   * and environment (production or test).
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -102,6 +123,14 @@ class ST implements \ClicShopping\OM\Modules\PaymentInterface
     }
   }
 
+  /**
+   * Updates the status of the payment module based on the delivery address and configured geo zones.
+   *
+   * This method checks if the module is enabled and if the delivery address matches the configured geo zone restrictions.
+   * If the delivery address does not fall within the specified geo zones, the module is disabled.
+   *
+   * @return void
+   */
   public function update_status()
   {
     $CLICSHOPPING_Order = Registry::get('Order');
@@ -129,11 +158,27 @@ class ST implements \ClicShopping\OM\Modules\PaymentInterface
     }
   }
 
+  /**
+   * Provides JavaScript validation for the application.
+   *
+   * @return bool Returns false indicating that JavaScript validation is not implemented or disabled.
+   */
   public function javascript_validation()
   {
     return false;
   }
 
+  /**
+   * Prepares and returns the module selection details.
+   *
+   * This method builds the module's selection details, including the module's
+   * unique identifier and public title. If a Stripe logo is set and available
+   * in the specified directory, it appends the logo to the public title.
+   *
+   * @return array An associative array containing the 'id' as the unique
+   * module identifier and 'module' as the public title, optionally including
+   * a logo image if configured.
+   */
   public function selection()
   {
     $CLICSHOPPING_Template = Registry::get('Template');
@@ -153,8 +198,10 @@ class ST implements \ClicShopping\OM\Modules\PaymentInterface
   }
 
   /**
-   * pre_confirmation_check()
-   **/
+   * Performs a pre-confirmation check before processing the payment.
+   *
+   * @return bool Always returns false.
+   */
   public function pre_confirmation_check()
   {
 //      $CLICSHOPPING_Template = Registry::get(('Template'));
@@ -162,6 +209,18 @@ class ST implements \ClicShopping\OM\Modules\PaymentInterface
     return false;
   }
 
+  /**
+   * Creates a payment intent and prepares the necessary information for confirming payment with Stripe.
+   *
+   * This method initializes the Stripe payment intent using order and customer details.
+   * It generates metadata based on the order's products and details, sets up either automatic
+   * or manual transaction capture mode depending on configuration, and includes relevant payment
+   * information in the confirmation content. The content includes embedded JavaScript for Stripe
+   * payment handling and essential input data.
+   *
+   * @return array The confirmation details, including generated HTML content and payment intent data,
+   *         to be displayed for confirming payment with Stripe.
+   */
   public function confirmation()
   {
     $CLICSHOPPING_Order = Registry::get('Order');
@@ -290,19 +349,37 @@ class ST implements \ClicShopping\OM\Modules\PaymentInterface
     return $confirmation;
   }
 
+  /**
+   * Processes the button action for the payment or form submission.
+   *
+   * @return bool Returns false to indicate no further processing is required.
+   */
   public function process_button()
   {
     return false;
   }
 
-  /***********************************************************
-   * before_process
-   ***********************************************************/
+  /**
+   * Executes any necessary logic prior to processing an operation.
+   *
+   * @return bool Returns false indicating no processing is performed.
+   */
   public function before_process()
   {
     return false;
   }
 
+  /**
+   * Processes additional operations after a successful order placement.
+   *
+   * This method retrieves the last order ID and updates its status and history
+   * in the database. If the order ID is unavailable, it retrieves the latest
+   * order ID from the database. It determines the new order status using the
+   * configured Stripe order status ID or falls back to the default order status ID.
+   * The function also logs any relevant comments with the updated order status.
+   *
+   * @return void
+   */
   public function after_process()
   {
     $CLICSHOPPING_Order = Registry::get('Order');
@@ -344,6 +421,17 @@ class ST implements \ClicShopping\OM\Modules\PaymentInterface
     $this->app->db->save('orders', $sql_data_array, $sql_insert);
   }
 
+  /**
+   * Retrieves the error details based on the provided error parameter in the URL.
+   *
+   * This method checks for the presence of an 'error' parameter in the URL. If found and its value matches specific cases,
+   * it updates the error message accordingly. Otherwise, it uses a general error message. The result is an associative
+   * array containing the error's title and message.
+   *
+   * @return array An associative array with two keys:
+   *               - 'title': The title of the error message.
+   *               - 'error': The detailed error message.
+   */
   public function get_error()
   {
     $message = $this->app->getDef('module_stripe_error_general');
@@ -363,27 +451,56 @@ class ST implements \ClicShopping\OM\Modules\PaymentInterface
     return $error;
   }
 
+  /**
+   * Checks if the Stripe module status is defined and not an empty string.
+   *
+   * @return bool True if the Stripe module status is set and not empty, false otherwise.
+   */
   public function check()
   {
     return \defined('CLICSHOPPING_APP_STRIPE_ST_STATUS') && (trim(CLICSHOPPING_APP_STRIPE_ST_STATUS) != '');
   }
 
+  /**
+   * Redirects to the installation configuration page for the specified module.
+   *
+   * @return void
+   */
   public function install()
   {
     $this->app->redirect('Configure&Install&module=Stripe');
   }
 
+  /**
+   * Redirects to the uninstall module configuration page for Stripe.
+   *
+   * @return void
+   */
   public function remove()
   {
     $this->app->redirect('Configure&Uninstall&module=Stripe');
   }
 
+  /**
+   * Retrieves the configuration keys used by the Stripe module.
+   *
+   * @return array An array of configuration key names.
+   */
   public function keys()
   {
     return array('CLICSHOPPING_APP_STRIPE_ST_SORT_ORDER');
   }
 
 
+  /**
+   * Generates the JavaScript necessary for handling Stripe payment processing,
+   * including creating and managing card elements, submitting the payment form,
+   * and handling saved cards or new card details for Stripe intents.
+   *
+   * @param mixed $intent Optional argument for passing additional intent-related information.
+   *                      Defaults to null if not provided.
+   * @return string The JavaScript code as a string to be included on the payment processing page.
+   */
   public function getSubmitCardDetailsJavascript($intent = null)
   {
     $stripe_publishable_key = $this->public_key;

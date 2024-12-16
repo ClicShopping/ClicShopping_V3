@@ -12,7 +12,11 @@ namespace ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
-
+/**
+ * Abstract class providing a base structure for configuration modules.
+ * Handles initialization, installation, uninstallation, and parameter management
+ * for the ClicShopping Config structure related to the COD payment module.
+ */
 abstract class ConfigAbstract
 {
   public mixed $app;
@@ -30,6 +34,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the object by setting the app instance, determining the class name,
+   * and calling the initial setup method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('COD');
@@ -39,6 +49,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the module configuration by iterating through its parameters,
+   * dynamically instantiating the configuration parameter class, and saving
+   * its default values along with optional metadata (title, description, and set function).
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_COD_' . $this->code . '_');
@@ -54,6 +71,16 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Removes configuration settings associated with the module from the database.
+   *
+   * This method executes a SQL DELETE statement to remove all entries in the
+   * configuration table where the configuration key matches the specific pattern
+   * associated with the current module. The number of rows affected by the deletion
+   * is returned.
+   *
+   * @return int The number of rows deleted from the configuration table.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -66,6 +93,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves an array of configuration parameter constants for the module.
+   *
+   * @return array An array of constants representing the configuration parameters of the module.
+   */
   public function getParameters()
   {
     $result = [];
@@ -89,6 +121,11 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the module configuration.
+   *
+   * @return array An array of processed input parameters sorted by their order.
+   */
   public function getInputParameters()
   {
     $result = [];

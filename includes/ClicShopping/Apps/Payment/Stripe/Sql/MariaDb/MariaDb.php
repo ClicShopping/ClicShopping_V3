@@ -12,9 +12,20 @@ namespace ClicShopping\Apps\Payment\Stripe\Sql\MariaDb;
 
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
-
+/**
+ * Class MariaDb
+ *
+ * This class handles the setup and management of Stripe integration within the
+ * ClicShopping application, specifically to install and configure the administration menu
+ * for the Stripe module.
+ */
 class MariaDb
 {
+  /**
+   * Executes the installation process for the Stripe module within the ClicShopping Admin interface.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Stripe = Registry::get('Stripe');
@@ -23,9 +34,13 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the Stripe module menu into the administrator menu system of the ClicShopping Admin interface.
+   * This includes adding the necessary menu entry and associated descriptions for all available languages.
+   * Clears the cached administrator menu data upon successful insertion.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

@@ -12,7 +12,10 @@ namespace ClicShopping\Apps\Payment\Stripe;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
-
+/**
+ * Class Stripe is a part of the ClicShopping payment module.
+ * It handles the configuration modules and provides access to relevant information regarding payment configurations.
+ */
 class Stripe extends \ClicShopping\OM\AppAbstract
 {
 
@@ -24,7 +27,15 @@ class Stripe extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the configuration modules available within the specified directory.
+   *
+   * This method scans the predefined directory for available configuration modules, validates
+   * them to ensure they extend the required abstract class, and organizes them by sort order.
+   * If a configuration module does not specify a sort order, it is appended to the result list.
+   * The results are cached in a static variable for efficiency during subsequent calls.
+   *
+   * @return mixed An array of configuration module names indexed by their sort order,
+   *               or an empty array if no modules are found or accessible.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +86,11 @@ class Stripe extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information.
+   *
+   * @param string $module The name of the configuration module.
+   * @param string $info The specific information to retrieve from the module.
+   * @return mixed The requested information from the configuration module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +103,9 @@ class Stripe extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The current API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +113,9 @@ class Stripe extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier value.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

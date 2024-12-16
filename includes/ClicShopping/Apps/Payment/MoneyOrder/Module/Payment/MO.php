@@ -16,7 +16,11 @@ use ClicShopping\OM\Registry;
 use ClicShopping\Apps\Payment\MoneyOrder\MoneyOrder as MoneyOrderApp;
 use ClicShopping\Sites\Common\B2BCommon;
 
-
+/**
+ * The MO class represents the Money Order payment module.
+ * It implements the PaymentInterface for compatibility with the ClicShopping payment system.
+ * This class contains the methods necessary to interact with Money Order payment operations such as setup, status checks, and configurations.
+ */
 class MO implements \ClicShopping\OM\Modules\PaymentInterface
 {
   public string $code;
@@ -31,6 +35,11 @@ class MO implements \ClicShopping\OM\Modules\PaymentInterface
   protected $api_version;
   public $group;
 
+  /**
+   * Constructor method for initializing the MoneyOrder module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -76,7 +85,10 @@ class MO implements \ClicShopping\OM\Modules\PaymentInterface
       }
 
       if ((int)CLICSHOPPING_APP_MONEYORDER_MO_PREPARE_ORDER_STATUS_ID > 0) {
-        $this->order_status = CLICSHOPPING_APP_MONEYORDER_MO_PREPARE_ORDER_STATUS_ID;
+        /**
+         *
+         */
+          $this->order_status = CLICSHOPPING_APP_MONEYORDER_MO_PREPARE_ORDER_STATUS_ID;
       }
 
       if ($this->enabled === true) {
@@ -90,6 +102,11 @@ class MO implements \ClicShopping\OM\Modules\PaymentInterface
   }
 
 
+  /**
+   * Updates the status of the payment module based on the geographical zone and order delivery details.
+   *
+   * @return void
+   */
   public function update_status()
   {
     $CLICSHOPPING_Order = Registry::get('Order');
@@ -116,11 +133,21 @@ class MO implements \ClicShopping\OM\Modules\PaymentInterface
     }
   }
 
+  /**
+   * Validates JavaScript-related inputs or processes.
+   *
+   * @return bool Returns false to indicate validation failure or unimplemented logic.
+   */
   public function javascript_validation()
   {
     return false;
   }
 
+  /**
+   * Prepares and formats the payment selection module for display.
+   *
+   * @return array An associative array containing the payment module's ID and formatted public title.
+   */
   public function selection()
   {
     $CLICSHOPPING_Template = Registry::get('Template');
@@ -138,11 +165,20 @@ class MO implements \ClicShopping\OM\Modules\PaymentInterface
     ];
   }
 
+  /**
+   *
+   * @return bool Returns false indicating the pre-confirmation check did not pass or is not required.
+   */
   public function pre_confirmation_check()
   {
     return false;
   }
 
+  /**
+   * Prepares and returns the confirmation details for the money order payment module.
+   *
+   * @return array Contains the confirmation title including optional logo and payment details.
+   */
   public function confirmation()
   {
     $CLICSHOPPING_Template = Registry::get('Template');
@@ -160,45 +196,83 @@ class MO implements \ClicShopping\OM\Modules\PaymentInterface
     return array('title' => $this->title_selection);
   }
 
+  /**
+   * Processes the button and determines its action.
+   *
+   * @return bool Returns false indicating the button processing does not proceed.
+   */
   public function process_button()
   {
     return false;
   }
 
+  /**
+   * Executes before a process begins.
+   *
+   * @return bool Returns false to indicate that the process should not proceed.
+   */
   public function before_process()
   {
     return false;
   }
 
+  /**
+   *
+   * @return bool Returns false after processing.
+   */
   public function after_process()
   {
     return false;
   }
 
+  /**
+   *
+   * @return bool Returns false indicating no specific error handling or error state.
+   */
   public function get_error()
   {
     return false;
   }
 
 
+  /**
+   * Checks if the constant 'CLICSHOPPING_APP_MONEYORDER_MO_STATUS' is defined and not an empty string after trimming.
+   *
+   * @return bool Returns true if the constant is defined and not empty; otherwise, false.
+   */
   public function check()
   {
     return \defined('CLICSHOPPING_APP_MONEYORDER_MO_STATUS') && (trim(CLICSHOPPING_APP_MONEYORDER_MO_STATUS) != '');
   }
 
+  /**
+   * Redirects the application to the configuration and installation page
+   * for the MoneyOrder module.
+   *
+   * @return void
+   */
   public function install()
   {
     $this->app->redirect('Configure&Install&module=MoneyOrder');
   }
 
+  /**
+   * Redirects the application to the uninstall configuration page for the MoneyOrder module.
+   *
+   * @return void
+   */
   public function remove()
   {
     $this->app->redirect('Configure&Uninstall&module=MoneyOrder');
   }
 
+  /**
+   * Retrieves an array of configuration keys related to the Money Order application.
+   *
+   * @return array An array containing configuration keys.
+   */
   public function keys()
   {
     return array('CLICSHOPPING_APP_MONEYORDER_MO_SORT_ORDER');
   }
-
 }

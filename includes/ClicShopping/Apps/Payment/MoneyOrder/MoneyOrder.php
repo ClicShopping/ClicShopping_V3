@@ -13,6 +13,15 @@ namespace ClicShopping\Apps\Payment\MoneyOrder;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class MoneyOrder
+ *
+ * This class represents the MoneyOrder application in the ClicShopping environment.
+ * It extends the AppAbstract class and implements the necessary methods to handle
+ * the configuration of Money Order payment modules. It provides methods to retrieve
+ * configuration modules, module information, API version, and the identifier of the app.
+ */
+
 class MoneyOrder extends \ClicShopping\OM\AppAbstract
 {
   protected $api_version = 1;
@@ -23,7 +32,11 @@ class MoneyOrder extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules from a specified directory. The method scans the directory,
+   * identifies valid configuration modules by verifying their inheritance from a specific abstract class,
+   * and returns an ordered array of module names based on their sort order or position.
+   *
+   * @return mixed Returns an array of configuration module names sorted by their defined order or position.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +87,11 @@ class MoneyOrder extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the given module name and information key.
+   *
+   * @param string $module The name of the module to retrieve information for.
+   * @param string $info The specific information key to retrieve from the module.
+   * @return mixed The requested module information value.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -89,7 +104,9 @@ class MoneyOrder extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -97,7 +114,9 @@ class MoneyOrder extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier value.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

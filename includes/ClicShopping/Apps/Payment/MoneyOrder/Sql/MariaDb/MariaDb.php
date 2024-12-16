@@ -13,8 +13,17 @@ namespace ClicShopping\Apps\Payment\MoneyOrder\Sql\MariaDb;
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\Registry;
 
+/**
+ * Handles the setup and database logic for the Money Order payment module in MariaDb.
+ * Provides functionality to install necessary configurations in the administrator menu.
+ */
 class MariaDb
 {
+  /**
+   * Executes the installation process for the MoneyOrder module.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_MoneyOrder = Registry::get('MoneyOrder');
@@ -23,9 +32,13 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu administration entry for the Money Order payment module.
+   * The method inserts a new record into the `administrator_menu` table if the entry does not already exist.
+   * It also adds language-specific descriptions for the newly created menu entry.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
