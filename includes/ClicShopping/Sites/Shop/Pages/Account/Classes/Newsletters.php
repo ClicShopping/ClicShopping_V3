@@ -15,7 +15,14 @@ use ClicShopping\OM\Registry;
 class Newsletters
 {
   /**
-   * @return mixed
+   * Retrieves the newsletter subscription status of the current customer.
+   *
+   * This method queries the database to check if the customer is subscribed
+   * to the newsletter. It uses the customer's ID to look up the relevant
+   * record in the customers table and returns the integer value representing
+   * the subscription status.
+   *
+   * @return int Returns the newsletter subscription status as an integer.
    */
   public static function getCustomerNewsletter()
   {

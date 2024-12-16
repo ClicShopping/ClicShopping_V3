@@ -16,7 +16,12 @@ use ClicShopping\OM\Registry;
 class HistoryInfo
 {
   /**
-   * @return mixed
+   * Retrieves specific order history information based on the provided order ID.
+   *
+   * This method queries the database to fetch the customer's ID related to a specific order.
+   * It checks if the order status is associated with a public flag and matches the current language ID.
+   *
+   * @return array|false Returns an associative array containing the customer ID if found, or false if no record matches.
    */
   public static function getHistoryInfoCheck()
   {
@@ -42,7 +47,10 @@ class HistoryInfo
   }
 
   /**
-   * @return int
+   * Retrieves the total count of records in the orders status history table
+   * corresponding to a specific order ID.
+   *
+   * @return int The number of records found for the given order ID.
    */
   public static function getHistoryInfoCount(): int
   {
@@ -62,7 +70,12 @@ class HistoryInfo
   }
 
   /**
-   * @return mixed
+   * Retrieves the display history information support flag based on specific conditions.
+   *
+   * This method queries the database to check if there is a row in the `orders_status` table
+   * where the `support_orders_flag` is set to 0 and the `orders_status_id` is 5.
+   *
+   * @return int|null Returns the value of the `support_orders_flag` if found, otherwise null.
    */
   public static function getDisplayHistoryInfoSupport()
   {
@@ -82,7 +95,11 @@ class HistoryInfo
   }
 
   /**
-   * @return array
+   * Retrieves the order history information including status name, date added, comments,
+   * tracking number, and support ID, for a specific order based on the given order ID.
+   * The information is filtered by language and public flag.
+   *
+   * @return array An array of order history information matching the specified criteria.
    */
   public static function getHistoryInfoDisplay(): array
   {
@@ -113,7 +130,14 @@ class HistoryInfo
   }
 
   /**
-   * @return mixed
+   * Retrieves information about downloadable files related to a specific order.
+   *
+   * This method performs a query to fetch distinct product details that are linked
+   * to a given order and meet specific conditions, such as the order's status and
+   * the product's availability within active categories.
+   *
+   * @return array|bool Returns an associative array containing the details of the product
+   *                    and its downloadable file if found, or false if no record is found.
    */
   public static function getHistoryInfoDownloadFiles()
   {
@@ -148,8 +172,10 @@ class HistoryInfo
   }
 
   /**
-   * @param int $orders_status_support_id
-   * @return mixed
+   * Retrieves the name of the order status support related to a specific customer support history entry.
+   *
+   * @param int $orders_status_support_id The ID of the order status support to fetch information for.
+   * @return array|bool Returns the fetched support information as an associative array or false if no record is found.
    */
   public static function getHistoryInfoSupportCustomer(int $orders_status_support_id)
   {
@@ -177,11 +203,9 @@ class HistoryInfo
 
 
   /**
-   * Get the tracking number
+   * Generates and retrieves a tracking link based on order status and tracking details.
    *
-   * @param string $tracking , $CLICSHOPPING_Language->getId()
-   * @return string tracking_url, the url of the tracking
-   *
+   * @return string The constructed tracking link or a default tracking URL.
    */
   public static function getTrackingLink(): string
   {
@@ -209,7 +233,17 @@ class HistoryInfo
   }
 
   /**
-   * @return mixed
+   * Retrieves download files for products purchased associated with a specific order.
+   *
+   * This method queries the database to fetch details about downloadable products
+   * from a given order or the latest order placed by the customer. The method processes
+   * requests based on the provided 'order' and 'id' parameters in the GET request.
+   *
+   * The query returns details such as the product name, filename of the downloadable file,
+   * download count, maximum download days, and the purchase date.
+   *
+   * @return \PDOStatement|null The query result containing the downloadable product details,
+   *                             or null if no query is executed.
    */
   public static function getDownloadFilesPurchased()
   {

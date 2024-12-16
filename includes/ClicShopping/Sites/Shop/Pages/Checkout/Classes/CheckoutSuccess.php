@@ -16,7 +16,9 @@ use ClicShopping\OM\Registry;
 class CheckoutSuccess
 {
   /**
-   * @return mixed
+   * Retrieves the most recent order for the currently logged-in customer.
+   *
+   * @return mixed Returns the query result containing the order information of the most recently purchased order by the customer.
    */
   public static function getCheckoutSuccessOrder(): mixed
   {
@@ -36,6 +38,9 @@ class CheckoutSuccess
   }
 
   /**
+   * Checks if the last order exists for the customer after checkout.
+   * If no order is found, redirects to the shopping cart page.
+   *
    * @return void
    */
   public static function getCheckoutSuccessOrderCheck(): void
@@ -48,7 +53,9 @@ class CheckoutSuccess
   }
 
   /**
-   * @return int
+   * Retrieves the order ID of the most recent checkout success order for the current customer.
+   *
+   * @return int The ID of the most recent order.
    */
   public static function getCheckoutSuccessOrderId(): int
   {

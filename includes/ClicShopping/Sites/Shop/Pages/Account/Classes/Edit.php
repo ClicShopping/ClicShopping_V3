@@ -24,7 +24,12 @@ class Edit
   }
 
   /**
-   * @return array
+   * Retrieves account details for the currently logged-in customer.
+   *
+   * @return array An associative array containing customer details such as gender,
+   *               firstname, lastname, date of birth, email address, telephone,
+   *               cellular phone, company, SIRET, APE, VAT intracommunity number,
+   *               and VAT ISO code.
    */
   public static function getAccountEdit(): array
   {
@@ -55,8 +60,11 @@ class Edit
   }
 
   /**
-   * @param string $email_address
-   * @return int
+   * Retrieves the count of email addresses in the customers table that match a specific email address
+   * but exclude the current customer's ID.
+   *
+   * @param string $email_address The email address to compare against records in the customers table.
+   * @return int The total count of matching email addresses, excluding the current customer.
    */
   public static function getCountEmail(string $email_address): int
   {
@@ -78,8 +86,11 @@ class Edit
   }
 
   /**
-   * @param string $email_address
-   * @return bool
+   * Checks if there is a customer address email in the database that matches the provided email
+   * address and belongs to a different customer.
+   *
+   * @param string $email_address The email address to check against customer records.
+   * @return bool Returns true if a matching customer email address is found, otherwise false.
    */
   public static function getCustomerAddressEmail(string $email_address): bool
   {
@@ -102,8 +113,11 @@ class Edit
   }
 
   /**
-   * @param int $country_id
-   * @return int
+   * Verifies the existence of a country using its ISO Code 2 and retrieves its ID.
+   *
+   * @param int $country_id The ISO Code 2 of the country to check.
+   *
+   * @return int The ID of the country if it exists, otherwise 0 or a similar non-existent indicator.
    */
   public static function getCheckCountryIsoCode2(int $country_id): int
   {

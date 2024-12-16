@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class CreateAccount
 {
+  /**
+   * Retrieves the ISO code (2 characters) of the country associated with the predefined country ID.
+   *
+   * @return string Returns the 2-character ISO code of the specified country.
+   */
   public static function getCountryPro(): string
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -31,6 +36,15 @@ class CreateAccount
     return $default_country_pro;
   }
 
+  /**
+   * Retrieves the origin URL based on the navigation history snapshot.
+   *
+   * If a snapshot exists in the navigation history, the method will return
+   * the URL from the snapshot and then reset the snapshot. If no snapshot
+   * exists, it will return a default redirect URL.
+   *
+   * @return string The origin URL based on navigation history or default redirect.
+   */
   public static function getOriginHref()
   {
     $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');

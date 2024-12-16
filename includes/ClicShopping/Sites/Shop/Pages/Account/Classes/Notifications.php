@@ -16,7 +16,9 @@ use function is_null;
 class Notifications
 {
   /**
-   * @return int
+   * Retrieves the global product notification status for a customer.
+   *
+   * @return int Returns 1 if the customer has enabled global product notifications, otherwise 0.
    */
   public static function getGlobalNotificationCustomer(): int
   {
@@ -34,7 +36,10 @@ class Notifications
   }
 
   /**
-   * @return int
+   * Performs a database query to count the rows in the products notifications table
+   * for the currently logged-in customer.
+   *
+   * @return int The number of rows in the products notifications table for the current customer.
    */
   public static function getGlobalProductNotificationsCheckRowCount(): int
   {
@@ -54,8 +59,10 @@ class Notifications
   }
 
   /**
-   * @param null $products_id
-   * @return string
+   * Retrieves the product name for a specified product ID if the customer has subscribed to notifications for that product.
+   *
+   * @param int|null $products_id The ID of the product to retrieve the notification for. If null, no product name will be retrieved.
+   * @return string|null Returns the product name if found, or null if no product is found or $products_id is null.
    */
   public static function getGlobalProductNotificationsProduct($products_id = null)
   {

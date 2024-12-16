@@ -16,7 +16,9 @@ use function count;
 class ProductsNewClass
 {
   /**
-   * @return array
+   * Retrieves a list of column identifiers from the defined list based on their enabled status.
+   *
+   * @return array An array of column identifiers where the respective module configuration value is greater than 0, sorted in ascending order.
    */
   public static function getCountColumnList(): array
   {
@@ -41,7 +43,14 @@ class ProductsNewClass
   }
 
   /**
-   * @return string
+   * Constructs and returns a SQL query string for retrieving product listings based on
+   * specified conditions, customer group, and sorting preferences.
+   *
+   * The generated query dynamically includes different columns and conditions depending
+   * on the module configuration and customer group settings, as well as applying sorting
+   * logic based on GET parameters.
+   *
+   * @return string The SQL query string for retrieving the product listings.
    */
   private static function Listing()
   {
@@ -144,7 +153,14 @@ class ProductsNewClass
   }
 
   /**
-   * @return mixed
+   * Retrieves the listing query, preparing it based on the customer's group ID.
+   *
+   * This function accesses the customer and database registry objects to prepare
+   * a database query. If the customer belongs to a specific customer group (group ID not 0),
+   * the group ID is included in the query using a bound parameter. Otherwise,
+   * the query is prepared without the customer group condition.
+   *
+   * @return mixed The prepared database query object ready for execution.
    */
   public static function getListing()
   {
