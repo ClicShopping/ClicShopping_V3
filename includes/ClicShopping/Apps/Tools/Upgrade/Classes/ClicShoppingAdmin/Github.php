@@ -73,6 +73,11 @@ class Github
   * @return  $url url about the ClicShopping includes
   * @access
   */
+  /**
+   * Constructs the GitHub repository URL for includes.
+   *
+   * @return string The constructed GitHub includes repository URL.
+   */
   private function getGithubincludesRepo()
   {
     $url = $this->githubApi . '/' . $this->githubRepo . '/' . $this->coreName . '/' . $this->githubRepoClicShoppingincludes;
@@ -85,16 +90,26 @@ class Github
   * @param
   * @return  user agent
   */
+  /**
+   * Retrieves the current context.
+   *
+   * @return mixed The current context value.
+   */
   private function setContext()
   {
     return $this->context;
   }
 
   /**
-   * get ClicShopping includes Version from Github
-   * @param
-   * @return $version version of new clicshopping core
+   * Retrieves the core JSON information from a remote source or cache.
    *
+   * This method attempts to fetch the core JSON version information either from
+   * a cache (if valid) or directly from a remote repository. If the cache is
+   * outdated or unavailable, the method retrieves the JSON data online,
+   * processes it, and stores it in the cache.
+   *
+   * @return mixed Returns the JSON decoded data if successful, or false if an
+   * error occurs during retrieval or processing.
    */
   public function getJsonCoreInformation()
   {
@@ -124,9 +139,10 @@ class Github
   }
 
   /**
-   * @param $source
-   * @param $destination
-   * @return void
+   * Extracts the contents of a zip file to a specified destination.
+   *
+   * @param string $source The path to the source zip file.
+   * @param string $destination The path to the directory where the contents should be extracted.
    */
   private function getExtractZip(string $source, string $destination)
   {
@@ -139,12 +155,20 @@ class Github
   * @return
   *
   */
+  /**
+   * Handles the close and open store functionality.
+   *
+   * @param mixed $value The value to be processed by the close and open store method.
+   * @return void
+   */
   private function getCloseOpenStore($value): void
   {
     $this->extracfile->getCloseOpenStore($value);
   }
 
   /**
+   * Checks for updates in the online directory by invoking the corresponding method in the extracfile object.
+   *
    * @return void
    */
   private function checkDirectoryOnlineUpdate()
@@ -154,8 +178,11 @@ class Github
 
 
   /**
-   * get all modules directories for template
-   * @return $module,values of array
+   * Retrieves the list of module templates available in the default directory.
+   * The method scans the specified directory, excluding certain files and directories,
+   * and returns an array of available module templates with their identifiers and names.
+   *
+   * @return array The list of module templates including their IDs and descriptive names.
    */
   public function getModuleTemplateDirectory()
   {
@@ -187,10 +214,9 @@ class Github
   }
 
   /**
-   * get all modules directories (fix modules)
-   * @param
-   * @return $module,values of array
+   * Retrieves an array of module directories with their respective IDs and descriptions.
    *
+   * @return array Returns an array of associative arrays, where each element contains 'id' and 'text' keys representing the module identifier and description respectively.
    */
   public function getModuleDirectory(): array
   {
@@ -231,6 +257,12 @@ class Github
    * @return  $file, file information
    * @access private
    */
+  /**
+   * Checks the cache related to the given module name and removes it if it is outdated.
+   *
+   * @param string $module_name The name of the module whose cache will be checked.
+   * @return void
+   */
   private function getCheckDateCache(string $module_name)
   {
     $life = 864000; // 1 month
@@ -253,9 +285,10 @@ class Github
   }
 
   /**
-   * Check if cache exit else create
-   * @param string $module_name
-   * @return bool|string
+   * Checks the cache files of a given module and determines their status or retrieves the necessary file data.
+   *
+   * @param string $module_name The name of the module to check or retrieve from the cache.
+   * @return string|bool Returns the cache source ('cacheGithub' or 'cacheGithubTemp') if the module exists in the cache, `true` if successful, or `false` if the file does not exist or an error occurs.
    */
   public function getCheckCacheFile(string $module_name)
   {
@@ -301,9 +334,10 @@ class Github
   }
 
   /**
-   * get the json file infromation about temporary directory
-   * @param string $module_name
-   * @return false|mixed
+   * Retrieves the temporary cache file for the given module name if available.
+   *
+   * @param string $module_name The name of the module for which the temporary cache file is retrieved.
+   * @return mixed Returns the decoded temporary cache file content if found, otherwise returns false.
    */
   public function getCacheFileTemp(string $module_name)
   {
@@ -320,8 +354,10 @@ class Github
   }
 
   /**
-   * @param string $module_name
-   * @return mixed|null
+   * Retrieves the cached file content for the specified module name if it exists and is valid.
+   *
+   * @param string $module_name The name of the module for which the cache file is to be retrieved.
+   * @return mixed The decoded content of the cache file if it exists and passes the cache check, or null otherwise.
    */
   public function getCacheFile(string $module_name)
   {
@@ -342,7 +378,12 @@ class Github
 //*************************************************************
 
   /**
-   * @return string
+   * Determines the module search directory or template directory based on user input.
+   * Prioritizes `install_module_template_directory` if set and valid,
+   * otherwise prioritizes `install_module_directory`,
+   * and defaults to `module_search` if none of the prior conditions are met.
+   *
+   * @return string Returns the sanitized module directory or search string.
    */
   public function getSearchModule(): string
   {
@@ -358,9 +399,10 @@ class Github
   }
 
   /**
-   * search inside Github repo
-   * @param null $name
-   * @return mixed
+   * Executes a search on a GitHub repository and retrieves the results based on the specified name or the default organization and module.
+   *
+   * @param string|null $name The specific repository URL to search. If null, the search will default to the organization and module defined in the instance.
+   * @return mixed The decoded JSON response from the GitHub search API.
    */
   public function getSearchInsideRepo($name = null)
   {
@@ -377,8 +419,9 @@ class Github
   }
 
   /**
-   * Count the total research
-   * @return int
+   * Retrieves the total count of search results from the repository.
+   *
+   * @return int The total count of search results. Returns 0 if the result is not an object.
    */
   public function getSearchTotalCount(): int
   {
@@ -394,8 +437,9 @@ class Github
   }
 
   /**
-   * getGithubRepo : Gisthub repo
-   * @return string
+   * Constructs and returns the URL for a GitHub repository using predefined class properties.
+   *
+   * @return string The URL of the GitHub repository.
    */
   private function getGithubRepo(): string
   {
@@ -405,9 +449,10 @@ class Github
   }
 
   /**
-   * get the version if exist on local
-   * @param string $module_name
-   * @return int
+   * Retrieves the local version of a specified JSON module.
+   *
+   * @param string $module_name The name of the module whose local version is to be retrieved.
+   * @return mixed The version of the module if found, or -1 if the module does not exist locally.
    */
   public function getJsonModuleLocalVersion(string $module_name)
   {
@@ -431,9 +476,9 @@ class Github
 //******************************************
 
   /**
-   * get the json of module content repository
-   * @param string $module_name
-   * @return mixed
+   * Retrieves JSON content information for a specified module from the repository.
+   *
+   * @param string $module_name The name of the module for which the repository content information is fetched.
    */
   public function getJsonRepoContentInformationModule(string $module_name)
   {
@@ -447,8 +492,11 @@ class Github
   }
 
   /**
-   * @param string $url
-   * @return mixed
+   * Retrieves JSON module information from a given URL and decodes it into a PHP object.
+   *
+   * @param string $url The URL from which the JSON data will be fetched.
+   *
+   * @return mixed Returns the decoded JSON data as a PHP object or null if the decoding fails.
    */
   public function getJsonModuleInformaton(string $url)
   {
@@ -459,8 +507,10 @@ class Github
   }
 
   /**
-   * Github module download
-   * @param string $module_name
+   * Downloads the module master archive from a specified GitHub link and saves it as a zip file.
+   *
+   * @param string $module_name Name of the module to be archived and saved.
+   * @return void
    */
   public function getModuleMasterArchive(string $module_name)
   {
@@ -478,8 +528,12 @@ class Github
   }
 
   /**
-   * Extract ClicShopping includes Zip to install inside ClicShopping
-   * @param string $file
+   * Handles the installation process for a module by extracting its files,
+   * copying necessary components to relevant directories, and managing the
+   * module's operational state.
+   *
+   * @param string $file The name of the module file to be installed (without extension).
+   * @return void
    */
   public function getInstallModuleTemplate(string $file)
   {
@@ -522,8 +576,12 @@ class Github
   }
 
   /**
-   * Extract ClicShopping includes Zip to install inside ClicShopping
-   * @param string $file
+   * Installs and fixes the specified module by extracting the zip file,
+   * updating directories, and handling post-installation processes.
+   *
+   * @param string $file The name of the module file to be installed.
+   *
+   * @return void
    */
   public function getInstallModuleFixe(string $file)
   {
@@ -563,7 +621,9 @@ class Github
   }
 
   /**
-   * @return string
+   * Retrieves a dropdown menu for search options with predefined choices.
+   *
+   * @return string The generated HTML select menu with options for 'official' and 'community' categories, pre-selected based on user input (if available).
    */
   public function getDropDownMenuSearchOption()
   {

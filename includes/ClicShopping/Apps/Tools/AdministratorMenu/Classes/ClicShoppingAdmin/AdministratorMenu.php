@@ -65,6 +65,12 @@ class AdministratorMenu
   * @int, $cPath, value of cPath
   * return @ string array $tmp_array
   */
+  /**
+   * Parses and sanitizes a category path string into an array of unique integers while ensuring integrity.
+   *
+   * @param string $cPath The category path string with category IDs separated by underscores.
+   * @return array An array of unique category IDs as integers.
+   */
   private static function getParseCategoryPath(string $cPath): array
   {
 // make sure the category IDs are integers
@@ -87,8 +93,10 @@ class AdministratorMenu
 
 
   /**
-   * @param int|null $id
-   * @return array
+   * Retrieves the parsed category path as an array.
+   *
+   * @param int|null $id The specific index of the category path array to be returned, or null to return the entire array.
+   * @return array The category path array or a specific element of it if an index is provided.
    */
   public static function getPathArray(int|null $id = null): array
   {
@@ -112,11 +120,10 @@ class AdministratorMenu
   }
 
   /**
-   *  Return catagories path
+   * Constructs a category path string based on the current or specified category ID.
    *
-   * @param string $current_category_id
-   * @return string $cPath_new,
-   *
+   * @param string $current_category_id The identifier of the current category to build the path for. Default is an empty string.
+   * @return string The generated category path string in the format 'cPath=...'.
    */
   public static function getPath(string $current_category_id = ''): string
   {
@@ -158,11 +165,11 @@ class AdministratorMenu
   }
 
   /**
-   * the category name
+   * Retrieves the label associated with an administrator menu item.
    *
-   * @param string|null $id
-   * @param int $language_id
-   * @return string $category['categories_name'],  name of the categorie
+   * @param string|null $id The ID of the administrator menu item. Can be null.
+   * @param int $language_id The ID of the language for which the label should be retrieved.
+   * @return string The label of the administrator menu item for the specified language.
    */
   public static function getAdministratorMenuLabel(?string $id, int $language_id): string
   {
@@ -175,10 +182,10 @@ class AdministratorMenu
   }
 
   /**
-   *  remove category
+   * Removes a category and its related descriptions from the administrator menu.
    *
-   * @param int $id
-   * @return string
+   * @param int $id The unique identifier of the category to be removed.
+   * @return void
    */
   public static function removeCategory(int $id)
   {
@@ -191,13 +198,14 @@ class AdministratorMenu
   }
 
   /**
-   * category tree
-   * @param int|string $parent_id
-   * @param string $spacing
-   * @param array|string $exclude
-   * @param array|string $category_tree_array
-   * @param bool $include_itself
-   * @return array
+   * Generates a hierarchical tree of labels from the "administrator_menu" structure.
+   *
+   * @param int|string $parent_id The ID of the parent category to start building the tree from. Defaults to '0'.
+   * @param string $spacing A string used to represent the depth of the tree during output, typically spaces. Defaults to an empty string.
+   * @param array|string $exclude A category ID or array of IDs to exclude from the tree. Defaults to an empty string.
+   * @param array|string $category_tree_array An existing array to accumulate the hierarchical tree, or an empty string to start a new tree. Defaults to an empty string.
+   * @param bool $include_itself If true, includes the parent category itself at the start of the tree. Defaults to false.
+   * @return array The hierarchical tree of labels as an array, each element containing 'id' (the category ID) and 'text' (the category label).
    */
   public static function getLabelTree(int|string $parent_id = '0', string $spacing = '', array|string $exclude = '', array|string $category_tree_array = '', bool $include_itself = false): array
   {
@@ -266,11 +274,10 @@ class AdministratorMenu
   }
 
   /**
-   * getGeneratedAdministratorMenuPathIds
+   * Generates a string representation of administrator menu path IDs based on a given menu ID.
    *
-   * @param int $id
-   * @return string $calculated_category_path_string
-   *
+   * @param int $id The ID of the administrator menu for which the path IDs are to be generated.
+   * @return string A string containing the concatenated path IDs, separated by underscores and formatted with line breaks.
    */
   public static function getGeneratedAdministratorMenuPathIds(int $id)
   {
@@ -294,10 +301,16 @@ class AdministratorMenu
   }
 
   /**
-   * @param int $id
-   * @param string $categories_array
-   * @param int $index
-   * @return array
+   * Generates a hierarchical path of categories starting from a given category ID.
+   * This method builds an array that represents the hierarchy based on parent-child relationships.
+   *
+   * @param int $id The ID of the category to start generating the path.
+   * @param array|string $categories_array The array to store the category hierarchy. Defaults to an empty array.
+   *                                        If passed as a string, it is converted to an empty array.
+   * @param int $index The index to be used for organizing the hierarchy in the resulting array. Defaults to 0.
+   *
+   * @return array An array containing the hierarchical category path information. Each entry includes
+   *               the category ID and its corresponding label.
    */
   public static function getGenerateCategoryPath(int $id, $categories_array = '', int $index = 0): array
   {
@@ -336,7 +349,12 @@ class AdministratorMenu
   }
 
   /**
-   * @param int $id
+   * Removes an administrator menu category and its associated image if it is not used elsewhere,
+   * and also deletes its descriptions.
+   *
+   * @param int $id The ID of the administrator menu category to be removed.
+   *
+   * @return void This method does not return a value.
    */
   public static function getRemoveAdministratorMenuCategory(int $id)
   {
@@ -389,12 +407,17 @@ class AdministratorMenu
   }
 
   /**
-   * @param string $parent_id
-   * @param string $spacing
-   * @param string $exclude
-   * @param string $category_tree_array
-   * @param bool $include_itself
-   * @return array
+   * Builds a hierarchical tree structure for the administrator menu categories starting from a specified parent ID.
+   * The method generates an array representing the hierarchy with optional inclusion of a specific category itself.
+   *
+   * @param string|int $parent_id The ID of the parent category to start building the tree from. Defaults to '0'.
+   * @param string $spacing A string used for indentation in the tree structure for better visualization. Defaults to an empty string.
+   * @param string|int $exclude The ID of a category to exclude from the tree. Defaults to an empty string.
+   * @param array|string $category_tree_array The array to store the resulting tree structure. Defaults to an empty array.
+   *                                          If passed as a string, it is converted to an empty array.
+   * @param bool $include_itself Whether to include the parent category itself in the tree structure. Defaults to false.
+   *
+   * @return array An array representing the hierarchical tree of categories. Each entry contains the category ID and its label.
    */
   public static function getAdministratorMenuCategoryTree($parent_id = '0', string $spacing = '', $exclude = '', $category_tree_array = '', bool $include_itself = false): array
   {
@@ -455,9 +478,12 @@ class AdministratorMenu
   }
 
   /**
-   * Count how many subcategories exist in a category
-   * @param int $id
-   * @return int
+   * Calculates the total number of child menu items for a given menu item ID,
+   * including all nested child menu items recursively.
+   *
+   * @param int $id The ID of the parent menu item to count child menu items for.
+   *
+   * @return int The total count of child menu items including all nested levels.
    */
   public static function getChildsInMenuCount(int $id): int
   {
@@ -484,6 +510,14 @@ class AdministratorMenu
 
   /*
    * @return array
+   */
+  /**
+   * Retrieves the administrator header menu based on access level and language settings.
+   * This method queries the database to fetch menu items with appropriate access permissions and
+   * organizes them based on parent-child relationships.
+   *
+   * @return array An array of menu items with details such as ID, link, parent ID, access level,
+   *               sort order, image, B2B menu flag, label, and administrator access permissions.
    */
   public static function getHeaderMenu(): array
   {
@@ -576,9 +610,15 @@ class AdministratorMenu
   }
 
   /**
-   * @param string $category_id
-   * @param array $array
-   * @return array
+   * Retrieves all child category IDs recursively for a given category ID.
+   * This method collects the IDs of all direct and indirect child categories
+   * and stores them in the provided array.
+   *
+   * @param string $category_id The ID of the category to retrieve child IDs for.
+   * @param array &$array A reference to an array where all child category IDs will be stored.
+   *                       Defaults to an empty array.
+   *
+   * @return array An array containing all child category IDs, including both direct and indirect children.
    */
   public static function getChildren(string $category_id, array &$array = []): array
   {

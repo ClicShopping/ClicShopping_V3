@@ -55,7 +55,9 @@ class SeoShop
   }
 
   /**
-   * get default seo element
+   * Retrieves and sets the default SEO metadata including title, description, and keywords based on the language.
+   *
+   * @return void
    */
   public function getDefaultSeo()
   {
@@ -76,7 +78,7 @@ class SeoShop
   }
 
   /**
-   * @return string
+   * @return string|null
    */
   public function getSeoIndexTitle(): ?string
   {
@@ -90,7 +92,7 @@ class SeoShop
   }
 
   /**
-   * @return string
+   * @return string|null
    */
   public function getSeoIndexDescription(): ?string
   {
@@ -104,7 +106,7 @@ class SeoShop
   }
 
   /**
-   * @return string
+   * @return string|null
    */
   public function getSeoIndexKeywords(): ?string
   {
@@ -118,7 +120,7 @@ class SeoShop
   }
 
   /**
-   * get default seo element products new
+   * @return void
    */
   public function getDefaultSeoProductsNew()
   {
@@ -138,8 +140,7 @@ class SeoShop
   }
 
   /**
-   * title for products new
-   * @return string
+   * @return string|null
    */
   public function getSeoProductsNewTitle(): ?string
   {
@@ -153,8 +154,7 @@ class SeoShop
   }
 
   /**
-   * description for products new
-   * @return string
+   * @return string|null
    */
   public function getSeoProductsNewDescription(): ?string
   {
@@ -168,8 +168,7 @@ class SeoShop
   }
 
   /**
-   * keywords products new
-   * @return string
+   * @return string|null
    */
   public function getSeoProductsNewKeywords(): ?string
   {
@@ -183,7 +182,7 @@ class SeoShop
   }
 
   /**
-   * get default seo element specials products
+   * @return void
    */
   public function getDefaultSeoSpecials()
   {
@@ -203,8 +202,7 @@ class SeoShop
   }
 
   /**
-   * title for specials
-   * @return string
+   * @return string|null
    */
   public function getSeoSpecialsTitle(): ?string
   {
@@ -218,8 +216,7 @@ class SeoShop
   }
 
   /**
-   * description for specials
-   * @return string
+   * @return string|null
    */
   public function getSeoSpecialsDescription(): ?string
   {
@@ -233,8 +230,7 @@ class SeoShop
   }
 
   /**
-   * keywords specials
-   * @return string
+   * @return string|null
    */
   public function getSeoSpecialsKeywords(): ?string
   {
@@ -248,7 +244,10 @@ class SeoShop
   }
 
   /**
-   * get default seo element revieys products
+   * Retrieves the default SEO reviews values including title, description, and keywords
+   * for a specific language based on the current language ID.
+   *
+   * @return void
    */
   public function getDefaultSeoReviews()
   {
@@ -268,8 +267,7 @@ class SeoShop
   }
 
   /**
-   * title for specials
-   * @return string
+   * @return string|null
    */
   public function getSeoReviewsTitle(): ?string
   {
@@ -283,8 +281,7 @@ class SeoShop
   }
 
   /**
-   * description for specials
-   * @return string
+   * @return string|null
    */
   public function getSeoReviewsDescription(): ?string
   {
@@ -298,8 +295,8 @@ class SeoShop
   }
 
   /**
-   * keywords Reviews
-   * @return string
+   *
+   * @return string|null Returns the SEO reviews keywords if set, or the store name as a fallback, both output-protected.
    */
   public function getSeoReviewsKeywords(): ?string
   {
@@ -313,7 +310,10 @@ class SeoShop
   }
 
   /**
-   * get default seo element favorites products
+   * Retrieves the default SEO favorites data, including title, description, and keywords,
+   * from the database for the current language.
+   *
+   * @return void
    */
   public function getDefaultSeoFavorites()
   {
@@ -333,8 +333,9 @@ class SeoShop
   }
 
   /**
-   * title for favorites
-   * @return string
+   * Retrieves the SEO title for the favorites page.
+   *
+   * @return string|null Returns the generated SEO title for the favorites page, or null if not available.
    */
   public function getSeoFavoritesTitle(): ?string
   {
@@ -348,8 +349,10 @@ class SeoShop
   }
 
   /**
-   * description for favorites
-   * @return string
+   * Retrieves the SEO description for the favorites page. If a custom description is not provided,
+   * it defaults to the protected output of the store name.
+   *
+   * @return string|null The SEO description for the favorites page or null if not set.
    */
   public function getSeoFavoritesDescription(): ?string
   {
@@ -363,8 +366,9 @@ class SeoShop
   }
 
   /**
-   * keywords favorites
-   * @return string
+   * Retrieves the SEO favorite keywords, with a fallback to the store name if none are defined.
+   *
+   * @return string|null The processed SEO favorite keywords or the store name if no keywords are set.
    */
   public function getSeoFavoritesKeywords(): ?string
   {
@@ -378,7 +382,9 @@ class SeoShop
   }
 
   /**
-   * get default seo element featured products
+   * Retrieves the default SEO featured data such as title, keywords, and description for a specific language.
+   *
+   * @return void
    */
   public function getDefaultSeoFeatured()
   {
@@ -399,8 +405,10 @@ class SeoShop
 
 
   /**
-   * title for featured
-   * @return string
+   * Retrieves the SEO featured title for a page, combining either the default SEO title
+   * or a fallback text with the store name.
+   *
+   * @return string|null The generated SEO featured title or null if not set.
    */
   public function getSeoFeaturedTitle(): ?string
   {
@@ -414,8 +422,9 @@ class SeoShop
   }
 
   /**
-   * description for featured
-   * @return string
+   * Retrieves the SEO featured description, using a default value if none is set.
+   *
+   * @return string|null The protected output of the SEO featured description or the store name if no description is provided.
    */
   public function getSeoFeaturedDescription(): ?string
   {
@@ -429,8 +438,9 @@ class SeoShop
   }
 
   /**
-   * keywords featured
-   * @return string
+   * Retrieves the SEO featured keywords for the store.
+   *
+   * @return string|null The processed SEO featured keywords or the store name if not set.
    */
   public function getSeoFeaturedKeywords(): ?string
   {
@@ -444,7 +454,10 @@ class SeoShop
   }
 
   /**
-   * Get info about the Search Page
+   * Processes the advanced search keywords from user input, sanitizes them,
+   * and assigns a title for the advanced search page based on the provided keywords.
+   *
+   * @return void
    */
   public function getDataAdvancedSearchPage()
   {
@@ -467,7 +480,8 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   *
+   * @return string|null Returns the title of the advanced search page or null if not set.
    */
   public function getAdvancedSearchTitle(): ?string
   {
@@ -475,7 +489,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the description for the advanced search page.
+   *
+   * @return string|null Returns the description of the advanced search page or null if not set.
    */
   public function getAdvancedSearchDescription(): ?string
   {
@@ -483,7 +499,8 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   *
+   * @return string|null The advanced search keywords for the page.
    */
   public function getAdvancedSearchKeywords(): ?string
   {
@@ -491,10 +508,11 @@ class SeoShop
   }
 
   /**
-   * Categories SEO URL
-   * @param int $category_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO URL for a specified category and language.
+   *
+   * @param int $category_id The ID of the category.
+   * @param int $language_id The ID of the language. If not provided, the default language ID will be used.
+   * @return string The SEO URL of the category.
    */
   public function getCategoriesSeoUrl(int $category_id, int $language_id): string
   {
@@ -515,10 +533,11 @@ class SeoShop
 
 
   /**
-   * Products Seo URL
-   * @param string|null $products_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO URL for a specific product based on its ID and language ID.
+   *
+   * @param string|null $products_id The ID of the product for which the SEO URL is to be retrieved. Can be null.
+   * @param int $language_id The ID of the language for which the SEO URL is to be retrieved.
+   * @return string The SEO URL of the specified product.
    */
   public function getProductsSeoUrl(?string $products_id, int $language_id): string
   {

@@ -17,11 +17,11 @@ use ClicShopping\OM\Registry;
 class ReturnOrderStatus
 {
   /**
-   * the status name
+   * Retrieves the name of the return order status based on a given status ID and language ID.
    *
-   * @param int $return_orders_status_id , $language_id
-   * @param int $language_id
-   * @return string $orders_status['name'],  name of the status
+   * @param int $return_orders_status_id The ID of the return order status.
+   * @param int $language_id The ID of the language to retrieve the status name for.
+   * @return string The name of the return order status in the specified language.
    */
   public static function getReturnOrdersStatusName(int $return_orders_status_id, int $language_id): string
   {
@@ -36,12 +36,12 @@ class ReturnOrderStatus
   }
 
   /**
-   * Get DropDown orders Status
+   * Generates a dropdown menu for return order status options.
    *
-   * @param string $name
-   * @param int|null $id
-   * @param string $displays_all_orders_status
-   * @return string status order
+   * @param string $name The name attribute for the dropdown HTML element.
+   * @param mixed $id The selected option ID for the dropdown (optional).
+   * @param string $displays_all_orders_status Whether to display all order statuses. Default is 'yes'.
+   * @return string The HTML string for the dropdown menu.
    */
   public static function getDropDownReturnOrderStatus(string $name = 'dropdown_status', $id = null, string $displays_all_orders_status = 'yes'): string
   {

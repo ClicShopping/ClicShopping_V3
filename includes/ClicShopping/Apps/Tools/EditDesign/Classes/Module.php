@@ -16,10 +16,15 @@ use ClicShopping\OM\HTML;
 class Module
 {
   /**
-   * Recursive Directory list file with all css under a drop down
+   * Retrieves an array of filenames from a specified directory and formats them
+   * for use in a menu or selection list.
    *
-   * @return array $filename_array, the file name in the  css subdirectory
-   * @access public
+   * The method sanitizes the selected directory input, checks the existence of the
+   * appropriate folder, and searches for files of specific types within that directory.
+   * It populates the result with filenames sorted in a natural, case-insensitive order.
+   *
+   * @return array The formatted array of filenames, where each array element is an
+   * associative array containing an 'id' for the filename and 'text' for display.
    */
 
   public static function getFilenameHtml(): array
@@ -69,10 +74,10 @@ class Module
   }
 
   /**
-   * HTML Directory list
+   * Retrieves an array of directories from a specified template directory, excluding certain predefined entries.
+   * Each directory is returned as an associative array with an 'id' and 'text' key.
    *
-   * @return array $directory_array, the directories name in css directory
-   * @access public
+   * @return array Returns an array containing directory information. The first entry includes a default 'text_selected' value, followed by valid directories within the template directory.
    */
 
   public static function getDirectoryHtml(): array

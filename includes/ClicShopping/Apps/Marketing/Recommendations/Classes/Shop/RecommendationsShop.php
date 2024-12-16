@@ -26,10 +26,9 @@ class RecommendationsShop
   }
 
   /**
-   * get the customer sentiment about the comment
-   * @return mixed Must be improved by hook inside the App Chatgpt
-   * Must be improved by hook inside the App Chatgpt
-   * @throws \Exception
+   * Retrieves the sentiment analysis result for user comments by utilizing a sentiment prediction model.
+   *
+   * @return mixed Returns the predicted sentiment result if the GPT status is active, or null if the GPT service is not available.
    */
   public static function getGptSentiment(): mixed
   {
@@ -46,9 +45,12 @@ class RecommendationsShop
   }
 
   /**
-   * Save the recommendation about a specific product and the customer
-   * @param int $products_id
-   * @param float $reviewRate
+   * Saves the recommendation score and associated data for a given product.
+   *
+   * @param int $products_id The ID of the product for which recommendations are being saved.
+   * @param float $reviewRate The review rate for the product. Default is 0.
+   *
+   * @return void
    */
   public function saveRecommendations(int $products_id, float $reviewRate = 0): void
   {
@@ -92,8 +94,10 @@ class RecommendationsShop
   }
 
   /**
-   * Get the category ID of the current product
-   * @return int
+   * Retrieves the category ID associated with a given product ID.
+   *
+   * @param int $products_id The ID of the product for which the category ID is to be retrieved.
+   * @return int The ID of the category associated with the specified product.
    */
   private static function getProductCategoryID(int $products_id): int
   {
@@ -114,7 +118,10 @@ class RecommendationsShop
    */
 
   /**
-   * @return array
+   * Retrieves a list of column identifiers based on a predefined configuration,
+   * sorted in ascending order, and filtered to include only those with a value greater than zero.
+   *
+   * @return array Returns an array of column identifiers from the predefined list.
    */
   public static function getCountColumnList(): array
   {
@@ -139,7 +146,11 @@ class RecommendationsShop
   }
 
   /**
-   * @return mixed
+   * Builds and returns a SQL query string for product recommendations based on various conditions such as
+   * customer group, sorting preferences, and filtering criteria. The query dynamically includes specific
+   * columns and order conditions based on configuration and input parameters.
+   *
+   * @return mixed The generated SQL query string for retrieving product recommendation data.
    */
   private static function Listing(): mixed
   {
@@ -256,7 +267,9 @@ class RecommendationsShop
   }
 
   /**
-   * @return mixed
+   * Retrieves a listing, taking into account the customer's group ID if applicable.
+   *
+   * @return mixed The prepared listing query with or without the customer's group ID filter.
    */
   public static function getListing(): mixed
   {

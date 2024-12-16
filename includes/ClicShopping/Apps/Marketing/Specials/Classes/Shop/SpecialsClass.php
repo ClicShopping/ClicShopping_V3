@@ -15,9 +15,11 @@ use ClicShopping\OM\Registry;
 class SpecialsClass
 {
   /**
-   * @param int $specials_id
-   * @param int $status
-   * @return int
+   * Updates the status of a special in the specials table based on the provided status value.
+   *
+   * @param int $specials_id The ID of the special to be updated.
+   * @param int $status The new status to set for the special (1 for active, 0 for inactive).
+   * @return int Returns the number of affected rows on successful update or -1 if the provided status is invalid.
    */
   private static function setSpecialsStatus(int $specials_id, int $status): int
   {
@@ -47,6 +49,9 @@ class SpecialsClass
   }
 
   /**
+   * Activates scheduled specials by changing their status to active if the scheduled date has passed
+   * and the status is not already set to active.
+   *
    * @return void
    */
   public static function scheduledSpecials(): void
@@ -70,6 +75,8 @@ class SpecialsClass
   }
 
   /**
+   * Expires all active special offers that have passed their expiration date.
+   *
    * @return void
    */
   public static function expireSpecials(): void
@@ -93,7 +100,10 @@ class SpecialsClass
   }
 
   /**
-   * @return array
+   * Retrieves a list of column identifiers based on the defined list and their respective statuses.
+   * The method creates a sorted list of columns and filters them by their status being greater than zero.
+   *
+   * @return array Returns an array of column identifiers where the status is greater than zero.
    */
   public static function getCountColumnList(): array
   {
@@ -118,7 +128,12 @@ class SpecialsClass
   }
 
   /**
-   * @return string
+   * Constructs and returns an SQL query string for listing special products.
+   *
+   * This method dynamically builds a query string based on the current customer group,
+   * product attributes, and sorting preferences provided through the application.
+   *
+   * @return string The constructed SQL query string for special product listings.
    */
   private static function Listing()
   {
@@ -225,7 +240,9 @@ class SpecialsClass
   }
 
   /**
-   * @return mixed
+   * Retrieves the prepared database query for a listing, applying specific customer group conditions if applicable.
+   *
+   * @return mixed Returns the prepared query object for the listing.
    */
   public static function getListing(): mixed
   {

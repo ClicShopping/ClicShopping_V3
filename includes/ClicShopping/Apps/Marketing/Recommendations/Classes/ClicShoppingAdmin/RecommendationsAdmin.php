@@ -23,10 +23,14 @@ class RecommendationsAdmin
   }
 
   /**
-   * @param float $productsRateWeight
-   * @param float $reviewRate
-   * @param float|null $userFeedback
-   * @return float
+   * Calculates a recommendation score for a product using multiple data sources, such as product ratings, reviews,
+   * user feedback, sentiment analysis, sales data, and external recommendations.
+   *
+   * @param float $productsRateWeight Weight applied to the product rating contribution to the score (default is 0.8).
+   * @param float $reviewRate Average review rate for the product (default is 0).
+   * @param float|null $userFeedback User-provided feedback score for the product; normalized to a range between -1 and 1 (default is 0).
+   * @param float|null $sentimentScore Sentiment analysis score for the product, normalized to a range between -1 and 1 (optional).
+   * @return float The calculated recommendation score for the product.
    */
   private static function calculateRecommendationScoreWithMultipleSources(float $productsRateWeight = 0.8, float $reviewRate = 0, ?float $userFeedback = 0, ?float $sentimentScore = null): float
   {
@@ -62,11 +66,16 @@ class RecommendationsAdmin
   }
 
   /**
-   * @param float $productsRateWeight
-   * @param float $reviewRate
-   * @param float|null $userFeedback
-   * @param float|null $feedbackWeight
-   * @return float
+   * Calculates the recommendation score based on various weighted factors such as review rate, user feedback,
+   * sentiment score, and product rate weight.
+   *
+   * @param float $productsRateWeight The weight factor applied to the product's rating, ranging between 0 and 1. Default is 0.8.
+   * @param float $reviewRate The rate of reviews for the product, normalized between 0 and 1.
+   * @param float|null $userFeedback The user feedback score, which will be normalized between -1 and 1. Default is 0.
+   * @param float|null $feedbackWeight The weight of user feedback in the calculation. If null, a default value is used.
+   * @param float|null $sentimentScore The sentiment score, if available, normalized between -1 and 1. Default is null.
+   *
+   * @return float The calculated recommendation score for the product.
    */
   public static function calculateRecommendationScoreBasedOnRange(float $productsRateWeight = 0.8, float $reviewRate = 0, ?float $userFeedback = 0, ?float $feedbackWeight, ?float $sentimentScore = null): float
   {
@@ -103,12 +112,16 @@ class RecommendationsAdmin
   }
 
   /**
-   * @param float|null $productsRateWeight
-   * @param float|null $reviewRate
-   * @param int|null $userFeedback (Optional) User feedback on the recommended product, ranging from -1 (disliked) to 1 (liked).
-   * @param string|null $strategy
-   * @return float
-   * Function to calculate the score for product recommendations
+   * Calculates the recommendation score for a given product based on various input factors
+   * such as product rate weight, review rate, user feedback, strategy, and sentiment score.
+   *
+   * @param float|null $productsRateWeight The weight of the product rating in score calculation. Defaults to 0.8.
+   * @param float|null $reviewRate The review rate of the product, adjusted to a scale of 0 to 1. Defaults to 0.
+   * @param int|null $userFeedback The numeric feedback provided by the user, normalized between -1 and 1. Defaults to 0.
+   * @param string|null $strategy The scoring strategy to be applied (e.g., 'Range' or other strategies). Defaults to 'Range'.
+   * @param float|null $sentimentScore The sentiment score associated with product feedback, if available.
+   *
+   * @return float The calculated recommendation score based on the provided inputs and strategy.
    */
   public function calculateRecommendationScore(?float $productsRateWeight = 0.8, ?float $reviewRate = 0,  int|null $userFeedback = 0, ?string $strategy = 'Range', ?float $sentimentScore = null): float
   {
@@ -129,8 +142,16 @@ class RecommendationsAdmin
   }
 
   /**
-   * @param int $limit
-   * @return array
+   * Retrieves the most recommended products based on a defined group of customers, a minimum score,
+   * and an optional analysis date range.
+   *
+   * @param int $limit The maximum number of products to retrieve (default is 10).
+   * @param string|int $customers_group_id The ID of the customer group to filter the results.
+   *                                        Use 99 for all groups, or a specific group ID.
+   * @param string|null $date Optional analysis start date in 'Y-m-d' format. If null, retrieves results
+   *                           without a date range.
+   * @return array Returns an array of the most recommended products, each containing the product ID,
+   *               recommendation count, recommendation date, and maximum score.
    */
   public function getMostRecommendedProducts(int $limit = 10, string|int $customers_group_id = 99, ?string $date): array
   {
@@ -175,9 +196,12 @@ class RecommendationsAdmin
   }
 
   /**
-   * Get the products that are frequently rejected by customers
-   * @param int $limit (Optional) Limit the number of products to retrieve
-   * @return array
+   * Retrieves a list of rejected products based on the given criteria.
+   *
+   * @param int $limit The maximum number of rejected products to retrieve. Defaults to 10.
+   * @param string|int $customers_group_id The customer group ID to filter the products. Use 99 for no specific group filtering.
+   * @param ?string $date The date range filter for retrieving rejected products. Defaults to null for no date filtering.
+   * @return array The list of rejected products, including their IDs, rejection count, recommendation dates, and scores.
    */
   public function getRejectedProducts(int $limit = 10, string|int $customers_group_id = 99, ?string $date): array
   {
@@ -221,10 +245,10 @@ class RecommendationsAdmin
   }
 
   /**
-   * subjective measure that reflects the user's opinion or sentiment about the product, between -1 and 1.
+   * Calculates a normalized user feedback score constrained between -1 and 1.
    *
-   * @param float|null $userFeedback
-   * @return float
+   * @param float|null $userFeedback The feedback score provided by the user, which may fall outside the range of -1 to 1 or be null.
+   * @return float The normalized feedback score, ensuring it is within the range of -1 and 1.
    */
   public static function calculateUserFeedbackScore(?float $userFeedback): float
   {
@@ -237,10 +261,10 @@ class RecommendationsAdmin
 // Review calculation
 //********************************************
   /**
-   * Calculate the average rating weight  of review ratings.
+   * Calculates the average rating for a given product based on its reviews.
    *
-   * @param int $products_id
-   * @return float The average rating.
+   * @param int $products_id The ID of the product for which the average rating is to be calculated.
+   * @return float The average rating of the product. Returns 0 if no reviews are found.
    */
   public function calculateProductsRateWeight(int $products_id): float
   {

@@ -16,9 +16,11 @@ use function count;
 class FeaturedClass
 {
   /**
-   * @param int $products_featured_id
-   * @param int $status
-   * @return int
+   * Updates the featured status of a product in the database.
+   *
+   * @param int $products_featured_id The ID of the product to update the featured status for.
+   * @param int $status The new status to set (1 for active, 0 for inactive).
+   * @return mixed Returns the result of the save operation, or -1 if the status is invalid.
    */
   private static function setFeaturedStatus(int $products_featured_id, int $status)
   {
@@ -46,7 +48,15 @@ class FeaturedClass
       return -1;
     }
   }
+
   /**
+   * Updates the status of featured products based on their scheduled date.
+   *
+   * This method queries the database for products in the featured products table
+   * that have a scheduled date that is not null, have already reached or passed
+   * their scheduled date, and are not currently active. For each eligible product,
+   * the method sets the product's status to active.
+   *
    * @return void
    */
   public static function scheduledFeatured(): void
@@ -71,6 +81,8 @@ class FeaturedClass
   }
 
   /**
+   * Expires featured products whose expiration date has passed and updates their status to inactive.
+   *
    * @return void
    */
   public static function expireFeatured(): void
@@ -94,7 +106,10 @@ class FeaturedClass
   }
 
   /**
-   * @return array
+   * Retrieves a list of column keys based on the defined list of module settings.
+   * The columns are determined by specific module configuration values being greater than zero.
+   *
+   * @return array An array of column keys that are enabled based on the module settings.
    */
   public static function getCountColumnList(): array
   {
@@ -119,7 +134,14 @@ class FeaturedClass
   }
 
   /**
-   * @return string
+   * Constructs and returns a database query string for generating a paginated listing of featured products
+   * based on the customer's group, product attributes, and sort criteria.
+   *
+   * The method dynamically builds the query by using available product attributes and sorting options.
+   * The query considers various conditions such as product status, customer group permission,
+   * and category status.
+   *
+   * @return string The constructed SQL query string for fetching the featured product listing.
    */
   private static function Listing()
   {
@@ -231,7 +253,9 @@ class FeaturedClass
   }
 
   /**
-   * @return mixed
+   * Retrieves the listing data based on customer group ID and prepares the query.
+   *
+   * @return mixed Returns the prepared query object containing the listing data.
    */
   public static function getListing(): mixed
   {

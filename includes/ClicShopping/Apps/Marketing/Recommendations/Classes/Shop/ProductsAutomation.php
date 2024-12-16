@@ -15,7 +15,9 @@ use ClicShopping\OM\Registry;
 class ProductsAutomation
 {
   /**
-   * @return mixed
+   * Retrieves the average score for a specified product based on its recommendations.
+   *
+   * @return mixed The average score of the product, or null if no score is available.
    */
   private static function getProductAverageScore(): mixed
   {
@@ -41,7 +43,14 @@ class ProductsAutomation
   //********************************************
 
   /**
-   * @return int|null
+   * Evaluates the product's average score and updates its favorite status accordingly.
+   *
+   * If the average score exceeds the defined minimum score, the product is added to favorites.
+   * If the average score is below 0, the product is removed from favorites.
+   * If none of the conditions are met, the method returns -1.
+   *
+   * @return int|null Returns the favorite ID if the product is added to favorites,
+   *                  null if the product is removed, or -1 if no action is performed.
    */
   public static function favorites():  int|null
   {
@@ -59,8 +68,10 @@ class ProductsAutomation
   }
 
   /**
-   * @param int $id
-   * @return bool
+   * Creates a new favorite entry for a given product ID if it does not already exist.
+   *
+   * @param int $id The product ID to add to the favorites.
+   * @return bool Returns true if the favorite entry was created successfully, false if the entry already exists or the operation failed.
    */
   private static function createFavorites(int $id): bool
   {
@@ -86,8 +97,10 @@ class ProductsAutomation
   }
 
   /**
-   * @param int $id
-   * @return bool
+   * Deletes a favorite product from the products_favorites table based on the provided product ID.
+   *
+   * @param int $id The ID of the product to be removed from favorites.
+   * @return bool Returns true if the product was successfully deleted, or false if the deletion failed or the product ID was not found.
    */
   private static function deleteFavorites(int $id): bool
   {
@@ -114,7 +127,9 @@ class ProductsAutomation
   //********************************************
 
   /**
-   * @return int|null
+   * Determines the status of a product based on its average score and updates its featured status accordingly.
+   *
+   * @return int|null Returns the result of creating or deleting the featured status, or -1 if no action is taken.
    */
   public static function featured():  int|null
   {
@@ -132,8 +147,12 @@ class ProductsAutomation
   }
 
   /**
-   * @param int $id
-   * @return bool
+   * Creates a featured product entry in the database if it does not already exist.
+   *
+   * @param int $id The product ID to be marked as featured.
+   *
+   * @return bool Returns true if the featured product was successfully created,
+   *              or false if the product was already featured or the operation failed.
    */
   private static function createFeatured(int $id): bool
   {
@@ -159,8 +178,10 @@ class ProductsAutomation
   }
 
   /**
-   * @param int $id
-   * @return bool
+   * Deletes a featured product from the database based on the given product ID.
+   *
+   * @param int $id The ID of the product to delete from the featured products list.
+   * @return bool Returns true if the deletion was successful, false otherwise.
    */
   private static function deleteFeatured(int $id): bool
   {

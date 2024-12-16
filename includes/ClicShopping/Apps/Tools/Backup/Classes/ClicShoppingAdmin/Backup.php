@@ -17,6 +17,13 @@ use function strlen;
 
 class Backup
 {
+  /**
+   * Creates a backup of the current database and stores it in the specified backup directory.
+   * The backup process includes the structure and content of all tables in the database.
+   * Optionally compresses the resulting file and provides a download option if requested.
+   *
+   * @return void
+   */
   public static function backupNow(): void
   {
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');

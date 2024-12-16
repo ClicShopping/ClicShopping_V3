@@ -19,10 +19,11 @@ class Status
   protected int $id;
 
   /**
-   * @param int $id
-   * @param int $status
-   * @return int|void status on or off
+   * Updates the status of the administrator menu and its children based on the provided status.
    *
+   * @param int $id The ID of the administrator menu item to be updated.
+   * @param int $status The new status to be applied (1 for active, 0 for inactive).
+   * @return int Returns -1 if an invalid status is provided, otherwise no value is returned.
    */
   public static function getAministratorMenuStatus(int $id, int $status)
   {

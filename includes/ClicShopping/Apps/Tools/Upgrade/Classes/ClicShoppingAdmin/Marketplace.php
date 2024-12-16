@@ -34,7 +34,10 @@ class Marketplace
   }
 
   /**
-   * @return mixed
+   * Retrieves an OAuth access token by communicating with the API server.
+   * Validates required credentials before making the request and handles error responses.
+   *
+   * @return string|null Returns the access token on success, or null if an error occurs.
    */
   public function getToken()
   {
@@ -82,7 +85,9 @@ class Marketplace
   }
 
   /**
-   * @return string
+   * Retrieves the session token. If a token does not already exist in the session, generates a new token and stores it in the session.
+   *
+   * @return string The session token.
    */
   public function getSessionToken()
   {
@@ -97,9 +102,11 @@ class Marketplace
   }
 
   /**
-   * @param string $communityUrl
-   * @param string $endpoint
-   * @return bool|mixed|string
+   * Fetches a response from the specified API endpoint.
+   *
+   * @param string $communityUrl The base URL of the community API.
+   * @param string $endpoint The specific API endpoint to access.
+   * @return array|bool Returns the API response decoded as an associative array, or true on error or invalid token.
    */
   public function getResponse($communityUrl, $endpoint)
   {
@@ -139,7 +146,13 @@ class Marketplace
    */
 
   /**
-   * @return bool|mixed|string
+   * Retrieves all categories from the API endpoint.
+   *
+   * This method interacts with an external API to fetch a list of categories. If there is an issue with
+   * the API connection, an error message is added to the message stack, and the user is redirected
+   * to the "Marketplace" page. Otherwise, the fetched data is returned.
+   *
+   * @return array|string Returns the list of categories on success, or redirects on API connection error.
    */
   public function getAllCategories()
   {
@@ -155,7 +168,9 @@ class Marketplace
   }
 
   /**
-   * @return bool
+   * Retrieves and saves categories into the database if none exist.
+   *
+   * @return bool Returns true if categories were successfully saved into the database, false otherwise.
    */
   public function getCategories(): bool
   {
@@ -197,7 +212,14 @@ class Marketplace
   }
 
   /**
-   * @return bool
+   * Fetches files from a remote community URL using a specific endpoint and stores them in the database.
+   *
+   * The method checks if any files already exist in the 'marketplace_files' table.
+   * If no files exist, it retrieves data from the remote source, parses the result,
+   * and inserts it into the database. Each file includes details such as title, description,
+   * category, author information, and additional metadata.
+   *
+   * @return bool Returns true if files are successfully fetched and saved into the database, or false if files already exist.
    */
   public function getFiles(): bool
   {
@@ -244,8 +266,11 @@ class Marketplace
   }
 
   /**
-   * @param int $id
-   * @return bool
+   * Fetches file information from an external source and stores it into the database
+   * if it is not already present. Returns whether new file information was added.
+   *
+   * @param int $id The file ID to look up and potentially fetch information for.
+   * @return bool Returns true if new file information was added, false otherwise.
    */
   public function getFilesInformations(int $id): bool
   {
@@ -315,13 +340,14 @@ class Marketplace
   }
 
   /**
-   * category tree
-   * @param int|string $parent_id
-   * @param string $spacing
-   * @param array|string $exclude
-   * @param array|string $category_tree_array
-   * @param bool $include_itself
-   * @return array
+   * Builds a hierarchical tree structure for labels/categories starting from a specified parent node.
+   *
+   * @param int|string $parent_id The parent ID from which to start building the tree. Defaults to '0'.
+   * @param string $spacing The spacing string used to indent child labels. Defaults to an empty string.
+   * @param array|string $exclude The ID or IDs to exclude from the tree. Defaults to an empty string.
+   * @param array|string $category_tree_array The current state of the category tree array during recursion. Defaults to an empty string.
+   * @param bool $include_itself Whether to include the parent node itself in the output. Defaults to false.
+   * @return array The hierarchical tree of labels/categories.
    */
   public function getLabelTree(int|string $parent_id = '0', string $spacing = '', array|string $exclude = '', array|string $category_tree_array = '', bool $include_itself = false): array
   {
@@ -370,6 +396,13 @@ class Marketplace
   }
 
   /**
+   * Executes a cron job to clean up marketplace-related database tables.
+   *
+   * Deletes all records from the following tables:
+   * - marketplace_categories
+   * - marketplace_files
+   * - marketplace_file_informations
+   *
    * @return void
    */
   public static function Cronjob(): void

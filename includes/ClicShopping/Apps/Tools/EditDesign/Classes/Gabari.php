@@ -18,9 +18,13 @@ use function in_array;
 class Gabari
 {
   /**
-   * Recursive Directory list file with all css under a drop down
+   * Retrieves the filenames of specific file types (e.g., PHP files) from a designated directory
+   * and organizes them into an array for display or selection purposes.
    *
-   * @return array c $filename_array, the file name in the  css subdirectory
+   * @return array An array of filenames, each with an 'id' and 'text' key. The 'id' represents the
+   *               filename, and the 'text' contains the same filename for display.
+   *               The first element in the array is a default option with 'id' as '0' and
+   *               text from a predefined constant.
    */
   public static function getFilenameGabari(): array
   {
@@ -60,9 +64,9 @@ class Gabari
   }
 
   /**
-   *  Directory list
+   * Retrieves a list of directories from the specified template directory, excluding certain predefined files or directories.
    *
-   * @return array $directory_array, the directories name in css directory
+   * @return array The array of directories, including an initial default option with predefined text and each directory containing its 'id' and 'text'.
    */
   public static function getDirectoryGabari(): array
   {

@@ -27,6 +27,14 @@ class WhosOnlineShop
   {
   }
 
+  /**
+   * Updates the "who's online" tracking data by managing session information
+   * and storing/retrieving customer details, IP address, last activity time,
+   * user agent, and HTTP referer into the database. Also handles cleanup of
+   * expired records based on a defined time interval.
+   *
+   * @return void
+   */
   public static function getUpdateWhosOnline()
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -134,6 +142,13 @@ class WhosOnlineShop
     }
   }
 
+  /**
+   * Updates the session ID in the `whos_online` table for a specified old session ID.
+   *
+   * @param string $old_id The current session ID to be updated.
+   * @param string $new_id The new session ID to replace the old one.
+   * @return void This method does not return a value.
+   */
   public static function getWhosOnlineUpdateSession_id(string $old_id, string $new_id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');

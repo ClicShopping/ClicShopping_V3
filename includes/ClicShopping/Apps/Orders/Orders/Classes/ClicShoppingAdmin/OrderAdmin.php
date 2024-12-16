@@ -26,7 +26,11 @@ class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
   }
 
   /**
-   * @param int $order_id
+   * Retrieves and populates order details based on the provided order ID.
+   * It includes information about the order, customer, delivery, billing,
+   * products, and their attributes, as well as any associated totals.
+   *
+   * @param int $order_id The ID of the order to retrieve and process.
    * @return void
    */
   public function query(int $order_id): void
@@ -199,10 +203,13 @@ class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
   }
 
   /**
-   * Remove order
+   * Removes an order from the database along with its related records.
+   * Optionally, restocks the products associated with the order.
    *
-   * @param int $order_id , $restock
-   * @param bool $restock
+   * @param int $order_id The ID of the order to be removed.
+   * @param bool $restock Indicates whether to restock the products from the order.
+   *                      If true, the order's product quantities will be added back
+   *                      to the available inventory.
    * @return void
    */
   public static function removeOrder(int $order_id, bool $restock = false): void
@@ -243,9 +250,11 @@ class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
   }
 
   /**
-   * the name order status
+   * Retrieves the list of all order statuses available in the system with their IDs and names
+   * based on the current language setting.
    *
-   * @return array orders_status_array,  name of the order status
+   * @return array An array of order statuses, where each status is represented as an associative
+   *               array with 'id' (the unique identifier of the status) and 'text' (the name of the status).
    */
 
   public static function getOrdersStatus(): array
@@ -273,8 +282,14 @@ class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
   }
 
   /**
-   * pdf logo
-   * return string or bool
+   * Retrieves the file path or URL of the PDF invoice logo if it exists.
+   *
+   * This method checks for the presence of the invoice logo file in the specified
+   * directory under the shop's template images. If the file exists, it returns
+   * its URL; otherwise, it returns false.
+   *
+   * @return string|bool Returns the URL of the invoice logo as a string if the file
+   * exists, or false if the file does not exist.
    */
   public static function getOrderPdfInvoiceLogo(): string|bool
   {

@@ -16,8 +16,10 @@ use ClicShopping\OM\Registry;
 class ReturnProduct
 {
   /**
-   * @param int|null $id
-   * @return string
+   * Generates a dropdown menu for selecting the reason opened for a return order.
+   *
+   * @param int|null $id The pre-selected option ID for the dropdown. Pass null if no pre-selection is needed.
+   * @return string The HTML string for the dropdown menu.
    */
   public static function getDropDownReasonOpened( int|null $id): string
   {
@@ -34,8 +36,10 @@ class ReturnProduct
   }
 
   /**
-   * @param int|null $id
-   * @return string
+   * Generates a dropdown menu for return actions based on the language ID provided.
+   *
+   * @param int|null $id The ID of the return action to be pre-selected in the dropdown menu. Pass null for no pre-selection.
+   * @return string The HTML string of the dropdown menu.
    */
   public static function getDropDownAction( int|null $id): string
   {
@@ -66,8 +70,10 @@ class ReturnProduct
   }
 
   /**
-   * @param int|null $id
-   * @return string
+   * Generates a dropdown selection field for return order statuses.
+   *
+   * @param int|null $id The ID of the return status to be preselected in the dropdown. If null, no status is preselected.
+   * @return string The HTML markup for the dropdown selection field populated with return order statuses.
    */
   public static function getDropDownStatus( int|null $id): string
   {

@@ -14,6 +14,11 @@ use ClicShopping\OM\Registry;
 
 class Database
 {
+  /**
+   * Retrieves a list of table names from the database.
+   *
+   * @return array An array containing the names of all tables in the database.
+   */
   public static function getDtTables(): array
   {
     $CLICSHOPPING_Db = Registry::get('Db');

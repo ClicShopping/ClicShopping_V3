@@ -30,6 +30,15 @@ class ShoppingCartAdmin
     $this->total = 0;
   }
 
+  /**
+   * Adds a product to the cart. If the product is already in the cart, its quantity is updated.
+   *
+   * @param mixed $products_id The unique identifier for the product.
+   * @param int|string $qty Optional. The quantity of the product to add. Defaults to 1 if not specified.
+   * @param array|string $attributes Optional. The attributes of the product to add, if any.
+   *
+   * @return void
+   */
   public function addCart($products_id, $qty = '', $attributes = '')
   {
     $products_id = $this->getUprid($products_id, $attributes);
@@ -50,6 +59,14 @@ class ShoppingCartAdmin
     $this->cleanup();
   }
 
+  /**
+   * Updates the quantity of a specific product in the contents.
+   *
+   * @param string $products_id The identifier of the product to update.
+   * @param int|string $quantity The quantity to set for the specified product. Default is an empty string.
+   * @param array|string $attributes Optional product attributes as an associative array or string.
+   * @return bool Returns true if no quantity is provided, indicating no update was necessary.
+   */
   public function updateQuantity($products_id, $quantity = '', $attributes = '')
   {
 
@@ -64,6 +81,12 @@ class ShoppingCartAdmin
     }
   }
 
+  /**
+   *
+   * Cleans up the contents array by removing items with a quantity less than 1.
+   *
+   * @return void
+   */
   public function cleanup()
   {
     foreach (array_keys($this->contents) as $key) {
@@ -73,6 +96,12 @@ class ShoppingCartAdmin
     }
   }
 
+  /**
+   * Checks if a product is in the cart.
+   *
+   * @param int|string $products_id The ID of the product to check.
+   * @return bool Returns true if the product is in the cart, false otherwise.
+   */
   public function inCart($products_id)
   {
     if (isset($this->contents[$products_id])) {
@@ -82,6 +111,12 @@ class ShoppingCartAdmin
     }
   }
 
+  /**
+   * Calculates the total price and weight for the current contents, including product prices,
+   * special prices, taxes, and attribute prices, if applicable.
+   *
+   * @return void
+   */
   public function calculate()
   {
     $this->total = 0;
@@ -143,6 +178,11 @@ class ShoppingCartAdmin
     }
   }
 
+  /**
+   * Calculates and returns the total.
+   *
+   * @return mixed The calculated total value.
+   */
   public function show_total()
   {
     $this->calculate();
@@ -152,9 +192,11 @@ class ShoppingCartAdmin
 
 
   /**
-   * @param string $prid , $params
-   * @return string $uprid,
+   * Generates a unique product identifier (uprid) by appending the parameter options and values to the base product ID.
    *
+   * @param string $prid The base product identifier.
+   * @param array $params An associative array of options and their corresponding values to be appended to the product identifier.
+   * @return string The unique product identifier (uprid) with appended options and values.
    */
   public function getUprid($prid, $params)
   {
@@ -170,9 +212,8 @@ class ShoppingCartAdmin
 
   /**
    *
-   * @param string $uprid
-   * @return string $pieces,
-   *
+   * @param string $uprid The input string to be processed.
+   * @return string The substring extracted before the first '{' character in the input string.
    */
   public function getPrid($uprid)
   {

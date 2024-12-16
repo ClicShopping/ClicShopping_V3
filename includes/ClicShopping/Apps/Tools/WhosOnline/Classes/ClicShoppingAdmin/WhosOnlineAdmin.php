@@ -15,7 +15,9 @@ use ClicShopping\OM\Registry;
 class WhosOnlineAdmin
 {
   /**
-   * @return int
+   * Counts the total number of unique users currently online.
+   *
+   * @return int Returns the total count of distinct users online.
    */
   public static function getCountWhosOnline(): int
   {
@@ -42,6 +44,11 @@ class WhosOnlineAdmin
   }
 
   /**
+   * Deletes expired session data from the `whos_online` table.
+   *
+   * This method removes records from the database where the `time_last_click` timestamp
+   * is less than or equal to the defined expiration threshold.
+   *
    * @return void
    */
   private static function delete(): void
@@ -61,6 +68,12 @@ class WhosOnlineAdmin
   }
 
   /**
+   * Removes entries from the 'whos_online' table in the database based on inactivity.
+   *
+   * This method identifies records in the 'whos_online' table where the last activity
+   * occurred more than 15 minutes ago (calculated as the current time minus 900 seconds)
+   * and deletes those entries.
+   *
    * @return void
    */
   public static function removeWhoOnline(): void

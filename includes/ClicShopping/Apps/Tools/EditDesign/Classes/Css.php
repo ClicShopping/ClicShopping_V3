@@ -20,9 +20,11 @@ use function in_array;
 class Css
 {
   /**
-   * Recursive Directory list file with all css under a drop down
+   * Retrieves a list of CSS file names from the specified directory. It dynamically looks for the
+   * directory and files based on the selected directory input ($_POST or $_GET) and language configuration.
+   * The method returns an array of file names that can be used, populating options with an id and text for display.
    *
-   * @return array c $filename_array, the file name in the  css subdirectory
+   * @return array An array of CSS file names with each entry containing an 'id' and 'text' key.
    */
   public static function getFilenameCss(): array
   {
@@ -76,9 +78,12 @@ class Css
   }
 
   /**
-   * CSS Directory list
+   * Retrieves a list of subdirectories within a specific CSS directory for the current language or falls back to 'english'.
    *
-   * @return array $directory_array, the directories name in css directory
+   * The method scans the specified CSS directory (based on the current language) for subdirectories, excluding unwanted items.
+   * It constructs and returns an array of available directory options including a default 'selected' option.
+   *
+   * @return array Returns an array of subdirectories, each containing an 'id' and 'text' key.
    */
   public static function getDirectoryCss(): array
   {

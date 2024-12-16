@@ -23,6 +23,14 @@ class ActionRecorder
   public $_user_id;
   public $_user_name;
 
+  /**
+   * Constructor method to initialize the action recorder module.
+   *
+   * @param string $module The name of the module to be loaded.
+   * @param int|null $user_id The ID of the user associated with the action, optional.
+   * @param string|null $user_name The name of the user associated with the action, optional.
+   * @return void|false Returns void on successful initialization, or false if the module cannot be loaded.
+   */
   public function __construct($module, $user_id = null, $user_name = null)
   {
     $CLICSHOPPING_Template = Registry::get('Template');
@@ -62,8 +70,12 @@ class ActionRecorder
   }
 
   /**
-   * @param $module
-   * @return mixed
+   * Retrieves the current module instance.
+   *
+   * This method returns the module object that is associated with the current
+   * instance of the class. The module is identified by the `_module` property.
+   *
+   * @return object The module instance stored in the global variable.
    */
   public function getModule()
   {
@@ -71,7 +83,9 @@ class ActionRecorder
   }
 
   /**
-   * @return false
+   * Determines if the specified module can perform an action based on user ID and user name.
+   *
+   * @return bool Returns true if the module can perform the action, false otherwise.
    */
   public function canPerform()
   {
@@ -83,7 +97,9 @@ class ActionRecorder
   }
 
   /**
-   * @return mixed
+   * Retrieves the title of the module.
+   *
+   * @return string|null The title of the module if it exists, or null if the module is not set.
    */
   public function getTitle()
   {
@@ -93,7 +109,9 @@ class ActionRecorder
   }
 
   /**
-   * @return mixed
+   * Retrieves the identifier of the current module.
+   *
+   * @return mixed Returns the identifier of the module if the module is set; otherwise, returns null.
    */
   public function getIdentifier()
   {
@@ -103,7 +121,10 @@ class ActionRecorder
   }
 
   /**
-   * @param bool $success
+   * Records an action performed by a module with success status, user details, and timestamp.
+   *
+   * @param bool $success Indicates whether the action was successful. Defaults to true.
+   * @return void
    */
   public function record(bool $success = true)
   {
@@ -130,7 +151,10 @@ class ActionRecorder
   }
 
   /**
-   * @return mixed
+   * Triggers the expiration of entries in the associated module.
+   *
+   * @return bool|null Returns the result of the expiration operation from the module,
+   *                   or null if no module is associated.
    */
   public function expireEntries()
   {

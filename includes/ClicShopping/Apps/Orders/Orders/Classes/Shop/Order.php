@@ -69,7 +69,11 @@ class Order
   }
 
   /**
-   * @param int $order_id
+   * Retrieves and processes order information, including order details, customer information,
+   * delivery and billing addresses, product details, and various related attributes.
+   *
+   * @param int $order_id The ID of the order to fetch data for.
+   * @return void
    */
   public function query(int $order_id)
   {
@@ -254,7 +258,10 @@ class Order
   }
 
   /**
-   * @return array
+   * Initializes and returns an array representing customer information with default values.
+   *
+   * @return array An associative array with keys for customer and address details,
+   *               all initialized to null or default values.
    */
   protected function getCustomerArrayInitialization(): array
   {
@@ -287,9 +294,12 @@ class Order
   }
 
   /**
-   * get customer information
-   * @param int $id
-   * @return mixed
+   * Retrieves customer details based on the provided customer ID.
+   *
+   * @param int $id The unique identifier of the customer to retrieve.
+   *
+   * @return array An associative array containing customer details, including
+   *               personal information, address, and associated country data.
    */
   protected function getcustomer(int $id): array
   {
@@ -330,7 +340,12 @@ class Order
   }
 
   /**
-   * Cart
+   * Handles the processing of the shopping cart, including initializing customer address information,
+   * determining shipping and billing addresses, configuring tax addresses, and finalizing order details.
+   * This method takes into account customer group types (B2B or regular), session variables for
+   * payment and shipping, and the content type of the cart.
+   *
+   * @return void
    */
   public function cart(): void
   {
@@ -795,7 +810,20 @@ class Order
    * Insert
    ***********************************************************/
   /**
-   * @return mixed
+   * Inserts a new order and associated details into the database, including customer information,
+   * delivery and billing details, payment method, order totals, and product details. This method
+   * also processes any applicable attributes and handles specific business-to-business (B2B)
+   * information if the customer belongs to a group.
+   *
+   * The method initializes payment method handling, saves order information, manages order totals,
+   * and processes products and their attributes associated with the order. Specific handling for
+   * special payment modules (e.g., Atos) and group-specific product models is incorporated.
+   *
+   * Multiple registry objects are used to fetch order, product, and attribute information, while
+   * ensuring compatibility with customer group relationships. Additionally, the method leverages
+   * dynamic SQL data operations for saving relevant data into appropriate database tables.
+   *
+   * @return void
    */
   public function Insert()
   {
@@ -984,8 +1012,10 @@ class Order
     return $this->insertID;
   }
 
-  /** Last order id
-   * @return int last order id
+  /**
+   * Retrieves the ID of the most recently inserted order.
+   *
+   * @return int The ID of the last inserted order.
    */
   public function getLastOrderId()
   {
@@ -993,9 +1023,12 @@ class Order
   }
 
   /**
-   * GDPR Regulation
-   * @param int $last_order_id
-   * @param int $customer_id
+   * Saves GDPR-related information for a customer's order, including IP address
+   * and provider name, based on the customer's GDPR preferences.
+   *
+   * @param int $last_order_id The ID of the last order to update GDPR information for.
+   * @param int $customer_id The ID of the customer whose GDPR preferences need to be considered.
+   * @return void
    */
   public function saveGdpr(int $last_order_id, int $customer_id): void
   {
@@ -1029,8 +1062,11 @@ class Order
    * Process
    ***********************************************************/
   /**
-   * order process
-   * @param int $last_order_id
+   * Processes the finalization of an order, updating stock levels, product order statistics,
+   * notifying customers, and performing relevant related actions.
+   *
+   * @param int $last_order_id The ID of the most recent order to process.
+   * @return void
    */
   public function process(int $last_order_id): void
   {
@@ -1151,9 +1187,12 @@ class Order
   }
 
   /**
-   *  Status History order
-   * @param int $order_id
-   * @param string|null $comment
+   * Updates the order status history for a given order in the admin panel.
+   * This method records the status change, notification preference, and any additional comments.
+   *
+   * @param int $order_id The ID of the order for which the status history is being updated.
+   * @param string $comment Optional additional comments to be recorded in the status history.
+   * @return void
    */
   public function adminOrdersStatusHistory(int $order_id, string $comment = ''): void
   {
@@ -1173,8 +1212,13 @@ class Order
   }
 
   /**
-   * sendCustomerEmail : sent email to customer
-   * @param int $insert_id
+   * Sends an email to the customer containing order details, including the order summary,
+   * product information, delivery and billing addresses, payment method details,
+   * and any additional comments or footer text. Optionally, extra order-related emails
+   * can also be sent to specified recipients.
+   *
+   * @param int $order_id The ID of the order to send the email for.
+   * @return void
    */
   public function sendCustomerEmail(int $order_id): void
   {
@@ -1357,8 +1401,11 @@ class Order
   }
 
   /**
-   * Alert by mail product sold out if a product is 0 or < 0
-   * @param int $insert_id
+   * Sends an email alert to notify store administrators when products are sold out.
+   * The alert is triggered based on stock levels and configurable stock checking settings.
+   *
+   * @param int $insert_id The ID of the order associated with the product stock updates.
+   * @return void
    */
   public function sendEmailAlertProductsSoldOut(int $insert_id): void
   {
@@ -1413,7 +1460,12 @@ class Order
   }
 
   /**
-   * @param int $insert_id
+   * Sends an email alert when the stock quantity of a product reaches a specified reorder level
+   * or falls below a defined threshold. It checks product stock levels and generates alerts
+   * to notify the store owner about low stock or critical stock conditions.
+   *
+   * @param int $insert_id The ID of the order to evaluate for stock-level alerts.
+   * @return void
    */
   public function sendEmailAlertStockWarning(int $insert_id): void
   {
@@ -1498,8 +1550,10 @@ class Order
   }
 
   /**
-   * Verify the coupon
-   * @return false|void
+   * Validates and processes the discount coupon code from the session,
+   * ensuring the coupon is applicable to the products in the shopping cart.
+   *
+   * @return false|void Returns false if the discount coupon module is disabled or not active.
    */
   private function getCodeCoupon()
   {
@@ -1524,8 +1578,11 @@ class Order
   }
 
   /**
-   * finalize the coupon discount processs
-   * @return mixed
+   * Applies and finalizes the discount from a coupon to the current order total,
+   * if the Discount Coupon module is active and the coupon object is available.
+   *
+   * @return mixed Returns the updated total with the coupon discount applied if applicable,
+   *               or false if the Discount Coupon module is inactive.
    */
   private function getFinalizeCouponDiscount()
   {
@@ -1541,9 +1598,9 @@ class Order
   }
 
   /**
-   * Customers has purchased with comment
-   * @return array : $Qhaspurchased : purchased informations
+   * Checks whether the customer has previously purchased a specific product.
    *
+   * @return bool Returns true if the customer has purchased the product, false otherwise.
    */
   public function hasPurchasedProduct()
   {

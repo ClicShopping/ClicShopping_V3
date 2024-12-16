@@ -23,11 +23,10 @@ class ActionsRecorder
   protected int $language_id;
 
   /**
-   *  Return catagories path
+   * Builds and returns the category path string based on the current context or a given category ID.
    *
-   * @param string $current_category_id
-   * @return string $cPath_new,
-   *
+   * @param string $current_category_id The ID of the current category. If empty, the method will use the category path already stored in the system. Default is an empty string.
+   * @return string The constructed category path string in the format 'cPath=<id_sequence>'.
    */
   public static function getPath($current_category_id = ''): string
   {
@@ -70,12 +69,11 @@ class ActionsRecorder
   }
 
   /**
-   * the category name
+   * Retrieves the label of an actions recorder based on the provided ID and language ID.
    *
-   * @param int $id
-   * @param int $language_id
-   * @return string $category['categories_name'],  name of the categorie
-   *
+   * @param int $id The ID of the actions recorder.
+   * @param int $language_id The ID of the language. If not provided, the current language ID will be used.
+   * @return string The label associated with the actions recorder.
    */
   public static function getActionsRecorderLabel(int $id, int $language_id): string
   {
@@ -91,11 +89,10 @@ class ActionsRecorder
   }
 
   /**
-   *  remove category
+   * Removes a category from the database, including its associated descriptions, and clears the administrator menu cache.
    *
-   * @param int $id
-   * @return string
-   *
+   * @param int $id The ID of the category to remove.
+   * @return void
    */
   public static function removeCategory(int $id)
   {
@@ -109,13 +106,15 @@ class ActionsRecorder
 
 
   /**
-   * category tree
-   * @param string $parent_id
-   * @param string $spacing
-   * @param string $exclude
-   * @param string $category_tree_array
-   * @param bool $include_itself
-   * @return array|string
+   * Builds and retrieves a hierarchical label tree structure from the database.
+   *
+   * @param int|string $parent_id The ID of the parent category from which the label tree starts. Default is '0'.
+   * @param string $spacing A string used to visually represent depth levels in the label tree. Default is an empty string.
+   * @param string $exclude The ID of a category to exclude from the label tree. Default is an empty string.
+   * @param array|string $category_tree_array Array to hold the label tree structure. If not provided, it is initialized as an empty array. Default is an empty string.
+   * @param bool $include_itself Whether to include the current category itself in the label tree. Default is false.
+   *
+   * @return array The hierarchical array representation of the label tree with category IDs and labels.
    */
   public static function getLabelTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false)
   {
@@ -179,8 +178,10 @@ class ActionsRecorder
   }
 
   /**
-   * @param string $id , $from,
-   * @return string $calculated_category_path_string
+   * Generates a path string of category IDs related to the specified actions recorder ID.
+   *
+   * @param int $id The actions recorder ID for which the category path string is generated.
+   * @return string A string representing the generated category path of IDs.
    */
   public static function getGeneratedActionsRecorderPathIds(int $id)
   {
@@ -206,10 +207,12 @@ class ActionsRecorder
   }
 
   /**
-   * @param int $id
-   * @param string $categories_array
-   * @param int $index
-   * @return array
+   * Generates a hierarchical path for a given category ID.
+   *
+   * @param int $id The ID of the category for which the path is generated.
+   * @param array|string $categories_array An optional array to store categories or an empty string. Defaults to an empty array if not provided.
+   * @param int $index The level or index in the categories array. Defaults to 0.
+   * @return array Returns an array representing the category path with hierarchical structure.
    */
   public static function getGenerateCategoryPath(int $id, $categories_array = '', $index = 0): array
   {
@@ -244,8 +247,13 @@ class ActionsRecorder
   }
 
   /**
-   * remove Administatrator Menu Category
-   * @param string $id
+   * Removes a category record and its related image from the actions recorder table
+   * and description table in the database. If the associated image is not used
+   * by any other categories, it also deletes the image file from the file system.
+   *
+   * @param int $id The ID of the category to be removed from the actions recorder.
+   *
+   * @return void
    */
   public static function getRemoveActionsRecorderCategory(int $id)
   {
@@ -299,15 +307,17 @@ class ActionsRecorder
   }
 
   /**
-   * category tree
+   * Retrieves a hierarchical tree structure of action recorder categories.
+   * This allows for generating a nested list of categories, optionally including
+   * the specified parent category itself and excluding a specific category.
    *
-   * @param string $parent_id
-   * @param string $spacing
-   * @param string $exclude
-   * @param string $category_tree_array
-   * @param bool $include_itself
-   * @return string $category_tree_array, the tree of category
+   * @param string|int $parent_id The ID of the parent category to start building the tree from. Defaults to '0'.
+   * @param string $spacing A string used for spacing the labels to represent hierarchy. Defaults to an empty string.
+   * @param string $exclude The ID of a category to exclude from the tree. Defaults to an empty string.
+   * @param array $category_tree_array The existing array structure of the category tree. Defaults to an empty array.
+   * @param bool $include_itself Indicates whether to include the specified parent category itself in the tree. Defaults to false.
    *
+   * @return array An array representing the hierarchical tree structure of action recorder categories.
    */
   public static function getActionsRecorderCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', bool $include_itself = false)
   {
@@ -374,9 +384,12 @@ class ActionsRecorder
   }
 
   /**
-   * Count how many subcategories exist in a category
-   * @param int $id
-   * @return int
+   * Retrieves the count of all child categories associated with a given parent category ID.
+   * The method performs a recursive search to count all descendants within the menu structure.
+   *
+   * @param int $id The ID of the parent category for which child categories will be counted.
+   *
+   * @return int The total number of child categories, including all nested child categories.
    */
   public static function getChildsInMenuCount(int $id): int
   {
@@ -402,8 +415,12 @@ class ActionsRecorder
   }
 
   /**
-   * @param $file
-   * @return mixed
+   * Retrieves and instantiates a class based on the provided file name, if the class exists.
+   * It also sets the instantiated class as a global variable with the class name as the key.
+   *
+   * @param string $file The file name from which the class name will be derived.
+   *
+   * @return object|null The instance of the class if it exists, or null if the class does not exist.
    */
   public function getClass(string $file)
   {
@@ -417,8 +434,11 @@ class ActionsRecorder
   }
 
   /**
-   * @param $module
-   * @return mixed
+   * Retrieves a module class instance from the global scope.
+   *
+   * @param string $module The name of the module whose class instance is to be retrieved.
+   *
+   * @return mixed The module class instance if it exists in the global scope.
    */
   public function getClassModule($module)
   {

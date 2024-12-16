@@ -20,10 +20,12 @@ class SeoAdmin
   protected int $category_id;
 
   /**
-   * Get the default title H1 on index page
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   *
+   * Retrieves the SEO default language title H1 from the database based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The ID of the SEO entry.
+   * @param int $language_id The ID of the language.
+   * @return string The SEO default language title H1.
    */
   public static function getSeoDefaultLanguageTitleH1(int $seo_id, int $language_id): string
   {
@@ -33,10 +35,12 @@ class SeoAdmin
   }
 
   /**
-   * Get the default title
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the default language title for SEO based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The ID of the SEO entry to retrieve the default language title for.
+   * @param int $language_id The ID of the language to retrieve the title in.
+   *
+   * @return string The default language title for the specified SEO entry.
    */
   public static function getSeoDefaultLanguageTitle(int $seo_id, int $language_id): string
   {
@@ -46,10 +50,11 @@ class SeoAdmin
   }
 
   /**
-   * Get the default Description
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the default language description for a given SEO entry based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The ID of the SEO entry for which the default language description is to be retrieved.
+   * @param int $language_id The ID of the language for which the description is requested.
+   * @return string The default language description for the specified SEO entry and language.
    */
   public static function getSeoDefaultLanguageDescription(int $seo_id, int $language_id): string
   {
@@ -59,10 +64,11 @@ class SeoAdmin
   }
 
   /**
-   * Get the default keywords
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the default language keywords for SEO configuration.
+   *
+   * @param int $seo_id The unique identifier for the SEO entity.
+   * @param int $language_id The unique identifier for the language.
+   * @return string The SEO default language keywords.
    */
   public static function getSeoDefaultLanguageKeywords(int $seo_id, int $language_id): string
   {
@@ -72,10 +78,12 @@ class SeoAdmin
   }
 
   /**
-   * Get the default footer
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the default language footer for SEO configuration based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The identifier of the SEO entity.
+   * @param int $language_id The identifier of the language.
+   *
+   * @return string The default language footer associated with the provided SEO ID and language ID.
    */
   public static function getSeoDefaultLanguageFooter(int $seo_id, int $language_id): string
   {
@@ -85,10 +93,11 @@ class SeoAdmin
   }
 
   /**
-   * Get the products info title
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO title for a specific product information in a given language.
+   *
+   * @param int $seo_id The SEO identifier for the requested product information.
+   * @param int $language_id The language identifier for which the SEO title is requested.
+   * @return string The SEO title associated with the given identifiers.
    */
   public static function getSeoProductsInfoTitle(int $seo_id, int $language_id): string
   {
@@ -99,10 +108,11 @@ class SeoAdmin
 
 
   /**
-   * Get the products info description
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO product information description based on the given SEO ID and language ID.
+   *
+   * @param int $seo_id The ID of the SEO entry.
+   * @param int $language_id The ID of the language.
+   * @return string The description of the SEO product information.
    */
   public static function getSeoProductsInfoDescription(int $seo_id, int $language_id): string
   {
@@ -112,10 +122,12 @@ class SeoAdmin
   }
 
   /**
-   * Get the products info description
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO keywords information for a product based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO keywords as a string.
    */
   public static function getSeoProductsInfoKeywords(int $seo_id, int $language_id): string
   {
@@ -125,10 +137,11 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts new title
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO title for new products based on the given SEO ID and language ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The identifier for the specific language.
+   * @return string The SEO title for new products in the specified language.
    */
   public static function getSeoProductsNewTitle(int $seo_id, int $language_id): string
   {
@@ -138,10 +151,11 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts new description
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the new product description for SEO purposes based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The identifier for the SEO entry.
+   * @param int $language_id The identifier for the language.
+   * @return string The new product description for the specified SEO and language IDs.
    */
   public static function getSeoProductsNewDescription(int $seo_id, int $language_id): string
   {
@@ -152,10 +166,11 @@ class SeoAdmin
 
 
   /**
-   * Get the poducts new keywords
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO keywords for new products based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The ID of the SEO entry.
+   * @param int $language_id The ID of the language.
+   * @return string The SEO keywords for new products.
    */
   public static function getSeoProductsNewKeywords(int $seo_id, int $language_id): string
   {
@@ -165,10 +180,12 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts speciql title
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO title for special products based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The identifier for the language to retrieve the title in.
+   *
+   * @return string The SEO title for special products.
    */
   public static function getSeoProductsSpecialsTitle(int $seo_id, int $language_id): string
   {
@@ -178,10 +195,11 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts speciql description
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO description for special products based on the given SEO ID and language ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The ID of the language for the SEO description.
+   * @return string The SEO description for the special products.
    */
   public static function getSeoProductsSpecialsDescription(int $seo_id, int $language_id): string
   {
@@ -191,10 +209,11 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts special keywords
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the special keywords for SEO based on the specified SEO ID and language ID.
+   *
+   * @param int $seo_id The identifier for the SEO entry.
+   * @param int $language_id The identifier for the language.
+   * @return string Returns the SEO special keywords for the specified parameters.
    */
   public static function getSeoProductsSpecialskeywords(int $seo_id, int $language_id): string
   {
@@ -204,10 +223,11 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts review title
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO title for product reviews based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The identifier for the SEO entry.
+   * @param int $language_id The identifier for the language.
+   * @return string The SEO title for product reviews.
    */
   public static function getSeoProductsReviewsTitle(int $seo_id, int $language_id): string
   {
@@ -217,10 +237,11 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts review description
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO description for product reviews based on the given SEO ID and language ID.
+   *
+   * @param int $seo_id The SEO identifier.
+   * @param int $language_id The language identifier.
+   * @return string The SEO description for product reviews.
    */
   public static function getSeoProductsReviewsDescription(int $seo_id, int $language_id): string
   {
@@ -230,10 +251,11 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts review keywords
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves SEO reviews keywords for products based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The ID of the SEO entry.
+   * @param int $language_id The ID of the language.
+   * @return string The keywords for product reviews in the specified language.
    */
   public static function getSeoProductsReviewsKeywords(int $seo_id, int $language_id): string
   {
@@ -243,10 +265,11 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts fqvorites title
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO title for favorites based on the given SEO ID and language ID.
+   *
+   * @param int $seo_id The identifier for the SEO entry.
+   * @param int $language_id The identifier for the language.
+   * @return string The SEO title for favorites.
    */
   public static function getSeoFavoritesTitle(int $seo_id, int $language_id): string
   {
@@ -256,10 +279,12 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts fqvorites description
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO description for a favorite item based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO description as a string.
    */
   public static function getSeoFavoritesDescription(int $seo_id, int $language_id): string
   {
@@ -269,10 +294,12 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts favorites keywords
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO keywords information for favorites based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO keywords for favorites as a string.
    */
   public static function getSeoFavoritesKeywords(int $seo_id, int $language_id): string
   {
@@ -282,10 +309,12 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts featured Title
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO featured title based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO featured title as a string.
    */
   public static function getSeoFeaturedTitle(int $seo_id, int $language_id): string
   {
@@ -295,10 +324,12 @@ class SeoAdmin
   }
 
   /**
-   * Get the poducts featured description
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO featured description based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO featured description as a string.
    */
   public static function getSeoFeaturedDescription(int $seo_id, int $language_id): string
   {
@@ -309,10 +340,12 @@ class SeoAdmin
 
 
   /**
-   * Get the poducts featured keywords
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO featured keywords based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO featured keywords as a string.
    */
   public static function getSeoFeaturedkeywords(int $seo_id, int $language_id): string
   {
@@ -322,12 +355,12 @@ class SeoAdmin
   }
 
   /**
-   * the manufacturer seo description
+   * Retrieves the SEO description for a manufacturer based on the provided manufacturer ID and language ID.
    *
-   * @param int|null $manufacturers_id
-   * @param int $language_id
-   * @return string $manufacturer['manufacturers_seo_description']
+   * @param int|null $manufacturers_id The unique identifier for the manufacturer. Can be null if not specified.
+   * @param int $language_id The unique identifier for the language.
    *
+   * @return string Returns the retrieved SEO description as a string.
    */
   public static function getManufacturerSeoDescription( int|null $manufacturers_id, int $language_id): string
   {
@@ -348,11 +381,12 @@ class SeoAdmin
   }
 
   /**
-   * the manufacturer seo title
+   * Retrieves the SEO title for a manufacturer based on the provided manufacturer ID and language ID.
    *
-   * @param int|null $manufacturer_id , $language_id
-   * @return string $manufacturer['manufacturers_seo_title'],  seo title of the manufacturer
+   * @param int|null $manufacturers_id The unique identifier for the manufacturer. Can be null.
+   * @param int $language_id The unique identifier for the language.
    *
+   * @return string Returns the retrieved manufacturer SEO title as a string.
    */
   public static function getManufacturerSeoTitle( int|null $manufacturers_id, int $language_id)
   {
@@ -372,11 +406,12 @@ class SeoAdmin
   }
 
   /**
-   * the manufacturer seo keyword
+   * Retrieves the SEO keyword associated with a manufacturer based on the provided manufacturer ID and language ID.
    *
-   * @param int|null $manufacturers_id
-   * @param int $language_id
-   * @return string $manufacturer['manufacturers_seo_keyword'],  seo keyword of the manufacturer
+   * @param int|null $manufacturers_id The unique identifier for the manufacturer, or null if no specific manufacturer is provided.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO keyword as a string.
    */
   public static function getManufacturerSeoKeyword( int|null $manufacturers_id, int $language_id): string
   {
@@ -396,11 +431,12 @@ class SeoAdmin
   }
 
   /**
-   * Title Name of the submit
+   * Retrieves the SEO title for a product based on the provided product ID and language ID.
    *
-   * @param string $product_id , $language_id
-   * @param int $language_id
-   * @return string product['products_head_title_tag'], description name
+   * @param string $product_id The unique identifier for the product.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO title as a string.
    */
   public static function getProductsSeoTitle(string $product_id, int $language_id): string
   {
@@ -420,11 +456,12 @@ class SeoAdmin
   }
 
   /**
-   * Description Name
+   * Retrieves the SEO description for a product based on the provided product ID and language ID.
    *
-   * @param string $product_id , $language_id
-   * @param int $language_id
-   * @return string $product['products_head_desc_tag'], description name
+   * @param string $product_id The unique identifier for the product.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO description as a string.
    */
   public static function getProductsSeoDescription(string $product_id, int $language_id): string
   {
@@ -444,11 +481,12 @@ class SeoAdmin
   }
 
   /**
-   * keywords Name
+   * Retrieves the SEO keywords for a product based on the provided product ID and language ID.
    *
-   * @param string $product_id , $language_id
-   * @param int $language_id
-   * @return string $product['products_head_keywords_tag'], keywords name
+   * @param string $product_id The unique identifier for the product.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the product's SEO keywords as a string.
    */
   public static function getProductsSeoKeywords(string $product_id, int $language_id): string
   {
@@ -468,11 +506,12 @@ class SeoAdmin
   }
 
   /**
-   * Tag Name
+   * Retrieves the SEO tag for a product based on the provided product ID and language ID.
    *
-   * @param string $product_id , $language_id
-   * @param int $language_id
-   * @return string $product['products_head_tag'], keywords name
+   * @param string $product_id The unique identifier for the product.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO tag as a string.
    */
   public static function getProductsSeoTag(string $product_id, int $language_id): string
   {
@@ -492,10 +531,12 @@ class SeoAdmin
   }
 
   /**
-   * SEO URl
-   * @param int|null $products_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO URL for a product based on the provided product ID and language ID.
+   *
+   * @param string $products_id The unique identifier for the product.
+   * @param int $language_id The unique identifier for the language. If not provided, the default language ID is used.
+   *
+   * @return string Returns the retrieved SEO URL as a string.
    */
   public static function getProductsSeoUrl(string $products_id, int $language_id): string
   {
@@ -518,10 +559,12 @@ class SeoAdmin
   }
 
   /**
-   * SEO URl
-   * @param int|null $category_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO URL for a category based on the provided category ID and language ID.
+   *
+   * @param int|null $category_id The unique identifier for the category, or null if not provided.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO URL for the category as a string.
    */
   public static function getCategoriesSeoUrl( int|null $category_id, int $language_id): string
   {
@@ -544,9 +587,12 @@ class SeoAdmin
   }
 
   /**
-   * @param int|null $category_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO title tag for a category based on the provided category ID and language ID.
+   *
+   * @param int|null $category_id The unique identifier for the category. It can be null if not specified.
+   * @param int $language_id The unique identifier for the language. If null, the system's default language ID will be used.
+   *
+   * @return string Returns the retrieved SEO title tag as a string.
    */
   public static function getCategoriesSeoTitle( int|null $category_id, int $language_id): string
   {
@@ -569,9 +615,12 @@ class SeoAdmin
   }
 
   /**
-   * @param int|null $category_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO description for a category based on the provided category ID and language ID.
+   *
+   * @param int|null $category_id The unique identifier for the category. Can be null if the category ID is not provided.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO description for the specified category.
    */
   public static function getCategoriesSeoDescription( int|null $category_id, int $language_id): string
   {
@@ -594,9 +643,12 @@ class SeoAdmin
   }
 
   /**
-   * @param int|null $category_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO keywords information for a category based on the given category ID and language ID.
+   *
+   * @param int|null $category_id The unique identifier for the category, or null if no category is specified.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO keywords for the specified category as a string.
    */
   public static function getCategoriesSeoKeywords( int|null $category_id, int $language_id): string
   {
@@ -619,10 +671,12 @@ class SeoAdmin
   }
 
   /**
-   * Get the default title
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO recommendations title for a specific language based on the provided SEO ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO recommendations title as a string.
    */
   public static function getSeoRecommendationsLanguageTitle(int $seo_id, int $language_id): string
   {
@@ -632,10 +686,12 @@ class SeoAdmin
   }
 
   /**
-   * Get the Recommendations Description
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO recommendations description for a specific language based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO recommendations description as a string.
    */
   public static function getSeoRecommendationsLanguageDescription(int $seo_id, int $language_id): string
   {
@@ -645,10 +701,12 @@ class SeoAdmin
   }
 
   /**
-   * Get the Recommendations keywords
-   * @param int $seo_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the SEO recommendation keywords based on the provided SEO ID and language ID.
+   *
+   * @param int $seo_id The unique identifier for the SEO entry.
+   * @param int $language_id The unique identifier for the language.
+   *
+   * @return string Returns the retrieved SEO recommendation keywords as a string.
    */
   public static function getSeoRecommendationstLanguageKeywords(int $seo_id, int $language_id): string
   {

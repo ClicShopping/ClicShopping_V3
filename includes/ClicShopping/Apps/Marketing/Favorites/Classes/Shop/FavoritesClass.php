@@ -16,9 +16,11 @@ use function count;
 class FavoritesClass
 {
   /**
-   * @param int $products_favorites_id
-   * @param int $status
-   * @return int
+   * Updates the status of a specific favorite product in the database.
+   *
+   * @param int $products_favorites_id The ID of the favorite product to update.
+   * @param int $status The new status to set for the favorite product. Accepted values: 1 (active), 0 (inactive).
+   * @return bool|int Returns true on successful update, false on failure, or -1 if an invalid status is provided.
    */
   private static function setFavoritesStatus(int $products_favorites_id, int $status)
   {
@@ -45,6 +47,8 @@ class FavoritesClass
   }
 
   /**
+   * Activates scheduled favorite products by updating their status when their scheduled date is due.
+   *
    * @return void
    */
   public static function scheduledFavorites(): void
@@ -68,6 +72,9 @@ class FavoritesClass
     }
   }
   /**
+   * Expires favorite products by checking if their expiration date has passed
+   * and updating their status accordingly.
+   *
    * @return void
    */
 // Auto expire products on products favorites
@@ -92,7 +99,10 @@ class FavoritesClass
   }
 
   /**
-   * @return array
+   * Retrieves a list of column identifiers where the associated configuration value is greater than zero.
+   * The columns are sorted based on their defined configuration ordering.
+   *
+   * @return array An array of column identifiers that meet the specified criteria.
    */
   public static function getCountColumnList(): array
   {
@@ -117,7 +127,10 @@ class FavoritesClass
   }
 
   /**
-   * @return string
+   * Generates an SQL query string for retrieving a listing of products based on configured conditions
+   * such as customer group, products' attributes, and sorting order.
+   *
+   * @return string SQL query string for fetching products listing.
    */
   private static function Listing()
   {
@@ -228,7 +241,10 @@ class FavoritesClass
   }
 
   /**
-   * @return mixed
+   * Retrieves a listing from the database, optionally binding the customer group ID
+   * if the current customer belongs to a specific group.
+   *
+   * @return mixed The prepared database query result for the listing.
    */
   public static function getListing(): mixed
   {

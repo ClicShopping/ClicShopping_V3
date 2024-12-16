@@ -27,9 +27,18 @@ class Cron
   }
 
   /**
-   * @param array|null $data
-   * @param int|null $id
-   * @return array
+   * Retrieves a list of cron job records from the database, optionally filtered by ID
+   * and/or paginated using start and limit parameters.
+   *
+   * @param array|null $data An optional associative array that may include 'start'
+   *                         for the starting position and 'limit' for the number
+   *                         of records to retrieve. Defaults to an empty array.
+   * @param int|null $id Optional ID of the cron job to retrieve. If provided, it
+   *                     filters the result to only include the specified cron job.
+   *
+   * @return array An array of cron job records retrieved from the database,
+   *               including fields like cron_id, code, cycle, action, status,
+   *               date_added, and date_modified.
    */
   public static function getCrons(?array $data = [],  int|null $id): array
   {
@@ -74,8 +83,10 @@ class Cron
   }
 
   /**
-   * @param string $code
-   * @return int
+   * Retrieves the cron ID associated with the given code.
+   *
+   * @param string $code The code used to identify the cron entry.
+   * @return int The ID of the cron entry.
    */
   public static function getCronCode(string $code): int
   {
@@ -95,7 +106,10 @@ class Cron
   }
 
   /**
-   * @param int $cron_id
+   * Updates the date_modified field of a specific cron entry in the database.
+   *
+   * @param int $cron_id The ID of the cron entry to be updated.
+   * @return void This method does not return a value.
    */
   public static function updateCron(int $cron_id): void
   {
@@ -109,7 +123,9 @@ class Cron
   }
 
   /**
-   * @return int
+   * Retrieves the total number of crons from the database.
+   *
+   * @return int The total count of crons.
    */
   public static function getTotalCrons(): int
   {
@@ -124,9 +140,11 @@ class Cron
   }
 
   /**
-   * @param int $cron_id
-   * @param int $status
-   * @return string status on or off
+   * Updates the status of a cron job based on the provided status.
+   *
+   * @param int $cron_id The ID of the cron job to update.
+   * @param int $status The current status of the cron job (0 or 1).
+   * @return mixed Returns the result of the database save operation on success, or -1 if the status is invalid.
    */
   public static function getCronjobStatus(int $cron_id, int $status)
   {

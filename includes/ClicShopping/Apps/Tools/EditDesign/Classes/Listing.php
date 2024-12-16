@@ -24,6 +24,17 @@ class Listing
     * @return array $filename_array, the file name in the template products subdirectory
     *
   */
+  /**
+   * Retrieves a list of template file names within a specified directory, filtered by specific file extensions, and
+   * returns them as an array with additional metadata.
+   *
+   * This method scans the directory provided via POST or a fallback default directory for template files.
+   * It identifies files with a '.php' extension, sorts them naturally in a case-insensitive manner,
+   * and formats the resulting array with 'id' and 'text' keys for each file.
+   *
+   * @return array|null Returns an array of template file names formatted with 'id' and 'text' keys if files are found,
+   *                    or null if no files are located or an error occurs.
+   */
   public static function getFilenameTemplateProducts(): ?array
   {
     if (isset($_POST['directory_html'])) {
@@ -79,6 +90,11 @@ class Listing
     * @return string $directory_array, the directories name in css directory
     *
   */
+  /**
+   * Retrieves a list of directories within the template modules directory, excluding specified entries.
+   *
+   * @return array An array of directories formatted with 'id' and 'text' keys. The first entry is a default selection option.
+   */
   public static function getDirectoryTemplateProducts(): array
   {
     $template_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/template/' . SITE_THEMA . '/modules/';

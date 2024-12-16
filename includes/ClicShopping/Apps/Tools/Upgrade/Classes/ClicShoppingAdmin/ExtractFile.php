@@ -44,12 +44,12 @@ class ExtractFile
   }
 
   /**
-   * Extract Zip file
+   * Extracts the contents of a ZIP archive to a specified destination directory.
    *
-   * @param string $source
-   * @param string $destination
-   * @return bool
-   * @uses ZipArchive
+   * @param string $source The path to the ZIP archive file to be extracted.
+   * @param string $destination The directory where the ZIP contents will be extracted.
+   *
+   * @return bool Returns true if the extraction is successful, otherwise false.
    */
   private function getExtractZip(string $source, string $destination): bool
   {
@@ -65,7 +65,9 @@ class ExtractFile
   }
 
   /**
-   * @param string $value true/false
+   * Updates the configuration value for the store's offline status.
+   *
+   * @param string $value The configuration value to update for the store's offline status.
    * @return void
    */
   public function getCloseOpenStore(string $value): void
@@ -81,9 +83,10 @@ class ExtractFile
   }
 
   /**
-   * Check directory if exist or not
-   * @param
-   * @return Boolean true / false
+   * Checks if necessary directories exist and are writable, creating them if needed.
+   *
+   * @return bool Returns true if all required directories exist and are writable; otherwise, false.
+   * @throws RuntimeException If a directory cannot be created.
    */
   public function checkDirectory(): bool
   {
@@ -122,8 +125,10 @@ class ExtractFile
   }
 
   /**
-   * @param string $file_url
-   * @return string|void
+   * Downloads a file from the specified URL and saves it locally.
+   *
+   * @param string $file_url The URL of the file to be downloaded.
+   * @return string|null Returns the local file path where the downloaded file is saved, or null if the download failed.
    */
   public function downloadFile(string $file_url)
   {
@@ -146,7 +151,9 @@ class ExtractFile
   }
 
   /**
-   * @param string $filename_localisation
+   * Installs files from the provided zip file and copies them to their respective destinations.
+   *
+   * @param string $filename_localisation The path to the zip file to be installed.
    * @return void
    */
   public function installFiles(string $filename_localisation): void
@@ -183,8 +190,10 @@ class ExtractFile
   }
 
   /**
-   * @param string $json_file
-   * @return bool|int
+   * Retrieves and decodes a JSON file.
+   *
+   * @param string $json_file The name of the JSON file to retrieve and decode.
+   * @return array|bool Returns the decoded JSON data as an array if successful, or false on failure.
    */
   public function getJsonInfo(string $json_file): array|bool
   {

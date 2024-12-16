@@ -18,11 +18,10 @@ use function is_array;
 class Banner
 {
   /**
-   * Sets the status of a banner
+   * Update the status of the banner
    *
-   * @param int $banners_id
-   * @param int $status
-   * @return boolean
+   * @param int $banners_id The ID of the banner
+   * @param int $status The new status of the banner (1 for active, 0 for inactive)
    * @access private
    */
 
@@ -53,9 +52,13 @@ class Banner
   }
 
   /**
-   * Activate a banner that has been on schedule
+   * Activate banners that are scheduled and not currently active
+   *
+   * This method checks for banners with a scheduled activation date
+   * that has passed and updates their status to active.
    *
    * @return void
+   * @access public
    */
   public static function activateBanners(): void
   {
@@ -78,9 +81,14 @@ class Banner
   }
 
   /**
-   * Deactivate a banner
+   * Expires banners based on their expiration date or the number of impressions
+   *
+   * Checks all active banners and deactivates them if:
+   * - The current date is equal to or exceeds their expiration date.
+   * - The total number of impressions has reached or surpassed the set limit.
    *
    * @return void
+   * @access private
    */
   public static function expireBanners(): void
   {
@@ -108,13 +116,12 @@ class Banner
   }
 
   /**
-   * Display a banner. If no ID is passed, the value defined in $_exists_id is
-   * used.
+   * Displays a banner based on the specified action and identifier.
    *
-   * @param $action of the banner (dynamic or static)
-   * @param $identifier of the banner to show
-   *
-   * @return array
+   * @param string $action The type of banner retrieval ('dynamic' or 'static').
+   * @param mixed $identifier The banner identifier, could be a group name or an array containing banner details.
+   * @return string The rendered HTML output of the banner, or an empty string if no banner is available.
+   * @access public
    */
   public static function displayBanner($action, $identifier)
   {
@@ -265,11 +272,12 @@ class Banner
   }
 
   /**
-   * Check if an existing banner is active
+   * Checks if a banner exists based on the specified type of action (dynamic or static) and its identifier.
    *
-   * @param $action
-   * @param $identifier
-   * @return 
+   * @param string $action The type of action to determine the query (dynamic|static).
+   * @param string $identifier The identifier or group name of the banner.
+   *
+   * @return array|false Returns banner details as an associative array if found, or false if no banner matches.
    */
 
   public static function bannerExists($action, $identifier)
@@ -396,10 +404,12 @@ class Banner
   }
 
   /**
-   * Increment the display count of the banner
+   * Updates the display count of a banner for the current day.
+   * If an entry for the specified banner and date already exists, the display count is incremented.
+   * Otherwise, a new entry is created with an initial display count of 1.
    *
-   * @param int $banner_id
-   * @access private
+   * @param int $banner_id The unique identifier of the banner for which the display count should be updated.
+   * @return void
    */
   private static function updateBannerDisplayCount(int $banner_id): void
   {
@@ -443,10 +453,11 @@ class Banner
   }
 
   /**
-   * Increment the click count of the banner
+   * Updates the click count for a specific banner, either incrementing the count
+   * for the current date or creating a new entry if none exists for the banner on the current date.
    *
-   * @param int $banner_id The ID of the banner
-   * @access private
+   * @param int $banner_id The ID of the banner for which the click count is being updated.
+   * @return void
    */
   public static function updateBannerClickCount(int $banner_id): void
   {
