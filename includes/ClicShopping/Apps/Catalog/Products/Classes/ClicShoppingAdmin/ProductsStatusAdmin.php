@@ -12,13 +12,20 @@ namespace ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
 
+/**
+ * Class ProductsStatusAdmin
+ *
+ * This class provides methods to interact with and manage the status of products
+ * in the database within the ClicShoppingAdmin application.
+ */
 class ProductsStatusAdmin
 {
   /**
-   * Status products - Sets the status of a product
-   * @param int $products_id
-   * @param int $status
-   * @return int
+   * Updates the status of a product in the database based on the provided status value.
+   *
+   * @param int $products_id The ID of the product whose status needs to be updated.
+   * @param int $status The status to set for the product (1 for active, 0 for inactive).
+   * @return mixed Returns the result of the database operation or -1 if the provided status is invalid.
    */
   public static function getProductStatus(int $products_id, int $status)
   {
@@ -46,8 +53,10 @@ class ProductsStatusAdmin
   }
 
   /**
-   * @param int|null $products_id
-   * @return bool
+   * Checks the status of a product based on its ID.
+   *
+   * @param int|null $products_id The ID of the product. If null, the function will return false.
+   * @return bool Returns true if the product status is active (not 0), and false otherwise.
    */
   public static function checkProductStatus( int|null $products_id): bool
   {

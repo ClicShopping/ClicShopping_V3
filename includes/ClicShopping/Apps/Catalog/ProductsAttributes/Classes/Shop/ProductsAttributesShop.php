@@ -12,7 +12,10 @@ namespace ClicShopping\Apps\Catalog\ProductsAttributes\Classes\Shop;
 
 use ClicShopping\OM\Registry;
 use function is_null;
-
+/**
+ * Class ProductsAttributesShop
+ * Provides methods to manage and retrieve product attributes information.
+ */
 class ProductsAttributesShop
 {
   private mixed $lang;
@@ -29,9 +32,10 @@ class ProductsAttributesShop
   }
 
   /**
-   * Count the number of attributes on product
-   * @param null $id
-   * @return mixed
+   * Set the count of product attributes based on provided or default product ID.
+   *
+   * @param int|null $id The product ID for which attributes are counted. If null, defaults to the current product ID.
+   * @return float The total count of product attributes.
    */
   private function setCountProductsAttributes($id = null)
   {
@@ -78,8 +82,9 @@ class ProductsAttributesShop
   }
 
   /**
-   * @param null $id
-   * @return int
+   * Get the count of products attributes
+   * @param int|null $id The ID of the product to count attributes for, or null to count for all products
+   * @return mixed
    */
   public function getCountProductsAttributes($id = null)
   {
@@ -87,9 +92,9 @@ class ProductsAttributesShop
   }
 
   /**
-   * Check if product has attributes
-   * @param null $id
-   * @return bool
+   * Determine if a product has attributes
+   * @param int|null $id Product ID. If null, the ID is retrieved automatically.
+   * @return bool True if the product has attributes, false otherwise.
    */
   public function getHasProductAttributes($id = null)
   {
@@ -111,12 +116,12 @@ class ProductsAttributesShop
   }
 
   /**
-   * Get attributes Information
-   * @param $products_id
-   * @param int $option_id
-   * @param int|null $options_values_id
-   * @param int $language_id
-   * @return mixed
+   * Retrieve product attributes information based on the given parameters.
+   * @param int $products_id The ID of the product to fetch attributes for.
+   * @param int $option_id The ID of the option associated with the product.
+   * @param int|null $options_values_id The ID of the option's value to filter attributes (optional).
+   * @param int|null $language_id The ID of the language for localized attribute information.
+   * @return object The prepared query object containing the fetched product attributes information.
    */
   public function getProductsAttributesInfo($products_id, $option_id,  int|null $options_values_id = null,  int|null $language_id)
   {
@@ -229,8 +234,8 @@ class ProductsAttributesShop
   }
 
   /**
-   *
-   * @param int $id
+   * Check the status of a product by its ID
+   * @param int $id The ID of the product to check
    * @return bool
    */
   public function getCheckProductsStatus(int $id)
@@ -249,11 +254,14 @@ class ProductsAttributesShop
   }
 
   /**
-   * Check products attributes
-   * @param int $products_id
-   * @param int $option_id
-   * @param int $options_values_id
-   * @return bool
+   * Checks for product attributes based on the given product ID, option ID, and option value ID.
+   * Also considers the customer's group ID to filter results accordingly.
+   *
+   * @param int $products_id The ID of the product whose attributes need to be checked.
+   * @param int $option_id The ID of the option for the product.
+   * @param int $options_values_id The ID of the option value for the specified option.
+   *
+   * @return array|false The fetched product attribute data or false if no match is found.
    */
   public function getCheckProductsAttributes(int $products_id, int $option_id, int $options_values_id)
   {
@@ -300,10 +308,12 @@ class ProductsAttributesShop
 ///******************************************************
 
   /**
-   * Check products download
-   * @param int $products_id
-   * @param int $options_values_id
-   * @return bool
+   * Checks if a product's attributes are downloadable based on the provided product ID and option value ID,
+   * taking into account the customer's group ID.
+   *
+   * @param int $products_id The ID of the product to check.
+   * @param int $options_values_id The ID of the options value to check.
+   * @return int The count of matching downloadable attributes.
    */
   public function getCheckProductsDownload(int $products_id, int $options_values_id)
   {
@@ -346,12 +356,13 @@ class ProductsAttributesShop
   }
 
   /**
-   * get the attributes download - used payment
-   * @param int|string $products_id
-   * @param int $options_id
-   * @param int $options_values_id
-   * @param int $language_id
-   * @return mixed
+   * Retrieves the attributes of a product, including details such as option names, option values, prices, and downloadable file information if applicable.
+   * The results depend on the customer's group ID and the download option configuration.
+   *
+   * @param int|string $products_id The ID of the product whose attributes are being retrieved.
+   * @param int $options_id The ID of the specific option associated with the product.
+   * @param int $options_values_id The ID of the value for the given option.
+   * @param int $language_id The language ID used to filter attributes by language.
    */
   public function getAttributesDownloaded(int|string $products_id, int $options_id, int $options_values_id, int $language_id)
   {

@@ -77,8 +77,9 @@ class Category
   }
 
   /**
-   * Return the ID of the assigned category
-   * @return int|null
+   * Retrieves the ID.
+   *
+   * @return int|null The ID value or null if not set.
    */
 
   public function getID(): int|null
@@ -87,7 +88,8 @@ class Category
   }
 
   /**
-   * Return the description of the assigned category
+   * Retrieves the description.
+   *
    * @return string
    */
 
@@ -98,7 +100,7 @@ class Category
 
 
   /**
-   * Return the title of the assigned category
+   * Retrieves the title.
    * @return string
    */
 
@@ -107,18 +109,19 @@ class Category
     return $this->_title;
   }
 
-/**
- *  Check if the category has an image
- * @return bool
- */
+  /**
+   * Checks if the object has an associated image.
+   *
+   * @return bool Returns true if an image exists, false otherwise.
+   */
   public function hasImage(): bool
   {
     return (!empty($this->_image));
   }
 
   /**
-   * Return the image of the assigned category
-   * @return string
+   * Retrieves the image path or URL.
+   * @return string The image path or URL as a string.
    */
 
   public function getImage(): string
@@ -127,8 +130,9 @@ class Category
   }
 
   /**
-   * Check if the assigned category has a parent category
-   * @return boolean
+   * Checks if the current entity has a parent.
+   *
+   * @return bool Returns true if the entity has a parent, otherwise false.
    */
 
   public function hasParent(): bool
@@ -137,8 +141,8 @@ class Category
   }
 
   /**
-   * Return the parent ID of the assigned category
-   * @return int|null
+   * Retrieves the parent ID.
+   * @return int|null The ID of the parent if it exists, or null otherwise.
    */
 
   public function getParent(): int|null
@@ -147,8 +151,9 @@ class Category
   }
 
   /**
-   * Return the breadcrumb path of the assigned category
-   * @return string
+   * Generates the breadcrumb path for a category.
+   *
+   * @return mixed The breadcrumb path for the category.
    */
   public function getPath()
   {
@@ -156,9 +161,11 @@ class Category
   }
 
   /**
-   * Return the the path about the subcategory
-   * string current_category_id =  the current categry id
-   * @return string the new path
+   * Retrieves the path of categories for the current or specified category.
+   * Constructs a cPath parameter based on the current category ID and the categories path array.
+   *
+   * @param string $current_category_id The ID of the current category. If empty, uses the existing path array.
+   * @return string The constructed cPath string representing the categories path.
    */
   public function getPathCategories($current_category_id = '')
   {
@@ -209,8 +216,10 @@ class Category
 
 
   /**
-   * Return the breadcrumb path of the assigned category
-   * @return string
+   * Retrieves an array of path components or a specific component by index.
+   *
+   * @param int|null $id The index of the specific component to retrieve (optional).
+   * @return array|string The path array if no index is provided or the specific component at the given index.
    */
   public function getPathArray($id = null)
   {
@@ -224,8 +233,9 @@ class Category
   }
 
   /**
-   * Return specific information from the assigned category
-   * @return mixed
+   * Retrieves data associated with the given keyword.
+   * @param string $keyword The key used to fetch the corresponding data.
+   * @return mixed The data associated with the provided keyword.
    */
 
   public function getData($keyword)
@@ -235,8 +245,13 @@ class Category
 
 
   /**
-   * Return deph the assigned category
-   * @return mixed
+   * Determines the depth of a category.
+   * It can be 'top', 'nested', or 'products', depending on its relation:
+   *  - 'top' when no category path is set.
+   *  - 'nested' when the category has subcategories.
+   *  - 'products' when the category contains products or is empty.
+   *
+   * @return string The category depth ('top', 'nested', or 'products').
    */
 
   public function getDepth()
@@ -275,8 +290,13 @@ class Category
   }
 
   /**
-   * Return a numlber about listing related themain category
-   * @return number of the product in the main category
+   * Retrieves the count of nested categories for a specific category.
+   *
+   * This method calculates the total number of categories that are referenced
+   * by products and have the specified category ID, with a parent ID of 0
+   * and are active (status = 1).
+   *
+   * @return int Returns the total number of nested categories as an integer.
    */
 
   public function getCountCategoriesNested()
@@ -298,10 +318,10 @@ class Category
   }
 
   /**
-   * Return True False in function the category is sub or not
-   * string , $category_id, id of category
+   * Checks if a category has subcategories.
    *
-   * @return number of the product in the main category
+   * @param int $category_id The ID of the category to check for subcategories.
+   * @return bool Returns true if the category has subcategories, false otherwise.
    */
 
   public function getHasSubCategories($category_id)
@@ -320,10 +340,11 @@ class Category
 
 
   /**
-   * Return all sub categories
-   * string , $subcategories_array, id of category
-   * string  $parent_id, id of the parent category
+   * Retrieves subcategories recursively for a given parent category ID.
    *
+   * @param array &$subcategories_array Reference to an array that will be populated with subcategory IDs.
+   * @param int $parent_id The ID of the parent category. Defaults to 0.
+   * @return void
    */
   public function getSubcategories(&$subcategories_array, $parent_id = 0)
   {
@@ -345,11 +366,12 @@ class Category
   }
 
   /**
-   * Return all  categories
-   * @param null $categories_array
-   * @param int|null $parent_id
-   * @param string|null $indent
-   * @return array
+   * Retrieves a hierarchical list of categories based on a parent ID and language.
+   *
+   * @param array|null $categories_array An array to store the retrieved categories, or null to initialize a new array.
+   * @param int|null $parent_id The ID of the parent category. Default is 0.
+   * @param string $indent A string used to indent child categories. Default is an empty string.
+   * @return array|null An array of categories or null if no categories are found.
    */
 
   public function getCategories(?array $categories_array = null,  int|null $parent_id = 0, string $indent = ''): ?array
@@ -386,10 +408,11 @@ class Category
 
 
   /**
-   * Recursively go through the categories and retreive all parent categories IDs
-   * @param $categories
-   * @param $categories_id
-   * @return bool
+   * Retrieves the parent categories of a specified category ID and stores them in the provided categories array.
+   *
+   * @param array &$categories An array to store the parent category IDs.
+   * @param int $categories_id The ID of the category for which parent categories should be retrieved.
+   * @return bool Returns true if the top-level parent (with parent_id = 0) is reached.
    */
   public function getParentCategories(&$categories, $categories_id)
   {
@@ -417,9 +440,10 @@ class Category
   }
 
   /**
-   * Construct a category path to the product
-   * @param $products_id
-   * @return string
+   * Retrieves the product path for a given product ID by determining its category hierarchy.
+   *
+   * @param int $products_id The ID of the product for which to retrieve the path.
+   * @return string The product path constructed from its category hierarchy.
    */
   public function getProductPath($products_id)
   {
@@ -457,9 +481,10 @@ class Category
   }
 
   /**
-   * Rewrite link of Image
-   * @param $categories_link
-   * @return mixed
+   * Retrieves the image URL of a category based on its ID.
+   *
+   * @param int|string $categories_id The ID of the category whose image URL is to be retrieved.
+   * @return string The URL of the category image.
    */
   public function getCategoryImageUrl($categories_id)
   {
@@ -471,6 +496,13 @@ class Category
   }
 
 
+  /**
+   * Retrieves the title of a category based on its name.
+   *
+   * @param string $categories_name The name of the category to retrieve the title for.
+   *
+   * @return string The title of the category.
+   */
   public function getCategoryTitle($categories_name)
   {
     $category_name = $this->rewriteUrl->getCategoryTreeTitle($categories_name);

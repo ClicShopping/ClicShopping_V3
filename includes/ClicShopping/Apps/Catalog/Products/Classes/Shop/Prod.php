@@ -12,12 +12,18 @@ namespace ClicShopping\Apps\Catalog\Products\Classes\Shop;
 
 use ClicShopping\OM\HTML;
 use function is_array;
-
+/**
+ * Retrieves the product ID from various superglobals ($_GET, $_POST) or null if not available.
+ *
+ * @return null|int The product ID or null if not found.
+ */
 class Prod
 {
   /**
-   * get this if of the products
-   * @return null|int products_id
+   * Retrieves the ID from GET or POST request parameters. The method sanitizes the input to ensure safety
+   * and checks various conditions to determine the appropriate ID value to return based on availability.
+   *
+   * @return mixed The sanitized ID value if one is found, or null if no valid ID is present.
    */
   public function getID()
   {
@@ -46,11 +52,13 @@ class Prod
   }
 
   /**
-   * Generate a product ID string value containing its product attributes combinations
+   * Generates a product ID string by appending formatted attribute IDs to the provided string.
    *
-   * @param string $string
-   * @param array $params An array of product attributes
-   * @return string
+   * @param string $string The base string to which attribute IDs will be appended.
+   * @param mixed $params An array containing numeric keys and values representing attribute IDs.
+   *                      If the array is not valid, the string remains unchanged.
+   * @return string The modified string with attribute IDs appended in the specified format,
+   *                or the original string if parameters are invalid.
    */
 
   public static function getProductIDString(string $string, $params): string
@@ -77,10 +85,10 @@ class Prod
   }
 
   /**
-   * Generate a numeric product ID without product attribute combinations
+   * Gets the product ID from the given input string.
    *
-   * @param string $id The product ID
-   * @return int
+   * @param string $id The input string containing the product ID or other related data.
+   * @return int The extracted product ID as an integer.
    */
 
   public static function getProductID(string $id): int
@@ -97,8 +105,11 @@ class Prod
   }
 
   /**
-   * Products  sort by
-   * @param string $field ,field of products, $direction, ascending descending
+   * Sets the sorting field and direction for the query.
+   *
+   * @param string $field The field by which the sorting should be applied. Supported values are 'model', 'manufacturer', 'quantity', 'weight', 'price', and 'date_added'.
+   * @param string $direction The sorting direction. Use '+' for ascending or '-' for descending. Defaults to '+'.
+   * @return void
    */
   public function setSortBy(string $field, string $direction = '+'): void
   {
@@ -127,7 +138,10 @@ class Prod
   }
 
   /**
-   * @param string $direction
+   * Sets the sort direction for sorting operations.
+   *
+   * @param string $direction The sorting direction, either '+' for ascending or '-' for descending. Any other input defaults to '+'.
+   * @return void
    */
   public function setSortByDirection(string $direction): void
   {

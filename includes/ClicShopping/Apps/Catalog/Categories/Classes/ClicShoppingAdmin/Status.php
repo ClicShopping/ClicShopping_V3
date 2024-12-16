@@ -22,12 +22,11 @@ class Status
   protected int $categories_id;
 
   /**
-   * Categories Status - Sets the status of a categorie
+   * Updates the status of a category and its subcategories in the database.
    *
-   * @param int $categories_id
-   * @param int $status
-   * @return string status on or off
-   *
+   * @param int $categories_id The ID of the category whose status is to be updated.
+   * @param int $status The status to be assigned to the category and its subcategories (1 for active, 0 for inactive).
+   * @return int Returns -1 if the status provided is invalid; otherwise, no value is returned.
    */
   public static function getCategoriesStatus(int $categories_id, int $status)
   {

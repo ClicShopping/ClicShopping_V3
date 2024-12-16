@@ -56,6 +56,14 @@ class CategoryTree
   private mixed $db;
   private mixed $lang;
 
+  /**
+   * Constructor method to initialize the category tree data structure and its dependencies.
+   *
+   * This method initializes the database and language objects, loads category data
+   * into the tree structure from the database, and sets up category rewrite URLs.
+   *
+   * @return void
+   */
   public function __construct()
   {
     static $_category_tree_data;
@@ -127,8 +135,9 @@ class CategoryTree
   }
 
   /**
-   * Count the categories
-   * @return int
+   * Retrieves the total count of categories from the database.
+   *
+   * @return int The number of categories.
    */
   public function getCountCategories(): int
   {
@@ -142,7 +151,9 @@ class CategoryTree
   }
 
   /**
+   * Resets the internal properties of the object to their default values.
    *
+   * @return void
    */
   public function reset()
   {
@@ -170,12 +181,13 @@ class CategoryTree
   }
 
   /**
-   * Return a formated string representation of a category and its subcategories
+   * Constructs a hierarchical tree structure as a string based on the provided parent ID and level.
+   * The method iterates through the data array to build each branch of the tree and formats it
+   * using configurable placeholder strings for parent, child, and root elements.
    *
-   * @param int|string $parent_id The parent ID of the category to build from
-   * @param int $level Internal flag to note the depth of the category structure
-   * @return string
-   * @access protected
+   * @param int|string $parent_id The ID of the parent element for the branch being built.
+   * @param int $level The current depth level in the hierarchy, defaults to 0 for the root level.
+   * @return string The constructed string representation of the tree branch.
    */
   protected function _buildBranch(int|string $parent_id, int $level = 0): string
   {
@@ -245,10 +257,13 @@ class CategoryTree
   }
 
   /**
-   * @param int|string $parent_id
-   * @param int $level
-   * @param string $result
-   * @return array|mixed|string
+   * Builds an array representing a hierarchical structure of categories based on a parent ID.
+   *
+   * @param int|string $parent_id The parent category ID for which the branch array should be built.
+   * @param int $level The current depth level in the hierarchy, starting at 0 for the root node. Defaults to 0.
+   * @param string|array $result The result array to construct or append to. Defaults to an empty array.
+   *
+   * @return array The structured array representing the category hierarchy.
    */
   public function buildBranchArray(int|string $parent_id, int $level = 0, string $result = '')
   {
@@ -285,9 +300,12 @@ class CategoryTree
   }
 
   /**
-   * @param string|null $category_id
-   * @param int $level
-   * @return string
+   * Builds a breadcrumb string for a given category by traversing its hierarchy.
+   *
+   * @param string|null $category_id The ID of the category for which the breadcrumb is built.
+   *                                 Pass null to handle cases without a specific category.
+   * @param int $level The depth level in the category tree hierarchy; defaults to 0 for the root level.
+   * @return string The generated breadcrumb string representing the category's hierarchical trail.
    */
   public function buildBreadcrumb(?string $category_id, int $level = 0): string
   {
@@ -313,8 +331,11 @@ class CategoryTree
   }
 
   /**
-   * Return a formated string representation of the category structure relationship data
-   * @return string
+   * Generates a hierarchical tree structure by constructing branches starting from the root category.
+   * This method initiates the tree construction process and returns a string representation of the
+   * entire tree.
+   *
+   * @return string The complete tree structure as a formatted string.
    */
 
   public function getTree(): string
@@ -323,10 +344,10 @@ class CategoryTree
   }
 
   /**
-   * Magic function; return a formated string representation of the category structure relationship data
-   * This is used when echoing the class object, eg:
+   * Generates a string representation of the tree structure by invoking the getTree method.
+   * This allows the object to be treated as a string, reflecting the built tree data.
    *
-   * @return string
+   * @return string The string representation of the tree structure.
    */
   public function __toString(): string
   {
@@ -334,8 +355,11 @@ class CategoryTree
   }
 
   /**
-   * @param string $parent_id
-   * @return bool
+   * Retrieves and builds an array representation of a branch based on the provided parent ID.
+   * The method determines whether to use the root category or the given parent ID to create the branch data.
+   *
+   * @param string $parent_id The ID of the parent element for which the array should be built. Defaults to an empty string, which indicates the root category ID will be used.
+   * @return bool Returns true if the branch array was successfully built, otherwise false.
    */
   public function getArray(string $parent_id = ''): bool
   {
@@ -343,8 +367,11 @@ class CategoryTree
   }
 
   /**
-   * @param string $id
-   * @return bool
+   * Checks if a category with the specified ID exists in the hierarchical data structure.
+   * Iterates through all parent categories and their child categories to locate the ID.
+   *
+   * @param string $id The ID of the category to search for.
+   * @return bool True if the category ID exists, false otherwise.
    */
   public function exists(string $id): bool
   {
@@ -360,9 +387,13 @@ class CategoryTree
   }
 
   /**
-   * @param string $category_id
-   * @param array $array
-   * @return array
+   * Retrieves all child category IDs recursively for a given category ID.
+   * This method traverses the category hierarchy and collects the IDs
+   * of all descendant categories.
+   *
+   * @param string $category_id The ID of the category whose children are to be fetched.
+   * @param array &$array Reference to an array where child IDs will be stored.
+   * @return array An array containing the IDs of all child categories for the given category.
    */
   public function getChildren(string $category_id, array &$array = []): array
   {
@@ -379,11 +410,13 @@ class CategoryTree
   }
 
   /**
-   * Return category information
+   * Retrieves data associated with a specific category ID from a hierarchical data structure.
+   * The method searches through the data array to find the category and returns the full data
+   * or a specific key's value depending on the provided parameters.
    *
-   * @param string $id The category ID to return information of
-   * @param null $key The key information to return (since v3.0.2)
-   * @return array|bool
+   * @param string $id The ID of the category to retrieve data for.
+   * @param string|null $key An optional key to fetch a specific value from the category data. If not provided, the entire category data is returned.
+   * @return array|bool Returns an associative array of category data or a specific value if a key is provided. Returns false if the category is not found.
    */
 
   public function getData(string $id, $key = null): array|bool
@@ -409,10 +442,12 @@ class CategoryTree
   }
 
   /**
-   * Return the parent ID of a category
+   * Retrieves the parent ID(s) associated with the specified identifier.
+   * This method uses the internal data structure to fetch the parent ID(s)
+   * corresponding to the given identifier key.
    *
-   * @param string $id The category ID to return the parent ID of
-   * @return array
+   * @param string $id The identifier for which the parent ID(s) will be retrieved.
+   * @return array An array containing the parent ID(s) associated with the given identifier.
    */
   public function getParentID(string $id): array
   {
@@ -420,8 +455,15 @@ class CategoryTree
   }
 
   /**
-   * Calculate the number of products in each category
-   * @param bool $filter_active
+   * Calculates the total number of products for each category in a hierarchical data structure.
+   * The method retrieves product counts grouped by category from the database,
+   * filters the data based on the product status if specified, and updates the
+   * category hierarchy to reflect the accumulated totals in parent categories.
+   *
+   * @param bool $filter_active Determines if only active products should be included in the calculations.
+   *                            Defaults to true, filtering products by their active status.
+   * @return void This method does not return a value but updates the internal category data structure
+   *              with the calculated product totals.
    */
   protected function _calculateProductTotals(bool $filter_active = true): void
   {
@@ -478,8 +520,13 @@ class CategoryTree
   }
 
   /**
-   * @param $id
-   * @return false|mixed
+   * Retrieves the number of products associated with a given category ID.
+   * The method iterates through the data structure to locate the category
+   * and fetch its product count. If the category ID does not exist, `false`
+   * is returned.
+   *
+   * @param mixed $id The unique identifier for the category to search for.
+   * @return int|bool The number of products in the specified category, or `false` if the category ID is not found.
    */
   public function getNumberOfProducts($id): int|bool
   {
@@ -495,7 +542,11 @@ class CategoryTree
   }
 
   /**
-   * @param $root_category_id
+   * Sets the root category ID for the instance.
+   * This method assigns the provided category ID to the root category ID property.
+   *
+   * @param mixed $root_category_id The ID to be set as the root category.
+   * @return void
    */
   public function setRootCategoryID($root_category_id): void
   {
@@ -503,7 +554,12 @@ class CategoryTree
   }
 
   /**
-   * @param $max_level
+   * Sets the maximum level for a hierarchical structure.
+   * This method assigns the specified level to the internal property,
+   * determining the deepest level to which the hierarchy will be processed or displayed.
+   *
+   * @param int $max_level The maximum depth level to be assigned.
+   * @return void
    */
   public function setMaximumLevel(int $max_level): void
   {
@@ -511,8 +567,11 @@ class CategoryTree
   }
 
   /**
-   * @param $root_start_string
-   * @param $root_end_string
+   * Sets the string values to be used as the start and end delimiters for the root element in the tree structure.
+   *
+   * @param string $root_start_string The string to be used as the starting delimiter for the root element.
+   * @param string $root_end_string The string to be used as the ending delimiter for the root element.
+   * @return void This method does not return a value.
    */
   public function setRootString($root_start_string, $root_end_string): void
   {
@@ -521,8 +580,12 @@ class CategoryTree
   }
 
   /**
-   * @param $parent_start_string
-   * @param $parent_end_string
+   * Sets the start and end strings used to format parent elements in the tree structure.
+   * These strings define the delimiters or markers for parent elements during tree generation.
+   *
+   * @param string $parent_start_string The string to mark the beginning of a parent element.
+   * @param string $parent_end_string The string to mark the end of a parent element.
+   * @return void
    */
   public function setParentString($parent_start_string, $parent_end_string): void
   {
@@ -531,9 +594,13 @@ class CategoryTree
   }
 
   /**
-   * @param $parent_group_start_string
-   * @param $parent_group_end_string
-   * @param false $apply_to_root
+   * Sets the start and end strings for defining parent groups in the hierarchical structure.
+   * Optionally, applies the parent group strings to the root level of the hierarchy.
+   *
+   * @param string $parent_group_start_string The string to use at the start of a parent group.
+   * @param string $parent_group_end_string The string to use at the end of a parent group.
+   * @param bool $apply_to_root Indicates whether the parent group strings should be applied to the root level.
+   * @return void
    */
   public function setParentGroupString($parent_group_start_string, $parent_group_end_string, bool $apply_to_root = false): void
   {
@@ -543,8 +610,12 @@ class CategoryTree
   }
 
   /**
-   * @param $child_start_string
-   * @param $child_end_string
+   * Sets the start and end strings for child elements in the tree structure.
+   * These strings are used to format the output surrounding child elements.
+   *
+   * @param string $child_start_string The string to prepend to each child element.
+   * @param string $child_end_string The string to append to each child element.
+   * @return void
    */
   public function setChildString($child_start_string, $child_end_string): void
   {
@@ -553,7 +624,10 @@ class CategoryTree
   }
 
   /**
-   * @param $breadcrumb_separator
+   * Sets the separator used in the breadcrumb navigation.
+   *
+   * @param string $breadcrumb_separator The string to be used as the separator in breadcrumb navigation.
+   * @return void
    */
   public function setBreadcrumbSeparator($breadcrumb_separator): void
   {
@@ -561,7 +635,11 @@ class CategoryTree
   }
 
   /**
-   * @param $breadcrumb_usage
+   * Sets the breadcrumb usage for the instance. Determines whether breadcrumb-style
+   * navigation should be applied when rendering hierarchical data elements.
+   *
+   * @param bool $breadcrumb_usage Indicates whether breadcrumb usage should be enabled (true) or disabled (false).
+   * @return void
    */
   public function setBreadcrumbUsage($breadcrumb_usage): void
   {
@@ -573,8 +651,13 @@ class CategoryTree
   }
 
   /**
-   * @param string $spacer_string
-   * @param float|int $spacer_multiplier
+   * Sets the spacer string and its multiplier for rendering hierarchical elements.
+   * The spacer string is used to format the spacing between hierarchical levels,
+   * and the multiplier determines the repetition of the spacer string for each level.
+   *
+   * @param string $spacer_string The string used for spacing between hierarchical levels.
+   * @param float|int $spacer_multiplier The value specifying how many times the spacer string is repeated per level, defaults to 2.
+   * @return void
    */
   public function setSpacerString(string $spacer_string, float|int $spacer_multiplier = 2): void
   {
@@ -583,9 +666,14 @@ class CategoryTree
   }
 
   /**
-   * @param string $cpath
-   * @param string $cpath_start_string
-   * @param string $cpath_end_string
+   * Sets the category path and updates internal properties used for category path handling.
+   * Configures whether to follow a specified category path and defines custom start and end strings
+   * for displaying the category path.
+   *
+   * @param string $cpath The category path, typically represented as a string separated by a defined delimiter.
+   * @param string $cpath_start_string Optional start string for formatting the category path display. Defaults to an empty string.
+   * @param string $cpath_end_string Optional end string for formatting the category path display. Defaults to an empty string.
+   * @return void This method does not return a value.
    */
   public function setCategoryPath(string $cpath, string $cpath_start_string = '', string $cpath_end_string = ''): void
   {
@@ -596,7 +684,11 @@ class CategoryTree
   }
 
   /**
-   * @param bool follow_cpath
+   * Sets the follow category path functionality for the current instance.
+   * This determines whether category paths should be followed or not.
+   *
+   * @param bool $follow_cpath Indicates whether to enable (true) or disable (false) the follow category path functionality.
+   * @return void
    */
   public function setFollowCategoryPath(bool $follow_cpath): void
   {
@@ -608,8 +700,12 @@ class CategoryTree
   }
 
   /**
-   * @param string $cpath_start_string
-   * @param string $cpath_end_string
+   * Sets the start and end string markers for the category path. These markers are used
+   * to format the appearance of category paths.
+   *
+   * @param string $cpath_start_string The string to prepend to the category path.
+   * @param string $cpath_end_string The string to append to the category path.
+   * @return void
    */
   public function setCategoryPathString(string $cpath_start_string, string $cpath_end_string): void
   {
@@ -618,7 +714,12 @@ class CategoryTree
   }
 
   /**
-   * @param int $show_category_product_count
+   * Sets whether the total product count for each category should be displayed.
+   * This method updates an internal flag based on the provided input value.
+   *
+   * @param int $show_category_product_count A value indicating whether to show the product count,
+   *                                         where a truthy value (e.g., 1) enables it and a falsy value (e.g., 0) disables it.
+   * @return void
    */
   public function setShowCategoryProductCount(int $show_category_product_count): void
   {
@@ -630,8 +731,12 @@ class CategoryTree
   }
 
   /**
-   * @param string $category_product_count_start_string
-   * @param string $category_product_count_end_string
+   * Sets the start and end strings for displaying the product count associated with a category.
+   * These strings are used as formatting placeholders when rendering the product count in the category tree.
+   *
+   * @param string $category_product_count_start_string The string to prepend before the product count.
+   * @param string $category_product_count_end_string The string to append after the product count.
+   * @return void
    */
   public function setCategoryProductCountString(string $category_product_count_start_string, string $category_product_count_end_string): void
   {
@@ -640,9 +745,11 @@ class CategoryTree
   }
 
   /**
-   * Rewrite categories Name
-   * @param string $categories_name
-   * @return string
+   * Retrieves the formatted title of a category within the category tree.
+   * The method utilizes a URL rewrite utility to generate the appropriate title.
+   *
+   * @param string $categories_name The original name of the category to be formatted.
+   * @return string The formatted title of the category.
    */
   public function getCategoryTreeTitle(string $categories_name): string
   {
@@ -652,9 +759,11 @@ class CategoryTree
   }
 
   /**
-   * Rewrite link of category
-   * @param string $categories_id
-   * @return mixed
+   * Generates the complete URL for a category based on its ID.
+   * It utilizes the rewriteUrl service to construct the appropriate URL.
+   *
+   * @param string $categories_id The unique identifier of the category.
+   * @return string The generated URL for the category.
    */
   public function getCategoryTreeUrl(string $categories_id): string
   {
@@ -664,12 +773,16 @@ class CategoryTree
   }
 
   /**
-   * @param int $parent_id
-   * @param string $spacing
-   * @param string $exclude
-   * @param string $category_tree_array
-   * @param bool $include_itself
-   * @return array
+   * Builds and returns a hierarchical array representing the category tree for a shop.
+   * The method retrieves categories from the database and formats them into a nested structure
+   * suitable for displays such as dropdown menus or navigational elements.
+   *
+   * @param int $parent_id The ID of the parent category to start building the tree from, defaults to 0.
+   * @param string $spacing The string used to visually indent category names for child categories.
+   * @param string $exclude The ID of a category to exclude from the tree, if any.
+   * @param array|string $category_tree_array The current category tree array being built. If not provided, an empty array will be initialized.
+   * @param bool $include_itself Indicates whether to include the parent category itself in the tree, defaults to false.
+   * @return array An array representing the hierarchical category tree structure.
    */
   public function getShopCategoryTree(int $parent_id = 0, string $spacing = '', $exclude = '', $category_tree_array = '', bool $include_itself = false): array
   {

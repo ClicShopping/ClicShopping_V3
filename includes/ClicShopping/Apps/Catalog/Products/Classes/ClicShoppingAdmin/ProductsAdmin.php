@@ -37,6 +37,11 @@ class ProductsAdmin
   private mixed $lang;
   private mixed $image;
 
+  /**
+   * ProductsAdmin class provides methods for managing products within the admin panel,
+   * including retrieving product information, saving product descriptions,
+   * and managing various product-specific details like model, SKU, EAN, and packaging.
+   */
   public function __construct()
   {
     $this->db = Registry::get('Db');
@@ -47,10 +52,9 @@ class ProductsAdmin
   }
 
   /**
-   * Get all products information
-   * @param int $id
-   * @return array, table data
-   *
+   * Retrieves product information and description for a given product ID.
+   * @param int $id The product ID to retrieve data for.
+   * @return array An associative array containing the product details and description.
    */
   public function get(int $id): array
   {
@@ -74,10 +78,10 @@ class ProductsAdmin
   }
 
   /**
-   * Save the product description
-   * @param $id , produts_id
-   * @param $action , save or insert
-   * @access private
+   * Save the description details of a product for multiple languages.
+   * @param int $id - The unique identifier of the product.
+   * @param string $action - The action to be performed, either 'Insert' or 'Update'.
+   * @return void
    */
   private function saveProductsDescription(int $id, string $action)
   {
@@ -122,7 +126,8 @@ class ProductsAdmin
   }
 
   /**
-   * @return string
+   * Retrieves the product model from the input or generates a random one if not provided.
+   * @return string The sanitized or generated product model.
    */
   public function getProductModel(): string
   {
@@ -137,7 +142,8 @@ class ProductsAdmin
   }
 
   /**
-   * @return string
+   * Retrieves the SKU (Stock Keeping Unit) of the product based on user input or default model value.
+   * @return string The product SKU
    */
   public function getProductSKU(): string
   {
@@ -153,7 +159,11 @@ class ProductsAdmin
   }
 
   /**
-   * @return string
+   * Retrieve the EAN (European Article Number) of the product.
+   * If no EAN is provided, uses the product SKU as the fallback.
+   * Sanitizes the provided EAN if it differs from the product SKU.
+   *
+   * @return string The EAN of the product.
    */
   public function getProductEAN(): string
   {
@@ -169,7 +179,8 @@ class ProductsAdmin
   }
 
   /**
-   * @return mixed|string
+   * Save the uploaded file for a product download, if valid.
+   * @return string|null Returns the sanitized filename of the uploaded file if successful, otherwise null.
    */
   private function saveFileUpload(): ?string
   {
@@ -188,16 +199,14 @@ class ProductsAdmin
   }
 
   /**
-   * getInfoImage
+   * Retrieve image information including source, alt text, width, and height
    *
-   * @param string $image , $alt, $width, $height
-   * @param $alt
-   * @param string $width
-   * @param string $height
-   * @return string $image, the image value
-   *
+   * @param mixed $image - The image file name or path
+   * @param mixed $alt - The alternate text for the image
+   * @param string $width - The width of the image, default is '130'
+   * @param string $height - The height of the image, default is '130'
+   * @return string The HTML string containing the image element
    */
-
   public function getInfoImage($image, $alt, string $width = '130', string $height = '130'): string
   {
     if (!empty($image) && (file_exists($this->template->getDirectoryPathTemplateShopImages() . $image))) {
@@ -210,10 +219,9 @@ class ProductsAdmin
   }
 
   /**
-   * Select the product packaging
-   *
-   * @param int $id
-   * @return string $product_packaging, the packaging selected
+   * Retrieves the packaging information for a product based on its ID.
+   * @param int $id - The ID of the product.
+   * @return string - The packaging status of the product (e.g., 'New product', 'Product repackaged', 'Product used').
    */
   public function getproductPackaging(int $id): string
   {
@@ -251,11 +259,11 @@ class ProductsAdmin
   }
 
   /**
-   * the products quantity unit title
+   * Retrieves the title of the specified products quantity unit based on the provided ID and language ID.
    *
-   * @param string $products_quantity_unit_id , $language_id
-   * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
-   *
+   * @param $products_quantity_unit_id - the ID of the products quantity unit
+   * @param $language_id - optional language ID to retrieve the title for; defaults to current language ID if not provided
+   * @return string|null - the title of the products quantity unit or null if not found
    */
   public function getProductsQuantityUnitTitle($products_quantity_unit_id = '', $language_id = '')
   {
@@ -277,10 +285,9 @@ class ProductsAdmin
   }
 
   /**
-   * Products model
-   *
-   * @param string $id
-   * @return string $product['products_model'], products model
+   * Retrieve the product model name for the given product ID.
+   * @param $id - ID of the product (optional)
+   * @return string - The product model name
    */
   public function getProductsModel($id = ''): string
   {
@@ -297,11 +304,10 @@ class ProductsAdmin
   }
 
   /**
-   * Shipping delay of the product
-   *
-   * @param string|int|null $id
-   * @param int $language_id
-   * @return string|bool $product['products_shipping_delay']
+   * Retrieve the shipping delay for a specific product based on its ID and language.
+   * @param string|int|null $id - The ID of the product. Can be null if no product ID is provided.
+   * @param int $language_id - The ID of the language for the product description.
+   * @return string|bool - Returns the shipping delay as a string if the product and language exist, or false if no product ID is provided.
    */
   public function getProductsShippingDelay(string|int|null $id = null, int $language_id): string|bool
   {
@@ -323,11 +329,11 @@ class ProductsAdmin
   }
 
   /**
-   * Shipping delay of the product out of stock
+   * Retrieve the shipping delay information for out-of-stock products.
    *
-   * @param string|int|null $id
-   * @param int $language_id
-   * @return string|bool $product['products_shipping_delay_out_of_stock']
+   * @param string|int|null $id - The ID of the product. If null, the method returns false.
+   * @param int $language_id - The ID of the language in which the information is retrieved.
+   * @return string|bool - Returns the shipping delay information as a string if the product exists, otherwise returns false.
    */
   public function getProductsShippingDelayOutOfStock(string|int|null $id = null, int $language_id): string|bool
   {
@@ -349,11 +355,11 @@ class ProductsAdmin
   }
 
   /**
-   * Description summary
+   * Retrieves the summary of the product description for a specific product and language.
    *
-   * @param string|int|null $product_id , $language_id
-   * @return string|bool $product['products_description'], description name
-   *
+   * @param string|int|null $product_id - The ID of the product whose description summary is being retrieved. Can be null if a product ID is not provided.
+   * @param int $language_id - The language ID for the description summary. If not provided, the default language ID will be used.
+   * @return mixed - The product description summary if available, or null otherwise.
    */
   public function getProductsDescriptionSummary(string|int|null $product_id, int $language_id)
   {
@@ -375,11 +381,9 @@ class ProductsAdmin
   }
 
   /**
-   * GetProductsImage : image inside the catalog
-   *
-   * @param string $product_id :id of the product
-   * @return string  image of the product
-   *
+   * Retrieve the image of a product based on the provided product ID.
+   * @param string $product_id The ID of the product to retrieve the image for. Defaults to an empty string.
+   * @return string The file name of the product image.
    */
   public function getProductsImage(string $product_id = ''): string
   {
@@ -389,9 +393,11 @@ class ProductsAdmin
   }
 
   /**
-   * Directory of image
+   * Retrieves a list of product directories within the specified images/products directory.
    *
-   * @return array $directory_array, the directories name in css directory
+   * Filters out unwanted entries and formats the remaining directory names into an array structure.
+   *
+   * @return array An array of directories with 'id' and 'text' keys representing the directory structure.
    */
 
   public function getDirectoryProducts(): array
@@ -421,11 +427,12 @@ class ProductsAdmin
   }
 
   /**
-   * Name of the products
+   * Retrieves the name of a product based on the provided product ID and language ID.
+   * If no language ID is provided, the default language ID will be used.
    *
-   * @param $product_id , int $language_id
-   * @return string $product['products_name'], name of the product
-   *
+   * @param $product_id - the ID of the product (optional)
+   * @param $language_id - the ID of the language (default is 0, which will use the default language ID)
+   * @return string - returns the name of the product
    */
   public function getProductsName($product_id = '', int $language_id = 0): string
   {
@@ -442,11 +449,11 @@ class ProductsAdmin
   }
 
   /**
-   * Description Name
+   * Retrieve the description of a product for a specific language.
    *
-   * @param string|int|null $product_id , $language_id
-   * @return string|bool $product['products_description'], description name
-   *
+   * @param string|int|null $product_id - The ID of the product. Can be a string, integer, or null.
+   * @param int $language_id - The ID of the language in which the product description is needed.
+   * @return string|bool - Returns the product description as a string on success, or false if the product ID is null or the operation fails.
    */
   public function getProductsDescription(string|int|null $product_id, int $language_id): string|bool
   {
@@ -468,9 +475,10 @@ class ProductsAdmin
   }
 
   /**
-   * Supplier DropDown
+   * Generate a dropdown list of suppliers with their IDs and names.
+   * Retrieves supplier data from the database and formats it for use in dropdown menus.
    *
-   * @return array $supplier, elements of supplier in dropdown
+   * @return array - An array of suppliers, each containing an 'id' and 'text' key
    */
   public function supplierDropDown(): array
   {
@@ -499,8 +507,9 @@ class ProductsAdmin
   }
 
   /**
-   * @param int $id
-   * @return mixed
+   * Retrieve product images and related details from the database.
+   * @param int $id - The ID of the product.
+   * @return mixed - The result set containing product images and details or null if no data is found.
    */
   public function getImage(int $id): mixed
   {
@@ -522,8 +531,9 @@ class ProductsAdmin
   }
 
   /**
-   * @param int $id
-   * @return int
+   * Check for duplicate product images in the database
+   * @param $id - product id of the product
+   * @return int - total count of duplicate images
    */
   public function checkProductImage(int $id): int
   {
@@ -547,8 +557,9 @@ class ProductsAdmin
   }
 
   /**
-   * @param int $id
-   * @return int
+   * Checks and counts the number of categories using the same product image.
+   * @param $id - the ID of the product
+   * @return int - the total count of categories sharing the same image
    */
   public function checkCategoriesImage(int $id): int
   {
@@ -572,8 +583,10 @@ class ProductsAdmin
   }
 
   /**
-   * @param $id
-   * @return int
+   * Check for duplicate image descriptions in the products description table
+   *
+   * @param $id - The ID of the product whose image descriptions are being checked
+   * @return int - The total count of duplicate occurrences found
    */
   public function checkImagesDescription($id): int
   {
@@ -597,8 +610,9 @@ class ProductsAdmin
   }
 
   /**
-   * @param $id
-   * @return int
+   * Checks for duplicate banner images associated with a specified product.
+   * @param $id - ID of the product
+   * @return int - Count of duplicate banner images
    */
   public function checkBannerImages($id): int
   {
@@ -623,8 +637,10 @@ class ProductsAdmin
   }
 
   /**
-   * @param $id
-   * @return int
+   * Checks for duplicate manufacturer images in the database
+   *
+   * @param $id - The ID of the product to check associated manufacturer images
+   * @return int - Returns the count of manufacturers that have a duplicate image
    */
   public function checkManufacturerImages($id): int
   {
@@ -650,8 +666,10 @@ class ProductsAdmin
   }
 
   /**
-   * @param $id
-   * @return int
+   * Checks for duplicate supplier images in the database.
+   *
+   * @param mixed $id The identifier of the supplier whose images are being checked.
+   * @return int The count of duplicate images found in the suppliers table.
    */
   public function checkSupplierImages($id): int
   {
@@ -675,9 +693,9 @@ class ProductsAdmin
   }
 
   /**
-   * product : remove product
+   * Removes a product and its associated data from the system.
    *
-   * @param int $id
+   * @param int $id The unique identifier of the product to be removed.
    * @return void
    */
   public function removeProduct(int $id): void
@@ -773,11 +791,12 @@ class ProductsAdmin
   }
 
   /**
-   * url of the product
+   * Retrieves the URL of a product based on the given product ID and language ID.
    *
-   * @param int|string $product_id , $language_id
-   * @param int $language_id
-   * @return string|bool
+   * @param int|string $product_id The ID of the product for which the URL is to be retrieved.
+   * @param int $language_id The language ID to fetch the product URL. If 0 or null, the default language ID will be used.
+   *
+   * @return string|bool Returns the product URL as a string if found, otherwise returns false.
    */
   public function getProductsUrl(int|string $product_id, int $language_id): string|bool
   {
@@ -793,11 +812,11 @@ class ProductsAdmin
   }
 
   /**
-   * Return the manufacturers URL in the needed language
+   * Retrieves the URL associated with a manufacturer based on the provided manufacturer ID and language ID.
    *
-   * @param string|int|null $manufacturer_id , $language_id
-   * @param int $language_id
-   * @return string|bool
+   * @param string|int|null $manufacturer_id The identifier of the manufacturer. Can be a string, integer, or null.
+   * @param int $language_id The language ID used to fetch the manufacturer URL. If set to 0, the default language ID is used.
+   * @return string|bool Returns the manufacturer's URL as a string if found, or false if the manufacturer ID is null or the URL does not exist.
    */
   public function getManufacturerUrl(string|int|null $manufacturer_id, int $language_id): string|bool
   {
@@ -812,10 +831,11 @@ class ProductsAdmin
   }
 
   /**
-   * getCountProductsToCategory count the products into category
-   * @param $id - products id of the products
-   * @param $categories_id - category id
+   * Retrieves the count of products associated with a specific category.
    *
+   * @param int $id The ID of the product.
+   * @param int $categories_id The ID of the category.
+   * @return int The total count of products associated with the given category.
    */
   public function getCountProductsToCategory(int $id, int $categories_id): int
   {
@@ -832,9 +852,11 @@ class ProductsAdmin
   }
 
   /**
-   * Prepare to clone a products in other category for products page
-   * @param $id - products id of the products
-   * @param $categories_id - category
+   * Prepares the cloning of products into other categories.
+   *
+   * @param int $id The ID of the product to be cloned.
+   * @param int $categories_id The ID of the category or categories where the product will be cloned.
+   *
    * @return void
    */
   private function prepareCloneProducts(int $id, int $categories_id): void
@@ -849,9 +871,13 @@ class ProductsAdmin
   }
 
   /**
-   * cloneProductsInOtherCategory
-   * @param $id - products id of the products
-   * @param $categories_id - category id
+   * Clones a product into a specified category or multiple categories, including associated data such as attributes,
+   * images, and descriptions. This ensures that the product is replicated in the desired category with all its
+   * properties preserved.
+   *
+   * @param int $id The ID of the product to be cloned.
+   * @param mixed $categories_id The ID of the category (or categories) where the product will be cloned. Can be an integer or string.
+   *
    * @return void
    */
   public function cloneProductsInOtherCategory(int $id, $categories_id): void
@@ -1118,10 +1144,10 @@ class ProductsAdmin
   }
 
   /**
-   * Search products
-   * @param null $keywords
-   * @param $current_category_id
-   * @return mixed $Qproducts, result of search
+   * Retrieves the search results for products based on the provided keywords or category.
+   *
+   * @param string|null $keywords The search keywords for filtering products. If null or empty, the category is used instead.
+   * @param int $current_category_id The ID of the current category to filter products if no
    */
 
   public function getSearch($keywords = null, $current_category_id = 0)
@@ -1211,12 +1237,13 @@ class ProductsAdmin
   }
 
   /**
-   * save products
-   * @param string|int|null $id
-   * @param, $id, id of the products, $action, insert or update products
+   * Saves product data to the database, handling both insert and update operations.
+   *
+   * @param string|int|null $id The ID of the product to update. Pass null for a new product.
+   * @param mixed $action The action to be performed, typically 'Update' or for insertion.
+   *
    * @return void
    */
-
   public function save(string|int|null $id, $action)
   {
     $products_date_available = HTML::sanitize($_POST['products_date_available']);
@@ -1366,8 +1393,12 @@ class ProductsAdmin
   }
 
   /**
-   * Count how many products exist in a category
-   * TABLES: products, products_to_products, products
+   * Gets the total count of products within a category, optionally including deactivated products.
+   *
+   * @param int $products_id The ID of the category whose products should be counted.
+   * @param bool $include_deactivated Whether to include deactivated products in the count. Defaults to false.
+   *
+   * @return int The total number of products in the specified category.
    */
   public function getProductsInCategoryCount(int $products_id, bool $include_deactivated = false): int
   {

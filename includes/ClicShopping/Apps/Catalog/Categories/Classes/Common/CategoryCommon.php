@@ -20,12 +20,12 @@ use function in_array;
  */
 class CategoryCommon
 {
-
-  /*
-  * Parse and secure the cPath parameter values
-  * @int, $cPath, value of cpath
-  * return @ string array $tmp_array
-  */
+  /**
+   * Parses a category path string into an array of unique integer category IDs.
+   *
+   * @param string $cPath The category path represented as a string with category IDs separated by underscores.
+   * @return array An array of unique integer category IDs extracted from the input category path.
+   */
   public function getParseCategoryPath(string $cPath): array
   {
 // make sure the category IDs are integers

@@ -28,6 +28,12 @@ class Image
   private mixed $template;
   private mixed $imageResample;
 
+  /**
+   * Initializes the class by setting up the template, database connection,
+   * root image directory, and the ImageResample component.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->template = Registry::get('TemplateAdmin');
@@ -43,6 +49,12 @@ class Image
    * @param int length of the random
    * @return $randomString
    */
+  /**
+   * Generates a random alphanumeric string of a specified length.
+   *
+   * @param int $length The length of the random string to be generated. Defaults to 10.
+   * @return string The generated random alphanumeric string.
+   */
   public function getGenerateRandomString(int $length = 10): string
   {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -56,9 +68,11 @@ class Image
   }
 
   /**
-   * Clean image
-   * @param string $image_name
-   * @return string
+   * Cleans and sanitizes an image name by removing unwanted characters,
+   * HTML entities, and specific directory paths.
+   *
+   * @param string $image_name The original image name to be cleaned and sanitized.
+   * @return string The sanitized and cleaned image name.
    */
   public function cleanImageName(string $image_name): string
   {
@@ -75,8 +89,14 @@ class Image
   }
 
   /**
-   *  createDirectory
-   * @return string
+   * Creates a new directory for product images based on supplied POST data,
+   * ensuring proper sanitization and formatting of directory names.
+   *
+   * The method handles the creation of directories if they do not already exist,
+   * modifies directory names to be lowercase and replaces spaces with underscores,
+   * and combines base directories as necessary.
+   *
+   * @return string The path to the created or processed directory.
    */
   private function createDirectory(): string
   {
@@ -107,8 +127,12 @@ class Image
   }
 
   /**
-   * @param string $image
-   * @return string
+   * Processes an image and converts its extension to WebP if configured to do so.
+   * If the image is not already in WebP format, the image is resampled, saved as WebP,
+   * and the original file is removed.
+   *
+   * @param string $image The path or name of the original image file to process.
+   * @return string The image path or name with the WebP extension, if converted.
    */
   protected function getImageExtensionWebp(string $image): string
   {
@@ -136,8 +160,12 @@ class Image
   }
 
   /**
-   * Normal,medium or big image
+   * Processes and resizes product images, generating necessary image variations
+   * (zoom, medium, small, and admin sizes) for a product based on specified parameters.
+   * Handles image upload, validation, resizing, saving, and cleanup of original files.
+   * Updates product image data arrays or handles image deletion as per user interactions.
    *
+   * @return void
    */
   public function getImage()
   {
@@ -369,8 +397,9 @@ class Image
   }
 
   /**
-   * Product Image
-   * @return string
+   * Retrieves the product image file name.
+   *
+   * @return string|null Returns the product image file name as a string, or null if not set.
    */
   public function productsImage(): ?string
   {
@@ -378,8 +407,9 @@ class Image
   }
 
   /**
-   * Products Image medium
-   * @return string
+   * Retrieves the medium-sized product image.
+   *
+   * @return string|null Returns the medium-sized product image filename or null if not set.
    */
   public function productsImageMedium(): ?string
   {
@@ -387,8 +417,9 @@ class Image
   }
 
   /**
-   * Products Image Zoom
-   * @return string
+   * Retrieves the zoomed image of a product if available.
+   *
+   * @return string|null Returns the zoomed product image as a string, or null if not set.
    */
   public function productsImageZoom(): ?string
   {
@@ -396,8 +427,9 @@ class Image
   }
 
   /**
-   * Products Image Zoom
-   * @return string
+   * Retrieves the small image associated with a product.
+   *
+   * @return string|null The small image filename or null if not set.
    */
   public function productsSmallImage(): ?string
   {
@@ -405,8 +437,13 @@ class Image
   }
 
   /**
-   * Save gallery image
-   * @param $id int products_id
+   * Saves a gallery image for a product by handling file uploads, creating directories,
+   * storing metadata, and maintaining image relationships in the database.
+   * It supports creating new product image entries and updating existing ones,
+   * while also cleaning up unused images from the database and file system.
+   *
+   * @param int $id The ID of the product for which the gallery image is being saved.
+   * @return void
    */
   public function saveGalleryImage(int $id)
   {
@@ -531,9 +568,12 @@ class Image
   }
 
   /**
-   * get image for listing admin use image
-   * @param int $id
-   * @return string
+   * Retrieves the small image for a product in the admin panel. If a specific
+   * small product image is unavailable, it falls back to using the default
+   * product image.
+   *
+   * @param int $id The ID of the product for which the small image is to be retrieved.
+   * @return string The HTML code for displaying the small product image.
    */
   public function getSmallImageAdmin(int $id): string
   {

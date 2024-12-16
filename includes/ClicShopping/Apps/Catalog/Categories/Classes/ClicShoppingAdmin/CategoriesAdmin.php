@@ -31,6 +31,11 @@ class CategoriesAdmin
   private mixed $template;
   private mixed $db;
 
+  /**
+   * Constructor method to initialize required dependencies.
+   *
+   * @return void
+   */
   public function __construct()
   {
 
@@ -40,8 +45,10 @@ class CategoriesAdmin
   }
 
   /**
-   * @param string|null $keywords
-   * @return mixed
+   * Retrieves categories based on search keywords or parent category ID.
+   *
+   * @param string|null $keywords Optional search keywords to filter categories by name.
+   * @return object Query result object containing the matched categories.
    */
   public function getSearch(?string $keywords = null)
   {
@@ -108,8 +115,10 @@ class CategoriesAdmin
   }
 
   /**
-   * @param int|null $id
-   * @return array
+   * Retrieve the category path array.
+   *
+   * @param int|null $id Optional index to retrieve a specific path segment from the path array.
+   * @return array Returns the parsed category path as an array. If $id is provided, returns the specific segment of the array at the given index.
    */
   public function getPathArray( int|null $id = null): array
   {
@@ -136,11 +145,11 @@ class CategoriesAdmin
   }
 
   /**
-   * the category name
+   * Retrieve the name of a category based on its ID and language ID.
    *
-   * @param int $category_id , $language_id
-   * @param int $language_id
-   * @return string $category['categories_name'],  name of the categorie
+   * @param int $category_id The ID of the category to retrieve the name for.
+   * @param int $language_id The ID of the language for which the category name is required.
+   * @return string The name of the category in the specified language.
    */
   public function getCategoryName(int $category_id, int $language_id): string
   {
@@ -152,11 +161,11 @@ class CategoriesAdmin
   }
 
   /**
-   * the category description
+   * Retrieve the description of a category based on the given category and language IDs.
    *
-   * @param int $category_id , $language_id
-   * @param int $language_id
-   * @return string $category['blog_categories_name'],  description of the blog categorie
+   * @param int $category_id The ID of the category whose description is to be retrieved.
+   * @param int $language_id The ID of the language for the description; defaults to the current language if not provided.
+   * @return string The description of the category.
    */
   public function getCategoryDescription(int $category_id, int $language_id): string
   {
@@ -178,9 +187,10 @@ class CategoriesAdmin
   }
 
   /**
-   * Count how many subcategories exist in a category
-   * @param $categories_id
-   * @return int|mixed
+   * Retrieves the total count of child categories within a specific category, including subcategories recursively.
+   *
+   * @param int $categories_id The ID of the parent category whose child categories will be counted.
+   * @return int The total number of child categories located within the specified category.
    */
 // pb avec static function
 
@@ -201,10 +211,15 @@ class CategoriesAdmin
 
 
   /**
-   * Count how many products exist in a category
-   * @param $categories_id
-   * @param bool $include_deactivated
-   * @return mixed
+   * Retrieves the total count of products in a specified category, optionally including deactivated products.
+   *
+   * This method calculates the total number of products in the given category and its subcategories.
+   * It can include or exclude deactivated products based on the provided parameter.
+   *
+   * @param int $categories_id The ID of the category for which the product count is being calculated.
+   * @param bool $include_deactivated Whether to include deactivated products (products with a status other than '1') in the count.
+   *                                   Defaults to false.
+   * @return int The total count of products in the category and its subcategories.
    */
   public function getCatalogInCategoryCount(int $categories_id, bool $include_deactivated = false): int
   {
@@ -250,9 +265,14 @@ class CategoriesAdmin
   }
 
   /**
-   * @param $id
-   * @param string $from
-   * @return bool|string
+   * Generates a string representation of category path IDs.
+   *
+   * @param int|string $id The ID of the category or entity to generate the path for.
+   * @param string $from The type of entity for which the path is being generated (default is 'category').
+   *                      It specifies the starting point or context for generating the path.
+   *
+   * @return string A string containing the generated category path IDs, structured and concatenated
+   *                based on the specified entity context.
    */
   public function getGeneratedCategoryPathIds($id, string $from = 'category')
   {
@@ -273,11 +293,12 @@ class CategoriesAdmin
   }
 
   /**
-   *  remove category
+   * Removes a category from the database, including its image, descriptions, and associations with products.
+   * It also clears related cache entries. If the category image is not used by other entities, it is deleted from the file system.
    *
-   * @param string $category_id
-   * @return string
+   * @param int $category_id The unique identifier of the category to be removed.
    *
+   * @return void
    */
   public function removeCategory(int $category_id)
   {
@@ -361,12 +382,13 @@ class CategoriesAdmin
   }
 
   /**
-   *  Return catagories path
+   * Constructs and returns the category path as a string parameter based on the current category
+   * ID and the existing category path array.
    *
-   * @param string $current_category_id
-   * @return string $cPath_new,
-   *
-   *
+   * @param string $current_category_id The current category ID to append to the path. If empty,
+   *                                    the path will be generated from the existing category path array.
+   * @return string The constructed category path in the format 'cPath=x_x_x', where x represents
+   *                the category IDs.
    */
   public function getCategoriesPath($current_category_id = '')
   {
@@ -406,12 +428,14 @@ class CategoriesAdmin
   }
 
   /**
-   * @param string $parent_id
-   * @param string $spacing
-   * @param string $exclude
-   * @param string $category_tree_array
-   * @param bool $include_itself
-   * @return array|string
+   * Recursively constructs and returns a hierarchical category tree structure as an array.
+   *
+   * @param int|string $parent_id The parent category ID from which to start building the tree. Defaults to '0'.
+   * @param string $spacing The spacing string used to denote the level of nesting for category names.
+   * @param int|string $exclude The ID of a category to exclude from the tree. Defaults to an empty string.
+   * @param array|string $category_tree_array The tree array being built. If not provided, it will initialize an empty array.
+   * @param bool $include_itself Whether to include the parent ID as a top-level node in the tree. Defaults to false.
+   * @return array An array representing the category tree, with each element containing 'id' and 'text' keys.
    */
   public function getCategoryTree($parent_id = '0', string $spacing = '', $exclude = '', $category_tree_array = '', bool $include_itself = false)
   {
@@ -459,9 +483,12 @@ class CategoriesAdmin
   }
 
   /**
-   * getPath
-   * @param string $current_category_id
-   * @return string
+   * Generates and returns a formatted category path string based on the current category
+   * ID and the existing category path structure.
+   *
+   * @param string $current_category_id The category ID to append to the path. If not provided,
+   *                                    the path will be constructed from the existing category path array.
+   * @return string The resulting category path in the format 'cPath=x_x_x', where each x is a category ID.
    */
   public function getPath(string $current_category_id = ''): string
   {
@@ -501,12 +528,17 @@ class CategoriesAdmin
   }
 
   /**
-   * Move the categories and products another category
-   * @param $id
-   * @param string $from
-   * @param string $categories_array
-   * @param int $index
-   * @return array|mixed|string
+   * Generates a multi-dimensional array containing category paths or product-to-category
+   * relationships and their hierarchical structure.
+   *
+   * @param int|string $id The ID of the category or product to generate the path for.
+   * @param string $from Specifies the context: 'category' to generate category paths or 'product'
+   *                     to generate product-to-category mappings.
+   * @param array|null $categories_array An optional array to hold and build the generated category
+   *                                      structure. Defaults to an empty array.
+   * @param int $index The index used for structuring the category array hierarchy.
+   * @return array A multi-dimensional array representing the generated category paths or
+   *               product-to-category relationships and their parent-child hierarchy.
    */
   public function getGenerateCategoryPath($id, $from = 'category', $categories_array = '', $index = 0)
   {
@@ -583,10 +615,12 @@ class CategoriesAdmin
   }
 
   /**
+   * Generates and returns a string representation of a category path based on the given ID
+   * and type, formatted with separators and line breaks.
    *
-   * @param $id
-   * @param string $from
-   * @return bool|string
+   * @param int $id The ID of the category or item for which the category path is generated.
+   * @param string $from Specifies the type of the category path generation, defaulting to 'category'.
+   * @return string The generated category path as a formatted string, with delimiters and structure.
    */
   public function getOutputGeneratedCategoryPath(int $id, string $from = 'category')
   {

@@ -12,17 +12,23 @@ namespace ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin;
 
 use ClicShopping\OM\Registry;
 use function is_null;
-
+/**
+ * Class ProductStock
+ *
+ * This class provides functionalities related to calculating product stock levels,
+ * including safety stock calculations based on historical demand and other inventory factors.
+ */
 class ProductStock
 {
   /**
-   * Calculate safety stock levels based on historical demand variability, lead time, and desired service level.
+   * Calculates the safety stock based on historical demand, lead time, desired service level,
+   * and standard deviation factor.
    *
-   * @param array $historicalDemand An array of historical demand data.
-   * @param int $leadTime The lead time in days.
-   * @param float $serviceLevel The desired service level (default is 0.95, which corresponds to 95% service level).
-   * @param float $standardDeviationFactor The factor used to adjust the influence of standard deviation (default is 1.65).
-   * @return float|int The calculated safety stock level.
+   * @param array $historicalDemand An array of historical demand values used to calculate the mean and standard deviation.
+   * @param int $leadTime The lead time in relevant time units (e.g., days, weeks) for replenishment.
+   * @param float $serviceLevel Optional parameter specifying the desired service level as a probability (default is 0.95).
+   * @param float $standardDeviationFactor Optional parameter representing the Z-score or factor for standard deviation calculation (default is 1.65).
+   * @return float|int The calculated safety stock value, rounded to meet specified parameters.
    */
   private static function calculateSafetyStock(array $historicalDemand, int $leadTime, float $serviceLevel = 0.95, float $standardDeviationFactor = 1.65): float|int
   {
@@ -44,11 +50,12 @@ class ProductStock
   }
 
   /**
-   * @param $p
-   * @param $mean
-   * @param $stddev
-   * @return float|int calculate the inverse of the standard normal cumulative distribution function
-   * calculate the inverse of the standard normal cumulative distribution function
+   * Calculates the inverse of the normal cumulative distribution function (CDF).
+   *
+   * @param float $p The probability at which to evaluate the inverse normal CDF. Must be in the range (0, 1).
+   * @param float $mean The mean (μ) of the normal distribution.
+   * @param float $stddev The standard deviation (σ) of the normal distribution. Must be positive.
+   * @return float|int The value x such that the cumulative distribution function equals $p. The result is a float or an integer based on the computation.
    */
   private static function norMinv($p, $mean, $stddev): float|int
   {
@@ -74,9 +81,12 @@ class ProductStock
   }
 
   /**
-   * @param int|string|null $products_id
-   * @param int|null $leadTime
-   * @return float|false
+   * Retrieves the historical customer demand for a specified product and calculates the safety stock based on the lead time.
+   *
+   * @param int|string|null $products_id The ID of the product for which historical demand is to be calculated. Can be null.
+   * @param int|null $leadTime The lead time for calculating safety stock. Defaults to a predefined constant if null.
+   *
+   * @return float|false Returns the calculated safety stock as a float, or false if the product ID is not set or if there is an error during calculation.
    */
   public static function getHistoricalCustomerDemandByProducts(int|string $products_id = null, int $leadTime = null): float|false
   {

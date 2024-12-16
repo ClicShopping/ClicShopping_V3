@@ -18,6 +18,12 @@ use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Common\HTMLOverrideCommon;
 use function is_null;
 
+/**
+ * Class ProductsFunctionTemplate
+ *
+ * This class provides functions to handle product-related information such as generating product URLs,
+ * retrieving stock details, managing discount displays, handling quantity inputs, and creating custom product-related buttons or images.
+ */
 class ProductsFunctionTemplate
 {
   protected mixed $productsCommon;
@@ -26,6 +32,12 @@ class ProductsFunctionTemplate
   protected mixed $category;
   protected mixed $rewriteUrl;
 
+  /**
+   * Class ProductsFunctionTemplate
+   *
+   * This class provides functions to handle product-related information such as generating product URLs,
+   * retrieving stock details, managing discount displays, handling quantity inputs, and creating custom product-related buttons or images.
+   */
   public function __construct()
   {
     $this->productsCommon = Registry::get('ProductsCommon');
@@ -36,7 +48,9 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * product url
+   * Retrieves the rewritten URL for the products.
+   *
+   * @return string The rewritten URL of the products.
    */
   public function getProductsUrlRewrited()
   {
@@ -44,8 +58,10 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @return string
+   * Retrieves the URL for the product name with appropriate HTML formatting and item properties.
+   *
+   * @param int|string $products_id The ID of the product for which the name URL is being generated.
+   * @return string The formatted product name URL.
    */
   public function getProductsNameUrl($products_id): string
   {
@@ -57,10 +73,12 @@ class ProductsFunctionTemplate
 //display a button on the stock (good, alert, out of stock).
 
   /**
-   * @param string $constant
-   * @param string $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves product stock information based on the specified constant.
+   *
+   * @param string $constant Specifies the type of stock information to retrieve ('number' or 'image').
+   * @param string $products_id The ID of the product for which stock information is requested.
+   * @param string $tag An optional tag appended to the stock information (used when $constant is 'number').
+   * @return string The stock information as a string, or an empty string if the constant is unrecognized.
    */
   public function getStock(string $constant, string $products_id, string $tag = ' '): string
   {
@@ -76,9 +94,12 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param string $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the flash discount information for a given product.
+   *
+   * @param string $products_id The ID of the product.
+   * @param string $tag A delimiter tag to separate the discount text. Defaults to '<br />'.
+   *
+   * @return string The formatted flash discount information for the specified product.
    */
   public function getFlashDiscount(string $products_id, string $tag = '<br />'): string
   {
@@ -92,10 +113,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * Minimum quantity to take an order
-   * @param string $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves and formats the minimum order quantity required for a product display.
+   *
+   * @param string $products_id The ID of the product for which the minimum order quantity is being retrieved.
+   * @param string $tag An optional tag to be appended to the formatted output.
+   * @return string The formatted minimum order quantity display for the product, or an empty string if no minimum order quantity is required.
    */
   public function getMinOrderQuantityProductDisplay(string $products_id, string $tag = ' '): string
   {
@@ -109,6 +131,13 @@ class ProductsFunctionTemplate
   }
 
 // display a message in public function the customer group applied - before submit button
+
+  /**
+   * Retrieves a button view message based on product minimum quantity and available quantity.
+   *
+   * @param int|string $products_id The ID of the product to check.
+   * @return string|null The message allowing order submission, or null if conditions are not met.
+   */
   public function getButtonView($products_id)
   {
     if ($this->productsCommon->getProductsMinimumQuantity($products_id) != 0 && $this->productsCommon->getProductsQuantity($products_id) != 0) {
@@ -118,11 +147,12 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * Display an input allowing for the customer to insert a quantity
-   * @param string $constant
-   * @param string $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the display input quantity for a product based on the given parameters.
+   *
+   * @param string $constant A flag to determine the condition for fetching the input quantity.
+   * @param string $products_id The identifier of the product.
+   * @param string $tag An optional string used for concatenation in the returned value.
+   * @return string The formatted input quantity information or an empty string if conditions are not met.
    */
   public function getDisplayInputQuantity(string $constant, string $products_id, string $tag = ' '): string
   {
@@ -142,9 +172,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param string $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the unit type of product quantity for a given product, optionally formatted with a custom tag.
+   *
+   * @param string $products_id The ID of the product for which the quantity unit type should be retrieved.
+   * @param string $tag An optional tag to append to the quantity unit type. Defaults to a single space.
+   * @return string The formatted product quantity unit type.
    */
   public function getProductQuantityUnitType(string $products_id, string $tag = ' '): string
   {
@@ -164,13 +196,15 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param string $constant
-   * @param string $products_id
-   * @param string|null $icon
-   * @param string $button_color
-   * @param null $params
-   * @param string $button_size
-   * @return string
+   * Generates an HTML button for viewing product details based on the provided parameters.
+   *
+   * @param string $constant A value that determines whether the button should be generated or not.
+   * @param string $products_id The ID of the product for which the button is generated.
+   * @param string|null $icon Optional icon to display on the button. Defaults to null.
+   * @param string $button_color The color of the button. Defaults to 'info'.
+   * @param mixed $params Optional additional parameters for the button element. Defaults to null.
+   * @param string $button_size The size of the button. Defaults to 'sm'.
+   * @return string The generated HTML button as a string.
    */
   public function getButtonViewDetails(string $constant, string $products_id, ?string $icon = null, string $button_color = 'info', $params = null, string $button_size = 'sm'): string
   {
@@ -188,12 +222,14 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param string $constant
-   * @param string $products_id
-   * @param string $parameters
-   * @param bool $responsive
-   * @param string $css
-   * @return string
+   * Generates and returns an HTML image tag wrapped in a link for the specified product.
+   *
+   * @param string $constant Designates the size of the image ('Medium' or other). Determines which image size to use.
+   * @param string $products_id The ID of the product for which the image is being generated.
+   * @param string|array $parameters Optional additional parameters for the image tag. Defaults to an empty string.
+   * @param bool $responsive Indicates whether the image should support responsive behavior. Defaults to true.
+   * @param string $css Optional CSS class to be applied to the image. Defaults to an empty string.
+   * @return string The generated HTML string containing the linked product image.
    */
   public function getImage(string $constant, string $products_id, $parameters = '', bool $responsive = true, string $css = ''): string
   {
@@ -211,13 +247,15 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param string $constant
-   * @param string $products_id
-   * @param string $cssSpecial
-   * @param string $cssFavorites
-   * @param string $cssFeatured
-   * @param string $cssProductsNew
-   * @return string
+   * Generates a ticker (link and image) for a product based on its status, such as special, favorite, featured, or new.
+   *
+   * @param string $constant A flag indicating whether ticker functionality is enabled.
+   * @param string $products_id The ID of the product for which the ticker should be generated.
+   * @param string $cssSpecial The CSS class for the "special" ticker.
+   * @param string $cssFavorites The CSS class for the "favorites" ticker.
+   * @param string $cssFeatured The CSS class for the "featured" ticker.
+   * @param string $cssProductsNew The CSS class for the "new products" ticker.
+   * @return string The generated ticker HTML as a string, or an empty string if no ticker is applicable.
    */
   public function getTicker(string $constant, string $products_id, string $cssSpecial, string $cssFavorites, string $cssFeatured, string $cssProductsNew): string
   {
@@ -237,10 +275,13 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param string $constant
-   * @param string $products_id
-   * @param string $cssPourcentage
-   * @return string
+   * Generates a ticker percentage element for a specific product based on its ID and a CSS class,
+   * if the provided condition is satisfied.
+   *
+   * @param string $constant A toggle condition to determine if the ticker percentage should be generated. Typically 'True' or 'False'.
+   * @param string $products_id The ID of the product for which the ticker percentage is generated.
+   * @param string $cssPourcentage The CSS class used for styling the ticker percentage.
+   * @return string The generated ticker percentage element as an HTML string, or an empty string if the condition is not met.
    */
   public function getTickerPourcentage(string $constant, string $products_id, string $cssPourcentage): string
   {
@@ -254,9 +295,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param string $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the model of a product for a given product ID, optionally formatted with a custom tag.
+   *
+   * @param string $products_id The ID of the product for which the model should be retrieved.
+   * @param string $tag An optional tag to prepend to the product model. Defaults to a single space.
+   * @return string The formatted product model, or an empty string if the model is not available.
    */
   public function getProductsModel(string $products_id, string $tag = ' '): string
   {
@@ -270,9 +313,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param string $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the manufacturer name for a given product, optionally formatted with a custom tag.
+   *
+   * @param string $products_id The ID of the product for which the manufacturer name should be retrieved.
+   * @param string $tag An optional tag to append to the manufacturer name. Defaults to a single space.
+   * @return string The formatted manufacturer name or an empty string if no manufacturer is found.
    */
   public function getProductsManufacturer(string $products_id, string $tag = ' '): string
   {
@@ -286,9 +331,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param string $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the price of a product per weight unit for a given product, optionally formatted with a custom tag.
+   *
+   * @param string $products_id The ID of the product for which the price per weight unit should be retrieved.
+   * @param string $tag An optional tag to append to the price per weight unit. Defaults to a single space.
+   * @return string The formatted price per weight unit, or an empty string if the price information is not available.
    */
   public function getProductsPriceByWeight(string $products_id, string $tag = ' '): string
   {
@@ -302,9 +349,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the availability date of a product in a formatted manner if it is set and in the future.
+   *
+   * @param mixed $products_id The ID of the product for which the availability date should be retrieved.
+   * @param string $tag An optional tag to prepend to the formatted availability date. Defaults to a single space.
+   * @return string The formatted product availability date or an empty string if no date is set or available.
    */
   public function getProductsDateAvailable($products_id, string $tag = ' '): string
   {
@@ -321,8 +370,10 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @return string
+   * Retrieves the shop-only availability message for a given product.
+   *
+   * @param mixed $products_id The ID of the product to check its shop-only availability.
+   * @return string The shop-only availability message if applicable, or an empty string otherwise.
    */
   public function getProductsOnlyTheShop($products_id): string
   {
@@ -336,8 +387,10 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @return string
+   * Determines if a product is only available on the website and retrieves the corresponding label if applicable.
+   *
+   * @param mixed $products_id The ID of the product to check.
+   * @return string The label indicating the product is only available on the website, or an empty string if not applicable.
    */
   public function getProductsOnlyOnTheWebSite($products_id): string
   {
@@ -351,9 +404,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the packaging type of a product for a given product ID, optionally formatted with a custom tag.
+   *
+   * @param mixed $products_id The ID of the product for which the packaging type should be retrieved.
+   * @param string $tag An optional tag to format the packaging type. Defaults to a single space.
+   * @return string The formatted product packaging type. Returns an empty string if packaging type is not set or invalid.
    */
   public function getProductsPackaging($products_id, string $tag = ' '): string
   {
@@ -368,9 +423,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the shipping delay information for a given product, optionally formatted with a custom tag.
+   *
+   * @param mixed $products_id The ID of the product for which the shipping delay information should be retrieved.
+   * @param string $tag An optional tag to append to the shipping delay information. Defaults to a single space.
+   * @return string The formatted shipping delay information, or an empty string if no delay information is available.
    */
   public function getProductsShippingDelay($products_id, string $tag = ' '): string
   {
@@ -384,9 +441,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the shipping delay message for out-of-stock products for a given product, optionally formatted with a custom tag.
+   *
+   * @param mixed $products_id The ID of the product to retrieve the out-of-stock shipping delay message for.
+   * @param string $tag An optional tag to append to the shipping delay message. Defaults to a single space.
+   * @return string The formatted out-of-stock shipping delay message. Returns an empty string if no delay message is found.
    */
   public function getProductsShippingDelayOutOfStock($products_id, string $tag = ' '): string
   {
@@ -401,8 +460,10 @@ class ProductsFunctionTemplate
 
 
   /**
-   * @param $products_id
-   * @return string
+   * Retrieves and processes the head tag(s) associated with a given product.
+   *
+   * @param mixed $products_id The ID of the product for which the head tag(s) should be retrieved.
+   * @return array|string An array of processed head tag(s) if available, or an empty string if no tags are found.
    */
   public function getProductsHeadTag($products_id)
   {
@@ -419,9 +480,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the volume of a product for a given product ID, optionally formatted with a custom tag.
+   *
+   * @param mixed $products_id The ID of the product for which the volume should be retrieved.
+   * @param string $tag An optional tag to append to the product volume. Defaults to a single space.
+   * @return string The formatted product volume. Returns an empty string if no volume is found.
    */
   public function getProductsVolume($products_id, string $tag = ' '): string
   {
@@ -435,9 +498,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @param string $tag
-   * @return string
+   * Retrieves the weight information of a product, formatted with a specified tag and weight symbol.
+   *
+   * @param mixed $products_id The ID of the product for which the weight should be retrieved.
+   * @param string $tag An optional tag to format the weight value and weight symbol. Defaults to ' / '.
+   * @return string The formatted product weight including the weight symbol. Returns an empty string if no weight is available.
    */
   public function getProductsWeight($products_id, string $tag = ' / '): string
   {
@@ -452,8 +517,10 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @return string
+   * Retrieves the name of the manufacturer for a given product as a formatted link.
+   *
+   * @param mixed $products_id The ID of the product for which the manufacturer name should be retrieved.
+   * @return string The formatted manufacturer name as a hyperlink.
    */
   public function getManufacturerName($products_id): string
   {
@@ -468,9 +535,11 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @param string $products_image
-   * @return string
+   * Generates the manufacturer image link for a given product.
+   *
+   * @param mixed $products_id The ID of the product for which the manufacturer image is to be generated.
+   * @param string $products_image The product image file name to be included in the link.
+   * @return string A string containing the HTML link element for the manufacturer image.
    */
   public function getManufacturerImage($products_id, string $products_image): string
   {
@@ -485,8 +554,10 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @return string
+   * Retrieves the length dimension of a given product.
+   *
+   * @param mixed $products_id The ID of the product for which the length dimension should be retrieved.
+   * @return string The length of the product, formatted with a descriptive label. Returns an empty string if no dimension is found.
    */
   public function getProductslength($products_id): string
   {
@@ -500,8 +571,10 @@ class ProductsFunctionTemplate
   }
 
   /**
-   * @param $products_id
-   * @return string
+   * Generates a JSON-LD structured data script for a product, including details such as name, description, SKU, brand, price, stock status, and reviews.
+   *
+   * @param mixed $products_id The ID of the product for which the JSON-LD data is generated.
+   * @return string The JSON-LD structured data script for the specified product.
    */
   public function getProductJsonLd($products_id): string
   {

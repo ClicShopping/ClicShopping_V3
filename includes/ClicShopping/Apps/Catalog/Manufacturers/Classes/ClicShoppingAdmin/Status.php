@@ -18,10 +18,11 @@ use ClicShopping\OM\Registry;
 class Status
 {
   /**
-   * Status products manufacturers  - Sets the status of a product on manufacturers
-   * @param int $manufacturers_id
-   * @param int $status
-   * @return int
+   * Updates the status of a manufacturer in the database based on the provided parameters.
+   *
+   * @param int $manufacturers_id The ID of the manufacturer to be updated.
+   * @param int $status The desired status to set for the manufacturer (1 for active, 0 for inactive).
+   * @return mixed Returns the result of the database save operation if successful, or -1 if an invalid status is provided.
    */
   public static function getManufacturersStatus(int $manufacturers_id, int $status)
   {

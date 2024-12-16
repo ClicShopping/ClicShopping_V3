@@ -13,7 +13,11 @@ namespace ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use function is_null;
-
+/**
+ * Class SupplierAdmin
+ *
+ * Provides methods for managing supplier-related data in the admin environment.
+ */
 class SupplierAdmin
 {
   private mixed $db;
@@ -24,7 +28,10 @@ class SupplierAdmin
   }
 
   /**
-   * @return array|bool
+   * Retrieves the supplier information based on the product ID provided in the query parameter.
+   *
+   * @return array|bool Returns an array containing supplier information if the product ID is valid and found;
+   *                    otherwise, returns false if the product ID is not set or invalid.
    */
   public function getSupplier(): array|bool
   {
@@ -56,11 +63,12 @@ class SupplierAdmin
   }
 
   /**
-   * the supplier_url
+   * Retrieves the supplier URL based on the given supplier ID and language ID.
    *
-   * @param int|null $supplier_id , $language_id
-   * @param int $language_id
-   * @return string $supplier['supplier_description'],  description of the supplier
+   * @param int|null $supplier_id The ID of the supplier. Pass null to indicate that no supplier ID is specified.
+   * @param int $language_id The ID of the language to retrieve the supplier URL for.
+   *
+   * @return string The supplier URL if found or an empty string if no supplier ID is provided or no URL is found.
    */
   public function getSupplierUrl( int|null $supplier_id, int $language_id): string
   {
@@ -82,10 +90,10 @@ class SupplierAdmin
   }
 
   /**
-   * the supplier name
+   * Retrieves the supplier ID based on the provided supplier name.
    *
-   * @param string|null $supplier_name
-   * @return int|string supplier_id
+   * @param string|null $supplier_name The name of the supplier to retrieve the ID for. If null, a default ID will be returned.
+   * @return int|string Returns the supplier ID if the supplier name is provided and found; otherwise, returns 0.
    */
   public function getSupplierId(?string $supplier_name = null): int|string
   {

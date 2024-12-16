@@ -15,7 +15,10 @@ use ClicShopping\OM\Registry;
 use ClicShopping\OM\Upload;
 
 use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ImageResample;
-
+/**
+ * ProductsAttributesAdmin is a utility class for managing product attributes and options
+ * in the admin section of the application.
+ */
 class ProductsAttributesAdmin
 {
   private mixed $lang;
@@ -30,10 +33,10 @@ class ProductsAttributesAdmin
   }
 
   /**
-   * products options - attributes
+   * Retrieves the name of a product option based on its ID and the current language.
    *
-   * @param int $options_id
-   * @return string $values_values['products_options_values_name'], the value of the option name
+   * @param int $options_id The unique identifier of the product option.
+   * @return string The name of the product option.
    */
   public function getOptionsName(int $options_id): string
   {
@@ -48,10 +51,10 @@ class ProductsAttributesAdmin
   }
 
   /**
-   * products options name - attributes
+   * Retrieves the name of a product option value based on its ID and the current language ID.
    *
-   * @param int $values_id
-   * @return string $values_values['products_options_values_name'], the name value of the option name
+   * @param int $values_id The ID of the product option value.
+   * @return string The name of the product option value.
    */
   public function getValuesName(int $values_id): string
   {
@@ -66,7 +69,22 @@ class ProductsAttributesAdmin
   }
 
   /**
-   * @return
+   * Handles the upload of an image, resizes it, and saves the processed file.
+   * Generates a random file name for the processed image and deletes the original image file.
+   *
+   * Preconditions:
+   * - A valid image file is uploaded and its type matches the allowed extensions.
+   * - The directories for storing the images exist and have proper permissions set.
+   *
+   * Workflow:
+   * - Initializes necessary components for template handling and image resampling.
+   * - Loads the uploaded image file from the specified directory, ensuring allowed file extensions are respected.
+   * - Performs validation and checks the image file before saving.
+   * - If the save is successful, the image is resized to a specified width and a new filename is generated.
+   * - The processed image is saved, and the original uploaded image file is deleted.
+   * - Returns the sanitized and cleaned name of the processed image file.
+   *
+   * @return string|null The filename of the processed and saved image, or null if an error occurs during upload or processing.
    */
   public function uploadImage()
   {
@@ -119,8 +137,9 @@ class ProductsAttributesAdmin
   }
 
   /**
-   * Set attribut option type
-   * @return array
+   * Sets and returns an array of attribute types with their respective identifiers and labels.
+   *
+   * @return array An array containing attribute types, each with an 'id' and corresponding 'text'.
    */
   public function setAttributeType(): array
   {

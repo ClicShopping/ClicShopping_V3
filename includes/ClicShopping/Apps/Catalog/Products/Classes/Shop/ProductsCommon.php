@@ -17,6 +17,11 @@ use ClicShopping\OM\Registry;
 use function is_null;
 use function strlen;
 
+/**
+ * Class ProductsCommon
+ * This class provides functionality for managing details and properties of products,
+ * including retrieving product information, performing checks, and updating product views.
+ */
 class ProductsCommon extends Prod
 {
   protected $id;
@@ -67,8 +72,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * get product id if exist
-   * @return bool|int|null
+   * Retrieves the ID if it is valid, numeric, and not empty.
+   *
+   * @return int|false Returns the ID if valid, otherwise returns false.
    */
   public function getID()
   {
@@ -82,7 +88,13 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * @return bool or array
+   * Sets and retrieves product data based on the customer's group ID.
+   *
+   * If the customer belongs to a specific group, it fetches product details
+   * along with group-specific pricing and visibility. Otherwise, it retrieves
+   * general product details and ensures it is viewable under valid categories.
+   *
+   * @return mixed $result Returns an array of product data if successful, or false otherwise.
    */
   private function setData()
   {
@@ -137,15 +149,20 @@ class ProductsCommon extends Prod
     return $result;
   }
 
+  /**
+   * Retrieve and return the processed data
+   *
+   * @return mixed Result of the setData method
+   */
   public function getData()
   {
     return $this->setData();
   }
 
   /**
-   * returns a single element of the data array
-   * @param null $obj
-   * @return bool
+   * Retrieve specific object data or all available data.
+   * @param mixed|null $obj The key to fetch specific data from the array, or null to fetch all data.
+   * @return mixed Returns the specific object data if the key exists, otherwise returns the full data array.
    */
   public function get($obj = null)
   {
@@ -158,54 +175,95 @@ class ProductsCommon extends Prod
     return $array_data;
   }
 
+  /**
+   * Retrieves the group view of the products.
+   *
+   * @return mixed The products group view data.
+   */
   public function getProductsGroupView()
   {
     return $this->get('products_group_view');
   }
 
+  /**
+   * Retrieves the value of the 'products_view' property.
+   * @return mixed The value of the 'products_view' property.
+   */
   public function getProductsView()
   {
     return $this->get('products_view');
   }
 
+  /**
+   * Retrieve the archived products.
+   * @return mixed The archived products data.
+   */
   public function getProductsArchive()
   {
     return $this->get('products_archive');
   }
 
+  /**
+   * Retrieve the quantity of products.
+   * @return mixed The quantity of products.
+   */
   public function getProductsQuantity()
   {
     return $this->get('products_quantity');
   }
 
+  /**
+   * Retrieve the tax class ID of a product.
+   * @return mixed $products_tax_class_id, the tax class ID of the product
+   */
   public function getProductsTaxClassId()
   {
     return $this->get('products_tax_class_id');
   }
 
+  /**
+   * Retrieve the orders group view.
+   * @return mixed Returns the orders group view data.
+   */
   public function getOrdersGroupView()
   {
     return $this->get('orders_group_view');
   }
 
+  /**
+   * Retrieve the products orders view.
+   * @return mixed The result of fetching the orders view.
+   */
   public function getProductsOrdersView()
   {
     return $this->get('orders_view');
   }
 
+  /**
+   * Retrieves the value of the price group view.
+   *
+   * @return mixed The price group view value.
+   */
   public function getPriceGroupView()
   {
     return $this->get('price_group_view');
   }
 
+  /**
+   * Retrieve the customer's group price.
+   *
+   * @return mixed The value of the customer's group price.
+   */
   private function getCustomersGroupPrice()
   {
     return $this->get('customers_group_price');
   }
 
   /**
-   * Check if the product  id
-   * @param int $id , id of the product
+   * Validate the provided ID format and check it against the session name
+   *
+   * @param mixed $id The ID to be validated
+   * @return bool $result True if the ID is valid and not equal to the session name, otherwise false
    */
   public function checkID($id)
   {
@@ -217,9 +275,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Check if the product  exist
-   * @param int $id , id of the product
-   * @return string $result
+   * Checks if a product entry exists and is viewable based on the provided ID and customer group conditions.
+   *
+   * @param mixed $id The product ID or keyword to be checked. Can be numeric or string.
+   * @return bool Returns true if the product entry exists and meets the visibility criteria, otherwise false.
    */
   public function checkEntry($id)
   {
@@ -280,8 +339,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Update the the number of products view
-   * @return update product views
+   * Increment the product view count in the database.
+   * Updates the products_viewed field for a specific product ID and language ID.
+   *
+   * @return bool True if the query executes successfully, otherwise false.
    */
   public function countUpdateProductsView()
   {
@@ -297,8 +358,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Number of products
-   * @return float $product_check['total'], products total
+   * Get the total count of active products for a specific product ID and language.
+   *
+   * @return float $total, the count of matching active products.
    */
   public function getProductsCount(): float
   {
@@ -320,10 +382,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display products name
-   * @param int|null $id
-   * @return string $products_name, name of the product
-   *
+   * Retrieve the name of a product based on its ID.
+   * @param int|null $id The ID of the product. If null, the current ID is used.
+   * @return string $products_name The sanitized name of the product.
    */
   public function getProductsName( int|null $id = null): string
   {
@@ -351,10 +412,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * products image
-   * @param int|null $id
-   * @return string $products_image, image of the product
-   * @access private
+   * Set and retrieve the product image.
+   * @param int|null $id Product ID, defaults to null, which uses the object's ID.
+   * @return string $products_image The protected product image retrieved from the database.
    */
   private function setProductsImage( int|null $id = null): string
   {
@@ -375,10 +435,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products image
-   * @param int|null $id
-   * @return string $products_image, image of the product
-   *
+   * Retrieve the product image for the specified product ID.
+   * @param int|null $id The product ID to retrieve the image for. If null, retrieves the default or previously set product ID.
+   * @return string|false Returns the product image as a string if successful, or false if the image could not be set.
    */
   public function getProductsImage( int|null $id = null)
   {
@@ -390,10 +449,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * products image medium
-   * @param int|null $id
-   * @return string $products_image_medium, image medium of the product
-   * @access private
+   * Sets the medium image of a product.
+   * @param int|null $id The ID of the product. If null, the current ID is used.
+   * @return string $products_image_medium The medium-sized image of the product in a protected format.
    */
   private function setProductsImageMedium( int|null $id = null): string
   {
@@ -414,9 +472,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products image medium
-   * @param int|null $id
-   * @return string $products_image_medium, image medium of the product
+   * Retrieves and sets the medium-sized product image.
+   * @param int|null $id The ID of the product.
+   * @return string|false Returns the medium-sized product image as a string or false on failure.
    */
   public function getProductsImageMedium( int|null $id = null)
   {
@@ -428,9 +486,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display date available
-   * @param int|null $id
-   * @return string
+   * Retrieve the availability date of a product
+   * @param int|null $id The product ID. If null, the default ID will be used.
+   * @return string $products_date_available The date when the product is available.
    */
   public function getProductsDateAvailable( int|null $id = null): string
   {
@@ -451,9 +509,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products ean
-   * @param string
-   * @return string
+   * Retrieve the EAN (European Article Number) of the product
+   *
+   * @return string $products_ean, the EAN of the product
    */
   public function getProductsEAN(): string
   {
@@ -470,9 +528,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products sku
-   * @param int|null $id
-   * @return string
+   * Get the SKU of a product.
+   * @param int|null $id Product ID. If null, the method fetches the default ID.
+   * @return string $products_sku The sanitized SKU of the product.
    */
   public function getProductsSKU( int|null $id = null): string
   {
@@ -493,9 +551,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products jan
-   * @param int|null $id
-   * @return string $products_name, name of the product
+   * Retrieve the JAN code of a product
+   * @param int|null $id The ID of the product. If null, the method may utilize a default ID.
+   * @return string $products_jan The JAN code of the specified product
    */
   public function getProductsJAN( int|null $id = null): string
   {
@@ -512,9 +570,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products isbn
-   * @param int|null $id
-   * @return string
+   * Retrieve the ISBN of a product.
+   * @param int|null $id The product ID. If null, the current product ID is used.
+   * @return string The ISBN of the product, sanitized for output.
    */
   public function getProductsISBN( int|null $id = null): string
   {
@@ -531,9 +589,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products mnp
-   * @param int|null $id
-   * @return string
+   * Get the Manufacturer Part Number (MPN) of a product.
+   *
+   * @param int|null $id The ID of the product. If null, default behavior is applied.
+   * @return string $products_mpn The sanitized MPN of the product.
    */
   public function getProductsMNP( int|null $id = null): string
   {
@@ -550,9 +609,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products upc
-   * @param int|null $id
-   * @return string
+   * Retrieve the UPC code of a product
+   * @param int|null $id Product ID
+   * @return string $products_upc The UPC code of the product
    */
   public function getProductsUPC( int|null $id = null): string
   {
@@ -570,9 +629,8 @@ class ProductsCommon extends Prod
 
 
   /**
-   * display products barcode
-   * @param string
-   * @return string bar code
+   * Retrieve the barcode of the product
+   * @return string $products_barcode, barcode of the product
    */
   public function getProductsBarCode(): string
   {
@@ -589,10 +647,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products description
-   * @param int|null $id
-   * @return string $products_description, description of the product
+   * Retrieves the description of a product.
    *
+   * @param int|null $id The ID of the product. If null, the method will use the default ID retrieved internally.
+   * @return string The description of the specified product.
    */
   public function getProductsDescription( int|null $id = null): string
   {
@@ -618,11 +676,12 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display Short Description
-   * @param int|null $id
-   * @param int $delete_word , number of the words to delete
-   * @param int $products_short_description_number
-   * @return string $short_description , short description
+   * Retrieves a short description of a product.
+   *
+   * @param int|null $id The product ID. If null, the method will use the default ID.
+   * @param int $delete_word The number of characters to skip at the beginning of the description.
+   * @param int $products_short_description_number The maximum length of the short description to retrieve.
+   * @return string The processed short description of the product.
    */
   public function getProductsShortDescription( int|null $id = null, int $delete_word = 0, int $products_short_description_number = 0): string
   {
@@ -660,10 +719,11 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products dimension
-   * @param int|null $id
-   * @param string
-   * @return string $products_dimension, dimension of the product
+   * Retrieve the dimensions of a product.
+   *
+   * @param int|null $id The ID of the product. If null, it will use the current product ID.
+   * @param string $separator The separator used to format the dimensions, default is ' x '.
+   * @return string The formatted dimensions of the product including their unit type, or false if dimensions are not available.
    */
   public function getProductsDimension( int|null $id = null, string $separator = ' x '): string
   {
@@ -704,9 +764,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products manufacturer
-   * @param int|null $id
-   * @return string $products_manufacturer, manufacturer of the product
+   * Retrieve the manufacturer's name for a given product.
+   * @param int|null $id The ID of the product. If null, defaults to the current product's ID.
+   * @return string The manufacturer's name associated with the product.
    */
   public function getProductsManufacturer( int|null $id = null)
   {
@@ -744,8 +804,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display the button in function the boostrap size
-   * @param string $size_button , size could be sm, md ...
+   * Sanitizes and returns the size button value.
+   *
+   * @param mixed $size_button The size button value to be sanitized.
+   * @return string The sanitized size button value.
    */
   public function getSizeButton($size_button)
   {
@@ -755,9 +817,11 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display image ou button type products new arrival (news)
-   * @param int|null $id
-   * @return string $icon_new_arrival_products, product new arrival
+   * Generate and return a "new arrival" button for products based on their added date.
+   *
+   * @param int|null $id The product ID. If null, the method retrieves the ID internally.
+   * @param mixed|null $size_button Optional size parameter for styling the button.
+   * @return string The HTML button markup for new arrival products or an empty string if the product is not a new arrival.
    */
   public function getProductsNewArrival( int|null $id = null, $size_button = null): string
   {
@@ -795,9 +859,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display sell only the shop
-   * @param int|null $id
-   * @return string $products_only_shop, sell only the shop
+   * Retrieves the information about whether the product is available only in the shop.
+   *
+   * @param int|null $id The ID of the product to check. If null, the method will retrieve the ID internally.
+   * @return string Returns the value indicating if the product is available only in the shop.
    */
   public function getProductsOnlyTheShop( int|null $id = null): string
   {
@@ -818,9 +883,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display sell only the shop
-   * @param int|null $id
-   * @return string $products_only_online, products only on the web site
+   * Retrieves the "products_only_online" status for a specific product from the database.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return string The "products_only_online" value for the product.
    */
   public function getProductsOnlyOnTheWebSite( int|null $id = null): string
   {
@@ -841,9 +907,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products packaging
-   * @param null|int
-   * @return string $products_packaging, products packaging
+   * Retrieves the packaging details of a product based on its ID.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use a default ID.
+   * @return string The packaging details of the specified product.
    */
   public function getProductsPackaging( int|null $id = null): string
   {
@@ -864,9 +931,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products  Date Added
-   * @param int|null $id
-   * @return string $products_packaging, products packaging
+   * Retrieves the date a product was added to the database.
+   *
+   * @param int|null $id The ID of the product. Defaults to null. If null, the method retrieves the ID using the getID() method.
+   * @return string The date the product was added, as a string.
    */
   public function getProductsDateAdded( int|null $id = null): string
   {
@@ -889,9 +957,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display products quantity unit type
-   * @param int|null $id
-   * @return string $products_quantity_unit['products_quantity_unit_title'], products quantity unit type
+   * Retrieves the quantity unit type title for a specific product from the database.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return string The quantity unit type title for the product.
    */
   public function getProductQuantityUnitType( int|null $id = null): string
   {
@@ -918,9 +987,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * products_shipping_delay in product info
-   * @return string $products_shipping_delay, delay of the shipping
-   * @access private
+   * Retrieves the shipping delay information for a specific product from the database.
+   *
+   * @return string The shipping delay value for the product. If the shipping delay is not set, a default protected value is returned.
    */
   public function getProductsShippingDelay(): string
   {
@@ -949,9 +1018,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * products_shipping_delay_out_of_stock in product info
-   * @return string $products_shipping_delay_out_of_stock, delay of the shipping
-   * @access private
+   * Retrieves the "products_shipping_delay_out_of_stock" value for a specific product from the database.
+   * If the value is empty, a default value is returned.
+   *
+   * @return string The shipping delay information for out-of-stock products.
    */
   public function getProductsShippingDelayOutOfStock(): string
   {
@@ -980,8 +1050,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * @return string
+   * Retrieves the "products_head_tag" value for a specific product and language from the database.
    *
+   * @return string The sanitized "products_head_tag" value for the specified product.
    */
   public function getProductsHeadTag(): string
   {
@@ -1007,9 +1078,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display products_url in product info
-   * @return string $products_url, url of the product (manufacturer)
-   * @access private
+   * Retrieves the product URL for the manufacturer in the current language from the database.
+   *
+   * @return string The URL of the product for the manufacturer in the specified language.
    */
   public function getProductsURLManufacturer(): string
   {
@@ -1033,9 +1104,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display products in shop and web
-   * @param int|null $id
-   * @return string $products_web, sell web and in the shop
+   * Retrieves the status of a product indicating if it is available both in-store and online.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return string An empty string if the product is available both in-store and online.
    */
   public function getProductsWebAndShop( int|null $id = null): string
   {
@@ -1058,9 +1130,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display products_volume
-   * @param string
-   * @return string $products_volume, volume of the product
+   * Retrieves the "products_volume" value for a specific product from the database.
+   *
+   * @return string The sanitized "products_volume" value for the product.
    */
   public function getProductsVolume(): string
   {
@@ -1077,9 +1149,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display products_weight
-   * @param int|null $id
-   * @return string $products_weight, weight of the product
+   * Sets the weight of a specific product after retrieving and converting it from the database.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return string The converted weight of the product. Returns an empty string if the weight is zero.
    */
   private function setProductsWeight( int|null $id = null)
   {
@@ -1109,9 +1182,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display products_weight
-   * @param int|null $id
-   * @return string $products_weight, weight of the product
+   * Retrieves the weight of a specific product.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return mixed The weight of the product as determined by the setProductsWeight method.
    */
   public function getProductsWeight( int|null $id = null)
   {
@@ -1119,9 +1193,11 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display the normal price by kilo
-   * @param int|null $id
-   * @return string
+   * Sets and calculates the product price per weight unit based on various conditions, such as customer group,
+   * tax rates, product weight, and system configuration settings.
+   *
+   * @param string|null $id The ID of the product. If null, the method will use the current product ID.
+   * @return string The calculated product price per weight unit, formatted for display. Returns an empty string if the price should not be displayed based on the system's conditions.
    */
   private function setProductsPriceByWeight(string $id = null)
   {
@@ -1171,9 +1247,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display the normal price by kilo
-   * @param int|null $id
-   * @return string
+   * Retrieves the price of a product based on its weight.
+   *
+   * @param string|null $id The ID of the product. If null, a default ID may be used.
+   * @return mixed The price of the product calculated by weight.
    */
   public function getProductsPriceByWeight(string $id = null)
   {
@@ -1181,9 +1258,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * the products quantity unit title
-   * @param null $id
-   * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
+   * Retrieves the "products_quantity_unit_title" for a specific product from the database.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return string The "products_quantity_unit_title" value for the product.
    */
   public function getProductsQuantityByUnit($id = null): string
   {
@@ -1213,9 +1291,10 @@ class ProductsCommon extends Prod
 // ---------------------------------------------------------------------------------------------------------------------------------------
 
   /**
-   * products model
-   * @param int|null $id
-   * @return string $products_model, model of the product
+   * Sets and retrieves the product model for a specific product based on the customer's group ID and product ID.
+   *
+   * @param int|null $id The ID of the product. If null, the current ID will be used.
+   * @return string The product model, either specific to the customer's group or a default model.
    */
 
   private function setProductsModel( int|null $id = null): string
@@ -1264,9 +1343,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display products model
-   * @param int
-   * @return string $products_model, model of the product
+   * Retrieves the product model for a specific product.
+   *
+   * @param int|null $id The ID of the product. If null, the current ID will be used.
+   * @return string The product model associated with the specified product.
    */
   public function getProductsModel( int|null $id = null): string
   {
@@ -1274,10 +1354,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Auto activate flash discount in product info if avalaible
-   * @param int|null $id
-   * @return string $flash_discount, the product flash discount based on end special end date
-   * @access private
+   * Sets the flash discount for a specific product based on the customer's group and current time.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return string The flash discount duration for the product in a formatted string if conditions are met, otherwise an empty string.
    */
   private function setProductsFlashDiscount( int|null $id = null): string
   {
@@ -1347,9 +1427,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display flash discount
-   * @param int|null $id
-   * @return string $products_flash_discount, flash discount
+   * Retrieves and sets the flash discount status for a specific product.
+   *
+   * @param int|null $id The ID of the product. If null, a default ID or logic will be applied.
+   * @return mixed The result of the setProductsFlashDiscount method.
    */
   public function getProductsFlashDiscount( int|null $id = null)
   {
@@ -1363,10 +1444,10 @@ class ProductsCommon extends Prod
 
 
   /**
-   * Display the product quantity unit title of the customer group
-   * @param int|null $id
-   * @return string $products_group_quantity_unit_title, the title of the product unit group (unite,douzaine....)
-   * @access private
+   * Sets and retrieves the product quantity unit type and title based on the customer's group.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return string The formatted quantity unit title associated with the customer's group for the product.
    */
 
   private function setProductQuantityUnitTypeCustomersGroup( int|null $id = null)
@@ -1428,10 +1509,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display the product quantity unit title of the customer group
-   * @param null $id
-   * @return string $products_group_quantity_unit_title,, the title of the product unit group
-   * @access private
+   * Retrieves the product quantity unit type specific to a customer's group.
+   *
+   * @param mixed $id The ID of the product or null if the default behavior should be applied.
+   * @return mixed The product quantity unit type for the customer's group.
    */
   public function getProductQuantityUnitTypeCustomersGroup($id = null)
   {
@@ -1440,10 +1521,10 @@ class ProductsCommon extends Prod
 
 
   /**
-   * Return a product's minimum order quantity if available and min order quantity > 1
-   * in different formular ormis shopping cart -function included in application_top
-   * @param string $min_quantity_order ,
-   * @access private
+   * Sets the minimum quantity of a product that can be ordered based on the product's or customer's group configuration.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current product ID.
+   * @return int The determined minimum quantity that can be ordered for the product.
    */
   private function setProductsMinimumQuantity($id = null)
   {
@@ -1482,10 +1563,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display a product's minimum order quantity if available and min order quantity > 1
-   * in different formular ormis shopping cart -function included in application_top
-   * @param string $min_quantity_order ,
-   * @access private
+   * Retrieves the minimum quantity for a specific product.
+   *
+   * @param int|null $id The ID of the product. If null, a default action or value will be used.
+   * @return mixed The minimum quantity value for the product.
    */
   public function getProductsMinimumQuantity($id = null)
   {
@@ -1497,6 +1578,12 @@ class ProductsCommon extends Prod
     * @param string $min_order_quantity_products_display, the min of order product qty
     * @access private
   */
+  /**
+   * Sets the minimum quantity of a product required to place an order based on various conditions.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current product ID.
+   * @return string The minimum order quantity display value or an empty string if conditions are not met.
+   */
   private function setProductsMinimumQuantityToTakeAnOrder($id = null)
   {
     if (is_null($id)) {
@@ -1527,15 +1614,22 @@ class ProductsCommon extends Prod
     * display Minimum quantity take an order for the client
     * @param string $min_order_quantity_products_display, the min of order product qty
   */
+  /**
+   * Retrieves the minimum quantity required to place an order for a specific product.
+   *
+   * @param int|null $id The ID of the product. If null, the method will apply to the current product ID.
+   * @return mixed The minimum quantity required to take an order for the given product.
+   */
   public function getProductsMinimumQuantityToTakeAnOrder($id = null)
   {
     return $this->setProductsMinimumQuantityToTakeAnOrder($id);
   }
 
   /**
-   * Display the quantity for the customer
-   * @param string $input_quantity , the quantity for the customer
-   * @access private
+   * Generates an HTML input field for specifying product quantity based on various customer and product conditions.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current product ID.
+   * @return string The generated HTML input field for specifying the product quantity, or an empty string if conditions are not met.
    */
 
   public function setProductsAllowingToInsertQuantity($id = null)
@@ -1575,9 +1669,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display the quantity for the customer
-   * @param null $id
-   * @return string
+   * Retrieves the products allowing to insert quantity.
+   *
+   * @param mixed $id The identifier of the product. If null, the method will handle it accordingly.
+   * @return mixed The result of setting products that allow quantity insertion.
    */
   public function getProductsAllowingToInsertQuantity($id = null)
   {
@@ -1589,8 +1684,9 @@ class ProductsCommon extends Prod
 // ------------------------------------------------------------------------------------------------------
 
   /**
-   * Display a message in function the customer group applied
-   * @return string
+   * Generates a message indicating whether ordering is allowed based on customer group and product order view settings.
+   *
+   * @return string A formatted message indicating whether the customer can place an order, or an empty string if no restrictions apply.
    */
   public function getProductsAllowingTakeAnOrderMessage(): string
   {
@@ -1606,8 +1702,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * @param $button
-   * @return mixed
+   * Sets and retrieves the buy button.
+   *
+   * @param mixed $button The buy button to be set and returned.
+   * @return mixed The specified buy button.
    */
   public function getBuyButton($button)
   {
@@ -1617,9 +1715,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Button buy now
-   * @return string
-   * @access private
+   * Determines and returns the appropriate "buy button" status for a product
+   * based on customer login state, customer group, and product/view settings.
+   *
+   * @return string The finalized "buy button" status for the product.
    */
 
   public function setProductsBuyButton(): string
@@ -1654,8 +1753,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Button buy now
-   * @return string
+   * Retrieves the buy button configuration for a product.
+   *
+   * @return string The buy button value for the product.
    */
   public function getProductsBuyButton(): string
   {
@@ -1663,9 +1763,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Return a products button sold out
-   * @param null $button_type
-   * @return string $product_button_sold_out,the bootstrap item
+   * Generates the HTML for a "sold out" button based on the specified or default button type.
+   *
+   * @param string|null $button_type Optional CSS classes for the button. Defaults to 'btn-warning btn-sm' if not provided.
+   * @return string The HTML string for the "sold out" button. Returns an empty string if "PRE_ORDER_AUTORISATION" is set to 'false'.
    */
   private function getProductButtonSoldOut($button_type = null): string
   {
@@ -1683,11 +1784,11 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Products sold out
-   * Check if the required stock is available for display a button Product sold out
-   * @param $id
-   * @param null $button_type , bootstrap button bootstrap item
-   * @return string
+   * Determines the "sold out" status of a product based on stock level and configuration settings.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @param string|null $button_type Optional button type to be used when generating the "sold out" display.
+   * @return string The appropriate "sold out" representation or an empty string if no action is required.
    */
 
   private function setProductsSoldOut($id, $button_type = null): string
@@ -1722,10 +1823,11 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display Products sold out
-   * @param null $id
-   * @param null $button_type : bootstrap button bootstrap item
-   * @return string
+   * Retrieves the status of products that are sold out, based on the provided product ID and button type.
+   *
+   * @param int|null $id The ID of the product. If null, the method may handle this internally.
+   * @param string|null $button_type The type of button related to the product. If null, a default type may be handled.
+   * @return string The status or information related to products that are sold out.
    */
   public function getProductsSoldOut($id = null, $button_type = null): string
   {
@@ -1738,10 +1840,10 @@ class ProductsCommon extends Prod
 //=======================================================================================================================================================
 
   /**
-   * Display the price in different mode B2B or not
-   * @param null $id
-   * @return float|string
-   * @access private
+   * Sets the customer's price for a specific product based on various conditions.
+   *
+   * @param int|null $id The ID of the product. If null, a default process might be used to calculate the price.
+   * @return string The calculated or assigned product price for the customer.
    */
 
   private function setCustomersPrice($id = null)
@@ -1765,9 +1867,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display the price in different mode B2B or not
-   * @param null $id
-   * @return float|string
+   * Retrieves the price for a specific customer.
+   *
+   * @param int|null $id The ID of the customer. If null, a default or current ID may be used.
+   * @return mixed The price associated with the customer.
    */
   public function getCustomersPrice($id = null)
   {
@@ -1775,10 +1878,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Return a product's special price B2B (returns nothing if there is no offer
-   * @param null $id
-   * @return float $product['specials_new_products_price'] the special price
-   * TABLES: products B2B
+   * Sets the special price group for a specific product based on the customer's group ID.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current product ID.
+   * @return float The special price for the product based on the customer's group ID.
    */
 
   private function setSpecialPriceGroup($id = null)
@@ -1814,9 +1917,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Product price and price groupwithouth taxe and symbol
-   * @param null $id
-   * @return float $products_price, the product group price
+   * Sets and retrieves the price for a specific product from the database, considering customer group pricing if applicable.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return float The price of the product after considering customer group pricing (if any), or the default price.
    */
 
   private function setPrice($id = null)
@@ -1865,9 +1969,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Product group price with taxe and symbol (if authorize)
-   * @param null $id
-   * @return float $products_price, the product price
+   * Sets and formats the display price for a specific product.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current product ID.
+   * @return string The formatted product price including tax rates.
    */
   public function setDisplayPriceGroup($id = null)
   {
@@ -1884,9 +1989,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Product group price withiout taxe
-   * @param null $id
-   * @return float $products_price, the product price
+   * Retrieves the display price for a specific product group without including currency conversions.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return float The price of the product group without currency adjustments.
    */
 
   public function getDisplayPriceGroupWithoutCurrencies($id = null): float
@@ -1901,10 +2007,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Calcul the different price in function the group
-   * @param null $id
-   * @return float
-   * @access private
+   * Calculates and formats the price for a product based on group settings, special prices, and tax rates.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return string The formatted price for the product, including group pricing and any applicable special prices.
    */
   private function setCalculPrice($id = null)
   {
@@ -1962,10 +2068,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display the price in function the group
-   * @param null $id
-   * @return float|string
-   * @access private
+   * Retrieves the calculated price for a specific item or entity.
+   *
+   * @param mixed|null $id The ID of the entity for which the calculated price is required. If null, a default value may be used.
+   * @return mixed The calculated price value.
    */
   public function getCalculPrice($id = null)
   {
@@ -1973,9 +2079,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Return a product's stock
-   * @param null $id , id product
-   * @return int $stock_values['products_quantity']
+   * Retrieves the stock quantity of a specific product from the database.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return int The stock quantity of the product.
    */
 
   public function getProductsStock($id = null): int
@@ -1994,12 +2101,11 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Return a out of stock on the products
-   * Check if the required stock is available
-   * If insufficent stock is available return an out of stock message
-   * @param string $id , id product
-   * @param string $products_quantity
-   * @return string $out_of_stock
+   * Checks the stock availability for a product and returns the appropriate out-of-stock message.
+   *
+   * @param int|string $id The ID of the product.
+   * @param int $products_quantity The quantity of the product to be checked against the stock.
+   * @return string The out-of-stock message if the stock is insufficient; returns an empty string if stock is sufficient.
    */
 
   public function getCheckStock($id, $products_quantity): string
@@ -2021,9 +2127,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Return an image concerning the stock
-   * @param string $id , id product
-   * @return string the $display_stock_values, the image value of stock
+   * Retrieves and formats the stock level display for a specified product.
+   *
+   * @param int $id The ID of the product for which the stock level is being retrieved.
+   * @return string A formatted stock level display, including an appropriate ticker image and status message.
    */
   public function getDisplayProductsStock($id): string
   {
@@ -2041,9 +2148,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Count the number of attributes on product
-   * @param string
-   * @return string $products_attributes['total'], total of attributes
+   * Calculates the total count of active product attributes for a specific product and returns the count.
+   *
+   * @param int|null $id The ID of the product. If null, the method will retrieve the current product ID.
+   * @return int The total count of active attributes associated with the product.
    */
   private function setCountProductsAttributes($id = null)
   {
@@ -2072,8 +2180,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * @param null $id
-   * @return string
+   * Retrieves the count of product attributes for a specific product.
+   *
+   * @param int|null $id The ID of the product. If null, the method will determine the ID using internal logic.
+   * @return int The count of attributes associated with the product.
    */
   public function getCountProductsAttributes($id = null)
   {
@@ -2081,9 +2191,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Check if product has attributes
-   * @param string $id , id product
-   * @return the checking of the products attributbes
+   * Checks whether a product has active attributes in the database.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return bool True if the product has active attributes, false otherwise.
    */
   public function getHasProductAttributes($id = null)
   {
@@ -2105,9 +2216,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   *  Return a product's special price (returns nothing if there is no offer)
-   * @param null $id
-   * @return mixed
+   * Sets the special price for a specific product based on the customer's group ID.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return float|null The "specials_new_products_price" value for the product if available, or null if no special price is set.
    */
   private function setProductsSpecialPrice($id = null)
   {
@@ -2135,9 +2247,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   *  Return a product's special price (returns nothing if there is no offer)
-   * @param null $id
-   * @return mixed
+   * Retrieves the special price for a specific product by delegating to the setProductsSpecialPrice method.
+   *
+   * @param int|null $id The ID of the product. If null, the method may use a default behavior to determine the ID.
+   * @return mixed The retrieved special price value for the product.
    */
   public function getProductsSpecialPrice($id = null)
   {
@@ -2147,9 +2260,9 @@ class ProductsCommon extends Prod
 //===================================================================================================================================
 
   /**
-   * Display the name of manufacturer
-   * @return string
-   * @access private
+   * Sets and returns the manufacturer's name from the database based on the provided manufacturer ID and language ID.
+   *
+   * @return string The name of the manufacturer.
    */
   private function setManufacturersName(): string
   {
@@ -2169,7 +2282,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * @return array
+   * Retrieves the list of manufacturers' names after initializing or setting them.
+   *
+   * @return array An array containing the manufacturers' names.
    */
   public function getManufacturersName(): array
   {
@@ -2177,10 +2292,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display a description of manufacturer
-   * @param $id
-   * @return string
-   * @access private
+   * Sets and retrieves the "manufacturer_description" for a specific manufacturer from the database.
+   *
+   * @param int $id The ID of the manufacturer whose description needs to be retrieved.
+   * @return string The "manufacturer_description" for the specified manufacturer.
    */
   private function setManufacturersDescription($id): string
   {
@@ -2200,7 +2315,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * @return string
+   * Retrieves the description of a manufacturer based on the provided manufacturer ID.
+   *
+   * @return string The description of the manufacturer.
    */
   public function getManufacturersDescription(): string
   {
@@ -2210,11 +2327,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display a description of manufacturer
-   * @param int $_GET ['manufacturers_id']) the id of manufacturer
-   * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
-   * @access private
-   * @return
+   * Retrieves the image associated with a specific manufacturer from the database.
+   *
+   * @return string The manufacturer image filename or path.
    */
   private function setManufacturersImage(): string
   {
@@ -2230,8 +2345,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display a description of manufacturer
-   * @return string
+   * Retrieves the manufacturer's image by invoking the corresponding setter method.
+   *
+   * @return string The manufacturer's image.
    */
   public function getManufacturersImage(): string
   {
@@ -2239,8 +2355,12 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display a  manufacturers under an array
-   * @return array
+   * Generates and retrieves a dropdown array of manufacturers.
+   *
+   * The method includes an option for all manufacturers and fetches active manufacturers
+   * from the database, ordering them by name.
+   *
+   * @return array An array of manufacturers with 'id' and 'text' keys.
    */
 
   public function setManufacturersDropDown(): array
@@ -2273,8 +2393,9 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display a manufacturer in dropdown
-   * @return array
+   * Retrieves a dropdown array of manufacturers.
+   *
+   * @return array The array containing manufacturers dropdown data.
    */
   public function getManufacturersDropDown(): array
   {
@@ -2282,9 +2403,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display a a ticker on products new (text)
-   * @param null $id
-   * @return bool $ticker (true or false)
+   * Determines whether a product qualifies as a "new product" based on its addition date.
+   *
+   * @param int|null $id The ID of the product to evaluate. If null, the method will use the current ID.
+   * @return bool True if the product is considered new; otherwise, false.
    */
   private function setProductsTickerProductsNew($id = null): bool
   {
@@ -2319,9 +2441,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display a ticker css for new price
-   * @param null $id
-   * @return bool $ticker, product new procust price ticker
+   * Retrieves and sets the "products_ticker_products_new" status for a specific product.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use a default value.
+   * @return bool The result of the operation to set the "products_ticker_products_new" status.
    */
   public function getProductsTickerProductsNew($id = null): bool
   {
@@ -2329,9 +2452,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display a ticker on special price (text)
-   * @param null $id
-   * @return bool $ticker (true or false)
+   * Determines if a product qualifies as a "ticker special" based on its special addition date.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return bool True if the product is considered a "ticker special," false otherwise.
    */
   private function setProductsTickerSpecials($id = null): bool
   {
@@ -2374,9 +2498,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display a ticker css for specials price
-   * @param string
-   * @return string $ticker, specials price ticker
+   * Retrieves and sets the "ticker specials" for a specific product.
+   *
+   * @param int|null $id The ID of the product. If null, a default value may be used by the method logic.
+   * @return mixed The result of setting the "ticker specials" for the product.
    */
   public function getProductsTickerSpecials($id = null)
   {
@@ -2384,9 +2509,12 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display a ticker pourcentage css
-   * @param string
-   * @return bool|string $ticker, specials price ticker
+   * Calculates the discount percentage for a product based on its special price group and regular price.
+   *
+   * @param int|string $id The ID of the product.
+   * @param string $tag A string to append to the calculated percentage, defaulting to ' %'.
+   * @return bool|string The calculated discount percentage as a string with the appended tag,
+   *                     or an empty string if the special price group or regular price is not set.
    */
   public function getProductsTickerSpecialsPourcentage($id, string $tag = ' %'): bool|string
   {
@@ -2401,10 +2529,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display a a ticker on product favorites
-   * @param null $id
-   * @return bool $ticker (true or false)
-   * @access private
+   * Determines if a product is marked as favorite within a specific time period.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return bool True if the product is marked as favorite within the defined time period, otherwise false.
    */
   private function setProductsTickerFavorites($id = null): bool
   {
@@ -2435,9 +2563,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display a a ticker on product featured
-   * @param null $id
-   * @return bool $ticker (true or false)
+   * Determines if a product should be featured on the ticker based on its "featured date added" status and the predefined time period.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return bool True if the product is eligible to be featured on the ticker, false otherwise.
    */
   private function setProductsTickerFeatured($id = null): bool
   {
@@ -2469,9 +2598,11 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * Display a a ticker on product recommendations
-   * @param null $id
-   * @return bool $ticker (true or false)
+   * Sets the "ticker recommendation" status for a specific product based on its recent addition
+   * and a minimum recommendation score.
+   *
+   * @param int|null $id The ID of the product. If null, the method will use the current ID.
+   * @return bool True if the product qualifies for the ticker recommendation, false otherwise.
    */
   private function setProductsTickerRecommendations($id = null): bool
   {
@@ -2507,9 +2638,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display a ticker css for specials price
-   * @param string
-   * @return bool $ticker, favorites ticker
+   * Retrieves the ticker favorites for a specific product.
+   *
+   * @param mixed $id The ID of the product. If null, a default behavior or ID will be used within the method.
+   * @return mixed The result of setting the product's ticker favorites.
    */
   public function getProductsTickerFavorites($id = null)
   {
@@ -2517,9 +2649,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display a ticker css for featured
-   * @param string
-   * @return string $ticker, specials price ticker
+   * Retrieves the featured ticker information for a specific product.
+   *
+   * @param mixed|null $id The ID of the product. If null, the method may use a default or current ID.
+   * @return mixed The result of setting the featured ticker for the product.
    */
   public function getProductsTickerFeatured($id = null)
   {
@@ -2527,9 +2660,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * display a ticker css for featured
-   * @param string
-   * @return string $ticker, product price ticker
+   * Retrieves ticker recommendations for a specific product.
+   *
+   * @param mixed $id The ID of the product. If null, the method may use a default or current ID.
+   * @return mixed The result of setting the product's ticker recommendations.
    */
   public function getProductsTickerRecommendations($id = null)
   {
@@ -2543,6 +2677,12 @@ class ProductsCommon extends Prod
   * @return string $save_money, the difference between real price and  specials
   * @access private
   */
+  /**
+   * Calculates and sets the save money value for a customer based on special price and standard price.
+   *
+   * @param int|string $id The ID of the product or a unique product identifier.
+   * @return float|null The amount of money saved, or null if calculation cannot be performed.
+   */
   private function setProductsSaveMoneyCustomer(int|string $id): ?float
   {
     $savemoney = 0;
@@ -2559,16 +2699,24 @@ class ProductsCommon extends Prod
   * @param int|string
   * @return string $save_money, the difference between real price and  specials
   */
+  /**
+   * Retrieves the savings amount for a customer-specific product.
+   *
+   * @param int|string $id The ID of the product, which can be an integer or a string.
+   * @return float|null The amount of money the customer saves on the product, or null if unavailable.
+   */
   public function getProductsSaveMoneyCustomer(int|string $id): ?float
   {
     return $this->setProductsSaveMoneyCustomer($id);
   }
 
   /**
-   * @param null $id
-   * @param null $qty
-   * @param null $products_price
-   * @return false|float|int|mixed
+   * Calculates the new price of a product based on quantity discounts applied to the product.
+   *
+   * @param int|null $id The ID of the product. If null, product-specific discount handling might not occur correctly.
+   * @param int|null $qty The quantity of the product being purchased. This determines which discount, if any, is applied.
+   * @param float|null $products_price The original price of the product before applying any discounts.
+   * @return float|bool The discounted price of the product if applicable. Returns false if no discount applies or calculation fails.
    */
   public function getProductsNewPriceByDiscountByQuantity($id = null, $qty = null, $products_price = null)
   {
@@ -2613,11 +2761,12 @@ class ProductsCommon extends Prod
   }
 
   /**
-   *  Get the price by quantity discount for the shopping cart
-   * @param null $id
-   * @param null $qty
-   * @param null $products_price
-   * @return float|int
+   * Calculates the total discount for a product based on its quantity in the shopping cart.
+   *
+   * @param int|null $id The ID of the product. If null, the method may use an alternative way to identify the product.
+   * @param int|null $qty The quantity of the product in the shopping cart. If null, no specific quantity is used.
+   * @param float|null $products_price The original price of the product. If null, the price must be determined elsewhere.
+   * @return float The total discount amount for the specified product and quantity.
    */
   public function getInfoPriceDiscountByQuantityShoppingCart($id = null, $qty = null, $products_price = null)
   {
@@ -2659,6 +2808,15 @@ class ProductsCommon extends Prod
   /*
   * Return table heading with sorting capabilities
   */
+  /**
+   * Constructs a sortable heading link for products, allowing for dynamic sorting and filtering based on user inputs.
+   *
+   * @param string|null $sortby Specifies the current sorting order and column.
+   *                            If null, the default sorting behavior is applied.
+   * @param string $column The column by which the data will be sorted.
+   * @param string $heading The heading text to be displayed within the link.
+   * @return string The HTML markup for the sortable heading link.
+   */
   public function createSortHeading($sortby, $column, $heading)
   {
     if (isset($_POST['keywords'])) {
@@ -2690,6 +2848,12 @@ class ProductsCommon extends Prod
   * @param Int $id, id product
   * @return Int products_weight_class_id, Id of the weight class
   */
+  /**
+   * Sets and retrieves the "products_weight_class_id" for a specific product from the database.
+   *
+   * @param int $id The ID of the product to retrieve the weight class ID for.
+   * @return int|null The "products_weight_class_id" value for the product, or null if not found.
+   */
   private function setWeightClassIdByProducts($id)
   {
     $QweightClass = $this->db->prepare('select products_weight_class_id
@@ -2707,6 +2871,12 @@ class ProductsCommon extends Prod
   * @param Int $id, id product
   * @return Int products_weight_class_id, Id of the weight class
   */
+  /**
+   * Retrieves the weight class ID associated with a specific product.
+   *
+   * @param mixed $id The ID of the product, which will be sanitized before use.
+   * @return mixed The weight class ID of the specified product.
+   */
   public function getWeightClassIdByProducts($id)
   {
     $id = HTML::sanitize($id);
@@ -2714,8 +2884,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * @param int $weight_class_id
-   * @return string
+   * Sets and retrieves the "weight_class_key" for a specific weight class from the database.
+   *
+   * @param int $weight_class_id The ID of the weight class to fetch the corresponding weight class key.
+   * @return string The "weight_class_key" value associated with the specified weight class ID.
    */
   private function setSymbolWeightByProducts(int $weight_class_id): string
   {
@@ -2732,8 +2904,10 @@ class ProductsCommon extends Prod
   }
 
   /**
-   * @param int $weight_class_id
-   * @return mixed
+   * Retrieves the symbol weight for products based on the given weight class ID.
+   *
+   * @param int $weight_class_id The ID of the weight class to retrieve the symbol weight for.
+   * @return mixed The symbol weight associated with the specified weight class.
    */
   public function getSymbolWeightByProducts(int $weight_class_id)
   {

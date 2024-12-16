@@ -26,6 +26,10 @@ class Manufacturers
 
   protected $rewriteUrl;
 
+  /**
+   * Constructor method to initialize database, language, and manufacturer ID parameters
+   * @return void
+   */
   public function __construct()
   {
     $this->db = Registry::get('Db');
@@ -43,8 +47,9 @@ class Manufacturers
   }
 
   /**
-   * manufacturer id
-   * @return int
+   * Retrieves the ID of the current object.
+   *
+   * @return mixed The ID of the object.
    */
   public function getID()
   {
@@ -54,8 +59,9 @@ class Manufacturers
   }
 
   /**
-   * manufacturer url
-   * @return bool|mixed
+   * Retrieves the rewritten URL for the manufacturer.
+   *
+   * @return string The rewritten manufacturer URL.
    */
   public function getManufacturerUrlRewrited()
   {
@@ -63,9 +69,10 @@ class Manufacturers
   }
 
   /**
-   * manufacturer name
-   * @param $id
-   * @return mixed
+   * Retrieves the title (name) of a manufacturer based on its ID and the current language ID.
+   *
+   * @param int $id The unique identifier of the manufacturer.
+   * @return string The name of the manufacturer, or an empty string if not found or inactive.
    */
   public function getTitle($id)
   {
@@ -91,9 +98,10 @@ class Manufacturers
   }
 
   /**
-   * manufacturer image
-   * @param $id
-   * @return mixed
+   * Retrieves the image associated with a manufacturer by their ID.
+   *
+   * @param int $id The ID of the manufacturer.
+   * @return string The image of the manufacturer, or an empty string if not available.
    */
   public function getImage($id)
   {
@@ -115,9 +123,10 @@ class Manufacturers
   }
 
   /**
-   * manufacturer description
-   * @param $id
-   * @return mixed
+   * Retrieves the manufacturer description based on the provided ID.
+   *
+   * @param int $id The ID of the manufacturer whose description is to be retrieved.
+   * @return string The description of the manufacturer.
    */
   public function getDescription($id)
   {
@@ -142,6 +151,13 @@ class Manufacturers
     return $description;
   }
 
+  /**
+   * Retrieves the URL for a manufacturer based on the given ID.
+   *
+   * @param int $id The manufacturer's ID for which the URL is to be retrieved.
+   *
+   * @return string The URL associated with the given manufacturer ID.
+   */
   public function getUrl($id)
   {
     $url = '';
@@ -165,6 +181,12 @@ class Manufacturers
     return $url;
   }
 
+  /**
+   * Retrieves all manufacturer data or data for a specific manufacturer based on the provided ID.
+   *
+   * @param int|null $id The ID of the manufacturer to retrieve data for. If null, retrieves data for all manufacturers.
+   * @return array An array of manufacturer data.
+   */
   public function getAll($id = null)
   {
     if (!is_null($id)) {
@@ -204,6 +226,11 @@ class Manufacturers
     return $Qmanufacturer->fetchAll();
   }
 
+  /**
+   * Retrieves and sets a list of manufacturers associated with a specific category.
+   *
+   * @return array An array containing manufacturers' IDs and names, where each element is an associative array with keys 'id' and 'text'.
+   */
   public function setManufacturersByCategories()
   {
     $CLICSHOPPING_Category = Registry::get('Category');
@@ -239,6 +266,10 @@ class Manufacturers
   }
 
 
+  /**
+   *
+   * @return mixed The result of setting manufacturers by categories.
+   */
   public function getManufacturersByCategories()
   {
     return $this->setManufacturersByCategories();

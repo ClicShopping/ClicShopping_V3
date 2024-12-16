@@ -44,6 +44,12 @@ class ImageResample
   private $x;
   private $y;
 
+  /**
+   * Constructor method.
+   *
+   * @param string|null $filename The name of the file to load. If null, no file will be loaded.
+   * @return void
+   */
   public function __construct($filename = null)
   {
     if (!empty($filename)) {
@@ -52,7 +58,10 @@ class ImageResample
   }
 
   /**
-   * @param string $filename
+   * Loads an image file and initializes the image resource based on its file type.
+   *
+   * @param string $filename The path to the image file to be loaded.
+   * @return void
    */
   public function load(string $filename)
   {
@@ -87,11 +96,13 @@ class ImageResample
   }
 
   /**
-   * @param string $filename
-   * @param string $ext
-   * @param int $compression
-   * @param null $permissions
-   * @param bool $convertAll
+   * Saves the current image resource to a file with the specified format, compression, and permissions.
+   *
+   * @param string $filename The name of the file where the image will be saved.
+   * @param string $ext The image type/format to use for saving, such as IMAGETYPE_JPEG, IMAGETYPE_GIF, IMAGETYPE_PNG, or IMAGETYPE_WEBP. Defaults to IMAGETYPE_WEBP.
+   * @param int $compression The level of compression to apply when saving the image, where applicable. Defaults to 80.
+   * @param int|null $permissions Optional file permissions to set for the saved file. Defaults to null (no permissions change).
+   * @return void
    */
   public function save(string $filename, string $ext = IMAGETYPE_WEBP, int $compression = 80, $permissions = null)
   {
@@ -115,8 +126,11 @@ class ImageResample
   }
 
   /**
-   * @param string $ext
-   * @param int $quality
+   * Outputs the image to the browser in the specified format with optional quality settings.
+   *
+   * @param string $ext The image type to output. Accepts IMAGETYPE_JPEG, IMAGETYPE_GIF, IMAGETYPE_PNG, or IMAGETYPE_WEBP.
+   * @param int $quality The quality of the output image. Only applicable for IMAGETYPE_JPEG. Default is 80.
+   * @return void
    */
   public function output(string $ext = IMAGETYPE_JPEG, int $quality = 80)
   {
@@ -136,7 +150,9 @@ class ImageResample
   }
 
   /**
-   * @return false|int
+   * Retrieves the width of the current image.
+   *
+   * @return int The width of the image in pixels.
    */
   public function getWidth()
   {
@@ -144,7 +160,9 @@ class ImageResample
   }
 
   /**
-   * @return false|int
+   * Retrieves the height of the currently loaded image.
+   *
+   * @return int The height of the image in pixels.
    */
   public function getHeight()
   {
@@ -152,7 +170,10 @@ class ImageResample
   }
 
   /**
-   * @param $height
+   * Resizes the current image to the specified height while maintaining its aspect ratio.
+   *
+   * @param int $height The new height to resize the image to.
+   * @return void
    */
   public function resizeToHeight(int $height)
   {
@@ -163,7 +184,10 @@ class ImageResample
   }
 
   /**
-   * @param int $width
+   * Resizes the image to the specified width while maintaining the aspect ratio.
+   *
+   * @param int $width The desired width to resize the image to.
+   * @return void
    */
   public function resizeToWidth(int $width)
   {
@@ -174,7 +198,10 @@ class ImageResample
   }
 
   /**
-   * @param int $size
+   * Resizes the image to a square format with the given size, maintaining the aspect ratio.
+   *
+   * @param int $size The length of the square's side in pixels.
+   * @return void
    */
   public function square(int $size)
   {
@@ -200,7 +227,10 @@ class ImageResample
   }
 
   /**
-   * @param $scale
+   * Scales the dimensions of the image proportionally based on the specified scale percentage.
+   *
+   * @param int $scale The scale percentage to resize the image. Must be a value greater than 0.
+   * @return void
    */
   public function scale(int $scale)
   {
@@ -210,8 +240,11 @@ class ImageResample
   }
 
   /**
-   * @param int $width
-   * @param int $height
+   * Resizes the current image to the specified width and height.
+   *
+   * @param int $width The desired width of the resized image.
+   * @param int $height The desired height of the resized image.
+   * @return void
    */
   public function resize(int $width, int $height)
   {
@@ -227,10 +260,13 @@ class ImageResample
   }
 
   /**
-   * @param int $x
-   * @param int $y
-   * @param int $width
-   * @param int $height
+   * Crops a portion of the image to the specified dimensions and position.
+   *
+   * @param int $x The x-coordinate of the top-left corner of the cropping region.
+   * @param int $y The y-coordinate of the top-left corner of the cropping region.
+   * @param int $width The width of the cropping region.
+   * @param int $height The height of the cropping region.
+   * @return void
    */
   public function cut(int $x, int $y, int $width, int $height)
   {
@@ -246,8 +282,11 @@ class ImageResample
   }
 
   /**
-   * @param int $width
-   * @param int|null $height
+   * Resizes the image to fit within the specified dimensions while maintaining aspect ratio.
+   *
+   * @param int $width The maximum width the image can have after resizing.
+   * @param int|null $height The maximum height the image can have after resizing. Defaults to the provided width if null.
+   * @return void
    */
   public function maxarea(int $width,  int|null $height = null)
   {
@@ -262,8 +301,11 @@ class ImageResample
   }
 
   /**
-   * @param $width
-   * @param null $height
+   * Ensures the image has a minimum width and height by resizing if necessary.
+   *
+   * @param int $width The minimum width the image should have.
+   * @param int|null $height The minimum height the image should have. If null, the height will be set equal to the width.
+   * @return void
    */
   public function minarea(int $width,  int|null $height = null)
   {
@@ -278,8 +320,11 @@ class ImageResample
   }
 
   /**
-   * @param int $width
-   * @param int $height
+   * Cuts a portion of the image from the center with the specified width and height.
+   *
+   * @param int $width The width of the portion to cut.
+   * @param int $height The height of the portion to cut.
+   * @return mixed The resulting image after cutting the specified portion.
    */
   public function cutFromCenter(int $width, int $height)
   {
@@ -298,11 +343,15 @@ class ImageResample
   }
 
   /**
-   * @param int $width
-   * @param int $height
-   * @param int $red
-   * @param int $green
-   * @param int $blue
+   * Resizes the image to fit within the specified dimensions while preserving the aspect ratio
+   * and fills the remaining area with a specified background color.
+   *
+   * @param int $width The desired width for the final image.
+   * @param int $height The desired height for the final image.
+   * @param int $red The red component (0-255) of the background color. Default is 0.
+   * @param int $green The green component (0-255) of the background color. Default is 0.
+   * @param int $blue The blue component (0-255) of the background color. Default is 0.
+   * @return void
    */
   public function maxareafill(int $width, int $height, int $red = 0, int $green = 0, int $blue = 0)
   {
@@ -324,7 +373,6 @@ class ImageResample
 
     $this->image = $new_image;
   }
-
 }
 
 
