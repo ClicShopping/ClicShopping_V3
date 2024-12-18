@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b248bcec55259b3fc26f38a438088ec",
+    "content-hash": "bf74bdad9c530d7e90f0ddd4404efb01",
     "packages": [
         {
             "name": "darkghosthunter/preloader",
@@ -2258,16 +2258,16 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.8.13",
+            "version": "0.8.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "3611fa67836e6b1a26ebfa7425c02fd719b2f0ad"
+                "reference": "83b360d2481b9f7b711efa0b107c2f15b591ff28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/3611fa67836e6b1a26ebfa7425c02fd719b2f0ad",
-                "reference": "3611fa67836e6b1a26ebfa7425c02fd719b2f0ad",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/83b360d2481b9f7b711efa0b107c2f15b591ff28",
+                "reference": "83b360d2481b9f7b711efa0b107c2f15b591ff28",
                 "shasum": ""
             },
             "require": {
@@ -2336,9 +2336,9 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.13"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.14"
             },
-            "time": "2024-12-07T14:56:51+00:00"
+            "time": "2024-12-17T23:06:53+00:00"
         }
     ],
     "packages-dev": [
@@ -2348,12 +2348,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "233f7c395ac3b83e3c85aa304f3350bf8897aca5"
+                "reference": "82bcaf352d07debf5a23af1002051849ab01d603"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/233f7c395ac3b83e3c85aa304f3350bf8897aca5",
-                "reference": "233f7c395ac3b83e3c85aa304f3350bf8897aca5",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/82bcaf352d07debf5a23af1002051849ab01d603",
+                "reference": "82bcaf352d07debf5a23af1002051849ab01d603",
                 "shasum": ""
             },
             "conflict": {
@@ -2758,7 +2758,6 @@
                 "neos/swiftmailer": "<5.4.5",
                 "netgen/tagsbundle": ">=3.4,<3.4.11|>=4,<4.0.15",
                 "nette/application": ">=2,<2.0.19|>=2.1,<2.1.13|>=2.2,<2.2.10|>=2.3,<2.3.14|>=2.4,<2.4.16|>=3,<3.0.6",
-                "nette/database": "<=3.2.4",
                 "nette/nette": ">=2,<2.0.19|>=2.1,<2.1.13",
                 "nilsteampassnet/teampass": "<3.0.10",
                 "nonfiction/nterchange": "<4.1.1",
@@ -2941,7 +2940,7 @@
                 "snipe/snipe-it": "<=7.0.13",
                 "socalnick/scn-social-auth": "<1.15.2",
                 "socialiteproviders/steam": "<1.1",
-                "spatie/browsershot": "<5.0.1",
+                "spatie/browsershot": "<5.0.2",
                 "spatie/image-optimizer": "<1.7.3",
                 "spencer14420/sp-php-email-handler": "<1",
                 "spipu/html2pdf": "<5.2.8",
@@ -3054,7 +3053,7 @@
                 "typo3fluid/fluid": ">=2,<2.0.8|>=2.1,<2.1.7|>=2.2,<2.2.4|>=2.3,<2.3.7|>=2.4,<2.4.4|>=2.5,<2.5.11|>=2.6,<2.6.10",
                 "ua-parser/uap-php": "<3.8",
                 "uasoft-indonesia/badaso": "<=2.9.7",
-                "unisharp/laravel-filemanager": "<2.6.4",
+                "unisharp/laravel-filemanager": "<2.9.1",
                 "unopim/unopim": "<0.1.5",
                 "userfrosting/userfrosting": ">=0.3.1,<4.6.3",
                 "usmanhalalit/pixie": "<1.0.3|>=2,<2.0.2",
@@ -3193,7 +3192,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-13T21:04:51+00:00"
+            "time": "2024-12-18T16:05:52+00:00"
         }
     ],
     "aliases": [],

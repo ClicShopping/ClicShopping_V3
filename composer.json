@@ -16,12 +16,12 @@
         "nyholm/psr7": "^1.8",
         "mattketmo/email-checker": "^2.3",
         "setasign/fpdf": "^1.8",
-        "stripe/stripe-php": "^16.0",
         "ext-xml": "*",
         "symfony/http-client": "^7.1",
         "phpxmlrpc/phpxmlrpc": "^4.11",
         "guzzlehttp/guzzle": "^7.9",
-        "theodo-group/llphant": "^0.8.13"
+        "theodo-group/llphant": "^0.8.13",
+        "stripe/stripe-php": "^16.3"
     }
     ,
     "require-dev": {
