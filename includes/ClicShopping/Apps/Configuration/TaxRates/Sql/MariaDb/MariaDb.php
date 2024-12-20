@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary methods to initialize and install database-related configurations.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_TaxRates = Registry::get('TaxRates');
@@ -24,9 +29,17 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries required for the administration menu related to tax rates configuration.
+   *
+   * This method checks if the necessary entries for the tax rates administration menu
+   * already exist in the database. If they do not exist, it inserts the required data
+   * into the `administrator_menu` and `administrator_menu_description` tables, ensuring
+   * the menu item is properly configured for all supported languages. It also clears
+   * the administrator menu cache after the installation process.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -72,9 +85,11 @@ class MariaDb
     }
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database table for tax rates if it does not already exist.
+   *
+   * @return void
+   */
   private static function installDb()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

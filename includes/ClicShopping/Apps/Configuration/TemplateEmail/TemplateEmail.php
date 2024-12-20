@@ -18,12 +18,21 @@ class TemplateEmail extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_TemplateEmail_V1';
 
+  /**
+   * Initializes the required configurations or sets up initial states for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the configuration modules by scanning a specific directory
+   * for valid module classes which are subclasses of ConfigAbstract.
+   * Modules are sorted by their defined sort order or by insertion order.
+   *
+   * @return mixed Returns an array of configuration module names indexed by their sort order.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +83,11 @@ class TemplateEmail extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information for the specified module and info key.
+   *
+   * @param string $module The name of the module to retrieve information for.
+   * @param string $info The specific information key to retrieve from the module configuration.
+   * @return mixed Returns the requested module configuration information, or null if not found.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +101,9 @@ class TemplateEmail extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The current API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +111,8 @@ class TemplateEmail extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

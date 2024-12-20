@@ -19,6 +19,10 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Weight')) {
@@ -28,6 +32,15 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Weight');
   }
 
+  /**
+   * Executes the weight application logic for handling product weight class updates.
+   *
+   * This method checks whether the weight application module is enabled, and if it is,
+   * processes the weight class update when an 'Insert' action is detected in the request.
+   * It retrieves the latest product ID, sanitizes the input, and updates the product's weight class.
+   *
+   * @return bool Returns false if the weight application module is disabled, otherwise handles the logic and returns void.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_WEIGHT_WE_STATUS') || CLICSHOPPING_APP_WEIGHT_WE_STATUS == 'False') {

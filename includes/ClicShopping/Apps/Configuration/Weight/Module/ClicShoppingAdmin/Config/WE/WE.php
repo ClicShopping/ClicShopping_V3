@@ -18,6 +18,12 @@ class WE extends \ClicShopping\Apps\Configuration\Weight\Module\ClicShoppingAdmi
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction,
+   * and determining if the module is installed based on the configuration status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_we_title');
@@ -26,6 +32,11 @@ class WE extends \ClicShopping\Apps\Configuration\Weight\Module\ClicShoppingAdmi
     $this->is_installed = \defined('CLICSHOPPING_APP_WEIGHT_WE_STATUS') && (trim(CLICSHOPPING_APP_WEIGHT_WE_STATUS) != '');
   }
 
+  /**
+   * Installs the module and adds its entry to the installed modules configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +50,11 @@ class WE extends \ClicShopping\Apps\Configuration\Weight\Module\ClicShoppingAdmi
     $this->app->saveCfgParam('MODULE_MODULES_WEIGHT_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module and removes its entry from the installed modules configuration.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

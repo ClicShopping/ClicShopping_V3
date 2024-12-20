@@ -29,6 +29,15 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Class constructor.
+   *
+   * Initializes the application by retrieving the 'Zones' instance from the registry,
+   * sets the short name of the current class as the code property,
+   * and triggers additional initialization logic.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Zones');
@@ -38,6 +47,12 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the necessary configuration parameters for the module by retrieving parameters,
+   * dynamically generating their corresponding classes, and saving their default values and metadata.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_ZONES_' . $this->code . '_');
@@ -53,6 +68,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +83,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves parameters from the specified directory and validates them as subclasses of ConfigParamAbstract.
+   *
+   * @return array Returns an array of parameter identifiers. Each identifier corresponds to a valid parameter class found in the specified directory.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +111,17 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for configuration.
+   *
+   * This method gathers parameters, validates them, and organizes them into
+   * an associative array. Each parameter is processed to include additional
+   * metadata such as default values, titles, descriptions, and more. Parameters
+   * that are not defined are saved with their default values. The final result
+   * is sorted numerically before being returned.
+   *
+   * @return array An associative array of processed input parameters, sorted numerically.
+   */
   public function getInputParameters()
   {
     $result = [];

@@ -20,6 +20,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_tax_geo_zones_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor method for initializing the configuration module.
+   *
+   * @param string $config_module The configuration module name to set up.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('TaxGeoZones');

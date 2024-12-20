@@ -18,12 +18,21 @@ class Zones extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Zones_V1';
 
+  /**
+   * Initializes the necessary configurations or setups for the current instance.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves and initializes configuration modules by scanning a specific directory for available modules.
+   * The modules are sorted based on their defined sort order or their appearance in the list.
+   *
+   * @return mixed Returns an array of configuration module names sorted by their sort order or an empty array if no modules are found.
+   *               If the method is executed multiple times, it uses a static cache to avoid reinitialization.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +83,11 @@ class Zones extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information.
+   *
+   * @param string $module The name of the module to retrieve information from.
+   * @param string $info The specific information to retrieve from the module.
+   * @return mixed The requested module information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +101,9 @@ class Zones extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +111,8 @@ class Zones extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string Returns the identifier associated with the instance.
    */
   public function getIdentifier(): string
   {

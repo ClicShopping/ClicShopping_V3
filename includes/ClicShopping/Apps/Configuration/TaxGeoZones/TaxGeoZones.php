@@ -23,7 +23,14 @@ class TaxGeoZones extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Fetches the configuration modules available in the specified directory.
+   *
+   * The method scans the provided directory for modules that extend the ConfigAbstract
+   * class and returns an array of module names sorted by their specified sort order
+   * or their directory order.
+   *
+   * @return mixed An array of configuration module names sorted by their sort order,
+   *         or an empty array if no valid modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +81,11 @@ class TaxGeoZones extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific information about a configuration module.
+   *
+   * @param string $module The identifier of the module to retrieve.
+   * @param string $info The specific information required from the module.
+   * @return mixed The requested module information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +99,9 @@ class TaxGeoZones extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +109,9 @@ class TaxGeoZones extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

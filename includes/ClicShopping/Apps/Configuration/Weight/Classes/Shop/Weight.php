@@ -18,7 +18,13 @@ class Weight
   protected array $weight_classes = [];
   protected $precision;
 
-  public function __construct($precision = 2)
+  /**
+   * Constructor method.
+   *
+   * @param int $precision Optional. The precision to be used, defaults to 2.
+   * @return void
+   */
+  public function __construct(int $precision = 2)
   {
     if (\is_int($precision)) {
       $this->precision = $precision;
@@ -28,7 +34,9 @@ class Weight
   }
 
   /**
-   * @return string
+   * Gets the character used as the decimal separator in numeric values.
+   *
+   * @return string The decimal separator used in numeric formatting.
    */
   public static function getNumericDecimalSeparator(): string
   {
@@ -36,7 +44,9 @@ class Weight
   }
 
   /**
-   * @return string
+   * Retrieves the character used as the thousands separator in numeric formatting.
+   *
+   * @return string The character used as the thousands separator.
    */
   public static function getNumericThousandsSeparator(): string
   {
@@ -44,9 +54,11 @@ class Weight
   }
 
   /**
-   * @param int $id
-   * @param null|int $language_id
-   * @return string
+   * Retrieves the title of a weight class based on its ID and optionally a language ID.
+   *
+   * @param int $id The ID of the weight class.
+   * @param int|null $language_id The optional ID of the language. If null, the default language ID is used.
+   * @return string The title of the weight class.
    */
   public static function getTitle(int $id,  int|null $language_id = null): string
   {
@@ -77,7 +89,11 @@ class Weight
   }
 
   /**
+   * Prepares the rules and classes for weight conversions by fetching
+   * and caching the data from the database and assigning the results
+   * to the weight_classes property.
    *
+   * @return void
    */
   public function prepareRules(): void
   {
@@ -115,12 +131,14 @@ class Weight
   }
 
   /**
-   * @param $value
-   * @param $unit_from
-   * @param $unit_to
-   * @return false|string
+   * Converts a given value from one unit to another unit.
+   *
+   * @param mixed $value The value to be converted.
+   * @param mixed $unit_from The unit from which conversion starts.
+   * @param mixed $unit_to The target unit to which the value will be converted.
+   * @return false|string Returns the converted value as a formatted string, or false on failure.
    */
-  public function convert($value, $unit_from, $unit_to): false|string
+  public function convert(mixed $value, mixed $unit_from, mixed $unit_to): false|string
   {
     $convert = false;
 
@@ -140,17 +158,22 @@ class Weight
   }
 
   /**
-   * @param $value
-   * @param $class
-   * @return string
+   * Formats a numeric value according to a specific precision and appends a class key.
+   *
+   * @param float|int $value The numeric value to be formatted.
+   * @param mixed $class The class used to determine the key to append.
+   * @return string The formatted numeric value concatenated with the class key.
    */
-  public function display($value, $class): string
+  public function display(float|int $value, mixed $class): string
   {
     return number_format($value, $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator()) . $this->weight_classes[$class]['key'];
   }
 
   /**
-   * @return array
+   * Retrieves a list of weight classes from the database for the current language.
+   *
+   * @return array Returns an array of weight classes, where each entry is an associative array
+   * containing 'id' as the weight class ID and 'title' as the weight class title.
    */
   public static function getClasses(): array
   {

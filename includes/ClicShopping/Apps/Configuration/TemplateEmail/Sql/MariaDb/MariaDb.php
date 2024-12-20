@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary actions to initialize the TemplateEmail definitions and database configurations.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_TemplateEmail = Registry::get('TemplateEmail');
@@ -24,9 +29,15 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database menu entry for the administration panel related to the Template Email configuration.
+   *
+   * Checks if the 'app_configuration_template_email' menu entry already exists in the administrator menu.
+   * If the entry does not exist, it creates a new menu entry along with its associated descriptions
+   * for all available languages. Clears the cache for the administrator menu after installation.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -71,9 +82,11 @@ class MariaDb
     }
   }
 
-/**
-* @return void
- */
+  /**
+   * Creates the necessary database tables for the template email functionality if they do not already exist.
+   *
+   * @return void
+   */
   private static function installDb()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

@@ -20,6 +20,14 @@ class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for the class.
+   *
+   * Initializes the Weight app in the registry if it does not already exist
+   * and loads the necessary language definitions for the module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Weight')) {
@@ -30,6 +38,8 @@ class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_2');
   }
 
+  /**
+   * Retrieves the weight class ID of a specific product from*/
   private function getProductsWeightId()
   {
     $Qproducts = $this->app->db->prepare('select products_weight_class_id
@@ -43,6 +53,11 @@ class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
     return $Qproducts->valueInt('products_weight_class_id');
   }
 
+  /**
+   * Generates and returns the HTML content for displaying the product's weight type selection field.
+   *
+   * @return string|bool Returns the generated HTML content as a string if the weight module is enabled and the operation
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_WEIGHT_WE_STATUS') || CLICSHOPPING_APP_WEIGHT_WE_STATUS == 'False') {
@@ -86,6 +101,5 @@ $('#productsWeight').append(
 ------------------------- 
 EOD;
     return $output;
-
   }
 }

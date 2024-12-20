@@ -15,9 +15,11 @@ use ClicShopping\OM\Registry;
 class Status
 {
   /**
-   * @param int $zones_id
-   * @param int $status
-   * @return int
+   * Updates the status of a specific zone in the database based on the provided parameters.
+   *
+   * @param int $zones_id The unique identifier of the zone to be updated.
+   * @param int $status The new status to set for the zone; expected values are 1 (active) or 0 (inactive).
+   * @return mixed Returns the result of the database operation if the status is valid; returns -1 otherwise.
    */
   public static function getZonesStatus(int $zones_id, int $status)
   {

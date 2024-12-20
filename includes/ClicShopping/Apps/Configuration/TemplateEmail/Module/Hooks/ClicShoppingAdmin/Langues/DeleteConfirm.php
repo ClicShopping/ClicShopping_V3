@@ -28,6 +28,12 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('TemplateEmail');
   }
 
+  /**
+   * Deletes a record from the 'template_email_description' table based on the provided language ID.
+   *
+   * @param int $id The ID of the language to be deleted.
+   * @return void
+   */
   private function delete(int $id)
   {
     if (!\is_null($id)) {
@@ -35,6 +41,11 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the process of checking for a delete confirmation and triggers deletion if confirmed.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['DeleteConfirm'])) {

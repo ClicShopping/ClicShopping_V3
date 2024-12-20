@@ -20,6 +20,13 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   private mixed $lang;
 
+  /**
+   * Class constructor initializes the TemplateEmail instance in the Registry
+   * if it does not already exist. Retrieves the TemplateEmail and Language
+   * objects from the Registry and assigns them to the class properties.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('TemplateEmail')) {
@@ -30,6 +37,12 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->lang = Registry::get('Language');
   }
 
+  /**
+   * Inserts new records into the template_email_description table by copying existing records
+   * for the current language and associating them with the latest language ID.
+   *
+   * @return void
+   */
   private function insert()
   {
     $insert_language_id = LanguageAdmin::getLatestLanguageID();
@@ -54,6 +67,12 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main logic for the Template Email module.
+   * Checks if the module is enabled and performs insertion logic if specific parameters are set.
+   *
+   * @return bool Returns false if the module is disabled or the status is set to 'False'.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_TEMPLATE_EMAIL_TE_STATUS') || CLICSHOPPING_APP_TEMPLATE_EMAIL_TE_STATUS == 'False') {

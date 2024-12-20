@@ -16,11 +16,11 @@ use ClicShopping\OM\Registry;
 class TemplateEmailAdmin
 {
   /**
-   * the name of the template
+   * Retrieves the name of a template email based on the specified template email ID and language ID.
    *
-   * @param int $template_email_id , $language_id
-   * @param int $language_id
-   * @return string $template_email_name['template_name'],  name.of the template email
+   * @param int $template_email_id The unique identifier of the template email.
+   * @param int $language_id The unique identifier of the language. If not provided, the current language's ID will be used.
+   * @return string The name of the template email.
    */
   public static function getTemplateEmailName(int $template_email_id, int $language_id): string
   {
@@ -43,11 +43,13 @@ class TemplateEmailAdmin
   }
 
   /**
-   * the template email short description
+   * Retrieves the short description of a template email based on the provided template email ID
+   * and language ID.
    *
-   * @param int $template_email_id , $language_id
-   * @param int $language_id
-   * @return string $template_email['template_short_description'],  the short description of the template email
+   * @param int $template_email_id The ID of the template email to retrieve the short description for.
+   * @param int $language_id The language ID for which the template email short description is retrieved.
+   *                         If not provided, the current language ID is used.
+   * @return string The short description of the template email.
    */
   public static function getTemplateEmailShortDescription(int $template_email_id, int $language_id): string
   {
@@ -70,11 +72,11 @@ class TemplateEmailAdmin
   }
 
   /**
-   * the template email description who is sent
+   * Retrieves the description of a template email based on the template email ID and language ID.
    *
-   * @param int $template_email_id , $language_id
-   * @param int $language_id
-   * @return string $template_email['template_email_description'],  the description of the template email who is sent
+   * @param int $template_email_id The ID of the template email to fetch the description for.
+   * @param int $language_id The ID of the language for which the email description is being retrieved. Defaults to the currently set language ID if not provided.
+   * @return string The description of the requested template email.
    */
   public static function getTemplateEmailDescription(int $template_email_id, int $language_id): string
   {
@@ -97,9 +99,14 @@ class TemplateEmailAdmin
   }
 
   /**
-   * the footer of email
+   * Retrieves the email footer text template from the database, replaces predefined
+   * variable placeholders with their corresponding dynamic values, and returns the final email footer text.
    *
-   * @return string $template_email_footer,  the footer of the email template who is sent
+   * The method fetches the email footer content for the currently set language,
+   * and replaces placeholders such as {{store_name}}, {{store_owner_email_address}}, and {{http_shop}}
+   * with their respective values.
+   *
+   * @return string The processed email text footer with all placeholders replaced by their actual values.
    */
 
   public static function getTemplateEmailTextFooter(): string
@@ -141,9 +148,13 @@ class TemplateEmailAdmin
   }
 
   /**
-   * the footer of the newsletter
+   * Retrieves the text footer template for email newsletters.
    *
-   * @return string $template_email_newsletter_ footer,  the footer of the newsletter email template who is sent
+   * This method fetches the template for the email newsletter footer from the database,
+   * replaces predefined placeholders with corresponding values (e.g., store name, email address, shop URL),
+   * and returns the processed template.
+   *
+   * @return string Processed email newsletter text footer template with placeholders replaced by actual values.
    */
   public static function getTemplateEmailNewsletterTextFooter(): string
   {
@@ -182,9 +193,9 @@ class TemplateEmailAdmin
   }
 
   /**
-   * the signature of email
+   * Retrieves the email signature template, performs variable replacements with dynamic values, and returns the processed template text.
    *
-   * @return string $template_email_signature,  the signature of the email template who is sent
+   * @return string The processed email signature template with dynamic values replaced.
    */
   public static function getTemplateEmailSignature(): string
   {
@@ -226,9 +237,13 @@ class TemplateEmailAdmin
   }
 
   /**
-   * the template email welcome admin who is sent
+   * Retrieves the welcome email template specifically tailored for administrators.
    *
-   * @return string $template_email_welcome_admin,  the description of the template email welcome admin who is sent
+   * The method fetches the template from the database based on the template variable,
+   * replaces dynamic placeholders with actual values such as store name, store owner email address,
+   * and shop URL domain, then returns the final formatted email template content.
+   *
+   * @return string The formatted welcome email template for administrators.
    */
   public static function getTemplateEmailWelcomeAdmin(): string
   {
@@ -269,9 +284,10 @@ class TemplateEmailAdmin
   }
 
   /**
-   * the template email coupon who is sent
+   * Retrieves the template email description for the admin coupon email.
+   * This method fetches the email template based on the specified variable, replaces defined placeholders with actual values, and returns the resulting template string.
    *
-   * @return string $template_email_coupon_admin,  the description of the template email coupon who is sent
+   * @return string Returns the processed email template description for the admin coupon email.
    */
   public static function getTemplateEmailCouponAdmin(): string
   {
@@ -312,9 +328,13 @@ class TemplateEmailAdmin
   }
 
   /**
-   * the template order intro command who is sent
+   * Retrieves the text for the "intro command" email template, replacing placeholder variables with their corresponding values.
    *
-   * @return string $template_email_intro_command,  the description of the template email order intro command who is sent
+   * This method fetches the template description from the database based on the template variable
+   * `TEMPLATE_EMAIL_INTRO_COMMAND` and the current language. It processes the retrieved text by replacing certain
+   * placeholders like `{{store_name}}`, `{{store_owner_email_address}}`, and `{{http_shop}}` with dynamic values.
+   *
+   * @return string The processed email template text for the "intro command" email.
    */
 
   public static function getTemplateEmailIntroCommand(): string
@@ -355,8 +375,10 @@ class TemplateEmailAdmin
   }
 
   /**
-   * @param string $string
-   * @return string
+   * Retrieves the description of a template email based on a given template email variable.
+   *
+   * @param string $string The template email variable to search for.
+   * @return string The description of the template email corresponding to the provided variable.
    */
   public static function getTemplateEmailDescriptionByTemplateVariable(string $string): string
   {

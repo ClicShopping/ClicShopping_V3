@@ -18,6 +18,11 @@ class TR extends \ClicShopping\Apps\Configuration\TaxRates\Module\ClicShoppingAd
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_tr_title');
@@ -26,6 +31,11 @@ class TR extends \ClicShopping\Apps\Configuration\TaxRates\Module\ClicShoppingAd
     $this->is_installed = \defined('CLICSHOPPING_APP_TAX_RATES_TR_STATUS') && (trim(CLICSHOPPING_APP_TAX_RATES_TR_STATUS) != '');
   }
 
+  /**
+   * Installs the current module by updating the installed modules configuration parameter.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +49,11 @@ class TR extends \ClicShopping\Apps\Configuration\TaxRates\Module\ClicShoppingAd
     $this->app->saveCfgParam('MODULE_MODULES_TAX_RATES_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its reference from the installed modules configuration.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

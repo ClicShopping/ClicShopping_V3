@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method to initialize the class.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Weight');
@@ -38,6 +43,15 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the application module.
+   *
+   * The method processes parameters specific to the application module by determining their class,
+   * initializing the configuration object, and saving its associated settings such as default value,
+   * title, description, and set function into the application configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_WEIGHT_' . $this->code . '_');
@@ -53,6 +67,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +82,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the parameters associated with the module configuration.
+   *
+   * @return array Returns an array of parameter identifiers for the module configuration.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +110,14 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input configuration parameters for the application.
+   *
+   * Gathers parameters, processes configuration details for each parameter, and returns
+   * a sorted list of input fields based on their respective sort orders.
+   *
+   * @return array An array of processed input parameters, sorted by their keys.
+   */
   public function getInputParameters()
   {
     $result = [];

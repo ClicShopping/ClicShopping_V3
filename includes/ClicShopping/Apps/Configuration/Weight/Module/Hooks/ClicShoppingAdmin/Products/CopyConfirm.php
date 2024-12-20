@@ -19,6 +19,16 @@ class CopyConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for the class.
+   *
+   * Initializes the class by ensuring the 'Weight' instance exists
+   * within the Registry. If not, it sets a new instance of WeightApp.
+   * Retrieves the 'Weight' instance from the Registry and assigns
+   * it to the $app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Weight')) {
@@ -28,6 +38,15 @@ class CopyConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Weight');
   }
 
+  /**
+   * Executes the necessary operations related to weight management during product copy processing.
+   *
+   * The method checks if the weight management application is active, validates product-related
+   * parameters, retrieves relevant database records for weight class information, and updates
+   * the newly copied product record with the associated weight class data.
+   *
+   * @return bool Returns false if the weight management application is inactive.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_WEIGHT_WE_STATUS') || CLICSHOPPING_APP_WEIGHT_WE_STATUS == 'False') {

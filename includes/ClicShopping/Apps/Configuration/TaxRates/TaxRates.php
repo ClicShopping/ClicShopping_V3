@@ -18,12 +18,21 @@ class TaxRates extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_TaxRates_V1';
 
+  /**
+   * Initializes the necessary configurations or settings for the class instance.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves and returns the configuration modules available in the specified directory.
+   * The method scans the directory for valid configuration modules, verifies if they are subclasses
+   * of the required abstract class, organizes them by sort order, and returns the sorted list.
+   *
+   * @return mixed An array of configuration modules sorted by order, or empty array if none are found.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +83,11 @@ class TaxRates extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information for a specified module and info key.
+   *
+   * @param string $module The name of the configuration module.
+   * @param string $info The specific information key to retrieve from the module.
+   * @return mixed The requested information from the specified configuration module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +101,9 @@ class TaxRates extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The current API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +111,9 @@ class TaxRates extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

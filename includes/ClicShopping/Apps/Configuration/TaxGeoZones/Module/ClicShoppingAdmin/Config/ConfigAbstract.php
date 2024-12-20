@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the object by setting the application instance, determining the class name, and invoking the initialization process.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('TaxGeoZones');
@@ -38,6 +43,11 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_TAX_GEO_ZONES_' . $this->code . '_');
@@ -53,6 +63,12 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the module by removing configuration entries from the database
+   * that are associated with the application.
+   *
+   * @return int The number of rows affected by the deletion.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +81,12 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of configuration parameter identifiers for the current module.
+   *
+   * @return array An array of parameter identifiers for the module. Each identifier is a string
+   *               corresponding to a configuration parameter constant.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +110,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes the input parameters for the current module configuration.
+   *
+   * It dynamically constructs configuration parameter classes, initializes them,
+   * and ensures their values are saved and organized based on their sort order
+   * or predefined logic.
+   *
+   * @return array Sorted array of configuration fields based on their set order or general sequence.
+   */
   public function getInputParameters()
   {
     $result = [];

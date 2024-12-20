@@ -19,6 +19,10 @@ class CloneProducts implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Weight')) {
@@ -29,6 +33,11 @@ class CloneProducts implements \ClicShopping\OM\Modules\HooksInterface
   }
 
 
+  /**
+   * Executes the method logic for handling product weight class updates based on the provided parameters.
+   *
+   * @return bool Returns false if the application weight module is not active or defined.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_WEIGHT_WE_STATUS') || CLICSHOPPING_APP_WEIGHT_WE_STATUS == 'False') {

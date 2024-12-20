@@ -18,6 +18,12 @@ class TG extends \ClicShopping\Apps\Configuration\TaxGeoZones\Module\ClicShoppin
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction,
+   * and installation status based on the application's definitions and configuration.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_tg_title');
@@ -26,6 +32,11 @@ class TG extends \ClicShopping\Apps\Configuration\TaxGeoZones\Module\ClicShoppin
     $this->is_installed = \defined('CLICSHOPPING_APP_TAX_GEO_ZONES_TG_STATUS') && (trim(CLICSHOPPING_APP_TAX_GEO_ZONES_TG_STATUS) != '');
   }
 
+  /**
+   * Installs the module and updates the configuration parameter to include the module identifier.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +50,12 @@ class TG extends \ClicShopping\Apps\Configuration\TaxGeoZones\Module\ClicShoppin
     $this->app->saveCfgParam('MODULE_MODULES_TAX_GEO_ZONES_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its configuration entry from the list of installed modules
+   * and updating the stored configuration parameters accordingly.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

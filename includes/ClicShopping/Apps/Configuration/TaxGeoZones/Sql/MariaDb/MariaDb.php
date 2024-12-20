@@ -15,6 +15,14 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary operations for setting up the Tax Geo Zones module.
+   *
+   * This method handles loading the required definitions and
+   * installing the database menu administration and schema.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
@@ -24,9 +32,17 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database menu entry for the TaxGeoZones administration module, if it does not already exist.
+   *
+   * This method checks for the existence of a specific entry under the administrator menu table using the app_code.
+   * If not found, it inserts a new entry into the administrator menu table with the appropriate configuration,
+   * including a default link, image, sort order, and other attributes. Once the menu entry is added, it
+   * creates corresponding language-specific labels in the administrator_menu_description table for all
+   * available languages. Finally, it clears the administrator menu cache to ensure the changes are reflected immediately.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -69,9 +85,11 @@ class MariaDb
     }
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the necessary database tables for the geo zone and zones-to-geo-zones features.
+   *
+   * @return void
+   */
   private static function installDb()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

@@ -20,6 +20,13 @@ class PreviewContent implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method that initializes the application by registering
+   * the 'Weight' component in the Registry if it does not exist, and
+   * loads relevant definitions specific to the module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Weight')) {
@@ -30,6 +37,11 @@ class PreviewContent implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Preview/preview_content');
   }
 
+  /**
+   * Retrieves the weight class ID and weight of a product based on the provided product ID.
+   *
+   * This method queries the database to fetch the weight-related details of a product
+   * identified by the "pID" parameter in the GET request. If the*/
   private function getProductsWeight()
   {
     if (isset($_GET['pID'])) {
@@ -48,6 +60,11 @@ class PreviewContent implements \ClicShopping\OM\Modules\HooksInterface
   }
 
 
+  /**
+   * Generates and returns the HTML and JavaScript content for displaying the product's weight information.
+   *
+   * @return string|false The generated content as a string if the feature is enabled, or false if it is disabled.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {
@@ -80,9 +97,7 @@ $('#tab1ContentRow3').append(
 <!-- ######################## -->
 <!--  End Weight App      -->
 <!-- ######################## -->
-
 EOD;
     return $output;
-
   }
 }

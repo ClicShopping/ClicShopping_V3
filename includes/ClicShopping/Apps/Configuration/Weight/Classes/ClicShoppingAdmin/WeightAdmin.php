@@ -18,14 +18,22 @@ class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\W
   protected array $weight_classes = [];
   protected $precision = 2;
 
+  /**
+   * Constructor method to initialize the object with optional precision value.
+   *
+   * @param int|null $precision The precision value to set, or null for default behavior.
+   * @return void
+   */
   public function __construct($precision = null)
   {
   }
 
   /**
-   * @param int $id
-   * @param int|null $language_id
-   * @return mixed
+   * Retrieves the title for the specified ID and optionally a language ID.
+   *
+   * @param int $id The identifier for which the title is being retrieved.
+   * @param int|null $language_id The optional language identifier for the title.
+   * @return string The title associated with the given ID and optional language.
    */
   public static function getTitle(int $id,  int|null $language_id = null): string
   {
@@ -33,7 +41,9 @@ class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\W
   }
 
   /**
-   * @return array
+   * Retrieves a list of classes.
+   *
+   * @return array An array of class names.
    */
   public static function getClasses(): array
   {
@@ -41,9 +51,11 @@ class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\W
   }
 
   /**
-   * @param $value
-   * @param $class
-   * @return string
+   * Displays a formatted value with a specified class.
+   *
+   * @param mixed $value The value to be displayed.
+   * @param string $class The CSS class to be applied for styling.
+   * @return string The formatted display output.
    */
   public function display($value, $class): string
   {
@@ -51,10 +63,12 @@ class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\W
   }
 
   /**
-   * @param $value
-   * @param $unit_from
-   * @param $unit_to
-   * @return string|void
+   * Converts a value from one unit to another.
+   *
+   * @param mixed $value The value to be converted.
+   * @param string $unit_from The source unit of the value.
+   * @param string $unit_to The target unit for the conversion.
+   * @return false|string Returns the converted value as a string, or false on failure.
    */
   public function convert($value, $unit_from, $unit_to): false|string
   {
@@ -62,8 +76,9 @@ class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\W
   }
 
   /**
-   * Drop down of the class title
-   * @return array
+   * Retrieves a list of weight classes from the database, formatted for use in a pull-down menu.
+   *
+   * @return array An array of weight classes, each represented as an associative array with keys 'id' and 'text'.
    */
   public static function getClassesPullDown(): array
   {
@@ -92,9 +107,10 @@ class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\W
   }
 
   /**
-   * Display a weight class title
-   * @param int|null $id
-   * @return string
+   * Retrieves the weight class title for a given weight class ID and language.
+   *
+   * @param int|null $id The ID of the weight class. If null, no query is executed.
+   * @return string The title of the weight class.
    */
   public static function getWeightTitle( int|null $id = null): string
   {

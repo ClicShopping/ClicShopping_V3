@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the class.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('TaxRates');
@@ -38,6 +43,11 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_TAX_RATES_' . $this->code . '_');
@@ -53,6 +63,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +78,12 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the list of parameter keys associated with the configuration module.
+   *
+   * @return array An array of parameter keys, prefixed with 'CLICSHOPPING_APP_TAX_RATES_' and formatted for the specific module.
+   *         If a file does not conform to the expected class structure, a trigger error is raised.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +107,11 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the configuration module.
+   *
+   * @return array An associative array of input parameters, sorted numerically by their sort order.
+   */
   public function getInputParameters()
   {
     $result = [];
