@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the object by setting the application instance, determining the class short name,
+   * and executing the initialization process.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('ProductsLength');
@@ -38,6 +44,14 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the current module.
+   *
+   * Iterates through the parameters defined for the module, processes them based on specified rules,
+   * and saves the configuration parameters with their default values, titles, descriptions, and optional functions.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_PROUCTS_LENGTH_' . $this->code . '_');
@@ -53,6 +67,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +82,16 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves an array of parameter identifiers for the module configuration.
+   *
+   * This method scans a specific directory for PHP files representing configuration
+   * parameters. It validates that each file corresponds to a subclass of the
+   * ConfigParamAbstract class, and then adds the parameter identifier to the result
+   * array. If a file does not meet the required condition, a trigger error is invoked.
+   *
+   * @return array An array of parameter identifiers for the module configuration.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +115,16 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and initializes the input parameters for the configuration module.
+   *
+   * The method processes configuration parameters defined within the module,
+   * initializes their default values if not already defined, and organizes
+   * them according to the configuration setup.
+   *
+   * @return array An associative array of initialized configuration parameters,
+   *               sorted by their respective sort order.
+   */
   public function getInputParameters()
   {
     $result = [];

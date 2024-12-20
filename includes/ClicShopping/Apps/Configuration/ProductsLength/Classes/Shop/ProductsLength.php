@@ -19,6 +19,12 @@ class ProductsLength
   protected $products_length_classes = [];
   protected $precision = 2;
 
+  /**
+   * Constructor method for the class.
+   *
+   * @param int|null $precision Optional precision value. If provided and is an integer, it sets the precision.
+   * @return void
+   */
   public function __construct($precision = null)
   {
     if (is_int($precision)) {
@@ -29,8 +35,8 @@ class ProductsLength
   }
 
   /**
-   * Numeric decimal separatof
-   * @return string
+   *
+   * @return string The numeric decimal separator.
    */
   public static function getNumericDecimalSeparator()
   {
@@ -38,8 +44,9 @@ class ProductsLength
   }
 
   /**
-   * Numeric thousand separatof
-   * @return string
+   * Retrieves the character used as the thousands separator in numeric values.
+   *
+   * @return string The thousands separator character.
    */
   public static function getNumericThousandsSeparator()
   {
@@ -48,9 +55,11 @@ class ProductsLength
 
 
   /**
-   * @param $id products length class id
-   * @param null $language_id user catalog language
-   * @return mixed
+   * Retrieves the title of a product length class based on the given length class ID and optional language ID.
+   *
+   * @param int $id The ID of the product length class.
+   * @param int|null $language_id Optional. The ID of the language. If null, the default language ID will be used.
+   * @return string The title of the product length class.
    */
   public static function getTitle($id, $language_id = null)
   {
@@ -81,9 +90,13 @@ class ProductsLength
   }
 
   /**
-   * @param $id products length class id
-   * @param null $language_id user catalog language
-   * @return mixed
+   * Retrieves the unit of measurement key for a given product length class.
+   * If no language ID is provided, the current language ID is used.
+   *
+   * @param int $id The ID of the product length class to retrieve.
+   * @param int|null $language_id The optional ID of the language to use. Defaults to the current language.
+   *
+   * @return string|null The product length class key for the given ID and language, or null if not found.
    */
   public static function getUnit($id, $language_id = null)
   {
@@ -114,7 +127,12 @@ class ProductsLength
   }
 
   /**
+   * Prepares the rules and data for product length classes by fetching them from the database
+   * and storing the information in the class property `$products_length_classes`.
+   * Rules include mapping between length class IDs and their respective conversion rates along with
+   * their associated keys and titles based on the language.
    *
+   * @return void
    */
   public function prepareRules()
   {
@@ -152,11 +170,12 @@ class ProductsLength
   }
 
   /**
-   * Convert length
-   * @param $value : length value
-   * @param $unit_from : length value from
-   * @param $unit_to : length value to
-   * @return boolean value of convertion
+   * Converts a value from one unit to another based on predefined conversion rates.
+   *
+   * @param float|int $value The numerical value to be converted.
+   * @param int $unit_from The unit ID of the original value.
+   * @param int $unit_to The unit ID to which the value should be converted.
+   * @return string The converted value, formatted with the defined precision, decimal separator, and thousands separator.
    */
   public function convert($value, $unit_from, $unit_to)
   {
@@ -169,9 +188,11 @@ class ProductsLength
   }
 
   /**
-   * @param $value : length value
-   * @param $class : products length class id
-   * @return string
+   * Formats and displays a numeric value with specified precision, decimal separator, and thousands separator, appending a class-specific key.
+   *
+   * @param float|int $value The numeric value to be formatted and displayed.
+   * @param string $class The class key used to retrieve the corresponding unit or identifier.
+   * @return string The formatted string representation of the value appended with the class key.
    */
   public function display($value, $class)
   {
@@ -179,8 +200,9 @@ class ProductsLength
   }
 
   /**
-   * get class id and title
-   * @return array
+   * Retrieves a list of product length classes from the database, including their IDs and titles.
+   *
+   * @return array An array of length class data, where each entry includes 'id' and 'title' keys.
    */
   public static function getClasses()
   {

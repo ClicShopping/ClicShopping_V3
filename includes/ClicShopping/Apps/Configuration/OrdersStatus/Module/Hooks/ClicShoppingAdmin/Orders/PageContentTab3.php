@@ -19,6 +19,13 @@ class PageContentTab3 implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Class constructor.
+   *
+   * Initializes the OrdersStatus application and loads the necessary definitions for the page content tab in the Orders module.
+   *
+   * @return void
+   */
   public function __construct()
   {
 
@@ -30,6 +37,17 @@ class PageContentTab3 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Orders/page_content_tab3');
   }
 
+  /**
+   * Generates and returns the HTML and JavaScript content for displaying or updating the order status
+   * in the administrative panel of the application.
+   *
+   * The output includes rendered HTML elements and JavaScript for dynamically injecting the order status
+   * into the panel. It retrieves the available order statuses from the database and uses them to populate
+   * a select dropdown field. The function also handles checks for the necessary registry objects and
+   * ensures the designated order is valid.
+   *
+   * @return string The HTML and JavaScript content for the order status display, or an empty string if conditions are not met.
+   */
   public function display(): string
   {
     $CLICSHOPPING_Language = Registry::get('Language');

@@ -9,7 +9,10 @@
  */
 
 namespace ClicShopping\Apps\Configuration\TaxClass\Module\ClicShoppingAdmin\Config\TC;
-
+/**
+ * This class represents the configuration module TC of the TaxClass application in the ClicShoppingAdmin.
+ * It extends the ConfigAbstract base class to provide base functionality for configuration modules.
+ */
 class TC extends \ClicShopping\Apps\Configuration\TaxClass\Module\ClicShoppingAdmin\Config\ConfigAbstract
 {
 
@@ -18,6 +21,12 @@ class TC extends \ClicShopping\Apps\Configuration\TaxClass\Module\ClicShoppingAd
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction text,
+   * and determining if the module is installed based on the configuration status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_tc_title');
@@ -26,6 +35,11 @@ class TC extends \ClicShopping\Apps\Configuration\TaxClass\Module\ClicShoppingAd
     $this->is_installed = \defined('CLICSHOPPING_APP_TAX_CLASS_TC_STATUS') && (trim(CLICSHOPPING_APP_TAX_CLASS_TC_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its identifier to the list of installed modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +53,13 @@ class TC extends \ClicShopping\Apps\Configuration\TaxClass\Module\ClicShoppingAd
     $this->app->saveCfgParam('MODULE_MODULES_TAX_CLASS_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by performing necessary cleanup actions, including
+   * removing the module from the list of installed modules and saving the updated
+   * configuration.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

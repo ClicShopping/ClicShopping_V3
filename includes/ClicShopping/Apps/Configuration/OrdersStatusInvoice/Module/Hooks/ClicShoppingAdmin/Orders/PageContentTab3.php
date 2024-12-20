@@ -20,6 +20,16 @@ class PageContentTab3 implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructs the object and initializes the OrdersStatusInvoice application.
+   *
+   * This method checks if the 'OrdersStatusInvoice' object is registered in the registry.
+   * If it is not registered, it creates and registers a new OrdersStatusInvoiceApp instance.
+   * Then it retrieves the 'OrdersStatusInvoice' object from the registry and loads the
+   * necessary language definitions for the specific module and hook.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('OrdersStatusInvoice')) {
@@ -31,6 +41,12 @@ class PageContentTab3 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Orders/page_content_tab3');
   }
 
+  /**
+   * Generates and returns the HTML and JavaScript needed to display a dropdown for the invoice status
+   * in the order details page, if the corresponding configuration settings and conditions are met.
+   *
+   * @return false|string Returns the generated HTML and JavaScript code as a string if conditions are met, otherwise false.
+   */
   public function display()
   {
     $CLICSHOPPING_Language = Registry::get('Language');

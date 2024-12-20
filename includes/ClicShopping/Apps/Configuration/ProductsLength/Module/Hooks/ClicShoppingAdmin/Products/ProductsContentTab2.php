@@ -20,6 +20,15 @@ class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the ProductsLength app.
+   *
+   * Ensures that the ProductsLength app is registered in the Registry.
+   * If not already present, it registers a new instance of ProductsLengthApp.
+   * Then, retrieves the app instance from the Registry and loads the necessary definitions.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ProductsLength')) {
@@ -30,6 +39,16 @@ class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_2');
   }
 
+  /**
+   * Retrieves product length and related dimensions for a specific product ID from the database.
+   *
+   * This method checks if a product ID is provided via the `pID` GET parameter. If a valid product ID exists,
+   * it queries the database to fetch the product's length class ID, width, height, depth, and volume. The result
+   * is returned as an associative array. If no product ID is provided, the method returns 0.00.
+   *
+   * @return array|float Returns an associative array containing the product length and dimension information
+   *                     if a valid product ID is provided; otherwise, returns 0.00.
+   */
   private function getProductsProductsLength()
   {
     if (isset($_GET['pID'])) {
@@ -52,6 +71,11 @@ class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Displays the HTML content for the products length form and appends it using JavaScript.
+   *
+   * @return string The generated HTML output for the products length specifics or false if the feature is disabled.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {

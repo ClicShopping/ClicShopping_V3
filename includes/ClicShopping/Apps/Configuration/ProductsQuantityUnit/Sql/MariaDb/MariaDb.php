@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the ProductsQuantityUnit module.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_ProductsQuantityUnit = Registry::get('ProductsQuantityUnit');
@@ -24,9 +29,15 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs a new administrative menu entry for the Products Quantity Unit configuration.
+   * The method checks if the menu entry already exists in the database. If it does not exist,
+   * a new entry is created in the `administrator_menu` and `administrator_menu_description` tables,
+   * with associated metadata and translations for all available languages.
+   * Additionally, it clears the administrator menu cache after the menu entry is added.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -71,6 +82,8 @@ class MariaDb
   }
 
   /**
+   * Installs the database table for products quantity unit if it does not already exist.
+   *
    * @return void
    */
   private static function installDb(): void

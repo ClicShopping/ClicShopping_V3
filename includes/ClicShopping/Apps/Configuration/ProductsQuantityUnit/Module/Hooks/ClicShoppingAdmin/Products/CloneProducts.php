@@ -19,6 +19,13 @@ class CloneProducts implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the class by checking if the 'ProductsQuantityUnit' exists in the registry.
+   * If it does not exist, it creates a new instance of ProductsQuantityUnitApp and sets it in the registry.
+   * Retrieves the 'ProductsQuantityUnit' instance from the registry and assigns it to the $app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ProductsQuantityUnit')) {
@@ -28,6 +35,15 @@ class CloneProducts implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ProductsQuantityUnit');
   }
 
+  /**
+   * Executes the cloning process of product data based on provided parameters.
+   *
+   * Checks if the required `Update` GET parameter and `clone_categories_id_to` POST parameter are set.
+   * Retrieves product data from the database for the specified product ID.
+   * Updates the products database table with the quantity unit ID of the cloned product and the cloned product ID.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Update'], $_POST['clone_categories_id_to'])) {

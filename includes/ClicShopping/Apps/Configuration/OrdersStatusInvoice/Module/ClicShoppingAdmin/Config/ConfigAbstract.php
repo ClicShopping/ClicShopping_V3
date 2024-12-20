@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the class.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('OrdersStatusInvoice');
@@ -38,6 +43,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the application configuration parameters by iterating through its defined parameters,
+   * dynamically instantiating their corresponding classes, and saving their default values, titles,
+   * descriptions, and optional settings.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_ORDERS_STATUS_INVOICE_' . $this->code . '_');
@@ -53,6 +65,14 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the configuration settings specific to the application.
+   *
+   * Removes all entries from the configuration table where the configuration key
+   * matches the format specific to the application's code.
+   *
+   * @return int The number of rows affected by the deletion query.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +85,14 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of parameter constants for the module by dynamically analyzing
+   * all parameter classes within the relevant directory path.
+   *
+   * @return array Returns an array of parameter constants for the module. Each parameter
+   *               corresponds to a valid subclass of ConfigParamAbstract found in the
+   *               directory.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +116,12 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves input parameters by processing configuration settings and generating
+   * the corresponding configuration fields based on module parameters.
+   *
+   * @return array An associative array of input fields sorted by their order for configuration.
+   */
   public function getInputParameters()
   {
     $result = [];

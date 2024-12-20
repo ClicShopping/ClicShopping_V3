@@ -21,6 +21,13 @@ class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   protected $qteUnit;
 
+  /**
+   * Class constructor that initializes registry instances for 'ProductsQuantityUnit'
+   * and 'ProductsQuantityUnitAdmin' if they do not already exist. Assigns these
+   * instances to class properties for further use.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ProductsQuantityUnit')) {
@@ -35,6 +42,15 @@ class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ProductsQuantityUnit');
   }
 
+  /**
+   * Retrieves the quantity unit ID associated with a specific product ID,
+   * if the product ID is provided in the GET request parameter 'pID'.
+   * The method queries the database for the corresponding
+   * 'products_quantity_unit_id' of the given product.
+   *
+   * @return int|null Returns the quantity unit ID as an integer if found,
+   * or null if no product ID is set in the GET parameters.
+   */
   private function getQtyUnit()
   {
     if (isset($_GET['pID'])) {
@@ -51,6 +67,13 @@ class ProductsContentTab2 implements \ClicShopping\OM\Modules\HooksInterface
   }
 
 
+  /**
+   * Displays the product quantity unit dropdown and generates the required HTML output for inclusion
+   * in a specific section of the product page interface, using predefined definitions and hooks.
+   *
+   * @return string|false Returns the HTML content to display the dropdown for product quantity unit if the feature
+   *                      is enabled. Returns false if the feature is disabled.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS') || CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS == 'False') {

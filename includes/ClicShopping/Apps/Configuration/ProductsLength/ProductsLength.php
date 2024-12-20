@@ -23,7 +23,13 @@ class ProductsLength extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules available in the specified directory.
+   *
+   * This method scans the designated directory for configuration modules that are subclasses of the
+   * specified `ConfigAbstract` class. Modules are organized by their `sort_order` property or, if
+   * undefined, appended sequentially. The result is cached for subsequent calls.
+   *
+   * @return mixed Returns an array of configuration module names, sorted based on their designated order.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +80,11 @@ class ProductsLength extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific information about a configuration module.
+   *
+   * @param string $module The name of the configuration module to retrieve information for.
+   * @param string $info The specific information key to retrieve from the module.
+   * @return mixed The requested information from the specified configuration module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +98,9 @@ class ProductsLength extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The current API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +108,9 @@ class ProductsLength extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier associated with the current instance.
+   *
+   * @return string The identifier.
    */
   public function getIdentifier(): string
   {

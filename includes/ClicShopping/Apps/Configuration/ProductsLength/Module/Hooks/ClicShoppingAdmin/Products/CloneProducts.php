@@ -19,6 +19,11 @@ class CloneProducts implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the ProductsLength application component.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ProductsLength')) {
@@ -28,6 +33,11 @@ class CloneProducts implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ProductsLength');
   }
 
+  /**
+   * Executes the process to clone product dimensions and related data to another product ID.
+   *
+   * @return bool Returns false if the application status for 'CLICSHOPPING_APP_PROUCTS_LENGTH_PL' is not defined or set to 'False'.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {

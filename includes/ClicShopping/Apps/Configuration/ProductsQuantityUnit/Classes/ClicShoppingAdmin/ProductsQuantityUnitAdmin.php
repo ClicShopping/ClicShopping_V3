@@ -16,17 +16,24 @@ class ProductsQuantityUnitAdmin
 {
   public mixed $app;
 
+  /**
+   * Constructor method.
+   *
+   * Initializes the instance by retrieving the 'ProductsQuantityUnit' application from the registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->app = Registry::get('ProductsQuantityUnit');
   }
 
   /**
-   * productsQuantityUnitDropDown
+   * Retrieves a dropdown array of product quantity units, including their IDs and titles.
+   * It fetches data from the products quantity unit table and organizes it by product quantity unit ID.
+   * The default option is set to none.
    *
-   * @param string
-   * @return string $products_quantity_unit_array, elements of product quantity unit
-   *
+   * @return array An array of product quantity units, each represented by an associative array with 'id' and 'text' keys.
    */
 
   public function productsQuantityUnitDropDown(): array
@@ -55,6 +62,11 @@ class ProductsQuantityUnitAdmin
     return $products_quantity_unit_array;
   }
 
+  /**
+   * Retrieves the title of the product's quantity unit based on the product ID and language ID.
+   *
+   * @return string Returns the title of the product's quantity unit.
+   */
   public function getProductsQuantityUnitTitle(): string
   {
     $CLICSHOPPING_Language = Registry::get('Language');

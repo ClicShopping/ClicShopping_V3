@@ -20,6 +20,12 @@ class PreviewContent implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method.
+   * Initializes the ProductsLength application and loads the necessary definitions for the module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ProductsLength')) {
@@ -30,6 +36,15 @@ class PreviewContent implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Preview/preview_content');
   }
 
+  /**
+   * Retrieves product length information for a given product ID.
+   *
+   * This method fetches the product's length-related attributes from the database,
+   * including length class ID, width, height, and depth, based on the provided product ID.
+   *
+   * @return array|null Returns an associative array containing the product length details,
+   *                    or null if the product ID is not set.
+   */
   private function getProductsProductsLength()
   {
     if (isset($_GET['pID'])) {
@@ -49,6 +64,13 @@ class PreviewContent implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Generates and returns the HTML and JavaScript output necessary
+   * to display product length and dimensions information, including width,
+   * height, depth, and their corresponding unit title.
+   *
+   * @return string|false The generated HTML and JavaScript code as a string, or false if the app's status is disabled.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {

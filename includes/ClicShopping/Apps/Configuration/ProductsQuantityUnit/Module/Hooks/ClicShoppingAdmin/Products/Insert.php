@@ -19,6 +19,12 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the `ProductsQuantityUnit` application within the registry if it does not already exist.
+   * Also retrieves and assigns the application instance to the `$app` property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ProductsQuantityUnit')) {
@@ -28,6 +34,15 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ProductsQuantityUnit');
   }
 
+  /**
+   * Executes the logic to insert a new product's quantity and quantity unit into the database.
+   *
+   * This method checks if the required parameters ('Insert', 'products_quantity', 'products_quantity_unit_id')
+   * are available in GET and POST requests. If valid, it retrieves the most recent product ID from the database,
+   * sanitizes the input data, and saves the new product quantity details into the database.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Insert'], $_POST['products_quantity'], $_POST['products_quantity_unit_id'])) {

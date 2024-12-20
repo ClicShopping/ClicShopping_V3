@@ -20,6 +20,11 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   private mixed $lang;
 
+  /**
+   * Initializes the OrdersStatusInvoice application and sets the language registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('OrdersStatusInvoice')) {
@@ -30,6 +35,12 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->lang = Registry::get('Language');
   }
 
+  /**
+   *
+   * Inserts new rows into the `orders_status_invoice` table for the latest language ID based on existing rows for the current language ID in the database.
+   *
+   * @return void
+   */
   private function insert()
   {
     $insert_language_id = LanguageAdmin::getLatestLanguageID();
@@ -45,6 +56,12 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main logic to handle the incoming request.
+   * Checks if specific GET parameters are set and calls the appropriate method.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Langues'], $_GET['Insert'])) {

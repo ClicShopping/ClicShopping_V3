@@ -19,6 +19,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the ProductsQuantityUnit application and sets it in the registry if it does not already exist.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ProductsQuantityUnit')) {
@@ -28,6 +33,12 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ProductsQuantityUnit');
   }
 
+  /**
+   * Executes the operation to update the products_quantity_unit_id for a given product in the database
+   * if the required parameters are provided in the GET and POST superglobal arrays.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Update'], $_GET['pID'], $_POST['products_quantity_unit_id'])) {

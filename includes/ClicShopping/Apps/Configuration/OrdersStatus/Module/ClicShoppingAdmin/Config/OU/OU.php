@@ -18,6 +18,12 @@ class OU extends \ClicShopping\Apps\Configuration\OrdersStatus\Module\ClicShoppi
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction,
+   * and determining its installation status based on predefined constants.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_or_title');
@@ -26,6 +32,11 @@ class OU extends \ClicShopping\Apps\Configuration\OrdersStatus\Module\ClicShoppi
     $this->is_installed = \defined('CLICSHOPPING_APP_ORDERS_STATUS_OU_STATUS') && (trim(CLICSHOPPING_APP_ORDERS_STATUS_OU_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its entry to the list of installed modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +50,11 @@ class OU extends \ClicShopping\Apps\Configuration\OrdersStatus\Module\ClicShoppi
     $this->app->saveCfgParam('MODULE_MODULES_ORDERS_STATUS_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its entry from the list of installed modules.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

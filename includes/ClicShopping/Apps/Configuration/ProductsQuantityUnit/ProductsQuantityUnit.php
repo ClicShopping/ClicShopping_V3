@@ -18,12 +18,22 @@ class ProductsQuantityUnit extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_ProductsQuantityUnit_V1';
 
+  /**
+   * Initializes the necessary components or configurations for the object.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules sorted by their specified order.
+   * The method scans the defined directory for modules that implement a specific
+   * configuration class and organizes them into a sorted array.
+   *
+   * @return mixed Returns an array of configuration module filenames, sorted by their sort order.
+   *               If no modules are found or if an issue arises, it returns an empty array.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +84,11 @@ class ProductsQuantityUnit extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information.
+   *
+   * @param string $module The name of the module to retrieve the information from.
+   * @param string $info The specific information to retrieve from the module.
+   * @return mixed The requested configuration information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +102,9 @@ class ProductsQuantityUnit extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +112,8 @@ class ProductsQuantityUnit extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string Returns the identifier.
    */
   public function getIdentifier(): string
   {

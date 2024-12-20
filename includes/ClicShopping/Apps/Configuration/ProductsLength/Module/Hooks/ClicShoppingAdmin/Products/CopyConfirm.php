@@ -19,6 +19,14 @@ class CopyConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the ProductsLength application.
+   *
+   * Ensures the ProductsLength instance is registered in the Registry before retrieving it
+   * and assigning it to the $app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ProductsLength')) {
@@ -28,6 +36,15 @@ class CopyConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ProductsLength');
   }
 
+  /**
+   * Executes the process to handle product length and dimension data during product operations.
+   *
+   * The method verifies if the product length module is active, and processes the dimensions
+   * and volume of a product identified by its ID. If a copy confirmation is identified,
+   * the product's length and dimension data are retrieved and copied to the most recent product entry.
+   *
+   * @return bool Returns false if the product length module is not enabled; otherwise performs the operation with no return.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {

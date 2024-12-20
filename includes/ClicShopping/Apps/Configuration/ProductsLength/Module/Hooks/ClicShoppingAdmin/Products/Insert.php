@@ -19,6 +19,15 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method that initializes the ProductsLength application.
+   *
+   * Ensures that the 'ProductsLength' application is registered in the Registry.
+   * If not present, it sets a new instance of ProductsLengthApp in the Registry.
+   * Assigns the registered instance to the $app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ProductsLength')) {
@@ -28,6 +37,13 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ProductsLength');
   }
 
+  /**
+   * Executes the process of inserting or updating product dimensions and volume details
+   * for a product if specific conditions are met.
+   *
+   * @return bool Returns false if the application status is inactive, otherwise performs
+   *              the database operations as necessary.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {

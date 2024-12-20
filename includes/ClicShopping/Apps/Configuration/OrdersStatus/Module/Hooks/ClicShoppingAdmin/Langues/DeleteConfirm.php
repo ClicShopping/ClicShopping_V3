@@ -19,6 +19,13 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method.
+   *
+   * Initializes the OrdersStatus application and ensures its availability within the Registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('OrdersStatus')) {
@@ -28,6 +35,12 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('OrdersStatus');
   }
 
+  /**
+   * Deletes an entry from the 'orders_status' table based on the provided language ID.
+   *
+   * @param int $id The language ID used to identify the entry to be deleted.
+   * @return void
+   */
   private function delete(int $id)
   {
     if (!\is_null($id)) {
@@ -35,6 +48,11 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the deletion process if a delete confirmation is set in the GET request.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['DeleteConfirm'])) {

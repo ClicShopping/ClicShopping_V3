@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class instance, retrieves the application registry for 'ProductsQuantityUnit',
+   * assigns the class name to the code property, and performs additional initialization.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('ProductsQuantityUnit');
@@ -38,6 +44,11 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the module.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_' . $this->code . '_');
@@ -53,6 +64,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +79,15 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the parameters associated with the configuration module.
+   *
+   * This method scans the specified directory for parameter files, validates
+   * whether these files extend the appropriate abstract class, and returns
+   * a list of parameter keys that are used by the module.
+   *
+   * @return array An array of parameter keys derived from the valid parameter files.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +111,13 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves input parameters for configuration, processes them, and formats them
+   * as an array sorted by the defined sort order. If parameters are unset, it initializes
+   * them using default values and attributes.
+   *
+   * @return array An associative array of input parameters sorted numerically by their sort order.
+   */
   public function getInputParameters()
   {
     $result = [];

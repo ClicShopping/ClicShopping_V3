@@ -19,6 +19,15 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method to initialize the ProductsLength application instance.
+   *
+   * Ensures that a ProductsLength instance is registered in the Registry.
+   * If not already registered, a new instance of ProductsLengthApp is created and added to the Registry.
+   * Finally, retrieves and assigns the registered ProductsLength instance to the $app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ProductsLength')) {
@@ -28,6 +37,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ProductsLength');
   }
 
+  /**
+   * Executes the update operation for product dimensions if the appropriate conditions are met.
+   *
+   * @return bool Returns false if the application status is not enabled or a required constant is not defined.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {

@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the main logic for loading definitions specific to the ClicShoppingAdmin installation.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Settings = Registry::get('Settings');

@@ -29,6 +29,14 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the OrdersStatus component.
+   *
+   * Sets up the application instance from the registry and retrieves the class name for the code property,
+   * then initializes necessary functionality by calling the init method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('OrdersStatus');
@@ -38,6 +46,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module by iterating through
+   * all available parameters and saving their default values along with their
+   * metadata (title, description, set function) into the application's configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_ORDERS_STATUS_' . $this->code . '_');
@@ -53,6 +68,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +83,15 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the parameters for the OrdersStatus module configuration.
+   *
+   * This method scans the directory associated with the module configuration parameters
+   * and loads any valid PHP classes that are subclasses of ConfigParamAbstract. The parameters
+   * are returned as an array of formatted parameter identifiers.
+   *
+   * @return array An array containing the formatted identifiers of valid configuration parameters.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +115,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes the input parameters associated with the configuration.
+   *
+   * This method collects configuration parameters, initializes their associated classes,
+   * and organizes them based on their sorting order or other configuration properties.
+   * Parameters are filtered and stored in a structured array indexed by their sort order.
+   *
+   * @return array An associative array of input parameters, ordered numerically by their sort order.
+   */
   public function getInputParameters()
   {
     $result = [];

@@ -19,6 +19,12 @@ class CopyConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the ProductsQuantityUnit application within the Registry if not already set,
+   * and assigns it to the local property for further use.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ProductsQuantityUnit')) {
@@ -28,6 +34,12 @@ class CopyConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ProductsQuantityUnit');
   }
 
+  /**
+   * Executes the logic for copying product quantity unit information to the most recently added product in the database,
+   * if the required parameters are provided in the GET and POST request.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['CopyConfirm'])) {

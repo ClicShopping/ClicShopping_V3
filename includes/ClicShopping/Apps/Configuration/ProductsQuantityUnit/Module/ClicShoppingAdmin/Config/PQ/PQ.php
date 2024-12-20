@@ -18,6 +18,12 @@ class PQ extends \ClicShopping\Apps\Configuration\ProductsQuantityUnit\Module\Cl
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module with its title, short title, introduction,
+   * and determines if it is installed by checking its status definition.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_pq_title');
@@ -26,6 +32,11 @@ class PQ extends \ClicShopping\Apps\Configuration\ProductsQuantityUnit\Module\Cl
     $this->is_installed = \defined('CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS') && (trim(CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS) != '');
   }
 
+  /**
+   * Installs the module and adds it to the list of installed modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +50,11 @@ class PQ extends \ClicShopping\Apps\Configuration\ProductsQuantityUnit\Module\Cl
     $this->app->saveCfgParam('MODULE_MODULES_PRODUCTS_QUANTITY_UNIT_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module and removes it from the list of installed modules.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

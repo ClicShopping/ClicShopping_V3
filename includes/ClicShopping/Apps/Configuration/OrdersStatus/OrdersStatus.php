@@ -23,7 +23,15 @@ class OrdersStatus extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules available in the specified directory.
+   *
+   * Iterates through the directory of configuration modules, checks if each module
+   * is a valid subclass of ConfigAbstract, and organizes them by their sort order.
+   * Modules with a positive sort order take precedence, and others are included
+   * in the order they are found. If a module is not a valid subclass, an error is
+   * triggered.
+   *
+   * @return mixed An array of configuration module names, sorted by their order.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +82,11 @@ class OrdersStatus extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific configuration module information.
+   *
+   * @param string $module The name of the module to retrieve configuration information for.
+   * @param string $info The specific information to retrieve from the module.
+   * @return mixed The requested configuration module information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +100,9 @@ class OrdersStatus extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The version of the API.
    */
   public function getApiVersion(): string|int
   {

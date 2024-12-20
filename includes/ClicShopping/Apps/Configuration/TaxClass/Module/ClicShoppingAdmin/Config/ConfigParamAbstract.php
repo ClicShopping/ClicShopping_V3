@@ -20,6 +20,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_tax_class_';
   public bool $app_configured = true;
 
+  /**
+   * Class constructor.
+   *
+   * @param string $config_module The configuration module identifier.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('TaxClass');

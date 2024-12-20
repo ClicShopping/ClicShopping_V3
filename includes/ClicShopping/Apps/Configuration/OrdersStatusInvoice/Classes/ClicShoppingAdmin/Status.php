@@ -15,10 +15,11 @@ use ClicShopping\OM\Registry;
 class Status
 {
   /**
-   * the name of status invoice
-   * @param int $orders_status_invoice_id
-   * @param int $language_id
-   * @return string
+   * Retrieves the name of the orders status invoice based on the given ID and language ID.
+   *
+   * @param int $orders_status_invoice_id The ID of the orders status invoice.
+   * @param int $language_id The ID of the language. If not provided, the default language ID will be used.
+   * @return string The name of the orders status invoice.
    */
   public static function getOrdersStatusInvoiceName(int $orders_status_invoice_id, int $language_id): string
   {
@@ -41,8 +42,10 @@ class Status
   }
 
   /**
-   * Array of the name of status invoice
-   * @return array
+   * Retrieves a list of order invoice statuses with their IDs and names for the current language.
+   *
+   * @return array An array of order invoice statuses, where each status is represented as an associative array
+   *               with 'id' (int) as the order status invoice ID and 'text' (string) as the order status invoice name.
    */
   public static function getOrdersInvoiceStatus(): array
   {
