@@ -13,17 +13,36 @@ namespace ClicShopping\Apps\Catalog\Categories;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
+/**
+ * Handles operations related to the Categories application module.
+ * Provides functionalities like retrieving configuration modules, fetching
+ * configuration module information, and accessing metadata such as API versions
+ * and identifiers. This class extends the AppAbstract base class to ensure
+ * consistency and shared functionalities across application modules.
+ */
 class Categories extends \ClicShopping\OM\AppAbstract
 {
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Categories_V1';
 
+  /**
+   * Initializes the necessary configurations or setups required by the implementing class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a sorted list of configuration modules available in a specific directory.
+   *
+   * This method scans a predefined directory for subdirectories containing configuration modules.
+   * Each valid configuration module must be a subclass of ConfigAbstract
+   * and comply with a specific namespace structure. The modules are sorted based on their
+   * sort order retrieved from their metadata or in the order they were processed.
+   *
+   * @return mixed The sorted list of configuration modules. If no valid modules are found, an empty array is returned.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +93,11 @@ class Categories extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the provided module and information key.
+   *
+   * @param string $module The name of the module for which configuration information is requested.
+   * @param string $info The specific information key within the module to retrieve.
+   * @return mixed Returns the requested configuration information or null if not available.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +111,9 @@ class Categories extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the version of the API.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +121,8 @@ class Categories extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string The identifier associated with the object.
    */
   public function getIdentifier(): string
   {

@@ -36,7 +36,14 @@ class Newsletter
   protected int $fileId;
   protected string $emailFrom;
 
-  public function __construct($title, $content)
+  /**
+   * Constructor method for initializing the newsletter object and loading required data and configurations.
+   *
+   * @param string $title The title of the newsletter.
+   * @param string $content The content of the newsletter.
+   * @return void
+   */
+  public function __construct(string $title, string $content)
   {
     if (!Registry::exists('Newsletter')) {
       Registry::set('Newsletter', new AppNewsletter());
@@ -62,11 +69,22 @@ class Newsletter
     $this->createFile = (int)$_GET['ac'];
   }
 
+  /**
+   * Chooses the appropriate audience for an action or content.
+   *
+   * @return bool Returns false if no audience is selected.
+   */
   public function chooseAudience()
   {
     return false;
   }
 
+  /**
+   * Executes the confirmation process for newsletter management, including file creation,
+   * customer data validation, and UI rendering for confirmation and related actions.
+   *
+   * @return string Returns the confirmation string containing HTML content including buttons and messages for newsletters.
+   */
   public function confirm()
   {
     $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -199,6 +217,14 @@ class Newsletter
 
 
 // Envoi du mail sans gestion de Fckeditor
+
+  /**
+   * Sends the specified newsletter to subscribed customers based on their language and group preferences.
+   * Handles the creation and sending of emails, updates the database, and triggers additional actions.
+   *
+   * @param int $newsletter_id The ID of the newsletter to be sent.
+   * @return bool False if the newsletter system is inactive or fails to process the operation, otherwise void.
+   */
   public function send($newsletter_id)
   {
     $CLICSHOPPING_Mail = Registry::get('Mail');
@@ -323,6 +349,16 @@ class Newsletter
 //                     HTML NEWSLETTER
 // **************************************************
 
+  /**
+   * Sends newsletters using CKEditor content to a list of subscribed customers.
+   * The method retrieves customer data, processes email content with CKEditor,
+   * and sends the emails in batches. It also handles error checking and temporary
+   * storage of customer data.
+   *
+   * @return bool Returns false if the 'CLICSHOPPING_APP_NEWSLETTER_NL_STATUS' configuration
+   *              is not enabled or necessary customer data is not found, indicating
+   *              the process cannot proceed.
+   */
   public function sendCkeditor()
   {
     $CLICSHOPPING_Mail = Registry::get('Mail');
@@ -431,6 +467,15 @@ class Newsletter
     $this->sendTwitter();
   }
 
+  /**
+   * Sends the newsletter to Twitter if certain conditions are met, such as whether
+   * Twitter sharing is enabled and the required file creation process is successful.
+   * It also checks if the necessary directory is writable and logs an alert message
+   * when conditions are not met.
+   *
+   * @return bool Returns false if the Twitter functionality is disabled
+   *              via configuration or if conditions for sending are not satisfied.
+   */
   private function sendTwitter()
   {
     $CLICSHOPPING_Hooks = Registry::get('Hooks');

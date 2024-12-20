@@ -24,7 +24,14 @@ class EMail extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the list of configuration modules available in the specified directory.
+   *
+   * This method iterates over the directory containing configuration module files,
+   * validates them, and organizes them by their sort order. Only subclasses of
+   * the ConfigAbstract class within the namespace are included.
+   *
+   * @return mixed An array of configuration module names sorted by their respective sort orders.
+   *               If no valid configuration modules are found, an empty array is returned.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +82,11 @@ class EMail extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific configuration information from a specified module.
+   *
+   * @param string $module The name of the module for which the configuration information is being requested.
+   * @param string $info The specific configuration information to retrieve from the module.
+   * @return mixed Returns the requested configuration information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +100,9 @@ class EMail extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The version of the API.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +110,9 @@ class EMail extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier associated with the current instance.
+   *
+   * @return string The identifier of the current instance.
    */
   public function getIdentifier(): string
   {

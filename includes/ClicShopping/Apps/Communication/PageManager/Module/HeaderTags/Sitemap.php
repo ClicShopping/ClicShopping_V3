@@ -22,6 +22,13 @@ class Sitemap extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   private mixed $template;
   public mixed $app;
 
+  /**
+   * Initializes the module by setting up application dependencies, defining language configurations,
+   * setting module properties such as title and description, and enabling/disabling the module
+   * based on predefined constants.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('PageManager')) {
@@ -44,7 +51,9 @@ class Sitemap extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   }
 
   /**
-   * @return bool
+   * Checks if the current module or component is enabled.
+   *
+   * @return bool Returns true if the module/component is enabled, false otherwise.
    */
   public function isEnabled()
   {
@@ -52,7 +61,11 @@ class Sitemap extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   }
 
   /**
-   * @return bool|string
+   * Generates and returns the output for the header tags including title, description, and keywords
+   * based on the Page Manager and SEO configurations.
+   *
+   * @return string|false Returns the header tags output as a string, or false if the CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS
+   *                      is not defined or set to 'False', or if the required parameters are not present.
    */
   public function getOutput()
   {
@@ -146,7 +159,9 @@ EOD;
   }
 
   /**
+   * Installs the module by saving the necessary configuration settings into the database.
    *
+   * @return void
    */
   public function Install()
   {
@@ -177,7 +192,9 @@ EOD;
   }
 
   /**
-   * @return string[]
+   * Retrieves the configuration keys for the module.
+   *
+   * @return array An array of configuration key names used by the module.
    */
   public function keys()
   {

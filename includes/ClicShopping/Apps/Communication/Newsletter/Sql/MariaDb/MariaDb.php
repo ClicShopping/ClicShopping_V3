@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the Newsletter module.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
@@ -24,9 +29,16 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries required for the Newsletter administration menu.
+   *
+   * This method checks if the necessary menu entries for the Newsletter application
+   * exist in the administrator menu. If not, it creates the entries, including descriptions
+   * for all available languages, and clears the administrator menu cache to ensure the new
+   * menu is loaded correctly.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -76,9 +88,11 @@ class MariaDb
     }
   }
 
-/**
-* @return void
- */
+  /**
+   * Creates and initializes database tables required for newsletters if they do not already exist.
+   *
+   * @return void
+   */
   private static function installDb()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

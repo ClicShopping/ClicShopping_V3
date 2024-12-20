@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the Suppliers application by retrieving it from the Registry,
+   * sets the class code using reflection, and invokes the initialization method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Suppliers');
@@ -38,6 +44,11 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_SUPPLIERS_' . $this->code . '_');
@@ -53,6 +64,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +79,15 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the parameters for the current module configuration.
+   *
+   * This method iterates through a specified directory, identifies relevant PHP files,
+   * and verifies that they are subclasses of `ClicShopping\Apps\Catalog\Suppliers\Module\ClicShoppingAdmin\Config\ConfigParamAbstract`.
+   * It then constructs and returns an array of parameter keys.
+   *
+   * @return array The list of parameter keys for the current module configuration.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +111,14 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and organizes input parameters for the application configuration.
+   *
+   * The method processes a set of configuration parameters, initializes and verifies
+   * their definitions, and organizes them in a structured order based on their sort order.
+   *
+   * @return array An array of input parameters, sorted numerically by their configuration order.
+   */
   public function getInputParameters()
   {
     $result = [];

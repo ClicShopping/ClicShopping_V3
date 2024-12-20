@@ -18,6 +18,13 @@ class StatsCustomersNewsletterB2bBySex implements \ClicShopping\OM\Modules\Hooks
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the Newsletters application.
+   * It checks and sets the application in the registry if not already present.
+   * Additionally, it loads the necessary definitions for the specified module and hook.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Newsletters')) {
@@ -29,7 +36,13 @@ class StatsCustomersNewsletterB2bBySex implements \ClicShopping\OM\Modules\Hooks
   }
 
   /**
-   * @return float|null
+   * Calculates the percentage of male customers subscribed to the newsletter.
+   *
+   * This method executes a database query to determine the percentage of customers
+   * identified as male ('m') who have subscribed to the newsletter. The result
+   * is rounded to two decimal places.
+   *
+   * @return float|null The percentage of male customers subscribed to the newsletter, or null if the query result is empty.
    */
   private function statsNewsletterCustomersMen(): ?float
   {
@@ -50,7 +63,10 @@ class StatsCustomersNewsletterB2bBySex implements \ClicShopping\OM\Modules\Hooks
   }
 
   /**
-   * @return float|null
+   * Analyzes the percentage of female customers who are subscribed to the newsletter
+   * and belong to a specific customer group.
+   *
+   * @return float|null Returns the calculated percentage as a float if available, otherwise null.
    */
   private function statsNewsletterCustomersWomen(): ?float
   {
@@ -71,7 +87,11 @@ class StatsCustomersNewsletterB2bBySex implements \ClicShopping\OM\Modules\Hooks
   }
 
   /**
-   * @return string
+   * Renders and returns the HTML output for the newsletter statistics card.
+   *
+   * @return string The HTML content of the newsletter statistics card, including
+   *                statistical data about male and female newsletter customers.
+   *                Returns `false` if the newsletter module is disabled.
    */
   public function display(): string
   {

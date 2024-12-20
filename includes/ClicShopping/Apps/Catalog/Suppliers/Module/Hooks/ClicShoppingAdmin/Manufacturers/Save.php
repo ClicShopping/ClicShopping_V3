@@ -19,6 +19,12 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Suppliers application by checking the Registry for its existence.
+   * If not found, it creates and registers a new instance of SuppliersApp.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Suppliers')) {
@@ -28,6 +34,12 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Suppliers');
   }
 
+  /**
+   * Processes the execution logic for updating the manufacturers table based on the supplied data.
+   * Validates the application status and input parameters before performing update operations.
+   *
+   * @return bool Returns false if the application status indicates it is disabled; otherwise, nothing is explicitly returned.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {

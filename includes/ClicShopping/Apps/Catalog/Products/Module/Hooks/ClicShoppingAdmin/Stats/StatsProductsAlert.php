@@ -18,6 +18,15 @@ class StatsProductsAlert implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the Products application.
+   *
+   * Ensures that the 'Products' application instance is registered in the Registry.
+   * If not already registered, it creates a new instance of ProductsApp and registers it.
+   * Sets the 'app' property to the instance retrieved from the Registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Products')) {
@@ -27,6 +36,13 @@ class StatsProductsAlert implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Products');
   }
 
+  /**
+   * Retrieves the number of products with a quantity less than or equal to the defined stock reorder level.
+   *
+   * This method executes a database query to count the products that meet the stock threshold condition.
+   *
+   * @return int The count of products that match the reorder level criteria.
+   */
   private function getProductsAlert()
   {
 
@@ -40,6 +56,15 @@ class StatsProductsAlert implements \ClicShopping\OM\Modules\HooksInterface
     return $Qproducts->valueInt('count');
   }
 
+  /**
+   * Retrieves the count of products that have not been viewed.
+   *
+   * Executes a database query to count the number of products where the
+   * `products_view` column is set to 0, indicating that the product has
+   * not been viewed.
+   *
+   * @return int The count of products not viewed.
+   */
   private function getProductsNotView()
   {
 
@@ -52,6 +77,17 @@ class StatsProductsAlert implements \ClicShopping\OM\Modules\HooksInterface
     return $Qproducts->valueInt('count');
   }
 
+  /**
+   * Displays a formatted output related to product alerts and stock status.
+   *
+   * This method checks if the product alerts feature is enabled. If it's disabled, it returns false.
+   * If the product alerts feature is enabled, it loads language definitions and generates
+   * either an empty string or an HTML formatted card displaying product stock alerts and other information.
+   *
+   * @return string|bool Returns false if the product alerts feature is disabled.
+   *                     Returns a formatted HTML string if there are product alerts,
+   *                     or an empty string if there are no alerts.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {

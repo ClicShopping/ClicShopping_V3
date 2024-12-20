@@ -13,6 +13,11 @@ namespace ClicShopping\Apps\Catalog\Archive\Module\ClicShoppingAdmin\Config;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
+/**
+ * Abstract base class that serves as a template for configuration management in the application.
+ * It provides shared functionality for initialization, installation, uninstallation,
+ * and management of configuration parameters.
+ */
 abstract class ConfigAbstract
 {
   public mixed $app;
@@ -29,6 +34,13 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by retrieving the application instance,
+   * determining the short name of the class, loading the relevant definitions,
+   * and calling the initialization method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Archive');
@@ -40,6 +52,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the module by processing parameter keys,
+   * instantiating corresponding configuration classes, and saving their default
+   * values and details into the application.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_ARCHIVE_' . $this->code . '_');
@@ -55,6 +74,13 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Removes configuration settings related to the current module from the database.
+   * Deletes all entries in the configuration table where the key matches
+   * the module's specific configuration key pattern.
+   *
+   * @return int The number of rows affected by the deletion operation.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +93,13 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of configuration parameter identifiers for the current module.
+   * This method scans the directory for parameter files, validates their class hierarchy,
+   * and returns their corresponding identifiers.
+   *
+   * @return array An array of configuration parameter identifiers.
+   */
   public function getParameters()
   {
     $result = [];
@@ -90,6 +123,13 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the current configuration.
+   * This method prepares an array of configuration fields based on defined parameters
+   * and their corresponding settings, organizing them by their sort order or default order.
+   *
+   * @return array An array of processed configuration fields.
+   */
   public function getInputParameters()
   {
     $result = [];

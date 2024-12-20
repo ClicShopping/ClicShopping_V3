@@ -22,6 +22,12 @@ class PageManager extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   public mixed $app;
   private mixed $template;
 
+  /**
+   * Initializes the PageManager module by setting up necessary configurations,
+   * loading language definitions, and determining the module's status and sort order.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('PageManager')) {
@@ -43,11 +49,23 @@ class PageManager extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks whether the current module or feature is enabled.
+   *
+   * @return bool Returns true if the module or feature is enabled, otherwise false.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates and returns the HTML head output for the page, including title, meta description,
+   * and meta keywords by using existing data from the database.
+   *
+   * @return string|false The formatted HTML head output string if conditions are met, or false
+   *                      if the application is disabled or required GET parameters are missing.
+   */
   public function getOutput()
   {
     if (!\defined('CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS') || CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS == 'False') {
@@ -139,6 +157,11 @@ EOD;
     }
   }
 
+  /**
+   * Installs the module by inserting configuration entries into the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -167,6 +190,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves an array of configuration keys related to the module.
+   *
+   * @return array List of configuration keys.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_PAGE_MANAGER_STATUS',

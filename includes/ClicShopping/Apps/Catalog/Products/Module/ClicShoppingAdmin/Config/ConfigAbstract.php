@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by setting its application instance, determining its code
+   * via reflection, loading required module definitions, and performing necessary initialization.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Products');
@@ -40,6 +46,12 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration for the current module by iterating through its parameters
+   * and saving their default settings.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_CATALOG_PRODUCTS_' . $this->code . '_');
@@ -55,6 +67,13 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the current module by deleting configuration entries associated with it
+   * from the configuration table. The configuration keys are matched using a specific
+   * pattern tied to the module's code.
+   *
+   * @return int The number of rows affected by the delete operation.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +86,12 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the parameters from a specific configuration directory that match the required subclass type.
+   *
+   * @return array An array of parameter identifiers. Each identifier matches a specific parameter
+   *               class found in the configuration directory and adheres to the expected naming conventions.
+   */
   public function getParameters()
   {
     $result = [];
@@ -94,6 +119,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters specific to the configured module.
+   *
+   * The method determines the appropriate parameters based on the module code,
+   * processes default values, saves configurations as necessary, and orders the
+   * resulting set fields in numeric order.
+   *
+   * @return array An ordered array containing the configured and processed input parameters.
+   */
   public function getInputParameters()
   {
     $result = [];

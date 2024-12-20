@@ -25,6 +25,11 @@ class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   protected $manufacturerAdmin;
 
+  /**
+   * Constructor method for initializing the Manufacturers application module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Manufacturers')) {
@@ -36,6 +41,12 @@ class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
   }
 
+  /**
+   * Generates and returns the HTML content and JavaScript required for a manufacturer autocomplete and modal dialog.
+   * This includes the form elements for selecting a manufacturer and associated modal functionality.
+   *
+   * @return string The HTML and JavaScript output for the manufacturer autocomplete and modal dialog.
+   */
   public function display(): string
   {
     if (!\defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {

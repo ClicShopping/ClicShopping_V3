@@ -25,6 +25,12 @@ class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   protected mixed $SupplierAdmin;
 
+  /**
+   * Constructor method for initializing the Suppliers and SupplierAdmin components.
+   * Loads necessary definitions for page content management.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Suppliers')) {
@@ -42,6 +48,12 @@ class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
   }
 
+  /**
+   * Generates and returns the HTML and JavaScript necessary to display a suppliers input field with autocomplete functionality and a modal popup for adding suppliers.
+   * The method checks if the suppliers module is enabled, retrieves supplier data, and constructs the appropriate UI elements.
+   *
+   * @return string The generated HTML and JavaScript content to render the suppliers interface.
+   */
   public function display(): string
   {
     if (!\defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {

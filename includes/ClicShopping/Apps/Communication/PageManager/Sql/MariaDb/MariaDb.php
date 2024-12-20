@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the PageManager module.
+   * This method loads necessary definitions and initializes the database setup.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_PageManager = Registry::get('PageManager');
@@ -24,9 +30,15 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries for the administration menu related to the Page Manager module.
+   *
+   * This method checks if the required menu entry exists in the 'administrator_menu' table.
+   * If the entry does not exist, it creates a new entry with its corresponding metadata and language-specific descriptions.
+   * Once the entries are added, it clears the administrator menu cache to ensure the changes are applied.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -71,9 +83,11 @@ class MariaDb
     }
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the necessary database tables required for the Page Manager module if they do not already exist.
+   *
+   * @return void
+   */
   private static function installDb()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

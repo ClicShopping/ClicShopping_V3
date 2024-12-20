@@ -28,6 +28,16 @@ class CopyConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Manufacturers');
   }
 
+  /**
+   * Executes the manufacturer copying functionality for a product if specific conditions are met.
+   *
+   * The method checks if the manufacturer copying module is enabled and verifies the presence of required
+   * input parameters (`products_id` and query string `Products`). If conditions are met, it retrieves the
+   * associated manufacturer information for the specified product and applies it to the latest product in
+   * the database.
+   *
+   * @return bool Returns false if the manufacturer copying module is disabled or input conditions are not met.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {

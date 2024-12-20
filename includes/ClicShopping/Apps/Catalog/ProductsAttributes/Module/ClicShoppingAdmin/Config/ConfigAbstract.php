@@ -29,6 +29,13 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the object.
+   *
+   * Initializes the application registry, sets the class code, and performs initial setup.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('ProductsAttributes');

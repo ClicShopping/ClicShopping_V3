@@ -20,6 +20,16 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   protected $insert_language_id;
 
+  /**
+   * Constructor method for initializing the Suppliers application.
+   *
+   * Checks if the Suppliers instance exists in the Registry. If it does not exist,
+   * it creates a new SuppliersApp instance and registers it. Also, retrieves
+   * the Suppliers application and Language objects from the Registry and assigns
+   * them to the respective class properties.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Suppliers')) {
@@ -30,6 +40,11 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->lang = Registry::get('Language');
   }
 
+  /**
+   * Inserts supplier language data into the database based on the provided conditions.
+   *
+   * @return void
+   */
   private function insert()
   {
     if (isset($this->insert_language_id, $_GET['Langues'], $_GET['Insert'])) {
@@ -57,6 +72,14 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main logic of the method.
+   *
+   * Checks the application status and verifies if a specific GET parameter is set
+   * to trigger corresponding actions.
+   *
+   * @return bool Returns false if the application status is disabled; otherwise, void.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {

@@ -15,7 +15,9 @@ use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ProductsAdmin;
 use ClicShopping\OM\Cache;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
-
+/**
+ * Class responsible  for managing and displaying statistics related to categories within the application.
+ */
 class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
@@ -23,6 +25,18 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
   protected string $productsLink;
   protected string $currentCategoryId;
 
+  /**
+   * Constructor method for initializing the Categories class.
+   *
+   * This method checks if the 'Categories' instance exists in the Registry.
+   * If not, it registers a new instance of `CategoriesApp`.
+   * It initializes the application-specific object `$this->app` with the 'Categories' instance.
+   * It also sanitizes and sets the current category path and the copy action for the products
+   * (defaulting to 'none' if no 'copy_as' is provided in the POST data).
+   * Additionally, it initializes a new instance of `ProductsAdmin` for product management tasks.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Categories')) {
@@ -43,8 +57,10 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $move_new_category
-   * @param int $id
+   * Moves a product to a new category, updating the category association in the database.
+   *
+   * @param int $move_new_category The ID of the new category to move the product to.
+   * @param int $id The ID of the product to be moved.
    * @return void
    */
   public function moveCategory(int $move_new_category, int $id): void
@@ -73,7 +89,13 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int|null $id
+   * Updates the categories associated with a specific product.
+   *
+   * This method handles actions such as moving a product to a new category,
+   * linking a product to multiple categories, and duplicating a product in
+   * other categories. It also clears the associated cache for categories and products.
+   *
+   * @param int|null $id The ID of the product to update. If null, no product is specified.
    * @return void
    */
   public function updateProductCategories( int|null $id = null): void
@@ -140,6 +162,14 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     Cache::clear('upcoming');
   }
 
+  /**
+   * Executes the primary logic for managing category updates.
+   *
+   * This method checks if the application is enabled and processes category updates for a product
+   * if a valid product ID is provided in the request.
+   *
+   * @return bool Returns false if the application is disabled, otherwise does not return a value.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {

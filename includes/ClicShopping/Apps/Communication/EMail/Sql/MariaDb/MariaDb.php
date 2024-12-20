@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process by loading the necessary email definitions
+   * and installing the database menu administration data.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Email = Registry::get('Email');
@@ -24,8 +30,16 @@ class MariaDb
   }
 
   /**
-  * @return void
- */
+   * Installs a database entry for the email administration menu in the administrator menu table.
+   *
+   * This method checks whether the necessary entry for the email administration module exists in
+   * the `administrator_menu` table. If not, it adds the required entry with details like
+   * sort order, link, image, and application code. It also inserts corresponding multilingual
+   * descriptions into the `administrator_menu_description` table for all available languages.
+   * Finally, it clears the menu administrator cache.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

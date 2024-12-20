@@ -18,6 +18,10 @@ class StatsProductsInfo implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Products')) {
@@ -27,6 +31,9 @@ class StatsProductsInfo implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Products');
   }
 
+  /**
+   *
+   */
   private function getProductsArchive()
   {
 
@@ -39,6 +46,14 @@ class StatsProductsInfo implements \ClicShopping\OM\Modules\HooksInterface
     return $Qproducts->valueInt('count');
   }
 
+  /**
+   * Retrieves the total number of products from the database.
+   *
+   * Executes a prepared SQL query to count the number of product IDs
+   * in the products table and returns the count as an integer.
+   *
+   * @return int The total number of products.
+   */
   private function getNumberOfProducts()
   {
     $Qproducts = $this->app->db->prepare('select count(products_id) as count
@@ -49,6 +64,17 @@ class StatsProductsInfo implements \ClicShopping\OM\Modules\HooksInterface
     return $Qproducts->valueInt('count');
   }
 
+  /**
+   * Displays information about the products archive and total number of products.
+   *
+   * This method checks the status of the `CLICSHOPPING_APP_CATALOG_PRODUCTS_PD` constant
+   * and loads the required definitions. If both the products archive count and total products
+   * count are zero, it returns an empty string. Otherwise, it generates and returns a formatted
+   * HTML output with the products archive and total product information.
+   *
+   * @return string|false The formatted HTML output containing product statistics, or false
+   *                      if the status is disabled.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {

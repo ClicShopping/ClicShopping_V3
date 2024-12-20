@@ -18,6 +18,12 @@ class StatsCustomersNewsletterBySex implements \ClicShopping\OM\Modules\HooksInt
 {
   public mixed $app;
 
+  /**
+   * Initializes the Newsletters application and loads the necessary definitions
+   * associated with the customer newsletter statistics by sex.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Newsletters')) {
@@ -29,7 +35,9 @@ class StatsCustomersNewsletterBySex implements \ClicShopping\OM\Modules\HooksInt
   }
 
   /**
-   * @return float|null
+   * Calculates the percentage of male customers who are subscribed to the newsletter.
+   *
+   * @return float|null Returns the percentage as a float, or null if no data is available.
    */
   private function statsNewsletterCustomersMen(): ?float
   {
@@ -50,7 +58,10 @@ class StatsCustomersNewsletterBySex implements \ClicShopping\OM\Modules\HooksInt
   }
 
   /**
-   * @return float|null
+   * Calculates the percentage of female customers who have subscribed to the newsletter.
+   *
+   * @return float|null The percentage of female customers subscribed to the newsletter,
+   * or null if the calculation cannot be performed.
    */
   private function statsNewsletterCustomersWomen(): ?float
   {
@@ -71,7 +82,10 @@ class StatsCustomersNewsletterBySex implements \ClicShopping\OM\Modules\HooksInt
   }
 
   /**
-   * @return string
+   * Renders and returns the display output for the newsletter statistics,
+   * including percentages of male and female subscribers.
+   *
+   * @return string The HTML representation of the newsletter statistics card.
    */
   public function display(): string
   {

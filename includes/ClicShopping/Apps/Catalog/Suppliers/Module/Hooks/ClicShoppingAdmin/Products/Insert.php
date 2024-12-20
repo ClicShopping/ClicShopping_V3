@@ -19,6 +19,11 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   protected $supplierAdmin;
 
+  /**
+   * Constructor method for initializing the Suppliers and SupplierAdmin components.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Suppliers')) {
@@ -34,6 +39,13 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->supplierAdmin = Registry::get('SupplierAdmin');
   }
 
+  /**
+   * Executes the logic for linking a product and a supplier if the required parameters are provided.
+   * Retrieves the latest product ID, determines the supplier ID based on the supplier name,
+   * and updates the product record with the corresponding supplier information.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Insert'], $_GET['Products'])) {

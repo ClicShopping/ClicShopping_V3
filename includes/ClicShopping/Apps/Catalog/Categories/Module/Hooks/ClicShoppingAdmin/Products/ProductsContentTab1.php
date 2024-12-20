@@ -15,10 +15,21 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class responsible for managing and displaying the category selection UI for products.
+ */
 class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method.
+   *
+   * Initializes the Categories application if it does not exist in the Registry.
+   * Loads the necessary definitions for the Categories application.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Categories')) {
@@ -29,6 +40,19 @@ class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
   }
 
+  /**
+   * Displays and generates the category selection UI for managing product categories.
+   *
+   * This method dynamically constructs HTML content and JavaScript scripts to display
+   * a category selection dropdown integrated with AJAX functionality. It handles
+   * different scenarios such as detecting the current category or associated category
+   * for a product, and manages user input for defining how products will be categorized
+   * (e.g., link, move, duplicate, etc.).
+   *
+   * @return string Returns the generated HTML and JavaScript content for rendering
+   *                the category management interface, or false if the categories
+   *                application is disabled.
+   */
   public function display()
   {
     $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');

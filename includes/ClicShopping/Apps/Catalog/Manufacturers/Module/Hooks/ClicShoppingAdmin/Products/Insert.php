@@ -28,6 +28,11 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Manufacturers');
   }
 
+  /**
+   * Executes the method functionality to handle product insertion based on the provided GET parameters.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Insert'], $_GET['Products'])) {

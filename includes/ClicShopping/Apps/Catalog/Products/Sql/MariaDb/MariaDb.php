@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for managing database menu administration entries
+   * and loads the necessary definitions for the Products module.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Products = Registry::get('Products');
@@ -23,9 +29,19 @@ class MariaDb
     self::installDbMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs and configures the database entries for administration menu items
+   * related to catalog products and associated reports.
+   *
+   * Verifies if specific menu items and their descriptions exist in the database.
+   * If they do not exist, it inserts them along with their necessary metadata
+   * in different languages, establishing the hierarchical position and attributes
+   * for administrative purposes.
+   *
+   * Clears the administrator menu cache after updating the database.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

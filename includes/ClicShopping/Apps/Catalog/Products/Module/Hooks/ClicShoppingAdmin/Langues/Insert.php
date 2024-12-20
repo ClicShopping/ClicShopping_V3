@@ -21,6 +21,11 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   private mixed $lang;
   protected $insert_language_id;
 
+  /**
+   * Initializes the Products application and sets the language registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Products')) {
@@ -31,6 +36,13 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->lang = Registry::get('Language');
   }
 
+  /**
+   * Inserts product descriptions for a new language into the database.
+   * Retrieves product data for the current language, modifies it for the new language,
+   * and saves the modified data into the database.
+   *
+   * @return void
+   */
   private function insert()
   {
     $insert_language_id = LanguageAdmin::getLatestLanguageID();
@@ -57,6 +69,14 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main logic for the method.
+   *
+   * Performs a check to ensure the application status is defined and active.
+   * Calls the insert method if specific GET parameters are set.
+   *
+   * @return bool Returns false if the application status is not defined or inactive.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {

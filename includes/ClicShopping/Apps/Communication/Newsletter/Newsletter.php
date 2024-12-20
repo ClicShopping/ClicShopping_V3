@@ -19,12 +19,23 @@ class Newsletter extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Newsletter_V1';
 
+  /**
+   * Initializes the necessary configurations or properties for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules sorted by their sort order.
+   *
+   * This method scans a specified directory for configuration modules, checks
+   * if they are subclasses of a required abstract class, and stores them in
+   * an array, sorted by their defined sort order or the default order if not defined.
+   *
+   * @return mixed An array of configuration module names, keyed by their sort order.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +86,11 @@ class Newsletter extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the specified module and information type.
+   *
+   * @param string $module The name of the module to fetch the information for.
+   * @param string $info The specific piece of information to retrieve from the module.
+   * @return mixed The requested module information, or null if the module or info does not exist.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +104,8 @@ class Newsletter extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   *
+   * @return string|int Returns the current API version.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +113,9 @@ class Newsletter extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

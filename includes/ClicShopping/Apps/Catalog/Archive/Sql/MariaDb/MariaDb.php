@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the Archive module.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Archive = Registry::get('Archive');
@@ -23,9 +28,16 @@ class MariaDb
     self::installDbMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries required for the Archive module's administration menu.
+   *
+   * This method interacts with the database to add the necessary menu entries for the
+   * Archive module under the administrator menu. It checks if the entries already exist,
+   * inserts new entries if they do not, and includes translations for supported languages.
+   * Also clears the administrator menu cache after installation.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

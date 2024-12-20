@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the ImportExport module by loading necessary definitions
+   * and performing database setup tasks, such as installing administrative menu entries and database schema.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Categories = Registry::get('ImportExport');
@@ -24,9 +30,15 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries related to the administration menu for the categories module.
+   *
+   * This method checks if the necessary menu entry for the categories module exists in the `administrator_menu` table.
+   * If it does not exist, it creates the menu entry and associates localized descriptions
+   * for the entry in the `administrator_menu_description` table. Finally, it clears the related cache.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -74,9 +86,14 @@ class MariaDb
     }
   }
 
-/**
-* @return void
- */
+  /**
+   * Creates the necessary database tables for categories and categories descriptions
+   * if they do not already exist. This method checks for the presence of the tables
+   * by querying the database and executes SQL statements to create the tables if
+   * they are missing.
+   *
+   * @return void
+   */
   private static function installDb():void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

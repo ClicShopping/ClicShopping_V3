@@ -18,6 +18,12 @@ class StatsCustomersNewsletterBySex implements \ClicShopping\OM\Modules\HooksInt
 {
   public mixed $app;
 
+  /**
+   * Constructor method initializes the Customers application instance in the Registry and
+   * loads the necessary definitions for the stats functionality.
+   *
+   * @return void
+   */
   public function __construct()
   {
 
@@ -29,6 +35,17 @@ class StatsCustomersNewsletterBySex implements \ClicShopping\OM\Modules\HooksInt
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/StatsCustomersNewsletterBySex');
   }
 
+  /**
+   * Calculates the percentage of male customers subscribed to the newsletter.
+   *
+   * This method queries the database to compute the percentage of customers
+   * who are male and have subscribed to the newsletter. The result is calculated
+   * by dividing the count of newsletter-subscribed male customers by the total
+   * count of customers, multiplied by 100, and rounded to two decimal places.
+   *
+   * @return float|null The percentage of male newsletter subscribers as a decimal
+   * value if available, or null if the data cannot be retrieved.
+   */
   private function statsNewsletterCustomersMen()
   {
     $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS avgage
@@ -48,6 +65,18 @@ class StatsCustomersNewsletterBySex implements \ClicShopping\OM\Modules\HooksInt
   }
 
 
+  /**
+   * Retrieves the percentage of female customers who are subscribed to the newsletter.
+   *
+   * This method calculates the proportion of female customers
+   * subscribed to newsletters with respect to the total number
+   * of customers. The result is returned as a rounded percentage
+   * value with two decimal precision.
+   *
+   * @return float|null The percentage of female customers subscribed to the newsletter, or null if no data is available.
+   *
+   * @throws \Exception If a database query error occurs.
+   */
   private function statsNewsletterCustomersWomen()
   {
     $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS avgage
@@ -67,6 +96,13 @@ class StatsCustomersNewsletterBySex implements \ClicShopping\OM\Modules\HooksInt
   }
 
 
+  /**
+   * Executes the logic to generate a statistical representation of newsletter subscribers
+   * segmented by gender. This method checks the status of the Newsletter application
+   * and constructs a formatted HTML output if the application is active.
+   *
+   * @return string|false Returns the formatted HTML string if the Newsletter application is active, or false otherwise.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {

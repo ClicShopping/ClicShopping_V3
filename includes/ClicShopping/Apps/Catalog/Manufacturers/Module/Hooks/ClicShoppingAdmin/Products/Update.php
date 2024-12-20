@@ -28,6 +28,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Manufacturers');
   }
 
+  /**
+   * Executes the update of the manufacturer ID for a specified product.
+   *
+   * @return bool Returns false if the application status is not enabled; otherwise, performs the update operation.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {

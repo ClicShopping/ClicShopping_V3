@@ -19,6 +19,11 @@ class CopyConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Suppliers application and ensures it is registered in the Registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Suppliers')) {
@@ -28,6 +33,11 @@ class CopyConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Suppliers');
   }
 
+  /**
+   * Executes the function to handle product supplier association based on the provided parameters.
+   *
+   * @return bool Returns false if the supplier feature is disabled or required data is missing. Returns void otherwise.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {

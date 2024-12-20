@@ -19,6 +19,12 @@ class CloneProducts implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Suppliers application by checking if it exists in the registry.
+   * If not, it creates a new instance and stores it in the registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Suppliers')) {
@@ -28,6 +34,11 @@ class CloneProducts implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Suppliers');
   }
 
+  /**
+   * Executes the logic for handling the suppliers' application state and cloning product information.
+   *
+   * @return bool Returns false if the suppliers' application status is disabled or undefined. Otherwise, no explicit return value is provided.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {

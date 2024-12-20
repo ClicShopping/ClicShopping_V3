@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the PageManager module.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('PageManager');
@@ -40,6 +45,12 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the specified module by initializing
+   * and saving configuration settings defined in the module's parameters.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_PAGE_MANAGER_' . $this->code . '_');
@@ -55,6 +66,14 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the module by removing associated configuration data from the database.
+   *
+   * Deletes all rows in the configuration table where the configuration key matches
+   * a specific pattern related to the module.
+   *
+   * @return int The number of rows affected by the delete operation.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +86,13 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the parameters for a specific configuration.
+   *
+   * @return array An array of parameter constants related to the configuration.
+   *               Each parameter constant is derived from the '.php' file names found
+   *               within the defined parameters directory.
+   */
   public function getParameters()
   {
     $result = [];
@@ -90,6 +116,12 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters, organizing them based on their configuration
+   * and sort order, then returns the resulting structured list.
+   *
+   * @return array The array of processed input parameters sorted by their respective order.
+   */
   public function getInputParameters()
   {
     $result = [];

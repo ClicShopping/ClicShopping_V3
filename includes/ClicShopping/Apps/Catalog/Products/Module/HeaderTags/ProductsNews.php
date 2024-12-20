@@ -20,6 +20,12 @@ class ProductsNews extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   private mixed $lang;
   public mixed $app;
 
+  /**
+   * Initializes the module by setting up required dependencies, loading definitions,
+   * and configuring properties such as title, description, sort order, and status.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('Products')) {
@@ -41,11 +47,28 @@ class ProductsNews extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks whether the module is enabled.
+   *
+   * @return bool Returns true if the module is enabled, false otherwise.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates and returns the HTML output for the page's title, meta description, and meta keywords
+   * based on the SEO configuration for "Products" and "Products New" pages.
+   *
+   * The method retrieves SEO-related data such as titles, descriptions, and keywords from the database.
+   * If specific language-related SEO fields are empty, it falls back to default language values.
+   * These values are sanitized and combined with the template's title, description, and keywords
+   * as well as the store name. It then returns the assembled output as an HTML string.
+   *
+   * @return string|false Returns an HTML string containing the title, meta description, and meta keywords tags if SEO is enabled
+   *                      and the required conditions are met. Returns false if SEO is disabled or the conditions are not satisfied.
+   */
   public function getOutput()
   {
     $CLICSHOPPING_Template = Registry::get('Template');
@@ -103,6 +126,11 @@ EOD;
     }
   }
 
+  /**
+   * Installs the module by saving configuration settings into the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -130,6 +158,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves the configuration keys associated with the module.
+   *
+   * @return array An array of configuration keys for the module.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_NEWS_STATUS',

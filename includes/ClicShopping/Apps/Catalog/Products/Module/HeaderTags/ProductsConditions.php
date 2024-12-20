@@ -19,6 +19,11 @@ class ProductsConditions extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   private mixed $lang;
   public mixed $app;
 
+  /**
+   * Initializes the module by setting up dependencies, language definitions, and module properties.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('Products')) {
@@ -40,11 +45,22 @@ class ProductsConditions extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks whether the module or functionality is enabled.
+   *
+   * @return bool Returns true if the module or functionality is enabled, false otherwise.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates and returns the output of the product's JSON-LD metadata for inclusion in the HTML footer or header group.
+   * This method retrieves necessary dependencies, checks required conditions, and constructs the JSON-LD metadata.
+   *
+   * @return string|false The generated block to be added to the template group or false if the conditions are not met.
+   */
   public function getOutput()
   {
     $CLICSHOPPING_Template = Registry::get('Template');
@@ -75,6 +91,13 @@ EOD;
     }
   }
 
+  /**
+   * Installs the module by saving its configuration into the database.
+   * Two configuration entries are created: one for enabling/disabling the module,
+   * and another for defining the sort order in which the module will display.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -102,6 +125,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves the keys associated with the module's configuration settings.
+   *
+   * @return array The array of configuration keys used by the module.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_PRODUCT_CONDITION_STATUS',

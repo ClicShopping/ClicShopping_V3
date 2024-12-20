@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by setting up application registry and determining the class name.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Administrators');
@@ -38,6 +43,11 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the current module.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_ADMINISTRATORS_' . $this->code . '_');
@@ -53,6 +63,13 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the application by removing related configuration entries from the database.
+   *
+   * Prepares and executes an SQL statement to delete records from the configuration table where the configuration key matches a specific pattern.
+   *
+   * @return int Returns the number of rows affected by the delete operation.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +82,12 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of configuration parameters for the current module.
+   *
+   * @return array An array of parameter constants for the given module, formatted as 'CLICSHOPPING_APP_ADMINISTRATORS_<module_code>_<parameter>'.
+   *               If a parameter class is not a valid subclass of `ConfigParamAbstract`, an error is triggered.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +111,13 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the application configuration.
+   * Iterates through parameter keys, applies transformations, and initializes configuration objects
+   * with their respective settings. Configured parameters are organized by their sort order and returned.
+   *
+   * @return array An array of processed input parameters, sorted by configuration order.
+   */
   public function getInputParameters()
   {
     $result = [];

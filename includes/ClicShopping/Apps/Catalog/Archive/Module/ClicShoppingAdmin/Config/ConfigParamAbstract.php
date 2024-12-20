@@ -12,6 +12,9 @@ namespace ClicShopping\Apps\Catalog\Archive\Module\ClicShoppingAdmin\Config;
 
 use ClicShopping\OM\Registry;
 
+/**
+ * Abstract class for managing configuration parameters for a specific module in the ClicShoppingAdmin application.
+ */
 abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin\ConfigParamAbstract
 {
   public mixed $app;
@@ -20,6 +23,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_archive_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor for initializing the configuration module and setting up dependencies.
+   *
+   * @param string $config_module The name of the configuration module to initialize.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('Archive');

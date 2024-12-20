@@ -23,7 +23,12 @@ class Products extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules for the application.
+   * The modules are sorted based on their defined sort order or their order of appearance.
+   * Only modules that subclass the specified ConfigAbstract class are considered valid.
+   * If a module does not meet this requirement, an error is triggered.
+   *
+   * @return mixed Returns an array of configuration modules, keyed by their sort order.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +79,11 @@ class Products extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific configuration information for the given module.
+   *
+   * @param string $module The name of the module to retrieve configuration for.
+   * @param string $info The specific information or property to access within the module.
+   * @return mixed The requested configuration information for the module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +97,9 @@ class Products extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The version of the API.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +107,9 @@ class Products extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier associated with the current instance.
+   *
+   * @return string The identifier of the current instance.
    */
   public function getIdentifier(): string
   {

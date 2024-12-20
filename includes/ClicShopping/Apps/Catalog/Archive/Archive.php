@@ -13,6 +13,11 @@ namespace ClicShopping\Apps\Catalog\Archive;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
+/**
+ * Represents the Archive class that extends the AppAbstract class and provides
+ * methods for managing configuration modules and retrieving metadata such as
+ * API version and instance identifier.
+ */
 class Archive extends \ClicShopping\OM\AppAbstract
 {
   protected $api_version = 1;
@@ -23,7 +28,9 @@ class Archive extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the configuration modules and organizes them based on their sort order.
+   *
+   * @return mixed The sorted list of configuration modules.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +81,11 @@ class Archive extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific configuration module information.
+   *
+   * @param string $module The name of the module to retrieve.
+   * @param string $info The specific information key to retrieve from the module.
+   * @return mixed The requested module information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +99,9 @@ class Archive extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The version of the API.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +109,9 @@ class Archive extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier of the current instance.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

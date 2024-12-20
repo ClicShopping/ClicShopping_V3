@@ -15,10 +15,23 @@ use ClicShopping\OM\Cache;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
+/**
+ * Class responsible
+ * for managing and displaying statistics related to categories within the application.
+ */
 class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for the class.
+   *
+   * Initializes the Categories application module by checking its existence in the Registry.
+   * If not present, it creates a new instance of CategoriesApp and stores it in the Registry.
+   * Assigns the app instance from the Registry to the $this->app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Categories')) {
@@ -29,7 +42,9 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param array $current_category_id
+   * Saves the product category association and clears relevant cache entries.
+   *
+   * @param array $current_category_id An array containing the current category ID(s).
    * @return void
    */
   private function saveProductCategory(array $current_category_id): void
@@ -61,6 +76,11 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     Cache::clear('upcoming');
   }
 
+  /**
+   * Executes the operation to handle category movement for a product.
+   *
+   * @return bool Returns false if the application status is either undefined or set to 'False'.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {

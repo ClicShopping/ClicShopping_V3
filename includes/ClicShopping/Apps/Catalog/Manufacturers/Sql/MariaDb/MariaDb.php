@@ -24,9 +24,13 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Adds database entries for the administrator menu related to manufacturers and their stock.
+   * These entries include menu links and their associated language descriptions.
+   * Additionally, clears the administrator menu cache after updating the database.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -104,9 +108,14 @@ class MariaDb
     }
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database tables required for the manufacturers feature.
+   *
+   * This method checks if the required `manufacturers` and `manufacturers_info` tables exist in the database.
+   * If they do not exist, it creates them with the necessary structure and fields.
+   *
+   * @return void
+   */
   private static function installDb(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

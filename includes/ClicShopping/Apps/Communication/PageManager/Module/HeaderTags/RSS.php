@@ -21,6 +21,12 @@ class RSS extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   private mixed $lang;
   public mixed $app;
 
+  /**
+   * Initializes the module by setting up required registry objects, loading definitions,
+   * and configuring properties such as title, description, sort order, and enabled status.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('PageManager')) {
@@ -42,11 +48,21 @@ class RSS extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks whether the current instance is enabled.
+   *
+   * @return bool Returns true if the instance is enabled, false otherwise.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates and returns the RSS feed link block for inclusion in the template.
+   *
+   * @return string|bool Returns the formatted RSS feed link block as a string if the RSS functionality is enabled, or false otherwise.
+   */
   public function getOutput()
   {
     $CLICSHOPPING_Template = Registry::get('Template');
@@ -65,6 +81,11 @@ EOD;
     return $output;
   }
 
+  /**
+   * Installs the configuration settings required for the module.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -93,6 +114,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves the configuration keys required for the module.
+   *
+   * @return array An array of configuration key names.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_RSS_STATUS',

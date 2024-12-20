@@ -23,6 +23,11 @@ class Manufacturers extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   public mixed $app;
   private mixed $template;
 
+  /**
+   * Initializes the necessary properties and configurations for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('Manufacturers')) {
@@ -46,11 +51,21 @@ class Manufacturers extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks if the current module or functionality is enabled.
+   *
+   * @return bool Returns true if enabled, otherwise false.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates and returns the HTML meta tags for the manufacturers page, including title, description, and keywords.
+   *
+   * @return string|bool The formatted meta tags as a string, or false if the manufacturers module is disabled or the manufacturers ID is invalid.
+   */
   public function getOutput()
   {
     $this->template = Registry::get('Template');
@@ -134,6 +149,11 @@ EOD;
     }
   }
 
+  /**
+   * Installs the module by adding its configuration settings to the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -162,6 +182,11 @@ EOD;
     );
   }
 
+  /**
+   * Returns an array of configuration keys used by the module.
+   *
+   * @return array An array of configuration key identifiers.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_MANUFACTURERS_STATUS',

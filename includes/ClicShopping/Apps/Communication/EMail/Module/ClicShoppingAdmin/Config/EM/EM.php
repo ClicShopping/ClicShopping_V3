@@ -10,6 +10,13 @@
 
 namespace ClicShopping\Apps\Communication\EMail\Module\ClicShoppingAdmin\Config\EM;
 
+/**
+ * Class EM
+ *
+ * A configuration module for the ClicShopping E-Mail application within the ClicShoppingAdmin interface.
+ * This module defines initialization, installation, and uninstallation logic specific to this configuration.
+ * It extends the ConfigAbstract class from the ClicShopping framework.
+ */
 class EM extends \ClicShopping\Apps\Communication\EMail\Module\ClicShoppingAdmin\Config\ConfigAbstract
 {
 
@@ -26,6 +33,11 @@ class EM extends \ClicShopping\Apps\Communication\EMail\Module\ClicShoppingAdmin
     $this->is_installed = \defined('CLICSHOPPING_APP_EMAIL_EM_STATUS') && (trim(CLICSHOPPING_APP_EMAIL_EM_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its identifier to the list of installed modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +51,12 @@ class EM extends \ClicShopping\Apps\Communication\EMail\Module\ClicShoppingAdmin
     $this->app->saveCfgParam('MODULE_MODULES_EMAIL_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the current module by removing its entry from the list of installed modules
+   * and updating the configuration parameter.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

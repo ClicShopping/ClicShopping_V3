@@ -20,6 +20,14 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_newsletter_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor method.
+   *
+   * Initializes the configuration module, sets class properties, and loads necessary definitions.
+   *
+   * @param string $config_module The name of the configuration module being used.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('Newsletter');

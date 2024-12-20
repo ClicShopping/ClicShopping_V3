@@ -20,6 +20,14 @@ class productNotification
   public $title;
   public $content;
 
+  /**
+   * Constructor for initializing the newsletter application.
+   *
+   * @param string $title The title of the newsletter.
+   * @param string $content The content of the newsletter.
+   *
+   * @return void
+   */
   public function __construct($title, $content)
   {
 
@@ -27,13 +35,25 @@ class productNotification
       Registry::set('Newsletter', new AppNewsletter());
     }
 
-    $this->app = Registry::get('Newsletter');
+    /**
+     *
+     */
+      $this->app = Registry::get('Newsletter');
 
     $this->show_chooseAudience = true;
     $this->title = $title;
     $this->content = $content;
   }
 
+  /**
+   * Generates the JavaScript and HTML structure for selecting and managing a list of products as part of the notification audience.
+   *
+   * Retrieves the list of available products based on the current language and their status, and then constructs an interactive UI
+   * allowing the user to add or remove products from the selection. Includes JavaScript functionality for moving items between available
+   * and selected lists and ensuring valid submission.
+   *
+   * @return string Returns the constructed HTML and JavaScript string for the audience selection interface.
+   */
   public function chooseAudience()
   {
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -137,6 +157,16 @@ function selectAll(FormName, SelectBox) {
     return $chooseAudience_string;
   }
 
+  /**
+   * Generates and returns the confirmation string for the newsletter sending process,
+   * including hidden fields, summary of audience details, and action buttons.
+   *
+   * This method calculates the audience for the newsletter based on global or product-specific
+   * parameters. Depending on the input criteria, it retrieves the relevant customer IDs and formats
+   * the confirmation output with buttons and audience details for further processing.
+   *
+   * @return string The generated confirmation HTML string containing audience details and action buttons.
+   */
   public function confirm()
   {
     $audience = [];
@@ -244,6 +274,13 @@ function selectAll(FormName, SelectBox) {
   }
 
 // Envoie du mail sans gestion de Fckeditor
+
+  /**
+   * Sends a newsletter to the appropriate audience based on the provided newsletter ID.
+   *
+   * @param int $newsletter_id The ID of the newsletter to be sent.
+   * @return bool Returns false if the newsletter feature is disabled, otherwise none.
+   */
   public function send($newsletter_id)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -389,6 +426,12 @@ function selectAll(FormName, SelectBox) {
 
 
 // Envoie du mail avec gestion des images pour Fckeditor et Imanager.
+  /**
+   * Sends a newsletter using CKEditor to the specified audience.
+   *
+   * @param int $newsletter_id The ID of the newsletter to be sent.
+   * @return bool Returns false if the newsletter application is not active or if sending fails; otherwise, no return value.
+   */
   public function sendCkeditor($newsletter_id)
   {
     if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {

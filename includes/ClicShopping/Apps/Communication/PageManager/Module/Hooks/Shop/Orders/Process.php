@@ -16,11 +16,10 @@ class Process implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
-  /*
-    * getPageManagerGeneralConditons
-    * @param $insert_id, order_id
-    * @return array and save general condition
-    * @access private
+  /**
+   * Inserts page manager general condition data into the 'orders_pages_manager' table.
+   *
+   * @return void
    */
   private function getPageManagerGeneralConditons()
   {

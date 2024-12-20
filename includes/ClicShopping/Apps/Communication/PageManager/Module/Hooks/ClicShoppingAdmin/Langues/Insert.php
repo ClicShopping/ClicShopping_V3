@@ -20,6 +20,14 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   protected $insert_language_id;
 
+  /**
+   * Constructor method.
+   *
+   * Initializes the PageManager application if it does not already exist in the Registry,
+   * and sets the `app` and `lang` properties with the PageManager and Language instances respectively.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('PageManager')) {
@@ -27,9 +35,17 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     }
 
     $this->app = Registry::get('PageManager');
-    $this->lang = Registry::get('Language');
+    /**
+     *
+     */
+      $this->lang = Registry::get('Language');
   }
 
+  /**
+   * Inserts new language entries into the pages_manager_description table based on the latest language ID.
+   *
+   * @return void
+   */
   private function insert()
   {
     $insert_language_id = LanguageAdmin::getLatestLanguageID();
@@ -55,6 +71,12 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the necessary logic based on the defined application status.
+   * It checks specific conditions related to language and insertion parameters and initiates the insert operation if applicable.
+   *
+   * @return bool Returns false if the application status is not defined or is disabled.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS') || CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS == 'False') {

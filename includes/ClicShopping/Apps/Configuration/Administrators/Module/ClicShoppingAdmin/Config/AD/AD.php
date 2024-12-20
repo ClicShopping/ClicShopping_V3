@@ -10,6 +10,13 @@
 
 namespace ClicShopping\Apps\Configuration\Administrators\Module\ClicShoppingAdmin\Config\AD;
 
+/**
+ * Class AD
+ *
+ * This class represents a configuration module for administrators within the ClicShopping Admin Configuration system.
+ * It extends the ConfigAbstract class and provides methods for initializing, installing,
+ * and uninstalling the module.
+ */
 class AD extends \ClicShopping\Apps\Configuration\Administrators\Module\ClicShoppingAdmin\Config\ConfigAbstract
 {
   protected $pm_code = 'administrators';
@@ -17,6 +24,11 @@ class AD extends \ClicShopping\Apps\Configuration\Administrators\Module\ClicShop
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_ad_title');
@@ -25,6 +37,11 @@ class AD extends \ClicShopping\Apps\Configuration\Administrators\Module\ClicShop
     $this->is_installed = \defined('CLICSHOPPING_APP_ADMINISTRATORS_AD_STATUS') && (trim(CLICSHOPPING_APP_ADMINISTRATORS_AD_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its reference to the list of installed modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -38,6 +55,11 @@ class AD extends \ClicShopping\Apps\Configuration\Administrators\Module\ClicShop
     $this->app->saveCfgParam('MODULE_MODULES_ADMINISTRATORS_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its reference from the list of installed modules.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

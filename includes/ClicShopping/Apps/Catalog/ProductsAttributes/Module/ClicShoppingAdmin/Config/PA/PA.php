@@ -1,11 +1,15 @@
 <?php
 /**
+ * The PA class is a configuration module for the Products Attributes application
+ * in the ClicShopping admin panel.
  *
- * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
- * @Licence GPL 2 & MIT
- * @Info : https://www.clicshopping.org/forum/trademark/
+ * This class extends the ConfigAbstract class and provides initialization,
+ * installation, and uninstallation functionality for the module.
  *
+ * Properties:
+ * - $pm_code: Specifies the module code.
+ * - $is_uninstallable: Indicates whether the module can be uninstalled.
+ * - $sort_order: Determines the order in which the module is displayed.
  */
 
 namespace ClicShopping\Apps\Catalog\ProductsAttributes\Module\ClicShoppingAdmin\Config\PA;

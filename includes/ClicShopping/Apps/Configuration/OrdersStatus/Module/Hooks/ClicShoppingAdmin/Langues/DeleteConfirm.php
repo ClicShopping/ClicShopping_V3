@@ -28,7 +28,7 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('OrdersStatus');
   }
 
-  private function delete($id)
+  private function delete(int $id)
   {
     if (!\is_null($id)) {
       $this->app->db->delete('orders_status', ['language_id' => $id]);

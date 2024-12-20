@@ -19,6 +19,13 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Newsletter application by checking its existence in the registry.
+   * If it does not exist, a new instance of NewsletterApp is created and added to the registry.
+   * Sets the application instance as a class property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Newsletter')) {
@@ -28,13 +35,25 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Newsletter');
   }
 
-  private function delete($id)
+  /**
+   * Deletes a record in the 'newsletters' database table based on the given ID.
+   *
+   * @param int $id The ID used to identify the record to delete.
+   *                            If null, no action is taken.
+   * @return void
+   */
+  private function delete(int $id)
   {
     if (!\is_null($id)) {
       $this->app->db->delete('newsletters', ['languages_id' => $id]);
     }
   }
 
+  /**
+   * Executes the main logic for the method, handling specific conditions and actions.
+   *
+   * @return bool Returns false if the application newsletter status is not defined or set to 'False'.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {

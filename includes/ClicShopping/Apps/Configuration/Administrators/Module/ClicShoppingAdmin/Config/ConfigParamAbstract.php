@@ -12,6 +12,14 @@ namespace ClicShopping\Apps\Configuration\Administrators\Module\ClicShoppingAdmi
 
 use ClicShopping\OM\Registry;
 
+/**
+ * Provides an abstract configuration parameter class that serves as a base
+ * for managing and defining configuration parameters within the application.
+ *
+ * Handles initialization of configuration specifics, dynamically sets
+ * key prefixes, and ensures the integration of language definitions for
+ * configuration parameters based on the provided module.
+ */
 abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin\ConfigParamAbstract
 {
   public mixed $app;
@@ -20,6 +28,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_administrators_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor method for initializing the configuration module.
+   *
+   * @param string $config_module The name of the configuration module.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('Administrators');

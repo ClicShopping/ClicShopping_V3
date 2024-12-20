@@ -18,6 +18,15 @@ class StatsProductsOutOfStock implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the Products application.
+   *
+   * This method checks if the 'Products' entry exists within the Registry.
+   * If it does not exist, it creates a new instance of ProductsApp and sets it in the Registry.
+   * Finally, it retrieves the 'Products' entry from the Registry and assigns it to the app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Products')) {
@@ -27,6 +36,14 @@ class StatsProductsOutOfStock implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Products');
   }
 
+  /**
+   * Retrieves the count of products that are out of stock.
+   *
+   * This method executes a database query to count the number of
+   * products with a quantity less than or equal to zero.
+   *
+   * @return int The number of out-of-stock products.
+   */
   private function getOutOfStock()
   {
 
@@ -39,6 +56,11 @@ class StatsProductsOutOfStock implements \ClicShopping\OM\Modules\HooksInterface
     return $Qproducts->valueInt('count');
   }
 
+  /**
+   * Retrieves the count of products that are currently offline (with products_status set to 0) from the database.
+   *
+   * @return int The count of offline products.
+   */
   private function getProductsOffLine()
   {
 
@@ -51,6 +73,11 @@ class StatsProductsOutOfStock implements \ClicShopping\OM\Modules\HooksInterface
     return $Qproducts->valueInt('count');
   }
 
+  /**
+   * Displays information about products that are out of stock or offline.
+   *
+   * @return string|false The HTML output containing the information or false if the functionality is disabled.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {

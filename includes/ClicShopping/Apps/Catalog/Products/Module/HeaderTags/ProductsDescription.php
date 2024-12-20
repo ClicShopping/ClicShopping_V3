@@ -21,6 +21,11 @@ class ProductsDescription extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   public mixed $app;
   public string $group;
 
+  /**
+   * Initializes the module by setting up required registry entries, language, and configuration properties.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('Products')) {
@@ -42,11 +47,23 @@ class ProductsDescription extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks whether the current module or feature is enabled.
+   *
+   * @return bool Returns true if enabled, false otherwise.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates and returns the SEO output consisting of title, description, and keywords
+   * for a product based on the product's information and language settings.
+   *
+   * @return string|false Returns the generated SEO output as a string if the product
+   * information is properly retrieved; returns false otherwise.
+   */
   public function getOutput()
   {
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -153,6 +170,11 @@ EOD;
     }
   }
 
+  /**
+   * Installs the module by adding necessary configuration values into the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -181,6 +203,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves an array of configuration keys related to the product description module.
+   *
+   * @return array Returns an array of configuration key names.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_DESCRIPTION_STATUS',

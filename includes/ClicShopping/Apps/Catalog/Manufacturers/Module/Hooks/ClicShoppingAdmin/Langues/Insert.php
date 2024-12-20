@@ -30,6 +30,15 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->lang = Registry::get('Language');
   }
 
+  /**
+   * Inserts manufacturer information for a new language into the database.
+   *
+   * This method retrieves manufacturer data from the database, duplicates the data,
+   * adjusts it for the new language, and saves it. Certain fields such as click information
+   * and last click date are omitted during the process.
+   *
+   * @return void
+   */
   private function insert()
   {
     $insert_language_id = LanguageAdmin::getLatestLanguageID();
@@ -57,6 +66,11 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main functionality of the method based on predefined conditions.
+   *
+   * @return bool|void Returns false if the application status is not defined or disabled. Otherwise, executes the insert process when specific parameters are set.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {

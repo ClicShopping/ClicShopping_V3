@@ -28,7 +28,7 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('AdministratorMenu');
   }
 
-  private function delete($id)
+  private function delete(int $id)
   {
     if (!\is_null($id)) {
       $this->app->db->delete('administrator_menu_description', ['language_id' => $id]);

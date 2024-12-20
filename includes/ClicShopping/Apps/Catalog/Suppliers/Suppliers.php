@@ -19,12 +19,19 @@ class Suppliers extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Suppliers_V1';
 
+  /**
+   * Initializes the necessary components or configurations for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves and organizes configuration modules available in the specified directory.
+   *
+   * @return mixed Returns an array of configuration module names sorted by their sort order, or an empty array if no modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +82,11 @@ class Suppliers extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the specified module and information key.
+   *
+   * @param string $module The name of the configuration module to retrieve.
+   * @param string $info The specific information key to retrieve from the module.
+   * @return mixed The requested information from the configuration module, or null if unavailable.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +100,9 @@ class Suppliers extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +110,8 @@ class Suppliers extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string The identifier of the current object.
    */
   public function getIdentifier(): string
   {

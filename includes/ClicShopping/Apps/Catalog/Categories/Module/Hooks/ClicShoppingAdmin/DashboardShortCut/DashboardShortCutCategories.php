@@ -14,11 +14,23 @@ use ClicShopping\Apps\Catalog\Categories\Categories as categoriesApp;
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
-
+/**
+ * The DashboardShortCutCategories class contains the logic for displaying the categories shortcut on the dashboard.
+ */
 class DashboardShortCutCategories implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the Categories application component.
+   *
+   * Checks if the `Categories` component exists in the Registry. If it does not,
+   * it creates and registers a new instance of `categoriesApp`.
+   * It then retrieves the registered `Categories` component and loads necessary language definitions
+   * for the dashboard shortcut categories module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Categories')) {
@@ -30,6 +42,11 @@ class DashboardShortCutCategories implements \ClicShopping\OM\Modules\HooksInter
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/DashboardShortCut/dashboard_shortcut_categories');
   }
 
+  /**
+   * Generates and returns an HTML link for the categories shortcut if the application status allows it.
+   *
+   * @return string HTML link for the categories shortcut if the application is active, otherwise returns false.
+   */
   public function display(): string
   {
     if (!\defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {

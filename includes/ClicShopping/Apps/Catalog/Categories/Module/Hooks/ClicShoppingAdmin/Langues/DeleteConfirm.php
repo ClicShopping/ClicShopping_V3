@@ -13,11 +13,19 @@ namespace ClicShopping\Apps\Catalog\Categories\Module\Hooks\ClicShoppingAdmin\La
 use ClicShopping\Apps\Catalog\Categories\Categories as CategoriesApp;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
-
+/**
+ * The DeleteConfirm class contains the logic for deleting a record from the categories_description table.
+ */
 class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Categories application by ensuring its existence in the registry
+   * and assigning it to the local property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Categories')) {
@@ -27,13 +35,24 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Categories');
   }
 
-  private function delete($id)
+  /**
+   * Deletes a record from the categories_description table based on the provided language ID.
+   *
+   * @param int|null $id The language ID of the record to be deleted. If null, no action is taken.
+   * @return void
+   */
+  private function delete(int $id)
   {
     if (!\is_null($id)) {
       $this->app->db->delete('categories_description', ['language_id' => $id]);
     }
   }
 
+  /**
+   * Executes the necessary operations based on the configuration and input variables.
+   *
+   * @return bool Returns false if the application status is not defined or disabled.
+   */
   public function execute()
   {
 

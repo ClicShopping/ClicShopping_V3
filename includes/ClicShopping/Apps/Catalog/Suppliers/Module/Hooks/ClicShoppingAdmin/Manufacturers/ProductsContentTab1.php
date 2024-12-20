@@ -20,6 +20,16 @@ class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   private mixed $db;
 
+  /**
+   * Constructor method to initialize the Suppliers application.
+   *
+   * This method checks if the 'Suppliers' registry key exists. If it does not exist,
+   * a new instance of the Suppliers application is created and registered. It also
+   * sets the local application property and loads the required definitions for
+   * the specified module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Suppliers')) {
@@ -31,7 +41,9 @@ class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return int
+   * Retrieves the supplier's ID associated with a given manufacturer's ID.
+   *
+   * @return int The ID of the supplier.
    */
   private function getSuppliersId(): int
   {

@@ -18,6 +18,15 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the Newsletter module.
+   *
+   * This method checks if the 'Newsletter' instance exists in the Registry.
+   * If not, it creates and registers a new instance of the NewsletterApp.
+   * It also sets the application instance and loads the necessary definitions for the module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Newsletter')) {
@@ -29,6 +38,15 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
   }
 
+  /**
+   * Counts the number of customers who are subscribed to the newsletter.
+   *
+   * This method performs a database query to count all customers who have
+   * opted in to receive newsletters. The count is based on the value of the
+   * `customers_newsletter` field in the customers table.
+   *
+   * @return int The total number of customers subscribed to the newsletter.
+   */
   private function statsCountCustomersNewsletter()
   {
     $QcustomersNewsletter = $this->app->db->prepare('select count(customers_id) as count
@@ -44,6 +62,16 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
   }
 
 // Nbr de clients total
+
+  /**
+   * Counts the number of B2C customers who are subscribed to the newsletter.
+   *
+   * This method queries the database to calculate the total number of customers
+   * with a group ID of 0 (indicating B2C customers) and who have opted in for
+   * the newsletter subscription.
+   *
+   * @return int The total count of B2C customers subscribed to the newsletter.
+   */
   private function statCountCustomersB2C()
   {
     $Qcustomer = $this->app->db->prepare('select count(customers_id) as count
@@ -60,6 +88,12 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
   }
 
 // Average newlstter subcribers vs total customers
+
+  /**
+   * Calculates the average percentage of B2C customers who are subscribed to the newsletter.
+   *
+   * @return string The calculated average as a percentage with two decimal precision, followed by a percent sign. Returns nothing if one of the counts is zero.
+   */
   private function statAverageCustomersNewsletterB2C()
   {
     if ($this->statCountCustomersB2C() > 0 && $this->statsCountCustomersNewsletter() > 0) {
@@ -69,6 +103,16 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
   }
 
 // Nbr de clients total
+
+  /**
+   * Retrieves the total number of B2B customers who are subscribed to the newsletter.
+   *
+   * The method executes a database query to count all customers whose `customers_group_id`
+   * is greater than 0 and `customers_newsletter` is set to 1. The result is limited to a
+   * single record, capturing the total count of matching customers.
+   *
+   * @return int The total number of B2B customers subscribed to the newsletter.
+   */
   private function statCountCustomersB2B()
   {
     $Qcustomer = $this->app->db->prepare('select count(customers_id) as count
@@ -85,6 +129,12 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
   }
 
 // Average newlstter subcribers vs total customers
+
+  /**
+   * Calculates the average percentage of B2B customers subscribed to the newsletter.
+   *
+   * @return string The average percentage of B2B customers subscribed to the newsletter, formatted with '%' and rounded to two decimal places. Returns nothing if the required counts are zero.
+   */
   public function statAverageCustomersNewsletterB2B()
   {
     if ($this->statCountCustomersB2B() > 0 && $this->statsCountCustomersNewsletter() > 0) {
@@ -94,6 +144,14 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Generates and returns the HTML content for displaying newsletter-related statistics,
+   * including counts and averages for various customer categories (e.g., B2C, B2B),
+   * based on application settings and configurations.
+   *
+   * @return false|string Returns a string containing the generated HTML output if the application
+   *                      is properly configured and statistical data is available; otherwise, returns false.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_CUSTOMERS_CS_STATUS') || CLICSHOPPING_APP_CUSTOMERS_CS_STATUS == 'False') {

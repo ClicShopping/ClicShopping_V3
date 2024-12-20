@@ -21,6 +21,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   protected $supplierAdmin;
 
+  /**
+   * Initializes the Suppliers and SupplierAdmin components and registers them within the application registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Suppliers')) {
@@ -36,6 +41,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     $this->supplierAdmin = Registry::get('SupplierAdmin');
   }
 
+  /**
+   * Executes the method functionality for the Suppliers module.
+   *
+   * @return bool Returns false if the application supplier status is not defined or is set to 'False'.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {

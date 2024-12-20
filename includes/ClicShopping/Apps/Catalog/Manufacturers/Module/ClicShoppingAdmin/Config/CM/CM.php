@@ -1,15 +1,21 @@
 <?php
 /**
+ * Class CM
  *
- * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
- * @Licence GPL 2 & MIT
- * @Info : https://www.clicshopping.org/forum/trademark/
- *
+ * This class represents the configuration module for managing manufacturers in the ClicShoppingAdmin application.
+ * It extends the ConfigAbstract class, providing initialization, installation, and uninstallation logic
+ * for the module configuration.
  */
 
 namespace ClicShopping\Apps\Catalog\Manufacturers\Module\ClicShoppingAdmin\Config\CM;
 
+/**
+ * Class CM
+ *
+ * Represents the configuration module for manufacturers within the ClicShoppingAdmin application.
+ * This class provides the logic for initializing, installing, and uninstalling the manufacturers module,
+ * extending the ConfigAbstract functionality.
+ */
 class CM extends \ClicShopping\Apps\Catalog\Manufacturers\Module\ClicShoppingAdmin\Config\ConfigAbstract
 {
 
@@ -18,6 +24,12 @@ class CM extends \ClicShopping\Apps\Catalog\Manufacturers\Module\ClicShoppingAdm
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting the title, short title, and introduction
+   * values, and determining whether the module is installed.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_cm_title');
@@ -26,6 +38,12 @@ class CM extends \ClicShopping\Apps\Catalog\Manufacturers\Module\ClicShoppingAdm
     $this->is_installed = \defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') && (trim(CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS) != '');
   }
 
+  /**
+   * Installs the module by updating the configuration parameter to include the module's identifier.
+   * This process ensures the module is added to the list of installed manufacturers modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +57,11 @@ class CM extends \ClicShopping\Apps\Catalog\Manufacturers\Module\ClicShoppingAdm
     $this->app->saveCfgParam('MODULE_MODULES_MANUFACTURERS_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing it from the list of installed modules.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

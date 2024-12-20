@@ -10,6 +10,10 @@
 
 namespace ClicShopping\Apps\Communication\Newsletter\Module\ClicShoppingAdmin\Config\NL;
 
+/**
+ * This class represents the Newsletter configuration module within the ClicShoppingAdmin panel.
+ * It extends the ConfigAbstract class and provides functionality to manage the Newsletter module configuration.
+ */
 class NL extends \ClicShopping\Apps\Communication\Newsletter\Module\ClicShoppingAdmin\Config\ConfigAbstract
 {
 
@@ -26,6 +30,11 @@ class NL extends \ClicShopping\Apps\Communication\Newsletter\Module\ClicShopping
     $this->is_installed = \defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') && (trim(CLICSHOPPING_APP_NEWSLETTER_NL_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its identifier to the list of installed newsletter modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +48,11 @@ class NL extends \ClicShopping\Apps\Communication\Newsletter\Module\ClicShopping
     $this->app->saveCfgParam('NL', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its entry from the list of installed modules.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

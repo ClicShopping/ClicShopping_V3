@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the instance by setting up application properties and loading definitions for the module.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('EMail');
@@ -40,6 +45,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the email module.
+   * Iterates through defined parameters, initializes parameter objects,
+   * and saves configuration parameters with their default values and attributes.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_EMAIL_' . $this->code . '_');
@@ -55,6 +67,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +82,16 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of parameter identifiers for the configuration module.
+   *
+   * This method scans the directory containing configuration parameters for files
+   * with a `.php` extension that are subclasses of `ConfigParamAbstract`. If a file
+   * meets these criteria, its identifier is added to the result array in a standardized format.
+   * An error is triggered if a file does not subclass `ConfigParamAbstract`.
+   *
+   * @return array An array of parameter identifiers for the configuration module.
+   */
   public function getParameters()
   {
     $result = [];
@@ -90,6 +115,13 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves an array of input parameters from configuration settings,
+   * processes and organizes them with associated metadata, such as titles
+   * and descriptions, and applies defaults when necessary.
+   *
+   * @return array An associative array of input parameters sorted by their respective sort orders.
+   */
   public function getInputParameters()
   {
     $result = [];

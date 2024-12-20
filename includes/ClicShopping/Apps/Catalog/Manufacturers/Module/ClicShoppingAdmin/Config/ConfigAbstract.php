@@ -13,6 +13,13 @@ namespace ClicShopping\Apps\Catalog\Manufacturers\Module\ClicShoppingAdmin\Confi
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
 
+/**
+ * Abstract class providing a base structure for configuration modules.
+ * This class includes functionality to initialize the configuration,
+ * manage installation and uninstallation of configuration parameters,
+ * and retrieve parameter definitions. Subclasses are expected to extend
+ * and implement abstract methods as needed.
+ */
 abstract class ConfigAbstract
 {
   public mixed $app;
@@ -29,6 +36,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the class.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Manufacturers');
@@ -38,6 +50,12 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters specific to the module by iterating through the module's defined parameters.
+   * Each parameter is processed to create a configuration object and saved using the application's configuration handler.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_MANUFACTURERS_' . $this->code . '_');
@@ -53,6 +71,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +86,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of parameter keys for the specified configuration.
+   *
+   * @return array Returns an array of parameter keys found in the designated directory. Each key corresponds to a valid parameter class.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +114,11 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes the input parameters for the manufacturer's configuration.
+   *
+   * @return array Returns an array of configuration field sets, sorted by their defined sort order.
+   */
   public function getInputParameters()
   {
     $result = [];

@@ -20,6 +20,15 @@ class DashboardShortCutProducts implements \ClicShopping\OM\Modules\HooksInterfa
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the Products module.
+   *
+   * Ensures that the 'Products' module is registered in the Registry. If it does not exist, it creates a new instance of ProductsApp
+   * and sets it in the Registry. Then, retrieves the 'Products' module from the Registry and loads its language definitions for the
+   * dashboard shortcut.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Products')) {
@@ -32,7 +41,9 @@ class DashboardShortCutProducts implements \ClicShopping\OM\Modules\HooksInterfa
   }
 
   /**
-   * @return string
+   * Displays a button linking to the product catalog if the product catalog module is enabled.
+   *
+   * @return string A string containing HTML for the button or an empty string if the module is disabled.
    */
   public function display(): string
   {

@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the Suppliers module by loading necessary definitions
+   * and performing database-related setup actions.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Suppliers = Registry::get('Suppliers');
@@ -24,9 +30,15 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries for the administration menu related to the Suppliers module.
+   * This includes:
+   * - Adding the menu entry to the `administrator_menu` table if it does not already exist.
+   * - Linking the menu entry to the relevant language descriptions in the `administrator_menu_description` table.
+   * - Clearing the administrative menu cache to reflect changes.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -72,9 +84,11 @@ class MariaDb
     }
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the required database tables for the suppliers module if they do not already exist.
+   *
+   * @return void
+   */
   private static function installDb(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

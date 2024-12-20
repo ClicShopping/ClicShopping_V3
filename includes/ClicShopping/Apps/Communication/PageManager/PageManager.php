@@ -19,12 +19,22 @@ class PageManager extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_PageManager_V1';
 
+  /**
+   * Initializes the necessary components or configurations for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves and returns the configuration modules available in a specified directory.
+   * The method locates and validates modules that extend `ConfigAbstract` within the namespace,
+   * organizing them by their sort order or discovery sequence.
+   *
+   * @return mixed Returns an array of configuration module filenames indexed by their sort order.
+   *               If no modules are found, an empty array is returned.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +85,11 @@ class PageManager extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information.
+   *
+   * @param string $module The name of the module to retrieve information for.
+   * @param string $info The specific information to retrieve about the module.
+   * @return mixed Returns the requested module information, or null if not available.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +103,9 @@ class PageManager extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version as a string or integer.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +113,9 @@ class PageManager extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

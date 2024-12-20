@@ -20,6 +20,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_suppliers_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor method.
+   *
+   * @param string $config_module The configuration module name used to initialize the class.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('Suppliers');
@@ -28,7 +34,10 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
 
     $this->config_module = $config_module;
 
-    $this->code = (new \ReflectionClass($this))->getShortName();
+    /**
+     *
+     */
+      $this->code = (new \ReflectionClass($this))->getShortName();
 
     $this->app->loadDefinitions('Module/ClicShoppingAdmin/Config/' . $config_module . '/Params/' . $this->code);
     parent::__construct();
