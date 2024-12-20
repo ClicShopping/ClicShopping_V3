@@ -9,7 +9,13 @@
  */
 
 namespace ClicShopping\Apps\Configuration\Langues\Module\ClicShoppingAdmin\Config\LG;
-
+/**
+ * ClicShopping LG module class.
+ *
+ * This class represents the LG module in the ClicShopping Admin Configuration.
+ * It extends the `ConfigAbstract` class to provide functionality for installing
+ * and uninstalling the module, as well as initialization of its settings and configurations.
+ */
 class LG extends \ClicShopping\Apps\Configuration\Langues\Module\ClicShoppingAdmin\Config\ConfigAbstract
 {
 
@@ -18,6 +24,11 @@ class LG extends \ClicShopping\Apps\Configuration\Langues\Module\ClicShoppingAdm
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_lg_title');
@@ -26,6 +37,13 @@ class LG extends \ClicShopping\Apps\Configuration\Langues\Module\ClicShoppingAdm
     $this->is_installed = \defined('CLICSHOPPING_APP_LANGUES_LG_STATUS') && (trim(CLICSHOPPING_APP_LANGUES_LG_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its identifier to the configuration parameter
+   * MODULE_MODULES_LANGUES_INSTALLED. The module's identifier is generated using
+   * the vendor, code, and specific module code.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +57,11 @@ class LG extends \ClicShopping\Apps\Configuration\Langues\Module\ClicShoppingAdm
     $this->app->saveCfgParam('MODULE_MODULES_LANGUES_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its reference from the installed modules configuration.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

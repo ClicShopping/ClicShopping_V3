@@ -28,11 +28,17 @@ use function defined;
 use function is_null;
 
 class Gpt {
+  /**
+   *
+   * @return void
+   */
   public function __construct() {
   }
-  
+
   /**
-   * @return bool
+   * Checks the status of the GPT integration by verifying application constants and API key configuration.
+   *
+   * @return bool Returns true if the GPT integration is enabled and properly configured, otherwise false.
    */
   public static function checkGptStatus(): bool
   {
@@ -44,8 +50,11 @@ class Gpt {
   }
 
   /**
-   * @param bool $chatGpt
-   * @return string
+   * Generates the AJAX URL for the requested script.
+   *
+   * @param bool $chatGpt Determines whether to return the URL for the chatGpt script (true)
+   *                       or the chatGptSEO script (false).
+   * @return string Returns the appropriate AJAX URL based on the parameter.
    */
   public static function getAjaxUrl(bool $chatGpt = true): string
   {
@@ -59,7 +68,9 @@ class Gpt {
   }
 
   /**
-   * @return string
+   * Generates the URL for the AJAX SEO multilanguage functionality.
+   *
+   * @return string The fully constructed URL for the AJAX SEO multilanguage script.
    */
   public static function getAjaxSeoMultilanguageUrl(): string
   {
@@ -69,7 +80,9 @@ class Gpt {
   }
 
   /**
-   * @return array
+   * Retrieves an array of GPT models with their corresponding IDs and textual descriptions.
+   *
+   * @return array An array of GPT models, where each model is represented as an associative array containing 'id' and 'text' keys.
    */
   public static function getGptModel(): array
   {
@@ -87,7 +100,9 @@ class Gpt {
   }
 
   /**
-   * @return string
+   * Generates and returns an HTML select field for GPT model options.
+   *
+   * @return string The HTML select field containing GPT model options.
    */
   public static function getGptModalMenu(): string
   {
@@ -99,9 +114,10 @@ class Gpt {
   }
 
   /**
-   * @param array|null $parameters
-   * @return array
-   * @throws \Exception
+   * Initializes and returns an instance of OpenAIChat configured with the given parameters.
+   *
+   * @param array|null $parameters Optional parameters for configuring the OpenAI model, such as model type and options.
+   * @return mixed The configured OpenAIChat instance.
    */
   public static function getOpenAiGpt(array|null $parameters): mixed
   {
@@ -120,13 +136,14 @@ class Gpt {
     }
 
   /**
-   * @param string $question
-   * @param int|null $maxtoken
-   * @param float|null $temperature
-   * @param string|null $engine
-   * @param int|null $max
-   * @return mixed
-   * @throws \Exception
+   * Generates a response from the OpenAI chat model based on input parameters.
+   *
+   * @param string $question The question or input text to be sent to the OpenAI chat model.
+   * @param int|null $maxtoken Optional. Maximum number of tokens to generate in the response. Defaults to the configured application value if null.
+   * @param float|null $temperature Optional. Controls the creativity or randomness of the model's response. Defaults to the configured application value if null.
+   * @param string|null $engine Optional. Specifies the model engine to use. Defaults to the configured application value if null.
+   * @param int|null $max Optional. Number of responses to generate. Defaults to the configured application value if null.
+   * @return mixed Returns the generated chat response from OpenAI if successful, or false if the application API key is unavailable.
    */
    public static function getOpenAIChat(string $question,  int|null $maxtoken = null, ?float $temperature = null, ?string $engine = null,  int|null $max = 1): mixed
    {
@@ -177,9 +194,9 @@ class Gpt {
   }
 
   /**
-   * @param string $model
-   * @return mixed
-   * @throws MissingParameterExcetion
+   *
+   * @param string $model The name of the model to be used for the chat. Defaults to 'mistral:7b'.
+   * @return mixed Returns an instance of OllamaChat configured with the specified model.
    */
   public static function getOllamaChat(string $model = 'mistral:7b'): mixed
   {
@@ -191,10 +208,14 @@ class Gpt {
   }
 
   /**
-   * @param string $model
-   * @param int|null $maxtoken
-   * @param array|null $modelOptions
-   * @return array
+   * Creates an instance of the AnthropicChat class based on the specified model and configuration options.
+   *
+   * @param string $model The specific model identifier to use for the AnthropicChat instance.
+   *                      Supported values are 'anth-sonnet', 'anth-opus', and others.
+   * @param int|null $maxtoken The maximum number of tokens the model can output.
+   *                           Defaults to the configured max token if not provided.
+   * @param array|null $modelOptions Additional configuration options for the model.
+   * @return mixed An instance of AnthropicChat initialized with the provided parameters, or false on failure.
    */
   public static function getAnthropicChat(string $model, int|null $maxtoken = null, array|null $modelOptions = null): mixed
   {
@@ -219,13 +240,14 @@ class Gpt {
   }
 
   /**
-   * @param string $question
-   * @param int|null $maxtoken
-   * @param float|null $temperature
-   * @param string|null $engine
-   * @param int|null $max
-   * @return mixed
-   * @throws MissingParameterExcetion
+   * Retrieves a chat response based on the provided parameters and model configuration.
+   *
+   * @param string $question The input question or prompt to be processed.
+   * @param int|null $maxtoken The maximum number of tokens for the response, or null for default.
+   * @param float|null $temperature The sampling temperature for response generation, or null for default.
+   * @param string|null $engine The engine to be used for processing, or null for default.
+   * @param int|null $max The maximum number of responses to return, or null for default.
+   * @return mixed The chat response generated by the selected model.
    */
   private static function getChat(string $question,  int|null $maxtoken = null, ?float $temperature = null, ?string $engine = null,  int|null $max = 1): mixed
   {
@@ -241,13 +263,14 @@ class Gpt {
   }
 
   /**
-   * @param string $question
-   * @param int|null $maxtoken
-   * @param float|null $temperature
-   * @param string|null $engine
-   * @param int|null $max
-   * @return bool|string
-   * @throws \Exception
+   * Retrieves a response from the GPT model based on the provided input question and parameters.
+   *
+   * @param string $question The input question or prompt for the GPT model.
+   * @param int|null $maxtoken Optional maximum number of tokens for the response generation. Defaults to null.
+   * @param float|null $temperature Optional temperature value for controlling randomness of the output. Defaults to null.
+   * @param string|null $engine Optional specific GPT engine to use. Defaults to null.
+   * @param int|null $max Optional maximum number of responses to generate. Defaults to 1.
+   * @return bool|string Returns the generated response as a string. Returns false if GPT is unavailable or fails to generate a response.
    */
   public static function getGptResponse(string $question,  int|null $maxtoken = null, ?float $temperature = null, ?string $engine = null,  int|null $max = 1): bool|string
   {
@@ -287,10 +310,13 @@ class Gpt {
   }
 
   /**
-   * @param string $question
-   * @param string $result
-   * @param string|null $engine
-   * @param array|null $usage
+   * Saves data to the database, including question details and token usage statistics.
+   *
+   * @param string $question The question being saved.
+   * @param string $result The result or response to the question.
+   * @param string|null $engine The engine used for the response, or null if not specified.
+   * @param array|null $usage An associative array containing token usage statistics, or null if not available.
+   * @return void
    */
   private static function saveData(string $question, string $result, string|null $engine, array|null $usage): void
   {
@@ -340,7 +366,9 @@ class Gpt {
    ****************************************/
 
   /**
-   * @return array
+   * Retrieves the total number of tokens (promptTokens, completionTokens, totalTokens) used in the last month.
+   *
+   * @return array An associative array containing promptTokens, completionTokens, totalTokens, and date_added.
    */
   public static function getTotalTokenByMonth(): array
   {
@@ -361,7 +389,11 @@ class Gpt {
   }
 
   /**
-   * @return array
+   *
+   * Retrieves token usage data for a specified GPT ID.
+   *
+   * @param int $id The unique identifier of the GPT entry.
+   * @return array An associative array containing token usage data: promptTokens, completionTokens, totalTokens, and the date added.
    */
   public static function getTokenbyId(int $id): array
   {
@@ -383,7 +415,10 @@ class Gpt {
   }
 
   /**
-   * @return bool|float
+   *
+   * Calculates the error rate of GPT responses by analyzing specific response patterns and comparing them to total entries.
+   *
+   * @return bool|float Returns the calculated error rate as a percentage if computations are successful, or false if there is no data available.
    */
   public static function getErrorRateGpt(): bool|float
   {
@@ -418,7 +453,11 @@ class Gpt {
   }
 
   /**
-   * @return String
+   * Generates and returns the HTML for the GPT modal menu. The menu includes a chat interface triggered by a modal,
+   * along with an option to toggle saving chat data. It verifies certain conditions such as the state of the ChatGPT
+   * module and the presence of an API key before rendering the menu.
+   *
+   * @return string HTML content for the GPT modal menu
    */
   public static function gptModalMenu(): string
   {
@@ -502,7 +541,9 @@ class Gpt {
    ****************************************/
 
   /**
-   * @return string
+   * Generates and returns the parameters and script configuration for integrating a ChatGPT model into CKEditor.
+   *
+   * @return string|bool Returns the generated script as a string if successful, otherwise, returns false.
    */
   public static function gptCkeditorParameters(): string|bool
   {

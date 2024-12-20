@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process by loading currency definitions and calling the necessary database installation methods.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Currency = Registry::get('Currency');
@@ -24,9 +29,19 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries for the Currency menu in the administrator panel.
+   *
+   * This method checks if the menu entry for Currency under the Configuration section
+   * exists in the "administrator_menu" table. If it does not exist, it creates a new entry
+   * with the appropriate details and links. It also inserts descriptions for the menu entry
+   * for each available language in the "administrator_menu_description" table.
+   *
+   * Additionally, it clears the cache for the "menu-administrator" cache to ensure
+   * the updates are reflected.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -73,7 +88,9 @@ class MariaDb
   }
 
   /**
-  * @return void
+   * Installs the database table for currencies if it does not already exist.
+   *
+   * @return void
    */
   private static function installDb()
   {

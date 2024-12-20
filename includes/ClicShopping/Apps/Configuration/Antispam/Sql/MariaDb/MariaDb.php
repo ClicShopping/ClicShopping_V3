@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the Antispam module.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Antispam = Registry::get('Antispam');
@@ -23,9 +28,13 @@ class MariaDb
     self::installDbMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Creates and inserts an entry for the Antispam module into the administrator menu database table.
+   * If the entry does not already exist, it adds the module menu item as a child under a specific parent menu.
+   * Also inserts language-specific descriptions for the menu item and clears the administrator menu cache.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

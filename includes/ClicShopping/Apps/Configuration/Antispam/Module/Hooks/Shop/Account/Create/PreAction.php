@@ -21,6 +21,12 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   public mixed $messageStack;
 
+  /**
+   * Constructor method for initializing the Antispam application.
+   * Ensures the Antispam application is registered in the registry and retrieves required dependencies.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Antispam')) {
@@ -32,7 +38,9 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return bool
+   * Checks the configuration and conditions for the invisible antispam system in the context of account creation.
+   *
+   * @return bool Returns true if an error condition is met related to the invisible antispam system, otherwise returns false.
    */
   private static function checkInvisibleAntispam(): bool
   {
@@ -54,7 +62,9 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return bool
+   * Checks if numeric antispam validations are enabled and executes the antispam check.
+   *
+   * @return bool Returns true if numeric antispam validation passes, false otherwise.
    */
   private static function checkNumericAntispam(): bool
   {
@@ -71,6 +81,18 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
     return $error;
   }
 
+  /**
+   * Executes the antispam validation process.
+   *
+   * This method checks for the status of the Antispam application and ensures
+   * its requirements are met. It performs two types of antispam checks: invisible
+   * and numeric. If any of these checks fail, an error is logged to the message
+   * stack and the user is redirected to the account creation page.
+   *
+   * @return bool Returns false if the Antispam application is inactive or if
+   *              the necessary parameters are not set. Otherwise, performs
+   *              validation checks.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_ANTISPAM_STATUS') || CLICSHOPPING_APP_ANTISPAM_STATUS == 'False') {

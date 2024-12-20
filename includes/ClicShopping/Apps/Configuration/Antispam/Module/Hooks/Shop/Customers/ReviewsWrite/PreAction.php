@@ -22,6 +22,13 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   public mixed $messageStack;
 
+  /**
+   * Constructor method for initializing the class.
+   * Ensures the 'Antispam' object is registered in the application registry
+   * and assigns necessary dependencies for the class.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Antispam')) {
@@ -33,7 +40,11 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return bool
+   * Checks the status of the invisible antispam feature in the application
+   * for reviews submission and verifies required conditions.
+   *
+   * @return bool Returns true if there is an error (e.g., missing or invalid
+   *              antispam field); otherwise, returns false.
    */
   private static function checkInvisibleAntispam(): bool
   {
@@ -55,7 +66,9 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return bool
+   * Checks the numeric antispam status and validates related configurations.
+   *
+   * @return bool True if the numeric antispam check passes and the relevant configurations are enabled; false otherwise.
    */
   private static function checkNumericAntispam(): bool
   {
@@ -72,6 +85,15 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
     return $error;
   }
 
+  /**
+   * Executes the antispam checks for the current process. Checks both invisible
+   * and numeric antispam mechanisms when specific GET parameters are present.
+   * If an error is detected, an error message is added to the message stack and
+   * the user is redirected to the appropriate URL.
+   *
+   * @return bool Returns false if the antispam application is not enabled.
+   *              Otherwise, performs the necessary checks and may redirect based on the result.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_ANTISPAM_STATUS') || CLICSHOPPING_APP_ANTISPAM_STATUS == 'False') {

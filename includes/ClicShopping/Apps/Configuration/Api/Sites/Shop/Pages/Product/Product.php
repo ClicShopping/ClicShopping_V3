@@ -21,6 +21,15 @@ class Product extends \ClicShopping\OM\PagesAbstract
   private mixed $lang;
   private mixed $db;
 
+  /**
+   * Initializes the API handling logic based on the HTTP request method.
+   * This method sets up necessary dependencies from the registry and processes the API call
+   * according to the request method (GET, POST, DELETE, etc.). It includes functionality for
+   * authentication and permission checks using tokens and status validation.
+   *
+   * @return bool|void Returns false if the API status is disabled or on invalid requests,
+   *                   and outputs the response body for valid requests.
+   */
   protected function init()
   {
     $this->lang = Registry::get('Language');
@@ -99,7 +108,9 @@ class Product extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Retrieves the product data through the API and returns an appropriate response.
+   *
+   * @return array The HTTP response containing either the product data or a not-found message.
    */
   private static function getProduct(): array
   {
@@ -119,7 +130,13 @@ class Product extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Deletes a product by calling the appropriate API hooks and generates a corresponding HTTP response.
+   *
+   * The method utilizes the ApiDeleteProduct hook to handle the product deletion logic. If the hook returns
+   * no result, a "Not Found" HTTP response is generated. Otherwise, a successful HTTP response with the result
+   * data is returned. The method also clears the cache after the operation.
+   *
+   * @return array Returns an HTTP response representing the outcome of the product deletion operation.
    */
   private static function deleteProduct(): array
   {
@@ -139,7 +156,9 @@ class Product extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Saves a product by invoking the appropriate hooks and processes the result to return a standardized API response.
+   *
+   * @return array Returns an array containing the API response, which could either be a not-found response or a successful HTTP response with the processed result.
    */
   private static function saveProduct(): array
   {
@@ -159,9 +178,11 @@ class Product extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @param string $string
-   * @param string $token
-   * @return int
+   * Executes a database query to retrieve an integer value associated with a given column and token.
+   *
+   * @param string $string The column name to select in the query.
+   * @param string $token The session identifier used to bind the query parameter.
+   * @return int Returns the integer value retrieved from the specified column in the database.
    */
   private function statusCheck(string $string, string $token): int
   {

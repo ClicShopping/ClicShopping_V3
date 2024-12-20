@@ -20,6 +20,15 @@ class Authentification
   public $key;
   public $ip;
 
+  /**
+   * Constructor for initializing the class with user credentials and optional IP address.
+   *
+   * @param string $username The username for authentication.
+   * @param string $key The API key or password associated with the username.
+   * @param string|null $ip Optional IP address for further security or identification purposes.
+   *
+   * @return void
+   */
   public function __construct(string $username, string $key, ?string $ip)
   {
     $this->username = $username;
@@ -28,7 +37,9 @@ class Authentification
   }
 
   /**
-   * @return array|bool
+   * Checks the access credentials against the database to validate the user's API access.
+   *
+   * @return array|bool Returns an associative array containing API details if the credentials are valid; otherwise, returns false.
    */
   public function checkAccess(): array|bool
   {
@@ -60,9 +71,10 @@ class Authentification
   }
 
   /**
-   * @param int $api_id
-   * @return int|string
-   * @throws \Exception
+   * Adds a new API session for the provided API ID or returns an existing session ID.
+   *
+   * @param int $api_id The unique identifier of the API for which the session is being created or retrieved.
+   * @return int|string Returns the unique session ID of the newly created session or an existing session ID.
    */
   public static function addSession(int $api_id): int|string
   {
@@ -94,8 +106,10 @@ class Authentification
   }
 
   /**
-   * @param int $api_id
-   * @return array
+   * Retrieves and checks the IP address associated with the given API ID.
+   *
+   * @param int $api_id The API ID used to retrieve the associated IP address.
+   * @return bool Returns true if the IP address matches '127.0.0.1' or the client's IP address. Returns false otherwise.
    */
   public static function getIps(int $api_id): bool
   {
@@ -115,8 +129,11 @@ class Authentification
   }
 
   /**
-   * @param string $string
-   * @return void
+   * Validates the given URL path and request parameters to ensure they match the application's
+   * expected structure and configuration. Sends a 404 Not Found response if the validation fails.
+   *
+   * @param string $string The key to check within the request parameters for validation.
+   * @return bool Returns true if the validation passes; terminates execution otherwise with a 404 response.
    */
   public function checkUrl(string $string)
   {

@@ -20,6 +20,12 @@ class SumTotalTokenByMonth extends \ClicShopping\OM\Modules\AdminDashboardAbstra
   public mixed $app;
   public $group;
 
+  /**
+   * Initializes the module by setting up required dependencies, retrieving language definitions,
+   * and configuring the module's title, description, sort order, and enabled status.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('ChatGpt')) {
@@ -40,6 +46,16 @@ class SumTotalTokenByMonth extends \ClicShopping\OM\Modules\AdminDashboardAbstra
     }
   }
 
+  /**
+   * Generates and returns an HTML output containing a line chart displaying
+   * the monthly total GPT token usage for the past 12 months.
+   *
+   * The method fetches data from the database, calculates the total tokens
+   * for each of the past 12 months, and uses this data to generate a
+   * JavaScript chart that is embedded in the HTML output.
+   *
+   * @return string The HTML and JavaScript string defining the chart for display.
+   */
   public function getOutput(): string
   {
     $months = [];
@@ -139,6 +155,15 @@ EOD;
   }
 
 
+  /**
+   * Installs the configuration settings for the module in the database.
+   *
+   * Saves multiple configuration options required by the module,
+   * including enabling status, content width, analysis interval,
+   * and sort order settings.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -190,6 +215,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves the configuration keys for the module.
+   *
+   * @return array An array of configuration key names used by the module.
+   */
   public function keys(): array
   {
     return [

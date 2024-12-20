@@ -21,6 +21,14 @@ class Orders extends \ClicShopping\OM\PagesAbstract
   private mixed $lang;
   private mixed $db;
 
+  /**
+   * Initializes the order handling process by determining the request method,
+   * validating the API token, and performing the corresponding operations such as
+   * retrieving, deleting, updating, or inserting an order.
+   *
+   * @return bool|void Returns false if the API application status is disabled, or
+   *                   performs the necessary operations and terminates execution.
+   */
   protected function init()
   {
     $this->lang = Registry::get('Language');
@@ -99,7 +107,9 @@ class Orders extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Retrieves the order data by calling the associated API hook.
+   *
+   * @return array The response containing order data if found, or a not found response otherwise.
    */
   private static function getOrder(): array
   {
@@ -119,7 +129,9 @@ class Orders extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Deletes an order by invoking the appropriate hooks and returns the HTTP response.
+   *
+   * @return array The HTTP response after attempting to delete the order.
    */
   private static function deleteOrder(): array
   {
@@ -139,7 +151,9 @@ class Orders extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Saves an order by invoking the 'ApiSaveOrder' hook. Generates an appropriate HTTP response based on the result.
+   *
+   * @return array Returns an array representing the HTTP response, either a 'Not Found' response if the result is empty or an 'OK' response with the result data.
    */
   private static function saveOrder(): array
   {
@@ -159,9 +173,11 @@ class Orders extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @param string $string
-   * @param string $token
-   * @return int
+   * Performs a status check by querying the database with the provided string and token.
+   *
+   * @param string $string The column name to be retrieved from the database.
+   * @param string $token The session token used to bind to the query.
+   * @return int The integer value of the specified column from the query result.
    */
   private function statusCheck(string $string, string $token): int
   {

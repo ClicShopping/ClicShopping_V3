@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation procedure by loading necessary cache definitions
+   * and performing the database menu administration setup.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Cache = Registry::get('Cache');
@@ -23,9 +29,16 @@ class MariaDb
     self::installDbMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries for the administrative menu related to the cache configuration app.
+   *
+   * It checks if the menu entry for the 'app_configuration_cache' already exists in the 'administrator_menu' table.
+   * If it does not exist, it inserts a new entry with predefined data, including sorting order, link, image, and access level.
+   * Language-specific labels are then added into the 'administrator_menu_description' table for each available language.
+   * Finally, the menu-related cache is cleared to reflect the changes.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

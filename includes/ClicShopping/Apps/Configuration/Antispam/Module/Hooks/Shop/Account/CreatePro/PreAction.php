@@ -21,6 +21,15 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   public mixed $messageStack;
 
+  /**
+   * Constructor method that initializes the Antispam application and message stack.
+   *
+   * Ensures the Antispam application is registered in the system registry. If not already
+   * registered, it creates and registers an instance of AntispamApp. Retrieves and stores
+   * the Antispam app instance and message stack for use within the class.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Antispam')) {
@@ -32,7 +41,9 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return bool
+   * Checks the invisible antispam mechanism during the account creation process.
+   *
+   * @return bool Returns true if an error is detected with the invisible antispam check, false otherwise.
    */
   private static function checkInvisibleAntispam(): bool
   {
@@ -54,7 +65,12 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return bool
+   * Checks numeric antispam conditions based on predefined constants.
+   *
+   * Validates if specific antispam-related application settings are enabled.
+   * If the settings are enabled, it proceeds to perform a numeric antispam check.
+   *
+   * @return bool Returns true if the numeric antispam check passes, false otherwise or if the settings are disabled.
    */
   private static function checkNumericAntispam(): bool
   {
@@ -71,6 +87,16 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
     return $error;
   }
 
+  /**
+   * Executes the antispam checks on the account creation process.
+   *
+   * This method verifies if the antispam checks are enabled and performs
+   * validation against invisible and numeric antispam mechanisms. If any
+   * of the antispam checks fail, an error message is added to the message
+   * stack and a redirect is initiated.
+   *
+   * @return bool Returns false if the antispam app is disabled or validation is not applicable.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_ANTISPAM_STATUS') || CLICSHOPPING_APP_ANTISPAM_STATUS == 'False') {

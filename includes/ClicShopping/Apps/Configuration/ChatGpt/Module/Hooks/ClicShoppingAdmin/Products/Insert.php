@@ -19,6 +19,13 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the ChatGpt module in the registry.
+   *
+   * Loads necessary definitions for the module to function.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ChatGpt')) {
@@ -30,6 +37,14 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/seo_chat_gpt');
   }
 
+  /**
+   * Processes the execution related to product data management and updates in the database.
+   * This includes generating SEO metadata (e.g., titles, descriptions, tags, keywords),
+   * summaries, and translations based on product information, as well as optional
+   * operations like creating product-related images or updating descriptions.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Language = Registry::get('Language');

@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process by loading the necessary definitions
+   * and performing database installation tasks.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Api = Registry::get('Api');
@@ -24,9 +30,15 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs a database menu entry for API administration in the administrator menu.
+   *
+   * This method checks if the menu entry for the API configuration is already present in the database.
+   * If not, it inserts a new menu entry, assigns a language-specific label to it,
+   * and clears the cache to reflect the changes in the administrator menu.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -73,7 +85,13 @@ class MariaDb
   }
 
   /**
-  * @return void
+   * Installs the database structure for the API if it does not already exist.
+   *
+   * This method checks if the required API database tables exist. If not, it creates
+   * the tables and inserts default records necessary for API functionality,
+   * including the API authentication and session management.
+   *
+   * @return void
    */
   private static function installDb(): void
   {

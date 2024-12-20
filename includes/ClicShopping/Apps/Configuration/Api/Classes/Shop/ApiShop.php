@@ -19,7 +19,8 @@ use ClicShopping\OM\Registry;
 class ApiShop
 {
   /**
-   * @return mixed GET/POST ...
+   *
+   * @return mixed Returns the request method used in the HTTP request, typically a string such as 'GET', 'POST', etc.
    */
   public static function requestMethod(): mixed
   {
@@ -29,9 +30,11 @@ class ApiShop
   }
 
   /**
-   * @param string $username
-   * @param string $key
-   * @return array
+   * Checks if the given username and API key grant access.
+   *
+   * @param string $username The username to authenticate.
+   * @param string $key The API key associated with the username.
+   * @return bool Returns true if access is granted, otherwise false.
    */
   public static function getAccess(string $username, string $key): bool
   {
@@ -58,9 +61,10 @@ class ApiShop
   }
 
   /**
-   * @param int|null $api_id
-   * @return int
-   * @throws \Exception
+   * Creates a new API session and stores it in the database.
+   *
+   * @param int|null $api_id The API ID associated with the session. Nullable.
+   * @return int The ID of the newly created session entry in the database.
    */
   public static function createSession( int|null $api_id): int
   {
@@ -84,7 +88,11 @@ class ApiShop
   }
 
   /**
-   * @return int|false|null
+   * Retrieves the URL parameter 'id' from the request, sanitizes it, and returns it as an integer.
+   * If the parameter is non-numeric but not empty, returns false.
+   * If the parameter is empty or not set, returns null.
+   *
+   * @return int|false|null Returns the sanitized integer value of 'id', false if non-numeric but not empty, or null if empty or not set.
    */
   public function getUrlId(): int|false|null
   {
@@ -103,9 +111,11 @@ class ApiShop
   }
 
   /**
-   * @param string $token
-   * @return string
-   * @throws \Exception
+   * Validates and regenerates the API session token if necessary or creates
+   * a new session if the token is invalid.
+   *
+   * @param string $token The current session token to check or renew.
+   * @return string The valid session token, either existing or newly generated.
    */
   public static function checkToken(string $token): string
   {
@@ -162,7 +172,9 @@ class ApiShop
   }
 
   /**
+   * Clears specific cached data for categories, products also purchased, and upcoming items.
    *
+   * @return void
    */
   public static function clearCache(): void
   {
@@ -172,7 +184,9 @@ class ApiShop
   }
 
   /**
-   * @return array
+   * Generates a 404 Not Found HTTP response.
+   *
+   * @return array Returns an array containing the status code header and a JSON-encoded body with an error message.
    */
   public static function notFoundResponse(): array
   {
@@ -183,8 +197,10 @@ class ApiShop
   }
 
   /**
-   * @param array $result
-   * @return array
+   * Generates an HTTP response with a status code header of '200 OK' and a JSON-encoded body containing the provided result.
+   *
+   * @param array $result The array of data to be included in the response body.
+   * @return array An associative array containing the response header and body.
    */
   public static function HttpResponseOk(array $result): array
   {

@@ -23,7 +23,10 @@ class Antispam extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules within a specified directory.
+   * The modules are ordered based on their sort order, or in default order if no sort order is defined.
+   *
+   * @return mixed Returns an associative array of configuration modules, sorted by their order.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +77,11 @@ class Antispam extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the specified module and info.
+   *
+   * @param string $module The name of the configuration module.
+   * @param string $info The specific information to retrieve from the module.
+   * @return mixed Returns the requested configuration information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +95,9 @@ class Antispam extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The version of the API.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +105,9 @@ class Antispam extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

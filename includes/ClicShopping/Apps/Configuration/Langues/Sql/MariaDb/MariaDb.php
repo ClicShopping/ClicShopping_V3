@@ -15,6 +15,14 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the specified module.
+   *
+   * This method loads the required language definitions and calls the
+   * function to install the menu administration component in the database.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Langues = Registry::get('Langues');
@@ -23,9 +31,15 @@ class MariaDb
     self::installDbMenuAdministration();
   }
 
-/**
-  * @return void
- */
+  /**
+   * Installs the database menu administration entry for the application.
+   *
+   * Checks if the specific menu entry for the application does not already exist in the `administrator_menu` table.
+   * If not, it inserts the menu data along with its associated descriptions for each language.
+   * Clears the administrator menu cache after successful modification.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

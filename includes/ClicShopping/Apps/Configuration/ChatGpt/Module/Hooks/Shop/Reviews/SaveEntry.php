@@ -21,6 +21,12 @@ class SaveEntry implements \ClicShopping\OM\Modules\HooksInterface
   protected mixed $productsCommon;
   protected mixed $reviewsShop;
 
+  /**
+   * Constructor method initializes the required class properties by registering
+   * and retrieving common product and review-related dependencies.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->productsCommon = Registry::get('ProductsCommon');
@@ -30,7 +36,12 @@ class SaveEntry implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return int|bool
+   * Retrieves the latest review ID associated with a given product.
+   *
+   * Queries the database to find the highest review ID for the specified product ID.
+   * If no reviews are found, the method returns false.
+   *
+   * @return int|bool Returns the review ID as an integer if found, or false if no review exists.
    */
   private static function getReviewsId(): int|bool
   {
@@ -57,7 +68,12 @@ class SaveEntry implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return string|bool
+   * Retrieves the customer reviews text based on the review ID and language ID.
+   *
+   * The method queries the database for the review text associated with the given
+   * review ID and current language ID. If no review is found, the method returns false.
+   *
+   * @return string|bool Returns the reviews text as a string if found, otherwise false.
    */
   private static function getCustomerReviews(): string|bool
   {
@@ -87,8 +103,11 @@ class SaveEntry implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $id
-   * @param string $tag
+   * Saves the review tag for a specific review based on its ID.
+   *
+   * @param int $id The unique identifier of the review.
+   * @param string $tag The tag to be associated with the review.
+   * @return void
    */
   private static function saveReviews(int $id, string $tag): void
   {
@@ -100,6 +119,16 @@ class SaveEntry implements \ClicShopping\OM\Modules\HooksInterface
     $CLICSHOPPING_Db->save('reviews', $sql_array, $update_array);
   }
 
+  /**
+   * Executes the sentiment analysis process for customer reviews.
+   *
+   * This method validates the status of the reviews module, checks the GPT integration,
+   * and processes customer reviews to generate sentiment tags. If all necessary conditions
+   * are met, it fetches a review, formulates a prompt for GPT, and saves the generated sentiment tags.
+   *
+   * @return bool|string Returns false if any prerequisite condition fails or the customer review is unavailable.
+   *                     Returns the output result of the process if it is successful.
+   */
   public function execute()
   {
     $CLICSHOPPING_Language = Registry::get('Language');

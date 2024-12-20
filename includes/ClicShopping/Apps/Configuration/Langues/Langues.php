@@ -23,7 +23,13 @@ class Langues extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a sorted list of configuration modules available in the specified directory.
+   *
+   * This method scans a defined directory for configuration module classes, validates their type,
+   * and organizes the results in a sorted array. The sort order is determined by the module's configuration
+   * information if available or by its discovery order.
+   *
+   * @return mixed Returns an associative array of configuration modules sorted by their sort order.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +80,11 @@ class Langues extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information.
+   *
+   * @param string $module The name of the module to retrieve the configuration information for.
+   * @param string $info The specific information or property of the module to retrieve.
+   * @return mixed The requested configuration information for the specified module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +98,9 @@ class Langues extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +108,9 @@ class Langues extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier of the object.
+   *
+   * @return string The identifier of the object.
    */
   public function getIdentifier(): string
   {

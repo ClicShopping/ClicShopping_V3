@@ -15,10 +15,15 @@ use ClicShopping\OM\Registry;
 class Status
 {
   /**
-   * Status language -  Sets the status of a language
-   * @param int $languages_id
-   * @param int $status
-   * @return int
+   * Updates the status of a language in the database.
+   *
+   * This method allows for enabling or disabling a language based on the provided status value.
+   * If the language being disabled is the default language and it is not 'en', the default language
+   * configuration is updated to 'en'.
+   *
+   * @param int $languages_id The ID of the language to update.
+   * @param int $status The desired status of the language (1 to enable, 0 to disable).
+   * @return int|bool Returns the result of the database operation, or -1 if the status is invalid.
    */
   public static function getLanguageStatus(int $languages_id, int $status)
   {

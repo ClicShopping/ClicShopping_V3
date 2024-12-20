@@ -18,12 +18,26 @@ class Modules extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Modules_V1';
 
+  /**
+   * Initializes the necessary settings or configurations for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the list of configuration modules available in the specified directory.
+   *
+   * This method initializes a static variable to cache the result, which consists of
+   * an array of module names sorted by their defined sort order. If no sort order is
+   * defined, the modules are added in an incremental manner. It iterates through the
+   * specified directory, identifying valid subdirectories representing modules, and
+   * validates that each module adheres to the required class structure. Modules that
+   * fail this validation trigger an error.
+   *
+   * @return mixed An array of module names sorted by their sort order, or an empty array if no modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +88,12 @@ class Modules extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific configuration information for a given module.
+   *
+   * @param string $module The name of the module for which configuration information is requested.
+   * @param string $info The specific configuration information to retrieve.
+   *
+   * @return mixed The requested configuration information for the specified module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +107,8 @@ class Modules extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   *
+   * @return string|int Returns the API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +116,9 @@ class Modules extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier value.
+   *
+   * @return string The identifier.
    */
   public function getIdentifier(): string
   {

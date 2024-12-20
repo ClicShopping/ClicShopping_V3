@@ -21,6 +21,12 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   public mixed $messageStack;
 
+  /**
+   * Initializes the Antispam application by checking and setting its registry entry.
+   * Retrieves and assigns instances of the Antispam application and message stack.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Antispam')) {
@@ -32,7 +38,9 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return bool
+   * Checks the configuration and validates the presence of an invisible antispam token in the request.
+   *
+   * @return bool Returns true if a violation is detected or conditions require it, otherwise false.
    */
   private static function checkInvisibleAntispam(): bool
   {
@@ -54,7 +62,9 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return bool
+   * Checks the numeric antispam configuration and validates the numeric antispam mechanism.
+   *
+   * @return bool Returns true if the numeric antispam check passes and relevant configurations are enabled; otherwise, false.
    */
   private static function checkNumericAntispam(): bool
   {
@@ -72,6 +82,12 @@ class PreAction implements \ClicShopping\OM\Modules\HooksInterface
     return $error;
   }
 
+  /**
+   * Executes the antispam process by validating requests against invisible and numeric antispam checks.
+   * If any of the checks fail, an error is added to the message stack, and the user is redirected.
+   *
+   * @return bool Returns false if the "CLICSHOPPING_APP_ANTISPAM_STATUS" constant is not defined or set to 'False'.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_ANTISPAM_STATUS') || CLICSHOPPING_APP_ANTISPAM_STATUS == 'False') {

@@ -14,17 +14,36 @@ class Login
   public string $key;
   public ?string $ip;
 
+  /**
+   * Constructor method.
+   *
+   * @param string $username The username of the user.
+   * @param string $key The key associated with the user.
+   * @param string|null $ip The IP address of the user (optional).
+   * @return void
+   */
   public function __construct(string $username, string $key, ?string $ip)
   {
     $this->username = $username;
     $this->key = $key;
     $this->ip = $ip;
     $this->lang = Registry::get('Language');
-    $this->Db = Registry::get('Db');
+    /**
+     *
+     */
+      $this->Db = Registry::get('Db');
   }
 
   /**
-   * @return false
+   * Handles user login by authenticating username, key, and IP, then generating a session token.
+   *
+   * This method checks if the API module is active and processes login credentials.
+   * If valid credentials are provided, it checks IP restrictions and generates a session token.
+   * If invalid credentials are detected or the IP check fails, it returns appropriate error messages.
+   *
+   * @return string|false Returns a session token string upon successful login,
+   *                      'bad IP' if the IP is not allowed, 'no access' for invalid credentials,
+   *                      or false if the API module is inactive.
    */
   public function getLogin()
   {

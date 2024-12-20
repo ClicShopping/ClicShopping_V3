@@ -24,9 +24,16 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database menu entry for the administration configuration.
+   *
+   * This method inserts a new record into the administrator menu table if the
+   * menu entry identified by the specific app code does not exist. It also sets
+   * the appropriate language-specific labels for the menu entry and clears any
+   * related cached data.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -72,9 +79,14 @@ class MariaDb
     }
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database table `administrators` if it does not already exist.
+   *
+   * This method checks the existence of the `administrators` table and creates it
+   * with the specified fields, constraints, and character set if it is not found.
+   *
+   * @return void
+   */
   private static function installDb()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

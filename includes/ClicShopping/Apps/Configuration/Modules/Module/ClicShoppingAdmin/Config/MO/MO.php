@@ -9,7 +9,10 @@
  */
 
 namespace ClicShopping\Apps\Configuration\Modules\Module\ClicShoppingAdmin\Config\MO;
-
+/**
+ * This class extends the ConfigAbstract class and provides functionality for the "Modules" module
+ * in the ClicShoppingAdmin configuration system.
+ */
 class MO extends \ClicShopping\Apps\Configuration\Modules\Module\ClicShoppingAdmin\Config\ConfigAbstract
 {
 
@@ -18,6 +21,11 @@ class MO extends \ClicShopping\Apps\Configuration\Modules\Module\ClicShoppingAdm
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_mo_title');
@@ -26,6 +34,11 @@ class MO extends \ClicShopping\Apps\Configuration\Modules\Module\ClicShoppingAdm
     $this->is_installed = \defined('CLICSHOPPING_APP_MODULES_MO_STATUS') && (trim(CLICSHOPPING_APP_MODULES_MO_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding it to the list of installed modules and saving the updated configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +52,11 @@ class MO extends \ClicShopping\Apps\Configuration\Modules\Module\ClicShoppingAdm
     $this->app->saveCfgParam('MODULE_MODULES_MODULES_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its reference from the list of installed modules.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

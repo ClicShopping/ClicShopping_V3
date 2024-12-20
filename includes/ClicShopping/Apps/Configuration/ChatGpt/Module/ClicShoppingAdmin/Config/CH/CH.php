@@ -9,7 +9,11 @@
  */
 
 namespace ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\CH;
-
+/**
+ * This class represents the ChatGPT configuration module within the ClicShoppingAdmin environment.
+ * It extends the ConfigAbstract class and provides functionality for initializing, installing,
+ * and uninstalling the ChatGPT module.
+ */
 class CH extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdmin\Config\ConfigAbstract
 {
 
@@ -18,6 +22,12 @@ class CH extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdm
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status
+   * based on the application definitions and configuration constants.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_ch_title');
@@ -26,6 +36,11 @@ class CH extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdm
     $this->is_installed = \defined('CLICSHOPPING_APP_CHATGPT_CH_STATUS') && (trim(CLICSHOPPING_APP_CHATGPT_CH_STATUS) != '');
   }
 
+  /**
+   * Installs the current module and updates the list of installed modules configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +54,11 @@ class CH extends \ClicShopping\Apps\Configuration\ChatGpt\Module\ClicShoppingAdm
     $this->app->saveCfgParam('MODULE_MODULES_CHATGPT_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its entry from the installed modules configuration.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

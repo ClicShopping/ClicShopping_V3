@@ -21,6 +21,9 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   *
+   */
   public function __construct()
   {
     if (!Registry::exists('ChatGpt')) {
@@ -30,6 +33,12 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ChatGpt');
   }
 
+  /**
+   * Displays the UI for managing SEO settings and GPT integrations for categories in the admin interface.
+   *
+   * @return string|bool Returns the rendered HTML output for the SEO management interface if successful;
+   *                     otherwise returns false if GPT integration is unavailable or disabled.
+   */
   public function display()
   {
     $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');

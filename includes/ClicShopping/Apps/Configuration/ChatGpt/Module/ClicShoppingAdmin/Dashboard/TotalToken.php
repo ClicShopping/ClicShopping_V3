@@ -21,6 +21,16 @@ class TotalToken extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   public mixed $app;
   public $group;
 
+  /**
+   * Initializes the application instance and its related properties for the dashboard module.
+   *
+   * This method checks and sets the registry for the ChatGpt application instance,
+   * retrieves the corresponding language and definitions, and sets the title and
+   * description properties for the dashboard module. Additionally, it configures
+   * the module's enabled status and sort order if the necessary constants are defined.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('ChatGpt')) {
@@ -41,6 +51,13 @@ class TotalToken extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Generates and returns an HTML output containing a bar chart that displays GPT token usage
+   * data for the last 30 days. This method retrieves data from the database, formats it into
+   * a JSON structure and embeds the corresponding chart within a defined HTML structure.
+   *
+   * @return string The generated HTML output containing the chart for GPT token usage data.
+   */
   public function getOutput(): string
   {
     $days = [];
@@ -171,6 +188,11 @@ EOD;
     return $output;
   }
 
+  /**
+   * Installs the necessary configuration settings for the module in the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -222,6 +244,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves the configuration keys for the module.
+   *
+   * @return array An array of configuration keys used by the module.
+   */
   public function keys(): array
   {
     return [

@@ -15,9 +15,11 @@ use ClicShopping\OM\Registry;
 class Status
 {
   /**
-   * @param int $currencies_id
-   * @param int $status
-   * @return int
+   * Updates the currency status in the database based on the given status.
+   *
+   * @param int $currencies_id The ID of the currency to update.
+   * @param int $status The status to set for the currency (1 for active, 0 for inactive).
+   * @return mixed Returns the result of the database save operation, or -1 if the status is invalid.
    */
   public static function getCurrencyStatus(int $currencies_id, int $status)
   {

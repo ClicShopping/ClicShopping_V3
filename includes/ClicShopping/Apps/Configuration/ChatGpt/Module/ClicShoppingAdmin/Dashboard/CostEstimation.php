@@ -20,6 +20,13 @@ class CostEstimation extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   public mixed $app;
   public $group;
 
+  /**
+   * Initializes the module by setting up the required application instance,
+   * language configurations, and loading module definitions. It also determines
+   * the title, description, sort order, and enabled status of the module based on defined constants.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('ChatGpt')) {
@@ -40,6 +47,16 @@ class CostEstimation extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Generates and returns the HTML and JavaScript output for a dashboard widget that displays
+   * a bar chart of GPT token usage and costs over the past 12 months.
+   *
+   * The method retrieves token usage data from the database, calculates costs based on the
+   * application price configuration, structures the data into JSON format for use in a JavaScript chart,
+   * and generates the necessary HTML and chart configuration.
+   *
+   * @return string The complete HTML and JavaScript content for rendering the dashboard widget.
+   */
   public function getOutput(): string
   {
     $price = MODULE_ADMIN_DASHBOARD_TOTAL_COST_ESTIMATION_APP_PRICE;
@@ -138,6 +155,11 @@ EOD;
     return $output;
   }
 
+  /**
+   * Installs the module by saving necessary configuration settings to the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -189,6 +211,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves a list of configuration keys related to the dashboard total cost estimation module.
+   *
+   * @return array An array of configuration keys used by the total cost estimation module.
+   */
   public function keys(): array
   {
     return [

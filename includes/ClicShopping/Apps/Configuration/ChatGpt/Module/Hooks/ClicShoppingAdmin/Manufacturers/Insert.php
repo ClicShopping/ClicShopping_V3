@@ -19,6 +19,13 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the ChatGpt application.
+   * It ensures that the ChatGpt instance is registered in the Registry.
+   * Loads the necessary definitions for the specified module hook.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ChatGpt')) {

@@ -20,6 +20,15 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method.
+   *
+   * Initializes the ChatGpt application by checking if it already exists in the Registry.
+   * If not, it creates a new instance of ChatGptApp and stores it in the Registry.
+   * Then, retrieves the instance from the Registry and assigns it to the app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ChatGpt')) {
@@ -29,6 +38,16 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ChatGpt');
   }
 
+  /**
+   * Displays the SEO-related content and recommendations for the ChatGpt module in the administrative interface.
+   *
+   * This method checks the status of the GPT integration and ensures that necessary definitions for SEO handling are loaded.
+   * It generates SEO meta tags and recommendations for various pages, including products, reviews, specials, favorites,
+   * and featured sections, using pre-defined language and store variables.
+   * If any required element (e.g., store name) is missing or the GPT status is unsupported, the method returns false.
+   *
+   * @return false|string Returns false if the GPT status is unsupported or a required element is missing; otherwise, returns the generated HTML output containing SEO meta tags.
+   */
   public function display()
   {
 

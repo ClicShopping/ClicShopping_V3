@@ -18,7 +18,9 @@ use ClicShopping\OM\Registry;
 class AdministratorAdmin
 {
   /**
-   * @return int
+   * Counts the total number of users in the administrators table.
+   *
+   * @return int The total number of users.
    */
   public static function CountUser(): int
   {
@@ -33,7 +35,9 @@ class AdministratorAdmin
   }
 
   /**
-   * @return array
+   * Retrieves all administrators from the database, including their ID, name, and first name.
+   *
+   * @return array An array containing all administrators with their respective ID, name, and first name.
    */
   public static function getAllUserAmin(): array
   {
@@ -50,10 +54,13 @@ class AdministratorAdmin
 
     return $check_array;
   }
-  
+
   /**
-* @return void
- */
+   * Checks if the current admin user has access rights based on session data and database validation.
+   * If the user does not have the required access or session data is missing, redirects to the index page and displays a warning message.
+   *
+   * @return void
+   */
   public static function checkUserAccess(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -81,7 +88,9 @@ class AdministratorAdmin
   }
 
   /**
-   * @return mixed
+   * Retrieves the administrator ID based on the current session's access details.
+   *
+   * @return int Returns the administrator ID if a matching record is found with the provided session access and status; otherwise, it returns 0 or an empty result.
    */
   public static function getAdminIdByAccess(): int
   {
@@ -103,8 +112,10 @@ class AdministratorAdmin
   }
 
   /**
-   * @param int $id
-   * @return string
+   * Retrieves the full name of an administrator by their ID.
+   *
+   * @param int $id The ID of the administrator to retrieve the name for.
+   * @return string The full name of the administrator, consisting of their first name and last name.
    */
   public static function getAdminNameById(int $id): string
   {
@@ -122,8 +133,12 @@ class AdministratorAdmin
   }
 
   /**
-   * get the user administrator
-   * @return string
+   * Retrieves the name of the currently logged-in admin user.
+   *
+   * This method checks the session data to find the admin user's username and queries the database
+   * to fetch their first name and last name. If no admin is logged in, returns a default string.
+   *
+   * @return string The full name of the logged-in admin user or a default string if no admin is logged in.
    */
   public static function getUserAdmin(): string
   {
@@ -157,8 +172,9 @@ class AdministratorAdmin
   }
 
   /**
-   * @return string
-   * Get the email of the admin
+   * Retrieves the email address of the currently logged-in admin user.
+   *
+   * @return string The email address of the admin user.
    */
   public static function getAdminUserEmail(): string
   {
@@ -169,7 +185,13 @@ class AdministratorAdmin
   }
 
   /**
-   * @return int
+   * Retrieves the administrative user ID for the currently logged-in admin user.
+   *
+   * The method checks the session data to identify the currently logged-in admin user,
+   * then queries the database to fetch the associated user ID based on the `ar_admin_login` module action recorder.
+   * If no admin user is logged in, the return value will be `null`.
+   *
+   * @return int|null Returns the administrator's ID if available, or `null` if no admin is logged in.
    */
   public static function getUserAdminId(): int
   {
@@ -202,9 +224,10 @@ class AdministratorAdmin
   }
 
   /**
-   * get the administrator right
-   * @param string $default , default right
-   * @return array $administrator_right_array ,  right selected
+   * Retrieves an array of administrator rights options.
+   *
+   * @param string $default Optional default text to include in the administrator rights options.
+   * @return array An array of administrator rights options, each containing an 'id' and 'text' key.
    */
 
   public static function getAdministratorRight(string $default = ''): array
@@ -226,9 +249,10 @@ class AdministratorAdmin
   }
 
   /**
-   * get the administrator menu right
-   * @param string $default , default menu right
-   * @return array $administrator_right_array , menu right selected
+   * Retrieves the administrator menu right options.
+   *
+   * @param string $default The default text to include as the first option, if provided.
+   * @return array An array of administrator menu right options, each containing an 'id' and 'text' key.
    */
 
   public static function getAdministratorMenuRight(string $default = ''): array

@@ -38,6 +38,15 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the module.
+   *
+   * This method retrieves the parameters defined for the module, instantiates
+   * the respective configuration parameter classes, and saves the default
+   * values and associated metadata into the application configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_LANGUES_' . $this->code . '_');
@@ -53,6 +62,14 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the configuration settings associated with this module.
+   *
+   * Removes all entries from the configuration table where the configuration key matches
+   * a specific pattern associated with the module.
+   *
+   * @return int Returns the number of rows deleted from the configuration table.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +82,13 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves configuration parameter identifiers from a specific directory.
+   *
+   * @return array An array of parameter identifiers specific to the module's configuration.
+   *               Each identifier corresponds to a valid subclass of ConfigParamAbstract.
+   *               If a file is not a subclass, an error is triggered.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +112,17 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the current configuration.
+   *
+   * This method retrieves configuration parameters using the `getParameters` method
+   * and processes each parameter to ensure it is properly set up. If a parameter is not
+   * already defined, it will be initialized with its default value, title, description,
+   * and any associated set functions. Configured parameters are then sorted by their
+   * sort order if specified, or by their order of appearance.
+   *
+   * @return array An array of processed configuration input parameters, sorted numerically by defined order.
+   */
   public function getInputParameters()
   {
     $result = [];

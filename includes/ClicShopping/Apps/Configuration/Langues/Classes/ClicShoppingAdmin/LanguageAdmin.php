@@ -15,7 +15,9 @@ use ClicShopping\OM\Registry;
 class LanguageAdmin
 {
   /**
-   * @return int
+   * Retrieves the latest language ID from the database.
+   *
+   * @return int The latest language ID.
    */
   public static function getLatestLanguageID(): int
   {

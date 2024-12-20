@@ -21,6 +21,14 @@ class Manufacturers extends \ClicShopping\OM\PagesAbstract
   private mixed $lang;
   private mixed $db;
 
+  /**
+   * Initializes and handles API requests based on the HTTP request method.
+   * This includes interacting with the database to validate tokens and
+   * performing operations such as GET, DELETE, POST, or PUT for manufacturers.
+   *
+   * @return bool|void Returns false if the API application status is not enabled,
+   *                   otherwise it processes the request and exits.
+   */
   protected function init()
   {
     $this->lang = Registry::get('Language');
@@ -99,7 +107,10 @@ class Manufacturers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Retrieves the manufacturer information by calling the appropriate API hook and handles the response.
+   *
+   * @return array Returns an array containing the API response, which could either be the data for the manufacturer
+   *               or a response indicating that the requested data was not found.
    */
   private static function getManufacturer(): array
   {
@@ -119,7 +130,13 @@ class Manufacturers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Executes the deletion of a manufacturer via the API and returns the HTTP response.
+   *
+   * The method interacts with the Hooks system to perform the manufacturer deletion
+   * and generates an appropriate HTTP response based on the result. It also clears
+   * the cache after the operation.
+   *
+   * @return array The HTTP response indicating the result of the operation.
    */
   private static function deleteManufacturer(): array
   {
@@ -139,7 +156,9 @@ class Manufacturers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Saves the manufacturer data by calling the associated hook and returns the appropriate response.
+   *
+   * @return array Returns an HTTP response array indicating the status of the operation or the result data.
    */
   private static function saveManufacturer(): array
   {
@@ -159,9 +178,11 @@ class Manufacturers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @param string $string
-   * @param string $token
-   * @return int
+   * Executes a database query to check the status of a specific column tied to a session.
+   *
+   * @param string $string The name of the column to be selected from the database.
+   * @param string $token The session identifier used to retrieve the associated data.
+   * @return int Returns the integer value of the specified column resulting from the query.
    */
   private function statusCheck(string $string, string $token): int
   {

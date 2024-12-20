@@ -21,6 +21,14 @@ class Suppliers extends \ClicShopping\OM\PagesAbstract
   private mixed $lang;
   private mixed $db;
 
+  /**
+   * Initializes the API handler by setting up necessary dependencies and processing
+   * the incoming HTTP request based on the request method. Executes appropriate actions
+   * (GET, POST, DELETE, etc.) related to supplier management while ensuring token validation.
+   *
+   * @return bool|void Returns false if the application status is not enabled,
+   *                   or outputs the appropriate response and terminates further execution.
+   */
   protected function init()
   {
     $this->lang = Registry::get('Language');
@@ -99,7 +107,11 @@ class Suppliers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Retrieves supplier information by invoking the 'ApiGetSupplier' hook. If no data is found,
+   * it prepares a "not found" response; otherwise, it returns an HTTP OK response with the retrieved data.
+   * Clears the cache after processing.
+   *
+   * @return array The HTTP response containing either the supplier data or a "not found" message.
    */
   private static function getSupplier(): array
   {
@@ -119,7 +131,9 @@ class Suppliers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Deletes a supplier by invoking the appropriate API hook and handles the HTTP response.
+   *
+   * @return array Returns an array containing the HTTP response for the delete supplier request.
    */
   private static function deleteSupplier(): array
   {
@@ -139,7 +153,10 @@ class Suppliers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Saves supplier data by invoking the appropriate API call through the Hooks system.
+   * Handles the API response and clears cache after processing.
+   *
+   * @return array An HTTP response array indicating the result of the save operation.
    */
   private static function saveSupplier(): array
   {
@@ -159,9 +176,11 @@ class Suppliers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @param string $string
-   * @param string $token
-   * @return int
+   * Checks the status by querying the database for a specific value.
+   *
+   * @param string $string The column name to retrieve from the database.
+   * @param string $token The session token used to identify the session.
+   * @return int The integer value of the specified column from the query result.
    */
   private function statusCheck(string $string, string $token): int
   {

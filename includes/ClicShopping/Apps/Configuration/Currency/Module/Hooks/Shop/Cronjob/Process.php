@@ -24,7 +24,14 @@ class Process implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return array
+   * Updates all currency rates using the CurrenciesAdmin module.
+   *
+   * This method initializes the CurrenciesAdmin module if it is not already
+   * registered in the application registry. Once initialized or obtained from
+   * the registry, it invokes the updateAllCurrencies method of the CurrenciesAdmin
+   * instance to update all currencies.
+   *
+   * @return void
    */
   private static function updateAllCurrencies(): void
   {
@@ -38,7 +45,16 @@ class Process implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
+   * Executes a scheduled cron job for updating currency data.
    *
+   * This method checks for a specific cron ID passed via the GET parameter.
+   * It validates and sanitizes the cron ID before updating the corresponding cron task.
+   * If the cron ID matches the predefined ID for the currency update task,
+   * the method triggers the currency data update.
+   * If no specific cron ID is provided, it defaults to using the predefined cron ID
+   * and performs the currency data update accordingly.
+   *
+   * @return void
    */
   private static function cronJob(): void
   {
@@ -61,6 +77,11 @@ class Process implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main logic of the method by running the cron job and clearing the cache for currencies.
+   *
+   * @return void
+   */
   public function execute()
   {
     static::cronJob();

@@ -15,8 +15,11 @@ use ClicShopping\OM\Registry;
 class AdminstratorStatus
 {
   /**
-   * @param int $id
-   * @param int $status
+   * Updates the administrator status based on the provided ID and status.
+   *
+   * @param int $id The unique identifier of the administrator.
+   * @param int $status The status to set for the administrator. Valid values are 1 (activate) or 0 (deactivate).
+   * @return mixed Returns the result of the database save operation or -1 for an invalid status.
    */
   public static function getAdministratorStatus(int $id, int $status)
   {

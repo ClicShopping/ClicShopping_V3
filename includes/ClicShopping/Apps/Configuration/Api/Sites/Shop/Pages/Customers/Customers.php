@@ -21,6 +21,17 @@ class Customers extends \ClicShopping\OM\PagesAbstract
   private mixed $lang;
   private mixed $db;
 
+  /**
+   * Initializes the API interaction and handles requests based on the HTTP method.
+   *
+   * This method sets up necessary dependencies, validates the application state,
+   * and processes different HTTP request methods (GET, POST, DELETE, PUT). It
+   * ensures token validation and delegates to appropriate sub-methods for
+   * handling customer operations such as retrieval, saving, or deletion, based
+   * on the request type.
+   *
+   * @return bool|void Returns false if the application API state is disabled, otherwise exits after processing.
+   */
   protected function init()
   {
     $this->lang = Registry::get('Language');
@@ -99,7 +110,9 @@ class Customers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Retrieves customer information by calling the API and processes the response.
+   *
+   * @return array The HTTP response containing the customer data or a not-found status.
    */
   private static function getCustomer(): array
   {
@@ -119,7 +132,8 @@ class Customers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   *
+   * @return array The response after attempting to delete a customer, either a successful HTTP response or a not found response.
    */
   private static function deleteCustomer(): array
   {
@@ -139,7 +153,9 @@ class Customers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Saves customer data by calling the corresponding hook and returns an appropriate HTTP response.
+   *
+   * @return array An array representing the HTTP response, either success or not found.
    */
   private static function saveCustomer(): array
   {
@@ -159,9 +175,11 @@ class Customers extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @param string $string
-   * @param string $token
-   * @return int
+   * Checks the status based on the provided string and token values.
+   *
+   * @param string $string The name of the column to retrieve from the database.
+   * @param string $token The session token used for identification in the database query.
+   * @return int The integer value of the requested status.
    */
   private function statusCheck(string $string, string $token): int
   {

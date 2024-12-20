@@ -22,6 +22,12 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the ChatGpt application.
+   * Ensures that the ChatGpt instance is registered with the Registry and fetches it for use.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ChatGpt')) {
@@ -32,7 +38,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return string
+   * Retrieves all customer reviews for a specific review ID, sanitizing the input,
+   * and returning the review texts concatenated and separated by "<br> - ".
+   *
+   * @return string A string containing all customer reviews related to the specified review ID,
+   * concatenated and separated by "<br> - ".
    */
   private function getAllCustomerReviews(): string
   {
@@ -64,9 +74,12 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $language_id
-   * @param string $products_name
-   * @return string
+   * Generates a sentiment summary based on customer product reviews.
+   *
+   * @param int $language_id The ID of the language in which the sentiment analysis should be written.
+   * @param string $products_name The name of the product for which the sentiment analysis is performed.
+   *
+   * @return string The sentiment analysis summary based on the provided product reviews.
    */
   private function generateSentiment(int $language_id, string $products_name): string
   {
@@ -98,6 +111,13 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     return $sentiment;
   }
 
+  /**
+   * Executes the process of managing and storing sentiment data for product reviews.
+   * Depending on the existence of a record, it updates or creates new sentiment entries,
+   * including multi-language support for the product's sentiment description.
+   *
+   * @return bool|void Returns false if GPT status is unavailable; otherwise, performs the execution process without return value.
+   */
   public function execute()
   {
     $CLICSHOPPING_Language = Registry::get('Language');

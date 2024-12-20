@@ -21,6 +21,13 @@ class Token extends \ClicShopping\OM\PagesAbstract
   private mixed $lang;
   private mixed $db;
 
+  /**
+   * Initializes the API AI module by sanitizing input data, creating a login instance,
+   * and retrieving the authentication token for the session.
+   *
+   * @return mixed Returns false if the API AI module is not defined or disabled.
+   *               Outputs the token and terminates execution upon successful initialization.
+   */
   public function init()
   {
     if (!\defined('CLICSHOPPING_APP_API_AI_STATUS') && CLICSHOPPING_APP_API_AI_STATUS == 'False') {

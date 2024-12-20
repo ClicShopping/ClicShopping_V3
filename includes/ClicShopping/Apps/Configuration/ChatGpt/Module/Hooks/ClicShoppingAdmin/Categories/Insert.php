@@ -19,6 +19,14 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Class constructor.
+   *
+   * Initializes the ChatGptApp instance in the Registry if it doesn't already exist,
+   * and loads the necessary definitions for the application.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ChatGpt')) {
@@ -30,6 +38,14 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Categories/seo_chat_gpt');
   }
 
+  /**
+   * Executes the necessary processes based on the provided GET and POST parameters related to category handling.
+   *
+   * Checks if GPT functionality is enabled and processes category-related inputs to update database records
+   * such as descriptions, SEO data (title, description, keywords), and optionally images.
+   *
+   * @return bool Returns false if GPT functionality is disabled or not applicable; otherwise, performs the operations without returning a value.
+   */
   public function execute()
   {
     $CLICSHOPPING_Language = Registry::get('Language');

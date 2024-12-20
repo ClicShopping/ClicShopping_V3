@@ -21,10 +21,19 @@ use function is_null;
 
 class CurrenciesAdmin extends \ClicShopping\Apps\Configuration\Currency\Classes\Shop\Currencies
 {
+  /**
+   * Constructor method to initialize the currencies array and set the default currency.
+   *
+   * @param array|null $currencies Optional array of currencies to initialize.
+   * @return void
+   */
   public function __construct(array $currencies = null)
   {
     $CLICSHOPPING_Db = Registry::get('Db');
-    $this->currencies = [];
+    /**
+     *
+     */
+      $this->currencies = [];
 
     $Qcurrencies = $CLICSHOPPING_Db->query('select currencies_id as id,
                                                   code,
@@ -43,6 +52,9 @@ class CurrenciesAdmin extends \ClicShopping\Apps\Configuration\Currency\Classes\
     $currencies = $Qcurrencies->fetchAll();
 
     foreach ($currencies as $c) {
+      /**
+       *
+       */
       $this->currencies[$c['code']] = [
         'id' => (int)$c['id'],
         'title' => $c['title'],
@@ -61,7 +73,9 @@ class CurrenciesAdmin extends \ClicShopping\Apps\Configuration\Currency\Classes\
   }
 
   /**
-   * @return array
+   * Retrieves an array of all currencies in the format of id and text pairs.
+   *
+   * @return array An array where each element contains 'id' as the currency code and 'text' as the currency title.
    */
   public function getAll(): array
   {
@@ -78,7 +92,13 @@ class CurrenciesAdmin extends \ClicShopping\Apps\Configuration\Currency\Classes\
   }
 
   /**
-   * @throws Exception
+   * Updates all available currencies with the latest exchange rates fetched from the European Central Bank.
+   * If the default currency is not the source currency (EUR), it will adjust the rates accordingly.
+   * The method retrieves the current exchange rates from the ECB XML feed, processes them,
+   * converts rates if necessary, and updates the currencies in the database.
+   *
+   * @return void
+   * @throws Exception If the ECB currency rate XML data cannot be loaded.
    */
   public function updateAllCurrencies()
   {

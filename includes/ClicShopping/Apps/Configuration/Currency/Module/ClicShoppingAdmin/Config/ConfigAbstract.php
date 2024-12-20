@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method initializes the object by setting the app property,
+   * retrieving the class name for the code property, and invoking the init method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Currency');
@@ -38,6 +44,11 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the current module.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_CURRENCY_' . $this->code . '_');
@@ -53,6 +64,14 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the module by removing configuration entries related to the module from the database.
+   *
+   * Deletes all rows in the configuration table where the configuration key matches the pattern
+   * specific to the module being uninstalled.
+   *
+   * @return int The number of rows affected by the delete operation.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +84,15 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves an array of parameter constant names based on files located in a specific directory.
+   *
+   * The method iterates through the files in the directory and ensures the classes associated
+   * with the files extend the given abstract class. If the class does not meet the criteria,
+   * an error is triggered.
+   *
+   * @return array An array of parameter constant names derived from valid PHP files in the directory.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +116,17 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the configuration module.
+   *
+   * This method iterates through defined parameters, initializes the respective parameter
+   * classes, validates whether configuration constants are defined, and stores default
+   * values if not. It also organizes the parameters based on their sort order or default
+   * index and retrieves their set fields if available.
+   *
+   * @return array An array of processed configuration input fields, sorted by their
+   *               respective sort order or default index.
+   */
   public function getInputParameters()
   {
     $result = [];

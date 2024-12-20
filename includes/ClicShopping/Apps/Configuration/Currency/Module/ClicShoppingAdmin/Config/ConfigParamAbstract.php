@@ -20,6 +20,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_currency_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor method that initializes the configuration module and manages the loading of module definitions.
+   *
+   * @param string $config_module Specifies the configuration module name used in initialization.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('Currency');

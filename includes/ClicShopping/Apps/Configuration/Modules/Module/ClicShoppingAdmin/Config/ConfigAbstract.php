@@ -29,6 +29,14 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method.
+   *
+   * This method initializes the application by retrieving the 'Modules' registry,
+   * setting the class code using reflection, and calling the init method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Modules');
@@ -38,6 +46,11 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the module by processing its parameters and saving their default configurations.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_MODULES_' . $this->code . '_');
@@ -53,6 +66,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +81,13 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Fetches and returns a list of parameter identifiers based on the code of the module.
+   * Scans the parameters directory for PHP files and verifies that they subclass
+   * ConfigParamAbstract before including their identifiers in the result.
+   *
+   * @return array An array of parameter identifiers in the format 'CLICSHOPPING_APP_MODULES_<module_code>_<parameter_name>'.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +111,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves the input parameters associated with the current module configuration.
+   *
+   * This method processes the parameter constants defined for the module, initializes
+   * their configurations dynamically, ensures their values are stored if not already defined,
+   * and compiles the configured input fields in a sorted order.
+   *
+   * @return array An array of input parameters, sorted by their defined order.
+   */
   public function getInputParameters()
   {
     $result = [];

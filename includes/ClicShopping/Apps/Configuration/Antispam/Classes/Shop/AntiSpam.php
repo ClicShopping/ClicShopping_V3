@@ -17,9 +17,9 @@ use function defined;
 class AntiSpam
 {
   /**
-   * Function to simple antispam : Display a mandatory number
-   * public function
-   * @return string $antispam sentence
+   * Generates an anti-spam numeric confirmation string and stores a hashed value in the session.
+   *
+   * @return string Returns the anti-spam numeric confirmation string for display or verification purposes.
    */
   public static function getConfirmationNumericAntiSpam(): string
   {
@@ -34,8 +34,10 @@ class AntiSpam
   }
 
   /**
-   * @param string $antispan_confirmation
-   * @return bool
+   * Validates whether the provided numeric confirmation matches the anti-spam value stored in the session.
+   *
+   * @param mixed $antispan_confirmation The numeric confirmation to validate.
+   * @return bool Returns true if the numeric confirmation is valid, otherwise false.
    */
   private static function checkNumeric($antispan_confirmation): bool
   {
@@ -55,8 +57,12 @@ class AntiSpam
   }
 
   /**
+   * Validates the numeric anti-spam input from a form submission.
    *
-   * @return bool
+   * Checks if the 'antispam' field in the POST request contains the correct data
+   * to prevent automated submissions.
+   *
+   * @return bool Returns true if the anti-spam validation fails, otherwise false.
    */
   public static function checkNumericAntiSpam(): bool
   {

@@ -21,6 +21,20 @@ class Category extends \ClicShopping\OM\PagesAbstract
   private mixed $lang;
   private mixed $db;
 
+  /**
+   * Initializes the API handling by determining the request method and processing
+   * the corresponding operation (GET, DELETE, POST, PUT) for categories based on
+   * access tokens and status checks.
+   *
+   * This method interacts with various components such as Language, Database, and
+   * Session through the Registry class. It ensures validation of access tokens
+   * and manages category-related processes such as fetching, deleting, or saving
+   * based on the request type.
+   *
+   * The method concludes by outputting the response and terminating the script execution.
+   *
+   * @return bool|void Returns false if the API is disabled, otherwise processes the request and terminates execution.
+   */
   protected function init()
   {
     $this->lang = Registry::get('Language');
@@ -98,7 +112,9 @@ class Category extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Retrieves a list of categories through the API.
+   *
+   * @return array The API response containing the categories or an error response.
    */
   private static function getCategories(): array
   {
@@ -118,9 +134,10 @@ class Category extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @param int|null $id
-   * @param int|string $language_id
-   * @return array
+   * Deletes categories by invoking the 'ApiDeleteCategories' hook.
+   * Clears the API cache after the operation is completed.
+   *
+   * @return array The HTTP response indicating the success or failure of the operation.
    */
   private static function deleteCategories(): array
   {
@@ -140,7 +157,9 @@ class Category extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @return array
+   * Saves the provided category data through the API call and handles the response.
+   *
+   * @return array The API response, either an HTTP OK response with the results or a not found response if the operation fails.
    */
   private static function saveCategories(): array
   {
@@ -160,9 +179,11 @@ class Category extends \ClicShopping\OM\PagesAbstract
   }
 
   /**
-   * @param string $string
-   * @param string $token
-   * @return int
+   * Checks the status based on the provided string and token.
+   *
+   * @param string $string The column name to be selected from the database.
+   * @param string $token The session token used for identifying the API session.
+   * @return int The integer value associated with the specified column.
    */
   private function statusCheck(string $string, string $token): int
   {

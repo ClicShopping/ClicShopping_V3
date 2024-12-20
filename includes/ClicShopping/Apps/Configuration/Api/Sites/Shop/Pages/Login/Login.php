@@ -23,6 +23,13 @@ class Login extends \ClicShopping\OM\PagesAbstract
   private mixed $lang;
   private mixed $db;
 
+  /**
+   * Initializes the API request handling process. This method retrieves necessary dependencies and processes
+   * incoming API requests based on the HTTP request method. It handles authentication, validates access,
+   * verifies IP addresses, and generates appropriate responses for clients.
+   *
+   * @return bool|string Returns false if the API is disabled, or outputs the API response based on the access status.
+   */
   protected function init()
   {
     $this->lang = Registry::get('Language');

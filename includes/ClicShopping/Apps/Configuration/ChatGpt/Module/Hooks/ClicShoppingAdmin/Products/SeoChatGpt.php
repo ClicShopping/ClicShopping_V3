@@ -23,6 +23,11 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the ChatGpt application.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ChatGpt')) {
@@ -32,6 +37,16 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('ChatGpt');
   }
 
+  /**
+   * Displays the SEO-related configurations and options for products using ChatGPT functionality.
+   *
+   * This method identifies the current context based on the product ID parameter. If a product ID is provided in the request,
+   * it processes and populates SEO attributes such as product name, page titles, tags, summaries, keywords, and translations.
+   * These attributes are then rendered via dynamically generated HTML for the product's SEO meta information.
+   * If no product ID is provided, it outputs form controls with options to toggle various ChatGPT SEO settings for products.
+   *
+   * @return bool|string Returns false if the GPT status is not enabled; otherwise, returns HTML content for displaying SEO-related functionality.
+   */
   public function display()
   {
     $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');

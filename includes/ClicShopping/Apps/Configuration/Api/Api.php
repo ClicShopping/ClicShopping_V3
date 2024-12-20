@@ -23,7 +23,12 @@ class Api extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the list of configuration modules available in the specified directory.
+   * The method scans the directory for valid configuration module classes, checks if
+   * they inherit from a specific abstract class, and orders them based on their sort order.
+   *
+   * @return mixed An array of configuration module names indexed by sort order,
+   * or an empty array if no valid modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +79,11 @@ class Api extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific information about a configuration module.
+   *
+   * @param string $module The name of the module to retrieve information from.
+   * @param string $info The specific information or property to retrieve from the module.
+   * @return mixed Returns the requested module information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +97,9 @@ class Api extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The current API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +107,9 @@ class Api extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier value.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

@@ -22,6 +22,12 @@ class CheckAPI extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   public mixed $app;
   public $group;
 
+  /**
+   * Initializes the module by setting up required dependencies, loading definitions,
+   * and configuring properties such as title, description, sort order, and enabled status.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('ChatGpt')) {
@@ -42,6 +48,12 @@ class CheckAPI extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Generates and returns the dashboard output for the module.
+   * If the API key for the ChatGPT application is not set, returns an alert message.
+   *
+   * @return string The generated output, including alert information if the API key is missing.
+   */
   public function getOutput(): string
   {
     $output = '';
@@ -59,6 +71,11 @@ class CheckAPI extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     return $output;
   }
 
+  /**
+   * Installs the module by adding configuration settings to the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -98,6 +115,11 @@ class CheckAPI extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     );
   }
 
+  /**
+   * Retrieves the configuration keys for the module.
+   *
+   * @return array An array containing the configuration keys used by the module.
+   */
   public function keys(): array
   {
     return [

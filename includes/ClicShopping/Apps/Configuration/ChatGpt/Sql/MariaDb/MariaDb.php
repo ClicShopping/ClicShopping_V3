@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the ChatGpt module.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_ChatGpt = Registry::get('ChatGpt');
@@ -25,7 +30,15 @@ class MariaDb
   }
 
   /**
-  * @return void$
+   * Installs the ChatGPT administration menu entry in the database.
+   *
+   * This method checks if the ChatGPT entry already exists in the `administrator_menu` table.
+   * If it does not exist, it creates a new entry with appropriate details, including menu ordering,
+   * link, image, and associated application code. It also inserts the corresponding labels in the
+   * `administrator_menu_description` table for each available language. After the operation, it clears
+   * the administrator menu cache.
+   *
+   * @return void
    */
   private static function installDbMenuAdministration(): void
   {
@@ -72,7 +85,9 @@ class MariaDb
   }
 
   /**
-  * @return void
+   * Installs the database tables required for the GPT functionality if they do not already exist.
+   *
+   * @return void
    */
   private static function installDb()
   {

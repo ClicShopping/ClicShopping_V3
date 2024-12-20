@@ -15,9 +15,11 @@ use ClicShopping\OM\Registry;
 class Status
 {
   /**
-   * @param int $id
-   * @param int $status
-   * @return int
+   * Updates the status of an API entry in the database.
+   *
+   * @param int $id The ID of the API record to update.
+   * @param int $status The new status value for the API record (1 for active, 0 for inactive).
+   * @return mixed Returns the result of the database save operation, or -1 if the status is invalid.
    */
   public static function getApiStatus(int $id, int $status)
   {

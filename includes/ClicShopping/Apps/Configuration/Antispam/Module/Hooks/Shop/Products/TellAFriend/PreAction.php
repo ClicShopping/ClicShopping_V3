@@ -24,6 +24,13 @@ class PreAction implements HooksInterface
   public mixed $app;
   public mixed $messageStack;
 
+  /**
+   * Initializes the class by checking for the existence of the 'Antispam' key in the Registry.
+   * If the key does not exist, it sets a new instance of AntispamApp in the Registry.
+   * Retrieves and assigns the 'Antispam' app and 'MessageStack' from the Registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Antispam')) {
@@ -35,7 +42,9 @@ class PreAction implements HooksInterface
   }
 
   /**
-   * @return bool
+   * Checks the invisible antispam conditions in the application.
+   *
+   * @return bool Returns true if the antispam conditions are not met; false otherwise.
    */
   private static function checkInvisibleAntispam(): bool
   {
@@ -57,7 +66,9 @@ class PreAction implements HooksInterface
   }
 
   /**
-   * @return bool
+   * Checks if the numeric antispam mechanism is enabled and operational based on defined settings.
+   *
+   * @return bool Returns true if numeric antispam passed without error, false otherwise.
    */
   private static function checkNumericAntispam(): bool
   {
@@ -74,6 +85,16 @@ class PreAction implements HooksInterface
     return $error;
   }
 
+  /**
+   * Executes the antispam validation logic.
+   *
+   * This method checks if the Antispam application is enabled and validates
+   * antispam measures for the "Tell a Friend" process. If any antispam check fails,
+   * it redirects the user back to the "Tell a Friend" page with an appropriate error message.
+   *
+   * @return bool Returns false if the Antispam application is disabled; otherwise,
+   *              returns void and handles validation/process internally.
+   */
   public function execute()
   {
     if (!defined('CLICSHOPPING_APP_ANTISPAM_STATUS') || CLICSHOPPING_APP_ANTISPAM_STATUS == 'False') {
