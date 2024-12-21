@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by setting up the application context, determining the class code,
+   * loading necessary definitions, and performing initialization tasks.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Gdpr');
@@ -40,6 +46,12 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the current module by initializing
+   * and saving them using their respective classes.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_CUSTOMERS_GDPR_' . $this->code . '_');
@@ -55,6 +67,11 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the GDPR module by removing configuration entries associated with it from the database.
+   *
+   * @return int The number of rows affected by the deletion.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +84,19 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of configuration parameter constants for the current module code.
+   *
+   * The method iterates through all PHP files in the module's "Params" directory.
+   * It checks if each file contains a class that is a subclass of
+   * `ConfigParamAbstract`. If the class is valid, a constant string naming
+   * the parameter is added to the result list.
+   *
+   * If a class does not inherit from `ConfigParamAbstract`, a triggering error
+   * is raised to notify of the invalid class implementation.
+   *
+   * @return array An array of configuration parameter constants associated with the module.
+   */
   public function getParameters()
   {
     $result = [];
@@ -90,6 +120,11 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and organizes input parameters for the module based on configuration settings.
+   *
+   * @return array An array of input parameters, sorted by their sort order, with each entry containing the configuration field details.
+   */
   public function getInputParameters()
   {
     $result = [];

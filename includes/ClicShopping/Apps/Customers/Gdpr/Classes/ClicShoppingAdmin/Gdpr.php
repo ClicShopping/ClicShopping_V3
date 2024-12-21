@@ -19,9 +19,9 @@ use ClicShopping\OM\Registry;
 class Gdpr
 {
   /**
-   * Deletes all customer-related data from multiple database tables based on the provided customer ID.
+   * Deletes all related data associated with a specific customer from several database tables.
    *
-   * @param int $customers_id The ID of the customer whose data will be deleted.
+   * @param int $customers_id ID of the customer to delete data for.
    * @return void
    */
   public static function deleteCustomersData(int $customers_id): void

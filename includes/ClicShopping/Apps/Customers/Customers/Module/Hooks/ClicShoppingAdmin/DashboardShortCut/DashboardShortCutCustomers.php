@@ -20,6 +20,15 @@ class DashboardShortCutCustomers implements \ClicShopping\OM\Modules\HooksInterf
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the Customers application module.
+   *
+   * This method checks if the 'Customers' registry entry exists. If it does not exist,
+   * it creates a new instance of CustomersApp and sets it in the registry. Once initialized,
+   * it retrieves the application from the registry and loads the required definitions.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Customers')) {
@@ -31,6 +40,11 @@ class DashboardShortCutCustomers implements \ClicShopping\OM\Modules\HooksInterf
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/DashboardShortCut/dashboard_shortcut_customers');
   }
 
+  /**
+   * Generates a string containing an HTML link for the Customers module shortcut button in the application's dashboard.
+   *
+   * @return string Returns the generated HTML link as a string. If the application status is disabled, it will return false.
+   */
   public function display(): string
   {
     if (!\defined('CLICSHOPPING_APP_CUSTOMERS_CS_STATUS') || CLICSHOPPING_APP_CUSTOMERS_CS_STATUS == 'False') {

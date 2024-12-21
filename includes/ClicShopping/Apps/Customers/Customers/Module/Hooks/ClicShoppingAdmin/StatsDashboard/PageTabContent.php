@@ -18,6 +18,11 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method initializes the CustomersApp class within the Registry if not already set and loads necessary definitions.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Customers')) {
@@ -29,6 +34,12 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
   }
 
+  /**
+   * Counts the total number of customers, optionally filtered by group.
+   *
+   * @param string|null $groups The customer group to filter by. Use 'B2C' for individual customers (group ID = 0)
+   *                            or any other value for non-individual customers (group ID > 0). If null, count all customers.
+   */
   private function statsCountCustomers($groups = null)
   {
     $condition = '';
@@ -53,6 +64,13 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
     return $customers_total;
   }
 
+  /**
+   * Calculates and retrieves statistical data about male customers, including the percentage
+   * representation of male customers and their average age.
+   *
+   * @return mixed The percentage of male customers and their average age, concatenated as a string if available,
+   *               or 0 if the data is unavailable.
+   */
   private function statsAverageCustomersMen()
   {
     $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent,
@@ -80,6 +98,13 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
     return $stat_analyse_customers_man;
   }
 
+  /**
+   * Calculates and retrieves statistical data for female customers, including
+   * the percentage of female customers and their average age.
+   *
+   * @return mixed A formatted string containing the percentage of female customers
+   *               and their average age, or 0 if the data is unavailable.
+   */
   private function statsAverageCustomersWomen()
   {
     $QstatAnalyseCustomersWoman = $this->app->db->prepare('SELECT ROUND(((COUNT(customers_gender)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent,
@@ -109,6 +134,11 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
   }
 
 
+  /**
+   * Displays customer statistics and information in an HTML format.
+   *
+   * @return string|false The formatted HTML content with customer statistics or false if the application status is disabled.
+   */
   public function display()
   {
 

@@ -23,6 +23,11 @@ class Gdpr implements \ClicShopping\OM\Modules\HooksInterface
    */
   public mixed $app;
 
+  /**
+   * Initializes the Gdpr application module and loads its definitions.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Gdpr')) {
@@ -34,6 +39,15 @@ class Gdpr implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/gdpr');
   }
 
+  /**
+   * Generates and displays the GDPR statistics widget for the admin dashboard.
+   *
+   * The method retrieves customer data from the database to calculate the number of customers
+   * who meet GDPR-related conditions based on the configuration settings. If applicable,
+   * it constructs an HTML block containing the relevant information to display on the admin dashboard.
+   *
+   * @return string The HTML output of the GDPR statistics widget. Returns an empty string if no GDPR-related data is available or if the feature is disabled.
+   */
   public function Display(): string
   {
     if (!\defined('CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_STATUS == 'False') {

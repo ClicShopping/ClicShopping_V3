@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the Customers module by loading
+   * language definitions and performing database setup operations.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Customers = Registry::get('Customers');
@@ -24,9 +30,15 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries for the administrator menu related to customer management.
+   *
+   * Checks if specific menu entries associated with customer-related functionality
+   * already exist in the `administrator_menu` table. If not, adds the entries along
+   * with their descriptions for all supported languages. Clears the administrator menu cache upon completion.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -106,9 +118,15 @@ class MariaDb
     }
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database table for customers if it does not already exist.
+   *
+   * Checks the database for the presence of the customers table. If it does not exist,
+   * the method creates the table with the specified schema, defining various customer-related
+   * fields, constraints, and default values.
+   *
+   * @return void
+   */
   private static function installDb()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

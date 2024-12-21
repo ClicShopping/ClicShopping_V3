@@ -18,6 +18,11 @@ class StatsCustomersAgeBySex implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the constructor method, setting up the necessary registry entry for the Customers application.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Customers')) {
@@ -29,7 +34,12 @@ class StatsCustomersAgeBySex implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return int
+   * Calculates and returns the average age of male customers.
+   *
+   * Queries the database to determine the average age of customers
+   * whose gender is identified as male.
+   *
+   * @return int The average age of male customers, rounded to the nearest integer. If no data is available, returns 0.
    */
   private function statsAgeCustomersMen(): int
   {
@@ -51,7 +61,9 @@ class StatsCustomersAgeBySex implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return int
+   * Calculates and retrieves the average age of female customers from the database.
+   *
+   * @return int The average age of female customers, rounded to the nearest integer. Returns 0 if no data is available.
    */
   private function statsAgeCustomersWomen(): int
   {
@@ -73,7 +85,9 @@ class StatsCustomersAgeBySex implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return string
+   * Generates and returns the HTML display content based on customer statistics.
+   *
+   * @return string The HTML content to display customer statistics or an empty string if no statistics are available.
    */
   public function display(): string
   {

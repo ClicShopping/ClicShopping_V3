@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary steps for initializing GDPR-related definitions
+   * and configuring the administrative database menu during installation.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Gdpr = Registry::get('Gdpr');
@@ -23,9 +29,11 @@ class MariaDb
     self::installDbMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the GDPR menu item in the administrator's database menu if it does not already exist.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Gdpr = Registry::get('Gdpr');

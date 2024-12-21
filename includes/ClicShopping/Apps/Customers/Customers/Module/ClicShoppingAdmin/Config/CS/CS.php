@@ -18,6 +18,12 @@ class CS extends \ClicShopping\Apps\Customers\Customers\Module\ClicShoppingAdmin
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction,
+   * and installation status based on the application definition and configuration.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_cs_title');
@@ -26,6 +32,11 @@ class CS extends \ClicShopping\Apps\Customers\Customers\Module\ClicShoppingAdmin
     $this->is_installed = \defined('CLICSHOPPING_APP_CUSTOMERS_CS_STATUS') && (trim(CLICSHOPPING_APP_CUSTOMERS_CS_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its information to the list of installed modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +50,11 @@ class CS extends \ClicShopping\Apps\Customers\Customers\Module\ClicShoppingAdmin
     $this->app->saveCfgParam('MODULE_MODULES_CUSTOMERS_INFO_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its configuration from the list of installed modules.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

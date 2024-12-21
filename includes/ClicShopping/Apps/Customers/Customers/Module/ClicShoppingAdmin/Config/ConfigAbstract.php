@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by obtaining the application instance,
+   * setting the module code, loading module definitions, and calling the initialization method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Customers');
@@ -40,6 +46,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module. Iterates through the module's defined parameters,
+   * processes each parameter by creating the associated configuration object, and saves the default
+   * values, titles, descriptions, and additional settings for each parameter using the application's configuration handler.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_CUSTOMERS_' . $this->code . '_');
@@ -55,6 +68,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +83,17 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of configuration parameters for the module.
+   *
+   * Scans the module's parameters directory for PHP files representing
+   * configuration parameters. Valid parameters are classes that extend
+   * the ConfigParamAbstract. These are formatted and returned in an
+   * array of parameter keys. If an invalid parameter file is detected,
+   * a trigger error will be generated.
+   *
+   * @return array List of configuration parameter keys.
+   */
   public function getParameters()
   {
     $result = [];
@@ -90,6 +117,16 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves the input parameters for the current configuration.
+   *
+   * This method processes configuration parameters based on the current
+   * module's context and returns them in a structured format. It ensures
+   * that parameters are properly defined, saved, and ordered.
+   *
+   * @return array Returns an associative array of configuration parameters,
+   *               sorted numerically, with their respective processed fields.
+   */
   public function getInputParameters()
   {
     $result = [];

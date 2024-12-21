@@ -21,6 +21,11 @@ class Process implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Gdpr application component.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Gdpr')) {
@@ -31,7 +36,9 @@ class Process implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return array|bool
+   * Retrieves a list of customers whose last login date is older than a specified expiration date.
+   *
+   * @return array|bool An array of customers matching the criteria or false if no results are found.
    */
   public function getExpires(): array|bool
   {
@@ -53,7 +60,9 @@ class Process implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
+   * Executes scheduled GDPR-related tasks, processing expired data and invoking cleanup operations.
    *
+   * @return void
    */
   private function cronJob(): void
   {
@@ -82,6 +91,11 @@ class Process implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main logic by triggering the cron job functionality.
+   *
+   * @return void
+   */
   public function execute()
   {
     $this->cronJob();

@@ -32,6 +32,12 @@ class CustomerShop
 
   private mixed $db;
 
+  /**
+   * Initializes the customer object, sets customer data and group ID from the session,
+   * verifies if the customer is logged on, and retrieves the database instance.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (isset($_SESSION['customer'])) {
@@ -52,7 +58,7 @@ class CustomerShop
   /**
    * Sets the logged-on state for the user.
    *
-   * @param bool $state Represents the logged-on state. True if the user is logged on, false otherwise.
+   * @param bool $state The desired logged-on state. Set to true if the user is logged on, otherwise false.
    * @return void
    */
   public function setIsLoggedOn(bool $state)
@@ -65,7 +71,9 @@ class CustomerShop
   }
 
   /**
-   * @return bool
+   * Determines if the user is currently logged in.
+   *
+   * @return bool Returns true if the user is logged in, otherwise false.
    */
   public function isLoggedOn(): bool
   {
@@ -77,10 +85,10 @@ class CustomerShop
   }
 
   /**
-   * Retrieves a value from the internal data storage.
+   * Retrieves a specific value from the data array if a key is provided, or the entire data array if no key is specified.
    *
-   * @param string|null $key The key to retrieve the value for. If null, the entire data storage is returned.
-   * @return mixed The value associated with the specified key, or the entire data storage if no key is provided.
+   * @param string|null $key The key to retrieve the value for, or null to retrieve the entire data array.
+   * @return mixed Returns the value associated with the specified key, or the entire data array if no key is provided.
    */
   public function get(string $key = null)
   {
@@ -92,7 +100,9 @@ class CustomerShop
   }
 
   /**
-   * @return int
+   * Retrieves the ID of the current entity.
+   *
+   * @return int Returns the ID if it exists and is numeric; otherwise, returns 0.
    */
   public function getID(): int
   {
@@ -104,9 +114,9 @@ class CustomerShop
   }
 
   /**
-   * Retrieves the first name of the user if available.
+   * Retrieves the first name of the customer if it is set.
    *
-   * @return string|bool Returns the first name as a string if it exists, or false if not set.
+   * @return string|bool Returns the first name as a string if available, otherwise false.
    */
   public function getFirstName(): string|bool
   {
@@ -118,7 +128,9 @@ class CustomerShop
   }
 
   /**
-   * @return string|bool
+   * Retrieves the last name of the customer.
+   *
+   * @return string|bool Returns the last name of the customer if set, otherwise false.
    */
   public function getLastName(): string|bool
   {
@@ -130,7 +142,9 @@ class CustomerShop
   }
 
   /**
-   * @return string
+   * Retrieves the full name of the customer by combining first and last names if available.
+   *
+   * @return string Returns the full name of the customer. If neither first nor last name is set, returns an empty string.
    */
   public function getName(): string
   {
@@ -152,9 +166,9 @@ class CustomerShop
   }
 
   /**
-   * Retrieves the gender of the customer.
+   * Retrieves the gender of the customer if it is set.
    *
-   * @return string|bool Returns the gender as a string if set, otherwise returns false.
+   * @return string|bool Returns the customer's gender as a string if set, otherwise false.
    */
   public function getGender(): string|bool
   {
@@ -166,7 +180,9 @@ class CustomerShop
   }
 
   /**
-   * @return bool
+   * Determines if the customer has an email address set.
+   *
+   * @return bool Returns true if the customer has an email address, otherwise false.
    */
   public function hasEmailAddress(): bool
   {
@@ -174,7 +190,9 @@ class CustomerShop
   }
 
   /**
-   * @return string|bool
+   * Retrieves the email address of the customer if available.
+   *
+   * @return string|bool Returns the email address as a string if set, otherwise false.
    */
   public function getEmailAddress(): string|bool
   {
@@ -188,7 +206,7 @@ class CustomerShop
   /**
    * Sets the telephone number for the customer.
    *
-   * @param string|null $telephone The telephone number to set. Can be null to clear the telephone.
+   * @param string|null $telephone The customer's telephone number. Can be null if no number is provided.
    * @return void
    */
   public function setTelephone(?string $telephone): void
@@ -199,7 +217,7 @@ class CustomerShop
   /**
    * Retrieves the customer's telephone number if available.
    *
-   * @return string|bool The telephone number as a string if set, or false if not available.
+   * @return string|bool Returns the telephone number as a string if set, otherwise false.
    */
   public function getTelephone(): string|bool
   {
@@ -211,9 +229,9 @@ class CustomerShop
   }
 
   /**
-   * Sets the customer's cellular phone number.
+   * Sets the cellular phone number for the customer.
    *
-   * @param string|null $telephone The cellular phone number to set. Can be null.
+   * @param string|null $telephone The cellular phone number to set. Can be null to unset the phone number.
    * @return void
    */
   public function setCellularPhone(?string $telephone): void
@@ -222,9 +240,9 @@ class CustomerShop
   }
 
   /**
-   * Retrieves the customer's cellular phone number if available.
+   * Retrieves the customer's cellular phone number if it is set.
    *
-   * @return string|bool Returns the cellular phone number as a string if it exists, or false if not set.
+   * @return string|bool Returns the cellular phone number as a string if available, otherwise false.
    */
   public function getCellularPhone(): string|bool
   {
@@ -236,9 +254,9 @@ class CustomerShop
   }
 
   /**
-   * Retrieves the country ID associated with the current instance.
+   * Retrieves the country ID associated with the customer.
    *
-   * @return int|null The country ID if available, otherwise null.
+   * @return int|null Returns the country ID if available, otherwise null.
    */
   public function getCountryID():  int|null
   {
@@ -254,7 +272,9 @@ class CustomerShop
   }
 
   /**
-   * @return int|null
+   * Retrieves the zone ID associated with the current data if available.
+   *
+   * @return int|null Returns the zone ID if set, otherwise null.
    */
   public function getZoneID():  int|null
   {
@@ -270,7 +290,9 @@ class CustomerShop
   }
 
   /**
-   * @return int|null
+   * Retrieves the default address ID for the customer.
+   *
+   * @return int|null Returns the default address ID if set, otherwise null.
    */
   public function getDefaultAddressID():  int|null
   {
@@ -286,7 +308,9 @@ class CustomerShop
   }
 
   /**
-   * @return int
+   * Retrieves the group ID of the customer.
+   *
+   * @return int Returns the customer's group ID. If no group ID is found, it returns 0.
    */
   public function getCustomersGroupID(): int
   {
@@ -300,10 +324,10 @@ class CustomerShop
   }
 
   /**
-   * Sets customer data based on the provided customer ID and initializes session variables.
+   * Sets the customer data by fetching information from the database for the provided customer ID.
    *
-   * @param int $id The ID of the customer to fetch data for.
-   * @return bool True if the customer data was successfully set, false otherwise.
+   * @param int $id The unique identifier of the customer to retrieve data for. Must be a positive numeric value.
+   * @return bool Returns true if data is successfully fetched and set, otherwise false.
    */
   public function setData(int $id): bool
   {
@@ -371,9 +395,9 @@ class CustomerShop
   }
 
   /**
-   * Set the ID for the object.
+   * Sets the ID for the current instance if the provided value is a positive integer.
    *
-   * @param int $id The ID to be set. Must be a positive numeric value.
+   * @param int $id The ID value to set.
    * @return void
    */
   public function setID(int $id): void
@@ -386,9 +410,10 @@ class CustomerShop
   }
 
   /**
-   * Sets the default address ID for the customer.
+   * Sets the default address ID for the customer. Updates the database if the provided ID differs
+   * from the current default address ID. If the given ID is not valid, the default address ID is set to false.
    *
-   * @param int $id The ID of the address to be set as default. Must be a positive integer.
+   * @param int $id The new default address ID to be set.
    * @return void
    */
   public function setDefaultAddressID(int $id): void
@@ -409,7 +434,9 @@ class CustomerShop
   }
 
   /**
-   * @return bool
+   * Determines if the customer has a default address set.
+   *
+   * @return bool Returns true if the customer has a default address, otherwise false.
    */
   public function hasDefaultAddress(): bool
   {
@@ -421,9 +448,9 @@ class CustomerShop
   }
 
   /**
-   * Sets the gender value after validating it as 'm' or 'f'.
+   * Sets the gender of the user.
    *
-   * @param string|null $gender The gender value to set. Should be 'm' or 'f' (case insensitive).
+   * @param string|null $gender The gender to set, expected to be 'm' or 'f' (case insensitive).
    * @return void
    */
   public function setGender(?string $gender): void
@@ -436,9 +463,9 @@ class CustomerShop
   }
 
   /**
-   * Sets the first name of the customer.
+   * Sets the first name for the current instance.
    *
-   * @param string|null $first_name The first name to set. Can be null.
+   * @param string|null $first_name The first name to be set. Can be null.
    * @return void
    */
   public function setFirstName(?string $first_name): void
@@ -447,9 +474,9 @@ class CustomerShop
   }
 
   /**
-   * Sets the last name for the current instance.
+   * Sets the last name for the current object.
    *
-   * @param string|null $last_name The last name to set. Nullable.
+   * @param string|null $last_name The last name to be set. Can be null.
    * @return void
    */
   public function setLastName(?string $last_name): void
@@ -458,7 +485,7 @@ class CustomerShop
   }
 
   /**
-   * Sets the email address for the current instance.
+   * Sets the email address for the customer.
    *
    * @param string $email_address The email address to be set.
    * @return void
@@ -469,10 +496,10 @@ class CustomerShop
   }
 
   /**
-   * Retrieves the guest account status for a given customer ID.
+   * Retrieves the guest account status of a customer based on their ID.
    *
    * @param int $id The unique identifier of the customer.
-   * @return int|null The guest account status of the customer, or null if not available.
+   * @return int|null The guest account status of the customer or null if not found.
    */
   public function getCustomerGuestAccount(int $id):  int|null
   {
@@ -482,7 +509,7 @@ class CustomerShop
   }
 
   /**
-   * Retrieves the customer's IP address based on their customer ID.
+   * Retrieves the IP address of the customer based on their ID.
    *
    * @return string The IP address of the customer.
    */
@@ -494,9 +521,9 @@ class CustomerShop
   }
 
   /**
-   * Sets the country ID for the instance.
+   * Sets the country ID for the current object.
    *
-   * @param int $id The ID of the country to set.
+   * @param int $id The ID of the country to be set.
    * @return void
    */
   public function setCountryID(int $id): void
@@ -505,9 +532,9 @@ class CustomerShop
   }
 
   /**
-   * Sets the zone ID for the current data.
+   * Sets the zone ID for the current instance.
    *
-   * @param int $id The ID of the zone to be set.
+   * @param int $id The zone ID to be set.
    * @return void
    */
   public function setZoneID(int $id): void
@@ -516,7 +543,7 @@ class CustomerShop
   }
 
   /**
-   * Sets the customer's group ID.
+   * Sets the customer group ID.
    *
    * @param int $id The ID of the customer group to set.
    * @return void
@@ -527,10 +554,7 @@ class CustomerShop
   }
 
   /**
-   * Resets the customer session and user data.
-   *
-   * This method logs out the customer by unsetting session variables
-   * related to the customer and clearing internal customer-related data.
+   * Resets the customer's session and internal data to the default state.
    *
    * @return void
    */
@@ -551,9 +575,10 @@ class CustomerShop
 
 
   /**
-   * Generates a greeting message for the customer based on their login status.
+   * Generates a personalized or generic greeting message for the customer based on their login status and account type.
    *
-   * @return string The personalized or guest greeting message for the customer.
+   * @return string Returns the generated greeting message depending on whether the customer is logged in or not,
+   *                and the type of account management mode (e.g., B2C, B2B, or both).
    */
   public function customerGreeting(): string
   {
@@ -588,9 +613,9 @@ class CustomerShop
   }
 
   /**
-   * Checks whether the customer has any product notifications set.
+   * Checks if the customer has any product notifications enabled.
    *
-   * @return bool Returns true if the customer has product notifications, otherwise false.
+   * @return bool True if the customer has product notifications, false otherwise.
    */
   public function hasProductNotifications(): bool
   {
@@ -606,9 +631,10 @@ class CustomerShop
   }
 
   /**
-   * Retrieves the product notifications for the current customer.
+   * Retrieves the product notifications for the current customer, including product IDs and names,
+   * filtered by the current language.
    *
-   * @return mixed Returns the product notification data for the customer, which includes product IDs and names.
+   * @return mixed Returns the database result set containing product notifications data for the customer.
    */
   public function getProductNotifications(): mixed
   {

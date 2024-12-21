@@ -18,6 +18,11 @@ class StatsCustomersB2B2B2C implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method initializing the Customers registry and loading the required definitions.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Customers')) {
@@ -29,7 +34,9 @@ class StatsCustomersB2B2B2C implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return int
+   * Retrieves the total number of B2C (Business-to-Consumer) customers from the database.
+   *
+   * @return int The total count of B2C customers identified by their group ID being 0.
    */
   private function statsCustomersB2C(): int
   {
@@ -45,7 +52,9 @@ class StatsCustomersB2B2B2C implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return mixed
+   * Retrieves the total count of B2B customers from the database.
+   *
+   * @return int Returns the count of customers belonging to a group with an ID greater than zero.
    */
   private function statCustomersB2B(): int
   {
@@ -61,7 +70,13 @@ class StatsCustomersB2B2B2C implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return string
+   * Generates and returns a formatted string representation of customer statistics.
+   *
+   * This method checks specific customer statistics for B2C and B2B.
+   * If both are 0, it returns an empty string.
+   * Otherwise, it generates HTML content displaying these statistics.
+   *
+   * @return string A formatted string containing the customer statistics, or an empty string if no statistics are available.
    */
   public function display(): string
   {

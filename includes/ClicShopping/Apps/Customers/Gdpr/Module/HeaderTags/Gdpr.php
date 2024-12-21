@@ -21,6 +21,13 @@ class Gdpr extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   public mixed $app;
   private mixed $template;
 
+  /**
+   * Initializes the GDPR module by setting up the required application bindings,
+   * loading language definitions, and configuring the module's properties such
+   * as title, description, sort order, and enabled status.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('Gdpr')) {
@@ -42,11 +49,24 @@ class Gdpr extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks if the module is enabled.
+   *
+   * @return bool Returns true if the module is enabled, false otherwise.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates and returns the GDPR compliance footer script for integration into the template.
+   *
+   * The method builds a GDPR compliance banner script, retrieves necessary definitions and configurations,
+   * and injects the script into the template's footer section.
+   *
+   * @return string|bool The generated GDPR footer script if enabled, or false if GDPR compliance is disabled.
+   */
   public function getOutput()
   {
     $CLICSHOPPING_Template = Registry::get('Template');
@@ -98,6 +118,11 @@ class Gdpr extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     return $output;
   }
 
+  /**
+   * Installs the GDPR module by saving its configuration settings into the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -245,6 +270,11 @@ class Gdpr extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     );
   }
 
+  /**
+   * Retrieves the configuration keys required for the GDPR header tags module.
+   *
+   * @return array An array of configuration key names for the module.
+   */
   public function keys()
   {
     return [

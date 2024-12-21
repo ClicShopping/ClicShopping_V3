@@ -18,6 +18,16 @@ class StatsCustomersPercentageBySex implements \ClicShopping\OM\Modules\HooksInt
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the CustomersApp module.
+   *
+   * This method checks if the 'Customers' registry entry exists. If it does not,
+   * it sets a new instance of the CustomersApp class to the 'Customers' registry.
+   * It also retrieves the 'Customers' registry instance and loads the required
+   * language definitions related to the statistics of customer percentage by sex.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Customers')) {
@@ -29,7 +39,9 @@ class StatsCustomersPercentageBySex implements \ClicShopping\OM\Modules\HooksInt
   }
 
   /**
-   * @return float
+   * Calculates and returns the percentage of male customers in the database.
+   *
+   * @return float The percentage of male customers as a decimal value rounded to two decimal places.
    */
   private function statsAverageCustomersMen(): float
   {
@@ -51,7 +63,12 @@ class StatsCustomersPercentageBySex implements \ClicShopping\OM\Modules\HooksInt
   }
 
   /**
-   * @return float
+   * Calculates and returns the percentage of female customers from the total number of customers.
+   *
+   * This method retrieves the gender distribution of customers from the database
+   * and computes the percentage of customers with a female gender ('f').
+   *
+   * @return float The percentage of female customers rounded to two decimal places.
    */
   private function statsAverageCustomersWomen(): float
   {
@@ -73,7 +90,10 @@ class StatsCustomersPercentageBySex implements \ClicShopping\OM\Modules\HooksInt
   }
 
   /**
-   * @return string
+   * Generates and returns a formatted HTML string displaying customer statistics categorized by gender
+   * if statistical data is available. If no statistics are available, returns an empty string.
+   *
+   * @return string The formatted HTML string with customer gender statistics, or an empty string if data is unavailable.
    */
   public function display(): string
   {

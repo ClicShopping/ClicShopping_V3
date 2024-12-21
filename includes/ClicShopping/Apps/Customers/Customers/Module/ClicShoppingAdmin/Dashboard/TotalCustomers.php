@@ -21,6 +21,12 @@ class TotalCustomers extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   public mixed $app;
   public $group;
 
+  /**
+   * Initializes the module by setting up required application components, loading language definitions,
+   * and configuring properties like title, description, sort order, and enabled state based on module status.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('Customers')) {
@@ -41,6 +47,12 @@ class TotalCustomers extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Generates and returns the HTML and JavaScript output needed to render a bar chart
+   * displaying the number of new customer accounts created over the last 15 days.
+   *
+   * @return string The HTML and JavaScript code necessary for rendering the bar chart.
+   */
   public function getOutput(): string
   {
     $days = [];
@@ -171,6 +183,11 @@ EOD;
     return $output;
   }
 
+  /**
+   * Installs the required configuration settings in the database for the module.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -222,6 +239,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves the configuration keys for the dashboard module.
+   *
+   * @return array The list of configuration keys used by the module.
+   */
   public function keys(): array
   {
     return [

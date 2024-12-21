@@ -19,6 +19,13 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the constructor by checking the existence of the 'Customers' registry.
+   * If the 'Customers' registry does not exist, it creates a new instance of CustomersApp and sets it.
+   * Assigns the 'Customers' registry instance to the app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Customers')) {
@@ -29,7 +36,11 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $group_id
+   * Deletes the group with the specified group ID and updates all customers
+   * associated with that group to use a default group ID.
+   *
+   * @param int $group_id The ID of the group to be deleted.
+   * @return void
    */
   private function delete(int $group_id): void
   {
@@ -52,6 +63,12 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the current request. Checks if the 'Delete' parameter is set in the GET request,
+   * sanitizes the 'cID' parameter, and calls the delete method with the sanitized ID.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Delete'])) {
