@@ -20,6 +20,12 @@ class Favorites extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   public mixed $app;
   private mixed $template;
 
+  /**
+   * Initializes the module by setting up the application instance, loading necessary definitions,
+   * and configuring the module parameters like title, description, sort order, and enabled status.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('Favorites')) {
@@ -40,11 +46,23 @@ class Favorites extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks whether the current module is enabled.
+   *
+   * @return bool True if the module is enabled, otherwise false.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates and returns the HTML output for SEO-related meta tags and title based on
+   * Products and Favorites data if provided in the GET request.
+   *
+   * @return string The HTML output containing the title, description, keywords, and news keywords
+   *                meta tags, formatted as per the provided data and template settings.
+   */
   public function getOutput()
   {
     if (isset($_GET['Products'], $_GET['Favorites'])) {
@@ -76,6 +94,11 @@ EOD;
     }
   }
 
+  /**
+   * Installs the required configuration settings for the module.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -104,6 +127,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves the configuration keys associated with the module.
+   *
+   * @return array An array of configuration keys used by the module.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_PRODUCT_FAVORITES_STATUS',

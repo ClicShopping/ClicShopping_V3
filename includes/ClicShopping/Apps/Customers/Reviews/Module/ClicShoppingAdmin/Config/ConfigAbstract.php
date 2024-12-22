@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the Reviews module.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Reviews');
@@ -40,6 +45,15 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the module by processing its configuration parameters.
+   *
+   * Retrieves and iterates through the defined parameters for the module.
+   * Constructs parameter classes dynamically and saves the configuration parameters
+   * into the application's configuration storage, using the default values and metadata.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_REVIEWS_' . $this->code . '_');
@@ -55,6 +69,15 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Removes configuration entries related to the Reviews module from the database.
+   *
+   * This method deletes all configuration keys that match the specified pattern
+   * associated with the Reviews module using a SQL query. It binds the configuration key
+   * pattern and executes the query. The number of rows affected by the deletion is returned.
+   *
+   * @return int The number of configuration entries deleted from the database.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +90,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of configuration parameters based on the defined directory structure and file validation.
+   *
+   * @return array An array of parameter names derived from valid PHP files in the directory.
+   */
   public function getParameters()
   {
     $result = [];
@@ -90,6 +118,13 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Processes input parameters, constructs configuration object instances, and organizes
+   * configuration parameters into a sorted array based on their sort order or default position.
+   *
+   * @return array An array of input parameters sorted numerically, each element containing
+   *               configuration parameter fields prepared for use.
+   */
   public function getInputParameters()
   {
     $result = [];

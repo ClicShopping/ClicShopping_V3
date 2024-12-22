@@ -22,6 +22,12 @@ class Reviews extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   public mixed $app;
   public $group;
 
+  /**
+   * Initializes the Reviews module by setting up the required app instance, language definitions,
+   * title, description, and configuration settings.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('Reviews')) {
@@ -42,6 +48,13 @@ class Reviews extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Generates and returns the HTML content for displaying a reviews dashboard module.
+   * The method retrieves reviews data from a database, formats it into an HTML table, and applies various settings
+   * such as sortable columns, mobile responsiveness, and action buttons.
+   *
+   * @return string The generated HTML output for the reviews module dashboard.
+   */
   public function getOutput()
   {
     $CLICSHOPPING_Language = Registry::get('Language');
@@ -134,6 +147,11 @@ EOD;
     }
   }
 
+  /**
+   * Installs the module by saving its configuration settings into the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -173,6 +191,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves the configuration keys associated with the Reviews Dashboard module.
+   *
+   * @return array The list of configuration keys.
+   */
   public function keys()
   {
     return ['MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS',

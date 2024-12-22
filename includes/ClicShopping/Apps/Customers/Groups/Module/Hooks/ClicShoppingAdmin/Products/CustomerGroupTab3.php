@@ -21,6 +21,11 @@ class CustomerGroupTab3 implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   protected $qteUnit;
 
+  /**
+   * Constructor method that initializes required registry objects and sets up class properties.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -36,7 +41,9 @@ class CustomerGroupTab3 implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return mixed
+   * Retrieves product details from the database based on the provided product ID (pID) in the GET request.
+   *
+   * @return array|false Returns an array of product details if a valid product ID is provided, or false otherwise.
    */
   protected function getProducts()
   {
@@ -56,7 +63,12 @@ class CustomerGroupTab3 implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @return string
+   * Displays customer group pricing information and options within an admin interface.
+   *
+   * This method generates HTML content for managing group-specific pricing and other
+   * related product attributes based on the configured parameters and existing database values.
+   *
+   * @return string The generated HTML content as a string representing the customer group display.
    */
   public function display(): string
   {

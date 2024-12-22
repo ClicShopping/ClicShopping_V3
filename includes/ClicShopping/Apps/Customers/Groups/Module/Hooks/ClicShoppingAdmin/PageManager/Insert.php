@@ -19,6 +19,14 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the Groups application instance.
+   *
+   * Checks if an instance of 'Groups' exists in the Registry. If not, creates a new instance of GroupsApp and sets it in the Registry.
+   * Retrieves the instance from the Registry and assigns it to the $app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -28,6 +36,15 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   * Executes the logic for inserting customer group data into the pages manager table.
+   *
+   * This method checks if the required `Insert` and `customers_group` parameters are present.
+   * It sanitizes the input, retrieves the last page ID from the database,
+   * and inserts the specified customer group data into the `pages_manager` table.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Insert'], $_POST['customers_group'])) {

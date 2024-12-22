@@ -19,6 +19,13 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Groups application by checking its existence in the Registry.
+   * If not found, it sets a new instance of GroupsApp in the Registry.
+   * Assigns the Groups application from the Registry to the app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -28,6 +35,11 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   * Executes the method to handle deletion of product group associations when a product ID is provided in the POST request.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_POST['product_id'])) {

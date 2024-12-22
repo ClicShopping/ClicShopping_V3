@@ -15,6 +15,15 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary operations for initializing the Reviews module.
+   *
+   * This method retrieves the Reviews module from the registry,
+   * loads its necessary definitions, and then calls the helper methods
+   * to install the database menu administration and the database itself.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Reviews = Registry::get('Reviews');
@@ -24,9 +33,15 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries for the administrator menu related to the Reviews module,
+   * including menu items, descriptions, and links for different functionalities such as reviews,
+   * sentiment analysis, and statistical voting. The function checks if the entries already exist
+   * before proceeding with the installation. It also supports multiple languages by saving
+   * menu descriptions for each available language.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Reviews = Registry::get('Reviews');
@@ -171,7 +186,9 @@ class MariaDb
   }
 
   /**
-  * @return void
+   * Installs the necessary database tables for the Reviews module if they do not already exist.
+   *
+   * @return void
    */
   private static function installDb()
   {

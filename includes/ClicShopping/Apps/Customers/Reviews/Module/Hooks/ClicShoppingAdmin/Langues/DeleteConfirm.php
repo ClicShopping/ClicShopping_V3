@@ -20,6 +20,15 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Reviews application by checking its registry existence.
+   *
+   * If the Reviews application is not already registered, it creates a new instance
+   * and stores it in the registry. The application is then retrieved and assigned
+   * to the app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Reviews')) {
@@ -30,7 +39,9 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $id
+   * Deletes records associated with the specified language ID.
+   *
+   * @param int $id The ID of the language whose associated records should be deleted.
    * @return void
    */
   private function delete(int $id): void
@@ -41,6 +52,11 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main logic for handling the deletion of reviews based on the status and confirmation conditions.
+   *
+   * @return bool Returns false if the application reviews status is not defined or set to 'False'.
+   */
   public function execute()
   {
     if (!defined('CLICSHOPPING_APP_REVIEWS_RV_STATUS') || CLICSHOPPING_APP_REVIEWS_RV_STATUS == 'False') {

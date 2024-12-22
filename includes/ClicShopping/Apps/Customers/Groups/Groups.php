@@ -18,12 +18,22 @@ class Groups extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Reviews_V1';
 
+  /**
+   * Initializes the necessary properties or settings for the class or component.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves and initializes the list of configuration modules for a specific directory
+   * and namespace. The modules must be subclasses of the specified `ConfigAbstract`
+   * class, and they are sorted based on their sort order if available.
+   *
+   * @return mixed Returns an array containing the configuration modules, keyed by their
+   * sort order. If no modules are found, an empty array is returned.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +84,12 @@ class Groups extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   *
+   * Retrieves configuration module information based on the specified module and information key.
+   *
+   * @param string $module The name of the module whose configuration information is to be retrieved.
+   * @param string $info The specific information key to fetch from the module's configuration.
+   * @return mixed Returns the requested configuration information for the given module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +103,9 @@ class Groups extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +113,8 @@ class Groups extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string The identifier.
    */
   public function getIdentifier(): string
   {

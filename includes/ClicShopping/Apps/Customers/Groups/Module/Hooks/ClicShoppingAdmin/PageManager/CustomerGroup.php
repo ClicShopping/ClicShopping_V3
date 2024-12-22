@@ -20,6 +20,12 @@ class CustomerGroup implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method initializes the Groups application and sets it in the registry
+   * if it does not already exist.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -29,6 +35,14 @@ class CustomerGroup implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   * Retrieves the customer group ID associated with a specific page.
+   *
+   * This method checks if a page ID (bID) is provided in the GET parameters,
+   * queries the database for the corresponding customer group ID, and returns it.
+   *
+   * @return int|null The customer group ID if found, or null if no ID is provided in the GET parameters.
+   */
   private function getCustomerGroupId()
   {
     if (isset($_GET['bID'])) {
@@ -44,6 +58,14 @@ class CustomerGroup implements \ClicShopping\OM\Modules\HooksInterface
   }
 
 
+  /**
+   * Displays the customer group selection interface for the admin panel,
+   * based on the status of the Customers Groups module and B2B/B2C mode.
+   *
+   * @return mixed Returns false if the Customers Groups module is disabled
+   *               or a formatted HTML string containing the selection interface
+   *               if the module and B2B/B2C mode are enabled.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'False') {

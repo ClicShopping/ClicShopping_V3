@@ -18,12 +18,22 @@ class BannerManager extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_BannerManager_V1';
 
+  /**
+   * Initializes the required properties or components for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves and returns an array of configuration module names for the application.
+   * The method iterates through a specific directory to locate configuration modules,
+   * ensures that they are valid subclasses of a defined ConfigAbstract class, and sorts them
+   * based on their defined sort order or their natural order in absence of a sort_order.
+   *
+   * @return mixed An array of configuration module names indexed by their sort order or null if no configuration modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +84,11 @@ class BannerManager extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific configuration information for a given module.
+   *
+   * @param string $module The name of the module to retrieve the configuration for.
+   * @param string $info The specific information or property to retrieve from the module's configuration.
+   * @return mixed The requested configuration information or property value for the given module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +102,9 @@ class BannerManager extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version as a string or integer.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +112,9 @@ class BannerManager extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

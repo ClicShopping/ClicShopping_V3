@@ -19,6 +19,15 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method to initialize the Favorites application.
+   *
+   * Checks if the 'Favorites' instance exists in the Registry. If not, it creates
+   * a new instance of the FavoritesApp and adds it to the Registry. Then, it
+   * retrieves the instance from the Registry and assigns it to the app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Favorites')) {
@@ -28,6 +37,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Favorites');
   }
 
+  /**
+   * Removes a product from the favorites list based on the provided ID.
+   *
+   * @param int $id The ID of the product to be removed from the favorites list.
+   * @return void
+   */
   private function removeProducts($id)
   {
     if (!empty($_POST['products_favorites'])) {
@@ -35,6 +50,11 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the functionality for removing products based on the provided input parameters.
+   *
+   * @return bool Returns false if the application status is not defined or set to 'False', otherwise performs the operation and does not return any value.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_FAVORITES_FA_STATUS') || CLICSHOPPING_APP_FAVORITES_FA_STATUS == 'False') {

@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the method to initialize and install necessary database configurations.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Favorites = Registry::get('Favorites');
@@ -24,9 +29,16 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs entries for the Favorites application into the administrator menu database table.
+   *
+   * This method checks if the application's menu entries are already present in the administrator
+   * menu database. If not, it adds the required rows, including the parent-child relationships
+   * and associated language descriptions across all supported languages. After insertion,
+   * the menu administrator cache is cleared to ensure changes are reflected.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -103,7 +115,13 @@ class MariaDb
   }
 
   /**
-  * @return void
+   * Installs the database table necessary for the products favorites feature.
+   *
+   * This method checks if the database table ":table_products_favorites" exists.
+   * If the table does not exist, it creates the table with the required columns and indexes.
+   * The table is used to store information related to product favorites functionality.
+   *
+   * @return void
    */
   private static function installDb(): void
   {

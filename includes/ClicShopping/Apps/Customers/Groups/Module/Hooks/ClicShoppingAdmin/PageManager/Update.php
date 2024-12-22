@@ -19,6 +19,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method that initializes the Groups application object.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -28,6 +33,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   * Executes the update operation for a specified customer group associated with a page.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Update'], $_POST['customers_group'])) {

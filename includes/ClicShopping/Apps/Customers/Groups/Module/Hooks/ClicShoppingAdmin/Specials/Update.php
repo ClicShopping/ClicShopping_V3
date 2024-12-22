@@ -19,6 +19,15 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Groups application.
+   *
+   * Checks if the 'Groups' key exists in the Registry. If it does not exist,
+   * a new instance of GroupsApp is created and added to the Registry.
+   * Finally, assigns the 'Groups' app instance from the Registry to the class.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -28,6 +37,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   * Executes the method logic for handling updates to the specials data.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Update'])) {

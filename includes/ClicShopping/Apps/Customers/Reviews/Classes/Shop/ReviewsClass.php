@@ -26,6 +26,12 @@ class ReviewsClass
   protected int $reviews_number_comments;
   protected int $reviews_number_word;
 
+  /**
+   * Constructor method to initialize the class properties using the application registry and
+   * default values for reviews-related configurations.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->productsCommon = Registry::get('ProductsCommon');
@@ -48,9 +54,9 @@ class ReviewsClass
   }
 
   /**
-   * get the total product review
+   * Retrieves the total number of reviews for a specific product based on customer group and language.
    *
-   * @return int the numbeer of the review
+   * @return int The total number of reviews.
    */
   public function getTotalReviews(): int
   {
@@ -86,8 +92,11 @@ class ReviewsClass
   }
 
   /**
-   * get all review about a product id
-   * @return mixed
+   * Retrieves review data for a specific product, including details such as review text, rating, date added, status,
+   * customer name, customer ID, and customer tag. The method filters reviews based on the customer's group ID and
+   * limits the number of reviews and text length according to predefined parameters.
+   *
+   * @return object Prepared database statement containing review data for the specified product.
    */
   public function getData()
   {
@@ -149,8 +158,9 @@ class ReviewsClass
   }
 
   /**
-   * Count the total rows
-   * @return int : total row
+   * Retrieves the total number of rows in the current page set.
+   *
+   * @return int The total number of rows in the page set.
    */
   public function getPageSetTotalRows(): int
   {
@@ -158,9 +168,10 @@ class ReviewsClass
   }
 
   /**
-   * Get rewiews with specific reviews id
-   * @param int|null $id
-   * @return bool|array
+   * Retrieves review data for the specified review ID, filtered by customer group and language.
+   *
+   * @param int|null $id The ID of the review to retrieve. Can be null.
+   * @return bool|array Returns the review data as an associative array if a valid review ID is provided; otherwise, returns false.
    */
   public function getDataReviews( int|null $id): bool|array
   {
@@ -214,11 +225,11 @@ class ReviewsClass
   }
 
   /**
-   * Save the review
+   * Saves a review entry into the database. Depending on the customer's group,
+   * it updates the reviews and reviews description tables with the provided
+   * review data. Invokes hooks after the entry is saved.
    *
-   * @param string
-   * @return string
-   *
+   * @return void
    */
   public function saveEntry(): void
   {
@@ -263,9 +274,18 @@ class ReviewsClass
     $this->hooks->call('Reviews', 'SaveEntry');
   }
 
- /**
-* @return void
-  */
+  /**
+   * Sends an email notification to the customer and the store owner based on the review comment settings.
+   *
+   * This method sends two emails:
+   * 1. A notification email to the customer with personalized content derived from store settings.
+   * 2. A notification email to the store owner containing details about the product and store settings.
+   *
+   * The method uses the `CLICSHOPPING_Mail` functionality to compose and send the emails.
+   * It checks the `REVIEW_COMMENT_SEND_EMAIL` configuration to determine whether emails should be sent.
+   *
+   * @return void
+   */
   public function sendEmail(): void
   {
     $CLICSHOPPING_Mail = Registry::get('Mail');
@@ -296,10 +316,13 @@ class ReviewsClass
     }
   }
 
-/**
-* @param int $review_id
-* @return void
- */
+  /**
+   * Deletes a review from the database, including its associated descriptions.
+   *
+   * @param int $review_id The ID of the review to be deleted.
+   *
+   * @return void
+   */
   public function deleteReviews(int $review_id): void
   {
     $Odelete = $this->db->prepare('delete
@@ -318,9 +341,11 @@ class ReviewsClass
   }
 
   /**
-   * @param int $products_id
-   * @param bool $all_language
-   * @return float|null
+   * Calculates the average rating of product reviews for the specified product.
+   *
+   * @param int $products_id The ID of the product for which the average rating is calculated.
+   * @param bool $all_language Indicates whether the average rating should be calculated across all languages (true) or only for the current language (false).
+   * @return float|null The average rating of the product reviews, or null if no reviews are available.
    */
   public function getAverageProductReviews(int $products_id, bool $all_language = false): ?float
   {
@@ -393,9 +418,11 @@ class ReviewsClass
   }
 
   /**
-   * @param int $products_id
-   * @param bool $all_language
-   * @return int|null
+   * Retrieves the highest product review rating for a given product, optionally filtering by language.
+   *
+   * @param int $products_id The ID of the product for which the best review will be retrieved.
+   * @param bool $all_language If set to true, considers all languages; otherwise, filters by the current language.
+   * @return int|null Returns the highest review rating for the product, or null if no reviews exist.
    */
   public function getBestProductReviews(int $products_id, bool $all_language = false):  int|null
   {
@@ -468,8 +495,10 @@ class ReviewsClass
   }
 
   /**
-   * @param int $products_id
-   * @return string
+   * Retrieves the name of the author for the given product ID.
+   *
+   * @param int $products_id The ID of the product to retrieve the author's name for.
+   * @return string The formatted name of the author. Returns an empty string if no author is found.
    */
   public function getAuthor(int $products_id): string
   {
@@ -492,8 +521,10 @@ class ReviewsClass
   }
 
   /**
-   * @param int $products_id
-   * @return int
+   * Gets the count of reviews for a specific product.
+   *
+   * @param int $products_id The ID of the product for which the reviews count is retrieved.
+   * @return int The total count of active reviews for the specified product. Returns 1 if no reviews are found.
    */
   public function getCount(int $products_id): int
   {

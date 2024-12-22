@@ -15,6 +15,13 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the groups module.
+   * This method loads the necessary definitions and initializes
+   * the database setup for the administrative menu and module-specific data.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Groups = Registry::get('Groups');
@@ -24,9 +31,16 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries for the administration menu related to customer groups.
+   *
+   * This method checks if the necessary entries for the "app_customers_groups" administration menu
+   * already exist in the database. If not, it creates the appropriate records in both the
+   * administrator menu table and its description table. Additionally, it clears the related cache
+   * to reflect the updated menu.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Groups = Registry::get('Groups');
@@ -70,7 +84,11 @@ class MariaDb
   }
 
   /**
-  * @return void
+   * Installs the necessary database tables for managing customer groups, group-to-category relationships,
+   * and product group-specific configurations. Checks for the presence of each table and creates it
+   * if it does not already exist.
+   *
+   * @return void
    */
   private static function installDb()
   {

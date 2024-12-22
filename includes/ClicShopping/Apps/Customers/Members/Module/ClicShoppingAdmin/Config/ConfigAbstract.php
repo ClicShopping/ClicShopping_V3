@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the object by setting up the application instance, determining the class code,
+   * loading module definitions, and calling the initialization method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Members');
@@ -40,6 +46,12 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs and configures module parameters by iterating through the defined parameters,
+   * initializing parameter configuration classes, and saving their default values and metadata.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_CUSTOMERS_MEMBERS_' . $this->code . '_');
@@ -55,6 +67,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +82,15 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of configuration parameters associated with the current module.
+   *
+   * This method scans the parameter directory specific to the current module's code,
+   * identifies valid parameter classes, and returns their respective configuration constants.
+   * Any class found that does not properly subclass the expected abstract class triggers an error.
+   *
+   * @return array An array of configuration parameter constants for the module.
+   */
   public function getParameters()
   {
     $result = [];
@@ -90,6 +114,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and organizes input parameters for the configuration module.
+   *
+   * This method processes parameters based on the module's configuration
+   * and dynamically instantiates parameter classes to obtain their settings,
+   * ensuring that they are stored and sorted appropriately.
+   *
+   * @return array An array of input parameters organized by their sort order.
+   */
   public function getInputParameters()
   {
     $result = [];

@@ -18,6 +18,11 @@ class FA extends \ClicShopping\Apps\Marketing\Favorites\Module\ClicShoppingAdmin
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_fa_title');
@@ -26,6 +31,11 @@ class FA extends \ClicShopping\Apps\Marketing\Favorites\Module\ClicShoppingAdmin
     $this->is_installed = \defined('CLICSHOPPING_APP_FAVORITES_FA_STATUS') && (trim(CLICSHOPPING_APP_FAVORITES_FA_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its entry to the installed modules configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +49,11 @@ class FA extends \ClicShopping\Apps\Marketing\Favorites\Module\ClicShoppingAdmin
     $this->app->saveCfgParam('MODULE_MODULES_PRODUCTS_FAVORITES_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its entry from the installed modules configuration.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

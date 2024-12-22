@@ -18,6 +18,12 @@ class BM extends \ClicShopping\Apps\Marketing\BannerManager\Module\ClicShoppingA
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction,
+   * and determining its installation status based on configuration parameters.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_bm_title');
@@ -26,6 +32,12 @@ class BM extends \ClicShopping\Apps\Marketing\BannerManager\Module\ClicShoppingA
     $this->is_installed = \defined('CLICSHOPPING_APP_BANNER_MANAGER_BM_STATUS') && (trim(CLICSHOPPING_APP_BANNER_MANAGER_BM_STATUS) != '');
   }
 
+  /**
+   * Installs the current module by adding it to the list of installed modules
+   * and updating the corresponding configuration parameter.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +51,12 @@ class BM extends \ClicShopping\Apps\Marketing\BannerManager\Module\ClicShoppingA
     $this->app->saveCfgParam('MODULE_MODULES_BANNER_MANAGER_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the current module by removing it from the list of installed modules
+   * and updating the corresponding configuration parameter.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

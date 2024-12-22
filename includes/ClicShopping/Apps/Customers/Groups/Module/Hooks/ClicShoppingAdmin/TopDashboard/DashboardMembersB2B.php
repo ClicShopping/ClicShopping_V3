@@ -23,6 +23,13 @@ class DashboardMembersB2B implements \ClicShopping\OM\Modules\HooksInterface
    */
   public mixed $app;
 
+  /**
+   * Initializes the Groups module by checking its existence in the Registry.
+   * If not already set, a new instance of GroupsApp is registered.
+   * Also loads the required definitions for the dashboard top members B2B module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -34,6 +41,12 @@ class DashboardMembersB2B implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_members_B2B');
   }
 
+  /**
+   * Generates the HTML output to display the number of B2B members (customers with member level 0)
+   * along with a link to view more details.
+   *
+   * @return string Returns the HTML content of the output displaying the number of B2B members or an empty string if no members exist.
+   */
   public function Display(): string
   {
     $Qmembes = $this->app->db->prepare('select count(customers_id) as count 

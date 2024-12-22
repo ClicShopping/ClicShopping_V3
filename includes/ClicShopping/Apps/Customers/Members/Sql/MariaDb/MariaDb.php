@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the Members module by loading
+   * necessary definitions and initializing database menu administration setup.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Members = Registry::get('Members');
@@ -23,9 +29,14 @@ class MariaDb
     self::installDbMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries necessary for the administration menu related to customer members.
+   *
+   * This method checks whether the 'app_customers_members' entry exists in the 'administrator_menu' table.
+   * If not, it creates the necessary entry with its translations and updates the cache for the administrator menu.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Members = Registry::get('Members');

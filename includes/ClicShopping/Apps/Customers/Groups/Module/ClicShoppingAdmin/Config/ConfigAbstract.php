@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by retrieving the application instance from the Registry,
+   * setting the code property, loading language definitions, and performing initialization tasks.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Groups');
@@ -40,6 +46,12 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module.
+   * Processes each parameter associated with the current module, transforming and saving their default values, title, description, and set function as defined by their respective classes.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_CUSTOMERS_GROUPS_' . $this->code . '_');
@@ -55,6 +67,14 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the module by removing specific configuration entries from the database.
+   *
+   * Deletes all rows in the configuration table where the key matches a specific pattern
+   * associated with this module, using its unique code as part of the key.
+   *
+   * @return int Returns the number of rows deleted from the database.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +87,16 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of configuration parameters for the specified module.
+   *
+   * The method scans the module's "Params" directory for PHP files representing
+   * configuration parameters. Each valid parameter is returned as a string
+   * following a specific format, ensuring it is a subclass of `ConfigParamAbstract`.
+   * If invalid parameter files are encountered, an error is triggered.
+   *
+   * @return array An array of configuration parameter identifiers in string format.
+   */
   public function getParameters()
   {
     $result = [];
@@ -90,6 +120,16 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the application configuration.
+   *
+   * This method iterates through application-specific configuration parameters,
+   * applies necessary transformations, initializes associated configuration objects,
+   * and retrieves their settings. It maintains a sorted list of parameters for use
+   * in the application setup or execution.
+   *
+   * @return array An array of processed input parameters, sorted and ready for use in the application.
+   */
   public function getInputParameters()
   {
     $result = [];

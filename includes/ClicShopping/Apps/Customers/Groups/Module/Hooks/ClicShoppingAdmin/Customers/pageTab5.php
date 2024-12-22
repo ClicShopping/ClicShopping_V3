@@ -22,6 +22,13 @@ class pageTab5 implements \ClicShopping\OM\Modules\HooksInterface
   protected string $customers_group_name;
   protected int $customers_group_id;
 
+  /**
+   * Constructor method for initializing the Groups application.
+   * Ensures that the Groups application is registered in the Registry
+   * and retrieves its instance for use.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -31,6 +38,14 @@ class pageTab5 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   * Displays customer shipping group information within the admin module.
+   * This method retrieves and formats data specific to customer shipping groups, including
+   * configurations for shipping modules and restrictions based on customer group settings.
+   *
+   * @return string|false Returns the generated HTML output for the customer shipping group tab if
+   *                      the feature is enabled, or false if the feature is disabled or not properly configured.
+   */
   public function display()
   {
     $this->app = Registry::get('Customers');

@@ -19,6 +19,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Groups application instance by checking if it exists in the registry.
+   * If not found, it sets a new instance of GroupsApp in the registry and retrieves it.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -28,6 +34,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   * Removes groups associated with a specific product ID from the database.
+   *
+   * @param int $id The ID of the product whose groups are to be removed.
+   * @return void
+   */
   private function removeGroups($id)
   {
 
@@ -36,6 +48,11 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the action of removing a group based on the POST parameter 'remove_id'.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_POST['remove_id'])) {

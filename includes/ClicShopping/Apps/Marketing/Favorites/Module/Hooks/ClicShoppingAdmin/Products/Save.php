@@ -19,6 +19,16 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the Favorites application.
+   *
+   * This constructor checks if the 'Favorites' app is already registered
+   * in the Registry. If not, it initializes a new instance of FavoritesApp
+   * and registers it. Finally, it retrieves and assigns the 'Favorites'
+   * app instance from the Registry to the class property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Favorites')) {
@@ -29,7 +39,10 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $id
+   * Saves a product as a favorite in the database if the 'products_favorites' parameter is provided in the POST request.
+   *
+   * @param int $id The ID of the product to be saved as a favorite.
+   * @return void
    */
   private function saveProductsFavorites(int $id): void
   {
@@ -46,13 +59,24 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $id
+   * Saves a product to the favorites list.
+   *
+   * @param int $id The identifier of the product to be saved.
+   * @return void
    */
   private function save(int $id)
   {
     $this->saveProductsFavorites($id);
   }
 
+  /**
+   * Executes the primary logic for handling the favorites application functionality.
+   * This includes checking the application status and determining whether to process
+   * a product ID provided via the GET parameter or handle the addition of a new favorite
+   * product when no specific ID is provided.
+   *
+   * @return bool|void Returns false if the application status is disabled. Returns void if operation is successfully executed.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_FAVORITES_FA_STATUS') || CLICSHOPPING_APP_FAVORITES_FA_STATUS == 'False') {

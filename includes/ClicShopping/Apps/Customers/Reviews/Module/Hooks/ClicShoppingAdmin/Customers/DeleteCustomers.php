@@ -19,6 +19,16 @@ class DeleteCustomers implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the Reviews application.
+   *
+   * Checks if the 'Reviews' key exists in the Registry; if not, it initializes
+   * a new ReviewsApp instance and stores it in the Registry. Then, it retrieves
+   * the 'Reviews' application instance from the Registry and assigns it to the
+   * class property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Reviews')) {
@@ -29,7 +39,10 @@ class DeleteCustomers implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $id
+   * Deletes a customer and handles associated reviews based on the provided settings.
+   *
+   * @param int $id The unique identifier of the customer to be deleted.
+   * @return void
    */
   private function deleteCustomer(int $id): void
   {
@@ -46,6 +59,15 @@ class DeleteCustomers implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the delete operation for customers.
+   *
+   * If the 'DeleteAll' parameter is set in the GET request, this method deletes
+   * all selected customers specified in the POST data. If no customers are
+   * selected, it deletes the customer with the ID provided in the POST data.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['DeleteAll'])) {

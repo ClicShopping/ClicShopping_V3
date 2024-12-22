@@ -21,6 +21,13 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   private mixed $lang;
 
+  /**
+   * Initializes the Reviews application by checking its existence in the Registry.
+   * If not found, a new instance is created and set. Retrieves and assigns the
+   * Reviews application and Language objects from the Registry to class properties.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Reviews')) {
@@ -32,6 +39,9 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
+   * Inserts new language-specific data into the `reviews_description` and `reviews_sentiment_description` tables
+   * by duplicating existing entries with a new language ID.
+   *
    * @return void
    */
   private function insert(): void
@@ -80,6 +90,14 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the primary logic for the Reviews application.
+   *
+   * This method checks whether the Reviews application is enabled and performs
+   * specific actions based on query parameters, such as invoking the insert method.
+   *
+   * @return bool Returns false if the Reviews application is disabled; otherwise, no explicit return value.
+   */
   public function execute()
   {
     if (!defined('CLICSHOPPING_APP_REVIEWS_RV_STATUS') || CLICSHOPPING_APP_REVIEWS_RV_STATUS == 'False') {

@@ -18,6 +18,11 @@ class GR extends \ClicShopping\Apps\Customers\Groups\Module\ClicShoppingAdmin\Co
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_gr_title');
@@ -26,6 +31,11 @@ class GR extends \ClicShopping\Apps\Customers\Groups\Module\ClicShoppingAdmin\Co
     $this->is_installed = \defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') && (trim(CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its reference to the list of installed modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +49,11 @@ class GR extends \ClicShopping\Apps\Customers\Groups\Module\ClicShoppingAdmin\Co
     $this->app->saveCfgParam('MODULE_MODULES_CUSTOMERS_GROUPS_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its reference from the list of installed modules.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

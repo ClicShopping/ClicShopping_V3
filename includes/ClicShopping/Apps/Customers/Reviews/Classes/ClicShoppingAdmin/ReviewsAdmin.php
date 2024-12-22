@@ -21,9 +21,10 @@ use ClicShopping\OM\Registry;
 class ReviewsAdmin
 {
   /**
-   * Counts the total number of customer tags from the reviews table.
+   * Counts the total number of customer tags by retrieving and processing tag data
+   * from the reviews table in the database.
    *
-   * @return int The total count of all customer tags across all reviews.
+   * @return int The total count of customer tags.
    */
   public static function countCustomersTags(): int
   {
@@ -46,9 +47,9 @@ class ReviewsAdmin
   }
 
   /**
-   * Checks if the number of customer tags exceeds the specified threshold.
+   * Checks if the count of customer tags exceeds a predefined limit.
    *
-   * @return bool Returns true if the count of customer tags is greater than 300, otherwise false.
+   * @return bool Returns true if the number of customer tags is greater than 300, otherwise false.
    */
   public static function CountTagCountWarning(): bool
   {
@@ -60,11 +61,14 @@ class ReviewsAdmin
   }
 
   /**
-   * Updates the status of a review in the database based on the provided review ID and status.
+   * Updates the status of a review in the database based on the given ID and status.
    *
-   * @param int $id The ID of the review to update.
-   * @param int|null $status The new status to set for the review. Accepts 1 for active, 0 for inactive, or null for invalid status.
-   * @return bool|int Returns true if the update is successful, -1 if the status is invalid.
+   * @param int $id The ID of the review to be updated.
+   * @param int|null $status The new status to set for the review (1 for active, 0 for inactive).
+   *                          If null or an unexpected value is provided, the method returns -1.
+   *
+   * @return bool|int Returns true if the status was successfully updated, false on failure,
+   *                  or -1 if the provided status is invalid.
    */
   public static function getReviewsStatus(int $id,  int|null $status)
   {
@@ -91,11 +95,11 @@ class ReviewsAdmin
   }
 
   /**
-   * Updates the approved status of a review's sentiment based on the provided status.
+   * Updates the sentiment approval status of a review based on the provided status.
    *
-   * @param int $id The ID of the review whose sentiment approved status needs to be updated.
-   * @param int|null $status The status to set for the review's sentiment (1 for approved, 0 for not approved). Any other value results in a return value of -1.
-   * @return bool|int Returns true on successful update, false on failure, and -1 if the status is invalid.
+   * @param int $id The ID of the review to update.
+   * @param int|null $status The status to set for sentiment approval. Use 1 for approval, 0 for disapproval, or null for an invalid status.
+   * @return bool|int Returns true if the update was successful, false on failure, or -1 if the status was invalid.
    */
   public static function getReviewsSentimentApprovedStatus(int $id,  int|null $status)
   {
@@ -123,11 +127,11 @@ class ReviewsAdmin
   }
 
   /**
-   * Retrieves the sentiment description based on the provided sentiment ID and language ID.
+   * Retrieves the sentiment description based on the given sentiment ID and language ID.
    *
-   * @param int $id The ID of the sentiment to retrieve the description for.
-   * @param int $language_id The ID of the language for the description. If not provided, the default language ID is used.
-   * @return string The sentiment description corresponding to the given ID and language ID.
+   * @param int $id The unique identifier of the sentiment.
+   * @param int $language_id The unique identifier of the language. If not provided, the default language ID will be used.
+   * @return string The sentiment description corresponding to the specified ID and language.
    */
   public static function getSentimentDescription(int $id, int $language_id): string
   {
@@ -151,9 +155,9 @@ class ReviewsAdmin
   }
 
   /**
-   * Retrieves the total number of "vote yes" entries from the reviews votes table.
+   * Retrieves the total count of "yes" votes from the reviews vote table.
    *
-   * @return int The total count of "yes" votes for reviews.
+   * @return int The total number of "yes" votes.
    */
   public static function getTotalReviewsVoteYes(): int
   {
@@ -171,9 +175,9 @@ class ReviewsAdmin
   }
 
   /**
-   * Retrieves the total number of reviews where the vote is marked as "No".
+   * Retrieves the total number of reviews with a "No" vote.
    *
-   * @return int The count of reviews with a "No" vote.
+   * @return int The total count of "No" votes in the reviews.
    */
   public static function getTotalReviewsVoteNo(): int
   {
@@ -192,10 +196,10 @@ class ReviewsAdmin
 
 
   /**
-   * Retrieves the total number of positive sentiment votes for a given product based on its ID.
+   * Counts the total number of positive sentiment votes (vote_yes) for a specified product.
    *
-   * @param int $products_id The ID of the product for which to count positive sentiment votes.
-   * @return int The total number of votes with a positive sentiment for the specified product.
+   * @param int $products_id The ID of the product for which the positive sentiment votes will be counted.
+   * @return int The total count of positive sentiment votes (vote_yes) for the specified product.
    */
   public static function getTotalReviewsSentimentVoteYes(int $products_id): int
   {
@@ -215,10 +219,9 @@ class ReviewsAdmin
   }
 
   /**
-   * Retrieves the total count of negative sentiment votes (sentiment = 0 and reviews_id = 0)
-   * for a given product.
+   * Retrieves the total count of negative sentiment votes for a specific product.
    *
-   * @param int $products_id The ID of the product for which to retrieve the vote count.
+   * @param int $products_id The ID of the product for which the negative sentiment vote count is retrieved.
    * @return int The total number of negative sentiment votes for the specified product.
    */
   public static function getTotalReviewsSentimentVoteNo(int $products_id): int

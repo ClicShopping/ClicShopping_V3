@@ -19,6 +19,15 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the GroupsApp instance.
+   *
+   * If the 'Groups' registry entry does not exist, it creates a new instance of
+   * GroupsApp and assigns it to the registry. The instance is then retrieved
+   * from the registry and assigned to the `$app` property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -28,6 +37,16 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   * Performs the execution of the update operation for banners based on the provided
+   * `banners_id` and `customers_group_id` from the input data ($_POST).
+   *
+   * Initiates the database save operation only when the required parameters are provided.
+   * The method sanitizes the input values before processing to prevent any potential
+   * security vulnerabilities.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Update'])) {

@@ -19,6 +19,13 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Groups application and registers it within the Registry
+   * if it does not already exist. Retrieves the registered Groups application
+   * instance and assigns it to the $app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -28,6 +35,15 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   * Executes the logic for inserting a new customer group entry into the 'products_favorites' database table.
+   *
+   * This method checks if the 'Insert' parameter exists in the GET request and validates the 'customers_group' value
+   * sent through the POST request. It retrieves the latest 'products_favorites_id' from the database and inserts
+   * a new record with the sanitized 'customers_group_id'.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Insert'])) {

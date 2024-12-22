@@ -19,6 +19,11 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Groups application by checking the registry and setting it if not already present.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -28,6 +33,17 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   * Executes the update process for customer groups and associated data.
+   *
+   * This method checks for parameters in the GET request related to customers and updates
+   * the `customers_group_id` for a specific customer based on the POST data. It also ensures
+   * that outdated customer group references in other tables are removed.
+   * The process involves sanitizing input data, validating group availability,
+   * and performing database operations.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Update'], $_GET['Customers'])) {

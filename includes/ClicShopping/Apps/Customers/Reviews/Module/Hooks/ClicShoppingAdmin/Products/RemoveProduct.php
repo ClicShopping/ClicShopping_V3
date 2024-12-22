@@ -20,6 +20,11 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes a new instance of the class and sets up the application registry for 'Reviews'.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Reviews')) {
@@ -29,10 +34,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Reviews');
   }
 
-/**
-* @param int|null $id
-* @return void
- */
+  /**
+   * Removes all reviews associated with a specific product ID.
+   *
+   * @param int|null $id The ID of the product whose reviews are to be removed. If null, no action is taken.
+   * @return void
+   */
   private function removeReviews(int|null $id): void
   {
     if (!is_null($id)) {
@@ -48,10 +55,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
-/**
-* @param int|null $id
-* @return void
- */
+  /**
+   * Removes reviews sentiment data associated with a specific product ID.
+   *
+   * @param int|null $id The ID of the product whose reviews sentiment data is to be removed. If null, no action is taken.
+   * @return void
+   */
   private function removeReviewsSentiment(int|null $id): void
   {
     if (!is_null($id)) {
@@ -67,6 +76,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   *
+   * Executes the removal of reviews and their corresponding sentiments based on input data.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_POST['selected'])) {

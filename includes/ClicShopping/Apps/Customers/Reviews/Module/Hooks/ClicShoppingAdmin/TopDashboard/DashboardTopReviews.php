@@ -23,6 +23,12 @@ class DashboardTopReviews implements \ClicShopping\OM\Modules\HooksInterface
    */
   public mixed $app;
 
+  /**
+   * Initializes the Reviews application module by setting it in the Registry if not already present
+   * and loading the necessary definitions for the Reviews module configuration.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Reviews')) {
@@ -34,6 +40,13 @@ class DashboardTopReviews implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_reviews');
   }
 
+  /**
+   * Generates and returns an HTML block displaying the number of new reviews
+   * added in the last two months with a pending status. If no such reviews exist,
+   * returns an empty string.
+   *
+   * @return string The constructed HTML block with review details or an empty string if no reviews are pending.
+   */
   public function Display(): string
   {
     $Qreviews = $this->app->db->prepare('select count(reviews_id) as num_reviews 

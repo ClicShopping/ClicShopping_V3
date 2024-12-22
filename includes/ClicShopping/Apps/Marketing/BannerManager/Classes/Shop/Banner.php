@@ -18,11 +18,12 @@ use function is_array;
 class Banner
 {
   /**
-   * Update the status of the banner
+   * Sets the status of a specific banner to either active or inactive.
+   * Updates the corresponding status, status change date, and clears scheduling if applicable.
    *
-   * @param int $banners_id The ID of the banner
-   * @param int $status The new status of the banner (1 for active, 0 for inactive)
-   * @access private
+   * @param int $banners_id The ID of the banner whose status is being updated.
+   * @param int $status The new status to set for the banner (1 for active, 0 for inactive).
+   * @return mixed Returns the result of the database operation, or -1 if an invalid status is provided.
    */
 
   private static function setBannerStatus(int $banners_id, int $status)
@@ -52,13 +53,11 @@ class Banner
   }
 
   /**
-   * Activate banners that are scheduled and not currently active
-   *
-   * This method checks for banners with a scheduled activation date
-   * that has passed and updates their status to active.
+   * Activates banners that are scheduled to be activated, based on the current date.
+   * This method updates the status of banners whose scheduled activation date has been reached
+   * and whose status is not already active.
    *
    * @return void
-   * @access public
    */
   public static function activateBanners(): void
   {
@@ -81,14 +80,10 @@ class Banner
   }
 
   /**
-   * Expires banners based on their expiration date or the number of impressions
-   *
-   * Checks all active banners and deactivates them if:
-   * - The current date is equal to or exceeds their expiration date.
-   * - The total number of impressions has reached or surpassed the set limit.
+   * Expires active banners based on their expiration date or maximum impressions.
+   * If a banner's expiration criteria are met, its status is updated to inactive.
    *
    * @return void
-   * @access private
    */
   public static function expireBanners(): void
   {
@@ -116,12 +111,14 @@ class Banner
   }
 
   /**
-   * Displays a banner based on the specified action and identifier.
+   * Displays a banner based on the specified action and identifier. The method manages dynamic or static
+   * banners and retrieves the appropriate banner data based on customer group, language, theme, and status.
+   * If a valid banner is found, its display count is updated, and either its HTML content or an image link is returned.
    *
-   * @param string $action The type of banner retrieval ('dynamic' or 'static').
-   * @param mixed $identifier The banner identifier, could be a group name or an array containing banner details.
-   * @return string The rendered HTML output of the banner, or an empty string if no banner is available.
-   * @access public
+   * @param string $action Specifies the type of banner to display. Accepted values are 'dynamic' or 'static'.
+   * @param mixed $identifier The identifier for the banner. This can be a string representing the banner group
+   *                           or an array containing specific banner data.
+   * @return string The HTML output of the banner, which can be the banner's HTML text or an image link.
    */
   public static function displayBanner($action, $identifier)
   {

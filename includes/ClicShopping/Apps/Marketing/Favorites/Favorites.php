@@ -18,12 +18,25 @@ class Favorites extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Favorites_V1';
 
+  /**
+   * Initializes the required setup or configuration.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the configuration modules from a specified directory and organizes
+   * them based on their sort order or the directory order if no sort order is defined.
+   *
+   * The method checks for valid configuration classes within the given namespace
+   * and ensures they are subclasses of a specific abstract class.
+   *
+   * @return mixed Returns an array of configuration module names sorted by their
+   *               defined sort order or in directory order if no sort order is
+   *               provided.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +87,11 @@ class Favorites extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information.
+   *
+   * @param string $module The name of the module to retrieve configuration for.
+   * @param string $info The specific information required from the configuration module.
+   * @return mixed The requested information from the specified configuration module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +105,9 @@ class Favorites extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The version of the API.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +115,8 @@ class Favorites extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string The identifier associated with the instance.
    */
   public function getIdentifier(): string
   {

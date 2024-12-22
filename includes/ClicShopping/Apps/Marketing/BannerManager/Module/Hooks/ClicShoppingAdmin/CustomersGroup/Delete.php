@@ -19,6 +19,12 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the BannerManagerApp instance and sets it in the registry.
+   * Ensures that a single instance of the application exists.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('BannerManager')) {
@@ -29,7 +35,10 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $group_id
+   * Deletes banners associated with a specific customer group ID if they exist.
+   *
+   * @param int $group_id The ID of the customer group whose associated banners need to be deleted.
+   * @return void This method does not return any value.
    */
   private function delete(int $group_id): void
   {
@@ -51,6 +60,12 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the necessary operations based on the 'Delete' parameter in the GET request.
+   * If the 'Delete' parameter is set, it retrieves and sanitizes the 'cID' value and calls the delete method.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Delete'])) {

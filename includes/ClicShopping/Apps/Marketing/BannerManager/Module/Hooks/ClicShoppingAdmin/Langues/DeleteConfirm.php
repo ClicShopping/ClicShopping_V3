@@ -19,6 +19,9 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   *
+   */
   public function __construct()
   {
     if (!Registry::exists('BannerManager')) {
@@ -28,6 +31,12 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('BannerManager');
   }
 
+  /**
+   * Deletes a banner based on the given language ID.
+   *
+   * @param int $id The ID of the language to delete banners for.
+   * @return void
+   */
   private function delete(int $id)
   {
     if (!\is_null($id)) {
@@ -35,6 +44,12 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main functionality of the method. Checks for a specific confirmation parameter
+   * in the request and performs a delete operation based on the provided ID if the parameter exists.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['DeleteConfirm'])) {

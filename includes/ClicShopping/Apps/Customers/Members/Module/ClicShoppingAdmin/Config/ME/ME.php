@@ -18,6 +18,11 @@ class ME extends \ClicShopping\Apps\Customers\Members\Module\ClicShoppingAdmin\C
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_me_title');
@@ -26,6 +31,11 @@ class ME extends \ClicShopping\Apps\Customers\Members\Module\ClicShoppingAdmin\C
     $this->is_installed = \defined('CLICSHOPPING_APP_CUSTOMERS_MEMBERS_ME_STATUS') && (trim(CLICSHOPPING_APP_CUSTOMERS_MEMBERS_ME_STATUS) != '');
   }
 
+  /**
+   * Installs the current module and adds its entry to the list of installed modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +49,11 @@ class ME extends \ClicShopping\Apps\Customers\Members\Module\ClicShoppingAdmin\C
     $this->app->saveCfgParam('MODULE_MODULES_CUSTOMERS_MEMBERS_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the current module and removes its entry from the list of installed modules.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

@@ -21,6 +21,11 @@ class Reviews extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   private mixed $template;
   public $group;
 
+  /**
+   * Initializes the module by checking and setting up required application components and configurations.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('ReviewsApp')) {
@@ -42,11 +47,22 @@ class Reviews extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks whether the feature or functionality is enabled.
+   *
+   * @return bool Returns true if enabled, otherwise false.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates the output for SEO meta tags, including title, description, and keywords,
+   * when specific $_GET parameters are set.
+   *
+   * @return string The generated SEO meta tags including title, description, and keywords wrapped in HTML tags.
+   */
   public function getOutput()
   {
     if (isset($_GET['Reviews']) || isset($_GET['ReviewsInfo']) || isset($_GET['ReviewsWrite'])) {
@@ -78,6 +94,11 @@ EOD;
     }
   }
 
+  /**
+   * Installs the module by adding required configuration settings to the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -106,6 +127,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves the configuration keys used by the module.
+   *
+   * @return array The list of configuration keys.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_PRODUCT_REVIEWS_STATUS',

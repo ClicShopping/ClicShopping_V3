@@ -21,6 +21,14 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
   protected $id;
   protected $currentCategoryId;
 
+  /**
+   * Constructor method for initializing the Groups application environment.
+   *
+   * It ensures the 'Groups' application instance is registered in the registry, retrieves
+   * required product information, and sets the current category ID based on provided input.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -50,6 +58,13 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the processing of customer group pricing and discounts based on the specified product.
+   * This method handles both the insertion and update of customer group data related to a product,
+   * applying relevant business logic for discounts, pricing adjustments, and other attributes.
+   *
+   * @return void
+   */
   public function execute()
   {
     $QcustomersGroup = $this->app->db->prepare('select customers_group_id,

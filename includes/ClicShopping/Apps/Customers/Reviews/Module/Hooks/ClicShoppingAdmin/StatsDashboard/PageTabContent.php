@@ -18,6 +18,11 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Reviews application and loads necessary definitions.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Reviews')) {
@@ -29,6 +34,11 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
   }
 
+  /**
+   * Retrieves the total count of reviews with a status of 0 from the database.
+   *
+   * @return int Returns the count of reviews with a status of 0.
+   */
   private function statsCountReviews()
   {
     $Qreviews = $this->app->db->prepare('select count(reviews_id) as count
@@ -43,6 +53,12 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
     return $review_total;
   }
 
+  /**
+   * Displays the customer review statistics if reviews are enabled and available.
+   *
+   * @return string|bool Returns the generated output containing review statistics if applicable,
+   *                     otherwise returns false if the reviews feature is disabled or no reviews are available.
+   */
   public function display()
   {
 

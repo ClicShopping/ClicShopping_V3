@@ -20,6 +20,13 @@ class CustomerGroup implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the constructor for the class. Checks if the 'Groups' entry exists in the Registry.
+   * If not, it sets a new GroupsApp instance in the Registry with the key 'Groups'.
+   * Finally, retrieves and assigns the 'Groups' object from the Registry to the app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -29,6 +36,9 @@ class CustomerGroup implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   *
+   */
   private function getCustomerGroupId()
   {
     if (isset($_GET['sID'])) {
@@ -44,6 +54,13 @@ class CustomerGroup implements \ClicShopping\OM\Modules\HooksInterface
   }
 
 
+  /**
+   * Displays the customer group selection form if the Customers Groups application
+   * is enabled and the relevant configuration settings allow it.
+   *
+   * @return string|false Returns the generated HTML string for displaying the customer group
+   *         selection form if conditions are met, otherwise returns false.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'False') {

@@ -19,6 +19,10 @@ class PageContent implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Favorites')) {
@@ -28,6 +32,11 @@ class PageContent implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Favorites');
   }
 
+  /**
+   * Generates and returns the HTML and JavaScript content to display the favorites toggle feature in the product page.
+   *
+   * @return string|bool The generated content as a string if the feature is enabled, otherwise `false`.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_FAVORITES_FA_STATUS') || CLICSHOPPING_APP_FAVORITES_FA_STATUS == 'False') {

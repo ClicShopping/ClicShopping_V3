@@ -24,9 +24,12 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database menu entry for the Banner Manager application into the administrator menu,
+   * including multi-language support for the menu label. If the menu entry already exists, the method does nothing.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -70,9 +73,14 @@ class MariaDb
     }
   }
 
-/**
-  * @return void
- */
+  /**
+   * Installs the database tables required for the banners functionality.
+   *
+   * This method checks for the existence of the `banners` and `banners_history` tables.
+   * If the tables do not exist, it creates them with the necessary schemas.
+   *
+   * @return void
+   */
   private static function installDb()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

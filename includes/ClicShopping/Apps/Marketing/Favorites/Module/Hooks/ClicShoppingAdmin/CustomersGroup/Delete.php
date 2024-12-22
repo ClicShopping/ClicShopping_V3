@@ -19,6 +19,11 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method to initialize the Favorites application.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Favorites')) {
@@ -29,7 +34,11 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $group_id
+   * Deletes all records associated with the given group ID from the products favorites table,
+   * if such records exist.
+   *
+   * @param int $group_id The ID of the customer group whose associated records need to be deleted.
+   * @return void
    */
   private function delete(int $group_id): void
   {
@@ -50,6 +59,11 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the functionality to handle the deletion of an item based on the 'Delete' request parameter.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Delete'])) {

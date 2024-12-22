@@ -22,6 +22,13 @@ class pageTab4 implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Groups application by checking its existence in the registry.
+   * If it does not exist, a new instance of GroupsApp is created and set in the registry.
+   * The initialized application is then retrieved and assigned to the app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Groups')) {
@@ -31,6 +38,17 @@ class pageTab4 implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Groups');
   }
 
+  /**
+   * Displays customer group-related information and settings in the admin interface.
+   *
+   * This method retrieves the customer's group ID and associated group settings such as tax behavior,
+   * payment methods, and shipping module restrictions. Based on these values, it constructs and returns
+   * the appropriate HTML content for display in the admin panel. If the application status or certain
+   * configurations are not enabled, the method returns false.
+   *
+   * @return string|false The rendered HTML content if the application is enabled and data is available,
+   *                      or false if the application is not configured or disabled.
+   */
   public function display()
   {
     $CLICSHOPPING_Customers = Registry::get('Customers');
