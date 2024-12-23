@@ -18,6 +18,11 @@ class ST extends \ClicShopping\Apps\OrderTotal\SubTotal\Module\ClicShoppingAdmin
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module with definitions and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_st_title');
@@ -26,6 +31,11 @@ class ST extends \ClicShopping\Apps\OrderTotal\SubTotal\Module\ClicShoppingAdmin
     $this->is_installed = \defined('CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_STATUS) != '');
   }
 
+  /**
+   * Installs the module and updates the list of installed order total modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +49,11 @@ class ST extends \ClicShopping\Apps\OrderTotal\SubTotal\Module\ClicShoppingAdmin
     $this->app->saveCfgParam('MODULE_ORDER_TOTAL_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module and updates the list of installed order total modules.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

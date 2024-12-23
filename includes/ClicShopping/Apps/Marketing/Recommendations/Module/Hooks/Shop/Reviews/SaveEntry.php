@@ -21,6 +21,14 @@ class saveEntry implements \ClicShopping\OM\Modules\HooksInterface
   protected mixed $productsCommon;
   protected mixed $recommendationsShop;
 
+  /**
+   * Constructor method.
+   *
+   * Initializes the productsCommon property and registers the RecommendationsShop instance
+   * in the registry before assigning it to the recommendationsShop property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->productsCommon = Registry::get('ProductsCommon');
@@ -29,6 +37,12 @@ class saveEntry implements \ClicShopping\OM\Modules\HooksInterface
     $this->recommendationsShop = Registry::get('RecommendationsShop');
   }
 
+  /**
+   * Executes the main functionality for saving product recommendations and triggering additional automation processes
+   * based on the application's configuration settings.
+   *
+   * @return bool|void Returns false if the recommendations functionality is not enabled, otherwise no return value.
+   */
   public function execute()
   {
     if (!defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS == 'False') {

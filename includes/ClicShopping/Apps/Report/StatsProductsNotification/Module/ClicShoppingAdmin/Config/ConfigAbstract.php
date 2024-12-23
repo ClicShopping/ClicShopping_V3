@@ -29,6 +29,15 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the class.
+   *
+   * Retrieves the 'StatsProductsNotification' application instance from the registry,
+   * sets the class short name to the `code` property using reflection,
+   * and calls the `init` method for additional initializations.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('StatsProductsNotification');
@@ -38,6 +47,15 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the necessary configuration parameters for the current module.
+   *
+   * Retrieves parameter keys, processes them to generate the associated configuration
+   * classes, and saves the parameters using their default values, titles, descriptions,
+   * and optional settings functions.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_STATS_PRODUCTS_NOTIFICATION_' . $this->code . '_');
@@ -53,6 +71,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +86,17 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of configuration parameters for the current module.
+   *
+   * This method scans the directory associated with the current module's parameters,
+   * finds all valid configuration parameter classes, and returns the relevant constants
+   * that identify these parameters. It ensures that only subclasses of
+   * ConfigParamAbstract are included in the result, and triggers an error if any class
+   * does not comply.
+   *
+   * @return array An array of configuration parameter constants for the module.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +120,12 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and prepares input parameters for the configuration of the application.
+   * Processes defined parameters, initializing them if necessary, and organizes them based on their sort order or position.
+   *
+   * @return array An array of processed input parameters, sorted numerically and prepared for use in the application's configuration.
+   */
   public function getInputParameters()
   {
     $result = [];

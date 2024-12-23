@@ -23,7 +23,11 @@ class SEO extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules available within a specific directory and namespace.
+   * The method scans the directory, filters for valid config modules that subclass ConfigAbstract,
+   * and sorts them based on their specified sort order.
+   *
+   * @return mixed An array of configuration module names indexed by their sort order, or an empty array if no modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +78,11 @@ class SEO extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific information about a configuration module.
+   *
+   * @param string $module The name of the module for which information is being retrieved.
+   * @param string $info The specific information to retrieve about the module.
+   * @return mixed The requested information for the specified module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +96,9 @@ class SEO extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +106,9 @@ class SEO extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier of the current object.
+   *
+   * @return string The identifier of the object.
    */
   public function getIdentifier(): string
   {

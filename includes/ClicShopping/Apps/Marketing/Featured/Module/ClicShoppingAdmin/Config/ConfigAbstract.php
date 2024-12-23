@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the object.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Featured');
@@ -38,6 +43,11 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the current module.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_FEATURED_' . $this->code . '_');
@@ -53,6 +63,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +78,15 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of parameter constants associated with the configuration.
+   *
+   * This method scans a specific directory for PHP files representing configuration parameters,
+   * validates if they are subclasses of the expected abstract class, and generates their corresponding constant names.
+   * If a file does not meet the subclass requirement, a trigger error is raised.
+   *
+   * @return array An array of constant names representing the configuration parameters.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +110,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes configuration parameters for the application.
+   *
+   * The method iterates through a list of parameters, dynamically instantiates
+   * configuration classes, and processes settings such as default values,
+   * titles, descriptions, and sort orders.
+   *
+   * @return array An associative array of processed configuration parameters, sorted by order.
+   */
   public function getInputParameters()
   {
     $result = [];

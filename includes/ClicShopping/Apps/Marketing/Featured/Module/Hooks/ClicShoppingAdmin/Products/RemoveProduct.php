@@ -19,6 +19,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Featured application by setting it in the Registry if it does not already exist
+   * and assigning it to the app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Featured')) {
@@ -28,6 +34,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Featured');
   }
 
+  /**
+   * Removes products from the featured products list in the database if applicable.
+   *
+   * @param int $id The ID of the product to be removed.
+   * @return void
+   */
   private function removeProducts($id)
   {
     if (!empty($_POST['products_featured'])) {
@@ -36,6 +48,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
 
   }
 
+  /**
+   * Executes the main functionality of the method. Checks if the Featured App feature is enabled,
+   * then processes the removal of a product if a valid product ID is provided through the POST request.
+   *
+   * @return bool Returns false if the Featured App feature is disabled, otherwise void.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_FEATURED_FE_STATUS') || CLICSHOPPING_APP_FEATURED_FE_STATUS == 'False') {

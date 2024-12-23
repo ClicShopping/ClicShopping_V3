@@ -18,6 +18,12 @@ class TX extends \ClicShopping\Apps\OrderTotal\TotalTax\Module\ClicShoppingAdmin
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction,
+   * and installation status based on application definitions and configuration.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_tx_title');
@@ -26,6 +32,11 @@ class TX extends \ClicShopping\Apps\OrderTotal\TotalTax\Module\ClicShoppingAdmin
     $this->is_installed = \defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its reference to the installed modules list.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +50,11 @@ class TX extends \ClicShopping\Apps\OrderTotal\TotalTax\Module\ClicShoppingAdmin
     $this->app->saveCfgParam('MODULE_ORDER_TOTAL_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its reference from the installed modules list.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

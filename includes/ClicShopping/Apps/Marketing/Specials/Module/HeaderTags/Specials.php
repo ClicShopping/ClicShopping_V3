@@ -21,6 +21,13 @@ class Specials extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   public mixed $app;
   private mixed $template;
 
+  /**
+   * Initializes the module by setting up registry entries, definitions, and configurations.
+   * Ensures that necessary components such as `Specials` and language data are loaded.
+   * Configures the module's properties including title, description, sort order, and enabled status based on constants.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('Specials')) {
@@ -42,11 +49,26 @@ class Specials extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks if the current module or feature is enabled.
+   *
+   * @return bool Returns true if the module or feature is enabled, false otherwise.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates and returns the output for SEO-related meta tags when specific GET parameters are set.
+   *
+   * The method constructs the meta tag components (title, description, keywords, and news_keywords)
+   * by retrieving and combining data from the SeoShopSpecials and Template registries.
+   *
+   * @return string The generated HTML meta tags as a string, including title, description,
+   *                keywords, and news_keywords, formatted for SEO purposes.
+   *                Returns null if required GET parameters are not set.
+   */
   public function getOutput()
   {
     if (isset($_GET['Products'], $_GET['Specials'])) {
@@ -78,6 +100,14 @@ EOD;
     }
   }
 
+  /**
+   * Installs the configuration settings for the module into the database.
+   *
+   * This method adds required configuration settings into the database to enable
+   * the proper functioning and customization of the module.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -106,6 +136,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves the list of configuration keys relevant to the module.
+   *
+   * @return array An array of configuration keys used by the module.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_PRODUCT_SPECIALS_STATUS',

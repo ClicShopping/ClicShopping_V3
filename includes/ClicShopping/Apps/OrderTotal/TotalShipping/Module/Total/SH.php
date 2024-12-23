@@ -31,6 +31,17 @@ class SH implements \ClicShopping\OM\Modules\OrderTotalInterface
   public $public_title;
   protected $api_version;
 
+  /**
+   * Constructor method for initializing the TotalShipping application.
+   *
+   * The method checks if the TotalShipping application is registered in the Registry.
+   * If it is not, it initializes and registers a new instance of TotalShippingApp.
+   * It loads the necessary definitions, sets the application signature, API version, code, titles,
+   * and determines whether the module is enabled based on configuration constants.
+   * Additionally, it initializes the sort order and output properties.
+   *
+   * @return void
+   */
   public function __construct()
   {
 
@@ -55,6 +66,15 @@ class SH implements \ClicShopping\OM\Modules\OrderTotalInterface
     $this->output = [];
   }
 
+  /**
+   * Processes the shipping logic for an order.
+   *
+   * This method checks for various conditions related to the shipping configuration and applies
+   * rules such as free shipping based on destination and order total. It calculates shipping taxes,
+   * updates order totals, and outputs the shipping method and cost.
+   *
+   * @return void
+   */
   public function process()
   {
 
@@ -126,21 +146,40 @@ class SH implements \ClicShopping\OM\Modules\OrderTotalInterface
   }
 
 
+  /**
+   *
+   * @return bool Returns true if the constant 'CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS' is defined and its value is not an empty string after trimming, otherwise returns false.
+   */
   public function check()
   {
     return \defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_STATUS) != '');
   }
 
+  /**
+   * Initiates the installation process by redirecting to the specified configuration and installation page.
+   *
+   * @return void
+   */
   public function install()
   {
     $this->app->redirect('Configure&Install&module=SH');
   }
 
+  /**
+   * Redirects the application to the uninstall configuration page for the specified module.
+   *
+   * @return void
+   */
   public function remove()
   {
     $this->app->redirect('Configure&Uninstall&module=SH');
   }
 
+  /**
+   * Retrieves an array of configuration keys related to the shipping order total module.
+   *
+   * @return array Returns an array containing the configuration key identifiers.
+   */
   public function keys()
   {
     return array('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER');

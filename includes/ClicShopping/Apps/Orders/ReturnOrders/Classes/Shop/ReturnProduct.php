@@ -17,7 +17,9 @@ use ClicShopping\OM\Registry;
 class ReturnProduct
 {
   /**
-   * @return string
+   * Generates a dropdown menu for selecting a reason based on opened or unopened statuses.
+   *
+   * @return string A formatted HTML dropdown field containing options for opened and unopened statuses.
    */
   public static function getDropDownReasonOpened(): string
   {
@@ -32,7 +34,9 @@ class ReturnProduct
   }
 
   /**
-   * @return string
+   * Retrieves a dropdown menu containing a list of return reasons based on the current language.
+   *
+   * @return string The HTML string for the dropdown menu populated with return reasons.
    */
   public static function getDropDownReason(): string
   {
@@ -64,7 +68,9 @@ class ReturnProduct
   }
 
   /**
-   * @return string
+   * Retrieves a dropdown menu with return action options based on the current language.
+   *
+   * @return string A dropdown HTML field populated with return action options.
    */
   public static function getDropDownAction(): string
   {
@@ -95,8 +101,10 @@ class ReturnProduct
   }
 
   /**
-   * @param int $order_id
-   * @return array
+   * Retrieves detailed customer information for a specific order.
+   *
+   * @param int $order_id The ID of the order for which customer information is retrieved.
+   * @return array Returns an associative array containing customer and order details.
    */
   public static function getInfoCustomer(int $order_id): array
   {
@@ -134,7 +142,9 @@ class ReturnProduct
   }
 
   /**
-   * @return array
+   * Retrieves a listing of return information for the current customer.
+   *
+   * @return array Returns an array containing details such as return ID, reference, comments, date added, product ID, order ID, return status ID, product name, and product model.
    */
   public static function getListing(): array
   {
@@ -162,9 +172,14 @@ class ReturnProduct
   }
 
   /**
-   * @param int $order_id
-   * @param int $product_id
-   * @return array
+   * Removes and retrieves specific information about a button's history related to an order and product.
+   *
+   * @param int $order_id The unique identifier of the order.
+   * @param int $product_id The unique identifier of the product.
+   * @return array An associative array containing the return information:
+   *               - 'return_id': The ID of the return entry.
+   *               - 'opened': The opened status.
+   *               - 'return_status_id': The ID of the return status.
    */
   public static function removeButtonHistoryInfo(int $order_id, int $product_id): array
   {

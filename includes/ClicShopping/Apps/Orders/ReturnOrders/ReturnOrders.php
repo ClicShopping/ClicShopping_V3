@@ -18,12 +18,23 @@ class ReturnOrders extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_ReturnOrders_V1';
 
+  /**
+   * Initializes the necessary components or configurations for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the configuration modules for the application.
+   *
+   * This method searches a specific directory for valid configuration modules,
+   * checks if they are subclasses of a defined abstract class, and sorts them
+   * if a sort order is defined. The result is cached for subsequent calls.
+   *
+   * @return mixed Returns an array of configuration module names if successful, otherwise returns null or triggers an error for invalid modules.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +85,11 @@ class ReturnOrders extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the specified module and info.
+   *
+   * @param string $module The name of the module for which information is being retrieved.
+   * @param string $info The specific piece of information or property to retrieve from the module.
+   * @return mixed The information or property value retrieved from the specified module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +103,9 @@ class ReturnOrders extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The current API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +113,8 @@ class ReturnOrders extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string Returns the identifier.
    */
   public function getIdentifier(): string
   {

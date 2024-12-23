@@ -41,6 +41,11 @@ class SeoShop
   protected string $descriptionAdvancedPage;
   protected string $titleAdvancedPage;
 
+  /**
+   * Initializes the class and sets up the default SEO settings, language, and database connections.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $this->db = Registry::get('Db');
@@ -55,9 +60,9 @@ class SeoShop
   }
 
   /**
-   * Retrieves and sets the default SEO metadata including title, description, and keywords based on the language.
+   * Retrieves the default SEO settings for the current language.
    *
-   * @return void
+   * @return void Sets the default SEO title, description, and keywords properties for the application.
    */
   public function getDefaultSeo()
   {
@@ -78,7 +83,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the SEO title for the index page.
+   *
+   * @return string|null Returns the SEO index title or null if not set.
    */
   public function getSeoIndexTitle(): ?string
   {
@@ -92,7 +99,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the SEO index description.
+   *
+   * @return string|null Returns the SEO index description based on the default description or store name, or null if not set.
    */
   public function getSeoIndexDescription(): ?string
   {
@@ -106,7 +115,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the SEO index keywords.
+   *
+   * @return string|null Returns the SEO keywords for the index page or null if not set.
    */
   public function getSeoIndexKeywords(): ?string
   {
@@ -120,7 +131,9 @@ class SeoShop
   }
 
   /**
-   * @return void
+   * Retrieves the default SEO information for the "new products" page.
+   *
+   * @return void This method sets the default SEO title, description, and keywords for the "new products" page in the corresponding properties.
    */
   public function getDefaultSeoProductsNew()
   {
@@ -140,7 +153,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the SEO title for the products new page.
+   *
+   * @return string|null Returns the SEO title for the products new page or null if not set.
    */
   public function getSeoProductsNewTitle(): ?string
   {
@@ -154,7 +169,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the SEO description for the "new products" page.
+   *
+   * @return string|null Returns the protected SEO description of the "new products" page or the store name if no custom description is set.
    */
   public function getSeoProductsNewDescription(): ?string
   {
@@ -168,7 +185,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the SEO keywords for new products.
+   *
+   * @return string|null Returns the SEO keywords for new products or the store name if not explicitly set.
    */
   public function getSeoProductsNewKeywords(): ?string
   {
@@ -182,6 +201,9 @@ class SeoShop
   }
 
   /**
+   * Retrieves the default SEO specials data including title, keywords, and description
+   * for a specific language.
+   *
    * @return void
    */
   public function getDefaultSeoSpecials()
@@ -202,7 +224,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the SEO title for the specials page.
+   *
+   * @return string|null Returns the SEO title for the specials page or null if not set.
    */
   public function getSeoSpecialsTitle(): ?string
   {
@@ -216,7 +240,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the SEO description for the specials page.
+   *
+   * @return string|null Returns the protected SEO description for the specials page or null if not set.
    */
   public function getSeoSpecialsDescription(): ?string
   {
@@ -230,7 +256,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the SEO keywords for the specials page.
+   *
+   * @return string|null Returns the SEO keywords for the specials page or null if not set.
    */
   public function getSeoSpecialsKeywords(): ?string
   {
@@ -244,8 +272,7 @@ class SeoShop
   }
 
   /**
-   * Retrieves the default SEO reviews values including title, description, and keywords
-   * for a specific language based on the current language ID.
+   * Retrieves the default SEO reviews metadata such as title, description, and keywords for a specific language.
    *
    * @return void
    */
@@ -267,7 +294,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the SEO title for the reviews page.
+   *
+   * @return string|null Returns the SEO title for the reviews page or null if not set.
    */
   public function getSeoReviewsTitle(): ?string
   {
@@ -281,7 +310,9 @@ class SeoShop
   }
 
   /**
-   * @return string|null
+   * Retrieves the SEO description for the reviews page.
+   *
+   * @return string|null Returns the SEO reviews description or null if not set.
    */
   public function getSeoReviewsDescription(): ?string
   {
@@ -295,8 +326,9 @@ class SeoShop
   }
 
   /**
+   * Retrieves the SEO keywords for reviews.
    *
-   * @return string|null Returns the SEO reviews keywords if set, or the store name as a fallback, both output-protected.
+   * @return string|null Returns the SEO keywords for reviews or the store name if no keywords are set.
    */
   public function getSeoReviewsKeywords(): ?string
   {

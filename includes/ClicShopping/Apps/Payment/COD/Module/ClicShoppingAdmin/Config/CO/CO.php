@@ -28,6 +28,11 @@ class CO extends \ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config\
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes module properties including title, short title, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_co_title');
@@ -36,6 +41,11 @@ class CO extends \ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config\
     $this->is_installed = \defined('CLICSHOPPING_APP_COD_CO_STATUS') && (trim(CLICSHOPPING_APP_COD_CO_STATUS) != '');
   }
 
+  /**
+   * Installs the current payment module by adding it to the MODULE_PAYMENT_INSTALLED configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -49,6 +59,9 @@ class CO extends \ClicShopping\Apps\Payment\COD\Module\ClicShoppingAdmin\Config\
     $this->app->saveCfgParam('MODULE_PAYMENT_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     parent::uninstall();

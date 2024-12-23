@@ -1,11 +1,10 @@
 <?php
 /**
+ * Class RO
  *
- * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
- * @Licence GPL 2 & MIT
- * @Info : https://www.clicshopping.org/forum/trademark/
- *
+ * This class is responsible for handling the configuration of the Return Orders module
+ * within the ClicShopping Admin interface. It extends the ConfigAbstract class and
+ * provides methods for initializing, installing, and uninstalling the module.
  */
 
 namespace ClicShopping\Apps\Orders\ReturnOrders\Module\ClicShoppingAdmin\Config\RO;

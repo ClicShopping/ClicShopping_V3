@@ -1,11 +1,9 @@
 <?php
 /**
+ * Class SE
  *
- * @copyright 2008 - https://www.clicshopping.org
- * @Brand : ClicShoppingAI(TM) at Inpi all right Reserved
- * @Licence GPL 2 & MIT
- * @Info : https://www.clicshopping.org/forum/trademark/
- *
+ * Represents the SEO module configuration for the ClicShoppingAdmin in the ClicShopping e-commerce system.
+ * Responsible for managing the activation, deactivation, and metadata of the SEO app module.
  */
 
 namespace ClicShopping\Apps\Marketing\SEO\Module\ClicShoppingAdmin\Config\SE;

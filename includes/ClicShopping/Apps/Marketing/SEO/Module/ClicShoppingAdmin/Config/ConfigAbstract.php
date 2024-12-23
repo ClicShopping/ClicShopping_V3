@@ -29,6 +29,13 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by retrieving the SEO application instance from the registry,
+   * determining the class short name, loading specific definitions, and performing
+   * additional initialization.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('SEO');
@@ -40,6 +47,15 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module.
+   *
+   * This method extracts configuration parameters for the module, initializes
+   * their corresponding configuration objects, and saves their default values
+   * along with optional metadata, such as title, description, and setup function.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_SEO_' . $this->code . '_');
@@ -55,6 +71,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +86,12 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of parameters from the configuration parameter directory.
+   *
+   * @return array Return an array of parameter keys in the format 'CLICSHOPPING_APP_SEO_<CODE>_<PARAMETER_NAME>'
+   *               for valid subclasses of ConfigParamAbstract. An empty array is returned if no parameters are found.
+   */
   public function getParameters()
   {
     $result = [];
@@ -90,6 +115,16 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the current configuration module.
+   * The method iterates over all parameters related to the module, initializes
+   * the appropriate configuration objects, sets default values if necessary,
+   * and organizes them based on a specified sort order or default sequence.
+   *
+   * @return array Returns an array of configuration parameters sorted by their
+   *               respective order. Each parameter includes its associated
+   *               configuration details.
+   */
   public function getInputParameters()
   {
     $result = [];

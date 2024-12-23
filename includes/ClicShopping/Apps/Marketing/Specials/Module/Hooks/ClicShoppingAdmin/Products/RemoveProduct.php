@@ -19,6 +19,11 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructs the class and ensures that the 'Specials' application is registered in the registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Specials')) {
@@ -28,6 +33,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Specials');
   }
 
+  /**
+   * Removes products from the specials table in the database based on the given product ID.
+   *
+   * @param int $id The ID of the product to be removed from the specials.
+   * @return void
+   */
   private function removeProducts($id)
   {
     if (!empty($_POST['products_specials'])) {
@@ -35,6 +46,11 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the removal of products based on the provided product identifier.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_POST['remove_id'])) {

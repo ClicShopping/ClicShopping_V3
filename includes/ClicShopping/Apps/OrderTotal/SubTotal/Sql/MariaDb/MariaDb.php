@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary operations for loading definitions and installing the administration menu.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_SubTotal = Registry::get('SubTotal');
@@ -23,9 +28,15 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu administration for the SubTotal module in the administrator interface.
+   *
+   * This method verifies if the menu configuration for the app_code 'app_order_total_subtotal' exists in the
+   * administrator menu. If it does not exist, it creates a new menu item with its corresponding descriptions
+   * in multiple languages. After the insertion, it clears the cache for the administrator menu.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

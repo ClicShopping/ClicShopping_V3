@@ -18,12 +18,23 @@ class Total extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Total_V1';
 
+  /**
+   * Initializes the necessary components or configurations for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the configuration modules available in the specified directory.
+   *
+   * The method scans the designated directory for configuration modules, validates them as subclasses of ConfigAbstract,
+   * and then organizes them by their sort order or the order they are encountered.
+   * If a module does not meet the requirements, a trigger error is generated.
+   *
+   * @return mixed An array of configuration module names sorted by their sort order or an empty array if no valid modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +85,11 @@ class Total extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the provided module and info parameters.
+   *
+   * @param string $module The name of the module to retrieve the configuration for.
+   * @param string $info The specific information or property to retrieve from the module.
+   * @return mixed The requested configuration module information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -89,7 +102,9 @@ class Total extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -97,7 +112,9 @@ class Total extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

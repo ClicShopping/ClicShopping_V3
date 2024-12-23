@@ -18,12 +18,24 @@ class Recommendations extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Recommendations_V1';
 
+  /**
+   * Initializes the object or performs setup tasks.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves configuration modules for the Recommendations app.
+   *
+   * This method scans the specified directory for configuration module files
+   * and verifies if they are subclasses of the ConfigAbstract class.
+   * It then organizes them by sort order, or by their position if the sort
+   * order is not defined.
+   *
+   * @return mixed An array of configuration module names sorted by their order, or null if not initialized.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +86,11 @@ class Recommendations extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific configuration module information.
+   *
+   * @param string $module The name of the module to retrieve information for.
+   * @param string $info The specific property or method of the module to access.
+   * @return mixed The requested configuration data or functionality from the module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +104,9 @@ class Recommendations extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version as a string or integer.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +114,9 @@ class Recommendations extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

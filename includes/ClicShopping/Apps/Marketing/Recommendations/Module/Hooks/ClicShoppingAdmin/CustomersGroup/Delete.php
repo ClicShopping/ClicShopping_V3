@@ -20,6 +20,13 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Recommendations application by checking its existence in the Registry.
+   * If it does not exist, it creates and registers a new instance of RecommendationsApp.
+   * Retrieves and assigns the Recommendations application instance from the Registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Recommendations')) {
@@ -30,7 +37,10 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $group_id
+   * Deletes all product recommendations associated with a specific customer group ID.
+   *
+   * @param int $group_id The ID of the customer group whose product recommendations are to be deleted.
+   * @return void
    */
   private function delete(int $group_id): void
   {
@@ -51,6 +61,12 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the functionality for recommendations app based on the application's status
+   * and determines whether to delete a specific record if requested.
+   *
+   * @return bool Returns false if the app is not active.
+   */
   public function execute()
   {
     if (!defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS == 'False') {

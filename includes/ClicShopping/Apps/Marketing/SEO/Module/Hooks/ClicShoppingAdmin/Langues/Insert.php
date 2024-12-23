@@ -20,6 +20,11 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   private mixed $lang;
 
+  /**
+   * Initializes the instance by setting up the SEO application and language.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('SEO')) {
@@ -30,6 +35,12 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->lang = Registry::get('Language');
   }
 
+  /**
+   * Inserts SEO data for a newly added language by duplicating existing records
+   * from the current language into the database with the new language ID.
+   *
+   * @return void
+   */
   private function insert()
   {
     $insert_language_id = LanguageAdmin::getLatestLanguageID();
@@ -44,6 +55,13 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the primary logic for the method.
+   * Checks if the required constant is defined and ensures the application SEO status is enabled.
+   * If specific parameters are present in the request, it triggers the insert method.
+   *
+   * @return bool Returns false if the SEO application is disabled or not properly defined, otherwise no return value.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_SEO_SE_STATUS') || CLICSHOPPING_APP_SEO_SE_STATUS == 'False') {

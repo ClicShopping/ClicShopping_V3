@@ -19,6 +19,13 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Featured application by checking its presence in the registry.
+   * If it does not exist, it is created and registered. Assigns the application
+   * instance from the registry to the class property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Featured')) {
@@ -29,7 +36,10 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $group_id
+   * Deletes all records associated with the specified customer group ID from the products featured table.
+   *
+   * @param int $group_id The ID of the customer group whose associated records should be deleted.
+   * @return void
    */
   private function delete(int $group_id): void
   {
@@ -50,6 +60,11 @@ class Delete implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main logic for handling the deletion of an item based on the 'Delete' parameter in the request.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['Delete'])) {

@@ -20,6 +20,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_specials_';
   public bool $app_configured = true;
 
+  /**
+   * Initializes the instance and sets up configuration for the specified module.
+   *
+   * @param string $config_module The configuration module name to initialize.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('Specials');

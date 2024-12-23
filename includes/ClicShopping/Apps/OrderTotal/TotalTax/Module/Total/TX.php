@@ -33,6 +33,16 @@ class TX implements OrderTotalInterface
   public $public_title;
   protected $api_version;
 
+  /**
+   * Constructor method for initializing the TotalTax module.
+   *
+   * This method registers the TotalTax module in the registry, loads its
+   * definitions, sets up its configuration properties, including the module's
+   * signature, code, title, public title, sort order, and enabled status.
+   * Additionally, it initializes the output array for the module.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('TotalTax')) {
@@ -59,6 +69,13 @@ class TX implements OrderTotalInterface
     $this->output = [];
   }
 
+  /**
+   * Processes tax calculations for orders based on geographical zones and tax priorities.
+   * This includes evaluating compound taxes for regions like Quebec, handling single or multi-level taxes,
+   * and formatting tax outputs for the order.
+   *
+   * @return void
+   */
   public function process()
   {
     $CLICSHOPPING_Order = Registry::get('Order');
@@ -259,21 +276,39 @@ class TX implements OrderTotalInterface
     }
   }
 
+  /**
+   *
+   * @return bool Returns true if the constant 'CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS' is defined and its value is not an empty string after trimming; otherwise, false.
+   */
   public function check()
   {
     return defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS) != '');
   }
 
+  /**
+   * Redirects the application to the installation configuration page for the specified module.
+   *
+   * @return void
+   */
   public function install()
   {
     $this->app->redirect('Configure&Install&module=TX');
   }
 
+  /**
+   * Removes a module by redirecting to the uninstall configuration page.
+   *
+   * @return void
+   */
   public function remove()
   {
     $this->app->redirect('Configure&Uninstall&module=TX');
   }
 
+  /**
+   *
+   * @return array Returns an array of configuration keys related to the order total tax module.
+   */
   public function keys()
   {
     return array('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER');

@@ -18,6 +18,11 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the StatsProductsNotification application and loads necessary definitions.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('StatsProductsNotification')) {
@@ -29,6 +34,15 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
   }
 
+  /**
+   * Counts the total number of customer product notifications stored in the database.
+   *
+   * This method queries the database to retrieve the count of product notifications
+   * recorded in the `products_notifications` table, with the `products_id` field being
+   * used to calculate the count. It limits the result set to a single result.
+   *
+   * @return int The total number of product notifications.
+   */
   private function statsCountCustomersNotifications()
   {
     $QcustomersTotalNotification = $this->app->db->prepare('select count(products_id) as count
@@ -42,6 +56,13 @@ class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
     return $customers_total_notification;
   }
 
+  /**
+   * Displays the customer notification statistics if the corresponding app status is enabled
+   * and there are notifications available.
+   *
+   * @return string|false The formatted HTML content with notification details if conditions are met,
+   *                      otherwise returns false.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_STATS_PRODUCTS_NOTIFICATION_PN_STATUS') || CLICSHOPPING_APP_STATS_PRODUCTS_NOTIFICATION_PN_STATUS == 'False') {

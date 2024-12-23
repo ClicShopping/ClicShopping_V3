@@ -9,7 +9,11 @@
  */
 
 namespace ClicShopping\Apps\Marketing\Specials\Module\ClicShoppingAdmin\Config\SP;
-
+/**
+ * The SP class is a configuration module for managing the Specials application in the ClicShopping admin panel.
+ * It extends the ConfigAbstract class and provides initialization, installation, and uninstallation functionalities
+ * for the module within the admin environment.
+ */
 class SP extends \ClicShopping\Apps\Marketing\Specials\Module\ClicShoppingAdmin\Config\ConfigAbstract
 {
 
@@ -18,6 +22,14 @@ class SP extends \ClicShopping\Apps\Marketing\Specials\Module\ClicShoppingAdmin\
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its core properties.
+   *
+   * Assigns values to the module's title, short title, introduction, and installation status
+   * based on the application's predefined definitions and configuration constants.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_sp_title');
@@ -26,6 +38,14 @@ class SP extends \ClicShopping\Apps\Marketing\Specials\Module\ClicShoppingAdmin\
     $this->is_installed = \defined('CLICSHOPPING_APP_SPECIALS_SP_STATUS') && (trim(CLICSHOPPING_APP_SPECIALS_SP_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding it to the installed modules configuration.
+   *
+   * Updates the MODULE_MODULES_PRODUCTS_SPECIALS_INSTALLED configuration parameter
+   * to include the current module, marking it as registered and installed.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +59,14 @@ class SP extends \ClicShopping\Apps\Marketing\Specials\Module\ClicShoppingAdmin\
     $this->app->saveCfgParam('MODULE_MODULES_PRODUCTS_SPECIALS_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing it from the installed modules configuration.
+   *
+   * Updates the MODULE_MODULES_PRODUCTS_SPECIALS_INSTALLED configuration parameter
+   * to exclude the current module, ensuring it is no longer registered as installed.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

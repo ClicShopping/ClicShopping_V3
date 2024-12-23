@@ -24,6 +24,11 @@ class DashboardTopRecommendations implements \ClicShopping\OM\Modules\HooksInter
    */
   public mixed $app;
 
+  /**
+   * Initializes the Recommendations application and loads necessary definitions.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Recommendations')) {
@@ -35,6 +40,14 @@ class DashboardTopRecommendations implements \ClicShopping\OM\Modules\HooksInter
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_recommendations');
   }
 
+  /**
+   * Displays a formatted HTML block containing good and bad product recommendations based on defined scores.
+   *
+   * This method queries the database to count the number of good and bad product recommendations
+   * using their respective score thresholds and generates an HTML representation of these statistics.
+   *
+   * @return string The HTML output displaying the recommendations count, or an empty string if data is unavailable.
+   */
   public function Display(): string
   {
     if (!defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS == 'False') {

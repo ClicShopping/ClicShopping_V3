@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the process of loading definitions and installing the administration menu.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Total = Registry::get('Total');
@@ -23,9 +28,15 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu entry for the order total administration module in the administrator menu.
+   *
+   * This method checks if a specific entry for the order total module exists in the administrator menu.
+   * If not, it creates a new entry in the menu with the relevant details and associates localized
+   * labels for each available language. It also clears the administrator menu cache upon successful installation.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

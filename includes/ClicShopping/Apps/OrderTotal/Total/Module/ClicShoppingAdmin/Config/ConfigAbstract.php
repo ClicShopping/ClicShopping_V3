@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructs the instance, initializes the application registry,
+   * sets the code property using the class name, and performs initialization operations.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Total');
@@ -38,6 +44,16 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module associated with the current class.
+   *
+   * It retrieves the configuration parameters, processes their keys, and initializes their
+   * corresponding configuration classes based on a defined naming convention. The default values,
+   * titles, descriptions, and other properties are then saved using the application's configuration
+   * storage system.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_' . $this->code . '_');
@@ -53,6 +69,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +84,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of parameters for the current configuration module.
+   *
+   * @return array An array of parameter constants derived from the PHP configuration files in the parameters directory.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +112,11 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes the input parameters for the module configuration.
+   *
+   * @return array An associative array of parameters, sorted by their sort order, with their respective configured fields.
+   */
   public function getInputParameters()
   {
     $result = [];

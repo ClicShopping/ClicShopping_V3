@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by retrieving the application instance,
+   * setting the code property based on the class name, and performing initialization tasks.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('SubTotal');
@@ -38,6 +44,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module. It dynamically generates
+   * the required class instances for each parameter and saves their default values
+   * and associated settings to the application configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_' . $this->code . '_');
@@ -53,6 +66,14 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the configuration settings associated with the application.
+   *
+   * Deletes records from the configuration table where the configuration key matches
+   * the specified pattern, which is defined by the application's code and a prefix.
+   *
+   * @return int Returns the number of rows affected by the delete operation.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +86,13 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the list of parameter constants for the module by iterating through
+   * the directory defined for the parameters. Only files corresponding to valid
+   * subclasses of ConfigParamAbstract are included in the result.
+   *
+   * @return array An array of parameter constants for the module.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +116,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Fetches and processes input parameters based on the application's configuration.
+   *
+   * This method gathers configured parameters, processes their associated classes, and
+   * manages the saving and retrieval of configuration parameter details. It organizes
+   * the parameters based on sort order and ensures the desired structure for further usage.
+   *
+   * @return array An array of processed input parameters sorted numerically by their sort order.
+   */
   public function getInputParameters()
   {
     $result = [];

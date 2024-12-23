@@ -21,6 +21,13 @@ class AdvancedSearchResult extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   public mixed $app;
   private mixed $template;
 
+  /**
+   * Initializes the class by setting up necessary application-wide objects,
+   * loading definitions, and establishing module-specific configurations such as title,
+   * description, status, and sorting order.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('SEO')) {
@@ -42,11 +49,24 @@ class AdvancedSearchResult extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks if the current instance is enabled.
+   *
+   * @return bool True if the instance is enabled, false otherwise.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates and returns the HTML meta information based on the search query and keywords.
+   *
+   * It creates meta tags for title, description, and keywords by combining sanitized inputs
+   * and existing template values. If necessary, initializes the SeoShopSearch registry.
+   *
+   * @return string Returns the generated meta tags including title, description, and keywords.
+   */
   public function getOutput()
   {
     if (isset($_GET['Search'], $_GET['Q'], $_POST['keywords'])) {
@@ -78,6 +98,11 @@ EOD;
     }
   }
 
+  /**
+   * Installs the module by saving configuration settings into the database.
+   *
+   * @return void
+   */
   public function install()
   {
     $this->app->db->save('configuration', [
@@ -105,11 +130,25 @@ EOD;
     );
   }
 
+  /**
+   * Removes configuration entries from the database table by executing a delete query.
+   *
+   * This method constructs a SQL DELETE statement to remove rows from the
+   * :table_configuration table based on the provided configuration keys.
+   *
+   * @return int|bool Returns the number of affected rows if the query is executed successfully,
+   *                  or false on failure.
+   */
   public function remove()
   {
     return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
+  /**
+   * Retrieves the configuration keys for the module.
+   *
+   * @return array An array of configuration keys.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_ADVANCED_SEARCH_RESULT_STATUS',

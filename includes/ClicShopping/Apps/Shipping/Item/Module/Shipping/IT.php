@@ -32,6 +32,15 @@ class IT implements \ClicShopping\OM\Modules\ShippingInterface
   public $tax_class;
   public int|null $sort_order = 0;
 
+  /**
+   * Constructor method for the class.
+   *
+   * Initializes the required dependencies, sets up the module's properties, configurations,
+   * and determines if the module is active and configured properly for specific customer groups
+   * or geographic zones.
+   *
+   * @return void
+   */
   public function __construct()
   {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -112,6 +121,13 @@ class IT implements \ClicShopping\OM\Modules\ShippingInterface
     }
   }
 
+  /**
+   * Retrieves and constructs the shipping quote information, including module details, tax,
+   * handling cost, and optional icon representation, based on the current order and configuration.
+   *
+   * @param string $method Optional parameter specifying the shipping method. Defaults to an empty string.
+   * @return array Returns the assembled quotes array containing shipping details, such as module id, title, methods, costs, tax, and optional icon.
+   */
   public function quote($method = '')
   {
     $CLICSHOPPING_Order = Registry::get('Order');
@@ -147,26 +163,52 @@ class IT implements \ClicShopping\OM\Modules\ShippingInterface
     return $this->quotes;
   }
 
+  /**
+   * Checks if the constant 'CLICSHOPPING_APP_ITEM_IT_STATUS' is defined and not empty.
+   *
+   * @return bool Returns true if the constant is defined and its value is not an empty string, false otherwise.
+   */
   public function check()
   {
     return \defined('CLICSHOPPING_APP_ITEM_IT_STATUS') && (trim(CLICSHOPPING_APP_ITEM_IT_STATUS) != '');
   }
 
+  /**
+   *
+   * @return void
+   */
   public function install()
   {
     $this->app->redirect('Configure&Install&module=Item');
   }
 
+  /**
+   * Redirects the application to the uninstall configuration page for a specified module.
+   *
+   * @return void
+   */
   public function remove()
   {
     $this->app->redirect('Configure&Uninstall&module=Item');
   }
 
+  /**
+   * Retrieves the configuration keys for the application.
+   *
+   * @return array Returns an array of configuration keys.
+   */
   public function keys()
   {
     return array('CLICSHOPPING_APP_ITEM_IT_SORT_ORDER');
   }
 
+  /**
+   * Calculates and returns the total number of items in the shopping cart.
+   * If the order content type is 'mixed', it adjusts the count based on specific conditions,
+   * including checking for product attributes and their associations with downloads.
+   *
+   * @return int The total number of items in the shopping cart.
+   */
   public function getNumberOfItems()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

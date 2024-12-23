@@ -19,6 +19,13 @@ class PageContent implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method that initializes the application by checking for the existence of
+   * a 'Specials' registry entry. If it does not exist, it sets a new instance of SpecialsApp.
+   * The application instance is then retrieved and assigned.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Specials')) {
@@ -28,6 +35,13 @@ class PageContent implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Specials');
   }
 
+  /**
+   * Displays the specials settings interface if certain conditions are met.
+   *
+   * @return string|false Returns the generated HTML content for the specials settings interface
+   *                      if the necessary conditions are met, or false if the application status
+   *                      is disabled or required parameters are not set.
+   */
   public function display()
   {
     if (!\defined('CLICSHOPPING_APP_SPECIALS_SP_STATUS') || CLICSHOPPING_APP_SPECIALS_SP_STATUS == 'False') {

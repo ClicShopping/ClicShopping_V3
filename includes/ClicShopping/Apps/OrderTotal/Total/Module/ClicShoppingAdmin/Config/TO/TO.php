@@ -18,6 +18,12 @@ class TO extends \ClicShopping\Apps\OrderTotal\Total\Module\ClicShoppingAdmin\Co
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its properties such as title, short title, introduction,
+   * and installation status by fetching definitions and configurations from the application.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_to_title');
@@ -26,6 +32,11 @@ class TO extends \ClicShopping\Apps\OrderTotal\Total\Module\ClicShoppingAdmin\Co
     $this->is_installed = \defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS) != '');
   }
 
+  /**
+   * Installs the module and appends its identifier to the list of installed modules.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +50,11 @@ class TO extends \ClicShopping\Apps\OrderTotal\Total\Module\ClicShoppingAdmin\Co
     $this->app->saveCfgParam('MODULE_ORDER_TOTAL_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing it from the list of installed modules.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

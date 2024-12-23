@@ -29,6 +29,13 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by retrieving the 'Specials' app from the registry,
+   * setting the class code based on the class name, loading language definitions
+   * for the module, and performing additional initialization tasks.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Specials');
@@ -40,6 +47,11 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the module by iterating over configuration parameters, initializing their respective classes, and saving them using the application configuration manager.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_SPECIALS_' . $this->code . '_');
@@ -55,6 +67,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +82,14 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the parameters for the current configuration based on the specified directory and file structure.
+   *
+   * This method scans the parameters directory for PHP files, validates if they are subclasses
+   * of the required abstract class, and extracts their identifiers for use.
+   *
+   * @return array An array containing the parameter identifiers that follow the required naming convention.
+   */
   public function getParameters()
   {
     $result = [];
@@ -90,6 +113,11 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves input parameters by processing defined configuration constants and their associated metadata.
+   *
+   * @return array An array of configuration parameters, sorted by their sort order.
+   */
   public function getInputParameters()
   {
     $result = [];

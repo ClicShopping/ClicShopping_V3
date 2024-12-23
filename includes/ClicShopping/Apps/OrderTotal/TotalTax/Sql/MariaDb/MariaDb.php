@@ -15,6 +15,14 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the setup process for the TotalTax module.
+   *
+   * This method retrieves the TotalTax registry object, loads its language definitions,
+   * and calls the static method to handle the installation of menu administration entries.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_TotalTax = Registry::get('TotalTax');
@@ -23,9 +31,11 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu administration entry for the Total Tax module in the administrator menu.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

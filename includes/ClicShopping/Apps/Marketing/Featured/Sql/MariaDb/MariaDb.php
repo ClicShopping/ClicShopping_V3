@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the Featured module.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Featured = Registry::get('Featured');
@@ -24,9 +29,16 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database menu entries for the administration panel specific to the Featured module.
+   *
+   * This method ensures that the required menu items for the Featured module are added to the
+   * administrator menu in the database. If they do not already exist, they are inserted alongside
+   * their respective translations for all available languages. The method also clears the cache
+   * for the administrator menu to reflect the changes.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -104,7 +116,12 @@ class MariaDb
   }
 
   /**
-  * @return void
+   * Installs the database table for managing featured products if it does not already exist.
+   *
+   * This method checks for the existence of the `:table_products_featured` table in the database.
+   * If the table does not exist, it creates the table with the appropriate columns, keys, and constraints.
+   *
+   * @return void
    */
   private static function installDb(): void
   {

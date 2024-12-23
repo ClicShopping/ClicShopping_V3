@@ -28,6 +28,12 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Specials');
   }
 
+  /**
+   * Saves special pricing for a product based on provided input.
+   *
+   * @param int $id The ID of the product for which the special pricing is to be saved.
+   * @return void
+   */
   private function saveProductsSpecials($id)
   {
     if (!empty($_POST['products_specials']) && !empty($_POST['percentage_products_specials'])) {
@@ -52,11 +58,21 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
     } // $_POST['products_specials']
   }
 
+  /**
+   * Saves the data associated with the provided identifier.
+   *
+   * @param mixed $id The identifier to save data for.
+   * @return void
+   */
   private function save($id)
   {
     $this->saveProductsSpecials($id);
   }
 
+  /**
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['pID'])) {

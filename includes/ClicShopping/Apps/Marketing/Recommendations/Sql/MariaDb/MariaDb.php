@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary steps to initialize the Recommendation module installation.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Recommendation = Registry::get('Recommendation');
@@ -24,9 +29,17 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the database entries required for the administration menu of the Recommendations module.
+   *
+   * This method performs the following operations:
+   * - Checks if the required entries already exist in the `administrator_menu` table.
+   * - Inserts the necessary menu entries into the `administrator_menu` table if not present.
+   * - Associates the menu entries with language-specific labels in the `administrator_menu_description` table.
+   * - Clears the cache for the administrator menu to ensure the changes take effect immediately.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -132,9 +145,11 @@ class MariaDb
     }
   }
 
-/**
-  * @return void
- */
+  /**
+   * Installs the necessary database tables for the product recommendations module.
+   *
+   * @return void
+   */
   private static function installDb(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

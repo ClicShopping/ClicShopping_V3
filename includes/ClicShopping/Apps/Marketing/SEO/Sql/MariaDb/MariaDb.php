@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary operations to load SEO definitions and install database components
+   * required for the administration menu and other functionalities.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_SEO = Registry::get('SEO');
@@ -24,9 +30,17 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the administration menu entry for the SEO application.
+   *
+   * This method checks whether the administration menu entry for the SEO application
+   * already exists in the database. If not, it creates the necessary entry in the
+   * `administrator_menu` table and its descriptions in the `administrator_menu_description`
+   * table for all available languages. It also clears the administrator menu cache
+   * to ensure the modifications take effect.
+   *
+   * @return void
+   */
   private static function installDbMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -71,7 +85,12 @@ class MariaDb
   }
 
   /**
-  * @return void
+   * Installs the database structure required for the SEO module if it does not already exist.
+   *
+   * This method checks if the SEO-related database table exists and, if not, creates the necessary table
+   * with predefined columns to store SEO configuration and data.
+   *
+   * @return void
    */
   private static function installDb(): void
   {

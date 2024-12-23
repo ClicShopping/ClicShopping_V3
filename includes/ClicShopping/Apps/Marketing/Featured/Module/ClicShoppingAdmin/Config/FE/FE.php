@@ -18,6 +18,12 @@ class FE extends \ClicShopping\Apps\Marketing\Featured\Module\ClicShoppingAdmin\
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction,
+   * and installation status based on defined application parameters.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_fe_title');
@@ -26,6 +32,12 @@ class FE extends \ClicShopping\Apps\Marketing\Featured\Module\ClicShoppingAdmin\
     $this->is_installed = \defined('CLICSHOPPING_APP_FEATURED_FE_STATUS') && (trim(CLICSHOPPING_APP_FEATURED_FE_STATUS) != '');
   }
 
+  /**
+   * Installs the module by performing setup operations such as adding its entry
+   * to the installed modules configuration parameter.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +51,12 @@ class FE extends \ClicShopping\Apps\Marketing\Featured\Module\ClicShoppingAdmin\
     $this->app->saveCfgParam('MODULE_MODULES_PRODUCTS_FEATURED_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by performing cleanup operations such as removing its entry
+   * from the installed modules configuration parameter.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

@@ -18,12 +18,21 @@ class Specials extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Specials_V1';
 
+  /**
+   * Initializes the component or performs initial setup tasks.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Loads and returns the configuration modules for the system. The method scans a specific directory for valid
+   * configuration module classes that are subclasses of the required abstract class. Modules are sorted based on
+   * their defined sort order or by their discovery order within the directory.
+   *
+   * @return mixed An array of configuration module filenames indexed by their sort order, or null if no modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +83,11 @@ class Specials extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific information for a given configuration module.
+   *
+   * @param string $module The name of the module to retrieve information for.
+   * @param string $info The specific information key to retrieve from the module.
+   * @return mixed The requested information from the module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +101,8 @@ class Specials extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +110,8 @@ class Specials extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string Returns the identifier.
    */
   public function getIdentifier(): string
   {

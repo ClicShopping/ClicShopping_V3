@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for TotalShipping module, including loading necessary definitions
+   * and setting up administration menu configurations.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_TotalShipping = Registry::get('TotalShipping');
@@ -24,6 +30,14 @@ class MariaDb
   }
 
   /**
+   * Installs the menu administration entry for the Total Shipping module.
+   *
+   * This method checks if the menu entry for the app_order_total_shipping application
+   * already exists in the administrator menu. If it does not exist, it creates the entry,
+   * assigns the necessary attributes, and populates the menu descriptions for all available
+   * languages. After the data is inserted, it clears the administrator menu cache to reflect
+   * the changes immediately.
+   *
    * @return void
    */
   private static function installMenuAdministration(): void

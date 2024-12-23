@@ -20,6 +20,15 @@ class GoogleLinks extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   public mixed $app;
   public $group;
 
+  /**
+   * Initializes the SEO application module for the admin dashboard.
+   *
+   * Sets up the necessary registry entries, loads language definitions,
+   * and configures the module's properties such as title, description,
+   * sort order, and enabled status based on defined constants.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('SEO')) {
@@ -40,6 +49,11 @@ class GoogleLinks extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Generates and returns the HTML output containing links to various Google services.
+   *
+   * @return string The HTML output encapsulating the Google services links.
+   */
   public function getOutput()
   {
     $url_adsense = 'https://google.com/adsense';
@@ -92,6 +106,11 @@ class GoogleLinks extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     return $output;
   }
 
+  /**
+   * Installs the required configuration settings for the module in the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -131,6 +150,11 @@ class GoogleLinks extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     );
   }
 
+  /**
+   * Retrieves an array of configuration keys used by the module.
+   *
+   * @return array An array of strings representing the configuration keys.
+   */
   public function keys()
   {
     return ['MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_STATUS',

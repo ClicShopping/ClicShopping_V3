@@ -19,6 +19,12 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the FeaturedApp and sets it in the Registry if not already present.
+   * Retrieves the FeaturedApp instance from the Registry and assigns it to the app property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Featured')) {
@@ -29,7 +35,10 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
   }
 
   /**
-   * @param int $id
+   * Saves a product as featured by inserting related data into the database.
+   *
+   * @param int $id The ID of the product to be marked as featured.
+   * @return void
    */
   private function saveProductsFeatured(int $id): void
   {
@@ -45,11 +54,24 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Saves the product as featured based on the given ID.
+   *
+   * @param int $id The ID of the product to be saved as featured.
+   * @return void
+   */
   private function save(int $id): void
   {
     $this->saveProductsFeatured($id);
   }
 
+  /**
+   * Executes the main logic for handling featured product operations.
+   * This includes saving a specific product's details if a product ID is provided,
+   * or inserting a new featured product record if no product ID is supplied but featured products data is present.
+   *
+   * @return bool Returns false if the featured product functionality is disabled, otherwise it does not return a value.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_FEATURED_FE_STATUS') || CLICSHOPPING_APP_FEATURED_FE_STATUS == 'False') {

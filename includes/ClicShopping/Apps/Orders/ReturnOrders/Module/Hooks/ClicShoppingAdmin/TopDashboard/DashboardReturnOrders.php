@@ -20,6 +20,12 @@ class DashboardReturnOrders implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the ReturnOrders module by checking its presence in the registry,
+   * setting it if not already registered, and loading necessary definitions.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('ReturnOrders')) {
@@ -31,6 +37,14 @@ class DashboardReturnOrders implements \ClicShopping\OM\Modules\HooksInterface
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/TopDashboard/dashboard_top_return_order');
   }
 
+  /**
+   * Generates and returns a formatted HTML string displaying the count of unopened return orders.
+   *
+   * Queries the database to retrieve the count of unopened return orders and, if count is greater than zero,
+   * formats an HTML output with a warning card containing the count and a link for viewing the return orders.
+   *
+   * @return string The generated HTML content, or an empty string if there are no unopened return orders.
+   */
   public function Display(): string
   {
     $Qreturn = $this->app->db->prepare('select count(return_id) as count 

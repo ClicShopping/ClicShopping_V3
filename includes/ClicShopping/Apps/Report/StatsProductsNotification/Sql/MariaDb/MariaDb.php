@@ -15,6 +15,13 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the main logic for registering and installing
+   * menu configurations and loading necessary definitions
+   * for the StatsProductsNotification component.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_StatsProductsNotification = Registry::get('StatsProductsNotification');
@@ -23,9 +30,13 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs a menu item in the administrator menu for the Stats Products Notification application.
+   * The method checks if the menu item already exists, and if not, it inserts the menu data and associated language descriptions
+   * into the database. It also clears the administrator menu cache after successful insertion.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

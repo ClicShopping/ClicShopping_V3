@@ -18,12 +18,25 @@ class SubTotal extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_SubTotal_V1';
 
+  /**
+   * Initializes necessary components or settings for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules available in the specified directory.
+   *
+   * This function dynamically loads and returns configuration module names
+   * that are subclasses of the defined `ConfigAbstract` class within the namespace.
+   * The results are sorted by their 'sort_order' property if defined, otherwise
+   * they are appended sequentially.
+   *
+   * @return mixed Returns an array of configuration module names sorted by order,
+   *               or an empty array if no modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -74,9 +87,11 @@ class SubTotal extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information.
+   *
+   * @param string $module The name of the module to retrieve.
+   * @param string $info The specific information to retrieve from the module.
+   * @return mixed Returns the requested configuration information from the module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -89,7 +104,9 @@ class SubTotal extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The version of the API.
    */
   public function getApiVersion(): string|int
   {
@@ -97,7 +114,9 @@ class SubTotal extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

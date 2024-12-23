@@ -20,6 +20,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_order_total_subtotal_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor method for initializing the module configuration.
+   *
+   * @param string $config_module The configuration module name that will be used for setting up the instance.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('SubTotal');

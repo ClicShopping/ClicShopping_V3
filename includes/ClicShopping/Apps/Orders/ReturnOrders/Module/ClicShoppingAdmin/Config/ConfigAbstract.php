@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by setting application registry, retrieving the class name,
+   * loading necessary definitions, and performing initial setup.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('ReturnOrders');
@@ -40,6 +46,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module by iterating through the defined parameters,
+   * dynamically initializing their configuration classes, and saving their associated configuration values
+   * to the application's registry.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_RETURN_ORDERS_' . $this->code . '_');
@@ -55,6 +68,15 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Removes configuration settings related to the current module from the database.
+   *
+   * This method deletes all entries in the configuration table that match the module's specific
+   * configuration key pattern. After executing the deletion query, it returns the number of rows
+   * affected by the operation.
+   *
+   * @return int The number of rows deleted from the configuration table.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -67,6 +89,15 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of configuration parameter constants for the current module.
+   *
+   * This method scans the specified directory for PHP files representing configuration parameter classes.
+   * It validates whether each class is a subclass of ConfigParamAbstract and, if valid, constructs a constant name
+   * for the parameter. If any file does not represent a valid subclass, an error is triggered.
+   *
+   * @return array Returns an array of constant names representing the configuration parameters for the module.
+   */
   public function getParameters()
   {
     $result = [];
@@ -90,6 +121,12 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the module, dynamically generating
+   * and sorting configuration fields based on predefined module parameters.
+   *
+   * @return array An array of processed and sorted configuration parameters.
+   */
   public function getInputParameters()
   {
     $result = [];

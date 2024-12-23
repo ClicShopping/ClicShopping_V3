@@ -29,6 +29,14 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the object.
+   *
+   * It sets up the application object, determines the class name,
+   * and triggers the initialization process.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Recommendations');
@@ -38,6 +46,11 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the Recommendations module.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_RECOMMENDATIONS_' . $this->code . '_');
@@ -53,6 +66,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +81,16 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves an array of parameter keys for the current configuration.
+   *
+   * This method scans the directory associated with the current module configuration
+   * for parameter files, validates their class inheritance, and constructs parameter
+   * keys for valid files.
+   *
+   * @return array An array of parameter keys, each in the format 'CLICSHOPPING_APP_RECOMMENDATIONS_<code>_<PARAM_NAME>'.
+   *               Returns an empty array if no valid parameters are found or if the directory does not exist.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +114,11 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves input parameters and processes their configuration settings.
+   *
+   * @return array An associative array of processed input parameters, sorted by their order.
+   */
   public function getInputParameters()
   {
     $result = [];

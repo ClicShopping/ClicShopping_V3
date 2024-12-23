@@ -18,6 +18,11 @@ class PR extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppin
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_pr_title');
@@ -26,6 +31,11 @@ class PR extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppin
     $this->is_installed = \defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') && (trim(CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS) != '');
   }
 
+  /**
+   * Installs the module and adds its configuration data to the system.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +49,11 @@ class PR extends \ClicShopping\Apps\Marketing\Recommendations\Module\ClicShoppin
     $this->app->saveCfgParam('MODULE_MODULES_PRODUCTS_PRODUCT_RECOMMENDATIONS_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module and removes its configuration data from the installed modules list.
+   *
+   * @return bool Returns true if the uninstallation process completes successfully, false otherwise.
+   */
   public function uninstall()
   {
     parent::uninstall();

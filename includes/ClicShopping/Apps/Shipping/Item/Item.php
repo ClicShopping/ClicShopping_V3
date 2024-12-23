@@ -19,12 +19,21 @@ class Item extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Item_V1';
 
+  /**
+   * Initializes the necessary setup or configurations for the current instance.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves configuration modules from a specified directory and organizes them by sort order.
+   * The method scans the directory for eligible configuration modules, validates their subclassing,
+   * and returns a sorted array of module names.
+   *
+   * @return mixed Array of configuration module names sorted by their sort_order or an internal counter.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +84,11 @@ class Item extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific configuration information for a given module.
+   *
+   * @param string $module The name of the module to retrieve configuration for.
+   * @param string $info The specific configuration or property to retrieve from the module.
+   * @return mixed The requested configuration information or property associated with the module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -90,7 +101,9 @@ class Item extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The version of the API, which can be either a string or an integer.
    */
   public function getApiVersion(): string|int
   {
@@ -98,7 +111,8 @@ class Item extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string The identifier associated with the instance.
    */
   public function getIdentifier(): string
   {

@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by setting the application instance, class code,
+   * and performing initialization operations.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('TotalShipping');
@@ -38,6 +44,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the module by iterating through
+   * its parameters, instantiating the parameter classes, and saving their
+   * default values and settings into the application.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_' . $this->code . '_');
@@ -53,6 +66,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +81,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the list of parameter constants for the current module configuration.
+   *
+   * @return array Returns an array of parameter constant names.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +109,12 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves input parameters for the current configuration, processes them,
+   * and structures them based on their respective properties.
+   *
+   * @return array An associative array of input parameters, sorted numerically by their order.
+   */
   public function getInputParameters()
   {
     $result = [];

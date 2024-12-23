@@ -24,7 +24,14 @@ class StatsProductsNotification extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules available in the specified directory.
+   *
+   * This method scans the given directory for valid configuration modules that are
+   * subclasses of the specified abstract configuration class. The modules are sorted
+   * based on their "sort_order" property or, if not specified, their order of discovery.
+   *
+   * @return mixed An array of configuration module names sorted by their "sort_order".
+   *               Returns an empty array if no valid modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +82,11 @@ class StatsProductsNotification extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the provided module and information key.
+   *
+   * @param string $module The module name whose configuration information is requested.
+   * @param string $info The specific information key to retrieve from the module.
+   * @return mixed Returns the corresponding configuration information for the provided module and key.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +100,9 @@ class StatsProductsNotification extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +110,9 @@ class StatsProductsNotification extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier associated with the current instance.
+   *
+   * @return string The identifier as a string.
    */
   public function getIdentifier(): string
   {

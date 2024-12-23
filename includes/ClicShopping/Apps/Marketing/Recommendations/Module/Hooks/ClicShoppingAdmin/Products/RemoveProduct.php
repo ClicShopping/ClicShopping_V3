@@ -20,6 +20,15 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the Recommendations app.
+   *
+   * Checks if the 'Recommendations' application is registered in the Registry.
+   * If not, it creates and registers a new RecommendationsApp instance.
+   * Then, it retrieves and assigns the 'Recommendations' app instance to the class property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Recommendations')) {
@@ -29,6 +38,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Recommendations');
   }
 
+  /**
+   * Removes product recommendations and associated category mappings for a given product ID.
+   *
+   * @param int $id The ID of the product to remove recommendations for.
+   * @return void
+   */
   private function removeProducts($id)
   {
     if (!empty($_POST['products_recommendations'])) {
@@ -37,6 +52,12 @@ class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main functionality of the method. Checks if the recommendations module is active
+   * and processes a product removal request if a product ID is provided.
+   *
+   * @return bool Returns false if the recommendations module is inactive, otherwise void.
+   */
   public function execute()
   {
     if (!defined('CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS') || CLICSHOPPING_APP_RECOMMENDATIONS_PR_STATUS == 'False') {

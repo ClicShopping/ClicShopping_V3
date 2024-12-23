@@ -16,9 +16,11 @@ class HistoryInfo
 {
 
   /**
-   * @param bool $fetch
-   * @param int|null $rId
-   * @return mixed
+   * Retrieves the history information listing for return orders based on the specified parameters.
+   *
+   * @param bool $fetch Determines whether to fetch a single record (true) or all records (false).
+   * @param int|null $rId Optional return order ID to filter the results. If null, all return orders are fetched for the customer.
+   * @return array The fetched return order information, either a single record or multiple records based on the $fetch parameter.
    */
   public static function getHistoryInfoListing(bool $fetch = true,  int|null $rId = null)
   {
@@ -63,7 +65,10 @@ class HistoryInfo
   }
 
   /**
-   * @return array
+   * Retrieves the history information for a specific return order, including status name, date added, and comments.
+   *
+   * @param int $id The unique identifier of the return order.
+   * @return array An array containing the history information of the return order.
    */
   public static function getHistoryInfoDisplay(int $id): array
   {
@@ -93,8 +98,10 @@ class HistoryInfo
 
 
   /**
-   * @param int $id
-   * @return mixed
+   * Retrieves the history information check of a specific order ID.
+   *
+   * @param int $id The ID of the order to check.
+   * @return array|false Returns an associative array containing the order ID and customer ID if found, or false if no records are found.
    */
   public static function getHistoryInfoCheck(int $id)
   {

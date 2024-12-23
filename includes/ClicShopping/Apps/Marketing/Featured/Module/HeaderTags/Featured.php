@@ -20,6 +20,12 @@ class Featured extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   public mixed $app;
   private mixed $template;
 
+  /**
+   * Initializes the module by setting up the necessary registry entries, loading definitions,
+   * and configuring the module's properties such as title, description, sort order, and status.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('Featured')) {
@@ -41,11 +47,22 @@ class Featured extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks whether the functionality is enabled.
+   *
+   * @return bool Returns true if enabled, false otherwise.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates the HTML output for meta tags including title, description, and keywords
+   * for a featured product page, if specific GET parameters are set.
+   *
+   * @return string The generated HTML meta tags as a string.
+   */
   public function getOutput()
   {
     if (isset($_GET['Products'], $_GET['Featured'])) {
@@ -77,6 +94,11 @@ EOD;
     }
   }
 
+  /**
+   * Installs the module by saving its configuration settings into the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -105,6 +127,11 @@ EOD;
     );
   }
 
+  /**
+   * Retrieves the configuration keys for the module.
+   *
+   * @return array An array of strings representing the configuration keys.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_PRODUCT_FEATURED_STATUS',

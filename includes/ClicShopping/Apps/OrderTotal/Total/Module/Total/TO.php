@@ -28,6 +28,13 @@ class TO implements \ClicShopping\OM\Modules\OrderTotalInterface
   public $public_title;
   protected $api_version;
 
+  /**
+   * Initializes the Total module application by checking for its existence in the registry,
+   * loading its definitions, and setting up necessary properties such as signature, version,
+   * API version, code, titles, enabled status, sort order, and output.
+   *
+   * @return void
+   */
   public function __construct()
   {
 
@@ -52,6 +59,11 @@ class TO implements \ClicShopping\OM\Modules\OrderTotalInterface
     $this->output = [];
   }
 
+  /**
+   * Processes the order details and formats currency information to output the total order value.
+   *
+   * @return void
+   */
   public function process()
   {
 
@@ -65,21 +77,39 @@ class TO implements \ClicShopping\OM\Modules\OrderTotalInterface
   }
 
 
+  /**
+   * Checks if the CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS constant is defined and not an empty string.
+   *
+   * @return bool Returns true if the constant is defined and its value is not empty; otherwise, false.
+   */
   public function check()
   {
     return \defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS) != '');
   }
 
+  /**
+   *
+   * @return void
+   */
   public function install()
   {
     $this->app->redirect('Configure&Install&module=TO');
   }
 
+  /**
+   * Redirects the application to the uninstall configuration page for the specified module.
+   *
+   * @return void
+   */
   public function remove()
   {
     $this->app->redirect('Configure&Uninstall&module=TO');
   }
 
+  /**
+   *
+   * @return array Returns an array of keys used for the configuration of the application.
+   */
   public function keys()
   {
     return array('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_SORT_ORDER');

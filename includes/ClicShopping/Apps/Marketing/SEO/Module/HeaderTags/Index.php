@@ -23,6 +23,11 @@ class Index extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   public mixed $app;
   private mixed $template;
 
+  /**
+   * Initializes the module by setting necessary properties and loading definitions.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('SEO')) {
@@ -44,11 +49,22 @@ class Index extends \ClicShopping\OM\Modules\HeaderTagsAbstract
     }
   }
 
+  /**
+   * Checks if the current instance is enabled.
+   *
+   * @return bool Returns true if the instance is enabled, otherwise false.
+   */
   public function isEnabled()
   {
     return $this->enabled;
   }
 
+  /**
+   * Generates and returns the HTML output for meta tags such as title, description, and keywords
+   * based on the current URI or specific conditions.
+   *
+   * @return string The generated HTML output for the meta tags.
+   */
   public function getOutput()
   {
     $this->template = Registry::get('Template');
@@ -104,6 +120,11 @@ EOD;
     return $output;
   }
 
+  /**
+   * Installs the module by inserting configuration settings into the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -131,11 +152,24 @@ EOD;
     );
   }
 
+  /**
+   * Removes configuration entries from the database where the configuration keys match
+   * the keys returned by the keys() method.
+   *
+   * Uses the database connection from the `Registry` to execute the delete command.
+   *
+   * @return int|false Returns the number of affected rows, or false on failure.
+   */
   public function remove()
   {
     return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
   }
 
+  /**
+   * Returns an array of configuration keys used by the module.
+   *
+   * @return array An array containing the configuration keys for the module.
+   */
   public function keys()
   {
     return ['MODULE_HEADER_TAGS_INDEX_STATUS',

@@ -19,6 +19,15 @@ class PageContent implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Initializes the Featured application component.
+   *
+   * Checks if the 'Featured' key exists in the Registry. If it does not exist, it creates
+   * and registers a new FeaturedApp instance. Then, it retrieves the 'Featured' application
+   * instance from the Registry and assigns it to the class property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('Featured')) {
@@ -28,6 +37,11 @@ class PageContent implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('Featured');
   }
 
+  /**
+   * Renders the display output for the FeaturedApp module.
+   *
+   * @return string|false The generated HTML output for the module display, or false if the module is disabled.
+   */
   public function display()
   {
 

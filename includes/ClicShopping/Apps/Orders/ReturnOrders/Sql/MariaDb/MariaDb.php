@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary installation procedures for the ReturnOrders module.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_ReturnOrders = Registry::get('ReturnOrders');
@@ -24,9 +29,14 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu structure for the return orders administration section.
+   * This includes adding entries to the administrator menu and menu descriptions
+   * for different languages. Additionally, clears the administrator menu cache
+   * after the menu setup is complete.
+   *
+   * @return void
+   */
   public static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -104,7 +114,19 @@ class MariaDb
   }
 
   /**
-   * return void
+   * Installs the database structure required for managing return orders.
+   *
+   * Creates the necessary tables if they do not already exist, including:
+   * - return_orders
+   * - return_orders_history
+   * - return_orders_reason
+   * - return_orders_status
+   * - return_orders_action
+   *
+   * Inserts default data for some of the tables such as return reasons, statuses, and actions
+   * to ensure proper functionality of the return order system.
+   *
+   * @return void
    */
   public static function installDb(): void
   {
