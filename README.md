@@ -119,6 +119,9 @@ More information in the Wiki
 #Functionnalities (some)
 - B2B - B2C full functionalities
 - GPT API integration
+- 
+
+- Generative AI functionalities :
 - Generative artificial Intelligence included with Gpt, Ollama and Anthropic
 - Generative artificial products customers recommendations
 - Generative artificial intelligence for All content (product,categories...)
@@ -127,8 +130,9 @@ More information in the Wiki
 - Generative artificial Intelligence review summary
 - Generative artificial Intelligence Automated product tagging
 - Generative artificial Intelligence Automated review tagging
+- Generative artificial Intelligence product automation
 - Real time safety stock predictive (AI)
-- Product automation function GenAI
+- 
 - WYSIWYG to create your products description, content with CKeditor
 - Image Editor management with El-Finder 2.x - drag and drop - webp
 - Full SEO functionalities optimization and url
