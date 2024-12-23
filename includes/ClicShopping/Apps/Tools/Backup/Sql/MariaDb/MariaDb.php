@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation procedure for the backup module by loading appropriate definitions
+   * and installing the administration menu.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Backup = Registry::get('Backup');
@@ -23,9 +29,13 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu item for the Backup application in the administrator menu if it does not already exist.
+   * The method adds entries into the `administrator_menu` and `administrator_menu_description` tables,
+   * and clears the related cache for the administrator menu.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

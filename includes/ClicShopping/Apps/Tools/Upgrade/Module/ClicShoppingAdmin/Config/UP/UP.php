@@ -18,6 +18,13 @@ class UP extends \ClicShopping\Apps\Tools\Upgrade\Module\ClicShoppingAdmin\Confi
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, and introduction
+   * using application definitions and determining if the module is installed
+   * based on the configuration status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_up_title');
@@ -26,6 +33,12 @@ class UP extends \ClicShopping\Apps\Tools\Upgrade\Module\ClicShoppingAdmin\Confi
     $this->is_installed = \defined('CLICSHOPPING_APP_UPGRADE_UP_STATUS') && (trim(CLICSHOPPING_APP_UPGRADE_UP_STATUS) != '');
   }
 
+  /**
+   * Installs the current module by adding it to the list of installed modules
+   * in the configuration and performing any necessary setup defined in the parent class.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +52,12 @@ class UP extends \ClicShopping\Apps\Tools\Upgrade\Module\ClicShoppingAdmin\Confi
     $this->app->saveCfgParam('MODULE_MODULES_UPGRADE_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the current module by removing it from the list of installed modules
+   * in the configuration and performing any necessary cleanup defined in the parent class.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

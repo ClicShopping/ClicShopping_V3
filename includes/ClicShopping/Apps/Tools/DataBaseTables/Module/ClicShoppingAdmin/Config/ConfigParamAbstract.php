@@ -20,6 +20,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_data_base_tables_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor method for the class.
+   *
+   * @param string $config_module The configuration module's name to be used for setting up the instance.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('DataBaseTables');

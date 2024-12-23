@@ -29,6 +29,15 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method to initialize the class.
+   *
+   * This method sets the `app` property by retrieving an instance of the
+   * DefineLanguage from the Registry, initializes `code` with the short name
+   * of the class using Reflection, and calls the `init` method for further setup.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('DefineLanguage');
@@ -38,6 +47,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the module by iterating
+   * through defined parameters, instantiating related parameter classes,
+   * and saving their default values and metadata.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_DEFINE_LANGUAGE_' . $this->code . '_');
@@ -53,6 +69,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +84,13 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves an array of parameter constants for the current module.
+   *
+   * @return array An array of parameter constants relevant to the module's configuration.
+   *               Each parameter corresponds to a valid subclass of
+   *               ClicShopping\Apps\Tools\DefineLanguage\Module\ClicShoppingAdmin\Config\ConfigParamAbstract.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +114,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes the input parameters for the module based on the pre-defined configuration.
+   *
+   * This method iterates through the parameters associated with the module, initializes their respective
+   * configuration classes, applies default values if they are undefined, and organizes the parameters
+   * based on their sort order or default ordering logic.
+   *
+   * @return array An array of processed input parameters, sorted numerically by their determined order.
+   */
   public function getInputParameters()
   {
     $result = [];

@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the object.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('SecDirPermissions');
@@ -38,6 +43,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the current module by iterating through
+   * the defined parameters, dynamically instantiating their respective configuration classes,
+   * and saving their default values along with optional metadata.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_SEC_DIR_PERMISSIONS_' . $this->code . '_');
@@ -53,6 +65,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +80,13 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves the configuration parameters for the current module.
+   *
+   * @return array An array of configuration parameter constants specific to the module.
+   *               If any file in the specified directory is not a valid subclass
+   *               of ConfigParamAbstract, an error is triggered.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +110,12 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input configuration parameters.
+   *
+   * @return array An array of processed configuration parameters, sorted by their sort order.
+   *               Each parameter includes its field settings if applicable.
+   */
   public function getInputParameters()
   {
     $result = [];

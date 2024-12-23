@@ -18,6 +18,12 @@ class CJ extends \ClicShopping\Apps\Tools\Cronjob\Module\ClicShoppingAdmin\Confi
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status
+   * based on application definitions and configuration constants.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_cj_title');
@@ -26,6 +32,13 @@ class CJ extends \ClicShopping\Apps\Tools\Cronjob\Module\ClicShoppingAdmin\Confi
     $this->is_installed = \defined('CLICSHOPPING_APP_CRONJOB_CJ_STATUS') && (trim(CLICSHOPPING_APP_CRONJOB_CJ_STATUS) != '');
   }
 
+  /**
+   * Installs the module by executing the parent install method,
+   * adding the module to the list of installed modules, and
+   * updating the configuration accordingly.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +52,13 @@ class CJ extends \ClicShopping\Apps\Tools\Cronjob\Module\ClicShoppingAdmin\Confi
     $this->app->saveCfgParam('MODULE_MODULES_CRONJOB_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by executing the parent uninstall method,
+   * removing the module from the list of installed modules, and
+   * updating the configuration accordingly.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

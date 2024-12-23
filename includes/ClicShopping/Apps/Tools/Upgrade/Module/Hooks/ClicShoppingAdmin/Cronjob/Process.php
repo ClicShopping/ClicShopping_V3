@@ -17,12 +17,21 @@ use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\Marketplace;
 
 class Process implements \ClicShopping\OM\Modules\HooksInterface
 {
+  /**
+   * Constructor method for the class.
+   *
+   * @return void
+   */
   public function __construct()
   {
   }
 
   /**
+   * Executes the cron job for marketplace functionality. It checks if a specific cron ID is provided
+   * through the request and updates the corresponding cron status. If no specific ID is provided,
+   * it defaults to updating and executing the marketplace cron job.
    *
+   * @return void
    */
   private static function cronJob(): void
   {
@@ -45,6 +54,11 @@ class Process implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the cron job by calling the static cronJob method.
+   *
+   * @return void
+   */
   public function execute()
   {
     static::cronJob();

@@ -18,6 +18,12 @@ class BC extends \ClicShopping\Apps\Tools\Backup\Module\ClicShoppingAdmin\Config
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction,
+   * and determining its installation status based on configuration.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_bc_title');
@@ -26,6 +32,11 @@ class BC extends \ClicShopping\Apps\Tools\Backup\Module\ClicShoppingAdmin\Config
     $this->is_installed = \defined('CLICSHOPPING_APP_BACKUP_BC_STATUS') && (trim(CLICSHOPPING_APP_BACKUP_BC_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its entry to the installed modules list.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +50,11 @@ class BC extends \ClicShopping\Apps\Tools\Backup\Module\ClicShoppingAdmin\Config
     $this->app->saveCfgParam('MODULE_MODULES_BACKUP_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its entry from the installed modules list.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

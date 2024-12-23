@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary operations for managing directory permissions and
+   * installing administrative menu configurations.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_SecDirPermissions = Registry::get('SecDirPermissions');
@@ -23,9 +29,15 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu entry for the SecDirPermissions application in the administrator menu.
+   *
+   * This method checks if the menu entry for the application 'app_tools_sec_dir_permissions' exists in the
+   * 'administrator_menu' table. If the menu entry does not exist, it is created along with language-specific
+   * descriptions. After insertion, the administrator menu cache is cleared to reflect the changes.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

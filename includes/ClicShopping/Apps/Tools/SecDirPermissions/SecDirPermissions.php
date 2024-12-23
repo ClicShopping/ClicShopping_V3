@@ -24,7 +24,15 @@ class SecDirPermissions extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the configuration modules available in the specified directory.
+   *
+   * The method scans a predefined directory for module files, validates if they
+   * extend the necessary abstract class, and organizes them by their sort order.
+   * If the sort order is not specified in the module, they are assigned a sort
+   * position sequentially.
+   *
+   * @return array An associative array of configuration modules where the keys
+   *               represent their sort order, and the values represent module names.
    */
   public function getConfigModules()
   {
@@ -75,9 +83,11 @@ class SecDirPermissions extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information by initializing the specified module if not already registered.
+   *
+   * @param string $module The name of the configuration module to fetch information from.
+   * @param string $info The specific information required from the configuration module.
+   * @return mixed Returns the requested configuration module information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +101,9 @@ class SecDirPermissions extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version, which can be a string or an integer.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +111,9 @@ class SecDirPermissions extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier associated with the instance.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

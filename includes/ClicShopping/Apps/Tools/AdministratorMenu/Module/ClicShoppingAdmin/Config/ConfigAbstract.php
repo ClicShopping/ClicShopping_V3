@@ -27,8 +27,23 @@ abstract class ConfigAbstract
   public bool $is_migratable = false;
   public int|null $sort_order = 0;
 
+  /**
+   * Initializes the implementation of the derived class.
+   *
+   * This method is intended to be implemented by subclasses to perform any necessary setup
+   * or initialization logic specific to the subclass. Being abstract, it enforces that
+   * all concrete subclasses provide their own implementation.
+   */
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the class.
+   *
+   * Retrieves the AdministratorMenu from the Registry, sets the code property to the class's short name,
+   * and initiates any additional setup through the init method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('AdministratorMenu');
@@ -38,6 +53,16 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the application in the database.
+   *
+   * For each parameter retrieved via the `getParameters` method, this method:
+   * - Extracts the specific parameter name by trimming the predefined prefix and converting the key to lowercase.
+   * - Dynamically creates an instance of the parameter configuration class.
+   * - Saves the parameter and its associated data (default value, title, description, and setter function, if provided) using the application's configuration saving mechanism.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_ADMINISTRATOR_MENU_' . $this->code . '_');
@@ -53,6 +78,14 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Removes configuration entries related to the application from the database.
+   *
+   * Deletes all rows in the `:table_configuration` table where the `configuration_key`
+   * matches the pattern 'CLICSHOPPING_APP_ADMINISTRATOR_MENU_' followed by the application's code and any additional characters.
+   *
+   * @return int The number of rows affected by the deletion query.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration

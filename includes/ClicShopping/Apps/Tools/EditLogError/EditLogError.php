@@ -24,7 +24,14 @@ class EditLogError extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the configuration modules available within the specified directory.
+   *
+   * The method scans a predefined directory for configuration module directories,
+   * checks if they meet the required conditions, and loads them into a sorted list
+   * based on their specified sort order or default positioning.
+   *
+   * @return mixed Returns an array of configuration module names indexed by their sort order.
+   *               If no modules are found, an empty array is returned.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +82,11 @@ class EditLogError extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific configuration module information.
+   *
+   * @param string $module The name of the module to retrieve the configuration information for.
+   * @param string $info The specific information to retrieve about the module.
+   * @return mixed The requested configuration information of the specified module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +100,9 @@ class EditLogError extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version, which can be a string or an integer.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +110,9 @@ class EditLogError extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier property of the instance.
+   *
+   * @return string The identifier of the instance.
    */
   public function getIdentifier(): string
   {

@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process by loading necessary definitions,
+   * setting up the administration menu, and initializing the database.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_SecurityCheck = Registry::get('SecurityCheck');
@@ -24,9 +30,13 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu entries for the administration interface related to the Security Check module.
+   * It adds new menu options to the database if they do not already exist, ensuring language-specific labels are created,
+   * and clears the corresponding cache after installation.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -103,7 +113,9 @@ class MariaDb
   }
 
   /**
-  * @return void
+   * Installs the database tables required for IP restrictions if they do not already exist.
+   *
+   * @return void
    */
   private static function installDb(): void
   {

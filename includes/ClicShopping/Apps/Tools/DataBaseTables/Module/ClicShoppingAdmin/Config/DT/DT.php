@@ -9,7 +9,11 @@
  */
 
 namespace ClicShopping\Apps\Tools\DataBaseTables\Module\ClicShoppingAdmin\Config\DT;
-
+/**
+ * Represents the DT module configuration for the ClicShoppingAdmin application.
+ * This class extends the base ConfigAbstract class and provides implementation
+ * specific to the DT module, including install and uninstall functionalities.
+ */
 class DT extends \ClicShopping\Apps\Tools\DataBaseTables\Module\ClicShoppingAdmin\Config\ConfigAbstract
 {
 
@@ -18,6 +22,11 @@ class DT extends \ClicShopping\Apps\Tools\DataBaseTables\Module\ClicShoppingAdmi
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_dt_title');
@@ -26,6 +35,11 @@ class DT extends \ClicShopping\Apps\Tools\DataBaseTables\Module\ClicShoppingAdmi
     $this->is_installed = \defined('CLICSHOPPING_APP_DATA_BASE_TABLES_DT_STATUS') && (trim(CLICSHOPPING_APP_DATA_BASE_TABLES_DT_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its identifiers to the installed modules configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +53,11 @@ class DT extends \ClicShopping\Apps\Tools\DataBaseTables\Module\ClicShoppingAdmi
     $this->app->saveCfgParam('MODULE_MODULES_DATA_BASE_TABLES_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its identifiers from the installed modules configuration.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

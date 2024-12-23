@@ -20,6 +20,11 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
   private mixed $lang;
 
+  /**
+   * Initializes the AdministratorMenu application and sets the language registry.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('AdministratorMenu')) {
@@ -30,6 +35,12 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     $this->lang = Registry::get('Language');
   }
 
+  /**
+   * Inserts administrator menu descriptions for a newly added language
+   * by duplicating entries of an existing language.
+   *
+   * @return void
+   */
   private function insert()
   {
     $insert_language_id = LanguageAdmin::getLatestLanguageID();
@@ -55,6 +66,14 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main logic of the function based on predefined constants and query parameters.
+   *
+   * Checks if the application status is defined and active, and exits early if not.
+   * If specific query parameters are set, invokes an insert operation.
+   *
+   * @return bool|void Returns false if the application is inactive, otherwise performs operations based on query parameters.
+   */
   public function execute()
   {
     if (!\defined('CLICSHOPPING_APP_ADMINISTRATOR_MENU_AM_STATUS') || CLICSHOPPING_APP_ADMINISTRATOR_MENU_AM_STATUS == 'False') {

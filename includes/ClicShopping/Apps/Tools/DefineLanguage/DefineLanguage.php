@@ -19,12 +19,23 @@ class DefineLanguage extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Define_Language_V1';
 
+  /**
+   * Initializes the required components or configurations.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the configuration modules available in the specified directory.
+   * This method loads the configuration modules from a predefined directory,
+   * validates if they extend the required abstract class, and sorts them
+   * based on their sort order or position in the result array.
+   *
+   * @return mixed The sorted array of configuration module names, or an empty
+   *               array if no valid configuration modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +86,11 @@ class DefineLanguage extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the specified module and info parameters.
+   *
+   * @param string $module The name of the configuration module.
+   * @param string $info The requested information from the configuration module.
+   * @return mixed The requested module information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +104,9 @@ class DefineLanguage extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +114,9 @@ class DefineLanguage extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier value.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

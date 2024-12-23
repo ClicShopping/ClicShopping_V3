@@ -20,6 +20,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_define_language_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor method for initializing the class.
+   *
+   * @param string $config_module The configuration module name.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('DefineLanguage');
@@ -28,7 +34,10 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
 
     $this->config_module = $config_module;
 
-    $this->code = (new \ReflectionClass($this))->getShortName();
+    /**
+     *
+     */
+      $this->code = (new \ReflectionClass($this))->getShortName();
 
     $this->app->loadDefinitions('Module/ClicShoppingAdmin/Config/' . $config_module . '/Params/' . $this->code);
     parent::__construct();

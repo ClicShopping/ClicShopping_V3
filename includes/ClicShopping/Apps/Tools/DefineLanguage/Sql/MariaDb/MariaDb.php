@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary operations for loading definitions and installing menu administration.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_DefineLanguage = Registry::get('DefineLanguage');
@@ -23,9 +28,15 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu administration entry for the Define Language tool in the administrator panel.
+   *
+   * This function checks if the menu entry for the Define Language application already exists. If not,
+   * it adds the necessary records to the `administrator_menu` and `administrator_menu_description`
+   * tables. Additionally, it clears the cache for the administrator menu to reflect the changes.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

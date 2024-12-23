@@ -21,6 +21,12 @@ class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   public mixed $app;
   public $group;
 
+  /**
+   * Initializes the WhosOnline module by setting up its app instance, language definitions, title, and description.
+   * Also configures the module's sort order and enabled status based on predefined constants.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('WhosOnline')) {
@@ -41,6 +47,16 @@ class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Generates and returns the output for the "Who's Online" dashboard module, which displays
+   * information about the customers currently online, including their names, IP addresses,
+   * user agents, and time online.
+   *
+   * The method also cleans up older records from the `whos_online` table before fetching and
+   * displaying the latest data.
+   *
+   * @return string The generated output in HTML format for the dashboard widget.
+   */
   public function getOutput()
   {
     $xx_mins_ago = (time() - 900);
@@ -122,6 +138,13 @@ class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     return $output;
   }
 
+  /**
+   * Installs the configuration settings required for the module.
+   * Based on the language ID, it saves localized configuration options
+   * such as module activation status, content width display, and sort order.
+   *
+   * @return void
+   */
   public function Install()
   {
     if ($this->lang->getId() != 2) {
@@ -202,6 +225,11 @@ class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Retrieves the configuration keys for the module.
+   *
+   * @return array List of configuration keys related to the module.
+   */
   public function keys()
   {
     return ['MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_STATUS',

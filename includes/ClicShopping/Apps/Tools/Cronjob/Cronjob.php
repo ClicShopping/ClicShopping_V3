@@ -19,12 +19,21 @@ class Cronjob extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Cronjob_V1';
 
+  /**
+   * Initializes the necessary components or configurations for the current object.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the configuration modules for the application, sorted by their predefined sort order
+   * or by default index if no sort order is specified. The result is cached for subsequent calls.
+   *
+   * @return mixed Returns an array of configuration module names, with keys representing their sort order.
+   *               If no valid configuration modules are found, an empty array is returned.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +84,11 @@ class Cronjob extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific configuration module information.
+   *
+   * @param string $module The name of the module to retrieve information for.
+   * @param string $info The specific information to retrieve from the module.
+   * @return mixed The requested information from the configuration module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +102,8 @@ class Cronjob extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   *
+   * @return string|int Returns the API version, which can be either a string or an integer.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +111,9 @@ class Cronjob extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

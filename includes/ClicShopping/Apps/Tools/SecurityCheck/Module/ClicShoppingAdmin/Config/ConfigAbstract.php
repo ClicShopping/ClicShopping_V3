@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the instance of the class and sets up required properties.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('SecurityCheck');
@@ -38,6 +43,15 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the application by saving configuration parameters to the database.
+   *
+   * Iterates through application-specific parameters, dynamically creates configuration
+   * parameter instances, and saves their default values and metadata (e.g., title,
+   * description, and set function) to the database.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_SECURITY_CHECK_' . $this->code . '_');
@@ -53,6 +67,14 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the application by deleting configuration entries related to the application.
+   *
+   * Prepares and executes a SQL statement that removes all configuration entries
+   * whose keys match a specific pattern associated with this application's code.
+   *
+   * @return int The number of rows affected by the delete operation.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration

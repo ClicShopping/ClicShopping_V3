@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class instance by setting up application properties and performing initial setup.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('DataBaseTables');
@@ -38,6 +43,15 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the database tables module.
+   *
+   * Iterates through the parameters retrieved from `getParameters`, constructs
+   * respective configuration parameter classes and saves their details such as
+   * default value, title, description, and set function using the application registry.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_DATA_BASE_TABLES_' . $this->code . '_');
@@ -53,6 +67,15 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Removes configuration entries from the database table associated with the current module.
+   *
+   * Prepares and executes an SQL delete statement to remove all configuration entries
+   * whose keys match a specific pattern based on the module's code. The number of rows
+   * affected by the operation is returned.
+   *
+   * @return int The number of rows removed from the configuration table.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +88,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of configuration parameters based on the defined directory structure.
+   *
+   * @return array An array of parameter constants generated from configuration files.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +116,12 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Processes and retrieves input parameters for the application module by constructing configuration objects,
+   * checking if parameters need to be initialized, and organizing the results in a sorted array.
+   *
+   * @return array Returns an array of input parameters with their configured fields, sorted by their sort order.
+   */
   public function getInputParameters()
   {
     $result = [];

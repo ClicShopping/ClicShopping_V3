@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary installation process for the upgrade module.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Upgrade = Registry::get('Upgrade');
@@ -24,9 +29,13 @@ class MariaDb
     self::installDb();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs a new entry in the administration menu for the upgrade tool if it does not already exist.
+   * This includes adding the main menu entry and its corresponding descriptions for all languages.
+   * Clears the cache after insertion to ensure menu updates are reflected immediately.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -71,9 +80,14 @@ class MariaDb
     }
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the required database tables for the marketplace functionality if they do not already exist.
+   *
+   * This method checks for the existence of specific tables in the database.
+   * If the tables are not found, they will be created with their respective structure, indexes, and primary keys.
+   *
+   * @return void
+   */
   private static function installDb()
   {
     $CLICSHOPPING_Db = Registry::get('Db');

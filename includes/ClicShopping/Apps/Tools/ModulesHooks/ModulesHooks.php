@@ -19,12 +19,23 @@ class ModulesHooks extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_ModulesHooks_V1';
 
+  /**
+   * Initializes the necessary configurations or components for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves and caches the configuration modules available in a specific directory.
+   *
+   * This method scans a designated directory for configuration module subdirectories,
+   * validates them as subclasses of a defined abstract class, and orders them based on
+   * their sort order or insertion sequence.
+   *
+   * @return mixed Returns an array of configuration module names, indexed by their sort order, or null if the directory could not be processed.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +86,11 @@ class ModulesHooks extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves the configuration module information based on the module name and requested information.
+   *
+   * @param string $module The name of the module to retrieve information for.
+   * @param string $info The specific information to retrieve from the module.
+   * @return mixed The requested module information, or null if it does not exist.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +104,9 @@ class ModulesHooks extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +114,8 @@ class ModulesHooks extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string The identifier of the current instance.
    */
   public function getIdentifier(): string
   {

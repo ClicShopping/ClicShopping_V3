@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by setting up the application instance, retrieving the short name of the current class,
+   * and calling the initialization method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('ActionsRecorder');
@@ -38,6 +44,12 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters by dynamically generating parameter classes based on their names
+   * and saving their default values, titles, descriptions, and setup functions.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_ACTIONS_RECORDER_' . $this->code . '_');
@@ -53,6 +65,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +80,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves an array of parameter constants related to the configuration.
+   *
+   * @return array An array containing the names of the parameter constants defined in the specified directory.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +108,16 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the configuration module.
+   *
+   * This method constructs and configures input parameters by extracting key information
+   * from predefined constants, creating relevant configuration objects, and determining
+   * their sort order. The parameters are assembled into a result array, sorted by their
+   * specified orders.
+   *
+   * @return array Returns an array of input parameters, sorted numerically based on their sort order.
+   */
   public function getInputParameters()
   {
     $result = [];

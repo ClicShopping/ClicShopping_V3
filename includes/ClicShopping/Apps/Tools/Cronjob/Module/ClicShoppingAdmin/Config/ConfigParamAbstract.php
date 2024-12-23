@@ -20,6 +20,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_cronjob_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor method for initializing the configuration module and loading definitions.
+   *
+   * @param string $config_module The configuration module name used to set up class properties and load definitions.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('Cronjob');
@@ -28,7 +34,10 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
 
     $this->config_module = $config_module;
 
-    $this->code = (new \ReflectionClass($this))->getShortName();
+    /**
+     *
+     */
+      $this->code = (new \ReflectionClass($this))->getShortName();
 
     $this->app->loadDefinitions('Module/ClicShoppingAdmin/Config/' . $config_module . '/Params/' . $this->code);
     parent::__construct();

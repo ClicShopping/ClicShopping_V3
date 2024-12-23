@@ -18,6 +18,11 @@ class ED extends \ClicShopping\Apps\Tools\EditDesign\Module\ClicShoppingAdmin\Co
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its titles, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_de_title');
@@ -26,6 +31,11 @@ class ED extends \ClicShopping\Apps\Tools\EditDesign\Module\ClicShoppingAdmin\Co
     $this->is_installed = \defined('CLICSHOPPING_APP_EDIT_DESIGN_ED_STATUS') && (trim(CLICSHOPPING_APP_EDIT_DESIGN_ED_STATUS) != '');
   }
 
+  /**
+   * Installs the module and adds its entry to the installed modules list.
+   *
+   * @return bool Returns true if the installation process is completed successfully.
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +49,11 @@ class ED extends \ClicShopping\Apps\Tools\EditDesign\Module\ClicShoppingAdmin\Co
     $this->app->saveCfgParam('MODULE_MODULES_EDIT_DESIGN_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module and removes its entry from the installed modules list.
+   *
+   * @return bool Returns true if the uninstallation process is completed successfully.
+   */
   public function uninstall()
   {
     parent::uninstall();

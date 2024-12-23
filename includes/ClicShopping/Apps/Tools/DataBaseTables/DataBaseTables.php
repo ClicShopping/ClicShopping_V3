@@ -19,12 +19,24 @@ class DataBaseTables extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_DataBaseTables_V1';
 
+  /**
+   * Initializes the necessary configurations or setups required for the function or class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules available in the specified directory.
+   *
+   * The method scans a predefined directory for valid configuration modules. Each module must
+   * be a subclass of ConfigAbstract and adhere to the required naming conventions. Modules
+   * are sorted based on their defined sort order or their position in the resulting list.
+   *
+   * @return mixed An array of configuration module names sorted by their sort order, or
+   *         an empty array if no modules are found or an error occurs.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +87,11 @@ class DataBaseTables extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the provided module and info parameters.
+   *
+   * @param string $module The name of the module to retrieve configuration information for.
+   * @param string $info The specific information or property to retrieve from the configuration module.
+   * @return mixed Returns the requested configuration information or property.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +105,9 @@ class DataBaseTables extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The version of the API.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +115,9 @@ class DataBaseTables extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the main logic for loading definitions and installing menu administration.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_EditDesign = Registry::get('EditDesign');
@@ -23,9 +28,16 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs a new menu entry for the administration section in the database if it does not already exist.
+   * This method performs the following actions:
+   * - Checks if the menu entry with a specific app code exists in the `administrator_menu` table.
+   * - Inserts a new menu entry if it does not already exist, with predefined attributes such as sort order, link, image, and access level.
+   * - Associates language-specific labels for the menu entry in the `administrator_menu_description` table.
+   * - Clears the administrator menu cache to reflect the changes.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

@@ -18,6 +18,12 @@ class SV extends \ClicShopping\Apps\Tools\ServiceAPP\Module\ClicShoppingAdmin\Co
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction,
+   * and checking its installation status based on configuration constants.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_sv_title');
@@ -26,6 +32,11 @@ class SV extends \ClicShopping\Apps\Tools\ServiceAPP\Module\ClicShoppingAdmin\Co
     $this->is_installed = \defined('CLICSHOPPING_APP_SERVICE_APP_SV_STATUS') && (trim(CLICSHOPPING_APP_SERVICE_APP_SV_STATUS) != '');
   }
 
+  /**
+   * Installs the module and adds its entry to the installed modules configuration parameter.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +50,11 @@ class SV extends \ClicShopping\Apps\Tools\ServiceAPP\Module\ClicShoppingAdmin\Co
     $this->app->saveCfgParam('MODULE_MODULES_SERVICE_APP_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module and removes its entry from the installed modules configuration parameter.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

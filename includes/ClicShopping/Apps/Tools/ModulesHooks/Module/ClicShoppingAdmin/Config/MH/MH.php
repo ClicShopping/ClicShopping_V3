@@ -18,6 +18,11 @@ class MH extends \ClicShopping\Apps\Tools\ModulesHooks\Module\ClicShoppingAdmin\
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_mh_title');
@@ -26,6 +31,11 @@ class MH extends \ClicShopping\Apps\Tools\ModulesHooks\Module\ClicShoppingAdmin\
     $this->is_installed = \defined('CLICSHOPPING_APP_MODULES_HOOKS_MH_STATUS') && (trim(CLICSHOPPING_APP_MODULES_HOOKS_MH_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its configuration to the installed modules list.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +49,11 @@ class MH extends \ClicShopping\Apps\Tools\ModulesHooks\Module\ClicShoppingAdmin\
     $this->app->saveCfgParam('MODULE_MODULES_MODULES_HOOKS_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its configuration from the installed modules list.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

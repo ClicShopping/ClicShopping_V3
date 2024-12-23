@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for administrative menu hooks.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_ModulesHooks = Registry::get('ModulesHooks');
@@ -23,9 +28,17 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu administration entry for the Modules Hooks application.
+   *
+   * This method checks if the 'app_tools_modules_hooks' menu item already exists in the administrator menu.
+   * If it does not exist, it creates a new entry with the necessary configuration, including its position,
+   * link, image, and access level. Additionally, it inserts descriptions for the menu item in all available
+   * languages in the 'administrator_menu_description' table. After execution, the administrator menu cache
+   * is cleared to reflect the change.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

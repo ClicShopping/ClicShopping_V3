@@ -22,6 +22,12 @@ class AdminLogins extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   public mixed $app;
   public $group;
 
+  /**
+   * Initializes the module by setting up required dependencies, loading language definitions,
+   * and defining the module's title, description, sort order, and enabled status.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('ActionsRecorder')) {
@@ -42,6 +48,11 @@ class AdminLogins extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Generates and returns the HTML output for the admin logins dashboard module.
+   *
+   * @return string The generated HTML output for displaying admin logins data.
+   */
   public function getOutput()
   {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
@@ -102,6 +113,16 @@ class AdminLogins extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     return $output;
   }
 
+  /**
+   * Installs the configuration settings for the Administrator Logins Module.
+   *
+   * This method adds the necessary configuration entries into the database
+   * that are required to enable and customize the module's functionality.
+   * It includes options for enabling the module, selecting content width,
+   * and determining the sort order of display.
+   *
+   * @return void
+   */
   public function Install()
   {
 
@@ -141,6 +162,11 @@ class AdminLogins extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     );
   }
 
+  /**
+   * Retrieves the keys associated with the application's configuration.
+   *
+   * @return array An array of configuration keys used by the application.
+   */
   public function keys()
   {
     return ['MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_STATUS',

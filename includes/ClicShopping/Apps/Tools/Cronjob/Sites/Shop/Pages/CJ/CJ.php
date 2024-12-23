@@ -19,6 +19,13 @@ class CJ extends \ClicShopping\OM\PagesAbstract
   protected ?string $file = null;
   protected bool $use_site_template = false;
 
+  /**
+   * Initializes the cron job execution process by fetching cron job records,
+   * validating their status and execution cycle, and updating them if necessary.
+   * Also triggers the associated hooks for further processing.
+   *
+   * @return void
+   */
   protected function init()
   {
     $CLICSHOPPING_Hooks = Registry::get('Hooks');

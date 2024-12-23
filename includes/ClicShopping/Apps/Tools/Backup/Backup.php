@@ -19,12 +19,24 @@ class Backup extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Backup_V1';
 
+  /**
+   * Initializes the necessary components or settings for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves an array of configuration module names sorted based on their sort order.
+   *
+   * This method scans a specific directory for configuration modules, validates
+   * their subclass inheritance, and organizes them based on a determined sort order.
+   * If a module does not meet the required inheritance criteria, an error is triggered.
+   *
+   * @return array An associative array where the keys represent the sort order
+   *               and the values are the names of the configuration modules.
    */
   public function getConfigModules()
   {
@@ -99,7 +111,9 @@ class Backup extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

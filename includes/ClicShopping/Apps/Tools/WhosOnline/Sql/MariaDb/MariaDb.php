@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation operations for the WhosOnline module.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_WhosOnline = Registry::get('WhosOnline');
@@ -23,9 +28,14 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu administration configuration for the "Who's Online" tool.
+   * This method checks if the menu entry exists in the database and creates it if necessary.
+   * It also handles the insertion of multi-language labels for the menu entry
+   * and clears the administrator menu cache.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

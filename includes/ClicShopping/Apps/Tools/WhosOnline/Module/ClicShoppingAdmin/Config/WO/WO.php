@@ -22,6 +22,12 @@ class WO extends \ClicShopping\Apps\Tools\WhosOnline\Module\ClicShoppingAdmin\Co
   public string $introduction;
   public $is_installed;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction,
+   * and determining its installation status based on the configuration.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_wo_title');
@@ -30,6 +36,12 @@ class WO extends \ClicShopping\Apps\Tools\WhosOnline\Module\ClicShoppingAdmin\Co
     $this->is_installed = \defined('CLICSHOPPING_APP_WHOS_ONLINE_WO_STATUS') && (trim(CLICSHOPPING_APP_WHOS_ONLINE_WO_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its entry to the list of installed modules
+   * and updating the configuration accordingly.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -43,6 +55,12 @@ class WO extends \ClicShopping\Apps\Tools\WhosOnline\Module\ClicShoppingAdmin\Co
     $this->app->saveCfgParam('MODULE_MODULES_WHOS_ONLINE_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its entry from the list of installed modules
+   * and updating the configuration accordingly.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

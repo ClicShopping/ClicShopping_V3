@@ -29,6 +29,12 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the class by setting the application and code properties,
+   * and calls the initialization method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('WhosOnline');
@@ -38,6 +44,12 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the module by iterating through its defined parameters,
+   * initializing each with its associated configuration class, and saving these parameters to the application.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_WHOS_ONLINE_' . $this->code . '_');
@@ -53,6 +65,11 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Removes configuration settings related to the current application from the database.
+   *
+   * @return int The number of rows affected by the operation.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +82,16 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of parameter constants specific to the configuration.
+   *
+   * This function scans a designated directory for parameter files, verifies
+   * that each file corresponds to a subclass of the ConfigParamAbstract class,
+   * and constructs a list of parameter constants based on valid files found.
+   * Invalid files trigger a warning and are not included in the result.
+   *
+   * @return array An array of parameter constant names related to the configuration.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +115,13 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Processes and retrieves a list of input parameters based on the module's configuration.
+   * The method dynamically loads parameter classes, checks their values, and saves configuration
+   * parameters if they are not defined, while ensuring proper sort order handling.
+   *
+   * @return array An associative array of processed input parameters, sorted numerically by their keys.
+   */
   public function getInputParameters()
   {
     $result = [];

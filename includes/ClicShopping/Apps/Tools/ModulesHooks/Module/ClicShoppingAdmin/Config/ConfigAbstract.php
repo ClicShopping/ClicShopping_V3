@@ -29,6 +29,14 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method.
+   *
+   * Initializes the class by setting up the application registry and class code,
+   * and invoking the initialization process.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('ModulesHooks');
@@ -38,6 +46,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the module by iterating through the list
+   * of parameters, dynamically loading their respective classes, and saving their
+   * default values and metadata into the application configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_MODULES_HOOKS_' . $this->code . '_');
@@ -53,6 +68,15 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the hooks module by removing configuration entries related to this module
+   * from the database.
+   *
+   * The method deletes all configuration records in the database where the configuration key
+   * matches the specific pattern for this module.
+   *
+   * @return int Returns the number of rows affected by the delete operation.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +89,14 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves an array of parameters based on the configuration files present
+   * in the specified directory. It processes only PHP files, validates that
+   * each file corresponds to a class that subclasses the expected abstract class,
+   * and formats the results into specific parameter identifiers.
+   *
+   * @return array An array of parameter identifiers for the valid configuration parameters.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +120,11 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves input parameters with configurations and sorting.
+   *
+   * @return array An array of input parameters, sorted and configured.
+   */
   public function getInputParameters()
   {
     $result = [];

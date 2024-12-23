@@ -17,6 +17,13 @@ use ClicShopping\Apps\Tools\Backup\Classes\ClicShoppingAdmin\Backup;
 
 class Process implements \ClicShopping\OM\Modules\HooksInterface
 {
+  /**
+   * Executes a cron job for handling backup operations.
+   * This method checks for a 'cronId' in the request, updates the cron status,
+   * and performs a backup if the conditions are met.
+   *
+   * @return void
+   */
   private static function cronJob(): void
   {
     $cron_id_gdpr = Cron::getCronCode('backup');
@@ -38,6 +45,11 @@ class Process implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the main functionality by calling the cronJob method.
+   *
+   * @return void
+   */
   public function execute()
   {
     static::cronJob();

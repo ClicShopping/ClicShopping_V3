@@ -19,6 +19,15 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
 {
   public mixed $app;
 
+  /**
+   * Constructor method for initializing the AdministratorMenu application.
+   *
+   * Checks if 'AdministratorMenu' exists in the Registry. If it does not exist,
+   * it creates a new instance of `AdministratorMenuApp` and sets it in the Registry.
+   * Assigns the instance from the Registry to the `$app` property.
+   *
+   * @return void
+   */
   public function __construct()
   {
     if (!Registry::exists('AdministratorMenu')) {
@@ -28,6 +37,12 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     $this->app = Registry::get('AdministratorMenu');
   }
 
+  /**
+   * Deletes a record from the administrator_menu_description table based on the provided language ID.
+   *
+   * @param int $id The ID of the language to be deleted.
+   * @return void
+   */
   private function delete(int $id)
   {
     if (!\is_null($id)) {
@@ -35,6 +50,11 @@ class DeleteConfirm implements \ClicShopping\OM\Modules\HooksInterface
     }
   }
 
+  /**
+   * Executes the deletion process if the 'DeleteConfirm' parameter is present in the request.
+   *
+   * @return void
+   */
   public function execute()
   {
     if (isset($_GET['DeleteConfirm'])) {

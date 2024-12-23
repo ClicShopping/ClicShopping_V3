@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the Cronjob application instance and sets the class code.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Cronjob');
@@ -38,6 +43,12 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters for the current module code.
+   * It dynamically determines the parameters to be saved and initializes their settings.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_CRONJOB_' . $this->code . '_');
@@ -53,6 +64,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +79,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of parameters associated with the current configuration module.
+   *
+   * @return array An array of parameter keys representing the configuration parameters.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +107,16 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the current configuration class.
+   *
+   * This method processes configuration parameters based on the specific class,
+   * dynamically loads the corresponding parameter definitions, and validates
+   * their setup. It ensures default parameter values are saved, and returns
+   * a sorted array of configured input parameters.
+   *
+   * @return array The sorted array of processed input parameters.
+   */
   public function getInputParameters()
   {
     $result = [];

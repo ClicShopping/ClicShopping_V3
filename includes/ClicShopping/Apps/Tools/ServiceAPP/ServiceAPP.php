@@ -19,12 +19,26 @@ class ServiceAPP extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_ServiceAPP_V1';
 
+  /**
+   * Initializes the instance or prepares the required setup.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves and sorts configuration modules from the specified directory.
+   *
+   * This method iterates over the configuration modules located in a predefined directory
+   * and organizes them based on their `sort_order` property. It ensures that only the modules
+   * extending the designated abstract configuration class are included. If no `sort_order` is specified,
+   * it uses the current count of the result array for ordering. The result is cached statically
+   * for subsequent invocations to avoid redundant computations.
+   *
+   * @return mixed An array of configuration module names indexed by their respective sort order,
+   *               or an error if any module does not conform to requirements.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +89,11 @@ class ServiceAPP extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information for a specific module and info key.
+   *
+   * @param string $module The name of the module whose configuration information is to be retrieved.
+   * @param string $info The specific configuration information to retrieve from the module.
+   * @return mixed Returns the requested configuration information for the specified module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +107,9 @@ class ServiceAPP extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +117,8 @@ class ServiceAPP extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   *
+   * @return string The identifier associated with the instance.
    */
   public function getIdentifier(): string
   {

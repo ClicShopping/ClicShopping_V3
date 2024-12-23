@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary steps to load database table definitions and installs the menu administration.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_DataBaseTables = Registry::get('DataBaseTables');
@@ -23,9 +28,15 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu item for administration purposes in the administrator menu.
+   *
+   * This method checks if an entry with the specified application code exists in the administrator menu.
+   * If the entry does not exist, it inserts the new menu item along with its configuration and language-specific descriptions.
+   * After the insertion, it clears the administrator menu cache to reflect the changes.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

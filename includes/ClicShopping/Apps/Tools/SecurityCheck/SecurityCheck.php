@@ -19,12 +19,20 @@ class SecurityCheck extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_SecurityCheck_V1';
 
+  /**
+   * Initializes the necessary components or configuration for the current instance.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules sorted by their sort order.
+   * If the sort order is not defined, the modules are appended at the end.
+   *
+   * @return mixed Returns an array of configuration module names, sorted by their defined order.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +83,11 @@ class SecurityCheck extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves specific configuration information for a given module.
+   *
+   * @param string $module The name of the module for which the configuration information is requested.
+   * @param string $info The specific information or property to retrieve from the module's configuration.
+   * @return mixed The value of the requested configuration information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +101,8 @@ class SecurityCheck extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   *
+   * @return string|int Returns the API version, which can be either a string or an integer.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +110,9 @@ class SecurityCheck extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier value.
    */
   public function getIdentifier(): string
   {

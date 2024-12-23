@@ -19,12 +19,25 @@ class Upgrade extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_Upgrade_V1';
 
+  /**
+   * Initializes the required properties or configurations for the current class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves a list of configuration modules from a specific directory.
+   *
+   * This method scans a specified directory for config module files, verifies
+   * that they are subclasses of a defined abstract class, and then organizes
+   * them based on their specified or default sort order. If a module does not
+   * meet the required criteria, a trigger error is produced.
+   *
+   * @return mixed Returns an array of config module names sorted by their sort order,
+   *               or null if no modules are available.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +88,11 @@ class Upgrade extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the provided module and info keys.
+   *
+   * @param string $module The name of the module to retrieve configuration details for.
+   * @param string $info The specific information or property to be retrieved from the module.
+   * @return mixed Returns the specified configuration module information.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +106,9 @@ class Upgrade extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the current API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +116,9 @@ class Upgrade extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier.
    */
   public function getIdentifier(): string
   {

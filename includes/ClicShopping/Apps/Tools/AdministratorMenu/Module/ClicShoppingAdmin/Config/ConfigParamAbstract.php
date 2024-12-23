@@ -20,6 +20,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_administrator_menu_';
   public bool $app_configured = true;
 
+  /**
+   * Constructs a new instance of the class and initializes its properties.
+   *
+   * @param string $config_module The configuration module name used for initialization.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('AdministratorMenu');

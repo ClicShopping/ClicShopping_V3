@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the object by setting application instance, retrieving class short name, and performing initialization logic.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Backup');
@@ -38,6 +43,15 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs the configuration parameters specific to the module.
+   *
+   * This method iterates through the parameters defined for the module,
+   * processes them, and saves the configuration parameters using the app's
+   * configuration system.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_BACKUP_' . $this->code . '_');
@@ -53,6 +67,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +82,12 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves configuration parameters defined in the specified directory.
+   *
+   * @return array Returns an array of parameter constant names that are defined in PHP files
+   *               located within the relevant configuration parameters directory.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +111,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Processes and retrieves input parameters for the application's configuration.
+   *
+   * This method builds an array of configuration parameters based on the application's setup.
+   * It automatically handles undefined keys, saving their defaults and meta information,
+   * and organizes the result based on sort order or the order of appearance.
+   *
+   * @return array An associative array of processed input parameters, sorted numerically by their sort order.
+   */
   public function getInputParameters()
   {
     $result = [];

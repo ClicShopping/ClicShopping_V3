@@ -18,12 +18,6 @@ use function in_array;
 
 class Listing
 {
-  /*
-    * Recursive Directory list file with all template products under a drop down
-    * @param string $filename : name of the file
-    * @return array $filename_array, the file name in the template products subdirectory
-    *
-  */
   /**
    * Retrieves a list of template file names within a specified directory, filtered by specific file extensions, and
    * returns them as an array with additional metadata.

@@ -19,12 +19,24 @@ class EditDesign extends \ClicShopping\OM\AppAbstract
   protected $api_version = 1;
   protected string $identifier = 'ClicShopping_EditDesign_V1';
 
+  /**
+   * Initializes the necessary configurations or properties for the class.
+   *
+   * @return void
+   */
   protected function init()
   {
   }
 
   /**
-   * @return array|mixed
+   * Retrieves the configuration modules for the application.
+   *
+   * This method scans the specified directory for configuration module files,
+   * validates their class inheritance, and organizes them based on their sort order.
+   * If no sort order is specified, modules are arranged sequentially.
+   *
+   * @return mixed An array of configuration module names sorted by their sort order,
+   *               or an empty array if no valid modules are found.
    */
   public function getConfigModules(): mixed
   {
@@ -75,9 +87,11 @@ class EditDesign extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @param string $module
-   * @param string $info
-   * @return mixed
+   * Retrieves configuration module information based on the specified module and info.
+   *
+   * @param string $module The name of the configuration module to retrieve.
+   * @param string $info The specific information or property to fetch from the module.
+   * @return mixed The requested information from the configuration module.
    */
   public function getConfigModuleInfo(string $module, string $info): mixed
   {
@@ -91,7 +105,9 @@ class EditDesign extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string|int
+   * Retrieves the API version.
+   *
+   * @return string|int The API version.
    */
   public function getApiVersion(): string|int
   {
@@ -99,7 +115,9 @@ class EditDesign extends \ClicShopping\OM\AppAbstract
   }
 
   /**
-   * @return string
+   * Retrieves the identifier.
+   *
+   * @return string The identifier.
    */
   public function getIdentifier(): string
   {

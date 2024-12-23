@@ -23,9 +23,15 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the administration menu entries for the Edit Log Error application.
+   *
+   * This method creates new entries in the administrator menu table and its related
+   * description table for the Edit Log Error functionality. It adds multiple menu items
+   * with labels translated into different languages and refreshes the administrator menu cache.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

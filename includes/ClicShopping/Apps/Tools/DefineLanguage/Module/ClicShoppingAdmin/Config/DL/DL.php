@@ -18,6 +18,12 @@ class DL extends \ClicShopping\Apps\Tools\DefineLanguage\Module\ClicShoppingAdmi
   public bool $is_uninstallable = true;
   public int|null $sort_order = 400;
 
+  /**
+   * Initializes the module by setting its title, short title, introduction, and installation status
+   * based on application definitions and configuration.
+   *
+   * @return void
+   */
   protected function init()
   {
     $this->title = $this->app->getDef('module_cr_title');
@@ -26,6 +32,11 @@ class DL extends \ClicShopping\Apps\Tools\DefineLanguage\Module\ClicShoppingAdmi
     $this->is_installed = \defined('CLICSHOPPING_APP_DEFINE_LANGUAGE_DL_STATUS') && (trim(CLICSHOPPING_APP_DEFINE_LANGUAGE_DL_STATUS) != '');
   }
 
+  /**
+   * Installs the module by adding its entry to the installed modules configuration.
+   *
+   * @return void
+   */
   public function install()
   {
     parent::install();
@@ -39,6 +50,11 @@ class DL extends \ClicShopping\Apps\Tools\DefineLanguage\Module\ClicShoppingAdmi
     $this->app->saveCfgParam('MODULE_MODULES_DEFINE_LANGUAGE_INSTALLED', implode(';', $installed));
   }
 
+  /**
+   * Uninstalls the module by removing its entry from the installed modules configuration.
+   *
+   * @return void
+   */
   public function uninstall()
   {
     parent::uninstall();

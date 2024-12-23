@@ -20,6 +20,12 @@ abstract class ConfigParamAbstract extends \ClicShopping\Sites\ClicShoppingAdmin
   protected string $key_prefix = 'clicshopping_app_actions_recorder_';
   public bool $app_configured = true;
 
+  /**
+   * Constructor method for initializing the class with the provided configuration module.
+   *
+   * @param string $config_module The name of the configuration module to be used for initialization.
+   * @return void
+   */
   public function __construct($config_module)
   {
     $this->app = Registry::get('ActionsRecorder');

@@ -29,6 +29,14 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Constructor method for initializing the class instance.
+   *
+   * Sets up the application reference, determines the class code,
+   * and performs initial setup using the init method.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('Apps');
@@ -38,6 +46,14 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the current app.
+   *
+   * Retrieves and iterates over the defined parameters for the app,
+   * processes each parameter's settings, and saves them using the application's configuration storage.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_APPS_' . $this->code . '_');
@@ -53,6 +69,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +84,12 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of parameter constants for the current configuration module.
+   *
+   * @return array Returns an array of parameter constant names. If a parameter class is not a subclass
+   *               of the required ConfigParamAbstract class, an error will be triggered.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +113,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the current application module.
+   *
+   * This method constructs a list of input parameters by iterating through
+   * module-specific configurations, applying default values, and arranging the
+   * parameters based on their sort order or availability.
+   *
+   * @return array An array of configured input parameters, sorted numerically by their order.
+   */
   public function getInputParameters()
   {
     $result = [];

@@ -29,6 +29,14 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Class constructor.
+   *
+   * Initializes the application instance and sets up the class code name.
+   * Also triggers the initialization process for the class.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('ServiceAPP');
@@ -38,6 +46,13 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters associated with the application.
+   * Iterates through the available parameters, processes their details,
+   * and stores them using the application's configuration management system.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_SERVICE_APP_' . $this->code . '_');
@@ -53,6 +68,14 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   * Uninstalls the specific configuration entries from the database related to the current app.
+   *
+   * The method removes all configuration key entries matching the pattern associated with the app's code
+   * from the configuration table in the database.
+   *
+   * @return int Returns the number of rows affected by the deletion query.
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +88,15 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves a list of parameter constants for the current configuration module.
+   *
+   * Iterates through the parameters directory of the configuration module, validates
+   * the classes to ensure they derive from ConfigParamAbstract, and collects their
+   * associated constants.
+   *
+   * @return array List of parameter constants for the configuration module.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +120,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters for the configuration module.
+   *
+   * Processes defined parameters through a set of operations, including
+   * instantiating configuration parameter classes, saving default configurations
+   * if not defined, and organizing the parameters based on their sort order.
+   *
+   * @return array An associative array of processed configuration parameters, sorted numerically by their specified order.
+   */
   public function getInputParameters()
   {
     $result = [];

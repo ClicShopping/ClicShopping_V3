@@ -21,6 +21,11 @@ class SecurityCheck extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   public mixed $app;
   public $group;
 
+  /**
+   * Initializes the SecurityCheck module by setting up the application and its dependencies.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('SecurityCheck')) {
@@ -41,6 +46,17 @@ class SecurityCheck extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Generates the output for the security check dashboard module by performing
+   * various security checks and collecting the respective messages.
+   *
+   * The method fetches all the security check modules, executes them, and collects
+   * their results. Based on the results, it accumulates messages of types such as
+   * 'info', 'warning', 'error', and 'success', which are later formatted as part
+   * of the output.
+   *
+   * @return string Returns the formatted HTML output containing results of all executed security checks and associated messages.
+   */
   public function getOutput()
   {
 
@@ -92,6 +108,11 @@ class SecurityCheck extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     return $output;
   }
 
+  /**
+   * Installs the module by saving its configuration settings into the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -131,6 +152,11 @@ class SecurityCheck extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     );
   }
 
+  /**
+   * Retrieves the configuration keys for the module.
+   *
+   * @return array An array of configuration key names used by the module.
+   */
   public function keys()
   {
     return ['MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_STATUS',

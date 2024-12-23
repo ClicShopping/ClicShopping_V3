@@ -23,6 +23,11 @@ class Upgrade extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   public mixed $app;
   public $group;
 
+  /**
+   * Initializes the module by registering necessary resources, loading definitions, and setting up properties.
+   *
+   * @return void
+   */
   protected function init()
   {
     if (!Registry::exists('Upgrade')) {
@@ -43,6 +48,15 @@ class Upgrade extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Generates and returns the HTML output for displaying an update notification.
+   *
+   * The method checks the current version against the latest version available
+   * from the GitHub repository and, if an update is available, it generates an
+   * alert box containing information about the new version and a download button.
+   *
+   * @return string The HTML output for the update notification if a new version is available, or nothing if there is no update.
+   */
   public function getOutput()
   {
 
@@ -81,6 +95,11 @@ class Upgrade extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     }
   }
 
+  /**
+   * Installs the configuration settings for the module in the database.
+   *
+   * @return void
+   */
   public function Install()
   {
     $this->app->db->save('configuration', [
@@ -120,6 +139,11 @@ class Upgrade extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     );
   }
 
+  /**
+   * Retrieves the configuration keys related to the ClicShopping update module.
+   *
+   * @return array An array of configuration keys for the module.
+   */
   public function keys()
   {
     return ['MODULE_ADMIN_DASHBOARD_CLICSHOPPING_UPDATE_APP_STATUS',

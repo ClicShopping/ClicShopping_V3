@@ -27,21 +27,11 @@ class ExtractFile
   private string $cacheGithubTemp;
   private string $ModuleInfosJson;
 
-  public function __construct()
-  {
-    if (!Registry::exists('Upgrade')) {
-      Registry::set('Upgrade', new UpgradeApp());
-    }
-
-    $this->app = Registry::get('Upgrade');
-    $this->messageStack = Registry::get('MessageStack');
-
-
-    $this->saveFileFromGithub = CLICSHOPPING::BASE_DIR . 'Work/Temp';
-    $this->cacheGithub = CLICSHOPPING::BASE_DIR . 'Work/Cache/Marketplace/';
-    $this->cacheGithubTemp = CLICSHOPPING::BASE_DIR . 'Work/Cache/Marketplace/Temp/';
-    $this->ModuleInfosJson = 'ModuleInfosJson';
-  }
+  /**
+   * Represents the DT module configuration for the ClicShoppingAdmin application.
+   * This class extends the base ConfigAbstract class and provides implementation
+   * specific to the DT module, including install and uninstall functionalities.
+   */
 
   /**
    * Extracts the contents of a ZIP archive to a specified destination directory.

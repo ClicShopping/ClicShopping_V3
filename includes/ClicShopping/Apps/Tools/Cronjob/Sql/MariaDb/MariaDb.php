@@ -15,6 +15,12 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the necessary instructions for loading Cronjob definitions
+   * and installing the menu administration.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Cronjob = Registry::get('Cronjob');
@@ -23,9 +29,16 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs an administration menu entry for the Cronjob application.
+   *
+   * This method checks the existence of a specific application code in the `administrator_menu` table.
+   * If it does not exist, it inserts a new menu entry with the associated details.
+   * Additionally, it inserts corresponding menu descriptions for all available languages
+   * into the `administrator_menu_description` table and clears the administrator menu cache.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');

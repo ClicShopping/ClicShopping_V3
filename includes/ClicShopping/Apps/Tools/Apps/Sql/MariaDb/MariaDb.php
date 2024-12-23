@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process, including loading app definitions and installing the administration menu.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_Apps = Registry::get('Apps');

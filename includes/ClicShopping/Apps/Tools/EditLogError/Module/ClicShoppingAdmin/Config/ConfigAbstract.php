@@ -29,6 +29,11 @@ abstract class ConfigAbstract
 
   abstract protected function init();
 
+  /**
+   * Initializes the object by setting the application instance and determining the class short name.
+   *
+   * @return void
+   */
   final public function __construct()
   {
     $this->app = Registry::get('EditLogError');
@@ -38,6 +43,16 @@ abstract class ConfigAbstract
     $this->init();
   }
 
+  /**
+   * Installs configuration parameters for the application module.
+   *
+   * This method processes parameters associated with the module by dynamically
+   * determining their respective classes, and then creates instances of those
+   * parameter classes. The default values and other attributes of the parameters
+   * are saved using the application's configuration storage mechanism.
+   *
+   * @return void
+   */
   public function install()
   {
     $cut_length = \strlen('CLICSHOPPING_APP_EDIT_LOG_ERROR_' . $this->code . '_');
@@ -53,6 +68,9 @@ abstract class ConfigAbstract
     }
   }
 
+  /**
+   *
+   */
   public function uninstall()
   {
     $Qdelete = $this->app->db->prepare('delete from :table_configuration
@@ -65,6 +83,11 @@ abstract class ConfigAbstract
     return $Qdelete->rowCount();
   }
 
+  /**
+   * Retrieves an array of parameter keys for the current configuration module.
+   *
+   * @return array An array of parameter keys formatted as strings.
+   */
   public function getParameters()
   {
     $result = [];
@@ -88,6 +111,15 @@ abstract class ConfigAbstract
     return $result;
   }
 
+  /**
+   * Retrieves and processes input parameters based on application-specific configurations.
+   *
+   * The method iterates over pre-defined parameters, validates their configuration,
+   * and organizes them into a sorted associative array where the key determines
+   * the sort order of the parameters.
+   *
+   * @return array An array of processed and sorted input parameters.
+   */
   public function getInputParameters()
   {
     $result = [];

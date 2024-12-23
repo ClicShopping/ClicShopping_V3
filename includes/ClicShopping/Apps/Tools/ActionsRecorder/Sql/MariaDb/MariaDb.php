@@ -15,6 +15,11 @@ use ClicShopping\OM\Registry;
 
 class MariaDb
 {
+  /**
+   * Executes the installation process for the administration menu and loads the required definitions for the Actions Recorder.
+   *
+   * @return void
+   */
   public function execute()
   {
     $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
@@ -23,9 +28,16 @@ class MariaDb
     self::installMenuAdministration();
   }
 
-/**
-* @return void
- */
+  /**
+   * Installs the menu entry into the administrator menu for the Actions Recorder application.
+   *
+   * This method checks if the menu item for the Actions Recorder application already exists
+   * in the administrator menu. If it does not exist, it adds the menu item with the required
+   * properties and links, as well as its translations for all supported languages. After
+   * successfully adding the menu item, the administrator menu cache is cleared to reflect the changes.
+   *
+   * @return void
+   */
   private static function installMenuAdministration(): void
   {
     $CLICSHOPPING_Db = Registry::get('Db');
