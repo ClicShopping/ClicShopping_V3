@@ -17,6 +17,6 @@ A good question will include all the following:
 # Before to ask a question
 
 - Look the forum [ClicShopping.org](https://www.clicshopping.org)
-- Wiki [Wiki](https://github.com/ClicShopping/ClicShopping_V3/wiki)
+- Wiki - Documentation [Wiki](https://github.com/ClicShopping/ClicShopping_V3/wiki)
 
-**Use Stack Overflow to [report bugs](https://github.com/ClicShopping/ClicShopping_V3/issues).**
+**Use github to [report bugs](https://github.com/ClicShopping/ClicShopping_V3/issues).**

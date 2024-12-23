@@ -60,7 +60,7 @@ Take the leap into the future of Ecommerce with ClicShoppingAI. With AI-driven c
 #Requirement (more information in the wiki)
  - Apache 2.4<br>
  - MYSQL 7.x / MariaDb 10.x<br>
- - PHP >= 8.2
+ - PHP >= 8.3 or 8.4
  - More information in the Wiki
 
 #Installation
@@ -97,7 +97,7 @@ More information in the Wiki
 #Analyse
   -  [![SymfonyInsight](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e/big.svg)](https://insight.symfony.com/projects/a6135d41-5f33-429e-922a-8b04e978592e)
   
-  -  [![php](https://img.shields.io/badge/Php-%3E%3D8.2-green])](https://img.shields.io/badge/Php-%3E%3D8.3-green)
+  -  [![php](https://img.shields.io/badge/Php-%3E%3D8.3-green])](https://img.shields.io/badge/Php-%3E%3D8.3-green)
   
   -  ![GitHub repo size](https://img.shields.io/github/repo-size/ClicShopping/ClicShopping_v3)
   
