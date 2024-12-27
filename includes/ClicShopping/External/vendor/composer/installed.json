@@ -1488,12 +1488,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "5a88337185d08d54ac102bc6eb137fc432ea70fb"
+                "reference": "98c1896d2a14ae3176e31eafc6d5e66f80a32aeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/5a88337185d08d54ac102bc6eb137fc432ea70fb",
-                "reference": "5a88337185d08d54ac102bc6eb137fc432ea70fb",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/98c1896d2a14ae3176e31eafc6d5e66f80a32aeb",
+                "reference": "98c1896d2a14ae3176e31eafc6d5e66f80a32aeb",
                 "shasum": ""
             },
             "conflict": {
@@ -1782,7 +1782,7 @@
                 "james-heinrich/phpthumb": "<1.7.12",
                 "jasig/phpcas": "<1.3.3",
                 "jcbrand/converse.js": "<3.3.3",
-                "joelbutcher/socialstream": "<6.2",
+                "joelbutcher/socialstream": "<5.6|>=6,<6.2",
                 "johnbillion/wp-crontrol": "<1.16.2",
                 "joomla/application": "<1.0.13",
                 "joomla/archive": "<1.1.12|>=2,<2.0.1",
@@ -2166,6 +2166,7 @@
                 "tinymce/tinymce": "<7.2",
                 "tinymighty/wiki-seo": "<1.2.2",
                 "titon/framework": "<9.9.99",
+                "tltneon/lgsl": "<7",
                 "tobiasbg/tablepress": "<=2.0.0.0-RC1",
                 "topthink/framework": "<6.0.17|>=6.1,<=8.0.4",
                 "topthink/think": "<=6.1.1",
@@ -2297,7 +2298,7 @@
                 "zfr/zfr-oauth2-server-module": "<0.1.2",
                 "zoujingli/thinkadmin": "<=6.1.53"
             },
-            "time": "2024-12-23T19:04:22+00:00",
+            "time": "2024-12-26T21:04:44+00:00",
             "default-branch": true,
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
@@ -3203,17 +3204,17 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.8.14",
-            "version_normalized": "0.8.14.0",
+            "version": "0.8.15",
+            "version_normalized": "0.8.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theodo-group/LLPhant.git",
-                "reference": "83b360d2481b9f7b711efa0b107c2f15b591ff28"
+                "reference": "a436338f167391f4c122dcd10bea2ecb917783dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/83b360d2481b9f7b711efa0b107c2f15b591ff28",
-                "reference": "83b360d2481b9f7b711efa0b107c2f15b591ff28",
+                "url": "https://api.github.com/repos/theodo-group/LLPhant/zipball/a436338f167391f4c122dcd10bea2ecb917783dc",
+                "reference": "a436338f167391f4c122dcd10bea2ecb917783dc",
                 "shasum": ""
             },
             "require": {
@@ -3252,7 +3253,7 @@
                 "predis/predis": "This is required for the RedisVectoreStore.",
                 "symfony/cache": "This is one of the possible types of psr/cache needed by doctrine/orm"
             },
-            "time": "2024-12-17T23:06:53+00:00",
+            "time": "2024-12-27T09:48:53+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3284,7 +3285,7 @@
             ],
             "support": {
                 "issues": "https://github.com/theodo-group/LLPhant/issues",
-                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.14"
+                "source": "https://github.com/theodo-group/LLPhant/tree/0.8.15"
             },
             "install-path": "../theodo-group/llphant"
         }
