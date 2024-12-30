@@ -50,30 +50,30 @@ class Message
         return $message;
     }
 
-    public static function assistant(string $content): self
+    public static function assistant(?string $content): self
     {
         $message = new self();
         $message->role = ChatRole::Assistant;
-        $message->content = $content;
+        $message->content = $content ?? '';
 
         return $message;
     }
 
-    public static function functionResult(string $content, string $name): self
+    public static function functionResult(?string $content, string $name): self
     {
         $message = new self();
         $message->role = ChatRole::Function;
-        $message->content = $content;
+        $message->content = $content ?? '';
         $message->name = $name;
 
         return $message;
     }
 
-    public static function toolResult(string $content, ?string $toolCallId = null): self
+    public static function toolResult(?string $content, ?string $toolCallId = null): self
     {
         $message = new self();
         $message->role = ChatRole::Tool;
-        $message->content = $content;
+        $message->content = $content ?? '';
 
         if ($toolCallId !== null) {
             $message->tool_call_id = $toolCallId;

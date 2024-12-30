@@ -9,15 +9,21 @@ interface ChatInterface
 {
     public function generateText(string $prompt): string;
 
-    public function generateTextOrReturnFunctionCalled(string $prompt): string|FunctionInfo;
+    /**
+     * @return string|FunctionInfo[]
+     */
+    public function generateTextOrReturnFunctionCalled(string $prompt): string|array;
 
     public function generateStreamOfText(string $prompt): StreamInterface;
 
     /** @param  Message[]  $messages */
     public function generateChat(array $messages): string;
 
-    /** @param  Message[]  $messages */
-    public function generateChatOrReturnFunctionCalled(array $messages): string|FunctionInfo;
+    /**
+     * @param  Message[]  $messages
+     * @return string|FunctionInfo[]
+     */
+    public function generateChatOrReturnFunctionCalled(array $messages): string|array;
 
     /** @param  Message[]  $messages */
     public function generateChatStream(array $messages): StreamInterface;

@@ -48,12 +48,12 @@ class CkEditor5 extends HTML
   {
     $code = self::getWysiwygLanguage();
 
-    $script = '<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script><br />' . "\n";
+    $script = '<script src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js"></script><br />' . "\n";
     // $script .= Gpt::gptCkeditorParameters();
 
     if ($code != 'en') {
       if (!empty($code)) {
-        $script = '<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script><br />' . "\n";
+        $script = '<script src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js"></script><br />' . "\n";
       }
     }
 
