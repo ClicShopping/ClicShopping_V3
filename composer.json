@@ -21,7 +21,7 @@
         "phpxmlrpc/phpxmlrpc": "^4.11",
         "guzzlehttp/guzzle": "^7.9",
         "stripe/stripe-php": "^16.4",
-        "theodo-group/llphant": "^0.9.0"
+        "theodo-group/llphant": "^0.9.1"
     }
     ,
     "require-dev": {
