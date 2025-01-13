@@ -11,7 +11,6 @@
         "daveearley/daves-email-validation-tool": "^1.2",
         "darkghosthunter/preloader": "^2.2",
         "stymiee/email-validator": "^1.1",
-        "robthree/twofactorauth": "^1.8",
         "phpmailer/phpmailer": "^6.9",
         "nyholm/psr7": "^1.8",
         "mattketmo/email-checker": "^2.3",
@@ -21,7 +20,8 @@
         "phpxmlrpc/phpxmlrpc": "^4.11",
         "guzzlehttp/guzzle": "^7.9",
         "stripe/stripe-php": "^16.4",
-        "theodo-group/llphant": "^0.9.1"
+        "theodo-group/llphant": "^0.9.1",
+        "robthree/twofactorauth": "^3.0"
     }
     ,
     "require-dev": {
