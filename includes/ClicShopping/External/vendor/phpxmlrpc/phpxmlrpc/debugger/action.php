@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Gaetano Giunta
- * @copyright (C) 2005-2024 G. Giunta
+ * @copyright (C) 2005-2025 G. Giunta
  * @license code licensed under the BSD License: see file license.txt
  *
  * @todo switch params for http compression from 0,1,2 to values to be used directly
@@ -409,7 +409,7 @@ if ($action) {
                                             switch($type) {
                                                 case 'undefined':
                                                     break;
-                                                case 'null';
+                                                case 'null':
                                                     $type = 'nil';
                                                     // fall thru intentionally
                                                 default:

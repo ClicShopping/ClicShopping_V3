@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '94caf7b6b874da959b5a608cf2608c609b97077d',
+        'reference' => 'c7cad7b3dd0eed28d740c04b2ba1821591f3d5a6',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '94caf7b6b874da959b5a608cf2608c609b97077d',
+            'reference' => 'c7cad7b3dd0eed28d740c04b2ba1821591f3d5a6',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -155,9 +155,9 @@
             'dev_requirement' => false,
         ),
         'phpxmlrpc/phpxmlrpc' => array(
-            'pretty_version' => '4.11.0',
-            'version' => '4.11.0.0',
-            'reference' => 'e50480272493d90dd4aca9fb861a9b9ce0ef4729',
+            'pretty_version' => '4.11.1',
+            'version' => '4.11.1.0',
+            'reference' => '06b9d7275d637f6859527091a54a5edfe8a16749',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpxmlrpc/phpxmlrpc',
             'aliases' => array(),
@@ -241,7 +241,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-latest',
             'version' => 'dev-latest',
-            'reference' => '6ec01b072baedc0e230b90c70e521007851c8f7c',
+            'reference' => 'e7a38fcc13e4ddfe9a28d5c7bf50aa9a9da758ec',
             'type' => 'metapackage',
             'install_path' => null,
             'aliases' => array(
