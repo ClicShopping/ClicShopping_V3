@@ -18,10 +18,10 @@
         "ext-xml": "*",
         "phpxmlrpc/phpxmlrpc": "^4.11",
         "guzzlehttp/guzzle": "^7.9",
-        "stripe/stripe-php": "^16.4",
         "robthree/twofactorauth": "^3.0",
         "theodo-group/llphant": "^0.9.2",
-        "symfony/http-client": "^7.2"
+        "symfony/http-client": "^7.2",
+        "stripe/stripe-php": "^16.5"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest"
