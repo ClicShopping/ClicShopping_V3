@@ -3235,17 +3235,17 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.9.3",
-            "version_normalized": "0.9.3.0",
+            "version": "0.9.4",
+            "version_normalized": "0.9.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LLPhant/LLPhant.git",
-                "reference": "6cf813a1ecb6a427007fae779f5bf4b036bafbf2"
+                "reference": "1ded1421d16ac7f561ee886873601695c3860d59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LLPhant/LLPhant/zipball/6cf813a1ecb6a427007fae779f5bf4b036bafbf2",
-                "reference": "6cf813a1ecb6a427007fae779f5bf4b036bafbf2",
+                "url": "https://api.github.com/repos/LLPhant/LLPhant/zipball/1ded1421d16ac7f561ee886873601695c3860d59",
+                "reference": "1ded1421d16ac7f561ee886873601695c3860d59",
                 "shasum": ""
             },
             "require": {
@@ -3255,6 +3255,7 @@
                 "php": "^8.1.0",
                 "phpoffice/phpword": "^1.3.0",
                 "psr/http-message": "^2.0",
+                "psr/log": "^3.0",
                 "smalot/pdfparser": "^2.11"
             },
             "require-dev": {
@@ -3284,7 +3285,7 @@
                 "predis/predis": "This is required for the RedisVectoreStore.",
                 "symfony/cache": "This is one of the possible types of psr/cache needed by doctrine/orm"
             },
-            "time": "2025-02-01T16:36:10+00:00",
+            "time": "2025-02-09T17:28:19+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3316,7 +3317,7 @@
             ],
             "support": {
                 "issues": "https://github.com/LLPhant/LLPhant/issues",
-                "source": "https://github.com/LLPhant/LLPhant/tree/0.9.3"
+                "source": "https://github.com/LLPhant/LLPhant/tree/0.9.4"
             },
             "install-path": "../theodo-group/llphant"
         }
