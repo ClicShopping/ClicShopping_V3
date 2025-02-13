@@ -2269,16 +2269,16 @@
         },
         {
             "name": "theodo-group/llphant",
-            "version": "0.9.4",
+            "version": "0.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LLPhant/LLPhant.git",
-                "reference": "1ded1421d16ac7f561ee886873601695c3860d59"
+                "reference": "83e44bd42d0cfeac4732d97570697f1f63f51443"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LLPhant/LLPhant/zipball/1ded1421d16ac7f561ee886873601695c3860d59",
-                "reference": "1ded1421d16ac7f561ee886873601695c3860d59",
+                "url": "https://api.github.com/repos/LLPhant/LLPhant/zipball/83e44bd42d0cfeac4732d97570697f1f63f51443",
+                "reference": "83e44bd42d0cfeac4732d97570697f1f63f51443",
                 "shasum": ""
             },
             "require": {
@@ -2348,9 +2348,9 @@
             ],
             "support": {
                 "issues": "https://github.com/LLPhant/LLPhant/issues",
-                "source": "https://github.com/LLPhant/LLPhant/tree/0.9.4"
+                "source": "https://github.com/LLPhant/LLPhant/tree/0.9.5"
             },
-            "time": "2025-02-09T17:28:19+00:00"
+            "time": "2025-02-13T11:53:55+00:00"
         }
     ],
     "packages-dev": [
@@ -2360,12 +2360,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "eb2d2e5ab8f174d25227a02d290f4516113beff9"
+                "reference": "74a1f3e080759ad7d1e7f2d68c1f4d754b401acd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/eb2d2e5ab8f174d25227a02d290f4516113beff9",
-                "reference": "eb2d2e5ab8f174d25227a02d290f4516113beff9",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/74a1f3e080759ad7d1e7f2d68c1f4d754b401acd",
+                "reference": "74a1f3e080759ad7d1e7f2d68c1f4d754b401acd",
                 "shasum": ""
             },
             "conflict": {
@@ -2716,12 +2716,12 @@
                 "localizationteam/l10nmgr": "<7.4|>=8,<8.7|>=9,<9.2",
                 "luyadev/yii-helpers": "<1.2.1",
                 "maestroerror/php-heic-to-jpg": "<1.0.5",
-                "magento/community-edition": "<2.4.5|==2.4.5|>=2.4.5.0-patch1,<2.4.5.0-patch10|==2.4.6|>=2.4.6.0-patch1,<2.4.6.0-patch8|>=2.4.7.0-beta1,<2.4.7.0-patch3",
+                "magento/community-edition": "<2.4.5|==2.4.5|>=2.4.5.0-patch1,<2.4.5.0-patch11|==2.4.6|>=2.4.6.0-patch1,<2.4.6.0-patch9|>=2.4.7.0-beta1,<2.4.7.0-patch4|>=2.4.8.0-beta1,<2.4.8.0-beta2",
                 "magento/core": "<=1.9.4.5",
                 "magento/magento1ce": "<1.9.4.3-dev",
                 "magento/magento1ee": ">=1,<1.14.4.3-dev",
                 "magento/product-community-edition": "<2.4.4.0-patch9|>=2.4.5,<2.4.5.0-patch8|>=2.4.6,<2.4.6.0-patch6|>=2.4.7,<2.4.7.0-patch1",
-                "magento/project-community-edition": "<1.9.4.3-dev",
+                "magento/project-community-edition": "<=2.0.2",
                 "magneto/core": "<1.9.4.4-dev",
                 "maikuolan/phpmussel": ">=1,<1.6",
                 "mainwp/mainwp": "<=4.4.3.3",
@@ -3227,7 +3227,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-02-10T20:04:45+00:00"
+            "time": "2025-02-12T18:06:17+00:00"
         }
     ],
     "aliases": [],
