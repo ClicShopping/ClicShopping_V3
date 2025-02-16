@@ -321,10 +321,10 @@ for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
     $pdf->MultiCell(103, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
   } elseif (\strlen($product_name_attrib_contact) > 95) {
     $pdf->SetFont('Arial', '', 6);
-    $pdf->MultiCell(103, 6, utf8_decode(substr($product_name_attrib_contact, 0, 95)) . " .. ", 1, 'L');
+    $pdf->MultiCell(103, 6, mb_convert_encoding(substr($product_name_attrib_contact, 0, 95), 'ISO-8859-1', 'UTF-8') . " .. ", 1, 'L');
   } else {
     $pdf->SetFont('Arial', '', 6);
-    $pdf->MultiCell(103, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
+    $pdf->MultiCell(103, 6, mb_convert_encoding($product_name_attrib_contact, 'ISO-8859-1', 'UTF-8'), 1, 'L');
     $pdf->Ln();
   }
 
@@ -332,8 +332,7 @@ for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
   $pdf->SetY($Y_Table_Position);
   $pdf->SetX(15);
   $pdf->SetFont('Arial', '', 7);
-  $pdf->MultiCell(25, 6, utf8_decode($order->products[$i]['model']), 1, 'C');
-
+  $pdf->MultiCell(25, 6, mb_convert_encoding($order->products[$i]['model'], 'ISO-8859-1', 'UTF-8'), 1, 'C');
 // Taxes
   $pdf->SetFont('Arial', '', 7);
   $pdf->SetY($Y_Table_Position);
@@ -344,7 +343,7 @@ for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
   $pdf->SetY($Y_Table_Position);
   $pdf->SetX(158);
   $pdf->SetFont('Arial', '', 7);
-  $pdf->MultiCell(20, 6, utf8_decode(html_entity_decode($CLICSHOPPING_Currencies->format($order->products[$i]['final_price'], true, $order->info['currency'], $order->info['currency_value']))), 1, 'C');
+  $pdf->MultiCell(20, 6, mb_convert_encoding(html_entity_decode($CLICSHOPPING_Currencies->format($order->products[$i]['final_price'], true, $order->info['currency'], $order->info['currency_value'])), 'ISO-8859-1', 'UTF-8'), 1, 'C');
   /*
   // Prix TTC
       $pdf->SetY($Y_Table_Position);
@@ -355,7 +354,7 @@ for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
 // Total HT
   $pdf->SetY($Y_Table_Position);
   $pdf->SetX(178);
-  $pdf->MultiCell(20, 6, utf8_decode(html_entity_decode($CLICSHOPPING_Currencies->format($order->products[$i]['final_price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']))), 1, 'C');
+  $pdf->MultiCell(20, 6, mb_convert_encoding(html_entity_decode($CLICSHOPPING_Currencies->format($order->products[$i]['final_price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value'])), 'ISO-8859-1', 'UTF-8'), 1, 'C');
   $Y_Table_Position += 6;
 
   /*
@@ -368,7 +367,7 @@ for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
 
 // Check for product line overflow
   $item_count++;
-  if ((is_long($item_count / 32) && $i >= 20) || ($i == 20)) {
+  if ((is_int($item_count / 32) && $i >= 20) || ($i == 20)) {
     $pdf->AddPage();
 // Fields Name position
     $Y_Fields_Name_position = 125;
@@ -391,7 +390,7 @@ for ($i = 0, $n = \count($order->totals); $i < $n; $i++) {
     $order->totals[$i]['text'] = substr($temp2, 0, \strlen($temp2) - 4);
   }
 
-  $pdf->MultiCell(94, 6, substr(utf8_decode(html_entity_decode($order->totals[$i]['title'])), 0, 30) . ' : ' . utf8_decode(html_entity_decode($order->totals[$i]['text'])), 0, 'R');
+  $pdf->MultiCell(94, 6, substr(mb_convert_encoding(html_entity_decode($order->totals[$i]['title']), 'ISO-8859-1', 'UTF-8'), 0, 30) . ' : ' . mb_convert_encoding(html_entity_decode($order->totals[$i]['text']), 'ISO-8859-1', 'UTF-8'), 0, 'R');
   $Y_Table_Position += 5;
 }
 
@@ -408,40 +407,40 @@ if (DISPLAY_INVOICE_FOOTER == 'false') {
   $pdf->SetY(-65);
   $pdf->SetFont('Arial', 'B', 8);
   $pdf->SetTextColor((float)INVOICE_RGB);
-  $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('thank_you_customer')), 0, 0, 'C');
+  $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('thank_you_customer'), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
 // Proprieties Legal
   $pdf->SetY(-60);
   $pdf->SetFont('Arial', '', 7);
   $pdf->SetTextColor((float)INVOICE_RGB);
-  $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('reserve_propriete', ['store_name' => STORE_NAME])), 0, 0, 'C');
+  $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('reserve_propriete', ['store_name' => STORE_NAME]), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
   $pdf->SetY(-55);
   $pdf->SetFont('Arial', '', 7);
   $pdf->SetTextColor((float)INVOICE_RGB);
-  $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('reserve_propriete_next')), 0, 0, 'C');
+  $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('reserve_propriete_next'), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
   $pdf->SetY(-50);
   $pdf->SetFont('Arial', '', 7);
   $pdf->SetTextColor((float)INVOICE_RGB);
-  $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('reserve_propriete_next1', ['url_sell_conditions' => HTTP::getShopUrlDomain() . SHOP_CODE_URL_CONDITIONS_VENTE])), 0, 0, 'C');
+  $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('reserve_propriete_next1', ['url_sell_conditions' => HTTP::getShopUrlDomain() . SHOP_CODE_URL_CONDITIONS_VENTE]), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
 // Informations de la compagnie
   if (DISPLAY_DOUBLE_TAXE == 'false') {
     $pdf->SetY(-45);
     $pdf->SetFont('Arial', '', 8);
     $pdf->SetTextColor((float)INVOICE_RGB);
-    $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('entry_info_societe', ['info_societe' => SHOP_CODE_CAPITAL . ' - ' . SHOP_CODE_RCS . ' - ' . SHOP_CODE_APE])), 0, 0, 'C');
+    $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('entry_info_societe', ['info_societe' => SHOP_CODE_CAPITAL . ' - ' . SHOP_CODE_RCS . ' - ' . SHOP_CODE_APE]), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
     $pdf->SetY(-40);
     $pdf->SetFont('Arial', '', 8);
     $pdf->SetTextColor((float)INVOICE_RGB);
-    $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('entry_info_societe_next', ['tva_intracom' => TVA_SHOP_INTRACOM])), 0, 0, 'C');
+    $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('entry_info_societe_next', ['tva_intracom' => TVA_SHOP_INTRACOM]), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
   } else {
     $pdf->SetY(-45);
     $pdf->SetFont('Arial', '', 8);
     $pdf->SetTextColor((float)INVOICE_RGB);
-    $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('entry_info_societe1', ['info_societe1' => SHOP_CODE_CAPITAL . ' - ' . SHOP_CODE_RCS . ' - ' . SHOP_CODE_APE])), 0, 0, 'C');
+    $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('entry_info_societe1', ['info_societe1' => SHOP_CODE_CAPITAL . ' - ' . SHOP_CODE_RCS . ' - ' . SHOP_CODE_APE]), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
     $pdf->SetY(-40);
     $pdf->SetFont('Arial', '', 8);
@@ -453,7 +452,7 @@ if (DISPLAY_INVOICE_FOOTER == 'false') {
   $pdf->SetY(-35);
   $pdf->SetFont('Arial', '', 8);
   $pdf->SetTextColor((float)INVOICE_RGB);
-  $pdf->Cell(0, 10, utf8_decode(SHOP_DIVERS), 0, 0, 'C');
+  $pdf->Cell(0, 10, mb_convert_encoding(SHOP_DIVERS, 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 }
 
 

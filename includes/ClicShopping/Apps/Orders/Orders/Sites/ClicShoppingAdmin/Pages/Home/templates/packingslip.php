@@ -268,8 +268,8 @@ if (($QordersHistory->valueInt('orders_status_invoice_id') == 1)) {
 
 
 //Draw Payment Method Text
-$temp = substr(utf8_decode($order->info['payment_method']), 0, 60);
-$pdf->Text(110, 113, utf8_decode($CLICSHOPPING_Orders->getDef('text_payment_method')) . ' ' . $temp);
+$temp = substr(mb_convert_encoding($order->info['payment_method'], 'ISO-8859-1', 'UTF-8'), 0, 60);
+$pdf->Text(110, 113, mb_convert_encoding($CLICSHOPPING_Orders->getDef('text_payment_method'), 'ISO-8859-1', 'UTF-8') . ' ' . $temp);
 
 // Cadre pour afficher "BON DE COMMANDE" ou "FACTURE"
 $pdf->SetDrawColor(0);
@@ -322,13 +322,13 @@ for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
   $pdf->SetX(60);
   if (\strlen($product_name_attrib_contact) > 40 && \strlen($product_name_attrib_contact) < 70) {
     $pdf->SetFont('Arial', '', 6);
-    $pdf->MultiCell(138, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
+    $pdf->MultiCell(138, 6, mb_convert_encoding($product_name_attrib_contact, 'ISO-8859-1', 'UTF-8'), 1, 'L');
   } elseif (\strlen($product_name_attrib_contact) > 70) {
     $pdf->SetFont('Arial', '', 6);
-    $pdf->MultiCell(138, 6, utf8_decode(substr($product_name_attrib_contact, 0, 70)) . " .. ", 1, 'L');
+    $pdf->MultiCell(138, 6, mb_convert_encoding(substr($product_name_attrib_contact, 0, 70), 'ISO-8859-1', 'UTF-8') . " .. ", 1, 'L');
   } else {
     $pdf->SetFont('Arial', '', 6);
-    $pdf->MultiCell(138, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
+    $pdf->MultiCell(138, 6, mb_convert_encoding($product_name_attrib_contact, 'ISO-8859-1', 'UTF-8'), 1, 'L');
     $pdf->Ln();
   }
 
@@ -336,7 +336,7 @@ for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
   $pdf->SetY($Y_Table_Position);
   $pdf->SetX(20);
   $pdf->SetFont('Arial', '', 7);
-  $pdf->MultiCell(40, 6, utf8_decode($order->products[$i]['model']), 1, 'C');
+  $pdf->MultiCell(40, 6, mb_convert_encoding($order->products[$i]['model'], 'ISO-8859-1', 'UTF-8'), 1, 'C');
   $Y_Table_Position += 6;
 
 // Check for product line overflow
@@ -367,52 +367,52 @@ if (DISPLAY_INVOICE_FOOTER == 'false') {
   $pdf->SetY(-65);
   $pdf->SetFont('Arial', 'B', 8);
   $pdf->SetTextColor((float)INVOICE_RGB);
-  $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('thank_you_customer')), 0, 0, 'C');
+  $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('thank_you_customer'), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
 // Proprieties Legal
   $pdf->SetY(-60);
   $pdf->SetFont('Arial', '', 7);
   $pdf->SetTextColor((float)INVOICE_RGB);
-  $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('reserve_propriete', ['store_name' => STORE_NAME])), 0, 0, 'C');
+  $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('reserve_propriete', ['store_name' => STORE_NAME]), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
   $pdf->SetY(-55);
   $pdf->SetFont('Arial', '', 7);
   $pdf->SetTextColor((float)INVOICE_RGB);
-  $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('reserve_propriete_next')), 0, 0, 'C');
+  $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('reserve_propriete_next'), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
   $pdf->SetY(-50);
   $pdf->SetFont('Arial', '', 7);
   $pdf->SetTextColor((float)INVOICE_RGB);
-  $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('reserve_propriete_next1', ['url_sell_conditions' => HTTP::getShopUrlDomain() . SHOP_CODE_URL_CONDITIONS_VENTE])), 0, 0, 'C');
+  $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('reserve_propriete_next1', ['url_sell_conditions' => HTTP::getShopUrlDomain() . SHOP_CODE_URL_CONDITIONS_VENTE]), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
 // Informations de la compagnie
   if (DISPLAY_DOUBLE_TAXE == 'false') {
     $pdf->SetY(-45);
     $pdf->SetFont('Arial', '', 8);
     $pdf->SetTextColor((float)INVOICE_RGB);
-    $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('entry_info_societe', ['info_societe' => SHOP_CODE_CAPITAL . ' - ' . SHOP_CODE_RCS . ' - ' . SHOP_CODE_APE])), 0, 0, 'C');
+    $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('entry_info_societe', ['info_societe' => SHOP_CODE_CAPITAL . ' - ' . SHOP_CODE_RCS . ' - ' . SHOP_CODE_APE]), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
     $pdf->SetY(-40);
     $pdf->SetFont('Arial', '', 8);
     $pdf->SetTextColor((float)INVOICE_RGB);
-    $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('entry_info_societe_next', ['tva_intracom' => TVA_SHOP_INTRACOM])), 0, 0, 'C');
+    $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('entry_info_societe_next', ['tva_intracom' => TVA_SHOP_INTRACOM]), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
   } else {
     $pdf->SetY(-45);
     $pdf->SetFont('Arial', '', 8);
     $pdf->SetTextColor((float)INVOICE_RGB);
-    $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('entry_info_societe1', ['info_societe1' => SHOP_CODE_CAPITAL . ' - ' . SHOP_CODE_RCS . ' - ' . SHOP_CODE_APE])), 0, 0, 'C');
+    $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('entry_info_societe1', ['info_societe1' => SHOP_CODE_CAPITAL . ' - ' . SHOP_CODE_RCS . ' - ' . SHOP_CODE_APE]), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 
     $pdf->SetY(-40);
     $pdf->SetFont('Arial', '', 8);
     $pdf->SetTextColor((float)INVOICE_RGB);
-    $pdf->Cell(0, 10, utf8_decode($CLICSHOPPING_Orders->getDef('entry_info_societe_next1', ['info_societe1' => TVA_SHOP_PROVINCIAL . ' - ' . TVA_SHOP_FEDERAL])), 0, 0, 'C');
+    $pdf->Cell(0, 10, mb_convert_encoding($CLICSHOPPING_Orders->getDef('entry_info_societe_next1', ['info_societe1' => TVA_SHOP_PROVINCIAL . ' - ' . TVA_SHOP_FEDERAL]), 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
   }
 
 // Autres informations (champ libre) sur la compagnie
   $pdf->SetY(-35);
   $pdf->SetFont('Arial', '', 8);
   $pdf->SetTextColor((float)INVOICE_RGB);
-  $pdf->Cell(0, 10, utf8_decode(SHOP_DIVERS), 0, 0, 'C');
+  $pdf->Cell(0, 10, mb_convert_encoding(SHOP_DIVERS, 'ISO-8859-1', 'UTF-8'), 0, 0, 'C');
 }
 
 

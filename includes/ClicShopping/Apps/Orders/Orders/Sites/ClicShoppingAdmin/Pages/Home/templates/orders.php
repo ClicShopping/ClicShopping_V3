@@ -79,43 +79,42 @@ if (isset($_GET['oID']) && is_numeric($_GET['oID']) && ($_GET['oID'] > 0)) {
           </div>
           <div class="col-md-5">
            <span class="col-md-3 float-start">
-<?php
-echo HTML::form('orders', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"', ['session_id' => true]);
-echo HTML::inputField('orders_id', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Orders->getDef('heading_title_search') . '"');
-echo HTML::hiddenField('action', 'edit');
-echo '</form>';
-?>
+              <?php
+              echo HTML::form('orders', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"', ['session_id' => true]);
+              echo HTML::inputField('orders_id', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Orders->getDef('heading_title_search') . '"');
+              echo HTML::hiddenField('action', 'edit');
+              echo '</form>';
+              ?>
             </span>
             <span class="col-md-3 float-start">
-<?php
-// Permettre l'affichage des couleurs des groupes en mode B2B
-if (MODE_B2B_B2C == 'True') {
-  echo HTML::form('grouped', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"');
-  echo HTML::selectField('customers_group_id', GroupsB2BAdmin::getCustomersGroup($CLICSHOPPING_Orders->getDef('visitor_name')), '', 'onchange="this.form.submit();"');
-  echo '</form>';
-}
-?>
+                <?php
+                // Permettre l'affichage des couleurs des groupes en mode B2B
+                if (MODE_B2B_B2C == 'True') {
+                  echo HTML::form('grouped', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"');
+                  echo HTML::selectField('customers_group_id', GroupsB2BAdmin::getCustomersGroup($CLICSHOPPING_Orders->getDef('visitor_name')), '', 'onchange="this.form.submit();"');
+                  echo '</form>';
+                }
+                ?>
             </span>
             <span class="col-md-3 float-start">
-<?php
-echo HTML::form('status', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"', ['session_id' => true]);
-echo HTML::selectField('status', array_merge(array(array('id' => '0', 'text' => $CLICSHOPPING_Orders->getDef('text_all_orders'))), $orders_statuses), '', 'onchange="this.form.submit();"');
-echo '</form>';
-?>
+              <?php
+              echo HTML::form('status', $CLICSHOPPING_Orders->link('Orders'), 'post', ' role="form"', ['session_id' => true]);
+              echo HTML::selectField('status', array_merge(array(array('id' => '0', 'text' => $CLICSHOPPING_Orders->getDef('text_all_orders'))), $orders_statuses), '', 'onchange="this.form.submit();"');
+              echo '</form>';
+              ?>
             </span>
           </div>
 
         <div class="col-md-4">
-
-<?php
-if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($_POST['status']) || isset($_GET['aID'])) {
-  ?>
-  <span class="col-md-6 text-end" id="buttonReset">
-            <?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_reset'), null, $CLICSHOPPING_Orders->link('Orders'), 'danger'); ?>
-          </span>
-  <?php
-}
-?>
+          <?php
+          if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($_POST['status']) || isset($_GET['aID'])) {
+            ?>
+            <span class="col-md-6 text-end" id="buttonReset">
+                      <?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_reset'), null, $CLICSHOPPING_Orders->link('Orders'), 'danger'); ?>
+                    </span>
+            <?php
+          }
+          ?>
         </div>
       </div>
     </div>
