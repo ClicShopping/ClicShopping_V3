@@ -44,9 +44,8 @@ use ClicShopping\OM\HTML;
             if (\defined('MODULE_ACCOUNT_CUSTOMERS_MY_FEEDBACK_TITLE_STATUS')) {
               if (MODULE_ACCOUNT_CUSTOMERS_MY_FEEDBACK_TITLE_STATUS == 'True') {
                 ?>
-                <div><i class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i>< ?php echo
-                  HTML::link(CLICSHOPPING::link(null, 'Account&MyFeedBack'),
-                  CLICSHOPPING::getDef('module_account_customers_my_account_my_feed_back')); ?>
+                <div><i class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i>
+                  <?php echo HTML::link(CLICSHOPPING::link(null, 'Account&MyFeedBack'), CLICSHOPPING::getDef('module_account_customers_my_account_my_feed_back')); ?>
                 </div>
                 <div class="hr"></div>
                 <?php

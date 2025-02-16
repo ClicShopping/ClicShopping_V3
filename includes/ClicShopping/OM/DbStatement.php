@@ -32,7 +32,7 @@ class DbStatement extends \PDOStatement
   protected bool $cache_read = false;
   protected bool $cache_empty_results = false;
   protected string $query_call;
-  protected  int|null $page_set_total_rows;
+  protected int|null $page_set_total_rows;
   protected $result;
   public ?string $page_set;
 
@@ -66,7 +66,8 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * Binds a decimal value to*/
+   * Binds a decimal value to
+   */
   public function bindDecimal(string|int $parameter, float $value): bool
   {
     return $this->bindValue($parameter, (float)$value); // there is no \PDO::PARAM_FLOAT
@@ -176,7 +177,8 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * Fetches all rows from the*/
+   * Fetches all rows from the
+   */
   public function fetchAll(int|null $fetch_style = PDO::FETCH_BOTH, mixed ...$args): array
   {
     if ($this->cache_read === true) {
@@ -184,7 +186,7 @@ class DbStatement extends \PDOStatement
     } else {
 // fetchAll() fails if second argument is passed in a fetch style that does not
 // use the optional argument
-      if (in_array($fetch_style, array(PDO::FETCH_COLUMN, PDO::FETCH_CLASS, PDO::FETCH_FUNC))) {
+      if (in_array($fetch_style, [PDO::FETCH_COLUMN, PDO::FETCH_CLASS, PDO::FETCH_FUNC])) {
         $this->result = parent::fetchAll($fetch_style, $fetch_argument, $ctor_args);
       } else {
         $this->result = parent::fetchAll($fetch_style);
@@ -228,7 +230,7 @@ class DbStatement extends \PDOStatement
    * @param string $key The unique key to reference the cache.
    * @param int
    */
-  public function setCache(string $key,  int|null $expire = null, bool $cache_empty_results = false)
+  public function setCache(string $key, int|null $expire = null, bool $cache_empty_results = false)
   {
     if (!is_numeric($expire)) {
       $expire = 0;
@@ -300,7 +302,8 @@ class DbStatement extends \PDOStatement
    * Retrieves a protected value for the given column.
    *
    * @param string $column The name of the column to retrieve the protected value for.
-   * @*/
+   * 
+   */
   public function valueProtected(string $column): string
   {
     return $this->valueMixed($column, 'protected');
@@ -409,14 +412,16 @@ class DbStatement extends \PDOStatement
   }
 
   /**
-   * Sets the PDO instance to be*/
+   * Sets the PDO instance to be
+   */
   public function setPDO(PDO $instance)
   {
     $this->pdo = $instance;
   }
 
   /**
-   * Generates a label for the current page set*/
+   * Generates a label for the current page set
+   */
   public function getPageSetLabel(string $text): string
   {
     if ($this->page_set_total_rows < 1) {
@@ -499,7 +504,7 @@ class DbStatement extends \PDOStatement
         $output .= '<li class="page-item disabled"><a class="text-center page-link bi bi-chevron-left"></a></li>';
       }
 
-// next button
+	// next button
       if (($this->page_set < $number_of_pages) && ($number_of_pages != 1)) {
         $output .= '<li class="page-item active">' . HTML::link(CLICSHOPPING::link(null, $parameters . $this->page_set_keyword . '=' . ($this->page_set + 1)), null, 'title="' . CLICSHOPPING::getDef('prevnext_title_next_page') . '" class="text-center page-link bi bi-chevron-right"') . '</li>';
       } else {
@@ -518,6 +523,7 @@ class DbStatement extends \PDOStatement
       } else {
         $output .= '<li class="page-item disabled"><a class="text-center page-link bi bi-chevron-left"></a></li>';
       }
+      
 // next button
       if (($this->page_set < $number_of_pages) && ($number_of_pages != 1)) {
         $output .= '<li class="page-item active"><a href="' . CLICSHOPPING::link(null, $parameters . $this->page_set_keyword . '=' . ($this->page_set + 1)) . '" title="' . CLICSHOPPING::getDef('prevnext_title_next_page') . '" class="text-center page-link bi bi-chevron-right"></a></li>';

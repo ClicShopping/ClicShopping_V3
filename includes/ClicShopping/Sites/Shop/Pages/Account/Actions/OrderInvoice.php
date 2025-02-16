@@ -302,13 +302,13 @@ class OrderInvoice extends \ClicShopping\OM\PagesActionsAbstract
       $pdf->SetX(40);
       if (strlen($product_name_attrib_contact) > 40 && strlen($product_name_attrib_contact) < 95) {
         $pdf->SetFont('Arial', '', 6);
-        $pdf->MultiCell(103, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
+        $pdf->MultiCell(103, 6, mb_convert_encoding($product_name_attrib_contact, 'ISO-8859-1', 'UTF-8'), 1, 'L');
       } elseif (strlen($product_name_attrib_contact) > 95) {
         $pdf->SetFont('Arial', '', 6);
-        $pdf->MultiCell(103, 6, utf8_decode(substr($product_name_attrib_contact, 0, 95)) . " .. ", 1, 'L');
+        $pdf->MultiCell(103, 6, mb_convert_encoding(substr($product_name_attrib_contact, 0, 95), 'ISO-8859-1', 'UTF-8') . " .. ", 1, 'L');
       } else {
         $pdf->SetFont('Arial', '', 6);
-        $pdf->MultiCell(103, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
+        $pdf->MultiCell(103, 6, mb_convert_encoding($product_name_attrib_contact, 'ISO-8859-1', 'UTF-8'), 1, 'L');
         $pdf->Ln();
       }
 
@@ -316,7 +316,7 @@ class OrderInvoice extends \ClicShopping\OM\PagesActionsAbstract
       $pdf->SetY($Y_Table_Position);
       $pdf->SetX(15);
       $pdf->SetFont('Arial', '', 7);
-      $pdf->MultiCell(25, 6, utf8_decode($CLICSHOPPING_Order->products[$i]['model']), 1, 'C');
+      $pdf->MultiCell(25, 6, mb_convert_encoding($CLICSHOPPING_Order->products[$i]['model'], 'ISO-8859-1', 'UTF-8'), 1, 'C');
 
 // Taxes
       $pdf->SetFont('Arial', '', 7);
@@ -328,17 +328,17 @@ class OrderInvoice extends \ClicShopping\OM\PagesActionsAbstract
       $pdf->SetY($Y_Table_Position);
       $pdf->SetX(158);
       $pdf->SetFont('Arial', '', 7);
-      $pdf->MultiCell(20, 6, utf8_decode(html_entity_decode($CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->products[$i]['final_price'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']))), 1, 'C');
+      $pdf->MultiCell(20, 6, mb_convert_encoding(html_entity_decode($CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->products[$i]['final_price'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value'])), 'ISO-8859-1', 'UTF-8'), 1, 'C');
       /*
       // Prix TTC
-          $pdf->SetY($Y_Table_Position);
-          $pdf->SetX(138);
-          $pdf->MultiCell(20,6,$currencies->format(Tax::addTax($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax']), true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']),1,'C');
+      $pdf->SetY($Y_Table_Position);
+      $pdf->SetX(138);
+      $pdf->MultiCell(20,6,$currencies->format(Tax::addTax($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax']), true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']),1,'C');
       */
 // Total HT
       $pdf->SetY($Y_Table_Position);
       $pdf->SetX(178);
-      $pdf->MultiCell(20, 6, utf8_decode(html_entity_decode($CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->products[$i]['final_price'] * $CLICSHOPPING_Order->products[$i]['qty'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']))), 1, 'C');
+      $pdf->MultiCell(20, 6, mb_convert_encoding(html_entity_decode($CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->products[$i]['final_price'] * $CLICSHOPPING_Order->products[$i]['qty'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value'])), 'ISO-8859-1', 'UTF-8'), 1, 'C');
       $Y_Table_Position += 6;
       /*
       // Total TTC
@@ -350,7 +350,7 @@ class OrderInvoice extends \ClicShopping\OM\PagesActionsAbstract
 // Check for product line overflow
       $item_count++;
 
-      if ((is_long($item_count / 32) && $i >= 20) || ($i == 20)) {
+      if ((is_int($item_count / 32) && $i >= 20) || ($i == 20)) {
         $pdf->AddPage();
 // Fields Name position
 //          $Y_Fields_Name_position = 125;

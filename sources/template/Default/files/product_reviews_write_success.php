@@ -13,6 +13,7 @@ use ClicShopping\OM\Registry;
 
 $CLICSHOPPING_Template = Registry::get('Template');
 $CLICSHOPPING_Customer = Registry::get('Customer');
+$CLICSHOPPING_MessageStack  = Registry::get('MessageStack');
 
 if (!$CLICSHOPPING_Customer->isLoggedOn()) {
   CLICSHOPPING::redirect(null, 'Account&LogIn');

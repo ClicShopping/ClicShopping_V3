@@ -503,6 +503,7 @@ class CLICSHOPPING
   public static function loadConfigFile(string $file, string $group): void
   {
     $cfg = [];
+    $ini = false;
 
     if (is_file($file)) {
       include($file);

@@ -29,8 +29,24 @@ use function strlen;
  */
 class Hash
 {
-  private static $key = '1c5f37542a2056c76dc2cfe98fecb514'; // 32 caractères pour AES-256
+  private static $key; // 32 caractères pour AES-256
   private static $cipher = 'aes-256-cbc'; // Algorithme de chiffremen
+
+  /**
+   * Hash constructor.
+   * @access public
+   *
+   * Initializes a new Hash object for generating and verifying secure hashes.
+   * This class provides functionality for password hashing and verification
+   * using industry-standard cryptographic algorithms.
+   */
+  public function __construct()
+  {
+    self::$key = getenv('ENCRYPTION_KEY');
+    if (empty(self::$key)) {
+      self::$key = '1c5f37542a2056c76dc2cfe98fecb514';
+    }
+  }
 
   /**
    * Encrypts a plain text string using the specified algorithm.

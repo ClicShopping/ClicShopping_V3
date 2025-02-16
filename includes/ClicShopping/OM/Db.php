@@ -35,7 +35,7 @@ class Db extends PDO
   protected string $password;
   protected string $database;
   protected string $table_prefix;
-  protected  int|null $port;
+  protected int|null $port;
   protected ?array $driver_options = [];
   protected ?array $options = [];
   protected $query_call;
@@ -106,6 +106,7 @@ class Db extends PDO
       $object = new $class($server, $username, $password, $database, $port, $driver_options, $options);
     } catch (Exception $e) {
       $message = $e->getMessage();
+        // Uncomment this line if you want to log the stack trace
 //      $message .= "\n" . $e->getTraceAsString(); // the trace will contain the password in plain text
 
       if (!isset($options['log_errors']) || ($options['log_errors'] === true)) {
@@ -727,7 +728,8 @@ class Db extends PDO
    *                       - 'name' (string): The name of the table.
    *                       - 'col' (array): An associative array of column definitions, where the key is the column name and the value is an array of column properties:
    *                           - 'type' (string): Data type of the column.
-   *                           - 'length' (*/
+   *                           - 'length' (
+   */
   public static function getSqlFromSchema(array $schema, ?string $prefix = null)
   {
     $sql = 'CREATE TABLE ' . (isset($prefix) ? $prefix : '') . $schema['name'] . ' (' . "\n";
@@ -901,7 +903,6 @@ class Db extends PDO
 
     return $size_db;
   }
-
 
   /**
    * Calculates and displays the size of the database in megabytes.

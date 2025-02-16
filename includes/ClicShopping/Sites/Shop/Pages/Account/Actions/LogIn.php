@@ -60,7 +60,8 @@ class LogIn extends \ClicShopping\OM\PagesActionsAbstract
 // Check if email exists
       $array_sql = [
         'customers_id',
-        'customers_password'];
+        'customers_password'
+      ];
 
       $Qcheck = $CLICSHOPPING_Db->get('customers', $array_sql, ['customers_email_address' => $email_address], null, 1);
 

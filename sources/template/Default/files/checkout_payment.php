@@ -16,6 +16,7 @@ $CLICSHOPPING_Customer = Registry::get('Customer');
 $CLICSHOPPING_Currencies = Registry::get('Currencies');
 $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 $CLICSHOPPING_Payment = Registry::get('Payment');
+$CLICSHOPPING_Template = Registry::get('Template');
 
 echo $CLICSHOPPING_Payment->javascript_validation();
 
