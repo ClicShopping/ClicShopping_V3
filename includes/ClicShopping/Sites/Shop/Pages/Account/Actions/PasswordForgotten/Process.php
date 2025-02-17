@@ -56,7 +56,8 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 
               $reset_key = Hash::getRandomString(40);
 
-              $CLICSHOPPING_Db->save('customers_info', ['password_reset_key' => $reset_key, 'password_reset_date' => 'now()'],
+              $CLICSHOPPING_Db->save('customers_info',
+                ['password_reset_key' => $reset_key, 'password_reset_date' => 'now()'],
                 ['customers_info_id' => $Qcheck->valueInt('customers_id')]
               );
 

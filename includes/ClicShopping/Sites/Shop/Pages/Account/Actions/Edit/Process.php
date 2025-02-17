@@ -225,7 +225,8 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
         $insert_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID()];
         $CLICSHOPPING_Db->save('customers', $sql_data_array, $insert_array);
 
-        $CLICSHOPPING_Db->save('customers_info', ['customers_info_date_account_last_modified' => 'now()'],
+        $CLICSHOPPING_Db->save('customers_info',
+          ['customers_info_date_account_last_modified' => 'now()'],
           ['customers_info_id' => (int)$CLICSHOPPING_Customer->getID()]
         );
 

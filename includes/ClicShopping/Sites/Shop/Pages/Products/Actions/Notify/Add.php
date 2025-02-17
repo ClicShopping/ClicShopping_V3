@@ -41,8 +41,9 @@ class Add extends \ClicShopping\OM\PagesActionsAbstract
 
       for ($i = 0, $n = count($notify); $i < $n; $i++) {
 
-        $Qcheck = $CLICSHOPPING_Db->get('products_notifications', 'products_id', ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-            'products_id' => (int)$notify[$i]
+        $Qcheck = $CLICSHOPPING_Db->get('products_notifications', 'products_id',
+          ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
+           'products_id' => (int)$notify[$i]
           ]
         );
 

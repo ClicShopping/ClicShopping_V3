@@ -66,7 +66,6 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 
         $to_addr = $CLICSHOPPING_Customer->getEmailAddress();
 
-
         $from_name = STORE_OWNER;
         $from_addr = STORE_OWNER_EMAIL_ADDRESS;
         $to_name = NULL;
