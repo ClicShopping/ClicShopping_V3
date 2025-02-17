@@ -20,7 +20,7 @@
         "symfony/http-client": "^7.1",
         "phpxmlrpc/phpxmlrpc": "^4.11",
         "guzzlehttp/guzzle": "^7.9",
-        "theodo-group/llphant": "^0.8.13",
+        "theodo-group/llphant": "^0.9.5",
         "stripe/stripe-php": "^16.3"
     }
     ,
