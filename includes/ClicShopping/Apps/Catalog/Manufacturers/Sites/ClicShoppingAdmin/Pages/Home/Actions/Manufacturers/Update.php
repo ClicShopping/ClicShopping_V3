@@ -61,10 +61,10 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
 
     for ($i = 0, $n = \count($languages); $i < $n; $i++) {
       $manufacturers_url_array = HTML::sanitize($_POST['manufacturers_url']);
-      $manufacturer_description_array = HTML::sanitize(strip_tags($_POST['manufacturer_description']));
-      $manufacturer_seo_title_array = HTML::sanitize(strip_tags($_POST['manufacturer_seo_title']));
-      $manufacturer_seo_description_array = HTML::sanitize(strip_tags($_POST['manufacturer_seo_description']));
-      $manufacturer_seo_keyword_array = HTML::sanitize(strip_tags($_POST['manufacturer_seo_keyword']));
+      $manufacturer_description_array = $_POST['manufacturer_description'];
+      $manufacturer_seo_title_array = HTML::sanitize($_POST['manufacturer_seo_title']);
+      $manufacturer_seo_description_array = HTML::sanitize($_POST['manufacturer_seo_description']);
+      $manufacturer_seo_keyword_array = HTML::sanitize($_POST['manufacturer_seo_keyword']);
       $language_id = $languages[$i]['id'];
 
       $sql_data_array = [

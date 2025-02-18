@@ -2,6 +2,7 @@ version3.455
 documentation improved
 Librairies updated
 php8.4 improvment
+allow to use llm vectorisation
 
 ------------------
 

@@ -49,13 +49,13 @@ $CLICSHOPPING_SupplierAdmin = Registry::get('SupplierAdmin');
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Suppliers->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-end">
-<?php
-echo HTML::form('suppliers', $CLICSHOPPING_Suppliers->link('Suppliers&' . $form_action . $variable));
-if ($form_action == 'Update') echo HTML::hiddenField('suppliers_id', HTML::sanitize($_GET['mID']));
+            <?php
+            echo HTML::form('suppliers', $CLICSHOPPING_Suppliers->link('Suppliers&' . $form_action . $variable));
+            if ($form_action == 'Update') echo HTML::hiddenField('suppliers_id', HTML::sanitize($_GET['mID']));
 
-echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_cancel'), null, $CLICSHOPPING_Suppliers->link('Suppliers&page=' . $page . $variable), 'warning') . '&nbsp;';
-echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Suppliers->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Suppliers->getDef('button_update'), null, null, 'success'));
-?>
+            echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_cancel'), null, $CLICSHOPPING_Suppliers->link('Suppliers&page=' . $page . $variable), 'warning') . '&nbsp;';
+            echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Suppliers->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Suppliers->getDef('button_update'), null, null, 'success'));
+            ?>
             </span>
         </div>
       </div>
