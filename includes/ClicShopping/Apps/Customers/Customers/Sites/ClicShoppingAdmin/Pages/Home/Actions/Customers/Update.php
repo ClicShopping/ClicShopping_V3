@@ -380,7 +380,8 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
 
       $CLICSHOPPING_Customers->db->save('customers', $sql_data_array, ['customers_id' => (int)$customers_id]);
 
-      $CLICSHOPPING_Customers->db->save('customers_info', ['customers_info_date_account_last_modified' => 'now()'],
+      $CLICSHOPPING_Customers->db->save('customers_info',
+        ['customers_info_date_account_last_modified' => 'now()'],
         ['customers_info_id' => (int)$customers_id]
       );
 
@@ -399,7 +400,8 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
 
       if (isset($entry_zone_id) && $entry_zone_id > 0) $entry_state = '';
 
-      $sql_data_array = ['entry_firstname' => $customers_firstname,
+      $sql_data_array = [
+        'entry_firstname' => $customers_firstname,
         'entry_lastname' => $customers_lastname,
         'entry_street_address' => $entry_street_address,
         'entry_postcode' => $entry_postcode,

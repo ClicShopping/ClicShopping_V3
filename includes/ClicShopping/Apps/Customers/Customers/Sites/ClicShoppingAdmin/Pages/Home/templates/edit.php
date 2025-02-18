@@ -192,13 +192,13 @@ echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title_edit') . (int)$_GET['cID'] . '&nbsp;-&nbsp;' . $cInfo->customers_lastname . '&nbsp;' . $cInfo->customers_firstname; ?></span>
           <span class="col-md-6 text-end">
-<?php
-echo HTML::button($CLICSHOPPING_Customers->getDef('button_export_customer_info'), null, $CLICSHOPPING_Customers->link('Customers&ExportCustomerInfo&customers_id=' . (int)$_GET['cID']), 'info') . ' ';
-echo HTML::hiddenField('customers_id', (int)$_GET['cID']);
-echo HTML::button($CLICSHOPPING_Customers->getDef('button_cancel'), null, $CLICSHOPPING_Customers->link('Customers'), 'warning');
-echo '&nbsp;';
-echo HTML::button($CLICSHOPPING_Customers->getDef('button_update'), null, null, 'success');
-?>
+            <?php
+            echo HTML::button($CLICSHOPPING_Customers->getDef('button_export_customer_info'), null, $CLICSHOPPING_Customers->link('Customers&ExportCustomerInfo&customers_id=' . (int)$_GET['cID']), 'info') . ' ';
+            echo HTML::hiddenField('customers_id', (int)$_GET['cID']);
+            echo HTML::button($CLICSHOPPING_Customers->getDef('button_cancel'), null, $CLICSHOPPING_Customers->link('Customers'), 'warning');
+            echo '&nbsp;';
+            echo HTML::button($CLICSHOPPING_Customers->getDef('button_update'), null, null, 'success');
+            ?>
           </span>
         </div>
       </div>
@@ -208,24 +208,12 @@ echo HTML::button($CLICSHOPPING_Customers->getDef('button_update'), null, null, 
   <?php
   if ($error === true) {
     ?>
-    <table border="0" width="100%" cellspacing="3" cellpadding="0" class="messageStackError">
-      <tr>
-        <td class="messageStackError" height="20" colspan="2">
-          <table width="100%">
-            <tr>
-              <td>
-                <div class="alert alert-warning">
-                  <?php
-                  echo '<h4><i class="bi bi-exclamation-diamond" title="' . $CLICSHOPPING_Customers->getDef('icon_warning') . '"></i></h4> ';
-                  echo $CLICSHOPPING_Customers->getDef('warning_edit_customers');
-                  ?>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
+    <div class="alert alert-warning">
+      <?php
+      echo '<h4><i class="bi bi-exclamation-diamond" title="' . $CLICSHOPPING_Customers->getDef('icon_warning') . '"></i></h4> ';
+      echo $CLICSHOPPING_Customers->getDef('warning_edit_customers');
+      ?>
+    </div>
     <div class="row">&nbsp;</div>
     <?php
   }
@@ -842,9 +830,9 @@ echo HTML::hiddenField('customers_modify_company');
           while ($QaddressesBook->fetch()) {
 
             $QcountryAddressesBook = $CLICSHOPPING_Customers->db->prepare('select countries_name
-                                                             from :table_countries
-                                                             where countries_id = :countries_id
-                                                            ');
+                                                                             from :table_countries
+                                                                             where countries_id = :countries_id
+                                                                            ');
             $QcountryAddressesBook->bindInt(':countries_id', (int)$QaddressesBook->valueInt('country_id'));
             $QcountryAddressesBook->execute();
             ?>
@@ -859,33 +847,33 @@ echo HTML::hiddenField('customers_modify_company');
               ?>
               <span class="float-end col-md-9">
                   <span class="col-md-11 text-end">
-<?php
-echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('category_company') . ' ' . $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default') . '&nbsp;:&nbsp;';
-if ($cInfo->customers_modify_address_default != '1') echo $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_no');
-if ($cInfo->customers_modify_address_default == '1') echo $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_yes');
-echo HTML::hiddenField('customers_modify_address_default');
-?>
+                    <?php
+                    echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('category_company') . ' ' . $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default') . '&nbsp;:&nbsp;';
+                    if ($cInfo->customers_modify_address_default != '1') echo $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_no');
+                    if ($cInfo->customers_modify_address_default == '1') echo $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_yes');
+                    echo HTML::hiddenField('customers_modify_address_default');
+                    ?>
                 </span>
-<?php
-echo HTML::hiddenField('customers_modify_address_default');
-} else {
-?>
+                    <?php
+                    echo HTML::hiddenField('customers_modify_address_default');
+                    } else {
+                    ?>
                   <span class="float-end col-md-9">
                   <span class="col-md-11 text-end">
-<?php
-echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default') . '&nbsp;:&nbsp;';
-echo HTML::checkboxField('customers_modify_address_default', '1', $cInfo->customers_modify_address_default);
-?>
+                    <?php
+                    echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default') . '&nbsp;:&nbsp;';
+                    echo HTML::checkboxField('customers_modify_address_default', '1', $cInfo->customers_modify_address_default);
+                    ?>
                 </span>
-<?php
-}
-} else {
-  ?>
-  <span
-    class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('entry_address_number') . $number_address; ?></span>
-  <?php
-}
-?>
+                    <?php
+                    }
+                } else {
+                  ?>
+                  <span
+                    class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('entry_address_number') . $number_address; ?></span>
+                  <?php
+                }
+                ?>
             </div>
             <div class="adminformTitle">
               <?php
@@ -1056,14 +1044,14 @@ echo HTML::checkboxField('customers_modify_address_default', '1', $cInfo->custom
           <div class="row">
             <?php
             $QcustomersNotes = $CLICSHOPPING_Customers->db->prepare('select customers_notes_id,
-                                                                  customers_id,
-                                                                  customers_notes,
-                                                                  customers_notes_date,
-                                                                  user_administrator
-                                                          from :table_customers_notes
-                                                          where customers_id = :customers_id
-                                                          order by customers_notes_date desc
-                                                          ');
+                                                                            customers_id,
+                                                                            customers_notes,
+                                                                            customers_notes_date,
+                                                                            user_administrator
+                                                                    from :table_customers_notes
+                                                                    where customers_id = :customers_id
+                                                                    order by customers_notes_date desc
+                                                                    ');
             $QcustomersNotes->bindInt(':customers_id', $_GET['cID']);
             $QcustomersNotes->execute();
 
