@@ -48,12 +48,12 @@ class CkEditor5 extends HTML
   {
     $code = self::getWysiwygLanguage();
 
-    $script = '<script src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js"></script><br />' . "\n";
+    $script = '<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script><br />' . "\n";
     // $script .= Gpt::gptCkeditorParameters();
 
     if ($code != 'en') {
       if (!empty($code)) {
-        $script = '<script src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js"></script><br />' . "\n";
+        $script = '<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script><br />' . "\n";
       }
     }
 
@@ -171,8 +171,7 @@ class CkEditor5 extends HTML
               //const connectorUrl = 'php/connector.minimal.php';
               const connectorUrl{$ckeditor_id} = '{$connector}';
 
-              ClassicEditor
-              .create(document.querySelector('#{$ckeditor_id}'), { 
+              ClassicEditor.create(document.querySelector('#{$ckeditor_id}'), { 
                 language: '{$language_code}',
                 
                  toolbar: {
@@ -411,8 +410,7 @@ class CkEditor5 extends HTML
               //const connectorUrl = 'php/connector.minimal.php';
               const connectorUrl{$ckeditor_id} = '{$connector}';
               
-              ClassicEditor
-              .create( document.querySelector( '#{$ckeditor_id}' ), {
+              ClassicEditor.create( document.querySelector( '#{$ckeditor_id}' ), {
                 language: '{$language_code}',                
                  toolbar: {
                     items: [
