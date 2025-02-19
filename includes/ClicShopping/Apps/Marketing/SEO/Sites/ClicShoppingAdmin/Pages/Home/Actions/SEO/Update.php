@@ -26,34 +26,34 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
     for ($i = 0, $n = \count($languages); $i < $n; $i++) {
       $language_id = $languages[$i]['id'];
 
-      $seo_defaut_language_title_h1 = HTML::sanitize(strip_tags($_POST['seo_defaut_language_title_h1_']));
-      $seo_defaut_language_title = HTML::sanitize(strip_tags($_POST['seo_defaut_language_title_']));
-      $seo_defaut_language_keywords = HTML::sanitize(strip_tags($_POST['seo_defaut_language_keywords_']));
-      $seo_defaut_language_description = HTML::sanitize(strip_tags($_POST['seo_defaut_language_description_']));
-      $seo_defaut_language_footer = HTML::sanitize(strip_tags($_POST['seo_defaut_language_footer_']));
+      $seo_defaut_language_title_h1 = HTML::sanitize($_POST['seo_defaut_language_title_h1_']);
+      $seo_defaut_language_title = HTML::sanitize($_POST['seo_defaut_language_title_']);
+      $seo_defaut_language_keywords = HTML::sanitize($_POST['seo_defaut_language_keywords_']);
+      $seo_defaut_language_description = HTML::sanitize($_POST['seo_defaut_language_description_']);
+      $seo_defaut_language_footer = HTML::sanitize($_POST['seo_defaut_language_footer_']);
 
-      $seo_language_products_info_title = HTML::sanitize(strip_tags($_POST['seo_language_products_info_title_']));
-      $seo_language_products_info_keywords = HTML::sanitize(strip_tags($_POST['seo_language_products_info_keywords_']));
-      $seo_language_products_info_description = HTML::sanitize(strip_tags($_POST['seo_language_products_info_description_']));
-      $seo_language_products_new_title = HTML::sanitize(strip_tags($_POST['seo_language_products_new_title_']));
-      $seo_language_products_new_keywords = HTML::sanitize(strip_tags($_POST['seo_language_products_new_keywords_']));
-      $seo_language_products_new_description = HTML::sanitize(strip_tags($_POST['seo_language_products_new_description_']));
+      $seo_language_products_info_title = HTML::sanitize($_POST['seo_language_products_info_title_']);
+      $seo_language_products_info_keywords = HTML::sanitize($_POST['seo_language_products_info_keywords_']);
+      $seo_language_products_info_description = HTML::sanitize($_POST['seo_language_products_info_description_']);
+      $seo_language_products_new_title = HTML::sanitize($_POST['seo_language_products_new_title_']);
+      $seo_language_products_new_keywords = HTML::sanitize($_POST['seo_language_products_new_keywords_']);
+      $seo_language_products_new_description = HTML::sanitize($_POST['seo_language_products_new_description_']);
 
-      $seo_language_special_title = HTML::sanitize(strip_tags($_POST['seo_language_special_title_']));
-      $seo_language_special_keywords = HTML::sanitize(strip_tags($_POST['seo_language_special_keywords_']));
-      $seo_language_special_description = HTML::sanitize(strip_tags($_POST['seo_language_special_description_']));
-      $seo_language_reviews_title = HTML::sanitize(strip_tags($_POST['seo_language_reviews_title_']));
-      $seo_language_reviews_keywords = HTML::sanitize(strip_tags($_POST['seo_language_reviews_keywords_']));
-      $seo_language_reviews_description = HTML::sanitize(strip_tags($_POST['seo_language_reviews_description_']));
-      $seo_language_favorites_title = HTML::sanitize(strip_tags($_POST['seo_language_favorites_title_']));
-      $seo_language_favorites_keywords = HTML::sanitize(strip_tags($_POST['seo_language_favorites_keywords_']));
-      $seo_language_favorites_description = HTML::sanitize(strip_tags($_POST['seo_language_favorites_description_']));
-      $seo_language_featured_title = HTML::sanitize(strip_tags($_POST['seo_language_featured_title_']));
-      $seo_language_featured_keywords = HTML::sanitize(strip_tags($_POST['seo_language_featured_keywords_']));
-      $seo_language_featured_description = HTML::sanitize(strip_tags($_POST['seo_language_featured_description_']));
-      $seo_language_recommendations_title = HTML::sanitize(strip_tags($_POST['seo_recommendations_language_title_']));
-      $seo_language_recommendations_description = HTML::sanitize(strip_tags($_POST['seo_recommendations_language_description_']));
-      $seo_language_recommendations_keywords = HTML::sanitize(strip_tags($_POST['seo_recommendations_language_keywords_']));
+      $seo_language_special_title = HTML::sanitize($_POST['seo_language_special_title_']);
+      $seo_language_special_keywords = HTML::sanitize($_POST['seo_language_special_keywords_']);
+      $seo_language_special_description = HTML::sanitize($_POST['seo_language_special_description_']);
+      $seo_language_reviews_title = HTML::sanitize($_POST['seo_language_reviews_title_']);
+      $seo_language_reviews_keywords = HTML::sanitize($_POST['seo_language_reviews_keywords_']);
+      $seo_language_reviews_description = HTML::sanitize($_POST['seo_language_reviews_description_']);
+      $seo_language_favorites_title = HTML::sanitize($_POST['seo_language_favorites_title_']);
+      $seo_language_favorites_keywords = HTML::sanitize($_POST['seo_language_favorites_keywords_']);
+      $seo_language_favorites_description = HTML::sanitize($_POST['seo_language_favorites_description_']);
+      $seo_language_featured_title = HTML::sanitize($_POST['seo_language_featured_title_']);
+      $seo_language_featured_keywords = HTML::sanitize($_POST['seo_language_featured_keywords_']);
+      $seo_language_featured_description = HTML::sanitize($_POST['seo_language_featured_description_']);
+      $seo_language_recommendations_title = HTML::sanitize($_POST['seo_recommendations_language_title_']);
+      $seo_language_recommendations_description = HTML::sanitize($_POST['seo_recommendations_language_description_']);
+      $seo_language_recommendations_keywords = HTML::sanitize($_POST['seo_recommendations_language_keywords_']);
 
       $sql_data_array_pages_description = [
         'seo_defaut_language_title' => $seo_defaut_language_title[$language_id],
