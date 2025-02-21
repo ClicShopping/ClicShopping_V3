@@ -53,12 +53,12 @@ if (isset($_GET['oID'])) {
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ReturnOrders->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-end">
-  <?php
-  echo HTML::form('status_orders_status', $CLICSHOPPING_ReturnOrders->link('OrdersStatus&' . $action . '&oID=' . $return_status_id));
-  echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_cancel'), null, $CLICSHOPPING_ReturnOrders->link('OrdersStatus'), 'warning');
-  ?>
-            </span>
+            <?php
+            echo HTML::form('status_orders_status', $CLICSHOPPING_ReturnOrders->link('OrdersStatus&' . $action . '&oID=' . $return_status_id));
+            echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, null, 'success') . ' ';
+            echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_cancel'), null, $CLICSHOPPING_ReturnOrders->link('OrdersStatus'), 'warning');
+            ?>
+          </span>
         </div>
       </div>
     </div>

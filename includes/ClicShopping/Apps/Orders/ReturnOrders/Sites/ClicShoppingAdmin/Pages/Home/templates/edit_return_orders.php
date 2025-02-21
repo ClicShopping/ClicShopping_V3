@@ -38,13 +38,13 @@ $languages = $CLICSHOPPING_Language->getLanguages();
           $form_action = 'Save';
           ?>
           <span class="col-md-9 text-end">
-<?php
-echo HTML::form('return', $CLICSHOPPING_ReturnOrders->link('ReturnOrders&Save'));
-echo HTML::hiddenField('rId', $_GET['rID']);
-echo HTML::hiddenField('page', $page);
-echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_cancel'), null, $CLICSHOPPING_ReturnOrders->link('ReturnOrders&page=' . $page . (isset($_GET['rID']) ? '&rID=' . $_GET['rID'] : '')), 'warning', null, null) . '&nbsp;';
-echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, null, 'success');
-?>
+            <?php
+            echo HTML::form('return', $CLICSHOPPING_ReturnOrders->link('ReturnOrders&Save'));
+            echo HTML::hiddenField('rId', $_GET['rID']);
+            echo HTML::hiddenField('page', $page);
+            echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_cancel'), null, $CLICSHOPPING_ReturnOrders->link('ReturnOrders&page=' . $page . (isset($_GET['rID']) ? '&rID=' . $_GET['rID'] : '')), 'warning', null, null) . '&nbsp;';
+            echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, null, 'success');
+            ?>
           </span>
         </div>
       </div>
@@ -365,14 +365,14 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
               <tbody>
               <?php
               $Qhistory = $CLICSHOPPING_ReturnOrders->db->prepare('select return_history_id,
-                                                                 return_id,
-                                                                 return_status_id,
-                                                                 notify,
-                                                                 comment,
-                                                                 date_added,
-                                                                 admin_user_name
-                                                          from :table_return_orders_history                                                        
-                                                          ');
+                                                                         return_id,
+                                                                         return_status_id,
+                                                                         notify,
+                                                                         comment,
+                                                                         date_added,
+                                                                         admin_user_name
+                                                                  from :table_return_orders_history                                                        
+                                                                  ');
               $Qhistory->execute();
 
               while ($Qhistory->fetch()) {
@@ -383,12 +383,12 @@ echo HTML::button($CLICSHOPPING_ReturnOrders->getDef('button_update'), null, nul
                   <td>
                     <?php
                     $QhistoryStatus = $CLICSHOPPING_ReturnOrders->db->prepare('select return_status_id,
-                                                                                 language_id,
-                                                                                 name
-                                                                          from :table_return_orders_status
-                                                                          where language_id = :language_id
-                                                                          and :return_status_id = return_status_id
-                                                                         ');
+                                                                                       language_id,
+                                                                                       name
+                                                                                from :table_return_orders_status
+                                                                                where language_id = :language_id
+                                                                                and :return_status_id = return_status_id
+                                                                               ');
                     $QhistoryStatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
                     $QhistoryStatus->bindInt(':return_status_id', $Qhistory->valueInt('return_status_id'));
                     $QhistoryStatus->execute();
