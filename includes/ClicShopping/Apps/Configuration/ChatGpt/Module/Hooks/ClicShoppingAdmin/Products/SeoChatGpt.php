@@ -15,9 +15,7 @@ use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\ChatJsAdminSeo;
-
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
-
 
 class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 {
@@ -51,7 +49,7 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
   {
     $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
-    if (gpt::checkGptStatus() === false) {
+    if (Gpt::checkGptStatus() === false) {
       return false;
     }
 
@@ -69,7 +67,7 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
       $translate_language = $expertise . ' ' . $this->app->getDef('text_seo_page_translate_language', $product_name_array);
       $question_keywords = $expertise . ' ' . $this->app->getDef('text_seo_page_keywords_question', $product_name_array);
 
-      $url = Gpt::getAjaxUrl();
+      $url = Gpt::getAjaxUrl(false);
       $urlMultilanguage = Gpt::getAjaxSeoMultilanguageUrl();
 
       $content = '<button type="button" class="btn btn-primary btn-sm submit-button" data-index="0">';
@@ -88,9 +86,7 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
 <!------------------>
 <!-- products seo title meta tag -->
 {$getProductsSeoTitle}
-<!-- product seo meta summary descript
-
-ion -->
+<!-- product seo meta summary description -->
 {$getProductsSeoSummaryDescription}
 <!-- product seo meta description -->
 {$getProductsSeoDescription}

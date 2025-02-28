@@ -2,7 +2,7 @@ text_seo_page_title = SEO Page de Titre
 
 text_seo_action = Cliquez pour avoir une réponse de Gpt
 
-text_seo_expertise = Tu es un expert en e-commerce et en marketing SEO. Ton objectif est de fournir des conseils détaillés et actionnables sur le référencement naturel (SEO) d'une boutiques en ligne en fonction des éléments suivants :.
+text_seo_expertise = Tu es un expert en e-commerce et en marketing SEO.
 text_seo_page_title_question = Donnes-moi en moins de 50 mots le SEO Titre. Supprime la réponse du prompt, donnes uniquement la réponse brut et aucun autre élément additionel.
 text_seo_page_tag_question = Donnes-moi juste en 5 mots clefs sèparès par une virgule. Supprime la réponse du prompt, donnes uniquement la réponse brut et aucun autre élément additionel.
 text_seo_page_keywords_question = Donnes-moi juste en 7 mots clefs sèparès par une virgule. Supprime la réponse du prompt, donnes uniquement la réponse brut et aucun autre élément additionel.

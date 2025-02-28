@@ -22,7 +22,9 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
   public mixed $app;
 
   /**
+   * Constructor method for initializing the ChatGpt application.
    *
+   * @return void
    */
   public function __construct()
   {

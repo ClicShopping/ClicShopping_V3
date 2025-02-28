@@ -2042,7 +2042,7 @@ $('[id^=\"seo_special_description\"]').each(function(index) {
    *
    * @return string The generated JavaScript script as a string.
    */
-  public static function getProductsSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, ?string $product_name, string $url)
+  public static function getProductsSeoTitle(string $content, string $urlMultilanguage, string $translate_language, string $question, string|null $product_name, string $url)
   {
     $script = "
       <script defer>    
