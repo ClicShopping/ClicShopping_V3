@@ -2,11 +2,11 @@ text_seo_page_title = SEO Page Title
 
 text_seo_action = Click to see Gpt reponse
 
-text_seo_expertise = Your are an expert in SEO Marketing.
-text_seo_page_title_question = Give me a SEO Title in less 50 characters about this category : {{category_name}}. Remove the prompt response, give only the raw data.
-text_seo_page_tag_question = Give me 7 keywords tag separated by a comma about this category : {{category_name}}. Remove the prompt response, give only the raw data.
-text_seo_page_keywords_question = Give me 7 keywords tag separated by a comma about this category : {{category_name}}. Remove the prompt response, give only the raw data.
-text_seo_page_summary_description_question = Give me in less 50 words a very short description about this category : {{category_name}}. Remove the prompt response, give only the raw data.
+text_seo_expertise = You are an expert in e-commerce and SEO marketing. Your goal is to provide detailed and actionable advice on the natural referencing (SEO) of an online store based on the following elements:
+text_seo_page_title_question = Give me a SEO Title in less 50 characters about this category : {{category_name}}. Remove the prompt response, give only the raw data, no additional text.
+text_seo_page_tag_question = Give me 7 keywords tag separated by a comma about this category : {{category_name}}. Remove the prompt response, give only the raw data, no additional text.
+text_seo_page_keywords_question = Give me 7 keywords tag separated by a comma about this category : {{category_name}}. Remove the prompt response, give only the raw data, no additional text.
+text_seo_page_summary_description_question = Give me in less 50 words a very short description about this category : {{category_name}}. Remove the prompt response, give only the raw data, no additional text.
 text_seo_page_translate_language = Can you translate in
 
 text_categories_description = Without to rewrite the question and the prompt, could you write me a long description on :

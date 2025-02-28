@@ -41,12 +41,6 @@ $(document).ready(function() {
             engine: engine,
             saveGpt: saveGpt,
         };
-
-        $.post(url_chat, data, function(data) {
-            $("#chatGpt-output").html(data);
-            // Show the copy buttons after the chat message is generated
-            $("#copyResultButton, #copyHTMLButton").removeClass("d-none");
-        });
     });
 
 

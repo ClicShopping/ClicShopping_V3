@@ -53,10 +53,9 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
     if (isset($_GET['cID'])) {
       $id = HTML::sanitize($_GET['cID']);
       $categories_name = $CLICSHOPPING_CategoriesAdmin->getCategoryName($id, $CLICSHOPPING_Language->getId());
-
-      $question = $this->app->getDef('text_seo_page_title_question', ['category_name' , $categories_name]);
-      $question_keywords = $this->app->getDef('text_seo_page_keywords_question', ['category_name' , $categories_name]);
-      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['category_name' , $categories_name]);
+      $question = $this->app->getDef('text_seo_page_title_question', ['category_name' => $categories_name]);
+      $question_keywords = $this->app->getDef('text_seo_page_keywords_question', ['category_name'  => $categories_name]);
+      $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['category_name'  => $categories_name]);
       $translate_language = $this->app->getDef('text_seo_page_translate_language');
 
       $url = Gpt::getAjaxUrl(false);

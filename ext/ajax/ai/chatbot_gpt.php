@@ -36,11 +36,11 @@ if (\defined('MODULES_FOOTER_CHATBOT_GPT_STATUS') && MODULES_FOOTER_CHATBOT_GPT_
 
 if (isset($_POST['message'])) {
   $question = HTML::sanitize($_POST['message']);
-  $prompt = "Could you extract all the products name you can identified. 
-    Remove the prompt, remove the product term, characteristics term and all other words.
-    Include only the products name identified and select the best product name you can find inside the result.
-    After that, explode every product name word inside an array. There an array example ['word1', 'word2', 'word3'] about the result expected.
-    Just give the result without anything other information, just the array.
+  $prompt = "You are an expert in marketing and e-commerce. Could you extract all the products name you can identified.  
+    - Include only the products name identified and select the best product name you can find inside the result.
+    - The products name are separated by a comma inside an arrax. There an array example ['word1', 'word2', 'word3'] about the result expected.
+    - Just give the result without anything other information, just the array.
+    - Remove the prompt, remove the product term, characteristics term and all other words.
     The request to analyse : " . $question;
 
   try {
