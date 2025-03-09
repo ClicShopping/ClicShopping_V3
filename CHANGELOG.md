@@ -1,6 +1,7 @@
 version3.456
 Librairies updated
 fix categories gpt call js
+fix error date (customer admin creation)
 add more language information inside the prompt
 Add AI LLM model
 

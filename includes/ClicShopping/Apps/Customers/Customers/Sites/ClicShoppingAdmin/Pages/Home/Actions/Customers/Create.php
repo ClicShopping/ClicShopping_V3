@@ -66,13 +66,15 @@ class Create extends \ClicShopping\OM\PagesActionsAbstract
     if (isset($_POST['customers_languages_id'])) {
       $customers_languages_id = HTML::sanitize($_POST['customers_languages_id']);
     } else {
-      $$customers_languages_id = 1;
+      $customers_languages_id = 1;
     }
 
-    if (isset($_POST['customers_dob'])) {
+    if (isset($_POST['customers_dob']) &&!empty($_POST['customers_dob'])) {
       $customers_dob = HTML::sanitize($_POST['customers_dob']);
+      $dobDateTime = new DateTime($customers_dob, false);
+      $customers_dob= $dobDateTime->getRaw(false);
     } else {
-      $customers_dob = '';
+      $customers_dob = null;
     }
 
     if (isset($_POST['customers_group_id'])) {
@@ -372,7 +374,7 @@ class Create extends \ClicShopping\OM\PagesActionsAbstract
         'customers_gender' => $customers_gender,
         'customers_firstname' => $customers_firstname,
         'customers_lastname' => $customers_lastname,
-        'customers_dob' => $dobDateTime->getRaw(false),
+        'customers_dob' => $customers_dob,
         'customers_email_address' => $customers_email_address,
         'customers_telephone' => $customers_telephone,
         'customers_password' => $customers_password,
