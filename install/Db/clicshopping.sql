@@ -164,7 +164,7 @@ INSERT INTO administrator_menu VALUES(664, 'index.php?A&Tools\\EditLogError&LogE
 INSERT INTO administrator_menu VALUES(665, 'index.php?A&Tools\\SecDirPermissions&SecDirPermissions', 178, 30, 1, 'file_manager.gif', 0, 'app_tools_sec_dir_permissions', 1);
 INSERT INTO administrator_menu VALUES(681, 'index.php?A&Catalog\\Products&Products', 3, 1, 0, 'priceupdate.gif', 0, 'app_catalog_products', 1);
 INSERT INTO administrator_menu VALUES(719, 'index.php?A&Tools\\SecurityCheck&SecurityCheck', 178, 1, 1, 'cybermarketing.gif', 0, 'app_tools_security_check', 1);
-INSERT INTO administrator_menu VALUES(725, 'index.php?A&Tools\\Apps&Apps', 727, 3, 0, 'apps.png', 0, 'app_tools_apps', 1);
+INSERT INTO administrator_menu VALUES(725, 'index.php?A&Tools\\ServiceAPP&ServiceAPP', 727, 3, 0, 'apps.png', 0, 'app_tools_apps', 1);
 INSERT INTO administrator_menu VALUES(727, '', 163, 5, 1, 'modules.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(728, 'index.php?A&Tools\\ModulesHooks&ModulesHooks', 727, 2, 1, 'hooks.png', 0, 'app_tools_modules_hooks', 1);
 INSERT INTO administrator_menu VALUES(730, 'index.php?A&Configuration\\Modules&Modules&set=payment', 186, 0, 1, 'modules_payment.gif', 0, NULL, 1);

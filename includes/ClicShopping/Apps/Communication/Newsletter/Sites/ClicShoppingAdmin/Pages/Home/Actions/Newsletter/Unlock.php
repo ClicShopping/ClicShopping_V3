@@ -14,7 +14,6 @@ namespace ClicShopping\Apps\Communication\Newsletter\Sites\ClicShoppingAdmin\Pag
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
-
 class Unlock extends \ClicShopping\OM\PagesActionsAbstract
 {
   public function execute()
@@ -22,11 +21,10 @@ class Unlock extends \ClicShopping\OM\PagesActionsAbstract
     $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
 
     $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+    $newsletter_id = null;
 
     if (isset($_GET['nID'])) {
       $newsletter_id = HTML::sanitize($_GET['nID']);
-    } else {
-      $newsletter_id = null;
     }
 
     $status = 0;

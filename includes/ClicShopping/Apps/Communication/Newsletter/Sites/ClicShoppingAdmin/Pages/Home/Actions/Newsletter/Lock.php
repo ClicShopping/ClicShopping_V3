@@ -25,8 +25,6 @@ class Lock extends \ClicShopping\OM\PagesActionsAbstract
 
     if (isset($_GET['nID'])) {
       $newsletter_id = HTML::sanitize($_GET['nID']);
-    } else {
-      $newsletter_id = null;
     }
 
     $status = 1;
