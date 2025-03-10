@@ -1999,7 +1999,7 @@ INSERT INTO geo_zones VALUES(14, 'Zone fédérale 7%', 'Zone fédérale 7%', '20
 INSERT INTO geo_zones VALUES(15, 'Taxe hamonisée Québec', 'Taxe hamonisée Québec', '2016-12-03 11:35:05', '2015-02-09 16:59:28');
 
 
-INSERT INTO languages VALUES(1, 'Anglais', 'en', 'gb', 'english', 1, 1, 'en_US.UTF-8;en_US.UTF8;enu_usa');
+INSERT INTO languages VALUES(1, 'English (US)', 'en', 'us', 'english', 1, 1, 'en_US.UTF-8;en_US.UTF8;enu_usa');
 INSERT INTO languages VALUES(2, 'Francais', 'fr', 'fr', 'french', 2, 1,'fr_FR.UTF-8;fr_FR.UTF8;enu_fra');
 
 INSERT INTO manufacturers VALUES(1, 'Duralex', '', '2023-04-30 14:34:30', NULL, 0, 0);
