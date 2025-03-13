@@ -12,6 +12,7 @@ use ClicShopping\OM\DateTime;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\ObjectInfo;
 use ClicShopping\OM\Registry;
+use ClicShopping\OM\CLICSHOPPING;
 
 use ClicShopping\Sites\ClicShoppingAdmin\AddressAdmin;
 
@@ -88,7 +89,7 @@ if ($cInfo->entry_country_id == 0) {
 <script>
   function check_form() {
     var error = 0;
-    var error_message = <?= json_encode($CLICSHOPPING_Customers->getDef('js_error') . "\n\n"); ?>;
+    var error_message = <?= json_encode(CLICSHOPPING::getDef('js_error') . "\n\n"); ?>;
 
     var customers_firstname = document.customers.customers_firstname.value;
     var customers_lastname = document.customers.customers_lastname.value;
@@ -104,39 +105,39 @@ if ($cInfo->entry_country_id == 0) {
     ?>
     if (document.customers.customers_gender[0].checked || document.customers.customers_gender[1].checked) {
     } else {
-      error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_gender') . "\n"); ?>;
+      error_message = error_message + <?= json_encode(CLICSHOPPING::getDef('js_gender') . "\n"); ?>;
       error = 1;
     }
     <?php
     }
     ?>
     if (customers_firstname.length < <?php echo ENTRY_FIRST_NAME_MIN_LENGTH; ?>) {
-      error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_first_name', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]) . "\n"); ?>;
+      error_message = error_message + <?= json_encode(CLICSHOPPING::getDef('js_first_name', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]) . "\n"); ?>;
       error = 1;
     }
 
     if (customers_lastname.length < <?php echo ENTRY_LAST_NAME_MIN_LENGTH; ?>) {
-      error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_last_name', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]) . "\n"); ?>;
+      error_message = error_message + <?= json_encode(CLICSHOPPING::getDef('js_last_name', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]) . "\n"); ?>;
       error = 1;
     }
 
     if (customers_dob.length < <?php echo ENTRY_DOB_MIN_LENGTH; ?>) {
-      error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_dob') . "\n"); ?>;
+      error_message = error_message + <?= json_encode(CLICSHOPPING::getDef('js_dob') . "\n"); ?>;
       error = 1;
     }
 
     if (entry_street_address.length < <?php echo ENTRY_STREET_ADDRESS_MIN_LENGTH; ?>) {
-      error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_address', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]) . "\n"); ?>;
+      error_message = error_message + <?= json_encode(CLICSHOPPING::getDef('js_address', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]) . "\n"); ?>;
       error = 1;
     }
 
     if (entry_postcode.length < <?php echo ENTRY_POSTCODE_MIN_LENGTH; ?>) {
-      error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_post_code', ['min_length' => ENTRY_POSTCODE_MIN_LENGTH]) . "\n"); ?>;
+      error_message = error_message + <?= json_encode(CLICSHOPPING::getDef('js_post_code', ['min_length' => ENTRY_POSTCODE_MIN_LENGTH]) . "\n"); ?>;
       error = 1;
     }
 
     if (entry_city.length < <?php echo ENTRY_CITY_MIN_LENGTH; ?>) {
-      error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_city', ['min_length' => ENTRY_CITY_MIN_LENGTH]) . "\n"); ?>;
+      error_message = error_message + <?= json_encode(CLICSHOPPING::getDef('js_city', ['min_length' => ENTRY_CITY_MIN_LENGTH]) . "\n"); ?>;
       error = 1;
     }
 
@@ -145,28 +146,28 @@ if ($cInfo->entry_country_id == 0) {
     $Qzones = $CLICSHOPPING_Customers->db->get('zones', 'zone_name', ['zone_country_id' => $cInfo->entry_country_id], 'zone_name');
     $check = $Qzones->fetchAll();
 
-    if (\count($check) > 0) {
+      if (\count($check) > 0) {
     ?>
-    if (document.customers.elements['entry_state'].type != "hidden") {
-      if (document.customers.entry_state.value.length < <?php echo ENTRY_STATE_MIN_LENGTH; ?>) {
-        error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_state') . "\n"); ?>;
-        error = 1;
-      }
-    }
+        if (document.customers.elements['entry_state'].type != "hidden") {
+          if (document.customers.entry_state.value.length < <?php echo ENTRY_STATE_MIN_LENGTH; ?>) {
+            error_message = error_message + <?= json_encode(CLICSHOPPING::getDef('js_state') . "\n"); ?>;
+            error = 1;
+          }
+        }
     <?php
-    }
+      }
     }
     ?>
 
     if (document.customers.elements['entry_country_id'].type != "hidden") {
       if (document.customers.entry_country_id.value == 0) {
-        error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_country') . "\n"); ?>;
+        error_message = error_message + <?= json_encode(CLICSHOPPING::getDef('js_country') . "\n"); ?>;
         error = 1;
       }
     }
 
     if (customers_telephone.length < <?php echo ENTRY_TELEPHONE_MIN_LENGTH; ?>) {
-      error_message = error_message + <?= json_encode($CLICSHOPPING_Customers->getDef('js_telephone', ['min_length' => ENTRY_TELEPHONE_MIN_LENGTH]) . "\n"); ?>;
+      error_message = error_message + <?= json_encode(CLICSHOPPING::getDef('js_telephone', ['min_length' => ENTRY_TELEPHONE_MIN_LENGTH]) . "\n"); ?>;
       error = 1;
     }
 
