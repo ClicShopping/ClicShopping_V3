@@ -36,10 +36,10 @@ final class OllamaEmbeddingGenerator implements EmbeddingGeneratorInterface
     {
         $text = str_replace("\n", ' ', DocumentUtils::toUtf8($text));
 
-        $response = $this->client->post('embeddings', [
+        $response = $this->client->post('embed', [
             'body' => json_encode([
                 'model' => $this->model,
-                'prompt' => $text,
+                'input' => $text,
             ], JSON_THROW_ON_ERROR),
             'headers' => [
                 'Content-Type' => 'application/json',
@@ -51,11 +51,11 @@ final class OllamaEmbeddingGenerator implements EmbeddingGeneratorInterface
             throw new Exception("Request to Ollama didn't returned an array: ".$response->getBody()->getContents());
         }
 
-        if (! isset($searchResults['embedding'])) {
+        if (! isset($searchResults['embeddings'])) {
             throw new Exception("Request to Ollama didn't returned expected format: ".$response->getBody()->getContents());
         }
 
-        return $searchResults['embedding'];
+        return $searchResults['embeddings'][0];
     }
 
     public function embedDocument(Document $document): Document

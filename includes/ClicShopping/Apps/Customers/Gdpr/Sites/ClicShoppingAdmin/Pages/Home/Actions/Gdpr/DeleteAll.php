@@ -19,13 +19,14 @@ class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
   public function execute()
   {
     $CLICSHOPPING_Gdpr = Registry::get('Gdpr');
-
+    $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+    
     if (isset($_POST['selected'])) {
       foreach ($_POST['selected'] as $id) {
         GdprAdmin::deleteCustomersData($id);
       }
     }
 
-    $CLICSHOPPING_Gdpr->redirect('Gdpr');
+    $CLICSHOPPING_Gdpr->redirect('Customers', 'page=' . $page);
   }
 }

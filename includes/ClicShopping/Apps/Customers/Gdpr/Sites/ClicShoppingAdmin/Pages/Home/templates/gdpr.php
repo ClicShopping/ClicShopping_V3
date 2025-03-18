@@ -55,7 +55,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
     <?php echo $CLICSHOPPING_Gdpr->getDef('text_info', ['date_info' => CLICSHOPPING_APP_CUSTOMERS_GDPR_GD_DATE]); ?>
   </div>
   <div class="mt-1"></div>
-  <?php echo HTML::form('delete_all', $CLICSHOPPING_Gdpr->link('Manufacturers&DeleteAll&page=' . $page)); ?>
+  <?php echo HTML::form('delete_all', $CLICSHOPPING_Gdpr->link('Gdpr&DeleteAll&page=' . $page)); ?>
 
   <div id="toolbar" class="float-end">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Gdpr->getDef('button_delete'); ?></button>
