@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'eeeb1ee09afeefc47630bbeb2b0c07d55fdaa2a2',
+        'reference' => '45b33145017e40d449af7d8edeca3e29b1d3ab5e',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'eeeb1ee09afeefc47630bbeb2b0c07d55fdaa2a2',
+            'reference' => '45b33145017e40d449af7d8edeca3e29b1d3ab5e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
@@ -65,9 +65,9 @@
             'dev_requirement' => false,
         ),
         'mattketmo/email-checker' => array(
-            'pretty_version' => 'v2.3.0',
-            'version' => '2.3.0.0',
-            'reference' => '062aaa2f8b41f9746a4f91190ac68d35249bab31',
+            'pretty_version' => 'v2.4.0',
+            'version' => '2.4.0.0',
+            'reference' => '230084a96537380704fb379da1cf42e19797a3f0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../mattketmo/email-checker',
             'aliases' => array(),
@@ -241,7 +241,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-latest',
             'version' => 'dev-latest',
-            'reference' => '082338f65948c175f5d9be2f420571b40f254e58',
+            'reference' => '786548323f3a9452244ddf83672e34c260d6b717',
             'type' => 'metapackage',
             'install_path' => null,
             'aliases' => array(

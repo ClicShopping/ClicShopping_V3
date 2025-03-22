@@ -266,8 +266,8 @@ class ST implements \ClicShopping\OM\Modules\PaymentInterface
       $stripe_payment_intent_id = HTML::sanitize($_SESSION['stripe_payment_intent_id']);
 
       try {
-        $this->intent = PaymentIntent::retrieve(retrieve(['id' => $stripe_payment_intent_id]));
-        // $this->event_log($customer_id, 'page retrieve intent', $stripe_payment_intent_id, $this->intent);
+        $this->intent = PaymentIntent::retrieve($stripe_payment_intent_id);
+          // $this->event_log($customer_id, 'page retrieve intent', $stripe_payment_intent_id, $this->intent);
         $this->intent->amount = $total_amount; //$CLICSHOPPING_Order->info['total'],
         $this->intent->currency = $currency;
         $this->intent->metadata = $metadata;
@@ -532,31 +532,31 @@ $(function() {
     card.mount('#card-element');
 
     $('#payment-form').submit(function(event) {
-        var \$form = $(this);
+        var $form = $(this);
 
         // Disable the submit button to prevent repeated clicks
-        \$form.find('button').prop('disabled', true);
+        $form.find('button').prop('disabled', true);
 
-        var selected =  $("input[name='stripe_card']:checked"). val();
+        var selected =  $("input[name='stripe_card']:checked").val();
         var cc_save = $('[name=card-save]').prop('checked');
         try {
             if ((selected != null && selected != '0') || cc_save) {
                 // update intent to use saved card, then process payment if successful
-                updatePaymentIntent(cc_save,selected);
+                updatePaymentIntent(cc_save, selected);
             } else {
                 // using new card details without save
                 processNewCardPayment();
             }
-        } catch ( error ) {
-            \$form.find('.payment-errors').text(error);
+        } catch (error) {
+            $form.find('.payment-errors').text(error);
         }
 
         // Prevent the form from submitting with the default action
         return false;
     });
 
-    if ( $('#stripe_table').length > 0 ) {
-        if ( typeof($('#stripe_table').parent().closest('table').attr('width')) == 'undefined' ) {
+    if ($('#stripe_table').length > 0) {
+        if (typeof($('#stripe_table').parent().closest('table').attr('width')) == 'undefined') {
           $('#stripe_table').parent().closest('table').attr('width', '100%');
         }
 
@@ -567,8 +567,7 @@ $(function() {
         $('#save-card-element').prop('id','card-element');
 
         $('form[name="checkout_confirmation"] input[name="stripe_card"]').change(function() {
-
-            if ( $(this).val() == '0' ) {
+            if ($(this).val() == '0') {
                 stripeShowNewCardFields();
             } else {
                 if ($('#stripe_table_new_card').is(':visible')) {
@@ -576,11 +575,10 @@ $(function() {
                     $('#save-card-element').prop('id','card-element');
                 }
                 $('#stripe_table_new_card').hide();
-
             }
             $('tr[id^="stripe_card_"]').removeClass('moduleRowSelected');
             $('#stripe_card_' + $(this).val()).addClass('moduleRowSelected');
-            });
+        });
 
         $('form[name="checkout_confirmation"] input[name="stripe_card"]:first').prop('checked', true).trigger('change');
 
@@ -591,52 +589,54 @@ $(function() {
         }).click(function(event) {
             var target = $(event.target);
 
-            if ( !target.is('input:radio')) {
+            if (!target.is('input:radio')) {
                 $(this).find('input:radio').each(function() {
-                    if ( $(this).prop('checked') == false ) {
+                    if ($(this).prop('checked') == false) {
                         $(this).prop('checked', true).trigger('change');
                     }
                 });
             }
-            });
+        });
     } else {
-        if ( typeof($('#stripe_table_new_card').parent().closest('table').attr('width')) == 'undefined' ) {
+        if (typeof($('#stripe_table_new_card').parent().closest('table').attr('width')) == 'undefined') {
             $('#stripe_table_new_card').parent().closest('table').attr('width', '100%');
         }
     }
+
     function stripeShowNewCardFields() {
         $('#card-element').attr('id','save-card-element');
         $('#new-card-element').attr('id','card-element');
-
         $('#stripe_table_new_card').show();
     }
-    function updatePaymentIntent(cc_save,token){
+
+    function updatePaymentIntent(cc_save, token) {
         // add card save option to payment intent, so card can be saved in webhook
         // or customer/payment method if using saved card
-        $.getJSON( "{$intent_url}",{"id":$('#intent_id').val(),
-                                    "token":token, 
-                                    "customer_id": $('#customer_id').val(), 
-                                    "cc_save": cc_save},
-        function( data ) {
+        $.getJSON("{$intent_url}", {
+            "id": $('#intent_id').val(),
+            "token": token, 
+            "customer_id": $('#customer_id').val(), 
+            "cc_save": cc_save
+        }, function(data) {
             if (data.status == 'ok') {
-                var selected = $("input[name='stripe_card']:checked"). val();
-
+                var selected = $("input[name='stripe_card']:checked").val();
                 if (selected == null || selected == '0') {
                     processNewCardPayment();
                 } else {
                     processSavedCardPayment(data.payment_method);
                 }
             } else {
-                var \$form = $('#payment-form');
-                \$form.find('button').prop('disabled', false);
+                var $form = $('#payment-form');
+                $form.find('button').prop('disabled', false);
                 $('#card-errors').text(data.error);    
             }
         });
     }
+
     function processNewCardPayment() {
-        stripe.handleCardPayment(
-            $('#secret').val(), card, {
-              payment_method_data: {
+        stripe.confirmCardPayment($('#secret').val(), {
+            payment_method: {
+                card: card,
                 billing_details: {
                     name: $('#cardholder-name').val(),
                     address: {
@@ -648,34 +648,31 @@ $(function() {
                     },
                     email: $('#email_address').val()
                 }
-              }
             }
-        ).then(function(result) { 
+        }).then(function(result) { 
             stripeResponseHandler(result);
         });
     }
+
     function processSavedCardPayment(payment_method_id) {
-        stripe.handleCardPayment(
-            $('#secret').val(), 
-            {
-              payment_method: payment_method_id
-            }
-        ).then(function(result) { 
+        stripe.confirmCardPayment($('#secret').val(), {
+            payment_method: payment_method_id
+        }).then(function(result) { 
             stripeResponseHandler(result);
         });
     }
+
     function stripeResponseHandler(result) {
-        var \$form = $('#payment-form');
+        var $form = $('#payment-form');
         if (result.error) {
             $('#card-errors').text(result.error.message);
-            \$form.find('button').prop('disabled', false);
+            $form.find('button').prop('disabled', false);
         } else {
             $('#card-errors').text('Processing');
-
             // Insert the token into the form so it gets submitted to the server
-            \$form.append($('<input type="hidden" name="stripeIntentId" />').val(result.paymentIntent.id));
+            $form.append($('<input type="hidden" name="stripeIntentId" />').val(result.paymentIntent.id));
             // and submit
-            \$form.get(0).submit();
+            $form.get(0).submit();
         }
     }
 });
