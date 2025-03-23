@@ -52,7 +52,7 @@ class fo_chatbot_gpt
 
     $image = CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'sources/images/icons/chat_support.png';
 
-    $url = GptShop::getAjaxUrl();
+    $url = GptShop::getAjaxUrl(false);
     $promt_text = CLICSHOPPING::getDef('module_footer_chatbot_gpt_prompt_text');
 
     $footer_tag = '<!--  chatbot start -->' . "\n";

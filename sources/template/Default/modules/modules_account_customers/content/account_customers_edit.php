@@ -139,7 +139,7 @@ echo $form;
           <label for="inputEmail"
                  class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_email_address'); ?></label>
           <div class="col-md-8">
-            <?php echo HTML::inputField('email_address', $customers_email_address, 'id="inputEmail" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', 'email') . (!\is_null(CLICSHOPPING::getDef('entry_email_address_text')) ? '&nbsp;<span class="text-warning">' . CLICSHOPPING::getDef('entry_email_address_text') . '</span>' : ''); ?>
+            <?php echo HTML::inputField('email_address',  $customers_email_address, 'id="inputEmail" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', 'email') . (!\is_null(CLICSHOPPING::getDef('entry_email_address_text')) ? '&nbsp;<span class="text-warning">' . CLICSHOPPING::getDef('entry_email_address_text') . '</span>' : ''); ?>
           </div>
         </div>
       </div>

@@ -93,7 +93,8 @@ class NavigationHistory
       }
     }
 
-    $this->path[] = ['application' => CLICSHOPPING::getSiteApplication(),
+    $this->path[] = [
+      'application' => CLICSHOPPING::getSiteApplication(),
       'action' => $action_get,
       'mode' => HTTP::getRequestType(),
       'get' => array_slice($_GET, $action_counter),
@@ -164,7 +165,8 @@ class NavigationHistory
   public function setSnapshot($page = null)
   {
     if (isset($page) && is_array($page)) {
-      $this->snapshot = ['application' => $page['application'],
+      $this->snapshot = [
+        'application' => $page['application'],
         'action' => $page['action'],
         'mode' => $page['mode'],
         'get' => $page['get'],
