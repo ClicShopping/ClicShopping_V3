@@ -1,6 +1,6 @@
 {
-  "version": "3.456",
-  "description": "This release introduce new features. See sql update if you need to update your shop and changelog",
+  "version": "4.00",
+  "description": "This release introduce new features as embeddings and need the maria db server 1..8 at least to be used. See sql update if you need to update your shop and changelog",
   "date": "2025",
-  "directory_version": "3456"
+  "directory_version": "400"
 }

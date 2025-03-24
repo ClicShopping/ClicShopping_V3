@@ -1,3 +1,7 @@
+version4.00
+This is the last version 3, the next will version 4.x will integrate the embeddings and need to be used with mariaDB 11.8 at least.
+
+------------------
 version3.456
 Librairies updated
 fix categories gpt call js
