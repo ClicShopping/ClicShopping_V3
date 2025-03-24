@@ -78,7 +78,7 @@ class ConfirmMembers extends \ClicShopping\OM\PagesActionsAbstract
 
     if (!empty(COUPON_CUSTOMER_B2B)) {
       $email_coupon = $CLICSHOPPING_Members->getDef('email_text_coupon') . ' ' . COUPON_CUSTOMER_B2B;
-      $email_coupon = html_entity_decode($email_coupon);
+      $email_coupon = html_entity_decode(Hash::displayDecryptedDataText($email_coupon));
     } else {
       $email_coupon = '';
     }
@@ -94,7 +94,8 @@ class ConfirmMembers extends \ClicShopping\OM\PagesActionsAbstract
     );
 
     $email_text_subject = html_entity_decode($CLICSHOPPING_Members->getDef('email_text_subject', ['store_name' => STORE_NAME]));
-    $email_text_confirm = html_entity_decode($CLICSHOPPING_Members->getDef('email_text_confirm', ['store_name' => STORE_NAME,
+    $email_text_confirm = html_entity_decode($CLICSHOPPING_Members->getDef('email_text_confirm',
+      ['store_name' => STORE_NAME,
         'store_name_address' => STORE_NAME_ADDRESS,
         'store_ownler_email_address' => STORE_OWNER_EMAIL_ADDRESS
       ]
@@ -109,7 +110,7 @@ class ConfirmMembers extends \ClicShopping\OM\PagesActionsAbstract
     $to_addr = $QcheckCustomer->value('customers_email_address');
     $from_name = STORE_NAME;
     $from_addr = STORE_OWNER_EMAIL_ADDRESS;
-    $to_name = $QcheckCustomer->value('customers_firstname');
+    $to_name = Hash::displayDecryptedDataText($QcheckCustomer->value('customers_firstname'));
     $subject = STORE_NAME;
 
     $CLICSHOPPING_Mail->addHtml($email_text);
@@ -118,7 +119,7 @@ class ConfirmMembers extends \ClicShopping\OM\PagesActionsAbstract
     $to_addr = $QcheckCustomer->value('customers_email_address');
     $from_name = STORE_NAME;
     $from_addr = STORE_OWNER_EMAIL_ADDRESS;
-    $to_name = $QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname');
+    $to_name = Hash::displayDecryptedDataText($QcheckCustomer->value('customers_firstname')) . ' ' . Hash::displayDecryptedDataText($QcheckCustomer->value('customers_lastname'));
     $subject = $email_text_subject;
 
     $CLICSHOPPING_Mail->addHtml('<br />' . nl2br(sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass)));

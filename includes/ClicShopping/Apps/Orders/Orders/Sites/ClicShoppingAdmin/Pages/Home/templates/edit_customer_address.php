@@ -9,6 +9,7 @@
  */
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
@@ -37,15 +38,15 @@ $Qcustomers = $CLICSHOPPING_Orders->db->prepare('select c.customers_id,
 $Qcustomers->bindInt(':customers_id', $customer_id);
 $Qcustomers->execute();
 
-$customers_firstname = $Qcustomers->value('customers_firstname');
-$customers_lastname = $Qcustomers->value('customers_lastname');
-$customers_company = $Qcustomers->value('customers_company');
+$customers_firstname = Hash::displayDecryptedDataText($Qcustomers->value('customers_firstname'));
+$customers_lastname = Hash::displayDecryptedDataText($Qcustomers->value('customers_lastname'));
+$customers_company = Hash::displayDecryptedDataText($Qcustomers->value('customers_company'));
 
 $address_book_id = $Qcustomers->valueInt('address_book_id');
-$entry_street_address = $Qcustomers->value('entry_street_address');
-$entry_suburb = $Qcustomers->value('entry_suburb');
-$entry_postcode = $Qcustomers->value('entry_postcode');
-$entry_city = $Qcustomers->value('entry_city');
+$entry_street_address = Hash::displayDecryptedDataText($Qcustomers->value('entry_street_address'));
+$entry_suburb = Hash::displayDecryptedDataText($Qcustomers->value('entry_suburb'));
+$entry_postcode = Hash::displayDecryptedDataText($Qcustomers->value('entry_postcode'));
+$entry_city = Hash::displayDecryptedDataText($Qcustomers->value('entry_city'));
 $entry_state = $Qcustomers->value('entry_state');
 $entry_country_id = $Qcustomers->valueInt('entry_country_id');
 $entry_zone_id = $Qcustomers->valueInt('entry_zone_id');

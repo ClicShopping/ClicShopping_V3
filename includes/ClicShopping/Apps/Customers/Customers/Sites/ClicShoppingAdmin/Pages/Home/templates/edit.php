@@ -9,6 +9,7 @@
  */
 
 use ClicShopping\OM\DateTime;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\ObjectInfo;
 use ClicShopping\OM\Registry;
@@ -191,7 +192,7 @@ echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 
           <span
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/client_editer.gif', $CLICSHOPPING_Customers->getDef('heading_title'), '40', '40'); ?></span>
           <span
-            class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title_edit') . (int)$_GET['cID'] . '&nbsp;-&nbsp;' . $cInfo->customers_lastname . '&nbsp;' . $cInfo->customers_firstname; ?></span>
+            class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title_edit') . (int)$_GET['cID'] . '&nbsp;-&nbsp;' . Hash::displayDecryptedDataText($cInfo->customers_lastname) . '&nbsp;' . Hash::displayDecryptedDataText($cInfo->customers_firstname); ?></span>
           <span class="col-md-6 text-end">
             <?php
             echo HTML::button($CLICSHOPPING_Customers->getDef('button_export_customer_info'), null, $CLICSHOPPING_Customers->link('Customers&ExportCustomerInfo&customers_id=' . (int)$_GET['cID']), 'info') . ' ';
@@ -280,12 +281,12 @@ echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 
                   <?php
                   if ($error === true) {
                     if ($entry_firstname_error === true) {
-                      echo HTML::inputField('customers_firstname', $cInfo->customers_firstname, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]);
+                      echo HTML::inputField('customers_firstname', Hash::displayDecryptedDataText($cInfo->customers_firstname), 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]);
                     } else {
-                      echo $cInfo->customers_firstname . HTML::hiddenField('customers_firstname');
+                      echo Hash::displayDecryptedDataText($cInfo->customers_firstname) . HTML::hiddenField('customers_firstname');
                     }
                   } else {
-                    echo HTML::inputField('customers_firstname', $cInfo->customers_firstname, 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_first_name') . '"', true);
+                    echo HTML::inputField('customers_firstname', Hash::displayDecryptedDataText($cInfo->customers_firstname), 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_first_name') . '"', true);
                   }
                   ?>
                 </div>
@@ -299,12 +300,12 @@ echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 
                   <?php
                   if ($error === true) {
                     if ($entry_lastname_error === true) {
-                      echo HTML::inputField('customers_lastname', $cInfo->customers_lastname, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]);
+                      echo HTML::inputField('customers_lastname', Hash::displayDecryptedDataText($cInfo->customers_lastname), 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]);
                     } else {
-                      echo $cInfo->customers_lastname . HTML::hiddenField('customers_lastname');
+                      echo Hash::displayDecryptedDataText($cInfo->customers_lastname) . HTML::hiddenField('customers_lastname');
                     }
                   } else {
-                    echo HTML::inputField('customers_lastname', $cInfo->customers_lastname, 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_last_name') . '"', true);
+                    echo HTML::inputField('customers_lastname', Hash::displayDecryptedDataText($cInfo->customers_lastname), 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_last_name') . '"', true);
                   }
                   ?>
                 </div>
@@ -374,12 +375,12 @@ echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 
                   <?php
                   if ($error === true) {
                     if ($entry_telephone_error === true) {
-                      echo HTML::inputField('customers_telephone', $cInfo->customers_telephone, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_telephone_number_error', ['min_length' => ENTRY_TELEPHONE_MIN_LENGTH]);
+                      echo HTML::inputField('customers_telephone', Hash::displayDecryptedDataText($cInfo->customers_telephone), 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_telephone_number_error', ['min_length' => ENTRY_TELEPHONE_MIN_LENGTH]);
                     } else {
-                      echo $cInfo->customers_telephone . HTML::hiddenField('customers_telephone');
+                      echo Hash::displayDecryptedDataText($cInfo->customers_telephone) . HTML::hiddenField('customers_telephone');
                     }
                   } else {
-                    echo HTML::inputField('customers_telephone', $cInfo->customers_telephone, 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_telephone_number') . '"', true);
+                    echo HTML::inputField('customers_telephone', Hash::displayDecryptedDataText($cInfo->customers_telephone), 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_telephone_number') . '"', true);
                   }
                   ?>
                 </div>
@@ -393,9 +394,9 @@ echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 
                 <div class="col-md-5">
                   <?php
                   if ($processed === true) {
-                    echo $cInfo->customers_cellular_phone . HTML::hiddenField('customers_cellular_phone');
+                    echo Hash::displayDecryptedDataText($cInfo->customers_cellular_phone) . HTML::hiddenField('customers_cellular_phone');
                   } else {
-                    echo HTML::inputField('customers_cellular_phone', $cInfo->customers_cellular_phone, 'maxlength="32"', true);
+                    echo HTML::inputField('customers_cellular_phone', Hash::displayDecryptedDataText($cInfo->customers_cellular_phone), 'maxlength="32"', true);
                   }
                   ?>
                 </div>
@@ -417,12 +418,12 @@ echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 
                   <?php
                   if ($error === true) {
                     if ($entry_street_address_error === true) {
-                      echo HTML::inputField('entry_street_address', $cInfo->entry_street_address, 'maxlength="64" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_street_address_error', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]);
+                      echo HTML::inputField('entry_street_address', Hash::displayDecryptedDataText($cInfo->entry_street_address), 'maxlength="64" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_street_address_error', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]);
                     } else {
-                      echo $cInfo->entry_street_address . HTML::hiddenField('entry_street_address');
+                      echo Hash::displayDecryptedDataText($cInfo->entry_street_address) . HTML::hiddenField('entry_street_address');
                     }
                   } else {
-                    echo HTML::inputField('entry_street_address', $cInfo->entry_street_address, 'maxlength="64" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_street_address') . '"');
+                    echo HTML::inputField('entry_street_address', Hash::displayDecryptedDataText($cInfo->entry_street_address), 'maxlength="64" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_street_address') . '"');
                   }
                   ?>
                 </div>
@@ -440,12 +441,12 @@ echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 
                     <?php
                     if ($error === true) {
                       if ($entry_suburb_error === true) {
-                        echo HTML::inputField('suburb', $cInfo->entry_suburb, 'maxlength="32"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_suburb_error');
+                        echo HTML::inputField('suburb', Hash::displayDecryptedDataText($cInfo->entry_suburb), 'maxlength="32"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_suburb_error');
                       } else {
-                        echo $cInfo->entry_suburb . HTML::hiddenField('entry_suburb');
+                        echo Hash::displayDecryptedDataText($cInfo->entry_suburb) . HTML::hiddenField('entry_suburb');
                       }
                     } else {
-                      echo HTML::inputField('entry_suburb', $cInfo->entry_suburb, 'maxlength="32"');
+                      echo HTML::inputField('entry_suburb', Hash::displayDecryptedDataText($cInfo->entry_suburb), 'maxlength="32"');
                     }
                     ?>
                   </div>
@@ -465,12 +466,12 @@ echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 
                   <?php
                   if ($error === true) {
                     if ($entry_post_code_error === true) {
-                      echo HTML::inputField('entry_postcode', $cInfo->entry_postcode, 'maxlength="8" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_post_code_error', ['min_length' => ENTRY_POSTCODE_MIN_LENGTH]);
+                      echo HTML::inputField('entry_postcode', Hash::displayDecryptedDataText($cInfo->entry_postcode), 'maxlength="8" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_post_code_error', ['min_length' => ENTRY_POSTCODE_MIN_LENGTH]);
                     } else {
-                      echo $cInfo->entry_postcode . HTML::hiddenField('entry_postcode');
+                      echo Hash::displayDecryptedDataText($cInfo->entry_postcode) . HTML::hiddenField('entry_postcode');
                     }
                   } else {
-                    echo HTML::inputField('entry_postcode', $cInfo->entry_postcode, 'maxlength="8" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_post_code') . '"');
+                    echo HTML::inputField('entry_postcode', Hash::displayDecryptedDataText($cInfo->entry_postcode), 'maxlength="8" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_post_code') . '"');
                   }
                   ?>
                 </div>
@@ -484,12 +485,12 @@ echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 
                   <?php
                   if ($error === true) {
                     if ($entry_city_error === true) {
-                      echo HTML::inputField('entry_city', $cInfo->entry_city, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_city_error', ['min_length' => ENTRY_CITY_MIN_LENGTH]);
+                      echo HTML::inputField('entry_city', Hash::displayDecryptedDataText($cInfo->entry_city), 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_city_error', ['min_length' => ENTRY_CITY_MIN_LENGTH]);
                     } else {
-                      echo $cInfo->entry_city . HTML::hiddenField('entry_city');
+                      echo Hash::displayDecryptedDataText($cInfo->entry_city) . HTML::hiddenField('entry_city');
                     }
                   } else {
-                    echo HTML::inputField('entry_city', $cInfo->entry_city, 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_city') . '"');
+                    echo HTML::inputField('entry_city', Hash::displayDecryptedDataText($cInfo->entry_city), 'maxlength="32" required aria-required="true" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_city') . '"');
                   }
                   ?>
                 </div>
@@ -682,12 +683,12 @@ echo HTML::hiddenField('customers_modify_company');
                       <?php
                       if ($error === true) {
                         if ($entry_company_error === true) {
-                          echo HTML::inputField('customers_company', $cInfo->customers_company, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_company_error', ['min_length' => ENTRY_COMPANY_MIN_LENGTH]);
+                          echo HTML::inputField('customers_company', Hash::displayDecryptedDataText($cInfo->customers_company), 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_company_error', ['min_length' => ENTRY_COMPANY_MIN_LENGTH]);
                         } else {
-                          echo $cInfo->customers_company . HTML::hiddenField('customers_company');
+                          echo Hash::displayDecryptedDataText($cInfo->customers_company) . HTML::hiddenField('customers_company');
                         }
                       } else {
-                        echo HTML::inputField('customers_company', $cInfo->customers_company, 'maxlength="32"') . $CLICSHOPPING_Customers->getDef('text_field_required');
+                        echo HTML::inputField('customers_company', Hash::displayDecryptedDataText($cInfo->customers_company), 'maxlength="32"') . $CLICSHOPPING_Customers->getDef('text_field_required');
                       }
                       ?>
                     </div>
@@ -901,7 +902,7 @@ echo HTML::hiddenField('customers_modify_company');
                     <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_first_name'); ?>"
                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_first_name'); ?></label>
                     <div class="col-md-5">
-                      <?php echo $QaddressesBook->value('firstname'); ?>
+                      <?php echo Hash::displayDecryptedDataText($QaddressesBook->value('firstname')); ?>
                     </div>
                   </div>
                 </div>
@@ -910,7 +911,7 @@ echo HTML::hiddenField('customers_modify_company');
                     <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_lastname'); ?>"
                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_last_name'); ?></label>
                     <div class="col-md-5">
-                      <?php echo $QaddressesBook->value('lastname'); ?>
+                      <?php echo Hash::displayDecryptedDataText($QaddressesBook->value('lastname')); ?>
                     </div>
                   </div>
                 </div>
@@ -922,7 +923,7 @@ echo HTML::hiddenField('customers_modify_company');
                     <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_telephone'); ?>"
                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_telephone'); ?></label>
                     <div class="col-md-5">
-                      <?php echo $QaddressesBook->value('telephone'); ?>
+                      <?php echo Hash::displayDecryptedDataText($QaddressesBook->value('telephone')); ?>
                     </div>
                   </div>
                 </div>
@@ -934,7 +935,7 @@ echo HTML::hiddenField('customers_modify_company');
                     <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_street_address'); ?>"
                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_street_address'); ?></label>
                     <div class="col-md-5">
-                      <?php echo $QaddressesBook->value('street_address'); ?>
+                      <?php echo Hash::displayDecryptedDataText($QaddressesBook->value('street_address')); ?>
                     </div>
                   </div>
                 </div>
@@ -942,7 +943,7 @@ echo HTML::hiddenField('customers_modify_company');
                   <div class="form-group row">
                     <div class="col-md-12">
                           <span><a
-                              href="https://maps.google.com/maps?q=<?php echo $QaddressesBook->value('street_address') . ',' . $QaddressesBook->value('suburb') . ',' . $QaddressesBook->value('postcode') . ',' . $QaddressesBook->value('city'); ?>&hl=fr&um=1&ie=UTF-8&sa=N&tab=wl"
+                              href="https://maps.google.com/maps?q=<?php echo Hash::displayDecryptedDataText($QaddressesBook->value('street_address')) . ',' . Hash::displayDecryptedDataText($QaddressesBook->value('suburb')) . ',' . Hash::displayDecryptedDataText($QaddressesBook->value('postcode')) . ',' . Hash::displayDecryptedDataText($QaddressesBook->value('city')); ?>&hl=fr&um=1&ie=UTF-8&sa=N&tab=wl"
                               target="_blank"
                               rel="noreferrer"><?php echo $CLICSHOPPING_Customers->getDef('entry_customer_location') . ' <h4><i class="bi bi-question-circle" title="' . $CLICSHOPPING_Customers->getDef('entry_customer_location') . '"></i></h4></a></span>'; ?>
                     </div>
@@ -956,7 +957,7 @@ echo HTML::hiddenField('customers_modify_company');
                     <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_suburb'); ?>"
                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_suburb'); ?></label>
                     <div class="col-md-5">
-                      <?php echo $QaddressesBook->value('suburb'); ?>
+                      <?php echo Hash::displayDecryptedDataText($QaddressesBook->value('suburb')); ?>
                     </div>
                   </div>
                 </div>
@@ -968,7 +969,7 @@ echo HTML::hiddenField('customers_modify_company');
                     <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_post_code'); ?>"
                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_post_code'); ?></label>
                     <div class="col-md-5">
-                      <?php echo $QaddressesBook->value('postcode'); ?>
+                      <?php echo Hash::displayDecryptedDataText($QaddressesBook->value('postcode')); ?>
                     </div>
                   </div>
                 </div>
@@ -977,7 +978,7 @@ echo HTML::hiddenField('customers_modify_company');
                     <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_city'); ?>"
                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_city'); ?></label>
                     <div class="col-md-5">
-                      <?php echo $QaddressesBook->value('city'); ?>
+                      <?php echo Hash::displayDecryptedDataText($QaddressesBook->value('city')); ?>
                     </div>
                   </div>
                 </div>

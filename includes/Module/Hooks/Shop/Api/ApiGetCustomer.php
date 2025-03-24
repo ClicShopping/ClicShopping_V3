@@ -10,6 +10,7 @@
 
 namespace ClicShopping\OM\Module\Hooks\Shop\Api;
 
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
@@ -57,8 +58,8 @@ class ApiGetCustomer
         'customers_id' => $value['customers_id'],
         'customers_company' => $value['customers_company'],
         'customers_gender' => $value['customers_gender'],
-        'customers_firstname' => $value['customers_firstname'],
-        'customers_lastname' => $value['customers_lastname'],
+        'customers_firstname' => Hash::displayDecryptedDataText($value['customers_firstname']),
+        'customers_lastname' => Hash::displayDecryptedDataText($value['customers_lastname']),
         'customers_dob' => $value['customers_dob'],
         'customers_email_address' => $value['customers_email_address'],
         'customers_default_address_id' => $value['customers_default_address_id'],

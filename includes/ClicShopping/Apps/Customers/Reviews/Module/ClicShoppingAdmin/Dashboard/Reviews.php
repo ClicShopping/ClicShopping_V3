@@ -11,6 +11,7 @@
 namespace ClicShopping\Apps\Customers\Reviews\Module\ClicShoppingAdmin\Dashboard;
 
 use ClicShopping\OM\DateTime;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
@@ -122,7 +123,7 @@ class Reviews extends \ClicShopping\OM\Modules\AdminDashboardAbstract
       $content .= '<tr class="dataTableRow backgroundBlank">' .
         '    <td class="dataTableContent">' . HTML::outputProtected($Qreviews->value('products_name')) . '</td>' .
         '    <td class="dataTableContent">' . DateTime::toShort($Qreviews->value('date_added')) . '</td>' .
-        '    <td class="dataTableContent">' . HTML::outputProtected($Qreviews->value('customers_name')) . '</td>' .
+        '    <td class="dataTableContent">' . HTML::outputProtected(Hash::displayDecryptedDataText($Qreviews->value('customers_name'))) . '</td>' .
         '    <td class="dataTableContent"><i>' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i></td>' .
         '    <td class="dataTableContent text-center">' . $status_icon . '</td>' .
         '   <td class="dataTableContent text-end">' . HTML::link($this->app->link('&Edit&page=' . (int)$_GET['page'] . '&rID=' . $Qreviews->valueInt('reviews_id')), '<h4><i class="bi bi-pencil" title="' . $this->app->getDef('icon_edit') . '"></i></h4>') . '</td>' .

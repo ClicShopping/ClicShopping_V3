@@ -51,23 +51,23 @@ class ac_account_product_return
 
       $content_width = (int)MODULE_ACCOUNT_PRODUCT_RETURN_CONTENT_WIDTH;
 // main customer
-      $customers_name = $info_customer['customers_name'];
-      $customers_street_address = $info_customer['customers_street_address'];
-      $customers_suburb = $info_customer['customers_suburb'];
-      $customers_city = $info_customer['customers_city'];
-      $customers_postcode = $info_customer['customers_postcode'];
+      $customers_name = Hash::displayDecryptedDataText($info_customer['customers_name']);
+      $customers_street_address = Hash::displayDecryptedDataText($info_customer['customers_street_address']);
+      $customers_suburb = Hash::displayDecryptedDataText($info_customer['customers_suburb']);
+      $customers_city = Hash::displayDecryptedDataText($info_customer['customers_city']);
+      $customers_postcode = Hash::displayDecryptedDataText($info_customer['customers_postcode']);
       $customers_state = $info_customer['customers_state'];
-      $customers_telephone = $info_customer['customers_telephone'];
+      $customers_telephone = Hash::displayDecryptedDataText($info_customer['customers_telephone']);
       $customers_country = $info_customer['customers_country'];
       $date_purchased = $info_customer['date_purchased'];
       $customers_email_address = $info_customer['customers_email_address'];
 
 // delivery address
-      $delivery_name = $info_customer['delivery_name'];
-      $delivery_street_address = $info_customer['delivery_street_address'];
-      $delivery_suburb = $info_customer['delivery_suburb'];
-      $delivery_city = $info_customer['delivery_city'];
-      $delivery_postcode = $info_customer['delivery_postcode'];
+      $delivery_name = Hash::displayDecryptedDataText($info_customer['delivery_name']);
+      $delivery_street_address = Hash::displayDecryptedDataText($info_customer['delivery_street_address']);
+      $delivery_suburb = Hash::displayDecryptedDataText($info_customer['delivery_suburb']);
+      $delivery_city = Hash::displayDecryptedDataText($info_customer['delivery_city']);
+      $delivery_postcode = Hash::displayDecryptedDataText($info_customer['delivery_postcode']);
       $delivery_state = $info_customer['delivery_state'];
       $delivery_country = $info_customer['delivery_country'];
 

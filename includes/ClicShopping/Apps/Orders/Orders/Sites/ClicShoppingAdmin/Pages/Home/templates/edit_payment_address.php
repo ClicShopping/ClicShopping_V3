@@ -9,6 +9,7 @@
  */
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
@@ -36,12 +37,12 @@ $Qcustomers->bindInt(':order_id', $order_id);
 
 $Qcustomers->execute();
 
-$billing_name = $Qcustomers->value('billing_name');
-$customers_company = $Qcustomers->value('billing_company');
-$entry_street_address = $Qcustomers->value('billing_street_address');
-$entry_suburb = $Qcustomers->value('billing_suburb');
-$entry_postcode = $Qcustomers->value('billing_postcode');
-$entry_city = $Qcustomers->value('billing_city');
+$billing_name = Hash::displayDecryptedDataText($Qcustomers->value('billing_name'));
+$customers_company = Hash::displayDecryptedDataText($Qcustomers->value('billing_company'));
+$entry_street_address = Hash::displayDecryptedDataText($Qcustomers->value('billing_street_address'));
+$entry_suburb = Hash::displayDecryptedDataText($Qcustomers->value('billing_suburb'));
+$entry_postcode = Hash::displayDecryptedDataText($Qcustomers->value('billing_postcode'));
+$entry_city = Hash::displayDecryptedDataText($Qcustomers->value('billing_city'));
 $entry_state = $Qcustomers->value('billing_state');
 $entry_country = $Qcustomers->value('billing_country');
 

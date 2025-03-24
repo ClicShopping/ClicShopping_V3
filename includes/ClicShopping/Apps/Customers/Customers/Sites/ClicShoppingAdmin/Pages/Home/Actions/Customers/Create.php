@@ -12,6 +12,7 @@ namespace ClicShopping\Apps\Customers\Customers\Sites\ClicShoppingAdmin\Pages\Ho
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\DateTime;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Is;
@@ -82,8 +83,6 @@ class Create extends \ClicShopping\OM\PagesActionsAbstract
     } else {
       $customers_group_id = 0;
     }
-
-    $dobDateTime = new DateTime($customers_dob, false);
 
 // Informations sur la societe
     if (isset($_POST['customers_company'])) {
@@ -366,17 +365,18 @@ class Create extends \ClicShopping\OM\PagesActionsAbstract
         $customers_add_address = 0;
       }
 
-      $sql_data_array = ['customers_company' => $customers_company,
+      $sql_data_array = [
+        'customers_company' => Hash::encryptDatatext($customers_company),
         'customers_siret' => $customers_siret,
         'customers_ape' => $customers_ape,
         'customers_tva_intracom' => $customers_tva_intracom,
         'customers_tva_intracom_code_iso' => $customers_tva_intracom_code_iso,
         'customers_gender' => $customers_gender,
-        'customers_firstname' => $customers_firstname,
-        'customers_lastname' => $customers_lastname,
+        'customers_firstname' => Hash::encryptDatatext($customers_firstname),
+        'customers_lastname' => Hash::encryptDatatext($customers_lastname),
         'customers_dob' => $customers_dob,
         'customers_email_address' => $customers_email_address,
-        'customers_telephone' => $customers_telephone,
+        'customers_telephone' => Hash::encryptDatatext($customers_telephone),
         'customers_password' => $customers_password,
         'customers_newsletter' => 1,
         'languages_id' => (int)$customers_languages_id,
@@ -385,7 +385,7 @@ class Create extends \ClicShopping\OM\PagesActionsAbstract
         'customers_modify_company' => $customers_modify_company,
         'customers_modify_address_default' => $customers_modify_address_default,
         'customers_add_address' => $customers_add_address,
-        'customers_cellular_phone' => $customers_cellular_phone,
+        'customers_cellular_phone' => Hash::encryptDatatext($customers_cellular_phone),
       ];
 
       $CLICSHOPPING_Customers->db->save('customers', $sql_data_array);
@@ -397,15 +397,16 @@ class Create extends \ClicShopping\OM\PagesActionsAbstract
         $customers_state = '';
       }
 
-      $sql_data_array = ['customers_id' => (int)$customer_id,
+      $sql_data_array = [
+        'customers_id' => (int)$customer_id,
         'entry_gender' => $customers_gender,
-        'entry_company' => $customers_company,
-        'entry_firstname' => $customers_firstname,
-        'entry_lastname' => $customers_lastname,
-        'entry_street_address' => $customers_street_address,
-        'entry_suburb' => $customers_suburb,
-        'entry_postcode' => $customers_postcode,
-        'entry_city' => $customers_city,
+        'entry_company' => Hash::encryptDatatext($customers_company),
+        'entry_firstname' => Hash::encryptDatatext($customers_firstname),
+        'entry_lastname' => Hash::encryptDatatext($customers_lastname),
+        'entry_street_address' => Hash::encryptDatatext($customers_street_address),
+        'entry_suburb' => Hash::encryptDatatext($customers_suburb),
+        'entry_postcode' => Hash::encryptDatatext($customers_postcode),
+        'entry_city' => Hash::encryptDatatext($customers_city),
         'entry_country_id' => (int)$customers_country_id,
         'entry_siret' => $customers_siret,
         'entry_ape' => $customers_ape,

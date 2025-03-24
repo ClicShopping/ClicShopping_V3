@@ -149,14 +149,14 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 
       if ($error === false) {
         $sql_data_array = [
-          'customers_firstname' => $firstname,
-          'customers_lastname' => $lastname,
+          'customers_firstname' => Hash::encryptDatatext($firstname),
+          'customers_lastname' => Hash::encryptDatatext($lastname),
           'customers_email_address' => $email_address,
           'customers_newsletter' => (int)$newsletter,
           'languages_id' => (int)$CLICSHOPPING_Language->getId(),
           'customers_password' => Hash::encrypt($password),
-          'customers_telephone' => $telephone,
-          'customers_cellular_phone' => $cellular_phone,
+          'customers_telephone' => Hash::encryptDatatext($telephone),
+          'customers_cellular_phone' => Hash::encryptDatatext($cellular_phone),
           'member_level' => 1,
           'client_computer_ip' => HTTP::getIPAddress(),
           'provider_name_client' => HTTP::getProviderNameCustomer(),
@@ -171,9 +171,9 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 // save element in address book
         $sql_data_array_book = [
           'customers_id' => (int)$customer_id,
-          'entry_firstname' => $firstname,
-          'entry_lastname' => $lastname,
-          'entry_telephone' => $telephone
+          'entry_firstname' => Hash::encryptDatatext($firstname),
+          'entry_lastname' => Hash::encryptDatatext($lastname),
+          'entry_telephone' => Hash::encryptDatatext($telephone)
         ];
 
         $CLICSHOPPING_Db->save('address_book', $sql_data_array_book);

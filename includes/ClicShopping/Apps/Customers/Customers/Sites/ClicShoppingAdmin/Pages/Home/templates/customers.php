@@ -10,6 +10,7 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\DateTime;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\ObjectInfo;
 use ClicShopping\OM\Registry;
@@ -278,13 +279,12 @@ if (isset($_GET['search'])) {
         <td><?php echo $Qcustomers->valueInt('customers_id'); ?></td>
 
         <th scope="row"><?php echo $Qcustomers->valueInt('customers_id'); ?></th>
-        <td><?php echo $Qcustomers->value('customers_lastname') . ' ' . $Qcustomers->value('customers_firstname'); ?></td>
-        <td><?php echo $Qcustomers->value('entry_company'); ?></td>
+        <td><?php echo Hash::displayDecryptedDataText($Qcustomers->value('customers_lastname')) . ' ' . Hash::displayDecryptedDataText($Qcustomers->value('customers_firstname')); ?></td>
+        <td><?php echo Hash::displayDecryptedDataText($Qcustomers->value('entry_company')); ?></td>
         <?php
-// Permettre le changement de groupe en mode B2B
         if ((MODE_B2B_B2C == 'True')) {
           ?>
-          <td><?php echo $Qcustomers->value('customers_company'); ?></td>
+          <td><?php echo Hash::displayDecryptedDataText($Qcustomers->value('customers_company')); ?></td>
           <td><?php echo $cust_ret['customers_group_name']; ?></td>
           <td class="text-center">
             <?php

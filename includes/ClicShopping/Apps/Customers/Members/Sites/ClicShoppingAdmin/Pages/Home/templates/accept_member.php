@@ -9,6 +9,7 @@
  */
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\ObjectInfo;
 use ClicShopping\OM\Registry;
@@ -63,7 +64,7 @@ $cInfo = new ObjectInfo($cInfo_array);
   </div>
 
   <div class="col-md-12 mainTitle">
-    <strong><?php echo $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname; ?></strong></div>
+    <strong><?php echo Hash::displayDecryptedDataText($cInfo->customers_firstname) . ' ' . Hash::displayDecryptedDataText($cInfo->customers_lastname); ?></strong></div>
   <?php echo HTML::form('customers', $CLICSHOPPING_Members->link('Members&ConfirmMembers&cID=' . $cInfo->customers_id)); ?>
   <div class="adminformTitle">
     <div class="row">

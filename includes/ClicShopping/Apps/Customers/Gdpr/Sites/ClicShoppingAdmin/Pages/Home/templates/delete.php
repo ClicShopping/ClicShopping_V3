@@ -9,6 +9,7 @@
  */
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\ObjectInfo;
 use ClicShopping\OM\Registry;
@@ -67,7 +68,7 @@ $cInfo = new ObjectInfo($cInfo_array);
       <div class="col-md-12"><?php echo $CLICSHOPPING_Gdpr->getDef('text_delete_intro'); ?><br/><br/></div>
       <div class="mt-1"></div>
       <div
-        class="col-md-12"><?php echo '<strong>' . $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname . '</strong>'; ?>
+        class="col-md-12"><?php echo '<strong>' . Hash::displayDecryptedDataText($cInfo->customers_firstname) . ' ' . Hash::displayDecryptedDataText($cInfo->customers_lastname) . '</strong>'; ?>
         <br/><br/></div>
       <div class="mt-1"></div>
       <div

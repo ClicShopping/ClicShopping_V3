@@ -10,6 +10,7 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\DateTime;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
@@ -200,7 +201,7 @@ $languages = $CLICSHOPPING_Language->getLanguages();
           <td></td>
           <td><?php echo $Qreturn->value('return_ref'); ?></td>
           <td><?php echo $Qreturn->valueInt('order_id'); ?></td>
-          <td><?php echo $Qreturn->value('customer_firstname') . ' ' . $Qreturn->value('customer_lastname'); ?></td>
+          <td><?php echo Hash::displayDecryptedDataText($Qreturn->value('customer_firstname')) . ' ' . Hash::displayDecryptedDataText($Qreturn->value('customer_lastname')); ?></td>
           <td><?php echo $Qreturn->value('product_model'); ?></td>
           <td><?php echo $Qreturn->value('product_name'); ?></td>
           <td><?php echo $QstatusName->value('name'); ?></td>

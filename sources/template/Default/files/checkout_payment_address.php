@@ -9,6 +9,7 @@
  */
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\AddressBook;
@@ -79,7 +80,7 @@ echo HTML::form('checkout_address', CLICSHOPPING::link(null, 'Checkout&PaymentAd
                 <div
                   class="card panel-<?php echo ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->hasDefaultAddress()) ? 'primary' : 'default'; ?>">
                   <div class="card-header">
-                    <strong><?php echo HTML::outputProtected($Qaddresses->value('firstname') . ' ' . $Qaddresses->value('lastname')); ?></strong>
+                    <strong><?php echo HTML::outputProtected(Hash::displayDecryptedDataText($Qaddresses->value('firstname')) . ' ' . Hash::displayDecryptedDataText($Qaddresses->value('lastname'))); ?></strong>
                   </div>
                   <div class="card-block">
                     <div class="mt-1"></div>

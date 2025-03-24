@@ -221,3 +221,4 @@ define('TEXT_SMTP_USERNAME', 'Nom Utilisateur (e-mail)');
 define('TEXT_SMTP_USERNAME_INFO', 'Veuillez indiquer votre nom d\'utilisateur concernant votre email. Celui-ci n\'est pas forcément en relation avec votre compte d\'administration');
 define('TEXT_SMTP_PASSWORD', 'Mot de passe');
 define('TEXT_SMTP_PASSWORD_INFO', 'Veuillez indiquer votre mot de passe pour accéder à votre email');
+define('TEXT_ALERT_DATABASE', 'Pour continuer, vous devez avoir <strong>la version 11.8.1 de Maria Db sur votre serveur</strong> sinon veuillez installer la version de ClicShopping 3.456');

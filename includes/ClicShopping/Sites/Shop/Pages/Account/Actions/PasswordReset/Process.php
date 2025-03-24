@@ -81,7 +81,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
         $to_addr = $email_address;
         $from_name = STORE_NAME;
         $from_addr = STORE_OWNER_EMAIL_ADDRESS;
-        $to_name = $Qcheck->value('customers_firstname') . ' ' . $Qcheck->value('customers_lastname');
+        $to_name =  Hash::displayDecryptedDataText($Qcheck->value('customers_firstname')) . ' ' .  Hash::displayDecryptedDataText($Qcheck->value('customers_lastname'));
         $subject = CLICSHOPPING::getDef('text_email_subject', ['store_name' => STORE_NAME]);
 
         $CLICSHOPPING_Mail->addHtml(CLICSHOPPING::getDef('text_email_body', ['store_name' => STORE_NAME]) . $email_text_body);

@@ -14,6 +14,7 @@ use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\DateTime;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Is;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\Pages\Account\Classes\Edit;
 use function strlen;
@@ -42,7 +43,9 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
         $dob = null;
       }
 
-      if (isset($_POST['email_address'])) $email_address = HTML::sanitize($_POST['email_address']);
+      if (isset($_POST['email_address'])) {
+        $email_address = HTML::sanitize($_POST['email_address']);
+      }
 
       if (isset($_POST['customers_telephone'])) {
         $telephone = HTML::sanitize($_POST['customers_telephone']);
@@ -195,10 +198,10 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 
       if ($error === false) {
         $sql_data_array = [
-          'customers_firstname' => $firstname,
-          'customers_lastname' => $lastname,
+          'customers_firstname' =>  Hash::encryptDatatext($firstname),
+          'customers_lastname' =>  Hash::encryptDatatext($lastname),
           'customers_email_address' => $email_address,
-          'customers_telephone' => $telephone
+          'customers_telephone' =>  Hash::encryptDatatext($telephone)
         ];
 
         if (((ACCOUNT_CELLULAR_PHONE == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_CELLULAR_PHONE_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
@@ -215,7 +218,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 
 // Clients en mode B2B : Informations societe
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-          if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['customers_company'] = $company;
+          if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['customers_company'] = Hash::encryptDatatext($company);
           if (ACCOUNT_SIRET_PRO == 'true') $sql_data_array['customers_siret'] = $siret;
           if (ACCOUNT_APE_PRO == 'true') $sql_data_array['customers_ape'] = $ape;
           if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom'] = $tva_intracom;
@@ -231,8 +234,8 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
         );
 
         $sql_data_array = [
-          'customers_firstname' => $firstname,
-          'customers_lastname' => $lastname
+          'customers_firstname' => Hash::encryptDatatext($firstname),
+          'customers_lastname' => Hash::encryptDatatext($lastname)
         ];
 
         $CLICSHOPPING_Db->save('customers', $sql_data_array, ['customers_id' => (int)$CLICSHOPPING_Customer->getID()],
@@ -241,7 +244,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 
 // Clients en mode B2B : Modifier le nom de la societe sur toutes les adresses ce trouvant dans le carnet d'adresse
         if (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_COMPANY_PRO == 'true')) {
-          $sql_data_array = ['customers_company' => $company];
+          $sql_data_array = ['customers_company' => Hash::encryptDatatext($company)];
           $insert_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID()];
 
           $CLICSHOPPING_Db->save('customers', $sql_data_array, $insert_array);

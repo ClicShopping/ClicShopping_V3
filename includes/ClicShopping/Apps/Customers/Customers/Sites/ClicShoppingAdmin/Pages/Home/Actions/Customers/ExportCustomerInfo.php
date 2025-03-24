@@ -10,6 +10,7 @@
 
 namespace ClicShopping\Apps\Customers\Customers\Sites\ClicShoppingAdmin\Pages\Home\Actions\Customers;
 
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
@@ -36,24 +37,24 @@ class ExportCustomerInfo extends \ClicShopping\OM\PagesActionsAbstract
     $head = '"customers_id", "customers_company", "customers_siret", "customers_ape", "customers_tva_intracom", "customers_tva_intracom_code_iso", "customers_gender", "customers_firstname", "customers_lastname", "customers_dob", "customers_email_address", "customers_telephone", "customers_newsletter",  "entry_company", "entry_street_address", "entry_suburb", "entry_postcode", "entry_city", "entry_state", "entry_country_id", "entry_zone_id", "customers_default_address_id"' . "\r\n";
 
     $output = '"' . $customers['customers_id'] . '",';
-    $output .= '"' . $customers['customers_company'] . '",';
+    $output .= '"' . Hash::displayDecryptedDataText($customers['customers_company']) . '",';
     $output .= '"' . $customers['customers_siret'] . '",';
     $output .= '"' . $customers['customers_ape'] . '",';
     $output .= '"' . $customers['customers_tva_intracom'] . '",';
     $output .= '"' . $customers['customers_tva_intracom_code_iso'] . '",';
     $output .= '"' . $customers['customers_gender'] . '",';
-    $output .= '"' . $customers['customers_firstname'] . '",';
-    $output .= '"' . $customers['customers_lastname'] . '",';
+    $output .= '"' . Hash::displayDecryptedDataText($customers['customers_firstname']) . '",';
+    $output .= '"' . Hash::displayDecryptedDataText($customers['customers_lastname']) . '",';
     $output .= '"' . $customers['customers_dob'] . '",';
     $output .= '"' . $customers['customers_email_address'] . '",';
-    $output .= '"' . $customers['customers_telephone'] . '",';
+    $output .= '"' . Hash::displayDecryptedDataText($customers['customers_telephone']) . '",';
     $output .= '"' . $customers['customers_newsletter'] . '",';
 
-    $output .= '"' . $customers['entry_company'] . '",';
-    $output .= '"' . $customers['entry_street_address'] . '",';
-    $output .= '"' . $customers['entry_suburb'] . '",';
-    $output .= '"' . $customers['entry_postcode'] . '",';
-    $output .= '"' . $customers['entry_city'] . '",';
+    $output .= '"' . Hash::displayDecryptedDataText($customers['entry_company']) . '",';
+    $output .= '"' . Hash::displayDecryptedDataText($customers['entry_street_address']) . '",';
+    $output .= '"' . Hash::displayDecryptedDataText($customers['entry_suburb']) . '",';
+    $output .= '"' . Hash::displayDecryptedDataText($customers['entry_postcode']) . '",';
+    $output .= '"' . Hash::displayDecryptedDataText($customers['entry_city']) . '",';
     $output .= '"' . $customers['entry_state'] . '",';
     $output .= '"' . $customers['entry_country_id'] . '",';
     $output .= '"' . $customers['entry_zone_id'] . '",';

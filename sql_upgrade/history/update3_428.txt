@@ -12,9 +12,9 @@ CREATE TABLE `clic_gpt_usage` (
 
 
  #english
- INSERT INTO clic_configuration VALUES(null, 'Witch Default wysiwyg do you want ?', 'DEFAULT_WYSIWYG', 'CkEditor4', 'Please choose your default wysiwyg', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'CkEditor4\', \'CkEditor5\'))');
+ INSERT INTO clic_configuration VALUES(null, 'Witch Default wysiwyg do you want ?', 'DEFAULT_WYSIWYG', 'CkEditor5', 'Please choose your default wysiwyg', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'CkEditor5\'))');
 
 
  #french
- INSERT INTO clic_configuration VALUES(null, 'Quel wysiwyg par défaut souhaitez-vous ?', 'DEFAULT_WYSIWYG', 'CkEditor4', 'Veuillez choisir votre wysiwygpar défaut.', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'CkEditor4\', \'CkEditor5\'))');
+ INSERT INTO clic_configuration VALUES(null, 'Quel wysiwyg par défaut souhaitez-vous ?', 'DEFAULT_WYSIWYG', 'CkEditor5', 'Veuillez choisir votre wysiwygpar défaut.', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'CkEditor5\'))');
 

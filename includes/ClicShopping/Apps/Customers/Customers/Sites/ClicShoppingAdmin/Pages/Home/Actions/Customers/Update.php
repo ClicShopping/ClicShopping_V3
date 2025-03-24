@@ -11,6 +11,7 @@
 namespace ClicShopping\Apps\Customers\Customers\Sites\ClicShoppingAdmin\Pages\Home\Actions\Customers;
 
 use ClicShopping\OM\DateTime;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Is;
 use ClicShopping\OM\Registry;
@@ -326,13 +327,13 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
 
     if ($error === false) {
       $sql_data_array = [
-        'customers_firstname' => $customers_firstname,
-        'customers_lastname' => $customers_lastname,
+        'customers_firstname' => Hash::encryptDatatext($customers_firstname),
+        'customers_lastname' => Hash::encryptDatatext($customers_lastname),
         'customers_email_address' => $customers_email_address,
-        'customers_telephone' => $customers_telephone,
+        'customers_telephone' => Hash::encryptDatatext($customers_telephone),
         'customers_newsletter' => $customers_newsletter,
         'languages_id' => (int)$language_id,
-        'customers_cellular_phone' => $customers_cellular_phone,
+        'customers_cellular_phone' => Hash::encryptDatatext($customers_cellular_phone),
       ];
 
 //       $customers_dob = str_replace('/', '-', $customers_dob);
@@ -345,7 +346,7 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
       if (ACCOUNT_GENDER == 'true') $sql_data_array['customers_gender'] = $customers_gender;
 
 // Informations sur la société
-      if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['customers_company'] = $customers_company;
+      if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['customers_company'] = Hash::encryptDatatext($customers_company);
       if (ACCOUNT_SIRET_PRO == 'true') $sql_data_array['customers_siret'] = $customers_siret;
       if (ACCOUNT_APE_PRO == 'true') $sql_data_array['customers_ape'] = $customers_ape;
       if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom_code_iso'] = $customers_tva_intracom_code_iso;
@@ -401,21 +402,21 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
       if (isset($entry_zone_id) && $entry_zone_id > 0) $entry_state = '';
 
       $sql_data_array = [
-        'entry_firstname' => $customers_firstname,
-        'entry_lastname' => $customers_lastname,
-        'entry_street_address' => $entry_street_address,
-        'entry_postcode' => $entry_postcode,
-        'entry_city' => $entry_city,
+        'entry_firstname' => Hash::encryptDatatext($customers_firstname),
+        'entry_lastname' => Hash::encryptDatatext($customers_lastname),
+        'entry_street_address' => Hash::encryptDatatext($entry_street_address),
+        'entry_postcode' => Hash::encryptDatatext($entry_postcode),
+        'entry_city' => Hash::encryptDatatext($entry_city),
         'entry_country_id' => (int)$entry_country_id,
-        'entry_telephone' => $entry_telephone
+        'entry_telephone' => Hash::encryptDatatext($entry_telephone)
       ];
 
       if (ACCOUNT_COMPANY == 'true') {
-        $sql_data_array['entry_company'] = $entry_company;
+        $sql_data_array['entry_company'] = Hash::encryptDatatext($entry_company);
       }
 
       if (ACCOUNT_SUBURB == 'true') {
-        $sql_data_array['entry_suburb'] = $entry_suburb;
+        $sql_data_array['entry_suburb'] = Hash::encryptDatatext( $entry_suburb);
       }
 
       if (ACCOUNT_STATE == 'true') {

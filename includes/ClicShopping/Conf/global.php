@@ -17,4 +17,5 @@ db_table_prefix = ""
 db_database = ""
 store_sessions = ""
 time_zone = ""
+data_encryption = ""
 EOD;

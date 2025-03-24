@@ -10,6 +10,7 @@
 
 namespace ClicShopping\OM\Module\Hooks\Shop\Api;
 
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
@@ -70,33 +71,33 @@ class ApiGetOrder
         'customers_ape' => $value['customers_ape'],
         'customers_tva_intracom' => $value['customers_tva_intracom'],
         'customers_gender' => $value['customers_gender'],
-        'customers_firstname' => $value['customers_firstname'],
-        'customers_lastname' => $value['customers_lastname'],
+        'customers_firstname' => Hash::displayDecryptedDataText( $value['customers_firstname']),
+        'customers_lastname' => Hash::displayDecryptedDataText($value['customers_lastname']),
         'customers_email_address' => $value['customers_email_address'],
         'customers_default_address_id' => $value['customers_default_address_id'],
-        'customers_telephone' => $value['customers_telephone'],
-        'customers_street_address' => $value['customers_street_address'],
-        'customers_suburb' => $value['customers_suburb'],
-        'customers_city' => $value['customers_city'],
-        'customers_postcode' => $value['customers_postcode'],
+        'customers_telephone' => Hash::displayDecryptedDataText($value['customers_telephone']),
+        'customers_street_address' => Hash::displayDecryptedDataText($value['customers_street_address']),
+        'customers_suburb' => Hash::displayDecryptedDataText($value['customers_suburb']),
+        'customers_city' =>  Hash::displayDecryptedDataText($value['customers_city']),
+        'customers_postcode' => Hash::displayDecryptedDataText($value['customers_postcode']),
         'customers_state' => $value['customers_state'],
         'customers_country' => $value['customers_country'],
 //delivery
-        'delivery_name' => $value['delivery_name'],
+        'delivery_name' => Hash::displayDecryptedDataText($value['delivery_name']),
         'delivery_company' => $value['delivery_company'],
-        'delivery_street_address' => $value['delivery_street_address'],
-        'delivery_suburb' => $value['delivery_suburb'],
-        'delivery_city' => $value['delivery_city'],
-        'delivery_postcode' => $value['delivery_postcode'],
+        'delivery_street_address' => Hash::displayDecryptedDataText($value['delivery_street_address']),
+        'delivery_suburb' => Hash::displayDecryptedDataText($value['delivery_suburb']),
+        'delivery_city' => Hash::displayDecryptedDataText($value['delivery_city']),
+        'delivery_postcode' => Hash::displayDecryptedDataText($value['delivery_postcode']),
         'delivery_state' => $value['delivery_state'],
         'delivery_country' => $value['delivery_country'],
 //payment
-        'billing_name' => $value['billing_name'],
+        'billing_name' => Hash::displayDecryptedDataText($value['billing_name']),
         'billing_company' => $value['billing_company'],
-        'billing_street_address' => $value['billing_street_address'],
-        'billing_suburb' => $value['billing_suburb'],
-        'billing_city' => $value['billing_city'],
-        'billing_postcode' => $value['billing_postcode'],
+        'billing_street_address' => Hash::displayDecryptedDataText($value['billing_street_address']),
+        'billing_suburb' => Hash::displayDecryptedDataText($value['billing_suburb']),
+        'billing_city' => Hash::displayDecryptedDataText($value['billing_city']),
+        'billing_postcode' => Hash::displayDecryptedDataText($value['billing_postcode']),
         'billing_state' => $value['billing_state'],
         'billing_country' => $value['billing_country'],
         'payment_method' => $value['payment_method'],
@@ -111,7 +112,7 @@ class ApiGetOrder
         'currency_value' => $value['currency_value'],
         'client_computer_ip' => $value['client_computer_ip'],
         'provider_name_client' => $value['provider_name_client'],
-        'customers_cellular_phone' => $value['customers_cellular_phone'],
+        'customers_cellular_phone' => Hash::displayDecryptedDataText($value['customers_cellular_phone']),
 //totalOrders
         'title' => $value['title'],
         'text' => str_replace('&nbsp;', '', $value['text']),

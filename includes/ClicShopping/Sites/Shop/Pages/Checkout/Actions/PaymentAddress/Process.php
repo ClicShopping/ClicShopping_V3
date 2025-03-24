@@ -11,6 +11,7 @@
 namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions\PaymentAddress;
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\AddressBook;
@@ -210,18 +211,18 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
         if ($error === false) {
           $sql_data_array = [
             'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-            'entry_firstname' => $firstname,
-            'entry_lastname' => $lastname,
-            'entry_street_address' => $street_address,
-            'entry_postcode' => $postcode,
-            'entry_city' => $city,
+            'entry_firstname' => Hash::encryptDatatext($firstname),
+            'entry_lastname' => Hash::encryptDatatext($lastname),
+            'entry_street_address' => Hash::encryptDatatext($street_address),
+            'entry_postcode' => Hash::encryptDatatext($postcode),
+            'entry_city' => Hash::encryptDatatext($city),
             'entry_country_id' => (int)$country,
-            'entry_telephone' => $entry_telephone
+            'entry_telephone' => Hash::encryptDatatext($entry_telephone)
           ];
 
           if (ACCOUNT_GENDER == 'true') $sql_data_array['entry_gender'] = $gender;
-          if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_company'] = $company;
-          if (ACCOUNT_SUBURB == 'true') $sql_data_array['entry_suburb'] = $suburb;
+          if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_company'] = Hash::encryptDatatext($company);
+          if (ACCOUNT_SUBURB == 'true') $sql_data_array['entry_suburb'] = Hash::encryptDatatext($suburb);
 
           if (ACCOUNT_STATE == 'true') {
             if ($zone_id > 0) {

@@ -11,6 +11,7 @@
 namespace ClicShopping\OM\Module\Hooks\Shop\Account;
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
@@ -68,7 +69,7 @@ class AccountGdprCallDeleteAccount
         $to_addr = $QcustomerEmail->value('customers_email_address');
         $from_name = STORE_NAME;
         $from_addr = STORE_OWNER_EMAIL_ADDRESS;
-        $to_name = $QcustomerEmail->value('customers_firstname') . ' ' . $QcustomerEmail->value('customers_lastname');
+        $to_name = Hash::displayDecryptedDataText($QcustomerEmail->value('customers_firstname')) . ' ' . Hash::displayDecryptedDataText($QcustomerEmail->value('customers_lastname'));
         $subject = CLICSHOPPING::getDef('email_text_subject');
 
         $CLICSHOPPING_Mail->addHtml($text_email);

@@ -12,6 +12,7 @@ namespace ClicShopping\Sites\Shop\Pages\Account\Actions\Gdpr;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\Registry;
+use ClicShopping\OM\Hash;
 use function is_array;
 
 class Process extends \ClicShopping\OM\PagesActionsAbstract
@@ -32,9 +33,11 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
           $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'AccountGdprCall*');
 
           if (is_array($files_get)) {
-            foreach ($files_get as $value) {
-              if (!empty($value['name'])) {
-                $CLICSHOPPING_Hooks->call('Account', $value['name']);
+            foreach ($files_get as $value)
+            {
+              $name = Hash::displayDecryptedDataText($value['name']);
+              if (!empty($name)) {
+                $CLICSHOPPING_Hooks->call('Account', $name);
               }
             }
           }

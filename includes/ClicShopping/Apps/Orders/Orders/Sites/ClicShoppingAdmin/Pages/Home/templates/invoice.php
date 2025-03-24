@@ -10,6 +10,7 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\DateTime;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
@@ -213,7 +214,7 @@ $pdf->Text(15, 95, utf8_decode($CLICSHOPPING_Orders->getDef('entry_customer_numb
 // Telephone du client
 $pdf->SetFont('Arial', '', 8);
 $pdf->SetTextColor(0);
-$pdf->Text(15, 100, utf8_decode($CLICSHOPPING_Orders->getDef('entry_phone')) . ' ' . $order->customer['telephone']);
+$pdf->Text(15, 100, utf8_decode($CLICSHOPPING_Orders->getDef('entry_phone')) . ' ' . Hash::displayDecryptedDataText($order->customer['telephone']));
 
 //Draw Box for Order Number, Date & Payment method
 // Cadre du numero de commande, date de commande et methode de paiemenent
@@ -318,7 +319,7 @@ for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
   $pdf->SetX(40);
   if (\strlen($product_name_attrib_contact) > 40 && \strlen($product_name_attrib_contact) < 95) {
     $pdf->SetFont('Arial', '', 6);
-    $pdf->MultiCell(103, 6, utf8_decode($product_name_attrib_contact), 1, 'L');
+    $pdf->MultiCell(103, 6, mb_convert_encoding($product_name_attrib_contact, 'ISO-8859-1', 'UTF-8'), 1, 'L');
   } elseif (\strlen($product_name_attrib_contact) > 95) {
     $pdf->SetFont('Arial', '', 6);
     $pdf->MultiCell(103, 6, mb_convert_encoding(substr($product_name_attrib_contact, 0, 95), 'ISO-8859-1', 'UTF-8') . " .. ", 1, 'L');

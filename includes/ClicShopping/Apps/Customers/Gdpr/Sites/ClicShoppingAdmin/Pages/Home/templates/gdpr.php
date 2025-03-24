@@ -10,6 +10,7 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\DateTime;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
@@ -148,9 +149,9 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page']
             <td></td>
             <td><?php echo $Qcustomers->valueInt('customers_id'); ?></td>
             <td></td>
-            <?php echo $Qcustomers->value('customers_lastname'); ?></td>
-            <td><?php echo $Qcustomers->value('customers_firstname'); ?></td>
-            <td><?php echo $Qcustomers->value('customers_email_address'); ?></td>
+            <?php echo Hash::displayDecryptedDataText($Qcustomers->value('customers_lastname')); ?></td>
+            <td><?php echo Hash::displayDecryptedDataText($Qcustomers->value('customers_firstname')); ?></td>
+            <td><?php echo Hash::displayDecryptedDataText($Qcustomers->value('customers_email_address')); ?></td>
             <td
               class="text-end"><?php echo DateTime::toShort($Qcustomers->value('customers_info_date_of_last_logon')); ?></td>
             <td class="text-end">

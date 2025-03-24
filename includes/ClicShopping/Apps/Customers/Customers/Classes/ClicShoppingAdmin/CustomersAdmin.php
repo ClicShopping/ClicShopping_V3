@@ -10,6 +10,7 @@
 
 namespace ClicShopping\Apps\Customers\Customers\Classes\ClicShoppingAdmin;
 
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\Registry;
 /**
  * Class CustomersAdmin
@@ -57,7 +58,7 @@ class CustomersAdmin
   {
     $result = $this->getData($id);
 
-    return $result['customers_email_address'];
+    return Hash::displayDecryptedEmail($result['customers_email_address']);
   }
 
   /**
@@ -68,6 +69,7 @@ class CustomersAdmin
    */
   public function getCustomerIdByEmail(string $email): int
   {
+    $email = Hash::displayDecryptedDataText($email);
     $Qcustomer = $this->db->prepare('select customers_id
                                         from :table_customers
                                         where customer_email = :customer_email

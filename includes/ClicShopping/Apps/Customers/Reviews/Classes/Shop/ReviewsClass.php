@@ -11,6 +11,7 @@
 namespace ClicShopping\Apps\Customers\Reviews\Classes\Shop;
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use function defined;
@@ -237,7 +238,7 @@ class ReviewsClass
       $array_sql = [
         'products_id' => (int)$this->productsCommon->getID(),
         'customers_id' => (int)$this->customer->getID(),
-        'customers_name' => $this->customer->getName(),
+        'customers_name' => Hash::encryptDatatext($this->customer->getName()),
         'reviews_rating' => (int)$_POST['rating'],
         'date_added' => 'now()',
         'last_modified' => 'now()',
@@ -250,7 +251,7 @@ class ReviewsClass
       $array_sql = [
         'products_id' => (int)$this->productsCommon->getID(),
         'customers_id' => (int)$this->customer->getID(),
-        'customers_name' => $this->customer->getName(),
+        'customers_name' => Hash::encryptDatatext($this->customer->getName()),
         'reviews_rating' => (int)$_POST['rating'],
         'date_added' => 'now()',
         'last_modified' => 'now()',
@@ -512,7 +513,7 @@ class ReviewsClass
     $Qauthor->execute();
 
     if (!empty($Qauthor->value('customers_name'))) {
-      $author = '*** ' . HTML::outputProtected(substr($Qauthor->value('customers_name') . ' ', 4, -4)) . ' ***';
+      $author = '*** ' . HTML::outputProtected(substr(Hash::displayDecryptedDataText($Qauthor->value('customers_name')) . ' ', 4, -4)) . ' ***';
     } else {
       $author = '';
     }

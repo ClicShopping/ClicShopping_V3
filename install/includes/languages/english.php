@@ -217,3 +217,5 @@ define('TEXT_SMTP_USERNAME', 'User Name (e-mail)');
 define('TEXT_SMTP_USERNAME_INFO', 'Please indicate your user name regarding your email. This is not necessarily related to your admin account');
 define('TEXT_SMTP_PASSWORD', 'Password');
 define('TEXT_SMTP_PASSWORD_INFO', 'Please enter your password to access your email');
+
+define('TEXT_ALERT_DATABASE', 'To continue, you have at least <strong>Maria Db version 11.8.1</strong> on your serveur else please install the version 3.456');

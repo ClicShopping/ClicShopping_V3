@@ -10,6 +10,7 @@
 
 namespace ClicShopping\Apps\Communication\EMail\Sites\ClicShoppingAdmin\Pages\Home\Actions\SendEmailToUser;
 
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
@@ -150,7 +151,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
       $this->mail->addHtmlCkeditor($message);
 
       while ($Qmail->fetch()) {
-        $this->mail->send($Qmail->value('customers_email_address'), $Qmail->value('customers_firstname') . ' ' . $Qmail->value('customers_lastname'), $this->from, null, $this->subject);
+        $this->mail->send($Qmail->value('customers_email_address'), Hash::displayDecryptedDataText($Qmail->value('customers_firstname')) . ' ' . Hash::displayDecryptedDataText($Qmail->value('customers_lastname')), $this->from, null, $this->subject);
       }
 
       $CLICSHOPPING_MessageStack->add($this->app->getDef('success_email_sent'), 'success', 'email');

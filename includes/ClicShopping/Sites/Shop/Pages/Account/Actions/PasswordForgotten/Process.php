@@ -83,7 +83,7 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
               $to_addr = $email_address;
               $from_name = STORE_NAME;
               $from_addr = STORE_OWNER_EMAIL_ADDRESS;
-              $to_name = $Qcheck->value('customers_firstname') . ' ' . $Qcheck->value('customers_lastname');
+              $to_name = Hash::displayDecryptedDataText($Qcheck->value('customers_firstname')) . ' ' . Hash::displayDecryptedDataText($Qcheck->value('customers_lastname'));
               $subject = $email_subject;
 
               $CLICSHOPPING_Mail->addHtml($email_password_reminder_body);

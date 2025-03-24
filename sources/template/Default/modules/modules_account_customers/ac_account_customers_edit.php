@@ -9,6 +9,7 @@
  */
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\Pages\Account\Classes\Edit;
@@ -50,13 +51,14 @@ class ac_account_customers_edit
 
       if (!isset($_GET['AddressBookProcess'])) {
         $customers_gender = $account['customers_gender'];
-        $customers_firstname = $account['customers_firstname'];
-        $customers_lastname = $account['customers_lastname'];
+        $customers_firstname = Hash::displayDecryptedDataText($account['customers_firstname']);
+        $customers_lastname = Hash::displayDecryptedDataText($account['customers_lastname']);
         $customers_dob = $account['customers_dob'];
         $customers_email_address = $account['customers_email_address'];
-        $customers_telephone = $account['customers_telephone'];
-        $customers_cellular_phone = $account['customers_cellular_phone'];
-        $customers_company = $account['customers_company'];
+
+        $customers_telephone = Hash::displayDecryptedDataText($account['customers_telephone']);
+        $customers_cellular_phone = Hash::displayDecryptedDataText($account['customers_cellular_phone']);
+        $customers_company = Hash::displayDecryptedDataText($account['customers_company']);
         $customers_siret = $account['customers_siret'];
         $customers_ape = $account['customers_ape'];
         $customers_tva_intracom_code_iso = $account['customers_tva_intracom_code_iso'];

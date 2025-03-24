@@ -10,6 +10,7 @@
 
 namespace ClicShopping\Apps\Orders\Orders\Classes\ClicShoppingAdmin;
 
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\Registry;
 
 class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
@@ -96,44 +97,44 @@ class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
     }
 
     $this->customer = [
-      'name' => $Qorder->value('customers_name'),
-      'company' => $Qorder->value('customers_company'),
+      'name' => Hash::displayDecryptedDataText($Qorder->value('customers_name')),
+      'company' => Hash::displayDecryptedDataText($Qorder->value('customers_company')),
       'siret' => $Qorder->value('customers_siret'),
       'ape' => $Qorder->value('customers_ape'),
       'tva_intracom' => $Qorder->value('customers_tva_intracom'),
       'street_address' => $Qorder->value('customers_street_address'),
-      'suburb' => $Qorder->value('customers_suburb'),
-      'city' => $Qorder->value('customers_city'),
-      'postcode' => $Qorder->value('customers_postcode'),
+      'suburb' => Hash::displayDecryptedDataText($Qorder->value('customers_suburb')),
+      'city' => Hash::displayDecryptedDataText($Qorder->value('customers_city')),
+      'postcode' => Hash::displayDecryptedDataText($Qorder->value('customers_postcode')),
       'state' => $Qorder->value('customers_state'),
       'country' => $Qorder->value('customers_country'),
       'format_id' => $Qorder->value('customers_address_format_id'),
-      'telephone' => $Qorder->value('customers_telephone'),
-      'cellular_phone' => $Qorder->value('customers_cellular_phone'),
+      'telephone' => Hash::displayDecryptedDataText($Qorder->value('customers_telephone')),
+      'cellular_phone' => Hash::displayDecryptedDataText($Qorder->value('customers_cellular_phone')),
       'email_address' => $Qorder->value('customers_email_address'),
       'client_computer_ip' => $Qorder->value('client_computer_ip'),
       'provider_name_client' => $Qorder->value('provider_name_client')
     ];
 
     $this->delivery = [
-      'name' => $Qorder->value('delivery_name'),
-      'company' => $Qorder->value('delivery_company'),
-      'street_address' => $Qorder->value('delivery_street_address'),
-      'suburb' => $Qorder->value('delivery_suburb'),
-      'city' => $Qorder->value('delivery_city'),
-      'postcode' => $Qorder->value('delivery_postcode'),
+      'name' => Hash::displayDecryptedDataText($Qorder->value('delivery_name')),
+      'company' => Hash::displayDecryptedDataText($Qorder->value('delivery_company')),
+      'street_address' => Hash::displayDecryptedDataText($Qorder->value('delivery_street_address')),
+      'suburb' => Hash::displayDecryptedDataText($Qorder->value('delivery_suburb')),
+      'city' => Hash::displayDecryptedDataText($Qorder->value('delivery_city')),
+      'postcode' => Hash::displayDecryptedDataText($Qorder->value('delivery_postcode')),
       'state' => $Qorder->value('delivery_state'),
       'country' => $Qorder->value('delivery_country'),
       'format_id' => $Qorder->value('delivery_address_format_id')
     ];
 
     $this->billing = [
-      'name' => $Qorder->value('billing_name'),
-      'company' => $Qorder->value('billing_company'),
-      'street_address' => $Qorder->value('billing_street_address'),
-      'suburb' => $Qorder->value('billing_suburb'),
-      'city' => $Qorder->value('billing_city'),
-      'postcode' => $Qorder->value('billing_postcode'),
+      'name' => Hash::displayDecryptedDataText($Qorder->value('billing_name')),
+      'company' => Hash::displayDecryptedDataText($Qorder->value('billing_company')),
+      'street_address' => Hash::displayDecryptedDataText($Qorder->value('billing_street_address')),
+      'suburb' => Hash::displayDecryptedDataText($Qorder->value('billing_suburb')),
+      'city' => Hash::displayDecryptedDataText($Qorder->value('billing_city')),
+      'postcode' => Hash::displayDecryptedDataText($Qorder->value('billing_postcode')),
       'state' => $Qorder->value('billing_state'),
       'country' => $Qorder->value('billing_country'),
       'format_id' => $Qorder->value('billing_address_format_id')
@@ -264,7 +265,8 @@ class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
 
     $orders_status_array = [];
 
-    $Qstatus = $CLICSHOPPING_Db->get('orders_status', ['orders_status_id',
+    $Qstatus = $CLICSHOPPING_Db->get('orders_status',
+      ['orders_status_id',
       'orders_status_name'
     ], [
       'language_id' => (int)$CLICSHOPPING_Language->getId()

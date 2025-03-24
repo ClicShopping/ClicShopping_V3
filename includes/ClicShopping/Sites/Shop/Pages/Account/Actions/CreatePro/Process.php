@@ -418,10 +418,10 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 
       if ($error === false) {
         $sql_data_array = [
-          'customers_firstname' => $firstname,
-          'customers_lastname' => $lastname,
+          'customers_firstname' => Hash::encryptDatatext($firstname),
+          'customers_lastname' => Hash::encryptDatatext($lastname),
           'customers_email_address' => $email_address,
-          'customers_telephone' => $telephone,
+          'customers_telephone' => Hash::encryptDatatext($telephone),
           'customers_newsletter' => (int)$newsletter,
           'customers_password' => Hash::encrypt($password),
           'languages_id' => (int)$CLICSHOPPING_Language->getId(),
@@ -434,14 +434,14 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
           'customer_website_company' => $customer_website_company
         ];
 
-        if (ACCOUNT_CELLULAR_PHONE_PRO == 'true') $sql_data_array['customers_cellular_phone'] = $cellular_phone;
+        if (ACCOUNT_CELLULAR_PHONE_PRO == 'true') $sql_data_array['customers_cellular_phone'] = Hash::encryptDatatext($cellular_phone);
 
         if ($QcustomersGroup->fetch() !== false) $sql_data_array['customers_group_id'] = ACCOUNT_GROUP_DEFAULT_PRO;
         if ($QcustomersGroup->fetch() !== false) $sql_data_array['customers_options_order_taxe'] = $customers_group['group_order_taxe'];
 
         if (ACCOUNT_GENDER_PRO == 'true') $sql_data_array['customers_gender'] = $gender;
         if (ACCOUNT_DOB_PRO == 'true') $sql_data_array['customers_dob'] = $dobDateTime->getRaw(false);
-        if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['customers_company'] = $company;
+        if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['customers_company'] = Hash::encryptDatatext($company);
         if (ACCOUNT_SIRET_PRO == 'true') $sql_data_array['customers_siret'] = $siret;
         if (ACCOUNT_APE_PRO == 'true') $sql_data_array['customers_ape'] = $ape;
         if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom'] = $tva_intracom;
@@ -453,19 +453,19 @@ class Process extends \ClicShopping\OM\PagesActionsAbstract
 // save element in address book
         $sql_data_array = [
           'customers_id' => (int)$customer_id,
-          'entry_firstname' => $firstname,
-          'entry_lastname' => $lastname,
-          'entry_street_address' => $street_address,
-          'entry_postcode' => $postcode,
-          'entry_city' => $city,
+          'entry_firstname' => Hash::encryptDatatext($firstname),
+          'entry_lastname' => Hash::encryptDatatext($lastname),
+          'entry_street_address' => Hash::encryptDatatext($street_address),
+          'entry_postcode' => Hash::encryptDatatext($postcode),
+          'entry_city' => Hash::encryptDatatext($city),
           'entry_country_id' => (int)$country,
-          'entry_telephone' => $telephone
+          'entry_telephone' => Hash::encryptDatatext($telephone)
         ];
 
-        if (ACCOUNT_CELLULAR_PHONE_PRO == 'true') $sql_data_array['customers_cellular_phone'] = $cellular_phone;
+        if (ACCOUNT_CELLULAR_PHONE_PRO == 'true') $sql_data_array['customers_cellular_phone'] = Hash::encryptDatatext($cellular_phone);
         if (ACCOUNT_GENDER_PRO == 'true') $sql_data_array['entry_gender'] = $gender;
-        if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['entry_company'] = $company;
-        if (ACCOUNT_SUBURB_PRO == 'true') $sql_data_array['entry_suburb'] = $suburb;
+        if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['entry_company'] = Hash::encryptDatatext($company);
+        if (ACCOUNT_SUBURB_PRO == 'true') $sql_data_array['entry_suburb'] = Hash::encryptDatatext($suburb);
         if (ACCOUNT_STATE_PRO == 'true') {
 
           if ($zone_id > 0) {

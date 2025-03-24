@@ -11,6 +11,7 @@
 namespace ClicShopping\Sites\Shop\Pages\Account\Actions\AddressBookProcess;
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use function strlen;
@@ -218,13 +219,13 @@ class Create extends \ClicShopping\OM\PagesActionsAbstract
 
       if ($error === false) {
         $sql_data_array = [
-          'entry_firstname' => $firstname,
-          'entry_lastname' => $lastname,
-          'entry_street_address' => $street_address,
-          'entry_postcode' => $postcode,
-          'entry_city' => $city,
+          'entry_firstname' => Hash::encryptDatatext($firstname),
+          'entry_lastname' => Hash::encryptDatatext($lastname),
+          'entry_street_address' => Hash::encryptDatatext($street_address),
+          'entry_postcode' => Hash::encryptDatatext($postcode),
+          'entry_city' => Hash::encryptDatatext($city),
           'entry_country_id' => (int)$country,
-          'entry_telephone' => $telephone
+          'entry_telephone' => Hash::encryptDatatext($telephone)
         ];
 
         if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
@@ -232,11 +233,11 @@ class Create extends \ClicShopping\OM\PagesActionsAbstract
         }
 
         if (((ACCOUNT_COMPANY == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_COMPANY_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
-          $sql_data_array['entry_company'] = $company;
+          $sql_data_array['entry_company'] = Hash::encryptDatatext($company);
         }
 
         if (((ACCOUNT_SUBURB == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_SUBURB_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
-          $sql_data_array['entry_suburb'] = $suburb;
+          $sql_data_array['entry_suburb'] = Hash::encryptDatatext($suburb);
         }
 
         if (((ACCOUNT_STATE == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_STATE_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
@@ -270,10 +271,10 @@ class Create extends \ClicShopping\OM\PagesActionsAbstract
           }
 
           $sql_data_array = [
-            'customers_firstname' => $firstname,
-            'customers_lastname' => $lastname,
-            'customers_cellular_phone' => $cellular_phone,
-            'customers_telephone' => $telephone
+            'customers_firstname' => Hash::encryptDatatext($firstname),
+            'customers_lastname' => Hash::encryptDatatext($lastname),
+            'customers_cellular_phone' => Hash::encryptDatatext($cellular_phone),
+            'customers_telephone' => Hash::encryptDatatext($telephone)
           ];
 
           if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {

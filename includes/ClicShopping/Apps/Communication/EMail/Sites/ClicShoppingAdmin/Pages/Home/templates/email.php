@@ -8,6 +8,7 @@
  *
  */
 
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
@@ -36,7 +37,7 @@ $QmailCustomers->execute();
 while ($QmailCustomers->fetch()) {
   $customers[] = [
     'id' => $QmailCustomers->value('customers_email_address'),
-    'text' => $QmailCustomers->value('customers_lastname') . ', ' . $QmailCustomers->value('customers_firstname') . ' (' . $QmailCustomers->value('customers_email_address') . ')'
+    'text' => Hash::displayDecryptedDataText($QmailCustomers->value('customers_lastname')) . ', ' . Hash::displayDecryptedDataText($QmailCustomers->value('customers_firstname')) . ' (' . $QmailCustomers->value('customers_email_address') . ')'
   ];
 }
 

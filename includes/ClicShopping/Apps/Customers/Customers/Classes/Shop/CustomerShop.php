@@ -12,6 +12,7 @@
 namespace ClicShopping\Apps\Customers\Customers\Classes\Shop;
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use function is_null;
@@ -121,7 +122,7 @@ class CustomerShop
   public function getFirstName(): string|bool
   {
     if (isset($this->_data['first_name'])) {
-      return $this->_data['first_name'];
+      return Hash::displayDecryptedDataText($this->_data['first_name']);
     }
 
     return false;
@@ -135,7 +136,7 @@ class CustomerShop
   public function getLastName(): string|bool
   {
     if (isset($this->_data['last_name'])) {
-      return $this->_data['last_name'];
+      return Hash::displayDecryptedDataText($this->_data['last_name']);
     }
 
     return false;
@@ -151,7 +152,7 @@ class CustomerShop
     $name = '';
 
     if (isset($this->_data['first_name'])) {
-      $name .= $this->_data['first_name'];
+      $name .= Hash::displayDecryptedDataText($this->_data['first_name']);
     }
 
     if (isset($this->_data['last_name'])) {
@@ -159,7 +160,7 @@ class CustomerShop
         $name .= ' ';
       }
 
-      $name .= $this->_data['last_name'];
+      $name .= Hash::displayDecryptedDataText($this->_data['last_name']);
     }
 
     return $name;
@@ -197,7 +198,7 @@ class CustomerShop
   public function getEmailAddress(): string|bool
   {
     if (isset($this->_data['email_address'])) {
-      return $this->_data['email_address'];
+      return Hash::displayDecryptedEmail($this->_data['email_address']);
     }
 
     return false;
@@ -222,7 +223,7 @@ class CustomerShop
   public function getTelephone(): string|bool
   {
     if (isset($this->_data['customers_telephone'])) {
-      return $this->_data['customers_telephone'];
+      return Hash::displayDecryptedDataText($this->_data['customers_telephone']);
     }
 
     return false;
@@ -247,7 +248,7 @@ class CustomerShop
   public function getCellularPhone(): string|bool
   {
     if (isset($this->_data['customers_cellular_phone'])) {
-      return $this->_data['customers_cellular_phone'];
+      return Hash::displayDecryptedDataText($this->_data['customers_cellular_phone']);
     }
 
     return false;
@@ -364,10 +365,10 @@ class CustomerShop
         $this->setIsLoggedOn(true);
         $this->setID($id);
         $this->setGender($Qcustomer->value('customers_gender'));
-        $this->setFirstName($Qcustomer->value('customers_firstname'));
-        $this->setLastName($Qcustomer->value('customers_lastname'));
+        $this->setFirstName(Hash::displayDecryptedDataText($Qcustomer->value('customers_firstname')));
+        $this->setLastName(Hash::displayDecryptedDataText($Qcustomer->value('customers_lastname')));
         $this->setEmailAddress($Qcustomer->value('customers_email_address'));
-        $this->setTelephone($Qcustomer->value('customers_telephone'));
+        $this->setTelephone(Hash::displayDecryptedDataText($Qcustomer->value('customers_telephone')));
 
         if ($Qcustomer->valueInt('customers_default_address_id') > 0) {
           $Qab = $this->db->prepare('select entry_country_id,
@@ -470,7 +471,7 @@ class CustomerShop
    */
   public function setFirstName(?string $first_name): void
   {
-    $this->_data['first_name'] = $first_name;
+    $this->_data['first_name'] = Hash::displayDecryptedDataText($first_name);
   }
 
   /**
@@ -481,7 +482,7 @@ class CustomerShop
    */
   public function setLastName(?string $last_name): void
   {
-    $this->_data['last_name'] = $last_name;
+    $this->_data['last_name'] = Hash::displayDecryptedDataText($last_name);
   }
 
   /**

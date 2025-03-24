@@ -11,6 +11,7 @@
 namespace ClicShopping\Apps\Orders\Orders\Classes\Shop;
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
@@ -865,32 +866,32 @@ class Order
     $sql_data_array = [
       'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
       'customers_group_id' => (int)$this->customer['customers_group_id'],
-      'customers_name' => $this->customer['firstname'] . ' ' . $this->customer['lastname'],
-      'customers_company' => $this->customer['company'],
-      'customers_street_address' => $this->customer['street_address'],
-      'customers_suburb' => $this->customer['suburb'],
-      'customers_city' => $this->customer['city'],
-      'customers_postcode' => $this->customer['postcode'],
+      'customers_name' => Hash::encryptDatatext($this->customer['firstname']) . ' ' . Hash::encryptDatatext($this->customer['lastname']),
+      'customers_company' => Hash::encryptDatatext($this->customer['company']),
+      'customers_street_address' => Hash::encryptDatatext($this->customer['street_address']),
+      'customers_suburb' => Hash::encryptDatatext($this->customer['suburb']),
+      'customers_city' => Hash::encryptDatatext($this->customer['city']),
+      'customers_postcode' => Hash::encryptDatatext($this->customer['postcode']),
       'customers_state' => $this->customer['state'],
       'customers_country' => $this->customer['country']['title'],
-      'customers_telephone' => $this->customer['telephone'],
-      'customers_email_address' => $this->customer['email_address'],
+      'customers_telephone' => Hash::encryptDatatext($this->customer['telephone']),
+      'customers_email_address' => Hash::encryptDatatext($this->customer['email_address']),
       'customers_address_format_id' => (int)$this->customer['format_id'],
-      'delivery_name' => trim($this->delivery['firstname'] . ' ' . $this->delivery['lastname']),
-      'delivery_company' => $this->delivery['company'],
-      'delivery_street_address' => $this->delivery['street_address'],
-      'delivery_suburb' => $this->delivery['suburb'],
-      'delivery_city' => $this->delivery['city'],
-      'delivery_postcode' => $this->delivery['postcode'],
+      'delivery_name' => Hash::encryptDatatext($this->delivery['firstname']) . ' ' . Hash::encryptDatatext($this->delivery['lastname']),
+      'delivery_company' => Hash::encryptDatatext($this->delivery['company']),
+      'delivery_street_address' => Hash::encryptDatatext($this->delivery['street_address']),
+      'delivery_suburb' => Hash::encryptDatatext($this->delivery['suburb']),
+      'delivery_city' => Hash::encryptDatatext($this->delivery['city']),
+      'delivery_postcode' => Hash::encryptDatatext($this->delivery['postcode']),
       'delivery_state' => $this->delivery['state'],
       'delivery_country' => $this->delivery['country']['title'],
       'delivery_address_format_id' => (int)$this->delivery['format_id'],
-      'billing_name' => $this->billing['firstname'] . ' ' . $this->billing['lastname'],
-      'billing_company' => $this->billing['company'],
-      'billing_street_address' => $this->billing['street_address'],
-      'billing_suburb' => $this->billing['suburb'],
-      'billing_city' => $this->billing['city'],
-      'billing_postcode' => $this->billing['postcode'],
+      'billing_name' => Hash::encryptDatatext($this->billing['firstname']) . ' ' . Hash::encryptDatatext($this->billing['lastname']),
+      'billing_company' => Hash::encryptDatatext($this->billing['company']),
+      'billing_street_address' => Hash::encryptDatatext($this->billing['street_address']),
+      'billing_suburb' => Hash::encryptDatatext($this->billing['suburb']),
+      'billing_city' => Hash::encryptDatatext($this->billing['city']),
+      'billing_postcode' => Hash::encryptDatatext($this->billing['poscode']),
       'billing_state' => $this->billing['state'],
       'billing_country' => $this->billing['country']['title'],
       'billing_address_format_id' => (int)$this->billing['format_id'],
@@ -904,7 +905,7 @@ class Order
       'orders_status_invoice' => $this->info['order_status_invoice'],
       'currency' => $this->info['currency'],
       'currency_value' => $this->info['currency_value'],
-      'customers_cellular_phone' => $this->customer['cellular_phone']
+      'customers_cellular_phone' => Hash::encryptDatatext($this->customer['cellular_phone'])
     ];
 
 // recuperation des informations societes pour les clients B2B (voir fichier la classe OrderAdmin)
@@ -1353,8 +1354,8 @@ class Order
       $email_order .= TemplateEmail::getTemplateEmailSignature() . "\n\n";
       $email_order .= TemplateEmail::getTemplateEmailTextFooter() . "\n";
 
-      $to_email_address = $this->customer['email_address'];
-      $to_name = $this->customer['firstname'] . ' ' . $this->customer['lastname'];
+      $to_email_address = Hash::displayDecryptedDataText($this->customer['email_address']);
+      $to_name = Hash::displayDecryptedDataText($this->customer['firstname']) . ' ' . Hash::displayDecryptedDataText($this->customer['lastname']);
       $email_subject = CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]);
 
       $to_addr = $to_email_address;

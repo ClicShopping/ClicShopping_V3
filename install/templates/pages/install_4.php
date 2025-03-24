@@ -187,6 +187,7 @@ $dbDatabase = trim($_POST['DB_DATABASE']);
 $dbTablePrefix = trim($_POST['DB_TABLE_PREFIX']);
 $timezone = trim($_POST['TIME_ZONE']);
 
+$data_encryption = bin2hex(random_bytes(16));
 
 $file_contents = <<<ENDCFG
 <?php
@@ -200,6 +201,7 @@ db_table_prefix = "{$dbTablePrefix}"
 store_sessions = "MySQL"
 time_zone = "{$timezone}"
 db_server_persistent_connections = "false"
+data_encryption = "{$data_encryption}"
 EOD;
 
 ENDCFG;

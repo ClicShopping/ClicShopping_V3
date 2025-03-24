@@ -12,6 +12,7 @@ namespace ClicShopping\Apps\Orders\Orders\Module\ClicShoppingAdmin\Dashboard;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\DateTime;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
@@ -108,7 +109,7 @@ class Orders extends \ClicShopping\OM\Modules\AdminDashboardAbstract
     while ($orders = $Qorder->fetch()) {
       $output .= '  <tr class="dataTableRow backgroundBlank">' .
         '    <th scope="row">' . DateTime::toShort($orders['date_last_modified']) . '</th>' .
-        '    <td>' . HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Edit&cID=' . (int)$orders['customers_id']), HTML::outputProtected($orders['customers_name'])) . '</a></td>' .
+        '    <td>' . HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Edit&cID=' . (int)$orders['customers_id']), HTML::outputProtected(Hash::displayDecryptedDataText($orders['customers_name']))) . '</a></td>' .
         '    <td>' . $this->lang->getLanguagesName($Qorder->valueInt('language_id')) . '</td>' .
         '    <td>' . strip_tags($orders['order_total']) . '</td>';
 

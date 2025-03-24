@@ -9,6 +9,7 @@
  */
 
 use ClicShopping\OM\CLICSHOPPING;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Shop\AddressBook;
@@ -68,7 +69,7 @@ $process = false;
             if ((AddressBook::countCustomersModifyAddressDefault() == 0) && ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->getDefaultAddressID())) {
               ?>
               <div class="card-header">
-                <strong><?php echo HTML::outputProtected($Qaddresses->value('firstname') . ' ' . $Qaddresses->value('lastname')); ?></strong><?php if ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->getDefaultAddressID()) echo '&nbsp;<small><i>' . CLICSHOPPING::getDef('primary_address') . '</i></small>'; ?>
+                <strong><?php echo HTML::outputProtected(Hash::displayDecryptedDataText($Qaddresses->value('firstname')) . ' ' . Hash::displayDecryptedDataText($Qaddresses->value('lastname'))); ?></strong><?php if ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->getDefaultAddressID()) echo '&nbsp;<small><i>' . CLICSHOPPING::getDef('primary_address') . '</i></small>'; ?>
               </div>
               <div class="card-block">
                 <div class="mt-1"></div>
@@ -79,7 +80,7 @@ $process = false;
             } else {
               ?>
               <div class="card-header">
-                <strong><?php echo HTML::outputProtected($Qaddresses->value('firstname') . ' ' . $Qaddresses->value('lastname')); ?></strong><?php if ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->getDefaultAddressID()) echo '&nbsp;<small><i>' . CLICSHOPPING::getDef('primary_address') . '</i></small>'; ?>
+                <strong><?php echo HTML::outputProtected(Hash::displayDecryptedDataText($Qaddresses->value('firstname')) . ' ' . Hash::displayDecryptedDataText($Qaddresses->value('lastname'))); ?></strong><?php if ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->getDefaultAddressID()) echo '&nbsp;<small><i>' . CLICSHOPPING::getDef('primary_address') . '</i></small>'; ?>
               </div>
               <div class="card-block">
                 <div class="mt-1"></div>

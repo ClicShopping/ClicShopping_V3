@@ -12,6 +12,7 @@ namespace ClicShopping\Sites\Shop\Pages\Account\Actions;
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\DateTime;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 use ClicShopping\Sites\Common\PDF;
@@ -189,7 +190,7 @@ class OrderInvoice extends \ClicShopping\OM\PagesActionsAbstract
 // Telephone du client
     $pdf->SetFont('Arial', '', 8);
     $pdf->SetTextColor(0);
-    $pdf->Text(15, 100, utf8_decode(CLICSHOPPING::getDef('entry_phone')) . ' ' . $CLICSHOPPING_Order->customer['telephone']);
+    $pdf->Text(15, 100, utf8_decode(CLICSHOPPING::getDef('entry_phone')) . ' ' . Hash::displayDecryptedDataText($CLICSHOPPING_Order->customer['telephone']));
 
 //Draw Box for Order Number, Date & Payment method
 // Cadre du numero de commande, date de commande et methode de paiemenent

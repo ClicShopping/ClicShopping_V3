@@ -10,6 +10,7 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 use ClicShopping\OM\DateTime;
+use ClicShopping\OM\Hash;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\HTTP;
 use ClicShopping\OM\Registry;
@@ -219,7 +220,7 @@ $pdf->Text(15, 95, utf8_decode($CLICSHOPPING_Orders->getDef('entry_customer_numb
 // Telephone du client
 $pdf->SetFont('Arial', '', 8);
 $pdf->SetTextColor(0);
-$pdf->Text(15, 100, utf8_decode($CLICSHOPPING_Orders->getDef('entry_phone')) . ' ' . $order->customer['telephone']);
+$pdf->Text(15, 100, utf8_decode($CLICSHOPPING_Orders->getDef('entry_phone')) . ' ' . Hash::displayDecryptedDataText($order->customer['telephone']));
 
 //Draw Box for Order Number, Date & Payment method
 // Cadre du numero de commande, date de commande et methode de paiemenent
