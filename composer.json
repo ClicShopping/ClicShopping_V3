@@ -13,7 +13,7 @@
         "stymiee/email-validator": "^1.1",
         "phpmailer/phpmailer": "^6.9",
         "nyholm/psr7": "^1.8",
-        "mattketmo/email-checker": "^2.3",
+        "mattketmo/email-checker": "^2.4",
         "setasign/fpdf": "^1.8",
         "ext-xml": "*",
         "phpxmlrpc/phpxmlrpc": "^4.11",
