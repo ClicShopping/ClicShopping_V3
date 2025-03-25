@@ -53,7 +53,7 @@ class Insert extends \ClicShopping\OM\PagesActionsAbstract
     $languages = $CLICSHOPPING_Language->getLanguages();
 
     for ($i = 0, $n = \count($languages); $i < $n; $i++) {
-      $categories_name_array = $_POST['categories_name'];
+      $categories_name_array = HTML::sanitize($_POST['categories_name']);
       $language_id = $languages[$i]['id'];
 
       $sql_data_array = [
@@ -86,8 +86,6 @@ class Insert extends \ClicShopping\OM\PagesActionsAbstract
     } elseif (isset($_POST['categories_image']) && !\is_null($_POST['categories_image']) && ($_POST['categories_image'] != 'none')) {
       $categories_image = $_POST['categories_image'];
 
-
-// Insertion images des produits via l'editeur FCKeditor (fonctionne sur les nouveaux produits et editions produits)
       if (isset($_POST['categories_image']) && !\is_null($_POST['categories_image']) && ($_POST['categories_image'] != 'none')) {
         $categories_image = $CLICSHOPPING_Wysiwyg::getWysiwygImageAlone($categories_image);
       } else {

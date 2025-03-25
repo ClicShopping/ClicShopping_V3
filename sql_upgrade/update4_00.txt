@@ -1,0 +1,6 @@
+
+#english
+INSERT INTO configuration VALUES(1747, 'Do you want to use the embeddging OpenAI ?', 'CLICSHOPPING_APP_CHATGPT_CH_OPENAI_EMBEDDING', 'False', 'If you want to use the embedding (3072), you must have at least mariaDb 11.8 version', 6, 0, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+
+#french
+INSERT INTO configuration VALUES(null, 'Souhaitez vous activer l\'embedding OpenAi ?', 'CLICSHOPPING_APP_CHATGPT_CH_OPENAI_EMBEDDING', 'False', 'Si vous souhaitez utiliser l\'embedding (3072),vous devez avoir au moins la version mariaDb 11.8', 6, 0, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');

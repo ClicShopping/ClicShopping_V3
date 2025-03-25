@@ -14,6 +14,11 @@ use ClicShopping\OM\Cache;
 use ClicShopping\OM\HTML;
 use ClicShopping\OM\Registry;
 
+/**
+ * DeleteConfirm Class
+ * This class implements idempotent operations for product deletion
+ * Running this operation multiple times with the same input will produce the same result
+ */
 class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract
 {
   public mixed $app;
@@ -21,15 +26,23 @@ class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract
   protected $cPath;
   protected $productCategoriesId;
 
+  /**
+   * Constructor - initializes data in an idempotent manner
+   * Multiple calls with same POST/GET data will initialize identical state
+   */
   public function __construct()
   {
     $this->app = Registry::get('Products');
+    $this->hooks = Registry::get('Hooks');
 
     $this->ID = HTML::sanitize($_POST['products_id']);
     $this->productCategoriesId = $_POST['product_categories'];
     $this->cPath = HTML::sanitize($_GET['cPath']);
   }
-
+  /**
+   * Execute product deletion in an idempotent manner
+   * Multiple executions with same product ID and categories will result in same final state
+   */
   public function execute()
   {
     $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
@@ -60,6 +73,8 @@ class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract
     Cache::clear('categories');
     Cache::clear('products-also_purchased');
     Cache::clear('upcoming');
+
+    $this->hooks->call('Products', 'DeleteConfirm');
 
     $this->app->redirect('Products&cPath=' . $this->cPath);
   }

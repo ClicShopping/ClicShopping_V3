@@ -580,4 +580,21 @@ class Gpt {
 
     return $script;
   }
+
+  //**************************************
+  //                  RAG
+  //**************************************
+
+  /**
+   * Sets the environment variable for the OpenAI API key.
+   *
+   * @return string The environment variable setting result.
+   */
+  public static function getEnvironment(): string
+  {
+    $env = putenv('OPENAI_API_KEY=' . CLICSHOPPING_APP_CHATGPT_CH_API_KEY);
+
+    return $env;
+  }
+
 }

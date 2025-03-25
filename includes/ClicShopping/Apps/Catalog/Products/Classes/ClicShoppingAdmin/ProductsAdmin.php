@@ -660,8 +660,6 @@ class ProductsAdmin
 
     $QduplicateImageManufacturers->execute();
 
-    $duplicate_image_manufacturers = $QduplicateImageManufacturers->fetch();
-
     return $QduplicateImageManufacturers->valueInt('total');
   }
 

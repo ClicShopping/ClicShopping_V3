@@ -1692,6 +1692,7 @@ INSERT INTO configuration VALUES(1743, 'Do you want to enable this Module ?', 'M
 INSERT INTO configuration VALUES(1744, 'Select the width to display', 'MODULE_ADMIN_DASHBOARD_GPT_CHECK_API_APP_CONTENT_WIDTH', '12', 'Select a number between 1 to 12', 6, 1, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1745, 'Sort Order', 'MODULE_ADMIN_DASHBOARD_GPT_CHECK_API_APP_SORT_ORDER', '2', 'Sort order of display. Lowest is displayed first.', 6, 2, NULL, '2023-09-15 09:16:47', NULL, '');
 INSERT INTO configuration VALUES(1746, 'Anthropic api key', 'CLICSHOPPING_APP_CHATGPT_CH_ANTHROPIC_API_KEY', '', 'Please insert the api key (https://www.anthropic.com)', 6, 0, NULL, '2023-02-22 17:17:04', NULL, NULL);
+INSERT INTO configuration VALUES(1747, 'Do you want to use the embeddging OpenAI ?', 'CLICSHOPPING_APP_CHATGPT_CH_OPENAI_EMBEDDING', 'False', 'If you want to use the embedding (3072), you must have at least mariaDb 11.8 version', 6, 0, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);

@@ -77,7 +77,7 @@ class MoveConfirm extends \ClicShopping\OM\PagesActionsAbstract
         Cache::clear('products_cross_sell');
         Cache::clear('upcoming');
 
-        $CLICSHOPPING_Hooks->call('Categories', 'Insert');
+        $CLICSHOPPING_Hooks->call('Categories', 'MoveConfirm');
 
         $this->app->redirect('Categories&cPath=' . $new_parent_id);
       }

@@ -1,6 +1,12 @@
 version4.00
 This is the last version 3, the next will version 4.x will integrate the embeddings and need to be used with mariaDB 11.8 at least.T
+
 Protect customers information by AES-256
+Add embeding for categories
+Add embeding for prpducts
+Add product recommendation module for products_info template using the embedding
+small fix
+librairies updated
 
 ------------------
 version3.456

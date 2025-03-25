@@ -111,10 +111,10 @@ CREATE TABLE :table_categories (
   last_modified datetime,
   virtual_categories tinyint(1) default(0) NOT NULL,
   status tinyint(0) default(0) NOT NULL,
-  customers_group_id int default (99) not null
-  PRIMARY KEY (categories_id),
-  KEY idx_categories_parent_id parent_id)
-) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  customers_group_id int default (99) not null,
+  PRIMARY KEY categories_id,
+  KEY idx_categories_parent_id (parent_id)
+  ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
       $CLICSHOPPING_Db->exec($sql);
     }
@@ -139,5 +139,27 @@ CREATE TABLE :table_categories_description (
 EOD;
       $CLICSHOPPING_Db->exec($sql);
     }
+
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_categories_embedding"');
+
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
+       CREATE TABLE IF NOT EXISTS :table_categories_embedding (
+          id SERIAL PRIMARY KEY,
+          content text DEFAULT NULL,
+          type text DEFAULT NULL,
+          sourcetype text default 'manual',
+          sourcename text default 'manual',
+          embedding vector(3072) NOT NULL,
+          chunknumber int default(128),
+          date_modified datetime DEFAULT NULL,  
+          categories_id int,
+          language_id int,
+          VECTOR INDEX (embedding)
+        );
+      EOD;
+
+      $CLICSHOPPING_Db->exec($sql);
+    }    
   }
 }

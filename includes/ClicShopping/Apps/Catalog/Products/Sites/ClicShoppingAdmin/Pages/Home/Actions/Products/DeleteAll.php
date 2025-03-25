@@ -24,6 +24,7 @@ class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
   public function __construct()
   {
     $this->app = Registry::get('Products');
+    $this->hooks = Registry::get('Hooks');
     $this->cPath = HTML::sanitize($_GET['cPath']);
   }
 
@@ -49,6 +50,8 @@ class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
         }
       }
     }
+
+    $this->hooks->call('Products', 'DeleteAll');
 
     Cache::clear('categories');
     Cache::clear('products-also_purchased');

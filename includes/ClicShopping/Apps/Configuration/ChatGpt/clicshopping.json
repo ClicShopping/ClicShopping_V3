@@ -23,11 +23,16 @@
     "Hooks": {
       "ClicShoppingAdmin/Products": {
         "PageTab": "Module\\Hooks\\ClicShoppingAdmin\\Products\\SeoChatGpt",
-        "Insert": "Module\\Hooks\\ClicShoppingAdmin\\Products\\Insert"
+        "Insert": "Module\\Hooks\\ClicShoppingAdmin\\Products\\Insert",
+        "Update": "Module\\Hooks\\ClicShoppingAdmin\\Products\\Update",
+        "DeleteAll": "Module\\Hooks\\ClicShoppingAdmin\\Products\\DeleteAll",
+        "Delete": "Module\\Hooks\\ClicShoppingAdmin\\Products\\Delete"
       },
       "ClicShoppingAdmin/Categories": {
         "CategoriesContentTab3": "Module\\Hooks\\ClicShoppingAdmin\\Categories\\SeoChatGpt",
-        "Insert": "Module\\Hooks\\ClicShoppingAdmin\\Categories\\Insert"
+        "Insert": "Module\\Hooks\\ClicShoppingAdmin\\Categories\\Insert",
+        "Update": "Module\\Hooks\\ClicShoppingAdmin\\Categories\\Update",
+        "DeleteConfirm": "Module\\Hooks\\ClicShoppingAdmin\\Categories\\DeleteConfirm"
       },
       "ClicShoppingAdmin/Manufacturers": {
         "ManufacturersTab4": "Module\\Hooks\\ClicShoppingAdmin\\Manufacturers\\SeoChatGpt",

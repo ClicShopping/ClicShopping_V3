@@ -118,12 +118,12 @@ class Update extends \ClicShopping\OM\PagesActionsAbstract
           'categories_head_keywords_tag' => $categories_seo_keyword_array[$language_id]
         ];
 
-        $insert_sql_data = [
+        $update_sql_data = [
           'categories_id' => (int)$categories_id,
           'language_id' => (int)$language_id
         ];
 
-        $this->app->db->save('categories_description', $sql_data_array, $insert_sql_data);
+        $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
       }
 
       if (isset($_POST['delete_image'])) {

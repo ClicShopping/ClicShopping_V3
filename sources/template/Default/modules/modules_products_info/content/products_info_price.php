@@ -44,3 +44,4 @@ use ClicShopping\OM\CLICSHOPPING;
     </div>
   </div>
 </div>
+<div class="py-2"></div>

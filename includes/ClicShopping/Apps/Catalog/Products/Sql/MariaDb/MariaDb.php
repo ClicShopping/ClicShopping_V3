@@ -27,6 +27,7 @@ class MariaDb
     $CLICSHOPPING_Products->loadDefinitions('Sites/ClicShoppingAdmin/install');
 
     self::installDbMenuAdministration();
+    self::installDb();
   }
 
   /**
@@ -85,7 +86,8 @@ class MariaDb
       $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_report_stats_products_viewed']);
 
       if ($Qcheck->fetch() === false) {
-        $sql_data_array = ['sort_order' => 5,
+        $sql_data_array =
+          ['sort_order' => 5,
           'link' => 'index.php?A&Catalog\Products&StatsProductsViewed',
           'image' => 'stats_products_viewed.gif',
           'b2b_menu' => 0,
@@ -119,7 +121,8 @@ class MariaDb
       $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_report_stats_low_stock']);
 
       if ($Qcheck->fetch() === false) {
-        $sql_data_array = ['sort_order' => 5,
+        $sql_data_array =
+          ['sort_order' => 5,
           'link' => 'index.php?A&Catalog\Products&StatsProductsLowStock',
           'image' => 'stats_customers.gif',
           'b2b_menu' => 0,
@@ -153,7 +156,8 @@ class MariaDb
       $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_report_stats_products_expected']);
 
       if ($Qcheck->fetch() === false) {
-        $sql_data_array = ['sort_order' => 5,
+        $sql_data_array =
+          ['sort_order' => 5,
           'link' => 'index.php?A&Catalog\Products&StatsProductsExpected',
           'image' => 'products_expected.gif',
           'b2b_menu' => 0,
@@ -188,7 +192,8 @@ class MariaDb
       $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_report_stats_products_purchased']);
 
       if ($Qcheck->fetch() === false) {
-        $sql_data_array = ['sort_order' => 5,
+        $sql_data_array = [
+          'sort_order' => 5,
           'link' => 'index.php?A&Catalog\Products&StatsProductsPurchased',
           'image' => 'stats_products_purchased.gif',
           'b2b_menu' => 0,
@@ -220,6 +225,40 @@ class MariaDb
       }
 
       Cache::clear('menu-administrator');
+    }
+  }
+    /**
+     * Creates the necessary database tables for categories and categories descriptions
+     * if they do not already exist. This method checks for the presence of the tables
+     * by querying the database and executes SQL statements to create the tables if
+     * they are missing.
+     *
+     * @return void
+     */
+    private static function installDb():void
+  {
+    $CLICSHOPPING_Db = Registry::get('Db');
+
+    $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_products_embedding"');
+
+    if ($Qcheck->fetch() === false) {
+      $sql = <<<EOD
+       CREATE TABLE IF NOT EXISTS :table_products_embedding (
+          id SERIAL PRIMARY KEY,
+          content text DEFAULT NULL,
+          type text DEFAULT NULL,
+          sourcetype text default 'manual',
+          sourcename text default 'manual',
+          embedding vector(3072) NOT NULL,
+          chunknumber int default(128),
+          date_modified datetime DEFAULT NULL,  
+          products_id int,
+          language_id int,
+          VECTOR INDEX (embedding)
+        );
+      EOD;
+
+      $CLICSHOPPING_Db->exec($sql);
     }
   }
 }

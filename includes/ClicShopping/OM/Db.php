@@ -338,6 +338,17 @@ class Db extends PDO
       }
     }
 
+    // Process special vector fields
+    $vector_fields = [];
+    foreach ($data as $field => $value) {
+      // Check if the field is meant to be a vector and starts with 'vec_'
+      if (substr($field, 0, 4) === 'vec_') {
+        $actual_field = substr($field, 4); // Get the actual field name without 'vec_' prefix
+        $vector_fields[$actual_field] = $value; // Store the vector value
+        unset($data[$field]); // Remove the special prefixed field
+      }
+    }
+
     if (isset($where_condition)) {
       $statement = 'update ' . $table . ' set ';
 
@@ -351,6 +362,11 @@ class Db extends PDO
         } else {
           $statement .= $c . ' = :new_' . $c . ', ';
         }
+      }
+
+      // Add vector fields with VEC_FromText function
+      foreach ($vector_fields as $c => $v) {
+        $statement .= $c . ' = VEC_FromText(:vec_' . $c . '), ';
       }
 
       $statement = substr($statement, 0, -2) . ' where ';
@@ -369,6 +385,15 @@ class Db extends PDO
         }
       }
 
+      // Bind vector fields
+      foreach ($vector_fields as $c => $v) {
+        // Format vector as [val1,val2,...] if it's an array
+        if (is_array($v)) {
+          $v = '[' . implode(',', $v) . ']';
+        }
+        $Q->bindValue(':vec_' . $c, $v);
+      }
+
       foreach ($where_condition as $c => $v) {
         $Q->bindValue(':cond_' . $c, $v);
       }
@@ -379,7 +404,9 @@ class Db extends PDO
     } else {
       $is_prepared = false;
 
-      $statement = 'insert into ' . $table . ' (' . implode(', ', array_keys($data)) . ') values (';
+      // Combine regular fields and vector fields for the column list
+      $all_fields = array_merge(array_keys($data), array_keys($vector_fields));
+      $statement = 'insert into ' . $table . ' (' . implode(', ', $all_fields) . ') values (';
 
       foreach ($data as $c => $v) {
         if (is_null($v)) {
@@ -397,6 +424,14 @@ class Db extends PDO
         }
       }
 
+      // Add vector fields with VEC_FromText function
+      foreach ($vector_fields as $c => $v) {
+        if ($is_prepared === false) {
+          $is_prepared = true;
+        }
+        $statement .= 'VEC_FromText(:vec_' . $c . '), ';
+      }
+
       $statement = substr($statement, 0, -2) . ')';
 
       if ($is_prepared === true) {
@@ -406,6 +441,15 @@ class Db extends PDO
           if ($v != 'now()' && $v !== 'null' && !is_null($v)) {
             $Q->bindValue(':' . $c, $v);
           }
+        }
+
+        // Bind vector fields
+        foreach ($vector_fields as $c => $v) {
+          // Format vector as [val1,val2,...] if it's an array
+          if (is_array($v)) {
+            $v = '[' . implode(',', $v) . ']';
+          }
+          $Q->bindValue(':vec_' . $c, $v);
         }
 
         $Q->execute();
