@@ -1,0 +1,16 @@
+  id SERIAL
+  content text DEFAULT NULL
+  type text DEFAULT NULL
+  sourcetype text default 'manual'
+  sourcename text default 'manual'
+  embedding vector(3072) not_null
+  chunknumber int default(128)
+  date_modified datetime DEFAULT NULL
+  products_id int not_null
+  --
+  primary id
+  VECTOR INDEX idx_embedding (embedding)
+  ##
+  engine innodb
+  character_set utf8mb4
+  collate utf8mb4_unicode_ci
