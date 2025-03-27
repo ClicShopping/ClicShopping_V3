@@ -154,9 +154,10 @@ EOD;
           chunknumber int default(128),
           date_modified datetime DEFAULT NULL,  
           categories_id int,
-          language_id int,
-          VECTOR INDEX (embedding)
+          language_id int
         );
+
+        CREATE VECTOR INDEX embedding_index ON :table_categories_embedding (embedding);
       EOD;
 
       $CLICSHOPPING_Db->exec($sql);

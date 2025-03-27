@@ -39,7 +39,8 @@
         "Insert": "Module\\Hooks\\ClicShoppingAdmin\\Manufacturers\\Insert"
       },
       "ClicShoppingAdmin/PageManager": {
-        "PageTab": "Module\\Hooks\\ClicShoppingAdmin\\PageManager\\SeoChatGpt"
+        "PageTab": "Module\\Hooks\\ClicShoppingAdmin\\PageManager\\SeoChatGpt",
+        "Save": "Module\\Hooks\\ClicShoppingAdmin\\PageManager\\Save"
       },
       "ClicShoppingAdmin/SEO": {
         "PageTab": "Module\\Hooks\\ClicShoppingAdmin\\SEO\\SeoChatGpt"

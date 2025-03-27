@@ -5,6 +5,7 @@ Protect customers information by AES-256
 Add embeding for categories
 Add embeding for prpducts
 Add product recommendation module for products_info template using the embedding
+Add embeding for page manager
 small fix
 librairies updated
 

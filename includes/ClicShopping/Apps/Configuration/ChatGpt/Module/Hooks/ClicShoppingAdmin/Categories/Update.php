@@ -10,12 +10,13 @@
 
 namespace ClicShopping\Apps\Configuration\ChatGpt\Module\Hooks\ClicShoppingAdmin\Categories;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\NewVector;
 use ClicShopping\OM\Registry;
 use ClicShopping\OM\HTML;
 
 use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
+use ClicShopping\Sites\Common\HTMLOverrideCommon;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\NewVector;
 
 class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
@@ -104,23 +105,24 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
 //********************
 // add embedding
 //********************
-            $embedding_data = "Category Name: $categories_name\n";
+            $embedding_data = 'Category Name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($categories_name) . '\n';
 
             if (!empty($categories_description)) {
-              $embedding_data .= "Category Description: $categories_description\n";
+              $embedding_data .= 'Category Description: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($categories_description) . '\n';
             }
 
             if (!empty($seo_categories_title)) {
-              $embedding_data .= "Category SEO Title: $seo_categories_title\n";
+              $embedding_data .= 'Category SEO Title: ' .  HtmlOverrideCommon::cleanHtmlForSEO($seo_categories_title) . '\n';
             }
 
             if (!empty($seo_categories_description)) {
-              $embedding_data .= "Category SEO Description: $seo_categories_description\n";
+              $embedding_data .= 'Category SEO Description: ' .  HtmlOverrideCommon::cleanHtmlForSEO($seo_categories_description) . '\n';
             }
 
             if (!empty($seo_categories_keywords)) {
-              $embedding_data .= "Category SEO Keywords: $seo_categories_keywords\n";
+              $embedding_data .= 'Category SEO Keywords: ' .  HtmlOverrideCommon::cleanHtmlForSEO($seo_categories_keywords) . '\n';
             }
+
 
             $embeddedDocuments = NewVector::createEmbedding(null, $embedding_data);
 

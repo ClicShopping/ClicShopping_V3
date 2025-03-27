@@ -10,11 +10,12 @@
 
 namespace ClicShopping\Apps\Configuration\ChatGpt\Module\Hooks\ClicShoppingAdmin\Categories;
 
-use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\NewVector;
 use ClicShopping\OM\Registry;
 
 use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
+use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\NewVector;
+use ClicShopping\Sites\Common\HTMLOverrideCommon;
 
 class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
@@ -69,147 +70,178 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 
       if ($Qcheck->valueInt('categories_id') !== null) {
         $Qcategories = $this->app->db->prepare('select categories_id,
-                                                   categories_name,
-                                                   language_id
-                                             from :table_categories_description
-                                             where categories_id = :categories_id
-                                            ');
+                                                       categories_name,
+                                                       language_id
+                                                 from :table_categories_description
+                                                 where categories_id = :categories_id
+                                                ');
         $Qcategories->bindInt(':categories_id', $Qcheck->valueInt('categories_id'));
         $Qcategories->execute();
 
         $categories_array = $Qcategories->fetchAll();
 
-        foreach ($categories_array as $item) {
-          $categories_name = $CLICSHOPPING_CategoriesAdmin->getCategoryName($item['categories_id'], $item['language_id']);
-          $language_name = $CLICSHOPPING_Language->getLanguagesName($item['language_id']);
+        if (is_array($categories_array)) {
+          foreach ($categories_array as $item) {
+            $categories_name = $CLICSHOPPING_CategoriesAdmin->getCategoryName($item['categories_id'], $item['language_id']);
+            $language_name = $CLICSHOPPING_Language->getLanguagesName($item['language_id']);
 
-          $update_sql_data = [
-            'language_id' => $item['language_id'],
-            'categories_id' => $item['categories_id']
-          ];
+            $update_sql_data = [
+              'language_id' => $item['language_id'],
+              'categories_id' => $item['categories_id']
+            ];
 
-//-------------------
-// categories description
-//-------------------
-          $categories_description = '';
-          if (isset($_POST['option_gpt_description'])) {
-            $question_description = $this->app->getDef('text_categories_description', ['category_name' => $categories_name]);
-            $categories_description = $translate_language . ' ' . $language_name . ' ' . $question_description;
-            $categories_description = Gpt::getGptResponse($categories_description);
+  //-------------------
+  // categories description
+  //-------------------
+            $categories_description = '';
+            if (isset($_POST['option_gpt_description'])) {
+              $question_description = $this->app->getDef('text_categories_description', ['category_name' => $categories_name]);
+              $categories_description = $translate_language . ' ' . $language_name . ' ' . $question_description;
+              $categories_description = Gpt::getGptResponse($categories_description);
 
-            if ($categories_description !== false) {
-              $sql_data_array = [
-                'categories_description' => $categories_description ?? '',
-              ];
+              if ($categories_description !== false) {
+                $sql_data_array = [
+                  'categories_description' => $categories_description ?? '',
+                ];
 
-              $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
+                $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
+              }
             }
-          }
-////-------------------
-// Seo Title
-//-------------------
-          $seo_categories_title = '';
-          if (isset($_POST['option_gpt_seo_title'])) {
-            $question = $this->app->getDef('text_seo_page_title_question', ['category_name' => $categories_name]);
+  ////-------------------
+  // Seo Title
+  //-------------------
+            $seo_categories_title = '';
+            if (isset($_POST['option_gpt_seo_title'])) {
+              $question = $this->app->getDef('text_seo_page_title_question', ['category_name' => $categories_name]);
 
-            $seo_categories_title = $translate_language . ' ' . $language_name . ' : ' . $question;
-            $seo_categories_title = Gpt::getGptResponse($seo_categories_title);
+              $seo_categories_title = $translate_language . ' ' . $language_name . ' : ' . $question;
+              $seo_categories_title = Gpt::getGptResponse($seo_categories_title);
 
-            if ($seo_categories_title !== false) {
-              $sql_data_array = [
-                'categories_head_title_tag' => strip_tags($seo_categories_title) ?? '',
-              ];
+              if ($seo_categories_title !== false) {
+                $sql_data_array = [
+                  'categories_head_title_tag' => strip_tags($seo_categories_title) ?? '',
+                ];
 
-              $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
+                $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
+              }
             }
-          }
-//-------------------
-// Seo description
-//-------------------
-          $seo_categories_description = '';
-          if (isset($_POST['option_gpt_seo_title'])) {
-            $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['category_name' => $categories_name]);
+  //-------------------
+  // Seo description
+  //-------------------
+            $seo_categories_description = '';
+            if (isset($_POST['option_gpt_seo_title'])) {
+              $question_summary_description = $this->app->getDef('text_seo_page_summary_description_question', ['category_name' => $categories_name]);
 
-            $seo_categories_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description;
-            $seo_categories_description = Gpt::getGptResponse($seo_categories_description);
+              $seo_categories_description = $translate_language . ' ' . $language_name . ' : ' . $question_summary_description;
+              $seo_categories_description = Gpt::getGptResponse($seo_categories_description);
 
-            if ($seo_categories_description !== false) {
-              $sql_data_array = [
-                'categories_head_desc_tag' => strip_tags($seo_categories_description) ?? '',
-              ];
+              if ($seo_categories_description !== false) {
+                $sql_data_array = [
+                  'categories_head_desc_tag' => strip_tags($seo_categories_description) ?? '',
+                ];
 
-              $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
+                $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
+              }
             }
-          }
-//-------------------
-// Seo keywords
-//-------------------
-          $seo_categories_keywords = '';
-          if (isset($_POST['option_gpt_seo_keywords'])) {
-            $question_keywords = $this->app->getDef('text_seo_page_keywords_question', ['category_name' => $categories_name]);
+  //-------------------
+  // Seo keywords
+  //-------------------
+            $seo_categories_keywords = '';
+            if (isset($_POST['option_gpt_seo_keywords'])) {
+              $question_keywords = $this->app->getDef('text_seo_page_keywords_question', ['category_name' => $categories_name]);
 
-            $seo_categories_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords;
-            $seo_categories_keywords = Gpt::getGptResponse($seo_categories_keywords);
+              $seo_categories_keywords = $translate_language . ' ' . $language_name . ' : ' . $question_keywords;
+              $seo_categories_keywords = Gpt::getGptResponse($seo_categories_keywords);
 
-            if ($seo_categories_keywords !== false) {
-              $sql_data_array = [
-                'categories_head_keywords_tag' => strip_tags($seo_categories_keywords) ?? '',
-              ];
+              if ($seo_categories_keywords !== false) {
+                $sql_data_array = [
+                  'categories_head_keywords_tag' => strip_tags($seo_categories_keywords) ?? '',
+                ];
 
-              $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
-            }
-          }
-
-//********************
-// add embedding
-//********************
-          if (CLICSHOPPING_APP_CHATGPT_CH_OPENAI_EMBEDDING == 'True') {
-            $embedding_data = "Category Name: $categories_name\n";
-
-            if (!empty($categories_description)) {
-              $embedding_data .= "Category Description: $categories_description\n";
-            }
-
-            if (!empty($seo_categories_title)) {
-              $embedding_data .= "Category SEO Title: $seo_categories_title\n";
-            }
-
-            if (!empty($seo_categories_description)) {
-              $embedding_data .= "Category SEO Description: $seo_categories_description\n";
-            }
-
-            if (!empty($seo_categories_keywords)) {
-              $embedding_data .= "Category SEO Keywords: $seo_categories_keywords\n";
-            }
-
-            $embeddedDocuments = NewVector::createEmbedding(null, $embedding_data);
-
-            $embeddings = [];
-
-            foreach ($embeddedDocuments as $embeddedDocument) {
-              if (is_array($embeddedDocument->embedding)) {
-                $embeddings[] = $embeddedDocument->embedding;
+                $this->app->db->save('categories_description', $sql_data_array, $update_sql_data);
               }
             }
 
-            if (!empty($embeddings)) {
-              $flattened_embedding = $embeddings[0];
-              $new_embedding_literal = json_encode($flattened_embedding, JSON_THROW_ON_ERROR);
+  //********************
+  // add embedding
+  //********************
+            if (CLICSHOPPING_APP_CHATGPT_CH_OPENAI_EMBEDDING == 'True') {
+              $embedding_data = 'Category Name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($categories_name) . '\n';
 
-              $sql_data_array = [
-                'content' => $embedding_data,
-                'type' => 'category',
-                'sourcetype' => 'manual',
-                'sourcename' => 'manual',
-                'date_modified' => 'now()',
-              ];
+              if (!empty($categories_description)) {
+                $embedding_data .= 'Category Description: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($categories_description) . '\n';
+              }
 
-              $sql_data_array['vec_embedding'] = $new_embedding_literal;
+              if (!empty($seo_categories_title)) {
+                $embedding_data .= 'Category SEO Title: ' .  HtmlOverrideCommon::cleanHtmlForSEO($seo_categories_title) . '\n';
+              }
 
-              $this->app->db->save('categories_embedding', $sql_data_array, $update_sql_data);
+              if (!empty($seo_categories_description)) {
+                $embedding_data .= 'Category SEO Description: ' .  HtmlOverrideCommon::cleanHtmlForSEO($seo_categories_description) . '\n';
+              }
+
+              if (!empty($seo_categories_keywords)) {
+                $embedding_data .= 'Category SEO Keywords: ' .  HtmlOverrideCommon::cleanHtmlForSEO($seo_categories_keywords) . '\n';
+              }
+
+              $embeddedDocuments = NewVector::createEmbedding(null, $embedding_data);
+
+              $embeddings = [];
+
+              foreach ($embeddedDocuments as $embeddedDocument) {
+                if (is_array($embeddedDocument->embedding)) {
+                  $embeddings[] = $embeddedDocument->embedding;
+                }
+              }
+
+              if (!empty($embeddings)) {
+                $flattened_embedding = $embeddings[0];
+                $new_embedding_literal = json_encode($flattened_embedding, JSON_THROW_ON_ERROR);
+
+                $sql_data_array_embedding = [
+                  'content' => $embedding_data,
+                  'type' => 'category',
+                  'sourcetype' => 'manual',
+                  'sourcename' => 'manual',
+                  'date_modified' => 'now()',
+                  'categories_id'=> $item['categories_id'],
+                  'language_id' => $item['language_id']
+                ];
+
+                $sql_data_array_embedding['vec_embedding'] = $new_embedding_literal;
+
+                $this->app->db->save('categories_embedding', $sql_data_array_embedding, $update_sql_data);
+              }
             }
           }
         }
+//-------------------
+//image
+//-------------------
+/*
+        if (isset($_POST['option_gpt_create_image'])) {
+          $Qcategories = $this->app->db->prepare('select categories_name,
+                                                           language_id
+                                                    from :table_categories_description
+                                                    where categories_id = :categories_id
+                                                    and language_id = 1
+                                                  ');
+          $Qcategories->bindInt(':categories_id', $Qcheck->valueInt('categories_id'));
+          $Qcategories->execute();
+
+          $image = Gpt::createImageChatGpt($Qcategories->value('categories_name'), 'categories', '256x256');
+
+          if (!empty($image) || $image !== false) {
+            $sql_data_array = [
+              'categories_image' => $image ?? '',
+            ];
+
+            $update_sql_data = ['categories_id' => $Qcheck->valueInt('categories_id')];
+
+            $this->app->db->save('categories', $sql_data_array, $update_sql_data);
+          }
+        }
+*/
       }
     }
   }

@@ -253,9 +253,10 @@ class MariaDb
           chunknumber int default(128),
           date_modified datetime DEFAULT NULL,  
           products_id int,
-          language_id int,
-          VECTOR INDEX (embedding)
+          language_id int
         );
+
+        CREATE VECTOR INDEX embedding_index ON :table_products_embedding (embedding);
       EOD;
 
       $CLICSHOPPING_Db->exec($sql);

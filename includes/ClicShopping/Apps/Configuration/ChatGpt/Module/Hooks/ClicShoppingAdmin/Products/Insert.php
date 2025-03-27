@@ -17,6 +17,7 @@ use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
 
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\NewVector;
+use ClicShopping\Sites\Common\HTMLOverrideCommon;
 
 class Insert implements \ClicShopping\OM\Modules\HooksInterface
 {
@@ -95,7 +96,7 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
           foreach ($products_array as $item) {
             $products_name = $item['products_name'];
             $products_model = $item['products_model'];
-            $manufacturer_nane =  HTML::sanitize($_POST['manufacturers_name']);
+            $manufacturer_name =  HTML::sanitize($_POST['manufacturers_name']);
             $products_description = $item['products_description'];
             $products_description_summary = $item['products_head_tag'];
             $language_name = $CLICSHOPPING_Language->getLanguagesName($item['language_id']);
@@ -219,43 +220,44 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
             //********************
             // add embedding
             //********************
+
             if (CLICSHOPPING_APP_CHATGPT_CH_OPENAI_EMBEDDING == 'False') {
-              $embedding_data = "Products Name: $products_name\n";
+              $embedding_data = 'Products Name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_name) . '\n';
 
               if (!empty($products_model)) {
-                $embedding_data .= "Products model: $products_model\n";
+                $embedding_data .= 'Products model: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_model) . '\n';
               }
 
               if (!empty($categories_name)) {
-                $embedding_data .= "Categories name: $categories_name\n";
+                $embedding_data .= 'Categories name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($categories_name) . '\n';
               }
 
-              if (!empty($manufacturer_nane)) {
-                $embedding_data .= "Products brand name: $manufacturer_nane\n";
+              if (!empty($manufacturer_name)) {
+                $embedding_data .= 'Products brand name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($manufacturer_name) . '\n';
               }
 
               if (!empty($products_description)) {
-                $embedding_data .= "Products Description: $products_description\n";
+                $embedding_data .= 'Products Description: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_description) . '\n';
               }
 
               if (!empty($products_description_summary)) {
-                $embedding_data .= "Products summary: $products_description_summary\n";
+                $embedding_data .= 'Products summary: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_description_summary) . '\n';
               }
 
               if (!empty($seo_product_title)) {
-                $embedding_data .= "Products SEO Title: $seo_product_title\n";
+                $embedding_data .= 'Products SEO Title: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_title) . '\n';
               }
 
               if (!empty($seo_product_description)) {
-                $embedding_data .= "Products SEO Description: $seo_product_description\n";
+                $embedding_data .= 'Products SEO Description: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_description) . '\n';
               }
 
               if (!empty($seo_product_keywords)) {
-                $embedding_data .= "Products SEO Keywords: $seo_product_keywords\n";
+                $embedding_data .= 'Products SEO Keywords: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_keywords) . '\n';
               }
 
               if (!empty($seo_product_tag)) {
-                $embedding_data .= "Products SEO Tag: $seo_product_tag\n";
+                $embedding_data .= 'Products SEO Tag: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_tag) . '\n';
               }
 
               $embeddedDocuments = NewVector::createEmbedding(null, $embedding_data);
@@ -277,15 +279,87 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
                   'sourcetype' => 'manual',
                   'sourcename' => 'manual',
                   'date_modified' => 'now()',
+                  'products_id' => $item['products_id'],
+                  'language_id' => $item['language_id']
                 ];
 
                 $sql_data_array_embedding['vec_embedding'] = $new_embedding_literal;
 
-                $this->app->db->save('products_embedding', $sql_data_array, $update_sql_data);
+                $this->app->db->save('products_embedding', $sql_data_array_embedding, $update_sql_data);
               }
             }
           }
         }
+//-------------------
+//image
+//-------------------
+/*
+        if (isset($_POST['option_gpt_create_image'])) {
+          $Qproducts = $this->app->db->prepare('select products_name,
+                                                         language_id
+                                                  from :table_products_description
+                                                  where products_id = :products_id
+                                                  and language_id = 1
+                                                ');
+          $Qproducts->bindInt(':products_id', $Qcheck->valueInt('products_id'));
+          $Qproducts->execute();
+
+          $update_sql_data = [
+            'products_id' => $Qcheck->valueInt('products_id')
+          ];
+
+          $products_image = Gpt::createImageChatGpt($Qproducts->value('products_name'), 'products', '256x256', true, true);
+
+          if (!empty($products_image) || $products_image !== false) {
+            $sql_data_products_image = [
+              'products_image' => $products_image ?? '',
+              'products_image_small' => $products_image ?? ''
+            ];
+
+            $this->app->db->save('products', $sql_data_products_image, $update_sql_data);
+          }
+
+//zoom
+          $products_image_zoom = Gpt::createImageChatGpt($Qproducts->value('products_name'), 'products', '512x512', true);
+
+          if (!empty($products_image_zoom) || $products_image_zoom !== false) {
+            $sql_data_array_products_image_zoom = [
+              'products_image_zoom' => $products_image_zoom ?? '',
+            ];
+
+            $this->app->db->save('products', $sql_data_array_products_image_zoom, $update_sql_data);
+
+            $sql_array = [
+              'products_id' => $Qcheck->valueInt('products_id'),
+              'image' => $products_image_zoom ?? '',
+              'htmlcontent' => '',
+              'sort_order' => 2
+            ];
+
+            $this->app->db->save('products_images', $sql_array);
+          }
+
+// medium
+          $products_image_medium = Gpt::createImageChatGpt($Qproducts->value('products_name'), 'products', '512x512', true);
+
+          if (!empty($products_image_medium) || $products_image_medium !== false) {
+            $sql_data_array_products_image_medium = [
+              'products_image_medium' => $products_image_medium ?? '',
+            ];
+
+            $this->app->db->save('products', $sql_data_array_products_image_medium, $update_sql_data);
+
+            $sql_array = [
+              'products_id' => $Qcheck->valueInt('products_id'),
+              'image' => $products_image_medium ?? '',
+              'htmlcontent' => '',
+              'sort_order' => 2
+            ];
+
+            $this->app->db->save('products_images', $sql_array);
+          }
+        }
+*/	
       }
     }
   }

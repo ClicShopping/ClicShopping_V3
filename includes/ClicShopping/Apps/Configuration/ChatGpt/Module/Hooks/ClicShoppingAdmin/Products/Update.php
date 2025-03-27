@@ -16,6 +16,7 @@ use ClicShopping\OM\HTML;
 use ClicShopping\Apps\Configuration\ChatGpt\ChatGpt as ChatGptApp;
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\Gpt;
 use ClicShopping\Apps\Configuration\ChatGpt\Classes\ClicShoppingAdmin\NewVector;
+use ClicShopping\Sites\Common\HTMLOverrideCommon;
 
 class Update implements \ClicShopping\OM\Modules\HooksInterface
 {
@@ -99,7 +100,7 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
           foreach ($products_array as $item) {
             $products_name = $item['products_name'];
             $products_model = $item['products_model'];
-            $manufacturer_nane =  HTML::sanitize($_POST['manufacturers_name']);
+            $manufacturer_name =  HTML::sanitize($_POST['manufacturers_name']);
             $products_description = $item['products_description'];
             $seo_product_title = $item['products_head_title_tag'];
             $seo_product_description = $item['products_head_desc_tag'];
@@ -118,42 +119,42 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
   //********************
   // add embedding
   //********************
-            $embedding_data = "Products Name: $products_name\n";
+            $embedding_data = 'Products Name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_name) . '\n';
 
             if (!empty($products_model)) {
-              $embedding_data .= "Products model: $products_model\n";
+              $embedding_data .= 'Products model: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_model) . '\n';
             }
 
             if (!empty($categories_name)) {
-              $embedding_data .= "Categories name: $categories_name\n";
+              $embedding_data .= 'Categories name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($categories_name) . '\n';
             }
 
-            if (!empty($manufacturer_nane)) {
-              $embedding_data .= "Products brand name: $manufacturer_nane\n";
+            if (!empty($manufacturer_name)) {
+              $embedding_data .= 'Products brand name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($manufacturer_name) . '\n';
             }
 
             if (!empty($products_description)) {
-              $embedding_data .= "Products Description: $products_description\n";
+              $embedding_data .= 'Products Description: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_description) . '\n';
             }
 
             if (!empty($products_description_summary)) {
-              $embedding_data .= "Products summary: $products_description_summary\n";
+              $embedding_data .= 'Products summary: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_description_summary) . '\n';
             }
 
             if (!empty($seo_product_title)) {
-              $embedding_data .= "Products SEO Title: $seo_product_title\n";
+              $embedding_data .= 'Products SEO Title: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_title) . '\n';
             }
 
             if (!empty($seo_product_description)) {
-              $embedding_data .= "Products SEO Description: $seo_product_description\n";
+              $embedding_data .= 'Products SEO Description: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_description) . '\n';
             }
 
             if (!empty($seo_product_keywords)) {
-              $embedding_data .= "Products SEO Keywords: $seo_product_keywords\n";
+              $embedding_data .= 'Products SEO Keywords: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_keywords) . '\n';
             }
 
             if (!empty($seo_product_tag)) {
-              $embedding_data .= "Products SEO Tag: $seo_product_tag\n";
+              $embedding_data .= 'Products SEO Tag: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_tag) . '\n';
             }
 
             $embeddedDocuments = NewVector::createEmbedding(null, $embedding_data);

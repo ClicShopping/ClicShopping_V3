@@ -20,6 +20,105 @@ use function strlen;
  */
 class HTMLOverrideCommon extends HTML
 {
+
+  /**
+   * Nettoie une chaîne HTML en supprimant les balises, le JavaScript et les entités HTML.
+   *
+   * @param string $html Le contenu HTML à nettoyer.
+   * @param int|null $maxLength Longueur maximale du texte nettoyé.
+   * @return string Texte nettoyé et éventuellement tronqué.
+   */
+  public static function cleanHtmlOptimized(string $html, ?int $maxLength = null): string
+  {
+    // Supprime les balises <script> et <style>
+    $clean = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $html);
+    $clean = preg_replace('/<style\b[^>]*>(.*?)<\/style>/is', '', $clean);
+
+    // Supprime toutes les autres balises HTML
+    $clean = strip_tags($clean);
+
+    // Décodage des entités HTML pour récupérer du texte lisible
+    $clean = html_entity_decode($clean, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+    // Normalisation des espaces
+    $clean = preg_replace('/\s+/', ' ', trim($clean));
+
+    // Tronquer si une longueur max est spécifiée
+    if ($maxLength !== null && mb_strlen($clean, 'UTF-8') > $maxLength) {
+      $clean = mb_substr($clean, 0, $maxLength - 3, 'UTF-8') . '...';
+    }
+
+    // Sécurisation XSS (pour affichage web)
+    return htmlspecialchars($clean, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+  }
+
+  /**
+   * Nettoie un texte HTML en supprimant le contenu inutile pour l'embedding.
+   * - Supprime les scripts, styles, images, iframes, liens externes.
+   * - Conserve uniquement le texte utile pour l'indexation et la recherche.
+   *
+   * @param string $html Le contenu HTML à nettoyer.
+   * @return string Texte nettoyé et structuré pour l'embedding.
+   */
+  public static function cleanHtmlForEmbedding(string $html): string
+  {
+    // Supprime les scripts, styles, iframes, objets et balises inutiles
+    $clean = preg_replace('/<(script|style|iframe|object|embed|noscript|svg|canvas|meta|link|form|button|input|select|textarea)[^>]*>.*?<\/\1>/is', '', $html);
+
+    // Supprime les balises <img> (images) et les balises de liens (<a>)
+    $clean = preg_replace('/<img[^>]*>/i', '', $clean);
+    $clean = preg_replace('/<a\b[^>]*>(.*?)<\/a>/i', '\1', $clean); // Conserve le texte du lien
+
+    // Supprime toutes les autres balises HTML
+    $clean = strip_tags($clean);
+
+    // Décodage des entités HTML
+    $clean = html_entity_decode($clean, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+    // Supprime les caractères non alphanumériques inutiles
+    $clean = preg_replace('/[^\p{L}\p{N}\s,.!?-]/u', '', $clean);
+
+    // Normalisation des espaces
+    $clean = preg_replace('/\s+/', ' ', trim($clean));
+
+    return $clean;
+  }
+
+  /**
+   * Nettoie un texte HTML pour l'optimisation SEO.
+   * - Supprime scripts, styles, iframes et balises inutiles.
+   * - Conserve les titres, descriptions et mots-clés.
+   * - Garde certains caractères spéciaux utiles pour le SEO (- , / |).
+   *
+   * @param string $html Le contenu HTML à nettoyer.
+   * @return string Texte nettoyé et structuré pour le SEO.
+   */
+  public static function cleanHtmlForSEO(string $html): string
+  {
+    // Supprime les balises nuisibles au SEO (scripts, styles, iframes, objets, boutons)
+    $clean = preg_replace('/<(script|style|iframe|object|embed|noscript|svg|canvas|meta|link|button|form|input|select|textarea)[^>]*>.*?<\/\1>/is', '', $html);
+
+    // Supprime les balises <img> (images)
+    $clean = preg_replace('/<img[^>]*>/i', '', $clean);
+
+    // Supprime les balises <a> mais garde le texte du lien
+    $clean = preg_replace('/<a\b[^>]*>(.*?)<\/a>/i', '\1', $clean);
+
+    // Supprime toutes les autres balises HTML
+    $clean = strip_tags($clean);
+
+    // Décodage des entités HTML
+    $clean = html_entity_decode($clean, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+    // Supprime uniquement les caractères spéciaux non pertinents (évite de supprimer - , / |)
+    $clean = preg_replace('/[^\p{L}\p{N}\s,\/|.-]/u', '', $clean);
+
+    // Normalisation des espaces
+    $clean = preg_replace('/\s+/', ' ', trim($clean));
+
+    return $clean;
+  }
+
   /**
    * Strips HTML tags, JavaScript, and certain special HTML entities from a string.
    *
