@@ -27,7 +27,7 @@ final class HttpFactory implements RequestFactoryInterface, ResponseFactoryInter
 {
     public function createUploadedFile(
         StreamInterface $stream,
-         int|null $size = null,
+        ?int $size = null,
         int $error = \UPLOAD_ERR_OK,
         ?string $clientFilename = null,
         ?string $clientMediaType = null

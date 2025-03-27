@@ -78,7 +78,7 @@ final class PumpStream implements StreamInterface
         return null;
     }
 
-    public function getSize():  int|null
+    public function getSize(): ?int
     {
         return $this->size;
     }

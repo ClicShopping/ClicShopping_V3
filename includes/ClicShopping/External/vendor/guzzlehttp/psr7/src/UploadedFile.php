@@ -11,15 +11,15 @@ use RuntimeException;
 
 class UploadedFile implements UploadedFileInterface
 {
-    private const ERRORS = [
-        UPLOAD_ERR_OK,
-        UPLOAD_ERR_INI_SIZE,
-        UPLOAD_ERR_FORM_SIZE,
-        UPLOAD_ERR_PARTIAL,
-        UPLOAD_ERR_NO_FILE,
-        UPLOAD_ERR_NO_TMP_DIR,
-        UPLOAD_ERR_CANT_WRITE,
-        UPLOAD_ERR_EXTENSION,
+    private const ERROR_MAP = [
+        UPLOAD_ERR_OK => 'UPLOAD_ERR_OK',
+        UPLOAD_ERR_INI_SIZE => 'UPLOAD_ERR_INI_SIZE',
+        UPLOAD_ERR_FORM_SIZE => 'UPLOAD_ERR_FORM_SIZE',
+        UPLOAD_ERR_PARTIAL => 'UPLOAD_ERR_PARTIAL',
+        UPLOAD_ERR_NO_FILE => 'UPLOAD_ERR_NO_FILE',
+        UPLOAD_ERR_NO_TMP_DIR => 'UPLOAD_ERR_NO_TMP_DIR',
+        UPLOAD_ERR_CANT_WRITE => 'UPLOAD_ERR_CANT_WRITE',
+        UPLOAD_ERR_EXTENSION => 'UPLOAD_ERR_EXTENSION',
     ];
 
     /**
@@ -62,7 +62,7 @@ class UploadedFile implements UploadedFileInterface
      */
     public function __construct(
         $streamOrFile,
-         int|null $size,
+        ?int $size,
         int $errorStatus,
         ?string $clientFilename = null,
         ?string $clientMediaType = null
@@ -104,7 +104,7 @@ class UploadedFile implements UploadedFileInterface
      */
     private function setError(int $error): void
     {
-        if (false === in_array($error, UploadedFile::ERRORS, true)) {
+        if (!isset(UploadedFile::ERROR_MAP[$error])) {
             throw new InvalidArgumentException(
                 'Invalid error status for UploadedFile'
             );
@@ -137,7 +137,7 @@ class UploadedFile implements UploadedFileInterface
     private function validateActive(): void
     {
         if (false === $this->isOk()) {
-            throw new RuntimeException('Cannot retrieve stream due to upload error');
+            throw new RuntimeException(\sprintf('Cannot retrieve stream due to upload error (%s)', self::ERROR_MAP[$this->error]));
         }
 
         if ($this->isMoved()) {
@@ -189,7 +189,7 @@ class UploadedFile implements UploadedFileInterface
         }
     }
 
-    public function getSize():  int|null
+    public function getSize(): ?int
     {
         return $this->size;
     }

@@ -94,7 +94,7 @@ trait StreamDecoratorTrait
         return $this->stream->detach();
     }
 
-    public function getSize():  int|null
+    public function getSize(): ?int
     {
         return $this->stream->getSize();
     }

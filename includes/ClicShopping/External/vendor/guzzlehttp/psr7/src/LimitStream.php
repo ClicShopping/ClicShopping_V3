@@ -57,7 +57,7 @@ final class LimitStream implements StreamInterface
     /**
      * Returns the size of the limited subset of data
      */
-    public function getSize():  int|null
+    public function getSize(): ?int
     {
         if (null === ($length = $this->stream->getSize())) {
             return null;

@@ -59,7 +59,7 @@ final class BufferStream implements StreamInterface
         return null;
     }
 
-    public function getSize():  int|null
+    public function getSize(): ?int
     {
         return strlen($this->buffer);
     }
