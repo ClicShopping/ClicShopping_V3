@@ -20,7 +20,7 @@ use ClicShopping\Apps\Configuration\ChatGpt\Classes\Rag\DoctrineOrm;
  * - Document storage with vector embeddings
  * - Similarity search using vector operations
  * - Document metadata management
- * - Support for different entity types (products, categories, pages)
+ * - Support for different entity types (products, categories, page manager)
  * - Document CRUD operations
  *
  * Requirements:
@@ -33,7 +33,7 @@ use ClicShopping\Apps\Configuration\ChatGpt\Classes\Rag\DoctrineOrm;
 class MariaDBVectorStore extends VectorStoreBase
 {
   private Connection $connection;
-  private string $tableName = 'rag_embeddings';
+  private string $tableName;
   private EmbeddingGeneratorInterface $embeddingGenerator;
 
   /**
@@ -74,26 +74,26 @@ class MariaDBVectorStore extends VectorStoreBase
     $embedding = $this->embeddingGenerator->embedText($document->content);
 
     // Préparation des métadonnées
-    $type = $document->sourceType ?? 'manual';
+    $type = $document->sourceType ?? null;
     $sourcetype = $document->sourceType ?? 'manual';
     $sourcename = $document->sourceName ?? 'manual';
     $chunknumber = $document->chunkNumber ?? 128;
+    $language_id = $document->language_id ?? 1;
     $date_modified = date('Y-m-d H:i:s');
 
     // Extraction des informations d'entité
-    $entity_type = isset($document->metadata['entity_type']) ? $document->metadata['entity_type'] : null;
     $entity_id = isset($document->metadata['entity_id']) ? $document->metadata['entity_id'] : null;
 
     // Rétrocompatibilité avec les anciens champs
-    if ($entity_type === null && isset($document->metadata['pages_id']) && $document->metadata['pages_id'] !== null) {
-      $entity_type = 'page';
-      $entity_id = $document->metadata['pages_id'];
-    } elseif ($entity_type === null && isset($document->metadata['categories_id']) && $document->metadata['categories_id'] !== null) {
-      $entity_type = 'category';
-      $entity_id = $document->metadata['categories_id'];
-    } elseif ($entity_type === null && isset($document->metadata['products_id']) && $document->metadata['products_id'] !== null) {
-      $entity_type = 'product';
-      $entity_id = $document->metadata['products_id'];
+    if ($type === null && isset($document->metadata['entity_id']) && $document->metadata['entity_id'] !== null) {
+      $type = 'page_manager';
+      $entity_id = $document->metadata['entity_id'];
+    } elseif ($type === null && isset($document->metadata['entity_id']) && $document->metadata['entity_id'] !== null) {
+      $type = 'category';
+      $entity_id = $document->metadata['entity_id'];
+    } elseif ($type === null && isset($document->metadata['entity_id']) && $document->metadata['entity_id'] !== null) {
+      $type = 'products';
+      $entity_id = $document->metadata['entity_id'];
     }
 
     // Conversion de l'embedding en JSON pour stockage
@@ -102,7 +102,7 @@ class MariaDBVectorStore extends VectorStoreBase
     // Insertion dans la base de données
     $this->connection->executeStatement(
       "INSERT INTO {$this->tableName} 
-            (content, type, sourcetype, sourcename, embedding, chunknumber, date_modified, entity_type, entity_id) 
+            (content, type, sourcetype, sourcename, embedding, chunknumber, date_modified, entity_id, language_id) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         $document->content,
@@ -112,8 +112,8 @@ class MariaDBVectorStore extends VectorStoreBase
         $embeddingJson,
         $chunknumber,
         $date_modified,
-        $entity_type,
-        $entity_id
+        $entity_id,
+        $language_id
       ]
     );
   }
@@ -187,14 +187,16 @@ class MariaDBVectorStore extends VectorStoreBase
         $document->sourceType = $result['sourcetype'] ?? 'manual';
         $document->sourceName = $result['sourcename'] ?? 'manual';
         $document->chunkNumber = $result['chunknumber'] ?? 128;
+        $document->type = $result['type']  ?? null;
+        $document->language_id = $result['language_id'] ?? 1;
 
         // Ajout des métadonnées
         $document->metadata = [
           'id' => $result['id'],
           'type' => $result['type'] ?? null,
           'date_modified' => $result['date_modified'] ?? null,
-          'entity_type' => $result['entity_type'] ?? null,
           'entity_id' => $result['entity_id'] ?? null,
+          'language_id' => $result['language_id'] ?? 1,
           'score' => $similarity,
           'table_name' => $this->tableName,
           'distance' => $result['distance']
@@ -264,22 +266,22 @@ class MariaDBVectorStore extends VectorStoreBase
       $sourcetype = $metadata['sourcetype'] ?? 'manual';
       $sourcename = $metadata['sourcename'] ?? 'manual';
       $chunknumber = $metadata['chunknumber'] ?? 128;
+      $language_id = $metadata['language_id'] ?? 1;
       $date_modified = date('Y-m-d H:i:s');
 
       // Extraction des informations d'entité
-      $entity_type = isset($metadata['entity_type']) ? $metadata['entity_type'] : null;
       $entity_id = isset($metadata['entity_id']) ? $metadata['entity_id'] : null;
 
       // Rétrocompatibilité avec les anciens champs
-      if ($entity_type === null && isset($metadata['pages_id']) && $metadata['pages_id'] !== null) {
-        $entity_type = 'page';
-        $entity_id = $metadata['pages_id'];
-      } elseif ($entity_type === null && isset($metadata['categories_id']) && $metadata['categories_id'] !== null) {
-        $entity_type = 'category';
-        $entity_id = $metadata['categories_id'];
-      } elseif ($entity_type === null && isset($metadata['products_id']) && $metadata['products_id'] !== null) {
-        $entity_type = 'product';
-        $entity_id = $metadata['products_id'];
+      if ($type === null && isset($metadata['entity_id']) && $metadata['entity_id'] !== null) {
+        $type = 'page_manager';
+        $entity_id = $metadata['entity_id'];
+      } elseif ($type === null && isset($metadata['categories_id']) && $metadata['entity_id'] !== null) {
+        $type = 'category';
+        $entity_id = $metadata['entity_id'];
+      } elseif ($type === null && isset($metadata['entity_id']) && $metadata['entity_id'] !== null) {
+        $type = 'products';
+        $entity_id = $metadata['entity_id'];
       }
 
       // Mise à jour dans la base de données
@@ -287,7 +289,7 @@ class MariaDBVectorStore extends VectorStoreBase
         "UPDATE {$this->tableName} 
                 SET content = ?, type = ?, sourcetype = ?, sourcename = ?, 
                 embedding = ?, chunknumber = ?, date_modified = ?, 
-                entity_type = ?, entity_id = ? 
+                entity_type = ?, entity_id = ?,  language_id = ?,  
                 WHERE id = ?",
         [
           $content,
@@ -297,8 +299,8 @@ class MariaDBVectorStore extends VectorStoreBase
           $embeddingJson,
           $chunknumber,
           $date_modified,
-          $entity_type,
           $entity_id,
+          $language_id,
           $id
         ]
       );

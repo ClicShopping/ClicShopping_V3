@@ -39,41 +39,6 @@ use ClicShopping\Apps\Configuration\ChatGpt\Classes\Rag\VectorType;
 class DoctrineOrm
 {
   /**
-   * Returns the current version of MariaDB from the connection.
-   *
-   * @return string MariaDB server version
-   * @throws \Doctrine\DBAL\Exception If database connection fails
-   */
-  private static function getMariaDbVersion(): string
-  {
-    $entityManager = self::getEntityManager();
-    $connection = $entityManager->getConnection();
-
-    // Exécution d'une requête pour obtenir la version de MariaDB
-    $version = $connection->executeQuery("SELECT VERSION()")->fetchOne();
-    return $version;
-  }
-
-  /**
-   * Checks if the MariaDB version meets the minimum required version (11.8.0).
-   *
-   * @throws \Exception If the MariaDB version is lower than the minimum required version
-   */
-  private static function checkMariaDbVersion()
-  {
-    // get the version of MariaDB
-    $mariadbVersion = self::getMariaDbVersion();
-
-    // Version minimale requise
-    $minVersion = '11.8.0';
-
-    // Comparer les versions
-    if (version_compare($mariadbVersion, $minVersion, '<')) {
-      throw new \Exception("The MariaDB ($mariadbVersion)version is inferior at the minimalversion reuired ($minVersion). You can not use the rag.");
-    }
-  }
-
-  /**
    * Configures and initializes Doctrine ORM settings.
    * Sets up the database connection parameters and ORM configuration.
    *
@@ -82,9 +47,6 @@ class DoctrineOrm
    */
   private static function Orm()
   {
-    // Vérifier la version de MariaDB avant de configurer la connexion
-//    self::checkMariaDbVersion();
-
     // Configuration de Doctrine avec un pilote de métadonnées minimal
     $config = ORMSetup::createConfiguration(true, null, null);
 
@@ -259,7 +221,6 @@ class DoctrineOrm
                 embedding VECTOR(3072) NOT NULL,
                 chunknumber INT DEFAULT 128,
                 date_modified DATETIME DEFAULT NULL,
-                entity_type VARCHAR(50) DEFAULT NULL,
                 entity_id INT DEFAULT NULL
             )
         ");

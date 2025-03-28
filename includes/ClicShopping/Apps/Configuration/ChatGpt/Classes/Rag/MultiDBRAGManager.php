@@ -181,7 +181,7 @@ class MultiDBRAGManager
         'entity_type' => $entityType,
         'entity_id' => $entityId,
         'language_id' => $languageId,
-        'date_modified' => 'now('
+        'date_modified' => 'now()'
       ];
 
       $this->vectorStores[$tableName]->addDocument($document);
