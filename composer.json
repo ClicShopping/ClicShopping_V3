@@ -24,7 +24,8 @@
         "mattketmo/email-checker": "^2.4",
           "ext-pdo": "*",
         "doctrine/orm": "^3.3",
-        "symfony/cache": "^7.2"
+        "symfony/cache": "^7.2",
+        "doctrine/migrations": "^3.9"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest"
