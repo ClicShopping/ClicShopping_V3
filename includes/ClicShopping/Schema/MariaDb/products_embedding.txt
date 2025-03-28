@@ -6,7 +6,9 @@
   embedding vector(3072) not_null
   chunknumber int default(128)
   date_modified datetime DEFAULT NULL
-  products_id int not_null
+  entity_id int not_null
+  language_id int not_null
+
   --
   primary id
   VECTOR INDEX idx_embedding (embedding)

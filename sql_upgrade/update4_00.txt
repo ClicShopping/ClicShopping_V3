@@ -45,7 +45,13 @@ CREATE TABLE IF NOT EXISTS :table_page_manager_embedding (
 CREATE VECTOR INDEX embedding_index ON :table_page_manager_embedding (embedding);
 
 #english
-INSERT INTO configuration VALUES(1747, 'Do you want to use the embeddging OpenAI ?', 'CLICSHOPPING_APP_CHATGPT_CH_OPENAI_EMBEDDING', 'False', 'If you want to use the embedding (3072), you must have at least mariaDb 11.8 version', 6, 0, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(null, 'Do you want to use the embeddging OpenAI ?', 'CLICSHOPPING_APP_CHATGPT_CH_OPENAI_EMBEDDING', 'False', 'If you want to use the embedding (3072), you must have at least mariaDb 11.8 version', 6, 0, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(null, 'Do you want to use the OpenAI rag approach ?', 'CLICSHOPPING_APP_CHATGPT_CH_RAG_MANAGER', 'False', 'If you want to use the rag to look some information inside ClicShopping,please choose True via the chatbot', 6, 0, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(null, 'Do you want to OpenAI rag debug approach ?', 'CLICSHOPPING_APP_CHATGPT_CH_DEBUG_RAG_MANAGER', 'False', 'If you want to see the error log about the process, please choose True', 6, 0, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+
+
 
 #french
 INSERT INTO configuration VALUES(null, 'Souhaitez vous activer l\'embedding OpenAi ?', 'CLICSHOPPING_APP_CHATGPT_CH_OPENAI_EMBEDDING', 'False', 'Si vous souhaitez utiliser l\'embedding (3072),vous devez avoir au moins la version mariaDb 11.8', 6, 0, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(null, 'Voulez-vous activer OpenAI Rag ?', 'CLICSHOPPING_APP_CHATGPT_CH_RAG_MANAGER', 'False', 'Si vous souhaitez utiliser le rag pour rechercher des informations à l\'intérieur de ClicShopping via la chatbot, veuillez choisir True', 6, 0, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(null, 'Voulez-vous activer de débogage OpenAI Rag ?', 'CLICSHOPPING_APP_CHATGPT_CH_DEBUG_RAG_MANAGER', 'False', 'Si vous souhaitez voir le journal des erreurs concernant le processus, veuillez choisir True', 6, 0, NULL, '2023-09-15 09:16:47', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');

@@ -22,7 +22,9 @@
         "theodo-group/llphant": "^0.9.7",
         "stripe/stripe-php": "^16.6",
         "mattketmo/email-checker": "^2.4",
-          "ext-pdo": "*"
+          "ext-pdo": "*",
+        "doctrine/orm": "^3.3",
+        "symfony/cache": "^7.2"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest"

@@ -1,0 +1,5 @@
+cfg_chatgpt_rag_manager_title = Do you want to use the OpenAI rag approach ?
+cfg_chatgpt_rag_manager_description = If you want to use the rag to look some information inside ClicShopping via the chatbot, please choose True.
+
+cfg_chatgpt_rag_manager_status_true = True
+cfg_chatgpt_rag_manager_status_false = False

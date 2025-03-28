@@ -473,3 +473,21 @@ Message could not be sent. Mailer Error:  {{phpmailer_error}}
 text_warning_group = Veuillez mettre à jour vos groupes clients pour voir ce module dans le catalogue ou le supprimer
 no_access_warning = Vous n'avez pas accés à cette fonctionnalité.
 success_migration_done = La migration a été un succés
+
+
+text_rag_system_message_template = Utilise les informations suivantes pour répondre à la question de l'utilisateur.
+Si tu ne trouves pas la réponse dans les informations fournies, dis-le clairement et propose une réponse basée sur tes connaissances générales.
+Informations:
+{context}
+Question: {question}
+Instructions:
+
+Réponds en français de manière claire et concise
+Pour chaque information, indique son origine et son lien de référence si disponible
+
+Liens de référence:<br>
+{links}<br>
+Réponse détaillée:
+
+text_rag_answer_question_not_found = Je n'ai pas trouvé d'informations spécifiques pour répondre à votre question. Veuillez reformuler ou poser une autre question.
+text_rag_answer_question_error = Désolé, une erreur s'est produite lors du traitement de votre question. Veuillez réessayer ultérieurement.

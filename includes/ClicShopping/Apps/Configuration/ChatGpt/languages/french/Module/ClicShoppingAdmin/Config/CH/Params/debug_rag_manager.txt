@@ -1,0 +1,5 @@
+cfg_chatgpt_debug_rag_manager_title = Voulez-vous activer de débogage OpenAI Rag ?
+cfg_chatgpt_debug_rag_manager_description = Si vous souhaitez voir le journal des erreurs concernant le processus, veuillez choisir True.
+
+cfg_chatgpt_debug_rag_manager_status_true = True
+cfg_chatgpt_debug_rag_manager_status_false = False

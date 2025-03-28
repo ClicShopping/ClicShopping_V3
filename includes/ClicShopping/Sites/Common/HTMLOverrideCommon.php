@@ -119,7 +119,6 @@ class HTMLOverrideCommon extends HTML
     return $clean;
   }
 
-
   /**
    * Minifies the given HTML by removing unnecessary whitespaces and optimizing formatting while preserving functionality.
    *

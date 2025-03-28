@@ -479,3 +479,19 @@ Message could not be sent. Mailer Error:  {{phpmailer_error}}
 text_warning_group = Please update our customers group to see this module inside the catalog
 no_access_warning = You do not have access at this fonctionnality.
 success_migration_done = The migration has been a success
+
+text_rag_system_message_template = Use the following information to answer the user's question.
+If you cannot find the answer in the provided information, clearly state this and offer an answer based on your general knowledge.
+Information:
+{context}
+Question: {question}
+Instructions:
+
+Respond in clear and concise French
+For each piece of information, indicate its origin and provide the reference link if available
+
+Reference links:<br>
+{links}<br>
+Detailed answer:
+
+text_rag_answer_question_not_found = I couldn’t find any specific information to answer your question. Please rephrase or ask another question.

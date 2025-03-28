@@ -583,10 +583,6 @@ class Gpt {
     return $script;
   }
 
-  //**************************************
-  //                  RAG
-  //**************************************
-
   /**
    * Sets the environment variable for the OpenAI API key.
    *
@@ -599,4 +595,26 @@ class Gpt {
     return $env;
   }
 
+  /**
+   * Generates embeddings for the given text using OpenAI.
+   *
+   * @param string $text The text to generate embeddings for.
+   * @return array The generated embeddings.
+   */
+  public static function gptOpenAiEmbeddings(string $text): array
+  {
+    self::getEnvironment();
+
+    $embeddingGenerator = new OpenAI3LargeEmbeddingGenerator();
+    $embedded = $embeddingGenerator->embedText($text);
+
+    $document = new Document();
+    $document->content = $text;
+    $document->embedding = $embedded;
+
+    // Debugging: Log the embeddings
+    //error_log(json_encode($embedded));
+
+    return $embedded;
+  }
 }

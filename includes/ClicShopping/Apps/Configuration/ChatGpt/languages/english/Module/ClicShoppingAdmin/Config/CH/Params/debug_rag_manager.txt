@@ -1,0 +1,5 @@
+cfg_chatgpt_debug_rag_manager_title = Do you want to OpenAI Rag debug approach ?
+cfg_chatgpt_debug_rag_manager_description = If you want to see the error log about the process, please choose True.
+
+cfg_chatgpt_debug_rag_manager_status_true = True
+cfg_chatgpt_debug_rag_manager_status_false = False
