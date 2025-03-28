@@ -9,6 +9,8 @@ Add product recommendation module for products_info template using the embedding
 Add rag via chatbot
 small fix
 librairies updated
+Allow to use the rag and rerieve the data inside the databse or inside the llm
+
 
 ------------------
 version3.456

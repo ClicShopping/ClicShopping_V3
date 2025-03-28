@@ -124,7 +124,7 @@ class NewVector
    * @return float The calculated variance of the provided values.
    * @throws \InvalidArgumentException If the input array is empty.
    */
-   function calculateVariance(array $values): float
+   private function calculateVariance(array $values): float
   {
     $mean = $this->calculateMean($values);
     $sum_of_squared_diff = 0;
