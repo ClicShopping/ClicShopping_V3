@@ -151,8 +151,8 @@ CREATE TABLE IF NOT EXISTS :table_pages_manager_embedding (
     embedding VECTOR(3072) NOT NULL,
     chunknumber INT DEFAULT 128,
     date_modified DATETIME DEFAULT NULL,
-    pages_id INT,
-    language_id INT
+    entity_id INT,
+    language_id INT 
 );
 
 CREATE VECTOR INDEX embedding_index ON :table_page_manager_embedding (embedding);

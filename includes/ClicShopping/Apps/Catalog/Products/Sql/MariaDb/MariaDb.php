@@ -252,8 +252,8 @@ class MariaDb
           embedding vector(3072) NOT NULL,
           chunknumber int default(128),
           date_modified datetime DEFAULT NULL,  
-          products_id int,
-          language_id int
+          entity_id INT,
+          language_id INT 
         );
 
         CREATE VECTOR INDEX embedding_index ON :table_products_embedding (embedding);

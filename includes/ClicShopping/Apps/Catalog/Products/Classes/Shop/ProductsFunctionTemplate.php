@@ -608,11 +608,11 @@ class ProductsFunctionTemplate
 //description
     $str = $this->productsCommon->getProductsDescription($products_id);
     $str = str_replace('"', '', $str);
-    $str = HTMLOverrideCommon::stripHtmlTags($str);
-    $description = HTMLOverrideCommon::cleanHtml($str);
+    $str = HTMLOverrideCommon::cleanHtmlOptimized($str);
+    $description = HTMLOverrideCommon::cleanHtmlOptimized($str);
 
     $name = str_replace('"', '', $this->productsCommon->getProductsName($products_id));
-    $name = HTMLOverrideCommon::cleanHtml($name);
+    $name = HTMLOverrideCommon::cleanHtmlOptimized($name);
 
     $output = '
       <script defer type="application/ld+json">

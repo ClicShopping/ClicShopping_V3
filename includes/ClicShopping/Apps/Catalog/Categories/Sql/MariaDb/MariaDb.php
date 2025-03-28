@@ -152,9 +152,9 @@ EOD;
           sourcename text default 'manual',
           embedding vector(3072) NOT NULL,
           chunknumber int default(128),
-          date_modified datetime DEFAULT NULL,  
-          categories_id int,
-          language_id int
+          date_modified datetime DEFAULT NULL,
+          entity_id INT,
+          language_id INT  
         );
 
         CREATE VECTOR INDEX embedding_index ON :table_categories_embedding (embedding);

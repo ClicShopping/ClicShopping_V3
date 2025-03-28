@@ -138,7 +138,7 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
 
               $sql_data_array_embedding= [
                 'content' => $embedding_data,
-                'type' => 'Page Manager',
+                'type' => 'page_manager',
                 'sourcetype' => 'manual',
                 'sourcename' => 'manual',
                 'date_modified' => 'now()'

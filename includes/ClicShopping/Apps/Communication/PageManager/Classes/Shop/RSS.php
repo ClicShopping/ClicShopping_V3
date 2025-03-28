@@ -339,8 +339,8 @@ class RSS
       $name = strip_tags($rss_item[$i]['products_name']);
       $description = strip_tags($rss_item[$i]['products_description']);
 
-      $description = HTMLOverrideCommon::stripHtmlTags($description);
-      $description = HTMLOverrideCommon::cleanHtml($description);
+      $description = HTMLOverrideCommon::cleanHtmlOptimized($description);
+      $description = HTMLOverrideCommon::cleanHtmlOptimized($description);
       $description = str_replace('<', '', $description);
 
 // http://www.w3.org/TR/REC-xml/#dt-chardata

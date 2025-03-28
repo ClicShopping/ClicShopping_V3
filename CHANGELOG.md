@@ -4,8 +4,9 @@ This is the last version 3, the next will version 4.x will integrate the embeddi
 Protect customers information by AES-256
 Add embeding for categories
 Add embeding for prpducts
-Add product recommendation module for products_info template using the embedding
 Add embeding for page manager
+Add product recommendation module for products_info template using the embedding
+Add rag via chatbot
 small fix
 librairies updated
 

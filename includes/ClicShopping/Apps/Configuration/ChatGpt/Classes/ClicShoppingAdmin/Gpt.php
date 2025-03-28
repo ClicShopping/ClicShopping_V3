@@ -23,6 +23,8 @@ use LLPhant\OllamaConfig;
 use LLPhant\Chat\TokenUsage;
 use LLPhant\AnthropicConfig;
 use LLPhant\Chat\AnthropicChat;
+use LLPhant\Embeddings\EmbeddingGenerator\OpenAI\OpenAI3LargeEmbeddingGenerator;
+use LLPhant\Embeddings\Document;
 
 use function defined;
 use function is_null;
