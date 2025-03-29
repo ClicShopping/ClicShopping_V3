@@ -1,0 +1,5 @@
+text_category_name = Category name
+text_category_description = Category description
+text_category_seo_title = Category SEO title
+text_category_seo_description = Category SEO description
+text_seo_keywords = SEO keywords

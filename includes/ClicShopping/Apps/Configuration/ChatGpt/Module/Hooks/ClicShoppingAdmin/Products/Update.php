@@ -37,6 +37,7 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     }
 
     $this->app = Registry::get('ChatGpt');
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/seo_chat_gpt');
     $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/rag');
   }
 
