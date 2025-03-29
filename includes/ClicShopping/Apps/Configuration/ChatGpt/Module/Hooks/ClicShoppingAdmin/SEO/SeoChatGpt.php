@@ -79,13 +79,6 @@ class SeoChatGpt implements \ClicShopping\OM\Modules\HooksInterface
     $content .= '<i class="bi-chat-square-dots" title="' . $this->app->getDef('text_seo_action') . '"></i>';
     $content .= '</button>';
 
-    $output = '';
-
-    if (Gpt::checkGptStatus() === true) {
-      return false;
-    }
-
-
     $url = Gpt::getAjaxUrl(false);
     $urlMultilanguage = Gpt::getAjaxSeoMultilanguageUrl();
 

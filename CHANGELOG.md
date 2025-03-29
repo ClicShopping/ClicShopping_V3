@@ -3,13 +3,13 @@ This is the last version 3, the next will version 4.x will integrate the embeddi
 
 Protect customers information by AES-256
 Add embeding for categories
-Add embeding for prpducts
+Add embeding for products
 Add embeding for page manager
 Add product recommendation module for products_info template using the embedding
 Add rag via chatbot
 small fix
 librairies updated
-Allow to use the rag and rerieve the data inside the databse or inside the llm
+Allow to use the rag and rerieve the data inside the database or inside the llm
 
 
 ------------------
