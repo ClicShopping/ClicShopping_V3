@@ -37,6 +37,7 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
     }
 
     $this->app = Registry::get('ChatGpt');
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/rag');
   }
 
   /**
@@ -136,84 +137,84 @@ class Update implements \ClicShopping\OM\Modules\HooksInterface
   //********************
   // add embedding
   //********************
-            $embedding_data = 'Product Name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_name) . '\n';
+            $embedding_data = $this->app->getDef('text_product_name') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_name) . '\n';
 
             if (!empty($products_model)) {
-              $embedding_data .= 'Products model: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_model) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_model') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_model) . '\n';
             }
 
             if (!empty($categories_name)) {
-              $embedding_data .= 'Categoriy name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($categories_name) . '\n';
+              $embedding_data .= $this->app->getDef('text_categories_name') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($categories_name) . '\n';
             }
 
             if (!empty($manufacturer_name)) {
-              $embedding_data .= 'Product brand name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($manufacturer_name) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_brand_name') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($manufacturer_name) . '\n';
             }
 
             if (!empty($products_ean)) {
-              $embedding_data .= 'Product ean: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_ean) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_ean') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_ean) . '\n';
             }
 
             if (!empty($products_sku)) {
-              $embedding_data .= 'Product sku: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_sku) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_sku') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_sku) . '\n';
             }
 
             if (!empty($products_date_added)) {
-              $embedding_data .= 'Product date added: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_date_added) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_date_added') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_date_added) . '\n';
             }
 
             if (!empty($products_status)) {
               if ($products_status === 1) {
-                $products_status = 'Enable';
+                $products_status = $this->app->getDef('text_product_enable');
               } else {
-                $products_status = 'Disabled';
+                $products_status = $this->app->getDef('text_product_disable');
               }
 
-              $embedding_data .= 'Product date added: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_status) . '\n';
+              $embedding_data .=  $this->app->getDef('text_product_status') . ': ' . $products_status . '\n';
             }
 
             if (!empty($products_ordered)) {
-              $embedding_data .= 'Products ordered number: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_ordered) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_ordered') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_ordered) . '\n';
             }
 
             if (!empty($products_stock_reorder_level)) {
-              $embedding_data .= 'Product stock reorder level for all products  (fix): ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_stock_reorder_level) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_stock_reorder') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_stock_reorder_level) . '\n';
             }
 
             if (!empty($products_quantity)) {
-              $embedding_data .= 'Product current stock : ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_quantity) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_stock') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_quantity) . '\n';
             }
 
             if (!empty($products_quantity_alert)) {
-              $embedding_data .= 'Product stock alert (fix): ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_quantity_alert) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_stock_alert') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_quantity_alert) . '\n';
             }
 
             if (!empty($products_discountinued)) {
-              $embedding_data .= 'Product stock alert dynamic based on order : ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_discountinued) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_stock_dynamic_alert') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_discountinued) . '\n';
             }
 
             if (!empty($products_description)) {
-              $embedding_data .= 'Products Description: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_description) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_description') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_description) . '\n';
             }
 
             if (!empty($products_description_summary)) {
-              $embedding_data .= 'Products summary: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_description_summary) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_description_summary') . ': ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_description_summary) . '\n';
             }
 
             if (!empty($seo_product_title)) {
-              $embedding_data .= 'Products SEO Title: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_title) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_seo_title') . ': ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_title) . '\n';
             }
 
             if (!empty($seo_product_description)) {
-              $embedding_data .= 'Products SEO Description: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_description) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_seo_description') . ': ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_description) . '\n';
             }
 
             if (!empty($seo_product_keywords)) {
-              $embedding_data .= 'Products SEO Keywords: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_keywords) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_seo_keywords') . ': ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_keywords) . '\n';
             }
 
             if (!empty($seo_product_tag)) {
-              $embedding_data .= 'Products SEO Tag: ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_tag) . '\n';
+              $embedding_data .= $this->app->getDef('text_product_seo_tag') . ': ' . HtmlOverrideCommon::cleanHtmlForSEO($seo_product_tag) . '\n';
             }
 
             $embeddedDocuments = NewVector::createEmbedding(null, $embedding_data);
