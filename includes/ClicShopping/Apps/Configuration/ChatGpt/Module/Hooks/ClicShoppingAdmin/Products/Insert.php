@@ -72,6 +72,14 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
         $Qproducts = $this->app->db->prepare('select p.products_id,
                                                      p.products_model,
                                                      p.manufacturers_id,
+                                                     p.products_ean,
+                                                     p.products_sku,
+                                                     p.products_date_added,
+                                                     p.products_status,
+                                                     p.products_ordered,
+                                                     p.products_quantity,                                                    
+                                                     p.products_quantity_alert,
+                                                     p.products_discountinued, 
                                                      pd.products_name,
                                                      pd.products_description,
                                                      pd.products_head_title_tag,
@@ -96,6 +104,15 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
           foreach ($products_array as $item) {
             $products_name = $item['products_name'];
             $products_model = $item['products_model'];
+            $products_ean = $item['products_ean'];
+            $products_sku = $item['products_sku'];
+            $products_date_added = $item['products_date_added'];
+            $products_status = $item['products_status'];
+            $products_ordered = $item['products_ordered'];
+            $products_quantity = $item['products_quantity']; //product stock
+            $products_stock_reorder_level = (int)STOCK_REORDER_LEVEL; //alert stock  fixfor all  products
+            $products_quantity_alert = $item['products_quantity_alert']; // alert stock fix
+            $products_discountinued = $item['products_discountinued']; // alert stock dynamic
             $manufacturer_name =  HTML::sanitize($_POST['manufacturers_name']);
             $products_description = $item['products_description'];
             $products_description_summary = $item['products_head_tag'];
@@ -234,6 +251,52 @@ class Insert implements \ClicShopping\OM\Modules\HooksInterface
 
               if (!empty($manufacturer_name)) {
                 $embedding_data .= 'Products brand name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($manufacturer_name) . '\n';
+              }
+
+              if (!empty($manufacturer_name)) {
+                $embedding_data .= 'Product brand name: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($manufacturer_name) . '\n';
+              }
+
+              if (!empty($products_ean)) {
+                $embedding_data .= 'Product ean: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_ean) . '\n';
+              }
+
+              if (!empty($products_sku)) {
+                $embedding_data .= 'Product sku: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_sku) . '\n';
+              }
+
+              if (!empty($products_date_added)) {
+                $embedding_data .= 'Product date added: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_date_added) . '\n';
+              }
+
+              if (!empty($products_status)) {
+                if ($products_status === 1) {
+                  $products_status = 'Enable';
+                } else {
+                  $products_status = 'Disabled';
+                }
+
+                $embedding_data .= 'Product date added: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_status) . '\n';
+              }
+
+              if (!empty($products_ordered)) {
+                $embedding_data .= 'Products ordered number: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_ordered) . '\n';
+              }
+
+              if (!empty($products_stock_reorder_level)) {
+                $embedding_data .= 'Product stock reorder level for all products  (fix): ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_stock_reorder_level) . '\n';
+              }
+
+              if (!empty($products_quantity)) {
+                $embedding_data .= 'Product stock: ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_quantity) . '\n';
+              }
+
+              if (!empty($products_quantity_alert)) {
+                $embedding_data .= 'Product stock alert (fix): ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_quantity_alert) . '\n';
+              }
+
+              if (!empty($products_discountinued)) {
+                $embedding_data .= 'Product stock alert dynamic based on order : ' . HtmlOverrideCommon::cleanHtmlForEmbedding($products_discountinued) . '\n';
               }
 
               if (!empty($products_description)) {
