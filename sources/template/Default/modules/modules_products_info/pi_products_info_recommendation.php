@@ -61,16 +61,17 @@ class pi_products_info_recommendation
                                                                 p.products_quantity AS in_stock, 
                                                                 p.products_status, 
                                                                 pe.embedding, 
+                                                                pe.language_id,
                                                                 VEC_DISTANCE_COSINE(pe.embedding, 
-                                                                    (SELECT pe.embedding 
-                                                                     FROM clic_products_embedding pe 
-                                                                     WHERE products_id = :products_id
+                                                                    (SELECT pe2.embedding 
+                                                                     FROM :table_products_embedding pe2 
+                                                                     WHERE pe2.entity_id = :products_id
                                                                      LIMIT 1)
                                                                 ) AS cosine_distance
-                                                FROM clic_products p
-                                                JOIN clic_products_embedding pe ON p.products_id = pe.products_id
-                                                JOIN clic_products_to_categories p2c ON p.products_id = p2c.products_id
-                                                JOIN clic_categories c ON p2c.categories_id = c.categories_id
+                                                FROM :table_products p
+                                                JOIN :table_products_embedding pe ON pe.entity_id = p.products_id
+                                                JOIN :table_products_to_categories p2c ON p.products_id = p2c.products_id
+                                                JOIN :table_categories c ON p2c.categories_id = c.categories_id
                                                 WHERE p.products_status = 1
                                                   AND p.products_archive = 0
                                                   AND p.products_view = 1
@@ -78,14 +79,16 @@ class pi_products_info_recommendation
                                                   AND pe.language_id = :language_id
                                                   AND c.status = 1
                                                   AND p2c.categories_id NOT IN (
-                                                          SELECT categories_id 
-                                                          FROM clic_products_to_categories 
-                                                          WHERE products_id = :products_id
-                                                      )
+                                                      SELECT p2c2.categories_id 
+                                                      FROM :table_products_to_categories p2c2
+                                                      WHERE p2c2.products_id = :products_id
+                                                  )
                                                   AND VEC_DISTANCE_COSINE(pe.embedding, 
-                                                    (SELECT pe.embedding 
-                                                     FROM clic_products_embedding pe 
-                                                     WHERE products_id = 10 LIMIT 1)) < :cosinus 
+                                                    (SELECT pe3.embedding 
+                                                     FROM :table_products_embedding pe3 
+                                                     WHERE pe3.entity_id = 10
+                                                     LIMIT 1)
+                                                  ) < :cosinus 
                                                 ORDER BY cosine_distance
                                                 LIMIT :limit
                                                 ');
@@ -94,6 +97,7 @@ class pi_products_info_recommendation
         $Qproducts->bindInt(':limit', (int)MODULE_PRODUCTS_INFO_RECOMMENDATION_MAX_DISPLAY);
         $Qproducts->bindDecimal(':cosinus', $cosinus);
         $Qproducts->execute();
+
       } else { // mode B2B
         $Qproducts = $CLICSHOPPING_Db->prepare('SELECT DISTINCT p.products_id, 
                                                                 p.products_image, 
@@ -101,38 +105,42 @@ class pi_products_info_recommendation
                                                                 p.products_quantity AS in_stock, 
                                                                 p.products_status, 
                                                                 pe.embedding, 
+                                                                pe.language_id,
                                                                 VEC_DISTANCE_COSINE(pe.embedding, 
-                                                                    (SELECT pe.embedding 
-                                                                     FROM clic_products_embedding pe 
-                                                                     WHERE products_id = :products_id
+                                                                    (SELECT pe2.embedding 
+                                                                     FROM :table_products_embedding pe2 
+                                                                     WHERE pe2.entity_id = :products_id
                                                                      LIMIT 1)
                                                                 ) AS cosine_distance
-                                                FROM clic_products p
+                                                FROM :table_products p
                                                 JOIN :table_products_groups g on p.products_id = g.products_id
-                                                JOIN clic_products_embedding pe ON p.products_id = pe.products_id
-                                                JOIN clic_products_to_categories p2c ON p.products_id = p2c.products_id
-                                                JOIN clic_categories c ON p2c.categories_id = c.categories_id
+                                                JOIN :table_products_embedding pe ON pe.entity_id = p.products_id
+                                                JOIN :table_products_to_categories p2c ON p.products_id = p2c.products_id
+                                                JOIN :table_categories c ON p2c.categories_id = c.categories_id
                                                 WHERE p.products_status = 1
                                                   AND p.products_archive = 0
                                                   AND p.products_view = 1
-                                                  and g.customers_group_id = :customers_group_id
-                                                  and g.products_group_view = 1
-                                                  and g.price_group_view = 1
+                                                  AND g.customers_group_id = :customers_group_id
+                                                  AND g.products_group_view = 1
+                                                  AND g.price_group_view = 1
                                                   AND p.products_id != :products_id
                                                   AND pe.language_id = :language_id
                                                   AND c.status = 1
                                                   AND p2c.categories_id NOT IN (
-                                                          SELECT categories_id 
-                                                          FROM clic_products_to_categories 
-                                                          WHERE products_id = :products_id
-                                                      )
+                                                      SELECT p2c2.categories_id 
+                                                      FROM :table_products_to_categories p2c2
+                                                      WHERE p2c2.products_id = :products_id
+                                                  )
                                                   AND VEC_DISTANCE_COSINE(pe.embedding, 
-                                                    (SELECT pe.embedding 
-                                                     FROM clic_products_embedding pe 
-                                                     WHERE products_id = 10 LIMIT 1)) < :cosinus 
+                                                    (SELECT pe3.embedding 
+                                                     FROM :table_products_embedding pe3 
+                                                     WHERE pe3.entity_id = 10 
+                                                     LIMIT 1)
+                                                  ) < :cosinus 
                                                 ORDER BY cosine_distance
                                                 LIMIT :limit
                                                 ');
+
         $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
         $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
         $Qproducts->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
