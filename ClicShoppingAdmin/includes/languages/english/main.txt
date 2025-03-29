@@ -486,12 +486,10 @@ Information:
 {context}
 Question: {question}
 Instructions:
-
-Respond in clear and concise French
-For each piece of information, indicate its origin and provide the reference link if available
-
-Reference links:<br>
-{links}<br>
-Detailed answer:
+- Respond in clear and concise English.
+- For each piece of information, indicate its origin and provide the reference link if available.
+- Reference links:<br>{links}.<br>
+- Detailed answer:
 
 text_rag_answer_question_not_found = I couldn’t find any specific information to answer your question. Please rephrase or ask another question.
+text_rag_answer_question_error = Sorry, an error hab been created during the process. Please try more late.

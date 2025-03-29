@@ -2706,6 +2706,7 @@ class elFinder
             curl_setopt($ch, CURLOPT_FILE, $outfp);
         } else {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
         }
         curl_setopt($ch, CURLOPT_LOW_SPEED_LIMIT, 1);
         curl_setopt($ch, CURLOPT_LOW_SPEED_TIME, $timeout);
@@ -4284,11 +4285,6 @@ var go = function() {
             case E_NOTICE:
             case E_USER_NOTICE:
                 elFinder::$phpErrors[] = "NOTICE: $errstr in $errfile line $errline.";
-                $proc = true;
-                break;
-
-            case E_STRICT:
-                elFinder::$phpErrors[] = "STRICT: $errstr in $errfile line $errline.";
                 $proc = true;
                 break;
 
