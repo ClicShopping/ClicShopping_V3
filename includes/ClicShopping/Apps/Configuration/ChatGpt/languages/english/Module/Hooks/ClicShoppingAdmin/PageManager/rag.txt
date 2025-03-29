@@ -1,0 +1,5 @@
+text_page_manager_name = Static page name
+text_page_manager_description = Static page description
+text_page_manager_seo_title = Static page seo title
+text_page_manager_seo_description = Static page seo description
+text_page_manager_seo_keywords = Static page seo keywords

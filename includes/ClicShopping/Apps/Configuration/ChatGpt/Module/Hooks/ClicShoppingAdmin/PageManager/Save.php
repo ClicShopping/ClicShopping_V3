@@ -37,6 +37,8 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
     }
 
     $this->app = Registry::get('ChatGpt');
+
+    $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/rag');
   }
 
   /**
@@ -62,9 +64,9 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
         $pages_id = HTML::sanitize($_POST['pages_id']);
 
         $QpageManager = $this->app->db->prepare('select id
-                                               from :table_pages_manager_embedding
-                                               where pages_id = :pages_id
-                                              ');
+                                                 from :table_pages_manager_embedding
+                                                 where pages_id = :pages_id
+                                                ');
         $QpageManager->bindInt(':pages_id',$pages_id);
         $QpageManager->execute();
 
@@ -104,22 +106,22 @@ class Save implements \ClicShopping\OM\Modules\HooksInterface
 //********************
 // add embedding
 //********************
-            $embedding_data = "Page Manager Name: $page_manager_name\n";
+            $embedding_data = $this->app->getDef('text_page_manager_name') . ' : ' . $page_manager_name . '\n';
 
             if (!empty($page_manager_description)) {
-              $embedding_data .= "Page Manager Description: $page_manager_description\n";
+              $embedding_data .= $this->app->getDef('text_page_manager_description') . ' : ' . $page_manager_description . '\n';
             }
 
             if (!empty($seo_page_manager_title)) {
-              $embedding_data .= "Page Manager SEO Title: $seo_page_manager_title\n";
+              $embedding_data .= $this->app->getDef('text_page_manager_seo_title') . ' : ' . $seo_page_manager_title . '\n';
             }
 
             if (!empty($seo_page_manager_description)) {
-              $embedding_data .= "Page Manager SEO Description: $seo_page_manager_description\n";
+              $embedding_data .= $this->app->getDef('text_page_manager_seo_description') . ' : ' . $seo_page_manager_description . '\n';
             }
 
             if (!empty($seo_page_manager_keywords)) {
-              $embedding_data .= "Page Manager SEO Keywords: $seo_page_manager_keywords\n";
+              $embedding_data .= $this->app->getDef('text_page_manager_seo_keywords') . ' : ' . $seo_page_manager_keywords . '\n';
             }
 
             $embeddedDocuments = NewVector::createEmbedding(null, $embedding_data);

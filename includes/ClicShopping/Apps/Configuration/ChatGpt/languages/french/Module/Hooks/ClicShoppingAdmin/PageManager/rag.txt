@@ -1,0 +1,5 @@
+text_page_manager_name = Nom de la page statique
+text_page_manager_description = Description de la page statique
+text_page_manager_seo_title = Titre seo de la page statique
+text_page_manager_seo_description = Description seo de la page statique
+text_page_manager_seo_keywords = Mots clés seo de la page statique
